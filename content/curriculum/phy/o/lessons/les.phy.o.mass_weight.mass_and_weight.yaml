@@ -1,0 +1,76 @@
+id: les.phy.o.mass_weight.mass_and_weight
+node_id: cur.phy.o.motion_forces_and_energy.mass_and_weight
+kc_ids:
+- kc.phy.o.mass_weight.weight_from_mass
+- kc.phy.o.mass_weight.mass_or_weight
+title: Mass and weight
+estimated_minutes: 10
+blocks:
+- type: step
+  text:
+    en: The value of g tells you how hard gravity pulls on each kilogram. Try this before any formula.
+  item_id: itm.phy.o.mass_weight.0002
+  action: try_first
+  why:
+    en: On Mars each kilogram is pulled with 3.7 newtons, and the rock has 2 kilograms. So multiply to get 7.4 N.
+  names:
+    en: 'Weight is mass times gravitational field strength: W = mg. Weight is a force, measured in newtons.'
+- type: step
+  text:
+    en: Mass is the amount of matter in something. Ask yourself whether flying to another planet changes that.
+  item_id: itm.phy.o.mass_weight.0026
+  action: choose
+  why:
+    en: The load has just as much matter on Mars, so its mass is still 500 kg. The weaker pull of gravity there makes it weigh less.
+  names:
+    en: Mass, in kilograms, stays the same everywhere. Weight, in newtons, changes with the pull of gravity.
+- type: step
+  text:
+    en: 'Watch the unit: the formula needs the mass in kilograms, not grams.'
+  item_id: itm.phy.o.mass_weight.0011
+  action: choose
+  why:
+    en: First change 950 g to 0.95 kg. Then multiply by 10 to get 9.5 N.
+- type: step
+  text:
+    en: 'A beam balance compares the bag with known masses. A spring scale measures how hard the bag pulls down. Predict: which reading changes on the Moon?'
+  item_id: itm.phy.o.mass_weight.0028
+  action: predict
+  why:
+    en: On the Moon both sides of the balance are pulled less, so it still balances at the same mass. The spring scale feels a weaker pull, so its reading falls.
+- type: step
+  text:
+    en: Same idea, less help this time. Now go from weight back to mass.
+  item_id: itm.phy.o.mass_weight.0008
+  action: calculate
+  why:
+    en: Divide the weight by g to get the mass.
+- type: step
+  text:
+    en: Now one on your own. Her mass is the same on the Moon as on Earth.
+  item_id: itm.phy.o.mass_weight.0004
+  action: calculate
+  why:
+    en: Find her mass from her Earth weight, then multiply it by the Moon's g.
+- type: check
+  item_ids:
+  - itm.phy.o.mass_weight.0013
+  - itm.phy.o.mass_weight.0014
+  - itm.phy.o.mass_weight.0019
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

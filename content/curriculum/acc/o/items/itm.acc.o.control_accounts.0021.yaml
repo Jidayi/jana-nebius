@@ -1,0 +1,89 @@
+id: itm.acc.o.control_accounts.0021
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.control_accounts.control_sources
+stem: A business prepares its sales ledger control account.
+parts:
+- id: a
+  prompt: Select every item entered on the credit side.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Receipts from customers
+      correct: true
+    - id: B
+      text: Discount allowed
+      correct: true
+    - id: C
+      text: Irrecoverable debts
+      correct: true
+    - id: D
+      text: Credit sales
+      correct: false
+    - id: E
+      text: Dishonoured cheques
+      correct: false
+    - id: F
+      text: Discount received
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which ledger does the item belong to, and does it increase or decrease what is owed?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Sales ledger control: debit what customers come to owe, credit what reduces it. Purchases ledger control: credit what the business comes to owe, debit what reduces it.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Each figure comes from the book of prime entry where it was first recorded.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick what reduces the amount customers owe.
+  - rung: 5
+    name: full_step
+    text:
+      en: Receipts, discount allowed and irrecoverable debts.
+  misconception_ids:
+  - mc.acc.o.ca_side_reversed
+  - mc.acc.o.ca_wrong_control_account
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Credit: receipts, discount allowed, write-offs}'
+    reason: Reduce what customers owe
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

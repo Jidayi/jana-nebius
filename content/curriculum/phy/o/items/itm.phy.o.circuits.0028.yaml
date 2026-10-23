@@ -1,0 +1,125 @@
+id: itm.phy.o.circuits.0028
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.parallel_circuits
+stem: In a circuit, two heating elements of resistance 40 Ω and 10 Ω are connected in parallel with each other.
+parts:
+- id: a
+  prompt: Calculate their combined resistance.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 8 Ω
+      correct: true
+    - id: B
+      text: 50 Ω
+      correct: false
+      misconception_id: mc.phy.o.parallel_resistances_added
+      feedback: Side-by-side paths give the current more ways through, so the combined resistance is less than the smallest one. Use 1/R = 1/R1 + 1/R2.
+    - id: C
+      text: 0.125 Ω
+      correct: false
+      misconception_id: mc.phy.o.parallel_reciprocal_not_inverted
+      feedback: The sum 1/R1 + 1/R2 is 1/R, not R. Finish by taking one divided by the sum.
+    - id: D
+      text: 25 Ω
+      correct: false
+      misconception_id: mc.phy.o.parallel_resistance_averaged
+      feedback: Two equal 10 Ω resistors side by side give 5 Ω, not their average of 10 Ω. The combined resistance is less than either one.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Side-by-side paths make it easier for current to flow, so expect less than the smaller resistance.
+  - rung: 2
+    name: concept
+    text:
+      en: For resistors in parallel, 1/R = 1/R1 + 1/R2.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 1/40 + 1/10, then take the reciprocal of the sum.
+  - rung: 4
+    name: worked_step
+    text:
+      en: For two resistors this is the same as (40 × 10) ÷ (40 + 10).
+  - rung: 5
+    name: full_step
+    text:
+      en: The combined resistance is 8 Ω.
+  misconception_ids:
+  - mc.phy.o.parallel_reciprocal_not_inverted
+  - mc.phy.o.parallel_resistance_averaged
+  - mc.phy.o.parallel_resistances_added
+solution:
+  steps:
+  - n: 1
+    latex: \frac{1}{R} = \frac{1}{40} + \frac{1}{10} = 0.125
+    reason: Add the reciprocals
+    check_id: chk_build_phy_cir_0028_inv
+  - n: 2
+    latex: R = \frac{40 \times 10}{40 + 10} = 8\ \Omega
+    reason: Product over sum for two
+    check_id: chk_build_phy_cir_0028_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_0028_ans:
+    args:
+      expression: 40*10/(40 + 10)
+    tool: math_evaluate
+  chk_build_phy_cir_0028_inv:
+    args:
+      expression: 1/40 + 1/10
+    tool: math_evaluate
+  chk_build_phy_cir_0028_tool:
+    args:
+      components:
+      - emf: '12'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '40'
+      - id: R2
+        kind: resistor
+        resistance: '10'
+      network:
+        series:
+        - B
+        - parallel:
+          - R1
+          - R2
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

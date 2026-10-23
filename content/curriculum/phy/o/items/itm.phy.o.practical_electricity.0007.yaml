@@ -1,0 +1,107 @@
+id: itm.phy.o.practical_electricity.0007
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.electrical_power
+stem: A 1.84 kW iron is connected to the 230 V mains supply.
+parts:
+- id: a
+  prompt: Calculate the current in the cable to it.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '8'
+    unit: A
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_pel_0007_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Power, current and p.d. are linked by P = IV.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Rearrange it to find the current: I = P ÷ V.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Change the power from kilowatts into watts first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The power is 1840 W; divide by 230 V.
+  - rung: 5
+    name: full_step
+    text:
+      en: The current is 8 A.
+  misconception_ids:
+  - mc.phy.o.electric_power_current_multiplied
+  - mc.phy.o.electric_power_current_inverted
+  - mc.phy.o.electric_power_kw_not_converted
+solution:
+  steps:
+  - n: 1
+    latex: P = 1.84\ \text{kW} = 1840\ \text{W}
+    reason: Power in watts
+    check_id: chk_build_phy_pel_0007_pw
+  - n: 2
+    latex: I = \frac{P}{V} = \frac{1840}{230} = 8\ \text{A}
+    reason: Rearrange P = IV
+    check_id: chk_build_phy_pel_0007_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_pel_0007_ans:
+    args:
+      expression: 1840/230
+    tool: math_evaluate
+  chk_build_phy_pel_0007_pw:
+    args:
+      quantity: 1.84 kW
+      to: W
+    tool: units_convert
+  chk_build_phy_pel_0007_tool:
+    args:
+      components:
+      - emf: '230'
+        id: B
+        kind: battery
+      - id: R
+        kind: resistor
+        resistance: '28.75'
+      network:
+        series:
+        - B
+        - R
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

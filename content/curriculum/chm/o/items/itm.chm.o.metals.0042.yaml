@@ -1,0 +1,85 @@
+id: itm.chm.o.metals.0042
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.corrosion
+stem: Some steel objects are protected by coating them with plastic, others by attaching zinc.
+parts:
+- id: a
+  prompt: Which statement compares the two methods correctly?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Plastic is a barrier that fails when scratched; zinc still protects the iron after a scratch.
+      correct: true
+    - id: B
+      text: Zinc works because it is less reactive than iron.
+      correct: false
+      misconception_id: mc.chm.o.metals_sacrificial_less_reactive
+      feedback: Sacrificial protection needs a metal MORE reactive than iron, such as zinc or magnesium. It corrodes first, losing electrons instead of the iron, so the iron is saved.
+    - id: C
+      text: Plastic protects by corroding in place of the iron.
+      correct: false
+    - id: D
+      text: Both are barrier methods and both fail when scratched.
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: One method keeps water and air away; the other uses the reactivity series.
+  - rung: 2
+    name: concept
+    text:
+      en: A barrier works only while it covers all the iron.
+  - rung: 3
+    name: first_step
+    text:
+      en: Zinc is more reactive than iron.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Ask what happens with each method once water reaches the bare steel.
+  - rung: 5
+    name: full_step
+    text:
+      en: Plastic is a barrier only; zinc gives sacrificial protection even through a scratch.
+  misconception_ids:
+  - mc.chm.o.metals_sacrificial_less_reactive
+solution:
+  steps:
+  - n: 1
+    latex: \text{barrier vs sacrificial protection}
+    reason: Two methods compared
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

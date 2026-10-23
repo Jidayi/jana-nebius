@@ -1,0 +1,36 @@
+id: wex.phy.o.electrical_quantities.0006
+kc_ids:
+- kc.phy.o.electrical_quantities.potential_difference
+problem: A heater has a p.d. of 6 V across it, and 360 J of energy is transferred to it. Calculate the charge that has passed through it.
+steps:
+- n: 1
+  latex: Q = \frac{W}{V} = \frac{360}{6} = 60\ \text{C}
+  reason: Rearrange W = QV
+  check_id: chk_build_phy_elq_w0006_ans
+final_answer:
+  latex: 60\ \text{C}
+  check_id: chk_build_phy_elq_w0006_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_elq_w0006_ans:
+    args:
+      expression: 360/6
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

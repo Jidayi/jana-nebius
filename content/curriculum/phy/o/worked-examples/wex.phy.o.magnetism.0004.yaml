@@ -1,0 +1,44 @@
+id: wex.phy.o.magnetism.0004
+kc_ids:
+- kc.phy.o.magnetism.magnetic_fields
+problem: On a field diagram, neighbouring field lines are 2.5 mm apart at point P near a pole and 12.5 mm apart at point Q further away. How many times stronger is the field at P than at Q?
+steps:
+- n: 1
+  latex: \text{lines closer at P} \Rightarrow \text{field stronger at P}
+  reason: The field strength is inversely proportional to the spacing of the lines
+- n: 2
+  latex: \frac{12.5}{2.5} = 5
+  reason: Wider spacing at Q, so divide Q's by P's
+  check_id: chk_build_phy_mag_w0004_ans
+final_answer:
+  latex: '5'
+  check_id: chk_build_phy_mag_w0004_ans
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mag_w0004_ans:
+    args:
+      expression: 12.5/2.5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

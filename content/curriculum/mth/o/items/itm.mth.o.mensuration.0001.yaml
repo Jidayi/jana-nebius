@@ -1,0 +1,92 @@
+id: itm.mth.o.mensuration.0001
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.metric_units
+stem: A floor tile has an area of 0.45 m².
+parts:
+- id: a
+  prompt: Write this area in cm².
+  marks: 1
+  answer:
+    kind: numeric
+    value: '4500'
+    unit: cm^2
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_mns_0001_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'An area unit is a square: think of a square metre.'
+  - rung: 2
+    name: concept
+    text:
+      en: A square metre is 100 cm by 100 cm.
+  - rung: 3
+    name: first_step
+    text:
+      en: So one square metre is 100 × 100 square centimetres.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply 0.45 by 100 × 100.
+  - rung: 5
+    name: full_step
+    text:
+      en: 0.45 m² = 4500 cm².
+  misconception_ids:
+  - mc.mth.o.area_units_linear
+  - mc.mth.o.unit_conversion_direction
+  - mc.mth.o.volume_units_linear
+solution:
+  steps:
+  - n: 1
+    latex: 1\ \text{m}^2 = 100 \times 100\ \text{cm}^2 = 10000\ \text{cm}^2
+    reason: Each metre is 100 cm, in both directions
+    check_id: chk_build_mth_mns_0001_f
+  - n: 2
+    latex: 0.45 \times 10000 = 4500
+    reason: Multiply
+    check_id: chk_build_mth_mns_0001_ans
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_mns_0001_ans:
+    args:
+      expression: 0.45*10000
+    tool: math_evaluate
+  chk_build_mth_mns_0001_f:
+    args:
+      expression: 100*100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,50 @@
+id: wex.mth.o.algebra_and_graphs.0014
+kc_ids:
+- kc.mth.o.algebra_and_graphs.index_laws_algebra
+problem: Simplify $(5x^{4})^{2}$ and write the answer as $kx^m$. Find k.
+steps:
+- n: 1
+  latex: (5x^4)^2 = 5^2 \times (x^4)^2
+  reason: The power applies to every factor in the bracket
+  check_id: chk_build_mth_alg_w0014_pw
+- n: 2
+  latex: k = 25
+  reason: Work out 5 to the power 2
+  check_id: chk_build_mth_alg_w0014_ans
+final_answer:
+  latex: '25'
+  check_id: chk_build_mth_alg_w0014_ans
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0014_ans:
+    args:
+      expression: 5^2
+    tool: math_evaluate
+  chk_build_mth_alg_w0014_pw:
+    args:
+      a: (5*x^4)^2
+      b: 5^2*(x^4)^2
+    tool: math_check_equivalence
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

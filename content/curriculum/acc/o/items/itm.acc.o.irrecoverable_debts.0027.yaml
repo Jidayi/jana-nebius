@@ -1,0 +1,136 @@
+id: itm.acc.o.irrecoverable_debts.0027
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.irrecoverable_debts.allowance_change
+stem: Juma's allowance for irrecoverable debts was $900 at the start of the year. At the year end trade receivables are $3400 after write-offs, and the allowance is to be 4% of them.
+parts:
+- id: a
+  prompt: Calculate the change in the allowance for the income statement. Give a decrease as a negative number.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '-764.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_irrecoverable_debts_0027_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The income statement shows only the change in the allowance, not the whole allowance.
+  - rung: 2
+    name: concept
+    text:
+      en: Change = new allowance − old allowance. An increase is an expense; a decrease is income.
+  - rung: 3
+    name: first_step
+    text:
+      en: New allowance = 4% of $3400.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Change = 4% × 3400 − 900.
+  - rung: 5
+    name: full_step
+    text:
+      en: The new allowance is $136, so the allowance falls by $764.
+  misconception_ids:
+  - mc.acc.o.id_full_allowance_charged
+  - mc.acc.o.id_change_direction_reversed
+solution:
+  steps:
+  - n: 1
+    latex: \text{Change} = \text{new allowance} - \text{old allowance}
+    reason: Only the change goes to the income statement
+    check_id: chk_build_acc_irrecoverable_debts_0027_t
+  - n: 2
+    latex: \text{New allowance} = 4\% \times 3400 = 136
+    reason: This year's balance
+    check_id: chk_build_acc_irrecoverable_debts_0027_s2
+  - n: 3
+    latex: 136 - 900 \rightarrow 764\ \text{decrease}
+    reason: Compare with last year
+    check_id: chk_build_acc_irrecoverable_debts_0027_s3
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_irrecoverable_debts_0027_a:
+    args:
+      dp: 2
+      expression: 3400 * 4/100 - 900
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_0027_s2:
+    args:
+      dp: 4
+      expression: 3400 * 4/100
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_0027_s3:
+    args:
+      dp: 4
+      expression: abs(3400 * 4/100 - 900)
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_0027_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - amount: '900'
+        kind: irrecoverable_debt
+      - kind: allowance
+        percent: '4'
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '80000'
+        role: revenue
+      - account: Purchases
+        debit: '40000'
+        role: purchases
+      - account: Trade receivables
+        debit: '4300'
+        role: trade_receivables
+      - account: Allowance for irrecoverable debts
+        credit: '900'
+        role: allowance_for_irrecoverable_debts
+      - account: Land
+        debit: '36600'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

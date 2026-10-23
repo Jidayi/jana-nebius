@@ -1,0 +1,484 @@
+{
+  "version": 1,
+  "meaning": "Coverage map; automated test success alone is not complete native/model/reviewer acceptance.",
+  "required_count": 41,
+  "cases": [
+    {
+      "requirement": "API-44",
+      "acceptance": "api44_study_contract_roundtrip",
+      "specification": "docs/specification/streaming-and-api.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_local_api_material_to_quiz_private_replay_and_profile_isolation",
+        "services/cloud-gateway/tests/test_m42_study.py"
+      ],
+      "remaining": "Deployed production transport/TLS checks and packaged profile/command replay.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "API-44",
+      "acceptance": "api44_study_isolation_and_retries",
+      "specification": "docs/specification/streaming-and-api.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_local_api_material_to_quiz_private_replay_and_profile_isolation",
+        "services/cloud-gateway/tests/test_m42_study.py"
+      ],
+      "remaining": "Deployed production transport/TLS checks and packaged profile/command replay.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-01",
+      "acceptance": "stu01_answers_cite_material",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_invalid_citation_and_semantically_unsupported_outputs_are_withheld",
+        "services/agent-core/tests/test_study_workspace.py::test_local_api_material_to_quiz_private_replay_and_profile_isolation"
+      ],
+      "remaining": "Independent held-out subject/content review and each local model candidate.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-01",
+      "acceptance": "stu01_no_material_no_chat",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_invalid_citation_and_semantically_unsupported_outputs_are_withheld",
+        "services/agent-core/tests/test_study_workspace.py::test_local_api_material_to_quiz_private_replay_and_profile_isolation"
+      ],
+      "remaining": "Independent held-out subject/content review and each local model candidate.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-02",
+      "acceptance": "stu02_limits_enforced",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_m42_format_corpus.py",
+        "services/agent-core/tests/test_study_workspace.py::test_pdf_text_extraction_and_encrypted_corrupt_files"
+      ],
+      "remaining": "D03/D04 packaged OCR/ASR and original-file size/duration limits on supported devices.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-02",
+      "acceptance": "stu02_notes_are_local_sources",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_m42_format_corpus.py",
+        "services/agent-core/tests/test_study_workspace.py::test_pdf_text_extraction_and_encrypted_corrupt_files"
+      ],
+      "remaining": "D03/D04 packaged OCR/ASR and original-file size/duration limits on supported devices.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-02",
+      "acceptance": "stu02_bad_sources_refused_cleanly",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_m42_format_corpus.py",
+        "services/agent-core/tests/test_study_workspace.py::test_pdf_text_extraction_and_encrypted_corrupt_files"
+      ],
+      "remaining": "D03/D04 packaged OCR/ASR and original-file size/duration limits on supported devices.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-03",
+      "acceptance": "stu03_injected_instructions_ignored",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_uploaded_instruction_text_is_screened_before_immutable_citations",
+        "services/cloud-gateway/tests/test_m42_quality_corpus.py"
+      ],
+      "remaining": "Held-out adversarial sources, each local model and independent safety review.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-04",
+      "acceptance": "stu04_references_open_source",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_local_notes_cards_quiz_are_cited_and_do_not_mutate_mastery",
+        "packages/ui/test/study-workspace.test.tsx"
+      ],
+      "remaining": "D07 native citation/back focus and screen-reader flow.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-04",
+      "acceptance": "stu04_flashcards_scheduled",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_local_notes_cards_quiz_are_cited_and_do_not_mutate_mastery",
+        "packages/ui/test/study-workspace.test.tsx"
+      ],
+      "remaining": "D07 native citation/back focus and screen-reader flow.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-05",
+      "acceptance": "stu05_model_judged_labelled",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_m42_extended.py::test_numeric_quiz_key_and_student_answer_use_real_worker",
+        "services/agent-core/tests/test_study_workspace.py::test_local_notes_cards_quiz_are_cited_and_do_not_mutate_mastery"
+      ],
+      "remaining": "Independent marking/content review on held-out generated questions.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-06",
+      "acceptance": "stu06_material_linked_to_kcs",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_m42_extended.py::test_grounded_chat_audio_and_multi_source_generation",
+        "packages/ui/test/study-workspace.test.tsx"
+      ],
+      "remaining": "D02 real installed curriculum pack navigation and subject reviewer check.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-07",
+      "acceptance": "stu07_homework_sheet_stays_guided",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_m42_extended.py::test_harmful_prompt_and_draft_are_withheld_even_with_valid_source_quotes",
+        "services/agent-core/tests/test_m42_safety_corpus.py"
+      ],
+      "remaining": "D08 all eligible hardware classes; guided/practice distinction reviewed by safety owner.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-07",
+      "acceptance": "stu07_practice_solution_not_cheating",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_m42_extended.py::test_harmful_prompt_and_draft_are_withheld_even_with_valid_source_quotes",
+        "services/agent-core/tests/test_m42_safety_corpus.py"
+      ],
+      "remaining": "D08 all eligible hardware classes; guided/practice distinction reviewed by safety owner.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-08",
+      "acceptance": "stu08_offline_short_source_local",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_large_source_batches_resume_without_repeating_verified_work",
+        "services/agent-core/tests/test_study_workspace.py::test_pdf_runs_in_the_actual_network_denied_document_process",
+        "services/cloud-gateway/tests/test_m42_recordings.py"
+      ],
+      "remaining": "D02 real-model offline 10-page flow with network capture; D04 two-hour offline/online recording.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-08",
+      "acceptance": "stu08_long_source_queued_until_online",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_large_source_batches_resume_without_repeating_verified_work",
+        "services/agent-core/tests/test_study_workspace.py::test_pdf_runs_in_the_actual_network_denied_document_process",
+        "services/cloud-gateway/tests/test_m42_recordings.py"
+      ],
+      "remaining": "D02 real-model offline 10-page flow with network capture; D04 two-hour offline/online recording.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-09",
+      "acceptance": "stu09_delete_removes_everywhere",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_delete_cascades_multisource_aids_and_late_jobs_cannot_resurrect",
+        "services/agent-core/tests/test_study_workspace.py::test_archive_explicit_selection_roundtrip_and_old_snapshot_erasure"
+      ],
+      "remaining": "D06 physical disk/archive inspection and deployed provider retention evidence.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-09",
+      "acceptance": "stu09_never_in_packs_training_or_telemetry",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_delete_cascades_multisource_aids_and_late_jobs_cannot_resurrect",
+        "services/agent-core/tests/test_study_workspace.py::test_archive_explicit_selection_roundtrip_and_old_snapshot_erasure"
+      ],
+      "remaining": "D06 physical disk/archive inspection and deployed provider retention evidence.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-10",
+      "acceptance": "stu10_switch_by_age",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_m42_checkout.py",
+        "services/agent-core/tests/test_study_workspace.py::test_profile_close_and_consent_withdrawal_cancel_queued_cloud_only"
+      ],
+      "remaining": "D05 actual packaged minor/adult consent and deployed entitlement.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-11",
+      "acceptance": "stu11_safety_items_pass",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_m42_safety_corpus.py",
+        "services/cloud-gateway/tests/test_m42_quality_corpus.py"
+      ],
+      "remaining": "100% held-out safety on each hardware class/cloud; independent source/output and OCR/ASR review.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-11",
+      "acceptance": "stu11_study_scope_not_syllabus_scope",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_m42_safety_corpus.py",
+        "services/cloud-gateway/tests/test_m42_quality_corpus.py"
+      ],
+      "remaining": "100% held-out safety on each hardware class/cloud; independent source/output and OCR/ASR review.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-12",
+      "acceptance": "stu12_allowance_exhausted_falls_back",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/cloud-gateway/tests/test_m42_reconcile.py",
+        "services/cloud-gateway/tests/test_m42_study.py"
+      ],
+      "remaining": "D05 real quota/local fallback; production measured page/minute costs and token-price qualification.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-16",
+      "acceptance": "stu16_revision_citations_stable",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_staged_file_replacement_keeps_previous_revision_until_commit",
+        "services/agent-core/tests/test_study_workspace.py::test_source_revision_retains_old_citations_and_suspends_cards",
+        "services/agent-core/tests/test_m42_format_corpus.py",
+        "services/cloud-gateway/tests/test_m42_quality_corpus.py"
+      ],
+      "remaining": "D03 real OCR correction; D04/D06 packaged revision and erasure observations.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-16",
+      "acceptance": "stu16_citation_support_and_offsets",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_staged_file_replacement_keeps_previous_revision_until_commit",
+        "services/agent-core/tests/test_study_workspace.py::test_source_revision_retains_old_citations_and_suspends_cards",
+        "services/agent-core/tests/test_m42_format_corpus.py",
+        "services/cloud-gateway/tests/test_m42_quality_corpus.py"
+      ],
+      "remaining": "D03 real OCR correction; D04/D06 packaged revision and erasure observations.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-16",
+      "acceptance": "stu16_untrusted_extraction_bounded",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_staged_file_replacement_keeps_previous_revision_until_commit",
+        "services/agent-core/tests/test_study_workspace.py::test_source_revision_retains_old_citations_and_suspends_cards",
+        "services/agent-core/tests/test_m42_format_corpus.py",
+        "services/cloud-gateway/tests/test_m42_quality_corpus.py"
+      ],
+      "remaining": "D03 real OCR correction; D04/D06 packaged revision and erasure observations.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-17",
+      "acceptance": "stu17_restart_idempotent_generation",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_profile_switch_or_cancel_discards_inflight_local_output",
+        "services/agent-core/tests/test_study_workspace.py::test_partial_chunk_left_by_power_loss_is_resumable",
+        "services/cloud-gateway/tests/test_m42_study.py",
+        "services/cloud-gateway/tests/test_m42_recordings.py",
+        "services/cloud-gateway/tests/test_m42_reconcile.py"
+      ],
+      "remaining": "D04/D05/D06 packaged crash/consent races and deployed gateway restart/cleanup/receipt audit.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-17",
+      "acceptance": "stu17_cancel_and_consent_races",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_profile_switch_or_cancel_discards_inflight_local_output",
+        "services/agent-core/tests/test_study_workspace.py::test_partial_chunk_left_by_power_loss_is_resumable",
+        "services/cloud-gateway/tests/test_m42_study.py",
+        "services/cloud-gateway/tests/test_m42_recordings.py",
+        "services/cloud-gateway/tests/test_m42_reconcile.py"
+      ],
+      "remaining": "D04/D05/D06 packaged crash/consent races and deployed gateway restart/cleanup/receipt audit.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-17",
+      "acceptance": "stu17_quota_and_cloud_cleanup",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_profile_switch_or_cancel_discards_inflight_local_output",
+        "services/agent-core/tests/test_study_workspace.py::test_partial_chunk_left_by_power_loss_is_resumable",
+        "services/cloud-gateway/tests/test_m42_study.py",
+        "services/cloud-gateway/tests/test_m42_recordings.py",
+        "services/cloud-gateway/tests/test_m42_reconcile.py"
+      ],
+      "remaining": "D04/D05/D06 packaged crash/consent races and deployed gateway restart/cleanup/receipt audit.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-17",
+      "acceptance": "stu17_recording_extraction_and_cleanup",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_profile_switch_or_cancel_discards_inflight_local_output",
+        "services/agent-core/tests/test_study_workspace.py::test_partial_chunk_left_by_power_loss_is_resumable",
+        "services/cloud-gateway/tests/test_m42_study.py",
+        "services/cloud-gateway/tests/test_m42_recordings.py",
+        "services/cloud-gateway/tests/test_m42_reconcile.py"
+      ],
+      "remaining": "D04/D05/D06 packaged crash/consent races and deployed gateway restart/cleanup/receipt audit.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-18",
+      "acceptance": "stu18_source_decks_independent",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_review_and_attempt_ids_reject_changed_payload",
+        "services/agent-core/tests/test_study_workspace.py::test_local_notes_cards_quiz_are_cited_and_do_not_mutate_mastery",
+        "services/agent-core/tests/test_m42_extended.py::test_numeric_quiz_key_and_student_answer_use_real_worker"
+      ],
+      "remaining": "D02/D07 native review/quiz; independent held-out keys/evidence review.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-18",
+      "acceptance": "stu18_quiz_keys_and_support",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_review_and_attempt_ids_reject_changed_payload",
+        "services/agent-core/tests/test_study_workspace.py::test_local_notes_cards_quiz_are_cited_and_do_not_mutate_mastery",
+        "services/agent-core/tests/test_m42_extended.py::test_numeric_quiz_key_and_student_answer_use_real_worker"
+      ],
+      "remaining": "D02/D07 native review/quiz; independent held-out keys/evidence review.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-18",
+      "acceptance": "stu18_marking_not_mastery",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_study_workspace.py::test_review_and_attempt_ids_reject_changed_payload",
+        "services/agent-core/tests/test_study_workspace.py::test_local_notes_cards_quiz_are_cited_and_do_not_mutate_mastery",
+        "services/agent-core/tests/test_m42_extended.py::test_numeric_quiz_key_and_student_answer_use_real_worker"
+      ],
+      "remaining": "D02/D07 native review/quiz; independent held-out keys/evidence review.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-19",
+      "acceptance": "stu19_erasure_beats_late_result_and_restore",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_m42_archive.py",
+        "services/agent-core/tests/test_study_workspace.py::test_private_historical_grants_bind_revision",
+        "services/agent-core/tests/test_study_workspace.py::test_archive_explicit_selection_roundtrip_and_old_snapshot_erasure"
+      ],
+      "remaining": "D06 packaged privacy, grant expiry and deletion/old-archive erasure inspection.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-19",
+      "acceptance": "stu19_private_sources_no_preview_leak",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_m42_archive.py",
+        "services/agent-core/tests/test_study_workspace.py::test_private_historical_grants_bind_revision",
+        "services/agent-core/tests/test_study_workspace.py::test_archive_explicit_selection_roundtrip_and_old_snapshot_erasure"
+      ],
+      "remaining": "D06 packaged privacy, grant expiry and deletion/old-archive erasure inspection.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "STU-19",
+      "acceptance": "stu19_export_boundaries",
+      "specification": "docs/specification/study-area.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_m42_archive.py",
+        "services/agent-core/tests/test_study_workspace.py::test_private_historical_grants_bind_revision",
+        "services/agent-core/tests/test_study_workspace.py::test_archive_explicit_selection_roundtrip_and_old_snapshot_erasure"
+      ],
+      "remaining": "D06 packaged privacy, grant expiry and deletion/old-archive erasure inspection.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "DAT-22",
+      "acceptance": "dat22_study_migration_and_restore",
+      "specification": "docs/specification/data-model.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_m42_archive.py",
+        "services/agent-core/tests/test_study_workspace.py::test_delete_cascades_multisource_aids_and_late_jobs_cannot_resurrect"
+      ],
+      "remaining": "D05/D06 packaged power-loss/disk-full, migration and old-archive erasure.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "DAT-22",
+      "acceptance": "dat22_study_cascade_erasure",
+      "specification": "docs/specification/data-model.md",
+      "automated_checks": [
+        "services/agent-core/tests/test_m42_archive.py",
+        "services/agent-core/tests/test_study_workspace.py::test_delete_cascades_multisource_aids_and_late_jobs_cannot_resurrect"
+      ],
+      "remaining": "D05/D06 packaged power-loss/disk-full, migration and old-archive erasure.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "UXS-65",
+      "acceptance": "uxs65_source_lifecycle_keyboard",
+      "specification": "docs/specification/screens-and-states.md",
+      "automated_checks": [
+        "packages/ui/test/study-workspace.test.tsx",
+        "scripts/ci/browser-m42-gallery.mjs"
+      ],
+      "remaining": "D07 keyboard and native screen-reader lifecycle on supported native webviews.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "UXS-65",
+      "acceptance": "uxs65_source_state_gallery",
+      "specification": "docs/specification/screens-and-states.md",
+      "automated_checks": [
+        "packages/ui/test/study-workspace.test.tsx",
+        "scripts/ci/browser-m42-gallery.mjs"
+      ],
+      "remaining": "D07 keyboard and native screen-reader lifecycle on supported native webviews.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "UXS-66",
+      "acceptance": "uxs66_study_review_and_quiz_flow",
+      "specification": "docs/specification/screens-and-states.md",
+      "automated_checks": [
+        "packages/ui/test/study-workspace.test.tsx",
+        "scripts/ci/browser-m42-gallery.mjs"
+      ],
+      "remaining": "D07/D08 native screen readers, audio, 320 px and 200% text.",
+      "acceptance_complete": false
+    },
+    {
+      "requirement": "UXS-66",
+      "acceptance": "uxs66_accessible_study_aids",
+      "specification": "docs/specification/screens-and-states.md",
+      "automated_checks": [
+        "packages/ui/test/study-workspace.test.tsx",
+        "scripts/ci/browser-m42-gallery.mjs"
+      ],
+      "remaining": "D07/D08 native screen readers, audio, 320 px and 200% text.",
+      "acceptance_complete": false
+    }
+  ]
+}

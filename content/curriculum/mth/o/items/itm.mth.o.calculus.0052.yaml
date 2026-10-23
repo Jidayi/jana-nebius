@@ -1,0 +1,107 @@
+id: itm.mth.o.calculus.0052
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.calculus.definite_integrals
+stem: Evaluate $\int_{-1}^{3} (6x^2 + 4x + 1)\,dx$.
+parts:
+- id: a
+  prompt: Give the exact value.
+  marks: 4
+  answer:
+    kind: numeric
+    value: '76'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_cal_0052_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'A definite integral is evaluated in two stages: integrate, then substitute the limits.'
+  - rung: 2
+    name: concept
+    text:
+      en: 'Integrate each term: xⁿ becomes xⁿ⁺¹ ÷ (n + 1).'
+  - rung: 3
+    name: first_step
+    text:
+      en: Write F(x), then work out F(3) and F(-1).
+  - rung: 4
+    name: worked_step
+    text:
+      en: F(3) = 75 and F(-1) = -1.
+  - rung: 5
+    name: full_step
+    text:
+      en: The integral is 76.
+  misconception_ids:
+  - mc.mth.o.integrate_by_differentiating
+  - mc.mth.o.integral_power_not_divided
+  - mc.mth.o.integral_limits_reversed
+solution:
+  steps:
+  - n: 1
+    latex: \int x^n\,dx = \frac{x^{n+1}}{n+1}
+    reason: Raise each power by one and divide by the new power
+  - n: 2
+    latex: F(3) = 75,\ F(-1) = -1
+    reason: Substitute the limits
+    check_id: chk_build_mth_cal_0052_fb
+  - n: 3
+    latex: F(3) - F(-1) = 76
+    reason: Top limit minus bottom limit
+    check_id: chk_build_mth_cal_0052_ig
+difficulty:
+  prior: 1.0
+  band: core
+estimated_seconds: 140
+exam_style:
+  paper_style: structured
+  total_marks: 4
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_cal_0052_ans:
+    args:
+      expression: (6*(3)^3/3 + (4)*(3)^2/2 + (1)*(3)) - (6*(-1)^3/3 + (4)*(-1)^2/2 + (1)*(-1))
+    tool: math_evaluate
+  chk_build_mth_cal_0052_fb:
+    args:
+      equations:
+      - p = 6*(3)^3/3 + (4)*(3)^2/2 + (1)*(3)
+      - q = 6*(-1)^3/3 + (4)*(-1)^2/2 + (1)*(-1)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_cal_0052_ig:
+    args:
+      expression: (6)*x^2 + (4)*x^1 + (1)*x^0
+      lower: -1
+      upper: 3
+      variable: x
+    tool: math_integrate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

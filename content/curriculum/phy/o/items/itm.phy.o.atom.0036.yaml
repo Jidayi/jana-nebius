@@ -1,0 +1,93 @@
+id: itm.phy.o.atom.0036
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.atom.nuclear_model_evidence
+stem: Suppose an atom's positive charge and mass were spread evenly through it, with no nucleus.
+parts:
+- id: a
+  prompt: What would the scattering experiment have shown?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Nearly all particles passing through, bent only slightly, with none turned back
+      correct: true
+    - id: B
+      text: Many particles turned back by the spread-out charge
+      correct: false
+      misconception_id: mc.phy.o.plum_pudding_fits_results
+      feedback: Charge spread thinly through the atom pushes only weakly on an alpha particle, so it could not turn one back. The rebounds needed the charge packed into a tiny centre.
+    - id: C
+      text: Most particles bouncing straight back
+      correct: false
+      misconception_id: mc.phy.o.scattering_most_bounced_back
+      feedback: Nearly all the alpha particles went straight through. Only about one in several thousand came back, which is why the result was so surprising.
+    - id: D
+      text: Particles pulled in towards the middle of each atom
+      correct: false
+      misconception_id: mc.phy.o.nucleus_negative
+      feedback: The alpha particles were pushed away and some were turned right back. Like charges repel, so the nucleus must be positive.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Recall the three things that happened to alpha particles fired at thin gold foil.
+  - rung: 2
+    name: concept
+    text:
+      en: Most went straight through, a few were deflected a little, and a very few were turned back.
+  - rung: 3
+    name: first_step
+    text:
+      en: Thinly spread charge gives only weak pushes.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that contradict what was seen.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Nearly all particles passing through, bent only slightly, with none turned back.'
+  misconception_ids:
+  - mc.phy.o.nucleus_negative
+  - mc.phy.o.plum_pudding_fits_results
+  - mc.phy.o.scattering_most_bounced_back
+solution:
+  steps:
+  - n: 1
+    latex: \text{Nearly all particles passing through, bent only slightly, with none turned back}
+    reason: Match each observation to what it shows
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

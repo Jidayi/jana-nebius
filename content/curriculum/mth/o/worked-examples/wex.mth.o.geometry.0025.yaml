@@ -1,0 +1,40 @@
+id: wex.mth.o.geometry.0025
+kc_ids:
+- kc.mth.o.geometry.circle_theorems_basic
+problem: A tangent touches a circle with centre O at point T. A point P on the tangent is joined to O, and angle OPT = 41°. Find angle TOP.
+steps:
+- n: 1
+  latex: \angle OTP = 90,\ \angle TOP = 180 - 90 - 41 = 49
+  reason: A tangent is perpendicular to the radius; the angles in triangle OTP add to 180°
+  check_id: chk_build_mth_geo_w0025_ans
+final_answer:
+  latex: 49^\circ
+  check_id: chk_build_mth_geo_w0025_ans
+fading_order:
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_w0025_ans:
+    args:
+      expression: 90 - 41
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

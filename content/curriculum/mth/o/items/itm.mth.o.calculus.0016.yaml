@@ -1,0 +1,102 @@
+id: itm.mth.o.calculus.0016
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.calculus.tangents_normals
+stem: A curve has equation $y = x^2 + 6x - 1$. The tangent to the curve at the point where x = -1 has equation y = mx + c.
+parts:
+- id: a
+  prompt: Find c.
+  marks: 4
+  answer:
+    kind: numeric
+    value: '-2'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_cal_0016_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A tangent touches the curve at one point and has the curve's gradient there.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the point on the curve, then the gradient from dy/dx, then c from y = mx + c.
+  - rung: 3
+    name: first_step
+    text:
+      en: Substitute x = -1 into the curve for y, and into dy/dx for m.
+  - rung: 4
+    name: worked_step
+    text:
+      en: y = -6 and m = 4; now solve -6 = m × (-1) + c.
+  - rung: 5
+    name: full_step
+    text:
+      en: c = -2.
+  misconception_ids:
+  - mc.mth.o.intercept_sign
+  - mc.mth.o.c_as_y_coordinate
+  - mc.mth.o.derivative_power_not_brought_down
+solution:
+  steps:
+  - n: 1
+    latex: 'y = x^2 + 6x - 1 \text{ at } x = -1: y = -6'
+    reason: The point of contact
+    check_id: chk_build_mth_cal_0016_y
+  - n: 2
+    latex: m = \frac{dy}{dx} = 4
+    reason: Gradient from the derivative
+    check_id: chk_build_mth_cal_0016_m
+  - n: 3
+    latex: c = -6 - 4 \times (-1) = -2
+    reason: Substitute the point into y = mx + c
+    check_id: chk_build_mth_cal_0016_ans
+difficulty:
+  prior: 1.2
+  band: core
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 4
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_cal_0016_ans:
+    args:
+      expression: -6 - (2*1*(-1) + (6))*(-1)
+    tool: math_evaluate
+  chk_build_mth_cal_0016_m:
+    args:
+      expression: 2*1*(-1) + (6)
+    tool: math_evaluate
+  chk_build_mth_cal_0016_y:
+    args:
+      expression: (1)*x^2 + (6)*x^1 + (-1)*x^0
+      values:
+        x: -1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

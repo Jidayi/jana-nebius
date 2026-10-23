@@ -1,0 +1,121 @@
+- id: kc.phy.o.practical_electricity.electrical_power
+  code: PHY-O-04.04.K01
+  node_id: cur.phy.o.electricity_and_magnetism.practical_electricity
+  statement: Calculate electrical power with P = IV and P = I²R
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  - phys_circuit
+  exam_weight: 0.364
+  prerequisites:
+  - kc_id: kc.phy.o.electrical_quantities.resistance
+    strength: required
+  - kc_id: kc.phy.o.energy.power
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.electric_power_current_inverted
+  - mc.phy.o.electric_power_current_multiplied
+  - mc.phy.o.electric_power_current_not_squared
+  - mc.phy.o.electric_power_kw_not_converted
+  - mc.phy.o.electric_power_r_multiplied
+  - mc.phy.o.electric_power_square_as_double
+  - mc.phy.o.electric_power_v_over_i
+  - mc.phy.o.electric_power_voltage_not_squared
+  - mc.phy.o.electric_power_wrong_quantity_squared
+  skill_ids:
+  - phy-o-practical-electricity
+  glossary:
+  - electrical power
+  - power
+  - watt
+  - current
+  - potential difference
+  - resistance
+  - resistor
+  - voltage
+  - power transferred
+  difficulty_prior: 0.1
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.practical_electricity.energy_cost
+  code: PHY-O-04.04.K02
+  node_id: cur.phy.o.electricity_and_magnetism.practical_electricity
+  statement: Calculate electrical energy in joules and kilowatt-hours and the cost of using an appliance
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.333
+  prerequisites:
+  - kc_id: kc.phy.o.practical_electricity.electrical_power
+    strength: required
+  misconception_ids:
+  - mc.phy.o.elec_energy_minutes_divided_by_60
+  - mc.phy.o.elec_energy_power_over_time
+  - mc.phy.o.elec_energy_time_not_in_seconds
+  - mc.phy.o.electric_power_kw_not_converted
+  - mc.phy.o.energy_cost_days_left_out
+  - mc.phy.o.kwh_conversion_multiplied
+  - mc.phy.o.kwh_divided_by_3600_only
+  - mc.phy.o.kwh_joules_divided_by_1000
+  - mc.phy.o.kwh_power_left_in_watts
+  - mc.phy.o.kwh_time_left_in_minutes
+  skill_ids:
+  - phy-o-practical-electricity
+  glossary:
+  - kilowatt-hour
+  - kilowatt
+  - watt
+  - joule
+  - megajoule
+  - electrical energy
+  - energy meter
+  - power
+  difficulty_prior: 0.1
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.practical_electricity.fuses_and_safety
+  code: PHY-O-04.04.K03
+  node_id: cur.phy.o.electricity_and_magnetism.practical_electricity
+  statement: Select a suitable fuse rating and explain the roles of the live, neutral and earth wires
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  - phys_circuit
+  exam_weight: 0.303
+  prerequisites:
+  - kc_id: kc.phy.o.practical_electricity.electrical_power
+    strength: required
+  misconception_ids:
+  - mc.phy.o.breaker_must_be_replaced
+  - mc.phy.o.double_insulated_needs_earth
+  - mc.phy.o.earth_wire_carries_working_current
+  - mc.phy.o.electric_power_current_inverted
+  - mc.phy.o.electric_power_current_multiplied
+  - mc.phy.o.electric_power_kw_not_converted
+  - mc.phy.o.fuse_in_neutral_wire
+  - mc.phy.o.fuse_largest_always_safest
+  - mc.phy.o.fuse_protects_person_from_shock
+  - mc.phy.o.fuse_rating_below_current
+  - mc.phy.o.fuse_rating_sets_current
+  - mc.phy.o.neutral_and_earth_same
+  - mc.phy.o.neutral_wire_is_live
+  skill_ids:
+  - phy-o-practical-electricity
+  glossary:
+  - fuse
+  - fuse rating
+  - live wire
+  - neutral wire
+  - earth wire
+  - circuit breaker
+  - double insulation
+  - earthing
+  - insulation
+  - residual current device
+  - current
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active

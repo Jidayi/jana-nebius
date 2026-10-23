@@ -1,0 +1,91 @@
+id: itm.chm.o.environment.0047
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.climate
+stem: Natural gas, mainly methane, is burned in a plentiful supply of air in a modern boiler.
+parts:
+- id: a
+  prompt: Does this still add to climate change?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: No, because a plentiful supply of air stops any gas being made
+      correct: false
+    - id: B
+      text: Yes, because it makes a hole in the ozone layer
+      correct: false
+      misconception_id: mc.chm.o.environment_greenhouse_ozone_confused
+      feedback: These are two different problems. The ozone layer stops harmful ultraviolet light; damage to it raises the risk of skin cancer. Global warming is caused by greenhouse gases trapping heat (infrared) given off by the Earth.
+    - id: C
+      text: Yes, because complete combustion still gives carbon dioxide
+      correct: true
+    - id: D
+      text: No, because complete combustion gives only water
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Write the products of the complete combustion of a hydrocarbon.
+  - rung: 2
+    name: concept
+    text:
+      en: Complete combustion gives carbon dioxide and water.
+  - rung: 3
+    name: first_step
+    text:
+      en: Plenty of air prevents carbon monoxide and soot, but not carbon dioxide.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Carbon dioxide is a greenhouse gas.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Yes: CH₄ + 2O₂ → CO₂ + 2H₂O, and the carbon dioxide adds to the greenhouse effect.'
+  misconception_ids:
+  - mc.chm.o.environment_greenhouse_ozone_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{CH}_4 + 2\text{O}_2 \rightarrow \text{CO}_2 + 2\text{H}_2\text{O}
+    reason: Complete combustion
+    check_id: chk_build_chm_environment_0047_bal
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_environment_0047_bal:
+    args:
+      equation: CH4 + O2 -> CO2 + H2O
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

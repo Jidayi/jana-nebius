@@ -1,0 +1,43 @@
+# JRN-09: the journey as an executable script (JRN-02). Steps and failure branches follow the
+# specification's journey (checked by jrn02_journey_suite_complete); requirement ids only, no wording.
+journey: JRN-09
+title: The full solution on request, with teaching still offered
+persona: P4
+stage: S2
+steps:
+- n: 1
+  requirements:
+  - PED-01
+  - PED-02
+  - PED-09
+  - AGT-20
+  - AGT-25
+  runs_on: harness
+- n: 2
+  requirements:
+  - PED-07
+  - AGT-20
+  - LRN-06
+  runs_on: harness
+- n: 3
+  requirements:
+  - AGT-10
+  - PRM-06
+  - PED-19
+  runs_on: harness
+- n: 4
+  requirements:
+  - PED-01
+  - PED-05
+  - PED-08
+  runs_on: harness
+branches:
+- id: F1
+  requirements:
+  - LRN-19
+  - PED-09
+- id: F2
+  requirements:
+  - TCH-13
+  - API-28
+  - PED-09

@@ -1,0 +1,115 @@
+id: itm.phy.o.forces.0092
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.moments
+stem: A see-saw is a uniform plank 3 m long, pivoted at its middle. Neema, weight 450 N, sits 0.2 m from one end.
+parts:
+- id: a
+  prompt: How far from the pivot must Musa, weight 540 N, sit on the other side for the see-saw to balance?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 1.08 m
+      correct: true
+    - id: B
+      text: 0.167 m
+      correct: false
+      misconception_id: mc.phy.o.moment_distance_from_end
+      feedback: Mark the pivot on a sketch and measure every distance from it. A distance to the end of the beam is not the distance to the pivot unless the pivot is at that end.
+    - id: C
+      text: 1.56 m
+      correct: false
+      misconception_id: mc.phy.o.moment_ratio_inverted
+      feedback: 'Write the balance first: F1 × d1 = F2 × d2. Then divide both sides by the quantity next to the unknown.'
+    - id: D
+      text: 1.3 m
+      correct: false
+      misconception_id: mc.phy.o.balance_equal_distances
+      feedback: 'An adult and a small child on a see-saw at equal distances do not balance: the adult goes down. The heavier load must sit closer to the pivot.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: For balance, the moments on the two sides of the pivot must be equal.
+  - rung: 2
+    name: concept
+    text:
+      en: Measure Neema's distance from the pivot, not from the end of the plank.
+  - rung: 3
+    name: first_step
+    text:
+      en: The pivot is at the middle, so take 0.2 m from half the length.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Neema is 1.3 m from the pivot, giving a moment of 585 N m.
+  - rung: 5
+    name: full_step
+    text:
+      en: Musa's distance = 585 ÷ 540 = 1.08 m from the pivot.
+  misconception_ids:
+  - mc.phy.o.balance_equal_distances
+  - mc.phy.o.moment_distance_from_end
+  - mc.phy.o.moment_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: d_1 = \frac{3}{2} - 0.2 = 1.3\ \text{m}
+    reason: Distance from the pivot
+    check_id: chk_build_phy_frc_0092_d1
+  - n: 2
+    latex: 450 \times 1.3 = 585\ \text{N m}
+    reason: Neema's moment
+    check_id: chk_build_phy_frc_0092_m1
+  - n: 3
+    latex: d_2 = \frac{585}{540} = 1.08\ \text{m}
+    reason: Anticlockwise moment = clockwise moment
+    check_id: chk_build_phy_frc_0092_ans
+difficulty:
+  prior: 0.5
+  band: stretch
+estimated_seconds: 110
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0092_ans:
+    args:
+      expression: 450*(3/2 - 0.2)/540
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_frc_0092_d1:
+    args:
+      expression: 3/2 - 0.2
+    tool: math_evaluate
+  chk_build_phy_frc_0092_m1:
+    args:
+      expression: 450*(3/2 - 0.2)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

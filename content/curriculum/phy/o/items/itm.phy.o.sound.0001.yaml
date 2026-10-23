@@ -1,0 +1,105 @@
+id: itm.phy.o.sound.0001
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.sound.sound_waves
+stem: A loudspeaker sends a sound of frequency 340 Hz through the air. The distance from the centre of a compression to the centre of the next rarefaction is 50 cm.
+parts:
+- id: a
+  prompt: Find the wavelength of the sound in centimetres.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '100'
+    unit: cm
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_snd_0001_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: One wavelength runs from one compression to the next compression.
+  - rung: 2
+    name: concept
+    text:
+      en: Between them there is one rarefaction, halfway along.
+  - rung: 3
+    name: first_step
+    text:
+      en: So a compression to the next rarefaction is half a wavelength.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Double 50 cm.
+  - rung: 5
+    name: full_step
+    text:
+      en: λ = 100 cm.
+  misconception_ids:
+  - mc.phy.o.compression_rarefaction_as_wavelength
+solution:
+  steps:
+  - n: 1
+    latex: \lambda = 2 \times 50 = 100\ \text{cm}
+    reason: Compression to rarefaction is half a wave
+    check_id: chk_build_phy_snd_0001_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  d: '50'
+checks:
+  chk_build_phy_snd_0001_ans:
+    args:
+      expression: 2*50
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:44:03.914Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.sound.0001
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,86 @@
+id: itm.phy.o.density.0020
+version: 0.1.0
+type: ordering
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.measuring_density
+stem: Kwame wants the density of a small stone using a displacement can, a measuring cylinder and a balance. He has already found the stone's mass.
+parts:
+- id: a
+  prompt: Put the remaining steps in order.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: exact
+    elements:
+    - id: e2
+      text: Place an empty measuring cylinder under the spout
+    - id: e3
+      text: Lower the stone gently into the can until it is fully under water
+    - id: e4
+      text: Read the volume of water collected, at the bottom of the meniscus
+    - id: e5
+      text: Divide the stone's mass by the volume collected
+    - id: e1
+      text: Fill the can with water until it drips from the spout, and wait for the dripping to stop
+    correct_order:
+    - e1
+    - e2
+    - e3
+    - e4
+    - e5
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The volume must be measured by the water the object pushes aside.
+  - rung: 2
+    name: concept
+    text:
+      en: Everything must be set up before the object goes into the water.
+  - rung: 3
+    name: first_step
+    text:
+      en: The water level or the overflow can only be read once the object is fully under water.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The density calculation comes last, once both the mass and the volume are known.
+  - rung: 5
+    name: full_step
+    text:
+      en: Set up, add the object, read the volume, then divide the mass by the volume.
+solution:
+  steps:
+  - n: 1
+    latex: \text{Volume by displacement, then density} = \frac{m}{V}
+    reason: Measure the volume, then divide
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

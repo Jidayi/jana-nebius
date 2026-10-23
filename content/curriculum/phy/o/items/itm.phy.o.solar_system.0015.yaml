@@ -1,0 +1,93 @@
+id: itm.phy.o.solar_system.0015
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.solar_system.earth_and_moon
+stem: Calendars are based on the length of a year.
+parts:
+- id: a
+  prompt: What is one year?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: The time for the Earth to spin once on its axis
+      correct: false
+      misconception_id: mc.phy.o.earth_spin_orbit_confused
+      feedback: 'Spin on the axis: one day, giving day and night. Trip round the Sun: one year. Picture a dancer turning while walking round a lamp.'
+    - id: B
+      text: The time for the Sun to go round the Earth once
+      correct: false
+      misconception_id: mc.phy.o.sun_orbits_earth_daily
+      feedback: The Sun only appears to move across the sky. The Earth spins once in 24 hours, carrying each place into sunlight and then into the dark.
+    - id: C
+      text: The time for the Moon to go round the Earth once
+      correct: false
+      misconception_id: mc.phy.o.moon_earth_periods_confused
+      feedback: The Moon goes round the Earth about twelve times while the Earth goes round the Sun once.
+    - id: D
+      text: The time for the Earth to orbit the Sun once
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Separate the three motions: the Earth''s spin, the Earth''s orbit and the Moon''s orbit.'
+  - rung: 2
+    name: concept
+    text:
+      en: The spin takes a day, the Earth's orbit a year, and the Moon's orbit roughly a month.
+  - rung: 3
+    name: first_step
+    text:
+      en: Seasons come from the tilt of the Earth's axis; phases come from how much of the Moon's sunlit half we see.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against these facts.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The time for the Earth to orbit the Sun once.'
+  misconception_ids:
+  - mc.phy.o.earth_spin_orbit_confused
+  - mc.phy.o.moon_earth_periods_confused
+  - mc.phy.o.sun_orbits_earth_daily
+solution:
+  steps:
+  - n: 1
+    latex: \text{The time for the Earth to orbit the Sun once}
+    reason: Separate the spin, the orbit and the Moon's orbit
+difficulty:
+  prior: -0.8
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

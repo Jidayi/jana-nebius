@@ -1,0 +1,111 @@
+id: itm.phy.o.radioactivity.0020
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.decay_equations
+stem: A nucleus of americium-241 (proton number 95) decays by emitting an alpha particle.
+parts:
+- id: a
+  prompt: How many neutrons are in the new nucleus?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '144'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_rad_0020_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: First find the new nucleon number and proton number.
+  - rung: 2
+    name: concept
+    text:
+      en: Alpha decay lowers the nucleon number by 4 and the proton number by 2.
+  - rung: 3
+    name: first_step
+    text:
+      en: Then neutrons = nucleon number − proton number.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The new nucleus has nucleon number 237 and proton number 93.
+  - rung: 5
+    name: full_step
+    text:
+      en: The new nucleus (neptunium-237) has 144 neutrons.
+  misconception_ids:
+  - mc.phy.o.alpha_removes_four_neutrons
+  - mc.phy.o.neutrons_equal_nucleon_number
+  - mc.phy.o.protons_neutrons_assumed_equal
+solution:
+  steps:
+  - n: 1
+    latex: '\text{alpha particle: } 2\ \text{protons} + 2\ \text{neutrons} = 4\ \text{nucleons}'
+    reason: An alpha particle is a helium nucleus
+    check_id: chk_build_phy_rad_0020_alpha_a
+  - n: 2
+    latex: A = 241 - 4 = 237
+    reason: The alpha particle takes 4 nucleons
+    check_id: chk_build_phy_rad_0020_a2
+  - n: 3
+    latex: Z = 95 - 2 = 93
+    reason: and 2 protons
+    check_id: chk_build_phy_rad_0020_z2
+  - n: 4
+    latex: '{}^{241}_{95}\text{Am} \rightarrow {}^{237}_{93}\text{Np} + {}^{4}_{2}\text{He}'
+    reason: Both numbers balance on the two sides of the equation
+  - n: 5
+    latex: N = 237 - 93 = 144
+    reason: Neutrons = nucleon number − proton number
+    check_id: chk_build_phy_rad_0020_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_0020_a2:
+    args:
+      expression: 241 - 4
+    tool: math_evaluate
+  chk_build_phy_rad_0020_alpha_a:
+    args:
+      expression: 2 + 2
+    tool: math_evaluate
+  chk_build_phy_rad_0020_ans:
+    args:
+      expression: (241 - 4) - (95 - 2)
+    tool: math_evaluate
+  chk_build_phy_rad_0020_z2:
+    args:
+      expression: 95 - 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

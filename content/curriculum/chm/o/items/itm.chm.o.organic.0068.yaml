@@ -1,0 +1,86 @@
+id: itm.chm.o.organic.0068
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.alcohols_and_acids
+- kc.chm.o.organic.carboxylic_acids
+stem: An acid and an alcohol are warmed together to make an ester.
+parts:
+- id: a
+  prompt: What is the job of the few drops of concentrated sulfuric acid added?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: It oxidises the alcohol to a carboxylic acid
+      correct: false
+      misconception_id: mc.chm.o.organic_oxidation_means_burning
+      feedback: Burning is one kind of oxidation, but a gentle oxidising agent such as acidified potassium manganate(VII), or bacteria in air, turns ethanol into ethanoic acid. That is why wine left open turns sour like vinegar.
+    - id: B
+      text: It acts as a catalyst
+      correct: true
+    - id: C
+      text: It is the acid that becomes part of the ester
+      correct: false
+    - id: D
+      text: It neutralises the alcohol
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Only a few drops are added, and it is not named in the products.
+  - rung: 2
+    name: concept
+    text:
+      en: A catalyst speeds up a reaction without being used up.
+  - rung: 3
+    name: first_step
+    text:
+      en: The ester is made from the carboxylic acid and the alcohol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Concentrated sulfuric acid also removes the water formed, but its main job is to speed things up.
+  - rung: 5
+    name: full_step
+    text:
+      en: Concentrated sulfuric acid is a catalyst for making the ester.
+  misconception_ids:
+  - mc.chm.o.organic_oxidation_means_burning
+solution:
+  steps:
+  - n: 1
+    latex: '\text{conc. H}_2\text{SO}_4\text{: catalyst}'
+    reason: Esterification
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

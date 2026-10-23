@@ -1,0 +1,101 @@
+id: itm.phy.o.em_spectrum.0036
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.em_spectrum.uses_and_hazards
+stem: A satellite sends TV pictures to homes using microwaves of frequency 12 GHz.
+parts:
+- id: a
+  prompt: Calculate the wavelength in centimetres.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '2.5'
+    unit: cm
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_ems_0036_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'These are microwaves, an electromagnetic wave: use c = f × λ.'
+  - rung: 2
+    name: concept
+    text:
+      en: Every electromagnetic wave travels at c = 3.0 × 10⁸ m/s, and c = f × λ, so λ = c ÷ f.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Write the frequency in hertz: 12 GHz = 12 × 10⁹ Hz.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: λ = 3.0 × 10⁸ ÷ (12 × 10⁹), then change metres into centimetres.
+  - rung: 5
+    name: full_step
+    text:
+      en: λ = 2.5 cm.
+  misconception_ids:
+  - mc.phy.o.wave_prefix_ignored
+  - mc.phy.o.wave_equation_inverted
+  - mc.phy.o.em_uses_sound_speed
+solution:
+  steps:
+  - n: 1
+    latex: f = 12\ \text{GHz} = 12 \times 10^{9}\ \text{Hz}
+    reason: Write the prefix as a power of ten
+  - n: 2
+    latex: \lambda = \frac{c}{f} = \frac{3.0 \times 10^{8}}{12 \times 10^{9}} = 0.025\ \text{m}
+    reason: Rearrange c = fλ
+    check_id: chk_build_phy_ems_0036_lm
+  - n: 3
+    latex: 0.025\ \text{m} = 2.5\ \text{cm}
+    reason: A metre is a hundred centimetres
+    check_id: chk_build_phy_ems_0036_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ems_0036_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: c/(12*10^9)*100
+    tool: math_evaluate
+  chk_build_phy_ems_0036_lm:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: c/(12*10^9)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

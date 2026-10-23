@@ -1,0 +1,69 @@
+id: les.acc.o.incomplete_records.incomplete_records
+node_id: cur.acc.o.incomplete_records
+kc_ids:
+- kc.acc.o.incomplete_records.statement_of_affairs
+- kc.acc.o.incomplete_records.profit_from_capital
+- kc.acc.o.incomplete_records.missing_credit_figures
+- kc.acc.o.incomplete_records.margin_markup_use
+title: Finding profit and missing figures from incomplete records
+estimated_minutes: 13
+blocks:
+- type: step
+  text:
+    en: 'Try this before any rules: the trader has no proper books, only a list of what the business has and owes on one day.'
+  item_id: itm.acc.o.incomplete_records.0001
+  action: try_first
+  why:
+    en: Add up everything the business owns, then take away everything it owes. What is left is the owner's capital.
+  names:
+    en: A list of assets and liabilities on one date, used to find capital, is called a statement of affairs.
+- type: step
+  text:
+    en: If you know capital at the start and the end of a year, the change tells you a lot about profit.
+  item_id: itm.acc.o.incomplete_records.0012
+  action: calculate
+  why:
+    en: Drawings took money out, so add them back. Extra capital paid in was not earned, so take it away.
+- type: step
+  text:
+    en: Now pick the right profit from a set of answers that each make one slip.
+  item_id: itm.acc.o.incomplete_records.0019
+  action: choose
+  why:
+    en: Closing capital less opening capital, plus drawings, less capital introduced. Taking drawings away instead gives a profit far too small.
+- type: step
+  text:
+    en: A missing credit sales figure can be rebuilt from what customers owed and what they paid.
+  item_id: itm.acc.o.incomplete_records.0023
+  action: calculate
+  why:
+    en: Start with what customers owed at the end and take away what they owed at the start. Then add the cash they paid and the discounts they got.
+- type: step
+  text:
+    en: 'Predict before you look at the choices: a mark-up is a percentage of which figure, cost or selling price?'
+  item_id: itm.acc.o.incomplete_records.0041
+  action: predict
+  why:
+    en: Mark-up is measured on cost, so add it to cost of sales. Treating it as a margin on revenue gives too high a figure.
+- type: check
+  item_ids:
+  - itm.acc.o.incomplete_records.0024
+  - itm.acc.o.incomplete_records.0034
+  - itm.acc.o.incomplete_records.0035
+version: 0.2.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

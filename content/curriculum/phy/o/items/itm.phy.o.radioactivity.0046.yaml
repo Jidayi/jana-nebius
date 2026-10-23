@@ -1,0 +1,92 @@
+id: itm.phy.o.radioactivity.0046
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.background_radiation
+stem: With no source present, a counter records 125 counts in 5 minutes. With a source in place it reads 145 counts/min.
+parts:
+- id: a
+  prompt: Find the count rate due to the source alone.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '120'
+    unit: counts/min
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_rad_0046_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The reading with the source includes background radiation.
+  - rung: 2
+    name: concept
+    text:
+      en: Turn the background count into a count rate per minute first.
+  - rung: 3
+    name: first_step
+    text:
+      en: Then subtract the background count rate from the reading.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The background count rate is 25 counts/min.
+  - rung: 5
+    name: full_step
+    text:
+      en: The source alone gives 120 counts/min.
+  misconception_ids:
+  - mc.phy.o.background_added
+  - mc.phy.o.background_ignored
+  - mc.phy.o.background_count_not_per_minute
+solution:
+  steps:
+  - n: 1
+    latex: B = \frac{125}{5} = 25\ \text{counts/min}
+    reason: Background count rate
+    check_id: chk_build_phy_rad_0046_b
+  - n: 2
+    latex: 145 - 25 = 120\ \text{counts/min}
+    reason: Corrected count rate
+    check_id: chk_build_phy_rad_0046_ans
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_0046_ans:
+    args:
+      expression: 145 - 125/5
+    tool: math_evaluate
+  chk_build_phy_rad_0046_b:
+    args:
+      expression: 125/5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,120 @@
+id: itm.phy.o.practical_electricity.0015
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.electrical_power
+stem: A current of 0.2 A flows through a heating coil of resistance 6 Ω.
+parts:
+- id: a
+  prompt: Calculate the power transferred as heat in it.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 1.2 W
+      correct: false
+      misconception_id: mc.phy.o.electric_power_current_not_squared
+      feedback: 'IR is the p.d., not the power. P = I²R: square the current, then multiply by the resistance.'
+    - id: B
+      text: 7.2 W
+      correct: false
+      misconception_id: mc.phy.o.electric_power_wrong_quantity_squared
+      feedback: 'It is the current that is squared: P = I × I × R.'
+    - id: C
+      text: 2.4 W
+      correct: false
+      misconception_id: mc.phy.o.electric_power_square_as_double
+      feedback: 'Squaring means multiplying a number by itself: 3² is 3 × 3 = 9, not 3 × 2 = 6.'
+    - id: D
+      text: 0.24 W
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the current and the resistance, not the p.d.
+  - rung: 2
+    name: concept
+    text:
+      en: Use P = I²R.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Square the current first: 0.2 × 0.2.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: The square is 0.04; multiply by 6 Ω.
+  - rung: 5
+    name: full_step
+    text:
+      en: The power is 0.24 W.
+  misconception_ids:
+  - mc.phy.o.electric_power_current_not_squared
+  - mc.phy.o.electric_power_square_as_double
+  - mc.phy.o.electric_power_wrong_quantity_squared
+solution:
+  steps:
+  - n: 1
+    latex: I^2 = 0.2^2 = 0.04
+    reason: Square the current
+    check_id: chk_build_phy_pel_0015_sq
+  - n: 2
+    latex: P = I^2 R = 0.04 \times 6 = 0.24\ \text{W}
+    reason: Power from current and resistance
+    check_id: chk_build_phy_pel_0015_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_pel_0015_ans:
+    args:
+      expression: 0.2^2*6
+    tool: math_evaluate
+  chk_build_phy_pel_0015_sq:
+    args:
+      expression: 0.2^2
+    tool: math_evaluate
+  chk_build_phy_pel_0015_tool:
+    args:
+      components:
+      - emf: '1.2'
+        id: B
+        kind: battery
+      - id: R
+        kind: resistor
+        resistance: '6'
+      network:
+        series:
+        - B
+        - R
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

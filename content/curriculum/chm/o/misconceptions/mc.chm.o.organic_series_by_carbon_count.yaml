@@ -1,0 +1,36 @@
+id: mc.chm.o.organic_series_by_carbon_count
+kc_ids:
+- kc.chm.o.organic.functional_groups
+student_name: Same number of carbon atoms, same family
+description: Groups organic compounds by their number of carbon atoms (ethane, ethene, ethanol and ethanoic acid as one family) instead of by their functional group.
+signatures:
+- kind: answer_transform
+  expression: 'choice: compounds with the same number of carbon atoms put in one homologous series'
+fix:
+  strategy: counterexample
+  text:
+    en: A homologous series shares a functional group and a general formula. Ethane, ethene and ethanol all have two carbon atoms, but they belong to three different series and react in different ways. Neighbouring members of one series differ by CH₂.
+probe_item_ids:
+- itm.chm.o.organic.0001
+- itm.chm.o.organic.0002
+- itm.chm.o.organic.0003
+- itm.chm.o.organic.0004
+- itm.chm.o.organic.0007
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

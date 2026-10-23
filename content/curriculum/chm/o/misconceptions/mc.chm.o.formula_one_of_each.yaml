@@ -1,0 +1,36 @@
+id: mc.chm.o.formula_one_of_each
+kc_ids:
+- kc.chm.o.stoichiometry.ionic_formulae
+student_name: One of each ion
+description: Writes one of each ion in the formula whatever their charges, so the charges do not cancel.
+signatures:
+- kind: answer_transform
+  expression: 'choice: formula with one cation and one anion although the charges differ'
+fix:
+  strategy: rule_restatement
+  text:
+    en: The total positive charge must cancel the total negative charge. Count how many of each ion you need before you write the formula.
+probe_item_ids:
+- itm.chm.o.stoichiometry.0001
+- itm.chm.o.stoichiometry.0002
+- itm.chm.o.stoichiometry.0003
+- itm.chm.o.stoichiometry.0004
+- itm.chm.o.stoichiometry.0005
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

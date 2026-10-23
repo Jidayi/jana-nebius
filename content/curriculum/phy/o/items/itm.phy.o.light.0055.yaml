@@ -1,0 +1,121 @@
+id: itm.phy.o.light.0055
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.total_internal_reflection
+stem: A ray of light inside flint glass (refractive index 1.62) meets the boundary with air at an angle of incidence of 60°.
+parts:
+- id: a
+  prompt: What happens to the ray at the boundary?
+  marks: 2
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It refracts out into the air, bending away from the normal
+      correct: false
+      misconception_id: mc.phy.o.tir_angle_below_critical
+      feedback: As the angle inside the glass grows, the ray in air bends closer to the surface. At the critical angle it runs along the surface; any bigger and no light gets out.
+    - id: B
+      text: It refracts out into the air, bending towards the normal
+      correct: false
+      misconception_id: mc.phy.o.refraction_bends_wrong_way
+      feedback: Light slows down in glass and swings towards the normal; it speeds up again in air and swings away. Picture a car whose first wheel hits sand and slows.
+    - id: C
+      text: Most of it reflects, but some still refracts out into the air
+      correct: false
+      misconception_id: mc.phy.o.tir_some_light_escapes
+      feedback: 'Below the critical angle light partly reflects and partly refracts. Above it there is no refracted ray at all: every bit of the light reflects, which is why it is called total.'
+    - id: D
+      text: It is totally internally reflected back into the material
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Light is going from a denser material into air, so total internal reflection is possible.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the critical angle from sin C = 1 ÷ n and compare the angle of incidence with it.
+  - rung: 3
+    name: first_step
+    text:
+      en: sin C = 1 ÷ 1.62 = 0.617.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The critical angle is 38.1°; is 60° bigger or smaller?
+  - rung: 5
+    name: full_step
+    text:
+      en: '60° is bigger than 38.1°, so the answer is: It is totally internally reflected back into the material.'
+  misconception_ids:
+  - mc.phy.o.refraction_bends_wrong_way
+  - mc.phy.o.tir_angle_below_critical
+  - mc.phy.o.tir_some_light_escapes
+solution:
+  steps:
+  - n: 1
+    latex: \sin C = \frac{1}{1.62} = 0.617
+    reason: sin C = 1 / n
+    check_id: chk_build_phy_lgt_0055_sc
+  - n: 2
+    latex: C = 38.1^\circ
+    reason: Inverse sine
+    check_id: chk_build_phy_lgt_0055_cang
+  - n: 3
+    latex: 60^\circ > 38.1^\circ
+    reason: Compare the angle of incidence with C
+  - n: 4
+    latex: \text{It is totally internally reflected back into the material}
+    reason: The critical angle checked with the optics tool
+    check_id: chk_build_phy_lgt_0055_tool
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0055_cang:
+    args:
+      angle_unit: degrees
+      expression: asin(1/1.62)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0055_sc:
+    args:
+      expression: 1/1.62
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0055_tool:
+    args:
+      n1: '1.62'
+      task: critical_angle
+    tool: phys_optics
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

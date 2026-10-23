@@ -1,0 +1,93 @@
+id: itm.phy.o.thermal_properties.0060
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.thermal_properties.changes_of_state
+stem: A dish of water is left in a room at 20 °C.
+parts:
+- id: a
+  prompt: Which of these happens?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Some water evaporates, and the water left is slightly cooler than the room
+      correct: true
+    - id: B
+      text: No water escapes until it reaches 100 °C
+      correct: false
+      misconception_id: mc.phy.o.evaporation_only_at_boiling_point
+      feedback: 'Puddles dry up on cool days. At any temperature some surface particles are fast enough to escape: that is evaporation. Boiling happens at one temperature, throughout the liquid.'
+    - id: C
+      text: Water evaporates, and the water left becomes warmer than the room
+      correct: false
+      misconception_id: mc.phy.o.evaporation_removes_slow_particles
+      feedback: Only the fastest particles have enough energy to break free from the surface. They take their energy with them, so the particles left have less on average and the liquid cools.
+    - id: D
+      text: Water evaporates only if a wind blows over it
+      correct: false
+      misconception_id: mc.phy.o.wind_cools_by_being_cold
+      feedback: A warm breeze still dries washing quickly. Moving air sweeps away the escaped particles, so fewer return and evaporation, which takes energy, goes faster.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Think about what the energy does to the particles: speed them up, or separate them.'
+  - rung: 2
+    name: concept
+    text:
+      en: Think about which molecules leave and what that does to the average energy of those left.
+  - rung: 3
+    name: first_step
+    text:
+      en: During a change of state of a pure substance, ask what happens to the temperature and to the energy.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Remember that evaporation happens at the surface and that only some particles escape.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Some water evaporates, and the water left is slightly cooler than the room.'
+  misconception_ids:
+  - mc.phy.o.evaporation_only_at_boiling_point
+  - mc.phy.o.evaporation_removes_slow_particles
+  - mc.phy.o.wind_cools_by_being_cold
+solution:
+  steps:
+  - n: 1
+    latex: \text{Some water evaporates, and the water left is slightly cooler than the room}
+    reason: Use the particle model of changes of state
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

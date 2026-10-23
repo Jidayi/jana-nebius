@@ -1,0 +1,101 @@
+id: itm.mth.o.algebra_and_graphs.0041
+version: 0.1.0
+type: mcq
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.factorise_common
+stem: Factorise $4x^2 - 49$.
+parts:
+- id: a
+  prompt: Choose the complete factorisation.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: $(2x - 7)^2$
+      correct: false
+      misconception_id: mc.mth.o.dots_as_square
+      feedback: 'Expand (x − a)²: it has a middle term −2ax. A difference of two squares has no middle term, so the brackets must have opposite signs.'
+    - id: B
+      text: $(2x - 7)(2x + 7)$
+      correct: true
+    - id: C
+      text: $(2x - 49)(2x + 49)$
+      correct: false
+      misconception_id: mc.mth.o.dots_not_rooted
+      feedback: x² − 49 = x² − 7², so the brackets hold 7, the square root of 49.
+    - id: D
+      text: $2x(2x - 49)$
+      correct: false
+      misconception_id: mc.mth.o.factor_one_term_only
+      feedback: Expand your answer to check it. Every term inside the bracket must be divided by the factor you took out.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Look at the two terms: is each one a perfect square?'
+  - rung: 2
+    name: concept
+    text:
+      en: A difference of two squares a² − b² factorises as (a − b)(a + b).
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Write 49 as a square: which number squared gives 49?'
+  - rung: 4
+    name: worked_step
+    text:
+      en: 49 = 7², so a = 2x and b = 7.
+  - rung: 5
+    name: full_step
+    text:
+      en: The factorisation is $(2x - 7)(2x + 7)$.
+  misconception_ids:
+  - mc.mth.o.dots_as_square
+  - mc.mth.o.dots_not_rooted
+  - mc.mth.o.factor_one_term_only
+solution:
+  steps:
+  - n: 1
+    latex: 4x^2 - 49 = (2x)^2 - 7^2
+    reason: Both terms are perfect squares
+    check_id: chk_build_mth_alg_0041_root
+  - n: 2
+    latex: = (2x - 7)(2x + 7)
+    reason: a² − b² = (a − b)(a + b)
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0041_root:
+    args:
+      expression: sqrt(49)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

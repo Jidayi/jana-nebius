@@ -1,0 +1,44 @@
+id: wex.chm.o.analysis.0010
+kc_ids:
+- kc.chm.o.analysis.purity
+problem: A pure compound melts at 136 °C. A sample starts to melt at 131 °C. Is it pure, and by how much is its melting point lowered?
+steps:
+- n: 1
+  latex: \text{impurities lower the melting point}
+  reason: Rule
+- n: 2
+  latex: 136 - 131
+  reason: Difference
+  check_id: chk_build_chm_analysis_w0010_d
+final_answer:
+  latex: '5\ ^{\circ}\text{C lower: impure}'
+  check_id: chk_build_chm_analysis_w0010_d
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_analysis_w0010_d:
+    args:
+      expression: 136 - 131
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

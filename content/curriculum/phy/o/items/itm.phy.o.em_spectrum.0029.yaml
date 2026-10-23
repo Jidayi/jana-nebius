@@ -1,0 +1,105 @@
+id: itm.phy.o.em_spectrum.0029
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.em_spectrum.em_wave_calculations
+stem: An FM radio station broadcasts on a frequency of 88 MHz.
+parts:
+- id: a
+  prompt: Calculate the wavelength of its radio waves.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 3410000 m
+      correct: false
+      misconception_id: mc.phy.o.wave_prefix_ignored
+      feedback: Put every value into hertz, metres and seconds before using a formula, then change the answer into the unit the question asks for.
+    - id: B
+      text: 3.41 m
+      correct: true
+    - id: C
+      text: 0.293 m
+      correct: false
+      misconception_id: mc.phy.o.wave_equation_inverted
+      feedback: 'From v = fλ: λ = v/f and f = v/λ. The speed always goes on top when you divide.'
+    - id: D
+      text: 3.86 × 10^-6 m
+      correct: false
+      misconception_id: mc.phy.o.em_uses_sound_speed
+      feedback: Electromagnetic waves travel at about a million times the speed of sound. Use c = 3.0 × 10⁸ m/s for every one of them.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which equation links the speed, frequency and wavelength of a wave?
+  - rung: 2
+    name: concept
+    text:
+      en: Every electromagnetic wave travels at c = 3.0 × 10⁸ m/s, and c = f × λ, so λ = c ÷ f.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Write the frequency in hertz: 88 MHz = 88 × 10⁶ Hz.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: λ = 3.0 × 10⁸ ÷ (88 × 10⁶).
+  - rung: 5
+    name: full_step
+    text:
+      en: λ = 3.41 m.
+  misconception_ids:
+  - mc.phy.o.em_uses_sound_speed
+  - mc.phy.o.wave_equation_inverted
+  - mc.phy.o.wave_prefix_ignored
+solution:
+  steps:
+  - n: 1
+    latex: f = 88\ \text{MHz} = 88 \times 10^{6}\ \text{Hz}
+    reason: Write the prefix as a power of ten
+  - n: 2
+    latex: \lambda = \frac{c}{f} = \frac{3.0 \times 10^{8}}{88 \times 10^{6}} = 3.41\ \text{m}
+    reason: Rearrange c = fλ
+    check_id: chk_build_phy_ems_0029_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ems_0029_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: c/(88*10^6)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

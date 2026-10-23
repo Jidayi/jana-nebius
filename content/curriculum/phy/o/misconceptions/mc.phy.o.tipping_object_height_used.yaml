@@ -1,0 +1,36 @@
+id: mc.phy.o.tipping_object_height_used
+kc_ids:
+- kc.phy.o.forces.centre_of_gravity
+student_name: Using the height of the object
+description: Uses the full height of the object instead of the height of its centre of gravity when finding the toppling angle.
+signatures:
+- kind: step_error
+  error_category: copy
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'What matters is where the weight acts: the height of the centre of gravity, not the top of the object.'
+probe_item_ids:
+- itm.phy.o.forces.0108
+- itm.phy.o.forces.0110
+- itm.phy.o.forces.0097
+- itm.phy.o.forces.0100
+- itm.phy.o.forces.0103
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

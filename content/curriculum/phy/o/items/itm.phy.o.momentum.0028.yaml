@@ -1,0 +1,120 @@
+id: itm.phy.o.momentum.0028
+version: 0.1.1
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.conservation_of_momentum
+stem: A skater of mass 60 kg standing on ice throws a 3 kg bag forwards at 6 m/s. Everything starts at rest. Take the direction in which the bag moves as positive.
+parts:
+- id: a
+  prompt: Find the velocity of the skater just afterwards.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: -0.3 m/s
+      correct: true
+    - id: B
+      text: 0.3 m/s
+      correct: false
+      misconception_id: mc.phy.o.recoil_sign_dropped
+      feedback: 'The total momentum before the explosion is zero, so afterwards the two momenta must cancel: one of the velocities is negative.'
+    - id: C
+      text: -6 m/s
+      correct: false
+      misconception_id: mc.phy.o.recoil_equal_speeds
+      feedback: The heavy skater does not move backwards as fast as the light bag moves forwards. Equal and opposite momenta mean the heavier part moves more slowly.
+    - id: D
+      text: -120 m/s
+      correct: false
+      misconception_id: mc.phy.o.conservation_masses_swapped
+      feedback: 'Check with sense: when a heavy skater throws a light bag, the skater moves off much more slowly than the bag.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What was the total momentum before?
+  - rung: 2
+    name: concept
+    text:
+      en: The total momentum before is zero, so afterwards the two momenta must cancel.
+  - rung: 3
+    name: first_step
+    text:
+      en: The momentum of the skater is equal in size and opposite in sign to the momentum of the bag.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The bag has momentum 18 kg m/s, so the skater has the same size of momentum, negative.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'V = −18 ÷ 60 = -0.3 m/s: the skater moves backwards.'
+  misconception_ids:
+  - mc.phy.o.conservation_masses_swapped
+  - mc.phy.o.recoil_equal_speeds
+  - mc.phy.o.recoil_sign_dropped
+solution:
+  steps:
+  - n: 1
+    latex: p_\text{before} = 0
+    reason: Everything starts at rest
+  - n: 2
+    latex: 3 \times 6 = 18\ \text{kg m/s}
+    reason: Momentum of the bag
+    check_id: chk_build_phy_mom_0028_pf
+  - n: 3
+    latex: 0 = 18 + 60V \Rightarrow V = -0.3\ \text{m/s}
+    reason: Total momentum stays zero
+    check_id: chk_build_phy_mom_0028_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_0028_ans:
+    args:
+      expression: -3*6/60
+    tool: math_evaluate
+  chk_build_phy_mom_0028_pf:
+    args:
+      expression: 3*6
+    tool: math_evaluate
+  chk_build_phy_mom_0028_tool:
+    args:
+      equations:
+      - 0 = 3*6 + 60*V
+      unknowns:
+      - V
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

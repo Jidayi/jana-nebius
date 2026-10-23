@@ -1,0 +1,81 @@
+id: itm.chm.o.organic.0046
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.fuels_and_cracking
+stem: 'A refinery sells a fraction used for this purpose: lubricants, waxes and polishes.'
+parts:
+- id: a
+  prompt: Which fraction is it?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Kerosene (paraffin)
+      correct: false
+    - id: B
+      text: Lubricating oil
+      correct: true
+    - id: C
+      text: Naphtha
+      correct: false
+    - id: D
+      text: Refinery gas
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Think about the size of molecule that suits this use: lubricants, waxes and polishes.'
+  - rung: 2
+    name: concept
+    text:
+      en: Gases and runny fuels come from high in the column; thick oils and solids come from low down. Where does lubricants, waxes and polishes fit?
+  - rung: 3
+    name: first_step
+    text:
+      en: Lubricating oil comes from low in the column, just above the bitumen.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Its large molecules make a thick, slippery liquid that reduces friction in machines.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Lubricating oil is used for this: lubricants, waxes and polishes.'
+solution:
+  steps:
+  - n: 1
+    latex: '\text{lubricating oil: lubricants, waxes and polishes}'
+    reason: Fraction and use
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

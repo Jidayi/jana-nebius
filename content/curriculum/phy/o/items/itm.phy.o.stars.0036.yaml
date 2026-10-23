@@ -1,0 +1,91 @@
+id: itm.phy.o.stars.0036
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.stars.expanding_universe
+stem: A galaxy is 6.2 × 10²³ m from the Earth. Take the Hubble constant H0 as 2.2 × 10⁻¹⁸ per second.
+parts:
+- id: a
+  prompt: Calculate the speed at which the galaxy is moving away from us, in km/s.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1364'
+    unit: km/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_str_0036_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Recession speed is proportional to distance.
+  - rung: 2
+    name: concept
+    text:
+      en: v = H0 × d; with d in metres and H0 per second, v is in m/s.
+  - rung: 3
+    name: first_step
+    text:
+      en: Multiply 2.2 × 10⁻¹⁸ by 6.2 × 10²³.
+  - rung: 4
+    name: worked_step
+    text:
+      en: v = 1364000 m/s; change it into km/s.
+  - rung: 5
+    name: full_step
+    text:
+      en: The galaxy recedes at 1364 km/s.
+  misconception_ids:
+  - mc.phy.o.hubble_relation_inverted
+  - mc.phy.o.hubble_speed_units_not_converted
+solution:
+  steps:
+  - n: 1
+    latex: v = H_0 d = 2.2 \times 10^{-18} \times 6.2 \times 10^{23} = 1364000\ \text{m/s}
+    reason: Recession speed = Hubble constant × distance
+    check_id: chk_build_phy_str_0036_vms
+  - n: 2
+    latex: 1364000\ \text{m/s} = 1364\ \text{km/s}
+    reason: Divide by a thousand for km/s
+    check_id: chk_build_phy_str_0036_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_str_0036_ans:
+    args:
+      expression: 2.2e-18*6.2e23/1000
+    tool: math_evaluate
+  chk_build_phy_str_0036_vms:
+    args:
+      expression: 2.2e-18*6.2e23
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

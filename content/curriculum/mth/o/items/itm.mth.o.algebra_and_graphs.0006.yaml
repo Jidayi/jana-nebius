@@ -1,0 +1,102 @@
+id: itm.mth.o.algebra_and_graphs.0006
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.substitution
+stem: Find the value of $4x^2 - 3x - 4$ when $x = -3$.
+parts:
+- id: a
+  prompt: Give the value.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '41'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0006_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Replace every x by the value in a bracket, sign and all.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Follow the order of operations: the power first, then multiplication, then addition and subtraction.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Start with (-3)². A negative number squared is positive.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The terms are 4 × (-3)² = 36 and -3 × (-3) = 9.
+  - rung: 5
+    name: full_step
+    text:
+      en: 36 + 9 - 4 = 41.
+  misconception_ids:
+  - mc.mth.o.multiply_before_power
+  - mc.mth.o.negative_squared_negative
+  - mc.mth.o.sign_lost_substitution
+solution:
+  steps:
+  - n: 1
+    latex: 4x^2 - 3x - 4 = 4 \times (-3)^2 - 3 \times (-3) - 4
+    reason: Substitute, keeping the negative value in a bracket
+  - n: 2
+    latex: = 36 + 9 - 4
+    reason: Powers first, then multiply
+    check_id: chk_build_mth_alg_0006_t
+  - n: 3
+    latex: = 41
+    reason: Add the terms
+    check_id: chk_build_mth_alg_0006_ans
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0006_ans:
+    args:
+      expression: 4*x^2 + (-3)*x + (-4)
+      values:
+        x: -3
+    tool: math_evaluate
+  chk_build_mth_alg_0006_t:
+    args:
+      equations:
+      - p = 4*(-3)^2
+      - q = (-3)*(-3)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

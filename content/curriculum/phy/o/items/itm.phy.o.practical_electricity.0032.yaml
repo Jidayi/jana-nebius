@@ -1,0 +1,112 @@
+id: itm.phy.o.practical_electricity.0032
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.energy_cost
+stem: A 2000 W kettle is switched on for 5 minutes.
+parts:
+- id: a
+  prompt: Calculate the electrical energy it transfers, in joules.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 600000 J
+      correct: true
+    - id: B
+      text: 10000 J
+      correct: false
+      misconception_id: mc.phy.o.elec_energy_time_not_in_seconds
+      feedback: A joule is one watt for one second. Change the time into seconds before working out E = Pt in joules.
+    - id: C
+      text: 6.67 J
+      correct: false
+      misconception_id: mc.phy.o.elec_energy_power_over_time
+      feedback: 'Leaving a heater on for longer uses more energy, not less, so the energy grows with time: E = P × t.'
+    - id: D
+      text: 167 J
+      correct: false
+      misconception_id: mc.phy.o.elec_energy_minutes_divided_by_60
+      feedback: 'There are more seconds than minutes in any time: 2 minutes is 120 seconds, so multiply by 60.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Power is the energy transferred each second.
+  - rung: 2
+    name: concept
+    text:
+      en: E = Pt gives joules when P is in watts and t is in seconds.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change the time from minutes into seconds.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The time is 300 s; multiply by 2000 W.
+  - rung: 5
+    name: full_step
+    text:
+      en: The energy transferred is 600000 J.
+  misconception_ids:
+  - mc.phy.o.elec_energy_minutes_divided_by_60
+  - mc.phy.o.elec_energy_power_over_time
+  - mc.phy.o.elec_energy_time_not_in_seconds
+solution:
+  steps:
+  - n: 1
+    latex: t = 5\ \text{min} = 300\ \text{s}
+    reason: Time in seconds
+    check_id: chk_build_phy_pel_0032_ts
+  - n: 2
+    latex: E = Pt = 2000 \times 300 = 600000\ \text{J}
+    reason: Energy is power times time
+    check_id: chk_build_phy_pel_0032_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_pel_0032_ans:
+    args:
+      expression: 2000*5*60
+    tool: math_evaluate
+  chk_build_phy_pel_0032_tool:
+    args:
+      quantity: 10000 W min
+      to: J
+    tool: units_convert
+  chk_build_phy_pel_0032_ts:
+    args:
+      quantity: 5 min
+      to: s
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

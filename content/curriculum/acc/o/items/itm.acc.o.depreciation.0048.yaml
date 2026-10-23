@@ -1,0 +1,97 @@
+id: itm.acc.o.depreciation.0048
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.depreciation.net_book_value
+stem: Kojo's photocopier cost $20300 and is depreciated by the straight line over 4 years with a residual value of $700.
+parts:
+- id: a
+  prompt: Calculate the accumulated depreciation after 2 years.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '9800.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_depreciation_0048_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Accumulated depreciation is the total of all the yearly charges so far.
+  - rung: 2
+    name: concept
+    text:
+      en: Work out each year's charge and add them up.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Straight line: the charge is the same each year. Reducing balance: it falls each year.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Add the charges for 2 years.
+  - rung: 5
+    name: full_step
+    text:
+      en: Accumulated depreciation = $9800.
+  misconception_ids:
+  - mc.acc.o.nbv_one_year_only
+solution:
+  steps:
+  - n: 1
+    latex: \text{Accumulated depreciation} = \text{sum of the yearly charges}
+    reason: All years so far
+    check_id: chk_build_acc_depreciation_0048_t
+  - n: 2
+    latex: \text{Accumulated depreciation} = 9800
+    reason: Add the charges
+    check_id: chk_build_acc_depreciation_0048_a
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_depreciation_0048_a:
+    args:
+      dp: 2
+      expression: (20300 - 700) / 4 * 2
+    tool: math_evaluate
+  chk_build_acc_depreciation_0048_t:
+    args:
+      cost: '20300'
+      dp: 2
+      life_years: 4
+      method: straight_line
+      part_year_policy: full_year
+      residual: '700'
+      years: 2
+    tool: acc_depreciation
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,102 @@
+id: itm.mth.o.algebra_and_graphs.0002
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.substitution
+stem: Find the value of $5x^2 + 6x - 4$ when $x = -4$.
+parts:
+- id: a
+  prompt: Give the value.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '52'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0002_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Replace every x by the value in a bracket, sign and all.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Follow the order of operations: the power first, then multiplication, then addition and subtraction.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Start with (-4)². A negative number squared is positive.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The terms are 5 × (-4)² = 80 and 6 × (-4) = -24.
+  - rung: 5
+    name: full_step
+    text:
+      en: 80 + (-24) - 4 = 52.
+  misconception_ids:
+  - mc.mth.o.multiply_before_power
+  - mc.mth.o.negative_squared_negative
+  - mc.mth.o.sign_lost_substitution
+solution:
+  steps:
+  - n: 1
+    latex: 5x^2 + 6x - 4 = 5 \times (-4)^2 + 6 \times (-4) - 4
+    reason: Substitute, keeping the negative value in a bracket
+  - n: 2
+    latex: = 80 + (-24) - 4
+    reason: Powers first, then multiply
+    check_id: chk_build_mth_alg_0002_t
+  - n: 3
+    latex: = 52
+    reason: Add the terms
+    check_id: chk_build_mth_alg_0002_ans
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0002_ans:
+    args:
+      expression: 5*x^2 + (6)*x + (-4)
+      values:
+        x: -4
+    tool: math_evaluate
+  chk_build_mth_alg_0002_t:
+    args:
+      equations:
+      - p = 5*(-4)^2
+      - q = (6)*(-4)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

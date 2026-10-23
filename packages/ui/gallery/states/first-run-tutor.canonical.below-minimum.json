@@ -1,0 +1,53 @@
+{
+  "id": "first-run-tutor.canonical.below-minimum",
+  "title": "First run, below the minimum laptop",
+  "component": "FirstRunTutor",
+  "note": "First run's student hand-off (UXS-10 step 2) from a model catalogue with its hardware report (PLT-29). The unsupported-offline state names the figure that is short.",
+  "state": "canonical",
+  "variant": "below-minimum",
+  "payload": {
+    "installed": [],
+    "available": [],
+    "assignment": {
+      "fast": null,
+      "strong": null
+    },
+    "recommended": {
+      "fast": null,
+      "strong": null,
+      "reason_key": "hardware_class.content_only.below_minimum_ram"
+    },
+    "hardware": {
+      "hardware_class": "content_only",
+      "basis": "below_minimum_ram",
+      "provisional": true,
+      "shortfalls": [
+        {
+          "check": "ram",
+          "have": 4,
+          "need": 8,
+          "unit": "GB"
+        }
+      ],
+      "benchmark": null,
+      "benchmark_due": false,
+      "class_choice": null,
+      "tutor_path": "none",
+      "runtime": null
+    }
+  },
+  "payloadContract": "https://jana.dev/contracts/api/commands#/$defs/ModelCatalogue",
+  "context": {
+    "theme": "light",
+    "hardwareClass": "content-only"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "4 GB of memory",
+    "8 GB",
+    "Continue without the tutor",
+    "Online features"
+  ]
+}

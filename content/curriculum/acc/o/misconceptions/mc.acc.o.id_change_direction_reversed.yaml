@@ -1,0 +1,34 @@
+id: mc.acc.o.id_change_direction_reversed
+kc_ids:
+- kc.acc.o.irrecoverable_debts.allowance_change
+student_name: Increase and decrease swapped
+description: Treats a rise in the allowance as income, or a fall as an expense.
+signatures:
+- kind: answer_transform
+  expression: old - new
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'A bigger allowance means more doubtful debts: profit falls. A smaller one adds to profit.'
+probe_item_ids:
+- itm.acc.o.irrecoverable_debts.0023
+- itm.acc.o.irrecoverable_debts.0024
+- itm.acc.o.irrecoverable_debts.0025
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

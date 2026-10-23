@@ -1,0 +1,42 @@
+id: wex.mth.o.trigonometry.0010
+kc_ids:
+- kc.mth.o.trigonometry.sine_rule
+problem: In triangle ABC, angle A = 58°, angle B = 66° and side a = BC = 7 cm. Find side b = AC, to 3 significant figures.
+steps:
+- n: 1
+  latex: \frac{b}{\sin B} = \frac{a}{\sin A}
+  reason: The sine rule
+- n: 2
+  latex: b = \frac{7 \sin 66}{\sin 58} = 7.54\ \text{cm}
+  reason: Rearrange and evaluate
+  check_id: chk_build_mth_trg_w0010_ans
+final_answer:
+  latex: 7.54\ \text{cm}
+  check_id: chk_build_mth_trg_w0010_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_trg_w0010_ans:
+    args:
+      angle_unit: degrees
+      expression: 7*sin(66)/sin(58)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

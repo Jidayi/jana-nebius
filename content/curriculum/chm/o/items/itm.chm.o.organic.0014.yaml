@@ -1,0 +1,95 @@
+id: itm.chm.o.organic.0014
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.naming
+- kc.chm.o.organic.carboxylic_acids
+stem: A carboxylic acid has the formula C₂H₅COOH.
+parts:
+- id: a
+  prompt: What is its name?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Ethanoic acid
+      correct: false
+      misconception_id: mc.chm.o.organic_prefix_wrong_atoms
+      feedback: The prefix counts every carbon atom in the molecule, including the carbon inside –COOH. CH₃COOH has two carbon atoms, so it is ethanoic acid. Hydrogen atoms never set the prefix.
+    - id: B
+      text: Propanol
+      correct: false
+      misconception_id: mc.chm.o.organic_ending_wrong_series
+      feedback: 'The ending names the family: -ane for alkanes, -ene for alkenes, -ol for alcohols and -oic acid for carboxylic acids. Find the functional group first, then choose the ending.'
+    - id: C
+      text: Propanoic acid
+      correct: true
+    - id: D
+      text: Butanoic acid
+      correct: false
+      misconception_id: mc.chm.o.organic_prefix_order_mixed
+      feedback: 'Learn the order: meth- means one carbon atom, eth- two, prop- three and but- four. A memory aid: Monkeys Eat Peeled Bananas.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The prefix counts all the carbon atoms in C₂H₅COOH.
+  - rung: 2
+    name: concept
+    text:
+      en: The carbon in the –COOH group counts as part of the chain.
+  - rung: 3
+    name: first_step
+    text:
+      en: C₂H₅ has two carbon atoms and COOH has one more.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Add them up, then choose the prefix and the acid ending.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Three carbon atoms (prop-) and a –COOH group: propanoic acid.'
+  misconception_ids:
+  - mc.chm.o.organic_prefix_wrong_atoms
+  - mc.chm.o.organic_ending_wrong_series
+  - mc.chm.o.organic_prefix_order_mixed
+solution:
+  steps:
+  - n: 1
+    latex: '\text{C}_2\text{H}_5\text{COOH: 2 + 1 = 3 carbons}'
+    reason: Count every carbon
+  - n: 2
+    latex: \text{prop- + -oic acid}
+    reason: Name
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

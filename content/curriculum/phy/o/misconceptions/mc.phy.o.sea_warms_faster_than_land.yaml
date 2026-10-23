@@ -1,0 +1,33 @@
+id: mc.phy.o.sea_warms_faster_than_land
+kc_ids:
+- kc.phy.o.heat_transfer.convection
+student_name: The sea warms faster than the land
+description: Thinks the sea warms up and cools down faster than the land, so it gets the direction of sea and land breezes wrong.
+signatures:
+- kind: answer_transform
+  expression: sea
+fix:
+  strategy: prerequisite_detour
+  text:
+    en: Water has a high specific heat capacity, so the sea changes temperature slowly. By day the land is warmer and air rises over it; by night the sea is the warmer one.
+probe_item_ids:
+- itm.phy.o.heat_transfer.0017
+- itm.phy.o.heat_transfer.0022
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

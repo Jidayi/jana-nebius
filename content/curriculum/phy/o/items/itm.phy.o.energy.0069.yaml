@@ -1,0 +1,99 @@
+id: itm.phy.o.energy.0069
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.work_done
+stem: A builder uses a rope and pulley to raise a bucket of sand of mass 12 kg at a steady speed through 3 m. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate the work done on the load.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '360'
+    unit: J
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0069_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: At a steady speed the pull equals the weight of the load.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the weight with W = mg, then use work = force × distance.
+  - rung: 3
+    name: first_step
+    text:
+      en: The weight is 12 × 10 = 120 N.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 120 × 3.
+  - rung: 5
+    name: full_step
+    text:
+      en: The work done is 360 J.
+  misconception_ids:
+  - mc.phy.o.energy_mass_for_weight
+  - mc.phy.o.work_force_over_distance
+  - mc.phy.o.energy_force_confused
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: F = mg = 12 \times 10 = 120\ \text{N}
+    reason: The force equals the weight
+    check_id: chk_build_phy_nrg_0069_wt
+  - n: 2
+    latex: W = F \times d = 120 \times 3 = 360\ \text{J}
+    reason: Work = force × distance
+    check_id: chk_build_phy_nrg_0069_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0069_ans:
+    args:
+      expression: 12*10*3
+    tool: math_evaluate
+  chk_build_phy_nrg_0069_wt:
+    args:
+      expression: 12*10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

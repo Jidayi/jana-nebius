@@ -1,0 +1,93 @@
+id: itm.chm.o.metals.0049
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.extraction
+stem: 'Zinc is extracted by heating zinc oxide with carbon: ZnO + C → Zn + CO.'
+parts:
+- id: a
+  prompt: Which statement about this reaction is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Zinc oxide is reduced because it gains oxygen.
+      correct: false
+      misconception_id: mc.chm.o.metals_reduction_gains_oxygen
+      feedback: Reduction is LOSS of oxygen. In extraction the metal oxide loses its oxygen and becomes the metal; the carbon or carbon monoxide gains that oxygen and is oxidised.
+    - id: B
+      text: Carbon is reduced because it gains oxygen.
+      correct: false
+      misconception_id: mc.chm.o.metals_reduction_gains_oxygen
+      feedback: Reduction is LOSS of oxygen. In extraction the metal oxide loses its oxygen and becomes the metal; the carbon or carbon monoxide gains that oxygen and is oxidised.
+    - id: C
+      text: Zinc oxide is reduced because it loses oxygen; carbon is oxidised.
+      correct: true
+    - id: D
+      text: Carbon is too weak for zinc; this reaction needs electrolysis.
+      correct: false
+      misconception_id: mc.chm.o.metals_extraction_reversed
+      feedback: A reactive metal clings to the elements in its compounds, so it is HARD to extract. The higher a metal is in the series, the more energy its extraction needs; gold is so unreactive it is found as the metal.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Follow the oxygen from the left side of the equation to the right.
+  - rung: 2
+    name: concept
+    text:
+      en: Reduction is loss of oxygen; oxidation is gain of oxygen.
+  - rung: 3
+    name: first_step
+    text:
+      en: The oxygen starts in zinc oxide and ends in carbon monoxide.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Name the substance that lost oxygen and the one that gained it.
+  - rung: 5
+    name: full_step
+    text:
+      en: Zinc oxide loses oxygen, so it is reduced; carbon gains oxygen, so it is oxidised.
+  misconception_ids:
+  - mc.chm.o.metals_reduction_gains_oxygen
+  - mc.chm.o.metals_extraction_reversed
+solution:
+  steps:
+  - n: 1
+    latex: '\text{ZnO loses O: reduced}'
+    reason: Reduction is loss of oxygen
+  - n: 2
+    latex: '\text{C gains O: oxidised}'
+    reason: Oxidation
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

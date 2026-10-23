@@ -1,0 +1,171 @@
+{
+  "checked_at": "2026-10-18T07:55:42.674513+00:00",
+  "inspection": "Read-only project, billing linkage and enabled-service metadata. No secret values read or remote configuration changed.",
+  "projects": [
+    {
+      "environment": "staging",
+      "project_id": "jana-staging-512005",
+      "project_number": "760039669159",
+      "state": "ACTIVE",
+      "organization_id": "184884807584",
+      "billing": {
+        "enabled": true,
+        "linked_account_present": true
+      },
+      "enabled_services": [
+        "analyticshub.googleapis.com",
+        "apptopology.googleapis.com",
+        "bigquery.googleapis.com",
+        "bigqueryconnection.googleapis.com",
+        "bigquerydatapolicy.googleapis.com",
+        "bigquerydatatransfer.googleapis.com",
+        "bigquerymigration.googleapis.com",
+        "bigqueryreservation.googleapis.com",
+        "bigquerystorage.googleapis.com",
+        "cloudapis.googleapis.com",
+        "cloudtrace.googleapis.com",
+        "dataform.googleapis.com",
+        "dataplex.googleapis.com",
+        "datastore.googleapis.com",
+        "logging.googleapis.com",
+        "monitoring.googleapis.com",
+        "servicemanagement.googleapis.com",
+        "serviceusage.googleapis.com",
+        "sql-component.googleapis.com",
+        "storage-api.googleapis.com",
+        "storage-component.googleapis.com",
+        "storage.googleapis.com",
+        "telemetry.googleapis.com"
+      ],
+      "services_list_complete": true,
+      "access_verified": true,
+      "console_url": "https://console.cloud.google.com/welcome?project=jana-staging-512005",
+      "required_service_readiness": {
+        "compute.googleapis.com": {
+          "enabled": false,
+          "purpose": "Initial Linux gateway hosting and document sandbox qualification"
+        },
+        "secretmanager.googleapis.com": {
+          "enabled": false,
+          "purpose": "Environment-specific secret custody"
+        },
+        "artifactregistry.googleapis.com": {
+          "enabled": false,
+          "purpose": "Application images/packages and dependency provenance"
+        },
+        "aiplatform.googleapis.com": {
+          "enabled": false,
+          "purpose": "Vertex AI model and retention qualification"
+        },
+        "iam.googleapis.com": {
+          "enabled": false,
+          "purpose": "Dedicated environment runtime/deployment identities"
+        },
+        "logging.googleapis.com": {
+          "enabled": true,
+          "purpose": "Content-free operational metadata"
+        },
+        "monitoring.googleapis.com": {
+          "enabled": true,
+          "purpose": "Gateway health and quota alerts"
+        }
+      },
+      "gateway_origin": null,
+      "deployment_region": null,
+      "secret_mount_reference": null,
+      "signing_key_reference": null
+    },
+    {
+      "environment": "production",
+      "project_id": "jana-prod-512005",
+      "project_number": "29557135515",
+      "state": "ACTIVE",
+      "organization_id": "184884807584",
+      "billing": {
+        "enabled": true,
+        "linked_account_present": true
+      },
+      "enabled_services": [
+        "analyticshub.googleapis.com",
+        "apptopology.googleapis.com",
+        "bigquery.googleapis.com",
+        "bigqueryconnection.googleapis.com",
+        "bigquerydatapolicy.googleapis.com",
+        "bigquerydatatransfer.googleapis.com",
+        "bigquerymigration.googleapis.com",
+        "bigqueryreservation.googleapis.com",
+        "bigquerystorage.googleapis.com",
+        "cloudapis.googleapis.com",
+        "cloudtrace.googleapis.com",
+        "dataform.googleapis.com",
+        "dataplex.googleapis.com",
+        "datastore.googleapis.com",
+        "logging.googleapis.com",
+        "monitoring.googleapis.com",
+        "servicemanagement.googleapis.com",
+        "serviceusage.googleapis.com",
+        "sql-component.googleapis.com",
+        "storage-api.googleapis.com",
+        "storage-component.googleapis.com",
+        "storage.googleapis.com",
+        "telemetry.googleapis.com"
+      ],
+      "services_list_complete": true,
+      "access_verified": true,
+      "console_url": "https://console.cloud.google.com/welcome?project=jana-prod-512005",
+      "required_service_readiness": {
+        "compute.googleapis.com": {
+          "enabled": false,
+          "purpose": "Initial Linux gateway hosting and document sandbox qualification"
+        },
+        "secretmanager.googleapis.com": {
+          "enabled": false,
+          "purpose": "Environment-specific secret custody"
+        },
+        "artifactregistry.googleapis.com": {
+          "enabled": false,
+          "purpose": "Application images/packages and dependency provenance"
+        },
+        "aiplatform.googleapis.com": {
+          "enabled": false,
+          "purpose": "Vertex AI model and retention qualification"
+        },
+        "iam.googleapis.com": {
+          "enabled": false,
+          "purpose": "Dedicated environment runtime/deployment identities"
+        },
+        "logging.googleapis.com": {
+          "enabled": true,
+          "purpose": "Content-free operational metadata"
+        },
+        "monitoring.googleapis.com": {
+          "enabled": true,
+          "purpose": "Gateway health and quota alerts"
+        }
+      },
+      "gateway_origin": null,
+      "deployment_region": null,
+      "secret_mount_reference": null,
+      "signing_key_reference": null
+    }
+  ],
+  "device_availability": {
+    "macos_arm64": "User confirmed access to an Apple Silicon Mac; OS version, installed packs and device measurements are not yet recorded."
+  },
+  "release_ready": false,
+  "unverified": [
+    "Gateway region/origin and deployed runtime",
+    "Provider model availability and project-specific retention configuration",
+    "Secret mounts, public TLS pins and signing references",
+    "Deployment and device measurements"
+  ],
+  "record_type": "Verified environment selection; not deployed-service or release qualification",
+  "source": "User supplied exact project URLs; GCP project/billing/Service Usage read-only API observations.",
+  "next_steps": [
+    "Prepare staging service enablement, least-privilege identities and spending controls.",
+    "Choose deployment region and qualify the existing Linux sandbox on the target host.",
+    "Qualify Gemini 3.8 Flash on the intended provider endpoint and obtain project-scoped retention evidence.",
+    "Wire actual secret mounts, HTTPS origin/TLS pins and signing references before the deployed end-to-end checks.",
+    "Promote the qualified configuration to production after release gates pass."
+  ]
+}

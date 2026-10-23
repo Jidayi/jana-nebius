@@ -1,0 +1,65 @@
+id: wex.mth.o.algebra_and_graphs.0034
+kc_ids:
+- kc.mth.o.algebra_and_graphs.tables_of_values
+problem: Complete the table of values for $y = x^3 - 4x - 1$. Find y when x = 3.
+steps:
+- n: 1
+  latex: y = (3)^3 - 4(3) - 1
+  reason: Substitute
+  check_id: chk_build_mth_alg_w0034_sub
+- n: 2
+  latex: y = 27 + (-12) - 1
+  reason: Work out each term
+  check_id: chk_build_mth_alg_w0034_t
+- n: 3
+  latex: y = 14
+  reason: Add
+  check_id: chk_build_mth_alg_w0034_ans
+final_answer:
+  latex: '14'
+  check_id: chk_build_mth_alg_w0034_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0034_ans:
+    args:
+      expression: x^3 + (-4)*x + (-1)
+      values:
+        x: 3
+    tool: math_evaluate
+  chk_build_mth_alg_w0034_sub:
+    args:
+      expression: (3)^3 - 4*(3) - 1
+    tool: math_evaluate
+  chk_build_mth_alg_w0034_t:
+    args:
+      equations:
+      - p = (3)^3
+      - q = (-4)*(3)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

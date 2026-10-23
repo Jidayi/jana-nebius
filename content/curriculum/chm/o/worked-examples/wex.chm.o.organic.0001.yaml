@@ -1,0 +1,53 @@
+id: wex.chm.o.organic.0001
+kc_ids:
+- kc.chm.o.organic.functional_groups
+problem: A hydrocarbon has the formula C₄H₁₀. Use the general formulae to decide whether it is an alkane or an alkene.
+steps:
+- n: 1
+  latex: '\text{alkane: } 2 \times 4 + 2 = 10'
+  reason: An alkane CnH2n+2 with n = 4
+  check_id: chk_build_chm_organic_w0001_h
+- n: 2
+  latex: '\text{alkene: } 2 \times 4 = 8'
+  reason: An alkene CnH2n with n = 4
+  check_id: chk_build_chm_organic_w0001_s2
+- n: 3
+  latex: \text{C₄H₁₀ matches the alkane}
+  reason: Same number of H atoms
+final_answer:
+  latex: '10\ \text{H atoms: an alkane (butane)}'
+  check_id: chk_build_chm_organic_w0001_h
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_w0001_h:
+    args:
+      expression: 2*4 + 2
+    tool: math_evaluate
+  chk_build_chm_organic_w0001_s2:
+    args:
+      expression: 2*4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

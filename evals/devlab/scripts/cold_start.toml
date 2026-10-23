@@ -1,0 +1,7 @@
+# Cold start (EVL-14; TABLE ARC-22c milestones): quit the app, drop the file cache where the OS allows it, start it,
+# and time the shell's control.ready (core_ready_s) and the first home screen with the model warm (ready_s).
+title = "Cold start to core_ready and ready"
+network = "disabled"
+measures = ["core_ready_s", "ready_s"]
+steps = ["quit the app and wait for every child process to exit", "start the app", "record control.ready",
+         "record the home screen's ready state with the local model loaded"]

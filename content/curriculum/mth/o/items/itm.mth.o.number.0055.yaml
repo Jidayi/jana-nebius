@@ -1,0 +1,106 @@
+id: itm.mth.o.number.0055
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.powers_and_roots
+stem: Work out $\sqrt{625}$.
+parts:
+- id: a
+  prompt: Give the exact value.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '25'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0055_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A square root undoes squaring.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the number that, multiplied by itself, gives 625.
+  - rung: 3
+    name: first_step
+    text:
+      en: Try numbers whose squares are close to 625.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Check your number by squaring it.
+  - rung: 5
+    name: full_step
+    text:
+      en: √625 = 25, because 25 × 25 = 625.
+  misconception_ids:
+  - mc.mth.o.root_as_half
+  - mc.mth.o.square_as_double
+solution:
+  steps:
+  - n: 1
+    latex: \sqrt{625} = 25
+    reason: The number which multiplied by itself gives the value
+    check_id: chk_build_mth_num_0055_ans
+difficulty:
+  prior: -1.0
+  band: foundation
+estimated_seconds: 30
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  x: '625'
+checks:
+  chk_build_mth_num_0055_ans:
+    args:
+      expression: sqrt(625)
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:38:05.415Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.number.0055
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

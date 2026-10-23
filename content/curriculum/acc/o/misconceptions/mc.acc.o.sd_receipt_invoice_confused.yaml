@@ -1,0 +1,35 @@
+id: mc.acc.o.sd_receipt_invoice_confused
+kc_ids:
+- kc.acc.o.source_documents.identify_source_document
+student_name: Receipt and invoice mixed up
+description: Thinks a receipt is issued for a credit sale, or an invoice proves payment.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: asset
+fix:
+  strategy: contrast_example
+  text:
+    en: A receipt proves money was paid; an invoice asks for payment later.
+probe_item_ids:
+- itm.acc.o.source_documents.0001
+- itm.acc.o.source_documents.0002
+- itm.acc.o.source_documents.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

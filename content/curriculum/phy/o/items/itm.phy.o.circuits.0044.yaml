@@ -1,0 +1,145 @@
+id: itm.phy.o.circuits.0044
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.mixed_circuits
+stem: A 4 Ω resistor is connected in series with a parallel pair made of an 18 Ω resistor and a 9 Ω resistor. The circuit is connected to a 6 V battery.
+parts:
+- id: a
+  prompt: Calculate the p.d. across the parallel pair.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 3.6 V
+      correct: true
+    - id: B
+      text: 6 V
+      correct: false
+      misconception_id: mc.phy.o.mixed_branch_gets_full_supply
+      feedback: The series resistor takes part of the supply p.d. first. Find the current from the supply, then the p.d. across the parallel group with V = IR.
+    - id: C
+      text: 3 V
+      correct: false
+      misconception_id: mc.phy.o.series_pd_shared_equally
+      feedback: 'The p.d. is shared in proportion to resistance: the resistor with twice the resistance has twice the p.d. Only equal resistors share equally.'
+    - id: D
+      text: 2.4 V
+      correct: false
+      misconception_id: mc.phy.o.series_pd_inverse_to_resistance
+      feedback: The same current flows through both, so V = IR is bigger where R is bigger. The larger resistance always takes the larger share of the p.d.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The series resistor and the parallel pair share the battery p.d.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the current from the battery, then use V = IR with the pair's combined resistance.
+  - rung: 3
+    name: first_step
+    text:
+      en: The pair's combined resistance is (18 × 9) ÷ (18 + 9) = 6 Ω.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The total is 10 Ω, so the current is 0.6 A; multiply it by 6 Ω.
+  - rung: 5
+    name: full_step
+    text:
+      en: The p.d. across the parallel pair is 3.6 V.
+  misconception_ids:
+  - mc.phy.o.mixed_branch_gets_full_supply
+  - mc.phy.o.series_pd_inverse_to_resistance
+  - mc.phy.o.series_pd_shared_equally
+solution:
+  steps:
+  - n: 1
+    latex: R_p = \frac{18 \times 9}{18 + 9} = 6\ \Omega
+    reason: Combine the parallel pair
+    check_id: chk_build_phy_cir_0044_rp
+  - n: 2
+    latex: R = 4 + 6 = 10\ \Omega
+    reason: Add the series resistor
+    check_id: chk_build_phy_cir_0044_rt
+  - n: 3
+    latex: I = \frac{6}{10} = 0.6\ \text{A}
+    reason: Current from the battery
+    check_id: chk_build_phy_cir_0044_i
+  - n: 4
+    latex: V_p = I R_p = 0.6 \times 6 = 3.6\ \text{V}
+    reason: V = IR for the pair
+    check_id: chk_build_phy_cir_0044_ans
+difficulty:
+  prior: 0.8
+  band: stretch
+estimated_seconds: 120
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_0044_ans:
+    args:
+      expression: 6*(18*9/(18 + 9))/(4 + 18*9/(18 + 9))
+    tool: math_evaluate
+  chk_build_phy_cir_0044_i:
+    args:
+      expression: 6/(4 + 18*9/(18 + 9))
+    tool: math_evaluate
+  chk_build_phy_cir_0044_rp:
+    args:
+      expression: 18*9/(18 + 9)
+    tool: math_evaluate
+  chk_build_phy_cir_0044_rt:
+    args:
+      expression: (4 + 18*9/(18 + 9))
+    tool: math_evaluate
+  chk_build_phy_cir_0044_tool:
+    args:
+      components:
+      - emf: '6'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '4'
+      - id: R2
+        kind: resistor
+        resistance: '18'
+      - id: R3
+        kind: resistor
+        resistance: '9'
+      network:
+        series:
+        - B
+        - R1
+        - parallel:
+          - R2
+          - R3
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

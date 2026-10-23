@@ -1,0 +1,130 @@
+id: itm.phy.o.electromagnetism.0071
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.power_transmission
+stem: A power line delivers 400 kW at 25 kV. The cables have a total resistance of 5 Ω.
+parts:
+- id: a
+  prompt: Calculate the power wasted as heat in the cables, in kW.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 0.08 kW
+      correct: false
+      misconception_id: mc.phy.o.power_loss_not_squared
+      feedback: Current × resistance is the p.d. along the cable. The power wasted is current² × resistance.
+    - id: B
+      text: 125000 kW
+      correct: false
+      misconception_id: mc.phy.o.power_loss_uses_line_voltage
+      feedback: Only a small part of the voltage is lost along the cables. Find the current, then use current² × resistance.
+    - id: C
+      text: 1.95 × 10^-5 kW
+      correct: false
+      misconception_id: mc.phy.o.transmission_current_upside_down
+      feedback: Power = p.d. × current, so current = power ÷ p.d.
+    - id: D
+      text: 1.28 kW
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The heating in the cables depends on the current in them.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the current from P = V × I, then use P = I² × R for the power wasted.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change kW into W and kV into V first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The current is 16 A; square it and multiply by 5 Ω.
+  - rung: 5
+    name: full_step
+    text:
+      en: The power wasted is 1280 W, which is 1.28 kW.
+  misconception_ids:
+  - mc.phy.o.power_loss_not_squared
+  - mc.phy.o.power_loss_uses_line_voltage
+  - mc.phy.o.transmission_current_upside_down
+solution:
+  steps:
+  - n: 1
+    latex: P = 400\ \text{kW} = 400000\ \text{W}
+    reason: A thousand watts in 1 kW
+    check_id: chk_build_phy_emg_0071_pw
+  - n: 2
+    latex: V = 25\ \text{kV} = 25000\ \text{V}
+    reason: A thousand volts in 1 kV
+    check_id: chk_build_phy_emg_0071_vv
+  - n: 3
+    latex: I = \frac{P}{V} = \frac{400000}{25000} = 16\ \text{A}
+    reason: Current = power ÷ p.d.
+    check_id: chk_build_phy_emg_0071_cur
+  - n: 4
+    latex: P_{loss} = I^2 R = 16^2 \times 5 = 1280\ \text{W}
+    reason: Heating in the cables
+    check_id: chk_build_phy_emg_0071_lw
+  - n: 5
+    latex: P_{loss} = 1.28\ \text{kW}
+    reason: A thousand watts in 1 kW
+    check_id: chk_build_phy_emg_0071_ans
+difficulty:
+  prior: 0.7
+  band: stretch
+estimated_seconds: 120
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_0071_ans:
+    args:
+      expression: (400/25)^2*5/1000
+    tool: math_evaluate
+  chk_build_phy_emg_0071_cur:
+    args:
+      expression: 400/25
+    tool: math_evaluate
+  chk_build_phy_emg_0071_lw:
+    args:
+      expression: (400/25)^2*5
+    tool: math_evaluate
+  chk_build_phy_emg_0071_pw:
+    args:
+      expression: 400*1000
+    tool: math_evaluate
+  chk_build_phy_emg_0071_vv:
+    args:
+      expression: 25*1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,111 @@
+id: itm.mth.o.number.0038
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.hcf_lcm
+stem: Two numbers are 8 and 12.
+parts:
+- id: a
+  prompt: Find their lowest common multiple (LCM).
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '4'
+      correct: false
+      misconception_id: mc.mth.o.hcf_lcm_swapped
+      feedback: The HCF divides both numbers, so it is no bigger than the smaller number. The LCM is a multiple of both, so it is at least as big as the larger number.
+    - id: B
+      text: '96'
+      correct: false
+      misconception_id: mc.mth.o.lcm_as_product
+      feedback: 6 × 4 = 24 is a common multiple of 6 and 4, but 12 is smaller. Use the highest power of each prime only once.
+    - id: C
+      text: '24'
+      correct: true
+    - id: D
+      text: '48'
+      correct: false
+      misconception_id: mc.mth.o.lcm_not_lowest
+      feedback: Use each prime once, at its highest power in either number; anything more is a bigger common multiple.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Write each number as a product of prime factors.
+  - rung: 2
+    name: concept
+    text:
+      en: For the LCM, take the higher power of every prime.
+  - rung: 3
+    name: first_step
+    text:
+      en: 8 = 2^3 and 12 = 2^2 × 3.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Compare the power of each prime in the two numbers.
+  - rung: 5
+    name: full_step
+    text:
+      en: The LCM is 2^3 × 3 = 24.
+  misconception_ids:
+  - mc.mth.o.hcf_lcm_swapped
+  - mc.mth.o.lcm_as_product
+  - mc.mth.o.lcm_not_lowest
+solution:
+  steps:
+  - n: 1
+    latex: 8 = 2^{3},\quad 12 = 2^{2} \times 3
+    reason: Prime factorise both numbers
+    check_id: chk_build_mth_num_0038_f
+  - n: 2
+    latex: \text{LCM} = 2^{3} \times 3 = 24
+    reason: Take the higher power of every prime
+    check_id: chk_build_mth_num_0038_ans
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 100
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0038_ans:
+    args:
+      expression: 2^3*3^1
+    tool: math_evaluate
+  chk_build_mth_num_0038_f:
+    args:
+      equations:
+      - p = 2^3
+      - q = 2^2*3^1
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

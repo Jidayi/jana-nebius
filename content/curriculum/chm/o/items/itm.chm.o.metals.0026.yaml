@@ -1,0 +1,95 @@
+id: itm.chm.o.metals.0026
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.reactivity_series
+- kc.chm.o.metals.properties_of_metals
+stem: A piece of zinc and a piece of copper are each put into dilute hydrochloric acid.
+parts:
+- id: a
+  prompt: What is seen?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: The zinc fizzes as hydrogen is given off; the copper does not react.
+      correct: true
+    - id: B
+      text: Both metals fizz and give off hydrogen.
+      correct: false
+      misconception_id: mc.chm.o.metals_all_metals_react
+      feedback: Copper pipes carry water and gold rings survive washing-up for years. Only metals above hydrogen in the series give hydrogen with dilute acids, and only the most reactive react with cold water.
+    - id: C
+      text: The zinc fizzes as oxygen is given off; the copper does not react.
+      correct: false
+      misconception_id: mc.chm.o.metals_gas_is_oxygen
+      feedback: 'The metal takes the oxygen (or the non-metal part) and keeps it, so it is hydrogen that is set free. The gas burns with a squeaky pop: that is the test for hydrogen.'
+    - id: D
+      text: The copper fizzes and the zinc does not react.
+      correct: false
+      misconception_id: mc.chm.o.metals_displacement_reversed
+      feedback: 'A metal can only take the place of a metal BELOW it in the reactivity series. Find both metals in the series: if the free metal is higher, it displaces the other; if it is lower, nothing happens.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Where are zinc, hydrogen and copper in the reactivity series?
+  - rung: 2
+    name: concept
+    text:
+      en: Metals above hydrogen give hydrogen with dilute acids; metals below hydrogen do not react.
+  - rung: 3
+    name: first_step
+    text:
+      en: Zinc is above hydrogen; copper is below it.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Think about which gas a metal frees from an acid such as hydrochloric acid.
+  - rung: 5
+    name: full_step
+    text:
+      en: Zinc reacts and gives hydrogen; copper, below hydrogen, does not react.
+  misconception_ids:
+  - mc.chm.o.metals_all_metals_react
+  - mc.chm.o.metals_gas_is_oxygen
+  - mc.chm.o.metals_displacement_reversed
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Zn above H: reacts; Cu below H: no reaction}'
+    reason: Reactivity series
+  - n: 2
+    latex: \text{Zn + 2HCl gives ZnCl}_2 + \text{H}_2
+    reason: Metal + acid gives salt + hydrogen
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

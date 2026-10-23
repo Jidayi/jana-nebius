@@ -1,0 +1,89 @@
+id: itm.phy.o.forces.0035
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.friction_and_terminal_velocity
+stem: A large hailstone of mass 0.02 kg is falling at its terminal velocity.
+parts:
+- id: a
+  prompt: Find the air resistance acting on it.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.196'
+    unit: N
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_frc_0035_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What is true of the speed at terminal velocity?
+  - rung: 2
+    name: concept
+    text:
+      en: At terminal velocity the speed is constant, so the forces on the faller balance.
+  - rung: 3
+    name: first_step
+    text:
+      en: The air resistance equals the weight.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Weight = mass × g = 0.02 × 9.8.
+  - rung: 5
+    name: full_step
+    text:
+      en: The air resistance is 0.196 N.
+  misconception_ids:
+  - mc.phy.o.terminal_velocity_no_forces
+  - mc.phy.o.mass_in_kg_used_as_force
+solution:
+  steps:
+  - n: 1
+    latex: '\text{terminal velocity: air resistance = weight}'
+    reason: The resultant force is zero
+  - n: 2
+    latex: W = mg = 0.02 \times 9.8 = 0.196\ \text{N}
+    reason: Weight, with the pack's g
+    check_id: chk_build_phy_frc_0035_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0035_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 0.02*g
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

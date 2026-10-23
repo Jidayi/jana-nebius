@@ -1,0 +1,102 @@
+id: itm.chm.o.energetics.0041
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.energetics.calorimetry
+stem: 0.0400 mol of ammonium nitrate dissolves in water. The 100 g of water (or solution) changes temperature from 22.0 °C to 19.0 °C. Take the specific heat capacity of water as 4.2 J/(g °C).
+parts:
+- id: a
+  prompt: Calculate the energy transferred to or from the water, in kJ.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '-1.26'
+    unit: kJ
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_energetics_0041_q
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The water's temperature changed; that tells you the energy transferred.
+  - rung: 2
+    name: concept
+    text:
+      en: Q = m × c × ΔT, using the mass of the water and c = 4.2 J/(g °C).
+  - rung: 3
+    name: first_step
+    text:
+      en: ΔT = 19.0 − 22.0 = -3 °C.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Q = 100 × 4.2 × -3 J; divide by 1000 for kJ.
+  - rung: 5
+    name: full_step
+    text:
+      en: Q = -1260 J = -1.26 kJ.
+  misconception_ids:
+  - mc.chm.o.energetics_mass_of_reactant
+solution:
+  steps:
+  - n: 1
+    latex: \Delta T = -3
+    reason: Change in temperature
+    check_id: chk_build_chm_energetics_0041_dh
+  - n: 2
+    latex: Q = 100 \times 4.2 \times -3 = -1260\ \text{J}
+    reason: Q = mc\Delta T
+    check_id: chk_build_chm_energetics_0041_dh
+  - n: 3
+    latex: Q = -1.26\ \text{kJ}
+    reason: J to kJ
+    check_id: chk_build_chm_energetics_0041_q
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_energetics_0041_dh:
+    args:
+      amount: 0.0400 mol
+      constants:
+      - source: pack
+        symbol: c_water
+      final_temperature: 19.0 °C
+      initial_temperature: 22.0 °C
+      mass: 100 g
+      task: calorimetry
+    tool: chem_energetics
+  chk_build_chm_energetics_0041_q:
+    args:
+      expression: 100*4.2*(19.0 - 22.0)/1000
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

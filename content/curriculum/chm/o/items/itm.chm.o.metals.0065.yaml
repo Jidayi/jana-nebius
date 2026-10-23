@@ -1,0 +1,156 @@
+id: itm.chm.o.metals.0065
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.extraction_yield
+stem: Lead(II) oxide is heated with carbon. The equation is PbO + C → Pb + CO.
+parts:
+- id: a
+  prompt: Calculate the mass of lead that can be extracted from 44.6 g of PbO.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '41.4'
+    unit: g
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_metals_0065_chain
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Go from the mass of PbO to moles, use the equation, then go back to a mass of lead.
+  - rung: 2
+    name: concept
+    text:
+      en: Divide a mass by the molar mass to get moles; multiply moles by the molar mass to get grams.
+  - rung: 3
+    name: first_step
+    text:
+      en: Moles of PbO = 44.6 ÷ 223 = 0.200 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'The ratio PbO : Pb is 1 : 1, so moles of Pb = 0.200 mol.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Mass of lead = 0.200 × 207 = 41.4 g.
+  misconception_ids:
+  - mc.chm.o.metals_yield_ratio_ignored
+  - mc.chm.o.metals_yield_mass_ratio
+solution:
+  steps:
+  - n: 1
+    latex: n(\text{PbO}) = \frac{44.6}{223} = 0.200\ \text{mol}
+    reason: Mass to moles
+    check_id: chk_build_chm_metals_0065_ma
+  - n: 2
+    latex: '\text{PbO} : \text{Pb} = 1 : 1'
+    reason: Ratio from the equation
+    check_id: chk_build_chm_metals_0065_coef
+  - n: 3
+    latex: n(\text{Pb}) = 0.200\ \text{mol}
+    reason: Mole ratio from the equation
+    check_id: chk_build_chm_metals_0065_chain
+  - n: 4
+    latex: m(\text{Pb}) = 0.200 \times 207 = 41.4\ \text{g}
+    reason: Moles to mass
+    check_id: chk_build_chm_metals_0065_mb
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_metals_0065_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_pb
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_c
+      equation: PbO + C -> Pb + CO
+      sf: 3
+      steps:
+      - id: na
+        mass: 44.6 g
+        op: amount_from_mass
+        species: PbO
+      - amount: '@na'
+        from: PbO
+        id: nb
+        op: mole_ratio
+        to: Pb
+      - amount: '@nb'
+        id: mb
+        op: mass_from_amount
+        species: Pb
+    tool: chem_stoichiometry
+  chk_build_chm_metals_0065_coef:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_pb
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_c
+      equation: PbO + C -> Pb + CO
+      sf: 3
+      steps:
+      - amount: '1'
+        from: PbO
+        id: ca
+        op: mole_ratio
+        to: PbO
+      - amount: '1'
+        from: PbO
+        id: cb
+        op: mole_ratio
+        to: Pb
+    tool: chem_stoichiometry
+  chk_build_chm_metals_0065_ma:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_pb
+      - source: pack
+        symbol: ar_o
+      formula: PbO
+    tool: chem_molar_mass
+  chk_build_chm_metals_0065_mb:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_pb
+      formula: Pb
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

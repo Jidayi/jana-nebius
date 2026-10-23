@@ -1,0 +1,38 @@
+id: mc.phy.o.cold_transferred_as_substance
+kc_ids:
+- kc.phy.o.heat_transfer.conduction
+- kc.phy.o.thermal_properties.changes_of_state
+- kc.phy.o.heat_transfer.radiation
+student_name: Cold flows like a substance
+description: Thinks 'cold' is something that flows or is given out, rather than energy flowing from hotter places to colder ones.
+signatures:
+- kind: answer_transform
+  expression: cold
+fix:
+  strategy: rule_restatement
+  text:
+    en: Only energy moves, always from hotter to colder. An ice pack does not send cold into you; energy flows out of you into the ice.
+probe_item_ids:
+- itm.phy.o.heat_transfer.0011
+- itm.phy.o.heat_transfer.0012
+- itm.phy.o.heat_transfer.0013
+- itm.phy.o.heat_transfer.0015
+- itm.phy.o.heat_transfer.0042
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

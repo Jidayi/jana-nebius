@@ -1,0 +1,34 @@
+id: mc.acc.o.rb_nbv_as_charge
+kc_ids:
+- kc.acc.o.depreciation.reducing_balance
+student_name: Net book value as the charge
+description: Gives the net book value at the end of the year instead of that year's charge.
+signatures:
+- kind: answer_transform
+  expression: cost * (1 - rate)^n
+fix:
+  strategy: rule_restatement
+  text:
+    en: The charge is the rate times the opening value; the net book value is what remains after it.
+probe_item_ids:
+- itm.acc.o.depreciation.0035
+- itm.acc.o.depreciation.0036
+- itm.acc.o.depreciation.0037
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

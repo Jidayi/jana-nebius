@@ -1,0 +1,93 @@
+id: itm.phy.o.radioactivity.0064
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+stem: A smoke alarm uses a source to ionise the air between two plates; smoke absorbs the radiation and the current falls.
+parts:
+- id: a
+  prompt: Which source does it use?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: An alpha emitter with a half-life of hundreds of years
+      correct: true
+    - id: B
+      text: A gamma emitter with a half-life of hundreds of years
+      correct: false
+      misconception_id: mc.phy.o.radiation_passes_unchanged_choice
+      feedback: A gauge works only if a small change in thickness changes how much radiation gets through. Pick the radiation that is partly absorbed.
+    - id: C
+      text: An alpha emitter with a half-life of a few days
+      correct: false
+      misconception_id: mc.phy.o.short_half_life_for_long_use
+      feedback: 'A device that runs for years needs a source whose activity hardly changes over that time: a long half-life.'
+    - id: D
+      text: A gamma emitter, because gamma ionises air most strongly
+      correct: false
+      misconception_id: mc.phy.o.ionising_follows_penetration
+      feedback: It is the other way round. Alpha ionises so strongly that it uses up its energy within a few centimetres of air; gamma ionises weakly, so it travels much further.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Two things decide the choice: the kind of radiation and the half-life.'
+  - rung: 2
+    name: concept
+    text:
+      en: The radiation must reach where it is needed and be partly absorbed if a change is to be measured; the half-life must suit how long the job lasts.
+  - rung: 3
+    name: first_step
+    text:
+      en: Smoke must be able to stop the radiation, and the alarm must work for years.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that fail on either point, or that would put people at risk.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: An alpha emitter with a half-life of hundreds of years.'
+  misconception_ids:
+  - mc.phy.o.ionising_follows_penetration
+  - mc.phy.o.radiation_passes_unchanged_choice
+  - mc.phy.o.short_half_life_for_long_use
+solution:
+  steps:
+  - n: 1
+    latex: \text{An alpha emitter with a half-life of hundreds of years}
+    reason: Match the radiation and half-life to the job
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

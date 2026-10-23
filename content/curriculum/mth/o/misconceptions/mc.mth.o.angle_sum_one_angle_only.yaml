@@ -1,0 +1,36 @@
+id: mc.mth.o.angle_sum_one_angle_only
+kc_ids:
+- kc.mth.o.geometry.triangle_angles
+student_name: Subtracting only one angle
+description: Subtracts only one of the known angles from 180° when finding the third angle of a triangle.
+signatures:
+- kind: answer_transform
+  expression: 180 - a
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'All three angles share the 180°: subtract both known angles.'
+probe_item_ids:
+- itm.mth.o.geometry.0151
+- itm.mth.o.geometry.0152
+- itm.mth.o.geometry.0140
+- itm.mth.o.geometry.0143
+- itm.mth.o.geometry.0146
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

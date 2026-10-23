@@ -1,0 +1,34 @@
+id: mc.phy.o.fuse_rating_sets_current
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+student_name: The fuse rating sets the current
+description: Thinks the rating of a fuse is the current that flows through the appliance, so a 13 A fuse makes 13 A flow.
+signatures:
+- kind: answer_transform
+  expression: I = rating
+fix:
+  strategy: rule_restatement
+  text:
+    en: The appliance and the supply p.d. decide the current. The rating is only the current at which the fuse melts.
+probe_item_ids:
+- itm.phy.o.practical_electricity.0043
+- itm.phy.o.practical_electricity.0037
+- itm.phy.o.practical_electricity.0038
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

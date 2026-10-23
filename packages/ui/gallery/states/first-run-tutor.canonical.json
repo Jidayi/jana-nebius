@@ -1,0 +1,48 @@
+{
+  "id": "first-run-tutor.canonical",
+  "title": "First run, tutor ready",
+  "component": "FirstRunTutor",
+  "note": "First run's student hand-off (UXS-10 step 2) from a model catalogue with its hardware report (PLT-29): the tutor is ready.",
+  "state": "canonical",
+  "payload": {
+    "installed": [
+      {
+        "model_id": "synthetic-8b",
+        "pack_version": "0.1.0",
+        "serving": true
+      }
+    ],
+    "available": [],
+    "assignment": {
+      "fast": "synthetic-8b",
+      "strong": "synthetic-8b"
+    },
+    "recommended": {
+      "fast": "synthetic-8b",
+      "strong": "synthetic-8b",
+      "reason_key": "hardware_class.low.measured"
+    },
+    "hardware": {
+      "hardware_class": "low",
+      "basis": "measured",
+      "provisional": false,
+      "shortfalls": [],
+      "benchmark": null,
+      "benchmark_due": false,
+      "class_choice": null,
+      "tutor_path": "local",
+      "runtime": null
+    }
+  },
+  "payloadContract": "https://jana.dev/contracts/api/commands#/$defs/ModelCatalogue",
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "You're ready, Ada.",
+    "Continue"
+  ]
+}

@@ -1,0 +1,51 @@
+id: wex.chm.o.periodic.0007
+kc_ids:
+- kc.chm.o.periodic.transition_elements
+problem: Iron forms iron(III) chloride, FeCl₃. Work out the charge on the iron ion, given that each chloride ion is -1.
+steps:
+- n: 1
+  latex: \text{the compound is neutral}
+  reason: A compound is neutral
+- n: 2
+  latex: x + 3(-1) = 0
+  reason: Three chloride ions
+  check_id: chk_build_chm_periodic_w0007_s2
+final_answer:
+  latex: x = +3
+  check_id: chk_build_chm_periodic_w0007_x
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_periodic_w0007_s2:
+    args:
+      equations:
+      - x + 3*(-1) = 0
+      unknowns:
+      - x
+    tool: math_solve
+  chk_build_chm_periodic_w0007_x:
+    args:
+      expression: 0 - 3*(-1)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

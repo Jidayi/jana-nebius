@@ -1,0 +1,145 @@
+id: itm.mth.o.statistics.0081
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.grouped_mean
+stem: 'The times, t minutes, that students took to finish a task are grouped: 10 ≤ t < 15: 10; 15 ≤ t < 20: 11; 20 ≤ t < 25: 11; 25 ≤ t < 30: 13.'
+parts:
+- id: a
+  prompt: Estimate the mean time.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 23 minutes
+      correct: false
+      misconception_id: mc.mth.o.grouped_upper_bound
+      feedback: 'The midpoint is the best single value for a class: add the ends and halve.'
+    - id: B
+      text: 20.5 minutes
+      correct: true
+    - id: C
+      text: 230.625 minutes
+      correct: false
+      misconception_id: mc.mth.o.frequency_mean_rows
+      feedback: 'The mean shares the total among all the items: divide by Σf.'
+    - id: D
+      text: 18 minutes
+      correct: false
+      misconception_id: mc.mth.o.class_width_wrong
+      feedback: Class width = upper boundary − lower boundary.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You do not know the exact times, so use one value for each class.
+  - rung: 2
+    name: concept
+    text:
+      en: Use the midpoint of each class, multiply by its frequency, add, and divide by the total frequency.
+  - rung: 3
+    name: first_step
+    text:
+      en: The first class has midpoint (10 + 15) ÷ 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Σfx = 922.5 and Σf = 45.
+  - rung: 5
+    name: full_step
+    text:
+      en: The estimated mean is 20.5 minutes.
+  misconception_ids:
+  - mc.mth.o.class_width_wrong
+  - mc.mth.o.frequency_mean_rows
+  - mc.mth.o.grouped_upper_bound
+solution:
+  steps:
+  - n: 1
+    latex: '\text{midpoints: } 12.5, 17.5, 22.5, 27.5'
+    reason: Middle of each class
+    check_id: chk_build_mth_sta_0081_mids
+  - n: 2
+    latex: \Sigma fx = 922.5,\ \Sigma f = 45
+    reason: Midpoint times frequency, added
+    check_id: chk_build_mth_sta_0081_t
+  - n: 3
+    latex: \text{mean} \approx \frac{922.5}{45} = 20.5
+    reason: Divide by the total frequency
+    check_id: chk_build_mth_sta_0081_sc
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0081_ans:
+    args:
+      expression: 922.5/45
+    tool: math_evaluate
+  chk_build_mth_sta_0081_mids:
+    args:
+      equations:
+      - p = (10 + 15)/2
+      - q = (15 + 20)/2
+      - r = (20 + 25)/2
+      - s = (25 + 30)/2
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+  chk_build_mth_sta_0081_sc:
+    args:
+      grouped:
+      - frequency: 10
+        lower: 10
+        upper: 15
+      - frequency: 11
+        lower: 15
+        upper: 20
+      - frequency: 11
+        lower: 20
+        upper: 25
+      - frequency: 13
+        lower: 25
+        upper: 30
+      quartile_method: exclusive
+    tool: stats_compute
+  chk_build_mth_sta_0081_t:
+    args:
+      equations:
+      - p = 922.5
+      - q = 45
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

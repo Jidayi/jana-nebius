@@ -1,0 +1,93 @@
+id: itm.phy.o.radioactivity.0067
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+stem: A teacher needs to move a radioactive source from its box to the bench.
+parts:
+- id: a
+  prompt: Which is the safest way?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Pick it up in rubber gloves, which stop the radiation
+      correct: false
+      misconception_id: mc.phy.o.gloves_stop_radiation
+      feedback: Beta passes through gloves and gamma through almost everything thin. Protection comes from distance, short times and thick shielding.
+    - id: B
+      text: Hold it close in both hands so it is not dropped
+      correct: false
+      misconception_id: mc.phy.o.distance_does_not_matter
+      feedback: Radiation spreads out from a source, and air absorbs alpha and some beta. Being further away greatly reduces the dose.
+    - id: C
+      text: Any way at all, as school sources emit alpha, which cannot get through skin
+      correct: false
+      misconception_id: mc.phy.o.alpha_always_harmless
+      feedback: Outside the body alpha is stopped by dead skin. Inside the body it deposits all its energy in living cells, making it the most harmful radiation.
+    - id: D
+      text: Use long tongs, keep it away from the body and put it back promptly
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about how radiation can harm people and how the dose can be kept low.
+  - rung: 2
+    name: concept
+    text:
+      en: A source keeps decaying whatever we do; distance, short times and thick shielding cut the dose, and being exposed to radiation does not make anything radioactive.
+  - rung: 3
+    name: first_step
+    text:
+      en: Distance, a short time and shielding all reduce the dose.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that would leave people exposed or that rest on a false idea about radiation.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Use long tongs, keep it away from the body and put it back promptly.'
+  misconception_ids:
+  - mc.phy.o.alpha_always_harmless
+  - mc.phy.o.distance_does_not_matter
+  - mc.phy.o.gloves_stop_radiation
+solution:
+  steps:
+  - n: 1
+    latex: \text{Use long tongs, keep it away from the body and put it back promptly}
+    reason: Match the radiation and half-life to the job
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

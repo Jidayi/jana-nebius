@@ -1,0 +1,98 @@
+id: itm.chm.o.reactions.0042
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.rate_data
+stem: Zinc reacts with dilute sulfuric acid. 60 cm³ of hydrogen is collected at room temperature and pressure in the first 25 s. One mole of any gas occupies 24 dm³ under these conditions.
+parts:
+- id: a
+  prompt: Calculate the mean rate of production of hydrogen over the first 25 s, in mol/s.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '0.000100'
+    unit: mol/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_reactions_0042_r
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The rate is wanted in moles per second, so change the gas volume into moles first.
+  - rung: 2
+    name: concept
+    text:
+      en: Moles of gas = volume in dm³ ÷ 24; then mean rate = moles ÷ time.
+  - rung: 3
+    name: first_step
+    text:
+      en: 60 cm³ is 60 ÷ 1000 dm³, so moles = 60 ÷ 1000 ÷ 24 = 0.0025 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 0.0025 mol by the time, 25 s.
+  - rung: 5
+    name: full_step
+    text:
+      en: 0.0025 ÷ 25 = 0.000100 mol/s.
+  misconception_ids:
+  - mc.chm.o.reactions_rate_inverted
+solution:
+  steps:
+  - n: 1
+    latex: n = \frac{60}{1000 \times 24} = 0.0025\ \text{mol}
+    reason: Volume to moles
+    check_id: chk_build_chm_reactions_0042_n
+  - n: 2
+    latex: \text{rate} = \frac{0.0025}{25} = 0.000100\ \text{mol/s}
+    reason: Moles ÷ time
+    check_id: chk_build_chm_reactions_0042_r
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_0042_n:
+    args:
+      constants:
+      - source: pack
+        symbol: vm
+      sf: 3
+      steps:
+      - id: n
+        op: amount_from_gas_volume
+        volume: 60 cm^3
+    tool: chem_stoichiometry
+  chk_build_chm_reactions_0042_r:
+    args:
+      expression: 0.0025/25
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

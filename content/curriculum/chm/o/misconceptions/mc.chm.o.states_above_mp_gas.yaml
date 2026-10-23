@@ -1,0 +1,35 @@
+id: mc.chm.o.states_above_mp_gas
+kc_ids:
+- kc.chm.o.states.changes_of_state
+student_name: Melted means gas
+description: Thinks a substance above its melting point is a gas, skipping the liquid state.
+signatures:
+- kind: answer_transform
+  expression: 'choice: gas chosen just above the melting point'
+fix:
+  strategy: rule_restatement
+  text:
+    en: Above its melting point a substance is a liquid until it reaches its boiling point.
+probe_item_ids:
+- itm.chm.o.states.0013
+- itm.chm.o.states.0014
+- itm.chm.o.states.0015
+- itm.chm.o.states.0016
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

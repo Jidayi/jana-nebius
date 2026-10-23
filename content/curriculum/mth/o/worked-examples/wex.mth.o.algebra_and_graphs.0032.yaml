@@ -1,0 +1,50 @@
+id: wex.mth.o.algebra_and_graphs.0032
+kc_ids:
+- kc.mth.o.algebra_and_graphs.travel_graphs
+problem: Part of the distance-time graph for a cyclist is a straight line from (30 s, 80 m) to (70 s, 200 m). Find the speed in m/s for this part.
+steps:
+- n: 1
+  latex: \Delta d = 120\ \text{m},\ \Delta t = 40\ \text{s}
+  reason: Changes between the points
+  check_id: chk_build_mth_alg_w0032_c
+- n: 2
+  latex: v = \frac{120}{40} = 3\ \text{m/s}
+  reason: Gradient
+  check_id: chk_build_mth_alg_w0032_ans
+final_answer:
+  latex: 3\ \text{m/s}
+  check_id: chk_build_mth_alg_w0032_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0032_ans:
+    args:
+      expression: (200 - 80)/(70 - 30)
+    tool: math_evaluate
+  chk_build_mth_alg_w0032_c:
+    args:
+      equations:
+      - p = 200 - 80
+      - q = 70 - 30
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

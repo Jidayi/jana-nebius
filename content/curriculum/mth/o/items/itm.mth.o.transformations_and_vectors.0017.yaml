@@ -1,0 +1,84 @@
+id: itm.mth.o.transformations_and_vectors.0017
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.transformations_and_vectors.enlargement
+stem: A triangle has a side of length 8 cm. It is enlarged by scale factor 3.
+parts:
+- id: a
+  prompt: Find the length of the matching side of the image.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '24'
+    unit: cm
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_vec_0017_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An enlargement keeps the shape but changes the size.
+  - rung: 2
+    name: concept
+    text:
+      en: Every length is multiplied by the scale factor.
+  - rung: 3
+    name: first_step
+    text:
+      en: Multiply 8 by 3.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A scale factor less than 1 makes the shape smaller.
+  - rung: 5
+    name: full_step
+    text:
+      en: The side is 24 cm.
+  misconception_ids:
+  - mc.mth.o.enlargement_added
+  - mc.mth.o.similar_factor_inverted
+  - mc.mth.o.similar_area_factor_for_length
+solution:
+  steps:
+  - n: 1
+    latex: 8 \times 3 = 24
+    reason: Every length is multiplied by the scale factor
+    check_id: chk_build_mth_vec_0017_ans
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_vec_0017_ans:
+    args:
+      expression: 8*3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

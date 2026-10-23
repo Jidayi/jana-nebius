@@ -1,0 +1,55 @@
+id: wex.phy.o.forces.0005
+kc_ids:
+- kc.phy.o.forces.friction_and_terminal_velocity
+problem: A parachutist of mass 70 kg is falling. At one moment the air resistance on them is 240 N. Take g = 10 N/kg. Find their acceleration at that moment.
+steps:
+- n: 1
+  latex: W = mg = 70 \times 10 = 700\ \text{N}
+  reason: Weight
+  check_id: chk_build_phy_frc_w0005_w
+- n: 2
+  latex: F = 700 - 240 = 460\ \text{N}
+  reason: 'Resultant force downwards: weight − drag'
+  check_id: chk_build_phy_frc_w0005_net
+- n: 3
+  latex: a = \frac{460}{70} = 6.57\ \text{m/s}^2
+  reason: a = F ÷ m
+  check_id: chk_build_phy_frc_w0005_ans
+final_answer:
+  latex: 6.57\ \text{m/s}^2
+  check_id: chk_build_phy_frc_w0005_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_w0005_ans:
+    args:
+      expression: (70*10 - 240)/70
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_frc_w0005_net:
+    args:
+      expression: 70*10 - 240
+    tool: math_evaluate
+  chk_build_phy_frc_w0005_w:
+    args:
+      expression: 70*10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,140 @@
+{
+  "claims": [
+    "1.0",
+    "2",
+    "2.0",
+    "3",
+    "3.0",
+    "6"
+  ],
+  "id": "circuit-parallel",
+  "kind": "circuit",
+  "modes": [
+    "shown",
+    "hidden"
+  ],
+  "spec": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "A circuit with battery B, ammeter A1, resistor R1 and resistor R2; A1 reads 3 A."
+    },
+    "computed": {
+      "check_ids": [
+        "chk_build_fx_circuit_parallel_1"
+      ],
+      "currents": {
+        "A1": 3.0,
+        "B": 3.0,
+        "R1": 2.0,
+        "R2": 1.0
+      },
+      "labels": {
+        "A1.reading": "3 A",
+        "equivalent_resistance": "2 Ω"
+      },
+      "open_circuit": false
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_circuit_parallel_1",
+      "pack:pack.phy.o/visual_presets/dgm.phy.circuit_parallel_resistors.v1"
+    ],
+    "params": {
+      "components": [
+        {
+          "id": "B",
+          "type": "battery",
+          "value": "6 V"
+        },
+        {
+          "id": "A1",
+          "type": "ammeter"
+        },
+        {
+          "id": "R1",
+          "type": "resistor",
+          "value": "3 Ω"
+        },
+        {
+          "id": "R2",
+          "type": "resistor",
+          "value": "6 Ω"
+        }
+      ],
+      "connections": [
+        {
+          "from": "B.pos",
+          "to": "A1.a"
+        },
+        {
+          "from": "A1.b",
+          "to": "R1.a"
+        },
+        {
+          "from": "A1.b",
+          "to": "R2.a"
+        },
+        {
+          "from": "R1.b",
+          "to": "B.neg"
+        },
+        {
+          "from": "R2.b",
+          "to": "B.neg"
+        }
+      ],
+      "layout_hint": "parallel",
+      "show": [
+        "meter_readings",
+        "equivalent_resistance"
+      ]
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "B",
+        "name": "battery B",
+        "quizzable": true,
+        "role": "component"
+      },
+      {
+        "focusable": true,
+        "id": "A1",
+        "name": "ammeter A1",
+        "quizzable": true,
+        "role": "component"
+      },
+      {
+        "focusable": true,
+        "id": "A1.reading",
+        "name": "reading on A1",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "R1",
+        "name": "resistor R1",
+        "quizzable": true,
+        "role": "component"
+      },
+      {
+        "focusable": true,
+        "id": "R2",
+        "name": "resistor R2",
+        "quizzable": true,
+        "role": "component"
+      }
+    ],
+    "ref": "dgm.phy.circuit_parallel_resistors.v1",
+    "repairs": [],
+    "resolution_hash": "sha256:24a190bb6c1fac3e09f5eb29cc2cfb03e090e337c15cf99553c570920b1e3d39",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "circuit",
+    "visual_id": "vis_41GVCZCY9NB9CCV30G3Q1WSNK5"
+  },
+  "subject": "physics"
+}

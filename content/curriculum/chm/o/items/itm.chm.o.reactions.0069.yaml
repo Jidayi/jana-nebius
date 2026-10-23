@@ -1,0 +1,85 @@
+id: itm.chm.o.reactions.0069
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.redox
+stem: 'Magnesium burns in oxygen: 2Mg + O₂ → 2MgO.'
+parts:
+- id: a
+  prompt: Which substance is reduced?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Nothing is reduced
+      correct: false
+    - id: B
+      text: Oxygen
+      correct: true
+    - id: C
+      text: Magnesium oxide
+      correct: false
+    - id: D
+      text: Magnesium
+      correct: false
+      misconception_id: mc.chm.o.reactions_oxidation_is_gaining_electrons
+      feedback: Oxidation is loss of electrons; reduction is gain of electrons. A metal atom that becomes a positive ion has lost electrons, so it has been oxidised.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: In every redox reaction one substance is oxidised and another is reduced.
+  - rung: 2
+    name: concept
+    text:
+      en: Magnesium gains oxygen, so it is oxidised.
+  - rung: 3
+    name: first_step
+    text:
+      en: In magnesium oxide, magnesium is Mg²⁺ and oxygen is O²⁻.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Which reactant gains electrons to become a negative ion?
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Oxygen is reduced: each oxygen atom gains two electrons to become O²⁻, while magnesium is oxidised.'
+  misconception_ids:
+  - mc.chm.o.reactions_oxidation_is_gaining_electrons
+solution:
+  steps:
+  - n: 1
+    latex: 2\text{Mg} + \text{O}_2 \rightarrow 2\text{MgO}
+    reason: Mg oxidised, oxygen reduced
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,98 @@
+id: itm.phy.o.oscilloscope.0012
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.oscilloscope.time_base
+stem: An oscilloscope's time-base is set to 10 ms/div. On the trace, the distance from one crest to the next is 2.5 divisions.
+parts:
+- id: a
+  prompt: Find the period of the signal in milliseconds.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 25 ms
+      correct: true
+    - id: B
+      text: 0.25 ms
+      correct: false
+      misconception_id: mc.phy.o.osc_timebase_divided
+      feedback: The time-base says how much time each division stands for, so time = divisions × time per division.
+    - id: C
+      text: 2.5 ms
+      correct: false
+      misconception_id: mc.phy.o.osc_divisions_as_time
+      feedback: Divisions are just squares on the screen. Multiply by the time-base (time per division) to get a time.
+    - id: D
+      text: 40 ms
+      correct: false
+      misconception_id: mc.phy.o.osc_frequency_period_confused
+      feedback: 'The period is the time for one wave, in seconds. The frequency is how many waves pass each second: f = 1/T.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The period is the time for one complete wave, from a crest to the next crest.
+  - rung: 2
+    name: concept
+    text:
+      en: The time-base gives the time for each horizontal division.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find how many divisions one complete wave takes.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply that number of divisions by 10 ms.
+  - rung: 5
+    name: full_step
+    text:
+      en: The period is 25 ms.
+  misconception_ids:
+  - mc.phy.o.osc_divisions_as_time
+  - mc.phy.o.osc_frequency_period_confused
+  - mc.phy.o.osc_timebase_divided
+solution:
+  steps:
+  - n: 1
+    latex: T = 2.5 \times 10 = 25\ \text{ms}
+    reason: Divisions for one wave times the time-base
+    check_id: chk_build_phy_osc_0012_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_osc_0012_ans:
+    args:
+      expression: 2.5*10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

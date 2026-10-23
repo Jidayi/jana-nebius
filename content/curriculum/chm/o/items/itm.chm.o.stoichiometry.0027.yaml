@@ -1,0 +1,137 @@
+id: itm.chm.o.stoichiometry.0027
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.relative_formula_mass
+stem: A student calculates the relative formula mass of aluminium sulfate, Al₂(SO₄)₃.
+parts:
+- id: a
+  prompt: Which value is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: '342'
+      correct: true
+    - id: B
+      text: '278'
+      correct: false
+      misconception_id: mc.chm.o.mr_bracket_multiplier
+      feedback: 'The number after a bracket multiplies everything inside it: (OH)₂ is two O atoms and two H atoms.'
+    - id: C
+      text: '170'
+      correct: false
+      misconception_id: mc.chm.o.mr_atomic_number
+      feedback: Use the relative atomic mass (the larger number for most elements), not the proton number.
+    - id: D
+      text: '75'
+      correct: false
+      misconception_id: mc.chm.o.mr_count_ignored
+      feedback: Write out the atoms one by one for a small formula such as H₂O (H + H + O) and see that each atom counts.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Every atom in Al₂(SO₄)₃ adds its relative atomic mass to the total.
+  - rung: 2
+    name: concept
+    text:
+      en: Use relative atomic masses (not proton numbers), multiply each by its number of atoms, and remember that a number after a bracket multiplies everything inside it.
+  - rung: 3
+    name: first_step
+    text:
+      en: List the atoms of each element in Al₂(SO₄)₃, counting through the bracket.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'In Al₂(SO₄)₃: two Al atoms give 54, three S atoms give 96 and twelve O atoms give 192.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Adding these gives Mr = 342.
+  misconception_ids:
+  - mc.chm.o.mr_count_ignored
+  - mc.chm.o.mr_bracket_multiplier
+  - mc.chm.o.mr_atomic_number
+solution:
+  steps:
+  - n: 1
+    latex: \text{Al}_2 = 54
+    reason: Two Al atoms times Ar
+    check_id: chk_build_chm_stoichiometry_0027_g_al
+  - n: 2
+    latex: \text{S}_3 = 96
+    reason: Three S atoms times Ar
+    check_id: chk_build_chm_stoichiometry_0027_g_s
+  - n: 3
+    latex: \text{O}_{12} = 192
+    reason: Twelve O atoms times Ar
+    check_id: chk_build_chm_stoichiometry_0027_g_o
+  - n: 4
+    latex: M_r = 342
+    reason: Add the shares
+    check_id: chk_build_chm_stoichiometry_0027_mr
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0027_g_al:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_al
+      formula: Al2
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0027_g_o:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_o
+      formula: O12
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0027_g_s:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_s
+      formula: S3
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0027_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_al
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      formula: Al2(SO4)3
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

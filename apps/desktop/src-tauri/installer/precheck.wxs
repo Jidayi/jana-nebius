@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The per-machine MSI for schools (PLT-06, PLT-21): the same checks before copying as the NSIS installer
+  (src/bin/precheck.rs), run as an immediate custom action before InstallInitialize. Exit code 2 stops the install
+  with the precheck's message, worded in the user's language from strings.json (LOC-01); 0 continues (a
+  below-the-minimum notice is logged, the app still installs, PLT-29).
+  JANA_NEEDED_BYTES and the precheck path are supplied by the release job.
+  OWNER ACTION: validate on the Windows runner before the first school build (WiX custom actions are not exercised
+  in the development pipeline).
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <Binary Id="JanaPrecheckBinary" SourceFile="..\..\..\..\target\release\jana-precheck.exe" />
+    <CustomAction Id="JanaPrecheckRun" BinaryKey="JanaPrecheckBinary" Execute="immediate" Return="check"
+                  ExeCommand="--needed-bytes [JANA_NEEDED_BYTES] --free-blocks512 [PrimaryVolumeSpaceAvailable] --lang [UserLanguageID]" />
+    <InstallExecuteSequence>
+      <Custom Action="JanaPrecheckRun" Before="InstallInitialize">NOT Installed</Custom>
+    </InstallExecuteSequence>
+    <DirectoryRef Id="INSTALLDIR">
+      <Component Id="JanaPrecheck" Guid="*">
+        <RegistryValue Root="HKLM" Key="Software\Jana\Install" Name="Precheck" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

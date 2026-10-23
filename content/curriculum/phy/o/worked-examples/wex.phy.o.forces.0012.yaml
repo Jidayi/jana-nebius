@@ -1,0 +1,54 @@
+id: wex.phy.o.forces.0012
+kc_ids:
+- kc.phy.o.forces.moments
+problem: A see-saw is a uniform plank 6 m long, pivoted at its middle. Amara, weight 300 N, sits 0.2 m from one end. How far from the pivot must Kofi, weight 400 N, sit on the other side for the see-saw to balance?
+steps:
+- n: 1
+  latex: d_1 = \frac{6}{2} - 0.2 = 2.8\ \text{m}
+  reason: Distance from the pivot
+  check_id: chk_build_phy_frc_w0012_d1
+- n: 2
+  latex: 300 \times 2.8 = 840\ \text{N m}
+  reason: Amara's moment
+  check_id: chk_build_phy_frc_w0012_m1
+- n: 3
+  latex: d_2 = \frac{840}{400} = 2.1\ \text{m}
+  reason: Anticlockwise moment = clockwise moment
+  check_id: chk_build_phy_frc_w0012_ans
+final_answer:
+  latex: 2.1\ \text{m}
+  check_id: chk_build_phy_frc_w0012_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_w0012_ans:
+    args:
+      expression: 300*(6/2 - 0.2)/400
+    tool: math_evaluate
+  chk_build_phy_frc_w0012_d1:
+    args:
+      expression: 6/2 - 0.2
+    tool: math_evaluate
+  chk_build_phy_frc_w0012_m1:
+    args:
+      expression: 300*(6/2 - 0.2)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

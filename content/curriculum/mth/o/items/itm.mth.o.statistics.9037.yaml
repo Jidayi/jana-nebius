@@ -1,0 +1,85 @@
+id: itm.mth.o.statistics.9037
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.averages_frequency
+stem: In a survey, 4 families have no bicycles, 7 have one bicycle and 5 have two bicycles.
+parts:
+- id: a
+  prompt: Find the mean number of bicycles per family. Give the exact decimal.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1.0625'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9037
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Multiply each value by its frequency and divide the total bicycles by the total families.
+  - rung: 2
+    name: concept
+    text:
+      en: Use the family counts as weights, including the families with no bicycles in the denominator.
+  - rung: 3
+    name: first_step
+    text:
+      en: Use the family counts as weights, including the families with no bicycles in the denominator.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Count every family in the denominator, even those contributing no bicycles to the numerator.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 1.0625.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{4 \cdot 0 + 7 \cdot 1 + 5 \cdot 2}{4 + 5 + 7}
+    reason: Use the family counts as weights, including the families with no bicycles in the denominator.
+    check_id: chk_build_mastery_supplement_mth_9037
+  - n: 2
+    latex: '1.0625'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9037
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9037:
+    args:
+      angle_unit: degrees
+      expression: (4*0+7*1+5*2)/(4+7+5)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

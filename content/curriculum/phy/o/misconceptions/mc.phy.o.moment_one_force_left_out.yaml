@@ -1,0 +1,33 @@
+id: mc.phy.o.moment_one_force_left_out
+kc_ids:
+- kc.phy.o.forces.moments
+student_name: Leaving out a moment
+description: Uses only one of the moments on a side of the pivot when two or more forces turn the beam the same way.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: rule_restatement
+  text:
+    en: Add up all the clockwise moments and all the anticlockwise moments. Every force that turns the beam counts.
+probe_item_ids:
+- itm.phy.o.forces.0084
+- itm.phy.o.forces.0088
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

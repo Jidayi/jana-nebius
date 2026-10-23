@@ -1,0 +1,44 @@
+id: wex.chm.o.metals.0002
+kc_ids:
+- kc.chm.o.metals.properties_and_uses
+problem: A lamp filament works at about 2500 °C. Tungsten melts at 3410 °C and copper at 1085 °C. Which metal is suitable, and how far below its melting point does it work?
+steps:
+- n: 1
+  latex: \text{copper melts below the working temperature}
+  reason: Rule out copper
+- n: 2
+  latex: 3410 - 2500 = 910
+  reason: Margin for tungsten
+  check_id: chk_build_chm_metals_w0002_gap
+final_answer:
+  latex: \text{tungsten, } 910\ ^\circ\text{C below}
+  check_id: chk_build_chm_metals_w0002_gap
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_metals_w0002_gap:
+    args:
+      expression: 3410 - 2500
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

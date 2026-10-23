@@ -1,0 +1,119 @@
+id: itm.mth.o.transformations_and_vectors.0053
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.transformations_and_vectors.vector_magnitude
+stem: The vector $\mathbf{v} = \begin{pmatrix} -6 \\ 8 \end{pmatrix}$.
+parts:
+- id: a
+  prompt: Find its magnitude |v|.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '10'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_vec_0053_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The magnitude is the length of the arrow.
+  - rung: 2
+    name: concept
+    text:
+      en: 'The two components and the arrow make a right-angled triangle: use Pythagoras.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Square -6 and 8; squares are never negative.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The sum of the squares is 100; take its square root.
+  - rung: 5
+    name: full_step
+    text:
+      en: '|v| = 10.'
+  misconception_ids:
+  - mc.mth.o.pythag_no_root
+  - mc.mth.o.pythag_sides_added
+  - mc.mth.o.magnitude_signed_sum
+solution:
+  steps:
+  - n: 1
+    latex: '|\mathbf{v}| = \sqrt{x^2 + y^2}'
+    reason: Pythagoras on the components
+  - n: 2
+    latex: (-6)^2 + (8)^2 = 100
+    reason: Square and add
+    check_id: chk_build_mth_vec_0053_s
+  - n: 3
+    latex: '|\mathbf{v}| = \sqrt{100} = 10'
+    reason: Square root
+    check_id: chk_build_mth_vec_0053_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  a: '-6'
+  b: '8'
+checks:
+  chk_build_mth_vec_0053_ans:
+    args:
+      expression: sqrt((-6)^2 + (8)^2)
+    tool: math_evaluate
+  chk_build_mth_vec_0053_s:
+    args:
+      expression: (-6)^2 + (8)^2
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:40:32.980Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.transformations_and_vectors.0053
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

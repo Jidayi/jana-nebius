@@ -1,0 +1,34 @@
+id: mc.acc.o.pa_drawings_to_capital
+kc_ids:
+- kc.acc.o.partnerships.capital_vs_current
+student_name: Drawings to the capital account
+description: Debits drawings to a fixed capital account.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: capital
+fix:
+  strategy: rule_restatement
+  text:
+    en: Fixed capital accounts change only for long-term capital; drawings go to the current account.
+probe_item_ids:
+- itm.acc.o.partnerships.0046
+- itm.acc.o.partnerships.0055
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

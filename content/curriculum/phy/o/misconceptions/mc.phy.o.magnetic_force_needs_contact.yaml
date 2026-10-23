@@ -1,0 +1,37 @@
+id: mc.phy.o.magnetic_force_needs_contact
+kc_ids:
+- kc.phy.o.magnetism.magnets_and_materials
+- kc.phy.o.electromagnetism.electromagnetic_induction
+student_name: Magnets must touch
+description: Thinks a magnet acts on another object only when the two touch; magnetic forces act across a gap.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: counterexample
+  text:
+    en: A compass needle swings when a magnet is still a hand's width away. Magnetic forces act at a distance.
+probe_item_ids:
+- itm.phy.o.magnetism.0011
+- itm.phy.o.magnetism.0012
+- itm.phy.o.magnetism.0014
+- itm.phy.o.electromagnetism.0032
+- itm.phy.o.magnetism.0002
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

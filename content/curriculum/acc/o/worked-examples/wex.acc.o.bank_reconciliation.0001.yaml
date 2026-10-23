@@ -1,0 +1,73 @@
+id: wex.acc.o.bank_reconciliation.0001
+kc_ids:
+- kc.acc.o.bank_reconciliation.update_cash_book
+problem: 'A cash book shows a debit bank balance of $1950. On the bank statement only: interest paid by the bank $870; bank charges $410; a direct debit for electricity $370. Find the updated cash book balance.'
+steps:
+- n: 1
+  latex: \text{Add statement-only receipts, subtract statement-only payments}
+  reason: Bring the cash book up to date
+  check_id: chk_build_acc_bank_reconciliation_w0001_t
+- n: 2
+  latex: \text{Updated balance} = 1950 + 870 - 410 - 370 = 2040
+  reason: Substitute
+  check_id: chk_build_acc_bank_reconciliation_w0001_a
+final_answer:
+  latex: \$\,2040
+  check_id: chk_build_acc_bank_reconciliation_w0001_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_bank_reconciliation_w0001_a:
+    args:
+      dp: 2
+      expression: 1950 + 870 - 410 - 370
+    tool: math_evaluate
+  chk_build_acc_bank_reconciliation_w0001_t:
+    args:
+      bank_statement:
+        balance: '2600'
+        entries:
+        - amount: '870'
+          details: interest paid by the bank
+          direction: in
+        - amount: '410'
+          details: bank charges
+          direction: out
+        - amount: '370'
+          details: a direct debit for electricity
+          direction: out
+        overdrawn: false
+      cash_book:
+        balance: '1950'
+        entries:
+        - amount: '1220'
+          details: cheque number 100413
+          direction: out
+          ref: t0
+        - amount: '660'
+          details: cash paid in on the last day of the month
+          direction: in
+          ref: t1
+        overdrawn: false
+      dp: 2
+      start_from: bank_statement
+      task: reconcile
+    tool: acc_double_entry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

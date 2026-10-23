@@ -1,0 +1,69 @@
+id: wex.acc.o.ratios.0002
+kc_ids:
+- kc.acc.o.ratios.margins
+problem: Revenue $46000; cost of sales $31050; expenses $9200. Find the gross margin.
+steps:
+- n: 1
+  latex: \text{Gross margin} = \frac{\text{gross profit}}{\text{revenue}}
+  reason: As a percentage
+  check_id: chk_build_acc_ratios_w0002_t
+- n: 2
+  latex: \text{Gross profit} = 46000 - 31050 = 14950
+  reason: Revenue less cost of sales
+  check_id: chk_build_acc_ratios_w0002_s2
+- n: 3
+  latex: \frac{14950}{46000} \rightarrow 32.50\%
+  reason: As a percentage
+  check_id: chk_build_acc_ratios_w0002_a
+final_answer:
+  latex: 32.50\%
+  check_id: chk_build_acc_ratios_w0002_a
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_w0002_a:
+    args:
+      dp: 2
+      expression: 14950 / 46000 * 100
+    tool: math_evaluate
+  chk_build_acc_ratios_w0002_s2:
+    args:
+      dp: 4
+      expression: 46000 - 31050
+    tool: math_evaluate
+  chk_build_acc_ratios_w0002_t:
+    args:
+      cost_of_sales: '31050'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      ratios:
+      - gross_margin
+      revenue: '46000'
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

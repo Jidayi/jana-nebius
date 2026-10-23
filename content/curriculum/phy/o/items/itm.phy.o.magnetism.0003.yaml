@@ -1,0 +1,92 @@
+id: itm.phy.o.magnetism.0003
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.magnetism.magnets_and_materials
+stem: Kofi has two identical-looking rods. One is a magnet; the other is unmagnetised iron.
+parts:
+- id: a
+  prompt: Which test tells him which rod is the magnet?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: See which rod attracts a pole of a known magnet
+      correct: false
+      misconception_id: mc.phy.o.attraction_proves_magnet
+      feedback: An ordinary iron nail is pulled by either pole of a magnet. Only a magnet can be pushed away, so repulsion is the test.
+    - id: B
+      text: See which rod attracts an aluminium can
+      correct: false
+      misconception_id: mc.phy.o.nonmagnetic_materials_attracted
+      feedback: 'Hold a magnet near an aluminium can or a copper coin: nothing happens. Only iron, steel, nickel and cobalt are attracted.'
+    - id: C
+      text: See which rod picks up a copper coin
+      correct: false
+      misconception_id: mc.phy.o.nonmagnetic_materials_attracted
+      feedback: 'Hold a magnet near an aluminium can or a copper coin: nothing happens. Only iron, steel, nickel and cobalt are attracted.'
+    - id: D
+      text: See which rod can repel a pole of a known magnet
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Recall the two rules: how poles act on each other, and which materials are magnetic.'
+  - rung: 2
+    name: concept
+    text:
+      en: Like poles repel and unlike poles attract. Only a few metals are magnetic, and magnetic materials differ in how easily they gain and lose their magnetism.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Both rods are attracted by a magnet, but only a magnet can be repelled.
+  - rung: 5
+    name: full_step
+    text:
+      en: See which rod can repel a pole of a known magnet. Both rods are attracted by a magnet, but only a magnet can be repelled.
+  misconception_ids:
+  - mc.phy.o.attraction_proves_magnet
+  - mc.phy.o.nonmagnetic_materials_attracted
+solution:
+  steps:
+  - n: 1
+    latex: \text{See which rod can repel a pole of a known magnet}
+    reason: Apply the rules for poles and magnetic materials
+difficulty:
+  prior: -0.7
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

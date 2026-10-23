@@ -1,0 +1,452 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.mth-o-statistics
+version: 2026-10-13.1
+description: 'Colocated evals for mth-o-statistics (SKL-21, EVL-07): one case per misconception. The student answers
+  as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key away,
+  and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: mth_o_statistics_01
+  title: Holds 'Codes treated as quantities'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.coded_numbers_quantitative
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.statistics.0001
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.statistics.data_types
+        misconception: mc.mth.o.coded_numbers_quantitative
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: mth_o_statistics_02
+  title: Holds 'Adding instead of subtracting from a total'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.table_total_ignored
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.statistics.0033
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.statistics.read_tables
+        misconception: mc.mth.o.table_total_ignored
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: mth_o_statistics_03
+  title: Holds 'Median without ordering'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.median_not_ordered
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.statistics.0048
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.statistics.averages_list
+        misconception: mc.mth.o.median_not_ordered
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: mth_o_statistics_04
+  title: Holds 'Giving the frequency for the mode'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.mode_as_frequency
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.statistics.0050
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.statistics.averages_list
+        misconception: mc.mth.o.mode_as_frequency
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_statistics_05
+  title: Holds 'Dividing by the number of rows'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.frequency_mean_rows
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.statistics.0048
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.statistics.averages_list
+        misconception: mc.mth.o.frequency_mean_rows
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_statistics_06
+  title: Holds 'Using the class boundaries instead of midpoints'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.grouped_upper_bound
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.statistics.0079
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.statistics.grouped_mean
+        misconception: mc.mth.o.grouped_upper_bound
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_statistics_07
+  title: Holds 'Using 100 instead of 360'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.pie_percent_for_degrees
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.statistics.0094
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.statistics.pie_charts
+        misconception: mc.mth.o.pie_percent_for_degrees
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_statistics_08
+  title: Holds 'Correlation means cause'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.correlation_causation
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.statistics.0099
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.statistics.scatter_correlation
+        misconception: mc.mth.o.correlation_causation
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_statistics_09
+  title: Holds 'The position as the median'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.median_position_as_value
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.statistics.0049
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.statistics.averages_list
+        misconception: mc.mth.o.median_position_as_value
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_statistics_10
+  title: Holds 'Bar height as frequency'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.histogram_height_as_frequency
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.statistics.0143
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.statistics.histograms
+        misconception: mc.mth.o.histogram_height_as_frequency
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

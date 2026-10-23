@@ -1,0 +1,34 @@
+id: mc.phy.o.metal_conduction_vibration_only
+kc_ids:
+- kc.phy.o.heat_transfer.conduction
+student_name: Metals conduct by vibrations alone
+description: Explains conduction in metals by atomic vibrations alone, leaving out the free electrons that make metals much better conductors.
+signatures:
+- kind: answer_transform
+  expression: vibration
+fix:
+  strategy: rule_restatement
+  text:
+    en: All solids pass energy on by vibrations, but this is slow. Metals also have free electrons that move quickly through the metal and carry energy fast.
+probe_item_ids:
+- itm.phy.o.heat_transfer.0014
+- itm.phy.o.heat_transfer.0015
+- itm.phy.o.heat_transfer.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,35 @@
+id: mc.acc.o.sd_cash_sales_in_sales_journal
+kc_ids:
+- kc.acc.o.source_documents.select_book_of_prime_entry
+student_name: Cash sales in the sales journal
+description: Records cash sales in the sales journal, which is only for credit sales.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: income
+fix:
+  strategy: rule_restatement
+  text:
+    en: Money received goes in the cash book. The sales journal lists credit sales only.
+probe_item_ids:
+- itm.acc.o.source_documents.0012
+- itm.acc.o.source_documents.0013
+- itm.acc.o.source_documents.0014
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

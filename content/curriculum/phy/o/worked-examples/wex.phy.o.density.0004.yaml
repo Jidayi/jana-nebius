@@ -1,0 +1,45 @@
+id: wex.phy.o.density.0004
+kc_ids:
+- kc.phy.o.density.measuring_density
+problem: An empty beaker has a mass of 52.4 g. Then 80 cm³ of cooking oil is poured in from a measuring cylinder, and the beaker and cooking oil together have a mass of 126 g. Calculate the density of the cooking oil in g/cm³.
+steps:
+- n: 1
+  latex: m = 126 - 52.4 = 73.6\ \text{g}
+  reason: Take away the beaker's own mass
+  check_id: chk_build_phy_den_w0004_ml
+- n: 2
+  latex: \rho = \frac{73.6}{80} = 0.92\ \text{g/cm}^3
+  reason: Density = mass ÷ volume
+  check_id: chk_build_phy_den_w0004_ans
+final_answer:
+  latex: 0.92\ \text{g/cm}^3
+  check_id: chk_build_phy_den_w0004_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_den_w0004_ans:
+    args:
+      expression: (126 - 52.4)/80
+    tool: math_evaluate
+  chk_build_phy_den_w0004_ml:
+    args:
+      expression: 126 - 52.4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

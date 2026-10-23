@@ -1,0 +1,50 @@
+id: wex.chm.o.acids.0009
+kc_ids:
+- kc.chm.o.acids.salt_preparation
+problem: Choose a method to make barium sulfate, which is insoluble, and find its relative formula mass.
+steps:
+- n: 1
+  latex: \text{BaSO}_4 \text{ insoluble} \Rightarrow \text{precipitation}
+  reason: Mix two solutions
+- n: 2
+  latex: \text{Ba}^{2+} + \text{SO}_4^{2-} \rightarrow \text{BaSO}_4\text{(s)}
+  reason: Barium chloride solution + sodium sulfate solution
+- n: 3
+  latex: \text{filter, wash, dry}
+  reason: The salt is the residue
+final_answer:
+  latex: M_r(\text{BaSO}_4) = 233
+  check_id: chk_build_chm_acids_w0009_mr
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_acids_w0009_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ba
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      formula: BaSO4
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

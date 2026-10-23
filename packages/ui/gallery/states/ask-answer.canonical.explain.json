@@ -1,0 +1,94 @@
+{
+  "id": "ask-answer.canonical.explain",
+  "title": "Ask anything, Just explain",
+  "component": "AskAnswer",
+  "note": "A learner of 18 or over chose Just explain: the whole answer with its explanation, and the switches for the mode and where to look; no model choice.",
+  "state": "canonical",
+  "variant": "explain",
+  "payload": {
+    "status": "answered",
+    "question": "Why is the sky blue?",
+    "answer": {
+      "ask_id": "ask_00000000000000000000000001",
+      "question": "Why is the sky blue?",
+      "mode": "explain",
+      "audience": "adult",
+      "reach": "allow_list",
+      "steps": [
+        {
+          "kind": "own",
+          "count": 0
+        },
+        {
+          "kind": "trusted",
+          "count": 2
+        }
+      ],
+      "sources": [
+        {
+          "ref": "web1",
+          "kind": "web",
+          "title": "Why is the sky blue?",
+          "url": "https://www.nasa.gov/blue-sky/",
+          "domain": "nasa.gov"
+        },
+        {
+          "ref": "web2",
+          "kind": "web",
+          "title": "Rayleigh scattering",
+          "url": "https://www.britannica.com/science/Rayleigh-scattering",
+          "domain": "britannica.com"
+        }
+      ],
+      "own_excerpts": [],
+      "answer": [
+        {
+          "text": "Sunlight is a mix of colours, and air scatters the short blue wavelengths much more than red ones.",
+          "refs": [
+            "web1",
+            "web2"
+          ],
+          "supported": true,
+          "checked": false
+        },
+        {
+          "text": "So blue light reaches your eyes from every part of the sky.",
+          "refs": [
+            "web1"
+          ],
+          "supported": true,
+          "checked": false
+        }
+      ],
+      "check_question": null,
+      "explanation": [
+        {
+          "text": "Scattering grows quickly as the wavelength gets shorter: roughly as \\(1/\\lambda^4\\).",
+          "refs": [
+            "web2"
+          ],
+          "supported": true,
+          "checked": false
+        }
+      ],
+      "general_knowledge": false,
+      "checked": false,
+      "can_switch": true
+    },
+    "reason": null,
+    "explained": false
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Teach me",
+    "Just explain",
+    "Trusted sources",
+    "Wider web"
+  ]
+}

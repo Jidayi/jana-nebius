@@ -1,0 +1,89 @@
+{
+  "id": "tutor-special.canonical.crashed",
+  "title": "Tutor special state: crashed",
+  "component": "TutorScreen",
+  "state": "canonical",
+  "variant": "crashed",
+  "payload": {
+    "events": [
+      {
+        "type": "turn.start",
+        "turn_id": "trn_11111111111111111111111111",
+        "user_message_id": "msg_22222222222222222222222222",
+        "client_message_id": null,
+        "intent": "ask",
+        "mode": "guided",
+        "fork": false
+      },
+      {
+        "type": "board.step",
+        "board_id": "brd_00000000000000000000000007",
+        "step_id": "stp_00000000000000000000000020",
+        "index": 0,
+        "latex": "x_1 = 1",
+        "reason": "links u, v, a and s",
+        "owner": "tutor",
+        "status": "final",
+        "check_id": "chk_special1",
+        "error": null
+      },
+      {
+        "type": "board.step",
+        "board_id": "brd_00000000000000000000000007",
+        "step_id": "stp_00000000000000000000000021",
+        "index": 1,
+        "latex": "x_2 = 2",
+        "reason": null,
+        "owner": "tutor",
+        "status": "final",
+        "check_id": "chk_special2",
+        "error": null
+      },
+      {
+        "type": "board.step",
+        "board_id": "brd_00000000000000000000000007",
+        "step_id": "stp_00000000000000000000000022",
+        "index": 2,
+        "latex": "x_3 = 3",
+        "reason": null,
+        "owner": "tutor",
+        "status": "final",
+        "check_id": "chk_special3",
+        "error": null
+      },
+      {
+        "type": "error",
+        "code": "model_unavailable",
+        "message": "Synthetic runtime crash",
+        "retryable": true,
+        "scope": "turn"
+      },
+      {
+        "type": "turn.end",
+        "status": "error",
+        "stop_reason": "provider_error",
+        "elapsed_ms": 2000,
+        "usage": null,
+        "verification": "not_applicable",
+        "persisted": {
+          "message_id": "msg_33333333333333333333333333",
+          "part_ids": []
+        },
+        "degraded": false,
+        "degraded_reason": null
+      }
+    ]
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light",
+    "elapsedMs": 0
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "The tutor stopped unexpectedly. Your work up to step 3 is saved.",
+    "Try again"
+  ]
+}

@@ -1,0 +1,32 @@
+id: mc.phy.o.diode_direction_reversed
+kc_ids:
+- kc.phy.o.circuits.circuit_components
+student_name: The diode conducts against its arrow
+description: Thinks a diode conducts when its triangle points against the conventional current, so reads the symbol the wrong way round.
+signatures:
+- kind: answer_transform
+  expression: reverse
+fix:
+  strategy: diagram
+  text:
+    en: The triangle in a diode symbol points the way conventional current can flow, from the positive side towards the negative side.
+probe_item_ids:
+- itm.phy.o.circuits.0063
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

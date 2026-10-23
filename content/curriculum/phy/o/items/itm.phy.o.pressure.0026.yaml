@@ -1,0 +1,92 @@
+id: itm.phy.o.pressure.0026
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.liquid_pressure
+stem: Three containers of different shapes and widths are filled with water to the same depth.
+parts:
+- id: a
+  prompt: Where is the pressure from the water greatest?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: At the bottom of the widest one, which holds the most water
+      correct: false
+      misconception_id: mc.phy.o.liquid_pressure_depends_on_volume
+      feedback: A narrow tube and a wide tank filled to the same depth with the same liquid have the same pressure at the bottom. Only the depth, the density and g count.
+    - id: B
+      text: At the bottom of the narrowest one, where the water is squeezed
+      correct: false
+      misconception_id: mc.phy.o.liquid_pressure_depends_on_volume
+      feedback: A narrow tube and a wide tank filled to the same depth with the same liquid have the same pressure at the bottom. Only the depth, the density and g count.
+    - id: C
+      text: It is the same at the bottom of all three
+      correct: true
+    - id: D
+      text: 'Nowhere: the pressure is the same at every depth in any water'
+      correct: false
+      misconception_id: mc.phy.o.liquid_pressure_same_at_all_depths
+      feedback: Every metre further down has another metre of liquid pressing from above, so pressure grows with depth. That is why dams are thickest at the bottom.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Pressure in a liquid comes from the weight of the liquid above.
+  - rung: 2
+    name: concept
+    text:
+      en: The same depth of the same liquid is above each base.
+  - rung: 3
+    name: first_step
+    text:
+      en: Only the depth, the liquid's density and g decide the pressure from a liquid.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that depend on the amount or the shape of the liquid.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It is the same at the bottom of all three.'
+  misconception_ids:
+  - mc.phy.o.liquid_pressure_depends_on_volume
+  - mc.phy.o.liquid_pressure_same_at_all_depths
+solution:
+  steps:
+  - n: 1
+    latex: \text{It is the same at the bottom of all three}
+    reason: Pressure in a liquid depends on depth and density
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

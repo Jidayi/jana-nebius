@@ -1,0 +1,155 @@
+id: itm.phy.o.circuits.0038
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.mixed_circuits
+stem: A 3 Ω resistor is connected in series with a parallel pair made of a 12 Ω resistor and a 4 Ω resistor. The circuit is connected to a 9 V battery.
+parts:
+- id: a
+  prompt: Calculate the current through the 12 Ω resistor.
+  marks: 4
+  answer:
+    kind: numeric
+    value: '0.375'
+    unit: A
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_cir_0038_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The 12 Ω resistor is one branch of the parallel pair.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the p.d. across the pair first; the series resistor takes part of the battery p.d.
+  - rung: 3
+    name: first_step
+    text:
+      en: Combine the pair, add the series resistor, and find the pair's share of the battery p.d.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The pair has 4.5 V across it; divide by 12 Ω.
+  - rung: 5
+    name: full_step
+    text:
+      en: The current through the 12 Ω resistor is 0.375 A.
+  misconception_ids:
+  - mc.phy.o.mixed_branch_gets_full_supply
+  - mc.phy.o.parallel_current_same_each_branch
+  - mc.phy.o.parallel_current_split_equally
+solution:
+  steps:
+  - n: 1
+    latex: R_p = \frac{12 \times 4}{12 + 4} = 3\ \Omega
+    reason: Combine the parallel pair
+    check_id: chk_build_phy_cir_0038_rp
+  - n: 2
+    latex: R = 3 + 3 = 6\ \Omega
+    reason: Add the series resistor
+    check_id: chk_build_phy_cir_0038_rt
+  - n: 3
+    latex: V_p = \frac{9 \times 3}{6} = 4.5\ \text{V}
+    reason: The pair's share of the p.d.
+    check_id: chk_build_phy_cir_0038_vp
+  - n: 4
+    latex: I_2 = \frac{4.5}{12} = 0.375\ \text{A}
+    reason: Ohm's law for one branch
+    check_id: chk_build_phy_cir_0038_ans
+difficulty:
+  prior: 1.0
+  band: stretch
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 4
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  R2: '12'
+  V: '9'
+checks:
+  chk_build_phy_cir_0038_ans:
+    args:
+      expression: 9*(12*4/(12 + 4))/(3 + 12*4/(12 + 4))/12
+    tool: math_evaluate
+  chk_build_phy_cir_0038_rp:
+    args:
+      expression: 12*4/(12 + 4)
+    tool: math_evaluate
+  chk_build_phy_cir_0038_rt:
+    args:
+      expression: (3 + 12*4/(12 + 4))
+    tool: math_evaluate
+  chk_build_phy_cir_0038_tool:
+    args:
+      components:
+      - emf: '9'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '3'
+      - id: R2
+        kind: resistor
+        resistance: '12'
+      - id: R3
+        kind: resistor
+        resistance: '4'
+      network:
+        series:
+        - B
+        - R1
+        - parallel:
+          - R2
+          - R3
+    tool: phys_circuit
+  chk_build_phy_cir_0038_vp:
+    args:
+      expression: 9*(12*4/(12 + 4))/(3 + 12*4/(12 + 4))
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:41:00.669Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.circuits.0038
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

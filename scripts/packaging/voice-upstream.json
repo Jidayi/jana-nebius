@@ -1,0 +1,20 @@
+{
+  "repository": "https://github.com/huggingface/speech-to-speech",
+  "commit": "619e3fe4f71d1c6f35c15870d588a3638de34722",
+  "licence": "Apache-2.0",
+  "files": {
+    "src/speech_to_speech/s2s_pipeline.py": "6daf4311d8e0d610dc16d0e3eb0992b564572f99729993993ee78e07b37866e7",
+    "src/speech_to_speech/configured_runtime.py": "7d3408991b9cc8d20c20051521e5d106f4831d018251c92a71c8ba75243613a6",
+    "src/speech_to_speech/backend_registry.py": "eda9deb4dd8d204cd0203c34fcb0e8448bf68c11ccdc4b0e84fde9249c1bd8f7",
+    "src/speech_to_speech/api/openai_realtime/websocket_router.py": "5b449bb1a774e187f50e99f4db6105281c791bbe4dd6a4810d41e6758b734469",
+    "src/speech_to_speech/VAD/vad_handler.py": "cc5cf9425cadec0dce2f35d227339e14bf383e619be625c6d76d6a7e7e1fc9f3",
+    "src/speech_to_speech/LLM/chat_completions_language_model.py": "ce5e0c05881288f20e236c549cc7b85ae08603667b50dab38d21a23636ed1015"
+  },
+  "compatibility": {
+    "local_silero": "Intercept torch.hub.load for the pinned Silero repository and load the pack's silero_vad.jit with torch.jit.load; hubconf.py is never run and every other hub entry point refuses.",
+    "local_nltk": "Load punkt_tab and averaged_perceptron_tagger_eng only from the bundle's nltk_data; refuse downloads.",
+    "engine_tools_only": "ChatCompletionsApiModelHandler._build_optional_kwargs drops default tool_choice for empty tools and refuses nonempty tools.",
+    "runtime": "configured_runtime._build_runtime owns one PipelineUnit; our ASGI wrapper supplies authentication and disables HTTP routes.",
+    "not_accepted": "Real-model compatibility, licence inventory, frozen speech sets, device latency, memory and intelligibility remain release gates."
+  }
+}

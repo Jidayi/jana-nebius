@@ -1,0 +1,36 @@
+id: mc.chm.o.analysis_cylinder_for_exact
+kc_ids:
+- kc.chm.o.analysis.apparatus
+- kc.chm.o.analysis.titration_technique
+student_name: A measuring cylinder for an exact volume
+description: Chooses a measuring cylinder when an exact volume such as 25.0 cm³ is needed for a titration.
+signatures:
+- kind: answer_transform
+  expression: 'choice: measuring cylinder chosen for an exact volume'
+fix:
+  strategy: rule_restatement
+  text:
+    en: A pipette delivers one fixed volume very accurately; a burette measures a variable volume accurately. A measuring cylinder is less precise.
+probe_item_ids:
+- itm.chm.o.analysis.0001
+- itm.chm.o.analysis.0002
+- itm.chm.o.analysis.0003
+- itm.chm.o.analysis.0004
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

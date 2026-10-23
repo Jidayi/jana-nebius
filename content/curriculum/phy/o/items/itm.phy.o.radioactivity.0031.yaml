@@ -1,0 +1,93 @@
+id: itm.phy.o.radioactivity.0031
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.half_life
+stem: A sample of cobalt-60 has a half-life of 5.3 years. At the start the activity is 800 MBq.
+parts:
+- id: a
+  prompt: Find the activity after 26.5 years.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '25'
+    unit: MBq
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_rad_0031_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Half-life is the time for the amount of a radioactive isotope to halve.
+  - rung: 2
+    name: concept
+    text:
+      en: First find how many half-lives fit into the time.
+  - rung: 3
+    name: first_step
+    text:
+      en: Then halve the starting value once for each half-life.
+  - rung: 4
+    name: worked_step
+    text:
+      en: There are 5 half-lives, so halve 800 once for each of them.
+  - rung: 5
+    name: full_step
+    text:
+      en: The activity is 25 MBq.
+  misconception_ids:
+  - mc.phy.o.half_life_linear
+  - mc.phy.o.half_life_halved_once
+  - mc.phy.o.decayed_for_remaining
+  - mc.phy.o.half_lives_counted_wrongly
+solution:
+  steps:
+  - n: 1
+    latex: \frac{26.5}{5.3} = 5\ \text{half-lives}
+    reason: Time ÷ half-life
+    check_id: chk_build_phy_rad_0031_n
+  - n: 2
+    latex: \frac{800}{2^{5}} = 25\ \text{MBq}
+    reason: Halve once per half-life
+    check_id: chk_build_phy_rad_0031_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_0031_ans:
+    args:
+      expression: 800/2^5
+    tool: math_evaluate
+  chk_build_phy_rad_0031_n:
+    args:
+      expression: 26.5/5.3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

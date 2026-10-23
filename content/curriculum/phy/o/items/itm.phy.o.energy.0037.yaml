@@ -1,0 +1,95 @@
+id: itm.phy.o.energy.0037
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.potential_energy
+stem: A bag of rice of mass 2 kg is lifted from a table 0.8 m above the floor onto a shelf 2.2 m above the floor. Take g = 9.8 N/kg.
+parts:
+- id: a
+  prompt: Calculate the increase in its gravitational potential energy.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '27.44'
+    unit: J
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0037_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Only the change in height matters, not the height above the floor.
+  - rung: 2
+    name: concept
+    text:
+      en: Use ΔEp = mgΔh.
+  - rung: 3
+    name: first_step
+    text:
+      en: It rises 2.2 − 0.8 = 1.4 m.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 2 × 9.8 × 1.4.
+  - rung: 5
+    name: full_step
+    text:
+      en: The gravitational potential energy increases by 27.44 J.
+  misconception_ids:
+  - mc.phy.o.gpe_height_not_change
+  - mc.phy.o.gpe_heights_added
+  - mc.phy.o.energy_mass_for_weight
+solution:
+  steps:
+  - n: 1
+    latex: \Delta h = 2.2 - 0.8 = 1.4\ \text{m}
+    reason: The change in height
+    check_id: chk_build_phy_nrg_0037_dh
+  - n: 2
+    latex: \Delta E_p = mg\Delta h = 2 \times 9.8 \times 1.4 = 27.44\ \text{J}
+    reason: ΔEp = mgΔh
+    check_id: chk_build_phy_nrg_0037_ans
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0037_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 2*g*(2.2 - 0.8)
+    tool: math_evaluate
+  chk_build_phy_nrg_0037_dh:
+    args:
+      expression: 2.2 - 0.8
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

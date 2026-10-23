@@ -1,0 +1,89 @@
+id: itm.acc.o.depreciation.0010
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.depreciation.capital_revenue_expenditure
+stem: A business made these payments.
+parts:
+- id: a
+  prompt: Select every payment that is capital expenditure.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: A new cash register
+      correct: true
+    - id: B
+      text: Installing the new cash register
+      correct: true
+    - id: C
+      text: Repairing the old cash register
+      correct: false
+    - id: D
+      text: Electricity for the shop
+      correct: false
+    - id: E
+      text: An extension to the stockroom
+      correct: true
+    - id: F
+      text: Wages of the shop assistant
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Capital expenditure buys, installs or improves a non-current asset.
+  - rung: 2
+    name: concept
+    text:
+      en: Installation is part of getting an asset ready for use.
+  - rung: 3
+    name: first_step
+    text:
+      en: Repairs keep an asset as it was, so they are revenue expenditure.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the purchase, the installation and the extension.
+  - rung: 5
+    name: full_step
+    text:
+      en: The new register, its installation and the extension are capital expenditure.
+  misconception_ids:
+  - mc.acc.o.cre_repairs_as_capital
+  - mc.acc.o.cre_installation_as_revenue
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Capital: register, installation, extension}'
+    reason: Buy, prepare or improve an asset
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

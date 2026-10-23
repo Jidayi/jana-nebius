@@ -1,0 +1,119 @@
+id: itm.chm.o.stoichiometry.0099
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.empirical_formula
+stem: A compound of nitrogen and oxygen contains 2.8 g of N combined with 8.0 g of O.
+parts:
+- id: a
+  prompt: What is its empirical formula?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: N₅O₂
+      correct: false
+      misconception_id: mc.chm.o.empirical_divided_wrong_way
+      feedback: Moles of atoms = mass ÷ Ar. Dividing the other way round gives the ratio upside down.
+    - id: B
+      text: NO₂
+      correct: false
+      misconception_id: mc.chm.o.empirical_rounded_early
+      feedback: If a ratio ends in .5, multiply every number by 2; if it ends in .33 or .67, multiply by 3.
+    - id: C
+      text: N₂O₅
+      correct: true
+    - id: D
+      text: N₇O₂₀
+      correct: false
+      misconception_id: mc.chm.o.empirical_mass_ratio
+      feedback: 'Equal masses are not equal numbers of atoms: 12 g of carbon and 1 g of hydrogen both hold one mole of atoms. Divide each mass by its Ar.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An empirical formula is the simplest whole-number ratio of atoms.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the moles of atoms of each element (mass ÷ Ar), then find their simplest ratio.
+  - rung: 3
+    name: first_step
+    text:
+      en: Moles of N atoms = 2.8 ÷ 14 = 0.200; moles of O atoms = 8.0 ÷ 16 = 0.500.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Divide by the smaller: O ÷ N = 2.50. Scale up to whole numbers if needed.'
+  - rung: 5
+    name: full_step
+    text:
+      en: The simplest whole-number ratio gives N₂O₅.
+  misconception_ids:
+  - mc.chm.o.empirical_mass_ratio
+  - mc.chm.o.empirical_divided_wrong_way
+  - mc.chm.o.empirical_rounded_early
+solution:
+  steps:
+  - n: 1
+    latex: n(N) = \frac{2.8}{14} = 0.200
+    reason: Moles of atoms
+    check_id: chk_build_chm_stoichiometry_0099_n1
+  - n: 2
+    latex: n(O) = \frac{8.0}{16} = 0.500
+    reason: Moles of atoms
+    check_id: chk_build_chm_stoichiometry_0099_n2
+  - n: 3
+    latex: 'O : N = 2.50'
+    reason: Ratio to the smaller
+    check_id: chk_build_chm_stoichiometry_0099_ratio
+  - n: 4
+    latex: \text{N}_2\text{O}_5
+    reason: Whole-number ratio
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0099_n1:
+    args:
+      expression: 2.8/14
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_stoichiometry_0099_n2:
+    args:
+      expression: 8.0/16
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_stoichiometry_0099_ratio:
+    args:
+      expression: (8.0/16)/(2.8/14)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

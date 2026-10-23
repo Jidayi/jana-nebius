@@ -1,0 +1,39 @@
+id: mc.phy.o.nonmagnetic_materials_attracted
+kc_ids:
+- kc.phy.o.magnetism.magnets_and_materials
+- kc.phy.o.electromagnetism.fields_of_currents
+- kc.phy.o.electromagnetism.motor_effect
+- kc.phy.o.electromagnetism.transformers
+student_name: Every metal sticks to a magnet
+description: Thinks a magnet attracts most metals, such as aluminium, copper, brass or gold, or other materials such as paper; only iron, steel, nickel and cobalt are magnetic.
+signatures:
+- kind: step_error
+  error_category: copy
+fix:
+  strategy: counterexample
+  text:
+    en: 'Hold a magnet near an aluminium can or a copper coin: nothing happens. Only iron, steel, nickel and cobalt are attracted.'
+probe_item_ids:
+- itm.phy.o.electromagnetism.0013
+- itm.phy.o.magnetism.0012
+- itm.phy.o.magnetism.0013
+- itm.phy.o.magnetism.0015
+- itm.phy.o.magnetism.0001
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

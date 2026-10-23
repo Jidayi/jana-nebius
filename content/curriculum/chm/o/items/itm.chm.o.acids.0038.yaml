@@ -1,0 +1,91 @@
+id: itm.chm.o.acids.0038
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.oxides
+stem: Aluminium oxide, Al₂O₃, reacts with dilute hydrochloric acid. It also reacts with warm sodium hydroxide solution.
+parts:
+- id: a
+  prompt: What type of oxide is aluminium oxide?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Amphoteric
+      correct: true
+    - id: B
+      text: Acidic
+      correct: false
+      misconception_id: mc.chm.o.acids_oxide_type_swapped
+      feedback: 'Metal oxides such as CaO and CuO are bases: they react with acids. Non-metal oxides such as CO₂ and SO₂ are acidic: they react with alkalis and give acidic solutions in water.'
+    - id: C
+      text: Neutral
+      correct: false
+      misconception_id: mc.chm.o.acids_amphoteric_neutral_confused
+      feedback: 'Amphoteric means ''both'': aluminium oxide and zinc oxide react with acids and with alkalis. Neutral means ''neither'': carbon monoxide, nitrogen monoxide and water react with neither.'
+    - id: D
+      text: Basic
+      correct: false
+      misconception_id: mc.chm.o.acids_oxide_by_element_only
+      feedback: 'The metal / non-metal rule has exceptions. Test the oxide: aluminium oxide and zinc oxide also react with alkalis (amphoteric), and carbon monoxide and nitrogen monoxide react with neither acids nor alkalis (neutral).'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Does aluminium oxide react with acids, with alkalis, or with both?
+  - rung: 2
+    name: concept
+    text:
+      en: Basic oxides react with acids; acidic oxides react with alkalis.
+  - rung: 3
+    name: first_step
+    text:
+      en: Aluminium oxide reacts with both an acid and an alkali.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Aluminium is a metal, but the test result matters more than the metal rule here.
+  - rung: 5
+    name: full_step
+    text:
+      en: An oxide that reacts with both acids and alkalis is amphoteric, so aluminium oxide is amphoteric.
+  misconception_ids:
+  - mc.chm.o.acids_amphoteric_neutral_confused
+  - mc.chm.o.acids_oxide_by_element_only
+  - mc.chm.o.acids_oxide_type_swapped
+solution:
+  steps:
+  - n: 1
+    latex: \text{reacts with acid and with alkali} \Rightarrow \text{amphoteric}
+    reason: Definition
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

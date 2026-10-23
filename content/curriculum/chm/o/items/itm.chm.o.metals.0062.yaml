@@ -1,0 +1,170 @@
+id: itm.chm.o.metals.0062
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.extraction_yield
+stem: Copper is obtained by heating copper(I) sulfide in a stream of air. The equation is Cu₂S + O₂ → 2Cu + SO₂.
+parts:
+- id: a
+  prompt: What mass of copper can be obtained from 8.0 g of Cu₂S?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: 1.60 g
+      correct: false
+      misconception_id: mc.chm.o.metals_yield_ratio_inverted
+      feedback: 'Write the ratio as ''wanted : given''. For Fe₂O₃ → 2Fe the wanted iron is two for every one of oxide, so moles of iron = moles of oxide × 2.'
+    - id: B
+      text: 6.40 g
+      correct: true
+    - id: C
+      text: 16.0 g
+      correct: false
+      misconception_id: mc.chm.o.metals_yield_mass_ratio
+      feedback: The equation counts particles, not grams. Change the mass of ore into moles first, use the ratio, then change the moles of metal back into grams.
+    - id: D
+      text: 3.20 g
+      correct: false
+      misconception_id: mc.chm.o.metals_yield_ratio_ignored
+      feedback: 'Look at the equation: Fe₂O₃ gives 2Fe. Each mole of iron(III) oxide holds two moles of iron atoms, so multiply by the equation''s ratio before you turn moles back into grams.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Plan: mass of Cu₂S → moles → ratio from the equation → moles of Cu → mass.'
+  - rung: 2
+    name: concept
+    text:
+      en: The numbers in the equation are a ratio of moles, never of grams.
+  - rung: 3
+    name: first_step
+    text:
+      en: Moles of Cu₂S = 8.0 ÷ 160 = 0.0500 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'The equation gives 1 Cu₂S : 2 Cu, so moles of Cu = 0.100 mol.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Mass of Cu = 0.100 × 64 = 6.40 g.
+  misconception_ids:
+  - mc.chm.o.metals_yield_ratio_ignored
+  - mc.chm.o.metals_yield_mass_ratio
+  - mc.chm.o.metals_yield_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: n(\text{Cu}_2\text{S}) = \frac{8.0}{160} = 0.0500\ \text{mol}
+    reason: Mass to moles
+    check_id: chk_build_chm_metals_0062_ma
+  - n: 2
+    latex: '\text{Cu}_2\text{S} : \text{Cu} = 1 : 2'
+    reason: Ratio from the equation
+    check_id: chk_build_chm_metals_0062_coef
+  - n: 3
+    latex: n(\text{Cu}) = 0.100\ \text{mol}
+    reason: Mole ratio from the equation
+    check_id: chk_build_chm_metals_0062_chain
+  - n: 4
+    latex: m(\text{Cu}) = 0.100 \times 64 = 6.40\ \text{g}
+    reason: Moles to mass
+    check_id: chk_build_chm_metals_0062_mb
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_metals_0062_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      equation: Cu2S + O2 -> 2Cu + SO2
+      sf: 3
+      steps:
+      - id: na
+        mass: 8.0 g
+        op: amount_from_mass
+        species: Cu2S
+      - amount: '@na'
+        from: Cu2S
+        id: nb
+        op: mole_ratio
+        to: Cu
+      - amount: '@nb'
+        id: mb
+        op: mass_from_amount
+        species: Cu
+    tool: chem_stoichiometry
+  chk_build_chm_metals_0062_coef:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      equation: Cu2S + O2 -> 2Cu + SO2
+      sf: 3
+      steps:
+      - amount: '1'
+        from: Cu2S
+        id: ca
+        op: mole_ratio
+        to: Cu2S
+      - amount: '1'
+        from: Cu2S
+        id: cb
+        op: mole_ratio
+        to: Cu
+    tool: chem_stoichiometry
+  chk_build_chm_metals_0062_ma:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_s
+      formula: Cu2S
+    tool: chem_molar_mass
+  chk_build_chm_metals_0062_mb:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      formula: Cu
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,43 @@
+id: dgm.phy.circuit_parallel_resistors.v1
+subject: phy
+title: Two resistors in parallel with an ammeter in the main circuit
+kind: circuit
+params:
+  components:
+  - id: B
+    type: battery
+    value: 6 V
+  - id: A1
+    type: ammeter
+  - id: R1
+    type: resistor
+    value: 3 Ω
+  - id: R2
+    type: resistor
+    value: 6 Ω
+  connections:
+  - from: B.pos
+    to: A1.a
+  - from: A1.b
+    to: R1.a
+  - from: A1.b
+    to: R2.a
+  - from: R1.b
+    to: B.neg
+  - from: R2.b
+    to: B.neg
+  layout_hint: parallel
+  show:
+  - meter_readings
+  - equivalent_resistance
+alt_text: A battery with two resistors connected in parallel; an ammeter in the main part of the circuit measures the total current.
+licence: LicenseRef-Own
+attribution: Our own preset, made for Jana with AI assistance.
+version: 1.0.0
+levels:
+- O
+kc_ids: []
+review:
+  author_role_id: rev_author_agent
+  status: in_review
+  style_version: 1

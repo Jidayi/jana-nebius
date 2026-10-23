@@ -1,0 +1,91 @@
+id: itm.phy.o.electrical_quantities.0004
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.electric_charge
+stem: After being rubbed, a plastic ruler has a charge of −4.8 nC. The charge on one electron is −1.6 × 10⁻¹⁹ C.
+parts:
+- id: a
+  prompt: How many extra electrons does the plastic ruler carry?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '30000000000'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_elq_0004_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The whole charge is made up of many equal electron charges.
+  - rung: 2
+    name: concept
+    text:
+      en: Number of electrons = total charge ÷ charge on one electron.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change nanocoulombs into coulombs first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 4.8 × 10⁻⁹ C by 1.6 × 10⁻¹⁹ C.
+  - rung: 5
+    name: full_step
+    text:
+      en: The plastic ruler carries 3.00 × 10^{10} extra electrons.
+  misconception_ids:
+  - mc.phy.o.electron_count_divided_by_e
+solution:
+  steps:
+  - n: 1
+    latex: n = \frac{Q}{e} = \frac{4.8 \times 10^{-9}}{1.6 \times 10^{-19}}
+    reason: Number = total charge ÷ charge on one
+  - n: 2
+    latex: n = 3.00 \times 10^{10}
+    reason: Work it out
+    check_id: chk_build_phy_elq_0004_m
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_elq_0004_ans:
+    args:
+      expression: 4.8*10^(-9)/(1.6*10^(-19))
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_elq_0004_m:
+    args:
+      expression: (4.8*10^(-9)/(1.6*10^(-19)))/10^(10)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

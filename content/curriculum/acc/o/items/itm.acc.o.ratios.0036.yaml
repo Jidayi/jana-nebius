@@ -1,0 +1,124 @@
+id: itm.acc.o.ratios.0036
+version: 0.1.1
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.inventory_turnover
+stem: Nia runs a clothing shop. Inventory was $5200 at the start of the year and $12000 at the end. Revenue was $172000 and cost of sales $107500.
+parts:
+- id: a
+  prompt: Calculate the rate of inventory turnover in times a year (average inventory). Give your answer to 2 decimal places.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '12.50'
+    unit: times
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_ratios_0036_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: How quickly does the business sell its inventory?
+  - rung: 2
+    name: concept
+    text:
+      en: Use cost of sales, because inventory is valued at cost, and average inventory = (opening + closing) ÷ 2.
+  - rung: 3
+    name: first_step
+    text:
+      en: Average inventory = (5200 + 12000) ÷ 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 107500 by the average inventory.
+  - rung: 5
+    name: full_step
+    text:
+      en: Inventory turnover = 12.50 times.
+  misconception_ids:
+  - mc.acc.o.rat_closing_inventory_used
+  - mc.acc.o.rat_revenue_for_cos
+solution:
+  steps:
+  - n: 1
+    latex: \text{Turnover} = \frac{\text{cost of sales}}{\text{average inventory}}
+    reason: 'The pack''s definition: average inventory'
+    check_id: chk_build_acc_ratios_0036_t
+  - n: 2
+    latex: \text{Average inventory} = \frac{5200 + 12000}{2} = 8600
+    reason: Opening plus closing, halved
+    check_id: chk_build_acc_ratios_0036_s2
+  - n: 3
+    latex: \frac{107500}{8600} = 12.50
+    reason: Times a year
+    check_id: chk_build_acc_ratios_0036_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  closing_inventory: '12000'
+  cost_of_sales: '107500'
+checks:
+  chk_build_acc_ratios_0036_a:
+    args:
+      dp: 2
+      expression: 107500 / ((5200 + 12000) / 2)
+    tool: math_evaluate
+  chk_build_acc_ratios_0036_s2:
+    args:
+      dp: 4
+      expression: (5200 + 12000) / 2
+    tool: math_evaluate
+  chk_build_acc_ratios_0036_t:
+    args:
+      closing_inventory: '12000'
+      cost_of_sales: '107500'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      opening_inventory: '5200'
+      ratios:
+      - inventory_turnover_times
+    tool: acc_ratios
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,121 @@
+id: itm.mth.o.geometry.0068
+version: 0.1.2
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.similar_lengths
+stem: Triangles P and Q are similar. Side AB = 8 cm in P corresponds to side DE = 24 cm in Q. Side BC = 3 cm in P corresponds to side EF in Q.
+parts:
+- id: a
+  prompt: Find the length of EF.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '9'
+    unit: cm
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_geo_0068_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: In similar shapes every length is multiplied by the same scale factor.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the scale factor from a pair of corresponding sides you know both of.
+  - rung: 3
+    name: first_step
+    text:
+      en: Scale factor = 24 ÷ 8.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The scale factor is 3. Multiply BC by it.
+  - rung: 5
+    name: full_step
+    text:
+      en: EF = 9 cm.
+  misconception_ids:
+  - mc.mth.o.similar_additive
+  - mc.mth.o.similar_factor_inverted
+  - mc.mth.o.similar_area_factor_for_length
+solution:
+  steps:
+  - n: 1
+    latex: k = \frac{24}{8} = 3
+    reason: Scale factor from P to Q
+    check_id: chk_build_mth_geo_0068_k
+  - n: 2
+    latex: EF = 3 \times 3 = 9\ \text{cm}
+    reason: Multiply the corresponding side
+    check_id: chk_build_mth_geo_0068_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  a1: '8'
+  a2: '24'
+  b1: '3'
+checks:
+  chk_build_mth_geo_0068_ans:
+    args:
+      expression: 3*24/8
+    tool: math_evaluate
+  chk_build_mth_geo_0068_k:
+    args:
+      expression: 24/8
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:36:51.887Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.geometry.0068
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

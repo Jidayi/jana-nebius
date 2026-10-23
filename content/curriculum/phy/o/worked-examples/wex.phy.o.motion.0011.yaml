@@ -1,0 +1,50 @@
+id: wex.phy.o.motion.0011
+kc_ids:
+- kc.phy.o.motion.distance_time_gradient
+problem: A distance-time graph is a straight line from (10 s, 50 m) to (30 s, 130 m). Find the speed.
+steps:
+- n: 1
+  latex: v = \frac{\Delta d}{\Delta t}
+  reason: Gradient of a distance-time graph
+- n: 2
+  latex: v = \frac{130 - 50}{30 - 10}
+  reason: Use the changes, not one point
+  check_id: chk_build_phy_w_0011
+- n: 3
+  latex: v = 4.0\ \text{m/s}
+  reason: Divide
+  check_id: chk_build_phy_w_0011
+final_answer:
+  latex: 4.0\ \text{m/s}
+  check_id: chk_build_phy_w_0011
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_w_0011:
+    args:
+      expression: (130 - 50)/(30 - 10)
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

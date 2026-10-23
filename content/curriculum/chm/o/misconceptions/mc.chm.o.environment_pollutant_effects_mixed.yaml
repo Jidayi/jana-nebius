@@ -1,0 +1,36 @@
+id: mc.chm.o.environment_pollutant_effects_mixed
+kc_ids:
+- kc.chm.o.environment.air_pollution
+student_name: Giving a pollutant another pollutant's effect
+description: 'Mixes up the effects or sources of air pollutants: thinks carbon monoxide causes acid rain, sulfur dioxide poisons the blood, or carbon monoxide comes from complete combustion.'
+signatures:
+- kind: answer_transform
+  expression: 'choice: pollutant given the source or effect of a different pollutant'
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Learn each pollutant as a pair: source and effect. Carbon monoxide comes from incomplete combustion and is toxic. Sulfur dioxide comes from burning fuels that contain sulfur and causes acid rain. Oxides of nitrogen come from car engines and also cause acid rain. Particulates come from incomplete combustion, especially in diesel engines, and harm the lungs.'
+probe_item_ids:
+- itm.chm.o.environment.0025
+- itm.chm.o.environment.0026
+- itm.chm.o.environment.0027
+- itm.chm.o.environment.0028
+- itm.chm.o.environment.0030
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

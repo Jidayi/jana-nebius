@@ -1,0 +1,128 @@
+id: itm.mth.o.algebra_and_graphs.0206
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.linear_sequences
+stem: A sequence begins 7, 4, 1, -2, … One of its terms is -92.
+parts:
+- id: a
+  prompt: Which term number is equal to -92?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '30.7'
+      correct: false
+      misconception_id: mc.mth.o.nth_term_no_constant
+      feedback: dn gives the multiples of d. Compare them with the sequence and find what must be added or taken away.
+    - id: B
+      text: '33'
+      correct: false
+      misconception_id: mc.mth.o.nth_term_off_by_one
+      feedback: 'Check with n = 1: your rule must give the first term itself.'
+    - id: C
+      text: '34'
+      correct: true
+    - id: D
+      text: '-12.7'
+      correct: false
+      misconception_id: mc.mth.o.nth_term_first_as_coefficient
+      feedback: 'The number in front of n is how much the sequence goes up each time: the common difference.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: First find the rule for the nth term.
+  - rung: 2
+    name: concept
+    text:
+      en: Then set the rule equal to the value and solve for n.
+  - rung: 3
+    name: first_step
+    text:
+      en: The common difference is -3.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The nth term is -3n + 10. Solve -3n + 10 = -92.
+  - rung: 5
+    name: full_step
+    text:
+      en: n = 34.
+  misconception_ids:
+  - mc.mth.o.nth_term_first_as_coefficient
+  - mc.mth.o.nth_term_no_constant
+  - mc.mth.o.nth_term_off_by_one
+solution:
+  steps:
+  - n: 1
+    latex: d = -3
+    reason: The common difference
+    check_id: chk_build_mth_alg_0206_dd
+  - n: 2
+    latex: \text{nth term} = -3n + 10
+    reason: Common difference and adjustment
+    check_id: chk_build_mth_alg_0206_c
+  - n: 3
+    latex: -3n + 10 = -92
+    reason: Set the nth term equal to the value
+  - n: 4
+    latex: -3n = -102
+    reason: Rearrange
+    check_id: chk_build_mth_alg_0206_s
+  - n: 5
+    latex: n = 34
+    reason: Divide
+    check_id: chk_build_mth_alg_0206_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0206_ans:
+    args:
+      equations:
+      - -3*n + (10) = -92
+      unknowns:
+      - n
+    tool: math_solve
+  chk_build_mth_alg_0206_c:
+    args:
+      expression: 7 - (-3)
+    tool: math_evaluate
+  chk_build_mth_alg_0206_dd:
+    args:
+      expression: 4 - (7)
+    tool: math_evaluate
+  chk_build_mth_alg_0206_s:
+    args:
+      expression: -92 - (10)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

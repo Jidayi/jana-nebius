@@ -1,0 +1,156 @@
+id: itm.chm.o.metals.0064
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.extraction_yield
+stem: Copper(II) oxide is heated with carbon. The equation is 2CuO + C → 2Cu + CO₂.
+parts:
+- id: a
+  prompt: Calculate the mass of copper that can be extracted from 8.0 g of CuO.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '6.40'
+    unit: g
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_metals_0064_chain
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Go from the mass of CuO to moles, use the equation, then go back to a mass of copper.
+  - rung: 2
+    name: concept
+    text:
+      en: Divide a mass by the molar mass to get moles; multiply moles by the molar mass to get grams.
+  - rung: 3
+    name: first_step
+    text:
+      en: Moles of CuO = 8.0 ÷ 80 = 0.100 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'The ratio CuO : Cu is 2 : 2, so moles of Cu = 0.100 mol.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Mass of copper = 0.100 × 64 = 6.40 g.
+  misconception_ids:
+  - mc.chm.o.metals_yield_ratio_ignored
+  - mc.chm.o.metals_yield_mass_ratio
+solution:
+  steps:
+  - n: 1
+    latex: n(\text{CuO}) = \frac{8.0}{80} = 0.100\ \text{mol}
+    reason: Mass to moles
+    check_id: chk_build_chm_metals_0064_ma
+  - n: 2
+    latex: '\text{CuO} : \text{Cu} = 2 : 2'
+    reason: Ratio from the equation
+    check_id: chk_build_chm_metals_0064_coef
+  - n: 3
+    latex: n(\text{Cu}) = 0.100\ \text{mol}
+    reason: Mole ratio from the equation
+    check_id: chk_build_chm_metals_0064_chain
+  - n: 4
+    latex: m(\text{Cu}) = 0.100 \times 64 = 6.40\ \text{g}
+    reason: Moles to mass
+    check_id: chk_build_chm_metals_0064_mb
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_metals_0064_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_c
+      equation: 2CuO + C -> 2Cu + CO2
+      sf: 3
+      steps:
+      - id: na
+        mass: 8.0 g
+        op: amount_from_mass
+        species: CuO
+      - amount: '@na'
+        from: CuO
+        id: nb
+        op: mole_ratio
+        to: Cu
+      - amount: '@nb'
+        id: mb
+        op: mass_from_amount
+        species: Cu
+    tool: chem_stoichiometry
+  chk_build_chm_metals_0064_coef:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_c
+      equation: 2CuO + C -> 2Cu + CO2
+      sf: 3
+      steps:
+      - amount: '2'
+        from: CuO
+        id: ca
+        op: mole_ratio
+        to: CuO
+      - amount: '2'
+        from: CuO
+        id: cb
+        op: mole_ratio
+        to: Cu
+    tool: chem_stoichiometry
+  chk_build_chm_metals_0064_ma:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_o
+      formula: CuO
+    tool: chem_molar_mass
+  chk_build_chm_metals_0064_mb:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      formula: Cu
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

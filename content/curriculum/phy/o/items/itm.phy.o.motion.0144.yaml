@@ -1,0 +1,96 @@
+id: itm.phy.o.motion.0144
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.free_fall
+stem: A key is dropped from rest from a height of 30 m. Take g = 10 m/s^2 and ignore air resistance.
+parts:
+- id: a
+  prompt: How long does it take to reach the ground?
+  marks: 3
+  answer:
+    kind: numeric
+    value: '2.4'
+    unit: s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_k_0144_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which way is the object moving, what is its speed at the start, and what is its acceleration?
+  - rung: 2
+    name: concept
+    text:
+      en: In free fall the acceleration is g downwards; take care with the sign if you call upwards positive.
+  - rung: 3
+    name: first_step
+    text:
+      en: With u = 0, s = ½gt^2; make t the subject.
+  - rung: 4
+    name: worked_step
+    text:
+      en: t = √(2 × 30 ÷ 10).
+  - rung: 5
+    name: full_step
+    text:
+      en: t = √(2 × 30 ÷ 10) = 2.4 s.
+  misconception_ids:
+  - mc.phy.o.gravity_sign_flipped
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: s = \tfrac{1}{2}gt^2
+    reason: Uniform acceleration g with the right starting speed
+  - n: 2
+    latex: t = \sqrt{\frac{2 \times 30}{10}}
+    reason: Substitute
+  - n: 3
+    latex: t = 2.4\ \text{s}
+    reason: Evaluate
+    check_id: chk_build_phy_k_0144_a
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_k_0144_a:
+    args:
+      expression: sqrt(2*30/10)
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

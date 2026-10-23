@@ -1,0 +1,475 @@
+{
+  "checked_at": "2026-10-18T21:33:05.860004+00:00",
+  "status": "Probability cases pass; full live corpus 113/114; flashcard reliability and external production release gates remain open",
+  "release_ready": false,
+  "production_modified": false,
+  "feature_default_enabled": false,
+  "project_id": "jana-staging-512005",
+  "gateway_origin": "https://staging-api.getjana.app",
+  "provider_endpoint": "https://aiplatform.eu.rep.googleapis.com/v1/projects/jana-staging-512005/locations/eu/publishers/google",
+  "model": "gemini-3.8-flash",
+  "source_bundle_sha256": "8e91e10942da29e5763e102e83e35d1e793d7320567e2b044962a90573592995",
+  "owner_approval": "scripts/governance/m42-owner-approval.json",
+  "source_inputs": {
+    "path": "scripts/governance/evidence/m42-probability-2026-10-18/source-inputs.json",
+    "sha256": "1221c509ff0470a7179e8f2e35597f78e3d64e5e13bd8256f577a4114eb56fd5"
+  },
+  "changes": [
+    "Why/how questions require a supported explanation; a temporal sequence or asserted result cannot alone supply its cause. Every part of a chat question must be answerable.",
+    "Corpus v3 preserves every original source/question; documents one expectation correction and four contrasting cases. Original v2 and every failed/refused observation remain retained without rescoring.",
+    "Prompt snapshot suite version/lock reconciled to existing validated snapshot edits; human approvals untouched."
+  ],
+  "checks": {
+    "gateway": {
+      "passed": 92,
+      "skipped": 3,
+      "report": {
+        "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-gateway-final.xml",
+        "sha256": "57dcb3dfac6177964b402747b0769e59924d08c07ced660808081203c99c533d"
+      }
+    },
+    "corpus_inventory_and_release_preparation": {
+      "passed": 14,
+      "skipped": 1,
+      "report": {
+        "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-release-final.xml",
+        "sha256": "84793d6b9fadc7bf0af158621fc1dfc52e494fe3d6bb9c251ceadb66a3402aca"
+      }
+    },
+    "core_and_prompt_regressions": {
+      "passed": 89,
+      "skipped": 0,
+      "report": {
+        "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-core-prompts.xml",
+        "sha256": "8db59fb28e9ff9b19e7de437a98694aeed7621cb0a5f44c2a2065d9108156446"
+      }
+    },
+    "desktop": {
+      "passed": 247,
+      "report": {
+        "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-desktop.json",
+        "sha256": "347c87464ba26570b01d9815d4c2e5239419fa817dac219bfcce350916bb85d2"
+      }
+    },
+    "client": {
+      "passed": 269,
+      "report": {
+        "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-client.json",
+        "sha256": "8909be036eeb90058d05a15d071fd1481d786d961f8289a0cc1db846c4617414"
+      }
+    },
+    "public_quality": {
+      "observed": 114,
+      "passed": 113,
+      "failed": [
+        "unicode-flashcards"
+      ],
+      "complete": true,
+      "passed_gate": false,
+      "report": {
+        "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-quality-full.json",
+        "sha256": "fb24dd06ed50a8e3a0a08ef60a54157d9913a34a05c7d83acc5845f1d8970faf"
+      },
+      "corpus_version": 3,
+      "original_source_and_prompt_unchanged": true,
+      "one_original_expectation_amended": true,
+      "old_observations_rescored": false,
+      "unicode_passed": 5,
+      "negative_expected_refusals_passed": 13,
+      "independent_held_out_review": false
+    },
+    "public_uploads": {
+      "passed": 6,
+      "report": {
+        "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-uploads.json",
+        "sha256": "96cf156a47f543cc591b2cfa882280df74a9b58d9d74a6b0a47550ab611b9c5f"
+      }
+    },
+    "static": {
+      "passed": true,
+      "checks": [
+        {
+          "command": [
+            ".venv/bin/ruff",
+            "check",
+            "services/cloud-gateway/cloud_gateway/study.py",
+            "services/cloud-gateway/tests/test_m42_study.py",
+            "services/cloud-gateway/tests/test_m42_quality_corpus.py",
+            "scripts/tests/test_m42_release_preparation.py"
+          ],
+          "exit_code": 0,
+          "output": "All checks passed!\n"
+        },
+        {
+          "command": [
+            ".venv/bin/ruff",
+            "format",
+            "--check",
+            "services/cloud-gateway/cloud_gateway/study.py",
+            "services/cloud-gateway/tests/test_m42_study.py",
+            "services/cloud-gateway/tests/test_m42_quality_corpus.py",
+            "scripts/tests/test_m42_release_preparation.py"
+          ],
+          "exit_code": 0,
+          "output": "4 files already formatted\n"
+        },
+        {
+          "command": [
+            ".venv/bin/mypy",
+            "services/cloud-gateway/cloud_gateway"
+          ],
+          "exit_code": 0,
+          "output": "Success: no issues found in 30 source files\n"
+        },
+        {
+          "command": [
+            ".venv/bin/python",
+            "-m",
+            "jana_tools",
+            "prompt-lint"
+          ],
+          "exit_code": 0,
+          "output": "prompt-lint: ok\n"
+        },
+        {
+          "command": [
+            ".venv/bin/python",
+            "-m",
+            "jana_tools",
+            "prompt-snapshots"
+          ],
+          "exit_code": 0,
+          "output": "prompt-snapshots: ok\n"
+        },
+        {
+          "command": [
+            ".venv/bin/python",
+            "-m",
+            "jana_tools",
+            "eval",
+            "lock"
+          ],
+          "exit_code": 0,
+          "output": "eval lock: ok\n"
+        },
+        {
+          "command": [
+            "pnpm",
+            "--dir",
+            "apps/desktop",
+            "exec",
+            "tsc",
+            "-p",
+            "tsconfig.json"
+          ],
+          "exit_code": 0,
+          "output": ""
+        }
+      ]
+    }
+  },
+  "corpus_amendment": {
+    "path": "scripts/governance/evidence/m42-probability-2026-10-18/corpus-amendment.json",
+    "sha256": "dcb0ba35620a31436036845f0b67c50b790212231ea8a9399605e344b8bfda4b"
+  },
+  "independent_review_complete": false,
+  "engineering_reliability": {
+    "path": "scripts/governance/evidence/m42-probability-2026-10-18/unicode-card-reliability.json",
+    "sha256": "885617fafc7af0c8648f7c86b011b8c48d71baf8d002f03822bab0caa4727425"
+  },
+  "budget": {
+    "normal_daily_usd": 2,
+    "temporary_qualification_ceiling_usd": 5,
+    "normal_restored": true,
+    "vertex_monthly_cap_usd": 10,
+    "known_and_held_receipts": [
+      [
+        "completed",
+        726,
+        3.154876725,
+        0.0
+      ],
+      [
+        "failed",
+        120,
+        0.61657365,
+        0.0
+      ],
+      [
+        "reconciled",
+        7,
+        0.0,
+        0.0
+      ],
+      [
+        "reserved",
+        2,
+        0.0,
+        0.43170435000000007
+      ]
+    ],
+    "known_usd": 3.7714503749999997,
+    "held_usd": 0.43170435000000007,
+    "genuine_unknown_holds_preserved": true
+  },
+  "host_checks": {
+    "source_digests_match": true,
+    "no_swap": true,
+    "scratch_tmpfs": true,
+    "credential_mount_read_only": true,
+    "privacy": {
+      "synthetic_source_strings_checked": 40,
+      "persistent_files_checked": 4,
+      "source_body_found": false,
+      "scope": "Gateway persistent metadata only; raw and frozen/redacted NFC/NFD corpus sources."
+    },
+    "public_boundaries": {
+      "hostname": "staging-api.getjana.app",
+      "system_ca_verified": true,
+      "spki_sha256": "anjl0qoSsJRc6RBeee5IjYBdBKt704Z0bhvqAiWEtZk=",
+      "not_after": "2027-01-16T14:15:03+00:00",
+      "ping": 204,
+      "unauthenticated_study": 401,
+      "unqualified_tutor_route": 404,
+      "wrong_audience": 401,
+      "normal_spend_guard": 429,
+      "guard_code": "allowance_exhausted"
+    }
+  },
+  "remaining": [
+    "Live development corpus failures remain: unicode-flashcards",
+    "Confirm production hostname (api.getjana.app proposed), London/EU deployment decision and authorise production provisioning; engineering will create the actual configuration, pins and deployment.",
+    "Actual production-project provider retention/abuse-monitoring confirmation, approved assessment/Safety lead records, public production trust hierarchy and content-HSM signature; owner approval is already recorded.",
+    "Installer signing/notarisation access and final signed Mac Apple Silicon/VoiceOver, Windows x64/NVDA including non-AVX2, and required Ubuntu/Debian device/model-class measurements.",
+    "Independent held-out content/safety review, including the probability expectation amendment, local reference models and OCR/ASR; human prompt snapshot reviews (60 pending).",
+    "Engineering after those inputs: actual production extraction costs, immutable SBOM/licence/source-offer provenance, exact production qualification and strict preflight."
+  ],
+  "release_handoff": "services/cloud-gateway/deploy/M42-RELEASE-HANDOFF.md",
+  "device_handoff": "scripts/packaging/M42-DEVICE-CHECKS.md",
+  "production_preflight": {
+    "path": "scripts/governance/evidence/m42-probability-2026-10-18/production-preflight.json",
+    "sha256": "7867504c89ed0ef70eeca7f9180cb395ce88608104882dca980d591624adef63"
+  },
+  "prior_checks": {
+    "path": "scripts/governance/m42-unicode-release-checks.json",
+    "sha256": "5871e2ba22b5031187ca34f409da52cf1eb3a3d6a7dd0146b40b5e44a322fa58"
+  },
+  "evidence": {
+    "bundle-manifest.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/bundle-manifest.json",
+      "sha256": "a4e7c58596b0d0f2a28899b3981b4bb9ac55493659fb595d9711a31bb4b09ce0"
+    },
+    "bundle-reproducibility.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/bundle-reproducibility.json",
+      "sha256": "9504f9f3aa2e4581b1e43f4f687e316877471e7cd5ad1eeb71f010314a8732e4"
+    },
+    "corpus-amendment.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/corpus-amendment.json",
+      "sha256": "dcb0ba35620a31436036845f0b67c50b790212231ea8a9399605e344b8bfda4b"
+    },
+    "corpus-v3-superseded-draft.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/corpus-v3-superseded-draft.json",
+      "sha256": "d3914e343b0a4bd48e696229036de6f73b72432abf8d5206b9ccd1241bdf5077"
+    },
+    "corpus-v3.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/corpus-v3.json",
+      "sha256": "52beeca249e1a66b20d19cf9fa886d51ba22e92037457b174c9c5b7fc6d0cf1d"
+    },
+    "gateway.toml": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/gateway.toml",
+      "sha256": "1af898c081921727e93b1331a47f70266ff045897a7dd0b6dc37fffdf6282086"
+    },
+    "m42-release-candidate-before.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/m42-release-candidate-before.json",
+      "sha256": "76265c8378ce06663cb3e9edb4d1437bd9c021a6179129f2bcbeae56c1212b09"
+    },
+    "m42-release-verification-before.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/m42-release-verification-before.json",
+      "sha256": "740c4a50154c626c1fa29d26c0804e993ee6e6e8ed3c1575a5e663c414574486"
+    },
+    "m42-staging-deployment-before.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/m42-staging-deployment-before.json",
+      "sha256": "686d82678455191be1b2a07b044422f807defa76cfd05e53c3fb3b842fe7123c"
+    },
+    "m42-unicode-release-checks-before.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/m42-unicode-release-checks-before.json",
+      "sha256": "5871e2ba22b5031187ca34f409da52cf1eb3a3d6a7dd0146b40b5e44a322fa58"
+    },
+    "probability-boundaries.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-boundaries.json",
+      "sha256": "ad9724266669ac97ecad7fed5899c67f0e342e117c844bc38f24aa9ab2e710bf"
+    },
+    "probability-boundaries.py": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-boundaries.py",
+      "sha256": "d0383b60366b4c70fac847dbc0dcc9eb75508f6fdd3f5f1d9930643e1eeaefb1"
+    },
+    "probability-budget-final-start.txt": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-budget-final-start.txt",
+      "sha256": "b69d5ee39027aa05baaac21dec4fd9d3dc6093ad3c8a41323b58325aedb19fd1"
+    },
+    "probability-budget-restored.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-budget-restored.json",
+      "sha256": "73d4f0e301ac4e30ded0025f929dd7539eda5abf431c1198ebf8af7894670396"
+    },
+    "probability-budget-restored.txt": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-budget-restored.txt",
+      "sha256": "88324bc3f66959b31eb5d23ee3c9157d4986b73996077e95996fd58d2872bb71"
+    },
+    "probability-budget-start-corrected.txt": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-budget-start-corrected.txt",
+      "sha256": "b69d5ee39027aa05baaac21dec4fd9d3dc6093ad3c8a41323b58325aedb19fd1"
+    },
+    "probability-budget-start.txt": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-budget-start.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "probability-budget.py": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-budget.py",
+      "sha256": "be6fa1c1a370b4ddda47ad1ccee98509c69ce558a03fd5d63cbb24ba50ed3836"
+    },
+    "probability-client.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-client.json",
+      "sha256": "8909be036eeb90058d05a15d071fd1481d786d961f8289a0cc1db846c4617414"
+    },
+    "probability-core-prompts.xml": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-core-prompts.xml",
+      "sha256": "8db59fb28e9ff9b19e7de437a98694aeed7621cb0a5f44c2a2065d9108156446"
+    },
+    "probability-deployment-final.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-deployment-final.json",
+      "sha256": "e22e599f6cb6735f05cd3ac4b1f78c57cbd874329c70e9641b805312aae7bc30"
+    },
+    "probability-deployment.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-deployment.json",
+      "sha256": "530ca5b75154252a9dd0217becb698bc3c486057a1c4b0124cbc17e7d65258b2"
+    },
+    "probability-desktop.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-desktop.json",
+      "sha256": "347c87464ba26570b01d9815d4c2e5239419fa817dac219bfcce350916bb85d2"
+    },
+    "probability-focused-final.xml": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-focused-final.xml",
+      "sha256": "d9327d21a8ed52ecc8475559bdf6d6057731c5d9fa7854689e18585fa8e81ad6"
+    },
+    "probability-focused-qualified.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-focused-qualified.json",
+      "sha256": "b74bf9892f7de518d48e9cea445fcf571046fc1a570cf6b952a7a025f2fb1ee4"
+    },
+    "probability-focused-qualified.xml": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-focused-qualified.xml",
+      "sha256": "3a26e9b849a3094a7b04c422b9bd071ed0bf00dca62d282066c132f6ed17e20b"
+    },
+    "probability-focused.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-focused.json",
+      "sha256": "13018534d66d2c3dd2a1f72a33427ad9951deab98a0d3822af80c66fcd138f4f"
+    },
+    "probability-focused.xml": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-focused.xml",
+      "sha256": "e14ca6e34e8235f66b0e687a48cb2e5d7b4a880aa7b1abb2079c1fdd8940d8a5"
+    },
+    "probability-gateway-final.xml": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-gateway-final.xml",
+      "sha256": "57dcb3dfac6177964b402747b0769e59924d08c07ced660808081203c99c533d"
+    },
+    "probability-gateway.xml": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-gateway.xml",
+      "sha256": "f4cd15f42f5e336cd4e0d87e1883bfef6b52899e3df62cb160b774db0d0e74ff"
+    },
+    "probability-host-final.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-host-final.json",
+      "sha256": "a347eca2756155efdd49cbdbe0127eedd97e2612aa36cee34c6afe1b6f19272a"
+    },
+    "probability-privacy.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-privacy.json",
+      "sha256": "7fad07bf4ba84bab34c7f93ae27420b9e3ed19361ac088f7ff09a438a96c039b"
+    },
+    "probability-privacy.py": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-privacy.py",
+      "sha256": "3e01f90ff5cbe294cdaf9c51c2b0e20ca6b8c4a996aa8e6ead9102e585424e44"
+    },
+    "probability-quality-full.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-quality-full.json",
+      "sha256": "fb24dd06ed50a8e3a0a08ef60a54157d9913a34a05c7d83acc5845f1d8970faf"
+    },
+    "probability-quality-full.xml": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-quality-full.xml",
+      "sha256": "75ace186348005008524e551470ef9da7ebd72773ab93c37d6615edef2a09604"
+    },
+    "probability-release-final.xml": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-release-final.xml",
+      "sha256": "84793d6b9fadc7bf0af158621fc1dfc52e494fe3d6bb9c251ceadb66a3402aca"
+    },
+    "probability-release.xml": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-release.xml",
+      "sha256": "6a5749014e68d3138e79543b2db4e66f95f5b195d5955e02db1cd2c907f0379b"
+    },
+    "probability-static.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-static.json",
+      "sha256": "07e872f58da0fadd1f841b7ce4c16c80ec2dd699b43f82d99ffca60197a7f503"
+    },
+    "probability-trace-new.jsonl": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-trace-new.jsonl",
+      "sha256": "a5bebfb77630f204ab08707b55a1e141d5fc744dff83a73f5c29b0c71414149b"
+    },
+    "probability-trace-new.py": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-trace-new.py",
+      "sha256": "d9d57d6de9bcf431057b14e5d4ea56328f7702cf3a95cf4304857cee77870207"
+    },
+    "probability-trace-new.stderr": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-trace-new.stderr",
+      "sha256": "36d1fd8fbf6f304000b75760ad070bbf8fdf51361586b360abf73759f8d4f75b"
+    },
+    "probability-unicode-card-repeat.jsonl": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-unicode-card-repeat.jsonl",
+      "sha256": "99729da10b3cfc73a096f53606038a085c7cae83912204e0160354bbabe8f902"
+    },
+    "probability-unicode-card-repeat.py": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-unicode-card-repeat.py",
+      "sha256": "9e042f4d038d375b7b25909fe9227a165c020208e32889f8b52a497c0bfe114e"
+    },
+    "probability-unicode-card-repeat.stderr": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-unicode-card-repeat.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "probability-unicode-card-trace.jsonl": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-unicode-card-trace.jsonl",
+      "sha256": "51b978d43461076f7596bba3650fd498963039bd54ca82e7df52b1d65a5e7547"
+    },
+    "probability-unicode-card-trace.py": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-unicode-card-trace.py",
+      "sha256": "0586446857593f52e116b3dc774e58f376095ff9799706fc1b6621ec262ce68e"
+    },
+    "probability-unicode-card-trace.stderr": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-unicode-card-trace.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "probability-uploads.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-uploads.json",
+      "sha256": "96cf156a47f543cc591b2cfa882280df74a9b58d9d74a6b0a47550ab611b9c5f"
+    },
+    "probability-uploads.xml": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/probability-uploads.xml",
+      "sha256": "20ada9a440249cad4199493dfeb51a8287a361d93b9cb075a0ff6bc1906ffefc"
+    },
+    "production-preflight.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/production-preflight.json",
+      "sha256": "7867504c89ed0ef70eeca7f9180cb395ce88608104882dca980d591624adef63"
+    },
+    "requirements.txt": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/requirements.txt",
+      "sha256": "ac1f1b69cd2583a4e4e6cbf6d0e8c37ea7de45d8c2cd5859c2360a7a8e2defec"
+    },
+    "signing-identity-inventory.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/signing-identity-inventory.json",
+      "sha256": "d395f4c904833fc1f37f3da40237af129a25fc564a953de8d3e7874a5c2711e3"
+    },
+    "source-inputs.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/source-inputs.json",
+      "sha256": "1221c509ff0470a7179e8f2e35597f78e3d64e5e13bd8256f577a4114eb56fd5"
+    },
+    "unicode-card-reliability.json": {
+      "path": "scripts/governance/evidence/m42-probability-2026-10-18/unicode-card-reliability.json",
+      "sha256": "885617fafc7af0c8648f7c86b011b8c48d71baf8d002f03822bab0caa4727425"
+    }
+  }
+}

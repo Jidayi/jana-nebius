@@ -1,0 +1,34 @@
+id: mc.acc.o.br_update_signs_reversed
+kc_ids:
+- kc.acc.o.bank_reconciliation.update_cash_book
+student_name: Charges added, receipts subtracted
+description: Adds bank charges or standing orders to the cash book balance and subtracts credit transfers.
+signatures:
+- kind: answer_transform
+  expression: balance - receipts + payments
+fix:
+  strategy: rule_restatement
+  text:
+    en: Money the bank paid out for you reduces your balance; money it received for you increases it.
+probe_item_ids:
+- itm.acc.o.bank_reconciliation.0012
+- itm.acc.o.bank_reconciliation.0013
+- itm.acc.o.bank_reconciliation.0014
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

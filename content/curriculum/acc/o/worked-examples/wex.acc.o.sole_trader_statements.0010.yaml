@@ -1,0 +1,104 @@
+id: wex.acc.o.sole_trader_statements.0010
+kc_ids:
+- kc.acc.o.sole_trader_statements.working_capital
+problem: 'A business has: inventory $10200; trade receivables $7400; prepaid expenses $800; bank balance $2500; cash in hand $550; trade payables $8700; accrued expenses $450; equipment $10100; loan repayable in six years $15000. Find the net current assets.'
+steps:
+- n: 1
+  latex: \text{Net current assets} = \text{current assets} - \text{current liabilities}
+  reason: Leave out non-current items
+  check_id: chk_build_acc_sole_trader_statements_w0010_t
+- n: 2
+  latex: \text{Current assets} = 10200 + 7400 + 800 + 2500 + 550 = 21450
+  reason: Turned into cash within a year
+  check_id: chk_build_acc_sole_trader_statements_w0010_s2
+- n: 3
+  latex: \text{Current liabilities} = 8700 + 450 = 9150
+  reason: Due within a year
+  check_id: chk_build_acc_sole_trader_statements_w0010_s3
+- n: 4
+  latex: \text{Net current assets} = 21450 - 9150 = 12300
+  reason: Subtract
+  check_id: chk_build_acc_sole_trader_statements_w0010_a
+final_answer:
+  latex: \$\,12300
+  check_id: chk_build_acc_sole_trader_statements_w0010_a
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_w0010_a:
+    args:
+      dp: 2
+      expression: (10200 + 7400 + 800 + 2500 + 550) - (8700 + 450)
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_w0010_s2:
+    args:
+      dp: 4
+      expression: 10200 + 7400 + 800 + 2500 + 550
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_w0010_s3:
+    args:
+      dp: 4
+      expression: 8700 + 450
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_w0010_t:
+    args:
+      adjustments:
+      - amount: '10200'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Trade receivables
+        debit: '7400'
+        role: trade_receivables
+      - account: Prepayments
+        debit: '800'
+        role: other_receivables
+      - account: Cash
+        debit: '550'
+        role: cash
+      - account: Trade payables
+        credit: '8700'
+        role: trade_payables
+      - account: Accruals
+        credit: '450'
+        role: other_payables
+      - account: Equipment
+        debit: '10100'
+        role: non_current_asset
+      - account: Loan
+        credit: '15000'
+        role: non_current_liability
+      - account: Bank
+        debit: '2500'
+        role: bank
+      - account: Sales
+        credit: '50000'
+        role: revenue
+      - account: Purchases
+        debit: '30000'
+        role: purchases
+      - account: Land
+        debit: '22800'
+        role: non_current_asset
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,46 @@
+id: wex.phy.o.pressure.0002
+kc_ids:
+- kc.phy.o.pressure.pressure_on_surfaces
+problem: A block measuring 0.3 m × 0.15 m × 0.1 m has a weight of 30 N. It can rest on any of its faces. Calculate the least pressure it can exert on the ground.
+steps:
+- n: 1
+  latex: A = 0.3 \times 0.15 = 0.045\ \text{m}^2
+  reason: The largest face gives the least pressure
+  check_id: chk_build_phy_prs_w0002_area
+- n: 2
+  latex: p = \frac{30}{0.045} = 667\ \text{Pa}
+  reason: Pressure = force ÷ area
+  check_id: chk_build_phy_prs_w0002_ans
+final_answer:
+  latex: 667\ \text{Pa}
+  check_id: chk_build_phy_prs_w0002_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_w0002_ans:
+    args:
+      expression: 30/(0.3*0.15)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_prs_w0002_area:
+    args:
+      expression: 0.3*0.15
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

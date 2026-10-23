@@ -1,0 +1,98 @@
+id: itm.phy.o.wave_properties.0057
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.wave_behaviour
+stem: Ripples travel at 20 cm/s with a wavelength of 2.5 cm in deep water. They pass into shallow water, where they slow to 12 cm/s.
+parts:
+- id: a
+  prompt: What is the frequency of the ripples in the shallow water?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 4.8 Hz
+      correct: false
+      misconception_id: mc.phy.o.frequency_changes_on_refraction
+      feedback: The source sets the frequency. As many waves must leave a boundary each second as arrive there, so the frequency cannot change.
+    - id: B
+      text: 8 Hz
+      correct: true
+    - id: C
+      text: 0.125 Hz
+      correct: false
+      misconception_id: mc.phy.o.wave_equation_inverted
+      feedback: 'From v = fλ: λ = v/f and f = v/λ. The speed always goes on top when you divide.'
+    - id: D
+      text: 50 Hz
+      correct: false
+      misconception_id: mc.phy.o.wave_equation_multiplied
+      feedback: Multiplying a speed by a frequency gives a huge number that is not a length. If v is one of the values you know, divide it by the other one.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Does the frequency change when waves cross into water of a different depth?
+  - rung: 2
+    name: concept
+    text:
+      en: 'No: the source sets the frequency, so it is the same in the shallow water.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Find it from the speed and wavelength you know together, in the deep water.
+  - rung: 4
+    name: worked_step
+    text:
+      en: f = v ÷ λ = 20 ÷ 2.5.
+  - rung: 5
+    name: full_step
+    text:
+      en: f = 8 Hz.
+  misconception_ids:
+  - mc.phy.o.frequency_changes_on_refraction
+  - mc.phy.o.wave_equation_inverted
+  - mc.phy.o.wave_equation_multiplied
+solution:
+  steps:
+  - n: 1
+    latex: f = \frac{20}{2.5} = 8\ \text{Hz}
+    reason: The frequency is the same in both depths
+    check_id: chk_build_phy_wav_0057_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_wav_0057_ans:
+    args:
+      expression: 20/2.5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

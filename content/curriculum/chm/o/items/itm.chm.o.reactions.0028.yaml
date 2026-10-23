@@ -1,0 +1,91 @@
+id: itm.chm.o.reactions.0028
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.collision_theory
+stem: Powdered zinc reacts faster with dilute acid than a single lump of zinc of the same mass.
+parts:
+- id: a
+  prompt: Why is the powder faster?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: More zinc atoms are exposed, so collisions with acid particles are more frequent.
+      correct: true
+    - id: B
+      text: Grinding the zinc lowers the activation energy.
+      correct: false
+      misconception_id: mc.chm.o.reactions_catalyst_gives_energy
+      feedback: 'Heating gives particles more energy, so more collisions reach the activation energy. A catalyst does not add energy: it gives a different route with a lower activation energy, so more collisions succeed at the same temperature.'
+    - id: C
+      text: Zinc atoms in a powder have more energy than those in a lump.
+      correct: false
+      misconception_id: mc.chm.o.reactions_concentration_harder_collisions
+      feedback: Concentration, pressure and surface area change how often particles collide, not how hard. Only temperature changes the energy of the particles.
+    - id: D
+      text: All collisions with powdered zinc lead to a reaction.
+      correct: false
+      misconception_id: mc.chm.o.reactions_all_collisions_react
+      feedback: Particles in a gas collide billions of times a second, yet many mixtures hardly react. Only collisions with at least the activation energy lead to a reaction; the rest bounce apart unchanged.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Where can acid particles reach the zinc atoms?
+  - rung: 2
+    name: concept
+    text:
+      en: Only zinc atoms on the surface can be hit by acid particles.
+  - rung: 3
+    name: first_step
+    text:
+      en: Powdering the zinc exposes many atoms that were hidden inside the lump.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The temperature is the same, so the energy of each collision is unchanged. What changes?
+  - rung: 5
+    name: full_step
+    text:
+      en: Powder has a larger surface area, so more zinc atoms are exposed and collisions with acid particles happen more often.
+  misconception_ids:
+  - mc.chm.o.reactions_concentration_harder_collisions
+  - mc.chm.o.reactions_catalyst_gives_energy
+  - mc.chm.o.reactions_all_collisions_react
+solution:
+  steps:
+  - n: 1
+    latex: '\text{larger surface area: more frequent collisions}'
+    reason: Collision theory
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

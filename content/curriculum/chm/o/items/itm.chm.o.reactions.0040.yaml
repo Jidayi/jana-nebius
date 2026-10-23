@@ -1,0 +1,99 @@
+id: itm.chm.o.reactions.0040
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.rate_data
+stem: A flask of marble chips and acid stands on a balance. The balance reads 152.40 g at the start and 151.56 g after 120 s.
+parts:
+- id: a
+  prompt: Calculate the mean rate of loss of mass over the 120 s, in g/s.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.00700'
+    unit: g/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_reactions_0040_r
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Use the change during the interval, not a single reading.
+  - rung: 2
+    name: concept
+    text:
+      en: Mean rate = change in the reading ÷ time taken for that change.
+  - rung: 3
+    name: first_step
+    text:
+      en: Mass lost = 152.40 − 151.56 = 0.84; time taken = 120 − 0 = 120 s.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Now divide 0.84 by 120.
+  - rung: 5
+    name: full_step
+    text:
+      en: 0.84 ÷ 120 = 0.00700 g/s.
+  misconception_ids:
+  - mc.chm.o.reactions_rate_reading_not_change
+solution:
+  steps:
+  - n: 1
+    latex: \Delta = 152.40 - 151.56 = 0.84
+    reason: Change in the reading
+    check_id: chk_build_chm_reactions_0040_dv
+  - n: 2
+    latex: \Delta t = 120 - 0 = 120\ \text{s}
+    reason: Time taken
+    check_id: chk_build_chm_reactions_0040_dt
+  - n: 3
+    latex: \text{rate} = \frac{0.84}{120} = 0.00700
+    reason: Change ÷ time
+    check_id: chk_build_chm_reactions_0040_r
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_0040_dt:
+    args:
+      expression: 120 - 0
+    tool: math_evaluate
+  chk_build_chm_reactions_0040_dv:
+    args:
+      expression: 152.40 - 151.56
+    tool: math_evaluate
+  chk_build_chm_reactions_0040_r:
+    args:
+      expression: (152.40 - 151.56)/(120 - 0)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

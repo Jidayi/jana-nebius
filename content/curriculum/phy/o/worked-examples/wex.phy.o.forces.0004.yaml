@@ -1,0 +1,45 @@
+id: wex.phy.o.forces.0004
+kc_ids:
+- kc.phy.o.forces.force_mass_acceleration
+problem: The driving force on a boat of total mass 750 kg is 1800 N. The water resistance on it is 450 N. Find its acceleration.
+steps:
+- n: 1
+  latex: F = 1800 - 450 = 1350\ \text{N}
+  reason: The resultant force
+  check_id: chk_build_phy_frc_w0004_net
+- n: 2
+  latex: a = \frac{F}{m} = \frac{1350}{750} = 1.8\ \text{m/s}^2
+  reason: a = F ÷ m
+  check_id: chk_build_phy_frc_w0004_ans
+final_answer:
+  latex: 1.8\ \text{m/s}^2
+  check_id: chk_build_phy_frc_w0004_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_w0004_ans:
+    args:
+      expression: (1800 - 450)/750
+    tool: math_evaluate
+  chk_build_phy_frc_w0004_net:
+    args:
+      expression: 1800 - 450
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

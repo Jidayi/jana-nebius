@@ -1,0 +1,93 @@
+id: itm.phy.o.electromagnetism.0053
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.transformers
+stem: A transformer has more turns on its secondary coil than on its primary coil.
+parts:
+- id: a
+  prompt: What kind of transformer is it?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: A step-down transformer
+      correct: false
+      misconception_id: mc.phy.o.step_up_down_confused
+      feedback: More turns on the secondary than the primary steps the voltage up; fewer turns steps it down.
+    - id: B
+      text: A step-up transformer
+      correct: true
+    - id: C
+      text: A step-up transformer only when it is used on d.c.
+      correct: false
+      misconception_id: mc.phy.o.transformer_works_on_dc
+      feedback: A steady current makes a steady field, and a steady field induces nothing. A transformer needs a.c.
+    - id: D
+      text: A step-down transformer, since the current is carried through the core
+      correct: false
+      misconception_id: mc.phy.o.current_flows_through_core
+      feedback: The coils are insulated from the core and from each other. The primary's changing field, guided by the core, induces an e.m.f. in the secondary.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Compare the numbers of turns on the two coils, and remember what drives the output.
+  - rung: 2
+    name: concept
+    text:
+      en: The voltages are in the same ratio as the turns, Vs/Vp = Ns/Np, and only a changing current induces an output.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: More turns on the output side gives a larger output voltage.
+  - rung: 5
+    name: full_step
+    text:
+      en: A step-up transformer. More turns on the output side gives a larger output voltage.
+  misconception_ids:
+  - mc.phy.o.current_flows_through_core
+  - mc.phy.o.step_up_down_confused
+  - mc.phy.o.transformer_works_on_dc
+solution:
+  steps:
+  - n: 1
+    latex: \text{A step-up transformer}
+    reason: Use the turns ratio and the need for a.c.
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,101 @@
+id: itm.mth.o.number.0261
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.rates
+stem: A taxi travels 36 km in 45 minutes.
+parts:
+- id: a
+  prompt: Find its average speed in km/h.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 0.8 km/h
+      correct: false
+      misconception_id: mc.mth.o.minutes_as_hours
+      feedback: Change minutes into hours by dividing by 60 before you divide the distance by the time.
+    - id: B
+      text: 48 km/h
+      correct: true
+    - id: C
+      text: 0.0208 km/h
+      correct: false
+      misconception_id: mc.mth.o.rate_inverted
+      feedback: 'Read the unit: g/cm³ means grams divided by cubic centimetres.'
+    - id: D
+      text: 27 km/h
+      correct: false
+      misconception_id: mc.mth.o.rate_multiplied
+      feedback: 'A rate is ''per'': how much for each one, so it is a division.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The speed is wanted in km/h, so the time must be in hours.
+  - rung: 2
+    name: concept
+    text:
+      en: Average speed is distance divided by time.
+  - rung: 3
+    name: first_step
+    text:
+      en: 45 minutes is 45/60 of an hour.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 36 by 45/60.
+  - rung: 5
+    name: full_step
+    text:
+      en: Speed = 48 km/h.
+  misconception_ids:
+  - mc.mth.o.minutes_as_hours
+  - mc.mth.o.rate_inverted
+  - mc.mth.o.rate_multiplied
+solution:
+  steps:
+  - n: 1
+    latex: 45\ \text{min} = \frac{45}{60}\ \text{h}
+    reason: Change to hours
+  - n: 2
+    latex: \text{speed} = 36 \div \frac{45}{60} = 48\ \text{km/h}
+    reason: Distance over time
+    check_id: chk_build_mth_num_0261_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- transport
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0261_ans:
+    args:
+      expression: 36/(45/60)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

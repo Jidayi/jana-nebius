@@ -1,0 +1,113 @@
+id: itm.phy.o.light.0051
+version: 0.1.1
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.total_internal_reflection
+stem: A ray of light inside crown glass (refractive index 1.52) meets the boundary with air.
+parts:
+- id: a
+  prompt: What is the critical angle for this boundary?
+  marks: 2
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: 48.9°
+      correct: false
+      misconception_id: mc.phy.o.refraction_angles_from_surface
+      feedback: Draw the normal at right angles to the surface where the ray crosses it. Every angle in the refraction formula is measured from that normal.
+    - id: B
+      text: 42°, the same as for any glass
+      correct: false
+      misconception_id: mc.phy.o.critical_angle_same_for_all
+      feedback: sin C = 1 ÷ n, so a material with a bigger refractive index has a smaller critical angle. Diamond's is about 24°, water's about 49°.
+    - id: C
+      text: 0.658°
+      correct: false
+      misconception_id: mc.phy.o.snell_inverse_sine_missed
+      feedback: A sine is a ratio between 0 and 1, not an angle. Once you have sin r, press the inverse sine to turn it into an angle in degrees.
+    - id: D
+      text: 41.1°
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The critical angle is the angle of incidence inside the glass at which the ray in air runs along the boundary.
+  - rung: 2
+    name: concept
+    text:
+      en: Use sin C = 1 ÷ n, with the angle measured from the normal.
+  - rung: 3
+    name: first_step
+    text:
+      en: sin C = 1 ÷ 1.52 = 0.658.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Now take the inverse sine of 0.658 to turn it into an angle.
+  - rung: 5
+    name: full_step
+    text:
+      en: C = 41.1°, so the answer is 41.1°.
+  misconception_ids:
+  - mc.phy.o.critical_angle_same_for_all
+  - mc.phy.o.refraction_angles_from_surface
+  - mc.phy.o.snell_inverse_sine_missed
+solution:
+  steps:
+  - n: 1
+    latex: \sin C = \frac{1}{1.52} = 0.658
+    reason: sin C = 1 / n
+    check_id: chk_build_phy_lgt_0051_sc
+  - n: 2
+    latex: C = 41.1^\circ
+    reason: Inverse sine
+    check_id: chk_build_phy_lgt_0051_cang
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0051_cang:
+    args:
+      angle_unit: degrees
+      expression: asin(1/1.52)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0051_sc:
+    args:
+      expression: 1/1.52
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

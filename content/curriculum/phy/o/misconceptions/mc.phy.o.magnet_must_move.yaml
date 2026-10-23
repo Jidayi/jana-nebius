@@ -1,0 +1,32 @@
+id: mc.phy.o.magnet_must_move
+kc_ids:
+- kc.phy.o.electromagnetism.electromagnetic_induction
+student_name: Only a moving magnet works
+description: Thinks the magnet itself must move to induce an e.m.f.; moving the coil past a still magnet works just as well, since only relative motion matters.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: contrast_example
+  text:
+    en: Move the coil over a still magnet and the meter moves just as when the magnet moves. Only the relative motion matters.
+probe_item_ids:
+- itm.phy.o.electromagnetism.0032
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

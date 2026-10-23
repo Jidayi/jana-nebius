@@ -1,0 +1,43 @@
+# Contract versions per interface (TABLE ARC-29a; API-35). Rendered into the generated compatibility runtime.
+# Every interface starts at 1.0 in S1 (working assumption: the specification fixes the API major at 1 and no
+# current minors; gaps.md G13). Bump a minor for an additive contract change and a major for a breaking one.
+
+[interfaces.control]
+field = "control.hello.protocol"
+version = "1.4"                        # D92: Config.pilot_country_file; D97: control.keys, key_put, key_delete, key_result
+on_mismatch = "refuse_start"          # "Please reinstall the app"
+
+[interfaces.api]
+field = "Meta.protocol"
+version = "1.9"                        # D121: SubscriptionApply's entitlement names plan, band, billing, features and limits; D101: grade status no_scale; D99: plans, progress, tutor_name, tutor_avatar; D98: LicenceInstall and SubscriptionApply typed; D91: Settings.theme; D92: assessment, operations, character_shortcuts; D93: MockList, Profile.age_band, keyed Help; D94: card_confirm.subject
+on_mismatch = "upgrade_required"      # 426 upgrade_required; desktop: "Restart to finish updating."
+
+[interfaces.worker]
+field = "worker.hello.protocol"
+version = "1.0"                        # the worker contract carries an integer major only (gaps.md G11)
+on_mismatch = "worker_disabled"
+
+[interfaces.runtime]
+field = "llama.cpp build id"
+version = "1.0"
+on_mismatch = "runtime_unavailable"
+
+[interfaces.content_pack]
+field = "schema_version"
+version = "1.5"                        # D99: embedded mastery_params; D98: Item.corrects; D90: charts_of_accounts, Item.quantities, ItemPart.follow_through; D91: names up to 32; D92: diagnostic_anchors, grade_config, MarkPoint method lines
+on_mismatch = "pack_skipped"
+
+[interfaces.skills_bundle]
+field = "schema_version"
+version = "1.0"
+on_mismatch = "bundle_rejected_previous_kept"
+
+[interfaces.trace]
+field = "trace_version"
+version = "1.1"                        # D99: policy_decisions
+on_mismatch = "export_upgrades_or_refuses"
+
+[interfaces.cloud]
+field = "/v{major} and the minor header"
+version = "1.1"                        # D121: the registration's entitlement names plan, band, billing, features and limits
+on_mismatch = "feature_offline"

@@ -1,0 +1,36 @@
+id: mc.mth.o.sf_dp_confused
+kc_ids:
+- kc.mth.o.number.rounding
+student_name: Decimal places instead of significant figures
+description: Rounds to a number of decimal places when significant figures are asked for, or the reverse.
+signatures:
+- kind: step_error
+  error_category: arithmetic
+fix:
+  strategy: rule_restatement
+  text:
+    en: Significant figures start at the first non-zero digit; decimal places start at the decimal point.
+probe_item_ids:
+- itm.mth.o.number.0307
+- itm.mth.o.number.0309
+- itm.mth.o.number.0296
+- itm.mth.o.number.0297
+- itm.mth.o.number.0300
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

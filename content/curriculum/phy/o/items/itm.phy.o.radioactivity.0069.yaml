@@ -1,0 +1,92 @@
+id: itm.phy.o.radioactivity.0069
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+stem: Sodium-24, half-life 15 hours, is used for a pipe-leak search. A dose has an activity of 80 MBq when it is prepared.
+parts:
+- id: a
+  prompt: What is its activity 30 hours later?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '20'
+    unit: MBq
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_rad_0069_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A short half-life means the activity falls quickly once the job is done.
+  - rung: 2
+    name: concept
+    text:
+      en: Find how many half-lives pass in the time.
+  - rung: 3
+    name: first_step
+    text:
+      en: Halve the activity once for each half-life.
+  - rung: 4
+    name: worked_step
+    text:
+      en: '2 half-lives pass: halve 80 that many times.'
+  - rung: 5
+    name: full_step
+    text:
+      en: The activity has fallen to 20 MBq, which is why a short half-life is chosen.
+  misconception_ids:
+  - mc.phy.o.half_life_linear
+  - mc.phy.o.half_life_halved_once
+  - mc.phy.o.half_lives_counted_wrongly
+solution:
+  steps:
+  - n: 1
+    latex: \frac{30}{15} = 2\ \text{half-lives}
+    reason: Time ÷ half-life
+    check_id: chk_build_phy_rad_0069_n
+  - n: 2
+    latex: \frac{80}{2^{2}} = 20\ \text{MBq}
+    reason: Halve once per half-life
+    check_id: chk_build_phy_rad_0069_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_0069_ans:
+    args:
+      expression: 80/2^2
+    tool: math_evaluate
+  chk_build_phy_rad_0069_n:
+    args:
+      expression: 30/15
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

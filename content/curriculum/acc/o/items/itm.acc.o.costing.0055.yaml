@@ -1,0 +1,107 @@
+id: itm.acc.o.costing.0055
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.costing.target_profit
+stem: Juma makes solar lamps that sell for $12 each. Variable cost is $8 each, fixed costs are $7600, and the target profit is $4200.
+parts:
+- id: a
+  prompt: How many units must be sold?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 1050.00 units
+      correct: false
+      misconception_id: mc.acc.o.cost_target_fc_omitted
+    - id: B
+      text: 983.33 units
+      correct: false
+      misconception_id: mc.acc.o.cost_be_divides_by_price
+    - id: C
+      text: 850.00 units
+      correct: false
+      misconception_id: mc.acc.o.cost_target_subtracted
+    - id: D
+      text: 2950.00 units
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What must the total contribution pay for?
+  - rung: 2
+    name: concept
+    text:
+      en: Units = (fixed costs + target profit) ÷ contribution per unit.
+  - rung: 3
+    name: first_step
+    text:
+      en: The profit is added to the fixed costs, not taken away.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out (7600 + 4200) ÷ (12 − 8).
+  - rung: 5
+    name: full_step
+    text:
+      en: 2950.00 units.
+  misconception_ids:
+  - mc.acc.o.cost_target_fc_omitted
+  - mc.acc.o.cost_target_subtracted
+  - mc.acc.o.cost_be_divides_by_price
+solution:
+  steps:
+  - n: 1
+    latex: \text{Units} = \frac{\text{fixed costs} + \text{target}}{\text{contribution per unit}}
+    reason: Cover costs and profit
+    check_id: chk_build_acc_costing_0055_t
+  - n: 2
+    latex: \frac{7600 + 4200}{12 - 8} = 2950
+    reason: Substitute
+    check_id: chk_build_acc_costing_0055_a
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_costing_0055_a:
+    args:
+      dp: 2
+      expression: (7600 + 4200) / (12 - 8)
+    tool: math_evaluate
+  chk_build_acc_costing_0055_t:
+    args:
+      dp: 2
+      fixed_costs: '7600'
+      selling_price: '12'
+      target_profit: '4200'
+      variable_cost_per_unit: '8'
+    tool: acc_break_even
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

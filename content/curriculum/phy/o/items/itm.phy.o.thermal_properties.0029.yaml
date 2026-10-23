@@ -1,0 +1,123 @@
+id: itm.phy.o.thermal_properties.0029
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.thermal_properties.specific_heat_capacity
+stem: A 1 kg block of iron is heated by a 36 W heater for 6 minutes. Its temperature rises from 22 °C to 51 °C. Assume no energy is lost to the surroundings.
+parts:
+- id: a
+  prompt: Find the specific heat capacity of the metal.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 254 J/(kg °C)
+      correct: false
+      misconception_id: mc.phy.o.shc_final_temperature_used
+      feedback: 'Δθ means the change in temperature: final minus starting. Water warming from 20 °C to 30 °C rises by 10 °C, not 30 °C.'
+    - id: B
+      text: 447 J/(kg °C)
+      correct: true
+    - id: C
+      text: 7.45 J/(kg °C)
+      correct: false
+      misconception_id: mc.phy.o.heater_minutes_not_seconds
+      feedback: A watt is a joule per second, so the time must be in seconds. Multiply minutes by 60 before using E = Pt.
+    - id: D
+      text: 375840 J/(kg °C)
+      correct: false
+      misconception_id: mc.phy.o.shc_rearranged_wrongly
+      feedback: 'To find c, divide the energy by both the mass and the temperature change: c = E ÷ (m × Δθ). Put brackets round m × Δθ on a calculator.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: All the energy from the heater goes into warming the block.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the energy with E = Pt, using the time in seconds.
+  - rung: 3
+    name: first_step
+    text:
+      en: Then rearrange E = mcΔθ to c = E ÷ (mΔθ).
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 12960 J by the mass times the temperature rise of 29 °C.
+  - rung: 5
+    name: full_step
+    text:
+      en: c = 447 J/(kg °C).
+  misconception_ids:
+  - mc.phy.o.heater_minutes_not_seconds
+  - mc.phy.o.shc_final_temperature_used
+  - mc.phy.o.shc_rearranged_wrongly
+solution:
+  steps:
+  - n: 1
+    latex: t = 6\ \text{min} = 360\ \text{s}
+    reason: A watt is a joule per second
+    check_id: chk_build_phy_thp_0029_ts
+  - n: 2
+    latex: E = Pt = 36 \times 360 = 12960\ \text{J}
+    reason: Energy from the heater
+    check_id: chk_build_phy_thp_0029_e
+  - n: 3
+    latex: \Delta\theta = 51 - 22 = 29\ ^\circ\text{C}
+    reason: The temperature rise
+    check_id: chk_build_phy_thp_0029_dt
+  - n: 4
+    latex: c = \frac{E}{m\Delta\theta} = \frac{12960}{1 \times 29} = 447\ \text{J/(kg °C)}
+    reason: Rearrange E = mcΔθ
+    check_id: chk_build_phy_thp_0029_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 110
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_thp_0029_ans:
+    args:
+      expression: 36*6*60/(1*(51 - 22))
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_thp_0029_dt:
+    args:
+      expression: 51 - 22
+    tool: math_evaluate
+  chk_build_phy_thp_0029_e:
+    args:
+      expression: 36*6*60
+    tool: math_evaluate
+  chk_build_phy_thp_0029_ts:
+    args:
+      expression: 6*60
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

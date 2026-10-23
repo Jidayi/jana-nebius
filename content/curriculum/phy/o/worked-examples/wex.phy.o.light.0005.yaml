@@ -1,0 +1,63 @@
+id: wex.phy.o.light.0005
+kc_ids:
+- kc.phy.o.light.speed_in_medium
+problem: A signal is sent as light along an optical fibre 6 km long. The glass of the fibre has a refractive index of 1.5. Calculate the time the light takes to travel the length of the fibre, in microseconds.
+steps:
+- n: 1
+  latex: 6\ \text{km} = 6000\ \text{m}
+  reason: Length in metres
+  check_id: chk_build_phy_lgt_w0005_lm
+- n: 2
+  latex: v = \frac{3.0 \times 10^{8}}{1.5} = 2.00 \times 10^{8}\ \text{m/s}
+  reason: v = c / n
+  check_id: chk_build_phy_lgt_w0005_v_m
+- n: 3
+  latex: t = \frac{6000}{2.00 \times 10^{8}}\ \text{s} = 30.0\ \mu\text{s}
+  reason: Time = distance ÷ speed; one microsecond is a millionth of a second
+  check_id: chk_build_phy_lgt_w0005_ans
+final_answer:
+  latex: 30.0\ \text{µs}
+  check_id: chk_build_phy_lgt_w0005_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_w0005_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: 6*1000*1.5/c*10^6
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_w0005_lm:
+    args:
+      quantity: 6 km
+      to: m
+    tool: units_convert
+  chk_build_phy_lgt_w0005_v_m:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: (c/1.5)/10^(8)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

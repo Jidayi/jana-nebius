@@ -1,0 +1,536 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.acc-o-accounting-equation
+version: 2026-10-13.1
+description: 'Colocated evals for acc-o-accounting-equation (SKL-21, EVL-07): one case per misconception. The student
+  answers as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key
+  away, and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: acc_o_accounting_equation_01
+  title: Holds 'Accounts are only about cash'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.ae_purpose_cash_only
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accounting_equation.0001
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accounting_equation.purpose_and_users
+        misconception: mc.acc.o.ae_purpose_cash_only
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: acc_o_accounting_equation_02
+  title: Holds 'Users and their interests mixed up'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.ae_users_interest_confused
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accounting_equation.0001
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accounting_equation.purpose_and_users
+        misconception: mc.acc.o.ae_users_interest_confused
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: acc_o_accounting_equation_03
+  title: Holds 'Expenses as assets'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.ae_expense_as_asset
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accounting_equation.0012
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accounting_equation.classify_elements
+        misconception: mc.acc.o.ae_expense_as_asset
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: acc_o_accounting_equation_04
+  title: Holds 'A loan as an asset'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.ae_liability_as_asset
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accounting_equation.0013
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accounting_equation.classify_elements
+        misconception: mc.acc.o.ae_liability_as_asset
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_accounting_equation_05
+  title: Holds 'Money received as income'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.ae_loan_as_income
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accounting_equation.0013
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accounting_equation.classify_elements
+        misconception: mc.acc.o.ae_loan_as_income
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_accounting_equation_06
+  title: Holds 'Capital confused with other elements'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.ae_capital_as_owner_money
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accounting_equation.0012
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accounting_equation.classify_elements
+        misconception: mc.acc.o.ae_capital_as_owner_money
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_accounting_equation_07
+  title: Holds 'Adding liabilities to assets'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.ae_equation_signs_wrong
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accounting_equation.0030
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accounting_equation.apply_equation
+        misconception: mc.acc.o.ae_equation_signs_wrong
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_accounting_equation_08
+  title: Holds 'Leaving out a liability'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.ae_liability_omitted
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accounting_equation.0030
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accounting_equation.apply_equation
+        misconception: mc.acc.o.ae_liability_omitted
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_accounting_equation_09
+  title: Holds 'Asset swaps and other changes confused'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.ae_asset_swap_confused
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accounting_equation.0041
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accounting_equation.effect_of_transactions
+        misconception: mc.acc.o.ae_asset_swap_confused
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_accounting_equation_10
+  title: Holds 'Capital changes when buying on credit'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.ae_credit_purchase_capital
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accounting_equation.0041
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accounting_equation.effect_of_transactions
+        misconception: mc.acc.o.ae_credit_purchase_capital
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_accounting_equation_11
+  title: Holds 'Drawings reduce liabilities'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.ae_drawings_as_liability_change
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accounting_equation.0043
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accounting_equation.effect_of_transactions
+        misconception: mc.acc.o.ae_drawings_as_liability_change
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_accounting_equation_12
+  title: Holds 'Direction of a change reversed'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.ae_effect_signs
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accounting_equation.0041
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 12
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accounting_equation.effect_of_transactions
+        misconception: mc.acc.o.ae_effect_signs
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

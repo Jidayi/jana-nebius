@@ -1,0 +1,120 @@
+id: itm.acc.o.bank_reconciliation.0024
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.bank_reconciliation.reconciliation_statement
+stem: 'Adaeze''s bank statement shows a balance of $1380 in the business''s favour. Cheques not yet presented: $920, $610. Lodgements not yet credited by the bank: $960. The cash book is already up to date.'
+parts:
+- id: a
+  prompt: Calculate the balance in the updated cash book.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '810.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_bank_reconciliation_0024_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Start from the bank statement balance. What has the bank not yet recorded?
+  - rung: 2
+    name: concept
+    text:
+      en: Add the outstanding lodgements and subtract the unpresented cheques.
+  - rung: 3
+    name: first_step
+    text:
+      en: Lodgements will increase the bank balance once credited; unpresented cheques will reduce it.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Cash book balance = 1380 + 960 − 920 − 610.
+  - rung: 5
+    name: full_step
+    text:
+      en: Cash book balance = $810.
+  misconception_ids:
+  - mc.acc.o.br_rec_signs_reversed
+  - mc.acc.o.br_unpresented_vs_lodgement
+solution:
+  steps:
+  - n: 1
+    latex: \text{Statement balance} + \text{lodgements} - \text{unpresented cheques} = \text{cash book balance}
+    reason: The reconciliation
+    check_id: chk_build_acc_bank_reconciliation_0024_t
+  - n: 2
+    latex: 1380 + 960 - 920 - 610 = 810
+    reason: Substitute
+    check_id: chk_build_acc_bank_reconciliation_0024_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_names
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_bank_reconciliation_0024_a:
+    args:
+      dp: 2
+      expression: 1380 + 960 - 920 - 610
+    tool: math_evaluate
+  chk_build_acc_bank_reconciliation_0024_t:
+    args:
+      bank_statement:
+        balance: '1380'
+        entries:
+        - amount: '200'
+          details: a dividend paid in directly
+          direction: in
+        - amount: '540'
+          details: loan interest charged by the bank
+          direction: out
+        overdrawn: false
+      cash_book:
+        balance: '1150'
+        entries:
+        - amount: '920'
+          details: cheque number 100460
+          direction: out
+          ref: t0
+        - amount: '960'
+          details: cash paid in on the last day of the month
+          direction: in
+          ref: t1
+        - amount: '610'
+          details: cheque number 100840
+          direction: out
+          ref: t2
+        overdrawn: false
+      dp: 2
+      start_from: bank_statement
+      task: reconcile
+    tool: acc_double_entry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,78 @@
+id: itm.chm.o.states.0017
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.states.changes_of_state
+stem: Sulfur melts at 115 °C and boils at 445 °C.
+parts:
+- id: a
+  prompt: What is the state of sulfur at 25 °C?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: liquid
+      correct: false
+    - id: B
+      text: gas
+      correct: false
+    - id: C
+      text: solid
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Place 25 °C on a line with 115 °C and 445 °C marked.
+  - rung: 2
+    name: concept
+    text:
+      en: Solid below the melting point, liquid between, gas above the boiling point.
+  - rung: 3
+    name: first_step
+    text:
+      en: Is 25 °C below 115 °C?
+  - rung: 4
+    name: worked_step
+    text:
+      en: Is 25 °C above 445 °C?
+  - rung: 5
+    name: full_step
+    text:
+      en: At 25 °C sulfur is a solid.
+solution:
+  steps:
+  - n: 1
+    latex: 25\ \text{vs}\ 115,\ 445
+    reason: Compare with both fixed points
+difficulty:
+  prior: -0.7
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

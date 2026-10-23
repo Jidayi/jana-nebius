@@ -1,0 +1,91 @@
+id: itm.chm.o.organic.0075
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.polymers
+stem: The repeat unit of a polymer is –CH₂–CH(CH₃)–.
+parts:
+- id: a
+  prompt: What is the monomer?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Propane, CH₃CH₂CH₃
+      correct: false
+      misconception_id: mc.chm.o.organic_monomer_is_alkane
+      feedback: A monomer for addition polymerisation must have a C=C double bond. Alkanes are saturated and cannot add to one another. Poly(ethene) is made from ethene, not ethane.
+    - id: B
+      text: Propene, CH₂=CHCH₃
+      correct: true
+    - id: C
+      text: Propene and water, which is given off at each link
+      correct: false
+      misconception_id: mc.chm.o.organic_addition_condensation_mixed
+      feedback: In addition polymerisation, monomers with a C=C bond simply join and nothing else forms. In condensation polymerisation, groups on two monomers react as they join and a small molecule, such as water, is given off each time.
+    - id: D
+      text: Propene, which keeps its double bond in the chain
+      correct: false
+      misconception_id: mc.chm.o.organic_polymer_keeps_double_bond
+      feedback: When an alkene polymerises, each C=C double bond opens into a single bond, and the freed bonds link to the next monomer. The polymer chain has only single C–C bonds.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Count the carbon atoms in the repeat unit, including the one in CH₃.
+  - rung: 2
+    name: concept
+    text:
+      en: To find the monomer, put back the double bond between the two carbon atoms of the main chain.
+  - rung: 3
+    name: first_step
+    text:
+      en: The repeat unit has three carbon atoms.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The main-chain carbons are joined by a single bond in the polymer; in the monomer they share a double bond.
+  - rung: 5
+    name: full_step
+    text:
+      en: The monomer is propene, CH₂=CHCH₃, and the polymer is poly(propene).
+  misconception_ids:
+  - mc.chm.o.organic_monomer_is_alkane
+  - mc.chm.o.organic_polymer_keeps_double_bond
+  - mc.chm.o.organic_addition_condensation_mixed
+solution:
+  steps:
+  - n: 1
+    latex: \text{–CH}_2\text{–CH(CH}_3\text{)– }\leftarrow\text{ CH}_2\text{=CHCH}_3
+    reason: Restore the C=C
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,34 @@
+id: mc.acc.o.acc_accrual_subtracted
+kc_ids:
+- kc.acc.o.accruals_prepayments.accrued_expense
+student_name: Subtracting an accrual
+description: Takes an amount still owing off the amount paid instead of adding it.
+signatures:
+- kind: answer_transform
+  expression: paid - accrual
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'An unpaid bill for this year is still a cost of this year: add it.'
+probe_item_ids:
+- itm.acc.o.accruals_prepayments.0001
+- itm.acc.o.accruals_prepayments.0002
+- itm.acc.o.accruals_prepayments.0003
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

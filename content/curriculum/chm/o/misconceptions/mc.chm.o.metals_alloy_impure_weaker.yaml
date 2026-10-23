@@ -1,0 +1,36 @@
+id: mc.chm.o.metals_alloy_impure_weaker
+kc_ids:
+- kc.chm.o.metals.alloys
+student_name: Adding another element makes a metal weaker
+description: Thinks mixing in another element is like adding an impurity, so an alloy must be softer or weaker than the pure metal.
+signatures:
+- kind: answer_transform
+  expression: 'choice: alloy said to be softer or weaker than the pure metal'
+fix:
+  strategy: counterexample
+  text:
+    en: Pure iron is soft and bends easily; steel, iron with a little carbon, is much harder. Alloys are made on purpose because they are usually harder and stronger than the pure metal.
+probe_item_ids:
+- itm.chm.o.metals.0013
+- itm.chm.o.metals.0014
+- itm.chm.o.metals.0015
+- itm.chm.o.metals.0016
+- itm.chm.o.metals.0021
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,95 @@
+id: itm.mth.o.algebra_and_graphs.0096
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.index_laws_algebra
+stem: Simplify $x^{4} \times x^{2} \div x^{3}$ and write the answer as $x^n$.
+parts:
+- id: a
+  prompt: Find n.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '3'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0096_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: All the powers have the same base, x.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiplying powers of the same base adds the indices; dividing subtracts them.
+  - rung: 3
+    name: first_step
+    text:
+      en: First combine x^4 × x^2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: x^4 × x^2 = x^6. Now divide by x^3.
+  - rung: 5
+    name: full_step
+    text:
+      en: n = 6 − 3 = 3.
+  misconception_ids:
+  - mc.mth.o.index_multiply_for_product
+  - mc.mth.o.index_divide_for_quotient
+  - mc.mth.o.index_add_for_quotient
+solution:
+  steps:
+  - n: 1
+    latex: x^m \times x^k = x^{m + k}
+    reason: 'Multiplying powers of the same base: add the indices'
+  - n: 2
+    latex: x^{4} \times x^{2} = x^{6}
+    reason: Add
+    check_id: chk_build_mth_alg_0096_s
+  - n: 3
+    latex: n = 6 - 3 = 3
+    reason: 'Dividing: subtract the indices'
+    check_id: chk_build_mth_alg_0096_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0096_ans:
+    args:
+      expression: 4 + 2 - 3
+    tool: math_evaluate
+  chk_build_mth_alg_0096_s:
+    args:
+      expression: 4 + 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

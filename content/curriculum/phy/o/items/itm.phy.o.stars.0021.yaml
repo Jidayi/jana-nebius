@@ -1,0 +1,89 @@
+id: itm.phy.o.stars.0021
+version: 0.1.0
+type: ordering
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.stars.life_cycle_of_stars
+stem: Stars change as they age. Think about the life of a star about 15 times as massive as the Sun.
+parts:
+- id: a
+  prompt: Put the stages in order, from first to last.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: exact
+    elements:
+    - id: e3
+      text: Main-sequence star
+    - id: e4
+      text: Red supergiant
+    - id: e5
+      text: Supernova
+    - id: e6
+      text: Neutron star or black hole
+    - id: e1
+      text: Nebula
+    - id: e2
+      text: Protostar
+    correct_order:
+    - e1
+    - e2
+    - e3
+    - e4
+    - e5
+    - e6
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Every star begins in the same way.
+  - rung: 2
+    name: concept
+    text:
+      en: A cloud of gas and dust collapses into a protostar, which becomes a main-sequence star when fusion starts.
+  - rung: 3
+    name: first_step
+    text:
+      en: The giant stage comes after the hydrogen in the core runs out.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'The end depends on the mass: a white dwarf for Sun-like stars, a supernova for very massive ones.'
+  - rung: 5
+    name: full_step
+    text:
+      en: The order is Nebula, Protostar, Main-sequence star, Red supergiant, Supernova, Neutron star or black hole.
+solution:
+  steps:
+  - n: 1
+    latex: \text{Nebula → Protostar → Main-sequence star → Red supergiant → Supernova → Neutron star or black hole}
+    reason: The life cycle for this mass
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

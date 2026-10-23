@@ -1,0 +1,34 @@
+id: mc.chm.o.electrolysis_impure_copper_as_cathode
+kc_ids:
+- kc.chm.o.electrolysis.applications
+student_name: Impure copper is the cathode in purification
+description: 'Swaps the electrodes in copper purification: makes the impure copper the cathode, or says pure copper forms on the anode.'
+signatures:
+- kind: answer_transform
+  expression: 'choice: impure copper as the cathode, or pure copper on the anode'
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The impure copper is the anode: its copper atoms lose electrons and go into solution as Cu²⁺. These ions gain electrons at the cathode, a thin sheet of pure copper, which grows. Impurities fall below the anode.'
+probe_item_ids:
+- itm.chm.o.electrolysis.0037
+- itm.chm.o.electrolysis.0040
+- itm.chm.o.electrolysis.0045
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

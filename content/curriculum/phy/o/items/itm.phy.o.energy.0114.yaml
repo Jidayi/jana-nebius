@@ -1,0 +1,88 @@
+id: itm.phy.o.energy.0114
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.energy_resources
+stem: A wind turbine has a maximum power output of 1.5 MW. Because the wind varies, its average output over a year is only 25% of its maximum.
+parts:
+- id: a
+  prompt: Calculate its average power output in MW.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '0.375'
+    unit: MW
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0114_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Wind is renewable but not reliable, so the average output is less than the maximum.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the stated percentage of the maximum output.
+  - rung: 3
+    name: first_step
+    text:
+      en: 25% as a fraction is 0.25.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 1.5 × 0.25.
+  - rung: 5
+    name: full_step
+    text:
+      en: The average output is 0.375 MW.
+solution:
+  steps:
+  - n: 1
+    latex: 25\% = 0.25
+    reason: Percentage as a fraction
+    check_id: chk_build_phy_nrg_0114_f
+  - n: 2
+    latex: 1.5 \times 0.25 = 0.375\ \text{MW}
+    reason: Average = fraction × maximum
+    check_id: chk_build_phy_nrg_0114_ans
+difficulty:
+  prior: -0.2
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0114_ans:
+    args:
+      expression: 1.5*25/100
+    tool: math_evaluate
+  chk_build_phy_nrg_0114_f:
+    args:
+      expression: 25/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

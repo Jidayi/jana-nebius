@@ -1,0 +1,93 @@
+id: itm.phy.o.practical_electricity.0037
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+stem: Every plug for an appliance in a home contains a fuse.
+parts:
+- id: a
+  prompt: What is the main job of the fuse?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: To stop a person getting a shock from the case
+      correct: false
+      misconception_id: mc.phy.o.fuse_protects_person_from_shock
+      feedback: A fuse melts when the current is too large for the cable. A current big enough to kill is far smaller than most fuse ratings, so the earth wire and insulation protect people.
+    - id: B
+      text: To melt and cut off the current if it becomes too large for the cable
+      correct: true
+    - id: C
+      text: To keep the current equal to the fuse rating
+      correct: false
+      misconception_id: mc.phy.o.fuse_rating_sets_current
+      feedback: The appliance and the supply p.d. decide the current. The rating is only the current at which the fuse melts.
+    - id: D
+      text: To let the appliance use more power safely
+      correct: false
+      misconception_id: mc.phy.o.fuse_largest_always_safest
+      feedback: A fuse rated far above the working current would let a fault current overheat the cable before it melted. Choose the smallest rating just above the normal current.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what each wire or device is for.
+  - rung: 2
+    name: concept
+    text:
+      en: Live is at a high voltage, neutral stays near 0 V, and earth carries current only in a fault.
+  - rung: 3
+    name: first_step
+    text:
+      en: A fuse or switch must cut the appliance off from the high voltage when it opens.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that mix up the jobs of the different wires and devices.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: to melt and cut off the current if it becomes too large for the cable.'
+  misconception_ids:
+  - mc.phy.o.fuse_largest_always_safest
+  - mc.phy.o.fuse_protects_person_from_shock
+  - mc.phy.o.fuse_rating_sets_current
+solution:
+  steps:
+  - n: 1
+    latex: \text{To melt and cut off the current if it becomes too large for the cable}
+    reason: Match each wire and device to its job
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

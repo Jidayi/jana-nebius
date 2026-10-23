@@ -1,0 +1,88 @@
+id: itm.chm.o.metals.0058
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.extraction
+stem: Gold is often found in rocks as small grains of the metal itself.
+parts:
+- id: a
+  prompt: Why is gold found as the metal?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Gold is very unreactive, so it does not combine with oxygen or other elements.
+      correct: true
+    - id: B
+      text: Gold is heavier than its compounds.
+      correct: false
+    - id: C
+      text: Gold is very reactive, so it has already been extracted naturally.
+      correct: false
+      misconception_id: mc.chm.o.metals_extraction_reversed
+      feedback: A reactive metal clings to the elements in its compounds, so it is HARD to extract. The higher a metal is in the series, the more energy its extraction needs; gold is so unreactive it is found as the metal.
+    - id: D
+      text: Gold is reduced by the carbon in rocks.
+      correct: false
+      misconception_id: mc.chm.o.metals_carbon_reduces_all
+      feedback: Carbon can only take oxygen from metals BELOW it in the reactivity series (zinc, iron, lead, copper). Metals above carbon hold their oxygen more strongly, so electrolysis is needed.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Where is gold in the reactivity series?
+  - rung: 2
+    name: concept
+    text:
+      en: The less reactive a metal, the less it forms compounds in nature.
+  - rung: 3
+    name: first_step
+    text:
+      en: Gold is at the very bottom of the series.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Ask whether such a metal would react with oxygen or water in the ground.
+  - rung: 5
+    name: full_step
+    text:
+      en: Gold is so unreactive that it stays as the metal.
+  misconception_ids:
+  - mc.chm.o.metals_extraction_reversed
+  - mc.chm.o.metals_carbon_reduces_all
+solution:
+  steps:
+  - n: 1
+    latex: \text{Au at the bottom of the series}
+    reason: Found as the metal
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

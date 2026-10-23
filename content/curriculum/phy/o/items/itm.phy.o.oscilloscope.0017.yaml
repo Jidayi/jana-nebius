@@ -1,0 +1,108 @@
+id: itm.phy.o.oscilloscope.0017
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.oscilloscope.y_gain
+stem: An oscilloscope's Y-gain is 1 V/div. The crests of a trace are 2.5 divisions above the centre line and the troughs the same distance below.
+parts:
+- id: a
+  prompt: Find the peak-to-peak voltage of the signal.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '5'
+    unit: V
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_osc_0017_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Peak-to-peak is measured from the top of a crest to the bottom of a trough.
+  - rung: 2
+    name: concept
+    text:
+      en: That height is twice the height of a crest above the centre line.
+  - rung: 3
+    name: first_step
+    text:
+      en: Multiply the crest-to-trough height in divisions by the Y-gain.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Crest to trough is 2 × 2.5 divisions; multiply by 1 V/div.
+  - rung: 5
+    name: full_step
+    text:
+      en: The peak-to-peak voltage is 5 V.
+  misconception_ids:
+  - mc.phy.o.osc_peak_and_peak_to_peak_confused
+  - mc.phy.o.osc_ygain_divided
+  - mc.phy.o.osc_divisions_as_volts
+solution:
+  steps:
+  - n: 1
+    latex: V_{pp} = 2 \times 2.5 \times 1 = 5\ \text{V}
+    reason: Crest to trough
+    check_id: chk_build_phy_osc_0017_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  g: '1'
+  h: '2.5'
+checks:
+  chk_build_phy_osc_0017_ans:
+    args:
+      expression: 2*2.5*1
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:43:15.243Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.oscilloscope.0017
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

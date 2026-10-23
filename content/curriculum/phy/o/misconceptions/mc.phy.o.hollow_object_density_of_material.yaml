@@ -1,0 +1,34 @@
+id: mc.phy.o.hollow_object_density_of_material
+kc_ids:
+- kc.phy.o.density.floating_and_sinking
+student_name: Judging a hollow object by its material
+description: Decides whether a hollow object, such as a steel ship or a sealed bottle, floats from the density of its material alone, ignoring the air or other contents inside.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Use the average density: the total mass divided by the total volume, air included. A steel ship floats because most of its volume is air.'
+probe_item_ids:
+- itm.phy.o.density.0034
+- itm.phy.o.density.0035
+- itm.phy.o.density.0037
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

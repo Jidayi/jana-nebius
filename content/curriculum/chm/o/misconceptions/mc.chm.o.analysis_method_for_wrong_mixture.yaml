@@ -1,0 +1,34 @@
+id: mc.chm.o.analysis_method_for_wrong_mixture
+kc_ids:
+- kc.chm.o.analysis.separation
+student_name: Any method will separate it
+description: Picks a separation method made for a different kind of mixture, such as a separating funnel or chromatography for a solution, or crystallisation to remove an insoluble solid.
+signatures:
+- kind: answer_transform
+  expression: 'choice: a method for another kind of mixture'
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'First ask what is mixed with what and which part you want. A solid that does not dissolve: filter. A dissolved solid: crystallise. A liquid from a solution: distil. Liquids that do not mix: separating funnel.'
+probe_item_ids:
+- itm.chm.o.analysis.0037
+- itm.chm.o.analysis.0038
+- itm.chm.o.analysis.0040
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

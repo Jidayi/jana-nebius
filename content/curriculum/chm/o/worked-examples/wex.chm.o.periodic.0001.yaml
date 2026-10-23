@@ -1,0 +1,53 @@
+id: wex.chm.o.periodic.0001
+kc_ids:
+- kc.chm.o.periodic.arrangement
+problem: Find the group and period of phosphorus, proton number 15.
+steps:
+- n: 1
+  latex: 15 \to 2,\ 8,\ 5
+  reason: Fill shells 2, 8, 8
+  check_id: chk_build_chm_periodic_w0001_s1
+- n: 2
+  latex: \text{outer electrons} = 15 - 2 - 8
+  reason: The last shell gives the group
+  check_id: chk_build_chm_periodic_w0001_o
+- n: 3
+  latex: \text{third period}
+  reason: Count the occupied shells
+final_answer:
+  latex: 5\ \text{outer electrons} \Rightarrow \text{Group V, third period}
+  check_id: chk_build_chm_periodic_w0001_o
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_periodic_w0001_o:
+    args:
+      expression: 15 - 2 - 8
+    tool: math_evaluate
+  chk_build_chm_periodic_w0001_s1:
+    args:
+      expression: 2 + 8 + 5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

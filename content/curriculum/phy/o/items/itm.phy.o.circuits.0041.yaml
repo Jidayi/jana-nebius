@@ -1,0 +1,145 @@
+id: itm.phy.o.circuits.0041
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.mixed_circuits
+stem: A 10 Ω resistor is connected in series with a parallel pair made of a 60 Ω resistor and a 20 Ω resistor. The circuit is connected to a 12 V battery.
+parts:
+- id: a
+  prompt: Calculate the current through the 60 Ω resistor.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 0.2 A
+      correct: false
+      misconception_id: mc.phy.o.mixed_branch_gets_full_supply
+      feedback: The series resistor takes part of the supply p.d. first. Find the current from the supply, then the p.d. across the parallel group with V = IR.
+    - id: B
+      text: 0.12 A
+      correct: true
+    - id: C
+      text: 0.48 A
+      correct: false
+      misconception_id: mc.phy.o.parallel_current_same_each_branch
+      feedback: 'At a junction the current splits: the branch currents add up to the current from the supply.'
+    - id: D
+      text: 0.24 A
+      correct: false
+      misconception_id: mc.phy.o.parallel_current_split_equally
+      feedback: Each branch has the same p.d., so a branch with less resistance takes more current (I = V/R). Only equal branches share equally.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The 60 Ω resistor is one branch of the parallel pair.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the p.d. across the pair first; the series resistor takes part of the battery p.d.
+  - rung: 3
+    name: first_step
+    text:
+      en: Combine the pair, add the series resistor, and find the pair's share of the battery p.d.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The pair has 7.2 V across it; divide by 60 Ω.
+  - rung: 5
+    name: full_step
+    text:
+      en: The current through the 60 Ω resistor is 0.12 A.
+  misconception_ids:
+  - mc.phy.o.mixed_branch_gets_full_supply
+  - mc.phy.o.parallel_current_same_each_branch
+  - mc.phy.o.parallel_current_split_equally
+solution:
+  steps:
+  - n: 1
+    latex: R_p = \frac{60 \times 20}{60 + 20} = 15\ \Omega
+    reason: Combine the parallel pair
+    check_id: chk_build_phy_cir_0041_rp
+  - n: 2
+    latex: R = 10 + 15 = 25\ \Omega
+    reason: Add the series resistor
+    check_id: chk_build_phy_cir_0041_rt
+  - n: 3
+    latex: V_p = \frac{12 \times 15}{25} = 7.2\ \text{V}
+    reason: The pair's share of the p.d.
+    check_id: chk_build_phy_cir_0041_vp
+  - n: 4
+    latex: I_2 = \frac{7.2}{60} = 0.12\ \text{A}
+    reason: Ohm's law for one branch
+    check_id: chk_build_phy_cir_0041_ans
+difficulty:
+  prior: 1.0
+  band: stretch
+estimated_seconds: 150
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_0041_ans:
+    args:
+      expression: 12*(60*20/(60 + 20))/(10 + 60*20/(60 + 20))/60
+    tool: math_evaluate
+  chk_build_phy_cir_0041_rp:
+    args:
+      expression: 60*20/(60 + 20)
+    tool: math_evaluate
+  chk_build_phy_cir_0041_rt:
+    args:
+      expression: (10 + 60*20/(60 + 20))
+    tool: math_evaluate
+  chk_build_phy_cir_0041_tool:
+    args:
+      components:
+      - emf: '12'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '10'
+      - id: R2
+        kind: resistor
+        resistance: '60'
+      - id: R3
+        kind: resistor
+        resistance: '20'
+      network:
+        series:
+        - B
+        - R1
+        - parallel:
+          - R2
+          - R3
+    tool: phys_circuit
+  chk_build_phy_cir_0041_vp:
+    args:
+      expression: 12*(60*20/(60 + 20))/(10 + 60*20/(60 + 20))
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

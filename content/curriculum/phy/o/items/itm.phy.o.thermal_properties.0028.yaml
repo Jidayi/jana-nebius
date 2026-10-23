@@ -1,0 +1,122 @@
+id: itm.phy.o.thermal_properties.0028
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.thermal_properties.specific_heat_capacity
+stem: 750 g of water is heated from 18 °C to 40 °C. The specific heat capacity of water is 4200 J/(kg °C).
+parts:
+- id: a
+  prompt: How much energy is needed? Give your answer in kJ.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 69.3 kJ
+      correct: true
+    - id: B
+      text: 126 kJ
+      correct: false
+      misconception_id: mc.phy.o.shc_final_temperature_used
+      feedback: 'Δθ means the change in temperature: final minus starting. Water warming from 20 °C to 30 °C rises by 10 °C, not 30 °C.'
+    - id: C
+      text: 929.25 kJ
+      correct: false
+      misconception_id: mc.phy.o.kelvin_change_offset_added
+      feedback: 'Warming from 20 °C to 30 °C is warming from 293 K to 303 K: a change of 10 on both scales. Only readings need 273 added, never changes.'
+    - id: D
+      text: 69300 kJ
+      correct: false
+      misconception_id: mc.phy.o.thermal_grams_as_kg
+      feedback: 'Specific heat capacity and specific latent heat are per kilogram. Change grams to kilograms first: 250 g is 0.25 kg.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Use E = mcΔθ, with the mass in kilograms and Δθ the temperature rise.
+  - rung: 2
+    name: concept
+    text:
+      en: Specific heat capacity is the energy needed to warm 1 kg by 1 °C.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change 750 g to kilograms and find the temperature rise from 18 °C to 40 °C.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 0.75 × 4200 × 22 to get joules, then change to kilojoules.
+  - rung: 5
+    name: full_step
+    text:
+      en: E = 69.3 kJ.
+  misconception_ids:
+  - mc.phy.o.kelvin_change_offset_added
+  - mc.phy.o.shc_final_temperature_used
+  - mc.phy.o.thermal_grams_as_kg
+solution:
+  steps:
+  - n: 1
+    latex: m = 750\ \text{g} = 0.75\ \text{kg}
+    reason: Specific heat capacity is per kilogram
+    check_id: chk_build_phy_thp_0028_m
+  - n: 2
+    latex: \Delta\theta = 40 - 18 = 22\ ^\circ\text{C}
+    reason: The temperature rise
+    check_id: chk_build_phy_thp_0028_dt
+  - n: 3
+    latex: E = mc\Delta\theta = 0.75 \times 4200 \times 22 = 69300\ \text{J}
+    reason: Energy needed
+    check_id: chk_build_phy_thp_0028_e
+  - n: 4
+    latex: E = 69.3\ \text{kJ}
+    reason: There are a thousand joules in a kilojoule
+    check_id: chk_build_phy_thp_0028_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_thp_0028_ans:
+    args:
+      expression: 750/1000*4200*(40 - 18)/1000
+    tool: math_evaluate
+  chk_build_phy_thp_0028_dt:
+    args:
+      expression: 40 - 18
+    tool: math_evaluate
+  chk_build_phy_thp_0028_e:
+    args:
+      expression: 750/1000*4200*(40 - 18)
+    tool: math_evaluate
+  chk_build_phy_thp_0028_m:
+    args:
+      expression: 750/1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

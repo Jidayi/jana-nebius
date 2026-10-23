@@ -1,0 +1,49 @@
+id: wex.mth.o.calculus.0002
+kc_ids:
+- kc.mth.o.calculus.differentiate_powers
+problem: A curve has equation $y = 3x^3 - 5x^2 - 9x - 3$. Find the gradient of the curve at the point where x = -1.
+steps:
+- n: 1
+  latex: \frac{dy}{dx} = 9x^2 - 10x - 9
+  reason: Multiply by each power, then reduce the power by one
+  check_id: chk_build_mth_cal_w0002_d
+- n: 2
+  latex: '\text{at } x = -1: \frac{dy}{dx} = 10'
+  reason: Substitute into the derivative
+  check_id: chk_build_mth_cal_w0002_ans
+final_answer:
+  latex: '10'
+  check_id: chk_build_mth_cal_w0002_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_cal_w0002_ans:
+    args:
+      expression: (9)*x^2 + (-10)*x^1 + (-9)*x^0
+      values:
+        x: -1
+    tool: math_evaluate
+  chk_build_mth_cal_w0002_d:
+    args:
+      at: -1
+      expression: (3)*x^3 + (-5)*x^2 + (-9)*x^1 + (-3)*x^0
+      variable: x
+    tool: math_differentiate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

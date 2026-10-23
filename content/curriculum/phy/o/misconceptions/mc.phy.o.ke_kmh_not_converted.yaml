@@ -1,0 +1,33 @@
+id: mc.phy.o.ke_kmh_not_converted
+kc_ids:
+- kc.phy.o.energy.kinetic_energy
+student_name: Speed left in km/h
+description: Puts a speed given in km/h straight into ½mv² without changing it to m/s.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: Ek = ½mv² gives joules only with the speed in metres per second. Divide km/h by 3.6 first.
+probe_item_ids:
+- itm.phy.o.energy.0019
+- itm.phy.o.energy.0025
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,93 @@
+id: itm.phy.o.electrical_quantities.0080
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.current_voltage_graphs
+stem: The current-voltage graph of a filament lamp curves, getting less steep at higher p.d.
+parts:
+- id: a
+  prompt: Why does it curve this way?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The filament gets hotter and its resistance increases
+      correct: true
+    - id: B
+      text: The filament gets hotter and its resistance decreases
+      correct: false
+      misconception_id: mc.phy.o.lamp_resistance_falls_when_hot
+      feedback: A hot metal's ions vibrate more and get in the electrons' way, so a filament's resistance rises as it heats up.
+    - id: C
+      text: The resistance stays the same; the meters become less accurate
+      correct: false
+      misconception_id: mc.phy.o.lamp_resistance_constant
+      feedback: 'A lamp''s I-V graph bends over: each extra volt gives less extra current, because the hotter filament has more resistance.'
+    - id: D
+      text: A flatter graph means a smaller resistance
+      correct: false
+      misconception_id: mc.phy.o.iv_gradient_is_resistance
+      feedback: On a graph of current against p.d., the steeper the line the more current flows for each volt, so the smaller the resistance. Use R = V/I.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Look at how the current changes as the p.d. changes, and what that says about R = V/I.
+  - rung: 2
+    name: concept
+    text:
+      en: A fixed resistor gives a straight line through the origin; a line that bends shows a resistance that changes; some components conduct in one direction only.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Each extra volt gives less extra current, which means a growing resistance.
+  - rung: 5
+    name: full_step
+    text:
+      en: The filament gets hotter and its resistance increases. Each extra volt gives less extra current, which means a growing resistance.
+  misconception_ids:
+  - mc.phy.o.iv_gradient_is_resistance
+  - mc.phy.o.lamp_resistance_constant
+  - mc.phy.o.lamp_resistance_falls_when_hot
+solution:
+  steps:
+  - n: 1
+    latex: \text{The filament gets hotter and its resistance increases}
+    reason: Read the shape of the graph as a resistance
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

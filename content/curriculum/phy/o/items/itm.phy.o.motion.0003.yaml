@@ -1,0 +1,85 @@
+id: itm.phy.o.motion.0003
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.speed_unit_conversion
+stem: A road sign gives a speed limit of 54 km/h.
+parts:
+- id: a
+  prompt: Write this speed in metres per second.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '15'
+    unit: m/s
+    unit_policy: exact
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_k_0003_a
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Kilometres per hour and metres per second measure the same thing. Which is the bigger unit?
+  - rung: 2
+    name: concept
+    text:
+      en: 1 m/s is the same speed as 3.6 km/h.
+  - rung: 3
+    name: first_step
+    text:
+      en: To go from km/h to m/s, divide by 3.6.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 54 ÷ 3.6.
+  - rung: 5
+    name: full_step
+    text:
+      en: 54 ÷ 3.6 = 15, so the limit is 15 m/s.
+  misconception_ids:
+  - mc.phy.o.kmh_divide_by_36
+solution:
+  steps:
+  - n: 1
+    latex: 54\ \text{km/h} = \frac{54}{3.6}\ \text{m/s}
+    reason: 1 m/s is 3.6 km/h
+  - n: 2
+    latex: = 15\ \text{m/s}
+    reason: Divide
+    check_id: chk_build_phy_k_0003_a
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- transport
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_k_0003_a:
+    args:
+      quantity: 54 km/h
+      to: m/s
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

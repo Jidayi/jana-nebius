@@ -1,0 +1,36 @@
+id: mc.phy.o.transfer_named_as_store
+kc_ids:
+- kc.phy.o.energy.stores_and_transfers
+student_name: Calling a transfer a store
+description: 'Mixes up stores and transfers: calls heating, an electric current, light or sound a store, or calls a store such as the thermal store a way of transferring energy.'
+signatures:
+- kind: answer_transform
+  expression: store
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'A store is where energy sits (kinetic, gravitational, elastic, chemical, thermal, nuclear). A transfer is how it moves: by a force, electrically, by heating or by radiation such as light and sound.'
+probe_item_ids:
+- itm.phy.o.energy.0011
+- itm.phy.o.energy.0012
+- itm.phy.o.energy.0014
+- itm.phy.o.energy.0015
+- itm.phy.o.energy.0002
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

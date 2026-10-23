@@ -1,0 +1,35 @@
+id: mc.chm.o.organic_fraction_is_one_compound
+kc_ids:
+- kc.chm.o.organic.fuels_and_cracking
+student_name: A fraction is one pure compound
+description: Thinks each fraction from the fractionating column is a single pure substance (for example, petrol is pure octane) rather than a mixture of hydrocarbons with similar boiling points.
+signatures:
+- kind: answer_transform
+  expression: 'choice: a petroleum fraction described as a single compound'
+fix:
+  strategy: counterexample
+  text:
+    en: Fractional distillation sorts molecules into groups by boiling point. Each fraction is still a mixture of many hydrocarbons whose boiling points lie in a similar range.
+probe_item_ids:
+- itm.chm.o.organic.0037
+- itm.chm.o.organic.0038
+- itm.chm.o.organic.0039
+- itm.chm.o.organic.0040
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

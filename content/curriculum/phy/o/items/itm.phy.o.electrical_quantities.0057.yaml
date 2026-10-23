@@ -1,0 +1,106 @@
+id: itm.phy.o.electrical_quantities.0057
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.resistance
+stem: The p.d. across a length of wire is 0.8 V and the current through it is 100 mA.
+parts:
+- id: a
+  prompt: Calculate its resistance.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 0.125 Ω
+      correct: false
+      misconception_id: mc.phy.o.ohm_law_upside_down
+      feedback: 'Resistance is the p.d. needed for each amp: R = V/I, so I = V/R and V = IR. The p.d. is never underneath.'
+    - id: B
+      text: 8 Ω
+      correct: true
+    - id: C
+      text: 0.08 Ω
+      correct: false
+      misconception_id: mc.phy.o.ohm_law_multiplied
+      feedback: If 12 V drives 2 A, each amp needs 6 V, so R = 12 ÷ 2 = 6 Ω, not 24 Ω. Resistance is p.d. per amp.
+    - id: D
+      text: 0.008 Ω
+      correct: false
+      misconception_id: mc.phy.o.milliamps_used_as_amps
+      feedback: A milliamp is a thousandth of an amp. Change milliamps to amps before using the formula.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Resistance tells you how many volts are needed for each amp.
+  - rung: 2
+    name: concept
+    text:
+      en: R = V ÷ I, with V in volts and I in amps.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change the current into amps first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 0.8 V by 0.1 A.
+  - rung: 5
+    name: full_step
+    text:
+      en: R = 0.8 ÷ 0.1 = 8 Ω.
+  misconception_ids:
+  - mc.phy.o.milliamps_used_as_amps
+  - mc.phy.o.ohm_law_multiplied
+  - mc.phy.o.ohm_law_upside_down
+solution:
+  steps:
+  - n: 1
+    latex: I = 100\ \text{mA} = 0.1\ \text{A}
+    reason: A thousand mA in 1 A
+    check_id: chk_build_phy_elq_0057_ia
+  - n: 2
+    latex: R = \frac{V}{I} = \frac{0.8}{0.1} = 8\ \Omega
+    reason: Resistance = p.d. ÷ current
+    check_id: chk_build_phy_elq_0057_ans
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_elq_0057_ans:
+    args:
+      expression: 0.8/0.1
+    tool: math_evaluate
+  chk_build_phy_elq_0057_ia:
+    args:
+      expression: '0.1'
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

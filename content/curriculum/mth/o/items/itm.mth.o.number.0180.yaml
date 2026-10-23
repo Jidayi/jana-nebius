@@ -1,0 +1,111 @@
+id: itm.mth.o.number.0180
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.estimation
+stem: Estimate the value of $\frac{19.6 \times 4.93}{0.198}$ by rounding each number to 1 significant figure.
+parts:
+- id: a
+  prompt: Give your estimate.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '500'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0180_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You are asked for an estimate, so do not use the exact numbers.
+  - rung: 2
+    name: concept
+    text:
+      en: Round each number to 1 significant figure, then calculate.
+  - rung: 3
+    name: first_step
+    text:
+      en: 19.6 rounds to 20 and 4.93 rounds to 5.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 0.198 rounds to 0.2. Dividing by a number less than 1 makes the answer bigger.
+  - rung: 5
+    name: full_step
+    text:
+      en: The estimate is (20 × 5) ÷ 0.2 = 500.
+  misconception_ids:
+  - mc.mth.o.estimate_not_one_sf
+  - mc.mth.o.divide_by_decimal_smaller
+  - mc.mth.o.estimate_exact_then_round
+solution:
+  steps:
+  - n: 1
+    latex: 19.6 \approx 20
+    reason: 1 significant figure
+    check_id: chk_build_mth_num_0180_rx
+  - n: 2
+    latex: 4.93 \approx 5
+    reason: 1 significant figure
+    check_id: chk_build_mth_num_0180_ry
+  - n: 3
+    latex: 0.198 \approx 0.2
+    reason: 1 significant figure
+    check_id: chk_build_mth_num_0180_rz
+  - n: 4
+    latex: \frac{20 \times 5}{0.2} = 500
+    reason: Work out the easier calculation
+    check_id: chk_build_mth_num_0180_ans
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0180_ans:
+    args:
+      expression: 20*5/0.2
+    tool: math_evaluate
+  chk_build_mth_num_0180_rx:
+    args:
+      expression: '19.6'
+      sf: 1
+    tool: math_evaluate
+  chk_build_mth_num_0180_ry:
+    args:
+      expression: '4.93'
+      sf: 1
+    tool: math_evaluate
+  chk_build_mth_num_0180_rz:
+    args:
+      expression: '0.198'
+      sf: 1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,35 @@
+id: mc.acc.o.br_statement_view_reversed
+kc_ids:
+- kc.acc.o.bank_reconciliation.overdraft_sides
+student_name: Reading the statement from your own side
+description: Reads the bank statement as if it were written from the business's point of view.
+signatures:
+- kind: structural
+  rule: debit_credit_swapped
+  account_class: liability
+fix:
+  strategy: contrast_example
+  text:
+    en: 'The statement is the bank''s record: your money is a credit there because the bank owes it to you.'
+probe_item_ids:
+- itm.acc.o.bank_reconciliation.0034
+- itm.acc.o.bank_reconciliation.0035
+- itm.acc.o.bank_reconciliation.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

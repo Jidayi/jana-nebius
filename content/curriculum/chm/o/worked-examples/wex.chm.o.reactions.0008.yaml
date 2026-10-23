@@ -1,0 +1,57 @@
+id: wex.chm.o.reactions.0008
+kc_ids:
+- kc.chm.o.reactions.rate_data
+problem: 72 cm³ of oxygen is collected in the first 60 s of a reaction at room temperature and pressure, where one mole of gas occupies 24 dm³. Calculate the mean rate of production of oxygen in mol/s.
+steps:
+- n: 1
+  latex: n = \frac{72}{1000 \times 24} = 0.003\ \text{mol}
+  reason: Volume in dm³ ÷ molar volume
+  check_id: chk_build_chm_reactions_w0008_n
+- n: 2
+  latex: \text{rate} = \frac{0.003}{60}
+  reason: Moles ÷ time
+  check_id: chk_build_chm_reactions_w0008_r
+final_answer:
+  latex: 0.0000500\ \text{mol/s}
+  check_id: chk_build_chm_reactions_w0008_r
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_w0008_n:
+    args:
+      constants:
+      - source: pack
+        symbol: vm
+      sf: 3
+      steps:
+      - id: n
+        op: amount_from_gas_volume
+        volume: 72 cm^3
+    tool: chem_stoichiometry
+  chk_build_chm_reactions_w0008_r:
+    args:
+      expression: 0.003/60
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,92 @@
+id: itm.mth.o.number.0147
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.standard_form_convert
+stem: Write 0.00009 in standard form, $A \times 10^n$.
+parts:
+- id: a
+  prompt: Find the power n.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '-5'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0147_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Standard form is a number from 1 up to (not including) 10, times a power of 10.
+  - rung: 2
+    name: concept
+    text:
+      en: Count how many places the decimal point must move to give a number between 1 and 10.
+  - rung: 3
+    name: first_step
+    text:
+      en: The first number is 9.
+  - rung: 4
+    name: worked_step
+    text:
+      en: For a number less than 1 the power of 10 is negative.
+  - rung: 5
+    name: full_step
+    text:
+      en: 0.00009 = 9 × 10^-5, so n = -5.
+  misconception_ids:
+  - mc.mth.o.sf_power_sign
+  - mc.mth.o.sf_count_zeros
+  - mc.mth.o.sf_not_normalised
+solution:
+  steps:
+  - n: 1
+    latex: 0.00009 = 9 \times 10^{-5}
+    reason: Move the point until the number is between 1 and 10
+    check_id: chk_build_mth_num_0147_m
+  - n: 2
+    latex: n = -5
+    reason: The point moved to the right, so the power is negative
+    check_id: chk_build_mth_num_0147_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0147_ans:
+    args:
+      expression: '-5'
+    tool: math_evaluate
+  chk_build_mth_num_0147_m:
+    args:
+      expression: 0.00009/10^(-5)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

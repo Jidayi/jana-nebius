@@ -1,0 +1,211 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.ray-diagram",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at parallel ray.",
+        "Step 2: look at focal ray.",
+        "Step 3: look at centre ray and image."
+      ],
+      "summary": "A ray diagram for a converging lens: object 30 cm from the optic, image 15 cm from the optic, real inverted diminished, magnification 1/2."
+    },
+    "computed": {
+      "check_ids": [
+        "chk_build_fx_ray_diagram_1"
+      ],
+      "focal_points": [
+        [
+          -10.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0
+        ]
+      ],
+      "image_top": [
+        15.0,
+        -2.0
+      ],
+      "labels": {
+        "image_distance": "15 cm",
+        "magnification": "1/2"
+      },
+      "nature": {
+        "orientation": "inverted",
+        "size": "diminished",
+        "type": "real"
+      },
+      "nature_text": "real inverted diminished",
+      "object_top": [
+        -30.0,
+        4.0
+      ],
+      "paths": {
+        "centre": [
+          [
+            -30.0,
+            4.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            15.0,
+            -2.0
+          ]
+        ],
+        "focal": [
+          [
+            -30.0,
+            4.0
+          ],
+          [
+            0.0,
+            -2.0
+          ],
+          [
+            15.0,
+            -2.0
+          ]
+        ],
+        "parallel": [
+          [
+            -30.0,
+            4.0
+          ],
+          [
+            0.0,
+            4.0
+          ],
+          [
+            15.0,
+            -2.0
+          ]
+        ]
+      },
+      "rays": [
+        "parallel",
+        "focal",
+        "centre"
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_ray_diagram_1",
+      "pack:pack.phy.o/visual_presets/dgm.phy.ray_converging_beyond_2f.v1"
+    ],
+    "params": {
+      "focal_length": "10 cm",
+      "object_distance": "30 cm",
+      "object_height": "4 cm",
+      "optic": "converging_lens",
+      "rays": [
+        "parallel",
+        "focal",
+        "centre"
+      ],
+      "show": [
+        "image",
+        "focal_points"
+      ]
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "optic",
+        "name": "converging lens",
+        "role": "line"
+      },
+      {
+        "focusable": false,
+        "id": "principal_axis",
+        "name": "principal axis",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "object",
+        "name": "object",
+        "quizzable": true,
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "image",
+        "name": "image",
+        "quizzable": true,
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "F1",
+        "name": "focal point F",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "F2",
+        "name": "focal point F",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "ray.parallel",
+        "name": "parallel ray",
+        "role": "ray"
+      },
+      {
+        "focusable": true,
+        "id": "ray.focal",
+        "name": "focal ray",
+        "role": "ray"
+      },
+      {
+        "focusable": true,
+        "id": "ray.centre",
+        "name": "centre ray",
+        "role": "ray"
+      }
+    ],
+    "ref": "dgm.phy.ray_converging_beyond_2f.v1",
+    "repairs": [],
+    "resolution_hash": "sha256:b976a715a50d66ee566ef653b46db83241fa96e2af7e2702ab197b183f0d058e",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "ray.parallel"
+        ]
+      },
+      {
+        "highlight": [
+          "ray.focal"
+        ]
+      },
+      {
+        "highlight": [
+          "ray.centre",
+          "image"
+        ]
+      }
+    ],
+    "type": "ray_diagram",
+    "visual_id": "vis_SP7N5D6EPEPKMDRJ1TP2FY72BS"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: ray diagram (shown labels)",
+  "variant": "ray-diagram"
+}

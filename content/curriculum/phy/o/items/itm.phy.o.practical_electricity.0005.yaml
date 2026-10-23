@@ -1,0 +1,115 @@
+id: itm.phy.o.practical_electricity.0005
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.electrical_power
+stem: A current of 1.5 A flows through a resistor of resistance 4 Ω.
+parts:
+- id: a
+  prompt: Calculate the power transferred as heat in it.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '9'
+    unit: W
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_pel_0005_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the current and the resistance, not the p.d.
+  - rung: 2
+    name: concept
+    text:
+      en: Use P = I²R.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Square the current first: 1.5 × 1.5.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: The square is 2.25; multiply by 4 Ω.
+  - rung: 5
+    name: full_step
+    text:
+      en: The power is 9 W.
+  misconception_ids:
+  - mc.phy.o.electric_power_current_not_squared
+  - mc.phy.o.electric_power_wrong_quantity_squared
+  - mc.phy.o.electric_power_square_as_double
+solution:
+  steps:
+  - n: 1
+    latex: I^2 = 1.5^2 = 2.25
+    reason: Square the current
+    check_id: chk_build_phy_pel_0005_sq
+  - n: 2
+    latex: P = I^2 R = 2.25 \times 4 = 9\ \text{W}
+    reason: Power from current and resistance
+    check_id: chk_build_phy_pel_0005_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  I: '1.5'
+  R: '4'
+checks:
+  chk_build_phy_pel_0005_ans:
+    args:
+      expression: 1.5^2*4
+    tool: math_evaluate
+  chk_build_phy_pel_0005_sq:
+    args:
+      expression: 1.5^2
+    tool: math_evaluate
+  chk_build_phy_pel_0005_tool:
+    args:
+      components:
+      - emf: '6'
+        id: B
+        kind: battery
+      - id: R
+        kind: resistor
+        resistance: '4'
+      network:
+        series:
+        - B
+        - R
+    tool: phys_circuit
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,91 @@
+id: itm.chm.o.reactions.0065
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.redox
+stem: 'Pale green iron(II) ions turn yellow-brown when chlorine is bubbled through the solution: 2Fe²⁺ + Cl₂ → 2Fe³⁺ + 2Cl⁻.'
+parts:
+- id: a
+  prompt: What happens to the iron(II) ions?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: 'They are reduced: each gains one electron.'
+      correct: false
+      misconception_id: mc.chm.o.reactions_oxidation_is_gaining_electrons
+      feedback: Oxidation is loss of electrons; reduction is gain of electrons. A metal atom that becomes a positive ion has lost electrons, so it has been oxidised.
+    - id: B
+      text: They are the oxidising agent, because they are oxidised.
+      correct: false
+      misconception_id: mc.chm.o.reactions_oxidising_agent_is_oxidised
+      feedback: An agent does the job to something else. The oxidising agent oxidises another substance by taking its electrons, so the oxidising agent itself is reduced. The reducing agent gives electrons away and is oxidised.
+    - id: C
+      text: 'They are oxidised: each loses one electron.'
+      correct: true
+    - id: D
+      text: Nothing, because no oxygen is gained or lost.
+      correct: false
+      misconception_id: mc.chm.o.reactions_redox_needs_oxygen
+      feedback: 'Oxygen is only one way to see redox. Any transfer of electrons is redox: when magnesium burns in chlorine, magnesium loses electrons (oxidised) and chlorine gains them (reduced), with no oxygen at all.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Compare the charge on an iron ion before and after.
+  - rung: 2
+    name: concept
+    text:
+      en: A more positive ion has fewer electrons than before.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Fe²⁺ becomes Fe³⁺: the charge goes up by one.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Decide whether going up in charge means losing or gaining an electron, then name the change.
+  - rung: 5
+    name: full_step
+    text:
+      en: Each Fe²⁺ ion loses one electron to become Fe³⁺, so the iron(II) ions are oxidised (chlorine is the oxidising agent).
+  misconception_ids:
+  - mc.chm.o.reactions_oxidation_is_gaining_electrons
+  - mc.chm.o.reactions_redox_needs_oxygen
+  - mc.chm.o.reactions_oxidising_agent_is_oxidised
+solution:
+  steps:
+  - n: 1
+    latex: \text{Fe}^{2+} \rightarrow \text{Fe}^{3+} + e^-
+    reason: Electron lost
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

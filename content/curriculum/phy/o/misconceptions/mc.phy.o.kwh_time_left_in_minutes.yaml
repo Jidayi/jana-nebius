@@ -1,0 +1,35 @@
+id: mc.phy.o.kwh_time_left_in_minutes
+kc_ids:
+- kc.phy.o.practical_electricity.energy_cost
+student_name: Minutes used for kilowatt-hours
+description: Multiplies a power in kilowatts by a time in minutes and calls the result kilowatt-hours.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Kilowatt-hours need the time in hours: 30 minutes is half an hour.'
+probe_item_ids:
+- itm.phy.o.practical_electricity.0017
+- itm.phy.o.practical_electricity.0018
+- itm.phy.o.practical_electricity.0025
+- itm.phy.o.practical_electricity.0026
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

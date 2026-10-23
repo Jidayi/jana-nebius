@@ -1,0 +1,59 @@
+{
+  "id": "connectivity-indicator.canonical",
+  "title": "Connectivity indicator, every online feature off",
+  "note": "The default: nothing leaves this computer. Faint, house icon.",
+  "component": "ConnectivityIndicator",
+  "state": "canonical",
+  "payload": {
+    "status": {
+      "type": "connectivity.status",
+      "network": "off",
+      "checked_ts": 1760000000000,
+      "features": [
+        {
+          "feature": "cloud_tier",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "downloads",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "update_checks",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "telemetry",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "crash_reports",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        }
+      ]
+    },
+    "open": true
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light",
+    "connectivity": "all-off"
+  },
+  "placements": [
+    "rail"
+  ],
+  "expectText": [
+    "On this computer",
+    "Everything stays on this computer."
+  ]
+}

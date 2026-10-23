@@ -1,0 +1,73 @@
+id: les.acc.o.control_accounts.control_accounts
+node_id: cur.acc.o.control_accounts
+kc_ids:
+- kc.acc.o.control_accounts.control_purpose
+- kc.acc.o.control_accounts.control_sources
+- kc.acc.o.control_accounts.sales_ledger_control
+- kc.acc.o.control_accounts.purchases_ledger_control
+title: Checking the personal ledgers with control accounts
+estimated_minutes: 12
+blocks:
+- type: step
+  text:
+    en: Imagine a firm with a very long list of customers who buy on credit. Have a go before any rules.
+  item_id: itm.acc.o.control_accounts.0003
+  action: try_first
+  why:
+    en: One account kept in totals gives the amount owed by everyone at once. It does not point to the customer who made a mistake.
+  names:
+    en: An account that repeats a whole personal ledger in totals is a control account. Its balance should equal the total of that ledger.
+- type: step
+  text:
+    en: Each figure in a control account goes on the same side as in the customers' own accounts.
+  item_id: itm.acc.o.control_accounts.0012
+  action: choose
+  why:
+    en: A credit sale makes a customer owe more, so it is a debit, just as in the customer's account. The total comes from the sales journal.
+- type: step
+  text:
+    en: 'Predict before you look at the choices: which things reduce what customers owe?'
+  item_id: itm.acc.o.control_accounts.0021
+  action: predict
+  why:
+    en: Money received, discounts given and debts written off all lower what customers owe, so they are credits. Credit sales and dishonoured cheques raise it, so they are debits.
+- type: step
+  text:
+    en: Some figures in a list belong in the control account and some do not. Pick out only what passed through the customers' accounts.
+  item_id: itm.acc.o.control_accounts.0030
+  action: choose
+  why:
+    en: Cash sales never go through a customer's account, so they are left out. Total the debits, take away the credits, and what is left is the balance.
+- type: step
+  text:
+    en: The purchases ledger control account is the mirror image. What the business owes to suppliers sits on the credit side.
+  item_id: itm.acc.o.control_accounts.0034
+  action: calculate
+  why:
+    en: Opening balance and credit purchases are credits; payments, returns, discount received and the set-off are debits. Cash purchases are left out.
+- type: check
+  item_ids:
+  - itm.acc.o.control_accounts.0002
+  - itm.acc.o.control_accounts.0024
+  - itm.acc.o.control_accounts.0035
+version: 0.2.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

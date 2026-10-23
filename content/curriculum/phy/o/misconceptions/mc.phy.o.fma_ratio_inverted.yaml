@@ -1,0 +1,36 @@
+id: mc.phy.o.fma_ratio_inverted
+kc_ids:
+- kc.phy.o.forces.force_mass_acceleration
+student_name: Dividing F = ma the wrong way
+description: Rearranges F = ma upside down, for example working out mass ÷ force for the acceleration.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'A bigger force gives a bigger acceleration, so force goes on top: a = F ÷ m. Check that your answer grows when the force grows.'
+probe_item_ids:
+- itm.phy.o.forces.0027
+- itm.phy.o.forces.0028
+- itm.phy.o.forces.0030
+- itm.phy.o.forces.0016
+- itm.phy.o.forces.0017
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,90 @@
+id: itm.mth.o.algebra_and_graphs.0904
+version: 0.1.0
+type: algebraic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.factorise_common
+stem: Factorise $9x^2 - 25$.
+parts:
+- id: a
+  prompt: Type the factorised expression.
+  marks: 2
+  answer:
+    kind: algebraic
+    check_id: chk_build_mth_alg_0904_key
+    expression: (3x - 5)(3x + 5)
+    variables:
+    - x
+    required_form: factorised
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Is each term a perfect square? Then this is a difference of two squares.
+  - rung: 2
+    name: concept
+    text:
+      en: a² − b² factorises as (a − b)(a + b).
+  - rung: 3
+    name: first_step
+    text:
+      en: Write 25 as a number squared.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 25 = 5², so b = 5.
+  - rung: 5
+    name: full_step
+    text:
+      en: The factorisation is $(3x - 5)(3x + 5)$.
+solution:
+  steps:
+  - n: 1
+    latex: 9x^2 - 25 = (3x)^2 - 5^2
+    reason: Both terms are perfect squares
+    check_id: chk_build_mth_alg_0904_n
+  - n: 2
+    latex: = (3x - 5)(3x + 5)
+    reason: A difference of two squares a² − b² is (a − b)(a + b)
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0904_c:
+    args:
+      expression: sqrt(9)
+    tool: math_evaluate
+  chk_build_mth_alg_0904_key:
+    args:
+      expression: 9x^2 - 25
+      form: factorised
+    tool: math_simplify
+  chk_build_mth_alg_0904_n:
+    args:
+      expression: sqrt(25)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,85 @@
+id: itm.chm.o.reactions.0071
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.redox
+stem: In a blast furnace, Fe₂O₃ + 3CO → 2Fe + 3CO₂. The oxidation number of iron changes from +3 to 0.
+parts:
+- id: a
+  prompt: What does this change show?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Iron is oxidised.
+      correct: false
+      misconception_id: mc.chm.o.reactions_oxidation_is_gaining_electrons
+      feedback: Oxidation is loss of electrons; reduction is gain of electrons. A metal atom that becomes a positive ion has lost electrons, so it has been oxidised.
+    - id: B
+      text: Iron is reduced.
+      correct: true
+    - id: C
+      text: Carbon monoxide is reduced.
+      correct: false
+    - id: D
+      text: Iron is neutralised.
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Is the oxidation number of iron going up or down?
+  - rung: 2
+    name: concept
+    text:
+      en: An increase in oxidation number is oxidation; a decrease is reduction.
+  - rung: 3
+    name: first_step
+    text:
+      en: Iron goes from +3 in the oxide to 0 in the metal.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A fall in oxidation number matches a gain of electrons.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Iron is reduced: its oxidation number falls from +3 to 0. Carbon monoxide is the reducing agent.'
+  misconception_ids:
+  - mc.chm.o.reactions_oxidation_is_gaining_electrons
+solution:
+  steps:
+  - n: 1
+    latex: \text{Fe}_2\text{O}_3 + 3\text{CO} \rightarrow 2\text{Fe} + 3\text{CO}_2
+    reason: 'Iron +3 to 0: reduced'
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

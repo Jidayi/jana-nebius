@@ -1,0 +1,50 @@
+id: wex.phy.o.motion.0020
+kc_ids:
+- kc.phy.o.motion.free_fall
+problem: A ball is thrown straight up at 10 m/s. Take g = 10 m/s^2. How long does it take to reach the top?
+steps:
+- n: 1
+  latex: t = \frac{u}{g}
+  reason: At the top the velocity is zero, so u − gt = 0
+- n: 2
+  latex: t = \frac{10}{10}
+  reason: Substitute
+  check_id: chk_build_phy_w_0020
+- n: 3
+  latex: t = 1.0\ \text{s}
+  reason: Evaluate
+  check_id: chk_build_phy_w_0020
+final_answer:
+  latex: 1.0\ \text{s}
+  check_id: chk_build_phy_w_0020
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_w_0020:
+    args:
+      expression: 10/10
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

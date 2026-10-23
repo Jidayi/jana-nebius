@@ -1,0 +1,218 @@
+- id: kc.phy.o.electromagnetism.fields_of_currents
+  code: PHY-O-04.05.K01
+  node_id: cur.phy.o.electricity_and_magnetism.electromagnetic_effects
+  statement: Describe the magnetic field of a straight wire and a solenoid, and how to make an electromagnet stronger
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.176
+  prerequisites:
+  - kc_id: kc.phy.o.magnetism.magnetic_fields
+    strength: required
+  - kc_id: kc.phy.o.electrical_quantities.current_and_charge
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.electromagnet_factor_ignored
+  - mc.phy.o.field_lines_spacing_reversed
+  - mc.phy.o.grip_rule_reversed
+  - mc.phy.o.nonmagnetic_materials_attracted
+  - mc.phy.o.reversing_current_same_field
+  - mc.phy.o.soft_iron_steel_swapped
+  - mc.phy.o.solenoid_field_weak_inside
+  - mc.phy.o.solenoid_has_no_poles
+  - mc.phy.o.wire_field_along_wire
+  - mc.phy.o.wire_field_radial
+  - mc.phy.o.wire_field_stronger_further_away
+  skill_ids:
+  - phy-o-electromagnetism
+  glossary:
+  - magnetic field
+  - solenoid
+  - electromagnet
+  - current
+  - field line
+  - coil
+  - iron core
+  - turns
+  - compass
+  - magnetic
+  - magnetic field line
+  - right-hand grip rule
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.electromagnetism.motor_effect
+  code: PHY-O-04.05.K02
+  node_id: cur.phy.o.electricity_and_magnetism.electromagnetic_effects
+  statement: Predict the direction of the force on a current-carrying wire in a magnetic field and explain a d.c. motor
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.196
+  prerequisites:
+  - kc_id: kc.phy.o.electromagnetism.fields_of_currents
+    strength: required
+  misconception_ids:
+  - mc.phy.o.commutator_role_confused
+  - mc.phy.o.field_lines_s_to_n
+  - mc.phy.o.fleming_right_hand_used
+  - mc.phy.o.force_along_current
+  - mc.phy.o.force_along_field
+  - mc.phy.o.motor_factor_reversed
+  - mc.phy.o.nonmagnetic_materials_attracted
+  - mc.phy.o.parallel_wire_feels_force
+  - mc.phy.o.reversing_both_reverses_force
+  skill_ids:
+  - phy-o-electromagnetism
+  glossary:
+  - motor effect
+  - magnetic field
+  - current
+  - current-carrying
+  - d.c. motor
+  - commutator
+  - coil
+  - split-ring commutator
+  - brushes
+  - Fleming's left-hand rule
+  - magnet
+  - magnetic
+  - armature
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.electromagnetism.electromagnetic_induction
+  code: PHY-O-04.05.K03
+  node_id: cur.phy.o.electricity_and_magnetism.electromagnetic_effects
+  statement: Explain how a changing magnetic field induces an e.m.f. and state the factors that increase it
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.196
+  prerequisites:
+  - kc_id: kc.phy.o.electromagnetism.fields_of_currents
+    strength: required
+  misconception_ids:
+  - mc.phy.o.ac_frequency_is_rpm
+  - mc.phy.o.ac_two_cycles_per_turn
+  - mc.phy.o.emf_needs_closed_circuit
+  - mc.phy.o.generator_frequency_fixed
+  - mc.phy.o.induction_factor_reversed
+  - mc.phy.o.magnet_must_move
+  - mc.phy.o.magnetic_force_needs_contact
+  - mc.phy.o.reverse_motion_same_direction
+  - mc.phy.o.rpm_times_sixty
+  - mc.phy.o.stationary_magnet_induces
+  skill_ids:
+  - phy-o-electromagnetism
+  glossary:
+  - electromagnetic induction
+  - induced
+  - induce
+  - e.m.f.
+  - magnetic field
+  - coil
+  - magnet
+  - generator
+  - alternating current
+  - induced current
+  - magnetic
+  - field line
+  - galvanometer
+  - a.c. generator
+  - slip ring
+  - dynamo
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.electromagnetism.transformers
+  code: PHY-O-04.05.K04
+  node_id: cur.phy.o.electricity_and_magnetism.electromagnetic_effects
+  statement: Use the turns ratio of a transformer to find an output voltage or a number of turns
+  kind: procedural
+  tools:
+  - math_solve
+  - math_evaluate
+  exam_weight: 0.235
+  prerequisites:
+  - kc_id: kc.phy.o.electromagnetism.electromagnetic_induction
+    strength: required
+  misconception_ids:
+  - mc.phy.o.current_flows_through_core
+  - mc.phy.o.kilo_prefix_ignored
+  - mc.phy.o.nonmagnetic_materials_attracted
+  - mc.phy.o.soft_iron_steel_swapped
+  - mc.phy.o.step_up_down_confused
+  - mc.phy.o.transformer_works_on_dc
+  - mc.phy.o.turns_ratio_given_as_answer
+  - mc.phy.o.turns_ratio_inverted
+  - mc.phy.o.turns_ratio_not_divided
+  skill_ids:
+  - phy-o-electromagnetism
+  glossary:
+  - transformer
+  - primary coil
+  - secondary coil
+  - turns ratio
+  - turns
+  - step-up
+  - step-down
+  - voltage
+  - output voltage
+  - input voltage
+  - alternating current
+  - iron core
+  - coil
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.electromagnetism.power_transmission
+  code: PHY-O-04.05.K05
+  node_id: cur.phy.o.electricity_and_magnetism.electromagnetic_effects
+  statement: Use input power = output power for an ideal transformer and explain why power is sent at high voltage
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.196
+  prerequisites:
+  - kc_id: kc.phy.o.electromagnetism.transformers
+    strength: required
+  - kc_id: kc.phy.o.practical_electricity.electrical_power
+    strength: required
+  misconception_ids:
+  - mc.phy.o.efficiency_from_voltages
+  - mc.phy.o.efficiency_left_as_fraction
+  - mc.phy.o.efficiency_upside_down
+  - mc.phy.o.high_voltage_lowers_resistance
+  - mc.phy.o.higher_voltage_more_loss
+  - mc.phy.o.loss_falls_with_voltage_not_square
+  - mc.phy.o.power_loss_not_squared
+  - mc.phy.o.power_loss_uses_line_voltage
+  - mc.phy.o.secondary_current_rises_with_voltage
+  - mc.phy.o.transformer_current_unchanged
+  - mc.phy.o.transmission_current_upside_down
+  - mc.phy.o.transmission_loss_unchanged
+  - mc.phy.o.transformer_current_squared
+  skill_ids:
+  - phy-o-electromagnetism
+  glossary:
+  - transformer
+  - transmission
+  - power
+  - input power
+  - output power
+  - voltage
+  - current
+  - power line
+  - ideal transformer
+  - step-up
+  - step-down
+  - efficiency
+  - primary coil
+  - secondary coil
+  - transmission line
+  - national grid
+  - power station
+  difficulty_prior: 0.6
+  version: 0.1.1
+  status: active

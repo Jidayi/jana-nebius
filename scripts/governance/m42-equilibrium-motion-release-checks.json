@@ -1,0 +1,450 @@
+{
+  "checked_at": "2026-10-18T23:15:17.537655+00:00",
+  "status": "Equilibrium citation domain and conditional source-reporting chat fixed; unchanged live corpus 117/117, focused regressions 8/8; production release gates remain open",
+  "release_ready": false,
+  "feature_default_enabled": false,
+  "production_modified": false,
+  "project_id": "jana-staging-512005",
+  "gateway_origin": "https://staging-api.getjana.app",
+  "provider_endpoint": "https://aiplatform.eu.rep.googleapis.com/v1/projects/jana-staging-512005/locations/eu/publishers/google",
+  "model": "gemini-3.8-flash",
+  "source_bundle_sha256": "1297f31090f1b9539fd3e339429b4461b554c117769dfe04ed004cb50606eeb4",
+  "source_inputs": {
+    "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/source-inputs.json",
+    "sha256": "588e1fe790440d1ee1264c7ce7d85e14ab3c9e558a3c93bf028bdc449248ebb3"
+  },
+  "owner_approval": "scripts/governance/m42-owner-approval.json",
+  "changes": [
+    "Generated citation identifiers enumerate the actual request-local frozen passages, with the existing strict binding/contract checks still enforced.",
+    "Source-reporting chat preserves conditional statements. Generation must not assign a conditional result to a particular example without its premise; verification interprets the actual question while still rejecting unsupported case-specific values.",
+    "One or two live-corpus workers can be selected explicitly; this complete run uses one to reduce simultaneous conservative reservations under the approved ceiling. Canonical contracts and the v4 corpus remain unchanged."
+  ],
+  "diagnosis": {
+    "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-diagnosis.json",
+    "sha256": "a02293c68208aba0850128e48d604d037f429d237a8e1bd7593aab32eefe1036"
+  },
+  "runtime_patch": {
+    "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-runtime-change.patch",
+    "sha256": "c46ae863297fa9e6d2e954a0a24383417cc4fce179070f67cf452d0cdcd1faab"
+  },
+  "checks": {
+    "gateway": {
+      "passed": 114,
+      "skipped": 12,
+      "report": {
+        "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-gateway.xml",
+        "sha256": "8f518418457f52ff597c8e723e57c6a034f3778d177db8021b0b74de3f5b740a"
+      }
+    },
+    "corpus_inventory_and_release_preparation": {
+      "passed": 15,
+      "skipped": 1,
+      "report": {
+        "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-release.xml",
+        "sha256": "068da80c4df492d3eba1a30b5718e7e048e470274020176cbbaa3d773254b88c"
+      }
+    },
+    "gateway_static": {
+      "passed": true,
+      "checks": [
+        {
+          "command": [
+            ".venv/bin/ruff",
+            "check",
+            "services/cloud-gateway/cloud_gateway/study.py",
+            "services/cloud-gateway/tests/test_m42_study.py"
+          ],
+          "exit_code": 0,
+          "output": "All checks passed!\n"
+        },
+        {
+          "command": [
+            ".venv/bin/ruff",
+            "format",
+            "--check",
+            "services/cloud-gateway/cloud_gateway/study.py",
+            "services/cloud-gateway/tests/test_m42_study.py"
+          ],
+          "exit_code": 0,
+          "output": "2 files already formatted\n"
+        },
+        {
+          "command": [
+            ".venv/bin/mypy",
+            "services/cloud-gateway/cloud_gateway"
+          ],
+          "exit_code": 0,
+          "output": "Success: no issues found in 30 source files\n"
+        }
+      ]
+    },
+    "live_harness_static": {
+      "passed": true,
+      "checks": [
+        {
+          "command": [
+            ".venv/bin/ruff",
+            "check",
+            "services/cloud-gateway/tests/test_m42_deployed.py"
+          ],
+          "exit_code": 0,
+          "output": "All checks passed!\n"
+        },
+        {
+          "command": [
+            ".venv/bin/ruff",
+            "format",
+            "--check",
+            "services/cloud-gateway/tests/test_m42_deployed.py"
+          ],
+          "exit_code": 0,
+          "output": "1 file already formatted\n"
+        }
+      ]
+    },
+    "evaluation_lock": {
+      "passed": false,
+      "report": {
+        "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-eval-lock-final.json",
+        "sha256": "c199f123a94e2993558b9400b2a1b1d8af7e1190c492d1de7b5a1eceda0e79bc"
+      },
+      "scope": "Whole-workspace content lock; Study gateway does not edit or relock the reported curriculum files."
+    },
+    "public_quality": {
+      "corpus_version": 4,
+      "expected_cases": 117,
+      "observed": 117,
+      "passed": 117,
+      "failed": [],
+      "complete": true,
+      "requested_full_corpus": true,
+      "passed_gate": true,
+      "workers": 1,
+      "report": {
+        "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-quality-full.json",
+        "sha256": "fe197b7d480cde271917020ba69c397fbb4d62983afe018806ae8270307b0548"
+      },
+      "corpus_sha256": "9fdcaab8313ad457ef7ba84c24466639aa9262dfca5cf16d8e29f02eedb5a025",
+      "corpus_unchanged": true,
+      "independent_held_out_review": false
+    },
+    "targeted_regressions": {
+      "passed": 8,
+      "includes_missing_actual_acceleration_refusal": true,
+      "report": {
+        "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-public-focused.json",
+        "sha256": "08ce5f68edae51481434abd591456e5b23092ea24db3cc0ee18b7976adcdd859"
+      }
+    },
+    "public_unicode_stress": {
+      "passed": 12,
+      "NFC": 6,
+      "NFD": 6,
+      "source_case": "undefined-v-flashcards",
+      "report": {
+        "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-unicode-stress.json",
+        "sha256": "f807a8047ca64a82dbcff15e34d6f5ef106588dba37a54344d0f05b4d89ee532"
+      },
+      "source_bundle_sha256": "1297f31090f1b9539fd3e339429b4461b554c117769dfe04ed004cb50606eeb4"
+    },
+    "public_uploads": {
+      "passed": 6,
+      "formats": [
+        "text",
+        "docx",
+        "pdf",
+        "photo-ocr",
+        "scanned-pdf-ocr",
+        "recording"
+      ],
+      "report": {
+        "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-uploads.json",
+        "sha256": "036f19328a18ca79a6bfb1cc1258ef146e2819bcea33b217c7a6aa0e0126fd0b"
+      },
+      "source_bundle_sha256": "1297f31090f1b9539fd3e339429b4461b554c117769dfe04ed004cb50606eeb4"
+    }
+  },
+  "prior_checks": {
+    "path": "scripts/governance/m42-flashcard-release-checks.json",
+    "sha256": "1d846e0c4e6a263c27dd4e8c4693333b231d9c032bcdf1111e7fccc36ff97a78"
+  },
+  "corpus_amendment": {
+    "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/unicode-fixture-amendment.json",
+    "sha256": "ddc4db51e301fffe7ba8c153c0e62d8c68c18b214d8b94de445c38745a900d30"
+  },
+  "independent_review_complete": false,
+  "provider_cap": {
+    "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-cap-final.jsonl",
+    "sha256": "7d23770fbc402db5bf79102da9f30d7dab5c70db72870557fd7691dc2351b607"
+  },
+  "budget": {
+    "normal_daily_usd": 2,
+    "temporary_qualification_ceiling_usd": 10,
+    "normal_restored": true,
+    "vertex_monthly_cap_usd": 20,
+    "vertex_monthly_cap_state": "CONFIGURED",
+    "monthly_cap_changed_this_turn": false,
+    "known_and_held_receipts": [
+      [
+        "completed",
+        1228,
+        6.069420225,
+        0.0
+      ],
+      [
+        "failed",
+        184,
+        1.151722275,
+        0.0
+      ],
+      [
+        "reconciled",
+        7,
+        0.0,
+        0.0
+      ],
+      [
+        "reserved",
+        5,
+        0.0,
+        1.90240875
+      ]
+    ],
+    "known_token_price_ledger_usd": 7.2211425,
+    "held_usd": 1.90240875,
+    "all_prior_uncertain_receipts_preserved": true,
+    "uncertain_receipts": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-holds-final.json",
+      "sha256": "153dec9503cae2708fd55d5c8a8067a3ce3e9ab8bc9d13028baad890ceeb9d0b"
+    },
+    "prior_budget_authorization": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-budget-authorization.json",
+      "sha256": "ebc6326019ef6e4cc7cef9a15f51a488239ec43e6f3b0f8670e3b2991ec54d3f"
+    },
+    "accounting_note": "Cloud Billing uses gross estimated list costs excluding savings/credits; this is not the same measure as the gateway token-price ledger."
+  },
+  "host_checks": {
+    "source_digests_match": true,
+    "no_swap": true,
+    "scratch_tmpfs": true,
+    "credential_mount_read_only": true,
+    "privacy": {
+      "synthetic_source_strings_checked": 42,
+      "persistent_files_checked": 4,
+      "source_body_found": false,
+      "scope": "Gateway persistent metadata only; raw and frozen/redacted NFC/NFD corpus sources."
+    },
+    "public_boundaries": {
+      "hostname": "staging-api.getjana.app",
+      "system_ca_verified": true,
+      "spki_sha256": "anjl0qoSsJRc6RBeee5IjYBdBKt704Z0bhvqAiWEtZk=",
+      "not_after": "2027-01-16T14:15:03+00:00",
+      "ping": 204,
+      "unauthenticated_study": 401,
+      "unqualified_tutor_route": 404,
+      "wrong_audience": 401,
+      "normal_spend_guard": 429,
+      "guard_code": "allowance_exhausted"
+    }
+  },
+  "remaining": [
+    "Resolve the existing whole-workspace curriculum evaluation-lock failure (changed answer oracles without the required version bump); this Study gateway fix does not amend curriculum oracles or versions.",
+    "Confirm production hostname (api.getjana.app proposed), London/EU deployment decision and authorise production provisioning; engineering will create the actual configuration, pins and deployment.",
+    "Actual production-project provider retention/abuse-monitoring confirmation, approved assessment/Safety lead records, public production trust hierarchy and content-HSM signature; owner approval is already recorded.",
+    "Installer signing/notarisation access and final signed Mac Apple Silicon/VoiceOver, Windows x64/NVDA including non-AVX2, and required Ubuntu/Debian device/model-class measurements.",
+    "Independent held-out content/safety review, including the probability expectation amendment and Unicode source-definition amendment, local reference models and OCR/ASR; human prompt snapshot reviews (60 pending).",
+    "Engineering after those inputs: actual production extraction costs, immutable SBOM/licence/source-offer provenance, exact production qualification and strict preflight."
+  ],
+  "release_handoff": "services/cloud-gateway/deploy/M42-RELEASE-HANDOFF.md",
+  "device_handoff": "scripts/packaging/M42-DEVICE-CHECKS.md",
+  "production_preflight": {
+    "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/production-preflight.json",
+    "sha256": "41c8d0982a12be24f5bb80c170523ab86948e117b0103a91b4ad3b326f0afaad"
+  },
+  "evidence": {
+    "candidate-before.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/candidate-before.json",
+      "sha256": "7fb36b55ed820cda3d08691d3c7a185b85a756667464ad15d4fcf9dd1c33edce"
+    },
+    "handoff-before.md": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/handoff-before.md",
+      "sha256": "85b214b27795498032e62a95d42301a29b15f07c0a6de6e6d5d6f33d6b347630"
+    },
+    "production-preflight.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/production-preflight.json",
+      "sha256": "41c8d0982a12be24f5bb80c170523ab86948e117b0103a91b4ad3b326f0afaad"
+    },
+    "readme-before.md": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/readme-before.md",
+      "sha256": "b46307489e408ee545fadacddb0e6c7cfbe6eaf6131c3af4b228c30d3c2586b6"
+    },
+    "source-inputs.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/source-inputs.json",
+      "sha256": "588e1fe790440d1ee1264c7ce7d85e14ab3c9e558a3c93bf028bdc449248ebb3"
+    },
+    "twofail-boundaries.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-boundaries.json",
+      "sha256": "ad9724266669ac97ecad7fed5899c67f0e342e117c844bc38f24aa9ab2e710bf"
+    },
+    "twofail-boundaries.py": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-boundaries.py",
+      "sha256": "c17771de69e25ec12398196cba9489416fbc7026b9af0e4db8f51f1b84155d88"
+    },
+    "twofail-budget-rearmed.txt": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-budget-rearmed.txt",
+      "sha256": "f3609a2afdd504350970d41f0d9f736ad38b7bc358eb8edb558481ddb28eb36d"
+    },
+    "twofail-budget-restored.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-budget-restored.json",
+      "sha256": "73d4f0e301ac4e30ded0025f929dd7539eda5abf431c1198ebf8af7894670396"
+    },
+    "twofail-budget-restored.txt": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-budget-restored.txt",
+      "sha256": "88324bc3f66959b31eb5d23ee3c9157d4986b73996077e95996fd58d2872bb71"
+    },
+    "twofail-budget-start.txt": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-budget-start.txt",
+      "sha256": "f3609a2afdd504350970d41f0d9f736ad38b7bc358eb8edb558481ddb28eb36d"
+    },
+    "twofail-bundle-manifest.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-bundle-manifest.json",
+      "sha256": "bba36618b9ed745b8682ab9dc43d19ff4fcc0f70bfb3f0fdd65493b232fbea89"
+    },
+    "twofail-bundle-reproducibility.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-bundle-reproducibility.json",
+      "sha256": "8576fda32614409f1723bfefda98b1decdb38f5acfcabbbc92ffb8d0c478d803"
+    },
+    "twofail-cap-before.jsonl": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-cap-before.jsonl",
+      "sha256": "981796d597f2795ac2886b46c8b60f24ee339c2461ccadc1c1ff8900a8ee19e7"
+    },
+    "twofail-cap-final.jsonl": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-cap-final.jsonl",
+      "sha256": "7d23770fbc402db5bf79102da9f30d7dab5c70db72870557fd7691dc2351b607"
+    },
+    "twofail-deployment.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-deployment.json",
+      "sha256": "9395e852500fceced17f65fe58413a8d7c52e5a08c009bb299880cb39e8a9bb4"
+    },
+    "twofail-diagnosis.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-diagnosis.json",
+      "sha256": "a02293c68208aba0850128e48d604d037f429d237a8e1bd7593aab32eefe1036"
+    },
+    "twofail-diagnostic.jsonl": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-diagnostic.jsonl",
+      "sha256": "52fe7c4533a2316c992d7820da57974b83e75ba55c0dafc8a57f1811115f2915"
+    },
+    "twofail-diagnostic.py": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-diagnostic.py",
+      "sha256": "c13c9b77458eb583fe9ae4f5d779fa3d89f6d56d2f5463a4b24c41b29ae27b8b"
+    },
+    "twofail-eval-lock-final.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-eval-lock-final.json",
+      "sha256": "c199f123a94e2993558b9400b2a1b1d8af7e1190c492d1de7b5a1eceda0e79bc"
+    },
+    "twofail-eval-lock.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-eval-lock.json",
+      "sha256": "b8027dd432d6c3b12fd23b1e241b65e7d09cbea95fa91bdef91661d111ac04ae"
+    },
+    "twofail-gateway-static.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-gateway-static.json",
+      "sha256": "6789285d0b3943fbb7c4f6411ff2806ed2c519d704034b7018b7db4a97694fcb"
+    },
+    "twofail-gateway.xml": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-gateway.xml",
+      "sha256": "8f518418457f52ff597c8e723e57c6a034f3778d177db8021b0b74de3f5b740a"
+    },
+    "twofail-harness-static.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-harness-static.json",
+      "sha256": "22b25f6b9c49270b43f9ea44eb5116db55d71e3f3d1450a03e0c05bfde44ebba"
+    },
+    "twofail-holds-final.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-holds-final.json",
+      "sha256": "153dec9503cae2708fd55d5c8a8067a3ce3e9ab8bc9d13028baad890ceeb9d0b"
+    },
+    "twofail-host-final.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-host-final.json",
+      "sha256": "bdb5282af62de3059f3b861dd3035ae323302b81f31d86c3afd7e77b9420fffb"
+    },
+    "twofail-privacy.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-privacy.json",
+      "sha256": "bfca269ab7c61f98e1be5955f348442e7bc64ad5d1e64a8cf1120ffeab380767"
+    },
+    "twofail-public-focused.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-public-focused.json",
+      "sha256": "08ce5f68edae51481434abd591456e5b23092ea24db3cc0ee18b7976adcdd859"
+    },
+    "twofail-public-focused.py": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-public-focused.py",
+      "sha256": "ea653a156d67bf4b0d27453f327487008c511e033eb32d3c9f3612763d28de77"
+    },
+    "twofail-public-stress.py": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-public-stress.py",
+      "sha256": "5775be0e376dc74558c74856bdf0a03b5d52c6fb263fb0165052e0ec28531cf0"
+    },
+    "twofail-quality-full.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-quality-full.json",
+      "sha256": "fe197b7d480cde271917020ba69c397fbb4d62983afe018806ae8270307b0548"
+    },
+    "twofail-quality-full.xml": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-quality-full.xml",
+      "sha256": "128a1287894546d045f453012684da8f631ddd7e0c6db0d90300df92397b932e"
+    },
+    "twofail-release.xml": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-release.xml",
+      "sha256": "068da80c4df492d3eba1a30b5718e7e048e470274020176cbbaa3d773254b88c"
+    },
+    "twofail-requirements.txt": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-requirements.txt",
+      "sha256": "ac1f1b69cd2583a4e4e6cbf6d0e8c37ea7de45d8c2cd5859c2360a7a8e2defec"
+    },
+    "twofail-runtime-change.patch": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-runtime-change.patch",
+      "sha256": "c46ae863297fa9e6d2e954a0a24383417cc4fce179070f67cf452d0cdcd1faab"
+    },
+    "twofail-spend-before-full.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-spend-before-full.json",
+      "sha256": "50d154ac2f5404a41186d26b7392f8d6dc7b1f703e8c8f564fa8435d7bb41d3d"
+    },
+    "twofail-staging.toml": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-staging.toml",
+      "sha256": "1af898c081921727e93b1331a47f70266ff045897a7dd0b6dc37fffdf6282086"
+    },
+    "twofail-static.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-static.json",
+      "sha256": "85a52a0a982c2b165f00d51488bc6615696dac7d7cae2d40b3602331025d1fc7"
+    },
+    "twofail-study.xml": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-study.xml",
+      "sha256": "32e35d100cb16705d5011c3ab54ae458d2027f1b5a521f780c12c940b575984b"
+    },
+    "twofail-unicode-stress.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-unicode-stress.json",
+      "sha256": "f807a8047ca64a82dbcff15e34d6f5ef106588dba37a54344d0f05b4d89ee532"
+    },
+    "twofail-unrelated-curriculum-drift.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-unrelated-curriculum-drift.json",
+      "sha256": "7997d20e7aa3422a644cc88024eede801d67f00404955d5cce0912d3fdd9c675"
+    },
+    "twofail-uploads.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-uploads.json",
+      "sha256": "036f19328a18ca79a6bfb1cc1258ef146e2819bcea33b217c7a6aa0e0126fd0b"
+    },
+    "twofail-uploads.xml": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-uploads.xml",
+      "sha256": "a4c435b89f8fcfd9205bb074526e6fa46734a09e9080af8a2c8f40f25b2b80ff"
+    },
+    "twofail-validation-notes.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-validation-notes.json",
+      "sha256": "05d71377f00acd5634ccfed56a6fd395687dc758a0e8aca2adabf33f7fcd3406"
+    },
+    "twofail-window-status.json": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-window-status.json",
+      "sha256": "ddff95ed6c9862ca7a3fa9a5b31fcf647b36d4f862b54a60ab684a3edd23f71b"
+    },
+    "twofail-window-status.py": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-window-status.py",
+      "sha256": "3d59c14e6a5bebc90dfcf1dc8026bef5f612cfb3f54e275dd054646ea635e892"
+    }
+  }
+}

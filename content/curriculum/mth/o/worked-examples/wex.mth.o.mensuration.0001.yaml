@@ -1,0 +1,45 @@
+id: wex.mth.o.mensuration.0001
+kc_ids:
+- kc.mth.o.mensuration.metric_units
+problem: A road is 13.5 km long. Write this length in centimetres.
+steps:
+- n: 1
+  latex: 13.5\ \text{km} = 13500\ \text{m}
+  reason: 1 km = 1000 m
+  check_id: chk_build_mth_mns_w0001_m
+- n: 2
+  latex: = 1350000\ \text{cm}
+  reason: 1 m = 100 cm
+  check_id: chk_build_mth_mns_w0001_ans
+final_answer:
+  latex: 1350000\ \text{cm}
+  check_id: chk_build_mth_mns_w0001_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_mns_w0001_ans:
+    args:
+      expression: 13.5*100000
+    tool: math_evaluate
+  chk_build_mth_mns_w0001_m:
+    args:
+      expression: 13.5*1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

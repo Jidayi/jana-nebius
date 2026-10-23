@@ -1,0 +1,51 @@
+id: wex.phy.o.measurement.0001
+kc_ids:
+- kc.phy.o.measurement.si_prefixes
+problem: A cross-sectional area is 50 mm². Write it in m².
+steps:
+- n: 1
+  latex: 1\ \text{m}^2 = 10^6\ \text{mm}^2
+  reason: Raise the length factor to the power
+  check_id: chk_build_phy_mea_w0001_conv
+- n: 2
+  latex: 50 \div 10^6 = 0.00005
+  reason: Divide by a million
+  check_id: chk_build_phy_mea_w0001_ans
+final_answer:
+  latex: 0.00005\ \text{m}^2
+  check_id: chk_build_phy_mea_w0001_ans
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mea_w0001_ans:
+    args:
+      quantity: 50 mm^2
+      to: m^2
+    tool: units_convert
+  chk_build_phy_mea_w0001_conv:
+    args:
+      quantity: 1 m^2
+      to: mm^2
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

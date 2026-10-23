@@ -1,0 +1,49 @@
+id: wex.mth.o.algebra_and_graphs.0029
+kc_ids:
+- kc.mth.o.algebra_and_graphs.variation
+problem: The quantity y is directly proportional to x³. When x = 2, y = 24. Find y when x = 8.
+steps:
+- n: 1
+  latex: y = kx^3
+  reason: Write the rule with a constant k
+- n: 2
+  latex: k = 3
+  reason: Substitute x = 2, y = 24
+  check_id: chk_build_mth_alg_w0029_k
+- n: 3
+  latex: y = 1536
+  reason: Substitute x = 8
+  check_id: chk_build_mth_alg_w0029_ans
+final_answer:
+  latex: '1536'
+  check_id: chk_build_mth_alg_w0029_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0029_ans:
+    args:
+      expression: 24/2^3*8^3
+    tool: math_evaluate
+  chk_build_mth_alg_w0029_k:
+    args:
+      expression: 24/2^3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,90 @@
+id: itm.mth.o.algebra_and_graphs.0068
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.change_subject
+stem: In the formula $P = 2(l + w)$, P = 30, l = 11.
+parts:
+- id: a
+  prompt: Make w the subject, then find the value of w.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '4'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0068_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: First rearrange the formula so that w is on its own.
+  - rung: 2
+    name: concept
+    text:
+      en: Undo the operations on the subject in reverse order, doing the same to both sides.
+  - rung: 3
+    name: first_step
+    text:
+      en: The rearranged formula is $w = \frac{P}{2} - l$.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Now substitute P = 30, l = 11 into $w = \frac{P}{2} - l$.
+  - rung: 5
+    name: full_step
+    text:
+      en: w = 4.
+  misconception_ids:
+  - mc.mth.o.rearrange_inverse_sign
+  - mc.mth.o.rearrange_wrong_order
+  - mc.mth.o.rearrange_wrong_inverse
+solution:
+  steps:
+  - n: 1
+    latex: w = \frac{P}{2} - l
+    reason: Make w the subject
+  - n: 2
+    latex: w = 4
+    reason: Substitute P = 30, l = 11 and evaluate
+    check_id: chk_build_mth_alg_0068_ans
+difficulty:
+  prior: 0.5
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0068_ans:
+    args:
+      expression: P/2 - l
+      values:
+        P: 30
+        l: 11
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

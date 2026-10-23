@@ -1,0 +1,86 @@
+id: wex.acc.o.irrecoverable_debts.0007
+kc_ids:
+- kc.acc.o.irrecoverable_debts.net_receivables
+problem: Receivables $22500; write off $1500; allowance 4%. Find net trade receivables.
+steps:
+- n: 1
+  latex: \text{Net} = \text{receivables} - \text{written off} - \text{allowance}
+  reason: Expected to be collected
+  check_id: chk_build_acc_irrecoverable_debts_w0007_t
+- n: 2
+  latex: \text{Allowance} = 4\% \times (22500 - 1500) = 840
+  reason: This year's
+  check_id: chk_build_acc_irrecoverable_debts_w0007_s2
+- n: 3
+  latex: \text{Net} = (22500 - 1500) - 840 = 20160
+  reason: Subtract
+  check_id: chk_build_acc_irrecoverable_debts_w0007_a
+final_answer:
+  latex: \$\,20160
+  check_id: chk_build_acc_irrecoverable_debts_w0007_a
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_irrecoverable_debts_w0007_a:
+    args:
+      dp: 2
+      expression: (22500 - 1500) - (22500 - 1500) * 4/100
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_w0007_s2:
+    args:
+      dp: 4
+      expression: (22500 - 1500) * 4/100
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_w0007_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - amount: '1500'
+        kind: irrecoverable_debt
+      - kind: allowance
+        percent: '4'
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '80000'
+        role: revenue
+      - account: Purchases
+        debit: '40000'
+        role: purchases
+      - account: Trade receivables
+        debit: '22500'
+        role: trade_receivables
+      - account: Allowance for irrecoverable debts
+        credit: '500'
+        role: allowance_for_irrecoverable_debts
+      - account: Land
+        debit: '18000'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

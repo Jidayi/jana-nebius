@@ -1,0 +1,36 @@
+id: mc.chm.o.environment_n_percent_inverted
+kc_ids:
+- kc.chm.o.environment.fertilisers
+student_name: Percentage fraction upside down
+description: Divides the relative formula mass by the mass of nitrogen, giving a percentage above 100.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The nitrogen is part of the whole compound, so its percentage must be below 100. Put the nitrogen mass on top: % N = mass of N ÷ Mr × 100.'
+probe_item_ids:
+- itm.chm.o.environment.0013
+- itm.chm.o.environment.0014
+- itm.chm.o.environment.0015
+- itm.chm.o.environment.0016
+- itm.chm.o.environment.0017
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

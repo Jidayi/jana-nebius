@@ -1,0 +1,34 @@
+id: mc.phy.o.emf_needs_closed_circuit
+kc_ids:
+- kc.phy.o.electromagnetism.electromagnetic_induction
+student_name: No circuit, no e.m.f.
+description: Thinks no e.m.f. is induced in a coil unless it is part of a complete circuit; the e.m.f. is induced anyway, but a current needs a complete circuit.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: contrast_example
+  text:
+    en: A voltmeter across the ends of an open coil shows an e.m.f. when a magnet moves in it; only a current needs a complete circuit.
+probe_item_ids:
+- itm.phy.o.electromagnetism.0041
+- itm.phy.o.electromagnetism.0043
+- itm.phy.o.electromagnetism.0034
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

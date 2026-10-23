@@ -1,0 +1,72 @@
+{
+  "id": "tutor-special.canonical.hint-offer",
+  "title": "Tutor special state: the quiet hint offer under a reply",
+  "component": "TutorScreen",
+  "state": "canonical",
+  "variant": "hint-offer",
+  "payload": {
+    "events": [
+      {
+        "type": "turn.start",
+        "turn_id": "trn_11111111111111111111111111",
+        "user_message_id": "msg_22222222222222222222222222",
+        "client_message_id": null,
+        "intent": "ask",
+        "mode": "guided",
+        "fork": false
+      },
+      {
+        "type": "part.start",
+        "part_id": "prt_44444444444444444444444444",
+        "kind": "text",
+        "index": 0
+      },
+      {
+        "type": "text.delta",
+        "part_id": "prt_44444444444444444444444444",
+        "delta": "Look here: the 4 is multiplying the bracket. What undoes multiplying by 4?"
+      },
+      {
+        "type": "part.end",
+        "part_id": "prt_44444444444444444444444444",
+        "status": "complete",
+        "duration_ms": 1
+      },
+      {
+        "type": "notice",
+        "notice_id": "ntc_99999999999999999999999999",
+        "level": "info",
+        "code": "hint_offer",
+        "message_key": "notice.hint_offer",
+        "params": {},
+        "action": null
+      },
+      {
+        "type": "turn.end",
+        "status": "complete",
+        "stop_reason": "completed",
+        "elapsed_ms": 2000,
+        "usage": null,
+        "verification": "not_applicable",
+        "persisted": {
+          "message_id": "msg_33333333333333333333333333",
+          "part_ids": []
+        },
+        "degraded": false,
+        "degraded_reason": null
+      }
+    ]
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light",
+    "elapsedMs": 0
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Take your time. A hint is one tap away when you want it.",
+    "Hint 1 of 5"
+  ]
+}

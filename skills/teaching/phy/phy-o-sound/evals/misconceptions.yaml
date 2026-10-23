@@ -1,0 +1,578 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.phy-o-sound
+version: 2026-10-13.1
+description: 'Colocated evals for phy-o-sound (SKL-21, EVL-07): one case per misconception. The student answers
+  as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key away,
+  and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: phy_o_sound_01
+  title: Holds 'Sound as a transverse wave'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.sound_called_transverse
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.sound.0003
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.sound.sound_waves
+        misconception: mc.phy.o.sound_called_transverse
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: phy_o_sound_02
+  title: Holds 'Sound crosses a vacuum'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.sound_travels_in_vacuum
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.sound.0010
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.sound.sound_waves
+        misconception: mc.phy.o.sound_travels_in_vacuum
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: phy_o_sound_03
+  title: Holds 'Sound fastest in gases'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.sound_speed_media_order
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.sound.0005
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.sound.sound_waves
+        misconception: mc.phy.o.sound_speed_media_order
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: phy_o_sound_04
+  title: Holds 'A rarefaction is empty'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.rarefaction_is_empty
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.sound.0003
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.sound.sound_waves
+        misconception: mc.phy.o.rarefaction_is_empty
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_sound_05
+  title: Holds 'Forgetting the journey back'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.echo_not_halved
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.sound.0026
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.sound.speed_and_echoes
+        misconception: mc.phy.o.echo_not_halved
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_sound_06
+  title: Holds 'A factor of two with no echo'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.direct_sound_factor_two
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.sound.0028
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.sound.speed_and_echoes
+        misconception: mc.phy.o.direct_sound_factor_two
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_sound_07
+  title: Holds 'Multiplying distance by time'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.speed_as_distance_times_time
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.sound.0028
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.sound.speed_and_echoes
+        misconception: mc.phy.o.speed_as_distance_times_time
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_sound_08
+  title: Holds 'Bigger waves sound higher'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.pitch_from_amplitude
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.sound.0032
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.sound.pitch_and_loudness
+        misconception: mc.phy.o.pitch_from_amplitude
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_sound_09
+  title: Holds 'Higher frequency sounds louder'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.loudness_from_frequency
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.sound.0033
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.sound.pitch_and_loudness
+        misconception: mc.phy.o.loudness_from_frequency
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_sound_10
+  title: Holds 'The wrong range of hearing'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.hearing_limit_wrong
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.sound.0039
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.sound.pitch_and_loudness
+        misconception: mc.phy.o.hearing_limit_wrong
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_sound_11
+  title: Holds 'The speed in air for water'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.ultrasound_air_speed_used
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.sound.0051
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.sound.ultrasound
+        misconception: mc.phy.o.ultrasound_air_speed_used
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_sound_12
+  title: Holds 'Ultrasound is very loud sound'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.ultrasound_means_loud
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.sound.0041
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 12
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.sound.pitch_and_loudness
+        misconception: mc.phy.o.ultrasound_means_loud
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_sound_13
+  title: Holds 'An ultrasound scan as a shadow picture'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.ultrasound_shadow_image
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.sound.0057
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 13
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.sound.ultrasound
+        misconception: mc.phy.o.ultrasound_shadow_image
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

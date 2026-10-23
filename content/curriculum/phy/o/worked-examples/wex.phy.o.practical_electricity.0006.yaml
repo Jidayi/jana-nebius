@@ -1,0 +1,40 @@
+id: wex.phy.o.practical_electricity.0006
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+problem: A 1800 W water heater is used on the 240 V mains. Fuses rated 1 A, 2 A, 3 A and 13 A are available. Which fuse should be fitted in its plug?
+steps:
+- n: 1
+  latex: I = \frac{P}{V} = \frac{1800}{240} = 7.5\ \text{A} \Rightarrow \text{the 13 A fuse}
+  reason: The normal working current; fit the smallest rating above it
+  check_id: chk_build_phy_pel_w0006_i
+final_answer:
+  latex: I = 7.5\ \text{A, so the 13 A fuse}
+  check_id: chk_build_phy_pel_w0006_i
+fading_order:
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_pel_w0006_i:
+    args:
+      expression: 1800/240
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

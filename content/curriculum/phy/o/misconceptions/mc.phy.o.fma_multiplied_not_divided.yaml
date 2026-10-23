@@ -1,0 +1,44 @@
+id: mc.phy.o.fma_multiplied_not_divided
+kc_ids:
+- kc.phy.o.forces.force_mass_acceleration
+- kc.phy.o.momentum.momentum_calculation
+- kc.phy.o.forces.springs
+student_name: Multiplying whatever is given
+description: Multiplies the two quantities given whatever the unknown is, for example force × mass for an acceleration.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'Try easy numbers: 10 N on a 2 kg trolley gives 5 m/s², not 20. Only the product F = ma needs a multiplication; the other two unknowns need a division.'
+probe_item_ids:
+- itm.phy.o.forces.0028
+- itm.phy.o.forces.0065
+- itm.phy.o.forces.0018
+- itm.phy.o.forces.0020
+- itm.phy.o.forces.0024
+severity: medium
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

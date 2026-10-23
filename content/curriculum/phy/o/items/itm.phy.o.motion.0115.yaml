@@ -1,0 +1,89 @@
+id: itm.phy.o.motion.0115
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.choose_equation
+stem: A ball rolls from 4 m/s down a slope with an acceleration of 4.0 m/s^2 over 16 m.
+parts:
+- id: a
+  prompt: Find its speed at the bottom.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '12.0'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_k_0115_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'List u, v, a, s and t: which do you know, which is asked for, and which is not involved?'
+  - rung: 2
+    name: concept
+    text:
+      en: Choose the equation of uniform acceleration that has the quantities you know and the one you want, and leaves out the one that is not involved.
+  - rung: 3
+    name: first_step
+    text:
+      en: Use v^2 = u^2 + 2as.
+  - rung: 4
+    name: worked_step
+    text:
+      en: v^2 = 4^2 + 2 × 4.0 × 16, then take the square root.
+  - rung: 5
+    name: full_step
+    text:
+      en: v^2 = 4^2 + 2 × 4.0 × 16 gives 12.0 m/s.
+  misconception_ids:
+  - mc.phy.o.equation_with_unknown_time
+solution:
+  steps:
+  - n: 1
+    latex: v^2 = u^2 + 2as
+    reason: The equation with the known and wanted quantities only
+  - n: 2
+    latex: v^2 = 4^2 + 2 \times 4.0 \times 16
+    reason: Substitute
+  - n: 3
+    latex: v = 12.0\ \text{m/s}
+    reason: Evaluate
+    check_id: chk_build_phy_k_0115_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- transport
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_k_0115_a:
+    args:
+      expression: sqrt(4^2 + 2*4.0*16)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

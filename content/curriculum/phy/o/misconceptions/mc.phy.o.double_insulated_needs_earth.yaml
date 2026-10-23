@@ -1,0 +1,31 @@
+id: mc.phy.o.double_insulated_needs_earth
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+student_name: Every appliance needs an earth wire
+description: Thinks an appliance cannot be safe without an earth wire, even one whose case is plastic and double insulated.
+signatures:
+- kind: answer_transform
+  expression: earth required
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'An earth wire protects a metal case. A double-insulated appliance has no metal a user can touch, so no part that could become live: it needs no earth.'
+probe_item_ids: []
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

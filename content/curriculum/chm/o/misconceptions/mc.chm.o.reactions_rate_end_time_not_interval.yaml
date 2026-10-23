@@ -1,0 +1,36 @@
+id: mc.chm.o.reactions_rate_end_time_not_interval
+kc_ids:
+- kc.chm.o.reactions.rate_data
+student_name: Dividing by the clock time, not the interval
+description: Divides the change over an interval by the clock time at the end of the interval rather than by the length of the interval.
+signatures:
+- kind: answer_transform
+  expression: (reading_end - reading_start) / t_end
+fix:
+  strategy: rule_restatement
+  text:
+    en: The time taken is the later time minus the earlier time. Use the same two moments for the time as you used for the readings.
+probe_item_ids:
+- itm.chm.o.reactions.0039
+- itm.chm.o.reactions.0045
+- itm.chm.o.reactions.0046
+- itm.chm.o.reactions.0047
+- itm.chm.o.reactions.0048
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

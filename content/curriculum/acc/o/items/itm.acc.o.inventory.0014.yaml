@@ -1,0 +1,118 @@
+id: itm.acc.o.inventory.0014
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.inventory.avco
+stem: 'Ama''s shop: opening inventory 60 rolls of fabric at $9 each; then bought 50 at $12 each; then sold 50; then bought 80 at $13 each; then sold 90.'
+parts:
+- id: a
+  prompt: Using AVCO (a new average after each purchase), calculate the value of the closing inventory. Give your answer to 2 decimal places.
+  marks: 4
+  answer:
+    kind: numeric
+    value: '593.51'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_inventory_0014_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The weighted average cost changes each time new goods arrive at a different price.
+  - rung: 2
+    name: concept
+    text:
+      en: 'After each purchase: average unit cost = total value held ÷ units held. Goods sold are valued at that average.'
+  - rung: 3
+    name: first_step
+    text:
+      en: 'After the first purchase: (60 × 9 + 50 × 12) ÷ (60 + 50).'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Take out the units sold at that average, add the next purchase, and find the new average.
+  - rung: 5
+    name: full_step
+    text:
+      en: Closing inventory = $593.51.
+  misconception_ids:
+  - mc.acc.o.inv_simple_average
+  - mc.acc.o.inv_fifo_for_avco
+solution:
+  steps:
+  - n: 1
+    latex: '\text{AVCO: unit cost} = \frac{\text{value held}}{\text{units held}}'
+    reason: Recalculate after each purchase
+    check_id: chk_build_acc_inventory_0014_t
+  - n: 2
+    latex: \text{First average} = \frac{60 \times 9 + 50 \times 12}{60 + 50} = 10.3636
+    reason: Weighted by quantity
+    check_id: chk_build_acc_inventory_0014_s2
+  - n: 3
+    latex: \text{Closing inventory} = 593.51
+    reason: After all the movements
+    check_id: chk_build_acc_inventory_0014_a
+difficulty:
+  prior: 0.4
+  band: stretch
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 4
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_inventory_0014_a:
+    args:
+      dp: 2
+      expression: (((((0 + 60 * 9) + 50 * 12) * (110 - 50) / 110) + 80 * 13) * (140 - 90) / 140)
+    tool: math_evaluate
+  chk_build_acc_inventory_0014_s2:
+    args:
+      dp: 4
+      expression: (60 * 9 + 50 * 12) / (60 + 50)
+    tool: math_evaluate
+  chk_build_acc_inventory_0014_t:
+    args:
+      avco_basis: perpetual
+      dp: 2
+      method: avco
+      movements:
+      - kind: opening
+        quantity: 60
+        unit_cost: '9'
+      - kind: receipt
+        quantity: 50
+        unit_cost: '12'
+      - kind: issue
+        quantity: 50
+      - kind: receipt
+        quantity: 80
+        unit_cost: '13'
+      - kind: issue
+        quantity: 90
+      round_unit_cost: false
+    tool: acc_inventory
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

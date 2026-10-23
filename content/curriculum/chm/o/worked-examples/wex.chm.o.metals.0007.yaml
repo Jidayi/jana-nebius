@@ -1,0 +1,53 @@
+id: wex.chm.o.metals.0007
+kc_ids:
+- kc.chm.o.metals.corrosion
+problem: Damp iron wool is pushed into the top of a tube holding 100 cm³ of air, over water. After a week the iron wool has rusted and the air has shrunk to 79 cm³. What percentage of the air was used up, and what does this show?
+steps:
+- n: 1
+  latex: 100 - 79 = 21
+  reason: Volume of gas used by the rusting iron
+  check_id: chk_build_chm_metals_w0007_o2
+- n: 2
+  latex: \frac{21}{100} \times 100
+  reason: As a percentage of the air
+  check_id: chk_build_chm_metals_w0007_s2
+- n: 3
+  latex: '\text{about a fifth of air is oxygen: rusting uses oxygen}'
+  reason: Oxygen is needed for rusting
+final_answer:
+  latex: 21\%
+  check_id: chk_build_chm_metals_w0007_o2
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_metals_w0007_o2:
+    args:
+      expression: (100 - 79)/100*100
+    tool: math_evaluate
+  chk_build_chm_metals_w0007_s2:
+    args:
+      expression: 21/100*100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

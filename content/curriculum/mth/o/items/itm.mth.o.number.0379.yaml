@@ -1,0 +1,101 @@
+id: itm.mth.o.number.0379
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.surds
+stem: $\sqrt{216} + \sqrt{6}$ can be written as $k\sqrt{6}$.
+parts:
+- id: a
+  prompt: Find k.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '7'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0379_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You cannot add the numbers under the square roots.
+  - rung: 2
+    name: concept
+    text:
+      en: Write each surd as a multiple of √6, then add.
+  - rung: 3
+    name: first_step
+    text:
+      en: 216 = 36 × 6 and 6 = 1 × 6.
+  - rung: 4
+    name: worked_step
+    text:
+      en: √216 = 6√6 and √6 = 1√6.
+  - rung: 5
+    name: full_step
+    text:
+      en: k = 7.
+  misconception_ids:
+  - mc.mth.o.surd_add_under_root
+  - mc.mth.o.surd_factor_not_rooted
+  - mc.mth.o.multiply_before_power
+solution:
+  steps:
+  - n: 1
+    latex: \sqrt{216} = 6\sqrt{6},\ \sqrt{6} = 1\sqrt{6}
+    reason: Simplify each surd
+    check_id: chk_build_mth_num_0379_t
+  - n: 2
+    latex: k = 6 + 1 = 7
+    reason: Add like surds
+    check_id: chk_build_mth_num_0379_ans
+difficulty:
+  prior: 0.7
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0379_ans:
+    args:
+      expression: (sqrt(216) + sqrt(6))/sqrt(6)
+    tool: math_evaluate
+  chk_build_mth_num_0379_t:
+    args:
+      equations:
+      - p = sqrt(36)
+      - q = sqrt(1)
+      - r = 216/6
+      - s = 6/6
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

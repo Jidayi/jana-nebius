@@ -1,0 +1,34 @@
+id: mc.acc.o.ae_users_interest_confused
+kc_ids:
+- kc.acc.o.accounting_equation.purpose_and_users
+student_name: Users and their interests mixed up
+description: Matches a user of accounts with another user's main interest, for example a lender with profit for tax.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Ask what decision the user must make: lend, supply on credit, tax, invest or keep working there.'
+probe_item_ids:
+- itm.acc.o.accounting_equation.0001
+- itm.acc.o.accounting_equation.0002
+- itm.acc.o.accounting_equation.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

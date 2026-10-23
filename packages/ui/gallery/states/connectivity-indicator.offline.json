@@ -1,0 +1,57 @@
+{
+  "id": "connectivity-indicator.offline",
+  "title": "Connectivity indicator, offline with features on",
+  "note": "Some features are on but no connection is usable.",
+  "component": "ConnectivityIndicator",
+  "state": "offline",
+  "payload": {
+    "status": {
+      "type": "connectivity.status",
+      "network": "offline",
+      "checked_ts": 1760000000000,
+      "features": [
+        {
+          "feature": "cloud_tier",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "downloads",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "update_checks",
+          "enabled": true,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "telemetry",
+          "enabled": true,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "crash_reports",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        }
+      ]
+    }
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light",
+    "connectivity": "offline"
+  },
+  "placements": [
+    "rail"
+  ],
+  "expectText": [
+    "Offline"
+  ]
+}

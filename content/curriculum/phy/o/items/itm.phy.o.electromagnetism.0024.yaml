@@ -1,0 +1,93 @@
+id: itm.phy.o.electromagnetism.0024
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.motor_effect
+stem: A wire across a magnetic field carries a current and is pushed upwards.
+parts:
+- id: a
+  prompt: The current is reversed. What happens?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The wire is pushed downwards
+      correct: true
+    - id: B
+      text: The wire is still pushed upwards
+      correct: false
+      misconception_id: mc.phy.o.reversing_both_reverses_force
+      feedback: Each reversal flips the force once. Two flips bring it back to where it started.
+    - id: C
+      text: The wire is pushed along the field
+      correct: false
+      misconception_id: mc.phy.o.force_along_field
+      feedback: The force on the wire is at right angles to the field and to the current. Use the left hand to find which way.
+    - id: D
+      text: The wire is pushed along its own length
+      correct: false
+      misconception_id: mc.phy.o.force_along_current
+      feedback: The wire is pushed sideways, at right angles to itself and to the field, never along its own length.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about how the current, the field and the force are arranged.
+  - rung: 2
+    name: concept
+    text:
+      en: The force is at right angles to both the field and the current, and it grows with the current, the field and the number of turns.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Reversing the current alone reverses the force.
+  - rung: 5
+    name: full_step
+    text:
+      en: The wire is pushed downwards. Reversing the current alone reverses the force.
+  misconception_ids:
+  - mc.phy.o.force_along_current
+  - mc.phy.o.force_along_field
+  - mc.phy.o.reversing_both_reverses_force
+solution:
+  steps:
+  - n: 1
+    latex: \text{The wire is pushed downwards}
+    reason: Apply the rules for the motor effect
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

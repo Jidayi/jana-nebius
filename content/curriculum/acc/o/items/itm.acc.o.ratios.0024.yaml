@@ -1,0 +1,105 @@
+id: itm.acc.o.ratios.0024
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.liquidity
+stem: Kofi's business has inventory $6200, trade receivables $5500, a bank balance of $2700 and current liabilities of $14100.
+parts:
+- id: a
+  prompt: Calculate the current ratio, as the first number of a ratio to 1. Give your answer to 2 decimal places.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1.02'
+    unit: :1
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_ratios_0024_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The current ratio compares what will turn into cash within a year with what must be paid within a year.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Current ratio = current assets : current liabilities.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Current assets here are inventory, trade receivables and the bank balance.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide (6200 + 5500 + 2700) by 14100.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Current ratio = 1.02 : 1.'
+  misconception_ids:
+  - mc.acc.o.rat_acid_includes_inventory
+  - mc.acc.o.rat_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Current ratio} = \frac{\text{current assets}}{\text{current liabilities}}
+    reason: Expressed as a ratio to 1
+    check_id: chk_build_acc_ratios_0024_t
+  - n: 2
+    latex: \frac{6200 + 5500 + 2700}{14100} = 1.02
+    reason: Substitute
+    check_id: chk_build_acc_ratios_0024_a
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_0024_a:
+    args:
+      dp: 2
+      expression: (6200 + 5500 + 2700) / 14100
+    tool: math_evaluate
+  chk_build_acc_ratios_0024_t:
+    args:
+      current_assets: '14400'
+      current_liabilities: '14100'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      ratios:
+      - current_ratio
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

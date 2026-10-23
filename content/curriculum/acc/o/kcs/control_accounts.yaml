@@ -1,0 +1,189 @@
+- id: kc.acc.o.control_accounts.control_purpose
+  code: ACC-O-06.K01
+  node_id: cur.acc.o.control_accounts
+  statement: Explain the purpose of sales and purchases ledger control accounts
+  kind: factual
+  tools: []
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.source_documents.post_day_book_totals
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.ca_control_finds_all_errors
+  - mc.acc.o.ca_control_for_cash
+  - mc.acc.o.ca_control_replaces_ledger
+  skill_ids:
+  - acc-o-control-accounts
+  glossary:
+  - control account
+  - sales ledger control account
+  - purchases ledger control account
+  - sales ledger control
+  - purchases ledger control
+  - sales ledger
+  - purchases ledger
+  - trade receivables
+  - trade payables
+  - credit sales
+  - credit purchases
+  - sales returns
+  - purchases returns
+  - discount allowed
+  - discount received
+  - irrecoverable debt
+  - dishonoured cheque
+  - contra entry
+  - set-off
+  - opening balance
+  - closing balance
+  - day book
+  - debit balance
+  - credit balance
+  - ledger
+  difficulty_prior: -0.5
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.control_accounts.control_sources
+  code: ACC-O-06.K02
+  node_id: cur.acc.o.control_accounts
+  statement: Identify where each figure in a control account comes from and its side
+  kind: conceptual
+  tools:
+  - acc_double_entry
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.control_accounts.control_purpose
+    strength: required
+  misconception_ids:
+  - mc.acc.o.ca_side_reversed
+  - mc.acc.o.ca_source_confused
+  - mc.acc.o.ca_wrong_control_account
+  skill_ids:
+  - acc-o-control-accounts
+  glossary:
+  - control account
+  - sales ledger control account
+  - purchases ledger control account
+  - sales ledger control
+  - purchases ledger control
+  - sales ledger
+  - purchases ledger
+  - trade receivables
+  - trade payables
+  - credit sales
+  - credit purchases
+  - sales returns
+  - purchases returns
+  - discount allowed
+  - discount received
+  - irrecoverable debt
+  - dishonoured cheque
+  - contra entry
+  - set-off
+  - opening balance
+  - closing balance
+  - day book
+  - debit balance
+  - credit balance
+  - ledger
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.control_accounts.sales_ledger_control
+  code: ACC-O-06.K03
+  node_id: cur.acc.o.control_accounts
+  statement: Calculate the closing balance of a sales ledger control account
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.3
+  prerequisites:
+  - kc_id: kc.acc.o.control_accounts.control_sources
+    strength: required
+  - kc_id: kc.acc.o.double_entry.balance_account
+    strength: required
+  misconception_ids:
+  - mc.acc.o.ca_cash_sales_included
+  - mc.acc.o.ca_discount_side_reversed
+  - mc.acc.o.ca_irrecoverable_omitted
+  skill_ids:
+  - acc-o-control-accounts
+  glossary:
+  - control account
+  - sales ledger control account
+  - purchases ledger control account
+  - sales ledger control
+  - purchases ledger control
+  - sales ledger
+  - purchases ledger
+  - trade receivables
+  - trade payables
+  - credit sales
+  - credit purchases
+  - sales returns
+  - purchases returns
+  - discount allowed
+  - discount received
+  - irrecoverable debt
+  - dishonoured cheque
+  - contra entry
+  - set-off
+  - opening balance
+  - closing balance
+  - day book
+  - debit balance
+  - credit balance
+  - ledger
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.control_accounts.purchases_ledger_control
+  code: ACC-O-06.K04
+  node_id: cur.acc.o.control_accounts
+  statement: Calculate the closing balance of a purchases ledger control account
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.3
+  prerequisites:
+  - kc_id: kc.acc.o.control_accounts.control_sources
+    strength: required
+  - kc_id: kc.acc.o.double_entry.balance_account
+    strength: required
+  misconception_ids:
+  - mc.acc.o.ca_cash_purchases_included
+  - mc.acc.o.ca_contra_omitted
+  - mc.acc.o.ca_discount_side_reversed
+  skill_ids:
+  - acc-o-control-accounts
+  glossary:
+  - control account
+  - sales ledger control account
+  - purchases ledger control account
+  - sales ledger control
+  - purchases ledger control
+  - sales ledger
+  - purchases ledger
+  - trade receivables
+  - trade payables
+  - credit sales
+  - credit purchases
+  - sales returns
+  - purchases returns
+  - discount allowed
+  - discount received
+  - irrecoverable debt
+  - dishonoured cheque
+  - contra entry
+  - set-off
+  - opening balance
+  - closing balance
+  - day book
+  - debit balance
+  - credit balance
+  - ledger
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active

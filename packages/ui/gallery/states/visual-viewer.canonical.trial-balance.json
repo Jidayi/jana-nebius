@@ -1,0 +1,121 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.trial-balance",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "A trial balance with debit total 500.00 and credit total 500.00; the totals agree."
+    },
+    "computed": {
+      "agrees": true,
+      "check_ids": [
+        "chk_build_fx_trial_balance_1"
+      ],
+      "difference": "0.00",
+      "labels": {
+        "row_1": "380.00",
+        "row_2": "500.00",
+        "row_3": "120.00",
+        "total_credit": "500.00",
+        "total_debit": "500.00"
+      },
+      "rows": [
+        {
+          "account": "Cash",
+          "amount": "380.00",
+          "side": "debit"
+        },
+        {
+          "account": "Capital",
+          "amount": "500.00",
+          "side": "credit"
+        },
+        {
+          "account": "Rent",
+          "amount": "120.00",
+          "side": "debit"
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "kn_380",
+      "kn_500",
+      "kn_120",
+      "chk_build_fx_trial_balance_1"
+    ],
+    "params": {
+      "as_at": "31 March",
+      "balances": [
+        {
+          "account": "Cash",
+          "amount": "380",
+          "side": "debit"
+        },
+        {
+          "account": "Capital",
+          "amount": "500",
+          "side": "credit"
+        },
+        {
+          "account": "Rent",
+          "amount": "120",
+          "side": "debit"
+        }
+      ],
+      "currency": "$",
+      "source": "from_question"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "row_1",
+        "name": "Cash",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "row_2",
+        "name": "Capital",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "row_3",
+        "name": "Rent",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "total_debit",
+        "name": "debit total",
+        "role": "cell"
+      },
+      {
+        "focusable": true,
+        "id": "total_credit",
+        "name": "credit total",
+        "role": "cell"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:7d4bc12fc2c2b1aa9b51aaf5251306372ece75522eba7536db359a2fd92234fc",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "trial_balance",
+    "visual_id": "vis_XB1F22HAVHAN5K6QEENJETNPVN"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: trial balance (shown labels)",
+  "variant": "trial-balance"
+}

@@ -1,0 +1,36 @@
+id: mc.chm.o.reactions_equilibrium_static
+kc_ids:
+- kc.chm.o.reactions.equilibrium
+student_name: At equilibrium the reaction has stopped
+description: Thinks that at equilibrium the forward and backward reactions have stopped, so the mixture cannot respond when conditions change.
+signatures:
+- kind: answer_transform
+  expression: 'choice: no shift, or the reactions stopping, after a change at equilibrium'
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Equilibrium is dynamic: the forward and backward reactions both keep going, at the same rate. Change the conditions and one reaction speeds up more than the other, so the amounts change until a new equilibrium is reached.'
+probe_item_ids:
+- itm.chm.o.reactions.0049
+- itm.chm.o.reactions.0050
+- itm.chm.o.reactions.0051
+- itm.chm.o.reactions.0052
+- itm.chm.o.reactions.0053
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

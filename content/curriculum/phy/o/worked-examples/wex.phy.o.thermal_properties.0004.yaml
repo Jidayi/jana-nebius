@@ -1,0 +1,63 @@
+id: wex.phy.o.thermal_properties.0004
+kc_ids:
+- kc.phy.o.thermal_properties.specific_heat_capacity
+problem: A 2 kW kettle heats 0.5 kg of water from 15 °C to 100 °C. The specific heat capacity of water is 4200 J/(kg °C). Assume all the energy goes into the water. How long does this take, in seconds?
+steps:
+- n: 1
+  latex: \Delta\theta = 100 - 15 = 85\ ^\circ\text{C}
+  reason: The temperature rise
+  check_id: chk_build_phy_thp_w0004_dt
+- n: 2
+  latex: E = mc\Delta\theta = 0.5 \times 4200 \times 85 = 178500\ \text{J}
+  reason: Energy needed
+  check_id: chk_build_phy_thp_w0004_e
+- n: 3
+  latex: P = 2\ \text{kW} = 2000\ \text{W}
+  reason: Watts are joules per second
+  check_id: chk_build_phy_thp_w0004_pw
+- n: 4
+  latex: t = \frac{E}{P} = \frac{178500}{2000} = 89.25\ \text{s}
+  reason: Time = energy ÷ power
+  check_id: chk_build_phy_thp_w0004_ans
+final_answer:
+  latex: 89.25\ \text{s}
+  check_id: chk_build_phy_thp_w0004_ans
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_thp_w0004_ans:
+    args:
+      expression: 0.5*4200*(100 - 15)/(2*1000)
+    tool: math_evaluate
+  chk_build_phy_thp_w0004_dt:
+    args:
+      expression: 100 - 15
+    tool: math_evaluate
+  chk_build_phy_thp_w0004_e:
+    args:
+      expression: 0.5*4200*(100 - 15)
+    tool: math_evaluate
+  chk_build_phy_thp_w0004_pw:
+    args:
+      expression: 2*1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

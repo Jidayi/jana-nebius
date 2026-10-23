@@ -1,0 +1,126 @@
+id: itm.acc.o.ratios.0044
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.inventory_turnover
+stem: Femi's opening inventory was $8600 and closing inventory $3500. Revenue was $179000 and cost of sales $115500.
+parts:
+- id: a
+  prompt: What is the rate of inventory turnover (times a year)?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 29.59 times
+      correct: false
+      misconception_id: mc.acc.o.rat_revenue_for_cos
+    - id: B
+      text: 0.05 times
+      correct: false
+      misconception_id: mc.acc.o.rat_ratio_inverted
+    - id: C
+      text: 19.09 times
+      correct: true
+    - id: D
+      text: 33.00 times
+      correct: false
+      misconception_id: mc.acc.o.rat_closing_inventory_used
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which figures are at cost, and which inventory figure does the pack's definition use?
+  - rung: 2
+    name: concept
+    text:
+      en: Turnover = cost of sales ÷ average inventory, where average = (opening + closing) ÷ 2.
+  - rung: 3
+    name: first_step
+    text:
+      en: Revenue is at selling price, so it does not match inventory at cost.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 115500 by (8600 + 3500) ÷ 2.
+  - rung: 5
+    name: full_step
+    text:
+      en: Inventory turnover = 19.09 times.
+  misconception_ids:
+  - mc.acc.o.rat_closing_inventory_used
+  - mc.acc.o.rat_revenue_for_cos
+  - mc.acc.o.rat_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Turnover} = \frac{\text{cost of sales}}{\text{average inventory}}
+    reason: Average inventory
+    check_id: chk_build_acc_ratios_0044_t
+  - n: 2
+    latex: \text{Average inventory} = 6050
+    reason: Opening plus closing, halved
+    check_id: chk_build_acc_ratios_0044_s2
+  - n: 3
+    latex: \frac{115500}{6050} = 19.09
+    reason: Substitute
+    check_id: chk_build_acc_ratios_0044_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_0044_a:
+    args:
+      dp: 2
+      expression: 115500 / ((8600 + 3500) / 2)
+    tool: math_evaluate
+  chk_build_acc_ratios_0044_s2:
+    args:
+      dp: 4
+      expression: (8600 + 3500) / 2
+    tool: math_evaluate
+  chk_build_acc_ratios_0044_t:
+    args:
+      closing_inventory: '3500'
+      cost_of_sales: '115500'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      opening_inventory: '8600'
+      ratios:
+      - inventory_turnover_times
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

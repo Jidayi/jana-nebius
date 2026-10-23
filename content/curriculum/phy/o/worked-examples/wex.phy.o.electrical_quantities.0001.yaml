@@ -1,0 +1,40 @@
+id: wex.phy.o.electrical_quantities.0001
+kc_ids:
+- kc.phy.o.electrical_quantities.electric_charge
+problem: A balloon and a jumper start uncharged. After rubbing, the balloon has a charge of −6.4 nC. What is the charge on the jumper, in nC?
+steps:
+- n: 1
+  latex: \text{electrons gained by one} = \text{electrons lost by the other}
+  reason: Charge is moved, not made
+- n: 2
+  latex: Q = +6.4\ \text{nC}
+  reason: Equal and opposite charges
+  check_id: chk_build_phy_elq_w0001_ans
+final_answer:
+  latex: 6.4\ \text{nC}
+  check_id: chk_build_phy_elq_w0001_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_elq_w0001_ans:
+    args:
+      expression: '6.4'
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,57 @@
+id: wex.phy.o.stars.0006
+kc_ids:
+- kc.phy.o.stars.expanding_universe
+problem: One estimate of the Hubble constant is H0 = 2.3 × 10⁻¹⁸ per second. Take one year as 3.15 × 10⁷ s. Estimate the age of the Universe from 1/H0, in billions of years.
+steps:
+- n: 1
+  latex: t = \frac{1}{2.3 \times 10^{-18}} = 4.35 \times 10^{17}\ \text{s}
+  reason: Age estimate 1 / H0
+  check_id: chk_build_phy_str_w0006_t_m
+- n: 2
+  latex: \frac{4.35 \times 10^{17}}{3.15 \times 10^{7}} = 1.38 \times 10^{10}\ \text{years}
+  reason: Seconds to years
+  check_id: chk_build_phy_str_w0006_y_m
+- n: 3
+  latex: = 13.8\ \text{billion years}
+  reason: A billion is a thousand million
+  check_id: chk_build_phy_str_w0006_ans
+final_answer:
+  latex: 13.8\ \text{billion years}
+  check_id: chk_build_phy_str_w0006_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_str_w0006_ans:
+    args:
+      expression: 1/(2.3e-18*3.15e7)/1e9
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_str_w0006_t_m:
+    args:
+      expression: (1/2.3e-18)/10^(17)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_str_w0006_y_m:
+    args:
+      expression: (1/(2.3e-18*3.15e7))/10^(10)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,45 @@
+id: wex.mth.o.geometry.0010
+kc_ids:
+- kc.mth.o.geometry.similar_lengths
+problem: Triangles P and Q are similar. Side AB = 4 cm in P corresponds to side DE = 8 cm in Q. Side BC = 9 cm in P corresponds to side EF in Q. Find the length of EF.
+steps:
+- n: 1
+  latex: k = \frac{8}{4} = 2
+  reason: Scale factor from P to Q
+  check_id: chk_build_mth_geo_w0010_k
+- n: 2
+  latex: EF = 9 \times 2 = 18\ \text{cm}
+  reason: Multiply the corresponding side
+  check_id: chk_build_mth_geo_w0010_ans
+final_answer:
+  latex: 18\ \text{cm}
+  check_id: chk_build_mth_geo_w0010_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_w0010_ans:
+    args:
+      expression: 9*8/4
+    tool: math_evaluate
+  chk_build_mth_geo_w0010_k:
+    args:
+      expression: 8/4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

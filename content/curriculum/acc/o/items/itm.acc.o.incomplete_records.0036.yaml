@@ -1,0 +1,106 @@
+id: itm.acc.o.incomplete_records.0036
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.incomplete_records.margin_markup_use
+stem: Nomsa runs a stationery shop and adds a mark-up of 25% to cost. Cost of sales for the year was $36100.
+parts:
+- id: a
+  prompt: Calculate the revenue for the year.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '45125.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_incomplete_records_0036_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A mark-up is a percentage of cost.
+  - rung: 2
+    name: concept
+    text:
+      en: Revenue = cost of sales + mark-up × cost of sales.
+  - rung: 3
+    name: first_step
+    text:
+      en: Gross profit = 25% of $36100.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Revenue = 36100 + 25% × 36100.
+  - rung: 5
+    name: full_step
+    text:
+      en: Revenue = $45125.
+  misconception_ids:
+  - mc.acc.o.rat_margin_markup_confused
+  - mc.acc.o.ir_percent_of_wrong_base
+solution:
+  steps:
+  - n: 1
+    latex: \text{Revenue} = \text{cost of sales} \times (1 + \text{mark-up})
+    reason: Mark-up on cost
+    check_id: chk_build_acc_incomplete_records_0036_t
+  - n: 2
+    latex: \text{Gross profit} = 25\% \times 36100 = 9025
+    reason: Profit on cost
+    check_id: chk_build_acc_incomplete_records_0036_s2
+  - n: 3
+    latex: \text{Revenue} = 36100 + 9025 = 45125
+    reason: Add
+    check_id: chk_build_acc_incomplete_records_0036_a
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_incomplete_records_0036_a:
+    args:
+      dp: 2
+      expression: 36100 * (1 + 25/100)
+    tool: math_evaluate
+  chk_build_acc_incomplete_records_0036_s2:
+    args:
+      dp: 4
+      expression: 36100 * 25/100
+    tool: math_evaluate
+  chk_build_acc_incomplete_records_0036_t:
+    args:
+      cost_of_sales: '36100'
+      dp: 2
+      ratios:
+      - mark_up
+      - gross_margin
+      revenue: '45125'
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,96 @@
+- id: kc.phy.o.density.density_calculation
+  code: PHY-O-01.04.K01
+  node_id: cur.phy.o.motion_forces_and_energy.density
+  statement: Calculate density, mass or volume from the other two in consistent units
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.4
+  prerequisites:
+  - kc_id: kc.phy.o.measurement.si_prefixes
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.area_volume_factor_not_raised
+  - mc.phy.o.block_volume_two_sides
+  - mc.phy.o.density_conversion_direction_swapped
+  - mc.phy.o.density_conversion_volume_only
+  - mc.phy.o.density_mass_times_volume
+  - mc.phy.o.density_rearranged_wrongly
+  - mc.phy.o.density_units_not_converted
+  - mc.phy.o.density_volume_over_mass
+  skill_ids:
+  - phy-o-density
+  glossary:
+  - density
+  - mass
+  - volume
+  - kilogram
+  - cubic metre
+  - cubic centimetre
+  difficulty_prior: -0.5
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.density.measuring_density
+  code: PHY-O-01.04.K02
+  node_id: cur.phy.o.motion_forces_and_energy.density
+  statement: Determine the volume of an irregular solid by displacement and use it to find the solid's density
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.3
+  prerequisites:
+  - kc_id: kc.phy.o.density.density_calculation
+    strength: required
+  - kc_id: kc.phy.o.measurement.measuring_techniques
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.container_mass_not_subtracted
+  - mc.phy.o.cylinder_read_wrongly
+  - mc.phy.o.density_mass_times_volume
+  - mc.phy.o.density_volume_over_mass
+  - mc.phy.o.displacement_can_not_filled
+  - mc.phy.o.displacement_final_reading_as_volume
+  - mc.phy.o.displacement_partly_submerged_ok
+  - mc.phy.o.displacement_readings_added
+  skill_ids:
+  - phy-o-density
+  glossary:
+  - density
+  - mass
+  - volume
+  - displacement
+  - displacement can
+  - measuring cylinder
+  - irregular solid
+  - overflow can
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.density.floating_and_sinking
+  code: PHY-O-01.04.K03
+  node_id: cur.phy.o.motion_forces_and_energy.density
+  statement: Predict whether an object floats or sinks in a liquid by comparing densities
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.3
+  prerequisites:
+  - kc_id: kc.phy.o.density.density_calculation
+    strength: required
+  misconception_ids:
+  - mc.phy.o.density_float_rule_reversed
+  - mc.phy.o.floating_ignores_liquid
+  - mc.phy.o.hollow_object_density_of_material
+  - mc.phy.o.mass_decides_floating
+  - mc.phy.o.volume_decides_floating
+  skill_ids:
+  - phy-o-density
+  glossary:
+  - density
+  - mass
+  - volume
+  - upthrust
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active

@@ -1,0 +1,36 @@
+id: mc.phy.o.diameter_used_as_area
+kc_ids:
+- kc.phy.o.electrical_quantities.resistance_of_wires
+student_name: Scaling by the diameter, not the area
+description: Scales the resistance by the ratio of diameters instead of the ratio of cross-sectional areas, forgetting that area goes with the diameter squared.
+signatures:
+- kind: answer_transform
+  expression: R*d1/d2
+fix:
+  strategy: rule_restatement
+  text:
+    en: Doubling the diameter makes the cross-section four times the area, so the resistance falls to a quarter, not a half.
+probe_item_ids:
+- itm.phy.o.electrical_quantities.0071
+- itm.phy.o.electrical_quantities.0074
+- itm.phy.o.electrical_quantities.0062
+- itm.phy.o.electrical_quantities.0065
+- itm.phy.o.electrical_quantities.0068
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

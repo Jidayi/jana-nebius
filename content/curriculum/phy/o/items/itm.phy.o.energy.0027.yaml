@@ -1,0 +1,114 @@
+id: itm.phy.o.energy.0027
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.kinetic_energy
+stem: A cyclist with her bicycle, of total mass 65 kg, speeds up from 6 m/s to 7 m/s.
+parts:
+- id: a
+  prompt: Calculate the increase in kinetic energy.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 32.5 J
+      correct: false
+      misconception_id: mc.phy.o.ke_change_from_speed_difference
+      feedback: Going from 10 to 20 m/s is the same change in speed as 0 to 10 m/s, but it needs three times the energy. Find each kinetic energy, then subtract.
+    - id: B
+      text: 845 J
+      correct: false
+      misconception_id: mc.phy.o.ke_half_omitted
+      feedback: Kinetic energy is ½mv². Write the whole formula down before you put in any numbers.
+    - id: C
+      text: 1592.5 J
+      correct: false
+      misconception_id: mc.phy.o.ke_final_not_change
+      feedback: An increase is final minus starting value. The object already had kinetic energy before it sped up.
+    - id: D
+      text: 422.5 J
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Find the kinetic energy at each speed.
+  - rung: 2
+    name: concept
+    text:
+      en: Use Ek = ½mv² twice, then subtract.
+  - rung: 3
+    name: first_step
+    text:
+      en: At 6 m/s, Ek = 1170 J.
+  - rung: 4
+    name: worked_step
+    text:
+      en: At 7 m/s, Ek = 1592.5 J; now subtract.
+  - rung: 5
+    name: full_step
+    text:
+      en: The increase is 422.5 J.
+  misconception_ids:
+  - mc.phy.o.ke_change_from_speed_difference
+  - mc.phy.o.ke_final_not_change
+  - mc.phy.o.ke_half_omitted
+solution:
+  steps:
+  - n: 1
+    latex: E_1 = \frac{1}{2} \times 65 \times 6^2 = 1170\ \text{J}
+    reason: Kinetic energy before
+    check_id: chk_build_phy_nrg_0027_e1
+  - n: 2
+    latex: E_2 = \frac{1}{2} \times 65 \times 7^2 = 1592.5\ \text{J}
+    reason: Kinetic energy after
+    check_id: chk_build_phy_nrg_0027_e2
+  - n: 3
+    latex: E_2 - E_1 = 1592.5 - 1170 = 422.5\ \text{J}
+    reason: Increase = after − before
+    check_id: chk_build_phy_nrg_0027_ans
+difficulty:
+  prior: 0.5
+  band: stretch
+estimated_seconds: 100
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0027_ans:
+    args:
+      expression: 0.5*65*(7^2 - 6^2)
+    tool: math_evaluate
+  chk_build_phy_nrg_0027_e1:
+    args:
+      expression: 0.5*65*6^2
+    tool: math_evaluate
+  chk_build_phy_nrg_0027_e2:
+    args:
+      expression: 0.5*65*7^2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

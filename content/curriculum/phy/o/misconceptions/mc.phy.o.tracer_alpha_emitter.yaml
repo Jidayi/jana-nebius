@@ -1,0 +1,33 @@
+id: mc.phy.o.tracer_alpha_emitter
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+student_name: An alpha emitter as a tracer
+description: Chooses an alpha emitter as a tracer, though alpha cannot get out of the body or through soil to reach the detector and does most harm inside the body.
+signatures:
+- kind: answer_transform
+  expression: alpha
+fix:
+  strategy: rule_restatement
+  text:
+    en: The radiation must reach a detector outside, so a tracer must emit gamma (or sometimes beta). Alpha is absorbed within centimetres.
+probe_item_ids:
+- itm.phy.o.radioactivity.0073
+- itm.phy.o.radioactivity.0070
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

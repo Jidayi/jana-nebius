@@ -1,0 +1,103 @@
+id: itm.chm.o.analysis.0063
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.analysis.cation_tests
+stem: Aqueous sodium hydroxide gives a white precipitate that dissolves in excess. With aqueous ammonia a white precipitate forms that does not dissolve in excess.
+parts:
+- id: a
+  prompt: Which cation is present?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Al³⁺
+      correct: true
+    - id: B
+      text: Zn²⁺
+      correct: false
+      misconception_id: mc.chm.o.analysis_excess_ignored
+      feedback: Zinc, aluminium and calcium all give white precipitates. Excess NaOH and excess ammonia tell them apart.
+    - id: C
+      text: Fe³⁺
+      correct: false
+      misconception_id: mc.chm.o.analysis_fe2_fe3_swapped
+      feedback: Iron(II) hydroxide is green; iron(III) hydroxide is red-brown (rust-coloured). Rust is iron(III).
+    - id: D
+      text: Ca²⁺
+      correct: false
+      misconception_id: mc.chm.o.analysis_excess_ignored
+      feedback: Zinc, aluminium and calcium all give white precipitates. Excess NaOH and excess ammonia tell them apart.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Look at two clues: the colour of the precipitate and what happens in excess.'
+  - rung: 2
+    name: concept
+    text:
+      en: 'Copper(II): light blue. Iron(II): green. Iron(III): red-brown. Zinc, aluminium and calcium: white.'
+  - rung: 3
+    name: first_step
+    text:
+      en: For a white precipitate, the excess-reagent results tell zinc, aluminium and calcium apart.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Match both clues to one ion.
+  - rung: 5
+    name: full_step
+    text:
+      en: The ion is Al³⁺; the precipitate is Al(OH)₃ (Mr 78).
+  misconception_ids:
+  - mc.chm.o.analysis_excess_ignored
+  - mc.chm.o.analysis_fe2_fe3_swapped
+solution:
+  steps:
+  - n: 1
+    latex: M_r(Al(OH)₃) = 78
+    reason: The hydroxide precipitate
+    check_id: chk_build_chm_analysis_0063_mr
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_analysis_0063_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_al
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_h
+      formula: Al(OH)3
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,101 @@
+id: itm.mth.o.number.0385
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.surds
+stem: Rationalise the denominator of $\frac{12}{\sqrt{2}}$ and write it as $k\sqrt{2}$.
+parts:
+- id: a
+  prompt: Find k.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '12'
+      correct: false
+      misconception_id: mc.mth.o.rationalise_numerator_only
+      feedback: 'Multiply top and bottom by √b: the bottom becomes √b × √b = b.'
+    - id: B
+      text: '6'
+      correct: true
+    - id: C
+      text: '3'
+      correct: false
+      misconception_id: mc.mth.o.square_as_double
+      feedback: 5² means 5 × 5 = 25, not 5 × 2 = 10.
+    - id: D
+      text: '24'
+      correct: false
+      misconception_id: mc.mth.o.fraction_multiply_inverts
+      feedback: To multiply fractions, multiply the tops together and the bottoms together.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Rationalising means making the denominator a whole number.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply the top and the bottom by √2.
+  - rung: 3
+    name: first_step
+    text:
+      en: The bottom becomes √2 × √2 = 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: You get 12√2 ÷ 2. Simplify.
+  - rung: 5
+    name: full_step
+    text:
+      en: k = 6.
+  misconception_ids:
+  - mc.mth.o.fraction_multiply_inverts
+  - mc.mth.o.rationalise_numerator_only
+  - mc.mth.o.square_as_double
+solution:
+  steps:
+  - n: 1
+    latex: \frac{12}{\sqrt{2}} \times \frac{\sqrt{2}}{\sqrt{2}} = \frac{12\sqrt{2}}{2}
+    reason: Multiply top and bottom by the root
+  - n: 2
+    latex: = 6\sqrt{2}
+    reason: Simplify the fraction
+    check_id: chk_build_mth_num_0385_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0385_ans:
+    args:
+      expression: 12/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

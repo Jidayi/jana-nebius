@@ -1,0 +1,91 @@
+id: itm.chm.o.metals.0001
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.properties_and_uses
+stem: Overhead power cables are made mainly of aluminium, not copper, even though copper is a slightly better conductor.
+parts:
+- id: a
+  prompt: Why is aluminium chosen?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Aluminium conducts well and has a much lower density, so the long cables are lighter.
+      correct: true
+    - id: B
+      text: Copper would last longer outdoors, but aluminium is cheaper to replace when it corrodes away.
+      correct: false
+      misconception_id: mc.chm.o.metals_aluminium_corrodes_easily
+      feedback: Aluminium is quite reactive, but a thin, tough layer of aluminium oxide forms on its surface at once. This layer seals the metal off, so aluminium objects last a long time outdoors.
+    - id: C
+      text: Aluminium is chosen because it is harder than copper, so the cables never stretch.
+      correct: false
+      misconception_id: mc.chm.o.metals_use_wrong_property
+      feedback: Ask what the job needs first. A wire must carry current and bend; a plane body must be light and strong; a ring must stay shiny. Then pick the property that meets that need.
+    - id: D
+      text: In aluminium the positive ions move more freely, so they carry the current better.
+      correct: false
+      misconception_id: mc.chm.o.metals_conduct_by_moving_ions
+      feedback: In a solid metal the positive ions stay in their places in the lattice. The delocalised electrons move through the structure and carry the current.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what hangs between two pylons for a long distance.
+  - rung: 2
+    name: concept
+    text:
+      en: A cable must conduct, and a long cable hanging in the air must not be too heavy.
+  - rung: 3
+    name: first_step
+    text:
+      en: Compare how heavy the same volume of aluminium and of copper would be.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Copper conducts a little better, so conduction alone cannot be the reason.
+  - rung: 5
+    name: full_step
+    text:
+      en: Aluminium conducts well and has a low density, so the cables are light; its oxide layer also stops it corroding.
+  misconception_ids:
+  - mc.chm.o.metals_use_wrong_property
+  - mc.chm.o.metals_conduct_by_moving_ions
+  - mc.chm.o.metals_aluminium_corrodes_easily
+solution:
+  steps:
+  - n: 1
+    latex: '\text{aluminium: good conductor, low density}'
+    reason: Light cables that still carry the current
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

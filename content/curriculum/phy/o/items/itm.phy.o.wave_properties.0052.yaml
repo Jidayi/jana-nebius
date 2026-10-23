@@ -1,0 +1,92 @@
+id: itm.phy.o.wave_properties.0052
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.wave_behaviour
+stem: Straight water waves strike a flat barrier. The angle of incidence, measured from the normal, is 70°.
+parts:
+- id: a
+  prompt: What is the angle of reflection?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '70'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_wav_0052_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Water waves obey the same law of reflection as light.
+  - rung: 2
+    name: concept
+    text:
+      en: Both angles are measured from the normal, the line at right angles to the barrier.
+  - rung: 3
+    name: first_step
+    text:
+      en: The angle of reflection equals the angle of incidence.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Do not measure from the barrier itself, and do not add the two angles.
+  - rung: 5
+    name: full_step
+    text:
+      en: r = 70°.
+  misconception_ids:
+  - mc.phy.o.reflection_angle_from_surface
+  - mc.phy.o.reflection_angle_doubled
+  - mc.phy.o.reflection_deviation_given
+solution:
+  steps:
+  - n: 1
+    latex: r = i = 70^\circ
+    reason: Angle of reflection = angle of incidence, both from the normal
+    check_id: chk_build_phy_wav_0052_ans
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 30
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  i: '70'
+checks:
+  chk_build_phy_wav_0052_ans:
+    args:
+      expression: '70'
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

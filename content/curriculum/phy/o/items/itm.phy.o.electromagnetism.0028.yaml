@@ -1,0 +1,93 @@
+id: itm.phy.o.electromagnetism.0028
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.motor_effect
+stem: A loudspeaker coil carries a current in the field of a permanent magnet.
+parts:
+- id: a
+  prompt: Which change makes the force on the coil bigger?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Using a stronger magnet
+      correct: true
+    - id: B
+      text: Using a weaker magnet
+      correct: false
+      misconception_id: mc.phy.o.motor_factor_reversed
+      feedback: A stronger magnet, a bigger current or more turns on the coil each make the turning effect bigger.
+    - id: C
+      text: Turning the coil so its wire lies along the field
+      correct: false
+      misconception_id: mc.phy.o.parallel_wire_feels_force
+      feedback: The force is largest when the wire is at right angles to the field and zero when it lies along the field.
+    - id: D
+      text: Reversing both the current and the field
+      correct: false
+      misconception_id: mc.phy.o.reversing_both_reverses_force
+      feedback: Each reversal flips the force once. Two flips bring it back to where it started.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about how the current, the field and the force are arranged.
+  - rung: 2
+    name: concept
+    text:
+      en: The force is at right angles to both the field and the current, and it grows with the current, the field and the number of turns.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The force grows with the field strength and the current.
+  - rung: 5
+    name: full_step
+    text:
+      en: Using a stronger magnet. The force grows with the field strength and the current.
+  misconception_ids:
+  - mc.phy.o.motor_factor_reversed
+  - mc.phy.o.parallel_wire_feels_force
+  - mc.phy.o.reversing_both_reverses_force
+solution:
+  steps:
+  - n: 1
+    latex: \text{Using a stronger magnet}
+    reason: Apply the rules for the motor effect
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

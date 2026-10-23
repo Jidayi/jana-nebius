@@ -1,0 +1,168 @@
+- id: kc.chm.o.electrolysis.molten_products
+  code: CHM-O-04.01.K01
+  node_id: cur.chm.o.electrochemistry.electrolysis
+  statement: Predict the products at each electrode when a molten binary compound is electrolysed
+  kind: conceptual
+  tools: []
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.chm.o.atoms.ion_formation
+    strength: required
+  confusable_with:
+  - kc.chm.o.electrolysis.aqueous_products
+  misconception_ids:
+  - mc.chm.o.ionic_conduction_by_electrons
+  - mc.chm.o.electrolysis_metal_at_anode
+  - mc.chm.o.electrolysis_molten_gives_hydrogen
+  - mc.chm.o.electrolysis_electrons_through_electrolyte
+  skill_ids:
+  - chm-o-electrolysis
+  glossary:
+  - electrolysis
+  - electrolysed
+  - electrolyte
+  - electrode
+  - anode
+  - cathode
+  - molten
+  - binary compound
+  - relative molecular mass
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.electrolysis.aqueous_products
+  code: CHM-O-04.01.K02
+  node_id: cur.chm.o.electrochemistry.electrolysis
+  statement: Predict the products of electrolysing an aqueous solution from the ions present and their concentration
+  kind: conceptual
+  tools: []
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.chm.o.electrolysis.molten_products
+    strength: required
+  confusable_with:
+  - kc.chm.o.electrolysis.molten_products
+  misconception_ids:
+  - mc.chm.o.electrolysis_reactive_metal_from_solution
+  - mc.chm.o.electrolysis_halide_concentration_ignored
+  - mc.chm.o.electrolysis_hydrogen_always_at_cathode
+  skill_ids:
+  - chm-o-electrolysis
+  glossary:
+  - electrolysis
+  - electrolysed
+  - electrolyte
+  - electrode
+  - anode
+  - cathode
+  - aqueous
+  - concentrated
+  - dilute
+  - inert electrode
+  - half-equation
+  - hydrochloric acid
+  - sulfuric acid
+  - solution
+  - relative formula mass
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.electrolysis.half_equations
+  code: CHM-O-04.01.K03
+  node_id: cur.chm.o.electrochemistry.electrolysis
+  statement: Construct the ionic half-equations for the changes at the anode and the cathode
+  kind: procedural
+  tools:
+  - chem_balance
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.chm.o.electrolysis.molten_products
+    strength: required
+  - kc_id: kc.chm.o.stoichiometry.balancing_equations
+    strength: helpful
+  misconception_ids:
+  - mc.chm.o.electrolysis_electrons_wrong_side
+  - mc.chm.o.electrolysis_single_atoms_formed
+  - mc.chm.o.electrolysis_half_charge_unbalanced
+  skill_ids:
+  - chm-o-electrolysis
+  glossary:
+  - half-equation
+  - ionic half-equation
+  - electrolysis
+  - electrolysed
+  - electrode
+  - anode
+  - cathode
+  - electron
+  - aluminium
+  - aqueous
+  - concentrated
+  - sulfuric acid
+  - hydroxide
+  difficulty_prior: 0.5
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.electrolysis.applications
+  code: CHM-O-04.01.K04
+  node_id: cur.chm.o.electrochemistry.electrolysis
+  statement: Describe how electrolysis is used to electroplate, purify copper and extract aluminium
+  kind: conceptual
+  tools: []
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.chm.o.electrolysis.aqueous_products
+    strength: helpful
+  misconception_ids:
+  - mc.chm.o.electrolysis_plated_object_as_anode
+  - mc.chm.o.electrolysis_impure_copper_as_cathode
+  - mc.chm.o.electrolysis_aluminium_by_carbon
+  skill_ids:
+  - chm-o-electrolysis
+  glossary:
+  - electrolysis
+  - electrolysed
+  - electroplating
+  - electroplated
+  - electrode
+  - anode
+  - cathode
+  - purification
+  - purified
+  - aluminium
+  - cryolite
+  - impurities
+  - solution
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.electrolysis.quantitative
+  code: CHM-O-04.01.K05
+  node_id: cur.chm.o.electrochemistry.electrolysis
+  statement: Calculate the mass of a product of electrolysis from the current and the time
+  kind: procedural
+  tools:
+  - chem_stoichiometry
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.chm.o.electrolysis.half_equations
+    strength: required
+  - kc_id: kc.chm.o.stoichiometry.moles_and_mass
+    strength: required
+  misconception_ids:
+  - mc.chm.o.electrolysis_time_not_in_seconds
+  - mc.chm.o.electrolysis_electron_ratio_ignored
+  - mc.chm.o.electrolysis_electron_ratio_inverted
+  skill_ids:
+  - chm-o-electrolysis
+  glossary:
+  - electrolysis
+  - faraday constant
+  - charge
+  - current
+  - coulomb
+  - electrode
+  - relative atomic mass
+  difficulty_prior: 0.9
+  version: 0.1.1
+  status: active

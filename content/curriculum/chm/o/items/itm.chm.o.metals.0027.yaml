@@ -1,0 +1,95 @@
+id: itm.chm.o.metals.0027
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.reactivity_series
+- kc.chm.o.metals.properties_of_metals
+stem: Small pieces of potassium, magnesium and copper are put into separate dishes of cold water.
+parts:
+- id: a
+  prompt: Which describes what happens?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Copper reacts the most and potassium the least.
+      correct: false
+      misconception_id: mc.chm.o.metals_displacement_reversed
+      feedback: 'A metal can only take the place of a metal BELOW it in the reactivity series. Find both metals in the series: if the free metal is higher, it displaces the other; if it is lower, nothing happens.'
+    - id: B
+      text: Potassium reacts violently, giving off hydrogen; magnesium reacts very slowly; copper does not react.
+      correct: true
+    - id: C
+      text: Potassium reacts violently, giving off oxygen; magnesium reacts very slowly; copper does not react.
+      correct: false
+      misconception_id: mc.chm.o.metals_gas_is_oxygen
+      feedback: 'The metal takes the oxygen (or the non-metal part) and keeps it, so it is hydrogen that is set free. The gas burns with a squeaky pop: that is the test for hydrogen.'
+    - id: D
+      text: All three react quickly, giving off hydrogen.
+      correct: false
+      misconception_id: mc.chm.o.metals_all_metals_react
+      feedback: Copper pipes carry water and gold rings survive washing-up for years. Only metals above hydrogen in the series give hydrogen with dilute acids, and only the most reactive react with cold water.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Place the three metals in the reactivity series.
+  - rung: 2
+    name: concept
+    text:
+      en: The higher a metal is, the faster it reacts with water.
+  - rung: 3
+    name: first_step
+    text:
+      en: Potassium is at the top; magnesium is in the middle; copper is below hydrogen.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Decide which gas the reacting metals give off with water.
+  - rung: 5
+    name: full_step
+    text:
+      en: Potassium reacts violently, magnesium very slowly and copper not at all; the gas is hydrogen.
+  misconception_ids:
+  - mc.chm.o.metals_all_metals_react
+  - mc.chm.o.metals_gas_is_oxygen
+  - mc.chm.o.metals_displacement_reversed
+solution:
+  steps:
+  - n: 1
+    latex: \text{K > Mg > Cu}
+    reason: Reactivity series
+  - n: 2
+    latex: \text{gas = hydrogen}
+    reason: Metal + water gives hydroxide + hydrogen
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

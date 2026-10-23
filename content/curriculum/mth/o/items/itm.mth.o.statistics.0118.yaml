@@ -1,0 +1,98 @@
+id: itm.mth.o.statistics.0118
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.cumulative_frequency
+stem: 'The masses (kg) of 48 parcels are summarised in a cumulative frequency table: none under 0; up to 20: 12; up to 40: 17; up to 60: 22; up to 80: 32; up to 100: 48.'
+parts:
+- id: a
+  prompt: Estimate the interquartile range, to 3 significant figures, by interpolating within the classes.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '65.0'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_sta_0118_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The interquartile range measures the spread of the middle half of the data.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the lower quartile at n/4 and the upper quartile at 3n/4, then subtract.
+  - rung: 3
+    name: first_step
+    text:
+      en: The positions are 48 ÷ 4 and 3 × 48 ÷ 4.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Interpolate within each class to find Q₁ and Q₃.
+  - rung: 5
+    name: full_step
+    text:
+      en: The interquartile range is about 65.0 kg.
+  misconception_ids:
+  - mc.mth.o.iqr_as_quartile
+  - mc.mth.o.range_as_largest
+  - mc.mth.o.median_position_as_value
+solution:
+  steps:
+  - n: 1
+    latex: Q_1 = 20,\ Q_3 = 85
+    reason: Read at a quarter and three quarters of the total
+    check_id: chk_build_mth_sta_0118_q
+  - n: 2
+    latex: \text{IQR} = 85 - 20 = 65.0
+    reason: Upper quartile minus lower quartile
+    check_id: chk_build_mth_sta_0118_ans
+difficulty:
+  prior: 0.8
+  band: core
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0118_ans:
+    args:
+      expression: 85.0 - 20.0
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_sta_0118_q:
+    args:
+      equations:
+      - p = 20.0
+      - q = 85.0
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

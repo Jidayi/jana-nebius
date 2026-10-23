@@ -1,0 +1,91 @@
+id: itm.chm.o.analysis.0039
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.analysis.separation
+stem: Ethanol (boils at 78 °C) and water (boils at 100 °C) mix completely.
+parts:
+- id: a
+  prompt: How can they be separated?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Fractional distillation
+      correct: true
+    - id: B
+      text: Filtration
+      correct: false
+      misconception_id: mc.chm.o.analysis_filter_dissolved
+      feedback: Dissolved particles are as small as water particles and pass through filter paper. Filtration only removes undissolved solids.
+    - id: C
+      text: Simple distillation
+      correct: false
+      misconception_id: mc.chm.o.analysis_simple_for_miscible
+      feedback: Liquids that mix need fractional distillation; the column separates them by their boiling points.
+    - id: D
+      text: Evaporation
+      correct: false
+      misconception_id: mc.chm.o.analysis_evaporate_to_collect_liquid
+      feedback: Evaporation keeps the solid and loses the liquid. To collect the liquid, distil it and condense the vapour.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Ethanol (boils at 78 °C) and water (boils at 100 °C) mix completely. Which parts are dissolved, which are solids, and which are liquids?
+  - rung: 2
+    name: concept
+    text:
+      en: Filtration removes undissolved solids; crystallisation and evaporation recover a dissolved solid; distillation recovers a liquid; fractional distillation separates liquids that mix.
+  - rung: 3
+    name: first_step
+    text:
+      en: Decide which part you want to keep.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the method that keeps that part and removes the rest.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Fractional distillation.'
+  misconception_ids:
+  - mc.chm.o.analysis_simple_for_miscible
+  - mc.chm.o.analysis_filter_dissolved
+  - mc.chm.o.analysis_evaporate_to_collect_liquid
+solution:
+  steps:
+  - n: 1
+    latex: \text{method from properties}
+    reason: Reason
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,93 @@
+id: itm.phy.o.circuits.0074
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.circuit_components
+stem: A circuit symbol shows a rectangle with two small arrows pointing in towards it.
+parts:
+- id: a
+  prompt: Which component does it stand for?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: A light-emitting diode
+      correct: false
+      misconception_id: mc.phy.o.led_ldr_arrows_confused
+      feedback: 'Arrows pointing out: the component gives out light (LED). Arrows pointing in: light falls on it (LDR).'
+    - id: B
+      text: A thermistor
+      correct: false
+      misconception_id: mc.phy.o.thermistor_ldr_confused
+      feedback: 'Thermistor: temperature (think thermometer). LDR: light-dependent resistor, its symbol has arrows of light pointing in.'
+    - id: C
+      text: A light-dependent resistor
+      correct: true
+    - id: D
+      text: A variable resistor
+      correct: false
+      misconception_id: mc.phy.o.variable_resistor_is_sensor
+      feedback: A variable resistor is adjusted by a person, like a dimmer knob. Only sensors such as thermistors and LDRs change by themselves.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The rectangle tells you the component is a kind of resistor.
+  - rung: 2
+    name: concept
+    text:
+      en: Arrows pointing in show something arriving at the component from outside.
+  - rung: 3
+    name: first_step
+    text:
+      en: Arrows pointing out would show something leaving it instead.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Ask what kind of resistor responds to something arriving from outside.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: a light-dependent resistor.'
+  misconception_ids:
+  - mc.phy.o.led_ldr_arrows_confused
+  - mc.phy.o.thermistor_ldr_confused
+  - mc.phy.o.variable_resistor_is_sensor
+solution:
+  steps:
+  - n: 1
+    latex: \text{A light-dependent resistor}
+    reason: Match the component to what it does
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,85 @@
+id: itm.acc.o.incomplete_records.9001
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.incomplete_records.missing_credit_figures
+stem: A trader owed suppliers $4200 at the start of the year and $5100 at the end. Payments to suppliers were $28000. Discounts received were $300. There were no returns or other changes.
+parts:
+- id: a
+  prompt: Calculate credit purchases for the year.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '29200'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_acc_9001
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Credit purchases increase trade payables; payments and discounts received reduce them.
+  - rung: 2
+    name: concept
+    text:
+      en: Rearrange opening payables plus credit purchases equals payments plus discounts plus closing payables.
+  - rung: 3
+    name: first_step
+    text:
+      en: Rearrange opening payables plus credit purchases equals payments plus discounts plus closing payables.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Check that purchases increase the amount owed, while discounts received reduce it.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 29200 $.
+solution:
+  steps:
+  - n: 1
+    latex: 5100 - 4200+28000+300
+    reason: Rearrange opening payables plus credit purchases equals payments plus discounts plus closing payables.
+    check_id: chk_build_mastery_supplement_acc_9001
+  - n: 2
+    latex: '29200'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_acc_9001
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_acc_9001:
+    args:
+      angle_unit: degrees
+      expression: 5100-4200+28000+300
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

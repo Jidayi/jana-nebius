@@ -1,0 +1,126 @@
+id: wex.chm.o.metals.0006
+kc_ids:
+- kc.chm.o.metals.reactivity_series
+problem: 1.2 g of magnesium is added to excess silver nitrate solution. Decide whether a reaction happens and find the mass of silver formed (Mg + 2AgNO₃ → Mg(NO₃)₂ + 2Ag).
+steps:
+- n: 1
+  latex: \text{magnesium is above silver, so it displaces silver}
+  reason: Reactivity series
+- n: 2
+  latex: n(\text{Mg}) = \frac{1.2}{24} = 0.0500\ \text{mol}
+  reason: Mass to moles
+  check_id: chk_build_chm_metals_w0006_ma
+- n: 3
+  latex: '\text{Mg} : \text{Ag} = 1 : 2'
+  reason: Ratio from the equation
+  check_id: chk_build_chm_metals_w0006_coef
+- n: 4
+  latex: n(\text{Ag}) = 0.100\ \text{mol}
+  reason: Mole ratio from the equation
+  check_id: chk_build_chm_metals_w0006_chain
+- n: 5
+  latex: m = 0.100 \times 108
+  reason: Moles to mass
+  check_id: chk_build_chm_metals_w0006_s5
+final_answer:
+  latex: 10.8\ \text{g of silver}
+  check_id: chk_build_chm_metals_w0006_chain
+fading_order:
+- 5
+- 4
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_metals_w0006_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_mg
+      - source: pack
+        symbol: ar_ag
+      - source: pack
+        symbol: ar_n
+      - source: pack
+        symbol: ar_o
+      equation: Mg + 2AgNO3 -> Mg(NO3)2 + 2Ag
+      sf: 3
+      steps:
+      - id: na
+        mass: 1.2 g
+        op: amount_from_mass
+        species: Mg
+      - amount: '@na'
+        from: Mg
+        id: nb
+        op: mole_ratio
+        to: Ag
+      - amount: '@nb'
+        id: mb
+        op: mass_from_amount
+        species: Ag
+    tool: chem_stoichiometry
+  chk_build_chm_metals_w0006_coef:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_mg
+      - source: pack
+        symbol: ar_ag
+      - source: pack
+        symbol: ar_n
+      - source: pack
+        symbol: ar_o
+      equation: Mg + 2AgNO3 -> Mg(NO3)2 + 2Ag
+      sf: 3
+      steps:
+      - amount: '1'
+        from: Mg
+        id: ca
+        op: mole_ratio
+        to: Mg
+      - amount: '1'
+        from: Mg
+        id: cb
+        op: mole_ratio
+        to: Ag
+    tool: chem_stoichiometry
+  chk_build_chm_metals_w0006_ma:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_mg
+      formula: Mg
+    tool: chem_molar_mass
+  chk_build_chm_metals_w0006_mb:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ag
+      formula: Ag
+    tool: chem_molar_mass
+  chk_build_chm_metals_w0006_s5:
+    args:
+      expression: 0.100*108
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

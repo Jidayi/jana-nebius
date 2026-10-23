@@ -1,0 +1,84 @@
+id: itm.chm.o.states.0034
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.states.diffusion
+stem: Perfume is sprayed in one corner of a room.
+parts:
+- id: a
+  prompt: Why can it soon be smelled in the far corner?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Perfume particles move randomly and spread out among the air particles.
+      correct: true
+    - id: B
+      text: The air particles stop moving.
+      correct: false
+    - id: C
+      text: The air pushes the perfume in a straight line.
+      correct: false
+    - id: D
+      text: The perfume particles get bigger.
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Perfume is sprayed in one corner of a room. What are the particles doing?
+  - rung: 2
+    name: concept
+    text:
+      en: Particles move randomly and spread from high to low concentration; lighter and hotter particles move faster.
+  - rung: 3
+    name: first_step
+    text:
+      en: Think about the speed of the particles involved.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Decide which particles travel further in the same time.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Perfume particles move randomly and spread out among the air particles..'
+solution:
+  steps:
+  - n: 1
+    latex: \text{random particle motion}
+    reason: Diffusion
+  - n: 2
+    latex: \text{faster particles diffuse faster}
+    reason: Speed of particles
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,107 @@
+id: itm.phy.o.forces.0081
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.moments
+stem: A hanging basket of mass 2 kg hangs from the end of a bracket, 75 cm out from the wall. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Find the moment of its weight about the point where the bracket is fixed to the wall, in N m.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '15'
+    unit: N m
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_frc_0081_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A moment is force × perpendicular distance from the pivot.
+  - rung: 2
+    name: concept
+    text:
+      en: The force here is the weight of the object, not its mass.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the weight, change the distance into metres, then multiply.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The weight is 20 N and the distance is 0.75 m.
+  - rung: 5
+    name: full_step
+    text:
+      en: Moment = 20 × 0.75 = 15 N m.
+  misconception_ids:
+  - mc.phy.o.mass_in_kg_used_as_force
+  - mc.phy.o.moment_cm_not_converted
+  - mc.phy.o.moment_force_over_distance
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: W = 2 \times 10 = 20\ \text{N}
+    reason: The force is the weight
+    check_id: chk_build_phy_frc_0081_w
+  - n: 2
+    latex: d = 75\ \text{cm} = 0.75\ \text{m}
+    reason: Distance in metres
+    check_id: chk_build_phy_frc_0081_d
+  - n: 3
+    latex: M = Fd = 20 \times 0.75 = 15\ \text{N m}
+    reason: Moment = force × perpendicular distance
+    check_id: chk_build_phy_frc_0081_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0081_ans:
+    args:
+      expression: 2*10*75/100
+    tool: math_evaluate
+  chk_build_phy_frc_0081_d:
+    args:
+      expression: 75/100
+    tool: math_evaluate
+  chk_build_phy_frc_0081_w:
+    args:
+      expression: 2*10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

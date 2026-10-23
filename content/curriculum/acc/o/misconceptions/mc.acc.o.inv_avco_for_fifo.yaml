@@ -1,0 +1,34 @@
+id: mc.acc.o.inv_avco_for_fifo
+kc_ids:
+- kc.acc.o.inventory.fifo
+student_name: Averaging under FIFO
+description: Uses an average cost when FIFO is asked for.
+signatures:
+- kind: answer_transform
+  expression: closing_units * average_cost
+fix:
+  strategy: contrast_example
+  text:
+    en: FIFO keeps each batch at its own price; AVCO averages them.
+probe_item_ids:
+- itm.acc.o.inventory.0008
+- itm.acc.o.inventory.0009
+- itm.acc.o.inventory.0010
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

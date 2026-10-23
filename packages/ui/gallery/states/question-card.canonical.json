@@ -1,0 +1,34 @@
+{
+  "id": "question-card.canonical",
+  "title": "Question card, canonical",
+  "component": "QuestionCard",
+  "state": "canonical",
+  "payload": {
+    "card_type": "question",
+    "prompt": "Which equation links \\(u\\), \\(v\\), \\(a\\) and \\(s\\)?",
+    "options": [
+      {
+        "id": "opt_0",
+        "label": "v^2 = u^2 + 2as",
+        "recommended": true
+      },
+      {
+        "id": "opt_1",
+        "label": "s = ut + ½at²"
+      }
+    ],
+    "allow_free_text": true,
+    "multi": false,
+    "placeholder_key": "card.something_else"
+  },
+  "payloadContract": "https://jana.dev/contracts/api/events#/$defs/card",
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "conversation"
+  ],
+  "expectText": [
+    "Question for you"
+  ]
+}

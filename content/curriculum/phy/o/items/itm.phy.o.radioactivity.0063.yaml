@@ -1,0 +1,85 @@
+id: itm.phy.o.radioactivity.0063
+version: 0.1.0
+type: multi_select
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+stem: A technician works with a gamma source.
+parts:
+- id: a
+  prompt: Which of these reduce the dose the technician receives? Choose every correct answer.
+  marks: 1
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Wearing thin rubber gloves
+      correct: false
+    - id: B
+      text: Cooling the source
+      correct: false
+    - id: C
+      text: Standing further away
+      correct: true
+    - id: D
+      text: Spending less time near it
+      correct: true
+    - id: E
+      text: Putting thick lead between them
+      correct: true
+    scoring: exact_set
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what reduces how much radiation reaches the body.
+  - rung: 2
+    name: concept
+    text:
+      en: Radiation spreads out as it travels and is absorbed by thick, dense materials.
+  - rung: 3
+    name: first_step
+    text:
+      en: Nothing changes how fast the source decays.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Thin layers barely affect gamma rays.
+  - rung: 5
+    name: full_step
+    text:
+      en: The dose is reduced by more distance, less time and thick lead shielding.
+solution:
+  steps:
+  - n: 1
+    latex: \text{distance, time and shielding}
+    reason: The three ways to reduce a dose
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

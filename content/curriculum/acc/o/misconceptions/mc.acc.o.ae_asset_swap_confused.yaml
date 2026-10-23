@@ -1,0 +1,34 @@
+id: mc.acc.o.ae_asset_swap_confused
+kc_ids:
+- kc.acc.o.accounting_equation.effect_of_transactions
+student_name: Asset swaps and other changes confused
+description: Thinks exchanging one asset for another changes total assets, or that a real change is just a swap.
+signatures:
+- kind: answer_transform
+  expression: assets + x
+fix:
+  strategy: contrast_example
+  text:
+    en: Buying equipment with cash swaps one asset for another; buying on credit adds a liability.
+probe_item_ids:
+- itm.acc.o.accounting_equation.0034
+- itm.acc.o.accounting_equation.0035
+- itm.acc.o.accounting_equation.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

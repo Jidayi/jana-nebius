@@ -1,0 +1,87 @@
+id: itm.mth.o.number.0044
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.venn_counting
+stem: In a class of 30 students, 14 like mangoes, 10 like oranges and 6 do both. Let A be the set of students who like mangoes and B the set who like oranges.
+parts:
+- id: a
+  prompt: How many students like mangoes only (and do not like oranges)?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '8'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0044_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Draw the Venn diagram and fill in the overlap first.
+  - rung: 2
+    name: concept
+    text:
+      en: The 'A only' region is circle A without the overlap.
+  - rung: 3
+    name: first_step
+    text:
+      en: The overlap holds 6.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A only = 14 − 6.
+  - rung: 5
+    name: full_step
+    text:
+      en: A only = 14 − 6 = 8.
+  misconception_ids:
+  - mc.mth.o.venn_only_includes_overlap
+  - mc.mth.o.venn_double_count
+  - mc.mth.o.venn_complement_wrong
+solution:
+  steps:
+  - n: 1
+    latex: n(A \cap B') = n(A) - n(A \cap B)
+    reason: Remove the overlap from A
+  - n: 2
+    latex: = 14 - 6 = 8
+    reason: Subtract
+    check_id: chk_build_mth_num_0044_ans
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0044_ans:
+    args:
+      expression: 14 - 6
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

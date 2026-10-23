@@ -1,0 +1,141 @@
+id: itm.acc.o.sole_trader_statements.0031
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.sole_trader_statements.profit_for_year
+stem: 'Kojo''s figures for the year: gross profit $18500; commission received $250; motor expenses $3950; insurance $3650; repairs $4450; drawings $7700; new equipment bought $7200.'
+parts:
+- id: a
+  prompt: What is the profit for the year?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $6700
+      correct: true
+    - id: B
+      text: $6450
+      correct: false
+      misconception_id: mc.acc.o.pfy_other_income_omitted
+    - id: C
+      text: $-500
+      correct: false
+      misconception_id: mc.acc.o.pfy_capital_spending_deducted
+    - id: D
+      text: $-1000
+      correct: false
+      misconception_id: mc.acc.o.pfy_drawings_deducted
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Some of these figures are not income or expenses of the year. Which ones?
+  - rung: 2
+    name: concept
+    text:
+      en: Profit for the year = gross profit + other income − running expenses. Drawings reduce capital; equipment is a non-current asset.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Other income: commission received of $250.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 18500 + 250 − (3950 + 3650 + 4450).
+  - rung: 5
+    name: full_step
+    text:
+      en: 18500 + 250 − (3950 + 3650 + 4450) = $6700.
+  misconception_ids:
+  - mc.acc.o.pfy_drawings_deducted
+  - mc.acc.o.pfy_other_income_omitted
+  - mc.acc.o.pfy_capital_spending_deducted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Profit for the year} = \text{gross profit} + \text{other income} - \text{expenses}
+    reason: Only income and expenses of the year
+    check_id: chk_build_acc_sole_trader_statements_0031_t
+  - n: 2
+    latex: \text{Profit for the year} = 18500 + 250 - (3950 + 3650 + 4450) = 6700
+    reason: Substitute
+    check_id: chk_build_acc_sole_trader_statements_0031_a
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_0031_a:
+    args:
+      dp: 2
+      expression: 18500 + 250 - (3950 + 3650 + 4450)
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0031_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '39700'
+        role: revenue
+      - account: Purchases
+        debit: '21200'
+        role: purchases
+      - account: Motor expenses
+        debit: '3950'
+        role: expense
+      - account: Insurance
+        debit: '3650'
+        role: expense
+      - account: Repairs
+        debit: '4450'
+        role: expense
+      - account: Commission received
+        credit: '250'
+        role: other_income
+      - account: Drawings
+        debit: '7700'
+        role: drawings
+      - account: Equipment
+        debit: '7200'
+        role: non_current_asset
+      - account: Capital
+        credit: '8200'
+        role: capital
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Family loan
+        credit: '1000'
+        role: non_current_liability
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

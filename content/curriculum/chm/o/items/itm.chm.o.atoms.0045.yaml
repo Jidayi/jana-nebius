@@ -1,0 +1,92 @@
+id: itm.chm.o.atoms.0045
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.atoms.isotopes
+stem: A sample of silver contains 52% of atoms with mass 107 and 48% of atoms with mass 109.
+parts:
+- id: a
+  prompt: Calculate the relative atomic mass of silver.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '108'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_atoms_0045_ar
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You need the weighted average mass of a silver atom.
+  - rung: 2
+    name: concept
+    text:
+      en: Relative atomic mass = (mass × % + mass × %) ÷ 100.
+  - rung: 3
+    name: first_step
+    text:
+      en: Multiply 107 by 52 and 109 by 48.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The two products add to 10796.
+  - rung: 5
+    name: full_step
+    text:
+      en: 10796 ÷ 100 = 108.
+  misconception_ids:
+  - mc.chm.o.isotope_simple_average
+  - mc.chm.o.isotope_no_divide_100
+solution:
+  steps:
+  - n: 1
+    latex: 107 \times 52 + 109 \times 48 = 10796
+    reason: Weighted sum
+    check_id: chk_build_chm_atoms_0045_prod
+  - n: 2
+    latex: A_r = \frac{10796}{100} = 108
+    reason: Divide by 100
+    check_id: chk_build_chm_atoms_0045_ar
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_atoms_0045_ar:
+    args:
+      expression: (107*52 + 109*48)/100
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_atoms_0045_prod:
+    args:
+      expression: 107*52 + 109*48
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

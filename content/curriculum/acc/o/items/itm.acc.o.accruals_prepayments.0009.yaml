@@ -1,0 +1,129 @@
+id: itm.acc.o.accruals_prepayments.0009
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.accruals_prepayments.accrued_expense
+stem: Musa paid $4750 for water during the year. $700 was owing at the start of the year and $650 was owing at the end.
+parts:
+- id: a
+  prompt: What is the water expense for the year?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $4750
+      correct: false
+      misconception_id: mc.acc.o.acc_cash_basis
+    - id: B
+      text: $3400
+      correct: false
+      misconception_id: mc.acc.o.acc_accrual_subtracted
+    - id: C
+      text: $4700
+      correct: true
+    - id: D
+      text: $6100
+      correct: false
+      misconception_id: mc.acc.o.acc_opening_accrual_added
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which part of the payments was for last year, and what is still owed for this year?
+  - rung: 2
+    name: concept
+    text:
+      en: Expense = paid + owing at the end − owing at the start.
+  - rung: 3
+    name: first_step
+    text:
+      en: Part of this year's payments settled last year's bill, so that part is taken off.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 4750 + 650 − 700.
+  - rung: 5
+    name: full_step
+    text:
+      en: The expense is $4700.
+  misconception_ids:
+  - mc.acc.o.acc_accrual_subtracted
+  - mc.acc.o.acc_opening_accrual_added
+  - mc.acc.o.acc_cash_basis
+solution:
+  steps:
+  - n: 1
+    latex: \text{Expense} = \text{paid} + \text{closing accrual} - \text{opening accrual}
+    reason: Matching
+    check_id: chk_build_acc_accruals_prepayments_0009_t
+  - n: 2
+    latex: \text{Expense} = 4750 + 650 - 700 = 4700
+    reason: Substitute
+    check_id: chk_build_acc_accruals_prepayments_0009_a
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_accruals_prepayments_0009_a:
+    args:
+      dp: 2
+      expression: 4750 + 650 - 700
+    tool: math_evaluate
+  chk_build_acc_accruals_prepayments_0009_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Water
+        amount: '650'
+        kind: accrued_expense
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '60000'
+        role: revenue
+      - account: Purchases
+        debit: '30000'
+        role: purchases
+      - account: Water
+        debit: '4050'
+        role: expense
+      - account: Land
+        debit: '25950'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

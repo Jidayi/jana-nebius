@@ -1,0 +1,52 @@
+id: wex.mth.o.trigonometry.0012
+kc_ids:
+- kc.mth.o.trigonometry.cosine_rule
+problem: Triangle ABC has sides a = 12 cm, b = 7 cm and c = 12 cm. Find angle A, opposite side a, to 1 decimal place.
+steps:
+- n: 1
+  latex: \cos A = \frac{b^2 + c^2 - a^2}{2bc} = \frac{7^2 + 12^2 - 12^2}{2 \times 7 \times 12} = 0.2917
+  reason: The cosine rule for an angle; substitute
+  check_id: chk_build_mth_trg_w0012_cs
+- n: 2
+  latex: A = 73.0
+  reason: Inverse cosine, in degrees
+  check_id: chk_build_mth_trg_w0012_ans
+final_answer:
+  latex: 73.0^\circ
+  check_id: chk_build_mth_trg_w0012_ans
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_trg_w0012_ans:
+    args:
+      angle_unit: degrees
+      dp: 1
+      expression: acos((7^2 + 12^2 - 12^2)/(2*7*12))
+    tool: math_evaluate
+  chk_build_mth_trg_w0012_cs:
+    args:
+      expression: (7^2 + 12^2 - 12^2)/(2*7*12)
+      sf: 4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

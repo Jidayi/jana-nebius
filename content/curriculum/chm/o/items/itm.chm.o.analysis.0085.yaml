@@ -1,0 +1,100 @@
+id: itm.chm.o.analysis.0085
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.analysis.gas_tests
+stem: A lighted splint held at the mouth of a test tube makes a squeaky pop.
+parts:
+- id: a
+  prompt: Which gas is it?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: carbon dioxide
+      correct: false
+      misconception_id: mc.chm.o.analysis_limewater_any_gas
+      feedback: Limewater turns milky only with carbon dioxide.
+    - id: B
+      text: chlorine
+      correct: false
+      misconception_id: mc.chm.o.analysis_litmus_colours_reversed
+      feedback: 'Ammonia is alkaline: it turns damp red litmus blue.'
+    - id: C
+      text: oxygen
+      correct: false
+      misconception_id: mc.chm.o.analysis_splints_swapped
+      feedback: Oxygen relights a glowing splint. Hydrogen burns with a squeaky pop when a lighted splint is held near.
+    - id: D
+      text: hydrogen
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Each common gas has its own test.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Hydrogen: lighted splint pops. Oxygen: glowing splint relights. Carbon dioxide: limewater milky. Ammonia: damp red litmus blue.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Which test was used here?
+  - rung: 4
+    name: worked_step
+    text:
+      en: Match the result to the gas.
+  - rung: 5
+    name: full_step
+    text:
+      en: The gas is hydrogen, H₂ (Mr 2).
+  misconception_ids:
+  - mc.chm.o.analysis_splints_swapped
+  - mc.chm.o.analysis_limewater_any_gas
+  - mc.chm.o.analysis_litmus_colours_reversed
+solution:
+  steps:
+  - n: 1
+    latex: M_r = 2
+    reason: Hydrogen
+    check_id: chk_build_chm_analysis_0085_mr
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_analysis_0085_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_h
+      formula: H2
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

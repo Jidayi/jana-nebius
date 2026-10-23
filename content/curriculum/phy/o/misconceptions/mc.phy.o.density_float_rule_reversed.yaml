@@ -1,0 +1,36 @@
+id: mc.phy.o.density_float_rule_reversed
+kc_ids:
+- kc.phy.o.density.floating_and_sinking
+student_name: Denser objects float
+description: 'Has the rule the wrong way round: thinks an object floats when it is denser than the liquid and sinks when it is less dense.'
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: counterexample
+  text:
+    en: A stone is denser than water and sinks; a cork is less dense and floats. An object floats when its density is less than the liquid's.
+probe_item_ids:
+- itm.phy.o.density.0041
+- itm.phy.o.density.0042
+- itm.phy.o.density.0043
+- itm.phy.o.density.0044
+- itm.phy.o.density.0045
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

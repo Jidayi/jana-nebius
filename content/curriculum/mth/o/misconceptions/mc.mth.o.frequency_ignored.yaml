@@ -1,0 +1,36 @@
+id: mc.mth.o.frequency_ignored
+kc_ids:
+- kc.mth.o.statistics.averages_frequency
+student_name: Ignoring the frequencies
+description: Finds the mean of the values in the first column without using how often each occurs.
+signatures:
+- kind: answer_transform
+  expression: mean(x)
+fix:
+  strategy: contrast_example
+  text:
+    en: A value that occurs 10 times counts 10 times in the total.
+probe_item_ids:
+- itm.mth.o.statistics.0063
+- itm.mth.o.statistics.0064
+- itm.mth.o.statistics.0066
+- itm.mth.o.statistics.0067
+- itm.mth.o.statistics.0068
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

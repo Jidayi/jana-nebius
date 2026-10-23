@@ -1,0 +1,46 @@
+id: wex.phy.o.motion.0003
+kc_ids:
+- kc.phy.o.motion.speed_unit_conversion
+problem: A train travels at 90 km/h. Write this speed in metres per second.
+steps:
+- n: 1
+  latex: 90\ \text{km/h} = \frac{90}{3.6}\ \text{m/s}
+  reason: 1 m/s is 3.6 km/h
+  check_id: chk_build_phy_w_0003
+- n: 2
+  latex: = 25\ \text{m/s}
+  reason: Divide
+  check_id: chk_build_phy_w_0003
+final_answer:
+  latex: 25\ \text{m/s}
+  check_id: chk_build_phy_w_0003
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_w_0003:
+    args:
+      quantity: 90 km/h
+      to: m/s
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

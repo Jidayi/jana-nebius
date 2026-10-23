@@ -1,0 +1,93 @@
+id: itm.phy.o.wave_properties.0049
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.wave_behaviour
+stem: Water waves arrive at a gap in a barrier.
+parts:
+- id: a
+  prompt: Which gap makes the waves spread out the most?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: A gap many times wider than the wavelength
+      correct: false
+      misconception_id: mc.phy.o.diffraction_wider_gap_more
+      feedback: Spreading is greatest when the gap is about one wavelength wide. A gap many wavelengths wide lets the waves through almost straight.
+    - id: B
+      text: A gap about the same width as the wavelength
+      correct: true
+    - id: C
+      text: 'Any gap: the spreading does not depend on the width'
+      correct: false
+      misconception_id: mc.phy.o.diffraction_independent_of_gap
+      feedback: 'Compare the gap with the wavelength: about the same size gives a lot of spreading; much wider gives very little.'
+    - id: D
+      text: A wide gap, because the waves slow down as they pass through
+      correct: false
+      misconception_id: mc.phy.o.diffraction_changes_wavelength
+      feedback: Diffraction changes only the direction and shape of the wavefronts. The water depth is the same, so the speed, wavelength and frequency are too.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Decide which effect is involved: bouncing back, bending at a change of depth, or spreading through a gap.'
+  - rung: 2
+    name: concept
+    text:
+      en: The source sets the frequency, and nothing at a boundary or a gap can change it.
+  - rung: 3
+    name: first_step
+    text:
+      en: Speed and wavelength change together only when the depth of the water changes.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against these rules.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: A gap about the same width as the wavelength.'
+  misconception_ids:
+  - mc.phy.o.diffraction_changes_wavelength
+  - mc.phy.o.diffraction_independent_of_gap
+  - mc.phy.o.diffraction_wider_gap_more
+solution:
+  steps:
+  - n: 1
+    latex: \text{A gap about the same width as the wavelength}
+    reason: Match the effect to what changes and what stays the same
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

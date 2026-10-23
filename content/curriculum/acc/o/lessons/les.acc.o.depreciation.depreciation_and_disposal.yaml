@@ -1,0 +1,82 @@
+id: les.acc.o.depreciation.depreciation_and_disposal
+node_id: cur.acc.o.depreciation
+kc_ids:
+- kc.acc.o.depreciation.capital_revenue_expenditure
+- kc.acc.o.depreciation.depreciation_purpose
+- kc.acc.o.depreciation.straight_line
+- kc.acc.o.depreciation.reducing_balance
+- kc.acc.o.depreciation.net_book_value
+- kc.acc.o.depreciation.disposal
+title: Depreciating non-current assets and selling them
+estimated_minutes: 15
+blocks:
+- type: step
+  text:
+    en: Some money spent goes into an asset the business keeps, and some is just the cost of running it. Have a go before any rules.
+  item_id: itm.acc.o.depreciation.0012
+  action: try_first
+  why:
+    en: The price, delivery and installation all go into getting the asset ready to use. The running cost is an expense of the month, not part of the asset.
+  names:
+    en: Spending on an asset the business keeps, including getting it ready for use, is capital expenditure. Running and repair costs are revenue expenditure.
+- type: step
+  text:
+    en: A machine is used up over several years. Its cost is not charged all at once.
+  item_id: itm.acc.o.depreciation.0013
+  action: choose
+  why:
+    en: Depreciation puts part of the cost against the revenue of each year the asset helps to earn. No cash is paid out and no fund is built up.
+- type: step
+  text:
+    en: 'Predict before you look at the choices: the van will still be worth something when it is sold, so how much of its cost is used up each year?'
+  item_id: itm.acc.o.depreciation.0031
+  action: predict
+  why:
+    en: Only cost less residual value is used up, so take the residual value off before dividing by the years of use.
+- type: step
+  text:
+    en: The reducing-balance method takes the same percentage each year, but of a smaller amount every time.
+  item_id: itm.acc.o.depreciation.0042
+  action: choose
+  why:
+    en: Apply the rate to each year's opening net book value, not to the original cost. After the first year's charge, that value has already fallen.
+- type: step
+  text:
+    en: The value an asset is carried at in the books falls each year by that year's charge.
+  item_id: itm.acc.o.depreciation.0052
+  action: calculate
+  why:
+    en: Net book value is cost less accumulated depreciation. Here each year's charge is cost less residual value, divided by the useful life.
+- type: step
+  text:
+    en: When an asset is sold, compare the money received with what the books still show for it.
+  item_id: itm.acc.o.depreciation.0064
+  action: choose
+  why:
+    en: Profit or loss on disposal is proceeds less net book value, not less cost. Here the proceeds are above net book value, so there is a profit.
+- type: check
+  item_ids:
+  - itm.acc.o.depreciation.0036
+  - itm.acc.o.depreciation.0047
+  - itm.acc.o.depreciation.0057
+version: 0.2.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

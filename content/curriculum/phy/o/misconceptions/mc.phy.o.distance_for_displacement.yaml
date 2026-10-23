@@ -1,0 +1,34 @@
+id: mc.phy.o.distance_for_displacement
+kc_ids:
+- kc.phy.o.motion.distance_or_displacement
+student_name: Adding the parts for displacement
+description: Adds the lengths of both parts of a there-and-back journey when asked for the displacement.
+signatures:
+- kind: answer_transform
+  expression: d1 + d2
+fix:
+  strategy: contrast_example
+  text:
+    en: Displacement asks where you end up. Walking away and back again cancels out, so subtract the part that comes back.
+probe_item_ids:
+- itm.phy.o.motion.0005
+- itm.phy.o.motion.0007
+- itm.phy.o.motion.0008
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

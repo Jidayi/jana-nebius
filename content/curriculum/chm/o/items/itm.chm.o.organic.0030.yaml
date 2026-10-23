@@ -1,0 +1,107 @@
+id: itm.chm.o.organic.0030
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.general_formulae
+stem: A molecule of an alkene has n = 5 in the general formula CₙH₂ₙ.
+parts:
+- id: a
+  prompt: Calculate the relative molecular mass, Mr, of this compound.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '70'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_organic_0030_mr
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Write the molecular formula from CₙH₂ₙ, then add the masses of the atoms.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Ar: C = 12, H = 1. The general formula CₙH₂ₙ gives the number of hydrogen atoms.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Hydrogen atoms in the chain = 2 × 5 = 10, so the formula is C₅H₁₀.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The 5 carbon atoms of the chain give 5 × 12 = 60; the chain hydrogens give 10.
+  - rung: 5
+    name: full_step
+    text:
+      en: Mr of C₅H₁₀ = 70.
+  misconception_ids:
+  - mc.chm.o.organic_gf_wrong_series
+  - mc.chm.o.organic_gf_hydrogen_mass_ignored
+solution:
+  steps:
+  - n: 1
+    latex: H = 2 \times 5 = 10
+    reason: Hydrogen atoms in the chain
+    check_id: chk_build_chm_organic_0030_h
+  - n: 2
+    latex: 5 \times 12 = 60
+    reason: Mass of the chain carbon atoms
+    check_id: chk_build_chm_organic_0030_c
+  - n: 3
+    latex: M_r(\text{C}_5\text{H}_{10}) = 70
+    reason: Add every atom's Ar
+    check_id: chk_build_chm_organic_0030_mr
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_0030_c:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      formula: C5
+    tool: chem_molar_mass
+  chk_build_chm_organic_0030_h:
+    args:
+      expression: 2*5
+    tool: math_evaluate
+  chk_build_chm_organic_0030_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      formula: C5H10
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

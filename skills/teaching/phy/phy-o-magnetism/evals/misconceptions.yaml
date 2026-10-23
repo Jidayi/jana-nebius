@@ -1,0 +1,494 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.phy-o-magnetism
+version: 2026-10-13.1
+description: 'Colocated evals for phy-o-magnetism (SKL-21, EVL-07): one case per misconception. The student answers
+  as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key away,
+  and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: phy_o_magnetism_01
+  title: Holds 'Like poles attract'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.like_poles_attract
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.magnetism.0005
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.magnetism.magnets_and_materials
+        misconception: mc.phy.o.like_poles_attract
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: phy_o_magnetism_02
+  title: Holds 'Attraction proves it is a magnet'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.attraction_proves_magnet
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.magnetism.0003
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.magnetism.magnets_and_materials
+        misconception: mc.phy.o.attraction_proves_magnet
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: phy_o_magnetism_03
+  title: Holds 'Every metal sticks to a magnet'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.nonmagnetic_materials_attracted
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.magnetism.0002
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.magnetism.magnets_and_materials
+        misconception: mc.phy.o.nonmagnetic_materials_attracted
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: phy_o_magnetism_04
+  title: Holds 'Soft iron makes the permanent magnet'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.soft_iron_steel_swapped
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.magnetism.0006
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.magnetism.magnets_and_materials
+        misconception: mc.phy.o.soft_iron_steel_swapped
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_magnetism_05
+  title: Holds 'The induced pole matches the magnet's pole'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.induced_pole_same_as_inducing
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.magnetism.0011
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.magnetism.magnets_and_materials
+        misconception: mc.phy.o.induced_pole_same_as_inducing
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_magnetism_06
+  title: Holds 'Non-magnetic materials block the force'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.nonmagnetic_blocks_magnetism
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.magnetism.0002
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.magnetism.magnets_and_materials
+        misconception: mc.phy.o.nonmagnetic_blocks_magnetism
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_magnetism_07
+  title: Holds 'Field lines go from south to north'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.field_lines_s_to_n
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.magnetism.0017
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.magnetism.magnetic_fields
+        misconception: mc.phy.o.field_lines_s_to_n
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_magnetism_08
+  title: Holds 'Field lines can cross'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.field_lines_can_cross
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.magnetism.0023
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.magnetism.magnetic_fields
+        misconception: mc.phy.o.field_lines_can_cross
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_magnetism_09
+  title: Holds 'The field is strongest at the middle'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.field_strongest_at_middle
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.magnetism.0018
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.magnetism.magnetic_fields
+        misconception: mc.phy.o.field_strongest_at_middle
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_magnetism_10
+  title: Holds 'A compass points at the matching pole'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.compass_points_at_like_pole
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.magnetism.0017
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.magnetism.magnetic_fields
+        misconception: mc.phy.o.compass_points_at_like_pole
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_magnetism_11
+  title: Holds 'Wider lines mean a stronger field'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.field_lines_spacing_reversed
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.magnetism.0021
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.magnetism.magnetic_fields
+        misconception: mc.phy.o.field_lines_spacing_reversed
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

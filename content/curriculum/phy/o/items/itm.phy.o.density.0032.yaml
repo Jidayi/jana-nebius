@@ -1,0 +1,93 @@
+id: itm.phy.o.density.0032
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.floating_and_sinking
+stem: A plastic ball floats in a bowl of water.
+parts:
+- id: a
+  prompt: Which statement must be true?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The ball's average density is less than the water's
+      correct: true
+    - id: B
+      text: The ball is lighter than all the water in the bowl
+      correct: false
+      misconception_id: mc.phy.o.mass_decides_floating
+      feedback: A huge tree trunk floats while a small pebble sinks. What counts is the mass in each unit of volume, the density, compared with the liquid's density.
+    - id: C
+      text: The ball's density is greater than the water's
+      correct: false
+      misconception_id: mc.phy.o.density_float_rule_reversed
+      feedback: A stone is denser than water and sinks; a cork is less dense and floats. An object floats when its density is less than the liquid's.
+    - id: D
+      text: The ball would float in any liquid
+      correct: false
+      misconception_id: mc.phy.o.floating_ignores_liquid
+      feedback: 'An egg sinks in fresh water but floats in very salty water. Floating depends on two densities: the object''s and the liquid''s.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Floating depends on densities, not on mass or size alone.
+  - rung: 2
+    name: concept
+    text:
+      en: The rule compares a density with a density, not a mass with a mass.
+  - rung: 3
+    name: first_step
+    text:
+      en: Compare the density of the object with the density of the liquid.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that look only at how heavy or how big something is.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The ball''s average density is less than the water''s.'
+  misconception_ids:
+  - mc.phy.o.density_float_rule_reversed
+  - mc.phy.o.floating_ignores_liquid
+  - mc.phy.o.mass_decides_floating
+solution:
+  steps:
+  - n: 1
+    latex: \text{The ball's average density is less than the water's}
+    reason: Compare the object's density with the liquid's
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

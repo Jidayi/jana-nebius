@@ -1,0 +1,99 @@
+id: itm.mth.o.statistics.0061
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.averages_frequency
+stem: 'A frequency table shows the goals scored in a season: 0 goals: 1 matches, 3 goals: 11 matches, 4 goals: 9 matches, 5 goals: 2 matches, 6 goals: 10 matches.'
+parts:
+- id: a
+  prompt: Find the modal number of goals.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '3'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_sta_0061_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The mode is the most common value.
+  - rung: 2
+    name: concept
+    text:
+      en: Look for the highest frequency.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find which number of goals has the most matches.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Give the number of goals, not the frequency.
+  - rung: 5
+    name: full_step
+    text:
+      en: The mode is 3 goals.
+  misconception_ids:
+  - mc.mth.o.mode_as_frequency
+  - mc.mth.o.median_not_ordered
+  - mc.mth.o.frequency_ignored
+solution:
+  steps:
+  - n: 1
+    latex: \text{mode} = 3
+    reason: The value with the highest frequency
+    check_id: chk_build_mth_sta_0061_sc
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0061_ans:
+    args:
+      expression: '3'
+    tool: math_evaluate
+  chk_build_mth_sta_0061_sc:
+    args:
+      frequencies:
+      - frequency: 1
+        value: 0
+      - frequency: 11
+        value: 3
+      - frequency: 9
+        value: 4
+      - frequency: 2
+        value: 5
+      - frequency: 10
+        value: 6
+      quartile_method: exclusive
+    tool: stats_compute
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

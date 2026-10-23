@@ -1,0 +1,45 @@
+id: wex.mth.o.geometry.0007
+kc_ids:
+- kc.mth.o.geometry.map_scales
+problem: 'A plan is drawn to a scale of 1 : 100000. A straight road is 2.4 km long. How long is the road on the plan, in centimetres?'
+steps:
+- n: 1
+  latex: 2.4\ \text{km} = 240000\ \text{cm}
+  reason: Change kilometres to centimetres
+  check_id: chk_build_mth_geo_w0007_cm
+- n: 2
+  latex: 240000 \div 100000 = 2.4\ \text{cm}
+  reason: Divide by the scale
+  check_id: chk_build_mth_geo_w0007_ans
+final_answer:
+  latex: 2.4\ \text{cm}
+  check_id: chk_build_mth_geo_w0007_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_w0007_ans:
+    args:
+      expression: 2.4*100000/100000
+    tool: math_evaluate
+  chk_build_mth_geo_w0007_cm:
+    args:
+      expression: 2.4*100000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

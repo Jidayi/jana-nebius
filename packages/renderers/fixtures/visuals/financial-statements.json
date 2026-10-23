@@ -1,0 +1,221 @@
+{
+  "claims": [
+    "0.00",
+    "1200",
+    "1200.00",
+    "3600.00",
+    "4000",
+    "4200.00",
+    "4800.00",
+    "5000",
+    "5000.00",
+    "6800",
+    "800",
+    "800.00",
+    "9000",
+    "9000.00"
+  ],
+  "id": "financial-statements",
+  "kind": "financial_statements",
+  "modes": [
+    "shown",
+    "hidden"
+  ],
+  "spec": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "An income statement with 10 lines, ending with Profit for the year 3600.00."
+    },
+    "computed": {
+      "check_ids": [
+        "chk_build_fx_financial_statements_1"
+      ],
+      "labels": {
+        "line_closing_inventory": "800.00",
+        "line_cost_of_goods_available": "5000.00",
+        "line_cost_of_sales": "4200.00",
+        "line_expense_rent": "1200.00",
+        "line_gross_profit": "4800.00",
+        "line_opening_inventory": "0.00",
+        "line_profit_for_the_year": "3600.00",
+        "line_purchases": "5000.00",
+        "line_revenue": "9000.00",
+        "line_total_expenses": "1200.00"
+      },
+      "lines": [
+        {
+          "id": "line_revenue",
+          "label": "Revenue",
+          "op": "add"
+        },
+        {
+          "id": "line_opening_inventory",
+          "label": "Opening inventory",
+          "op": "add"
+        },
+        {
+          "id": "line_purchases",
+          "label": "Purchases",
+          "op": "add"
+        },
+        {
+          "id": "line_cost_of_goods_available",
+          "label": "Cost of goods available for sale",
+          "op": "subtotal"
+        },
+        {
+          "id": "line_closing_inventory",
+          "label": "Closing inventory",
+          "op": "less"
+        },
+        {
+          "id": "line_cost_of_sales",
+          "label": "Cost of sales",
+          "op": "total"
+        },
+        {
+          "id": "line_gross_profit",
+          "label": "Gross profit",
+          "op": "total"
+        },
+        {
+          "id": "line_expense_rent",
+          "label": "Rent",
+          "op": "less"
+        },
+        {
+          "id": "line_total_expenses",
+          "label": "Total expenses",
+          "op": "subtotal"
+        },
+        {
+          "id": "line_profit_for_the_year",
+          "label": "Profit for the year",
+          "op": "total"
+        }
+      ],
+      "title": "Income statement"
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "kn_9000",
+      "kn_5000",
+      "kn_1200",
+      "kn_4000",
+      "kn_6800",
+      "kn_800",
+      "chk_build_fx_financial_statements_1"
+    ],
+    "params": {
+      "adjustments": [
+        {
+          "amount": "800",
+          "kind": "closing_inventory"
+        }
+      ],
+      "business": "A. Trader",
+      "currency": "$",
+      "period_end": "year ended 31 December",
+      "statement": "income_statement",
+      "trial_balance": [
+        {
+          "account": "Sales",
+          "credit": "9000",
+          "role": "revenue"
+        },
+        {
+          "account": "Purchases",
+          "debit": "5000",
+          "role": "purchases"
+        },
+        {
+          "account": "Rent",
+          "debit": "1200",
+          "role": "expense"
+        },
+        {
+          "account": "Capital",
+          "credit": "4000",
+          "role": "capital"
+        },
+        {
+          "account": "Bank",
+          "debit": "6800",
+          "role": "bank"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "line_revenue",
+        "name": "Revenue",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "line_opening_inventory",
+        "name": "Opening inventory",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "line_purchases",
+        "name": "Purchases",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "line_cost_of_goods_available",
+        "name": "Cost of goods available for sale",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "line_closing_inventory",
+        "name": "Closing inventory",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "line_cost_of_sales",
+        "name": "Cost of sales",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "line_gross_profit",
+        "name": "Gross profit",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "line_expense_rent",
+        "name": "Rent",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "line_total_expenses",
+        "name": "Total expenses",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "line_profit_for_the_year",
+        "name": "Profit for the year",
+        "role": "row"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:bac5a607c900bb968ed8a57ed1ca864a0c4ec902151bdb2e0dbbda7db7ae0a3a",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "financial_statements",
+    "visual_id": "vis_T56790VPER5YHA6ACE92NVVEDV"
+  },
+  "subject": "accounting"
+}

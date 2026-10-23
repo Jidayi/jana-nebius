@@ -1,0 +1,45 @@
+id: wex.phy.o.momentum.0006
+kc_ids:
+- kc.phy.o.momentum.impulse
+problem: A tennis ball of mass 0.06 kg hits a wall at 8 m/s and bounces straight back at 6 m/s. It is in contact with the wall for 0.01 s. Find the average force of the wall on the ball.
+steps:
+- n: 1
+  latex: \Delta p = 0.06 \times (6 - (-\,8)) = 0.84\ \text{kg m/s}
+  reason: 'Away from the wall positive: the velocity reverses'
+  check_id: chk_build_phy_mom_w0006_dp
+- n: 2
+  latex: F = \frac{0.84}{0.01} = 84\ \text{N}
+  reason: Force = change in momentum ÷ time
+  check_id: chk_build_phy_mom_w0006_ans
+final_answer:
+  latex: 84\ \text{N}
+  check_id: chk_build_phy_mom_w0006_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_w0006_ans:
+    args:
+      expression: 0.06*(6 + 8)/0.01
+    tool: math_evaluate
+  chk_build_phy_mom_w0006_dp:
+    args:
+      expression: 0.06*(6 + 8)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

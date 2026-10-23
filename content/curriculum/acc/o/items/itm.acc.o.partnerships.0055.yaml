@@ -1,0 +1,88 @@
+id: itm.acc.o.partnerships.0055
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.partnerships.capital_vs_current
+stem: A partnership keeps fixed capital accounts.
+parts:
+- id: a
+  prompt: Select every item recorded in a partner's capital account.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Capital paid in when the partnership started
+      correct: true
+    - id: B
+      text: A permanent increase in capital
+      correct: true
+    - id: C
+      text: Share of profit
+      correct: false
+    - id: D
+      text: Drawings
+      correct: false
+    - id: E
+      text: Salary
+      correct: false
+    - id: F
+      text: Interest on capital
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Fixed capital accounts change only when long-term capital changes.
+  - rung: 2
+    name: concept
+    text:
+      en: Opening capital and agreed permanent increases go there.
+  - rung: 3
+    name: first_step
+    text:
+      en: Profit share, drawings, salary and interest go to the current account.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the long-term capital items.
+  - rung: 5
+    name: full_step
+    text:
+      en: Starting capital and a permanent increase.
+  misconception_ids:
+  - mc.acc.o.pa_drawings_to_capital
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Capital account: long-term capital}'
+    reason: Fixed capitals
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

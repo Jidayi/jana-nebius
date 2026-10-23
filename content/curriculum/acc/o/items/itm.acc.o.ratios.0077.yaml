@@ -1,0 +1,88 @@
+id: itm.acc.o.ratios.0077
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.interpret_ratios
+stem: 'A business''s current ratio is 0.7 : 1.'
+parts:
+- id: a
+  prompt: Select every action that would improve it.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Pay in more capital as cash
+      correct: true
+    - id: B
+      text: Turn a bank overdraft into a five-year loan
+      correct: true
+    - id: C
+      text: Sell an unused non-current asset for cash
+      correct: true
+    - id: D
+      text: Buy more inventory on credit
+      correct: false
+    - id: E
+      text: Pay suppliers with a new overdraft
+      correct: false
+    - id: F
+      text: Raise selling prices
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The current ratio compares current assets with current liabilities.
+  - rung: 2
+    name: concept
+    text:
+      en: Raise current assets from outside them, or move a current liability to non-current.
+  - rung: 3
+    name: first_step
+    text:
+      en: Buying inventory on credit adds to both sides.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the actions that change the balance in favour of current assets.
+  - rung: 5
+    name: full_step
+    text:
+      en: New cash capital, refinancing the overdraft and selling an unused asset.
+  misconception_ids:
+  - mc.acc.o.rat_interpret_liquidity_profit
+solution:
+  steps:
+  - n: 1
+    latex: \text{More current assets or fewer current liabilities}
+    reason: Its parts
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

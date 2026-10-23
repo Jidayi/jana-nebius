@@ -1,0 +1,37 @@
+id: mc.phy.o.half_lives_counted_wrongly
+kc_ids:
+- kc.phy.o.radioactivity.half_life
+- kc.phy.o.radioactivity.uses_and_safety
+student_name: One half-life too many
+description: Counts one half-life too many, for example by counting the starting value as a halving.
+signatures:
+- kind: answer_transform
+  expression: x/2^(n + 1)
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'Count the halvings, not the values: going from 80 to 40 to 20 is two half-lives, even though three numbers are written.'
+probe_item_ids:
+- itm.phy.o.radioactivity.0042
+- itm.phy.o.radioactivity.0043
+- itm.phy.o.radioactivity.0044
+- itm.phy.o.radioactivity.0045
+- itm.phy.o.radioactivity.0031
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

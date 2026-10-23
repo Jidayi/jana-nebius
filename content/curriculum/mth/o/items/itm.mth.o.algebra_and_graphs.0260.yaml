@@ -1,0 +1,102 @@
+id: itm.mth.o.algebra_and_graphs.0260
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.tables_of_values
+stem: Complete the table of values for $y = x^3 - 2x + 1$.
+parts:
+- id: a
+  prompt: Find y when x = -3.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '-20'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0260_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Substitute the x-value into every x, keeping its sign in a bracket.
+  - rung: 2
+    name: concept
+    text:
+      en: Work out the cube first, then the other terms.
+  - rung: 3
+    name: first_step
+    text:
+      en: (-3)³ = (-3) × (-3) × (-3).
+  - rung: 4
+    name: worked_step
+    text:
+      en: (-3)³ = -27 and −2 × (-3) = 6.
+  - rung: 5
+    name: full_step
+    text:
+      en: y = -20.
+  misconception_ids:
+  - mc.mth.o.cube_of_negative_positive
+  - mc.mth.o.power_dropped
+  - mc.mth.o.sign_lost_substitution
+solution:
+  steps:
+  - n: 1
+    latex: y = (-3)^3 - 2(-3) + 1
+    reason: Substitute
+  - n: 2
+    latex: y = (-27) + 6 + 1
+    reason: Work out each term
+    check_id: chk_build_mth_alg_0260_t
+  - n: 3
+    latex: y = -20
+    reason: Add
+    check_id: chk_build_mth_alg_0260_ans
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0260_ans:
+    args:
+      expression: x^3 + (-2)*x + (1)
+      values:
+        x: -3
+    tool: math_evaluate
+  chk_build_mth_alg_0260_t:
+    args:
+      equations:
+      - p = (-3)^3
+      - q = (-2)*(-3)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

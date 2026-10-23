@@ -1,0 +1,32 @@
+id: mc.phy.o.liquid_pressure_only_downwards
+kc_ids:
+- kc.phy.o.pressure.liquid_pressure
+student_name: Liquid pressure acts only downwards
+description: Thinks the pressure in a liquid pushes only downwards, so it does not push sideways on walls or upwards on objects.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: counterexample
+  text:
+    en: Water squirts sideways out of a hole in the side of a bottle. At any point in a liquid the pressure acts equally in all directions.
+probe_item_ids:
+- itm.phy.o.pressure.0022
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

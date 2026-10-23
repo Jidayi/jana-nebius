@@ -1,0 +1,33 @@
+id: mc.chm.o.purity_impurity_share
+kc_ids:
+- kc.chm.o.stoichiometry.yield_and_purity
+student_name: Giving the impurity
+description: Works out the percentage of the sample that is impurity and gives it as the purity.
+signatures:
+- kind: answer_transform
+  expression: 100*(sample-pure)/sample
+fix:
+  strategy: rule_restatement
+  text:
+    en: Purity is the share that is the wanted substance; the impurity is the rest. Check which one is asked for.
+probe_item_ids:
+- itm.chm.o.stoichiometry.0115
+- itm.chm.o.stoichiometry.0116
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

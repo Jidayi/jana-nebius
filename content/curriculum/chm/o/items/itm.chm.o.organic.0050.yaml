@@ -1,0 +1,96 @@
+id: itm.chm.o.organic.0050
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.alkanes_and_alkenes
+stem: Ethene gas is bubbled into bromine water.
+parts:
+- id: a
+  prompt: Which describes the reaction?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: 'Substitution: C₂H₃Br and HBr form'
+      correct: false
+      misconception_id: mc.chm.o.organic_addition_substitution_mixed
+      feedback: In addition, two molecules join into one product and the double bond becomes single. In substitution an atom such as H is swapped for another such as Cl, so a second product (HCl) forms. Alkenes add; alkanes substitute, in ultraviolet light.
+    - id: B
+      text: 'Addition: C₂H₄Br₂ is the only product, and the orange colour disappears'
+      correct: true
+    - id: C
+      text: 'Addition: C₂H₄Br₂ forms, and the water turns from colourless to orange'
+      correct: false
+      misconception_id: mc.chm.o.organic_bromine_colour_reversed
+      feedback: 'Bromine water starts orange-brown. An alkene adds the bromine across its double bond, so the orange colour disappears: orange to colourless. No change means no C=C bond.'
+    - id: D
+      text: No reaction until ultraviolet light is shone on the mixture
+      correct: false
+      misconception_id: mc.chm.o.organic_addition_substitution_mixed
+      feedback: In addition, two molecules join into one product and the double bond becomes single. In substitution an atom such as H is swapped for another such as Cl, so a second product (HCl) forms. Alkenes add; alkanes substitute, in ultraviolet light.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Ethene is an alkene. What does its C=C bond allow it to do?
+  - rung: 2
+    name: concept
+    text:
+      en: In an addition reaction, two molecules join to make one product.
+  - rung: 3
+    name: first_step
+    text:
+      en: The double bond opens, and one bromine atom joins each carbon atom.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Bromine water is orange; think about what happens to the colour as the bromine is used up.
+  - rung: 5
+    name: full_step
+    text:
+      en: C₂H₄ + Br₂ → C₂H₄Br₂ (addition, one product); the orange colour disappears.
+  misconception_ids:
+  - mc.chm.o.organic_addition_substitution_mixed
+  - mc.chm.o.organic_bromine_colour_reversed
+solution:
+  steps:
+  - n: 1
+    latex: \text{C}_2\text{H}_4 + \text{Br}_2 \rightarrow \text{C}_2\text{H}_4\text{Br}_2
+    reason: Addition across C=C
+    check_id: chk_build_chm_organic_0050_bal
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_0050_bal:
+    args:
+      equation: C2H4 + Br2 -> C2H4Br2
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

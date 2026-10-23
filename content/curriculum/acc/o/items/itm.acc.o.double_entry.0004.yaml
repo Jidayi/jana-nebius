@@ -1,0 +1,88 @@
+id: itm.acc.o.double_entry.0004
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.double_entry.debit_credit_rules
+stem: Zanele is checking which side of an account records each change.
+parts:
+- id: a
+  prompt: Which of these is recorded on the debit side of the account that changes?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: An increase in sales
+      correct: false
+      misconception_id: mc.acc.o.de_class_confused
+    - id: B
+      text: A decrease in inventory
+      correct: false
+      misconception_id: mc.acc.o.de_decrease_same_side
+    - id: C
+      text: A payment out of the business bank account
+      correct: false
+      misconception_id: mc.acc.o.de_bank_view
+    - id: D
+      text: An increase in drawings
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about the class of the account that changes.
+  - rung: 2
+    name: concept
+    text:
+      en: Assets, expenses and drawings increase on the debit side; liabilities, capital and income increase on the credit side.
+  - rung: 3
+    name: first_step
+    text:
+      en: Money paid out of the bank reduces an asset, so the Bank account is credited.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Find the increase in an asset, expense or drawings, or the decrease in a liability.
+  - rung: 5
+    name: full_step
+    text:
+      en: An increase in drawings is a debit.
+  misconception_ids:
+  - mc.acc.o.de_bank_view
+  - mc.acc.o.de_class_confused
+  - mc.acc.o.de_decrease_same_side
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Assets, expenses, drawings: increase} \rightarrow \text{debit}'
+    reason: The rule for each class
+difficulty:
+  prior: -0.9
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

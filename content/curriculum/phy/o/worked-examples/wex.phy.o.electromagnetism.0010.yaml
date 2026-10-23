@@ -1,0 +1,65 @@
+id: wex.phy.o.electromagnetism.0010
+kc_ids:
+- kc.phy.o.electromagnetism.power_transmission
+problem: A transformer takes 1.2 A from a 230 V supply. Its secondary coil gives 10.3 A at 24 V. Calculate the efficiency of the transformer.
+steps:
+- n: 1
+  latex: P_{in} = 230 \times 1.2 = 276\ \text{W}
+  reason: Power in = p.d. × current
+  check_id: chk_build_phy_emg_w0010_pin
+- n: 2
+  latex: P_{out} = 24 \times 10.3 = 247.2\ \text{W}
+  reason: Power out = p.d. × current
+  check_id: chk_build_phy_emg_w0010_pout
+- n: 3
+  latex: \frac{247.2}{276} = 0.896
+  reason: Output power over input power
+  check_id: chk_build_phy_emg_w0010_frac
+- n: 4
+  latex: 0.896 \rightarrow 89.6\%
+  reason: Multiply by a hundred for a percentage
+  check_id: chk_build_phy_emg_w0010_ans
+final_answer:
+  latex: 89.6\%
+  check_id: chk_build_phy_emg_w0010_ans
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_w0010_ans:
+    args:
+      expression: 24*10.3/(230*1.2)*100
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_emg_w0010_frac:
+    args:
+      expression: 24*10.3/(230*1.2)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_emg_w0010_pin:
+    args:
+      expression: 230*1.2
+    tool: math_evaluate
+  chk_build_phy_emg_w0010_pout:
+    args:
+      expression: 24*10.3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

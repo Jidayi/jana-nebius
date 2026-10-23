@@ -1,0 +1,85 @@
+id: itm.chm.o.environment.0042
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.climate
+stem: Methane is a greenhouse gas.
+parts:
+- id: a
+  prompt: Which is a major source of methane?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Burning coal in power stations
+      correct: false
+    - id: B
+      text: Catalytic converters
+      correct: false
+      misconception_id: mc.chm.o.environment_converter_removes_co2
+      feedback: A catalytic converter changes carbon monoxide and oxides of nitrogen into carbon dioxide and nitrogen. It makes carbon dioxide; it does not remove it, and it does nothing to sulfur dioxide.
+    - id: C
+      text: Digestion in cattle and the decay of waste in landfill sites
+      correct: true
+    - id: D
+      text: Photosynthesis in forests
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Methane is made by microbes that live without oxygen.
+  - rung: 2
+    name: concept
+    text:
+      en: Such microbes live in the stomachs of cows and in buried rubbish.
+  - rung: 3
+    name: first_step
+    text:
+      en: Rice fields under water are another source.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Which choice involves living things breaking down food or waste?
+  - rung: 5
+    name: full_step
+    text:
+      en: Cattle and landfill sites (and rice paddies) release methane.
+  misconception_ids:
+  - mc.chm.o.environment_converter_removes_co2
+solution:
+  steps:
+  - n: 1
+    latex: \text{cattle, landfill, rice paddies }\rightarrow\text{ CH}_4
+    reason: Sources of methane
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,92 @@
+id: itm.acc.o.source_documents.0021
+version: 0.1.1
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.source_documents.select_book_of_prime_entry
+stem: A trader records transactions.
+parts:
+- id: a
+  prompt: Select all the transactions first recorded in the general journal.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Buying equipment on credit
+      correct: true
+    - id: B
+      text: Writing off an irrecoverable debt
+      correct: true
+    - id: C
+      text: Correcting an error
+      correct: true
+    - id: D
+      text: Selling goods on credit
+      correct: false
+    - id: E
+      text: Paying wages in cash
+      correct: false
+    - id: F
+      text: Buying goods for resale on credit
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The general journal takes what no other book of prime entry covers.
+  - rung: 2
+    name: concept
+    text:
+      en: Credit purchases of non-current assets, write-offs and corrections.
+  - rung: 3
+    name: first_step
+    text:
+      en: Credit sales and credit purchases of goods have their own journals; cash goes in the cash book.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the unusual transactions.
+  - rung: 5
+    name: full_step
+    text:
+      en: Equipment on credit, the write-off and the correction.
+  misconception_ids:
+  - mc.acc.o.sd_asset_credit_in_purchases_journal
+solution:
+  steps:
+  - n: 1
+    latex: '\text{General journal: non-routine entries}'
+    reason: Not covered by other books
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,86 @@
+id: itm.mth.o.trigonometry.9045
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.elevation_depression
+stem: From the top of a vertical cliff 30 m high, a boat on level water is seen at an angle of depression of 25 degrees.
+parts:
+- id: a
+  prompt: How far is the boat from the foot of the cliff, measured horizontally? Give 3 significant figures.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '64.3'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mastery_supplement_mth_9045
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The angle of depression equals the angle of elevation at the boat.
+  - rung: 2
+    name: concept
+    text:
+      en: Tangent compares cliff height to horizontal distance.
+  - rung: 3
+    name: first_step
+    text:
+      en: Divide the height by the tangent of the given angle, using degree mode.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The requested distance is horizontal; the sloping line of sight is not the adjacent side.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 64.3 m.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{30}{\tan 25^\circ}
+    reason: Divide the height by the tangent of the given angle, using degree mode.
+    check_id: chk_build_mastery_supplement_mth_9045
+  - n: 2
+    latex: '64.3'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9045
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9045:
+    args:
+      angle_unit: degrees
+      expression: 30/tan(25)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

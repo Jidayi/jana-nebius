@@ -1,0 +1,45 @@
+id: wex.phy.o.electromagnetism.0004
+kc_ids:
+- kc.phy.o.electromagnetism.motor_effect
+problem: A wire carries a steady current across the field between two magnets. When 2 cm of the wire is in the field the force is 0.02 N. The force is proportional to the length of wire in the field. Find the force when 8 cm is in the field.
+steps:
+- n: 1
+  latex: \frac{8}{2} = 4
+  reason: How many times longer
+  check_id: chk_build_phy_emg_w0004_ratio
+- n: 2
+  latex: F = 0.02 \times 4 = 0.08\ \text{N}
+  reason: The force grows in the same ratio
+  check_id: chk_build_phy_emg_w0004_ans
+final_answer:
+  latex: 0.08\ \text{N}
+  check_id: chk_build_phy_emg_w0004_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_w0004_ans:
+    args:
+      expression: 0.02*8/2
+    tool: math_evaluate
+  chk_build_phy_emg_w0004_ratio:
+    args:
+      expression: 8/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

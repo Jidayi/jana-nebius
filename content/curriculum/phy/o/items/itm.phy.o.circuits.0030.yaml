@@ -1,0 +1,133 @@
+id: itm.phy.o.circuits.0030
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.parallel_circuits
+stem: A current of 3 A enters a junction and divides between a 6 Ω resistor and a 12 Ω resistor connected in parallel.
+parts:
+- id: a
+  prompt: Calculate the current through the 6 Ω resistor.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 1 A
+      correct: false
+      misconception_id: mc.phy.o.parallel_more_current_higher_resistance
+      feedback: Both branches have the same p.d. across them, so I = V/R is larger where R is smaller. Current prefers the easier path.
+    - id: B
+      text: 1.5 A
+      correct: false
+      misconception_id: mc.phy.o.parallel_current_split_equally
+      feedback: Each branch has the same p.d., so a branch with less resistance takes more current (I = V/R). Only equal branches share equally.
+    - id: C
+      text: 2 A
+      correct: true
+    - id: D
+      text: 3 A
+      correct: false
+      misconception_id: mc.phy.o.parallel_current_same_each_branch
+      feedback: 'At a junction the current splits: the branch currents add up to the current from the supply.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Both resistors have the same p.d. across them.
+  - rung: 2
+    name: concept
+    text:
+      en: Find that p.d. from the total current and the combined resistance, then use I = V/R for one branch.
+  - rung: 3
+    name: first_step
+    text:
+      en: The combined resistance is (6 × 12) ÷ (6 + 12).
+  - rung: 4
+    name: worked_step
+    text:
+      en: The p.d. across the pair is 12 V; divide it by 6 Ω.
+  - rung: 5
+    name: full_step
+    text:
+      en: The current through the 6 Ω resistor is 2 A.
+  misconception_ids:
+  - mc.phy.o.parallel_current_same_each_branch
+  - mc.phy.o.parallel_current_split_equally
+  - mc.phy.o.parallel_more_current_higher_resistance
+solution:
+  steps:
+  - n: 1
+    latex: R = \frac{6 \times 12}{6 + 12} = 4\ \Omega
+    reason: Combined resistance
+    check_id: chk_build_phy_cir_0030_rp
+  - n: 2
+    latex: V = IR = 3 \times 4 = 12\ \text{V}
+    reason: The p.d. across both branches
+    check_id: chk_build_phy_cir_0030_v
+  - n: 3
+    latex: I_1 = \frac{12}{6} = 2\ \text{A}
+    reason: Ohm's law for one branch
+    check_id: chk_build_phy_cir_0030_ans
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 100
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_0030_ans:
+    args:
+      expression: 3*12/(6 + 12)
+    tool: math_evaluate
+  chk_build_phy_cir_0030_rp:
+    args:
+      expression: 6*12/(6 + 12)
+    tool: math_evaluate
+  chk_build_phy_cir_0030_tool:
+    args:
+      components:
+      - emf: '12'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '6'
+      - id: R2
+        kind: resistor
+        resistance: '12'
+      network:
+        series:
+        - B
+        - parallel:
+          - R1
+          - R2
+    tool: phys_circuit
+  chk_build_phy_cir_0030_v:
+    args:
+      expression: 3*6*12/(6 + 12)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

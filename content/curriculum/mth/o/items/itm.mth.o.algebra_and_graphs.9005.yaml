@@ -1,0 +1,85 @@
+id: itm.mth.o.algebra_and_graphs.9005
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.index_laws_algebra
+stem: For non-zero x, (x^3)^n divided by x^2 simplifies to x^10.
+parts:
+- id: a
+  prompt: Find the integer n.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '4'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9005
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A power of a power multiplies the indices; dividing powers with the same base subtracts their indices.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Write an equation for the exponent: three times n, less two, equals ten.'
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Write an equation for the exponent: three times n, less two, equals ten.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Put your value into the exponent equation and check that the resulting power matches the question.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 4.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{2 + 10}{3}
+    reason: 'Write an equation for the exponent: three times n, less two, equals ten.'
+    check_id: chk_build_mastery_supplement_mth_9005
+  - n: 2
+    latex: '4'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9005
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9005:
+    args:
+      angle_unit: degrees
+      expression: (10+2)/3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

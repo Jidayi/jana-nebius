@@ -1,0 +1,56 @@
+id: wex.mth.o.statistics.0007
+kc_ids:
+- kc.mth.o.statistics.averages_list
+problem: 'Here are some marks: 21, 7, 29, 13, 14, 26, 15, 9, 5. Find the mean. Give your answer to 3 significant figures.'
+steps:
+- n: 1
+  latex: \text{total} = 21 + 7 + 29 + 13 + 14 + 26 + 15 + 9 + 5
+  reason: Add every value
+  check_id: chk_build_mth_sta_w0007_sc
+- n: 2
+  latex: \text{mean} = \frac{\text{total}}{9} = 15.4
+  reason: There are 9 values
+  check_id: chk_build_mth_sta_w0007_ans
+final_answer:
+  latex: '15.4'
+  check_id: chk_build_mth_sta_w0007_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_w0007_ans:
+    args:
+      expression: (21 + 7 + 29 + 13 + 14 + 26 + 15 + 9 + 5)/9
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_sta_w0007_sc:
+    args:
+      data:
+      - 21
+      - 7
+      - 29
+      - 13
+      - 14
+      - 26
+      - 15
+      - 9
+      - 5
+      quartile_method: exclusive
+    tool: stats_compute
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

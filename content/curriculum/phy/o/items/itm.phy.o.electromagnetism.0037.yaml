@@ -1,0 +1,87 @@
+id: itm.phy.o.electromagnetism.0037
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.electromagnetic_induction
+stem: The coil of an a.c. generator turns 1800 times every minute.
+parts:
+- id: a
+  prompt: Find the frequency of the alternating e.m.f. it produces.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '30'
+    unit: Hz
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_emg_0037_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Frequency is the number of cycles each second.
+  - rung: 2
+    name: concept
+    text:
+      en: Each turn of the coil gives one complete cycle of e.m.f.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change turns per minute into turns per second.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 1800 by the number of seconds in a minute.
+  - rung: 5
+    name: full_step
+    text:
+      en: 1800 turns a minute is 30 turns a second, so f = 30 Hz.
+  misconception_ids:
+  - mc.phy.o.ac_frequency_is_rpm
+  - mc.phy.o.ac_two_cycles_per_turn
+  - mc.phy.o.rpm_times_sixty
+solution:
+  steps:
+  - n: 1
+    latex: \text{one turn} = \text{one cycle}
+    reason: Each turn gives one full cycle
+  - n: 2
+    latex: f = 30\ \text{Hz}
+    reason: Turns per minute ÷ sixty = cycles per second
+    check_id: chk_build_phy_emg_0037_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_0037_ans:
+    args:
+      expression: 1800/60
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

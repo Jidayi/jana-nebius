@@ -1,0 +1,101 @@
+id: itm.mth.o.mensuration.0026
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.area_perimeter
+stem: A parallelogram has base 15 cm, sloping sides 9 cm and perpendicular height 7 cm.
+parts:
+- id: a
+  prompt: Find its area.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 135 cm²
+      correct: false
+      misconception_id: mc.mth.o.slant_height_used
+      feedback: The height must be at right angles to the base. A sloping side is longer than the height.
+    - id: B
+      text: 48 cm²
+      correct: false
+      misconception_id: mc.mth.o.perimeter_area_confused
+      feedback: Perimeter is a length around the edge (add the sides); area is the space inside (square units).
+    - id: C
+      text: 105 cm²
+      correct: true
+    - id: D
+      text: 52.5 cm²
+      correct: false
+      misconception_id: mc.mth.o.formula_half_dropped
+      feedback: Read the formula one symbol at a time and tick each one off as you substitute; the ½ multiplies everything that follows it.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Cut a triangle off one end and move it to the other: you get a rectangle.'
+  - rung: 2
+    name: concept
+    text:
+      en: Area of a parallelogram = base × perpendicular height.
+  - rung: 3
+    name: first_step
+    text:
+      en: The perpendicular height is 7 cm, not the sloping side.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 15 × 7.
+  - rung: 5
+    name: full_step
+    text:
+      en: The area is 105 cm².
+  misconception_ids:
+  - mc.mth.o.formula_half_dropped
+  - mc.mth.o.perimeter_area_confused
+  - mc.mth.o.slant_height_used
+solution:
+  steps:
+  - n: 1
+    latex: A = bh
+    reason: Base times perpendicular height
+  - n: 2
+    latex: A = 15 \times 7 = 105\ \text{cm}^2
+    reason: Use the height, not the sloping side
+    check_id: chk_build_mth_mns_0026_ans
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_mns_0026_ans:
+    args:
+      expression: 15*7
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

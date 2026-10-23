@@ -1,0 +1,104 @@
+id: itm.chm.o.stoichiometry.0084
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.gas_volumes
+stem: A cylinder holds 0.30 mol of nitrogen gas, N₂, at room temperature and pressure.
+parts:
+- id: a
+  prompt: What volume does the gas occupy? (The molar gas volume is 24 dm³.)
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: 6.72 dm³
+      correct: false
+      misconception_id: mc.chm.o.gas_stp_volume
+      feedback: At room temperature and pressure one mole of gas occupies 24 dm³; use the value the question gives.
+    - id: B
+      text: 80.0 dm³
+      correct: false
+      misconception_id: mc.chm.o.gas_volume_divided
+      feedback: 'One mole of gas fills 24 dm³, so two moles fill twice as much: volume = amount × 24.'
+    - id: C
+      text: 7200 dm³
+      correct: false
+      misconception_id: mc.chm.o.gas_cm3_dm3
+      feedback: 1 dm³ = 1000 cm³. The molar gas volume is 24 dm³, which is 24 000 cm³; convert before you divide.
+    - id: D
+      text: 7.20 dm³
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the amount in moles and want a volume.
+  - rung: 2
+    name: concept
+    text:
+      en: Each mole of gas at room conditions occupies 24 dm³.
+  - rung: 3
+    name: first_step
+    text:
+      en: Multiply the amount by the molar gas volume.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 0.30 × 24 and keep the unit dm³.
+  - rung: 5
+    name: full_step
+    text:
+      en: 0.30 × 24 = 7.20 dm³.
+  misconception_ids:
+  - mc.chm.o.gas_volume_divided
+  - mc.chm.o.gas_cm3_dm3
+  - mc.chm.o.gas_stp_volume
+solution:
+  steps:
+  - n: 1
+    latex: V = 0.30 \times 24 = 7.20\ \text{dm}^3
+    reason: Amount times molar gas volume
+    check_id: chk_build_chm_stoichiometry_0084_chain
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0084_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: vm
+      sf: 3
+      steps:
+      - amount: 0.30 mol
+        id: v
+        op: gas_volume_from_amount
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

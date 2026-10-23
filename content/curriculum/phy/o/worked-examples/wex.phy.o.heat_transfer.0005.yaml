@@ -1,0 +1,55 @@
+id: wex.phy.o.heat_transfer.0005
+kc_ids:
+- kc.phy.o.heat_transfer.radiation
+problem: Two identical cans start with hot water at 80 °C, one painted dull black and one shiny silver. After 12 minutes the black can is at 68 °C and the shiny can at 71 °C. How many times faster did the black can cool than the shiny can, on average?
+steps:
+- n: 1
+  latex: 80 - 68 = 12\ ^\circ\text{C}
+  reason: Fall for the black can
+  check_id: chk_build_phy_htr_w0005_db
+- n: 2
+  latex: 80 - 71 = 9\ ^\circ\text{C}
+  reason: Fall for the shiny can
+  check_id: chk_build_phy_htr_w0005_ds
+- n: 3
+  latex: \frac{12}{9} = 1.33
+  reason: Same time, so compare the falls
+  check_id: chk_build_phy_htr_w0005_ans
+final_answer:
+  latex: '1.33'
+  check_id: chk_build_phy_htr_w0005_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_htr_w0005_ans:
+    args:
+      expression: (80 - 68)/(80 - 71)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_htr_w0005_db:
+    args:
+      expression: 80 - 68
+    tool: math_evaluate
+  chk_build_phy_htr_w0005_ds:
+    args:
+      expression: 80 - 71
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

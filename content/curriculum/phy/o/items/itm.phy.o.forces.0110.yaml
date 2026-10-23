@@ -1,0 +1,116 @@
+id: itm.phy.o.forces.0110
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.centre_of_gravity
+stem: A filing cabinet is 96 cm tall with a base 45 cm wide. Its centre of gravity is 60 cm above the floor, above the middle of the base. It is tilted slowly about one bottom edge.
+parts:
+- id: a
+  prompt: Find the angle from the vertical at which it just starts to topple.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 36.9°
+      correct: false
+      misconception_id: mc.phy.o.tipping_full_base_width
+      feedback: The object tips about one edge. The centre of gravity sits above the middle of the base, so the distance to that edge is half the width.
+    - id: B
+      text: 69.4°
+      correct: false
+      misconception_id: mc.phy.o.tipping_ratio_inverted
+      feedback: At the tipping point the centre of gravity is straight above the edge. The angle from the vertical has the half-width opposite it and the height next to it.
+    - id: C
+      text: 20.6°
+      correct: true
+    - id: D
+      text: 13.2°
+      correct: false
+      misconception_id: mc.phy.o.tipping_object_height_used
+      feedback: 'What matters is where the weight acts: the height of the centre of gravity, not the top of the object.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: It starts to topple when its centre of gravity is directly above the edge it tilts on.
+  - rung: 2
+    name: concept
+    text:
+      en: At that point the angle from the vertical has the half-width opposite it and the height of the centre of gravity next to it.
+  - rung: 3
+    name: first_step
+    text:
+      en: Use tan θ = half the base width ÷ height of the centre of gravity.
+  - rung: 4
+    name: worked_step
+    text:
+      en: tan θ = 22.5 ÷ 60 = 0.375.
+  - rung: 5
+    name: full_step
+    text:
+      en: θ = 20.6°; any further and its weight acts outside the base.
+  misconception_ids:
+  - mc.phy.o.tipping_full_base_width
+  - mc.phy.o.tipping_object_height_used
+  - mc.phy.o.tipping_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \frac{45}{2} = 22.5\ \text{cm}
+    reason: Horizontal distance from the centre of gravity to the edge
+    check_id: chk_build_phy_frc_0110_half
+  - n: 2
+    latex: \tan\theta = \frac{22.5}{60} = 0.375
+    reason: Topples when the centre of gravity is above the edge
+    check_id: chk_build_phy_frc_0110_ratio
+  - n: 3
+    latex: \theta = 20.6^\circ
+    reason: Inverse tangent
+    check_id: chk_build_phy_frc_0110_ans
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 110
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0110_ans:
+    args:
+      angle_unit: degrees
+      expression: atan(45/2/60)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_frc_0110_half:
+    args:
+      expression: 45/2
+    tool: math_evaluate
+  chk_build_phy_frc_0110_ratio:
+    args:
+      expression: 45/2/60
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

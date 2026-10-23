@@ -1,0 +1,110 @@
+id: itm.phy.o.density.0017
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.measuring_density
+stem: A steel key of mass 23.4 g is lowered into a full displacement can. The overflowing water is caught in a measuring cylinder, which then reads 3 cm³.
+parts:
+- id: a
+  prompt: Calculate the density of the steel key in g/cm³.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '7.8'
+    unit: g/cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_den_0017_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A full can overflows by exactly the volume of whatever is pushed into it.
+  - rung: 2
+    name: concept
+    text:
+      en: So the steel key's volume is the volume of water collected.
+  - rung: 3
+    name: first_step
+    text:
+      en: Density = mass ÷ volume.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 23.4 ÷ 3.
+  - rung: 5
+    name: full_step
+    text:
+      en: The density is 7.8 g/cm³.
+  misconception_ids:
+  - mc.phy.o.density_volume_over_mass
+  - mc.phy.o.density_mass_times_volume
+solution:
+  steps:
+  - n: 1
+    latex: V = 3\ \text{cm}^3
+    reason: The overflow equals the object's volume
+  - n: 2
+    latex: \rho = \frac{23.4}{3} = 7.8\ \text{g/cm}^3
+    reason: Density = mass ÷ volume
+    check_id: chk_build_phy_den_0017_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  V: '3'
+  m: '23.4'
+checks:
+  chk_build_phy_den_0017_ans:
+    args:
+      expression: 23.4/3
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:41:11.119Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.density.0017
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,98 @@
+id: itm.mth.o.coordinate_geometry.0005
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.coordinate_geometry.points_on_lines
+stem: The point (h, -12) lies on the line $y = -3x + 3$.
+parts:
+- id: a
+  prompt: Find h.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '5'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_crd_0005_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: This time you know y and want x.
+  - rung: 2
+    name: concept
+    text:
+      en: Put the y-coordinate into the equation and solve for x.
+  - rung: 3
+    name: first_step
+    text:
+      en: -12 = -3x + 3.
+  - rung: 4
+    name: worked_step
+    text:
+      en: -3x = -15.
+  - rung: 5
+    name: full_step
+    text:
+      en: h = 5.
+  misconception_ids:
+  - mc.mth.o.coordinates_swapped
+  - mc.mth.o.rearrange_inverse_sign
+  - mc.mth.o.equation_divide_first
+solution:
+  steps:
+  - n: 1
+    latex: -12 = -3x + 3
+    reason: Substitute y
+  - n: 2
+    latex: -3x = -15
+    reason: Rearrange
+    check_id: chk_build_mth_crd_0005_s
+  - n: 3
+    latex: h = 5
+    reason: Divide by -3
+    check_id: chk_build_mth_crd_0005_ans
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_crd_0005_ans:
+    args:
+      equations:
+      - -12 = -3*x + (3)
+      unknowns:
+      - x
+    tool: math_solve
+  chk_build_mth_crd_0005_s:
+    args:
+      expression: -12 - (3)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.charge_current_divided_by_time
+kc_ids:
+- kc.phy.o.electrical_quantities.current_and_charge
+student_name: Charge is current over time
+description: Divides the current by the time to find the charge, instead of multiplying.
+signatures:
+- kind: answer_transform
+  expression: I/t
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'A current of 1 A carries 1 C every second, so in 10 s it carries 10 C: charge = current × time.'
+probe_item_ids:
+- itm.phy.o.electrical_quantities.0028
+- itm.phy.o.electrical_quantities.0016
+- itm.phy.o.electrical_quantities.0019
+- itm.phy.o.electrical_quantities.0022
+- itm.phy.o.electrical_quantities.0025
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

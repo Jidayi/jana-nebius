@@ -1,0 +1,45 @@
+id: wex.phy.o.wave_properties.0006
+kc_ids:
+- kc.phy.o.wave_properties.transverse_and_longitudinal
+problem: Kwame pushes and pulls one end of a stretched slinky spring. A photo shows 5 compressions in a row, and the distance from the centre of the first to the centre of the last is 120 cm. Find the wavelength of the wave.
+steps:
+- n: 1
+  latex: 5 - 1 = 4
+  reason: The number of gaps between the compressions
+  check_id: chk_build_phy_wav_w0006_gaps
+- n: 2
+  latex: \lambda = \frac{120}{4} = 30\ \text{cm}
+  reason: One wavelength per gap
+  check_id: chk_build_phy_wav_w0006_ans
+final_answer:
+  latex: 30\ \text{cm}
+  check_id: chk_build_phy_wav_w0006_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_wav_w0006_ans:
+    args:
+      expression: 120/(5 - 1)
+    tool: math_evaluate
+  chk_build_phy_wav_w0006_gaps:
+    args:
+      expression: 5 - 1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

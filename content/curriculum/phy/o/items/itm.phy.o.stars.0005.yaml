@@ -1,0 +1,92 @@
+id: itm.phy.o.stars.0005
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.stars.light_years
+stem: Astronomers measure distances to stars in light-years.
+parts:
+- id: a
+  prompt: What is a light-year?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The time light takes to reach us from the Sun
+      correct: false
+      misconception_id: mc.phy.o.light_year_is_time
+      feedback: 'A light-year is a distance: how far light travels in one year, about 9.5 × 10¹⁵ m.'
+    - id: B
+      text: The distance light travels in one year
+      correct: true
+    - id: C
+      text: A year measured by the movement of the stars
+      correct: false
+      misconception_id: mc.phy.o.light_year_is_time
+      feedback: 'A light-year is a distance: how far light travels in one year, about 9.5 × 10¹⁵ m.'
+    - id: D
+      text: The speed of light in kilometres per year
+      correct: false
+      misconception_id: mc.phy.o.light_year_is_speed
+      feedback: Speed × time = distance. The speed of light multiplied by one year gives a distance, the light-year.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Remember what kind of quantity a light-year is.
+  - rung: 2
+    name: concept
+    text:
+      en: A light-year measures how far light goes in a year.
+  - rung: 3
+    name: first_step
+    text:
+      en: One light-year = speed of light × the number of seconds in a year.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against this.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The distance light travels in one year.'
+  misconception_ids:
+  - mc.phy.o.light_year_is_speed
+  - mc.phy.o.light_year_is_time
+solution:
+  steps:
+  - n: 1
+    latex: \text{The distance light travels in one year}
+    reason: A light-year is a distance
+difficulty:
+  prior: -0.5
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

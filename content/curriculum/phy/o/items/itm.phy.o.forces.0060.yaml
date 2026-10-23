@@ -1,0 +1,129 @@
+id: itm.phy.o.forces.0060
+version: 0.1.1
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.springs
+stem: A spring of length 15 cm has a spring constant of 50 N/m. A mass of 0.15 kg is hung from it, within the limit of proportionality. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Find the new length of the spring in centimetres.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 18 cm
+      correct: true
+    - id: B
+      text: 3 cm
+      correct: false
+      misconception_id: mc.phy.o.spring_extension_given_as_length
+      feedback: F = kx gives how much the spring grows. Its new length is the original length plus that extension.
+    - id: C
+      text: 15.3 cm
+      correct: false
+      misconception_id: mc.phy.o.mass_in_kg_used_as_force
+      feedback: Mass is measured in kilograms; forces are in newtons. Turn a mass into its weight with weight = mass × g before you use it as a force.
+    - id: D
+      text: 15.03 cm
+      correct: false
+      misconception_id: mc.phy.o.spring_cm_not_converted
+      feedback: A spring constant in N/m needs the extension in metres. Change centimetres into metres before you use F = kx.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: F = kx gives the extension, not the length.
+  - rung: 2
+    name: concept
+    text:
+      en: The force on the spring is the weight of the mass.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the weight, then the extension x = F ÷ k in metres, then add it to the original length.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The weight is 1.5 N, so the extension is 0.03 m, which is 3 cm.
+  - rung: 5
+    name: full_step
+    text:
+      en: New length = 15 + 3 = 18 cm.
+  misconception_ids:
+  - mc.phy.o.mass_in_kg_used_as_force
+  - mc.phy.o.spring_cm_not_converted
+  - mc.phy.o.spring_extension_given_as_length
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: F = mg = 0.15 \times 10 = 1.5\ \text{N}
+    reason: The load is the weight
+    check_id: chk_build_phy_frc_0060_w
+  - n: 2
+    latex: x = \frac{F}{k} = \frac{1.5}{50} = 0.03\ \text{m}
+    reason: From F = kx
+    check_id: chk_build_phy_frc_0060_x
+  - n: 3
+    latex: x = 3\ \text{cm}
+    reason: Extension in centimetres
+    check_id: chk_build_phy_frc_0060_xcm
+  - n: 4
+    latex: L = 15 + 3 = 18\ \text{cm}
+    reason: Original length + extension
+    check_id: chk_build_phy_frc_0060_ans
+difficulty:
+  prior: 0.4
+  band: stretch
+estimated_seconds: 110
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0060_ans:
+    args:
+      expression: 15 + 0.15*10/50*100
+    tool: math_evaluate
+  chk_build_phy_frc_0060_w:
+    args:
+      expression: 0.15*10
+    tool: math_evaluate
+  chk_build_phy_frc_0060_x:
+    args:
+      expression: 0.15*10/50
+    tool: math_evaluate
+  chk_build_phy_frc_0060_xcm:
+    args:
+      expression: 0.15*10/50*100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

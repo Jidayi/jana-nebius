@@ -1,0 +1,34 @@
+id: mc.acc.o.inv_nrv_ignored
+kc_ids:
+- kc.acc.o.inventory.lower_cost_nrv
+student_name: Ignoring a lower NRV
+description: Values inventory at cost even when it will sell for less than cost.
+signatures:
+- kind: answer_transform
+  expression: quantity * cost
+fix:
+  strategy: rule_restatement
+  text:
+    en: When net realisable value is below cost, use net realisable value.
+probe_item_ids:
+- itm.acc.o.inventory.0023
+- itm.acc.o.inventory.0024
+- itm.acc.o.inventory.0025
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

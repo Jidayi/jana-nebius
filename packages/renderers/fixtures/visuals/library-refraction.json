@@ -1,0 +1,260 @@
+{
+  "claims": [
+    "0",
+    "1",
+    "1.0"
+  ],
+  "id": "library-refraction",
+  "kind": "library_diagram",
+  "modes": [
+    "shown",
+    "hidden"
+  ],
+  "spec": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: The ray meets the top face; draw the normal where it enters.",
+        "Step 2: In the glass the ray slows down and bends towards the normal.",
+        "Step 3: Leaving the glass it speeds up, bends away from the normal and comes out parallel to the incident ray."
+      ],
+      "summary": "A ray of light enters a rectangular glass block, bends towards the normal inside the glass, then bends away from the normal as it leaves, emerging parallel to the incident ray."
+    },
+    "computed": {
+      "entry": {
+        "alt_text": "A ray of light enters a rectangular glass block, bends towards the normal inside the glass, then bends away from the normal as it leaves, emerging parallel to the incident ray.",
+        "attribution": "Our own drawing, made for Jana with AI assistance.",
+        "id": "dgm.phy.refraction_glass_block.v1",
+        "licence": "LicenseRef-Own",
+        "parts": [
+          {
+            "essential": true,
+            "function": "A rectangular block of glass with parallel faces.",
+            "id": "glass_block",
+            "label_anchor": [
+              330,
+              126
+            ],
+            "name": "Glass block",
+            "tab_order": 0
+          },
+          {
+            "essential": true,
+            "function": "The ray of light in air travelling towards the block.",
+            "id": "incident_ray",
+            "label_anchor": [
+              30,
+              30
+            ],
+            "name": "Incident ray",
+            "tab_order": 1
+          },
+          {
+            "aliases": [
+              "normal"
+            ],
+            "function": "A line at right angles to the surface where the ray goes into the glass.",
+            "id": "normal_entry",
+            "label_anchor": [
+              216,
+              58
+            ],
+            "name": "Normal where the ray enters",
+            "tab_order": 2
+          },
+          {
+            "aliases": [
+              "i"
+            ],
+            "function": "The angle between the incident ray and the normal, in air.",
+            "id": "angle_i",
+            "label_anchor": [
+              190,
+              72
+            ],
+            "name": "Angle of incidence",
+            "tab_order": 3
+          },
+          {
+            "essential": true,
+            "function": "The ray inside the glass; it bends towards the normal because light slows down in glass.",
+            "id": "refracted_ray",
+            "label_anchor": [
+              270,
+              178
+            ],
+            "name": "Refracted ray",
+            "tab_order": 4
+          },
+          {
+            "aliases": [
+              "r"
+            ],
+            "function": "The angle between the refracted ray and the normal, in glass; it is smaller than the angle of incidence.",
+            "id": "angle_r",
+            "label_anchor": [
+              214,
+              162
+            ],
+            "name": "Angle of refraction",
+            "tab_order": 5
+          },
+          {
+            "function": "A line at right angles to the surface where the ray comes out of the glass.",
+            "id": "normal_exit",
+            "label_anchor": [
+              266,
+              290
+            ],
+            "name": "Normal where the ray leaves",
+            "tab_order": 6
+          },
+          {
+            "essential": true,
+            "function": "The ray back in air; it bends away from the normal and runs parallel to the incident ray.",
+            "id": "emergent_ray",
+            "label_anchor": [
+              356,
+              300
+            ],
+            "name": "Emergent ray",
+            "tab_order": 7
+          }
+        ],
+        "sequences": [
+          {
+            "id": "through_the_block",
+            "steps": [
+              {
+                "arrows": [
+                  "arrow_in"
+                ],
+                "caption": "The ray meets the top face; draw the normal where it enters.",
+                "highlight": [
+                  "incident_ray",
+                  "normal_entry"
+                ]
+              },
+              {
+                "arrows": [
+                  "arrow_through"
+                ],
+                "caption": "In the glass the ray slows down and bends towards the normal.",
+                "highlight": [
+                  "refracted_ray",
+                  "angle_r"
+                ]
+              },
+              {
+                "arrows": [
+                  "arrow_out"
+                ],
+                "caption": "Leaving the glass it speeds up, bends away from the normal and comes out parallel to the incident ray.",
+                "highlight": [
+                  "emergent_ray",
+                  "normal_exit"
+                ]
+              }
+            ],
+            "title": "A ray passing through the block"
+          }
+        ],
+        "title": "Refraction through a rectangular glass block",
+        "version": "1.0.0"
+      },
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 320\"><title>Refraction through a glass block</title><defs><marker id=\"head\" viewBox=\"0 0 8 8\" refX=\"4\" refY=\"4\" markerWidth=\"8\" markerHeight=\"8\" orient=\"auto\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"var(--color-diagram-stroke)\"/></marker></defs><g data-part=\"glass_block\"><rect x=\"160\" y=\"110\" width=\"160\" height=\"110\" fill=\"var(--color-panel)\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"330\" y=\"126\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"glass_block\">glass block</text></g><g data-part=\"incident_ray\"><line x1=\"120\" y1=\"30\" x2=\"210\" y2=\"110\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"30\" y=\"30\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"incident_ray\">incident ray</text></g><g data-part=\"normal_entry\"><line x1=\"210\" y1=\"50\" x2=\"210\" y2=\"170\" stroke=\"var(--color-muted)\" stroke-width=\"1.5\" stroke-dasharray=\"6 4\"/><text x=\"216\" y=\"58\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"normal_entry\">normal</text></g><g data-part=\"angle_i\"><path d=\"M210,75 A35,35 0 0,0 183.84,86.75\" fill=\"none\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1\"/><text x=\"190\" y=\"72\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"angle_i\">i</text></g><g data-part=\"refracted_ray\"><line x1=\"210\" y1=\"110\" x2=\"260\" y2=\"220\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"270\" y=\"178\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"refracted_ray\">refracted ray</text></g><g data-part=\"angle_r\"><path d=\"M210,145 A35,35 0 0,0 224.48,141.86\" fill=\"none\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1\"/><text x=\"214\" y=\"162\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"angle_r\">r</text></g><g data-part=\"normal_exit\"><line x1=\"260\" y1=\"170\" x2=\"260\" y2=\"290\" stroke=\"var(--color-muted)\" stroke-width=\"1.5\" stroke-dasharray=\"6 4\"/><text x=\"266\" y=\"290\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"normal_exit\">normal</text></g><g data-part=\"emergent_ray\"><line x1=\"260\" y1=\"220\" x2=\"350\" y2=\"300\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"356\" y=\"300\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"emergent_ray\">emergent ray</text></g><g data-arrow=\"arrow_in\"><line x1=\"150\" y1=\"56.67\" x2=\"168\" y2=\"72.67\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\" marker-end=\"url(#head)\"/></g><g data-arrow=\"arrow_through\"><line x1=\"228\" y1=\"149.6\" x2=\"236\" y2=\"167.2\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\" marker-end=\"url(#head)\"/></g><g data-arrow=\"arrow_out\"><line x1=\"295\" y1=\"251.11\" x2=\"313\" y2=\"267.11\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\" marker-end=\"url(#head)\"/></g></svg>\n"
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [],
+    "params": {
+      "sequence": "through_the_block"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "glass_block",
+        "name": "Glass block",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "incident_ray",
+        "name": "Incident ray",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "normal_entry",
+        "name": "Normal where the ray enters",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "angle_i",
+        "name": "Angle of incidence",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "refracted_ray",
+        "name": "Refracted ray",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "angle_r",
+        "name": "Angle of refraction",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "normal_exit",
+        "name": "Normal where the ray leaves",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "emergent_ray",
+        "name": "Emergent ray",
+        "quizzable": true,
+        "role": "part"
+      }
+    ],
+    "ref": "dgm.phy.refraction_glass_block.v1",
+    "repairs": [],
+    "resolution_hash": "sha256:62ffc778054f41ec35da6b7bbcc7da475e40c60824834062a7f3ecbb08d6e877",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "incident_ray",
+          "normal_entry"
+        ]
+      },
+      {
+        "highlight": [
+          "refracted_ray",
+          "angle_r"
+        ]
+      },
+      {
+        "highlight": [
+          "emergent_ray",
+          "normal_exit"
+        ]
+      }
+    ],
+    "type": "library_diagram",
+    "visual_id": "vis_2Z7R5F1CNTBVW7T7Y06843027K"
+  },
+  "subject": "physics"
+}

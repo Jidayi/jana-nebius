@@ -1,0 +1,93 @@
+id: itm.chm.o.reactions.0014
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.rate_factors
+stem: 0.5 g of black manganese(IV) oxide is added to hydrogen peroxide solution. Oxygen bubbles off quickly. When the bubbling stops, the black solid is filtered off, dried and weighed.
+parts:
+- id: a
+  prompt: What mass of black solid is found, and what did it do?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: More than 0.5 g; it took in some of the hydrogen peroxide.
+      correct: false
+      misconception_id: mc.chm.o.reactions_catalyst_used_up
+      feedback: 'A catalyst speeds up a reaction but is not used up. Weigh it before and after: the mass is the same, and it can be used again. That is why a small amount of catalyst works for a long time.'
+    - id: B
+      text: Less than 0.5 g; some of it was used up making the oxygen.
+      correct: false
+      misconception_id: mc.chm.o.reactions_catalyst_used_up
+      feedback: 'A catalyst speeds up a reaction but is not used up. Weigh it before and after: the mass is the same, and it can be used again. That is why a small amount of catalyst works for a long time.'
+    - id: C
+      text: 0.5 g; it sped up the reaction without being used up.
+      correct: true
+    - id: D
+      text: 0.5 g; it made the hydrogen peroxide give more oxygen in total.
+      correct: false
+      misconception_id: mc.chm.o.reactions_rate_changes_amount
+      feedback: The rate is how fast product forms; the total amount depends on how much of the limiting reactant there is. With the same amount of that reactant, a faster reaction reaches the same final amount, only sooner.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Manganese(IV) oxide is a catalyst for this reaction. What is special about a catalyst?
+  - rung: 2
+    name: concept
+    text:
+      en: A catalyst speeds up a reaction and is chemically unchanged at the end.
+  - rung: 3
+    name: first_step
+    text:
+      en: If it is unchanged, its mass after the reaction is the same as before.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The total oxygen depends only on how much hydrogen peroxide there was.
+  - rung: 5
+    name: full_step
+    text:
+      en: '0.5 g of solid is recovered: the catalyst made the oxygen come off faster but was not used up, and it did not change the total amount of oxygen.'
+  misconception_ids:
+  - mc.chm.o.reactions_catalyst_used_up
+  - mc.chm.o.reactions_rate_changes_amount
+solution:
+  steps:
+  - n: 1
+    latex: '\text{catalyst: same mass at the end}'
+    reason: Not used up
+  - n: 2
+    latex: \text{same total }\text{O}_2
+    reason: Set by the peroxide
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

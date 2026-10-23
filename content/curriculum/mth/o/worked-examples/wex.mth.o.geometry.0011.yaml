@@ -1,0 +1,45 @@
+id: wex.mth.o.geometry.0011
+kc_ids:
+- kc.mth.o.geometry.similar_lengths
+problem: Triangles P and Q are similar. Side AB = 5 cm in P corresponds to side DE = 15 cm in Q. Side BC = 7 cm in P corresponds to side EF in Q. Find the length of EF.
+steps:
+- n: 1
+  latex: k = \frac{15}{5} = 3
+  reason: Scale factor from P to Q
+  check_id: chk_build_mth_geo_w0011_k
+- n: 2
+  latex: EF = 7 \times 3 = 21\ \text{cm}
+  reason: Multiply the corresponding side
+  check_id: chk_build_mth_geo_w0011_ans
+final_answer:
+  latex: 21\ \text{cm}
+  check_id: chk_build_mth_geo_w0011_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_w0011_ans:
+    args:
+      expression: 7*15/5
+    tool: math_evaluate
+  chk_build_mth_geo_w0011_k:
+    args:
+      expression: 15/5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,150 @@
+id: itm.chm.o.stoichiometry.0109
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.yield_and_purity
+stem: Calcium carbonate is heated to make calcium oxide. The equation is CaCO₃ → CaO + CO₂. 20.0 g of CaCO₃ gives 9.80 g of CaO.
+parts:
+- id: a
+  prompt: What is the percentage yield?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: 49.0%
+      correct: false
+      misconception_id: mc.chm.o.yield_uses_reactant_mass
+      feedback: The theoretical yield is the mass of product the equation predicts from the reactant, not the mass of the reactant itself.
+    - id: B
+      text: 87.5%
+      correct: true
+    - id: C
+      text: 0.875%
+      correct: false
+      misconception_id: mc.chm.o.percent_ar_over_mr_no_100
+    - id: D
+      text: 114%
+      correct: false
+      misconception_id: mc.chm.o.yield_inverted
+      feedback: 'You never get more product than the equation allows, so the percentage yield is at most 100%: actual ÷ theoretical × 100.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Percentage yield compares what you got with what the equation says you could get.
+  - rung: 2
+    name: concept
+    text:
+      en: Percentage yield = actual mass ÷ theoretical mass × 100.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Theoretical yield: moles of CaCO₃ = 20.0 ÷ 100 = 0.200; moles of CaO = 0.200.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Theoretical mass of CaO = 0.200 × 56 = 11.2 g. Now compare 9.80 g with it.
+  - rung: 5
+    name: full_step
+    text:
+      en: 9.80 ÷ 11.2 × 100 = 87.5%.
+  misconception_ids:
+  - mc.chm.o.yield_inverted
+  - mc.chm.o.yield_uses_reactant_mass
+  - mc.chm.o.percent_ar_over_mr_no_100
+solution:
+  steps:
+  - n: 1
+    latex: n(\text{CaCO}_3) = \frac{20.0}{100} = 0.200
+    reason: Moles of reactant
+    check_id: chk_build_chm_stoichiometry_0109_ma
+  - n: 2
+    latex: m(\text{CaO}) = 0.200 \times 56 = 11.2\ \text{g}
+    reason: Theoretical yield
+    check_id: chk_build_chm_stoichiometry_0109_mb
+  - n: 3
+    latex: \frac{9.80}{11.2} \times 100 = 87.5\%
+    reason: Actual over theoretical
+    check_id: chk_build_chm_stoichiometry_0109_chain
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0109_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ca
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_o
+      equation: CaCO3 -> CaO + CO2
+      sf: 3
+      steps:
+      - id: na
+        mass: 20.0 g
+        op: amount_from_mass
+        species: CaCO3
+      - amount: '@na'
+        from: CaCO3
+        id: nb
+        op: mole_ratio
+        to: CaO
+      - amount: '@nb'
+        id: t
+        op: mass_from_amount
+        species: CaO
+      - actual: 9.80 g
+        id: y
+        op: percentage_yield
+        theoretical: '@t'
+    tool: chem_stoichiometry
+  chk_build_chm_stoichiometry_0109_ma:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ca
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_o
+      formula: CaCO3
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0109_mb:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ca
+      - source: pack
+        symbol: ar_o
+      formula: CaO
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

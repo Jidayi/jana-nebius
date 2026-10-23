@@ -1,0 +1,38 @@
+id: mc.phy.o.series_pd_shared_equally
+kc_ids:
+- kc.phy.o.circuits.series_circuits
+- kc.phy.o.circuits.mixed_circuits
+- kc.phy.o.circuits.potential_dividers
+student_name: Sharing the p.d. equally
+description: Splits the supply p.d. equally between resistors in series, whatever their resistances.
+signatures:
+- kind: answer_transform
+  expression: V/n
+fix:
+  strategy: contrast_example
+  text:
+    en: 'The p.d. is shared in proportion to resistance: the resistor with twice the resistance has twice the p.d. Only equal resistors share equally.'
+probe_item_ids:
+- itm.phy.o.circuits.0011
+- itm.phy.o.circuits.0013
+- itm.phy.o.circuits.0015
+- itm.phy.o.circuits.0044
+- itm.phy.o.circuits.0056
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

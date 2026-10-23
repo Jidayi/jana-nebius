@@ -1,0 +1,45 @@
+id: mc.phy.o.wave_equation_multiplied
+kc_ids:
+- kc.phy.o.wave_properties.wave_equation
+- kc.phy.o.em_spectrum.em_wave_calculations
+- kc.phy.o.sound.pitch_and_loudness
+- kc.phy.o.wave_properties.wave_behaviour
+student_name: Multiplying instead of dividing
+description: Multiplies the speed by the frequency (or by the wavelength) when the other quantity should be found by dividing.
+signatures:
+- kind: answer_transform
+  expression: v*f
+fix:
+  strategy: counterexample
+  text:
+    en: Multiplying a speed by a frequency gives a huge number that is not a length. If v is one of the values you know, divide it by the other one.
+probe_item_ids:
+- itm.phy.o.sound.0042
+- itm.phy.o.wave_properties.0026
+- itm.phy.o.wave_properties.0027
+- itm.phy.o.wave_properties.0028
+- itm.phy.o.wave_properties.0030
+severity: medium
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

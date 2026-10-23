@@ -1,0 +1,129 @@
+id: itm.phy.o.sound.0024
+version: 0.1.2
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.sound.speed_and_echoes
+stem: Musa stands between two cliffs and claps once. The first echo arrives after 0.4 s and the second after 2 s. Sound travels at 340 m/s.
+parts:
+- id: a
+  prompt: How far apart are the two cliffs?
+  marks: 3
+  answer:
+    kind: numeric
+    value: '408'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_snd_0024_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Each echo comes from a different cliff.
+  - rung: 2
+    name: concept
+    text:
+      en: For each echo the sound goes there and back, so halve speed × time.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Nearer cliff: 68 m; further cliff: 340 m.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Musa is between the cliffs, so the two distances add.
+  - rung: 5
+    name: full_step
+    text:
+      en: The cliffs are 408 m apart.
+  misconception_ids:
+  - mc.phy.o.echo_not_halved
+  - mc.phy.o.echo_times_subtracted
+  - mc.phy.o.only_far_echo_used
+solution:
+  steps:
+  - n: 1
+    latex: d_1 = \frac{340 \times 0.4}{2} = 68\ \text{m}
+    reason: Distance to the nearer cliff
+    check_id: chk_build_phy_snd_0024_d1
+  - n: 2
+    latex: d_2 = \frac{340 \times 2}{2} = 340\ \text{m}
+    reason: Distance to the further cliff
+    check_id: chk_build_phy_snd_0024_d2
+  - n: 3
+    latex: d_1 + d_2 = 408\ \text{m}
+    reason: Musa is between them, so add
+    check_id: chk_build_phy_snd_0024_ans
+difficulty:
+  prior: 0.7
+  band: stretch
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  t1: '0.4'
+  t2: '2'
+  v: '340'
+checks:
+  chk_build_phy_snd_0024_ans:
+    args:
+      expression: 340*(0.4 + 2)/2
+    tool: math_evaluate
+  chk_build_phy_snd_0024_d1:
+    args:
+      expression: 340*0.4/2
+    tool: math_evaluate
+  chk_build_phy_snd_0024_d2:
+    args:
+      expression: 340*2/2
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:44:07.334Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.sound.0024
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

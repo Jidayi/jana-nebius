@@ -1,0 +1,90 @@
+id: itm.chm.o.electrolysis.0013
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.aqueous_products
+stem: Concentrated aqueous sodium chloride is electrolysed using inert electrodes.
+parts:
+- id: a
+  prompt: Which products form at the cathode and at the anode?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Hydrogen at the cathode and oxygen at the anode
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_halide_concentration_ignored
+      feedback: At the anode, a concentrated chloride, bromide or iodide solution gives the halogen. A dilute halide solution, or a solution with no halide (a sulfate or nitrate), gives oxygen from the water.
+    - id: B
+      text: Sodium at the cathode and chlorine at the anode
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_reactive_metal_from_solution
+      feedback: In a solution, water also provides H⁺ ions. At the cathode, hydrogen forms unless the metal is less reactive than hydrogen (such as copper or silver). Sodium and potassium are far more reactive, so hydrogen forms instead.
+    - id: C
+      text: Sodium at the cathode and oxygen at the anode
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_reactive_metal_from_solution
+      feedback: In a solution, water also provides H⁺ ions. At the cathode, hydrogen forms unless the metal is less reactive than hydrogen (such as copper or silver). Sodium and potassium are far more reactive, so hydrogen forms instead.
+    - id: D
+      text: Hydrogen at the cathode and chlorine at the anode
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'List the ions in concentrated aqueous sodium chloride: those from the salt and H⁺ and OH⁻ from the water.'
+  - rung: 2
+    name: concept
+    text:
+      en: 'Cathode: hydrogen forms unless the metal is less reactive than hydrogen. Anode: a concentrated halide gives the halogen; otherwise oxygen forms.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Sodium is far more reactive than hydrogen, so at the cathode H⁺ ions are discharged instead of Na⁺.
+  - rung: 4
+    name: worked_step
+    text:
+      en: At the anode, compare the two negative ions present, Cl⁻ and OH⁻, bearing in mind that the chloride is concentrated.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The cathode gives hydrogen and the anode gives chlorine: the sodium ions stay in solution because sodium is more reactive than hydrogen, and the concentrated chloride is discharged as chlorine.'
+  misconception_ids:
+  - mc.chm.o.electrolysis_reactive_metal_from_solution
+  - mc.chm.o.electrolysis_halide_concentration_ignored
+solution:
+  steps:
+  - n: 1
+    latex: '\text{cathode: hydrogen; anode: chlorine}'
+    reason: Apply the cathode and anode rules
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

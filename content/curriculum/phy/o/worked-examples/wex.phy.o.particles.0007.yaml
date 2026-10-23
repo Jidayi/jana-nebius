@@ -1,0 +1,49 @@
+id: wex.phy.o.particles.0007
+kc_ids:
+- kc.phy.o.particles.pressure_and_volume
+problem: Air in a sealed syringe has a volume of 60 cm³ at a pressure of 120 kPa. It is slowly allowed to expand to 80 cm³, at constant temperature. Find the new pressure of the gas.
+steps:
+- n: 1
+  latex: p_1V_1 = p_2V_2
+  reason: 'Boyle''s law: fixed mass at constant temperature'
+- n: 2
+  latex: p_1V_1 = 120 \times 60 = 7200
+  reason: pV before the change
+  check_id: chk_build_phy_ptc_w0007_k
+- n: 3
+  latex: p_2 = \frac{7200}{80} = 90\ \text{kPa}
+  reason: Divide by the new volume
+  check_id: chk_build_phy_ptc_w0007_ans
+final_answer:
+  latex: 90\ \text{kPa}
+  check_id: chk_build_phy_ptc_w0007_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ptc_w0007_ans:
+    args:
+      expression: 120*60/80
+    tool: math_evaluate
+  chk_build_phy_ptc_w0007_k:
+    args:
+      expression: 120*60
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

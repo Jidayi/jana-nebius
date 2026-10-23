@@ -1,0 +1,73 @@
+id: wex.phy.o.circuits.0004
+kc_ids:
+- kc.phy.o.circuits.parallel_circuits
+problem: A current of 0.9 A enters a junction and divides between a 6 Ω resistor and a 3 Ω resistor connected in parallel. Calculate the current through the 6 Ω resistor.
+steps:
+- n: 1
+  latex: R = \frac{6 \times 3}{6 + 3} = 2\ \Omega
+  reason: Combined resistance
+  check_id: chk_build_phy_cir_w0004_rp
+- n: 2
+  latex: V = IR = 0.9 \times 2 = 1.8\ \text{V}
+  reason: The p.d. across both branches
+  check_id: chk_build_phy_cir_w0004_v
+- n: 3
+  latex: I_1 = \frac{1.8}{6} = 0.3\ \text{A}
+  reason: Ohm's law for one branch
+  check_id: chk_build_phy_cir_w0004_ans
+final_answer:
+  latex: 0.3\ \text{A}
+  check_id: chk_build_phy_cir_w0004_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_w0004_ans:
+    args:
+      expression: 0.9*3/(6 + 3)
+    tool: math_evaluate
+  chk_build_phy_cir_w0004_rp:
+    args:
+      expression: 6*3/(6 + 3)
+    tool: math_evaluate
+  chk_build_phy_cir_w0004_tool:
+    args:
+      components:
+      - emf: '1.8'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '6'
+      - id: R2
+        kind: resistor
+        resistance: '3'
+      network:
+        series:
+        - B
+        - parallel:
+          - R1
+          - R2
+    tool: phys_circuit
+  chk_build_phy_cir_w0004_v:
+    args:
+      expression: 0.9*6*3/(6 + 3)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,34 @@
+id: mc.phy.o.background_halved_too
+kc_ids:
+- kc.phy.o.radioactivity.half_life
+- kc.phy.o.radioactivity.background_radiation
+student_name: Halving the background as well
+description: Applies the half-life to the whole measured count rate, including the background, which does not decay with the source.
+signatures:
+- kind: answer_transform
+  expression: C0/2^n
+fix:
+  strategy: rule_restatement
+  text:
+    en: Background radiation comes from the surroundings and stays about the same. Take it off first, halve what is left, and add it back for a reading.
+probe_item_ids:
+- itm.phy.o.radioactivity.0041
+- itm.phy.o.radioactivity.0035
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

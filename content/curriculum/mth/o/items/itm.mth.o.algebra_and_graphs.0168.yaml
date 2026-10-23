@@ -1,0 +1,98 @@
+id: itm.mth.o.algebra_and_graphs.0168
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.forming_equations
+stem: Ama thinks of a number, multiplies it by 6 and then adds 9. The result is 111.
+parts:
+- id: a
+  prompt: Write an equation for the number n and solve it to find the number Ama thought of.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '17'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0168_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Call the number n and follow the words in order.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiplying by 6 gives 6n; adding 9 gives 6n + 9. That equals 111.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Solve 6n + 9 = 111: first subtract 9.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: 6n = 102. Now divide by 6.
+  - rung: 5
+    name: full_step
+    text:
+      en: n = 17.
+  misconception_ids:
+  - mc.mth.o.rearrange_inverse_sign
+  - mc.mth.o.equation_divide_first
+  - mc.mth.o.equation_wrong_relation
+solution:
+  steps:
+  - n: 1
+    latex: 6n + 9 = 111
+    reason: Translate the words into an equation
+  - n: 2
+    latex: 6n = 102
+    reason: Subtract 9
+    check_id: chk_build_mth_alg_0168_s
+  - n: 3
+    latex: n = 17
+    reason: Divide by 6
+    check_id: chk_build_mth_alg_0168_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0168_ans:
+    args:
+      equations:
+      - 6*n + 9 = 111
+      unknowns:
+      - n
+    tool: math_solve
+  chk_build_mth_alg_0168_s:
+    args:
+      expression: 111 - 9
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

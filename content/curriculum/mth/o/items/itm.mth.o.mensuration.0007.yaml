@@ -1,0 +1,92 @@
+id: itm.mth.o.mensuration.0007
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.metric_units
+stem: A road is 6.2 km long.
+parts:
+- id: a
+  prompt: Write this length in centimetres.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '620000'
+    unit: cm
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_mns_0007_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Go one step at a time: kilometres to metres, then metres to centimetres.'
+  - rung: 2
+    name: concept
+    text:
+      en: 1 km = 1000 m and 1 m = 100 cm.
+  - rung: 3
+    name: first_step
+    text:
+      en: First multiply 6.2 by 1000.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Then multiply by 100.
+  - rung: 5
+    name: full_step
+    text:
+      en: 6.2 km = 620000 cm.
+  misconception_ids:
+  - mc.mth.o.scale_conversion_factor
+  - mc.mth.o.unit_conversion_direction
+  - mc.mth.o.area_units_linear
+solution:
+  steps:
+  - n: 1
+    latex: 6.2\ \text{km} = 6200\ \text{m}
+    reason: 1 km = 1000 m
+    check_id: chk_build_mth_mns_0007_m
+  - n: 2
+    latex: = 620000\ \text{cm}
+    reason: 1 m = 100 cm
+    check_id: chk_build_mth_mns_0007_ans
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_mns_0007_ans:
+    args:
+      expression: 6.2*100000
+    tool: math_evaluate
+  chk_build_mth_mns_0007_m:
+    args:
+      expression: 6.2*1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

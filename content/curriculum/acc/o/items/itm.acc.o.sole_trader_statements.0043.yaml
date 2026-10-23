@@ -1,0 +1,88 @@
+id: itm.acc.o.sole_trader_statements.0043
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.sole_trader_statements.sofp_sections
+stem: A trader lists these items at the year end.
+parts:
+- id: a
+  prompt: Select every item that is a current asset.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Inventory
+      correct: true
+    - id: B
+      text: Trade receivables
+      correct: true
+    - id: C
+      text: Bank overdraft
+      correct: false
+    - id: D
+      text: Rent prepaid
+      correct: true
+    - id: E
+      text: Motor vehicle
+      correct: false
+    - id: F
+      text: Trade payables
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Current assets are owned now and turn into cash within a year.
+  - rung: 2
+    name: concept
+    text:
+      en: Inventory is sold, receivables are collected and prepayments are used up within the year.
+  - rung: 3
+    name: first_step
+    text:
+      en: An overdraft is money owed to the bank, so it is a liability.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A vehicle is kept for several years, so it is non-current.
+  - rung: 5
+    name: full_step
+    text:
+      en: Inventory, trade receivables and rent prepaid are current assets.
+  misconception_ids:
+  - mc.acc.o.sofp_asset_liability_confused
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Current assets: inventory, trade receivables, rent prepaid}'
+    reason: Owned and used up or turned into cash within a year
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

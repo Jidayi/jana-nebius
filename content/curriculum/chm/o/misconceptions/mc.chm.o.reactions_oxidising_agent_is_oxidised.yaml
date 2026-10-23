@@ -1,0 +1,36 @@
+id: mc.chm.o.reactions_oxidising_agent_is_oxidised
+kc_ids:
+- kc.chm.o.reactions.redox
+student_name: The oxidising agent is the one oxidised
+description: Thinks the oxidising agent is the substance that is oxidised, and the reducing agent the one reduced.
+signatures:
+- kind: answer_transform
+  expression: 'choice: the agent named as the substance that undergoes that change itself'
+fix:
+  strategy: contrast_example
+  text:
+    en: An agent does the job to something else. The oxidising agent oxidises another substance by taking its electrons, so the oxidising agent itself is reduced. The reducing agent gives electrons away and is oxidised.
+probe_item_ids:
+- itm.chm.o.reactions.0061
+- itm.chm.o.reactions.0062
+- itm.chm.o.reactions.0063
+- itm.chm.o.reactions.0064
+- itm.chm.o.reactions.0065
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

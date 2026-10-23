@@ -1,0 +1,32 @@
+id: mc.chm.o.states_colder_faster
+kc_ids:
+- kc.chm.o.states.diffusion
+student_name: Cold gases diffuse faster
+description: Thinks diffusion is faster at a lower temperature.
+signatures:
+- kind: answer_transform
+  expression: 'choice: lower temperature chosen as faster'
+fix:
+  strategy: rule_restatement
+  text:
+    en: Heating gives particles more energy, so they move faster and diffuse faster.
+probe_item_ids:
+- itm.chm.o.states.0033
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

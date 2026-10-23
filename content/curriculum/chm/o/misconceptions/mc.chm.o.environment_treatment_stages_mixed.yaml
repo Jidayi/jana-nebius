@@ -1,0 +1,36 @@
+id: mc.chm.o.environment_treatment_stages_mixed
+kc_ids:
+- kc.chm.o.environment.water
+student_name: Mixing up the jobs of water treatment
+description: Mixes up what each stage of water treatment does, for example thinking that filtration kills microbes, that chlorine removes mud, or that treated water is pure.
+signatures:
+- kind: answer_transform
+  expression: 'choice: a water treatment stage given another stage''s job'
+fix:
+  strategy: rule_restatement
+  text:
+    en: Each stage has one job. Sedimentation lets large particles settle. Filtration removes small insoluble particles. Carbon removes tastes and smells. Chlorine kills microbes. None of these removes dissolved salts, so tap water is not pure.
+probe_item_ids:
+- itm.chm.o.environment.0001
+- itm.chm.o.environment.0003
+- itm.chm.o.environment.0004
+- itm.chm.o.environment.0005
+- itm.chm.o.environment.0006
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

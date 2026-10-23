@@ -1,0 +1,34 @@
+id: mc.phy.o.zero_error_wrong_way
+kc_ids:
+- kc.phy.o.measurement.measuring_techniques
+student_name: Correcting a zero error the wrong way
+description: Adds a positive zero error to the reading instead of subtracting it (or subtracts a negative one).
+signatures:
+- kind: answer_transform
+  expression: r + z
+fix:
+  strategy: counterexample
+  text:
+    en: 'If the instrument already reads a little above zero with nothing in it, every reading is too big by that much: take the zero error away.'
+probe_item_ids:
+- itm.phy.o.measurement.0060
+- itm.phy.o.measurement.0048
+- itm.phy.o.measurement.0052
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

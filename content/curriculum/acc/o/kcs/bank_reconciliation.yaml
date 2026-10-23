@@ -1,0 +1,162 @@
+- id: kc.acc.o.bank_reconciliation.timing_differences
+  code: ACC-O-05.K01
+  node_id: cur.acc.o.bank_reconciliation
+  statement: Identify unpresented cheques, outstanding lodgements and items missing from the cash book
+  kind: conceptual
+  tools:
+  - acc_double_entry
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.acc.o.double_entry.record_cash_transactions
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.br_bank_error_assumed
+  - mc.acc.o.br_unpresented_vs_lodgement
+  - mc.acc.o.br_update_vs_timing
+  skill_ids:
+  - acc-o-bank-reconciliation
+  glossary:
+  - bank reconciliation
+  - reconciliation statement
+  - reconcile
+  - cash book
+  - bank statement
+  - cheque
+  - unpresented cheque
+  - lodgement
+  - outstanding lodgement
+  - credit transfer
+  - direct debit
+  - standing order
+  - bank charges
+  - dishonoured cheque
+  - overdraft
+  - overdrawn
+  - debit balance
+  - credit balance
+  difficulty_prior: -0.4
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.bank_reconciliation.update_cash_book
+  code: ACC-O-05.K02
+  node_id: cur.acc.o.bank_reconciliation
+  statement: Calculate the updated cash book balance from items first seen on the bank statement
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.3
+  prerequisites:
+  - kc_id: kc.acc.o.double_entry.balance_account
+    strength: required
+  - kc_id: kc.acc.o.bank_reconciliation.timing_differences
+    strength: required
+  misconception_ids:
+  - mc.acc.o.br_credit_transfer_omitted
+  - mc.acc.o.br_includes_timing
+  - mc.acc.o.br_update_signs_reversed
+  - mc.acc.o.br_update_vs_timing
+  skill_ids:
+  - acc-o-bank-reconciliation
+  glossary:
+  - bank reconciliation
+  - reconciliation statement
+  - reconcile
+  - cash book
+  - bank statement
+  - cheque
+  - unpresented cheque
+  - lodgement
+  - outstanding lodgement
+  - credit transfer
+  - direct debit
+  - standing order
+  - bank charges
+  - dishonoured cheque
+  - overdraft
+  - overdrawn
+  - debit balance
+  - credit balance
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.bank_reconciliation.reconciliation_statement
+  code: ACC-O-05.K03
+  node_id: cur.acc.o.bank_reconciliation
+  statement: Calculate the bank statement balance through a bank reconciliation statement
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.3
+  prerequisites:
+  - kc_id: kc.acc.o.bank_reconciliation.update_cash_book
+    strength: required
+  misconception_ids:
+  - mc.acc.o.br_rec_signs_reversed
+  - mc.acc.o.br_rec_uses_unadjusted_cb
+  - mc.acc.o.br_unpresented_vs_lodgement
+  skill_ids:
+  - acc-o-bank-reconciliation
+  glossary:
+  - bank reconciliation
+  - reconciliation statement
+  - reconcile
+  - cash book
+  - bank statement
+  - cheque
+  - unpresented cheque
+  - lodgement
+  - outstanding lodgement
+  - credit transfer
+  - direct debit
+  - standing order
+  - bank charges
+  - dishonoured cheque
+  - overdraft
+  - overdrawn
+  - debit balance
+  - credit balance
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.bank_reconciliation.overdraft_sides
+  code: ACC-O-05.K04
+  node_id: cur.acc.o.bank_reconciliation
+  statement: Interpret debit and credit balances in the cash book and on the bank statement
+  kind: conceptual
+  tools:
+  - acc_double_entry
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.double_entry.debit_credit_rules
+    strength: required
+  misconception_ids:
+  - mc.acc.o.br_bank_error_assumed
+  - mc.acc.o.br_credit_means_money
+  - mc.acc.o.br_statement_view_reversed
+  - mc.acc.o.br_update_vs_timing
+  skill_ids:
+  - acc-o-bank-reconciliation
+  glossary:
+  - bank reconciliation
+  - reconciliation statement
+  - reconcile
+  - cash book
+  - bank statement
+  - cheque
+  - unpresented cheque
+  - lodgement
+  - outstanding lodgement
+  - credit transfer
+  - direct debit
+  - standing order
+  - bank charges
+  - dishonoured cheque
+  - overdraft
+  - overdrawn
+  - debit balance
+  - credit balance
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active

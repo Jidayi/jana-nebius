@@ -1,0 +1,105 @@
+id: itm.phy.o.momentum.0024
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.conservation_of_momentum
+stem: A 0.5 kg ball moving at 4 m/s hits a stationary 2.5 kg ball head-on. The first ball carries on in the same direction at 1 m/s.
+parts:
+- id: a
+  prompt: Find the velocity of the second ball just after the collision.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '0.6'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_mom_0024_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Momentum before = momentum after.
+  - rung: 2
+    name: concept
+    text:
+      en: After the collision both balls may have momentum.
+  - rung: 3
+    name: first_step
+    text:
+      en: Take the first ball's momentum after from the total, then divide by the second ball's mass.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Before: 2 kg m/s. The first ball keeps 0.5 kg m/s.'
+  - rung: 5
+    name: full_step
+    text:
+      en: v = 0.6 m/s in the original direction.
+  misconception_ids:
+  - mc.phy.o.equation_missing_known
+solution:
+  steps:
+  - n: 1
+    latex: p_\text{before} = 0.5 \times 4 = 2\ \text{kg m/s}
+    reason: Only the first ball moves
+    check_id: chk_build_phy_mom_0024_pb
+  - n: 2
+    latex: 2 = 0.5 \times 1 + 2.5v = 0.5 + 2.5v
+    reason: Momentum is conserved
+    check_id: chk_build_phy_mom_0024_pa
+  - n: 3
+    latex: v = \frac{2 - 0.5}{2.5} = 0.6\ \text{m/s}
+    reason: Solve for v
+    check_id: chk_build_phy_mom_0024_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_0024_ans:
+    args:
+      expression: (0.5*4 - 0.5*1)/2.5
+    tool: math_evaluate
+  chk_build_phy_mom_0024_pa:
+    args:
+      expression: 0.5*1
+    tool: math_evaluate
+  chk_build_phy_mom_0024_pb:
+    args:
+      expression: 0.5*4
+    tool: math_evaluate
+  chk_build_phy_mom_0024_tool:
+    args:
+      equations:
+      - 0.5*4 + 0 = 0.5*1 + 2.5*v
+      unknowns:
+      - v
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

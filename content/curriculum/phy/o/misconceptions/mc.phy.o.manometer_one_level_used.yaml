@@ -1,0 +1,36 @@
+id: mc.phy.o.manometer_one_level_used
+kc_ids:
+- kc.phy.o.pressure.gas_and_atmospheric_pressure
+student_name: Using one level instead of the difference
+description: Uses the scale reading of one liquid level as the height of the column instead of the difference between the two levels.
+signatures:
+- kind: answer_transform
+  expression: rho*g*h1
+fix:
+  strategy: rule_restatement
+  text:
+    en: Only the difference in height between the two liquid surfaces shows the difference in pressure. Subtract one scale reading from the other.
+probe_item_ids:
+- itm.phy.o.pressure.0041
+- itm.phy.o.pressure.0044
+- itm.phy.o.pressure.0033
+- itm.phy.o.pressure.0034
+- itm.phy.o.pressure.0035
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

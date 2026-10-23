@@ -1,0 +1,88 @@
+id: itm.chm.o.acids.0060
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.salt_preparation
+stem: Copper(II) sulfate solution is heated to evaporate some water, then left to cool.
+parts:
+- id: a
+  prompt: Why is the solution not heated until it is completely dry?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Because copper(II) sulfate would precipitate
+      correct: false
+      misconception_id: mc.chm.o.acids_precipitation_confused
+      feedback: 'An insoluble salt comes out of solution as a precipitate as soon as two solutions are mixed: filter it off and wash it. A soluble salt stays dissolved: you get it by evaporating and crystallising the solution.'
+    - id: B
+      text: Because heating to dryness would make the salt acidic
+      correct: false
+    - id: C
+      text: So that well-formed crystals keep their water of crystallisation
+      correct: true
+    - id: D
+      text: Because the crystals are in the filter paper, not the solution
+      correct: false
+      misconception_id: mc.chm.o.acids_filtrate_residue_confused
+      feedback: Draw the filter funnel. The solid that stays on the paper is the residue; the liquid that passes through is the filtrate. A soluble salt is in the filtrate; an insoluble salt is the residue.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Hydrated copper(II) sulfate crystals contain water as part of their structure.
+  - rung: 2
+    name: concept
+    text:
+      en: Strong heating drives off water of crystallisation and gives a powder instead of crystals.
+  - rung: 3
+    name: first_step
+    text:
+      en: Crystals grow best from a hot, saturated solution as it cools slowly.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Think about what would happen to the blue crystals if every trace of water were boiled away.
+  - rung: 5
+    name: full_step
+    text:
+      en: Stopping at the crystallisation point and cooling slowly gives good crystals that keep their water of crystallisation.
+  misconception_ids:
+  - mc.chm.o.acids_precipitation_confused
+  - mc.chm.o.acids_filtrate_residue_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{hydrated copper(II) sulfate crystals keep their water of crystallisation}
+    reason: Water of crystallisation
+difficulty:
+  prior: 0.4
+  band: stretch
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

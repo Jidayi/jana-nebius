@@ -1,0 +1,486 @@
+provenance: Seeded misconception set for the marking suite (CUR-18), synthetic. Each wrong answer was worked out by
+  hand from the item's quantities as the misconception would give it (the `label` shows the working), never by the
+  matcher; cases of kind `none` hold no misconception and must match nothing. Not real student work.
+conventions: {phy.g: '9.8'}
+chart:
+  id: coa.acc.o.golden_marking.v1
+  accounts:
+  - {account_id: furniture, account_name: Furniture, class: asset, accepted_names: [Office furniture]}
+  - {account_id: bank, account_name: Bank, class: asset, accepted_names: [Cash at bank]}
+  - {account_id: cash, account_name: Cash, class: asset, accepted_names: [Cash in hand]}
+  - {account_id: trade_payables, account_name: Trade payables, class: liability, accepted_names: [Creditors]}
+  - {account_id: capital, account_name: Capital, class: capital}
+  - {account_id: drawings, account_name: Drawings, class: drawings}
+  - {account_id: sales, account_name: Sales, class: income, accepted_names: [Revenue]}
+  - {account_id: wages, account_name: Wages, class: expense, accepted_names: [Salaries]}
+  - {account_id: rent, account_name: Rent, class: expense, accepted_names: [Rent paid]}
+  - {account_id: electricity, account_name: Electricity, class: expense}
+misconceptions:
+- id: mc.phy.o.ke_without_square
+  kc_ids: [kc.phy.o.energy.kinetic]
+  signatures: [{kind: answer_transform, expression: 1/2*m*v}]
+- id: mc.phy.o.ke_without_half
+  kc_ids: [kc.phy.o.energy.kinetic]
+  signatures: [{kind: answer_transform, expression: m*v^2}]
+- id: mc.phy.o.density_volume_over_mass
+  kc_ids: [kc.phy.o.matter.density]
+  signatures: [{kind: structural, rule: ratio_inverted}]
+- id: mc.phy.o.speed_time_over_distance
+  kc_ids: [kc.phy.o.kinematics.speed]
+  signatures: [{kind: structural, rule: ratio_inverted}]
+- id: mc.phy.o.mass_and_weight_same
+  kc_ids: [kc.phy.o.forces.weight]
+  signatures: [{kind: structural, rule: mass_weight_confused}]
+- id: mc.phy.o.force_zero_when_still
+  kc_ids: [kc.phy.o.forces.weight]
+  signatures: [{kind: answer_transform, expression: F = 0}]
+- id: mc.phy.o.g_upwards
+  kc_ids: [kc.phy.o.kinematics.free_fall]
+  signatures: [{kind: structural, rule: sign_of_g_flipped}]
+- id: mc.chm.o.subscripts_to_balance
+  kc_ids: [kc.chm.o.equations.balancing]
+  signatures: [{kind: structural, rule: subscript_changed_to_balance}]
+- id: mc.chm.o.any_multiple_is_balanced
+  kc_ids: [kc.chm.o.equations.balancing]
+  signatures: [{kind: answer_transform, expression: 'choice: balanced equation that is a multiple of the lowest one'}]
+- id: mc.acc.o.expense_credited
+  kc_ids: [kc.acc.o.double_entry.expenses]
+  signatures: [{kind: structural, rule: debit_credit_swapped, account_class: expense}]
+- id: mc.acc.o.drawings_as_expense
+  kc_ids: [kc.acc.o.double_entry.drawings]
+  signatures: [{kind: structural, rule: wrong_account_class, account_class: expense}]
+- id: mc.mth.o.percent_change_on_new
+  kc_ids: [kc.mth.o.number.percentage_change]
+  signatures: [{kind: answer_transform, expression: (new - old)/new*100}]
+- id: mc.mth.o.compound_as_simple
+  kc_ids: [kc.mth.o.number.compound_growth]
+  signatures: [{kind: answer_transform, expression: P*(1 + n*r/100)}]
+- id: mc.mth.o.area_for_perimeter
+  kc_ids: [kc.mth.o.mensuration.perimeter]
+  signatures: [{kind: answer_transform, expression: l*w}]
+- id: mc.mth.o.sign_lost_moving_terms
+  kc_ids: [kc.mth.o.algebra.linear_equations]
+  signatures: [{kind: step_error, error_category: sign}]
+items:
+  ke_trolley:
+    id: itm.phy.o.energy.9801
+    type: numeric
+    kc_ids: [kc.phy.o.energy.kinetic]
+    quantities: {m: '2', v: '3'}
+    parts:
+    - id: a
+      prompt: Find the kinetic energy of a 2 kg trolley moving at 3 m/s.
+      marks: 2
+      answer: {kind: numeric, value: '9', unit: J, unit_policy: equivalent, tolerance: {mode: relative, value: 0.01},
+               check_id: chk_build_golden_sig_ke1}
+      misconception_ids: [mc.phy.o.ke_without_square, mc.phy.o.ke_without_half]
+      hints: []
+  ke_cart:
+    id: itm.phy.o.energy.9802
+    type: numeric
+    kc_ids: [kc.phy.o.energy.kinetic]
+    quantities: {m: '4', v: '5'}
+    parts:
+    - id: a
+      prompt: Find the kinetic energy of a 4 kg cart moving at 5 m/s.
+      marks: 2
+      answer: {kind: numeric, value: '50', unit: J, unit_policy: equivalent, tolerance: {mode: relative, value: 0.01},
+               check_id: chk_build_golden_sig_ke2}
+      hints: []
+  ke_ball:
+    id: itm.phy.o.energy.9803
+    type: numeric
+    kc_ids: [kc.phy.o.energy.kinetic]
+    quantities: {m: '0.5', v: '8'}
+    parts:
+    - id: a
+      prompt: Find the kinetic energy of a 0.5 kg ball moving at 8 m/s.
+      marks: 2
+      answer: {kind: numeric, value: '16', unit: J, unit_policy: equivalent, tolerance: {mode: relative, value: 0.01},
+               check_id: chk_build_golden_sig_ke3}
+      hints: []
+  density_block:
+    id: itm.phy.o.matter.9804
+    type: numeric
+    kc_ids: [kc.phy.o.matter.density]
+    quantities: {m: '240', V: '30'}
+    parts:
+    - id: a
+      prompt: A block of mass 240 g has a volume of 30 cm^3. Find its density.
+      marks: 2
+      answer: {kind: numeric, value: '8', unit: g/cm^3, unit_policy: equivalent,
+               tolerance: {mode: relative, value: 0.005}, check_id: chk_build_golden_sig_density1}
+      hints: []
+  density_metal:
+    id: itm.phy.o.matter.9805
+    type: numeric
+    kc_ids: [kc.phy.o.matter.density]
+    quantities: {m: '54', V: '20'}
+    parts:
+    - id: a
+      prompt: A piece of metal of mass 54 g has a volume of 20 cm^3. Find its density.
+      marks: 2
+      answer: {kind: numeric, value: '2.7', unit: g/cm^3, unit_policy: equivalent,
+               tolerance: {mode: relative, value: 0.005}, check_id: chk_build_golden_sig_density2}
+      hints: []
+  speed_runner:
+    id: itm.phy.o.kinematics.9806
+    type: numeric
+    kc_ids: [kc.phy.o.kinematics.speed]
+    quantities: {d: '100', t: '20'}
+    parts:
+    - id: a
+      prompt: A runner covers 100 m in 20 s. Find the average speed.
+      marks: 2
+      answer: {kind: numeric, value: '5', unit: m/s, unit_policy: equivalent,
+               tolerance: {mode: relative, value: 0.005}, check_id: chk_build_golden_sig_speed}
+      hints: []
+  weight_bag:
+    id: itm.phy.o.forces.9807
+    type: numeric
+    kc_ids: [kc.phy.o.forces.weight]
+    quantities: {m: '5'}
+    parts:
+    - id: a
+      prompt: Find the weight of a 5 kg bag.
+      marks: 2
+      answer: {kind: numeric, value: '49', unit: N, unit_policy: equivalent,
+               tolerance: {mode: relative, value: 0.005}, check_id: chk_build_golden_sig_weight1}
+      misconception_ids: [mc.phy.o.mass_and_weight_same, mc.phy.o.force_zero_when_still]
+      hints: []
+  weight_box:
+    id: itm.phy.o.forces.9808
+    type: numeric
+    kc_ids: [kc.phy.o.forces.weight]
+    quantities: {m: '2.5'}
+    parts:
+    - id: a
+      prompt: Find the weight of a 2.5 kg box.
+      marks: 2
+      answer: {kind: numeric, value: '24.5', unit: N, unit_policy: equivalent,
+               tolerance: {mode: relative, value: 0.005}, check_id: chk_build_golden_sig_weight2}
+      hints: []
+  mass_from_weight:
+    id: itm.phy.o.forces.9809
+    type: numeric
+    kc_ids: [kc.phy.o.forces.weight]
+    conventions_override: [{key: phy.g, value: '10'}]
+    quantities: {W: '30'}
+    parts:
+    - id: a
+      prompt: A parcel weighs 30 N. Taking g as 10 N/kg, find its mass.
+      marks: 2
+      answer: {kind: numeric, value: '3', unit: kg, unit_policy: equivalent,
+               tolerance: {mode: relative, value: 0.005}, check_id: chk_build_golden_sig_mass}
+      hints: []
+  dropped_stone:
+    id: itm.phy.o.kinematics.9810
+    type: numeric
+    kc_ids: [kc.phy.o.kinematics.free_fall]
+    quantities: {u: '0', t: '2'}
+    parts:
+    - id: a
+      prompt: A stone is dropped from rest. Taking g as 9.8 m/s^2, find its velocity after 2 s, downwards positive.
+      marks: 2
+      answer: {kind: numeric, value: '19.6', unit: m/s, unit_policy: equivalent,
+               tolerance: {mode: relative, value: 0.005}, check_id: chk_build_golden_sig_stone}
+      hints: []
+  water: &water
+    id: itm.chm.o.reactions.9811
+    type: chemical_equation
+    kc_ids: [kc.chm.o.equations.balancing]
+    parts:
+    - id: a
+      prompt: Balance the equation for hydrogen burning in oxygen to form water.
+      marks: 2
+      answer:
+        kind: chemical_equation
+        reactants: [{formula: H2, coefficient: 2}, {formula: O2, coefficient: 1}]
+        products: [{formula: H2O, coefficient: 2}]
+        state_symbols: ignored
+        non_lowest_multiple: partial
+        check_id: chk_build_golden_sig_water
+      hints: []
+  magnesium_oxide:
+    id: itm.chm.o.reactions.9812
+    type: chemical_equation
+    kc_ids: [kc.chm.o.equations.balancing]
+    parts:
+    - id: a
+      prompt: Balance the equation for magnesium burning in oxygen.
+      marks: 2
+      answer:
+        kind: chemical_equation
+        reactants: [{formula: Mg, coefficient: 2}, {formula: O2, coefficient: 1}]
+        products: [{formula: MgO, coefficient: 2}]
+        state_symbols: ignored
+        non_lowest_multiple: partial
+        check_id: chk_build_golden_sig_mgo
+      hints: []
+  sodium_chloride:
+    id: itm.chm.o.reactions.9813
+    type: chemical_equation
+    kc_ids: [kc.chm.o.equations.balancing]
+    parts:
+    - id: a
+      prompt: Balance the equation for sodium reacting with chlorine.
+      marks: 2
+      answer:
+        kind: chemical_equation
+        reactants: [{formula: Na, coefficient: 2}, {formula: Cl2, coefficient: 1}]
+        products: [{formula: NaCl, coefficient: 2}]
+        state_symbols: ignored
+        non_lowest_multiple: partial
+        check_id: chk_build_golden_sig_nacl
+      hints: []
+  ammonia:
+    id: itm.chm.o.reactions.9814
+    type: chemical_equation
+    kc_ids: [kc.chm.o.equations.balancing]
+    parts:
+    - id: a
+      prompt: Balance the equation for making ammonia from nitrogen and hydrogen.
+      marks: 2
+      answer:
+        kind: chemical_equation
+        reactants: [{formula: N2, coefficient: 1}, {formula: H2, coefficient: 3}]
+        products: [{formula: NH3, coefficient: 2}]
+        state_symbols: ignored
+        non_lowest_multiple: partial
+        check_id: chk_build_golden_sig_nh3
+      hints: []
+  wages_paid:
+    id: itm.acc.o.double_entry.9815
+    type: journal_entry
+    kc_ids: [kc.acc.o.double_entry.expenses]
+    parts:
+    - id: a
+      prompt: Wages of 800 are paid from the bank. Write the journal entry.
+      marks: 2
+      answer:
+        kind: journal_entry
+        chart_of_accounts: coa.acc.o.golden_marking.v1
+        currency: USD
+        lines:
+        - {account_id: wages, account_name: Wages, accepted_names: [Wages, Salaries], debit: '800', credit: '0'}
+        - {account_id: bank, account_name: Bank, accepted_names: [Bank, Cash at bank], debit: '0', credit: '800'}
+        check_id: chk_build_golden_sig_wages
+      hints: []
+  rent_paid:
+    id: itm.acc.o.double_entry.9816
+    type: journal_entry
+    kc_ids: [kc.acc.o.double_entry.expenses]
+    parts:
+    - id: a
+      prompt: Rent of 1200 is paid in cash. Write the journal entry.
+      marks: 2
+      answer:
+        kind: journal_entry
+        chart_of_accounts: coa.acc.o.golden_marking.v1
+        currency: USD
+        lines:
+        - {account_id: rent, account_name: Rent, accepted_names: [Rent, Rent paid], debit: '1200', credit: '0'}
+        - {account_id: cash, account_name: Cash, accepted_names: [Cash, Cash in hand], debit: '0', credit: '1200'}
+        check_id: chk_build_golden_sig_rent
+      hints: []
+  owner_takes_cash:
+    id: itm.acc.o.double_entry.9817
+    type: journal_entry
+    kc_ids: [kc.acc.o.double_entry.drawings]
+    parts:
+    - id: a
+      prompt: The owner takes 300 cash for personal use. Write the journal entry.
+      marks: 2
+      answer:
+        kind: journal_entry
+        chart_of_accounts: coa.acc.o.golden_marking.v1
+        currency: USD
+        lines:
+        - {account_id: drawings, account_name: Drawings, accepted_names: [Drawings], debit: '300', credit: '0'}
+        - {account_id: cash, account_name: Cash, accepted_names: [Cash, Cash in hand], debit: '0', credit: '300'}
+        check_id: chk_build_golden_sig_drawings
+      hints: []
+  electricity_paid:
+    id: itm.acc.o.double_entry.9818
+    type: journal_entry
+    kc_ids: [kc.acc.o.double_entry.expenses]
+    parts:
+    - id: a
+      prompt: An electricity bill of 250 is paid from the bank. Write the journal entry.
+      marks: 2
+      answer:
+        kind: journal_entry
+        chart_of_accounts: coa.acc.o.golden_marking.v1
+        currency: USD
+        lines:
+        - {account_id: electricity, account_name: Electricity, accepted_names: [Electricity], debit: '250',
+           credit: '0'}
+        - {account_id: bank, account_name: Bank, accepted_names: [Bank, Cash at bank], debit: '0', credit: '250'}
+        check_id: chk_build_golden_sig_electricity
+      misconception_ids: [mc.acc.o.drawings_as_expense]
+      hints: []
+  price_rise:
+    id: itm.mth.o.number.9819
+    type: numeric
+    kc_ids: [kc.mth.o.number.percentage_change]
+    quantities: {old: '80', new: '100'}
+    parts:
+    - id: a
+      prompt: A price rises from 80 to 100. Find the percentage increase.
+      marks: 2
+      answer: {kind: numeric, value: '25', unit: null, unit_policy: none, tolerance: {mode: absolute, value: 0.05},
+               check_id: chk_build_golden_sig_rise}
+      hints: []
+  price_fall:
+    id: itm.mth.o.number.9820
+    type: numeric
+    kc_ids: [kc.mth.o.number.percentage_change]
+    quantities: {old: '50', new: '40'}
+    parts:
+    - id: a
+      prompt: A price falls from 50 to 40. Find the percentage change.
+      marks: 2
+      answer: {kind: numeric, value: '-20', unit: null, unit_policy: none, tolerance: {mode: absolute, value: 0.05},
+               check_id: chk_build_golden_sig_fall}
+      hints: []
+  savings_three_years:
+    id: itm.mth.o.number.9821
+    type: numeric
+    kc_ids: [kc.mth.o.number.compound_growth]
+    quantities: {P: '1000', r: '5', n: '3'}
+    parts:
+    - id: a
+      prompt: 1000 is saved at 5% compound interest a year. Find the amount after 3 years.
+      marks: 2
+      answer: {kind: numeric, value: '1157.63', unit: null, unit_policy: none,
+               tolerance: {mode: absolute, value: 0.01}, check_id: chk_build_golden_sig_compound1}
+      hints: []
+  savings_two_years:
+    id: itm.mth.o.number.9822
+    type: numeric
+    kc_ids: [kc.mth.o.number.compound_growth]
+    quantities: {P: '2000', r: '10', n: '2'}
+    parts:
+    - id: a
+      prompt: 2000 is saved at 10% compound interest a year. Find the amount after 2 years.
+      marks: 2
+      answer: {kind: numeric, value: '2420', unit: null, unit_policy: none,
+               tolerance: {mode: absolute, value: 0.01}, check_id: chk_build_golden_sig_compound2}
+      hints: []
+  garden_perimeter:
+    id: itm.mth.o.mensuration.9823
+    type: numeric
+    kc_ids: [kc.mth.o.mensuration.perimeter]
+    quantities: {l: '7', w: '4'}
+    parts:
+    - id: a
+      prompt: A garden is 7 m long and 4 m wide. Find its perimeter.
+      marks: 1
+      answer: {kind: numeric, value: '22', unit: m, unit_policy: equivalent,
+               tolerance: {mode: relative, value: 0.005}, check_id: chk_build_golden_sig_perimeter1}
+      hints: []
+  field_perimeter:
+    id: itm.mth.o.mensuration.9824
+    type: numeric
+    kc_ids: [kc.mth.o.mensuration.perimeter]
+    quantities: {l: '12', w: '5'}
+    parts:
+    - id: a
+      prompt: A field is 12 m long and 5 m wide. Find its perimeter.
+      marks: 1
+      answer: {kind: numeric, value: '34', unit: m, unit_policy: equivalent,
+               tolerance: {mode: relative, value: 0.005}, check_id: chk_build_golden_sig_perimeter2}
+      hints: []
+  linear_equation:
+    id: itm.mth.o.algebra.9825
+    type: numeric
+    kc_ids: [kc.mth.o.algebra.linear_equations]
+    parts:
+    - id: a
+      prompt: Solve 2x + 3 = 11.
+      marks: 2
+      answer: {kind: numeric, value: '4', unit: null, unit_policy: none, tolerance: {mode: absolute, value: 0.001},
+               check_id: chk_build_golden_sig_linear}
+      hints: []
+cases:
+# --- answer_transform ------------------------------------------------------------------------------------------------
+- {id: ke_trolley_no_square, item: ke_trolley, response: 3 J, kind: answer_transform,
+   expect: mc.phy.o.ke_without_square, label: 1/2 x 2 x 3 = 3}
+- {id: ke_trolley_no_half, item: ke_trolley, response: 18 J, kind: answer_transform,
+   expect: mc.phy.o.ke_without_half, label: 2 x 3^2 = 18}
+- {id: ke_cart_no_square, item: ke_cart, response: 10 J, kind: answer_transform,
+   expect: mc.phy.o.ke_without_square, label: 1/2 x 4 x 5 = 10}
+- {id: ke_cart_no_half, item: ke_cart, response: 100 J, kind: answer_transform,
+   expect: mc.phy.o.ke_without_half, label: 4 x 5^2 = 100}
+- {id: ke_ball_no_square, item: ke_ball, response: 2 J, kind: answer_transform,
+   expect: mc.phy.o.ke_without_square, label: 1/2 x 0.5 x 8 = 2}
+- {id: ke_ball_no_half_in_kilojoules, item: ke_ball, response: 0.032 kJ, kind: answer_transform,
+   expect: mc.phy.o.ke_without_half, label: 0.5 x 8^2 = 32 J = 0.032 kJ}
+- {id: rise_on_new_price, item: price_rise, response: '20', kind: answer_transform,
+   expect: mc.mth.o.percent_change_on_new, label: (100 - 80) / 100 x 100 = 20}
+- {id: fall_on_new_price, item: price_fall, response: '-25', kind: answer_transform,
+   expect: mc.mth.o.percent_change_on_new, label: (40 - 50) / 40 x 100 = -25}
+- {id: three_years_simple, item: savings_three_years, response: '1150', kind: answer_transform,
+   expect: mc.mth.o.compound_as_simple, label: 1000 x (1 + 3 x 5 / 100) = 1150}
+- {id: two_years_simple, item: savings_two_years, response: '2400.00', kind: answer_transform,
+   expect: mc.mth.o.compound_as_simple, label: 2000 x (1 + 2 x 10 / 100) = 2400}
+- {id: garden_area, item: garden_perimeter, response: 28 m, kind: answer_transform,
+   expect: mc.mth.o.area_for_perimeter, label: 7 x 4 = 28}
+- {id: field_area, item: field_perimeter, response: '60', kind: answer_transform,
+   expect: mc.mth.o.area_for_perimeter, label: 12 x 5 = 60}
+# --- structural ------------------------------------------------------------------------------------------------------
+- {id: density_inverted, item: density_block, response: 0.125 cm^3/g, kind: structural,
+   expect: mc.phy.o.density_volume_over_mass, label: 30 / 240 = 0.125}
+- {id: density_inverted_rounded, item: density_metal, response: '0.370', kind: structural,
+   expect: mc.phy.o.density_volume_over_mass, label: 20 / 54 = 0.3704}
+- {id: speed_inverted, item: speed_runner, response: 0.2 s/m, kind: structural,
+   expect: mc.phy.o.speed_time_over_distance, label: 20 / 100 = 0.2}
+- {id: weight_given_as_mass, item: weight_bag, response: 5 N, kind: structural,
+   expect: mc.phy.o.mass_and_weight_same, label: the mass 5 kg written as the weight}
+- {id: weight_given_as_mass_in_kg, item: weight_box, response: 2.5 kg, kind: structural,
+   expect: mc.phy.o.mass_and_weight_same, label: the mass 2.5 kg given for the weight 24.5 N}
+- {id: mass_given_as_weight, item: mass_from_weight, response: 30 kg, kind: structural,
+   expect: mc.phy.o.mass_and_weight_same, label: the weight 30 N written as the mass (g = 10 by the item)}
+- {id: water_peroxide, item: water, response: H2 + O2 -> H2O2, kind: structural,
+   expect: mc.chm.o.subscripts_to_balance, label: H2O written H2O2 so the oxygen balances}
+- {id: magnesium_dioxide, item: magnesium_oxide, response: Mg + O2 -> MgO2, kind: structural,
+   expect: mc.chm.o.subscripts_to_balance, label: MgO written MgO2 so the oxygen balances}
+- {id: sodium_dichloride, item: sodium_chloride, response: Na + Cl2 -> NaCl2, kind: structural,
+   expect: mc.chm.o.subscripts_to_balance, label: NaCl written NaCl2 so the chlorine balances}
+- {id: ammonia_subscripts, item: ammonia, response: N2 + H2 -> N2H2, kind: structural,
+   expect: mc.chm.o.subscripts_to_balance, label: NH3 written N2H2 so both elements balance}
+- {id: wages_sides_swapped, item: wages_paid, response: Dr Bank 800; Cr Wages 800, kind: structural,
+   expect: mc.acc.o.expense_credited, label: the expense credited and the bank debited}
+- id: rent_sides_swapped
+  item: rent_paid
+  response: [{account: Cash, side: debit, amount: '1200'}, {account: Rent paid, side: credit, amount: '1200'}]
+  kind: structural
+  expect: mc.acc.o.expense_credited
+  label: the expense credited and the cash debited
+- {id: drawings_as_wages, item: owner_takes_cash, response: Dr Wages 300; Cr Cash 300, kind: structural,
+   expect: mc.acc.o.drawings_as_expense, label: drawings recorded as an expense account}
+- id: drawings_as_rent
+  item: owner_takes_cash
+  response: [{account: Rent, side: debit, amount: '300'}, {account: Cash, side: credit, amount: '300'}]
+  kind: structural
+  expect: mc.acc.o.drawings_as_expense
+  label: drawings recorded as an expense account
+# --- step_error ------------------------------------------------------------------------------------------------------
+- {id: sign_slip_in_working, item: linear_equation, response: '7', step_error: sign, kind: step_error,
+   expect: mc.mth.o.sign_lost_moving_terms, label: 2x = 11 + 3 gives x = 7}
+- {id: arithmetic_slip_is_not_a_sign_slip, item: linear_equation, response: '3', step_error: arithmetic,
+   kind: step_error, expect: null, label: 2x = 8 gives x = 3}
+# --- none: no misconception may be named -----------------------------------------------------------------------------
+- {id: ke_random_wrong, item: ke_trolley, response: 12 J, kind: none, expect: null}
+- {id: ke_right, item: ke_trolley, response: 9 J, kind: none, expect: null}
+- {id: density_random_wrong, item: density_block, response: 5 g/cm^3, kind: none, expect: null}
+- {id: water_not_balanced, item: water, response: H2 + O2 -> H2O, kind: none, expect: null}
+- {id: water_multiple_unbalanced, item: water, response: 2H2 + 2O2 -> 2H2O, kind: none, expect: null}
+- {id: wages_wrong_amount, item: wages_paid, response: Dr Wages 700; Cr Bank 700, kind: none, expect: null}
+- {id: same_class_account, item: electricity_paid, response: Dr Rent 250; Cr Bank 250, kind: none, expect: null}
+- {id: weight_zero, item: weight_bag, response: 0 N, kind: none, expect: null}
+- {id: free_fall_undecided_rule, item: dropped_stone, response: -19.6 m/s, kind: none, expect: null}
+- {id: rise_random_wrong, item: price_rise, response: '15', kind: none, expect: null}
+- {id: compound_random_wrong, item: savings_three_years, response: '1200', kind: none, expect: null}
+- {id: perimeter_half, item: garden_perimeter, response: 11 m, kind: none, expect: null}
+- {id: step_error_without_working, item: linear_equation, response: '7', kind: none, expect: null}

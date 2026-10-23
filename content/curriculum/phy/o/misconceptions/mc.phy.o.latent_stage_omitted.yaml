@@ -1,0 +1,33 @@
+id: mc.phy.o.latent_stage_omitted
+kc_ids:
+- kc.phy.o.thermal_properties.latent_heat
+student_name: Leaving out a stage
+description: Leaves out a stage when a substance is both heated and changes state, using only E = mcΔθ or only E = mL.
+signatures:
+- kind: answer_transform
+  expression: m*c*dT
+fix:
+  strategy: diagram
+  text:
+    en: Sketch the heating curve. Each sloping part needs mcΔθ and each flat part needs mL; add the energy for every stage.
+probe_item_ids:
+- itm.phy.o.thermal_properties.0034
+- itm.phy.o.thermal_properties.0040
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,103 @@
+id: itm.mth.o.number.9025
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.estimation
+stem: A shop sells 198 bags of rice at $4.12 per bag.
+parts:
+- id: a
+  prompt: Estimate the total cost by rounding each number to 1 significant figure first.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '800'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9025
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Round both factors before multiplying; do not calculate the exact cost first.
+  - rung: 2
+    name: concept
+    text:
+      en: Round the bag count and the price separately to one significant figure.
+  - rung: 3
+    name: first_step
+    text:
+      en: Round the bag count and the price separately to one significant figure.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Use the rounded factors in the product, rather than rounding an exact total afterwards.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 800 $.
+solution:
+  steps:
+  - n: 1
+    latex: '200'
+    reason: Intermediate value used in the calculation.
+    check_id: chk_build_mastery_supplement_mth_9025_intermediate_0
+  - n: 2
+    latex: '4'
+    reason: Intermediate value used in the calculation.
+    check_id: chk_build_mastery_supplement_mth_9025_intermediate_1
+  - n: 3
+    latex: 200 \cdot 4
+    reason: Round the bag count and the price separately to one significant figure.
+    check_id: chk_build_mastery_supplement_mth_9025
+  - n: 4
+    latex: '800'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9025
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9025:
+    args:
+      angle_unit: degrees
+      expression: 200*4
+    tool: math_evaluate
+  chk_build_mastery_supplement_mth_9025_intermediate_0:
+    args:
+      expression: '198'
+      sf: 1
+    tool: math_evaluate
+  chk_build_mastery_supplement_mth_9025_intermediate_1:
+    args:
+      expression: '4.12'
+      sf: 1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

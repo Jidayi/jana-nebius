@@ -1,0 +1,36 @@
+id: mc.phy.o.renewable_means_clean
+kc_ids:
+- kc.phy.o.energy.energy_resources
+student_name: Renewable means harmless
+description: Thinks a resource that is renewable, or that releases no carbon dioxide, has no harmful effects on the environment, or judges renewability by pollution.
+signatures:
+- kind: answer_transform
+  expression: clean
+fix:
+  strategy: counterexample
+  text:
+    en: A dam is renewable but floods valleys, and wind farms change the landscape. Renewable is about being replaced, not about having no effects.
+probe_item_ids:
+- itm.phy.o.energy.0117
+- itm.phy.o.energy.0119
+- itm.phy.o.energy.0120
+- itm.phy.o.energy.0109
+- itm.phy.o.energy.0110
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

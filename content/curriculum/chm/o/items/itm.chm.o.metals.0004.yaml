@@ -1,0 +1,90 @@
+id: itm.chm.o.metals.0004
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.properties_and_uses
+- kc.chm.o.metals.properties_of_metals
+stem: A metal is a good conductor of electricity whether it is solid or molten.
+parts:
+- id: a
+  prompt: Which particles carry the current through a solid metal wire?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Protons that pass from one atom to the next
+      correct: false
+      misconception_id: mc.chm.o.metals_conduct_by_moving_ions
+      feedback: Protons stay in the nucleus of each atom and never move along the wire. The delocalised electrons carry the current.
+    - id: B
+      text: Positive metal ions that move along the wire
+      correct: false
+      misconception_id: mc.chm.o.metals_conduct_by_moving_ions
+      feedback: In a solid metal the positive ions stay in their places in the lattice. The delocalised electrons move through the structure and carry the current.
+    - id: C
+      text: Negative ions that move towards the positive end
+      correct: false
+      misconception_id: mc.chm.o.metals_conduct_by_moving_ions
+      feedback: In a solid metal the positive ions stay in their places in the lattice. The delocalised electrons move through the structure and carry the current.
+    - id: D
+      text: Delocalised electrons that move through the lattice of positive ions
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A current is a flow of charged particles.
+  - rung: 2
+    name: concept
+    text:
+      en: In metallic bonding, positive ions sit in fixed places and some electrons are free to move.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ask which particles in a solid metal are free to move.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The ions in a solid are held in place in the lattice.
+  - rung: 5
+    name: full_step
+    text:
+      en: The delocalised electrons move through the metal and carry the current.
+  misconception_ids:
+  - mc.chm.o.metals_conduct_by_moving_ions
+solution:
+  steps:
+  - n: 1
+    latex: \text{delocalised electrons move; ions stay fixed}
+    reason: Metallic bonding
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

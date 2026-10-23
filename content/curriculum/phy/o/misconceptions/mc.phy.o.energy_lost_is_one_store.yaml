@@ -1,0 +1,32 @@
+id: mc.phy.o.energy_lost_is_one_store
+kc_ids:
+- kc.phy.o.energy.energy_conversion
+student_name: One store as the energy wasted
+description: Gives the energy in one store (such as the gravitational energy at the top) as the energy wasted, instead of the difference between start and end.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: rule_restatement
+  text:
+    en: Energy wasted = energy at the start − useful energy at the end. Work out both, then subtract.
+probe_item_ids:
+- itm.phy.o.energy.0060
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

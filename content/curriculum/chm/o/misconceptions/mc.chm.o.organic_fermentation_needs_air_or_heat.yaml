@@ -1,0 +1,33 @@
+id: mc.chm.o.organic_fermentation_needs_air_or_heat
+kc_ids:
+- kc.chm.o.organic.alcohols_and_acids
+student_name: Fermentation needs air or strong heat
+description: Thinks fermentation needs oxygen or works best at a high temperature, missing that yeast makes ethanol without air and that heat destroys its enzymes.
+signatures:
+- kind: answer_transform
+  expression: 'choice: fermentation run hot or with air'
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Yeast is alive. It turns sugar into ethanol when air is kept out, and it works best when warm, not hot: high temperatures destroy its enzymes. With air, microbes would oxidise the ethanol to ethanoic acid.'
+probe_item_ids:
+- itm.chm.o.organic.0062
+- itm.chm.o.organic.0064
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

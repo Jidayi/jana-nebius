@@ -1,0 +1,90 @@
+id: itm.phy.o.circuits.0022
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.parallel_circuits
+stem: Two 20 Ω resistors are connected in parallel across a battery. A third 20 Ω resistor is then connected in parallel with them.
+parts:
+- id: a
+  prompt: What happens to the total resistance of the circuit and the current from the battery?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The resistance rises and the current falls, because there is more resistance in the circuit
+      correct: false
+      misconception_id: mc.phy.o.parallel_adding_branch_raises_resistance
+      feedback: Opening another checkout at a shop lets more people through, not fewer. An extra parallel path lets more current flow, so the total resistance falls.
+    - id: B
+      text: Both stay the same, because each branch has the same p.d.
+      correct: false
+    - id: C
+      text: The resistance falls and the current rises
+      correct: true
+    - id: D
+      text: The resistance falls but the current stays the same, because each branch has the whole current
+      correct: false
+      misconception_id: mc.phy.o.parallel_current_same_each_branch
+      feedback: 'At a junction the current splits: the branch currents add up to the current from the supply.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think of the new resistor as an extra path for the current.
+  - rung: 2
+    name: concept
+    text:
+      en: Each branch has the full battery p.d., so each one carries its own current.
+  - rung: 3
+    name: first_step
+    text:
+      en: The battery current is the sum of the branch currents.
+  - rung: 4
+    name: worked_step
+    text:
+      en: More paths means more current for the same p.d.; then think what V/I does.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: the resistance falls and the current rises.'
+  misconception_ids:
+  - mc.phy.o.parallel_adding_branch_raises_resistance
+  - mc.phy.o.parallel_current_same_each_branch
+solution:
+  steps:
+  - n: 1
+    latex: \frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3}
+    reason: Each new branch adds to 1/R
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

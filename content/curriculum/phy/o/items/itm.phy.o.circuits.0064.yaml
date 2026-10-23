@@ -1,0 +1,83 @@
+id: itm.phy.o.circuits.0064
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.circuit_components
+stem: A circuit symbol shows a circle with a cross drawn inside it.
+parts:
+- id: a
+  prompt: Which component does it stand for?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: A lamp
+      correct: true
+    - id: B
+      text: A diode
+      correct: false
+    - id: C
+      text: A cell
+      correct: false
+    - id: D
+      text: A voltmeter
+      correct: false
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Meters are shown as circles with a letter inside.
+  - rung: 2
+    name: concept
+    text:
+      en: This circle has no letter, only crossed lines.
+  - rung: 3
+    name: first_step
+    text:
+      en: The crossed lines suggest a glowing filament.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Ask which component gives out light from a hot wire.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: a lamp.'
+solution:
+  steps:
+  - n: 1
+    latex: \text{A lamp}
+    reason: Match the component to what it does
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

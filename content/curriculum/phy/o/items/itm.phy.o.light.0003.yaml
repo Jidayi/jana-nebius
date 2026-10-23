@@ -1,0 +1,80 @@
+id: itm.phy.o.light.0003
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.plane_mirrors
+stem: A candle is placed 40 cm in front of a plane mirror.
+parts:
+- id: a
+  prompt: How far is the candle from its image?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '80'
+    unit: cm
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_lgt_0003_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The image in a plane mirror is behind the mirror.
+  - rung: 2
+    name: concept
+    text:
+      en: It is as far behind the mirror as the object is in front.
+  - rung: 3
+    name: first_step
+    text:
+      en: So the image is 40 cm behind the mirror.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Add the 40 cm in front and the 40 cm behind.
+  - rung: 5
+    name: full_step
+    text:
+      en: The candle is 80 cm from its image.
+solution:
+  steps:
+  - n: 1
+    latex: 40 + 40 = 80\ \text{cm}
+    reason: In front of the mirror, then the same distance behind
+    check_id: chk_build_phy_lgt_0003_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 35
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0003_ans:
+    args:
+      expression: 2*40
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

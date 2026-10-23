@@ -1,0 +1,58 @@
+id: wex.phy.o.radioactivity.0004
+kc_ids:
+- kc.phy.o.radioactivity.decay_equations
+problem: A nucleus of hydrogen-3 (proton number 1) decays by emitting a beta particle. How many neutrons are in the new nucleus?
+steps:
+- n: 1
+  latex: Z = 1 + 1 = 2,\ A = 3
+  reason: A neutron became a proton
+  check_id: chk_build_phy_rad_w0004_z2
+- n: 2
+  latex: '{}^{3}_{1}\text{H} \rightarrow {}^{3}_{2}\text{He} + {}^{0}_{-\,1}\text{e}'
+  reason: A beta particle is an electron from the nucleus; the proton numbers balance, 2 + (−1) = 1
+  check_id: chk_build_phy_rad_w0004_zbal
+- n: 3
+  latex: N = 3 - 2 = 1
+  reason: Neutrons = nucleon number − proton number
+  check_id: chk_build_phy_rad_w0004_ans
+final_answer:
+  latex: '1'
+  check_id: chk_build_phy_rad_w0004_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_w0004_ans:
+    args:
+      expression: 3 - (1 + 1)
+    tool: math_evaluate
+  chk_build_phy_rad_w0004_z2:
+    args:
+      expression: 1 + 1
+    tool: math_evaluate
+  chk_build_phy_rad_w0004_zbal:
+    args:
+      expression: 2 + (-1)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,35 @@
+id: mc.phy.o.boyle_change_used_as_volume
+kc_ids:
+- kc.phy.o.particles.pressure_and_volume
+student_name: Using the change in volume
+description: Puts the change in volume into p₁V₁ = p₂V₂ instead of the new volume.
+signatures:
+- kind: answer_transform
+  expression: p1*V1/dV
+fix:
+  strategy: rule_restatement
+  text:
+    en: p₂ and V₂ are the values after the change. If the volume falls by 20 cm³ from 60 cm³, the new volume is 40 cm³, not 20 cm³.
+probe_item_ids:
+- itm.phy.o.particles.0057
+- itm.phy.o.particles.0060
+- itm.phy.o.particles.0048
+- itm.phy.o.particles.0053
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

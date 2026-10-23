@@ -1,0 +1,68 @@
+id: wex.phy.o.circuits.0005
+kc_ids:
+- kc.phy.o.circuits.mixed_circuits
+problem: A 20 Ω resistor is connected in series with a parallel pair made of a 12 Ω resistor and a 6 Ω resistor. The circuit is connected to a 24 V battery. Calculate the total resistance of the circuit.
+steps:
+- n: 1
+  latex: R_p = \frac{12 \times 6}{12 + 6} = 4\ \Omega
+  reason: Combine the parallel pair
+  check_id: chk_build_phy_cir_w0005_rp
+- n: 2
+  latex: R = 20 + 4 = 24\ \Omega
+  reason: Add the series resistor
+  check_id: chk_build_phy_cir_w0005_ans
+final_answer:
+  latex: 24\ \text{Ω}
+  check_id: chk_build_phy_cir_w0005_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_w0005_ans:
+    args:
+      expression: (20 + 12*6/(12 + 6))
+    tool: math_evaluate
+  chk_build_phy_cir_w0005_rp:
+    args:
+      expression: 12*6/(12 + 6)
+    tool: math_evaluate
+  chk_build_phy_cir_w0005_tool:
+    args:
+      components:
+      - emf: '24'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '20'
+      - id: R2
+        kind: resistor
+        resistance: '12'
+      - id: R3
+        kind: resistor
+        resistance: '6'
+      network:
+        series:
+        - B
+        - R1
+        - parallel:
+          - R2
+          - R3
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

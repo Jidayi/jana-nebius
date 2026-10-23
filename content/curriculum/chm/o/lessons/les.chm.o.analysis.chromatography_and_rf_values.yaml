@@ -1,0 +1,68 @@
+id: les.chm.o.analysis.chromatography_and_rf_values
+node_id: cur.chm.o.experimental_techniques_and_chemical_ana.chromatography
+kc_ids:
+- kc.chm.o.analysis.chromatography
+title: Chromatography and Rf values
+estimated_minutes: 10
+blocks:
+- type: step
+  text:
+    en: 'A dot of ink is put on paper, and a solvent soaks up through it. Try this before any rule: what could three separate spots mean?'
+  item_id: itm.chm.o.analysis.0035
+  action: try_first
+  why:
+    en: Each substance moves its own distance up the paper, so three spots mean at least three substances. A pure substance gives just one spot.
+  names:
+    en: That is paper chromatography, and the pattern of spots is a chromatogram.
+- type: step
+  text:
+    en: To compare spots, divide how far the spot moved by how far the solvent moved. Both distances are measured from the start line.
+  item_id: itm.chm.o.analysis.0029
+  action: calculate
+  why:
+    en: Divide 4.2 by 8.4 to get 0.50. An Rf value has no unit and is always less than one.
+  names:
+    en: 'That ratio is the Rf value: the distance moved by the spot divided by the distance moved by the solvent front.'
+- type: step
+  text:
+    en: Same method, less help this time.
+  item_id: itm.chm.o.analysis.0031
+  action: calculate
+  why:
+    en: Divide 7.2 by 9.6 to get 0.75.
+- type: step
+  text:
+    en: This time the height of the start line is given too, which is a trap. Use only distances measured from the start line.
+  item_id: itm.chm.o.analysis.0025
+  action: choose
+  why:
+    en: Divide 3.6 by 9.0 to get 0.40. Measuring from the paper edge or turning the fraction upside down gives a wrong value.
+- type: step
+  text:
+    en: 'Now one on your own. Predict first: did this spot travel most of the way with the solvent, or only a little?'
+  item_id: itm.chm.o.analysis.0028
+  action: predict
+  why:
+    en: The spot moved 5.6 cm while the solvent front moved 7.0 cm, so the Rf value is 0.80. The start line height plays no part.
+- type: check
+  item_ids:
+  - itm.chm.o.analysis.0026
+  - itm.chm.o.analysis.0027
+  - itm.chm.o.analysis.0032
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

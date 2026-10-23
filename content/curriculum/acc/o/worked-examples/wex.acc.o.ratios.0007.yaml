@@ -1,0 +1,70 @@
+id: wex.acc.o.ratios.0007
+kc_ids:
+- kc.acc.o.ratios.inventory_turnover
+problem: Opening inventory $5200; closing inventory $6800; cost of sales $48000. Find the rate of inventory turnover.
+steps:
+- n: 1
+  latex: \text{Turnover} = \frac{\text{cost of sales}}{\text{average inventory}}
+  reason: Average inventory
+  check_id: chk_build_acc_ratios_w0007_t
+- n: 2
+  latex: \text{Average} = \frac{5200 + 6800}{2} = 6000
+  reason: Halve the sum
+  check_id: chk_build_acc_ratios_w0007_s2
+- n: 3
+  latex: \frac{48000}{6000} = 8.00
+  reason: Times a year
+  check_id: chk_build_acc_ratios_w0007_a
+final_answer:
+  latex: 8.00\ \text{times}
+  check_id: chk_build_acc_ratios_w0007_a
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_w0007_a:
+    args:
+      dp: 2
+      expression: 48000 / ((5200 + 6800) / 2)
+    tool: math_evaluate
+  chk_build_acc_ratios_w0007_s2:
+    args:
+      dp: 4
+      expression: (5200 + 6800) / 2
+    tool: math_evaluate
+  chk_build_acc_ratios_w0007_t:
+    args:
+      closing_inventory: '6800'
+      cost_of_sales: '48000'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      opening_inventory: '5200'
+      ratios:
+      - inventory_turnover_times
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

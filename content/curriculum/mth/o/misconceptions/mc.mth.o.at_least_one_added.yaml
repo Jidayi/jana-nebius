@@ -1,0 +1,36 @@
+id: mc.mth.o.at_least_one_added
+kc_ids:
+- kc.mth.o.probability.independent_events
+student_name: Adding for 'at least one'
+description: Adds P(A) and P(B) for 'at least one', counting the case where both happen twice.
+signatures:
+- kind: answer_transform
+  expression: p + q
+fix:
+  strategy: rule_restatement
+  text:
+    en: P(at least one) = 1 − P(neither).
+probe_item_ids:
+- itm.mth.o.probability.0043
+- itm.mth.o.probability.0032
+- itm.mth.o.probability.0034
+- itm.mth.o.probability.0037
+- itm.mth.o.probability.0040
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

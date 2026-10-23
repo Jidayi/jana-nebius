@@ -1,0 +1,92 @@
+id: itm.phy.o.stars.0035
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.stars.expanding_universe
+stem: The light from a distant galaxy shows redshift.
+parts:
+- id: a
+  prompt: What does this mean?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The galaxy is made of red stars
+      correct: false
+      misconception_id: mc.phy.o.redshift_means_galaxy_red
+      feedback: Redshift is a shift of the whole spectrum, including the dark lines, towards longer wavelengths. A blue star in a receding galaxy is still redshifted.
+    - id: B
+      text: The lines in its spectrum are shifted to shorter wavelengths
+      correct: false
+      misconception_id: mc.phy.o.redshift_to_shorter_wavelength
+      feedback: 'Red light has the longest visible wavelength. A galaxy moving away stretches its light towards longer wavelengths: towards the red.'
+    - id: C
+      text: The galaxy is moving towards us
+      correct: false
+      misconception_id: mc.phy.o.redshift_to_shorter_wavelength
+      feedback: 'Red light has the longest visible wavelength. A galaxy moving away stretches its light towards longer wavelengths: towards the red.'
+    - id: D
+      text: The lines in its spectrum are shifted to longer wavelengths
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what redshift tells us about how galaxies move.
+  - rung: 2
+    name: concept
+    text:
+      en: Redshift is a stretch of light to longer wavelengths, caused by a galaxy moving away from us.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'More distant galaxies show more redshift, so they recede faster: the Universe is expanding from a hot, dense start.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against these ideas.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The lines in its spectrum are shifted to longer wavelengths.'
+  misconception_ids:
+  - mc.phy.o.redshift_means_galaxy_red
+  - mc.phy.o.redshift_to_shorter_wavelength
+solution:
+  steps:
+  - n: 1
+    latex: \text{The lines in its spectrum are shifted to longer wavelengths}
+    reason: Use what redshift tells us about receding galaxies
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

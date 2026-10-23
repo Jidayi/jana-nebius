@@ -1,0 +1,104 @@
+id: itm.phy.o.heat_transfer.0037
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.radiation
+stem: Sunshine delivers 1000 W to each square metre of two roofs, each 4 m² in area. The dull black roof absorbs 85% of this radiation and the white roof absorbs 25%.
+parts:
+- id: a
+  prompt: How much more power does the black roof absorb than the white roof?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '2400'
+    unit: W
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_htr_0037_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Dark, dull surfaces absorb much more infrared than light, shiny ones.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the power reaching each roof, then the part each one absorbs.
+  - rung: 3
+    name: first_step
+    text:
+      en: Each roof receives 1000 W/m² × 4 m².
+  - rung: 4
+    name: worked_step
+    text:
+      en: The black roof absorbs 3400 W and the white roof 1000 W.
+  - rung: 5
+    name: full_step
+    text:
+      en: The black roof absorbs 2400 W more.
+solution:
+  steps:
+  - n: 1
+    latex: 1000 \times 4 = 4000\ \text{W}
+    reason: Power reaching each roof
+    check_id: chk_build_phy_htr_0037_inc
+  - n: 2
+    latex: P_{black} = 4000 \times 85\% = 3400\ \text{W}
+    reason: Absorbed by the black roof
+    check_id: chk_build_phy_htr_0037_pb
+  - n: 3
+    latex: P_{white} = 4000 \times 25\% = 1000\ \text{W}
+    reason: Absorbed by the white roof
+    check_id: chk_build_phy_htr_0037_pw
+  - n: 4
+    latex: 3400 - 1000 = 2400\ \text{W}
+    reason: The difference
+    check_id: chk_build_phy_htr_0037_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_htr_0037_ans:
+    args:
+      expression: 1000*4*(85 - 25)/100
+    tool: math_evaluate
+  chk_build_phy_htr_0037_inc:
+    args:
+      expression: 1000*4
+    tool: math_evaluate
+  chk_build_phy_htr_0037_pb:
+    args:
+      expression: 1000*4*85/100
+    tool: math_evaluate
+  chk_build_phy_htr_0037_pw:
+    args:
+      expression: 1000*4*25/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

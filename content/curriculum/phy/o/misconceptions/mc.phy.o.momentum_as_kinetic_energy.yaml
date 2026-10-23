@@ -1,0 +1,36 @@
+id: mc.phy.o.momentum_as_kinetic_energy
+kc_ids:
+- kc.phy.o.momentum.momentum_calculation
+student_name: Using the kinetic energy formula
+description: Works out ½mv² instead of mv when asked for momentum.
+signatures:
+- kind: answer_transform
+  expression: m*v^2/2
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Momentum is mass × velocity, in kg m/s. Half m v squared is kinetic energy, in joules: a different quantity.'
+probe_item_ids:
+- itm.phy.o.momentum.0011
+- itm.phy.o.momentum.0013
+- itm.phy.o.momentum.0014
+- itm.phy.o.momentum.0001
+- itm.phy.o.momentum.0002
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

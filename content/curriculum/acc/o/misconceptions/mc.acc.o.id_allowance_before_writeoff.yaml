@@ -1,0 +1,35 @@
+id: mc.acc.o.id_allowance_before_writeoff
+kc_ids:
+- kc.acc.o.irrecoverable_debts.allowance_amount
+- kc.acc.o.irrecoverable_debts.allowance_change
+student_name: Allowance before write-off
+description: Works out the allowance on receivables that still include a debt being written off.
+signatures:
+- kind: answer_transform
+  expression: receivables * rate
+fix:
+  strategy: rule_restatement
+  text:
+    en: Write off known bad debts first; the allowance covers only debts that might still be paid.
+probe_item_ids:
+- itm.acc.o.irrecoverable_debts.0012
+- itm.acc.o.irrecoverable_debts.0013
+- itm.acc.o.irrecoverable_debts.0014
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

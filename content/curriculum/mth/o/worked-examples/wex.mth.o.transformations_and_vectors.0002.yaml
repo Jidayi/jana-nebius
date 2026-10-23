@@ -1,0 +1,45 @@
+id: wex.mth.o.transformations_and_vectors.0002
+kc_ids:
+- kc.mth.o.transformations_and_vectors.transform_points
+problem: The point P(2, 7) is enlarged by scale factor -2 with centre (-1, 2). Find the x-coordinate of the image P′.
+steps:
+- n: 1
+  latex: \text{distance from the centre} = 2 - (-1) = 3
+  reason: In the x-direction
+  check_id: chk_build_mth_vec_w0002_d
+- n: 2
+  latex: x' = -1 + -2 \times 3 = -7
+  reason: Scale the distance and add it to the centre
+  check_id: chk_build_mth_vec_w0002_ans
+final_answer:
+  latex: '-7'
+  check_id: chk_build_mth_vec_w0002_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_vec_w0002_ans:
+    args:
+      expression: -1 + -2*(2 - (-1))
+    tool: math_evaluate
+  chk_build_mth_vec_w0002_d:
+    args:
+      expression: 2 - (-1)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

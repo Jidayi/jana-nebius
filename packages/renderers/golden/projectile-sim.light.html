@@ -1,0 +1,64 @@
+<div class="my-2 rounded-card border border-line p-3" role="group" aria-label="A projectile simulation, horizontal launch at 12 metres per second from 20 metres: range 24.2 metres, time of flight 2.02 seconds." data-kind="projectile_sim" data-visual-id="vis_VSYZM34MW1R3HRVCNDY95F15D1">
+<svg viewBox="0 0 480 260" class="w-full" role="img" aria-label="The projectile&#x27;s path">
+<line x1="20" x2="470" y1="230" y2="230" stroke="#7A7B83" stroke-width="1.5">
+</line>
+<rect x="30" y="47.39130434782609" width="10" height="182.6086956521739" fill="#F7F7F8" stroke="#121319" stroke-width="1.5">
+</rect>
+<polyline points="40.00,47.39 78.18,49.22 116.36,54.70 154.55,63.83 192.73,76.61 230.91,93.04 269.09,113.13 307.27,136.87 345.45,164.26 383.64,195.30 421.82,230.00" fill="none" stroke="#6677ff" stroke-width="1.5" stroke-dasharray="5 4">
+</polyline>
+<circle cx="421.81818181818176" cy="229.99999999999997" r="7" fill="#997777" stroke="#121319" stroke-width="1">
+</circle>
+</svg>
+<div class="mt-3 grid gap-2">
+<label for="vis_VSYZM34MW1R3HRVCNDY95F15D1-mode" class="flex min-h-11 items-center gap-2 text-ui">Launch<select id="vis_VSYZM34MW1R3HRVCNDY95F15D1-mode" class="min-h-11 rounded-control border border-line-strong bg-canvas px-2" data-part="ctrl.mode">
+<option value="horizontal" selected="">Horizontal, from a height</option>
+<option value="vertical">Straight up</option>
+</select>
+</label>
+<label for="vis_VSYZM34MW1R3HRVCNDY95F15D1-speed" class="grid grid-cols-[10rem_1fr_6rem] items-center gap-2 text-ui">
+<span>Launch speed (m/s)</span>
+<input id="vis_VSYZM34MW1R3HRVCNDY95F15D1-speed" type="range" class="min-h-11" min="1" max="40" step="1" aria-valuetext="12 m/s" data-part="ctrl.speed" value="12"/>
+<output for="vis_VSYZM34MW1R3HRVCNDY95F15D1-speed" class="tabular-nums">12 m/s</output>
+</label>
+<label for="vis_VSYZM34MW1R3HRVCNDY95F15D1-height" class="grid grid-cols-[10rem_1fr_6rem] items-center gap-2 text-ui">
+<span>Launch height (m)</span>
+<input id="vis_VSYZM34MW1R3HRVCNDY95F15D1-height" type="range" class="min-h-11" min="0" max="100" step="1" aria-valuetext="20 m" data-part="ctrl.height" value="20"/>
+<output for="vis_VSYZM34MW1R3HRVCNDY95F15D1-height" class="tabular-nums">20 m</output>
+</label>
+</div>
+<dl class="mt-3 grid grid-cols-2 gap-x-4 text-ui">
+<div class="contents">
+<dt class="text-muted">Time of flight <span class="text-meta">(3 s.f.)</span>
+</dt>
+<dd class="tabular-nums" data-part="out.time" tabindex="0">2.02 s</dd>
+</div>
+<div class="contents">
+<dt class="text-muted">Range <span class="text-meta">(3 s.f.)</span>
+</dt>
+<dd class="tabular-nums" data-part="out.range" tabindex="0">24.2 m</dd>
+</div>
+<div class="contents">
+<dt class="text-muted">Greatest height <span class="text-meta">(3 s.f.)</span>
+</dt>
+<dd class="tabular-nums" data-part="out.max_height" tabindex="0">20.0 m</dd>
+</div>
+<div class="contents">
+<dt class="text-muted">Distance across <span class="text-meta">(3 s.f.)</span>
+</dt>
+<dd class="tabular-nums">24.2 m</dd>
+</div>
+<div class="contents">
+<dt class="text-muted">Height now <span class="text-meta">(3 s.f.)</span>
+</dt>
+<dd class="tabular-nums">3.55e-15 m</dd>
+</div>
+</dl>
+<p class="sr-only" aria-live="polite" data-sim-live="true">
+</p>
+<div class="mt-3 flex flex-wrap gap-2">
+<button type="button" class="rounded-control border border-line px-3 py-1 text-ui" aria-pressed="false">Play</button>
+<button type="button" class="rounded-control border border-line px-3 py-1 text-ui">Reset</button>
+<button type="button" class="rounded-control border border-line px-3 py-1 text-ui">Record this reading</button>
+<button type="button" class="rounded-control border border-line px-3 py-1 text-ui" aria-pressed="false">Show readings as a table</button>
+</div>
+</div>

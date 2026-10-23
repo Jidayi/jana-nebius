@@ -1,0 +1,92 @@
+id: itm.mth.o.transformations_and_vectors.0002
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.transformations_and_vectors.transform_points
+stem: The point P(-4, -5) is reflected in the line x = 4.
+parts:
+- id: a
+  prompt: Find the x-coordinate of the image P′.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '12'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_vec_0002_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The mirror line is vertical.
+  - rung: 2
+    name: concept
+    text:
+      en: Only the x-coordinate changes; the image is the same distance beyond the line.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find how far -4 is from 4.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The distance is 8 (with its direction). Go the same again past the line.
+  - rung: 5
+    name: full_step
+    text:
+      en: The image has x = 12.
+  misconception_ids:
+  - mc.mth.o.reflection_not_doubled
+  - mc.mth.o.reflection_axis_confused
+  - mc.mth.o.translation_sign
+solution:
+  steps:
+  - n: 1
+    latex: \text{distance to the line} = 8
+    reason: Along the x-direction
+    check_id: chk_build_mth_vec_0002_d
+  - n: 2
+    latex: x' = 4 + 8 = 12
+    reason: The same distance beyond the line
+    check_id: chk_build_mth_vec_0002_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_vec_0002_ans:
+    args:
+      expression: 2*(4) - (-4)
+    tool: math_evaluate
+  chk_build_mth_vec_0002_d:
+    args:
+      expression: 4 - (-4)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

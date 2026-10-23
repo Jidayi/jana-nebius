@@ -1,0 +1,124 @@
+id: itm.phy.o.particles.0040
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.gas_pressure_particles
+stem: A sealed, rigid container of gas is at 150 kPa and 17 °C. It is heated to 77 °C. At constant volume, the pressure of a fixed mass of gas is proportional to its temperature in kelvin.
+parts:
+- id: a
+  prompt: Find the new pressure of the gas.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '181'
+    unit: kPa
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_ptc_0040_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Hotter particles move faster: they strike the walls more often and with more force.'
+  - rung: 2
+    name: concept
+    text:
+      en: The pressure is proportional to the temperature in kelvin, not in °C.
+  - rung: 3
+    name: first_step
+    text:
+      en: Convert both temperatures to kelvin by adding 273.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply 150 kPa by 350 ÷ 290.
+  - rung: 5
+    name: full_step
+    text:
+      en: The new pressure is 181 kPa.
+  misconception_ids:
+  - mc.phy.o.celsius_used_for_ratio
+solution:
+  steps:
+  - n: 1
+    latex: T_1 = 17 + 273 = 290\ \text{K}
+    reason: Convert to kelvin
+    check_id: chk_build_phy_ptc_0040_k1
+  - n: 2
+    latex: T_2 = 77 + 273 = 350\ \text{K}
+    reason: Convert to kelvin
+    check_id: chk_build_phy_ptc_0040_k2
+  - n: 3
+    latex: p_2 = 150 \times \frac{350}{290} = 181\ \text{kPa}
+    reason: Pressure is proportional to the kelvin temperature
+    check_id: chk_build_phy_ptc_0040_ans
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  q: '150'
+  t1: '17'
+  t2: '77'
+checks:
+  chk_build_phy_ptc_0040_ans:
+    args:
+      expression: 150*(77 + 273)/(17 + 273)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_ptc_0040_k1:
+    args:
+      expression: 17 + 273
+    tool: math_evaluate
+  chk_build_phy_ptc_0040_k2:
+    args:
+      expression: 77 + 273
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:43:25.586Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.particles.0040
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,55 @@
+id: wex.phy.o.light.0010
+kc_ids:
+- kc.phy.o.light.converging_lens
+problem: An object stands 30 cm from a thin converging lens of focal length 10 cm. The object is 2 cm tall. Calculate the height of the image.
+steps:
+- n: 1
+  latex: \frac{1}{v} = \frac{1}{10} - \frac{1}{30} \Rightarrow v = 15\ \text{cm}
+  reason: Lens formula
+  check_id: chk_build_phy_lgt_w0010_v
+- n: 2
+  latex: h_i = 2 \times \frac{15}{30} = 1\ \text{cm}
+  reason: Image height = object height × v / u
+  check_id: chk_build_phy_lgt_w0010_ans
+final_answer:
+  latex: 1\ \text{cm}
+  check_id: chk_build_phy_lgt_w0010_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_w0010_ans:
+    args:
+      expression: 2*10/(30 - 10)
+    tool: math_evaluate
+  chk_build_phy_lgt_w0010_tool:
+    args:
+      focal_length: 10
+      object_distance: 30
+      object_height: 2
+      optic: converging_lens
+      sign_convention: real_is_positive
+      sign_convention_source: pack
+      task: image
+    tool: phys_optics
+  chk_build_phy_lgt_w0010_v:
+    args:
+      expression: 30*10/(30 - 10)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

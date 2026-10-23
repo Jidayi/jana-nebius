@@ -1,0 +1,45 @@
+id: wex.phy.o.heat_transfer.0006
+kc_ids:
+- kc.phy.o.heat_transfer.radiation
+problem: The dull black panel of a solar water heater has an area of 3 m². Sunlight delivers 900 W to each square metre, and the panel absorbs 95% of it. Find the power absorbed by the panel.
+steps:
+- n: 1
+  latex: 900 \times 3 = 2700\ \text{W}
+  reason: Power reaching the panel
+  check_id: chk_build_phy_htr_w0006_inc
+- n: 2
+  latex: 2700 \times 95\% = 2565\ \text{W}
+  reason: The part that is absorbed
+  check_id: chk_build_phy_htr_w0006_ans
+final_answer:
+  latex: 2565\ \text{W}
+  check_id: chk_build_phy_htr_w0006_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_htr_w0006_ans:
+    args:
+      expression: 900*3*95/100
+    tool: math_evaluate
+  chk_build_phy_htr_w0006_inc:
+    args:
+      expression: 900*3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

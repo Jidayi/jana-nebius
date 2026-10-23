@@ -1,0 +1,93 @@
+id: itm.phy.o.wave_properties.0016
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.wave_equation
+stem: A dipper in a ripple tank vibrates at 5 Hz and makes ripples with a wavelength of 1.5 cm.
+parts:
+- id: a
+  prompt: Calculate the speed of the waves.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.075'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_wav_0016_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which equation links wave speed, frequency and wavelength?
+  - rung: 2
+    name: concept
+    text:
+      en: v = f × λ, with f in hertz and λ in metres.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'First put the values in hertz and metres: 1.5 cm = 0.015 m.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply the frequency by the wavelength.
+  - rung: 5
+    name: full_step
+    text:
+      en: v = 0.075 m/s.
+  misconception_ids:
+  - mc.phy.o.wave_speed_divided
+  - mc.phy.o.wave_prefix_ignored
+  - mc.phy.o.wave_equation_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \lambda = 1.5\ \text{cm} = 0.015\ \text{m}
+    reason: Put the wavelength in metres
+    check_id: chk_build_phy_wav_0016_lsi
+  - n: 2
+    latex: v = f\lambda = 5 \times 0.015 = 0.075\ \text{m/s}
+    reason: Wave equation
+    check_id: chk_build_phy_wav_0016_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 75
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_wav_0016_ans:
+    args:
+      expression: 5*0.015
+    tool: math_evaluate
+  chk_build_phy_wav_0016_lsi:
+    args:
+      quantity: 1.5 cm
+      to: m
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

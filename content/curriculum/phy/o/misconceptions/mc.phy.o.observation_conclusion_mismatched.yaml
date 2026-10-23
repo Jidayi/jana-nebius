@@ -1,0 +1,34 @@
+id: mc.phy.o.observation_conclusion_mismatched
+kc_ids:
+- kc.phy.o.atom.nuclear_model_evidence
+student_name: Matching an observation to the wrong conclusion
+description: Links a scattering result to the wrong conclusion, for example using the rare rebounds as evidence that the atom is mostly empty space.
+signatures:
+- kind: answer_transform
+  expression: swap
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Straight through: the atom is mostly empty space. Small deflections: there is concentrated positive charge. Rare rebounds: the nucleus is tiny but holds most of the mass.'
+probe_item_ids:
+- itm.phy.o.atom.0041
+- itm.phy.o.atom.0033
+- itm.phy.o.atom.0039
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

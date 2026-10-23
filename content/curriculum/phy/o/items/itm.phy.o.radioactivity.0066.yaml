@@ -1,0 +1,93 @@
+id: itm.phy.o.radioactivity.0066
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+stem: A paper mill keeps its paper the right thickness by passing it between a source and a detector.
+parts:
+- id: a
+  prompt: Which source should it use?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: An alpha emitter with a long half-life
+      correct: false
+      misconception_id: mc.phy.o.radiation_fully_absorbed_choice
+      feedback: If none of the radiation gets through, the reading cannot change with thickness and nothing behind the material is reached. Match the radiation to the material.
+    - id: B
+      text: A gamma emitter with a long half-life
+      correct: false
+      misconception_id: mc.phy.o.radiation_passes_unchanged_choice
+      feedback: A gauge works only if a small change in thickness changes how much radiation gets through. Pick the radiation that is partly absorbed.
+    - id: C
+      text: A beta emitter with a long half-life
+      correct: true
+    - id: D
+      text: A beta emitter with a half-life of a few minutes
+      correct: false
+      misconception_id: mc.phy.o.short_half_life_for_long_use
+      feedback: 'A device that runs for years needs a source whose activity hardly changes over that time: a long half-life.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Two things decide the choice: the kind of radiation and the half-life.'
+  - rung: 2
+    name: concept
+    text:
+      en: The radiation must reach where it is needed and be partly absorbed if a change is to be measured; the half-life must suit how long the job lasts.
+  - rung: 3
+    name: first_step
+    text:
+      en: The paper should absorb some, but not all, of the radiation.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that fail on either point, or that would put people at risk.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: A beta emitter with a long half-life.'
+  misconception_ids:
+  - mc.phy.o.radiation_fully_absorbed_choice
+  - mc.phy.o.radiation_passes_unchanged_choice
+  - mc.phy.o.short_half_life_for_long_use
+solution:
+  steps:
+  - n: 1
+    latex: \text{A beta emitter with a long half-life}
+    reason: Match the radiation and half-life to the job
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

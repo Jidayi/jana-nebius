@@ -1,0 +1,45 @@
+id: wex.phy.o.sound.0003
+kc_ids:
+- kc.phy.o.sound.speed_and_echoes
+problem: Halima stands 68 m from a tall wall and claps once. The echo is heard 0.4 s after the clap. Calculate the speed of sound in air.
+steps:
+- n: 1
+  latex: 2 \times 68 = 136\ \text{m}
+  reason: The sound goes to the wall and back
+  check_id: chk_build_phy_snd_w0003_tot
+- n: 2
+  latex: v = \frac{136}{0.4} = 340\ \text{m/s}
+  reason: Speed = distance ÷ time
+  check_id: chk_build_phy_snd_w0003_ans
+final_answer:
+  latex: 340\ \text{m/s}
+  check_id: chk_build_phy_snd_w0003_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_snd_w0003_ans:
+    args:
+      expression: 2*68/0.4
+    tool: math_evaluate
+  chk_build_phy_snd_w0003_tot:
+    args:
+      expression: 2*68
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,165 @@
+id: itm.chm.o.organic.0092
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.combustion
+stem: Butane, C₄H₁₀, burns completely in air. The unbalanced equation is C₄H₁₀ + O₂ → CO₂ + H₂O.
+parts:
+- id: a
+  prompt: Balance the equation using the smallest whole numbers. What number goes in front of O₂?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '13'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_organic_0092_ratios
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'When butane burns completely, the only products are carbon dioxide and water: C₄H₁₀ + O₂ → CO₂ + H₂O.'
+  - rung: 2
+    name: concept
+    text:
+      en: Balance carbon first, then hydrogen, and leave oxygen until last, because oxygen turns up in both products when butane burns.
+  - rung: 3
+    name: first_step
+    text:
+      en: One C₄H₁₀ molecule gives 4 CO₂ (from its carbon) and 5 H₂O (from its hydrogen).
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'For one C₄H₁₀: oxygen atoms on the right = 2 × 4 + 5, an odd number, so you would need half an O₂ molecule. Double every coefficient instead.'
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Balanced: 2C₄H₁₀ + 13O₂ → 8CO₂ + 10H₂O. The number in front of O₂ is 13.'
+  misconception_ids:
+  - mc.chm.o.organic_combustion_not_lowest
+  - mc.chm.o.organic_oxygen_formula_changed
+solution:
+  steps:
+  - n: 1
+    latex: '\text{one }\text{C}_4\text{H}_{10}: 4\text{CO}_2 + 5\text{H}_2\text{O}'
+    reason: Carbon and hydrogen first
+    check_id: chk_build_chm_organic_0092_one
+  - n: 2
+    latex: 2 \times 4 + 5 = 13
+    reason: Oxygen atoms needed on the right
+    check_id: chk_build_chm_organic_0092_oright
+  - n: 3
+    latex: 2\text{C}_4\text{H}_{10} + 13\text{O}_2 \rightarrow 8\text{CO}_2 + 10\text{H}_2\text{O}
+    reason: Smallest whole numbers
+    check_id: chk_build_chm_organic_0092_bal
+  - n: 4
+    latex: '\text{O}_2: 13'
+    reason: Coefficient of O₂
+    check_id: chk_build_chm_organic_0092_ratios
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 100
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_0092_bal:
+    args:
+      equation: C4H10 + O2 -> CO2 + H2O
+    tool: chem_balance
+  chk_build_chm_organic_0092_one:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      equation: C4H10 + O2 -> CO2 + H2O
+      sf: 3
+      steps:
+      - amount: '1'
+        from: C4H10
+        id: p0
+        op: mole_ratio
+        to: C4H10
+      - amount: '1'
+        from: C4H10
+        id: p1
+        op: mole_ratio
+        to: O2
+      - amount: '1'
+        from: C4H10
+        id: p2
+        op: mole_ratio
+        to: CO2
+      - amount: '1'
+        from: C4H10
+        id: p3
+        op: mole_ratio
+        to: H2O
+    tool: chem_stoichiometry
+  chk_build_chm_organic_0092_oright:
+    args:
+      expression: 2*4 + 5
+    tool: math_evaluate
+  chk_build_chm_organic_0092_ratios:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      equation: C4H10 + O2 -> CO2 + H2O
+      sf: 3
+      steps:
+      - amount: '2'
+        from: C4H10
+        id: r0
+        op: mole_ratio
+        to: C4H10
+      - amount: '2'
+        from: C4H10
+        id: r1
+        op: mole_ratio
+        to: O2
+      - amount: '2'
+        from: C4H10
+        id: r2
+        op: mole_ratio
+        to: CO2
+      - amount: '2'
+        from: C4H10
+        id: r3
+        op: mole_ratio
+        to: H2O
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

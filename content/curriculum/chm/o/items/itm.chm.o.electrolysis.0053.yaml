@@ -1,0 +1,104 @@
+id: itm.chm.o.electrolysis.0053
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.quantitative
+stem: A current of 0.25 A passes through silver nitrate solution for 3860 s.
+parts:
+- id: a
+  prompt: Calculate the charge that passes, in coulombs.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '965'
+    unit: C
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_electrolysis_0053_m
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Charge depends on the current and on how long it flows.
+  - rung: 2
+    name: concept
+    text:
+      en: Q = I × t, with I in amperes and t in seconds.
+  - rung: 3
+    name: first_step
+    text:
+      en: I = 0.25 A and t = 3860 s.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply the current by the time.
+  - rung: 5
+    name: full_step
+    text:
+      en: Q = 0.25 × 3860 = 965 C.
+  misconception_ids:
+  - mc.chm.o.electrolysis_time_not_in_seconds
+solution:
+  steps:
+  - n: 1
+    latex: Q = 0.25 \times 3860 = 965\ \text{C}
+    reason: Charge = current × time
+    check_id: chk_build_chm_electrolysis_0053_m
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: structured
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_0053_e:
+    args:
+      expression: 965/96500
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_electrolysis_0053_m:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ag
+      - source: pack
+        symbol: faraday
+      sf: 3
+      steps:
+      - current: '0.25'
+        electrons: 1
+        id: m
+        op: electrolysis
+        species: Ag
+        time: '3860'
+    tool: chem_stoichiometry
+  chk_build_chm_electrolysis_0053_n:
+    args:
+      expression: 965/(96500*1)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

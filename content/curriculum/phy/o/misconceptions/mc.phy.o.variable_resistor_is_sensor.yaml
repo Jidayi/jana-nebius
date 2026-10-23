@@ -1,0 +1,34 @@
+id: mc.phy.o.variable_resistor_is_sensor
+kc_ids:
+- kc.phy.o.circuits.circuit_components
+student_name: A variable resistor changes by itself
+description: Thinks a variable resistor changes its resistance on its own with temperature or light, when it is set by hand with a slider or knob.
+signatures:
+- kind: answer_transform
+  expression: R(conditions)
+fix:
+  strategy: contrast_example
+  text:
+    en: A variable resistor is adjusted by a person, like a dimmer knob. Only sensors such as thermistors and LDRs change by themselves.
+probe_item_ids:
+- itm.phy.o.circuits.0074
+- itm.phy.o.circuits.0062
+- itm.phy.o.circuits.0067
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

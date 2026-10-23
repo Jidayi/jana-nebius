@@ -1,0 +1,85 @@
+id: itm.mth.o.number.9030
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.rates
+stem: A pump fills 45 litres in 3 minutes at a steady rate.
+parts:
+- id: a
+  prompt: How many seconds does it take to fill 10 litres?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '40'
+    unit: s
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9030
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Find the flow per minute, divide the required volume by that rate, then convert time to seconds.
+  - rung: 2
+    name: concept
+    text:
+      en: Use volume divided by rate to find the time; do not multiply the two volumes.
+  - rung: 3
+    name: first_step
+    text:
+      en: Use volume divided by rate to find the time; do not multiply the two volumes.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The required volume is less than the given volume, so the time must be less than the given filling time.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 40 s.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{10}{45/3}\times 60
+    reason: Use volume divided by rate to find the time; do not multiply the two volumes.
+    check_id: chk_build_mastery_supplement_mth_9030
+  - n: 2
+    latex: '40'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9030
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9030:
+    args:
+      angle_unit: degrees
+      expression: 10/(45/3)*60
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

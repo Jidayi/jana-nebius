@@ -1,0 +1,93 @@
+id: itm.phy.o.heat_transfer.0002
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.conduction
+stem: In the same room, bare feet feel colder on a tiled floor than on a carpet.
+parts:
+- id: a
+  prompt: What is the reason?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The tiles are at a colder temperature than the carpet
+      correct: false
+      misconception_id: mc.phy.o.metal_feels_colder_because_colder
+      feedback: Objects left in the same room reach the same temperature. Metal feels colder because it conducts energy away from your hand much faster.
+    - id: B
+      text: The carpet warms the feet with its own heat
+      correct: false
+      misconception_id: mc.phy.o.insulator_produces_heat
+      feedback: Wrap a blanket round a block of ice and the ice stays frozen longer. Insulators produce no energy; they only slow down how fast energy moves through them.
+    - id: C
+      text: Tiles conduct energy away from the feet faster than carpet
+      correct: true
+    - id: D
+      text: Cold travels up from the tiles into the feet
+      correct: false
+      misconception_id: mc.phy.o.cold_transferred_as_substance
+      feedback: Only energy moves, always from hotter to colder. An ice pack does not send cold into you; energy flows out of you into the ice.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Conduction passes energy through a material without the material itself moving.
+  - rung: 2
+    name: concept
+    text:
+      en: Both floors have been in the same room for a long time.
+  - rung: 3
+    name: first_step
+    text:
+      en: Remember that energy always flows from hotter to colder, and that nothing called 'cold' flows.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options where an insulator makes heat or where particles travel through a solid.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Tiles conduct energy away from the feet faster than carpet.'
+  misconception_ids:
+  - mc.phy.o.cold_transferred_as_substance
+  - mc.phy.o.insulator_produces_heat
+  - mc.phy.o.metal_feels_colder_because_colder
+solution:
+  steps:
+  - n: 1
+    latex: \text{Tiles conduct energy away from the feet faster than carpet}
+    reason: Apply the model of conduction
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

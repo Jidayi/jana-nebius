@@ -1,0 +1,27 @@
+{
+  "id": "confirm-card.canonical.egress",
+  "title": "Confirm card, first use of an online feature",
+  "component": "ConfirmCard",
+  "state": "canonical",
+  "payload": {
+    "card_type": "confirm",
+    "purpose": "egress",
+    "title": "Send this question to the online tutor?",
+    "body": "This question will be sent to the online tutor. Your name is not sent.",
+    "confirm_label_key": "egress.first_use.ok",
+    "cancel_label_key": "egress.first_use.keep_local"
+  },
+  "payloadContract": "https://jana.dev/contracts/api/events#/$defs/card",
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "conversation"
+  ],
+  "expectText": [
+    "Keep it on this computer",
+    "OK"
+  ],
+  "note": "The one-time notice before a feature's first use on a profile (ARC-10): what leaves, with OK and Keep it on this computer.",
+  "variant": "egress"
+}

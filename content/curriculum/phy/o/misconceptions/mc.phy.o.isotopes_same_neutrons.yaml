@@ -1,0 +1,36 @@
+id: mc.phy.o.isotopes_same_neutrons
+kc_ids:
+- kc.phy.o.atom.isotopes
+student_name: Isotopes share the number of neutrons
+description: Thinks isotopes are nuclides with the same number of neutrons, rather than the same number of protons.
+signatures:
+- kind: answer_transform
+  expression: N
+fix:
+  strategy: rule_restatement
+  text:
+    en: Isotopes are the same element, so they share the proton number. Their neutron numbers are what differ.
+probe_item_ids:
+- itm.phy.o.atom.0027
+- itm.phy.o.atom.0028
+- itm.phy.o.atom.0029
+- itm.phy.o.atom.0030
+- itm.phy.o.atom.0020
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

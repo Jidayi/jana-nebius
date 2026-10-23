@@ -1,0 +1,79 @@
+# Trust boundaries (ARC-03) and other security-reviewed areas (SEC-02), with the files they tag.
+# `python -m jana_tools codeowners --write` renders .github/CODEOWNERS from this file.
+# Every tagged path needs its owning role's approval plus a Security lead review.
+
+[roles]
+# D31: the product owner holds every role until named people are recorded.
+"Security lead" = "@Jidayi"
+"Engine lead" = "@Jidayi"
+"Client lead" = "@Jidayi"
+"Platform lead" = "@Jidayi"
+"Safety lead" = "@Jidayi"
+
+[[boundary]]
+id = "TB1"
+owner = "Client lead"
+paths = ["/services/agent-core/agent_core/api/", "/packages/client-core/src/stream/"]
+
+[[boundary]]
+id = "TB2"
+owner = "Engine lead"
+paths = ["/services/tool-worker/", "/services/agent-core/agent_core/tools/"]
+
+[[boundary]]
+id = "TB3"
+owner = "Engine lead"
+paths = ["/services/agent-core/agent_core/router/", "/services/agent-core/agent_core/providers/"]
+
+[[boundary]]
+id = "TB4"
+owner = "Platform lead"
+paths = [
+  "/services/agent-core/agent_core/net/",
+  "/apps/desktop/src-tauri/src/net.rs",
+  "/services/cloud-gateway/",
+  "/services/licensing/",
+  "/services/update-index/",
+  "/services/ingest/",
+]
+
+[[boundary]]
+id = "TB5"
+owner = "Platform lead"
+paths = ["/services/pack-builder/", "/services/signing-service/", "/services/agent-core/agent_core/assets/"]
+
+[[boundary]]
+id = "TB6"
+owner = "Safety lead"
+paths = ["/services/agent-core/agent_core/prompts/"]
+
+[[boundary]]
+id = "TB7"
+owner = "Security lead"
+paths = ["/services/agent-core/agent_core/store/", "/services/agent-core/agent_core/learner/"]
+
+[[boundary]]
+id = "TB8"
+owner = "Platform lead"
+paths = ["/services/school-server/"]
+
+[[boundary]]
+id = "sandbox"
+owner = "Security lead"
+paths = ["/services/perception-worker/"]
+
+[[boundary]]
+id = "supply-chain"
+owner = "Platform lead"
+paths = [
+  "/.github/",
+  "/scripts/ci/",
+  "/scripts/git-hooks/",
+  "/scripts/governance/",
+  "/pnpm-lock.yaml",
+  "/uv.lock",
+  "/Cargo.lock",
+  "/rust-toolchain.toml",
+  "/spec.lock",
+  "/dependency-reviews.toml",
+]

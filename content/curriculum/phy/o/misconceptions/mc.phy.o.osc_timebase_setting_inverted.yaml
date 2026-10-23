@@ -1,0 +1,32 @@
+id: mc.phy.o.osc_timebase_setting_inverted
+kc_ids:
+- kc.phy.o.oscilloscope.time_base
+student_name: Turning the time-base down to see more waves
+description: Thinks a smaller time-base setting (fewer milliseconds per division) shows more waves across the screen.
+signatures:
+- kind: answer_transform
+  expression: t down
+fix:
+  strategy: rule_restatement
+  text:
+    en: A bigger time-base setting means more time across the screen, so more waves fit on it.
+probe_item_ids:
+- itm.phy.o.oscilloscope.0006
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

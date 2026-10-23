@@ -1,0 +1,37 @@
+# M42 release handoff
+
+Owner approval is already recorded in `scripts/governance/m42-owner-approval.json`. The remaining inputs are real configuration choices, custodian records, signatures and measured device results. M42 remains disabled by default until production preflight passes. No secret or private key should be pasted into chat.
+
+Current engineering result: the curriculum evaluation-lock blocker is cleared. Both affected suites are version `2026-10-19.2` and their frozen hashes match. Fresh checks pass 4964 answer-oracle cases and 4 pack builds, plus 174 M42 core/gateway tests and 27 harness/release-preparation tests. The identical gateway bundle `1297f31090f1b9539fd3e339429b4461b554c117769dfe04ed004cb50606eeb4` retains its previous 117/117 live corpus, 8/8 targeted, 12/12 Unicode and 6/6 upload qualification; no new paid model calls were made. Staging is currently stopped; the last verified daily guard is $2, and the monthly Vertex cap is still $20 CONFIGURED. The broader harness also reports itm.mth.o.coordinate_geometry.0061 despite the dedicated complete content pass; this remains engineering work. The EVL-24 held-out-isolation gate flags three development items/four fingerprint matches and remains open for the corpus custodian; protected data/guards were preserved. Production/signing/independent-review/device gates remain open. The exact owner/custodian inputs are recorded in `scripts/governance/m42-release-inputs.json`.
+
+## Inputs from the owner or their custodians
+
+| Input | Exact action or record needed | Why it is still open |
+| --- | --- | --- |
+| Production address and deployment decision | Confirm the production gateway hostname; `api.getjana.app` is a proposed name. Confirm a London gateway with the EU Vertex endpoint in `jana-prod-512005`, choose production daily/monthly spending limits, and authorise production provisioning once the reviewed candidate and retention records are ready. Squarespace DNS access or the final DNS record can then be supplied through the existing workflow. | Only `staging-api.getjana.app` is deployed and qualified. The production project exists, but its gateway origin, primary/backup pins and immutable deployment are not populated. |
+| Provider retention evidence | Obtain Google's project-specific confirmation/configuration record for `jana-prod-512005`, Gemini 3.8 Flash and the exact EU Vertex endpoint. It must establish the applicable zero-retention/abuse-monitoring treatment and disabled request logging, with confirmation reference, verifier and expiry. | Disabled optional caching and no-training terms alone do not establish the release retention requirement. Staging confirmation cannot qualify a different project. |
+| Approved assessment and Safety lead record | Supply the approved Study-material DPIA assessment file and its canonical Safety lead record, including assessment reference/digest and the required policy fields, to the release operator through a secure file location. | The existing owner approval is retained; it does not supply the assessment bytes or a Safety lead's canonical record. |
+| Signing custodians | Make the existing production public trust hierarchy and approved content-signing interface available to the release operator. Arrange the specified offline root/content-HSM ceremony and return the production-signed DPIA list. For installers, provide secure access to an Apple Developer ID identity and notarisation profile, Windows Authenticode/timestamp signing and the Linux release-signing mechanism. | The local keychain currently has zero valid code-signing identities. Development/test roots cannot qualify a production signature. Do not substitute a software key for a required HSM key. |
+| Independent reviewers | The corpus custodian must resolve the three development questions/four held-out fingerprint matches in the current release evidence. Assign a subject/content and safety reviewer for the held-out evaluation, including the probability expectation and Unicode source-definition amendments, plus OCR/ASR and each eligible local reference model. Arrange human review of the 60 pending prompt snapshots. Supply their actual reports and reviewer references. | The live synthetic corpus is an engineering development check. The generation and verification calls use the same provider/model and do not constitute independent human or held-out review. |
+| Device testers | Test the final signed candidate on the owner's Apple Silicon Mac with VoiceOver; arrange Windows 10/11 x64 testers with NVDA, including a non-AVX2 CPU, and Ubuntu 22.04+/Debian 12 x64 testers. Across the machines cover the required content-only/low/mid/high classes and eligible local models. | Browser/unit checks and development-signed binaries cannot prove native installation, accessibility, offline performance or final package behaviour. Intel Mac testing is not required. |
+
+## What to do on the Apple Silicon Mac
+
+Wait for the final signed/notarised candidate and its digest. Use a test learner and synthetic/permitted material. Record macOS version, chip, RAM, selected class, app digest, model/OCR/ASR/TTS pack IDs/hashes, tester and timestamps. Run D01–D08 in `scripts/packaging/M42-DEVICE-CHECKS.md`:
+
+1. Install and launch offline; capture nested signature, notarisation/stapling and Gatekeeper results.
+2. With local packs installed, make all six aids offline from a ten-page PDF. Follow citations and record outbound traffic, elapsed time, peak RAM and disk growth. Content-only must report model unavailability truthfully.
+3. Test scanned PDF/rotated-photo OCR, one unreadable page, confirmation, correction, new revisions and stale aids.
+4. Exercise file/page/duration limits and offline recording followed by one online transcription.
+5. Cancel/disconnect/restart during each stage; test consent withdrawal, minor/guardian consent, quota exhaustion, profile switching and duplicate-charge prevention.
+6. Exercise private-material grant expiry, encrypted archive inclusion/omission, deletion and restoring an old archive without resurrection.
+7. With VoiceOver and keyboard only, exercise every Study state, citation/back focus, flashcards and quiz. Repeat at 200% text and narrow layout in light/dark themes.
+8. Test audio play/pause/resume/stop, profile/grant expiry, missing TTS and the synthetic safety cases.
+
+Return measured results using a copy of `scripts/packaging/m42-device-report.example.json`, leaving untested values null. Record a failure's exact step and expected/observed result; do not mark a check passed from a screenshot alone. The full device guide provides boundaries and expected outcomes for each step.
+
+## Engineering work after these inputs
+
+The release operator will provision the approved production configuration; install least-privilege identities, secret mounts and spending controls; measure extraction costs; build the immutable runtime and final installers with SBOM/licence/source-offer provenance; verify returned signatures and production pins; run the production corpus and privacy/egress/sandbox/receipt checks; collect device reports; and rerun strict preflight. The owner does not need to reproduce gateway checks on their laptop.
+
+Production qualification must use the exact production project/endpoint and final artifact. A passing staging corpus, owner approval or template configuration must never be relabelled as production, independent-review or packaged-device evidence.

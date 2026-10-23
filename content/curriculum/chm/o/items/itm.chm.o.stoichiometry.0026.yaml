@@ -1,0 +1,137 @@
+id: itm.chm.o.stoichiometry.0026
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.relative_formula_mass
+stem: A student calculates the relative formula mass of magnesium nitrate, Mg(NO₃)₂.
+parts:
+- id: a
+  prompt: Which value is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: '148'
+      correct: true
+    - id: B
+      text: '54'
+      correct: false
+      misconception_id: mc.chm.o.mr_count_ignored
+      feedback: Write out the atoms one by one for a small formula such as H₂O (H + H + O) and see that each atom counts.
+    - id: C
+      text: '134'
+      correct: false
+      misconception_id: mc.chm.o.mr_bracket_multiplier
+      feedback: 'The number after a bracket multiplies everything inside it: (OH)₂ is two O atoms and two H atoms.'
+    - id: D
+      text: '74'
+      correct: false
+      misconception_id: mc.chm.o.mr_atomic_number
+      feedback: Use the relative atomic mass (the larger number for most elements), not the proton number.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Every atom in Mg(NO₃)₂ adds its relative atomic mass to the total.
+  - rung: 2
+    name: concept
+    text:
+      en: Use relative atomic masses (not proton numbers), multiply each by its number of atoms, and remember that a number after a bracket multiplies everything inside it.
+  - rung: 3
+    name: first_step
+    text:
+      en: List the atoms of each element in Mg(NO₃)₂, counting through the bracket.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'In Mg(NO₃)₂: one Mg atom gives 24, two N atoms give 28 and six O atoms give 96.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Adding these gives Mr = 148.
+  misconception_ids:
+  - mc.chm.o.mr_count_ignored
+  - mc.chm.o.mr_bracket_multiplier
+  - mc.chm.o.mr_atomic_number
+solution:
+  steps:
+  - n: 1
+    latex: \text{Mg} = 24
+    reason: One Mg atom times Ar
+    check_id: chk_build_chm_stoichiometry_0026_g_mg
+  - n: 2
+    latex: \text{N}_2 = 28
+    reason: Two N atoms times Ar
+    check_id: chk_build_chm_stoichiometry_0026_g_n
+  - n: 3
+    latex: \text{O}_6 = 96
+    reason: Six O atoms times Ar
+    check_id: chk_build_chm_stoichiometry_0026_g_o
+  - n: 4
+    latex: M_r = 148
+    reason: Add the shares
+    check_id: chk_build_chm_stoichiometry_0026_mr
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0026_g_mg:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_mg
+      formula: Mg
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0026_g_n:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      formula: N2
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0026_g_o:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_o
+      formula: O6
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0026_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_mg
+      - source: pack
+        symbol: ar_n
+      - source: pack
+        symbol: ar_o
+      formula: Mg(NO3)2
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

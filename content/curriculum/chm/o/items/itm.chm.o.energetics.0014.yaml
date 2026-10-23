@@ -1,0 +1,97 @@
+id: itm.chm.o.energetics.0014
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.energetics.profiles
+stem: On a reaction pathway diagram the reactants are at 40 kJ/mol, the top of the energy hump is at 180 kJ/mol and the products are at 120 kJ/mol.
+parts:
+- id: a
+  prompt: What is the enthalpy change, ΔH, of the reaction?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: -80 kJ/mol
+      correct: false
+      misconception_id: mc.chm.o.energetics_dh_reactants_minus_products
+      feedback: ΔH = energy of products − energy of reactants. Going downhill gives a negative value.
+    - id: B
+      text: 180 kJ/mol
+      correct: false
+      misconception_id: mc.chm.o.energetics_ea_from_zero
+      feedback: 'Activation energy is the climb from the reactants'' level to the top of the hump: peak − reactants.'
+    - id: C
+      text: 60 kJ/mol
+      correct: false
+      misconception_id: mc.chm.o.energetics_ea_from_products
+      feedback: The reaction starts at the reactants, so the hump it must climb starts at the reactants' level.
+    - id: D
+      text: 80 kJ/mol
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: ΔH compares where the reaction ends with where it starts.
+  - rung: 2
+    name: concept
+    text:
+      en: ΔH = energy of products − energy of reactants; the hump does not matter.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Products: 120 kJ/mol. Reactants: 40 kJ/mol.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 120 − 40, keeping the sign.
+  - rung: 5
+    name: full_step
+    text:
+      en: ΔH = 120 − 40 = 80 kJ/mol.
+  misconception_ids:
+  - mc.chm.o.energetics_dh_reactants_minus_products
+  - mc.chm.o.energetics_ea_from_products
+  - mc.chm.o.energetics_ea_from_zero
+solution:
+  steps:
+  - n: 1
+    latex: \Delta H = 120 - 40 = 80\ \text{kJ/mol}
+    reason: Products minus reactants
+    check_id: chk_build_chm_energetics_0014_dh
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_energetics_0014_dh:
+    args:
+      expression: 120 - 40
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,100 @@
+id: itm.phy.o.energy.0051
+version: 0.1.2
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.energy_conversion
+stem: A 1.2 kg book falls from rest through 1.5 m. Ignore air resistance and take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate its kinetic energy just before it lands.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '18'
+    unit: J
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0051_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: With no air resistance, no energy is wasted.
+  - rung: 2
+    name: concept
+    text:
+      en: The kinetic energy gained equals the gravitational energy lost.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the gravitational energy lost, mgh.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 1.2 × 10 × 1.5.
+  - rung: 5
+    name: full_step
+    text:
+      en: Its kinetic energy is 18 J.
+  misconception_ids:
+  - mc.phy.o.gpe_half_from_ke
+  - mc.phy.o.energy_mass_for_weight
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: E_k = mgh = 1.2 \times 10 \times 1.5 = 18\ \text{J}
+    reason: All the gravitational energy lost becomes kinetic energy
+    check_id: chk_build_phy_nrg_0051_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  g: '10'
+  h: '1.5'
+  m: '1.2'
+checks:
+  chk_build_phy_nrg_0051_ans:
+    args:
+      expression: 1.2*10*1.5
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

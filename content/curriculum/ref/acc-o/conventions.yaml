@@ -1,0 +1,247 @@
+- key: acc.currency
+  value: $
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - dollar
+  note: Amounts are in the local currency; the ISO 4217 code comes from the locale overlay (CUR-28).
+- key: acc.dp
+  value: '2'
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - decimal places
+  note: Amounts and answers are given to 2 decimal places, rounded half away from zero; ratios too.
+- key: acc.chart_of_accounts
+  value: coa.acc.o.standard.v1
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - chart of accounts
+  note: Checker calls carry the chart's accounts (with personal accounts) in their arguments (G103).
+- key: acc.sofp_layout
+  value: capital_and_liabilities
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - balance sheet layout
+  note: 'Statement of financial position: assets, then capital and liabilities.'
+- key: acc.reconciliation_start
+  value: bank_statement
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - bank reconciliation layout
+  note: A reconciliation starts from the bank statement balance and ends at the updated cash book balance.
+- key: acc.part_year_policy
+  value: full_year
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - depreciation in the year of purchase
+  note: A full year's depreciation in the year of purchase and none in the year of disposal, unless an item says otherwise.
+- key: acc.avco_unit_cost
+  value: exact
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - AVCO rounding
+  note: The weighted average unit cost is kept exact; only the inventory value is rounded.
+- key: acc.inventory.avco_basis
+  value: perpetual
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - AVCO basis
+  note: A new average unit cost is worked out after each receipt.
+- key: acc.definition_set.year_days
+  value: '365'
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - days in a year
+  note: Collection periods and inventory days use a 365-day year.
+- key: acc.definition_set.capital_employed
+  value: capital_and_non_current_liabilities
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - capital employed
+  note: Capital employed is the owner's capital plus non-current liabilities.
+- key: acc.definition_set.capital_basis
+  value: closing
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - capital for ROCE
+  note: Return on capital employed uses capital at the end of the year.
+- key: acc.definition_set.roce_profit
+  value: profit_for_the_year
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - ROCE profit
+  note: Return on capital employed uses the profit for the year.
+- key: acc.definition_set.inventory_basis
+  value: average
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - average inventory
+  note: Inventory turnover uses (opening + closing inventory) / 2.
+- key: acc.definition_set.receivables_sales
+  value: credit_sales
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - debtors collection period
+  note: The trade receivables collection period uses credit sales.
+- key: acc.definition_set.payables_purchases
+  value: credit_purchases
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - creditors payment period
+  note: The trade payables payment period uses credit purchases.
+- key: acc.definition_set.quick_assets
+  value: less_inventory
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - quick ratio
+  - liquid ratio
+  note: 'The acid-test ratio is (current assets - inventory) : current liabilities.'
+- key: acc.term.financial_position
+  value: statement of financial position
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - balance sheet
+- key: acc.term.income_statement
+  value: income statement
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - trading and profit and loss account
+  - trading account
+  - profit and loss account
+- key: acc.term.revenue
+  value: revenue
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - sales
+  - turnover
+- key: acc.term.inventory
+  value: inventory
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - stock
+- key: acc.term.trade_receivables
+  value: trade receivables
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - debtors
+- key: acc.term.trade_payables
+  value: trade payables
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - creditors
+- key: acc.term.non_current_assets
+  value: non-current assets
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - fixed assets
+- key: acc.term.profit_for_the_year
+  value: profit for the year
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - net profit
+- key: acc.term.irrecoverable_debts
+  value: irrecoverable debts
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - bad debts
+- key: acc.term.allowance
+  value: allowance for irrecoverable debts
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - provision for doubtful debts
+  - allowance for doubtful debts
+- key: acc.term.other_payables
+  value: other payables
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - accruals
+  - accrued expenses
+- key: acc.term.other_receivables
+  value: other receivables
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - prepayments
+  - prepaid expenses
+- key: acc.term.cash_discount
+  value: cash discount
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - settlement discount
+- key: acc.term.sales_returns
+  value: sales returns
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - returns inwards
+- key: acc.term.purchases_returns
+  value: purchases returns
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - returns outwards
+- key: acc.term.irrecoverable_debt_recovered
+  value: irrecoverable debt recovered
+  scope:
+    subject: acc
+    level: o
+  synonyms:
+  - bad debt recovered

@@ -1,0 +1,113 @@
+id: itm.phy.o.motion.0007
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.distance_or_displacement
+stem: A student walks 440 m east to a shop, then 230 m west to a friend's house.
+parts:
+- id: a
+  prompt: Find the size of the displacement from the start, taking east as positive.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '210'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_k_0007_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Displacement is about where you end up compared with where you started, not how far you went.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Add the parts of the journey with their directions: one way is positive, the other negative.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Write the displacement as the first part minus the part that comes back.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 440 − 230.
+  - rung: 5
+    name: full_step
+    text:
+      en: Displacement = 440 − 230 = 210 m east.
+  misconception_ids:
+  - mc.phy.o.distance_for_displacement
+solution:
+  steps:
+  - n: 1
+    latex: s = s_1 - s_2
+    reason: The second part of the journey is in the opposite direction
+  - n: 2
+    latex: s = 440 - 230
+    reason: Substitute the two parts
+  - n: 3
+    latex: s = 210\ \text{m}
+    reason: Subtract
+    check_id: chk_build_phy_k_0007_a
+difficulty:
+  prior: -1.0
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  d1: '440'
+  d2: '230'
+checks:
+  chk_build_phy_k_0007_a:
+    args:
+      expression: 440 - 230
+      sf: 3
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:42:35.251Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.motion.0007
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,51 @@
+id: wex.chm.o.acids.0008
+kc_ids:
+- kc.chm.o.acids.oxides
+problem: Carbon dioxide reacts with sodium hydroxide solution but not with acids. Classify the oxide, write the equation and find the relative formula mass of the salt.
+steps:
+- n: 1
+  latex: \text{an acidic oxide}
+  reason: 'Reacts with alkali only: an acidic oxide'
+- n: 2
+  latex: \text{CO}_2 + 2\text{NaOH} \rightarrow \text{Na}_2\text{CO}_3 + \text{H}_2\text{O}
+  reason: Oxide + acid or alkali → salt + water
+  check_id: chk_build_chm_acids_w0008_bal
+final_answer:
+  latex: M_r(\text{Na}_2\text{CO}_3) = 106
+  check_id: chk_build_chm_acids_w0008_mr
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_acids_w0008_bal:
+    args:
+      equation: CO2 + NaOH -> Na2CO3 + H2O
+    tool: chem_balance
+  chk_build_chm_acids_w0008_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_na
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_o
+      formula: Na2CO3
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

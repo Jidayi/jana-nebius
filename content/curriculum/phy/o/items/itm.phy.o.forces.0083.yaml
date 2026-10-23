@@ -1,0 +1,90 @@
+id: itm.phy.o.forces.0083
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.moments
+stem: A door handle is fixed on the side of the door furthest from the hinges.
+parts:
+- id: a
+  prompt: Why?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: A push near the hinge would turn the door more easily
+      correct: false
+      misconception_id: mc.phy.o.moment_force_over_distance
+      feedback: 'A longer spanner makes a nut easier to turn, so the turning effect grows with the distance: multiply.'
+    - id: B
+      text: The position does not matter, only the size of the push
+      correct: false
+      misconception_id: mc.phy.o.balance_equal_forces
+      feedback: A small force far from the pivot can balance a large force close to it. Compare moments, force × distance, not forces.
+    - id: C
+      text: A handle in the middle of the door would need the least force
+      correct: false
+    - id: D
+      text: The large distance from the hinge gives a large moment for a small push
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A moment is the turning effect of a force about a pivot.
+  - rung: 2
+    name: concept
+    text:
+      en: Moment = force × perpendicular distance from the pivot; in balance the clockwise and anticlockwise moments are equal.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ask how the distance from the pivot changes the turning effect in each option.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The hinge is the pivot.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The large distance from the hinge gives a large moment for a small push. Moment = force × distance, so a handle far from the hinge needs the least force.'
+  misconception_ids:
+  - mc.phy.o.balance_equal_forces
+  - mc.phy.o.moment_force_over_distance
+solution:
+  steps:
+  - n: 1
+    latex: \text{The large distance from the hinge gives a large moment for a small push}
+    reason: Compare the moments
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

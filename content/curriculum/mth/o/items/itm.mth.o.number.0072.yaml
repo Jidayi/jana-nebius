@@ -1,0 +1,116 @@
+id: itm.mth.o.number.0072
+version: 0.1.0
+type: mcq
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.fraction_arithmetic
+stem: Work out $\frac{11}{12} \times \frac{2}{3}$.
+parts:
+- id: a
+  prompt: Choose the answer in its simplest form.
+  marks: 2
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: $\frac{11}{18}$
+      correct: true
+    - id: B
+      text: $\frac{11}{8}$
+      correct: false
+      misconception_id: mc.mth.o.fraction_multiply_inverts
+      feedback: To multiply fractions, multiply the tops together and the bottoms together.
+    - id: C
+      text: $\frac{19}{12}$
+      correct: false
+      misconception_id: mc.mth.o.add_tops_and_bottoms
+      feedback: One half plus one half is one, not two quarters. Fractions need a common denominator before you add the numerators.
+    - id: D
+      text: $\frac{22}{15}$
+      correct: false
+      misconception_id: mc.mth.o.denominators_added
+      feedback: Once the fractions share a denominator, the denominator stays the same; only the numerators are added.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Multiplying fractions does not need a common denominator.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply the two numerators together and the two denominators together.
+  - rung: 3
+    name: first_step
+    text:
+      en: The numerator is 11 × 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The product is 22 over 36; now simplify.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is $\frac{11}{18}$.
+  misconception_ids:
+  - mc.mth.o.add_tops_and_bottoms
+  - mc.mth.o.denominators_added
+  - mc.mth.o.fraction_multiply_inverts
+solution:
+  steps:
+  - n: 1
+    latex: \frac{11 \times 2}{12 \times 3} = \frac{22}{36}
+    reason: Multiply the numerators and the denominators
+    check_id: chk_build_mth_num_0072_t
+  - n: 2
+    latex: = \frac{11}{18}
+    reason: Simplify
+    check_id: chk_build_mth_num_0072_k
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0072_k:
+    args:
+      equations:
+      - p = 11
+      - q = 18
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_num_0072_t:
+    args:
+      equations:
+      - p = 11*2
+      - q = 12*3
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

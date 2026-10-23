@@ -1,0 +1,620 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.phy-o-electrical-quantities
+version: 2026-10-13.1
+description: 'Colocated evals for phy-o-electrical-quantities (SKL-21, EVL-07): one case per misconception. The
+  student answers as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give
+  the key away, and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: phy_o_electrical_quantities_01
+  title: Holds 'Gaining electrons makes it positive'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.electron_gain_sign_reversed
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.electrical_quantities.0003
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.electrical_quantities.electric_charge
+        misconception: mc.phy.o.electron_gain_sign_reversed
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: phy_o_electrical_quantities_02
+  title: Holds 'Positive charges move when rubbing'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.protons_move_in_charging
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.electrical_quantities.0002
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.electrical_quantities.electric_charge
+        misconception: mc.phy.o.protons_move_in_charging
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: phy_o_electrical_quantities_03
+  title: Holds 'Leaving the time in minutes'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.minutes_used_as_seconds
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.electrical_quantities.0027
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.electrical_quantities.current_and_charge
+        misconception: mc.phy.o.minutes_used_as_seconds
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: phy_o_electrical_quantities_04
+  title: Holds 'Rearranging Q = It upside down'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.q_it_upside_down
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.electrical_quantities.0026
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.electrical_quantities.current_and_charge
+        misconception: mc.phy.o.q_it_upside_down
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_electrical_quantities_05
+  title: Holds 'Voltage flows through a lamp'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.pd_flows_through_component
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.electrical_quantities.0034
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.electrical_quantities.potential_difference
+        misconception: mc.phy.o.pd_flows_through_component
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_electrical_quantities_06
+  title: Holds 'The lamp uses up the charge'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.charge_used_up_in_lamp
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.electrical_quantities.0034
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.electrical_quantities.potential_difference
+        misconception: mc.phy.o.charge_used_up_in_lamp
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_electrical_quantities_07
+  title: Holds 'Rearranging W = QV upside down'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.w_qv_upside_down
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.electrical_quantities.0041
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.electrical_quantities.potential_difference
+        misconception: mc.phy.o.w_qv_upside_down
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_electrical_quantities_08
+  title: Holds 'Rearranging R = V/I upside down'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.ohm_law_upside_down
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.electrical_quantities.0056
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.electrical_quantities.resistance
+        misconception: mc.phy.o.ohm_law_upside_down
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_electrical_quantities_09
+  title: Holds 'Multiplying V and I for the resistance'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.ohm_law_multiplied
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.electrical_quantities.0057
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.electrical_quantities.resistance
+        misconception: mc.phy.o.ohm_law_multiplied
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_electrical_quantities_10
+  title: Holds 'A thicker wire has more resistance'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.thicker_wire_more_resistance
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.electrical_quantities.0071
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.electrical_quantities.resistance_of_wires
+        misconception: mc.phy.o.thicker_wire_more_resistance
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_electrical_quantities_11
+  title: Holds 'Scaling by the diameter, not the area'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.diameter_used_as_area
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.electrical_quantities.0071
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.electrical_quantities.resistance_of_wires
+        misconception: mc.phy.o.diameter_used_as_area
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_electrical_quantities_12
+  title: Holds 'A hot filament conducts better'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.lamp_resistance_falls_when_hot
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.electrical_quantities.0080
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 12
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.electrical_quantities.current_voltage_graphs
+        misconception: mc.phy.o.lamp_resistance_falls_when_hot
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_electrical_quantities_13
+  title: Holds 'Current over p.d. is resistance'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.iv_gradient_is_resistance
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.electrical_quantities.0079
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 13
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.electrical_quantities.current_voltage_graphs
+        misconception: mc.phy.o.iv_gradient_is_resistance
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_electrical_quantities_14
+  title: Holds 'A diode conducts both ways'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.diode_conducts_both_ways
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.electrical_quantities.0077
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 14
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.electrical_quantities.current_voltage_graphs
+        misconception: mc.phy.o.diode_conducts_both_ways
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

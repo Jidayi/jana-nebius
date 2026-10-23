@@ -1,0 +1,89 @@
+id: itm.chm.o.electrolysis.0041
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.applications
+stem: A steel tap is to be given a shiny coating of chromium.
+parts:
+- id: a
+  prompt: Which arrangement is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: The tap as the cathode, in a solution containing chromium ions
+      correct: true
+    - id: B
+      text: The tap as the anode, in a solution containing iron ions
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_plated_object_as_anode
+      feedback: 'Metal is deposited where positive metal ions gain electrons: at the cathode. So the object to be plated is the cathode, the plating metal is the anode, and the electrolyte contains ions of the plating metal.'
+    - id: C
+      text: The tap as the anode, in a solution containing chromium ions
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_plated_object_as_anode
+      feedback: 'Metal is deposited where positive metal ions gain electrons: at the cathode. So the object to be plated is the cathode, the plating metal is the anode, and the electrolyte contains ions of the plating metal.'
+    - id: D
+      text: The tap as the cathode and the anode at the same time
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_plated_object_as_anode
+      feedback: 'Metal is deposited where positive metal ions gain electrons: at the cathode. So the object to be plated is the cathode, the plating metal is the anode, and the electrolyte contains ions of the plating metal.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The chromium must end up on the tap.
+  - rung: 2
+    name: concept
+    text:
+      en: Chromium is deposited where its positive ions gain electrons.
+  - rung: 3
+    name: first_step
+    text:
+      en: Positive ions gain electrons at the cathode.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The ions in the solution must be ions of the metal that forms the coating.
+  - rung: 5
+    name: full_step
+    text:
+      en: The tap is made the cathode in a solution of chromium ions, so chromium is deposited on it.
+  misconception_ids:
+  - mc.chm.o.electrolysis_plated_object_as_anode
+solution:
+  steps:
+  - n: 1
+    latex: '\text{tap: cathode; electrolyte: chromium ions}'
+    reason: Deposit at the cathode
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

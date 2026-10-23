@@ -1,0 +1,114 @@
+id: itm.acc.o.ratios.0006
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.margins
+stem: 'Adaeze runs a clothing shop. For the year: revenue $59500; cost of sales $43000; expenses $11700.'
+parts:
+- id: a
+  prompt: Calculate the profit margin as a percentage. Give your answer to 2 decimal places.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '8.07'
+    unit: '%'
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_ratios_0006_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A margin compares a profit with revenue. Which profit does the profit margin use?
+  - rung: 2
+    name: concept
+    text:
+      en: Profit margin = profit for the year ÷ revenue, written as a percentage.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the profit for the year first. Profit for the year = revenue − cost of sales − expenses.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide the profit for the year by 59500 and write it as a percentage.
+  - rung: 5
+    name: full_step
+    text:
+      en: Profit margin = 8.07%.
+  misconception_ids:
+  - mc.acc.o.rat_margin_markup_confused
+  - mc.acc.o.rat_gross_net_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{Profit margin} = \frac{\text{profit for the year}}{\text{revenue}} \text{ as a percentage}
+    reason: Profit for each dollar of revenue
+    check_id: chk_build_acc_ratios_0006_t
+  - n: 2
+    latex: \text{Profit for the year} = 4800
+    reason: The profit used
+    check_id: chk_build_acc_ratios_0006_s2
+  - n: 3
+    latex: \frac{4800}{59500} \rightarrow 8.07\%
+    reason: As a percentage
+    check_id: chk_build_acc_ratios_0006_a
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_0006_a:
+    args:
+      dp: 2
+      expression: (59500 - 43000 - 11700) / 59500 * 100
+    tool: math_evaluate
+  chk_build_acc_ratios_0006_s2:
+    args:
+      dp: 4
+      expression: 59500 - 43000 - 11700
+    tool: math_evaluate
+  chk_build_acc_ratios_0006_t:
+    args:
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      profit_for_the_year: '4800'
+      ratios:
+      - net_margin
+      revenue: '59500'
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

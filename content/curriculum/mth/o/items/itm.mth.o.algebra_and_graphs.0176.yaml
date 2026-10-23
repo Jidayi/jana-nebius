@@ -1,0 +1,112 @@
+id: itm.mth.o.algebra_and_graphs.0176
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.forming_equations
+stem: Musa thinks of a number, multiplies it by 3 and then adds 11. The result is 62.
+parts:
+- id: a
+  prompt: Write an equation for the number n and solve it to find the number Musa thought of.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '17'
+      correct: true
+    - id: B
+      text: '24.3'
+      correct: false
+      misconception_id: mc.mth.o.rearrange_inverse_sign
+      feedback: 'Do the same to both sides: to remove + u, subtract u from both sides.'
+    - id: C
+      text: '9.67'
+      correct: false
+      misconception_id: mc.mth.o.equation_divide_first
+      feedback: 'Undo in reverse order: the + b was done last, so remove it first, then divide by a.'
+    - id: D
+      text: '5.36'
+      correct: false
+      misconception_id: mc.mth.o.equation_wrong_relation
+      feedback: Test your equation with easy numbers that fit the sentence. If Ade has twice as many as Musa, then Ade = 2 × Musa.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Call the number n and follow the words in order.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiplying by 3 gives 3n; adding 11 gives 3n + 11. That equals 62.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Solve 3n + 11 = 62: first subtract 11.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: 3n = 51. Now divide by 3.
+  - rung: 5
+    name: full_step
+    text:
+      en: n = 17.
+  misconception_ids:
+  - mc.mth.o.equation_divide_first
+  - mc.mth.o.equation_wrong_relation
+  - mc.mth.o.rearrange_inverse_sign
+solution:
+  steps:
+  - n: 1
+    latex: 3n + 11 = 62
+    reason: Translate the words into an equation
+  - n: 2
+    latex: 3n = 51
+    reason: Subtract 11
+    check_id: chk_build_mth_alg_0176_s
+  - n: 3
+    latex: n = 17
+    reason: Divide by 3
+    check_id: chk_build_mth_alg_0176_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0176_ans:
+    args:
+      equations:
+      - 3*n + 11 = 62
+      unknowns:
+      - n
+    tool: math_solve
+  chk_build_mth_alg_0176_s:
+    args:
+      expression: 62 - 11
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

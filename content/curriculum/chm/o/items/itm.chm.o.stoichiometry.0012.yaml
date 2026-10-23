@@ -1,0 +1,83 @@
+id: itm.chm.o.stoichiometry.0012
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.ionic_formulae
+stem: A student needs the formula of sodium sulfate.
+parts:
+- id: a
+  prompt: The ions are Na⁺ and SO₄²⁻. Which formula is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Na₂SO₄
+      correct: true
+    - id: B
+      text: NaSO₄
+      correct: false
+      misconception_id: mc.chm.o.formula_one_of_each
+    - id: C
+      text: Na(SO₄)₂
+      correct: false
+      misconception_id: mc.chm.o.formula_own_charge_as_count
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which charges do the ions in sodium sulfate carry?
+  - rung: 2
+    name: concept
+    text:
+      en: Total positive charge must equal total negative charge.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the lowest numbers of each ion that make the charges cancel.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Use the size of one ion's charge as the number of the other ion, then simplify if you can.
+  - rung: 5
+    name: full_step
+    text:
+      en: Na₂SO₄ has charges that cancel.
+  misconception_ids:
+  - mc.chm.o.formula_one_of_each
+  - mc.chm.o.formula_own_charge_as_count
+solution:
+  steps:
+  - n: 1
+    latex: \text{Na}_2\text{SO}_4
+    reason: The charges cancel in sodium sulfate
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

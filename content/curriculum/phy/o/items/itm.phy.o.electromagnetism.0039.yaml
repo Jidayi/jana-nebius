@@ -1,0 +1,90 @@
+id: itm.phy.o.electromagnetism.0039
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.electromagnetic_induction
+stem: Sipho drops a magnet through a coil of 400 turns and records a peak e.m.f. of 0.6 V. She repeats it from the same height with a coil of 1000 turns.
+parts:
+- id: a
+  prompt: Assuming the peak e.m.f. is proportional to the number of turns, predict the new peak e.m.f.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1.5'
+    unit: V
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_emg_0039_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Each turn of the coil has an e.m.f. induced in it, and they add up.
+  - rung: 2
+    name: concept
+    text:
+      en: More turns give a proportionally bigger e.m.f.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find how many times as many turns the new coil has.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply 0.6 V by 2.5.
+  - rung: 5
+    name: full_step
+    text:
+      en: E = 0.6 × 2.5 = 1.5 V.
+  misconception_ids:
+  - mc.phy.o.induction_factor_reversed
+solution:
+  steps:
+  - n: 1
+    latex: \frac{1000}{400} = 2.5
+    reason: How many times as many turns
+    check_id: chk_build_phy_emg_0039_ratio
+  - n: 2
+    latex: E = 0.6 \times 2.5 = 1.5\ \text{V}
+    reason: The e.m.f. grows in the same ratio
+    check_id: chk_build_phy_emg_0039_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_0039_ans:
+    args:
+      expression: 0.6*1000/400
+    tool: math_evaluate
+  chk_build_phy_emg_0039_ratio:
+    args:
+      expression: 1000/400
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

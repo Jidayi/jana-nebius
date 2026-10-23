@@ -1,0 +1,101 @@
+id: itm.mth.o.number.0208
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.bounds_calc
+stem: a = 12.4 and b = 1.6, each correct to 1 decimal place.
+parts:
+- id: a
+  prompt: Find the upper bound of a × b.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '20.5425'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0208_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Write down the lower and upper bounds of a and b first.
+  - rung: 2
+    name: concept
+    text:
+      en: To make the result as large as possible, think about which bound of each value to use.
+  - rung: 3
+    name: first_step
+    text:
+      en: a lies between 12.35 and 12.45; b lies between 1.55 and 1.65.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Use both upper bounds.
+  - rung: 5
+    name: full_step
+    text:
+      en: The upper bound of a × b is 20.5425.
+  misconception_ids:
+  - mc.mth.o.bound_full_unit
+  - mc.mth.o.bounds_not_used
+  - mc.mth.o.bounds_wrong_choice
+solution:
+  steps:
+  - n: 1
+    latex: 'a: 12.35 \text{ to } 12.45,\ b: 1.55 \text{ to } 1.65'
+    reason: Bounds are 0.05 either side
+    check_id: chk_build_mth_num_0208_bd
+  - n: 2
+    latex: 12.45 \times 1.65 = 20.5425
+    reason: Use both upper bounds
+    check_id: chk_build_mth_num_0208_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0208_ans:
+    args:
+      expression: (12.4 + 0.05)*(1.6 + 0.05)
+    tool: math_evaluate
+  chk_build_mth_num_0208_bd:
+    args:
+      equations:
+      - p = 12.4 + 0.05
+      - q = 1.6 - 0.05
+      - r = 1.6 + 0.05
+      - s = 12.4 - 0.05
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

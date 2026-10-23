@@ -1,0 +1,36 @@
+id: mc.phy.o.light_index_ratio_inverted
+kc_ids:
+- kc.phy.o.light.speed_in_medium
+- kc.phy.o.light.refraction
+student_name: Speed in the material over c
+description: Divides the speed of light in the material by the speed in a vacuum, so the refractive index comes out less than one.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: Refractive index = speed in a vacuum ÷ speed in the material. Light is fastest in a vacuum, so the answer is always more than one.
+probe_item_ids:
+- itm.phy.o.light.0042
+- itm.phy.o.light.0044
+- itm.phy.o.light.0034
+- itm.phy.o.light.0040
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

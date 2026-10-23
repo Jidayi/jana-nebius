@@ -1,0 +1,35 @@
+id: mc.phy.o.kwh_joules_divided_by_1000
+kc_ids:
+- kc.phy.o.practical_electricity.energy_cost
+student_name: A kilowatt-hour as a thousand joules
+description: Divides an energy in joules by a thousand to get kilowatt-hours, confusing the kWh with the kJ.
+signatures:
+- kind: answer_transform
+  expression: E/1000
+fix:
+  strategy: rule_restatement
+  text:
+    en: 1 kWh is 1000 W for 3600 s, which is 3 600 000 J. Divide joules by 3 600 000 to get kWh.
+probe_item_ids:
+- itm.phy.o.practical_electricity.0027
+- itm.phy.o.practical_electricity.0031
+- itm.phy.o.practical_electricity.0019
+- itm.phy.o.practical_electricity.0023
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

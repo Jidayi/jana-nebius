@@ -1,0 +1,88 @@
+id: itm.acc.o.inventory.0037
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.inventory.inventory_profit_effect
+stem: Opening inventory is understated by $250.
+parts:
+- id: a
+  prompt: What is the effect on this year's gross profit?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Only the statement of financial position is affected
+      correct: false
+      misconception_id: mc.acc.o.inv_no_profit_effect_sofp
+    - id: B
+      text: Gross profit is not affected
+      correct: false
+      misconception_id: mc.acc.o.inv_no_profit_effect
+    - id: C
+      text: Gross profit is understated by $250
+      correct: false
+      misconception_id: mc.acc.o.inv_opening_closing_confused
+    - id: D
+      text: Gross profit is overstated by $250
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Closing inventory is subtracted in cost of sales; opening inventory is added.
+  - rung: 2
+    name: concept
+    text:
+      en: A higher closing inventory means a lower cost of sales and so a higher profit. A higher opening inventory means a higher cost of sales and a lower profit.
+  - rung: 3
+    name: first_step
+    text:
+      en: This year's closing inventory is next year's opening inventory, so an error carries into next year in the opposite direction.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Follow the error through cost of sales.
+  - rung: 5
+    name: full_step
+    text:
+      en: Gross profit is overstated by $250.
+  misconception_ids:
+  - mc.acc.o.inv_opening_closing_confused
+  - mc.acc.o.inv_no_profit_effect
+  - mc.acc.o.inv_no_profit_effect_sofp
+solution:
+  steps:
+  - n: 1
+    latex: \text{Cost of sales} = \text{opening} + \text{purchases} - \text{closing}
+    reason: Follow the error through
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

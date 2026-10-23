@@ -1,0 +1,36 @@
+id: mc.mth.o.similar_additive
+kc_ids:
+- kc.mth.o.geometry.similar_lengths
+student_name: Adding the difference for similar shapes
+description: Finds a missing side by adding the difference between corresponding sides instead of multiplying by the scale factor.
+signatures:
+- kind: answer_transform
+  expression: b1 + (a2 - a1)
+fix:
+  strategy: counterexample
+  text:
+    en: Enlarging doubles every side; adding the same amount to every side changes the shape.
+probe_item_ids:
+- itm.mth.o.geometry.0075
+- itm.mth.o.geometry.0076
+- itm.mth.o.geometry.0077
+- itm.mth.o.geometry.0078
+- itm.mth.o.geometry.0079
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

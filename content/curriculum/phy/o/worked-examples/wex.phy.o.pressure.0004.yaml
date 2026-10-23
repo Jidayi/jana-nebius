@@ -1,0 +1,45 @@
+id: wex.phy.o.pressure.0004
+kc_ids:
+- kc.phy.o.pressure.liquid_pressure
+problem: Yaw dives from 2 m to 14 m below the surface of fresh water (density 1000 kg/m³). Take g = 10 N/kg. By how much does the pressure on the diver increase, in kPa?
+steps:
+- n: 1
+  latex: \Delta h = 14 - 2 = 12\ \text{m}
+  reason: The change in depth
+  check_id: chk_build_phy_prs_w0004_dh
+- n: 2
+  latex: \Delta p = \rho g \Delta h = 1000 \times 10 \times 12 = 120\ \text{kPa}
+  reason: Δp = ρgΔh, then pascals into kilopascals
+  check_id: chk_build_phy_prs_w0004_ans
+final_answer:
+  latex: 120\ \text{kPa}
+  check_id: chk_build_phy_prs_w0004_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_w0004_ans:
+    args:
+      expression: 1000*10*(14 - 2)/1000
+    tool: math_evaluate
+  chk_build_phy_prs_w0004_dh:
+    args:
+      expression: 14 - 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

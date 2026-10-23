@@ -1,0 +1,63 @@
+id: wex.mth.o.algebra_and_graphs.0028
+kc_ids:
+- kc.mth.o.algebra_and_graphs.quadratic_sequences
+problem: A quadratic sequence begins 10, 21, 38, 61, … Find the next term.
+steps:
+- n: 1
+  latex: '\text{first differences: } 11, 17, 23'
+  reason: Subtract consecutive terms
+  check_id: chk_build_mth_alg_w0028_d
+- n: 2
+  latex: \text{next first difference} = 23 + 6 = 29
+  reason: The second difference is constant
+  check_id: chk_build_mth_alg_w0028_nd
+- n: 3
+  latex: 61 + 29 = 90
+  reason: Add it to the last term
+  check_id: chk_build_mth_alg_w0028_ans
+final_answer:
+  latex: '90'
+  check_id: chk_build_mth_alg_w0028_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0028_ans:
+    args:
+      expression: 61 + 23 + 6
+    tool: math_evaluate
+  chk_build_mth_alg_w0028_d:
+    args:
+      equations:
+      - p = 21 - 10
+      - q = 38 - 21
+      - r = 61 - 38
+      - s = (61 - 38) - (38 - 21)
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+  chk_build_mth_alg_w0028_nd:
+    args:
+      expression: 23 + 6
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

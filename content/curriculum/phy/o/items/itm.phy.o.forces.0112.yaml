@@ -1,0 +1,93 @@
+id: itm.phy.o.forces.0112
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.centre_of_gravity
+stem: A camper puts heavy bags on the roof rack of a car.
+parts:
+- id: a
+  prompt: How does this change the car's stability?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: It is less stable, because its centre of gravity is higher
+      correct: true
+    - id: B
+      text: It is more stable, because it is heavier
+      correct: false
+      misconception_id: mc.phy.o.stability_from_weight_only
+      feedback: A load on the roof rack makes a car easier to tip over. Weight added high up raises the centre of gravity and makes an object less stable.
+    - id: C
+      text: It is unchanged, because the base is the same width
+      correct: false
+      misconception_id: mc.phy.o.base_width_irrelevant
+      feedback: Stand with your feet together and someone can push you over easily; stand with them apart and it is much harder. A wider base means a bigger tilt before toppling.
+    - id: D
+      text: It will topple at once, because it is no longer level
+      correct: false
+      misconception_id: mc.phy.o.topples_whenever_tilted
+      feedback: 'Tilt a box slightly and let go: it falls back. Its weight still acts inside the base and turns it back. It topples only once the weight acts outside the base.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about where the weight of the object acts and where its base is.
+  - rung: 2
+    name: concept
+    text:
+      en: An object topples when the vertical line through its centre of gravity falls outside its base.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ask how far the object could tilt before the line of its weight passes outside the base.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Where does the extra weight raise or lower the centre of gravity?
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It is less stable, because its centre of gravity is higher. Weight added high up raises the centre of gravity, so a smaller tilt takes it outside the base.'
+  misconception_ids:
+  - mc.phy.o.base_width_irrelevant
+  - mc.phy.o.stability_from_weight_only
+  - mc.phy.o.topples_whenever_tilted
+solution:
+  steps:
+  - n: 1
+    latex: \text{It is less stable, because its centre of gravity is higher}
+    reason: Find where the weight acts relative to the base
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,85 @@
+id: itm.chm.o.acids.0034
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.strong_and_weak
+stem: Ethanoic acid molecules are added to water to make a solution.
+parts:
+- id: a
+  prompt: Which particles are present in the largest numbers (apart from water)?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Hydroxide ions
+      correct: false
+    - id: B
+      text: Ethanoate ions
+      correct: false
+    - id: C
+      text: Ethanoic acid molecules
+      correct: true
+    - id: D
+      text: Hydrogen ions
+      correct: false
+      misconception_id: mc.chm.o.acids_strong_means_concentrated
+      feedback: Strength is about how fully an acid ionises in water. Concentration is about how much acid is in each dm³. A dilute solution of hydrochloric acid is still a strong acid; a concentrated solution of ethanoic acid is still a weak acid.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Is ethanoic acid a strong or a weak acid?
+  - rung: 2
+    name: concept
+    text:
+      en: A weak acid only partly ionises in water.
+  - rung: 3
+    name: first_step
+    text:
+      en: In a weak acid, at any moment only a small fraction of molecules have split into ions.
+  - rung: 4
+    name: worked_step
+    text:
+      en: If only a few molecules ionise, what are most of them still?
+  - rung: 5
+    name: full_step
+    text:
+      en: Ethanoic acid is weak, so most of it stays as ethanoic acid molecules; only a few ionise.
+  misconception_ids:
+  - mc.chm.o.acids_strong_means_concentrated
+solution:
+  steps:
+  - n: 1
+    latex: \text{CH}_3\text{COOH} \rightleftharpoons \text{CH}_3\text{COO}^{-} + \text{H}^{+}
+    reason: Equilibrium lies to the left
+difficulty:
+  prior: 0.5
+  band: stretch
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

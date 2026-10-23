@@ -1,0 +1,82 @@
+id: wex.acc.o.sole_trader_statements.0001
+kc_ids:
+- kc.acc.o.sole_trader_statements.cost_of_sales
+problem: 'A trader''s figures for the year: opening inventory $5000; purchases $42000; purchases returns $1200; carriage inwards $800; carriage outwards $600; closing inventory $6500. Find the cost of sales.'
+steps:
+- n: 1
+  latex: \text{Cost of sales} = \text{opening inventory} + \text{net purchases} + \text{carriage inwards} - \text{closing inventory}
+  reason: Carriage outwards is an expense
+  check_id: chk_build_acc_sole_trader_statements_w0001_t
+- n: 2
+  latex: \text{Goods available} = 5000 + 42000 - 1200 + 800 = 46600
+  reason: Everything that could have been sold
+  check_id: chk_build_acc_sole_trader_statements_w0001_s2
+- n: 3
+  latex: \text{Cost of sales} = 46600 - 6500 = 40100
+  reason: Less what is left
+  check_id: chk_build_acc_sole_trader_statements_w0001_a
+final_answer:
+  latex: \$\,40100
+  check_id: chk_build_acc_sole_trader_statements_w0001_a
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_w0001_a:
+    args:
+      dp: 2
+      expression: 5000 + 42000 - 1200 + 800 - 6500
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_w0001_s2:
+    args:
+      dp: 4
+      expression: 5000 + 42000 - 1200 + 800
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_w0001_t:
+    args:
+      adjustments:
+      - amount: '6500'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '60100'
+        role: revenue
+      - account: Purchases
+        debit: '42000'
+        role: purchases
+      - account: Inventory
+        debit: '5000'
+        role: opening_inventory
+      - account: Purchases returns
+        credit: '1200'
+        role: purchases_returns
+      - account: Carriage inwards
+        debit: '800'
+        role: carriage_inwards
+      - account: Carriage outwards
+        debit: '600'
+        role: expense
+      - account: Land
+        debit: '12900'
+        role: non_current_asset
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,96 @@
+id: itm.phy.o.measurement.0007
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.measurement.si_prefixes
+stem: A pressure is measured as 12000 Pa.
+parts:
+- id: a
+  prompt: Write this pressure in kPa.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '12'
+    unit: kPa
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_mea_0007_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Which is the bigger unit: Pa or kPa?'
+  - rung: 2
+    name: concept
+    text:
+      en: The prefix in kPa means a thousand times the base unit, Pa.
+  - rung: 3
+    name: first_step
+    text:
+      en: Changing to a bigger unit makes the number smaller.
+  - rung: 4
+    name: worked_step
+    text:
+      en: So divide by a thousand.
+  - rung: 5
+    name: full_step
+    text:
+      en: 12000 Pa = 12 kPa.
+  misconception_ids:
+  - mc.phy.o.prefix_multiply_divide_swapped
+  - mc.phy.o.prefix_power_wrong
+  - mc.phy.o.prefix_confused_with_neighbour
+solution:
+  steps:
+  - n: 1
+    latex: 1\ \text{kPa} = 10^{3}\ \text{Pa}
+    reason: What the prefix means
+  - n: 2
+    latex: 12000\ \text{Pa} \rightarrow 12\ \text{kPa}
+    reason: Divide when the unit gets bigger, multiply when it gets smaller
+    check_id: chk_build_phy_mea_0007_calc
+  - n: 3
+    latex: 12\ \text{kPa}
+    reason: Checked by converting the units
+    check_id: chk_build_phy_mea_0007_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mea_0007_ans:
+    args:
+      quantity: 12000 Pa
+      to: kPa
+    tool: units_convert
+  chk_build_phy_mea_0007_calc:
+    args:
+      expression: 12000/1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

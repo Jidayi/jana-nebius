@@ -1,0 +1,34 @@
+id: mc.phy.o.pressure_mass_used_as_force
+kc_ids:
+- kc.phy.o.pressure.pressure_on_surfaces
+student_name: Using the mass as the force
+description: Divides the mass in kilograms by the area, instead of the weight in newtons.
+signatures:
+- kind: structural
+  rule: mass_weight_confused
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The force pressing on the ground is the weight, in newtons: weight = mass × g. Work out the weight before dividing by the area.'
+probe_item_ids:
+- itm.phy.o.pressure.0014
+- itm.phy.o.pressure.0002
+- itm.phy.o.pressure.0007
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

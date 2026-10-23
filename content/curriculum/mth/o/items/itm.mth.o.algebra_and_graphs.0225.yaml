@@ -1,0 +1,123 @@
+id: itm.mth.o.algebra_and_graphs.0225
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.quadratic_sequences
+stem: A quadratic sequence begins 8, 21, 40, 65, …
+parts:
+- id: a
+  prompt: Find the next term.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '90'
+      correct: false
+      misconception_id: mc.mth.o.quadratic_sequence_as_linear
+      feedback: The first differences of a quadratic sequence change. Add the second difference to the first differences to continue them.
+    - id: B
+      text: '96'
+      correct: true
+    - id: C
+      text: '78'
+      correct: false
+      misconception_id: mc.mth.o.nth_term_off_by_one
+      feedback: 'Check with n = 1: your rule must give the first term itself.'
+    - id: D
+      text: '77'
+      correct: false
+      misconception_id: mc.mth.o.second_difference_not_halved
+      feedback: For n² the second difference is 2, yet the coefficient is 1. Halve the second difference.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Find the differences between consecutive terms.
+  - rung: 2
+    name: concept
+    text:
+      en: In a quadratic sequence the first differences go up by the same amount each time.
+  - rung: 3
+    name: first_step
+    text:
+      en: The first differences are 13, 19, 25. How do they change?
+  - rung: 4
+    name: worked_step
+    text:
+      en: The next first difference is 25 + 6 = 31.
+  - rung: 5
+    name: full_step
+    text:
+      en: The next term is 65 + 31 = 96.
+  misconception_ids:
+  - mc.mth.o.nth_term_off_by_one
+  - mc.mth.o.quadratic_sequence_as_linear
+  - mc.mth.o.second_difference_not_halved
+solution:
+  steps:
+  - n: 1
+    latex: '\text{first differences: } 13, 19, 25'
+    reason: Subtract consecutive terms
+    check_id: chk_build_mth_alg_0225_d
+  - n: 2
+    latex: \text{next first difference} = 25 + 6 = 31
+    reason: The second difference is constant
+    check_id: chk_build_mth_alg_0225_nd
+  - n: 3
+    latex: 65 + 31 = 96
+    reason: Add it to the last term
+    check_id: chk_build_mth_alg_0225_ans
+difficulty:
+  prior: 0.5
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0225_ans:
+    args:
+      expression: 65 + 25 + 6
+    tool: math_evaluate
+  chk_build_mth_alg_0225_d:
+    args:
+      equations:
+      - p = 21 - 8
+      - q = 40 - 21
+      - r = 65 - 40
+      - s = (65 - 40) - (40 - 21)
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+  chk_build_mth_alg_0225_nd:
+    args:
+      expression: 25 + 6
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

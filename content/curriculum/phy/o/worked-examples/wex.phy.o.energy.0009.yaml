@@ -1,0 +1,36 @@
+id: wex.phy.o.energy.0009
+kc_ids:
+- kc.phy.o.energy.work_done
+problem: A horse pulls a cart 200 m with a steady force of 1.2 kN along its path, taking 30 s. Calculate the work done by the force, in kJ.
+steps:
+- n: 1
+  latex: W = 1.2\ \text{kN} \times 200\ \text{m} = 240\ \text{kJ}
+  reason: kN × m gives kJ
+  check_id: chk_build_phy_nrg_w0009_ans
+final_answer:
+  latex: 240\ \text{kJ}
+  check_id: chk_build_phy_nrg_w0009_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_w0009_ans:
+    args:
+      expression: 1.2*200
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

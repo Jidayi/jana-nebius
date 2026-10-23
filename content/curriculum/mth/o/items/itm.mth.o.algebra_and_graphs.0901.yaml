@@ -1,0 +1,91 @@
+id: itm.mth.o.algebra_and_graphs.0901
+version: 0.1.0
+type: algebraic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.expand_brackets
+stem: Multiply out the brackets in $(x - 4)(x + 2)$ and collect like terms.
+parts:
+- id: a
+  prompt: Type the expression with no brackets left.
+  marks: 2
+  answer:
+    kind: algebraic
+    check_id: chk_build_mth_alg_0901_key
+    expression: x^2 - 2x - 8
+    variables:
+    - x
+    required_form: expanded
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Each bracket has two terms, so multiplying them out gives four products.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply the x in the first bracket by both terms of the second, then do the same with the number.
+  - rung: 3
+    name: first_step
+    text:
+      en: The x² term is x × x and the number term is −4 × 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Two of the four products are x terms: add their coefficients to make one term.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Collecting gives $x^2 - 2x - 8$.
+solution:
+  steps:
+  - n: 1
+    latex: (x - 4)(x + 2) = x^2 + 2x - 4x - 8
+    reason: Every term of one bracket times every term of the other
+    check_id: chk_build_mth_alg_0901_m
+  - n: 2
+    latex: = x^2 - 2x - 8
+    reason: Collect the two x terms
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0901_key:
+    args:
+      expression: (x - 4)(x + 2)
+      form: expanded
+    tool: math_simplify
+  chk_build_mth_alg_0901_m:
+    args:
+      equations:
+      - p = abs((-4)*(2))
+      - q = abs((-4) + (2))
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

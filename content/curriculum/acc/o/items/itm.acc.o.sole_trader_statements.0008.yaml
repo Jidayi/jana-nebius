@@ -1,0 +1,129 @@
+id: itm.acc.o.sole_trader_statements.0008
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.sole_trader_statements.cost_of_sales
+stem: 'Wanjiru''s figures for the year: opening inventory $5000; purchases $30200; purchases returns $1000; carriage inwards $500; carriage outwards $300; closing inventory $8100.'
+parts:
+- id: a
+  prompt: What is the cost of sales?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $42800
+      correct: false
+      misconception_id: mc.acc.o.cos_closing_added
+    - id: B
+      text: $26900
+      correct: false
+      misconception_id: mc.acc.o.cos_carriage_outwards_included
+    - id: C
+      text: $28600
+      correct: false
+      misconception_id: mc.acc.o.cos_returns_added
+    - id: D
+      text: $26600
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which of these figures are part of the cost of the goods sold, and which are expenses of selling?
+  - rung: 2
+    name: concept
+    text:
+      en: Goods returned to suppliers reduce purchases. Goods still in stock at the end were not sold.
+  - rung: 3
+    name: first_step
+    text:
+      en: Carriage inwards is part of the cost of buying goods; carriage outwards is not.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out (5000 + 30200 − 1000 + 500) − 8100.
+  - rung: 5
+    name: full_step
+    text:
+      en: Cost of sales = (5000 + 30200 − 1000 + 500) − 8100 = $26600.
+  misconception_ids:
+  - mc.acc.o.cos_closing_added
+  - mc.acc.o.cos_returns_added
+  - mc.acc.o.cos_carriage_outwards_included
+solution:
+  steps:
+  - n: 1
+    latex: \text{Cost of sales} = \text{opening inventory} + \text{purchases} - \text{returns} + \text{carriage inwards} - \text{closing inventory}
+    reason: Carriage outwards is an expense
+    check_id: chk_build_acc_sole_trader_statements_0008_t
+  - n: 2
+    latex: \text{Cost of sales} = 5000 + 30200 - 1000 + 500 - 8100 = 26600
+    reason: Substitute
+    check_id: chk_build_acc_sole_trader_statements_0008_a
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_0008_a:
+    args:
+      dp: 2
+      expression: 5000 + 30200 - 1000 + 500 - 8100
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0008_t:
+    args:
+      adjustments:
+      - amount: '8100'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '39900'
+        role: revenue
+      - account: Purchases
+        debit: '30200'
+        role: purchases
+      - account: Inventory
+        debit: '5000'
+        role: opening_inventory
+      - account: Purchases returns
+        credit: '1000'
+        role: purchases_returns
+      - account: Carriage inwards
+        debit: '500'
+        role: carriage_inwards
+      - account: Carriage outwards
+        debit: '300'
+        role: expense
+      - account: Land
+        debit: '4900'
+        role: non_current_asset
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

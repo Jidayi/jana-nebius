@@ -1,0 +1,119 @@
+id: itm.mth.o.number.0238
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.direct_proportion
+stem: 6 exercise books cost $2.7.
+parts:
+- id: a
+  prompt: Find the cost of 12 exercise books.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '5.40'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_mth_num_0238_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The cost goes up in proportion to the number bought.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the cost of one item first.
+  - rung: 3
+    name: first_step
+    text:
+      en: One costs $2.7 ÷ 6.
+  - rung: 4
+    name: worked_step
+    text:
+      en: One costs $0.45. Now multiply by 12.
+  - rung: 5
+    name: full_step
+    text:
+      en: 12 exercise books cost $5.40.
+  misconception_ids:
+  - mc.mth.o.proportion_additive
+  - mc.mth.o.proportion_ratio_inverted
+  - mc.mth.o.rate_multiplied
+solution:
+  steps:
+  - n: 1
+    latex: \text{one costs } 2.7 \div 6 = 0.45
+    reason: Find the cost of one
+    check_id: chk_build_mth_num_0238_one
+  - n: 2
+    latex: 0.45 \times 12 = 5.40
+    reason: Multiply by 12
+    check_id: chk_build_mth_num_0238_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- market
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  x1: '6'
+  x2: '12'
+  y1: '2.7'
+checks:
+  chk_build_mth_num_0238_ans:
+    args:
+      dp: 2
+      expression: 2.7/6*12
+    tool: math_evaluate
+  chk_build_mth_num_0238_one:
+    args:
+      expression: 2.7/6
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:38:35.797Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.number.0238
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,32 @@
+id: mc.phy.o.initial_velocity_term_dropped
+kc_ids:
+- kc.phy.o.motion.solve_with_equation
+student_name: Leaving out the ut term
+description: Uses s = ½at² for an object that did not start from rest, leaving out the distance ut from the starting velocity.
+signatures:
+- kind: answer_transform
+  expression: a*t^2/2
+fix:
+  strategy: contrast_example
+  text:
+    en: s = ½at² is only for an object starting from rest. With a starting velocity u, the object also covers ut.
+probe_item_ids:
+- itm.phy.o.motion.0333
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

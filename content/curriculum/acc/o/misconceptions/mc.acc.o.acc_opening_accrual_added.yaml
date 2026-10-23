@@ -1,0 +1,34 @@
+id: mc.acc.o.acc_opening_accrual_added
+kc_ids:
+- kc.acc.o.accruals_prepayments.accrued_expense
+student_name: Adding last year's accrual
+description: Adds the amount owing at the start of the year, which was last year's cost, to this year's expense.
+signatures:
+- kind: answer_transform
+  expression: paid + closing + opening
+fix:
+  strategy: contrast_example
+  text:
+    en: Part of this year's payments cleared last year's bill. Take that part off.
+probe_item_ids:
+- itm.acc.o.accruals_prepayments.0008
+- itm.acc.o.accruals_prepayments.0009
+- itm.acc.o.accruals_prepayments.0010
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,131 @@
+id: itm.mth.o.statistics.0075
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.grouped_mean
+stem: 'The times, t minutes, that students took to finish a task are grouped: 10 ≤ t < 30: 10; 30 ≤ t < 50: 9; 50 ≤ t < 70: 11; 70 ≤ t < 90: 2.'
+parts:
+- id: a
+  prompt: Estimate the mean time.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '43.125'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_sta_0075_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You do not know the exact times, so use one value for each class.
+  - rung: 2
+    name: concept
+    text:
+      en: Use the midpoint of each class, multiply by its frequency, add, and divide by the total frequency.
+  - rung: 3
+    name: first_step
+    text:
+      en: The first class has midpoint (10 + 30) ÷ 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Σfx = 1380 and Σf = 32.
+  - rung: 5
+    name: full_step
+    text:
+      en: The estimated mean is 43.125 minutes.
+  misconception_ids:
+  - mc.mth.o.grouped_upper_bound
+  - mc.mth.o.frequency_mean_rows
+  - mc.mth.o.class_width_wrong
+solution:
+  steps:
+  - n: 1
+    latex: '\text{midpoints: } 20, 40, 60, 80'
+    reason: Middle of each class
+    check_id: chk_build_mth_sta_0075_mids
+  - n: 2
+    latex: \Sigma fx = 1380,\ \Sigma f = 32
+    reason: Midpoint times frequency, added
+    check_id: chk_build_mth_sta_0075_t
+  - n: 3
+    latex: \text{mean} \approx \frac{1380}{32} = 43.125
+    reason: Divide by the total frequency
+    check_id: chk_build_mth_sta_0075_sc
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0075_ans:
+    args:
+      expression: 1380.0/32
+    tool: math_evaluate
+  chk_build_mth_sta_0075_mids:
+    args:
+      equations:
+      - p = (10 + 30)/2
+      - q = (30 + 50)/2
+      - r = (50 + 70)/2
+      - s = (70 + 90)/2
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+  chk_build_mth_sta_0075_sc:
+    args:
+      grouped:
+      - frequency: 10
+        lower: 10
+        upper: 30
+      - frequency: 9
+        lower: 30
+        upper: 50
+      - frequency: 11
+        lower: 50
+        upper: 70
+      - frequency: 2
+        lower: 70
+        upper: 90
+      quartile_method: exclusive
+    tool: stats_compute
+  chk_build_mth_sta_0075_t:
+    args:
+      equations:
+      - p = 1380.0
+      - q = 32
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

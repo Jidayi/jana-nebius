@@ -1,0 +1,36 @@
+id: mc.phy.o.prefix_confused_with_neighbour
+kc_ids:
+- kc.phy.o.measurement.si_prefixes
+student_name: Mixing up neighbouring prefixes
+description: Confuses a prefix with its neighbour, such as milli with micro or kilo with mega, so the answer is a thousand times too big or too small.
+signatures:
+- kind: answer_transform
+  expression: x/(f*1000)
+fix:
+  strategy: rule_restatement
+  text:
+    en: Milli and micro differ by a factor of a thousand, and so do kilo and mega. Write the prefix as a power of ten before you convert.
+probe_item_ids:
+- itm.phy.o.measurement.0011
+- itm.phy.o.measurement.0013
+- itm.phy.o.measurement.0014
+- itm.phy.o.measurement.0015
+- itm.phy.o.em_spectrum.0016
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

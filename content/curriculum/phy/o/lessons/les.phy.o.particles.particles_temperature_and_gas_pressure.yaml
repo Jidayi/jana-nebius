@@ -1,0 +1,82 @@
+id: les.phy.o.particles.particles_temperature_and_gas_pressure
+node_id: cur.phy.o.thermal_physics.kinetic_particle_model_of_matter
+kc_ids:
+- kc.phy.o.particles.states_of_matter
+- kc.phy.o.particles.temperature_scales
+- kc.phy.o.particles.gas_pressure_particles
+- kc.phy.o.particles.pressure_and_volume
+title: Particles, temperature and gas pressure
+estimated_minutes: 12
+blocks:
+- type: step
+  text:
+    en: Try this before we name anything. Think about how much room there is to squash something into.
+  item_id: itm.phy.o.particles.0002
+  action: try_first
+  why:
+    en: Air particles have lots of empty space between them, so pushing moves them closer together. Water particles are already close, so there is no room to squash them.
+  names:
+    en: This is the particle model. Everything is made of tiny moving particles, and their spacing and motion decide whether it is a solid, liquid or gas.
+- type: step
+  text:
+    en: Particles in a solid are held in place. But are they still?
+  item_id: itm.phy.o.particles.0015
+  action: choose
+  why:
+    en: The particles in ice are close together in a regular pattern. They never stop moving; they vibrate about fixed positions.
+- type: step
+  text:
+    en: 'Gas particles move fast in every direction. Predict: what actually pushes on the inside of the can?'
+  item_id: itm.phy.o.particles.0043
+  action: predict
+  why:
+    en: Each time a particle hits a wall it gives the wall a small push. Huge numbers of hits every second add up to a steady force on the walls.
+  names:
+    en: Gas pressure is the force of particles hitting the walls, spread over the area of the walls.
+- type: step
+  text:
+    en: Colder means slower particles. The kelvin scale starts at the coldest possible temperature, so it has no negative values.
+  item_id: itm.phy.o.particles.0016
+  action: calculate
+  why:
+    en: To change Celsius to kelvin, add 273.
+  names:
+    en: The coldest possible temperature is absolute zero. It is zero kelvin.
+- type: step
+  text:
+    en: Same idea, less help this time. Now go from kelvin back to Celsius.
+  item_id: itm.phy.o.particles.0026
+  action: choose
+  why:
+    en: Subtract 273 from the kelvin temperature. The answer is below zero, at -45 °C.
+- type: step
+  text:
+    en: 'Now one on your own. Predict first: if the gas is squashed into less space, does its pressure go up or down?'
+  item_id: itm.phy.o.particles.0058
+  action: predict
+  why:
+    en: At a steady temperature, pressure times volume stays the same. So 300 × 75 = p × 50, and p is 450 kPa.
+  names:
+    en: For a fixed mass of gas at constant temperature, pV is constant.
+- type: check
+  item_ids:
+  - itm.phy.o.particles.0044
+  - itm.phy.o.particles.0047
+  - itm.phy.o.particles.0025
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

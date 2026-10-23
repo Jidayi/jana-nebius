@@ -1,0 +1,36 @@
+id: mc.mth.o.pie_percent_for_degrees
+kc_ids:
+- kc.mth.o.statistics.pie_charts
+student_name: Using 100 instead of 360
+description: Works out the frequency as a percentage and uses that number as the angle.
+signatures:
+- kind: answer_transform
+  expression: f/total*100
+fix:
+  strategy: rule_restatement
+  text:
+    en: A full circle is 360°, not 100. Multiply the fraction by 360.
+probe_item_ids:
+- itm.mth.o.statistics.0094
+- itm.mth.o.statistics.0095
+- itm.mth.o.statistics.0096
+- itm.mth.o.statistics.0097
+- itm.mth.o.statistics.0098
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

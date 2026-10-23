@@ -1,0 +1,120 @@
+id: itm.phy.o.density.0024
+version: 0.1.2
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.measuring_density
+stem: A measuring cylinder holds water up to the 60 cm³ mark. A zinc fitting of mass 35.5 g is lowered in on a thread until it is fully under water, and the level rises to 65 cm³.
+parts:
+- id: a
+  prompt: Calculate the density of the zinc fitting in g/cm³.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '7.1'
+    unit: g/cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_den_0024_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The object's volume is the volume of water it pushes aside.
+  - rung: 2
+    name: concept
+    text:
+      en: 'The rise in the water level gives the volume: final reading − starting reading.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 65 − 60, then divide the mass by it.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The volume is 5 cm³.
+  - rung: 5
+    name: full_step
+    text:
+      en: The density of the zinc fitting is 7.1 g/cm³.
+  misconception_ids:
+  - mc.phy.o.displacement_final_reading_as_volume
+  - mc.phy.o.displacement_readings_added
+  - mc.phy.o.density_volume_over_mass
+solution:
+  steps:
+  - n: 1
+    latex: V = 65 - 60 = 5\ \text{cm}^3
+    reason: The rise in level is the object's volume
+    check_id: chk_build_phy_den_0024_v
+  - n: 2
+    latex: \rho = \frac{35.5}{5} = 7.1\ \text{g/cm}^3
+    reason: Density = mass ÷ volume
+    check_id: chk_build_phy_den_0024_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 75
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  V1: '60'
+  V2: '65'
+checks:
+  chk_build_phy_den_0024_ans:
+    args:
+      expression: 35.5/(65 - 60)
+    tool: math_evaluate
+  chk_build_phy_den_0024_v:
+    args:
+      expression: 65 - 60
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:41:14.978Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.density.0024
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

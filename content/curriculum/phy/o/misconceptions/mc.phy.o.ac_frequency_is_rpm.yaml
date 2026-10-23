@@ -1,0 +1,35 @@
+id: mc.phy.o.ac_frequency_is_rpm
+kc_ids:
+- kc.phy.o.electromagnetism.electromagnetic_induction
+student_name: Turns per minute as hertz
+description: Gives the number of turns of a generator coil per minute as the frequency, forgetting that hertz means cycles per second.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: Hertz means cycles per second. A coil turning 3000 times a minute turns 50 times a second.
+probe_item_ids:
+- itm.phy.o.electromagnetism.0042
+- itm.phy.o.electromagnetism.0044
+- itm.phy.o.electromagnetism.0031
+- itm.phy.o.electromagnetism.0037
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,42 @@
+{
+  "id": "model-manager.error-final",
+  "title": "Tutor models, damaged file",
+  "component": "ModelManager",
+  "state": "error-final",
+  "note": "PLT-10 and UXS-11: a bad hash, size or signature is refused before load with this message.",
+  "payload": {
+    "installed": [
+      {
+        "model_pack_id": "mp.synth.8b.q4_k_m.low",
+        "model_id": "mp.synth.8b.q4_k_m.low",
+        "state": "error",
+        "error_code": "model.damaged",
+        "hardware_class": "low",
+        "size_bytes": 5476083302,
+        "licence": "Apache-2.0",
+        "attribution": "Synthetic model, made up for the gallery."
+      }
+    ],
+    "available": [],
+    "assignment": {
+      "fast": "mp.synth.8b.q4_k_m.low",
+      "strong": "mp.synth.8b.q4_k_m.low"
+    },
+    "recommended": {
+      "fast": "mp.synth.14b.q4_k_m.mid",
+      "strong": "mp.synth.14b.q4_k_m.mid",
+      "reason_key": "hardware_class.mid.measured"
+    }
+  },
+  "payloadContract": "https://jana.dev/contracts/api/commands#/$defs/ModelCatalogue",
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "damaged or did not come from us",
+    "Delete file"
+  ]
+}

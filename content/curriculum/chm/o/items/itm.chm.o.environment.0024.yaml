@@ -1,0 +1,81 @@
+id: itm.chm.o.environment.0024
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.fertilisers
+stem: Rain washes too much fertiliser from a field into a lake.
+parts:
+- id: a
+  prompt: Why can this kill the fish in the lake?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Algae grow fast, then die; bacteria that decay them use up the oxygen in the water
+      correct: true
+    - id: B
+      text: The fertiliser removes all the carbon dioxide from the water
+      correct: false
+    - id: C
+      text: The fertiliser is poisonous and kills the fish at once
+      correct: false
+    - id: D
+      text: The fertiliser makes the water boil
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Fertilisers help plants grow. Which plants live in a lake?
+  - rung: 2
+    name: concept
+    text:
+      en: Extra nitrates and phosphates make algae grow very quickly.
+  - rung: 3
+    name: first_step
+    text:
+      en: When the algae die, bacteria feed on them.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Bacteria that decay dead material use oxygen dissolved in the water.
+  - rung: 5
+    name: full_step
+    text:
+      en: Algae grow and die; their decay by bacteria uses up dissolved oxygen, so fish die. This is eutrophication.
+solution:
+  steps:
+  - n: 1
+    latex: \text{nutrients }\rightarrow\text{ algae }\rightarrow\text{ decay }\rightarrow\text{ less oxygen}
+    reason: Eutrophication
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

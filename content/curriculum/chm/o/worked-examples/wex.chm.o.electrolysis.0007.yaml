@@ -1,0 +1,48 @@
+id: wex.chm.o.electrolysis.0007
+kc_ids:
+- kc.chm.o.electrolysis.applications
+problem: A steel spoon of mass 25.40 g is silver-plated. Afterwards its mass is 26.48 g. Describe the cell and find the mass of silver deposited.
+steps:
+- n: 1
+  latex: '\text{spoon: cathode; silver: anode}'
+  reason: Metal is deposited at the cathode
+- n: 2
+  latex: '\text{electrolyte: silver nitrate solution}'
+  reason: Contains Ag⁺ ions
+- n: 3
+  latex: \text{Ag}^{+} + e^- \rightarrow \text{Ag}
+  reason: At the spoon
+- n: 4
+  latex: 26.48 - 25.40 = 1.08
+  reason: Gain in mass
+  check_id: chk_build_chm_electrolysis_w0007_m
+final_answer:
+  latex: 1.08\ \text{g of silver}
+  check_id: chk_build_chm_electrolysis_w0007_m
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_w0007_m:
+    args:
+      expression: 26.48 - 25.40
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

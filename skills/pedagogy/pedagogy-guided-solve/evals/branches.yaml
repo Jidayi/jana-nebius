@@ -1,0 +1,126 @@
+# Colocated skill evals (SKL-21): one case per branch of the student-state table, on the pack's own practice items.
+# The student lines are synthetic and written for this repository.
+suite: skill.pedagogy-guided-solve
+version: 2026-10-13.1
+description: Guided solve, branch by branch. The tutor confirms a reasoned right answer, asks for the missing piece of
+  a sloppy one, points at a wrong one without giving the value, answers rapid guesses without the key, and meets a
+  stuck student with an entry question before the first hint.
+scenarios:
+- id: guided_solve_right_and_reasoned
+  title: A right answer with its unit is confirmed and the item closes
+  split: development
+  critical: true
+  stage: S2
+  requirements: [SKL-21, EVL-07]
+  tags: [skill_eval, branch_1]
+  synthetic: true
+  setup:
+    profile: {level: O, subjects: [physics], age_band: '13_15'}
+    mode: guided
+    question: {item_ref: 'phy.o:itm.phy.o.motion.0001'}
+    model: {hardware_class: mid, network: disabled}
+    seed: 1
+    repeats: 1
+  turns:
+  - student: 8.0 m/s
+    expect:
+    - board_step: {owner: student, status: correct}
+    - turn_status: complete
+    - reply: {max_words: 60}
+- id: guided_solve_right_but_sloppy
+  title: The right number without its unit is not passed as complete
+  split: development
+  critical: true
+  stage: S2
+  requirements: [SKL-21, EVL-07]
+  tags: [skill_eval, branch_2]
+  synthetic: true
+  setup:
+    profile: {level: O, subjects: [physics], age_band: '13_15'}
+    mode: guided
+    question: {item_ref: 'phy.o:itm.phy.o.motion.0002'}
+    model: {hardware_class: mid, network: disabled}
+    seed: 2
+    repeats: 1
+  turns:
+  - student: '2.0'
+    expect:
+    - board_step: {owner: student}
+    - turn_status: complete
+    - reply: {ends_with_question: true}
+- id: guided_solve_wrong
+  title: A wrong value gets one question at the faulty step and no key
+  split: development
+  critical: true
+  stage: S2
+  requirements: [SKL-21, EVL-07]
+  tags: [skill_eval, branch_3]
+  synthetic: true
+  setup:
+    profile: {level: O, subjects: [physics], age_band: '13_15'}
+    mode: guided
+    question: {item_ref: 'phy.o:itm.phy.o.motion.0004'}
+    model: {hardware_class: mid, network: disabled}
+    seed: 3
+    repeats: 1
+  turns:
+  - student: 39.2 m
+    expect:
+    - board_step: {owner: student, status: incorrect}
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply: {max_words: 60}
+- id: guided_solve_guessing
+  title: Fast changing guesses never draw out the key
+  split: development
+  critical: true
+  stage: S2
+  requirements: [SKL-21, EVL-07]
+  tags: [skill_eval, branch_4]
+  synthetic: true
+  setup:
+    profile: {level: O, subjects: [physics], age_band: '13_15'}
+    mode: guided
+    question: {item_ref: 'phy.o:itm.phy.o.motion.0005'}
+    model: {hardware_class: mid, network: disabled}
+    seed: 4
+    repeats: 1
+  turns:
+  - student: 720 m
+    expect:
+    - board_step: {owner: student, status: incorrect}
+    - no_answer_leak: true
+  - student: 560 m
+    expect:
+    - board_step: {owner: student, status: incorrect}
+    - no_answer_leak: true
+    - hint_rung: {eq: 0}
+  - student: 160 m
+    expect:
+    - board_step: {owner: student, status: incorrect}
+    - no_answer_leak: true
+- id: guided_solve_stuck
+  title: A stuck student with no attempt gets the entry question, then the first rung
+  split: development
+  critical: true
+  stage: S2
+  requirements: [SKL-21, EVL-07]
+  tags: [skill_eval, branch_5]
+  synthetic: true
+  setup:
+    profile: {level: O, subjects: [physics], age_band: '13_15'}
+    mode: guided
+    question: {item_ref: 'phy.o:itm.phy.o.motion.0006'}
+    model: {hardware_class: mid, network: disabled}
+    seed: 5
+    repeats: 1
+  turns:
+  - action: {kind: stuck}
+    expect:
+    - template: tpl.entry_question
+    - no_answer_leak: true
+  - action: {kind: stuck}
+    expect:
+    - hint_rung: {eq: 1}
+    - no_answer_leak: true
+    - reply: {max_words: 60}

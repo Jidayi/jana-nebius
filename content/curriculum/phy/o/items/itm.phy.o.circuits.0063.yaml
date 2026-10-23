@@ -1,0 +1,90 @@
+id: itm.phy.o.circuits.0063
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.circuit_components
+stem: An LED is connected the right way round in a circuit and a small current passes through it.
+parts:
+- id: a
+  prompt: What does the LED do?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It senses the light falling on it
+      correct: false
+      misconception_id: mc.phy.o.led_ldr_arrows_confused
+      feedback: 'Arrows pointing out: the component gives out light (LED). Arrows pointing in: light falls on it (LDR).'
+    - id: B
+      text: It senses how hot it is
+      correct: false
+    - id: C
+      text: It blocks the current
+      correct: false
+      misconception_id: mc.phy.o.diode_direction_reversed
+      feedback: The triangle in a diode symbol points the way conventional current can flow, from the positive side towards the negative side.
+    - id: D
+      text: It gives out light
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: LED stands for light-emitting diode.
+  - rung: 2
+    name: concept
+    text:
+      en: A diode connected the right way round conducts.
+  - rung: 3
+    name: first_step
+    text:
+      en: The word 'emitting' tells you what this diode does as it conducts.
+  - rung: 4
+    name: worked_step
+    text:
+      en: An LED is an output device, not a sensor.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: it gives out light.'
+  misconception_ids:
+  - mc.phy.o.diode_direction_reversed
+  - mc.phy.o.led_ldr_arrows_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{It gives out light}
+    reason: Match the component to what it does
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

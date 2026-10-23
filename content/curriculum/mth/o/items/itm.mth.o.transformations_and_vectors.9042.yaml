@@ -1,0 +1,85 @@
+id: itm.mth.o.transformations_and_vectors.9042
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.transformations_and_vectors.vector_arithmetic
+stem: Vectors a = (3, -2) and b = (-1, 4) are written as (x, y). Let c = 2a - b.
+parts:
+- id: a
+  prompt: Find the y-component of c.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '-8'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9042
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Vector operations act on corresponding components; subtracting b changes the sign of its component.
+  - rung: 2
+    name: concept
+    text:
+      en: Double the y-component of a, then subtract the y-component of b.
+  - rung: 3
+    name: first_step
+    text:
+      en: Double the y-component of a, then subtract the y-component of b.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Keep the negative sign of the first y-component when doubling it.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is -8.
+solution:
+  steps:
+  - n: 1
+    latex: 2 \left(-2\right) - 4
+    reason: Double the y-component of a, then subtract the y-component of b.
+    check_id: chk_build_mastery_supplement_mth_9042
+  - n: 2
+    latex: '-8'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9042
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9042:
+    args:
+      angle_unit: degrees
+      expression: 2*(-2)-4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

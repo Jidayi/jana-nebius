@@ -1,0 +1,34 @@
+id: mc.acc.o.sd_cash_discount_ignored
+kc_ids:
+- kc.acc.o.source_documents.cash_discount
+student_name: Ignoring the cash discount
+description: Takes the full invoice amount as paid even though the customer paid in time.
+signatures:
+- kind: answer_transform
+  expression: invoice
+fix:
+  strategy: rule_restatement
+  text:
+    en: Paying within the terms earns the cash discount, so less is paid.
+probe_item_ids:
+- itm.acc.o.source_documents.0041
+- itm.acc.o.source_documents.0042
+- itm.acc.o.source_documents.0043
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

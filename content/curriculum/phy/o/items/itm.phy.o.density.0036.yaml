@@ -1,0 +1,101 @@
+id: itm.phy.o.density.0036
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.floating_and_sinking
+stem: A cork has a mass of 1.2 g and a volume of 5 cm³. It is placed in water, which has a density of 1.0 g/cm³. Does it float or sink?
+parts:
+- id: a
+  prompt: Choose the correct prediction and reason.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It floats, because it is less dense than the water
+      correct: true
+    - id: B
+      text: It sinks, because it is less dense than the water
+      correct: false
+      misconception_id: mc.phy.o.density_float_rule_reversed
+      feedback: A stone is denser than water and sinks; a cork is less dense and floats. An object floats when its density is less than the liquid's.
+    - id: C
+      text: It sinks, because it is too heavy to be held up
+      correct: false
+      misconception_id: mc.phy.o.mass_decides_floating
+      feedback: A huge tree trunk floats while a small pebble sinks. What counts is the mass in each unit of volume, the density, compared with the liquid's density.
+    - id: D
+      text: It floats, but only because it is small
+      correct: false
+      misconception_id: mc.phy.o.volume_decides_floating
+      feedback: 'Cut a piece of wood in half and both halves still float. Size does not decide it: compare the densities.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Floating depends on densities, not on mass or size alone.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Work out the object''s density: mass ÷ volume.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Compare the object's density with the water's density, 1.0 g/cm³.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The object's density is 0.24 g/cm³. Is that more or less than the liquid's?
+  - rung: 5
+    name: full_step
+    text:
+      en: It floats, because it is less dense than the water.
+  misconception_ids:
+  - mc.phy.o.density_float_rule_reversed
+  - mc.phy.o.mass_decides_floating
+  - mc.phy.o.volume_decides_floating
+solution:
+  steps:
+  - n: 1
+    latex: \rho = \frac{1.2}{5} = 0.24\ \text{g/cm}^3
+    reason: Density = mass ÷ volume
+    check_id: chk_build_phy_den_0036_rho
+  - n: 2
+    latex: 0.24 < 1.0 \Rightarrow \text{it floats}
+    reason: An object less dense than the liquid floats; a denser one sinks
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_den_0036_rho:
+    args:
+      expression: 1.2/5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,32 @@
+id: mc.chm.o.covalent_pairs_equal_atoms
+kc_ids:
+- kc.chm.o.atoms.covalent_bonding
+student_name: One bond for every atom
+description: Gives the number of shared pairs as the number of atoms in the molecule.
+signatures:
+- kind: answer_transform
+  expression: 'choice: shared pairs equal to number of atoms'
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'Count bonds, not atoms: a molecule of two atoms joined by one pair has one bond, not two.'
+probe_item_ids:
+- itm.chm.o.atoms.0065
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

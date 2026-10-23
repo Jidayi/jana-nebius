@@ -1,0 +1,45 @@
+id: wex.mth.o.geometry.0006
+kc_ids:
+- kc.mth.o.geometry.map_scales
+problem: 'A map has a scale of 1 : 200000. Two villages are 3.2 cm apart on the map. Find the real distance between them in kilometres.'
+steps:
+- n: 1
+  latex: 3.2 \times 200000 = 640000\ \text{cm}
+  reason: Every map centimetre is 200000 real centimetres
+  check_id: chk_build_mth_geo_w0006_real
+- n: 2
+  latex: 640000\ \text{cm} = 6.4\ \text{km}
+  reason: Divide by 100 for metres, then by 1000 for kilometres
+  check_id: chk_build_mth_geo_w0006_ans
+final_answer:
+  latex: 6.4\ \text{km}
+  check_id: chk_build_mth_geo_w0006_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_w0006_ans:
+    args:
+      expression: 3.2*200000/100000
+    tool: math_evaluate
+  chk_build_mth_geo_w0006_real:
+    args:
+      expression: 3.2*200000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

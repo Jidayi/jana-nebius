@@ -1,0 +1,36 @@
+id: mc.phy.o.spring_cm_not_converted
+kc_ids:
+- kc.phy.o.forces.springs
+student_name: Centimetres used as metres
+description: Uses an extension in centimetres with a spring constant in N/m (or mixes centimetres and metres in one sum), so the answer is a hundred times out.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: A spring constant in N/m needs the extension in metres. Change centimetres into metres before you use F = kx.
+probe_item_ids:
+- itm.phy.o.forces.0059
+- itm.phy.o.forces.0060
+- itm.phy.o.forces.0062
+- itm.phy.o.forces.0064
+- itm.phy.o.forces.0065
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

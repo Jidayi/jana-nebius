@@ -1,0 +1,9 @@
+name: no-spec guard
+# Server-side backstop: fails if the private Jana specification ever lands in this repository.
+on: [push, pull_request]
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - run: sh scripts/git-hooks/check-no-spec.sh tree

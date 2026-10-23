@@ -1,0 +1,33 @@
+id: mc.chm.o.environment_nox_from_fuel_nitrogen
+kc_ids:
+- kc.chm.o.environment.air_pollution
+student_name: Nitrogen oxides come from nitrogen in petrol
+description: Thinks the oxides of nitrogen in car exhaust come from nitrogen compounds in the fuel, rather than from nitrogen and oxygen in the air reacting at the high temperature of the engine.
+signatures:
+- kind: answer_transform
+  expression: 'choice: nitrogen oxides traced to nitrogen in the fuel'
+fix:
+  strategy: prerequisite_detour
+  text:
+    en: 'Petrol is a mixture of hydrocarbons: it contains almost no nitrogen. Air is mostly nitrogen. In the very hot engine, nitrogen and oxygen from the air combine to form nitrogen monoxide and nitrogen dioxide.'
+probe_item_ids:
+- itm.chm.o.environment.0025
+- itm.chm.o.environment.0027
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

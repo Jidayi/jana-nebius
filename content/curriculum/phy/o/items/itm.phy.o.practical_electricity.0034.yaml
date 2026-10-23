@@ -1,0 +1,92 @@
+id: itm.phy.o.practical_electricity.0034
+version: 0.1.1
+type: multi_select
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+stem: Some features make the wiring in a home safe.
+parts:
+- id: a
+  prompt: Which of these protect against cables that get too hot, or against an electric shock? Select all that apply.
+  marks: 1
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: A fuse with a much higher rating than needed
+      correct: false
+    - id: B
+      text: Joining the earth wire to the neutral wire
+      correct: false
+    - id: C
+      text: A fuse in the live wire
+      correct: true
+    - id: D
+      text: An earth wire joined to a metal case
+      correct: true
+    - id: E
+      text: A circuit breaker
+      correct: true
+    - id: F
+      text: A switch in the neutral wire
+      correct: false
+    scoring: exact_set
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what each feature does when there is a fault.
+  - rung: 2
+    name: concept
+    text:
+      en: A protective device must cut off the high voltage or give a safe path for a fault current.
+  - rung: 3
+    name: first_step
+    text:
+      en: A device in the wrong wire, or one that cannot respond to a fault, gives no protection.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Look for a fuse, an earth connection to a metal case, double insulation and a circuit breaker.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: a fuse in the live wire, an earth wire on a metal case and a circuit breaker.'
+solution:
+  steps:
+  - n: 1
+    latex: \text{fuse, earth wire, double insulation, circuit breaker}
+    reason: Safety features
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

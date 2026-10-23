@@ -1,0 +1,54 @@
+id: wex.phy.o.particles.0005
+kc_ids:
+- kc.phy.o.particles.gas_pressure_particles
+problem: A sealed, rigid container of gas is at 200 kPa and 27 °C. It is heated to 87 °C. At constant volume, the pressure of a fixed mass of gas is proportional to its temperature in kelvin. Find the new pressure of the gas.
+steps:
+- n: 1
+  latex: T_1 = 27 + 273 = 300\ \text{K}
+  reason: Convert to kelvin
+  check_id: chk_build_phy_ptc_w0005_k1
+- n: 2
+  latex: T_2 = 87 + 273 = 360\ \text{K}
+  reason: Convert to kelvin
+  check_id: chk_build_phy_ptc_w0005_k2
+- n: 3
+  latex: p_2 = 200 \times \frac{360}{300} = 240\ \text{kPa}
+  reason: Pressure is proportional to the kelvin temperature
+  check_id: chk_build_phy_ptc_w0005_ans
+final_answer:
+  latex: 240\ \text{kPa}
+  check_id: chk_build_phy_ptc_w0005_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ptc_w0005_ans:
+    args:
+      expression: 200*(87 + 273)/(27 + 273)
+    tool: math_evaluate
+  chk_build_phy_ptc_w0005_k1:
+    args:
+      expression: 27 + 273
+    tool: math_evaluate
+  chk_build_phy_ptc_w0005_k2:
+    args:
+      expression: 87 + 273
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

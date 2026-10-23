@@ -1,0 +1,33 @@
+id: mc.acc.o.de_expense_as_drawings
+kc_ids:
+- kc.acc.o.double_entry.record_cash_transactions
+student_name: Business expenses as drawings
+description: Debits drawings for a payment that is an expense of the business, such as rent or wages.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: drawings
+fix:
+  strategy: contrast_example
+  text:
+    en: Drawings are only for what the owner takes for personal use. A business bill is an expense.
+probe_item_ids:
+- itm.acc.o.double_entry.0016
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

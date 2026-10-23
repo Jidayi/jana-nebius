@@ -1,0 +1,108 @@
+id: itm.chm.o.stoichiometry.0043
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.percentage_composition
+stem: A sample of sulfur dioxide, SO₂ is analysed.
+parts:
+- id: a
+  prompt: Calculate the percentage by mass of S in SO₂.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '50.0'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0043_pct
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What fraction of the mass of SO₂ is S?
+  - rung: 2
+    name: concept
+    text:
+      en: Percentage = mass of the element's atoms in the formula ÷ Mr × 100.
+  - rung: 3
+    name: first_step
+    text:
+      en: Mr of SO₂ is 64.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The S atoms contribute 32. Work out 32 ÷ 64 × 100.
+  - rung: 5
+    name: full_step
+    text:
+      en: 32 ÷ 64 × 100 = 50.0%.
+  misconception_ids:
+  - mc.chm.o.percent_count_ignored
+  - mc.chm.o.percent_inverted
+solution:
+  steps:
+  - n: 1
+    latex: M_r = 64
+    reason: Relative formula mass of SO₂
+    check_id: chk_build_chm_stoichiometry_0043_mr
+  - n: 2
+    latex: \text{S} = 32
+    reason: Mass of the S atoms
+    check_id: chk_build_chm_stoichiometry_0043_el
+  - n: 3
+    latex: \% = \frac{32}{64} \times 100 = 50.0\%
+    reason: Fraction of the whole
+    check_id: chk_build_chm_stoichiometry_0043_pct
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0043_el:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_s
+      formula: S
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0043_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      formula: SO2
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0043_pct:
+    args:
+      expression: 100*32/64
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

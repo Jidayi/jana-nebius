@@ -1,0 +1,89 @@
+id: itm.chm.o.organic.0047
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.fuels_and_cracking
+stem: Some fractions from the fractional distillation of petroleum are listed below.
+parts:
+- id: a
+  prompt: Put them in order from the top of the column to the bottom.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s1
+      text: refinery gas
+    - id: s2
+      text: petrol (gasoline)
+    - id: s5
+      text: diesel oil (gas oil)
+    - id: s3
+      text: naphtha
+    - id: s4
+      text: kerosene (paraffin)
+    - id: s6
+      text: bitumen
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+    - s5
+    - s6
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The top of the column is the coolest part; the bottom is the hottest.
+  - rung: 2
+    name: concept
+    text:
+      en: The smaller the molecules, the lower the boiling point and the higher the fraction leaves.
+  - rung: 3
+    name: first_step
+    text:
+      en: Refinery gas, with the smallest molecules, leaves at the top; bitumen stays at the bottom.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Petrol comes just below the gases; diesel oil comes below kerosene.
+  - rung: 5
+    name: full_step
+    text:
+      en: Refinery gas, petrol, naphtha, kerosene, diesel oil, bitumen.
+  misconception_ids:
+  - mc.chm.o.organic_big_molecules_boil_low
+solution:
+  steps:
+  - n: 1
+    latex: \text{smallest molecules at the top, largest at the bottom}
+    reason: Boiling point rises with size
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

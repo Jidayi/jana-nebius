@@ -1,0 +1,86 @@
+id: itm.mth.o.trigonometry.9046
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.sine_rule
+stem: In triangle ABC, angle A is 30 degrees and angle B is 45 degrees. The side opposite A is 8 cm.
+parts:
+- id: a
+  prompt: Find the side opposite B. Give 3 significant figures.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '11.3'
+    unit: cm
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mastery_supplement_mth_9046
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The sine rule matches each side with the sine of its own opposite angle.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply the known side by the sine of B and divide by the sine of A, in degree mode.
+  - rung: 3
+    name: first_step
+    text:
+      en: Multiply the known side by the sine of B and divide by the sine of A, in degree mode.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Keep each side paired with its opposite angle and use degree mode.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 11.3 cm.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{8 \sin 45^\circ}{\sin 30^\circ}
+    reason: Multiply the known side by the sine of B and divide by the sine of A, in degree mode.
+    check_id: chk_build_mastery_supplement_mth_9046
+  - n: 2
+    latex: '11.3'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9046
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9046:
+    args:
+      angle_unit: degrees
+      expression: 8*sin(45)/sin(30)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

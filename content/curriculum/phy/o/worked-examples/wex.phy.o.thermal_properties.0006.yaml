@@ -1,0 +1,74 @@
+id: wex.phy.o.thermal_properties.0006
+kc_ids:
+- kc.phy.o.thermal_properties.latent_heat
+problem: To measure the specific latent heat of fusion of ice, a 48 W heater in a funnel of crushed ice at 0 °C is switched on for 400 s, and 69 g of water drips out. An identical funnel with no heater, used as a control, gives 12 g of water in the same time. Find the specific latent heat of fusion of ice, in kJ/kg.
+steps:
+- n: 1
+  latex: E = Pt = 48 \times 400 = 19200\ \text{J}
+  reason: Energy from the heater
+  check_id: chk_build_phy_thp_w0006_e
+- n: 2
+  latex: m = 69 - 12 = 57\ \text{g}
+  reason: Ice melted by the heater alone
+  check_id: chk_build_phy_thp_w0006_dm
+- n: 3
+  latex: m = 0.057\ \text{kg}
+  reason: Kilograms, since L is per kilogram
+  check_id: chk_build_phy_thp_w0006_dmkg
+- n: 4
+  latex: L = \frac{E}{m} = \frac{19200}{0.057} = 337000\ \text{J/kg}
+  reason: Rearrange E = mL
+  check_id: chk_build_phy_thp_w0006_lj
+- n: 5
+  latex: L = 337\ \text{kJ/kg}
+  reason: There are a thousand joules in a kilojoule
+  check_id: chk_build_phy_thp_w0006_ans
+final_answer:
+  latex: 337\ \text{kJ/kg}
+  check_id: chk_build_phy_thp_w0006_ans
+fading_order:
+- 5
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_thp_w0006_ans:
+    args:
+      expression: 48*400/(69 - 12)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_thp_w0006_dm:
+    args:
+      expression: 69 - 12
+    tool: math_evaluate
+  chk_build_phy_thp_w0006_dmkg:
+    args:
+      expression: (69 - 12)/1000
+    tool: math_evaluate
+  chk_build_phy_thp_w0006_e:
+    args:
+      expression: 48*400
+    tool: math_evaluate
+  chk_build_phy_thp_w0006_lj:
+    args:
+      expression: 48*400/((69 - 12)/1000)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

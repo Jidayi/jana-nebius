@@ -1,0 +1,50 @@
+id: wex.phy.o.electrical_quantities.0008
+kc_ids:
+- kc.phy.o.electrical_quantities.resistance
+problem: A length of wire has a resistance of 24 Ω and is connected to a 6 V supply. Calculate the current through it.
+steps:
+- n: 1
+  latex: I = \frac{V}{R} = \frac{6}{24} = 0.25\ \text{A}
+  reason: Rearrange R = V/I
+  check_id: chk_build_phy_elq_w0008_ans
+final_answer:
+  latex: 0.25\ \text{A}
+  check_id: chk_build_phy_elq_w0008_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_elq_w0008_ans:
+    args:
+      expression: 6/24
+    tool: math_evaluate
+  chk_build_phy_elq_w0008_tool:
+    args:
+      components:
+      - emf: '6'
+        id: B
+        kind: battery
+      - id: R
+        kind: resistor
+        resistance: '24'
+      network:
+        series:
+        - B
+        - R
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

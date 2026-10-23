@@ -1,0 +1,98 @@
+id: itm.mth.o.number.0155
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.standard_form_convert
+stem: Write $4.05 \times 10^{3}$ as an ordinary number.
+parts:
+- id: a
+  prompt: Give the number.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '0.00405'
+      correct: false
+      misconception_id: mc.mth.o.sf_power_sign
+      feedback: Numbers less than 1 have a negative power of ten; numbers 10 or more have a positive power.
+    - id: B
+      text: '405'
+      correct: false
+      misconception_id: mc.mth.o.sf_count_zeros
+      feedback: Count how many places the decimal point moves to give a number between 1 and 10.
+    - id: C
+      text: '121.5'
+      correct: false
+      misconception_id: mc.mth.o.sf_powers_multiplied
+      feedback: '10³ × 10⁴ = 10⁷: multiplying powers of the same base adds the indices.'
+    - id: D
+      text: '4050'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The power of 10 tells you how many places to move the decimal point.
+  - rung: 2
+    name: concept
+    text:
+      en: A positive power makes the number bigger; a negative power makes it smaller.
+  - rung: 3
+    name: first_step
+    text:
+      en: Move the decimal point 3 places to the right.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Fill any gaps with zeros.
+  - rung: 5
+    name: full_step
+    text:
+      en: The number is 4050.
+  misconception_ids:
+  - mc.mth.o.sf_count_zeros
+  - mc.mth.o.sf_power_sign
+  - mc.mth.o.sf_powers_multiplied
+solution:
+  steps:
+  - n: 1
+    latex: 4.05 \times 10^{3} = 4050
+    reason: Move the decimal point 3 places to the right
+    check_id: chk_build_mth_num_0155_ans
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0155_ans:
+    args:
+      expression: 4.05*10^(3)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

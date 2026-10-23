@@ -1,0 +1,34 @@
+id: mc.phy.o.liquid_pressure_depends_on_volume
+kc_ids:
+- kc.phy.o.pressure.liquid_pressure
+student_name: More liquid, more pressure
+description: Thinks the pressure at a point in a liquid depends on how much liquid there is, or on the width or shape of the container, rather than only on the depth and the liquid's density.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: contrast_example
+  text:
+    en: A narrow tube and a wide tank filled to the same depth with the same liquid have the same pressure at the bottom. Only the depth, the density and g count.
+probe_item_ids:
+- itm.phy.o.pressure.0026
+- itm.phy.o.pressure.0029
+- itm.phy.o.pressure.0022
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

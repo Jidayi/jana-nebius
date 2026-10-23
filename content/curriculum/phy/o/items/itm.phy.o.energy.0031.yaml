@@ -1,0 +1,99 @@
+id: itm.phy.o.energy.0031
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.potential_energy
+stem: A toolbox of mass 4 kg is lifted from a table 0.9 m above the floor onto a shelf 2.5 m above the floor. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate the increase in its gravitational potential energy.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '64'
+    unit: J
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0031_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Only the change in height matters, not the height above the floor.
+  - rung: 2
+    name: concept
+    text:
+      en: Use ΔEp = mgΔh.
+  - rung: 3
+    name: first_step
+    text:
+      en: It rises 2.5 − 0.9 = 1.6 m.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 4 × 10 × 1.6.
+  - rung: 5
+    name: full_step
+    text:
+      en: The gravitational potential energy increases by 64 J.
+  misconception_ids:
+  - mc.phy.o.gpe_height_not_change
+  - mc.phy.o.gpe_heights_added
+  - mc.phy.o.energy_mass_for_weight
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: \Delta h = 2.5 - 0.9 = 1.6\ \text{m}
+    reason: The change in height
+    check_id: chk_build_phy_nrg_0031_dh
+  - n: 2
+    latex: \Delta E_p = mg\Delta h = 4 \times 10 \times 1.6 = 64\ \text{J}
+    reason: ΔEp = mgΔh
+    check_id: chk_build_phy_nrg_0031_ans
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0031_ans:
+    args:
+      expression: 4*10*(2.5 - 0.9)
+    tool: math_evaluate
+  chk_build_phy_nrg_0031_dh:
+    args:
+      expression: 2.5 - 0.9
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,71 @@
+id: wex.acc.o.depreciation.0007
+kc_ids:
+- kc.acc.o.depreciation.reducing_balance
+problem: Equipment costs $16000 and is depreciated at 25% reducing balance. Find the second year's charge.
+steps:
+- n: 1
+  latex: \text{Charge} = \text{rate} \times \text{opening net book value}
+  reason: Reducing balance
+  check_id: chk_build_acc_depreciation_w0007_t
+- n: 2
+  latex: \text{Year 1} = 25\% \times 16000 = 4000
+  reason: On cost in the first year
+  check_id: chk_build_acc_depreciation_w0007_s2
+- n: 3
+  latex: \text{Net book value} = 16000 - 4000 = 12000
+  reason: What is left
+  check_id: chk_build_acc_depreciation_w0007_s3
+- n: 4
+  latex: \text{Year 2} = 25\% \times 12000 = 3000
+  reason: On the reduced balance
+  check_id: chk_build_acc_depreciation_w0007_a
+final_answer:
+  latex: \$\,3000
+  check_id: chk_build_acc_depreciation_w0007_a
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_depreciation_w0007_a:
+    args:
+      dp: 2
+      expression: (16000 - 16000 * 25/100) * 25/100
+    tool: math_evaluate
+  chk_build_acc_depreciation_w0007_s2:
+    args:
+      dp: 4
+      expression: 16000 * 25/100
+    tool: math_evaluate
+  chk_build_acc_depreciation_w0007_s3:
+    args:
+      dp: 4
+      expression: 16000 - 16000 * 25/100
+    tool: math_evaluate
+  chk_build_acc_depreciation_w0007_t:
+    args:
+      cost: '16000'
+      dp: 2
+      method: reducing_balance
+      part_year_policy: full_year
+      rate_percent: '25'
+      years: 2
+    tool: acc_depreciation
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

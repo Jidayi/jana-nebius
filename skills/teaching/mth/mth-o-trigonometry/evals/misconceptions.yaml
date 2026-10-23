@@ -1,0 +1,494 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.mth-o-trigonometry
+version: 2026-10-13.1
+description: 'Colocated evals for mth-o-trigonometry (SKL-21, EVL-07): one case per misconception. The student answers
+  as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key away,
+  and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: mth_o_trigonometry_01
+  title: Holds 'Adding the squares to find a shorter side'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.pythag_add_for_leg
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.trigonometry.0012
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.trigonometry.pythagoras
+        misconception: mc.mth.o.pythag_add_for_leg
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: mth_o_trigonometry_02
+  title: Holds 'Forgetting the square root'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.pythag_no_root
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.trigonometry.0012
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.trigonometry.pythagoras
+        misconception: mc.mth.o.pythag_no_root
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: mth_o_trigonometry_03
+  title: Holds 'Calculator in radians'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.calculator_radians
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.trigonometry.0027
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.trigonometry.trig_side
+        misconception: mc.mth.o.calculator_radians
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: mth_o_trigonometry_04
+  title: Holds 'Choosing the wrong ratio'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.trig_ratio_wrong
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.trigonometry.0027
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.trigonometry.trig_side
+        misconception: mc.mth.o.trig_ratio_wrong
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_trigonometry_05
+  title: Holds 'Multiplying when you should divide'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.trig_rearrange_wrong
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.trigonometry.0027
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.trigonometry.trig_side
+        misconception: mc.mth.o.trig_rearrange_wrong
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_trigonometry_06
+  title: Holds 'The ratio upside down'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.trig_ratio_inverted
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.trigonometry.0042
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.trigonometry.trig_angle
+        misconception: mc.mth.o.trig_ratio_inverted
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_trigonometry_07
+  title: Holds 'Measuring depression from the vertical'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.depression_from_vertical
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.trigonometry.0057
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.trigonometry.elevation_depression
+        misconception: mc.mth.o.depression_from_vertical
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_trigonometry_08
+  title: Holds 'Forgetting the observer's height'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.eye_height_ignored
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.trigonometry.0057
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.trigonometry.elevation_depression
+        misconception: mc.mth.o.eye_height_ignored
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_trigonometry_09
+  title: Holds 'Pairing a side with the wrong angle'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.sine_rule_inverted
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.trigonometry.0072
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.trigonometry.sine_rule
+        misconception: mc.mth.o.sine_rule_inverted
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_trigonometry_10
+  title: Holds 'Adding the 2bc cos A term'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.cosine_rule_sign
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.trigonometry.0087
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.trigonometry.cosine_rule
+        misconception: mc.mth.o.cosine_rule_sign
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_trigonometry_11
+  title: Holds 'Stopping at the base diagonal'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.three_d_two_dimensions
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.trigonometry.0117
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.trigonometry.three_d
+        misconception: mc.mth.o.three_d_two_dimensions
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

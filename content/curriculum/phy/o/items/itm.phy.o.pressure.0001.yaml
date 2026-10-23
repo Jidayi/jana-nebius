@@ -1,0 +1,92 @@
+id: itm.phy.o.pressure.0001
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.pressure_on_surfaces
+stem: A piano with a weight of 2700 N rests on the floor. The area in contact with the floor is 0.02 m².
+parts:
+- id: a
+  prompt: Calculate the pressure it exerts on the floor.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '135000'
+    unit: Pa
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_prs_0001_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Pressure is the force acting on each square metre.
+  - rung: 2
+    name: concept
+    text:
+      en: Pressure = force ÷ area.
+  - rung: 3
+    name: first_step
+    text:
+      en: The force is the weight, and the area is already in m².
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 2700 ÷ 0.02.
+  - rung: 5
+    name: full_step
+    text:
+      en: The pressure is 135000 Pa.
+  misconception_ids:
+  - mc.phy.o.pressure_force_times_area
+  - mc.phy.o.pressure_area_over_force
+solution:
+  steps:
+  - n: 1
+    latex: p = \frac{F}{A} = \frac{2700}{0.02} = 135000\ \text{Pa}
+    reason: Pressure = force ÷ area
+    check_id: chk_build_phy_prs_0001_ans
+difficulty:
+  prior: -0.7
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  A: '0.02'
+  F: '2700'
+checks:
+  chk_build_phy_prs_0001_ans:
+    args:
+      expression: 2700/0.02
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

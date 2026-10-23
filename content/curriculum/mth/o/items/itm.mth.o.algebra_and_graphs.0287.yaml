@@ -1,0 +1,120 @@
+id: itm.mth.o.algebra_and_graphs.0287
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.quadratic_features
+stem: The graph of $y = x^2 + 2x$ is a parabola.
+parts:
+- id: a
+  prompt: Find the x-coordinate of its turning point.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '-1'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0287_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The turning point of a parabola lies on its line of symmetry.
+  - rung: 2
+    name: concept
+    text:
+      en: Completing the square, x² + bx + c = (x + b/2)² + …, puts the turning point at x = −b/2.
+  - rung: 3
+    name: first_step
+    text:
+      en: Here b = 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: x = −(2) ÷ 2.
+  - rung: 5
+    name: full_step
+    text:
+      en: x = -1.
+  misconception_ids:
+  - mc.mth.o.turning_point_sign
+  - mc.mth.o.turning_value_as_intercept
+  - mc.mth.o.formula_partial_division
+solution:
+  steps:
+  - n: 1
+    latex: x^2 + 2x = (x + 1)^2 - 1
+    reason: Complete the square
+    check_id: chk_build_mth_alg_0287_cs
+  - n: 2
+    latex: x = -1
+    reason: The bracket is zero at the turning point
+    check_id: chk_build_mth_alg_0287_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  b: '2'
+checks:
+  chk_build_mth_alg_0287_ans:
+    args:
+      expression: -(2)/2
+    tool: math_evaluate
+  chk_build_mth_alg_0287_cs:
+    args:
+      equations:
+      - p = abs((2)/2)
+      - q = abs(0 - (2)^2/4)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:35:34.867Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.algebra_and_graphs.0287
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

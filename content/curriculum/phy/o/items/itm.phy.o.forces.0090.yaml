@@ -1,0 +1,101 @@
+id: itm.phy.o.forces.0090
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.moments
+stem: A see-saw is a uniform plank 4 m long, pivoted at its middle. Neema, weight 450 N, sits 0.2 m from one end.
+parts:
+- id: a
+  prompt: How far from the pivot must Musa, weight 480 N, sit on the other side for the see-saw to balance?
+  marks: 3
+  answer:
+    kind: numeric
+    value: '1.69'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_frc_0090_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: For balance, the moments on the two sides of the pivot must be equal.
+  - rung: 2
+    name: concept
+    text:
+      en: Measure Neema's distance from the pivot, not from the end of the plank.
+  - rung: 3
+    name: first_step
+    text:
+      en: The pivot is at the middle, so take 0.2 m from half the length.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Neema is 1.8 m from the pivot, giving a moment of 810 N m.
+  - rung: 5
+    name: full_step
+    text:
+      en: Musa's distance = 810 ÷ 480 = 1.69 m from the pivot.
+  misconception_ids:
+  - mc.phy.o.moment_distance_from_end
+  - mc.phy.o.moment_ratio_inverted
+  - mc.phy.o.balance_equal_distances
+solution:
+  steps:
+  - n: 1
+    latex: d_1 = \frac{4}{2} - 0.2 = 1.8\ \text{m}
+    reason: Distance from the pivot
+    check_id: chk_build_phy_frc_0090_d1
+  - n: 2
+    latex: 450 \times 1.8 = 810\ \text{N m}
+    reason: Neema's moment
+    check_id: chk_build_phy_frc_0090_m1
+  - n: 3
+    latex: d_2 = \frac{810}{480} = 1.69\ \text{m}
+    reason: Anticlockwise moment = clockwise moment
+    check_id: chk_build_phy_frc_0090_ans
+difficulty:
+  prior: 0.5
+  band: stretch
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0090_ans:
+    args:
+      expression: 450*(4/2 - 0.2)/480
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_frc_0090_d1:
+    args:
+      expression: 4/2 - 0.2
+    tool: math_evaluate
+  chk_build_phy_frc_0090_m1:
+    args:
+      expression: 450*(4/2 - 0.2)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

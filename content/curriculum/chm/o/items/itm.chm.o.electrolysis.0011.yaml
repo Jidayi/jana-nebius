@@ -1,0 +1,85 @@
+id: itm.chm.o.electrolysis.0011
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.molten_products
+stem: A student defines the word electrolyte.
+parts:
+- id: a
+  prompt: Which definition is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: A metal that conducts electricity without being changed
+      correct: false
+    - id: B
+      text: A solid that carries electrons from one electrode to the other
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_electrons_through_electrolyte
+      feedback: Electrons flow only in the wires and electrodes. In the electrolyte the ions carry the charge, and ions can move only when the compound is molten or dissolved. That is why a solid ionic compound cannot be electrolysed.
+    - id: C
+      text: Any liquid, including pure water and oil
+      correct: false
+    - id: D
+      text: A molten or dissolved ionic compound that conducts electricity and is decomposed by it
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An electrolyte is what fills the space between the two electrodes.
+  - rung: 2
+    name: concept
+    text:
+      en: It must conduct, and the current must break it down.
+  - rung: 3
+    name: first_step
+    text:
+      en: Metals conduct but are not decomposed; oils do not conduct.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The conducting particles in an electrolyte are ions, which must be free to move.
+  - rung: 5
+    name: full_step
+    text:
+      en: An electrolyte is an ionic compound, molten or in solution, that conducts electricity and is decomposed by it.
+  misconception_ids:
+  - mc.chm.o.electrolysis_electrons_through_electrolyte
+solution:
+  steps:
+  - n: 1
+    latex: '\text{electrolyte: mobile ions, decomposed}'
+    reason: Definition
+difficulty:
+  prior: -0.6
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

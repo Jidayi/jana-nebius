@@ -1,0 +1,289 @@
+- id: kc.phy.o.motion.distance_or_displacement
+  code: PHY-O-01.02.K01
+  node_id: cur.phy.o.motion_forces_and_energy.motion
+  statement: Distinguish distance from displacement, and speed from velocity
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.08
+  prerequisites:
+  - kc_id: kc.phy.o.measurement.scalars_and_vectors
+    strength: helpful
+  confusable_with:
+  - kc.phy.o.motion.average_speed
+  misconception_ids:
+  - mc.phy.o.displacement_for_distance
+  - mc.phy.o.distance_for_displacement
+  - mc.phy.o.every_later_leg_subtracted
+  - mc.phy.o.first_part_only
+  - mc.phy.o.return_leg_left_out
+  skill_ids:
+  - phy-o-motion
+  glossary:
+  - displacement
+  - speed
+  - velocity
+  - scalar
+  - vector
+  difficulty_prior: -1.0
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.motion.average_speed
+  code: PHY-O-01.02.K02
+  node_id: cur.phy.o.motion_forces_and_energy.motion
+  statement: Calculate average speed from the total distance and the total time
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.12
+  prerequisites:
+  - kc_id: kc.phy.o.motion.distance_or_displacement
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.average_of_speeds
+  - mc.phy.o.rest_time_left_out
+  - mc.phy.o.time_over_distance
+  skill_ids:
+  - phy-o-motion
+  glossary:
+  - average speed
+  - speed
+  - total distance
+  - total time
+  difficulty_prior: -0.8
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.motion.speed_unit_conversion
+  code: PHY-O-01.02.K03
+  node_id: cur.phy.o.motion_forces_and_energy.motion
+  statement: Convert a speed between kilometres per hour and metres per second
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.06
+  prerequisites:
+  - kc_id: kc.phy.o.measurement.si_prefixes
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.kmh_conversion_inverted
+  - mc.phy.o.kmh_divide_by_36
+  - mc.phy.o.kmh_minutes_for_hours
+  skill_ids:
+  - phy-o-motion
+  glossary:
+  - kilometres per hour
+  - metres per second
+  - speed
+  difficulty_prior: -0.5
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.motion.acceleration_from_change
+  code: PHY-O-01.02.K04
+  node_id: cur.phy.o.motion_forces_and_energy.motion
+  statement: Calculate acceleration from a change in velocity and the time it takes
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.14
+  prerequisites:
+  - kc_id: kc.phy.o.motion.distance_or_displacement
+    strength: required
+  - kc_id: kc.phy.o.motion.average_speed
+    strength: helpful
+  confusable_with:
+  - kc.phy.o.motion.average_speed
+  misconception_ids:
+  - mc.phy.o.change_multiplied_by_time
+  - mc.phy.o.deceleration_positive
+  - mc.phy.o.final_velocity_over_time
+  - mc.phy.o.velocities_added_for_change
+  skill_ids:
+  - phy-o-motion
+  glossary:
+  - acceleration
+  - velocity
+  - change in velocity
+  - deceleration
+  - decelerate
+  - accelerate
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.motion.distance_time_gradient
+  code: PHY-O-01.02.K05
+  node_id: cur.phy.o.motion_forces_and_energy.motion
+  statement: Interpret the gradient of a distance-time graph as the speed
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.1
+  prerequisites:
+  - kc_id: kc.phy.o.motion.average_speed
+    strength: required
+  misconception_ids:
+  - mc.phy.o.distance_change_without_time
+  - mc.phy.o.gradient_axes_swapped
+  - mc.phy.o.gradient_from_one_point
+  skill_ids:
+  - phy-o-motion
+  glossary:
+  - distance-time graph
+  - gradient
+  - speed
+  - constant speed
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.motion.velocity_time_gradient
+  code: PHY-O-01.02.K06
+  node_id: cur.phy.o.motion_forces_and_energy.motion
+  statement: Find acceleration from the gradient of a velocity-time graph
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.1
+  prerequisites:
+  - kc_id: kc.phy.o.motion.acceleration_from_change
+    strength: required
+  confusable_with:
+  - kc.phy.o.motion.velocity_time_area
+  misconception_ids:
+  - mc.phy.o.vt_gradient_from_one_point
+  - mc.phy.o.vt_gradient_read_as_velocity
+  - mc.phy.o.gradient_axes_swapped
+  skill_ids:
+  - phy-o-motion
+  glossary:
+  - velocity-time graph
+  - gradient
+  - acceleration
+  - velocity
+  - deceleration
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.motion.velocity_time_area
+  code: PHY-O-01.02.K07
+  node_id: cur.phy.o.motion_forces_and_energy.motion
+  statement: Find the distance travelled from the area under a velocity-time graph
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.1
+  prerequisites:
+  - kc_id: kc.phy.o.motion.average_speed
+    strength: required
+  confusable_with:
+  - kc.phy.o.motion.velocity_time_gradient
+  misconception_ids:
+  - mc.phy.o.starting_velocity_ignored_in_area
+  - mc.phy.o.triangle_area_without_half
+  - mc.phy.o.velocity_change_used_for_area
+  - mc.phy.o.vt_area_divided
+  skill_ids:
+  - phy-o-motion
+  glossary:
+  - velocity-time graph
+  - area under
+  - distance travelled
+  - velocity
+  - displacement
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.motion.choose_equation
+  code: PHY-O-01.02.K08
+  node_id: cur.phy.o.motion_forces_and_energy.motion
+  statement: Select the equation of uniform acceleration that links the known and unknown quantities
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.1
+  prerequisites:
+  - kc_id: kc.phy.o.motion.acceleration_from_change
+    strength: required
+  misconception_ids:
+  - mc.phy.o.equation_missing_known
+  - mc.phy.o.equation_with_unknown_time
+  - mc.phy.o.equation_without_the_unknown
+  skill_ids:
+  - phy-o-motion
+  glossary:
+  - uniform acceleration
+  - acceleration
+  - initial velocity
+  - final velocity
+  - displacement
+  - equation of motion
+  - velocity
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.motion.solve_with_equation
+  code: PHY-O-01.02.K09
+  node_id: cur.phy.o.motion_forces_and_energy.motion
+  statement: Solve for an unknown quantity with an equation of uniform acceleration
+  kind: procedural
+  tools:
+  - math_solve
+  - math_evaluate
+  exam_weight: 0.12
+  prerequisites:
+  - kc_id: kc.phy.o.motion.choose_equation
+    strength: required
+  misconception_ids:
+  - mc.phy.o.half_left_out
+  - mc.phy.o.initial_velocity_term_dropped
+  - mc.phy.o.rearrange_sign_error
+  - mc.phy.o.square_not_rooted
+  - mc.phy.o.squares_dropped
+  skill_ids:
+  - phy-o-motion
+  glossary:
+  - uniform acceleration
+  - acceleration
+  - initial velocity
+  - final velocity
+  - displacement
+  - equation of motion
+  - velocity
+  - deceleration
+  difficulty_prior: 0.5
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.motion.free_fall
+  code: PHY-O-01.02.K10
+  node_id: cur.phy.o.motion_forces_and_energy.motion
+  statement: Apply the equations of uniform acceleration to motion under gravity
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.08
+  prerequisites:
+  - kc_id: kc.phy.o.motion.solve_with_equation
+    strength: required
+  misconception_ids:
+  - mc.phy.o.fall_formulas_mixed
+  - mc.phy.o.g_divided_by_time
+  - mc.phy.o.gravity_sign_flipped
+  - mc.phy.o.half_left_out
+  - mc.phy.o.half_used_for_velocity
+  - mc.phy.o.speed_times_g_for_time
+  - mc.phy.o.top_speed_not_zero
+  - mc.phy.o.whole_flight_time
+  skill_ids:
+  - phy-o-motion
+  glossary:
+  - free fall
+  - acceleration due to gravity
+  - gravity
+  - uniform acceleration
+  - acceleration
+  - velocity
+  - air resistance
+  - initial velocity
+  - maximum height
+  difficulty_prior: 0.6
+  version: 0.1.1
+  status: active

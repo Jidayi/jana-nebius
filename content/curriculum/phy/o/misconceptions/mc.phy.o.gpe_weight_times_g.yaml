@@ -1,0 +1,34 @@
+id: mc.phy.o.gpe_weight_times_g
+kc_ids:
+- kc.phy.o.energy.potential_energy
+student_name: Multiplying a weight by g again
+description: Multiplies a weight already given in newtons by g, as if it were a mass.
+signatures:
+- kind: structural
+  rule: mass_weight_confused
+fix:
+  strategy: rule_restatement
+  text:
+    en: A weight in newtons is already mg. Multiply it straight by the height; only a mass in kilograms needs g.
+probe_item_ids:
+- itm.phy.o.energy.0045
+- itm.phy.o.energy.0033
+- itm.phy.o.energy.0039
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

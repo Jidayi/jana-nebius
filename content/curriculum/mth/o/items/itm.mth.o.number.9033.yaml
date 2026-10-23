@@ -1,0 +1,85 @@
+id: itm.mth.o.number.9033
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.simple_interest
+stem: A deposit earns $360 simple interest over 3 years at 4% per year.
+parts:
+- id: a
+  prompt: Find the sum deposited.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '3000'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9033
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Simple interest equals principal times the annual rate times the number of years.
+  - rung: 2
+    name: concept
+    text:
+      en: Divide the interest by the product of the decimal rate and the time.
+  - rung: 3
+    name: first_step
+    text:
+      en: Divide the interest by the product of the decimal rate and the time.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Check by multiplying your proposed deposit by the decimal rate and the time.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 3000 $.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{360}{3 \cdot 4 \cdot \frac{1}{100}}
+    reason: Divide the interest by the product of the decimal rate and the time.
+    check_id: chk_build_mastery_supplement_mth_9033
+  - n: 2
+    latex: '3000'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9033
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9033:
+    args:
+      angle_unit: degrees
+      expression: 360/(3*4/100)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

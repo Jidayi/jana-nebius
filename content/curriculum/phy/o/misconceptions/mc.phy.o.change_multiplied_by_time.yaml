@@ -1,0 +1,36 @@
+id: mc.phy.o.change_multiplied_by_time
+kc_ids:
+- kc.phy.o.motion.acceleration_from_change
+student_name: Multiplying by the time
+description: Multiplies the change in velocity by the time instead of dividing by it.
+signatures:
+- kind: answer_transform
+  expression: (v - u)*t
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Acceleration is the change in velocity each second, so share the change out over the seconds: divide.'
+probe_item_ids:
+- itm.phy.o.motion.0301
+- itm.phy.o.motion.0302
+- itm.phy.o.motion.0303
+- itm.phy.o.motion.0304
+- itm.phy.o.motion.0305
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

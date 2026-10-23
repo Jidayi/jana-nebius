@@ -1,0 +1,34 @@
+id: mc.acc.o.sd_trade_discount_recorded
+kc_ids:
+- kc.acc.o.source_documents.trade_discount
+student_name: Recording the list price
+description: Enters the list price before trade discount in the books.
+signatures:
+- kind: answer_transform
+  expression: list_price
+fix:
+  strategy: rule_restatement
+  text:
+    en: Trade discount is never recorded; the books show the net amount.
+probe_item_ids:
+- itm.acc.o.source_documents.0023
+- itm.acc.o.source_documents.0024
+- itm.acc.o.source_documents.0025
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

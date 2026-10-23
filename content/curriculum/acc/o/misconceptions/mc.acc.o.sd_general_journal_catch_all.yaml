@@ -1,0 +1,34 @@
+id: mc.acc.o.sd_general_journal_catch_all
+kc_ids:
+- kc.acc.o.source_documents.select_book_of_prime_entry
+student_name: General journal for everything
+description: Puts routine credit or cash transactions in the general journal.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+fix:
+  strategy: rule_restatement
+  text:
+    en: Routine transactions have their own books; the general journal is for the rest.
+probe_item_ids:
+- itm.acc.o.source_documents.0012
+- itm.acc.o.source_documents.0014
+- itm.acc.o.source_documents.0015
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,63 @@
+id: wex.mth.o.probability.0006
+kc_ids:
+- kc.mth.o.probability.independent_events
+problem: The probability that it rains on Monday is 0.8. The probability that the bus is late on Tuesday is 0.75. The two events are independent. Find the probability that exactly one of them happens.
+steps:
+- n: 1
+  latex: P(A, \text{not } B) = 0.8(1 - 0.75) = 0.2
+  reason: First way
+  check_id: chk_build_mth_prb_w0006_t
+- n: 2
+  latex: P(\text{not } A, B) = (1 - 0.8)0.75 = 0.15
+  reason: Second way
+  check_id: chk_build_mth_prb_w0006_q
+- n: 3
+  latex: 0.2 + 0.15 = 0.35
+  reason: Add the two ways
+  check_id: chk_build_mth_prb_w0006_ans
+final_answer:
+  latex: '0.35'
+  check_id: chk_build_mth_prb_w0006_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_prb_w0006_ans:
+    args:
+      expression: 0.8*(1 - 0.75) + (1 - 0.8)*0.75
+    tool: math_evaluate
+  chk_build_mth_prb_w0006_q:
+    args:
+      expression: (1 - 0.8)*0.75
+    tool: math_evaluate
+  chk_build_mth_prb_w0006_t:
+    args:
+      equations:
+      - p = 0.8*(1 - 0.75)
+      - q = (1 - 0.8)*0.75
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

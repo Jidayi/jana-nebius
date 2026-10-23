@@ -1,0 +1,89 @@
+id: wex.acc.o.irrecoverable_debts.0006
+kc_ids:
+- kc.acc.o.irrecoverable_debts.allowance_change
+problem: Old allowance $500; receivables $12000; new allowance 3%. Find the change and its effect on profit.
+steps:
+- n: 1
+  latex: \text{Change} = \text{new} - \text{old}
+  reason: Only the change affects profit
+  check_id: chk_build_acc_irrecoverable_debts_w0006_t
+- n: 2
+  latex: \text{New} = 3\% \times 12000 = 360
+  reason: This year's allowance
+  check_id: chk_build_acc_irrecoverable_debts_w0006_s2
+- n: 3
+  latex: 360 - 500 \rightarrow 140\ \text{decrease}
+  reason: A decrease adds to profit
+  check_id: chk_build_acc_irrecoverable_debts_w0006_a
+final_answer:
+  latex: \$\,140\ \text{decrease}
+  check_id: chk_build_acc_irrecoverable_debts_w0006_a
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_irrecoverable_debts_w0006_a:
+    args:
+      dp: 2
+      expression: abs(12000 * 3/100 - 500)
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_w0006_s2:
+    args:
+      dp: 4
+      expression: 12000 * 3/100
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_w0006_s3:
+    args:
+      dp: 4
+      expression: abs(12000 * 3/100 - 500)
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_w0006_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - kind: allowance
+        percent: '3'
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '80000'
+        role: revenue
+      - account: Purchases
+        debit: '40000'
+        role: purchases
+      - account: Trade receivables
+        debit: '12000'
+        role: trade_receivables
+      - account: Allowance for irrecoverable debts
+        credit: '500'
+        role: allowance_for_irrecoverable_debts
+      - account: Land
+        debit: '28500'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

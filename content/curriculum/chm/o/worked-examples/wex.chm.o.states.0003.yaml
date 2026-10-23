@@ -1,0 +1,44 @@
+id: wex.chm.o.states.0003
+kc_ids:
+- kc.chm.o.states.changes_of_state
+problem: Naphthalene melts at 80 °C and boils at 218 °C. What is its state at 50 °C, and how far is that temperature from its melting point?
+steps:
+- n: 1
+  latex: 80 - 50 = 30 \Rightarrow \text{below the melting point}
+  reason: Compare with the melting point
+  check_id: chk_build_chm_states_w0003_c
+- n: 2
+  latex: \text{solid}
+  reason: Below m.p. solid; between m.p. and b.p. liquid
+final_answer:
+  latex: 80 - (50) = 30 \Rightarrow \text{solid}
+  check_id: chk_build_chm_states_w0003_c
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_states_w0003_c:
+    args:
+      expression: 80 - 50
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

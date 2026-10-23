@@ -1,0 +1,143 @@
+- id: kc.acc.o.irrecoverable_debts.write_off
+  code: ACC-O-10.K01
+  node_id: cur.acc.o.irrecoverable_debts
+  statement: Record the write-off of an irrecoverable debt and the recovery of one
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.acc.o.double_entry.record_credit_transactions
+    strength: required
+  misconception_ids:
+  - mc.acc.o.id_recovery_as_sale
+  - mc.acc.o.id_recovery_skips_reinstatement
+  - mc.acc.o.id_writeoff_as_sales_return
+  - mc.acc.o.id_writeoff_to_allowance
+  - mc.acc.o.de_debit_credit_swapped
+  skill_ids:
+  - acc-o-irrecoverable-debts
+  glossary:
+  - irrecoverable debt
+  - irrecoverable
+  - allowance for irrecoverable debts
+  - allowance
+  - trade receivables
+  - trade receivable
+  - net trade receivables
+  - write-off
+  - written off
+  - debt recovered
+  - statement of financial position
+  - income statement
+  - debtor
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.irrecoverable_debts.allowance_amount
+  code: ACC-O-10.K02
+  node_id: cur.acc.o.irrecoverable_debts
+  statement: Calculate the allowance for irrecoverable debts as a percentage of receivables
+  kind: procedural
+  tools:
+  - acc_statements
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.acc.o.irrecoverable_debts.write_off
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.id_allowance_before_writeoff
+  - mc.acc.o.id_change_as_allowance
+  - mc.acc.o.id_net_as_allowance
+  skill_ids:
+  - acc-o-irrecoverable-debts
+  glossary:
+  - irrecoverable debt
+  - irrecoverable
+  - allowance for irrecoverable debts
+  - allowance
+  - trade receivables
+  - trade receivable
+  - net trade receivables
+  - write-off
+  - written off
+  - debt recovered
+  - statement of financial position
+  - income statement
+  - debtor
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.irrecoverable_debts.allowance_change
+  code: ACC-O-10.K03
+  node_id: cur.acc.o.irrecoverable_debts
+  statement: Calculate the increase or decrease in the allowance charged to profit
+  kind: procedural
+  tools:
+  - acc_statements
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.acc.o.irrecoverable_debts.allowance_amount
+    strength: required
+  misconception_ids:
+  - mc.acc.o.id_allowance_before_writeoff
+  - mc.acc.o.id_change_direction_reversed
+  - mc.acc.o.id_full_allowance_charged
+  - mc.acc.o.id_old_allowance_added
+  skill_ids:
+  - acc-o-irrecoverable-debts
+  glossary:
+  - irrecoverable debt
+  - irrecoverable
+  - allowance for irrecoverable debts
+  - allowance
+  - trade receivables
+  - trade receivable
+  - net trade receivables
+  - write-off
+  - written off
+  - debt recovered
+  - statement of financial position
+  - income statement
+  - debtor
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.irrecoverable_debts.net_receivables
+  code: ACC-O-10.K04
+  node_id: cur.acc.o.irrecoverable_debts
+  statement: Calculate net trade receivables shown in the statement of financial position
+  kind: procedural
+  tools:
+  - acc_statements
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.acc.o.irrecoverable_debts.allowance_amount
+    strength: required
+  misconception_ids:
+  - mc.acc.o.id_allowance_not_deducted
+  - mc.acc.o.id_old_allowance_used
+  - mc.acc.o.id_writeoff_not_deducted
+  skill_ids:
+  - acc-o-irrecoverable-debts
+  glossary:
+  - irrecoverable debt
+  - irrecoverable
+  - allowance for irrecoverable debts
+  - allowance
+  - trade receivables
+  - trade receivable
+  - net trade receivables
+  - write-off
+  - written off
+  - debt recovered
+  - statement of financial position
+  - income statement
+  - debtor
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active

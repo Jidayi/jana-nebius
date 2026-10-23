@@ -1,0 +1,36 @@
+id: wex.phy.o.wave_properties.0004
+kc_ids:
+- kc.phy.o.wave_properties.wave_equation
+problem: Sound travels through air at 340 m/s. A note from a flute has a wavelength of 0.4 m. Calculate the frequency of the waves.
+steps:
+- n: 1
+  latex: f = \frac{v}{\lambda} = \frac{340}{0.4} = 850\ \text{Hz}
+  reason: Rearrange v = fλ
+  check_id: chk_build_phy_wav_w0004_ans
+final_answer:
+  latex: 850\ \text{Hz}
+  check_id: chk_build_phy_wav_w0004_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_wav_w0004_ans:
+    args:
+      expression: 340/0.4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

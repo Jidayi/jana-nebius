@@ -1,0 +1,115 @@
+id: itm.phy.o.practical_electricity.0003
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.electrical_power
+stem: An 18 Ω resistor is connected across a 3 V battery.
+parts:
+- id: a
+  prompt: Calculate the power transferred in the resistor.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.5'
+    unit: W
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_pel_0003_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the p.d. and the resistance.
+  - rung: 2
+    name: concept
+    text:
+      en: Since I = V/R and P = IV, the power is P = V²/R.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Square the p.d.: 3 × 3.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: The square is 9; divide by 18 Ω.
+  - rung: 5
+    name: full_step
+    text:
+      en: The power is 0.5 W.
+  misconception_ids:
+  - mc.phy.o.electric_power_voltage_not_squared
+  - mc.phy.o.electric_power_square_as_double
+  - mc.phy.o.electric_power_r_multiplied
+solution:
+  steps:
+  - n: 1
+    latex: V^2 = 3^2 = 9
+    reason: Square the p.d.
+    check_id: chk_build_phy_pel_0003_sq
+  - n: 2
+    latex: P = \frac{V^2}{R} = \frac{9}{18} = 0.5\ \text{W}
+    reason: Power from V and R
+    check_id: chk_build_phy_pel_0003_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  R: '18'
+  V: '3'
+checks:
+  chk_build_phy_pel_0003_ans:
+    args:
+      expression: 3^2/18
+    tool: math_evaluate
+  chk_build_phy_pel_0003_sq:
+    args:
+      expression: 3^2
+    tool: math_evaluate
+  chk_build_phy_pel_0003_tool:
+    args:
+      components:
+      - emf: '3'
+        id: B
+        kind: battery
+      - id: R
+        kind: resistor
+        resistance: '18'
+      network:
+        series:
+        - B
+        - R
+    tool: phys_circuit
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

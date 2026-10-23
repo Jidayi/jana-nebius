@@ -1,0 +1,102 @@
+id: itm.mth.o.number.0356
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.simple_interest
+stem: $2500 is invested at 5% per year simple interest for 2 years.
+parts:
+- id: a
+  prompt: Find the interest earned.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '250'
+      correct: true
+    - id: B
+      text: '256.25'
+      correct: false
+      misconception_id: mc.mth.o.simple_as_compound
+      feedback: Simple interest is worked out on the original amount every year, so it is the same each year.
+    - id: C
+      text: '2750'
+      correct: false
+      misconception_id: mc.mth.o.percent_change_only
+      feedback: After finding the change, add it to (or take it from) the original, or use a multiplier.
+    - id: D
+      text: '25000'
+      correct: false
+      misconception_id: mc.mth.o.percent_not_divided
+      feedback: 'A percentage rate must be divided by 100: 4% is 0.04.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Simple interest is worked out on the original amount every year.
+  - rung: 2
+    name: concept
+    text:
+      en: Interest = amount × rate × years ÷ 100.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 2500 × 5 × 2 ÷ 100.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply 2500 by 5 and by 2, then divide by 100.
+  - rung: 5
+    name: full_step
+    text:
+      en: The interest is $250.
+  misconception_ids:
+  - mc.mth.o.percent_change_only
+  - mc.mth.o.percent_not_divided
+  - mc.mth.o.simple_as_compound
+solution:
+  steps:
+  - n: 1
+    latex: I = \frac{2500 \times 5 \times 2}{100} = 250
+    reason: Simple interest is the same each year
+    check_id: chk_build_mth_num_0356_si
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0356_ans:
+    args:
+      expression: 2500*5*2/100
+    tool: math_evaluate
+  chk_build_mth_num_0356_si:
+    args:
+      expression: 2500*5*2/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

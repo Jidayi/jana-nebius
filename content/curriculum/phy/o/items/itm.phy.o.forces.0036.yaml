@@ -1,0 +1,93 @@
+id: itm.phy.o.forces.0036
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.friction_and_terminal_velocity
+stem: A skydiver is falling at terminal velocity.
+parts:
+- id: a
+  prompt: Which statement about the forces on him is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: His weight and the air resistance are equal and opposite
+      correct: true
+    - id: B
+      text: No forces act on him
+      correct: false
+      misconception_id: mc.phy.o.terminal_velocity_no_forces
+      feedback: Gravity never switches off while the skydiver falls. At terminal velocity the drag has grown until it is as big as the weight, so the two cancel.
+    - id: C
+      text: His weight is bigger than the air resistance, or he would stop
+      correct: false
+      misconception_id: mc.phy.o.moving_needs_resultant_force
+      feedback: On smooth ice a sliding puck keeps going with nothing pushing it. A resultant force changes velocity; it is not needed to keep a velocity the same.
+    - id: D
+      text: The air resistance is the same as when he jumped
+      correct: false
+      misconception_id: mc.phy.o.drag_independent_of_speed
+      feedback: 'Put your hand out of a car window: the push of the air grows as the car goes faster. Drag rises with speed.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about which forces act and how big each one is at this moment.
+  - rung: 2
+    name: concept
+    text:
+      en: Friction and air resistance act against the motion, and air resistance grows as the speed grows.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out whether the forces are balanced and what that does to the speed.
+  - rung: 4
+    name: worked_step
+    text:
+      en: At terminal velocity his speed is not changing.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: His weight and the air resistance are equal and opposite. A constant velocity needs a zero resultant force, so the two forces balance.'
+  misconception_ids:
+  - mc.phy.o.drag_independent_of_speed
+  - mc.phy.o.moving_needs_resultant_force
+  - mc.phy.o.terminal_velocity_no_forces
+solution:
+  steps:
+  - n: 1
+    latex: \text{His weight and the air resistance are equal and opposite}
+    reason: Compare the forces and how they change
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

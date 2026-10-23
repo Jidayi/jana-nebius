@@ -1,0 +1,101 @@
+{
+  "id": "photo-capture.canonical.outline-found",
+  "title": "Photo capture: outline-found",
+  "component": "PhotoCapture",
+  "state": "canonical",
+  "variant": "outline-found",
+  "payload": {
+    "schema_version": 1,
+    "capture_id": "cap_00000000000000000000000000",
+    "session_id": "ses_00000000000000000000000000",
+    "source": "photo_file",
+    "purpose": "question",
+    "locale": "en",
+    "text": "Find x if 2x+5=15.",
+    "regions": [
+      {
+        "region_id": "rgn_0",
+        "kind": "question_stem",
+        "order": 0,
+        "text": "Find x if 2x+5=15.",
+        "bbox": {
+          "image_id": "img_00000000000000000000000000",
+          "x": 0.07,
+          "y": 0.22,
+          "w": 0.7,
+          "h": 0.1
+        },
+        "confidence": 0.8,
+        "needs_confirmation": true,
+        "low_confidence_spans": [
+          {
+            "start": 10,
+            "end": 11
+          }
+        ],
+        "language": "en",
+        "direction": "ltr"
+      }
+    ],
+    "questions": [],
+    "attachments": [],
+    "reader": {
+      "path": "ocr_pipeline",
+      "model_id": "synthetic-reader",
+      "hardware_class": "mid",
+      "duration_ms": 400
+    },
+    "quality": {
+      "checks": [],
+      "overridden": false
+    },
+    "confirmation": {
+      "confirmed": false,
+      "method": "pending",
+      "edit_distance": 0,
+      "confirmed_at": null
+    },
+    "injection": {
+      "flagged": false,
+      "spans_removed": 0
+    },
+    "refusal": null,
+    "egress": {
+      "left_device": false,
+      "destination": "none"
+    },
+    "created_at": 0,
+    "updated_at": 0,
+    "status": "drafting",
+    "outline": [
+      {
+        "x": 0.1,
+        "y": 0.1
+      },
+      {
+        "x": 0.9,
+        "y": 0.1
+      },
+      {
+        "x": 0.9,
+        "y": 0.9
+      },
+      {
+        "x": 0.1,
+        "y": 0.9
+      }
+    ]
+  },
+  "payloadContract": "https://jana.dev/contracts/input/captured-question",
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "conversation"
+  ],
+  "expectText": [
+    "Rotate 90\u00b0",
+    "Use this area",
+    "Back"
+  ]
+}

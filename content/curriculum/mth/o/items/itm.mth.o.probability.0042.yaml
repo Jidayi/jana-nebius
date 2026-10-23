@@ -1,0 +1,98 @@
+id: itm.mth.o.probability.0042
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.probability.independent_events
+stem: The probability that it rains on Monday is 0.4. The probability that the bus is late on Tuesday is 0.9. The two events are independent.
+parts:
+- id: a
+  prompt: Find the probability that both happen.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '1.3'
+      correct: false
+      misconception_id: mc.mth.o.and_as_add
+      feedback: 'Two coins both landing heads is less likely than one: ½ × ½ = ¼, not ½ + ½ = 1.'
+    - id: B
+      text: '0.64'
+      correct: false
+      misconception_id: mc.mth.o.complement_of_both
+      feedback: '''At least one'' fails only when neither happens, so subtract P(neither) from 1.'
+    - id: C
+      text: '0.36'
+      correct: true
+    - id: D
+      text: '0.06'
+      correct: false
+      misconception_id: mc.mth.o.complement_not_taken
+      feedback: P(not A) = 1 − P(A).
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Both events have to happen.
+  - rung: 2
+    name: concept
+    text:
+      en: For independent events, P(A and B) = P(A) × P(B).
+  - rung: 3
+    name: first_step
+    text:
+      en: Multiply 0.4 by 0.9.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The answer must be smaller than both probabilities.
+  - rung: 5
+    name: full_step
+    text:
+      en: P(both) = 0.36.
+  misconception_ids:
+  - mc.mth.o.and_as_add
+  - mc.mth.o.complement_not_taken
+  - mc.mth.o.complement_of_both
+solution:
+  steps:
+  - n: 1
+    latex: P(\text{both}) = 0.4 \times 0.9 = 0.36
+    reason: 'Independent events: multiply'
+    check_id: chk_build_mth_prb_0042_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_prb_0042_ans:
+    args:
+      expression: 0.4*0.9
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,98 @@
+id: itm.phy.o.particles.0020
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.temperature_scales
+stem: The average kinetic energy of the particles of a gas is proportional to its temperature in kelvin. A gas is heated from −123 °C to 177 °C.
+parts:
+- id: a
+  prompt: By what factor does the average kinetic energy of its particles increase?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '3'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_ptc_0020_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Kelvin temperature starts from absolute zero, where particles have the least possible energy.
+  - rung: 2
+    name: concept
+    text:
+      en: Only kelvin temperatures can be used in a proportion like this.
+  - rung: 3
+    name: first_step
+    text:
+      en: Convert both temperatures to kelvin by adding 273.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide the new kelvin temperature, 450 K, by the old one, 150 K.
+  - rung: 5
+    name: full_step
+    text:
+      en: The average kinetic energy increases by a factor of 3.
+  misconception_ids:
+  - mc.phy.o.celsius_used_for_ratio
+solution:
+  steps:
+  - n: 1
+    latex: T_1 = -\,123 + 273 = 150\ \text{K}
+    reason: Convert to kelvin
+    check_id: chk_build_phy_ptc_0020_k1
+  - n: 2
+    latex: T_2 = 177 + 273 = 450\ \text{K}
+    reason: Convert to kelvin
+    check_id: chk_build_phy_ptc_0020_k2
+  - n: 3
+    latex: \frac{T_2}{T_1} = \frac{450}{150} = 3
+    reason: Kinetic energy is proportional to T in kelvin
+    check_id: chk_build_phy_ptc_0020_ans
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ptc_0020_ans:
+    args:
+      expression: (177 + 273)/(-123 + 273)
+    tool: math_evaluate
+  chk_build_phy_ptc_0020_k1:
+    args:
+      expression: -123 + 273
+    tool: math_evaluate
+  chk_build_phy_ptc_0020_k2:
+    args:
+      expression: 177 + 273
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

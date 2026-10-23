@@ -1,0 +1,104 @@
+id: itm.phy.o.thermal_properties.0022
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.thermal_properties.specific_heat_capacity
+stem: A 3 kW kettle heats 0.75 kg of water from 20 °C to 100 °C. The specific heat capacity of water is 4200 J/(kg °C). Assume all the energy goes into the water.
+parts:
+- id: a
+  prompt: How long does this take, in seconds?
+  marks: 3
+  answer:
+    kind: numeric
+    value: '84'
+    unit: s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_thp_0022_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: First find the energy the water needs, then how long the kettle takes to supply it.
+  - rung: 2
+    name: concept
+    text:
+      en: E = mcΔθ for the energy; t = E ÷ P for the time.
+  - rung: 3
+    name: first_step
+    text:
+      en: The temperature rise is from 20 °C to 100 °C.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The water needs 252000 J; the kettle supplies 3000 J each second.
+  - rung: 5
+    name: full_step
+    text:
+      en: It takes 84 s.
+solution:
+  steps:
+  - n: 1
+    latex: \Delta\theta = 100 - 20 = 80\ ^\circ\text{C}
+    reason: The temperature rise
+    check_id: chk_build_phy_thp_0022_dt
+  - n: 2
+    latex: E = mc\Delta\theta = 0.75 \times 4200 \times 80 = 252000\ \text{J}
+    reason: Energy needed
+    check_id: chk_build_phy_thp_0022_e
+  - n: 3
+    latex: P = 3\ \text{kW} = 3000\ \text{W}
+    reason: Watts are joules per second
+    check_id: chk_build_phy_thp_0022_pw
+  - n: 4
+    latex: t = \frac{E}{P} = \frac{252000}{3000} = 84\ \text{s}
+    reason: Time = energy ÷ power
+    check_id: chk_build_phy_thp_0022_ans
+difficulty:
+  prior: 0.5
+  band: core
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_thp_0022_ans:
+    args:
+      expression: 0.75*4200*(100 - 20)/(3*1000)
+    tool: math_evaluate
+  chk_build_phy_thp_0022_dt:
+    args:
+      expression: 100 - 20
+    tool: math_evaluate
+  chk_build_phy_thp_0022_e:
+    args:
+      expression: 0.75*4200*(100 - 20)
+    tool: math_evaluate
+  chk_build_phy_thp_0022_pw:
+    args:
+      expression: 3*1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

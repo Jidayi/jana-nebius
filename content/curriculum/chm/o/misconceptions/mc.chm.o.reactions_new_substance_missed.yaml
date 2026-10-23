@@ -1,0 +1,36 @@
+id: mc.chm.o.reactions_new_substance_missed
+kc_ids:
+- kc.chm.o.reactions.physical_chemical_change
+student_name: Heated or reversible means only physical
+description: Calls a change physical because heat started it, because it looks like melting, or because it can be reversed, and misses the signs that a new substance has formed.
+signatures:
+- kind: answer_transform
+  expression: 'choice: a change that makes a new substance classed as physical'
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Ask one question: has a new substance formed? Signs are a gas given off, a new solid, a new colour, or heat given out or taken in. Burning, rusting, cooking and breaking down by heat all make new substances, so they are chemical changes even when heat started them.'
+probe_item_ids:
+- itm.chm.o.reactions.0001
+- itm.chm.o.reactions.0002
+- itm.chm.o.reactions.0003
+- itm.chm.o.reactions.0007
+- itm.chm.o.reactions.0008
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

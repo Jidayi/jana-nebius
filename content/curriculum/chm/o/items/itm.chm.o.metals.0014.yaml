@@ -1,0 +1,91 @@
+id: itm.chm.o.metals.0014
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.alloys
+stem: Engineers use alloys for many jobs instead of pure metals.
+parts:
+- id: a
+  prompt: Which is the best description of an alloy?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: A compound of two metals with a fixed formula
+      correct: false
+      misconception_id: mc.chm.o.metals_alloy_is_compound
+      feedback: An alloy is a mixture. Its make-up can vary (brass can be more or less copper), and no new compound with a fixed formula forms. The metal atoms are still held by metallic bonding.
+    - id: B
+      text: A metal with impurities in it that make it weaker
+      correct: false
+      misconception_id: mc.chm.o.metals_alloy_impure_weaker
+      feedback: Pure iron is soft and bends easily; steel, iron with a little carbon, is much harder. Alloys are made on purpose because they are usually harder and stronger than the pure metal.
+    - id: C
+      text: A metal whose atoms have formed new covalent bonds with carbon
+      correct: false
+      misconception_id: mc.chm.o.metals_alloy_stronger_bonds
+      feedback: Draw the layers. In a pure metal the atoms are all one size, so the layers slide easily. Atoms of a different size break up the neat layers, so the layers cannot slide as easily. The bonding is still metallic.
+    - id: D
+      text: A mixture of a metal with one or more other elements
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Is the make-up of an alloy fixed, or can it change?
+  - rung: 2
+    name: concept
+    text:
+      en: Compounds have fixed formulae; mixtures can vary in make-up.
+  - rung: 3
+    name: first_step
+    text:
+      en: Steel can contain a little or rather more carbon and is still steel.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Decide whether that makes steel a compound or a mixture.
+  - rung: 5
+    name: full_step
+    text:
+      en: An alloy is a mixture of a metal with other elements (metals or carbon).
+  misconception_ids:
+  - mc.chm.o.metals_alloy_is_compound
+  - mc.chm.o.metals_alloy_impure_weaker
+  - mc.chm.o.metals_alloy_stronger_bonds
+solution:
+  steps:
+  - n: 1
+    latex: \text{alloy = mixture of a metal with other elements}
+    reason: Make-up can vary
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

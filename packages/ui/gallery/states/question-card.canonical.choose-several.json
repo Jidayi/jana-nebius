@@ -1,0 +1,44 @@
+{
+  "id": "question-card.canonical.choose-several",
+  "title": "Question card, several choices and own words",
+  "component": "QuestionCard",
+  "note": "A multi-choice card that also takes the student's own words (the interview's goals question): the picks are ticked toggles, and one Send answer sends the picks and the words together.",
+  "state": "canonical",
+  "variant": "choose-several",
+  "payload": {
+    "card_type": "question",
+    "prompt": "What would you most like help with? Pick any, or write your own.",
+    "options": [
+      {
+        "id": "opt_0",
+        "label": "Getting ready for my exams"
+      },
+      {
+        "id": "opt_1",
+        "label": "Catching up on topics I missed"
+      },
+      {
+        "id": "opt_2",
+        "label": "Understanding the ideas better"
+      },
+      {
+        "id": "opt_3",
+        "label": "Getting quicker at answering questions"
+      }
+    ],
+    "allow_free_text": true,
+    "multi": true,
+    "placeholder_key": "card.something_else"
+  },
+  "payloadContract": "https://jana.dev/contracts/api/events#/$defs/card",
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "conversation"
+  ],
+  "expectText": [
+    "Question for you",
+    "Send answer"
+  ]
+}

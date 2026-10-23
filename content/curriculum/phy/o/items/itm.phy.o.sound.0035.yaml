@@ -1,0 +1,92 @@
+id: itm.phy.o.sound.0035
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.sound.pitch_and_loudness
+stem: Two sounds are shown on an oscilloscope with the same settings. Trace P shows 4 waves across the screen and trace Q shows 8 waves; both traces are the same height.
+parts:
+- id: a
+  prompt: How does sound Q compare with sound P?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Q is louder and has the same pitch
+      correct: false
+      misconception_id: mc.phy.o.loudness_from_frequency
+      feedback: A quiet whistle can be high and a loud drum low. Loudness depends on the amplitude; frequency sets the pitch.
+    - id: B
+      text: Q has a lower pitch, because each of its waves takes less time
+      correct: false
+      misconception_id: mc.phy.o.period_frequency_confused
+      feedback: 'Frequency is the number of waves each second; the period is the number of seconds for each wave. One is the reciprocal of the other: T = 1/f.'
+    - id: C
+      text: Q is louder and has a higher pitch
+      correct: false
+      misconception_id: mc.phy.o.loudness_from_frequency
+      feedback: A quiet whistle can be high and a loud drum low. Loudness depends on the amplitude; frequency sets the pitch.
+    - id: D
+      text: Q has a higher pitch and the same loudness
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Separate the two features of a sound: how high it sounds and how loud it is.'
+  - rung: 2
+    name: concept
+    text:
+      en: Pitch depends on the frequency; loudness depends on the amplitude.
+  - rung: 3
+    name: first_step
+    text:
+      en: A healthy young ear hears from about twenty hertz up to about twenty thousand hertz.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against these rules.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Q has a higher pitch and the same loudness.'
+  misconception_ids:
+  - mc.phy.o.loudness_from_frequency
+  - mc.phy.o.period_frequency_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{Q has a higher pitch and the same loudness}
+    reason: Pitch follows frequency; loudness follows amplitude
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

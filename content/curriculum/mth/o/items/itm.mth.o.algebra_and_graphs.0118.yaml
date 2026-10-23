@@ -1,0 +1,123 @@
+id: itm.mth.o.algebra_and_graphs.0118
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.linear_equations
+stem: Solve the equation $3(x - 4) = -18$.
+parts:
+- id: a
+  prompt: Find x.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '-4.67'
+      correct: false
+      misconception_id: mc.mth.o.bracket_partly_expanded
+      feedback: Expand the whole bracket first, or divide both sides by the number outside before you do anything else.
+    - id: B
+      text: '-10'
+      correct: false
+      misconception_id: mc.mth.o.rearrange_inverse_sign
+      feedback: 'Do the same to both sides: to remove + u, subtract u from both sides.'
+    - id: C
+      text: '-2'
+      correct: true
+    - id: D
+      text: '-50'
+      correct: false
+      misconception_id: mc.mth.o.rearrange_wrong_inverse
+      feedback: The opposite of multiplying by a is dividing by a. Check by putting numbers back into your answer.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: There is a bracket. You can expand it, or divide both sides by the number outside.
+  - rung: 2
+    name: concept
+    text:
+      en: Expanding gives 3x and 3 × (−4).
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Expand: 3(x − 4) = 3x − 12.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Then 3x = -6; divide by 3.
+  - rung: 5
+    name: full_step
+    text:
+      en: x = -2.
+  misconception_ids:
+  - mc.mth.o.bracket_partly_expanded
+  - mc.mth.o.rearrange_inverse_sign
+  - mc.mth.o.rearrange_wrong_inverse
+solution:
+  steps:
+  - n: 1
+    latex: 3(x - 4) = -18
+    reason: The equation
+  - n: 2
+    latex: 3x - 12 = -18
+    reason: Expand the bracket
+    check_id: chk_build_mth_alg_0118_t
+  - n: 3
+    latex: 3x = -6
+    reason: Collect the numbers on the right
+    check_id: chk_build_mth_alg_0118_s1
+  - n: 4
+    latex: x = -2
+    reason: Divide by 3
+    check_id: chk_build_mth_alg_0118_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 75
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0118_ans:
+    args:
+      equations:
+      - 3*(x + (-4)) = -18
+      unknowns:
+      - x
+    tool: math_solve
+  chk_build_mth_alg_0118_s1:
+    args:
+      expression: -18 - 3*(-4)
+    tool: math_evaluate
+  chk_build_mth_alg_0118_t:
+    args:
+      equations:
+      - p = abs(3*(-4))
+      unknowns:
+      - p
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

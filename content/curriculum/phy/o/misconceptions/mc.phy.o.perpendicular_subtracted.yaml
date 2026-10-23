@@ -1,0 +1,36 @@
+id: mc.phy.o.perpendicular_subtracted
+kc_ids:
+- kc.phy.o.measurement.resultant_vectors
+student_name: Subtracting vectors at right angles
+description: Subtracts the sizes of two vectors at right angles, as if they pointed in opposite directions.
+signatures:
+- kind: answer_transform
+  expression: abs(a - b)
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Vectors at right angles do not cancel at all: neither has any part pointing against the other. Use Pythagoras.'
+probe_item_ids:
+- itm.phy.o.measurement.0041
+- itm.phy.o.measurement.0043
+- itm.phy.o.measurement.0032
+- itm.phy.o.measurement.0035
+- itm.phy.o.measurement.0038
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

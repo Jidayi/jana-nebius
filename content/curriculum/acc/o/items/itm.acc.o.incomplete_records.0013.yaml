@@ -1,0 +1,143 @@
+id: itm.acc.o.incomplete_records.0013
+version: 0.1.1
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.incomplete_records.profit_from_capital
+stem: A trader's capital was $43000 at the start of the year and $47400 at the end. During the year the trader took drawings of $3700.
+parts:
+- id: a
+  prompt: Calculate the profit for the year.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '8100.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_incomplete_records_0013_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Capital grows with profit and capital paid in, and shrinks with drawings.
+  - rung: 2
+    name: concept
+    text:
+      en: Profit = closing capital − opening capital + drawings − capital introduced.
+  - rung: 3
+    name: first_step
+    text:
+      en: Drawings took some of the profit away, so add them back.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 47400 − 43000 + 3700.
+  - rung: 5
+    name: full_step
+    text:
+      en: Profit for the year = $8100.
+  misconception_ids:
+  - mc.acc.o.ir_drawings_subtracted
+  - mc.acc.o.ir_capital_introduced_added
+solution:
+  steps:
+  - n: 1
+    latex: \text{Profit} = \text{closing capital} - \text{opening capital} + \text{drawings} - \text{capital introduced}
+    reason: Explain the change in capital
+    check_id: chk_build_acc_incomplete_records_0013_t
+  - n: 2
+    latex: \text{Profit} = 47400 - 43000 + 3700 = 8100
+    reason: Substitute
+    check_id: chk_build_acc_incomplete_records_0013_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  closing: '47400'
+  drawings: '3700'
+  opening: '43000'
+checks:
+  chk_build_acc_incomplete_records_0013_a:
+    args:
+      dp: 2
+      expression: 47400 - 43000 + 3700
+    tool: math_evaluate
+  chk_build_acc_incomplete_records_0013_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Capital
+        credit: '43000'
+        role: capital
+      - account: Drawings
+        debit: '3700'
+        role: drawings
+      - account: Sales
+        credit: '28100'
+        role: revenue
+      - account: Purchases
+        debit: '20000'
+        role: purchases
+      - account: Land
+        debit: '47400'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Family loan
+        credit: '1000'
+        role: non_current_liability
+    tool: acc_statements
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:32:25.760Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.acc.o.incomplete_records.0013
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

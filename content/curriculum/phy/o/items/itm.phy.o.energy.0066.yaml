@@ -1,0 +1,83 @@
+id: itm.phy.o.energy.0066
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.work_done
+stem: A force of 80 N does 240 J of work on a sledge, pulling it along level snow in the direction of the force.
+parts:
+- id: a
+  prompt: Calculate how far the sledge moves.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '3'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0066_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the work and the force; the distance is the unknown.
+  - rung: 2
+    name: concept
+    text:
+      en: Rearrange W = F × d to get d = W ÷ F.
+  - rung: 3
+    name: first_step
+    text:
+      en: Divide the work by the force.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 240 ÷ 80.
+  - rung: 5
+    name: full_step
+    text:
+      en: The sledge moves 3 m.
+  misconception_ids:
+  - mc.phy.o.energy_formula_operation_swapped
+  - mc.phy.o.energy_formula_inverted
+solution:
+  steps:
+  - n: 1
+    latex: d = \frac{W}{F} = \frac{240}{80} = 3\ \text{m}
+    reason: Rearrange W = Fd
+    check_id: chk_build_phy_nrg_0066_ans
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0066_ans:
+    args:
+      expression: 240/80
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

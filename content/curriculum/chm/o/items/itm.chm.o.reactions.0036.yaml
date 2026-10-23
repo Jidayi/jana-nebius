@@ -1,0 +1,85 @@
+id: itm.chm.o.reactions.0036
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.collision_theory
+stem: A catalyst is added to a reaction.
+parts:
+- id: a
+  prompt: Which quantity does the catalyst change?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: The temperature of the mixture
+      correct: false
+      misconception_id: mc.chm.o.reactions_catalyst_gives_energy
+      feedback: 'Heating gives particles more energy, so more collisions reach the activation energy. A catalyst does not add energy: it gives a different route with a lower activation energy, so more collisions succeed at the same temperature.'
+    - id: B
+      text: The activation energy
+      correct: true
+    - id: C
+      text: The energy change (ΔH) of the reaction
+      correct: false
+    - id: D
+      text: The total amount of product
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A catalyst changes the route of the reaction.
+  - rung: 2
+    name: concept
+    text:
+      en: A new route has a different energy barrier.
+  - rung: 3
+    name: first_step
+    text:
+      en: The energies of the reactants and products are the same with or without the catalyst.
+  - rung: 4
+    name: worked_step
+    text:
+      en: So the energy change stays the same. What changes?
+  - rung: 5
+    name: full_step
+    text:
+      en: The catalyst lowers the activation energy; the energy change and the amount of product stay the same.
+  misconception_ids:
+  - mc.chm.o.reactions_catalyst_gives_energy
+solution:
+  steps:
+  - n: 1
+    latex: \text{catalyst lowers }E_a
+    reason: Another route
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

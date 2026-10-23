@@ -1,0 +1,92 @@
+id: itm.phy.o.mass_weight.0023
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.mass_weight.mass_or_weight
+stem: The gravitational field strength at a place is g.
+parts:
+- id: a
+  prompt: Which equation links weight W, mass m and g?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: W = m ÷ g
+      correct: false
+      misconception_id: mc.phy.o.weight_mass_divided_by_g
+      feedback: 'Weight = mass × g: each kilogram has a weight of g newtons. So mass = weight ÷ g. Where g is bigger than 1 N/kg the weight in newtons is a bigger number than the mass in kilograms.'
+    - id: B
+      text: m = W × g
+      correct: false
+      misconception_id: mc.phy.o.weight_mass_divided_by_g
+      feedback: 'Weight = mass × g: each kilogram has a weight of g newtons. So mass = weight ÷ g. Where g is bigger than 1 N/kg the weight in newtons is a bigger number than the mass in kilograms.'
+    - id: C
+      text: W = m
+      correct: false
+      misconception_id: mc.phy.o.weight_given_as_mass_number
+      feedback: 'A bag of sugar pulls on your hand much less on the Moon than on Earth, yet it holds the same sugar. Weight is a force: multiply the mass by g to get it, and divide a weight by g to get the mass.'
+    - id: D
+      text: W = m × g
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Decide whether each option is about mass, weight, or both.
+  - rung: 2
+    name: concept
+    text:
+      en: g is the weight of each kilogram, so the total weight grows with the number of kilograms.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against the difference between the amount of matter and the pull of gravity.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out every option that mixes up the two quantities.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: W = m × g.'
+  misconception_ids:
+  - mc.phy.o.weight_given_as_mass_number
+  - mc.phy.o.weight_mass_divided_by_g
+solution:
+  steps:
+  - n: 1
+    latex: \text{W = m × g}
+    reason: Mass stays the same; weight depends on g
+difficulty:
+  prior: -0.6
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,113 @@
+id: itm.phy.o.energy.0088
+version: 0.1.1
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.power
+stem: Kofi, of mass 50 kg, runs up a flight of stairs 3.5 m high in 10 s. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate Kofi's useful power output.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 175 W
+      correct: true
+    - id: B
+      text: 17.5 W
+      correct: false
+      misconception_id: mc.phy.o.energy_mass_for_weight
+      feedback: Lifting works against the weight, mg, in newtons. Multiply the mass by g before you multiply by the height.
+    - id: C
+      text: 17500 W
+      correct: false
+      misconception_id: mc.phy.o.power_energy_times_time
+      feedback: 'Power is how fast energy is transferred: energy ÷ time. Doing the same job in less time means more power.'
+    - id: D
+      text: 1750 W
+      correct: false
+      misconception_id: mc.phy.o.power_is_energy
+      feedback: 'Two runners do the same work climbing the same stairs, but the faster one has more power. Power needs the time: divide the energy by it.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Power is the work done each second.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the work done against gravity (mgh), then divide by the time.
+  - rung: 3
+    name: first_step
+    text:
+      en: The work done is 50 × 10 × 3.5 = 1750 J.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 1750 ÷ 10.
+  - rung: 5
+    name: full_step
+    text:
+      en: The power is 175 W.
+  misconception_ids:
+  - mc.phy.o.energy_mass_for_weight
+  - mc.phy.o.power_energy_times_time
+  - mc.phy.o.power_is_energy
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: W = mgh = 50 \times 10 \times 3.5 = 1750\ \text{J}
+    reason: Work done against gravity
+    check_id: chk_build_phy_nrg_0088_ep
+  - n: 2
+    latex: P = \frac{W}{t} = \frac{1750}{10} = 175\ \text{W}
+    reason: Power = work ÷ time
+    check_id: chk_build_phy_nrg_0088_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0088_ans:
+    args:
+      expression: 50*10*3.5/10
+    tool: math_evaluate
+  chk_build_phy_nrg_0088_ep:
+    args:
+      expression: 50*10*3.5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

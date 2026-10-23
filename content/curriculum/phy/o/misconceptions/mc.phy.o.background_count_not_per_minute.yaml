@@ -1,0 +1,35 @@
+id: mc.phy.o.background_count_not_per_minute
+kc_ids:
+- kc.phy.o.radioactivity.background_radiation
+student_name: Using total counts as a count rate
+description: Uses the total number of counts recorded over several minutes as if it were the count per minute, without dividing by the time.
+signatures:
+- kind: answer_transform
+  expression: N
+fix:
+  strategy: rule_restatement
+  text:
+    en: A count rate is counts per unit time. Divide the total count by the number of minutes before comparing it with a rate.
+probe_item_ids:
+- itm.phy.o.radioactivity.0046
+- itm.phy.o.radioactivity.0047
+- itm.phy.o.radioactivity.0053
+- itm.phy.o.radioactivity.0055
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

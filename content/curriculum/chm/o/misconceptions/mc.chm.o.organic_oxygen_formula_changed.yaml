@@ -1,0 +1,36 @@
+id: mc.chm.o.organic_oxygen_formula_changed
+kc_ids:
+- kc.chm.o.organic.combustion
+student_name: Writing O instead of O₂
+description: Changes a formula to make the atoms fit, most often writing oxygen as single O atoms instead of O₂ molecules.
+signatures:
+- kind: structural
+  rule: subscript_changed_to_balance
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Oxygen gas is made of O₂ molecules. Never change a formula, or write O on its own, to make the atoms fit: balance only with the numbers in front of the formulae.'
+probe_item_ids:
+- itm.chm.o.organic.0085
+- itm.chm.o.organic.0086
+- itm.chm.o.organic.0087
+- itm.chm.o.organic.0088
+- itm.chm.o.organic.0089
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

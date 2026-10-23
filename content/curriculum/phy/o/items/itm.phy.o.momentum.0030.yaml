@@ -1,0 +1,120 @@
+id: itm.phy.o.momentum.0030
+version: 0.1.1
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.conservation_of_momentum
+stem: A railway wagon of mass 1000 kg stands on a smooth track. A spring on the wagon pushes a trolley of mass 40 kg away at 12 m/s. Everything starts at rest. Take the direction in which the trolley moves as positive.
+parts:
+- id: a
+  prompt: Find the velocity of the wagon just afterwards.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 0.48 m/s
+      correct: false
+      misconception_id: mc.phy.o.recoil_sign_dropped
+      feedback: 'The total momentum before the push is zero, so afterwards the two momenta must cancel: one of the velocities is negative.'
+    - id: B
+      text: -12 m/s
+      correct: false
+      misconception_id: mc.phy.o.recoil_equal_speeds
+      feedback: The heavy wagon does not move backwards as fast as the light trolley moves forwards. Equal and opposite momenta mean the heavier part moves more slowly.
+    - id: C
+      text: -0.48 m/s
+      correct: true
+    - id: D
+      text: -300 m/s
+      correct: false
+      misconception_id: mc.phy.o.conservation_masses_swapped
+      feedback: 'Check with sense: when a heavy wagon pushes away a light trolley, the wagon moves off much more slowly than the trolley.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What was the total momentum before?
+  - rung: 2
+    name: concept
+    text:
+      en: The total momentum before is zero, so afterwards the two momenta must cancel.
+  - rung: 3
+    name: first_step
+    text:
+      en: The momentum of the wagon is equal in size and opposite in sign to the momentum of the trolley.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The trolley has momentum 480 kg m/s, so the wagon has the same size of momentum, negative.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'V = −480 ÷ 1000 = -0.48 m/s: the wagon moves backwards.'
+  misconception_ids:
+  - mc.phy.o.conservation_masses_swapped
+  - mc.phy.o.recoil_equal_speeds
+  - mc.phy.o.recoil_sign_dropped
+solution:
+  steps:
+  - n: 1
+    latex: p_\text{before} = 0
+    reason: Everything starts at rest
+  - n: 2
+    latex: 40 \times 12 = 480\ \text{kg m/s}
+    reason: Momentum of the trolley
+    check_id: chk_build_phy_mom_0030_pf
+  - n: 3
+    latex: 0 = 480 + 1000V \Rightarrow V = -0.48\ \text{m/s}
+    reason: Total momentum stays zero
+    check_id: chk_build_phy_mom_0030_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_0030_ans:
+    args:
+      expression: -40*12/1000
+    tool: math_evaluate
+  chk_build_phy_mom_0030_pf:
+    args:
+      expression: 40*12
+    tool: math_evaluate
+  chk_build_phy_mom_0030_tool:
+    args:
+      equations:
+      - 0 = 40*12 + 1000*V
+      unknowns:
+      - V
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

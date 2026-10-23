@@ -1,0 +1,42 @@
+{
+  "id": "crash-report.canonical",
+  "title": "Send this report?",
+  "component": "CrashReport",
+  "note": "A crash report waiting for a decision (OBS-17), shown exactly as it would be sent, with Send and Don't send; no automatic option.",
+  "state": "canonical",
+  "payload": {
+    "reports": [
+      {
+        "crash_id": "crh_fixture_1",
+        "process": "worker",
+        "kind": "worker_limit",
+        "version": "0.1.0",
+        "error_type": "MemoryError",
+        "stack": [
+          {
+            "frame": "solve"
+          }
+        ],
+        "log_tail": [
+          "worker: limit reached"
+        ],
+        "detail": {},
+        "hardware_class": "low",
+        "day": 20376
+      }
+    ]
+  },
+  "payloadContract": "https://jana.dev/contracts/api/commands#/$defs/CrashReportList",
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Send this report?",
+    "A checking tool stopped unexpectedly",
+    "Send",
+    "Don't send"
+  ]
+}

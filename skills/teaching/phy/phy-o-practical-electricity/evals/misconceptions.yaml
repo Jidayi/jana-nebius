@@ -1,0 +1,534 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.phy-o-practical-electricity
+version: 2026-10-13.1
+description: 'Colocated evals for phy-o-practical-electricity (SKL-21, EVL-07): one case per misconception. The
+  student answers as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give
+  the key away, and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: phy_o_practical_electricity_01
+  title: Holds 'Forgetting to square the current'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.electric_power_current_not_squared
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.practical_electricity.0011
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.practical_electricity.electrical_power
+        misconception: mc.phy.o.electric_power_current_not_squared
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: phy_o_practical_electricity_02
+  title: Holds 'Current as voltage over power'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.electric_power_current_inverted
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.practical_electricity.0014
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.practical_electricity.electrical_power
+        misconception: mc.phy.o.electric_power_current_inverted
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: phy_o_practical_electricity_03
+  title: Holds 'Using kilowatts as watts'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.electric_power_kw_not_converted
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.practical_electricity.0014
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.practical_electricity.electrical_power
+        misconception: mc.phy.o.electric_power_kw_not_converted
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: phy_o_practical_electricity_04
+  title: Holds 'Minutes used for kilowatt-hours'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  - no_probe_item
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.kwh_time_left_in_minutes
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.practical_electricity.0017
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: 6.25 kWh
+    note: a wrong value; no item tags a distractor with this wrong idea yet
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_practical_electricity_05
+  title: Holds 'Watts used for kilowatt-hours'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.kwh_power_left_in_watts
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.practical_electricity.0030
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.practical_electricity.energy_cost
+        misconception: mc.phy.o.kwh_power_left_in_watts
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_practical_electricity_06
+  title: Holds 'Dividing by 3600 only'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.kwh_divided_by_3600_only
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.practical_electricity.0027
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.practical_electricity.energy_cost
+        misconception: mc.phy.o.kwh_divided_by_3600_only
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_practical_electricity_07
+  title: Holds 'Leaving out the number of days'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.energy_cost_days_left_out
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.practical_electricity.0030
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.practical_electricity.energy_cost
+        misconception: mc.phy.o.energy_cost_days_left_out
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_practical_electricity_08
+  title: Holds 'A fuse rated below the working current'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.fuse_rating_below_current
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.practical_electricity.0033
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.practical_electricity.fuses_and_safety
+        misconception: mc.phy.o.fuse_rating_below_current
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_practical_electricity_09
+  title: Holds 'The biggest fuse is the safest'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.fuse_largest_always_safest
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.practical_electricity.0033
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.practical_electricity.fuses_and_safety
+        misconception: mc.phy.o.fuse_largest_always_safest
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_practical_electricity_10
+  title: Holds 'The fuse or switch can go in the neutral wire'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.fuse_in_neutral_wire
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.practical_electricity.0041
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.practical_electricity.fuses_and_safety
+        misconception: mc.phy.o.fuse_in_neutral_wire
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_practical_electricity_11
+  title: Holds 'The earth wire carries the normal current'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.earth_wire_carries_working_current
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.practical_electricity.0035
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.practical_electricity.fuses_and_safety
+        misconception: mc.phy.o.earth_wire_carries_working_current
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_practical_electricity_12
+  title: Holds 'A fuse stops electric shocks'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.fuse_protects_person_from_shock
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.practical_electricity.0037
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 12
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.practical_electricity.fuses_and_safety
+        misconception: mc.phy.o.fuse_protects_person_from_shock
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

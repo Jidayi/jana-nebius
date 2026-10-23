@@ -1,0 +1,119 @@
+id: itm.mth.o.number.0077
+version: 0.1.0
+type: mcq
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.fraction_arithmetic
+stem: Work out $\frac{2}{9} \div \frac{1}{4}$.
+parts:
+- id: a
+  prompt: Choose the answer in its simplest form.
+  marks: 2
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: $\frac{1}{18}$
+      correct: false
+      misconception_id: mc.mth.o.divide_without_flip
+      feedback: 'Dividing by a fraction is multiplying by its reciprocal: turn the second fraction upside down, then multiply.'
+    - id: B
+      text: $\frac{8}{9}$
+      correct: true
+    - id: C
+      text: $\frac{9}{8}$
+      correct: false
+      misconception_id: mc.mth.o.divide_flip_first
+      feedback: Keep the first fraction, change ÷ to ×, and flip only the fraction you divide by.
+    - id: D
+      text: $\frac{16}{9}$
+      correct: false
+      misconception_id: mc.mth.o.fraction_multiply_inverts
+      feedback: To multiply fractions, multiply the tops together and the bottoms together.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Dividing by a fraction is the same as multiplying by its reciprocal.
+  - rung: 2
+    name: concept
+    text:
+      en: Keep the first fraction, change ÷ to ×, and turn the second fraction upside down.
+  - rung: 3
+    name: first_step
+    text:
+      en: So the calculation becomes 2/9 × 4/1.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply the numerators and the denominators, then simplify.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is $\frac{8}{9}$.
+  misconception_ids:
+  - mc.mth.o.divide_flip_first
+  - mc.mth.o.divide_without_flip
+  - mc.mth.o.fraction_multiply_inverts
+solution:
+  steps:
+  - n: 1
+    latex: \frac{2}{9} \div \frac{1}{4} = \frac{2}{9} \times \frac{4}{1}
+    reason: Multiply by the reciprocal of the second fraction
+  - n: 2
+    latex: = \frac{8}{9}
+    reason: Multiply across
+    check_id: chk_build_mth_num_0077_t
+  - n: 3
+    latex: = \frac{8}{9}
+    reason: Simplify
+    check_id: chk_build_mth_num_0077_k
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0077_k:
+    args:
+      equations:
+      - p = 8
+      - q = 9
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_num_0077_t:
+    args:
+      equations:
+      - p = 2*4
+      - q = 9*1
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

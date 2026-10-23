@@ -1,0 +1,92 @@
+id: itm.phy.o.solar_system.0004
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.solar_system.earth_and_moon
+stem: Countries far from the equator have warm summers and cold winters.
+parts:
+- id: a
+  prompt: What causes the seasons?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The tilt of the Earth's axis as the Earth orbits the Sun
+      correct: true
+    - id: B
+      text: The Earth is much nearer the Sun in summer
+      correct: false
+      misconception_id: mc.phy.o.sun_distance_causes_seasons
+      feedback: 'When it is summer in the north it is winter in the south, at the same distance from the Sun. Seasons come from the tilt: a higher Sun and longer days.'
+    - id: C
+      text: The tilted half of the Earth is millions of kilometres nearer the Sun in summer
+      correct: false
+      misconception_id: mc.phy.o.sun_distance_causes_seasons
+      feedback: 'When it is summer in the north it is winter in the south, at the same distance from the Sun. Seasons come from the tilt: a higher Sun and longer days.'
+    - id: D
+      text: The whole Earth leans towards the Sun in June, giving everyone summer
+      correct: false
+      misconception_id: mc.phy.o.seasons_same_both_hemispheres
+      feedback: In June the north leans towards the Sun and has summer while the south leans away and has winter. The seasons in the two halves are always opposite.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Separate the three motions: the Earth''s spin, the Earth''s orbit and the Moon''s orbit.'
+  - rung: 2
+    name: concept
+    text:
+      en: The spin takes a day, the Earth's orbit a year, and the Moon's orbit roughly a month.
+  - rung: 3
+    name: first_step
+    text:
+      en: Seasons come from the tilt of the Earth's axis; phases come from how much of the Moon's sunlit half we see.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against these facts.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The tilt of the Earth''s axis as the Earth orbits the Sun.'
+  misconception_ids:
+  - mc.phy.o.seasons_same_both_hemispheres
+  - mc.phy.o.sun_distance_causes_seasons
+solution:
+  steps:
+  - n: 1
+    latex: \text{The tilt of the Earth's axis as the Earth orbits the Sun}
+    reason: Separate the spin, the orbit and the Moon's orbit
+difficulty:
+  prior: -0.8
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

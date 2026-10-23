@@ -1,0 +1,36 @@
+id: mc.phy.o.starting_velocity_ignored_in_area
+kc_ids:
+- kc.phy.o.motion.velocity_time_area
+student_name: Ignoring the starting velocity
+description: Finds the area under a sloping velocity-time line as half the final velocity times the time, as if the object had started from rest.
+signatures:
+- kind: answer_transform
+  expression: v*t/2
+fix:
+  strategy: contrast_example
+  text:
+    en: 'When the line starts above zero the shape is a trapezium: a rectangle under the starting velocity plus a triangle on top.'
+probe_item_ids:
+- itm.phy.o.motion.0341
+- itm.phy.o.motion.0342
+- itm.phy.o.motion.0343
+- itm.phy.o.motion.0344
+- itm.phy.o.motion.0345
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

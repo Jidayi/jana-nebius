@@ -1,0 +1,34 @@
+id: mc.phy.o.whole_flight_time
+kc_ids:
+- kc.phy.o.motion.free_fall
+student_name: The whole flight instead of the way up
+description: Gives the time for the whole flight, up and back down, when asked for the time to reach the top.
+signatures:
+- kind: answer_transform
+  expression: 2*u/g
+fix:
+  strategy: contrast_example
+  text:
+    en: Going up, the velocity falls from u to zero, which takes u/g. Coming down takes as long again, but that is not part of the question.
+probe_item_ids:
+- itm.phy.o.motion.0326
+- itm.phy.o.motion.0328
+- itm.phy.o.motion.0329
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

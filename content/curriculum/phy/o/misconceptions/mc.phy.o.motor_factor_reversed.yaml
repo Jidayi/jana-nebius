@@ -1,0 +1,33 @@
+id: mc.phy.o.motor_factor_reversed
+kc_ids:
+- kc.phy.o.electromagnetism.motor_effect
+student_name: A weaker motor turns faster
+description: Thinks a weaker magnet, a smaller current or fewer turns would make a motor turn faster, or that these make no difference.
+signatures:
+- kind: step_error
+  error_category: sign
+fix:
+  strategy: counterexample
+  text:
+    en: A stronger magnet, a bigger current or more turns on the coil each make the turning effect bigger.
+probe_item_ids:
+- itm.phy.o.electromagnetism.0028
+- itm.phy.o.electromagnetism.0030
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

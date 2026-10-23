@@ -1,0 +1,120 @@
+id: itm.chm.o.stoichiometry.0018
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.balancing_equations
+stem: The unbalanced equation is Al + HCl → AlCl₃ + H₂.
+parts:
+- id: a
+  prompt: Balance the equation using the smallest whole numbers. What number goes in front of HCl?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '6'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0018_ratios
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Count the atoms of each element on each side of Al + HCl → AlCl₃ + H₂.
+  - rung: 2
+    name: concept
+    text:
+      en: Only the numbers in front of formulae may change; the formulae themselves stay as they are.
+  - rung: 3
+    name: first_step
+    text:
+      en: Start with an element that appears in only one substance on each side, and leave elements that appear on their own until last.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Adjust one number at a time and recount every element after each change; you should find 2Al, 2AlCl₃, 3H₂.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Balanced: 2Al + 6HCl → 2AlCl₃ + 3H₂. The number in front of HCl is 6.'
+  misconception_ids:
+  - mc.chm.o.subscript_changed_to_balance
+  - mc.chm.o.balance_one_element_only
+solution:
+  steps:
+  - n: 1
+    latex: 2\text{Al} + 6\text{HCl} \rightarrow 2\text{AlCl}_3 + 3\text{H}_2
+    reason: Smallest whole numbers that balance every element
+    check_id: chk_build_chm_stoichiometry_0018_bal
+  - n: 2
+    latex: '\text{HCl}: 6'
+    reason: Coefficient of HCl
+    check_id: chk_build_chm_stoichiometry_0018_ratios
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0018_bal:
+    args:
+      equation: Al + HCl -> AlCl3 + H2
+    tool: chem_balance
+  chk_build_chm_stoichiometry_0018_ratios:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_al
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_cl
+      equation: Al + HCl -> AlCl3 + H2
+      sf: 3
+      steps:
+      - amount: '2'
+        from: Al
+        id: r0
+        op: mole_ratio
+        to: Al
+      - amount: '2'
+        from: Al
+        id: r1
+        op: mole_ratio
+        to: HCl
+      - amount: '2'
+        from: Al
+        id: r2
+        op: mole_ratio
+        to: AlCl3
+      - amount: '2'
+        from: Al
+        id: r3
+        op: mole_ratio
+        to: H2
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

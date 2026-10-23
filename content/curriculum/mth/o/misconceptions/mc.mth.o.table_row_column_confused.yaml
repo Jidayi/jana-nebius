@@ -1,0 +1,36 @@
+id: mc.mth.o.table_row_column_confused
+kc_ids:
+- kc.mth.o.statistics.read_tables
+student_name: Using a row total for a column
+description: Uses the total of the wrong row or column when finding a missing entry in a two-way table.
+signatures:
+- kind: step_error
+  error_category: copy
+fix:
+  strategy: rule_restatement
+  text:
+    en: Find a row or column where only one entry is missing, and use that line's own total.
+probe_item_ids:
+- itm.mth.o.statistics.0033
+- itm.mth.o.statistics.0034
+- itm.mth.o.statistics.0035
+- itm.mth.o.statistics.0036
+- itm.mth.o.statistics.0037
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

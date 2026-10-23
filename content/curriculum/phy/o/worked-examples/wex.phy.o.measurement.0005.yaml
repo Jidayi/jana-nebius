@@ -1,0 +1,45 @@
+id: wex.phy.o.measurement.0005
+kc_ids:
+- kc.phy.o.measurement.resultant_vectors
+problem: A drone flies 24 km east and then 32 km north. Calculate the size of the resultant displacement.
+steps:
+- n: 1
+  latex: R^2 = 24^2 + 32^2 = 1600
+  reason: 'At right angles: Pythagoras'
+  check_id: chk_build_phy_mea_w0005_sq
+- n: 2
+  latex: R = \sqrt{1600} = 40\ \text{km}
+  reason: Square root
+  check_id: chk_build_phy_mea_w0005_ans
+final_answer:
+  latex: 40\ \text{km}
+  check_id: chk_build_phy_mea_w0005_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mea_w0005_ans:
+    args:
+      expression: sqrt(24^2 + 32^2)
+    tool: math_evaluate
+  chk_build_phy_mea_w0005_sq:
+    args:
+      expression: 24^2 + 32^2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

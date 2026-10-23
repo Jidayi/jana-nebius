@@ -1,0 +1,38 @@
+id: mc.acc.o.rat_ratio_inverted
+kc_ids:
+- kc.acc.o.ratios.margins
+- kc.acc.o.ratios.mark_up
+- kc.acc.o.ratios.liquidity
+- kc.acc.o.ratios.inventory_turnover
+- kc.acc.o.ratios.collection_periods
+student_name: Ratio upside down
+description: Divides the second figure by the first, so the ratio is inverted.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Read the definition in order: the first figure named is divided by the second.'
+probe_item_ids:
+- itm.acc.o.ratios.0008
+- itm.acc.o.ratios.0009
+- itm.acc.o.ratios.0010
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

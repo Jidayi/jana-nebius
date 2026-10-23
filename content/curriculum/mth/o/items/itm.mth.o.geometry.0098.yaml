@@ -1,0 +1,95 @@
+id: itm.mth.o.geometry.0098
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.symmetry
+stem: Think about a regular heptagon.
+parts:
+- id: a
+  prompt: What is the order of rotational symmetry?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '7'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_geo_0098_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about folding the shape, or turning it about its centre.
+  - rung: 2
+    name: concept
+    text:
+      en: A regular polygon looks the same from every vertex.
+  - rung: 3
+    name: first_step
+    text:
+      en: Count how many times it fits onto itself in one full turn.
+  - rung: 4
+    name: worked_step
+    text:
+      en: It fits once for each vertex it can be turned to.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 7.
+  misconception_ids:
+  - mc.mth.o.regular_symmetry_half
+  - mc.mth.o.symmetry_lines_double_counted
+  - mc.mth.o.rotation_order_zero
+solution:
+  steps:
+  - n: 1
+    latex: \text{a regular polygon with } 7 \text{ sides}
+    reason: Every side and angle is the same
+    check_id: chk_build_mth_geo_0098_n
+  - n: 2
+    latex: '7'
+    reason: One line (or position) for each side
+    check_id: chk_build_mth_geo_0098_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0098_ans:
+    args:
+      expression: '7'
+    tool: math_evaluate
+  chk_build_mth_geo_0098_n:
+    args:
+      equations:
+      - p = 7
+      unknowns:
+      - p
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

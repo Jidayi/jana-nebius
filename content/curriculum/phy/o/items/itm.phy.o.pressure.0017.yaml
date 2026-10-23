@@ -1,0 +1,96 @@
+id: itm.phy.o.pressure.0017
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.liquid_pressure
+stem: A tall jar holds cooking oil (density 920 kg/m³) to a depth of 40 cm. Take g = 9.8 N/kg.
+parts:
+- id: a
+  prompt: Calculate the pressure due to the cooking oil at the bottom of the jar, in pascals.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '3610'
+    unit: Pa
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_prs_0017_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: With the density in kg/m³, the depth must be in metres.
+  - rung: 2
+    name: concept
+    text:
+      en: Pressure due to a liquid = density × g × depth.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change 40 cm into metres first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The depth is 0.4 m; multiply 920 × 9.8 × 0.4.
+  - rung: 5
+    name: full_step
+    text:
+      en: The pressure is 3610 Pa.
+  misconception_ids:
+  - mc.phy.o.liquid_depth_cm_not_converted
+  - mc.phy.o.liquid_pressure_g_left_out
+  - mc.phy.o.liquid_density_ignored
+solution:
+  steps:
+  - n: 1
+    latex: h = 40\ \text{cm} = 0.4\ \text{m}
+    reason: Depth in metres
+    check_id: chk_build_phy_prs_0017_hm
+  - n: 2
+    latex: p = \rho g h = 920 \times 9.8 \times 0.4 = 3610\ \text{Pa}
+    reason: Pressure = ρgh
+    check_id: chk_build_phy_prs_0017_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_0017_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 920*g*40/100
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_prs_0017_hm:
+    args:
+      expression: 40/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

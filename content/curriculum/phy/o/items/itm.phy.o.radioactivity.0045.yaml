@@ -1,0 +1,117 @@
+id: itm.phy.o.radioactivity.0045
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.half_life
+stem: The half-life of iodine-131 is 8 days. A sample has an activity of 1600 MBq.
+parts:
+- id: a
+  prompt: How long will it take for the activity to fall to 50 MBq?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 256 days
+      correct: false
+      misconception_id: mc.phy.o.half_lives_equal_ratio
+      feedback: 'Falling to an eighth takes three halvings: a half, a quarter, an eighth. Count how many times you halve.'
+    - id: B
+      text: 40 days
+      correct: true
+    - id: C
+      text: 48.0 days
+      correct: false
+      misconception_id: mc.phy.o.half_lives_counted_wrongly
+      feedback: 'Count the halvings, not the values: going from 80 to 40 to 20 is two half-lives, even though three numbers are written.'
+    - id: D
+      text: 15.5 days
+      correct: false
+      misconception_id: mc.phy.o.decay_treated_as_linear
+      feedback: 'In each half-life the activity falls by half of what is left, so the drops get smaller: 80 to 40 is a drop of 40, but 40 to 20 is a drop of only 20.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Each half-life halves the activity.
+  - rung: 2
+    name: concept
+    text:
+      en: Count how many times you must halve 1600 to reach 50.
+  - rung: 3
+    name: first_step
+    text:
+      en: The activity must fall to 1/32 of its start; count the halvings, not the ratio.
+  - rung: 4
+    name: worked_step
+    text:
+      en: That takes 5 half-lives of 8 days each.
+  - rung: 5
+    name: full_step
+    text:
+      en: It takes 40 days.
+  misconception_ids:
+  - mc.phy.o.decay_treated_as_linear
+  - mc.phy.o.half_lives_counted_wrongly
+  - mc.phy.o.half_lives_equal_ratio
+solution:
+  steps:
+  - n: 1
+    latex: \frac{1600}{50} = 32
+    reason: How many times smaller
+    check_id: chk_build_phy_rad_0045_ratio
+  - n: 2
+    latex: \frac{1600}{2^{n}} = 50 \Rightarrow n = 5
+    reason: Count the halvings
+    check_id: chk_build_phy_rad_0045_n
+  - n: 3
+    latex: t = 5 \times 8 = 40\ \text{days}
+    reason: Half-lives × half-life
+    check_id: chk_build_phy_rad_0045_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_0045_ans:
+    args:
+      expression: 5*8
+    tool: math_evaluate
+  chk_build_phy_rad_0045_n:
+    args:
+      equations:
+      - 1600/2^n = 50
+      unknowns:
+      - n
+    tool: math_solve
+  chk_build_phy_rad_0045_ratio:
+    args:
+      expression: 1600/50
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

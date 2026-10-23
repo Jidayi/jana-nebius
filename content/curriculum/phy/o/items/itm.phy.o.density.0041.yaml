@@ -1,0 +1,93 @@
+id: itm.phy.o.density.0041
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.floating_and_sinking
+stem: 'Three liquids that do not mix are poured into a jar: honey (1.4 g/cm³), water (1.0 g/cm³) and oil (0.9 g/cm³).'
+parts:
+- id: a
+  prompt: In what order do they settle, from the bottom up?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Oil, then water, then honey
+      correct: false
+      misconception_id: mc.phy.o.density_float_rule_reversed
+      feedback: A stone is denser than water and sinks; a cork is less dense and floats. An object floats when its density is less than the liquid's.
+    - id: B
+      text: Honey, then water, then oil
+      correct: true
+    - id: C
+      text: Whichever there is most of settles at the bottom
+      correct: false
+      misconception_id: mc.phy.o.volume_decides_floating
+      feedback: 'Cut a piece of wood in half and both halves still float. Size does not decide it: compare the densities.'
+    - id: D
+      text: Whichever was poured in as the heaviest amount settles at the bottom
+      correct: false
+      misconception_id: mc.phy.o.mass_decides_floating
+      feedback: A huge tree trunk floats while a small pebble sinks. What counts is the mass in each unit of volume, the density, compared with the liquid's density.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Floating depends on densities, not on mass or size alone.
+  - rung: 2
+    name: concept
+    text:
+      en: The densest liquid sinks below the others.
+  - rung: 3
+    name: first_step
+    text:
+      en: Compare the density of the object with the density of the liquid.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that look only at how heavy or how big something is.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Honey, then water, then oil.'
+  misconception_ids:
+  - mc.phy.o.density_float_rule_reversed
+  - mc.phy.o.mass_decides_floating
+  - mc.phy.o.volume_decides_floating
+solution:
+  steps:
+  - n: 1
+    latex: \text{Honey, then water, then oil}
+    reason: Compare the object's density with the liquid's
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

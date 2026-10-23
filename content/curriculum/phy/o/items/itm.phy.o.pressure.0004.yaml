@@ -1,0 +1,91 @@
+id: itm.phy.o.pressure.0004
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.pressure_on_surfaces
+stem: The water behind a sluice gate exerts an average pressure of 30 kPa, acting on an area of 2 m².
+parts:
+- id: a
+  prompt: Calculate the force on that area, in newtons.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '60000'
+    unit: N
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_prs_0004_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Pressure = force ÷ area, so force = pressure × area.
+  - rung: 2
+    name: concept
+    text:
+      en: Pascals times square metres gives newtons, so the pressure must be in pascals.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change 30 kPa into pascals first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The pressure is 30000 Pa; multiply it by 2 m².
+  - rung: 5
+    name: full_step
+    text:
+      en: The force is 60000 N.
+  misconception_ids:
+  - mc.phy.o.pressure_kpa_not_converted
+  - mc.phy.o.pressure_rearranged_wrongly
+solution:
+  steps:
+  - n: 1
+    latex: p = 30\ \text{kPa} = 30000\ \text{Pa}
+    reason: Kilopascals into pascals
+    check_id: chk_build_phy_prs_0004_pa
+  - n: 2
+    latex: F = pA = 30000 \times 2 = 60000\ \text{N}
+    reason: Force = pressure × area
+    check_id: chk_build_phy_prs_0004_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_0004_ans:
+    args:
+      expression: 30*1000*2
+    tool: math_evaluate
+  chk_build_phy_prs_0004_pa:
+    args:
+      expression: 30*1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

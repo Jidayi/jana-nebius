@@ -1,0 +1,45 @@
+id: mc.mth.o.compound_part_missing
+kc_ids:
+- kc.mth.o.mensuration.compound_shapes
+- kc.mth.o.mensuration.area_perimeter
+- kc.mth.o.mensuration.prism_volume
+- kc.mth.o.statistics.read_tables
+student_name: Leaving out one part of a compound shape
+description: Finds the area or volume of only one of the simple shapes that make up a compound shape.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: diagram
+  text:
+    en: Split the shape into simple parts, label each one, and add every part.
+probe_item_ids:
+- itm.mth.o.mensuration.0027
+- itm.mth.o.mensuration.0029
+- itm.mth.o.mensuration.0071
+- itm.mth.o.mensuration.0073
+- itm.mth.o.mensuration.0074
+severity: medium
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

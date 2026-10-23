@@ -1,0 +1,125 @@
+id: itm.phy.o.energy.0059
+version: 0.1.1
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.energy_conversion
+stem: A roller-coaster car starts from rest at a point 45 m above the ground and rolls down to a point 12 m above the ground. Ignore friction and take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate its speed at the lower point.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 18.2 m/s
+      correct: false
+      misconception_id: mc.phy.o.conversion_two_dropped
+      feedback: 'From mgh = ½mv², multiply both sides by 2 and cancel m: v² = 2gh, and so h = v² ÷ 2g.'
+    - id: B
+      text: 660 m/s
+      correct: false
+      misconception_id: mc.phy.o.ke_speed_not_rooted
+      feedback: Rearranging ½mv² gives v², not v. Take the square root as the last step, then check the speed is sensible.
+    - id: C
+      text: 30 m/s
+      correct: false
+      misconception_id: mc.phy.o.gpe_height_not_change
+      feedback: Only the change in height counts. Sketch the start and end positions and find the vertical distance between them.
+    - id: D
+      text: 25.7 m/s
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The gravitational store empties as the kinetic store fills.
+  - rung: 2
+    name: concept
+    text:
+      en: Set mgΔh = ½mv²; the mass cancels, so v² = 2gΔh.
+  - rung: 3
+    name: first_step
+    text:
+      en: The drop in height is 33 m.
+  - rung: 4
+    name: worked_step
+    text:
+      en: v² = 2 × 10 × 33 = 660; take the square root.
+  - rung: 5
+    name: full_step
+    text:
+      en: The speed is 25.7 m/s.
+  misconception_ids:
+  - mc.phy.o.conversion_two_dropped
+  - mc.phy.o.gpe_height_not_change
+  - mc.phy.o.ke_speed_not_rooted
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: \Delta h = 45 - 12 = 33\ \text{m}
+    reason: The drop in height
+    check_id: chk_build_phy_nrg_0059_dh
+  - n: 2
+    latex: mg\Delta h = \frac{1}{2}mv^2 \Rightarrow v^2 = 2g\Delta h
+    reason: Energy lost from the gravitational store = energy gained by the kinetic store; m cancels
+  - n: 3
+    latex: v^2 = 2 \times 10 \times 33 = 660
+    reason: Substitute
+    check_id: chk_build_phy_nrg_0059_vsq
+  - n: 4
+    latex: v = \sqrt{660} = 25.7\ \text{m/s}
+    reason: Square root
+    check_id: chk_build_phy_nrg_0059_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0059_ans:
+    args:
+      expression: sqrt(2*10*(45 - 12))
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_nrg_0059_dh:
+    args:
+      expression: 45 - 12
+    tool: math_evaluate
+  chk_build_phy_nrg_0059_vsq:
+    args:
+      expression: 2*10*(45 - 12)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

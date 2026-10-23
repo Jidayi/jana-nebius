@@ -1,0 +1,93 @@
+id: itm.phy.o.forces.0054
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.springs
+stem: A spring is 8 cm long. When a force of 4 N is hung from it, it stretches to 11 cm. It stays within its limit of proportionality.
+parts:
+- id: a
+  prompt: Find the spring constant in N/m.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '133'
+    unit: N/m
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_frc_0054_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The spring constant is the force per metre of extension.
+  - rung: 2
+    name: concept
+    text:
+      en: The extension is the stretched length minus the original length.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change the extension into metres, then use k = F ÷ x.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The extension is 0.03 m.
+  - rung: 5
+    name: full_step
+    text:
+      en: k = 4 ÷ 0.03 = 133 N/m.
+  misconception_ids:
+  - mc.phy.o.spring_length_for_extension
+  - mc.phy.o.spring_cm_not_converted
+  - mc.phy.o.spring_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: x = 11 - 8 = 3\ \text{cm} = 0.03\ \text{m}
+    reason: Extension in metres
+    check_id: chk_build_phy_frc_0054_ext_m
+  - n: 2
+    latex: k = \frac{F}{x} = \frac{4}{0.03} = 133\ \text{N/m}
+    reason: From F = kx
+    check_id: chk_build_phy_frc_0054_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0054_ans:
+    args:
+      expression: 4/((11 - 8)/100)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_frc_0054_ext_m:
+    args:
+      expression: (11 - 8)/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

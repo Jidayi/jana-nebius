@@ -1,0 +1,68 @@
+id: wex.acc.o.depreciation.0012
+kc_ids:
+- kc.acc.o.depreciation.disposal
+problem: A machine cost $12000, straight line over 4 years, no residual value. After 2 years' depreciation it is sold for $5000. Find the profit or loss.
+steps:
+- n: 1
+  latex: \text{Result} = \text{proceeds} - \text{net book value}
+  reason: Compare with the book value
+  check_id: chk_build_acc_depreciation_w0012_t
+- n: 2
+  latex: \text{Net book value} = 12000 - \frac{12000}{4} \times 2 = 6000
+  reason: Cost less accumulated depreciation
+  check_id: chk_build_acc_depreciation_w0012_s2
+- n: 3
+  latex: \text{Result} = 5000 - 6000, \text{ a loss of } 1000
+  reason: Positive is a profit
+  check_id: chk_build_acc_depreciation_w0012_a
+final_answer:
+  latex: \text{Loss of }\$\,1000
+  check_id: chk_build_acc_depreciation_w0012_a
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_depreciation_w0012_a:
+    args:
+      dp: 2
+      expression: abs(5000 - (12000 - 12000 / 4 * 2))
+    tool: math_evaluate
+  chk_build_acc_depreciation_w0012_s2:
+    args:
+      dp: 4
+      expression: 12000 - 12000 / 4 * 2
+    tool: math_evaluate
+  chk_build_acc_depreciation_w0012_s3:
+    args:
+      dp: 4
+      expression: abs(5000 - (12000 - 12000 / 4 * 2))
+    tool: math_evaluate
+  chk_build_acc_depreciation_w0012_t:
+    args:
+      cost: '12000'
+      disposal:
+        proceeds: '5000'
+        year: 3
+      dp: 2
+      life_years: 4
+      method: straight_line
+      part_year_policy: full_year
+    tool: acc_depreciation
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

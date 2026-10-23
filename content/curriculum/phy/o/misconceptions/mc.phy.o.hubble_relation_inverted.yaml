@@ -1,0 +1,33 @@
+id: mc.phy.o.hubble_relation_inverted
+kc_ids:
+- kc.phy.o.stars.expanding_universe
+student_name: Distance over the Hubble constant
+description: Divides the distance by the Hubble constant to find the recession speed (or multiplies the speed by it to find the distance).
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: Recession speed = Hubble constant × distance, so distance = speed ÷ Hubble constant.
+probe_item_ids:
+- itm.phy.o.stars.0031
+- itm.phy.o.stars.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

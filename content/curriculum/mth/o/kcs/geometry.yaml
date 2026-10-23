@@ -1,0 +1,392 @@
+- id: kc.mth.o.geometry.shape_properties
+  code: MTH-O-04.01.K01
+  node_id: cur.mth.o.geometry.geometrical_terms
+  statement: Identify triangles, quadrilaterals and polygons from their properties
+  kind: conceptual
+  tools: []
+  exam_weight: 0.069
+  prerequisites:
+  - kc_id: kc.mth.o.geometry.angle_facts
+    strength: helpful
+  misconception_ids:
+  - mc.mth.o.adjacent_angles_complementary
+  - mc.mth.o.kite_rhombus_confused
+  - mc.mth.o.parallelogram_angles_all_equal
+  - mc.mth.o.quadrilateral_sum_360_misused
+  - mc.mth.o.square_not_rectangle
+  - mc.mth.o.trapezium_two_pairs
+  skill_ids:
+  - mth-o-geometry
+  glossary:
+  - triangle
+  - quadrilateral
+  - polygon
+  - parallelogram
+  - rhombus
+  - trapezium
+  - kite
+  - isosceles
+  - equilateral
+  - scalene
+  - rectangle
+  - diagonal
+  - perpendicular
+  - parallel
+  difficulty_prior: -0.8
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.geometry.constructions
+  code: MTH-O-04.02.K01
+  node_id: cur.mth.o.geometry.geometrical_constructions
+  statement: Describe the order of steps to bisect a line or an angle and to draw a triangle from its sides
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.049
+  prerequisites:
+  - kc_id: kc.mth.o.geometry.shape_properties
+    strength: required
+  misconception_ids:
+  - mc.mth.o.construction_measures_with_protractor
+  - mc.mth.o.construction_radius_changed
+  - mc.mth.o.construction_wrong_order
+  - mc.mth.o.triangle_inequality_ignored
+  skill_ids:
+  - mth-o-geometry
+  glossary:
+  - construction
+  - bisect
+  - bisector
+  - perpendicular bisector
+  - angle bisector
+  - arc
+  - compasses
+  - protractor
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.geometry.map_scales
+  code: MTH-O-04.03.K01
+  node_id: cur.mth.o.geometry.scale_drawings
+  statement: Use a map or drawing scale to convert between lengths on the drawing and real lengths
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.069
+  prerequisites:
+  - kc_id: kc.mth.o.number.direct_proportion
+    strength: required
+  misconception_ids:
+  - mc.mth.o.scale_conversion_factor
+  - mc.mth.o.scale_units_not_converted
+  - mc.mth.o.scale_wrong_direction
+  skill_ids:
+  - mth-o-geometry
+  glossary:
+  - scale
+  - scale drawing
+  - ratio
+  - map scale
+  difficulty_prior: -0.4
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.geometry.bearings
+  code: MTH-O-04.03.K02
+  node_id: cur.mth.o.geometry.scale_drawings
+  statement: Find bearings and back bearings measured clockwise from north
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.078
+  prerequisites:
+  - kc_id: kc.mth.o.geometry.angle_facts
+    strength: required
+  misconception_ids:
+  - mc.mth.o.back_bearing_add_90
+  - mc.mth.o.back_bearing_from_180
+  - mc.mth.o.back_bearing_from_360
+  - mc.mth.o.bearing_over_360
+  skill_ids:
+  - mth-o-geometry
+  glossary:
+  - bearing
+  - back bearing
+  - clockwise
+  - three-figure bearing
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.geometry.similar_lengths
+  code: MTH-O-04.04.K01
+  node_id: cur.mth.o.geometry.similarity
+  statement: Use the scale factor of similar shapes to find missing lengths
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.088
+  prerequisites:
+  - kc_id: kc.mth.o.number.ratio_share
+    strength: required
+  misconception_ids:
+  - mc.mth.o.similar_additive
+  - mc.mth.o.similar_area_factor_for_length
+  - mc.mth.o.similar_factor_inverted
+  skill_ids:
+  - mth-o-geometry
+  glossary:
+  - similar
+  - similarity
+  - scale factor
+  - corresponding
+  - enlargement
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.geometry.similar_area_volume
+  code: MTH-O-04.04.K02
+  node_id: cur.mth.o.geometry.similarity
+  statement: Use the square and the cube of the length scale factor for areas and volumes of similar shapes
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.078
+  prerequisites:
+  - kc_id: kc.mth.o.geometry.similar_lengths
+    strength: required
+  - kc_id: kc.mth.o.number.powers_and_roots
+    strength: required
+  misconception_ids:
+  - mc.mth.o.similar_area_factor_for_volume
+  - mc.mth.o.similar_factor_inverted
+  - mc.mth.o.similar_length_factor_for_area
+  - mc.mth.o.similar_area_factor_for_length
+  skill_ids:
+  - mth-o-geometry
+  glossary:
+  - similar
+  - scale factor
+  - length scale factor
+  - area scale factor
+  - volume scale factor
+  - surface area
+  - volume
+  difficulty_prior: 0.7
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.geometry.symmetry
+  code: MTH-O-04.05.K01
+  node_id: cur.mth.o.geometry.symmetry
+  statement: Find the number of lines of symmetry and the order of rotational symmetry of a shape
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.049
+  prerequisites:
+  - kc_id: kc.mth.o.geometry.shape_properties
+    strength: required
+  misconception_ids:
+  - mc.mth.o.parallelogram_line_symmetry
+  - mc.mth.o.regular_symmetry_half
+  - mc.mth.o.rotation_order_zero
+  - mc.mth.o.symmetry_lines_double_counted
+  skill_ids:
+  - mth-o-geometry
+  glossary:
+  - symmetry
+  - line of symmetry
+  - rotational symmetry
+  - order of rotational symmetry
+  - regular polygon
+  - polygon
+  - pentagon
+  - hexagon
+  - heptagon
+  - octagon
+  - nonagon
+  - decagon
+  - dodecagon
+  - parallelogram
+  - rhombus
+  - trapezium
+  - isosceles
+  - equilateral
+  - rectangle
+  difficulty_prior: -0.9
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.geometry.angle_facts
+  code: MTH-O-04.06.K01
+  node_id: cur.mth.o.geometry.angles
+  statement: Calculate angles at a point, on a straight line and where two straight lines cross
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.088
+  prerequisites:
+  - kc_id: kc.mth.o.number.order_of_operations
+    strength: required
+  misconception_ids:
+  - mc.mth.o.line_angles_360
+  - mc.mth.o.point_angles_180
+  - mc.mth.o.vertically_opposite_supplementary
+  - mc.mth.o.adjacent_angles_complementary
+  - mc.mth.o.alternate_supplementary
+  skill_ids:
+  - mth-o-geometry
+  glossary:
+  - angle
+  - right angle
+  - straight line
+  - vertically opposite
+  - angles at a point
+  - isosceles
+  - isosceles triangle
+  - reflex
+  difficulty_prior: -1.0
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.geometry.parallel_line_angles
+  code: MTH-O-04.06.K02
+  node_id: cur.mth.o.geometry.angles
+  statement: Use alternate, corresponding and co-interior angles to find angles at parallel lines
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.088
+  prerequisites:
+  - kc_id: kc.mth.o.geometry.angle_facts
+    strength: required
+  misconception_ids:
+  - mc.mth.o.adjacent_angles_complementary
+  - mc.mth.o.alternate_supplementary
+  - mc.mth.o.cointerior_equal
+  - mc.mth.o.line_angles_360
+  skill_ids:
+  - mth-o-geometry
+  glossary:
+  - parallel
+  - alternate
+  - corresponding
+  - co-interior
+  - transversal
+  difficulty_prior: -0.4
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.geometry.triangle_angles
+  code: MTH-O-04.06.K03
+  node_id: cur.mth.o.geometry.angles
+  statement: Calculate angles in triangles, including isosceles triangles and exterior angles
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.088
+  prerequisites:
+  - kc_id: kc.mth.o.geometry.angle_facts
+    strength: required
+  misconception_ids:
+  - mc.mth.o.angle_sum_one_angle_only
+  - mc.mth.o.exterior_as_supplement
+  - mc.mth.o.exterior_interior_confused
+  - mc.mth.o.isosceles_not_halved
+  - mc.mth.o.isosceles_wrong_pair
+  - mc.mth.o.triangle_sum_360
+  skill_ids:
+  - mth-o-geometry
+  glossary:
+  - isosceles
+  - isosceles triangle
+  - equilateral
+  - exterior angle
+  - interior angle
+  - triangle
+  difficulty_prior: -0.5
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.geometry.polygon_angles
+  code: MTH-O-04.06.K04
+  node_id: cur.mth.o.geometry.angles
+  statement: Calculate the interior and exterior angles of polygons
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.088
+  prerequisites:
+  - kc_id: kc.mth.o.geometry.triangle_angles
+    strength: required
+  misconception_ids:
+  - mc.mth.o.exterior_for_interior
+  - mc.mth.o.polygon_sum_n_180
+  - mc.mth.o.regular_sum_not_divided
+  skill_ids:
+  - mth-o-geometry
+  glossary:
+  - polygon
+  - regular polygon
+  - interior angle
+  - exterior angle
+  - pentagon
+  - hexagon
+  - octagon
+  - decagon
+  difficulty_prior: 0.1
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.geometry.circle_theorems_basic
+  code: MTH-O-04.07.K01
+  node_id: cur.mth.o.geometry.circle_theorems_i
+  statement: Use the angle in a semicircle, the angle at the centre and the right angle between tangent and radius
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.088
+  prerequisites:
+  - kc_id: kc.mth.o.geometry.triangle_angles
+    strength: required
+  misconception_ids:
+  - mc.mth.o.centre_angle_halved
+  - mc.mth.o.semicircle_not_right
+  - mc.mth.o.tangent_radius_not_right
+  - mc.mth.o.isosceles_not_halved
+  skill_ids:
+  - mth-o-geometry
+  glossary:
+  - semicircle
+  - diameter
+  - tangent
+  - radius
+  - angle at the centre
+  - circumference
+  - circle theorem
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.geometry.circle_theorems_cyclic
+  code: MTH-O-04.08.K01
+  node_id: cur.mth.o.geometry.circle_theorems_ii
+  statement: Use opposite angles of a cyclic quadrilateral and angles in the same segment
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.078
+  prerequisites:
+  - kc_id: kc.mth.o.geometry.circle_theorems_basic
+    strength: required
+  misconception_ids:
+  - mc.mth.o.cyclic_opposite_equal
+  - mc.mth.o.cyclic_sum_360
+  - mc.mth.o.same_segment_supplementary
+  - mc.mth.o.adjacent_angles_complementary
+  - mc.mth.o.centre_angle_halved
+  skill_ids:
+  - mth-o-geometry
+  glossary:
+  - cyclic quadrilateral
+  - quadrilateral
+  - opposite angles
+  - same segment
+  - segment
+  - circumference
+  - circle theorem
+  difficulty_prior: 0.6
+  version: 0.1.1
+  status: active

@@ -1,0 +1,114 @@
+id: itm.chm.o.stoichiometry.0006
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.ionic_formulae
+- kc.chm.o.stoichiometry.relative_formula_mass
+stem: Calcium bromide contains Ca²⁺ and Br⁻ ions.
+parts:
+- id: a
+  prompt: Write the formula of calcium bromide and use it to calculate its relative formula mass.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '200'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0006_mr
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: First you need the formula of calcium bromide; then add up the relative atomic masses in it.
+  - rung: 2
+    name: concept
+    text:
+      en: The charges on the ions must cancel; the relative formula mass is the sum of the relative atomic masses of every atom in the formula.
+  - rung: 3
+    name: first_step
+    text:
+      en: The formula is CaBr₂. Now count the atoms of each element in it.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'In CaBr₂: one Ca atom gives 40 and two Br atoms give 160.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Mr of CaBr₂ = 200.
+  misconception_ids:
+  - mc.chm.o.formula_one_of_each
+  - mc.chm.o.formula_own_charge_as_count
+solution:
+  steps:
+  - n: 1
+    latex: \text{CaBr}_2
+    reason: Charges cancel in calcium bromide
+  - n: 2
+    latex: \text{Ca} = 40
+    reason: One Ca atom times Ar
+    check_id: chk_build_chm_stoichiometry_0006_g_ca
+  - n: 3
+    latex: \text{Br}_2 = 160
+    reason: Two Br atoms times Ar
+    check_id: chk_build_chm_stoichiometry_0006_g_br
+  - n: 4
+    latex: M_r = 200
+    reason: Add the shares
+    check_id: chk_build_chm_stoichiometry_0006_mr
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0006_g_br:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_br
+      formula: Br2
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0006_g_ca:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ca
+      formula: Ca
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0006_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ca
+      - source: pack
+        symbol: ar_br
+      formula: CaBr2
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

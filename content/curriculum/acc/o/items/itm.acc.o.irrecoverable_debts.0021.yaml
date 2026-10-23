@@ -1,0 +1,133 @@
+id: itm.acc.o.irrecoverable_debts.0021
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.irrecoverable_debts.allowance_amount
+stem: Femi's trade receivables are $12900 before writing off a debt of $300. The allowance for irrecoverable debts is 10% of trade receivables; last year's allowance was $1100.
+parts:
+- id: a
+  prompt: What is the allowance for irrecoverable debts at the year end?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $11340
+      correct: false
+      misconception_id: mc.acc.o.id_net_as_allowance
+    - id: B
+      text: $1290
+      correct: false
+      misconception_id: mc.acc.o.id_allowance_before_writeoff
+    - id: C
+      text: $160
+      correct: false
+      misconception_id: mc.acc.o.id_change_as_allowance
+    - id: D
+      text: $1260
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which debts does the allowance cover?
+  - rung: 2
+    name: concept
+    text:
+      en: Allowance = percentage of trade receivables after writing off known bad debts.
+  - rung: 3
+    name: first_step
+    text:
+      en: The year-end allowance is a balance, not the change from last year.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 10% of (12900 − 300).
+  - rung: 5
+    name: full_step
+    text:
+      en: The allowance is $1260.
+  misconception_ids:
+  - mc.acc.o.id_allowance_before_writeoff
+  - mc.acc.o.id_net_as_allowance
+  - mc.acc.o.id_change_as_allowance
+solution:
+  steps:
+  - n: 1
+    latex: \text{Allowance} = \text{rate} \times (\text{receivables} - \text{written off})
+    reason: The balance at the year end
+    check_id: chk_build_acc_irrecoverable_debts_0021_t
+  - n: 2
+    latex: \text{Allowance} = 10\% \times (12900 - 300) = 1260
+    reason: Substitute
+    check_id: chk_build_acc_irrecoverable_debts_0021_a
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_irrecoverable_debts_0021_a:
+    args:
+      dp: 2
+      expression: (12900 - 300) * 10/100
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_0021_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - amount: '300'
+        kind: irrecoverable_debt
+      - kind: allowance
+        percent: '10'
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '80000'
+        role: revenue
+      - account: Purchases
+        debit: '40000'
+        role: purchases
+      - account: Trade receivables
+        debit: '12900'
+        role: trade_receivables
+      - account: Allowance for irrecoverable debts
+        credit: '1100'
+        role: allowance_for_irrecoverable_debts
+      - account: Land
+        debit: '28200'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

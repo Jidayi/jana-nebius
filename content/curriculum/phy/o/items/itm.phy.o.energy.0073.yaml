@@ -1,0 +1,98 @@
+id: itm.phy.o.energy.0073
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.work_done
+stem: Musa lifts a bag of weight 120 N through a height of 1.5 m, then carries it 12 m along a level corridor at the same height.
+parts:
+- id: a
+  prompt: Calculate the work done against gravity.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 1440 J
+      correct: false
+      misconception_id: mc.phy.o.work_distance_not_along_force
+      feedback: Only movement along the line of the force counts. Lifting a bag works against its weight through the vertical height alone.
+    - id: B
+      text: 180 J
+      correct: true
+    - id: C
+      text: 1620 J
+      correct: false
+      misconception_id: mc.phy.o.work_total_path_used
+      feedback: Draw the force as an arrow. Use the distance moved along that arrow, not the total length of the path.
+    - id: D
+      text: 80 J
+      correct: false
+      misconception_id: mc.phy.o.work_force_over_distance
+      feedback: Work done = force × distance moved along the force. A bigger push over a longer distance means more work.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Work against gravity is done only while the bag moves up, against its weight.
+  - rung: 2
+    name: concept
+    text:
+      en: Use W = F × d, with d the distance moved along the force.
+  - rung: 3
+    name: first_step
+    text:
+      en: Moving along the level corridor needs no work against gravity.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 120 × 1.5.
+  - rung: 5
+    name: full_step
+    text:
+      en: The work done against gravity is 180 J.
+  misconception_ids:
+  - mc.phy.o.work_distance_not_along_force
+  - mc.phy.o.work_force_over_distance
+  - mc.phy.o.work_total_path_used
+solution:
+  steps:
+  - n: 1
+    latex: W = F \times d = 120 \times 1.5 = 180\ \text{J}
+    reason: Only the vertical distance is along the weight
+    check_id: chk_build_phy_nrg_0073_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0073_ans:
+    args:
+      expression: 120*1.5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

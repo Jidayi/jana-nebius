@@ -1,0 +1,98 @@
+id: itm.chm.o.atoms.0017
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.atoms.subatomic_particles
+- kc.chm.o.atoms.ion_formation
+stem: A aluminium ion has a positive charge of 3 and the proton number of aluminium is 13.
+parts:
+- id: a
+  prompt: How many electrons does the ion have?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: '13'
+      correct: false
+      misconception_id: mc.chm.o.ion_electrons_unchanged
+      feedback: An ion is charged because its electrons no longer match its protons. A 2+ ion has two fewer electrons than protons; a 2− ion has two more.
+    - id: B
+      text: '3'
+      correct: false
+      misconception_id: mc.chm.o.ion_electrons_equal_charge
+      feedback: The charge tells you how many electrons were lost or gained, not how many the ion has. Start from the proton number.
+    - id: C
+      text: '16'
+      correct: false
+      misconception_id: mc.chm.o.ion_charge_sign_reversed
+      feedback: Electrons are negative. Losing electrons leaves an ion positive; gaining electrons makes it negative.
+    - id: D
+      text: '10'
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A neutral aluminium atom has as many electrons as protons. What does the charge tell you?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Electrons are negative: an atom that loses electrons becomes positive; one that gains electrons becomes negative.'
+  - rung: 3
+    name: first_step
+    text:
+      en: The atom has 13 electrons before it forms the ion.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A positive charge of 3 means losing three electrons.
+  - rung: 5
+    name: full_step
+    text:
+      en: 13 − 3 = 10 electrons.
+  misconception_ids:
+  - mc.chm.o.ion_electrons_unchanged
+  - mc.chm.o.ion_charge_sign_reversed
+  - mc.chm.o.ion_electrons_equal_charge
+solution:
+  steps:
+  - n: 1
+    latex: e^- = 13 - 3 = 10
+    reason: Protons less the charge
+    check_id: chk_build_chm_atoms_0017_e
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_atoms_0017_e:
+    args:
+      expression: 13 - 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

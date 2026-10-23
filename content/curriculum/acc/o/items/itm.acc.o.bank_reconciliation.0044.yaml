@@ -1,0 +1,82 @@
+id: itm.acc.o.bank_reconciliation.0044
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.bank_reconciliation.overdraft_sides
+stem: Four records are described.
+parts:
+- id: a
+  prompt: Select every record that shows money in the bank.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: A debit balance in the bank column of the cash book
+      correct: true
+    - id: B
+      text: A credit balance on the bank statement
+      correct: true
+    - id: C
+      text: A credit balance in the bank column of the cash book
+      correct: false
+    - id: D
+      text: A debit balance on the bank statement
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Whose book is each record in?
+  - rung: 2
+    name: concept
+    text:
+      en: 'In your cash book money in the bank is an asset: debit. To the bank, it is owed to you: credit.'
+  - rung: 3
+    name: first_step
+    text:
+      en: The other two mean an overdraft.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the cash book debit and the statement credit.
+  - rung: 5
+    name: full_step
+    text:
+      en: A cash book debit balance and a statement credit balance mean money in the bank.
+  misconception_ids:
+  - mc.acc.o.br_statement_view_reversed
+solution:
+  steps:
+  - n: 1
+    latex: '\text{In the bank: cash book debit, statement credit}'
+    reason: Opposite points of view
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

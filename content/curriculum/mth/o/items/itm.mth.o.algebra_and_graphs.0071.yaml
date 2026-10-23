@@ -1,0 +1,91 @@
+id: itm.mth.o.algebra_and_graphs.0071
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.change_subject
+stem: In the formula $y = mx + c$, y = 29, m = 2, c = 5.
+parts:
+- id: a
+  prompt: Make x the subject, then find the value of x.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '12'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0071_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: First rearrange the formula so that x is on its own.
+  - rung: 2
+    name: concept
+    text:
+      en: Undo the operations on the subject in reverse order, doing the same to both sides.
+  - rung: 3
+    name: first_step
+    text:
+      en: The rearranged formula is $x = \frac{y - c}{m}$.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Now substitute y = 29, m = 2, c = 5 into $x = \frac{y - c}{m}$.
+  - rung: 5
+    name: full_step
+    text:
+      en: x = 12.
+  misconception_ids:
+  - mc.mth.o.rearrange_inverse_sign
+  - mc.mth.o.rearrange_wrong_order
+  - mc.mth.o.rearrange_wrong_inverse
+solution:
+  steps:
+  - n: 1
+    latex: x = \frac{y - c}{m}
+    reason: Make x the subject
+  - n: 2
+    latex: x = 12
+    reason: Substitute y = 29, m = 2, c = 5 and evaluate
+    check_id: chk_build_mth_alg_0071_ans
+difficulty:
+  prior: 0.5
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0071_ans:
+    args:
+      expression: (y - c)/m
+      values:
+        c: 5
+        m: 2
+        y: 29
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

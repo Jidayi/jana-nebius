@@ -1,0 +1,813 @@
+{
+  "$comment": "VSL-31: tool readouts at each simulation's declared sample points (generated).",
+  "circuit_sim": [
+    {
+      "params": {
+        "R1": 4,
+        "R2": 2,
+        "arrangement": "series",
+        "emf": 6
+      },
+      "readouts": {
+        "out.current": "1",
+        "out.pd_R1": "4",
+        "out.pd_R2": "2",
+        "out.resistance": "6"
+      },
+      "tool": "phys_circuit"
+    },
+    {
+      "params": {
+        "R1": 3,
+        "R2": 6,
+        "arrangement": "parallel",
+        "emf": 12
+      },
+      "readouts": {
+        "out.current": "6",
+        "out.pd_R1": "12",
+        "out.pd_R2": "12",
+        "out.resistance": "2"
+      },
+      "tool": "phys_circuit"
+    },
+    {
+      "params": {
+        "R1": 10,
+        "R2": 20,
+        "R3": 30,
+        "arrangement": "series",
+        "emf": 9
+      },
+      "readouts": {
+        "out.current": "0.15",
+        "out.pd_R1": "1.5",
+        "out.pd_R2": "3",
+        "out.pd_R3": "4.5",
+        "out.resistance": "6E+1"
+      },
+      "tool": "phys_circuit"
+    },
+    {
+      "params": {
+        "R1": 5,
+        "R2": 5,
+        "R3": 10,
+        "arrangement": "parallel",
+        "emf": 1.5
+      },
+      "readouts": {
+        "out.current": "0.75",
+        "out.pd_R1": "1.5",
+        "out.pd_R2": "1.5",
+        "out.pd_R3": "1.5",
+        "out.resistance": "2"
+      },
+      "tool": "phys_circuit"
+    },
+    {
+      "params": {
+        "R1": 100,
+        "arrangement": "series",
+        "emf": 24
+      },
+      "readouts": {
+        "out.current": "0.24",
+        "out.pd_R1": "24",
+        "out.resistance": "1E+2"
+      },
+      "tool": "phys_circuit"
+    }
+  ],
+  "electrolysis_constants": {
+    "faraday": 96500.0,
+    "molar_mass": {
+      "Br2": 160.0,
+      "Cu": 64.0,
+      "Pb": 207.0
+    },
+    "vm_cm3": 24000.0
+  },
+  "electrolysis_sim": [
+    {
+      "params": {
+        "current": 1,
+        "preset_id": "sim.chm.electrolysis_brine.v1",
+        "time": 600
+      },
+      "readouts": {
+        "out.anode_gas": "74.6114",
+        "out.cathode_gas": "74.6114"
+      },
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "current": 2.5,
+        "preset_id": "sim.chm.electrolysis_lead_bromide.v1",
+        "time": 1200
+      },
+      "readouts": {
+        "out.anode_mass": "2.48705",
+        "out.cathode_mass": "3.21762"
+      },
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "current": 2,
+        "preset_id": "sim.chm.electrolysis_copper_sulfate.v1",
+        "time": 1800
+      },
+      "readouts": {
+        "out.anode_gas": "223.834",
+        "out.cathode_mass": "1.19378"
+      },
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "current": 0.5,
+        "preset_id": "sim.chm.electrolysis_copper_refining.v1",
+        "time": 3600
+      },
+      "readouts": {
+        "out.anode_mass": "-0.596891",
+        "out.cathode_mass": "0.596891"
+      },
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "current": 5,
+        "preset_id": "sim.chm.electrolysis_dilute_sulfuric_acid.v1",
+        "time": 300
+      },
+      "readouts": {
+        "out.anode_gas": "93.2642",
+        "out.cathode_gas": "186.528"
+      },
+      "tool": "math_evaluate"
+    }
+  ],
+  "equilibrium_reactions": {
+    "haber": {
+      "forward_enthalpy_j_mol": -92000,
+      "forward_rate_constant": 0.02,
+      "initial": {
+        "H2": 3,
+        "N2": 1,
+        "NH3": 0
+      },
+      "reference_kc": 0.05,
+      "reference_temperature_k": 723,
+      "species": [
+        {
+          "coefficient": 1,
+          "formula": "N2",
+          "id": "N2",
+          "side": "reactant",
+          "state": "gas"
+        },
+        {
+          "coefficient": 3,
+          "formula": "H2",
+          "id": "H2",
+          "side": "reactant",
+          "state": "gas"
+        },
+        {
+          "coefficient": 2,
+          "formula": "NH3",
+          "id": "NH3",
+          "side": "product",
+          "state": "gas"
+        }
+      ],
+      "volume_l": 1
+    },
+    "hi": {
+      "forward_enthalpy_j_mol": -9500,
+      "forward_rate_constant": 0.05,
+      "initial": {
+        "H2": 1,
+        "HI": 0,
+        "I2": 1
+      },
+      "reference_kc": 54,
+      "reference_temperature_k": 698,
+      "species": [
+        {
+          "coefficient": 1,
+          "formula": "H2",
+          "id": "H2",
+          "side": "reactant",
+          "state": "gas"
+        },
+        {
+          "coefficient": 1,
+          "formula": "I2",
+          "id": "I2",
+          "side": "reactant",
+          "state": "gas"
+        },
+        {
+          "coefficient": 2,
+          "formula": "HI",
+          "id": "HI",
+          "side": "product",
+          "state": "gas"
+        }
+      ],
+      "volume_l": 1
+    }
+  },
+  "equilibrium_sim": [
+    {
+      "params": {
+        "catalyst": false,
+        "reaction": "hi",
+        "temperature": 698,
+        "volume": 1
+      },
+      "readouts": {
+        "out.c_H2": "0.213939",
+        "out.c_HI": "1.572122",
+        "out.c_I2": "0.213939",
+        "out.kc": "54"
+      },
+      "tool": "math_solve"
+    },
+    {
+      "params": {
+        "catalyst": true,
+        "reaction": "hi",
+        "temperature": 698,
+        "volume": 1
+      },
+      "readouts": {
+        "out.c_H2": "0.213939",
+        "out.c_HI": "1.572122",
+        "out.c_I2": "0.213939",
+        "out.kc": "54"
+      },
+      "tool": "math_solve"
+    },
+    {
+      "params": {
+        "catalyst": false,
+        "reaction": "hi",
+        "temperature": 850,
+        "volume": 1
+      },
+      "readouts": {
+        "out.c_H2": "0.239582",
+        "out.c_HI": "1.520836",
+        "out.c_I2": "0.239582",
+        "out.kc": "40.2957"
+      },
+      "tool": "math_solve"
+    },
+    {
+      "params": {
+        "catalyst": false,
+        "reaction": "haber",
+        "temperature": 723,
+        "volume": 1
+      },
+      "readouts": {
+        "out.c_H2": "2.125302",
+        "out.c_N2": "0.708434",
+        "out.c_NH3": "0.583132",
+        "out.kc": "0.05"
+      },
+      "tool": "math_solve"
+    },
+    {
+      "params": {
+        "catalyst": false,
+        "reaction": "haber",
+        "temperature": 623,
+        "volume": 1
+      },
+      "readouts": {
+        "out.c_H2": "1.503948",
+        "out.c_N2": "0.501316",
+        "out.c_NH3": "0.997368",
+        "out.kc": "0.58331"
+      },
+      "tool": "math_solve"
+    },
+    {
+      "params": {
+        "catalyst": true,
+        "reaction": "haber",
+        "temperature": 723,
+        "volume": 0.5
+      },
+      "readouts": {
+        "out.c_H2": "3.554013",
+        "out.c_N2": "1.184671",
+        "out.c_NH3": "1.630658",
+        "out.kc": "0.05"
+      },
+      "tool": "math_solve"
+    }
+  ],
+  "function_transform_sim": [
+    {
+      "params": {
+        "a": 1,
+        "b": 1,
+        "c": 3,
+        "d": 0,
+        "expression": "x^2",
+        "x": [
+          -6,
+          -3,
+          0,
+          2.5
+        ]
+      },
+      "readouts": {
+        "out.point_x": "-3",
+        "out.point_y": "0"
+      },
+      "samples": [
+        {
+          "x": -6,
+          "y": "9"
+        },
+        {
+          "x": -3,
+          "y": "0"
+        },
+        {
+          "x": 0,
+          "y": "9"
+        },
+        {
+          "x": 2.5,
+          "y": "30.25"
+        }
+      ],
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "a": -2,
+        "b": 0.5,
+        "c": -1,
+        "d": 4,
+        "expression": "x^2",
+        "x": [
+          -4,
+          0,
+          1,
+          5
+        ]
+      },
+      "readouts": {
+        "out.point_x": "1",
+        "out.point_y": "4"
+      },
+      "samples": [
+        {
+          "x": -4,
+          "y": "-8.5"
+        },
+        {
+          "x": 0,
+          "y": "3.5"
+        },
+        {
+          "x": 1,
+          "y": "4"
+        },
+        {
+          "x": 5,
+          "y": "-4"
+        }
+      ],
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "a": 0.5,
+        "b": 2,
+        "c": 1,
+        "d": -2,
+        "expression": "x^3 - 3*x",
+        "x": [
+          -3,
+          -1.5,
+          0.5,
+          2
+        ]
+      },
+      "readouts": {
+        "out.point_x": "-1",
+        "out.point_y": "-2"
+      },
+      "samples": [
+        {
+          "x": -3,
+          "y": "-28"
+        },
+        {
+          "x": -1.5,
+          "y": "-1"
+        },
+        {
+          "x": 0.5,
+          "y": "7"
+        },
+        {
+          "x": 2,
+          "y": "97"
+        }
+      ],
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "a": 3,
+        "b": 1,
+        "c": 2,
+        "d": 1,
+        "expression": "sqrt(x)",
+        "x": [
+          -2,
+          0,
+          2,
+          7
+        ]
+      },
+      "readouts": {
+        "out.point_x": "-2",
+        "out.point_y": "1"
+      },
+      "samples": [
+        {
+          "x": -2,
+          "y": "1"
+        },
+        {
+          "x": 0,
+          "y": "5.24264"
+        },
+        {
+          "x": 2,
+          "y": "7"
+        },
+        {
+          "x": 7,
+          "y": "1E+1"
+        }
+      ],
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "a": 1,
+        "b": -1,
+        "c": 0,
+        "d": -3,
+        "expression": "2^x",
+        "x": [
+          -3,
+          0,
+          1.5,
+          4
+        ]
+      },
+      "readouts": {
+        "out.point_x": "0",
+        "out.point_y": "-2"
+      },
+      "samples": [
+        {
+          "x": -3,
+          "y": "5"
+        },
+        {
+          "x": 0,
+          "y": "-2"
+        },
+        {
+          "x": 1.5,
+          "y": "-2.64645"
+        },
+        {
+          "x": 4,
+          "y": "-2.9375"
+        }
+      ],
+      "tool": "math_evaluate"
+    }
+  ],
+  "g": 9.8,
+  "gas_laws_sim": [
+    {
+      "params": {
+        "amount_mol": 0.00411,
+        "temperature": 293,
+        "volume": 100
+      },
+      "readouts": {
+        "out.pressure": "100.12"
+      },
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "amount_mol": 0.00411,
+        "temperature": 313,
+        "volume": 100
+      },
+      "readouts": {
+        "out.pressure": "106.954"
+      },
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "amount_mol": 0.008,
+        "temperature": 300,
+        "volume": 200
+      },
+      "readouts": {
+        "out.pressure": "99.768"
+      },
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "amount_mol": 0.008,
+        "temperature": 300,
+        "volume": 50
+      },
+      "readouts": {
+        "out.pressure": "399.072"
+      },
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "amount_mol": 0.02,
+        "temperature": 600,
+        "volume": 500
+      },
+      "readouts": {
+        "out.pressure": "199.536"
+      },
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "amount_mol": 0.001,
+        "temperature": 100,
+        "volume": 20
+      },
+      "readouts": {
+        "out.pressure": "41.57"
+      },
+      "tool": "math_evaluate"
+    }
+  ],
+  "projectile_sim": [
+    {
+      "params": {
+        "height": 20,
+        "mode": "horizontal",
+        "speed": 12
+      },
+      "readouts": {
+        "out.max_height": "2E+1",
+        "out.range": "24.2437",
+        "out.time": "2.02031"
+      },
+      "tool": "phys_projectile"
+    },
+    {
+      "params": {
+        "height": 45,
+        "mode": "horizontal",
+        "speed": 5
+      },
+      "readouts": {
+        "out.max_height": "45",
+        "out.range": "15.1523",
+        "out.time": "3.03046"
+      },
+      "tool": "phys_projectile"
+    },
+    {
+      "params": {
+        "height": 80,
+        "mode": "horizontal",
+        "speed": 30
+      },
+      "readouts": {
+        "out.max_height": "8E+1",
+        "out.range": "121.218",
+        "out.time": "4.04061"
+      },
+      "tool": "phys_projectile"
+    },
+    {
+      "params": {
+        "height": 0,
+        "mode": "vertical",
+        "speed": 15
+      },
+      "readouts": {
+        "out.max_height": "11.4796",
+        "out.range": "0",
+        "out.time": "3.06122"
+      },
+      "tool": "phys_projectile"
+    },
+    {
+      "params": {
+        "height": 10,
+        "mode": "vertical",
+        "speed": 20
+      },
+      "readouts": {
+        "out.max_height": "30.4082",
+        "out.range": "0",
+        "out.time": "4.53195"
+      },
+      "tool": "phys_projectile"
+    },
+    {
+      "params": {
+        "height": 35,
+        "mode": "vertical",
+        "speed": 8
+      },
+      "readouts": {
+        "out.max_height": "38.2653",
+        "out.range": "0",
+        "out.time": "3.61083"
+      },
+      "tool": "phys_projectile"
+    }
+  ],
+  "rates_sim": [
+    {
+      "params": {
+        "a": 8200000,
+        "concentration": 0.5,
+        "ea": 50000,
+        "temperature": 293,
+        "time": 60
+      },
+      "readouts": {
+        "out.product": "0.225492",
+        "out.rate_constant": "0.0099938"
+      },
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "a": 8200000,
+        "concentration": 0.5,
+        "ea": 50000,
+        "temperature": 313,
+        "time": 60
+      },
+      "readouts": {
+        "out.product": "0.446006",
+        "out.rate_constant": "0.0370955"
+      },
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "a": 8200000,
+        "concentration": 0.5,
+        "ea": 35000,
+        "temperature": 293,
+        "time": 30
+      },
+      "readouts": {
+        "out.product": "0.5",
+        "out.rate_constant": "4.72015"
+      },
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "a": 300000000,
+        "concentration": 2,
+        "ea": 60000,
+        "temperature": 373,
+        "time": 5
+      },
+      "readouts": {
+        "out.product": "1.99471",
+        "out.rate_constant": "1.18703"
+      },
+      "tool": "math_evaluate"
+    },
+    {
+      "params": {
+        "a": 300000000,
+        "concentration": 0.1,
+        "ea": 60000,
+        "temperature": 273,
+        "time": 3000
+      },
+      "readouts": {
+        "out.product": "0.0949023",
+        "out.rate_constant": "0.000992124"
+      },
+      "tool": "math_evaluate"
+    }
+  ],
+  "titration_sim": [
+    {
+      "end_point": "25",
+      "params": {
+        "acid_concentration": 0.1,
+        "acid_volume": 25,
+        "base_concentration": 0.1
+      },
+      "samples": [
+        {
+          "out.ph": "1",
+          "volume": 0.0
+        },
+        {
+          "out.ph": "1.47712",
+          "volume": 12.5
+        },
+        {
+          "out.ph": "7",
+          "volume": 25.0
+        },
+        {
+          "out.ph": "12.301",
+          "volume": 37.5
+        }
+      ],
+      "tool": "chem_acid_base"
+    },
+    {
+      "end_point": "4E+1",
+      "params": {
+        "acid_concentration": 0.2,
+        "acid_volume": 20,
+        "base_concentration": 0.1
+      },
+      "samples": [
+        {
+          "out.ph": "0.69897",
+          "volume": 0.0
+        },
+        {
+          "out.ph": "1.30103",
+          "volume": 20.0
+        },
+        {
+          "out.ph": "7",
+          "volume": 40.0
+        },
+        {
+          "out.ph": "12.3979",
+          "volume": 60.0
+        }
+      ],
+      "tool": "chem_acid_base"
+    },
+    {
+      "end_point": "15",
+      "params": {
+        "acid_concentration": 0.05,
+        "acid_volume": 30,
+        "base_concentration": 0.1
+      },
+      "samples": [
+        {
+          "out.ph": "1.30103",
+          "volume": 0.0
+        },
+        {
+          "out.ph": "1.69897",
+          "volume": 7.5
+        },
+        {
+          "out.ph": "7",
+          "volume": 15.0
+        },
+        {
+          "out.ph": "12.1549",
+          "volume": 22.5
+        }
+      ],
+      "tool": "chem_acid_base"
+    }
+  ]
+}

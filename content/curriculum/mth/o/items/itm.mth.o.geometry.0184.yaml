@@ -1,0 +1,101 @@
+id: itm.mth.o.geometry.0184
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.circle_theorems_basic
+stem: AB is a diameter of a circle and C is a point on the circle. Angle CAB = 31°.
+parts:
+- id: a
+  prompt: Find angle CBA.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 59°
+      correct: true
+    - id: B
+      text: 149°
+      correct: false
+      misconception_id: mc.mth.o.semicircle_not_right
+      feedback: An angle drawn from the two ends of a diameter to the circle is always 90°.
+    - id: C
+      text: 74.5°
+      correct: false
+      misconception_id: mc.mth.o.isosceles_not_halved
+      feedback: Subtract the top angle from 180°, then share what is left equally between the two base angles.
+    - id: D
+      text: 62°
+      correct: false
+      misconception_id: mc.mth.o.centre_angle_halved
+      feedback: The angle at the centre is twice the angle at the circumference standing on the same arc.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Angle ACB stands on the diameter AB.
+  - rung: 2
+    name: concept
+    text:
+      en: The angle in a semicircle is 90°.
+  - rung: 3
+    name: first_step
+    text:
+      en: So triangle ABC has a right angle at C.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'The other two angles add to 90°: subtract 31.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Angle CBA = 59°.
+  misconception_ids:
+  - mc.mth.o.centre_angle_halved
+  - mc.mth.o.isosceles_not_halved
+  - mc.mth.o.semicircle_not_right
+solution:
+  steps:
+  - n: 1
+    latex: \angle ACB = 90
+    reason: The angle in a semicircle is a right angle
+  - n: 2
+    latex: \angle CBA = 180 - 90 - 31 = 59
+    reason: Angles in triangle ABC add to 180°
+    check_id: chk_build_mth_geo_0184_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0184_ans:
+    args:
+      expression: 90 - 31
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

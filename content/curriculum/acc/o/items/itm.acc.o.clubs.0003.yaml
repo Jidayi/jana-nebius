@@ -1,0 +1,88 @@
+id: itm.acc.o.clubs.0003
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.clubs.club_statements
+stem: The treasurer of a netball club prepares the year's accounts.
+parts:
+- id: a
+  prompt: The club bought new equipment for cash. Where does the payment appear?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: In the receipts and payments account, but not as expenditure in the income and expenditure account
+      correct: true
+    - id: B
+      text: Nowhere, because it is not an expense
+      correct: false
+      misconception_id: mc.acc.o.club_rp_as_ie
+    - id: C
+      text: Only in the accumulated fund
+      correct: false
+      misconception_id: mc.acc.o.club_fund_as_cash
+    - id: D
+      text: As expenditure in the income and expenditure account
+      correct: false
+      misconception_id: mc.acc.o.club_capital_items_in_ie
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Is the statement about cash moving, or about income earned and expenses used up?
+  - rung: 2
+    name: concept
+    text:
+      en: A receipts and payments account summarises cash and bank for the year, whatever it was for. An income and expenditure account matches the year's income with its expenses, like an income statement, and shows a surplus or a deficit.
+  - rung: 3
+    name: first_step
+    text:
+      en: Capital spending such as equipment is not expenditure of the year; only its depreciation is.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Match the item to the statement.
+  - rung: 5
+    name: full_step
+    text:
+      en: In the receipts and payments account, but not as expenditure in the income and expenditure account.
+  misconception_ids:
+  - mc.acc.o.club_capital_items_in_ie
+  - mc.acc.o.club_rp_as_ie
+  - mc.acc.o.club_fund_as_cash
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Receipts and payments: cash. Income and expenditure: matching}'
+    reason: Two statements
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

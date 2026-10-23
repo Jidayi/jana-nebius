@@ -1,0 +1,92 @@
+id: itm.phy.o.em_spectrum.0007
+version: 0.1.1
+type: multi_select
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.em_spectrum.order_and_properties
+stem: Here are some statements about electromagnetic waves.
+parts:
+- id: a
+  prompt: Select every one that is true of all electromagnetic waves.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: They can travel through a vacuum
+      correct: true
+    - id: B
+      text: They travel at the same speed in a vacuum
+      correct: true
+    - id: C
+      text: They have the same frequency
+      correct: false
+    - id: D
+      text: They need a medium to travel through
+      correct: false
+    - id: E
+      text: They are all ionising
+      correct: false
+    - id: F
+      text: They are transverse waves
+      correct: true
+    scoring: exact_set
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Start from the region with the longest wavelength and work towards the shortest.
+  - rung: 2
+    name: concept
+    text:
+      en: Frequency rises as wavelength falls, because every region has the same speed in a vacuum.
+  - rung: 3
+    name: first_step
+    text:
+      en: Every region is a transverse wave and can cross empty space.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that break the order or these shared properties.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Correct: They are transverse waves; They can travel through a vacuum; They travel at the same speed in a vacuum.'
+solution:
+  steps:
+  - n: 1
+    latex: \text{They are transverse waves; They can travel through a vacuum; They travel at the same speed in a vacuum}
+    reason: The shared properties of every electromagnetic wave
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.osc_divisions_as_time
+kc_ids:
+- kc.phy.o.oscilloscope.time_base
+student_name: Divisions read as the time
+description: Gives the number of divisions as the period, leaving out the time-base setting.
+signatures:
+- kind: answer_transform
+  expression: n
+fix:
+  strategy: rule_restatement
+  text:
+    en: Divisions are just squares on the screen. Multiply by the time-base (time per division) to get a time.
+probe_item_ids:
+- itm.phy.o.oscilloscope.0012
+- itm.phy.o.oscilloscope.0013
+- itm.phy.o.oscilloscope.0001
+- itm.phy.o.oscilloscope.0002
+- itm.phy.o.oscilloscope.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

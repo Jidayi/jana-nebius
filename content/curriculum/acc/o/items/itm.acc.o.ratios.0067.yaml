@@ -1,0 +1,88 @@
+id: itm.acc.o.ratios.0067
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.interpret_ratios
+stem: A shop's revenue rose by a fifth this year, but its gross margin fell.
+parts:
+- id: a
+  prompt: Which is the most likely cause?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Its expenses such as rent rose
+      correct: false
+      misconception_id: mc.acc.o.rat_gross_net_confused
+    - id: B
+      text: It sold more goods, which always lowers the margin
+      correct: false
+      misconception_id: mc.acc.o.rat_interpret_volume_margin
+    - id: C
+      text: It cut its selling prices to sell more
+      correct: true
+    - id: D
+      text: Its bank overdraft increased
+      correct: false
+      misconception_id: mc.acc.o.rat_interpret_liquidity_profit
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Which kind of ratio is this: profitability, liquidity or efficiency?'
+  - rung: 2
+    name: concept
+    text:
+      en: Profitability ratios respond to prices and costs; liquidity ratios to current assets and liabilities; efficiency ratios to how fast inventory, receivables and payables turn over.
+  - rung: 3
+    name: first_step
+    text:
+      en: A higher or lower figure is not good or bad on its own; ask what caused it.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Link the change to the figures in that ratio.
+  - rung: 5
+    name: full_step
+    text:
+      en: It cut its selling prices to sell more.
+  misconception_ids:
+  - mc.acc.o.rat_interpret_volume_margin
+  - mc.acc.o.rat_interpret_liquidity_profit
+  - mc.acc.o.rat_gross_net_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{Link the change to the figures in the ratio}
+    reason: Interpretation
+difficulty:
+  prior: 0.5
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

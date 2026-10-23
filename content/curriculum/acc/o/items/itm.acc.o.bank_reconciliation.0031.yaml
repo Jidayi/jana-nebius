@@ -1,0 +1,137 @@
+id: itm.acc.o.bank_reconciliation.0031
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.bank_reconciliation.reconciliation_statement
+- kc.acc.o.bank_reconciliation.update_cash_book
+stem: 'Sipho''s cash book showed a debit balance of $2760 before these statement-only items were entered: a direct debit for electricity $370; interest paid by the bank $330. Unpresented cheques total $1310 and outstanding lodgements total $410.'
+parts:
+- id: a
+  prompt: What balance should the bank statement show?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $1820
+      correct: false
+      misconception_id: mc.acc.o.br_rec_signs_reversed
+    - id: B
+      text: $3620
+      correct: true
+    - id: C
+      text: $3660
+      correct: false
+      misconception_id: mc.acc.o.br_rec_uses_unadjusted_cb
+    - id: D
+      text: $4440
+      correct: false
+      misconception_id: mc.acc.o.br_unpresented_vs_lodgement
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: First bring the cash book up to date, then explain the difference that is left.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Updated cash book: add statement-only receipts and subtract statement-only payments.'
+  - rung: 3
+    name: first_step
+    text:
+      en: The statement is higher by the unpresented cheques and lower by the outstanding lodgements.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Updated balance, minus lodgements, plus unpresented cheques.
+  - rung: 5
+    name: full_step
+    text:
+      en: The bank statement should show $3620.
+  misconception_ids:
+  - mc.acc.o.br_rec_signs_reversed
+  - mc.acc.o.br_rec_uses_unadjusted_cb
+  - mc.acc.o.br_unpresented_vs_lodgement
+solution:
+  steps:
+  - n: 1
+    latex: \text{Statement} = \text{updated cash book} - \text{lodgements} + \text{unpresented}
+    reason: Reconcile after updating
+    check_id: chk_build_acc_bank_reconciliation_0031_t
+  - n: 2
+    latex: \text{Updated cash book} = 2720
+    reason: Statement-only items entered
+    check_id: chk_build_acc_bank_reconciliation_0031_s2
+  - n: 3
+    latex: \text{Statement} = 2720 - 410 + 1310 = 3620
+    reason: Timing differences
+    check_id: chk_build_acc_bank_reconciliation_0031_a
+difficulty:
+  prior: 0.5
+  band: stretch
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_names
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_bank_reconciliation_0031_a:
+    args:
+      dp: 2
+      expression: 2760 - 370 + 330 - 410 + 1310
+    tool: math_evaluate
+  chk_build_acc_bank_reconciliation_0031_s2:
+    args:
+      dp: 4
+      expression: 2760 - 370 + 330
+    tool: math_evaluate
+  chk_build_acc_bank_reconciliation_0031_t:
+    args:
+      bank_statement:
+        balance: '3620'
+        entries:
+        - amount: '370'
+          details: a direct debit for electricity
+          direction: out
+        - amount: '330'
+          details: interest paid by the bank
+          direction: in
+        overdrawn: false
+      cash_book:
+        balance: '2760'
+        entries:
+        - amount: '1310'
+          details: cheque number 100675
+          direction: out
+          ref: t0
+        - amount: '410'
+          details: cash paid in on the last day of the month
+          direction: in
+          ref: t1
+        overdrawn: false
+      dp: 2
+      start_from: bank_statement
+      task: reconcile
+    tool: acc_double_entry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

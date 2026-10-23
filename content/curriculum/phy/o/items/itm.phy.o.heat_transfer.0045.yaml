@@ -1,0 +1,93 @@
+id: itm.phy.o.heat_transfer.0045
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.radiation
+stem: A hand is held beside a hot electric iron, a little to one side and not touching it.
+parts:
+- id: a
+  prompt: How does most of the energy reach the hand?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: By convection, because heat always rises
+      correct: false
+      misconception_id: mc.phy.o.heat_itself_rises
+      feedback: 'Energy has no up or down. In convection the fluid moves: warmer, less dense fluid is pushed upwards by cooler, denser fluid sinking beneath it.'
+    - id: B
+      text: By infrared radiation
+      correct: true
+    - id: C
+      text: By hot air particles travelling straight across to the hand
+      correct: false
+      misconception_id: mc.phy.o.conduction_particles_travel
+      feedback: In a solid the atoms stay in place and pass vibrations to their neighbours; in a metal, free electrons also carry energy. The material itself does not flow along.
+    - id: D
+      text: By cold flowing from the hand into the iron
+      correct: false
+      misconception_id: mc.phy.o.cold_transferred_as_substance
+      feedback: Only energy moves, always from hotter to colder. An ice pack does not send cold into you; energy flows out of you into the ice.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Infrared is an electromagnetic wave given out by every object; hotter objects give out more.
+  - rung: 2
+    name: concept
+    text:
+      en: Warm air rises upwards from the iron, not sideways, and air is a very poor conductor.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Compare the surfaces: dull black is the best absorber and emitter, shiny silver or white the worst.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options that need a material for radiation to travel through, or treat cold as something that flows.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: By infrared radiation.'
+  misconception_ids:
+  - mc.phy.o.cold_transferred_as_substance
+  - mc.phy.o.conduction_particles_travel
+  - mc.phy.o.heat_itself_rises
+solution:
+  steps:
+  - n: 1
+    latex: \text{By infrared radiation}
+    reason: Apply what affects emission and absorption
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

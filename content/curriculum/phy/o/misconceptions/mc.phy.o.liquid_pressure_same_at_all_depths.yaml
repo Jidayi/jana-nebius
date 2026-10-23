@@ -1,0 +1,34 @@
+id: mc.phy.o.liquid_pressure_same_at_all_depths
+kc_ids:
+- kc.phy.o.pressure.liquid_pressure
+student_name: The same pressure at every depth
+description: Thinks the pressure in a still liquid is the same at every depth.
+signatures:
+- kind: answer_transform
+  expression: p
+fix:
+  strategy: counterexample
+  text:
+    en: Every metre further down has another metre of liquid pressing from above, so pressure grows with depth. That is why dams are thickest at the bottom.
+probe_item_ids:
+- itm.phy.o.pressure.0026
+- itm.phy.o.pressure.0029
+- itm.phy.o.pressure.0022
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,103 @@
+id: itm.mth.o.number.9026
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.estimation
+stem: A tank holds 593 litres. A bucket holds 19.6 litres.
+parts:
+- id: a
+  prompt: Estimate the number of full bucket volumes by rounding each quantity to 1 significant figure before dividing.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '30'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9026
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An estimate uses convenient rounded values in place of both original measurements.
+  - rung: 2
+    name: concept
+    text:
+      en: Round the tank and bucket capacities separately, then divide the rounded capacities.
+  - rung: 3
+    name: first_step
+    text:
+      en: Round the tank and bucket capacities separately, then divide the rounded capacities.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide rounded tank capacity by rounded bucket capacity, in the same units.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 30.
+solution:
+  steps:
+  - n: 1
+    latex: '600'
+    reason: Intermediate value used in the calculation.
+    check_id: chk_build_mastery_supplement_mth_9026_intermediate_0
+  - n: 2
+    latex: '20'
+    reason: Intermediate value used in the calculation.
+    check_id: chk_build_mastery_supplement_mth_9026_intermediate_1
+  - n: 3
+    latex: \frac{600}{20}
+    reason: Round the tank and bucket capacities separately, then divide the rounded capacities.
+    check_id: chk_build_mastery_supplement_mth_9026
+  - n: 4
+    latex: '30'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9026
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9026:
+    args:
+      angle_unit: degrees
+      expression: 600/20
+    tool: math_evaluate
+  chk_build_mastery_supplement_mth_9026_intermediate_0:
+    args:
+      expression: '593'
+      sf: 1
+    tool: math_evaluate
+  chk_build_mastery_supplement_mth_9026_intermediate_1:
+    args:
+      expression: '19.6'
+      sf: 1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

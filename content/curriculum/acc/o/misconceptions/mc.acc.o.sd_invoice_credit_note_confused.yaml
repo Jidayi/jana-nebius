@@ -1,0 +1,35 @@
+id: mc.acc.o.sd_invoice_credit_note_confused
+kc_ids:
+- kc.acc.o.source_documents.identify_source_document
+student_name: Invoice and credit note mixed up
+description: Uses an invoice for goods returned, or a credit note for a new credit sale.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: income
+fix:
+  strategy: contrast_example
+  text:
+    en: An invoice says what is owed for goods supplied; a credit note reduces it for goods returned.
+probe_item_ids:
+- itm.acc.o.source_documents.0001
+- itm.acc.o.source_documents.0002
+- itm.acc.o.source_documents.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

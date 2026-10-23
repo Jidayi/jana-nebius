@@ -1,0 +1,618 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.mth-o-algebra-and-graphs
+version: 2026-10-13.1
+description: 'Colocated evals for mth-o-algebra-and-graphs (SKL-21, EVL-07): one case per misconception. The student
+  answers as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key
+  away, and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: mth_o_algebra_and_graphs_01
+  title: Holds 'A negative number squared stays negative'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.negative_squared_negative
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.algebra_and_graphs.0011
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.algebra_and_graphs.substitution
+        misconception: mc.mth.o.negative_squared_negative
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: mth_o_algebra_and_graphs_02
+  title: Holds 'Multiplying only first and last terms'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.expand_missing_middle
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.algebra_and_graphs.0016
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.algebra_and_graphs.expand_brackets
+        misconception: mc.mth.o.expand_missing_middle
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: mth_o_algebra_and_graphs_03
+  title: Holds 'Not square-rooting in a difference of squares'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.dots_not_rooted
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.algebra_and_graphs.0033
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.algebra_and_graphs.factorise_common
+        misconception: mc.mth.o.dots_not_rooted
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: mth_o_algebra_and_graphs_04
+  title: Holds 'Undoing in the wrong order'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.rearrange_wrong_order
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.algebra_and_graphs.0062
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.algebra_and_graphs.change_subject
+        misconception: mc.mth.o.rearrange_wrong_order
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_algebra_and_graphs_05
+  title: Holds 'Cancelling terms instead of factors'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.cancel_terms_not_factors
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.algebra_and_graphs.0077
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.algebra_and_graphs.algebraic_fractions
+        misconception: mc.mth.o.cancel_terms_not_factors
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_algebra_and_graphs_06
+  title: Holds 'Not raising the number to the power'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  - no_probe_item
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.coefficient_not_raised
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.algebra_and_graphs.0093
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: '270'
+    note: a wrong value; no item tags a distractor with this wrong idea yet
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_algebra_and_graphs_07
+  title: Holds 'Giving the other unknown'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.simultaneous_other_unknown
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.algebra_and_graphs.0134
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.algebra_and_graphs.simultaneous_equations
+        misconception: mc.mth.o.simultaneous_other_unknown
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_algebra_and_graphs_08
+  title: Holds 'Reading a root with the bracket's sign'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.root_sign_from_factor
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.algebra_and_graphs.0152
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.algebra_and_graphs.quadratic_equations
+        misconception: mc.mth.o.root_sign_from_factor
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_algebra_and_graphs_09
+  title: Holds 'Not reversing the inequality'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.inequality_no_flip
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.algebra_and_graphs.0188
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.algebra_and_graphs.linear_inequalities
+        misconception: mc.mth.o.inequality_no_flip
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_algebra_and_graphs_10
+  title: Holds 'Using the first term as the multiplier'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.nth_term_first_as_coefficient
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.algebra_and_graphs.0206
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.algebra_and_graphs.linear_sequences
+        misconception: mc.mth.o.nth_term_first_as_coefficient
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_algebra_and_graphs_11
+  title: Holds 'Using the second difference as the coefficient'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.second_difference_not_halved
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.algebra_and_graphs.0221
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.algebra_and_graphs.quadratic_sequences
+        misconception: mc.mth.o.second_difference_not_halved
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_algebra_and_graphs_12
+  title: Holds 'Ignoring the power in a variation'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.variation_power_ignored
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.algebra_and_graphs.0236
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 12
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.algebra_and_graphs.variation
+        misconception: mc.mth.o.variation_power_ignored
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_algebra_and_graphs_13
+  title: Holds 'Using the gradient when the area is needed'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.gradient_for_area
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.algebra_and_graphs.0252
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 13
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.algebra_and_graphs.travel_graphs
+        misconception: mc.mth.o.gradient_for_area
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_algebra_and_graphs_14
+  title: Holds 'Applying composite functions in the wrong order'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.composite_order_reversed
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.algebra_and_graphs.0313
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 14
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.algebra_and_graphs.function_notation
+        misconception: mc.mth.o.composite_order_reversed
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

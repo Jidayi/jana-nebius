@@ -1,0 +1,91 @@
+id: itm.chm.o.metals.0013
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.alloys
+stem: Brass is an alloy of copper and zinc. Brass is harder than pure copper.
+parts:
+- id: a
+  prompt: Which statement explains why brass is harder?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: The zinc atoms are a different size, so they disrupt the layers and the layers cannot slide easily.
+      correct: true
+    - id: B
+      text: Brass is a compound of copper and zinc with a fixed formula, so it is rigid.
+      correct: false
+      misconception_id: mc.chm.o.metals_alloy_is_compound
+      feedback: An alloy is a mixture. Its make-up can vary (brass can be more or less copper), and no new compound with a fixed formula forms. The metal atoms are still held by metallic bonding.
+    - id: C
+      text: 'Brass is not harder: the zinc is an impurity that makes it softer.'
+      correct: false
+      misconception_id: mc.chm.o.metals_alloy_impure_weaker
+      feedback: Pure iron is soft and bends easily; steel, iron with a little carbon, is much harder. Alloys are made on purpose because they are usually harder and stronger than the pure metal.
+    - id: D
+      text: Zinc forms strong new bonds with copper, which hold the atoms tighter.
+      correct: false
+      misconception_id: mc.chm.o.metals_alloy_stronger_bonds
+      feedback: Draw the layers. In a pure metal the atoms are all one size, so the layers slide easily. Atoms of a different size break up the neat layers, so the layers cannot slide as easily. The bonding is still metallic.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about the layers of atoms in pure copper and what makes a metal bend.
+  - rung: 2
+    name: concept
+    text:
+      en: A pure metal bends because its layers of identical atoms slide over each other.
+  - rung: 3
+    name: first_step
+    text:
+      en: Zinc atoms are not the same size as copper atoms.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Ask what atoms of a different size do to neat, regular layers.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The different-sized zinc atoms break up the layers, so they cannot slide as easily: brass is harder.'
+  misconception_ids:
+  - mc.chm.o.metals_alloy_stronger_bonds
+  - mc.chm.o.metals_alloy_is_compound
+  - mc.chm.o.metals_alloy_impure_weaker
+solution:
+  steps:
+  - n: 1
+    latex: \text{different-sized atoms disrupt the layers}
+    reason: Layers cannot slide easily
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

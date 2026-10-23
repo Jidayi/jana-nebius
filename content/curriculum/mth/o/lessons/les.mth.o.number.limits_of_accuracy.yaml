@@ -1,0 +1,69 @@
+id: les.mth.o.number.limits_of_accuracy
+node_id: cur.mth.o.number.limits_of_accuracy
+kc_ids:
+- kc.mth.o.number.bounds
+- kc.mth.o.number.bounds_calc
+title: Upper and lower bounds
+estimated_minutes: 12
+blocks:
+- type: step
+  text:
+    en: Try this before any rules. Think about which lengths would round to this value.
+  item_id: itm.mth.o.number.0190
+  action: try_first
+  why:
+    en: Any length up to halfway to the next centimetre still rounds to 12, so the top end is 12 + 0.5 = 12.5.
+  names:
+    en: That top end is called the upper bound. The bottom end, half a unit below, is the lower bound.
+- type: step
+  text:
+    en: Pick the upper bound. The bounds sit half a unit either side of the value.
+  item_id: itm.mth.o.number.0201
+  action: choose
+  why:
+    en: The upper bound is exactly halfway to the next centimetre, even though that value itself would round up. Adding a whole unit, or stopping just below the half, are the usual slips.
+- type: step
+  text:
+    en: This value is rounded to 1 decimal place, so the unit is smaller. Halve that unit.
+  item_id: itm.mth.o.number.0191
+  action: calculate
+  why:
+    en: To 1 decimal place the half unit is 0.05, so the lower bound is 12.6 - 0.05 = 12.55.
+- type: step
+  text:
+    en: 'Before you work it out, predict: which bound of each value gives the biggest product?'
+  item_id: itm.mth.o.number.0215
+  action: predict
+  why:
+    en: To make a product as big as possible, make every value as big as possible, so use 8.55 and 1.65. Working with the rounded values themselves is the usual slip.
+  names:
+    en: Picking the right bound of each value like this gives the bounds of a calculation.
+- type: step
+  text:
+    en: Now one on your own.
+  item_id: itm.mth.o.number.0209
+  action: calculate
+  why:
+    en: 'To make a difference as big as possible, take the biggest a and the smallest b: 15.35 - 4.05 = 11.3.'
+- type: check
+  item_ids:
+  - itm.mth.o.number.0204
+  - itm.mth.o.number.0211
+  - itm.mth.o.number.0218
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

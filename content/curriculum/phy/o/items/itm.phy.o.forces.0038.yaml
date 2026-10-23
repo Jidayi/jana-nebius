@@ -1,0 +1,82 @@
+id: itm.phy.o.forces.0038
+version: 0.1.0
+type: multi_select
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.friction_and_terminal_velocity
+stem: A cyclist wants to cut the air resistance on her at a given speed.
+parts:
+- id: a
+  prompt: Which of these changes would reduce it? Choose all that apply.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Carrying a heavier bag on her back
+      correct: false
+    - id: B
+      text: Pumping her tyres up harder
+      correct: false
+    - id: C
+      text: Crouching low over the handlebars
+      correct: true
+    - id: D
+      text: Wearing tight, smooth clothing
+      correct: true
+    scoring: exact_set
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Air resistance depends on how much air the cyclist has to push aside.
+  - rung: 2
+    name: concept
+    text:
+      en: A smaller front area and a smoother shape both help.
+  - rung: 3
+    name: first_step
+    text:
+      en: Changes to her mass or her tyres do not change how the air flows past her.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Look for the changes that alter her shape or clothing.
+  - rung: 5
+    name: full_step
+    text:
+      en: Crouching low and wearing tight, smooth clothing both reduce air resistance.
+solution:
+  steps:
+  - n: 1
+    latex: \text{smaller frontal area and smoother shape reduce drag}
+    reason: Air resistance depends on shape and area
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

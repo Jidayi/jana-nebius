@@ -1,0 +1,116 @@
+id: itm.chm.o.electrolysis.0052
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.quantitative
+stem: 'Molten lead(II) bromide is electrolysed. At the cathode: Pb²⁺ + 2e⁻ → Pb. A current of 1.5 A flows for 1930 s. (Faraday constant: 96500 C per mole of electrons.)'
+parts:
+- id: a
+  prompt: Calculate the mass of lead deposited.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '3.11'
+    unit: g
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_electrolysis_0052_m
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Plan: charge → moles of electrons → moles of lead → mass of lead.'
+  - rung: 2
+    name: concept
+    text:
+      en: Q = I × t; moles of electrons = Q ÷ 96500; the half-equation gives the electrons per lead atom.
+  - rung: 3
+    name: first_step
+    text:
+      en: Q = 1.5 × 1930 = 2895 C, so moles of electrons = 2895 ÷ 96500 = 0.0300 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Each lead ion needs 2 electrons, so moles of lead = 0.0300 ÷ 2 = 0.0150 mol. Multiply by 207.
+  - rung: 5
+    name: full_step
+    text:
+      en: Mass = 0.0150 × 207 = 3.11 g.
+  misconception_ids:
+  - mc.chm.o.electrolysis_electron_ratio_ignored
+solution:
+  steps:
+  - n: 1
+    latex: Q = 1.5 \times 1930 = 2895\ \text{C}
+    reason: Charge = current × time
+    check_id: chk_build_chm_electrolysis_0052_m
+  - n: 2
+    latex: n(e^-) = \frac{2895}{96500} = 0.0300\ \text{mol}
+    reason: Divide by the Faraday constant
+    check_id: chk_build_chm_electrolysis_0052_e
+  - n: 3
+    latex: n(\text{Pb}) = \frac{0.0300}{2} = 0.0150\ \text{mol}
+    reason: 2 mol of electrons per mol of lead
+    check_id: chk_build_chm_electrolysis_0052_n
+  - n: 4
+    latex: m = n \times 207 = 3.11\ \text{g}
+    reason: Moles to mass
+    check_id: chk_build_chm_electrolysis_0052_m
+difficulty:
+  prior: 0.7
+  band: stretch
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_0052_e:
+    args:
+      expression: 2895/96500
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_electrolysis_0052_m:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_pb
+      - source: pack
+        symbol: faraday
+      sf: 3
+      steps:
+      - current: '1.5'
+        electrons: 2
+        id: m
+        op: electrolysis
+        species: Pb
+        time: '1930'
+    tool: chem_stoichiometry
+  chk_build_chm_electrolysis_0052_n:
+    args:
+      expression: 2895/(96500*2)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,102 @@
+id: itm.mth.o.mensuration.0103
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.compound_shapes
+stem: A flat ring is the region between two circles with the same centre, of radii 6 cm and 3 cm.
+parts:
+- id: a
+  prompt: Find the area of the ring, to 3 significant figures.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 28.3 cm²
+      correct: false
+      misconception_id: mc.mth.o.annulus_difference_squared
+      feedback: 'Work out each circle''s area and subtract: the ring is the big disc with the small disc removed.'
+    - id: B
+      text: 113 cm²
+      correct: false
+      misconception_id: mc.mth.o.compound_part_missing
+      feedback: Split the shape into simple parts, label each one, and add every part.
+    - id: C
+      text: 18.8 cm²
+      correct: false
+      misconception_id: mc.mth.o.circumference_area_confused
+      feedback: 'Area is in square units, so its formula has r²: A = πr². The circumference is a length: C = 2πr.'
+    - id: D
+      text: 84.8 cm²
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The ring is the big disc with the small disc cut out.
+  - rung: 2
+    name: concept
+    text:
+      en: Find both circle areas and subtract.
+  - rung: 3
+    name: first_step
+    text:
+      en: The big circle has area π × 6².
+  - rung: 4
+    name: worked_step
+    text:
+      en: Subtract π × 3².
+  - rung: 5
+    name: full_step
+    text:
+      en: The area of the ring is 84.8 cm².
+  misconception_ids:
+  - mc.mth.o.annulus_difference_squared
+  - mc.mth.o.circumference_area_confused
+  - mc.mth.o.compound_part_missing
+solution:
+  steps:
+  - n: 1
+    latex: A = \pi \times 6^2 - \pi \times 3^2
+    reason: Big circle minus small circle
+  - n: 2
+    latex: A = 84.8\ \text{cm}^2
+    reason: Evaluate and round
+    check_id: chk_build_mth_mns_0103_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_mns_0103_ans:
+    args:
+      expression: pi*6^2 - pi*3^2
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

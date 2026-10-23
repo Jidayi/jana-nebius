@@ -1,0 +1,119 @@
+{
+  "claims": [
+    "200",
+    "27",
+    "273.0",
+    "300",
+    "99.8"
+  ],
+  "id": "gas-laws-sim",
+  "kind": "gas_laws_sim",
+  "modes": [
+    "shown"
+  ],
+  "spec": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "A gas laws simulation: a gas in a syringe at 300 K and 200 cubic centimetres, with the volume as the control; the pressure is 99.8 kPa."
+    },
+    "computed": {
+      "alt": {
+        "container": "syringe",
+        "control": "volume",
+        "pressure": "99.8",
+        "temperature": "300",
+        "volume": "200"
+      },
+      "check_ids": [
+        "chk_build_fx_gas_laws_sim_1"
+      ],
+      "container": "syringe",
+      "kelvin_offset": 273.0,
+      "labels": {
+        "out.celsius": "27",
+        "out.pressure": "99.8",
+        "out.temperature": "300"
+      },
+      "parts": [
+        {
+          "id": "ctrl.temperature",
+          "label": "temperature",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.volume",
+          "label": "volume",
+          "role": "control"
+        },
+        {
+          "id": "out.pressure",
+          "label": "pressure",
+          "role": "readout"
+        },
+        {
+          "id": "out.temperature",
+          "label": "temperature",
+          "role": "readout"
+        },
+        {
+          "id": "out.celsius",
+          "label": "celsius",
+          "role": "readout"
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_gas_laws_sim_1"
+    ],
+    "params": {
+      "amount_mol": 0.008,
+      "control": "volume",
+      "preset_id": "sim.phy.gas_syringe.v1",
+      "temperature_k": 300,
+      "volume_m3": 0.0002
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ctrl.temperature",
+        "name": "temperature",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.volume",
+        "name": "volume",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "out.pressure",
+        "name": "pressure",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.temperature",
+        "name": "temperature",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.celsius",
+        "name": "celsius",
+        "role": "readout"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:9c5606a5d1665c88dd440f38c0fdfc727d0a0bc517e878ecece78811f94042c8",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "gas_laws_sim",
+    "visual_id": "vis_WP65H6W8X4FR0XWJXAB5Q8RCC7"
+  },
+  "subject": "physics"
+}

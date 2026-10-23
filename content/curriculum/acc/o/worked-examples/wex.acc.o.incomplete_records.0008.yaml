@@ -1,0 +1,60 @@
+id: wex.acc.o.incomplete_records.0008
+kc_ids:
+- kc.acc.o.incomplete_records.margin_markup_use
+problem: Mark-up 50%; cost of sales $18400. Find revenue and gross profit.
+steps:
+- n: 1
+  latex: \text{Revenue} = \text{cost} \times (1 + \text{mark-up})
+  reason: Mark-up on cost
+  check_id: chk_build_acc_incomplete_records_w0008_t
+- n: 2
+  latex: \text{Gross profit} = 50\% \times 18400 = 9200
+  reason: Profit on cost
+  check_id: chk_build_acc_incomplete_records_w0008_s2
+- n: 3
+  latex: \text{Revenue} = 18400 + 9200 = 27600
+  reason: Add
+  check_id: chk_build_acc_incomplete_records_w0008_a
+final_answer:
+  latex: \$\,27600
+  check_id: chk_build_acc_incomplete_records_w0008_a
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_incomplete_records_w0008_a:
+    args:
+      dp: 2
+      expression: 18400 * (1 + 50/100)
+    tool: math_evaluate
+  chk_build_acc_incomplete_records_w0008_s2:
+    args:
+      dp: 4
+      expression: 18400 * 50/100
+    tool: math_evaluate
+  chk_build_acc_incomplete_records_w0008_t:
+    args:
+      cost_of_sales: '18400'
+      dp: 2
+      ratios:
+      - mark_up
+      revenue: '27600'
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

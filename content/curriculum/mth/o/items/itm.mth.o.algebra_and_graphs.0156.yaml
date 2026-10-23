@@ -1,0 +1,113 @@
+id: itm.mth.o.algebra_and_graphs.0156
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.quadratic_equations
+stem: Solve the equation $x^2 - 7x - 2 = 0$, giving your answers to 3 significant figures.
+parts:
+- id: a
+  prompt: Give the larger solution.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '7.27'
+      correct: true
+    - id: B
+      text: '0.275'
+      correct: false
+      misconception_id: mc.mth.o.formula_b_sign
+      feedback: The formula begins with the opposite of b. If b is negative, −b is positive.
+    - id: C
+      text: '10.8'
+      correct: false
+      misconception_id: mc.mth.o.formula_partial_division
+      feedback: The whole of −b ± √(b² − 4ac) sits above the fraction line, so all of it is divided by 2a.
+    - id: D
+      text: '-0.275'
+      correct: false
+      misconception_id: mc.mth.o.root_sign_from_factor
+      feedback: 'Set each bracket equal to zero and solve it: x + 3 = 0 gives x = −3.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: This quadratic does not factorise with whole numbers. Which method works for any quadratic?
+  - rung: 2
+    name: concept
+    text:
+      en: Use the quadratic formula with a, b and c read from the equation.
+  - rung: 3
+    name: first_step
+    text:
+      en: Here a = 1, b = −7 and c = −2. Work out b² − 4ac first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: b² − 4ac = 57. Now use x = (−b + √(57)) ÷ (2 × 1).
+  - rung: 5
+    name: full_step
+    text:
+      en: x = 7.27 (3 s.f.).
+  misconception_ids:
+  - mc.mth.o.formula_b_sign
+  - mc.mth.o.formula_partial_division
+  - mc.mth.o.root_sign_from_factor
+solution:
+  steps:
+  - n: 1
+    latex: a = 1,\ b = -\,7,\ c = -\,2
+    reason: Read the coefficients
+  - n: 2
+    latex: b^2 - 4ac = 57
+    reason: The discriminant
+    check_id: chk_build_mth_alg_0156_d
+  - n: 3
+    latex: x = \frac{-(-\,7) + \sqrt{57}}{2 \times 1}
+    reason: The quadratic formula
+  - n: 4
+    latex: x = 7.27
+    reason: Evaluate
+    check_id: chk_build_mth_alg_0156_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 150
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0156_ans:
+    args:
+      expression: (-(-7) + sqrt(57))/(2*1)
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_alg_0156_d:
+    args:
+      expression: (-7)^2 - 4*1*(-2)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

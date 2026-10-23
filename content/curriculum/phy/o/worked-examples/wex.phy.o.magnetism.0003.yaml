@@ -1,0 +1,40 @@
+id: wex.phy.o.magnetism.0003
+kc_ids:
+- kc.phy.o.magnetism.magnetic_fields
+problem: On a field diagram of a bar magnet, 8 field lines cross a 1 cm gap next to the north pole, and 4 lines cross a 1 cm gap beside the middle of the magnet. How many times stronger is the field next to the pole than beside the middle?
+steps:
+- n: 1
+  latex: \text{strength} \propto \text{lines per cm}
+  reason: Closer lines mean a stronger field
+- n: 2
+  latex: \frac{8}{4} = 2
+  reason: Compare the numbers of lines
+  check_id: chk_build_phy_mag_w0003_ans
+final_answer:
+  latex: '2'
+  check_id: chk_build_phy_mag_w0003_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mag_w0003_ans:
+    args:
+      expression: 8/4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

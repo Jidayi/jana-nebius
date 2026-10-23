@@ -1,0 +1,90 @@
+id: itm.chm.o.atoms.0074
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.atoms.structure_and_properties
+stem: Iodine is made of I₂ molecules and melts at a low temperature.
+parts:
+- id: a
+  prompt: Why is its melting point low?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: The covalent bonds inside the I₂ molecules are weak and break easily.
+      correct: false
+      misconception_id: mc.chm.o.melting_breaks_covalent_bonds
+      feedback: 'Melting a simple molecular substance only separates whole molecules: the weak forces between molecules are overcome, while the strong covalent bonds inside each molecule stay.'
+    - id: B
+      text: Iodine is made of ions that attract each other only weakly.
+      correct: false
+      misconception_id: mc.chm.o.structure_type_misidentified
+      feedback: Ions need a metal and a non-metal. Non-metals alone give molecules or a covalent network. Metals alone give metallic bonding.
+    - id: C
+      text: Iodine molecules split into separate atoms when it melts.
+      correct: false
+      misconception_id: mc.chm.o.melting_breaks_covalent_bonds
+      feedback: 'Melting a simple molecular substance only separates whole molecules: the weak forces between molecules are overcome, while the strong covalent bonds inside each molecule stay.'
+    - id: D
+      text: Only weak forces between the molecules are overcome on melting.
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Iodine is made of I₂ molecules: what kind of structure is it, and what particles is it made of?'
+  - rung: 2
+    name: concept
+    text:
+      en: Properties depend on what has to be overcome (forces between molecules, ionic attractions, covalent networks) and on whether charged particles can move.
+  - rung: 3
+    name: first_step
+    text:
+      en: Decide first whether the substance is made of ions, small molecules, a covalent network or metal atoms.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Then ask which forces are overcome, or which charged particles move, in this case.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Only weak forces between the molecules are overcome on melting.'
+  misconception_ids:
+  - mc.chm.o.melting_breaks_covalent_bonds
+  - mc.chm.o.structure_type_misidentified
+solution:
+  steps:
+  - n: 1
+    latex: \text{structure} \Rightarrow \text{property}
+    reason: Explain from the particles present
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,91 @@
+id: itm.chm.o.reactions.0063
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.redox
+stem: 'Hydrogen is passed over hot black copper(II) oxide. Pink copper and water form: CuO + H₂ → Cu + H₂O.'
+parts:
+- id: a
+  prompt: Which substance is the reducing agent?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Copper, because it gains electrons and is oxidised.
+      correct: false
+      misconception_id: mc.chm.o.reactions_oxidation_is_gaining_electrons
+      feedback: Oxidation is loss of electrons; reduction is gain of electrons. A metal atom that becomes a positive ion has lost electrons, so it has been oxidised.
+    - id: B
+      text: Copper(II) oxide, because it loses oxygen and is reduced.
+      correct: false
+      misconception_id: mc.chm.o.reactions_oxidising_agent_is_oxidised
+      feedback: An agent does the job to something else. The oxidising agent oxidises another substance by taking its electrons, so the oxidising agent itself is reduced. The reducing agent gives electrons away and is oxidised.
+    - id: C
+      text: Hydrogen
+      correct: true
+    - id: D
+      text: Water, because it is the only substance that contains oxygen at the end.
+      correct: false
+      misconception_id: mc.chm.o.reactions_redox_needs_oxygen
+      feedback: 'Oxygen is only one way to see redox. Any transfer of electrons is redox: when magnesium burns in chlorine, magnesium loses electrons (oxidised) and chlorine gains them (reduced), with no oxygen at all.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A reducing agent reduces something else. Which substance is reduced here?
+  - rung: 2
+    name: concept
+    text:
+      en: Loss of oxygen is reduction; gain of oxygen is oxidation.
+  - rung: 3
+    name: first_step
+    text:
+      en: Copper(II) oxide loses its oxygen, so it is reduced.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The substance that took the oxygen away did the reducing, and was itself oxidised.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Hydrogen is the reducing agent: it removes oxygen from copper(II) oxide and is itself oxidised to water.'
+  misconception_ids:
+  - mc.chm.o.reactions_oxidising_agent_is_oxidised
+  - mc.chm.o.reactions_redox_needs_oxygen
+  - mc.chm.o.reactions_oxidation_is_gaining_electrons
+solution:
+  steps:
+  - n: 1
+    latex: \text{CuO} + \text{H}_2 \rightarrow \text{Cu} + \text{H}_2\text{O}
+    reason: CuO loses oxygen; hydrogen gains it
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

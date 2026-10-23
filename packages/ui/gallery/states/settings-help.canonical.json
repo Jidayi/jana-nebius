@@ -1,0 +1,92 @@
+{
+  "id": "settings-help.canonical",
+  "title": "Settings, Help",
+  "component": "SettingsHelp",
+  "note": "Settings → Help's offline help (OPS-23): a known problem of this version with what to do, the articles with one open (their words from the catalogue, LOC-01), this computer's version, channel and device id, and no support contact set up.",
+  "state": "canonical",
+  "payload": {
+    "reply": {
+      "app_version": "0.1.0",
+      "channel": "stable",
+      "device_id": "dev_gallery01",
+      "articles": [
+        {
+          "id": "slow",
+          "title_key": "help.article.slow.title",
+          "body_key": "help.article.slow.body",
+          "step_keys": [
+            "help.article.slow.step_1",
+            "help.article.slow.step_2",
+            "help.article.slow.step_3"
+          ],
+          "app_major_minor": "0.1"
+        },
+        {
+          "id": "usb",
+          "title_key": "help.article.usb.title",
+          "body_key": "help.article.usb.body",
+          "step_keys": [
+            "help.article.usb.step_1",
+            "help.article.usb.step_2",
+            "help.article.usb.step_3"
+          ],
+          "app_major_minor": "0.1"
+        },
+        {
+          "id": "report",
+          "title_key": "help.article.report.title",
+          "body_key": "help.article.report.body",
+          "step_keys": [
+            "help.article.report.step_1",
+            "help.article.report.step_2",
+            "help.article.report.step_3"
+          ],
+          "app_major_minor": "0.1"
+        }
+      ],
+      "known_issues": [
+        {
+          "issue_id": "ki_gallery_slow",
+          "title_key": "help.gallery_missing_title",
+          "help_article_id": "help.slow",
+          "affects": {
+            "artefact_kind": "app",
+            "artefact_id": "jana-desktop",
+            "versions": [
+              "0.1.0"
+            ]
+          }
+        }
+      ],
+      "contacts": [],
+      "health": {
+        "status": "ok",
+        "components": {},
+        "readiness": "ready"
+      },
+      "safety": {
+        "sequence": 0,
+        "pending_sequence": 0,
+        "ignored_entries": 0,
+        "entries": []
+      }
+    },
+    "open": "slow"
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Known problem: a problem with this version. What to do: The tutor is slow.",
+    "Search help",
+    "Close other large applications.",
+    "This computer",
+    "dev_gallery01",
+    "Stable",
+    "No support contact is set up on this computer."
+  ]
+}

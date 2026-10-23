@@ -1,0 +1,36 @@
+id: mc.phy.o.rebound_change_subtracted
+kc_ids:
+- kc.phy.o.momentum.impulse
+student_name: Subtracting speeds for a bounce
+description: Subtracts the speeds before and after a bounce, forgetting that the direction has reversed, so the change in momentum is too small.
+signatures:
+- kind: step_error
+  error_category: sign
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Take towards the wall as positive: the velocity goes from +u to −v, a change of u + v. A bounce changes the momentum more than a stop does.'
+probe_item_ids:
+- itm.phy.o.momentum.0041
+- itm.phy.o.momentum.0043
+- itm.phy.o.momentum.0044
+- itm.phy.o.momentum.0032
+- itm.phy.o.momentum.0035
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

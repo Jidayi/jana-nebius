@@ -1,0 +1,75 @@
+id: itm.acc.o.double_entry.0007
+version: 0.1.0
+type: mcq
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.double_entry.debit_credit_rules
+stem: In a business's books, goods are sold for cash.
+parts:
+- id: a
+  prompt: On which side of the Sales account is this recorded?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Debit
+      correct: false
+    - id: B
+      text: Credit
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'What class of account is it: asset, expense, drawings, liability, capital or income?'
+  - rung: 2
+    name: concept
+    text:
+      en: Assets, expenses and drawings increase on the debit side; the other classes on the credit side.
+  - rung: 3
+    name: first_step
+    text:
+      en: Does the Sales account increase or decrease here?
+  - rung: 4
+    name: worked_step
+    text:
+      en: Match the class and the direction of the change to a side.
+  - rung: 5
+    name: full_step
+    text:
+      en: The Sales account is recorded on the credit side.
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Sales}: \text{Credit}'
+    reason: Class and direction of change
+difficulty:
+  prior: -1.0
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

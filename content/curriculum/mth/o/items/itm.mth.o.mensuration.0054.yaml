@@ -1,0 +1,112 @@
+id: itm.mth.o.mensuration.0054
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.arcs_sectors
+stem: A sector has radius 5 cm and angle 80° at the centre.
+parts:
+- id: a
+  prompt: Find its area, to 3 significant figures.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '17.5'
+    unit: cm^2
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_mns_0054_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A sector is a slice of the circle.
+  - rung: 2
+    name: concept
+    text:
+      en: The sector is 80/360 of the whole circle's area.
+  - rung: 3
+    name: first_step
+    text:
+      en: The whole area is π × 5².
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply it by 80/360.
+  - rung: 5
+    name: full_step
+    text:
+      en: The sector area is 17.5 cm².
+  misconception_ids:
+  - mc.mth.o.sector_fraction_dropped
+  - mc.mth.o.circumference_area_confused
+  - mc.mth.o.sector_fraction_180
+solution:
+  steps:
+  - n: 1
+    latex: A = \frac{80}{360} \times \pi \times 5^2
+    reason: The fraction of the circle's area
+  - n: 2
+    latex: = 17.5\ \text{cm}^2
+    reason: Evaluate and round
+    check_id: chk_build_mth_mns_0054_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  r: '5'
+  theta: '80'
+checks:
+  chk_build_mth_mns_0054_ans:
+    args:
+      expression: 80/360*pi*5^2
+      sf: 3
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:37:44.776Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.mensuration.0054
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

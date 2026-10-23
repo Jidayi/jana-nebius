@@ -1,0 +1,37 @@
+id: mc.mth.o.percent_added_as_number
+kc_ids:
+- kc.mth.o.number.percentage_change
+- kc.mth.o.number.reverse_percentage
+student_name: Adding the percentage as a number
+description: Adds or subtracts the percentage itself, for example 240 + 15 for a 15% increase.
+signatures:
+- kind: answer_transform
+  expression: x + p
+fix:
+  strategy: counterexample
+  text:
+    en: 15% of 240 is 36, not 15. Find the percentage of the amount first.
+probe_item_ids:
+- itm.mth.o.number.0276
+- itm.mth.o.number.0278
+- itm.mth.o.number.0280
+- itm.mth.o.number.0291
+- itm.mth.o.number.0292
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

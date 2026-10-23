@@ -1,0 +1,100 @@
+id: itm.chm.o.acids.0050
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.salt_preparation
+stem: A student wants pure sodium chloride crystals, starting from sodium hydroxide solution and dilute hydrochloric acid.
+parts:
+- id: a
+  prompt: Which method should the student use?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Add excess sodium hydroxide to the acid, filter, then crystallise the filtrate
+      correct: false
+      misconception_id: mc.chm.o.acids_method_mismatch_base
+      feedback: Ask whether the starting base, metal or carbonate dissolves in water. If it is insoluble, add an excess and filter off what is left. If it is soluble (sodium, potassium or ammonium), an excess cannot be filtered off, so use a titration to find the exact amounts.
+    - id: B
+      text: Mix the solutions, filter, and keep the solid left on the filter paper
+      correct: false
+      misconception_id: mc.chm.o.acids_filtrate_residue_confused
+      feedback: Draw the filter funnel. The solid that stays on the paper is the residue; the liquid that passes through is the filtrate. A soluble salt is in the filtrate; an insoluble salt is the residue.
+    - id: C
+      text: Mix the solutions and filter off the sodium chloride precipitate
+      correct: false
+      misconception_id: mc.chm.o.acids_precipitation_confused
+      feedback: 'An insoluble salt comes out of solution as a precipitate as soon as two solutions are mixed: filter it off and wash it. A soluble salt stays dissolved: you get it by evaporating and crystallising the solution.'
+    - id: D
+      text: Titrate to find the exact volumes, mix those volumes without indicator, then crystallise
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Is sodium hydroxide soluble or insoluble in water?
+  - rung: 2
+    name: concept
+    text:
+      en: Salts of sodium, potassium and ammonium are made from a soluble alkali (or carbonate) and an acid.
+  - rung: 3
+    name: first_step
+    text:
+      en: If the alkali is soluble, any excess stays dissolved and cannot be filtered off.
+  - rung: 4
+    name: worked_step
+    text:
+      en: You need the exact volume of acid that just neutralises the alkali, found with an indicator first.
+  - rung: 5
+    name: full_step
+    text:
+      en: Titrate to find the exact volumes, repeat without indicator, then evaporate and crystallise the sodium chloride solution.
+  misconception_ids:
+  - mc.chm.o.acids_method_mismatch_base
+  - mc.chm.o.acids_precipitation_confused
+  - mc.chm.o.acids_filtrate_residue_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{NaOH} + \text{HCl} \rightarrow \text{NaCl} + \text{H}_2\text{O}
+    reason: Soluble alkali + acid
+    check_id: chk_build_chm_acids_0050_bal
+  - n: 2
+    latex: \text{titration, then crystallise}
+    reason: No excess can be filtered off
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_acids_0050_bal:
+    args:
+      equation: NaOH + HCl -> NaCl + H2O
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

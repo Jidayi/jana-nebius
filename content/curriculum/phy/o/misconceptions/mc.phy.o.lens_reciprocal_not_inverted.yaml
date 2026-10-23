@@ -1,0 +1,35 @@
+id: mc.phy.o.lens_reciprocal_not_inverted
+kc_ids:
+- kc.phy.o.light.converging_lens
+student_name: Giving 1/v as v
+description: Works out 1/f − 1/u correctly but gives that value as the image distance, forgetting to take its reciprocal.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: rule_restatement
+  text:
+    en: 1/f − 1/u gives 1/v, a small number per centimetre. Turn it upside down (one divided by it) to get v.
+probe_item_ids:
+- itm.phy.o.light.0072
+- itm.phy.o.light.0061
+- itm.phy.o.light.0065
+- itm.phy.o.light.0070
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

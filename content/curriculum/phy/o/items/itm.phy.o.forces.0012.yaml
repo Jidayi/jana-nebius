@@ -1,0 +1,101 @@
+id: itm.phy.o.forces.0012
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.resultant_force
+stem: A cyclist moves in a straight line at a steady speed. The forward force is 240 N and the air resistance is 85 N.
+parts:
+- id: a
+  prompt: Find the size of the friction.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 155 N
+      correct: true
+    - id: B
+      text: 325 N
+      correct: false
+      misconception_id: mc.phy.o.opposite_vectors_added
+      feedback: 'Two teams pulling a rope in opposite directions cancel each other out: subtract the smaller pull from the larger.'
+    - id: C
+      text: 240 N
+      correct: false
+      misconception_id: mc.phy.o.largest_vector_only
+      feedback: A small current still slows a boat. Every vector acting changes the resultant, so combine them all.
+    - id: D
+      text: 0 N
+      correct: false
+      misconception_id: mc.phy.o.steady_speed_no_forces
+      feedback: A car cruising at a steady speed still has friction and air resistance on it; the engine's force just matches them. Steady velocity means the forces balance, not that there are none.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What does a steady speed in a straight line tell you about the resultant force?
+  - rung: 2
+    name: concept
+    text:
+      en: 'The forces are balanced: the forwards force equals the total of the backward forces.'
+  - rung: 3
+    name: first_step
+    text:
+      en: The friction and the air resistance together must equal the forward force.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 240 − 85.
+  - rung: 5
+    name: full_step
+    text:
+      en: The friction is 155 N.
+  misconception_ids:
+  - mc.phy.o.largest_vector_only
+  - mc.phy.o.opposite_vectors_added
+  - mc.phy.o.steady_speed_no_forces
+solution:
+  steps:
+  - n: 1
+    latex: \text{steady velocity, so the resultant force is 0}
+    reason: Balanced forces do not change velocity
+  - n: 2
+    latex: 240 - 85 = 155\ \text{N}
+    reason: Backward forces together equal the forward force
+    check_id: chk_build_phy_frc_0012_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0012_ans:
+    args:
+      expression: 240 - 85
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

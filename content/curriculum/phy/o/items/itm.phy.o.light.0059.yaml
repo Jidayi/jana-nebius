@@ -1,0 +1,127 @@
+id: itm.phy.o.light.0059
+version: 0.1.1
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.total_internal_reflection
+stem: A ray of light inside Perspex (refractive index 1.49) meets the boundary with air along the normal, so its angle of incidence is 0°.
+parts:
+- id: a
+  prompt: What happens to the ray at the boundary?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: It is totally internally reflected back into the material
+      correct: false
+      misconception_id: mc.phy.o.tir_angle_below_critical
+      feedback: Total internal reflection needs an angle of incidence bigger than the critical angle, 42.2° here. At 0° the light gets out.
+    - id: B
+      text: It refracts out into the air, bending towards the normal
+      correct: false
+      misconception_id: mc.phy.o.refraction_bends_wrong_way
+      feedback: 'A ray along the normal cannot bend either way: both sides of the beam reach the boundary together.'
+    - id: C
+      text: It refracts out into the air, bending away from the normal
+      correct: false
+      misconception_id: mc.phy.o.refraction_along_normal_bends
+      feedback: A ray along the normal slows down but both sides of the beam reach the glass together, so it carries straight on without bending.
+    - id: D
+      text: It passes out into the air without changing direction
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Where is the ray heading compared with the normal?
+  - rung: 2
+    name: concept
+    text:
+      en: A ray along the normal reaches the boundary with both sides of the beam at the same moment.
+  - rung: 3
+    name: first_step
+    text:
+      en: Total internal reflection needs an angle of incidence bigger than the critical angle.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The critical angle of Perspex is 42.2°, and 0° is far below it.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It passes out into the air without changing direction.'
+  misconception_ids:
+  - mc.phy.o.refraction_along_normal_bends
+  - mc.phy.o.refraction_bends_wrong_way
+  - mc.phy.o.tir_angle_below_critical
+solution:
+  steps:
+  - n: 1
+    latex: \sin C = \frac{1}{1.49} = 0.671
+    reason: sin C = 1 / n
+    check_id: chk_build_phy_lgt_0059_sc
+  - n: 2
+    latex: C = 42.2^\circ
+    reason: Inverse sine
+    check_id: chk_build_phy_lgt_0059_cang
+  - n: 3
+    latex: 0^\circ < 42.2^\circ
+    reason: No total internal reflection
+  - n: 4
+    latex: \text{It passes out into the air without changing direction}
+    reason: Along the normal there is no bending
+    check_id: chk_build_phy_lgt_0059_ray
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0059_cang:
+    args:
+      angle_unit: degrees
+      expression: asin(1/1.49)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0059_ray:
+    args:
+      angle1: '0'
+      n1: '1.49'
+      n2: '1'
+      task: refraction
+    tool: phys_optics
+  chk_build_phy_lgt_0059_sc:
+    args:
+      expression: 1/1.49
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

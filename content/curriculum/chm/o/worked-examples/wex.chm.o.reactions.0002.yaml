@@ -1,0 +1,49 @@
+id: wex.chm.o.reactions.0002
+kc_ids:
+- kc.chm.o.reactions.physical_chemical_change
+problem: 5.0 g of salt is dissolved in 50.0 g of water. What is the mass of the solution, and is dissolving a physical or a chemical change?
+steps:
+- n: 1
+  latex: 5.0 + 50.0 = 55.0
+  reason: Mass is conserved when a solid dissolves
+  check_id: chk_build_chm_reactions_w0002_m
+- n: 2
+  latex: '\text{evaporate the water: the salt is left}'
+  reason: The salt can be recovered unchanged
+- n: 3
+  latex: \text{no new substance}
+  reason: So dissolving is physical
+final_answer:
+  latex: 55.0\ \text{g; a physical change}
+  check_id: chk_build_chm_reactions_w0002_m
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_w0002_m:
+    args:
+      expression: 5.0 + 50.0
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

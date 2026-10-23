@@ -1,0 +1,169 @@
+- id: kc.acc.o.costing.cost_classification
+  code: ACC-O-16.K01
+  node_id: cur.acc.o.costing
+  statement: Classify a cost as fixed or variable, and as direct or indirect
+  kind: conceptual
+  tools: []
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.accounting_equation.purpose_and_users
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.cost_direct_indirect_confused
+  - mc.acc.o.cost_fixed_not_cost
+  - mc.acc.o.cost_fixed_variable_by_size
+  skill_ids:
+  - acc-o-costing
+  glossary:
+  - fixed cost
+  - variable cost
+  - direct cost
+  - indirect cost
+  - contribution
+  - contribution per unit
+  - break-even point
+  - break-even
+  - margin of safety
+  - target profit
+  - revenue
+  - unit cost
+  difficulty_prior: -0.5
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.costing.contribution
+  code: ACC-O-16.K02
+  node_id: cur.acc.o.costing
+  statement: Calculate contribution per unit and total contribution
+  kind: procedural
+  tools:
+  - acc_break_even
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.costing.cost_classification
+    strength: required
+  misconception_ids:
+  - mc.acc.o.cost_contribution_as_profit
+  - mc.acc.o.cost_fixed_in_contribution
+  - mc.acc.o.cost_vc_added
+  skill_ids:
+  - acc-o-costing
+  glossary:
+  - fixed cost
+  - variable cost
+  - direct cost
+  - indirect cost
+  - contribution
+  - contribution per unit
+  - break-even point
+  - break-even
+  - margin of safety
+  - target profit
+  - revenue
+  - unit cost
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.costing.break_even
+  code: ACC-O-16.K03
+  node_id: cur.acc.o.costing
+  statement: Calculate the break-even point in units and in revenue
+  kind: procedural
+  tools:
+  - acc_break_even
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.acc.o.costing.contribution
+    strength: required
+  misconception_ids:
+  - mc.acc.o.cost_be_divides_by_price
+  - mc.acc.o.cost_be_divides_by_vc
+  - mc.acc.o.cost_be_units_revenue_confused
+  skill_ids:
+  - acc-o-costing
+  glossary:
+  - fixed cost
+  - variable cost
+  - direct cost
+  - indirect cost
+  - contribution
+  - contribution per unit
+  - break-even point
+  - break-even
+  - margin of safety
+  - target profit
+  - revenue
+  - unit cost
+  difficulty_prior: 0.1
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.costing.margin_of_safety
+  code: ACC-O-16.K04
+  node_id: cur.acc.o.costing
+  statement: Calculate the margin of safety and the profit at a given output
+  kind: procedural
+  tools:
+  - acc_break_even
+  - math_evaluate
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.costing.break_even
+    strength: required
+  misconception_ids:
+  - mc.acc.o.cost_contribution_as_profit
+  - mc.acc.o.cost_mos_added
+  - mc.acc.o.cost_mos_be_as_mos
+  - mc.acc.o.cost_mos_output_as_mos
+  skill_ids:
+  - acc-o-costing
+  glossary:
+  - fixed cost
+  - variable cost
+  - direct cost
+  - indirect cost
+  - contribution
+  - contribution per unit
+  - break-even point
+  - break-even
+  - margin of safety
+  - target profit
+  - revenue
+  - unit cost
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.costing.target_profit
+  code: ACC-O-16.K05
+  node_id: cur.acc.o.costing
+  statement: Calculate the output needed to earn a target profit
+  kind: procedural
+  tools:
+  - acc_break_even
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.costing.break_even
+    strength: required
+  misconception_ids:
+  - mc.acc.o.cost_be_divides_by_price
+  - mc.acc.o.cost_target_fc_omitted
+  - mc.acc.o.cost_target_subtracted
+  skill_ids:
+  - acc-o-costing
+  glossary:
+  - fixed cost
+  - variable cost
+  - direct cost
+  - indirect cost
+  - contribution
+  - contribution per unit
+  - break-even point
+  - break-even
+  - margin of safety
+  - target profit
+  - revenue
+  - unit cost
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active

@@ -1,0 +1,536 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.chm-o-organic
+version: 2026-10-13.1
+description: 'Colocated evals for chm-o-organic (SKL-21, EVL-07): one case per misconception. The student answers
+  as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key away,
+  and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: chm_o_organic_01
+  title: Holds 'The –OH in an alcohol makes it an alkali'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.organic_oh_group_is_hydroxide
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.organic.0001
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.organic.functional_groups
+        misconception: mc.chm.o.organic_oh_group_is_hydroxide
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: chm_o_organic_02
+  title: Holds 'Counting the wrong atoms for the prefix'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.organic_prefix_wrong_atoms
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.organic.0013
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.organic.naming
+        misconception: mc.chm.o.organic_prefix_wrong_atoms
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: chm_o_organic_03
+  title: Holds 'Leaving out the hydrogen mass'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.organic_gf_hydrogen_mass_ignored
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.organic.0025
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.organic.general_formulae
+        misconception: mc.chm.o.organic_gf_hydrogen_mass_ignored
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: chm_o_organic_04
+  title: Holds 'Large molecules boil more easily'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.organic_big_molecules_boil_low
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.organic.0037
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.organic.fuels_and_cracking
+        misconception: mc.chm.o.organic_big_molecules_boil_low
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_organic_05
+  title: Holds 'Cracking only separates molecules'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.organic_cracking_is_separation
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.organic.0037
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.organic.fuels_and_cracking
+        misconception: mc.chm.o.organic_cracking_is_separation
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_organic_06
+  title: Holds 'Any hydrocarbon decolourises bromine water'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.organic_alkanes_decolourise_bromine
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.organic.0049
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.organic.alkanes_and_alkenes
+        misconception: mc.chm.o.organic_alkanes_decolourise_bromine
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_organic_07
+  title: Holds 'Naming the ester the wrong way round'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.organic_ester_name_order
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.organic.0061
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.organic.alcohols_and_acids
+        misconception: mc.chm.o.organic_ester_name_order
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_organic_08
+  title: Holds 'Fermentation needs air or strong heat'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.organic_fermentation_needs_air_or_heat
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.organic.0062
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.organic.alcohols_and_acids
+        misconception: mc.chm.o.organic_fermentation_needs_air_or_heat
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_organic_09
+  title: Holds 'The polymer keeps the C=C bond'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.organic_polymer_keeps_double_bond
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.organic.0073
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.organic.polymers
+        misconception: mc.chm.o.organic_polymer_keeps_double_bond
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_organic_10
+  title: Holds 'Addition and condensation polymers mixed up'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.organic_addition_condensation_mixed
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.organic.0073
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.organic.polymers
+        misconception: mc.chm.o.organic_addition_condensation_mixed
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_organic_11
+  title: Holds 'Carbon monoxide in complete combustion'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.organic_incomplete_products_in_complete
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.organic.0085
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.organic.combustion
+        misconception: mc.chm.o.organic_incomplete_products_in_complete
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_organic_12
+  title: Holds 'Writing O instead of O₂'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.organic_oxygen_formula_changed
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.organic.0085
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 12
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.organic.combustion
+        misconception: mc.chm.o.organic_oxygen_formula_changed
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

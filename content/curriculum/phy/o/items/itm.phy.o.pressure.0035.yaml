@@ -1,0 +1,103 @@
+id: itm.phy.o.pressure.0035
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.gas_and_atmospheric_pressure
+stem: A water manometer is joined to a gas tap. On its scale, the water level is at 24 cm in the open arm and at 20 cm in the arm joined to the tap. Water has a density of 1000 kg/m³. Take g = 9.8 N/kg.
+parts:
+- id: a
+  prompt: By how many pascals is the gas pressure above atmospheric pressure?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '392'
+    unit: Pa
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_prs_0035_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The gas pushes the water down in its own arm, so the water rises in the open arm.
+  - rung: 2
+    name: concept
+    text:
+      en: The extra pressure of the gas equals ρgΔh for the difference between the two levels.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the difference in levels and change it into metres.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Δh = 0.04 m; work out 1000 × 9.8 × 0.04.
+  - rung: 5
+    name: full_step
+    text:
+      en: The gas pressure is 392 Pa above atmospheric pressure.
+  misconception_ids:
+  - mc.phy.o.liquid_pressure_g_left_out
+  - mc.phy.o.liquid_depth_cm_not_converted
+  - mc.phy.o.manometer_one_level_used
+solution:
+  steps:
+  - n: 1
+    latex: \Delta h = 24 - 20 = 4\ \text{cm}
+    reason: The difference in levels
+    check_id: chk_build_phy_prs_0035_dh
+  - n: 2
+    latex: 4\ \text{cm} = 0.04\ \text{m}
+    reason: Centimetres into metres
+    check_id: chk_build_phy_prs_0035_dhm
+  - n: 3
+    latex: \Delta p = \rho g \Delta h = 1000 \times 9.8 \times 0.04 = 392\ \text{Pa}
+    reason: Δp = ρgΔh
+    check_id: chk_build_phy_prs_0035_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_0035_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 1000*g*4/100
+    tool: math_evaluate
+  chk_build_phy_prs_0035_dh:
+    args:
+      expression: 24 - 20
+    tool: math_evaluate
+  chk_build_phy_prs_0035_dhm:
+    args:
+      expression: 4/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

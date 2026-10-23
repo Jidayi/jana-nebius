@@ -1,0 +1,68 @@
+id: wex.acc.o.inventory.0004
+kc_ids:
+- kc.acc.o.inventory.avco
+problem: 'A shop: opening inventory 30 items at $6 each; then bought 90 at $8 each; then sold 80. Value the closing inventory by AVCO.'
+steps:
+- n: 1
+  latex: '\text{AVCO: unit cost} = \frac{\text{value held}}{\text{units held}}'
+  reason: Weighted
+  check_id: chk_build_acc_inventory_w0004_t
+- n: 2
+  latex: \text{Average} = \frac{30 \times 6 + 90 \times 8}{30 + 90} = 7.5
+  reason: After the purchase
+  check_id: chk_build_acc_inventory_w0004_s2
+- n: 3
+  latex: \text{Closing} = (30 + 90 - 80) \times 7.5 = 300.00
+  reason: Units left at the average
+  check_id: chk_build_acc_inventory_w0004_a
+final_answer:
+  latex: \$\,300.00
+  check_id: chk_build_acc_inventory_w0004_a
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_inventory_w0004_a:
+    args:
+      dp: 2
+      expression: (((0 + 30 * 6) + 90 * 8) * (120 - 80) / 120)
+    tool: math_evaluate
+  chk_build_acc_inventory_w0004_s2:
+    args:
+      dp: 4
+      expression: (30 * 6 + 90 * 8) / (30 + 90)
+    tool: math_evaluate
+  chk_build_acc_inventory_w0004_t:
+    args:
+      avco_basis: perpetual
+      dp: 2
+      method: avco
+      movements:
+      - kind: opening
+        quantity: 30
+        unit_cost: '6'
+      - kind: receipt
+        quantity: 90
+        unit_cost: '8'
+      - kind: issue
+        quantity: 80
+      round_unit_cost: false
+    tool: acc_inventory
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

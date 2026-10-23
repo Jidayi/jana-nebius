@@ -1,0 +1,125 @@
+id: itm.phy.o.circuits.0014
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.series_circuits
+stem: Obi connects an 8 Ω resistor and a 15 Ω resistor in series with a 3 V battery.
+parts:
+- id: a
+  prompt: Calculate the current in the circuit.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 0.375 A
+      correct: false
+      misconception_id: mc.phy.o.series_current_from_one_resistor
+      feedback: 'The supply pushes the current through the whole circuit. Use the total resistance: I = V ÷ (R1 + R2 + ...).'
+    - id: B
+      text: 0.575 A
+      correct: false
+      misconception_id: mc.phy.o.series_treated_as_parallel
+      feedback: In series there is only one path. The current is the same everywhere, the supply p.d. is shared between the resistors, and the total resistance is the sum.
+    - id: C
+      text: 0.130 A
+      correct: true
+    - id: D
+      text: 7.67 A
+      correct: false
+      misconception_id: mc.phy.o.circuit_current_r_over_v
+      feedback: 'A bigger p.d. pushes a bigger current, so p.d. goes on top: I = V ÷ R. Check with easy numbers: 6 V across 2 Ω gives 3 A.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The same current flows through both resistors, pushed by the battery.
+  - rung: 2
+    name: concept
+    text:
+      en: Use the total resistance of the circuit in I = V/R.
+  - rung: 3
+    name: first_step
+    text:
+      en: The total resistance is 8 Ω + 15 Ω.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The total is 23 Ω, so I = 3 ÷ 23.
+  - rung: 5
+    name: full_step
+    text:
+      en: The current is 0.130 A.
+  misconception_ids:
+  - mc.phy.o.circuit_current_r_over_v
+  - mc.phy.o.series_current_from_one_resistor
+  - mc.phy.o.series_treated_as_parallel
+solution:
+  steps:
+  - n: 1
+    latex: R = 8 + 15 = 23\ \Omega
+    reason: Series resistances add
+    check_id: chk_build_phy_cir_0014_rt
+  - n: 2
+    latex: I = \frac{V}{R} = \frac{3}{23} = 0.130\ \text{A}
+    reason: Ohm's law
+    check_id: chk_build_phy_cir_0014_ans
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_0014_ans:
+    args:
+      expression: 3/(8 + 15)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_cir_0014_rt:
+    args:
+      expression: 8 + 15
+    tool: math_evaluate
+  chk_build_phy_cir_0014_tool:
+    args:
+      components:
+      - emf: '3'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '8'
+      - id: R2
+        kind: resistor
+        resistance: '15'
+      network:
+        series:
+        - B
+        - R1
+        - R2
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

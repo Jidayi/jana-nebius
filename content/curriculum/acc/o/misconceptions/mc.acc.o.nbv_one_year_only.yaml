@@ -1,0 +1,34 @@
+id: mc.acc.o.nbv_one_year_only
+kc_ids:
+- kc.acc.o.depreciation.net_book_value
+student_name: Only one year's depreciation
+description: Takes only one year's charge off the cost when several years have passed.
+signatures:
+- kind: answer_transform
+  expression: cost - annual
+fix:
+  strategy: rule_restatement
+  text:
+    en: Accumulated depreciation adds the charges of every year so far.
+probe_item_ids:
+- itm.acc.o.depreciation.0046
+- itm.acc.o.depreciation.0047
+- itm.acc.o.depreciation.0048
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

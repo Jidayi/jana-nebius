@@ -1,0 +1,167 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.function-transform-sim-predict",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "A graph transformation simulation: y = a f(b(x + c)) + d with f(x) = x^2, a = 1, b = 1 and d = 0. It runs after you predict, so the result is not given here."
+    },
+    "computed": {
+      "alt": {
+        "a": "1",
+        "b": "1",
+        "c": "0",
+        "d": "0",
+        "expression": "x^2",
+        "x": "0",
+        "y": "0"
+      },
+      "check_ids": [
+        "chk_build_fx_function_transform_sim_predict_1",
+        "chk_build_fx_function_transform_sim_predict_2",
+        "chk_build_fx_function_transform_sim_predict_3",
+        "chk_build_fx_function_transform_sim_predict_4"
+      ],
+      "labels": {
+        "out.point_x": "0",
+        "out.point_y": "0"
+      },
+      "parts": [
+        {
+          "id": "ctrl.a",
+          "label": "a",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.b",
+          "label": "b",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.c",
+          "label": "c",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.d",
+          "label": "d",
+          "role": "control"
+        },
+        {
+          "id": "out.point_x",
+          "label": "point x",
+          "role": "readout"
+        },
+        {
+          "id": "out.point_y",
+          "label": "point y",
+          "role": "readout"
+        }
+      ],
+      "x0": 0
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_function_transform_sim_predict_1",
+      "chk_build_fx_function_transform_sim_predict_2",
+      "chk_build_fx_function_transform_sim_predict_3",
+      "chk_build_fx_function_transform_sim_predict_4"
+    ],
+    "params": {
+      "expression": "x^2",
+      "locked": [
+        "a",
+        "b",
+        "d"
+      ],
+      "parameters": {
+        "a": {
+          "max": 3,
+          "min": -3,
+          "step": 0.5,
+          "value": 1
+        },
+        "b": {
+          "max": 3,
+          "min": -3,
+          "step": 0.5,
+          "value": 1
+        },
+        "c": {
+          "max": 5,
+          "min": -5,
+          "step": 1,
+          "value": 0
+        },
+        "d": {
+          "max": 5,
+          "min": -5,
+          "step": 1,
+          "value": 0
+        }
+      },
+      "predict": "poe.mth.function_shift_left.v1",
+      "x_range": [
+        -6,
+        6
+      ]
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ctrl.a",
+        "name": "a",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.b",
+        "name": "b",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.c",
+        "name": "c",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.d",
+        "name": "d",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "out.point_x",
+        "name": "point x",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.point_y",
+        "name": "point y",
+        "role": "readout"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:da79f537b593fd0029d8f80da1fa07338f91130af424bd53feaf6f649a072404",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "function_transform_sim",
+    "visual_id": "vis_TSNQNKX09RRD1T7KFHKAM4XKYF"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: function transform sim predict (shown labels)",
+  "variant": "function-transform-sim-predict"
+}

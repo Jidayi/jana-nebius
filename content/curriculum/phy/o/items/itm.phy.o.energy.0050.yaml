@@ -1,0 +1,110 @@
+id: itm.phy.o.energy.0050
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.energy_conversion
+stem: A roller-coaster car starts from rest at a point 45 m above the ground and rolls down to a point 8 m above the ground. Ignore friction and take g = 9.8 N/kg.
+parts:
+- id: a
+  prompt: Calculate its speed at the lower point.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '26.9'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_nrg_0050_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The gravitational store empties as the kinetic store fills.
+  - rung: 2
+    name: concept
+    text:
+      en: Set mgΔh = ½mv²; the mass cancels, so v² = 2gΔh.
+  - rung: 3
+    name: first_step
+    text:
+      en: The drop in height is 37 m.
+  - rung: 4
+    name: worked_step
+    text:
+      en: v² = 2 × 9.8 × 37 = 725.2; take the square root.
+  - rung: 5
+    name: full_step
+    text:
+      en: The speed is 26.9 m/s.
+  misconception_ids:
+  - mc.phy.o.conversion_two_dropped
+  - mc.phy.o.ke_speed_not_rooted
+  - mc.phy.o.gpe_height_not_change
+solution:
+  steps:
+  - n: 1
+    latex: \Delta h = 45 - 8 = 37\ \text{m}
+    reason: The drop in height
+    check_id: chk_build_phy_nrg_0050_dh
+  - n: 2
+    latex: mg\Delta h = \frac{1}{2}mv^2 \Rightarrow v^2 = 2g\Delta h
+    reason: Energy lost from the gravitational store = energy gained by the kinetic store; m cancels
+  - n: 3
+    latex: v^2 = 2 \times 9.8 \times 37 = 725.2
+    reason: Substitute
+    check_id: chk_build_phy_nrg_0050_vsq
+  - n: 4
+    latex: v = \sqrt{725.2} = 26.9\ \text{m/s}
+    reason: Square root
+    check_id: chk_build_phy_nrg_0050_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0050_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: sqrt(2*g*(45 - 8))
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_nrg_0050_dh:
+    args:
+      expression: 45 - 8
+    tool: math_evaluate
+  chk_build_phy_nrg_0050_vsq:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 2*g*(45 - 8)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

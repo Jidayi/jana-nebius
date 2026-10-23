@@ -1,0 +1,38 @@
+id: mc.phy.o.heating_creates_particles
+kc_ids:
+- kc.phy.o.particles.gas_pressure_particles
+- kc.phy.o.thermal_properties.thermal_expansion
+- kc.phy.o.heat_transfer.convection
+student_name: Heating makes more particles
+description: Thinks heating a substance adds particles or mass to it, so it expands or presses harder because there is more of it.
+signatures:
+- kind: answer_transform
+  expression: more
+fix:
+  strategy: counterexample
+  text:
+    en: 'Weigh a sealed flask before and after heating: its mass does not change. No particles are made; the same particles move faster and, in most materials, spread further apart.'
+probe_item_ids:
+- itm.phy.o.heat_transfer.0030
+- itm.phy.o.particles.0042
+- itm.phy.o.thermal_properties.0011
+- itm.phy.o.thermal_properties.0012
+- itm.phy.o.thermal_properties.0013
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

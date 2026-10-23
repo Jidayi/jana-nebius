@@ -1,0 +1,85 @@
+id: itm.chm.o.reactions.0035
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.collision_theory
+stem: In a mixture of hydrogen and oxygen at room temperature, the molecules collide billions of times a second, yet almost no water forms.
+parts:
+- id: a
+  prompt: Why is the reaction so slow?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Every collision forms water, but it evaporates.
+      correct: false
+      misconception_id: mc.chm.o.reactions_all_collisions_react
+      feedback: Particles in a gas collide billions of times a second, yet many mixtures hardly react. Only collisions with at least the activation energy lead to a reaction; the rest bounce apart unchanged.
+    - id: B
+      text: The molecules never touch each other.
+      correct: false
+    - id: C
+      text: Almost none of the collisions have enough energy to react.
+      correct: true
+    - id: D
+      text: Hydrogen and oxygen cannot react together.
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: There are plenty of collisions. So what is missing?
+  - rung: 2
+    name: concept
+    text:
+      en: A collision only leads to a reaction if it has at least the activation energy.
+  - rung: 3
+    name: first_step
+    text:
+      en: The activation energy for this reaction is high compared with the energy of the molecules at room temperature.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A spark gives a few molecules a great deal of energy. What does that suggest about the problem?
+  - rung: 5
+    name: full_step
+    text:
+      en: The reaction is slow because almost no collisions have energy equal to the activation energy; a spark supplies that energy and the mixture explodes.
+  misconception_ids:
+  - mc.chm.o.reactions_all_collisions_react
+solution:
+  steps:
+  - n: 1
+    latex: \text{few collisions reach }E_a
+    reason: Few successful
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

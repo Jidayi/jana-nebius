@@ -1,0 +1,107 @@
+id: itm.acc.o.depreciation.0029
+version: 0.1.1
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.depreciation.straight_line
+stem: Nomsa's business buys a sewing machine for $35900. It is expected to last 5 years and a residual value of $2800.
+parts:
+- id: a
+  prompt: Calculate the yearly depreciation charge by the straight-line method.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '6620.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_depreciation_0029_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The straight-line method charges the same amount every year. What is spread, and over how long?
+  - rung: 2
+    name: concept
+    text:
+      en: Yearly charge = (cost − residual value) ÷ useful life in years.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'First take the residual value off the cost: that is the amount to be spread.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Yearly charge = (35900 − 2800) ÷ 5.
+  - rung: 5
+    name: full_step
+    text:
+      en: Yearly charge = $6620.
+  misconception_ids:
+  - mc.acc.o.sl_residual_ignored
+  - mc.acc.o.sl_total_not_annual
+solution:
+  steps:
+  - n: 1
+    latex: \text{Yearly charge} = \frac{\text{cost} - \text{residual value}}{\text{useful life}}
+    reason: The same charge every year
+    check_id: chk_build_acc_depreciation_0029_t
+  - n: 2
+    latex: \text{Yearly charge} = \frac{35900 - 2800}{5} = 6620
+    reason: Substitute
+    check_id: chk_build_acc_depreciation_0029_a
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  cost: '35900'
+  residual: '2800'
+checks:
+  chk_build_acc_depreciation_0029_a:
+    args:
+      dp: 2
+      expression: (35900 - 2800) / 5
+    tool: math_evaluate
+  chk_build_acc_depreciation_0029_t:
+    args:
+      cost: '35900'
+      dp: 2
+      life_years: 5
+      method: straight_line
+      part_year_policy: full_year
+      residual: '2800'
+      years: 1
+    tool: acc_depreciation
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

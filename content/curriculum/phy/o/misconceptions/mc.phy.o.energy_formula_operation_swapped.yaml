@@ -1,0 +1,38 @@
+id: mc.phy.o.energy_formula_operation_swapped
+kc_ids:
+- kc.phy.o.energy.work_done
+- kc.phy.o.energy.power
+- kc.phy.o.energy.efficiency
+student_name: Multiplying where you should divide
+description: Rearranges an energy formula (W = Fd, P = E/t, efficiency = useful ÷ input) with the wrong operation, multiplying where it should divide or dividing where it should multiply.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Write the formula, then undo each step: what is multiplied moves across as a division, and what is divided moves across as a multiplication.'
+probe_item_ids:
+- itm.phy.o.energy.0071
+- itm.phy.o.energy.0090
+- itm.phy.o.energy.0103
+- itm.phy.o.energy.0104
+- itm.phy.o.energy.0065
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

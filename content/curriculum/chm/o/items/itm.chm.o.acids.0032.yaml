@@ -1,0 +1,92 @@
+id: itm.chm.o.acids.0032
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.strong_and_weak
+- kc.chm.o.organic.carboxylic_acids
+stem: A marble chip (calcium carbonate) is dropped into ethanoic acid. An identical chip is dropped into hydrochloric acid of the same concentration.
+parts:
+- id: a
+  prompt: What is seen?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Both fizz, but the chip in ethanoic acid fizzes more slowly
+      correct: true
+    - id: B
+      text: Only the chip in hydrochloric acid fizzes
+      correct: false
+      misconception_id: mc.chm.o.acids_weak_not_ionised
+      feedback: 'A weak acid is partly ionised: most molecules stay whole, but some give H⁺ ions. That is why ethanoic acid still turns indicators red or orange, conducts a little and reacts slowly with metals.'
+    - id: C
+      text: Both fizz at the same rate
+      correct: false
+      misconception_id: mc.chm.o.acids_strong_means_concentrated
+      feedback: Strength is about how fully an acid ionises in water. Concentration is about how much acid is in each dm³. A dilute solution of hydrochloric acid is still a strong acid; a concentrated solution of ethanoic acid is still a weak acid.
+    - id: D
+      text: The chip in ethanoic acid fizzes faster
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Both are acids. What do acids do with a carbonate?
+  - rung: 2
+    name: concept
+    text:
+      en: Any acid reacts with a carbonate to give carbon dioxide; the rate depends on the H⁺ concentration.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ethanoic acid is only partly ionised, so it has fewer H⁺ ions per dm³.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Fewer H⁺ ions means fewer successful collisions with the marble each second.
+  - rung: 5
+    name: full_step
+    text:
+      en: Both acids give carbon dioxide, but the weak ethanoic acid fizzes more slowly.
+  misconception_ids:
+  - mc.chm.o.acids_weak_not_ionised
+  - mc.chm.o.acids_strong_means_concentrated
+solution:
+  steps:
+  - n: 1
+    latex: \text{CaCO}_3 + 2\text{H}^{+} \rightarrow \text{Ca}^{2+} + \text{H}_2\text{O} + \text{CO}_2
+    reason: Both acids react
+  - n: 2
+    latex: \text{fewer H}^{+} \Rightarrow \text{slower}
+    reason: Weak acid reacts more slowly
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.mth.o.gradient_order_mixed
+kc_ids:
+- kc.mth.o.coordinate_geometry.gradient
+student_name: Subtracting in different orders
+description: Subtracts the coordinates in one order on the top and the other order on the bottom, so the sign is wrong.
+signatures:
+- kind: step_error
+  error_category: sign
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Use the same point first on the top and the bottom: (y₂ − y₁) ÷ (x₂ − x₁).'
+probe_item_ids:
+- itm.mth.o.coordinate_geometry.0043
+- itm.mth.o.coordinate_geometry.0045
+- itm.mth.o.coordinate_geometry.0046
+- itm.mth.o.coordinate_geometry.0056
+- itm.mth.o.coordinate_geometry.0058
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

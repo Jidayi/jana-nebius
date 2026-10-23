@@ -1,0 +1,84 @@
+id: itm.chm.o.organic.0008
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.functional_groups
+stem: A hydrocarbon has the formula C₄H₈.
+parts:
+- id: a
+  prompt: Which general formula does it fit, and which series is it in?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: 'CₙH₂ₙ₊₁COOH: a carboxylic acid'
+      correct: false
+    - id: B
+      text: 'CₙH₂ₙ₊₂: an alkane'
+      correct: false
+    - id: C
+      text: 'CₙH₂ₙ₊₁OH: an alcohol'
+      correct: false
+    - id: D
+      text: 'CₙH₂ₙ: an alkene'
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: C₄H₈ contains only carbon and hydrogen.
+  - rung: 2
+    name: concept
+    text:
+      en: Compare the number of hydrogen atoms with the number of carbon atoms.
+  - rung: 3
+    name: first_step
+    text:
+      en: C₄H₈ has four carbon atoms and eight hydrogen atoms.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Eight is exactly twice four. Which general formula gives twice as many H atoms as C atoms?
+  - rung: 5
+    name: full_step
+    text:
+      en: C₄H₈ fits CₙH₂ₙ with n = 4, so it is an alkene (butene).
+solution:
+  steps:
+  - n: 1
+    latex: \text{H = 2n, n = 4}
+    reason: Twice as many H as C
+  - n: 2
+    latex: \text{C}_n\text{H}_{2n}
+    reason: Alkene
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

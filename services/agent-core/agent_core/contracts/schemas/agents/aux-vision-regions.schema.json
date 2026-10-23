@@ -1,0 +1,91 @@
+{
+ "$comment": "GENERATED from docs/specification/contracts/agents/aux-vision-regions.schema.json sha256 0dc4bd572899c4f9cdcd34dbc6bbf56784ed616efc02da83076f6b9e279cc580; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/agents/aux-vision-regions",
+ "title": "Auxiliary output: vision",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "regions"
+ ],
+ "properties": {
+  "regions": {
+   "type": "array",
+   "maxItems": 200,
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "kind",
+     "number_label",
+     "text",
+     "latex",
+     "confidence",
+     "low_confidence_spans",
+     "needs_confirmation"
+    ],
+    "properties": {
+     "kind": {
+      "enum": [
+       "question_stem",
+       "sub_part",
+       "answer_options",
+       "table",
+       "diagram",
+       "working_line",
+       "other"
+      ]
+     },
+     "number_label": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "maxLength": 16
+     },
+     "text": {
+      "type": "string",
+      "maxLength": 4000
+     },
+     "latex": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "maxLength": 4000
+     },
+     "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+     },
+     "low_confidence_spans": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "start",
+        "end"
+       ],
+       "properties": {
+        "start": {
+         "type": "integer",
+         "minimum": 0
+        },
+        "end": {
+         "type": "integer",
+         "minimum": 0
+        }
+       }
+      }
+     },
+     "needs_confirmation": {
+      "type": "boolean"
+     }
+    }
+   }
+  }
+ }
+}

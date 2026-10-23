@@ -1,0 +1,35 @@
+id: mc.acc.o.sofp_loan_as_capital
+kc_ids:
+- kc.acc.o.sole_trader_statements.sofp_sections
+student_name: A loan as capital
+description: Treats money lent to the business by an outsider as part of the owner's capital.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: liability
+fix:
+  strategy: contrast_example
+  text:
+    en: Capital is the owner's own money. A lender expects to be repaid, so a loan is a liability.
+probe_item_ids:
+- itm.acc.o.sole_trader_statements.0034
+- itm.acc.o.sole_trader_statements.0035
+- itm.acc.o.sole_trader_statements.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

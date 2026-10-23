@@ -1,0 +1,101 @@
+id: itm.phy.o.light.0062
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.converging_lens
+stem: A candle stands 25 cm from a thin converging lens of focal length 20 cm.
+parts:
+- id: a
+  prompt: Calculate the magnification of the image.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '4'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_lgt_0062_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You need the image distance before the magnification.
+  - rung: 2
+    name: concept
+    text:
+      en: 1/v = 1/f − 1/u, and then magnification = v ÷ u.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find v from 1/20 − 1/25.
+  - rung: 4
+    name: worked_step
+    text:
+      en: v = 100 cm; divide it by 25.
+  - rung: 5
+    name: full_step
+    text:
+      en: The magnification is 4.
+  misconception_ids:
+  - mc.phy.o.lens_magnification_inverted
+  - mc.phy.o.lens_reciprocals_added
+  - mc.phy.o.lens_image_same_size
+solution:
+  steps:
+  - n: 1
+    latex: \frac{1}{v} = \frac{1}{20} - \frac{1}{25} \Rightarrow v = 100\ \text{cm}
+    reason: Lens formula
+    check_id: chk_build_phy_lgt_0062_v
+  - n: 2
+    latex: m = \frac{v}{u} = \frac{100}{25} = 4
+    reason: Magnification = v / u
+    check_id: chk_build_phy_lgt_0062_ans
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0062_ans:
+    args:
+      expression: 20/(25 - 20)
+    tool: math_evaluate
+  chk_build_phy_lgt_0062_tool:
+    args:
+      focal_length: 20
+      object_distance: 25
+      optic: converging_lens
+      sign_convention: real_is_positive
+      sign_convention_source: pack
+      task: image
+    tool: phys_optics
+  chk_build_phy_lgt_0062_v:
+    args:
+      expression: 25*20/(25 - 20)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

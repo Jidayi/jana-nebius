@@ -1,0 +1,33 @@
+id: mc.phy.o.g_divided_by_time
+kc_ids:
+- kc.phy.o.motion.free_fall
+student_name: Dividing g by the time
+description: Divides g by the time of fall instead of multiplying, so the velocity seems to fall the longer the object drops.
+signatures:
+- kind: answer_transform
+  expression: g/t
+fix:
+  strategy: counterexample
+  text:
+    en: 'The longer something falls, the faster it goes, so the answer must grow with time: multiply g by t.'
+probe_item_ids:
+- itm.phy.o.motion.0327
+- itm.phy.o.motion.0330
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

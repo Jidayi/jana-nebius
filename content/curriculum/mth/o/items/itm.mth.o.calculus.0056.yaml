@@ -1,0 +1,121 @@
+id: itm.mth.o.calculus.0056
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.calculus.definite_integrals
+stem: Evaluate $\int_{-1}^{4} (-3x^2 + 6x + 5)\,dx$.
+parts:
+- id: a
+  prompt: Give the exact value.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '5'
+      correct: true
+    - id: B
+      text: '-30'
+      correct: false
+      misconception_id: mc.mth.o.integrate_by_differentiating
+      feedback: To integrate xⁿ, add one to the power and divide by the new power.
+    - id: C
+      text: '-80'
+      correct: false
+      misconception_id: mc.mth.o.integral_power_not_divided
+      feedback: '∫xⁿ dx = xⁿ⁺¹ ÷ (n + 1): check by differentiating your answer.'
+    - id: D
+      text: '-5'
+      correct: false
+      misconception_id: mc.mth.o.integral_limits_reversed
+      feedback: 'Top limit first: [F(x)] from a to b = F(b) − F(a).'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'A definite integral is evaluated in two stages: integrate, then substitute the limits.'
+  - rung: 2
+    name: concept
+    text:
+      en: 'Integrate each term: xⁿ becomes xⁿ⁺¹ ÷ (n + 1).'
+  - rung: 3
+    name: first_step
+    text:
+      en: Write F(x), then work out F(4) and F(-1).
+  - rung: 4
+    name: worked_step
+    text:
+      en: F(4) = 4 and F(-1) = -1.
+  - rung: 5
+    name: full_step
+    text:
+      en: The integral is 5.
+  misconception_ids:
+  - mc.mth.o.integral_limits_reversed
+  - mc.mth.o.integral_power_not_divided
+  - mc.mth.o.integrate_by_differentiating
+solution:
+  steps:
+  - n: 1
+    latex: \int x^n\,dx = \frac{x^{n+1}}{n+1}
+    reason: Raise each power by one and divide by the new power
+  - n: 2
+    latex: F(4) = 4,\ F(-1) = -1
+    reason: Substitute the limits
+    check_id: chk_build_mth_cal_0056_fb
+  - n: 3
+    latex: F(4) - F(-1) = 5
+    reason: Top limit minus bottom limit
+    check_id: chk_build_mth_cal_0056_ig
+difficulty:
+  prior: 1.0
+  band: core
+estimated_seconds: 140
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_cal_0056_ans:
+    args:
+      expression: (-3*(4)^3/3 + (6)*(4)^2/2 + (5)*(4)) - (-3*(-1)^3/3 + (6)*(-1)^2/2 + (5)*(-1))
+    tool: math_evaluate
+  chk_build_mth_cal_0056_fb:
+    args:
+      equations:
+      - p = -3*(4)^3/3 + (6)*(4)^2/2 + (5)*(4)
+      - q = -3*(-1)^3/3 + (6)*(-1)^2/2 + (5)*(-1)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_cal_0056_ig:
+    args:
+      expression: (-3)*x^2 + (6)*x^1 + (5)*x^0
+      lower: -1
+      upper: 4
+      variable: x
+    tool: math_integrate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

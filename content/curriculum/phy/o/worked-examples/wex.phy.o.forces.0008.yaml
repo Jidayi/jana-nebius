@@ -1,0 +1,63 @@
+id: wex.phy.o.forces.0008
+kc_ids:
+- kc.phy.o.forces.springs
+problem: A spring of length 18 cm has a spring constant of 40 N/m. A mass of 0.2 kg is hung from it, within the limit of proportionality. Take g = 10 N/kg. Find the new length of the spring in centimetres.
+steps:
+- n: 1
+  latex: F = mg = 0.2 \times 10 = 2\ \text{N}
+  reason: The load is the weight
+  check_id: chk_build_phy_frc_w0008_w
+- n: 2
+  latex: x = \frac{F}{k} = \frac{2}{40} = 0.05\ \text{m}
+  reason: From F = kx
+  check_id: chk_build_phy_frc_w0008_x
+- n: 3
+  latex: x = 5\ \text{cm}
+  reason: Extension in centimetres
+  check_id: chk_build_phy_frc_w0008_xcm
+- n: 4
+  latex: L = 18 + 5 = 23\ \text{cm}
+  reason: Original length + extension
+  check_id: chk_build_phy_frc_w0008_ans
+final_answer:
+  latex: 23\ \text{cm}
+  check_id: chk_build_phy_frc_w0008_ans
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_w0008_ans:
+    args:
+      expression: 18 + 0.2*10/40*100
+    tool: math_evaluate
+  chk_build_phy_frc_w0008_w:
+    args:
+      expression: 0.2*10
+    tool: math_evaluate
+  chk_build_phy_frc_w0008_x:
+    args:
+      expression: 0.2*10/40
+    tool: math_evaluate
+  chk_build_phy_frc_w0008_xcm:
+    args:
+      expression: 0.2*10/40*100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

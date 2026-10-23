@@ -1,0 +1,44 @@
+id: wex.chm.o.reactions.0005
+kc_ids:
+- kc.chm.o.reactions.collision_theory
+problem: The concentration of an acid is raised from 0.50 mol/dm³ to 1.00 mol/dm³ at the same temperature. By what factor does the number of acid particles in each cm³ change, and what does this do to the collisions?
+steps:
+- n: 1
+  latex: \frac{1.00}{0.50} = 2
+  reason: Ratio of the concentrations
+  check_id: chk_build_chm_reactions_w0005_f
+- n: 2
+  latex: '\text{twice the particles per cm³: collisions twice as often}'
+  reason: Frequency of collisions
+- n: 3
+  latex: '\text{same temperature: same energy per collision}'
+  reason: Only the frequency changes
+final_answer:
+  latex: '2 \times \text{ as many particles: more frequent collisions}'
+  check_id: chk_build_chm_reactions_w0005_f
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_w0005_f:
+    args:
+      expression: 1.00/0.50
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

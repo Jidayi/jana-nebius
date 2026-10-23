@@ -1,0 +1,345 @@
+{
+  "id": "lesson-player.canonical.step-check",
+  "title": "Lesson player, step lesson: the check",
+  "component": "LessonPlayer",
+  "note": "One step-shape lesson reply (GET /v1/lessons/{lesson_id}, TABLE CUR-11b, D110) and its check replies (LessonCheckResult), recorded from the real core with packs built from the repository's own curriculum sources; items are PracticeItem student views with no keys. The three-question check after the steps, one question at a time, with the progress bar's Check label current (L2).",
+  "state": "canonical",
+  "variant": "step-check",
+  "payload": {
+    "lesson": {
+      "lesson_id": "les.mth.o.number.percentage_change",
+      "node_id": "cur.mth.o.number",
+      "title": "Percentages of amounts and percentage change",
+      "estimated_minutes": 10,
+      "kc_ids": [
+        "kc.mth.o.number.percentage_change",
+        "kc.mth.o.number.reverse_percentage"
+      ],
+      "version": "0.2.0",
+      "pack": {
+        "pack_id": "pack.mth.o",
+        "version": "0.1.0"
+      },
+      "blocks": [
+        {
+          "type": "step",
+          "action": "try_first",
+          "text": "Try this before any rules. Work it out any way you like.",
+          "visual": null,
+          "items": [
+            {
+              "item_id": "itm.mth.o.number.0269",
+              "pack_id": "pack.mth.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.mth.o.number.percentage_change"
+              ],
+              "kind": "numeric",
+              "stem": "A price of $450 is increased by 20%.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Find the new price.",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "numeric",
+                    "unit_prompt": null
+                  },
+                  "marks": 2
+                }
+              ],
+              "visual": null,
+              "marks": 2
+            }
+          ]
+        },
+        {
+          "type": "step",
+          "action": "choose",
+          "text": "Use a multiplier this time: one multiplication does it.",
+          "visual": null,
+          "items": [
+            {
+              "item_id": "itm.mth.o.number.0278",
+              "pack_id": "pack.mth.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.mth.o.number.percentage_change"
+              ],
+              "kind": "mcq_diagnostic",
+              "stem": "A price of $360 is increased by 12%.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Find the new price.",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "mcq",
+                    "options": [
+                      {
+                        "id": "A",
+                        "label": "372"
+                      },
+                      {
+                        "id": "B",
+                        "label": "43.2"
+                      },
+                      {
+                        "id": "C",
+                        "label": "403.2"
+                      },
+                      {
+                        "id": "D",
+                        "label": "792"
+                      }
+                    ]
+                  },
+                  "marks": 1
+                }
+              ],
+              "visual": null,
+              "marks": 1
+            }
+          ]
+        },
+        {
+          "type": "step",
+          "action": "calculate",
+          "text": "A fall works the same way, with a multiplier smaller than 1.",
+          "visual": null,
+          "items": [
+            {
+              "item_id": "itm.mth.o.number.0267",
+              "pack_id": "pack.mth.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.mth.o.number.percentage_change"
+              ],
+              "kind": "numeric",
+              "stem": "A phone costing $450 is reduced by 12% in a sale.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Find the sale price.",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "numeric",
+                    "unit_prompt": null
+                  },
+                  "marks": 2
+                }
+              ],
+              "visual": null,
+              "marks": 2
+            }
+          ]
+        },
+        {
+          "type": "step",
+          "action": "predict",
+          "text": "Before you work it out, predict: is the change measured against 80 or against 70?",
+          "visual": null,
+          "items": [
+            {
+              "item_id": "itm.mth.o.number.0277",
+              "pack_id": "pack.mth.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.mth.o.number.percentage_change"
+              ],
+              "kind": "mcq_diagnostic",
+              "stem": "The number of students in a club changes from 80 to 70.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Find the percentage change. Use a negative number for a decrease.",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "mcq",
+                    "options": [
+                      {
+                        "id": "A",
+                        "label": "-14.3%"
+                      },
+                      {
+                        "id": "B",
+                        "label": "-12.5%"
+                      },
+                      {
+                        "id": "C",
+                        "label": "-10%"
+                      },
+                      {
+                        "id": "D",
+                        "label": "87.5%"
+                      }
+                    ]
+                  },
+                  "marks": 1
+                }
+              ],
+              "visual": null,
+              "marks": 1
+            }
+          ]
+        },
+        {
+          "type": "step",
+          "action": "calculate",
+          "text": "Now go backwards: you know the salary after the change.",
+          "visual": null,
+          "items": [
+            {
+              "item_id": "itm.mth.o.number.0281",
+              "pack_id": "pack.mth.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.mth.o.number.reverse_percentage"
+              ],
+              "kind": "numeric",
+              "stem": "After a pay rise of 20%, a monthly salary is $288.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Find the salary before the change.",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "numeric",
+                    "unit_prompt": null
+                  },
+                  "marks": 3
+                }
+              ],
+              "visual": null,
+              "marks": 3
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "items": [
+            {
+              "item_id": "itm.mth.o.number.0275",
+              "pack_id": "pack.mth.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.mth.o.number.percentage_change"
+              ],
+              "kind": "numeric",
+              "stem": "A price of $80 is increased by 15%.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Find the new price.",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "numeric",
+                    "unit_prompt": null
+                  },
+                  "marks": 2
+                }
+              ],
+              "visual": null,
+              "marks": 2
+            },
+            {
+              "item_id": "itm.mth.o.number.0276",
+              "pack_id": "pack.mth.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.mth.o.number.percentage_change"
+              ],
+              "kind": "mcq_diagnostic",
+              "stem": "A phone costing $450 is reduced by 2.5% in a sale.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Find the sale price.",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "mcq",
+                    "options": [
+                      {
+                        "id": "A",
+                        "label": "438.75"
+                      },
+                      {
+                        "id": "B",
+                        "label": "447.5"
+                      },
+                      {
+                        "id": "C",
+                        "label": "11.25"
+                      },
+                      {
+                        "id": "D",
+                        "label": "461.25"
+                      }
+                    ]
+                  },
+                  "marks": 1
+                }
+              ],
+              "visual": null,
+              "marks": 1
+            },
+            {
+              "item_id": "itm.mth.o.number.0291",
+              "pack_id": "pack.mth.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.mth.o.number.reverse_percentage"
+              ],
+              "kind": "mcq_diagnostic",
+              "stem": "In a sale every price is reduced by 40%. A coat now costs $120.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Find the price of the coat before the change.",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "mcq",
+                    "options": [
+                      {
+                        "id": "A",
+                        "label": "168"
+                      },
+                      {
+                        "id": "B",
+                        "label": "72"
+                      },
+                      {
+                        "id": "C",
+                        "label": "160"
+                      },
+                      {
+                        "id": "D",
+                        "label": "200"
+                      }
+                    ]
+                  },
+                  "marks": 1
+                }
+              ],
+              "visual": null,
+              "marks": 1
+            }
+          ]
+        }
+      ],
+      "position": null
+    },
+    "index": 5
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Check · question 1 of 3",
+    "A price of $80 is increased by 15%"
+  ]
+}

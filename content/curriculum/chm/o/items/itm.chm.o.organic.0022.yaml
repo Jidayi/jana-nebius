@@ -1,0 +1,88 @@
+id: itm.chm.o.organic.0022
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.naming
+stem: A carboxylic acid has the formula HCOOH. It is found in ant stings.
+parts:
+- id: a
+  prompt: What is its name?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Methanol
+      correct: false
+      misconception_id: mc.chm.o.organic_ending_wrong_series
+      feedback: 'The ending names the family: -ane for alkanes, -ene for alkenes, -ol for alcohols and -oic acid for carboxylic acids. Find the functional group first, then choose the ending.'
+    - id: B
+      text: Ethanoic acid
+      correct: false
+    - id: C
+      text: Formic alcohol
+      correct: false
+    - id: D
+      text: Methanoic acid
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: How many carbon atoms does HCOOH contain?
+  - rung: 2
+    name: concept
+    text:
+      en: The only carbon atom is the one inside the –COOH group, and it still counts.
+  - rung: 3
+    name: first_step
+    text:
+      en: One carbon atom gives the prefix meth-.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Acids take the ending -oic acid.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'HCOOH has one carbon atom and a –COOH group: methanoic acid.'
+  misconception_ids:
+  - mc.chm.o.organic_ending_wrong_series
+solution:
+  steps:
+  - n: 1
+    latex: \text{1 C in –COOH}
+    reason: Count the group's carbon
+  - n: 2
+    latex: \text{methanoic acid}
+    reason: Name
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

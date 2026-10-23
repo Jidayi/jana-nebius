@@ -1,0 +1,138 @@
+id: itm.chm.o.stoichiometry.0113
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.yield_and_purity
+- kc.chm.o.stoichiometry.reacting_masses
+stem: Copper(II) carbonate is heated. The equation is CuCO₃ → CuO + CO₂. 12.4 g of CuCO₃ gives 6.80 g of CuO.
+parts:
+- id: a
+  prompt: Calculate the percentage yield.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '85.0'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0113_chain
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Work out the mass you should get, then compare the mass you did get.
+  - rung: 2
+    name: concept
+    text:
+      en: Percentage yield = actual ÷ theoretical × 100; the theoretical mass comes from the equation.
+  - rung: 3
+    name: first_step
+    text:
+      en: Moles of CuCO₃ = 12.4 ÷ 124 = 0.100 mol, so moles of CuO = 0.100 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Theoretical mass = 0.100 × 80 = 8.00 g.
+  - rung: 5
+    name: full_step
+    text:
+      en: Percentage yield = 6.80 ÷ 8.00 × 100 = 85.0%.
+  misconception_ids:
+  - mc.chm.o.yield_inverted
+  - mc.chm.o.yield_uses_reactant_mass
+solution:
+  steps:
+  - n: 1
+    latex: n(\text{CuCO}_3) = \frac{12.4}{124} = 0.100\ \text{mol}
+    reason: Moles of reactant
+    check_id: chk_build_chm_stoichiometry_0113_ma
+  - n: 2
+    latex: m_{theory} = 0.100 \times 80 = 8.00\ \text{g}
+    reason: Theoretical yield
+    check_id: chk_build_chm_stoichiometry_0113_mb
+  - n: 3
+    latex: \text{yield} = \frac{6.80}{8.00} \times 100 = 85.0\%
+    reason: Actual over theoretical
+    check_id: chk_build_chm_stoichiometry_0113_chain
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 160
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0113_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_o
+      equation: CuCO3 -> CuO + CO2
+      sf: 3
+      steps:
+      - id: na
+        mass: 12.4 g
+        op: amount_from_mass
+        species: CuCO3
+      - amount: '@na'
+        from: CuCO3
+        id: nb
+        op: mole_ratio
+        to: CuO
+      - amount: '@nb'
+        id: t
+        op: mass_from_amount
+        species: CuO
+      - actual: 6.80 g
+        id: y
+        op: percentage_yield
+        theoretical: '@t'
+    tool: chem_stoichiometry
+  chk_build_chm_stoichiometry_0113_ma:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_o
+      formula: CuCO3
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0113_mb:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_o
+      formula: CuO
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

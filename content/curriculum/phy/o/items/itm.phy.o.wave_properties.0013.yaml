@@ -1,0 +1,98 @@
+id: itm.phy.o.wave_properties.0013
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.describing_waves
+stem: A labelled drawing of a wave drawn on a worksheet shows 2 complete waves along a length of 90 cm. The vertical distance from the top of a crest to the bottom of a trough is 8 cm.
+parts:
+- id: a
+  prompt: Find the wavelength of the wave.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 90 cm
+      correct: false
+      misconception_id: mc.phy.o.wavelength_whole_diagram
+      feedback: Count how many complete waves fit in the length shown, then share the length equally among them.
+    - id: B
+      text: 45 cm
+      correct: true
+    - id: C
+      text: 22.5 cm
+      correct: false
+      misconception_id: mc.phy.o.wavelength_crest_to_trough
+      feedback: 'One wavelength is one whole wave: from a crest to the next crest, or a trough to the next trough. A crest to the next trough is only half of it.'
+    - id: D
+      text: 4 cm
+      correct: false
+      misconception_id: mc.phy.o.amplitude_wavelength_swapped
+      feedback: Amplitude is a height, measured up from the rest line. Wavelength is a length, measured along the direction the wave travels.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A wavelength is the length of one complete wave.
+  - rung: 2
+    name: concept
+    text:
+      en: Measure it along the wave, from one crest to the next crest.
+  - rung: 3
+    name: first_step
+    text:
+      en: The 90 cm holds 2 waves.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 90 by 2.
+  - rung: 5
+    name: full_step
+    text:
+      en: λ = 45 cm.
+  misconception_ids:
+  - mc.phy.o.amplitude_wavelength_swapped
+  - mc.phy.o.wavelength_crest_to_trough
+  - mc.phy.o.wavelength_whole_diagram
+solution:
+  steps:
+  - n: 1
+    latex: \lambda = \frac{90}{2} = 45\ \text{cm}
+    reason: Share the length equally among the waves
+    check_id: chk_build_phy_wav_0013_ans
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_wav_0013_ans:
+    args:
+      expression: 90/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

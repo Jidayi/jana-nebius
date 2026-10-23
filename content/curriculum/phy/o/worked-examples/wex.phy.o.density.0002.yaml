@@ -1,0 +1,36 @@
+id: wex.phy.o.density.0002
+kc_ids:
+- kc.phy.o.density.density_calculation
+problem: A concrete slab has a volume of 0.4 m³ and a mass of 960 kg. Calculate the density in kg/m³.
+steps:
+- n: 1
+  latex: \rho = \frac{m}{V} = \frac{960}{0.4} = 2400\ \text{kg/m}^3
+  reason: Density = mass ÷ volume
+  check_id: chk_build_phy_den_w0002_ans
+final_answer:
+  latex: 2400\ \text{kg/m}^3
+  check_id: chk_build_phy_den_w0002_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_den_w0002_ans:
+    args:
+      expression: 960/0.4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

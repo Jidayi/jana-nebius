@@ -1,0 +1,34 @@
+id: mc.phy.o.square_not_rooted
+kc_ids:
+- kc.phy.o.motion.solve_with_equation
+student_name: Stopping at the square
+description: Gives v squared or t squared as the answer and forgets to take the square root.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: rule_restatement
+  text:
+    en: If your equation gives the square of the unknown, take the square root as the last step.
+probe_item_ids:
+- itm.phy.o.motion.0122
+- itm.phy.o.motion.0123
+- itm.phy.o.motion.0124
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

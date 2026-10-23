@@ -1,0 +1,105 @@
+id: itm.phy.o.motion.0072
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.distance_time_gradient
+stem: The distance-time graph for a car is a straight line from the point (0 s, 0 m) to the point (40 s, 480 m).
+parts:
+- id: a
+  prompt: Use the gradient to find the speed.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '12'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_k_0072_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A straight distance-time line means a steady speed. Where on the graph is the speed?
+  - rung: 2
+    name: concept
+    text:
+      en: 'The speed is the gradient of the distance-time graph: change in distance divided by change in time.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Read the change in distance and the change in time between the two points.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Gradient = (480 − 0) ÷ (40 − 0).
+  - rung: 5
+    name: full_step
+    text:
+      en: Gradient = (480 − 0) ÷ (40 − 0) = 12 m/s.
+  misconception_ids:
+  - mc.phy.o.gradient_axes_swapped
+  - mc.phy.o.gradient_from_one_point
+solution:
+  steps:
+  - n: 1
+    latex: v = \frac{\Delta d}{\Delta t}
+    reason: Speed is the gradient of a distance-time graph
+  - n: 2
+    latex: \Delta d = 480\ \text{m}
+    reason: Change in distance
+    check_id: chk_build_phy_k_0072_s2
+  - n: 3
+    latex: \Delta t = 40\ \text{s}
+    reason: Change in time
+    check_id: chk_build_phy_k_0072_s3
+  - n: 4
+    latex: v = 12\ \text{m/s}
+    reason: Divide
+    check_id: chk_build_phy_k_0072_a
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_k_0072_a:
+    args:
+      expression: (480 - 0)/(40 - 0)
+      sf: 2
+    tool: math_evaluate
+  chk_build_phy_k_0072_s2:
+    args:
+      expression: 480 - 0
+      sf: 2
+    tool: math_evaluate
+  chk_build_phy_k_0072_s3:
+    args:
+      expression: 40 - 0
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

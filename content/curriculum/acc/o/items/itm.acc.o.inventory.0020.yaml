@@ -1,0 +1,120 @@
+id: itm.acc.o.inventory.0020
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.inventory.avco
+stem: 'Obi''s shop: opening inventory 60 cartons of juice at $9 each; then bought 70 at $12 each; then sold 90; then bought 40 at $13 each; then sold 30.'
+parts:
+- id: a
+  prompt: Using AVCO (a new average after each purchase), what is the closing inventory?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $640
+      correct: false
+      misconception_id: mc.acc.o.inv_fifo_for_avco
+    - id: B
+      text: $566.67
+      correct: false
+      misconception_id: mc.acc.o.inv_simple_average
+    - id: C
+      text: $1309.62
+      correct: false
+      misconception_id: mc.acc.o.inv_cos_for_closing
+    - id: D
+      text: $590.38
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The average must be weighted by how many units were bought at each price.
+  - rung: 2
+    name: concept
+    text:
+      en: After each purchase, average = total value held ÷ units held.
+  - rung: 3
+    name: first_step
+    text:
+      en: Goods sold leave at the current average, so the average does not change on a sale.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work through the movements in order, keeping units and value.
+  - rung: 5
+    name: full_step
+    text:
+      en: Closing inventory = $590.38.
+  misconception_ids:
+  - mc.acc.o.inv_simple_average
+  - mc.acc.o.inv_fifo_for_avco
+  - mc.acc.o.inv_cos_for_closing
+solution:
+  steps:
+  - n: 1
+    latex: '\text{AVCO: unit cost} = \frac{\text{value held}}{\text{units held}}'
+    reason: Weighted average
+    check_id: chk_build_acc_inventory_0020_t
+  - n: 2
+    latex: '\text{Answer: \$590.38}'
+    reason: The key, checked
+    check_id: chk_build_acc_inventory_0020_a
+difficulty:
+  prior: 0.4
+  band: stretch
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_inventory_0020_a:
+    args:
+      dp: 2
+      expression: (((((0 + 60 * 9) + 70 * 12) * (130 - 90) / 130) + 40 * 13) * (80 - 30) / 80)
+    tool: math_evaluate
+  chk_build_acc_inventory_0020_t:
+    args:
+      avco_basis: perpetual
+      dp: 2
+      method: avco
+      movements:
+      - kind: opening
+        quantity: 60
+        unit_cost: '9'
+      - kind: receipt
+        quantity: 70
+        unit_cost: '12'
+      - kind: issue
+        quantity: 90
+      - kind: receipt
+        quantity: 40
+        unit_cost: '13'
+      - kind: issue
+        quantity: 30
+      round_unit_cost: false
+    tool: acc_inventory
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,83 @@
+id: itm.chm.o.reactions.0031
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.collision_theory
+stem: A student explains why a reaction is faster at a higher temperature.
+parts:
+- id: a
+  prompt: Put the steps of the explanation in order.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s2
+      text: The particles gain kinetic energy and move faster.
+    - id: s1
+      text: The temperature of the reaction mixture is raised.
+    - id: s4
+      text: There are more successful collisions each second, so the rate increases.
+    - id: s3
+      text: Collisions are more frequent, and more of them have at least the activation energy.
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Begin with the change that the student makes.
+  - rung: 2
+    name: concept
+    text:
+      en: Temperature affects the energy of the particles first.
+  - rung: 3
+    name: first_step
+    text:
+      en: Faster particles change both how often and how hard they collide.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The rate depends on the number of successful collisions each second. Where does that go?
+  - rung: 5
+    name: full_step
+    text:
+      en: Temperature raised; particles move faster; more frequent and more energetic collisions; more successful collisions per second, so a higher rate.
+  misconception_ids:
+  - mc.chm.o.reactions_all_collisions_react
+solution:
+  steps:
+  - n: 1
+    latex: \text{energy} \rightarrow \text{speed} \rightarrow \text{collisions} \rightarrow \text{rate}
+    reason: Cause before effect
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

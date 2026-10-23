@@ -1,0 +1,73 @@
+id: wex.acc.o.bank_reconciliation.0002
+kc_ids:
+- kc.acc.o.bank_reconciliation.update_cash_book
+problem: 'A cash book shows a debit bank balance of $4240. On the bank statement only: a direct debit for electricity $380; a standing order for insurance $130; interest paid by the bank $650. Find the updated cash book balance.'
+steps:
+- n: 1
+  latex: \text{Add statement-only receipts, subtract statement-only payments}
+  reason: Bring the cash book up to date
+  check_id: chk_build_acc_bank_reconciliation_w0002_t
+- n: 2
+  latex: \text{Updated balance} = 4240 - 380 - 130 + 650 = 4380
+  reason: Substitute
+  check_id: chk_build_acc_bank_reconciliation_w0002_a
+final_answer:
+  latex: \$\,4380
+  check_id: chk_build_acc_bank_reconciliation_w0002_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_bank_reconciliation_w0002_a:
+    args:
+      dp: 2
+      expression: 4240 - 380 - 130 + 650
+    tool: math_evaluate
+  chk_build_acc_bank_reconciliation_w0002_t:
+    args:
+      bank_statement:
+        balance: '4670'
+        entries:
+        - amount: '380'
+          details: a direct debit for electricity
+          direction: out
+        - amount: '130'
+          details: a standing order for insurance
+          direction: out
+        - amount: '650'
+          details: interest paid by the bank
+          direction: in
+        overdrawn: false
+      cash_book:
+        balance: '4240'
+        entries:
+        - amount: '1490'
+          details: cheque number 100608
+          direction: out
+          ref: t0
+        - amount: '1200'
+          details: cash paid in on the last day of the month
+          direction: in
+          ref: t1
+        overdrawn: false
+      dp: 2
+      start_from: bank_statement
+      task: reconcile
+    tool: acc_double_entry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

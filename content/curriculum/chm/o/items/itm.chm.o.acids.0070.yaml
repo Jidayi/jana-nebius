@@ -1,0 +1,100 @@
+id: itm.chm.o.acids.0070
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.titration_calculations
+stem: 25.0 cm³ of nitric acid of unknown concentration is neutralised by 18.0 cm³ of 0.150 mol/dm³ sodium hydroxide solution. The equation is HNO₃ + NaOH → NaNO₃ + H₂O.
+parts:
+- id: a
+  prompt: Calculate the concentration of the nitric acid in mol/dm³.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '0.108'
+    unit: mol/dm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_acids_0070_r
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: This time the sodium hydroxide is the solution you know everything about.
+  - rung: 2
+    name: concept
+    text:
+      en: Moles of alkali = c × V. The equation shows one mole of HNO₃ reacts with one mole of NaOH.
+  - rung: 3
+    name: first_step
+    text:
+      en: Moles of NaOH = 0.150 × 18.0 ÷ 1000 = 0.00270 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Moles of HNO₃ = 0.00270 = 0.00270 mol, in 25.0 cm³. Divide by (25.0 ÷ 1000) dm³.
+  - rung: 5
+    name: full_step
+    text:
+      en: c(HNO₃) = 0.00270 ÷ (25.0 ÷ 1000) = 0.108 mol/dm³.
+  misconception_ids:
+  - mc.chm.o.acids_titration_values_swapped
+solution:
+  steps:
+  - n: 1
+    latex: n(\text{base}) = 0.150 \times \frac{18.0}{1000} = 0.00270\ \text{mol}
+    reason: Moles of alkali
+    check_id: chk_build_chm_acids_0070_ab
+  - n: 2
+    latex: n(\text{acid}) = 0.00270 = 0.00270\ \text{mol}
+    reason: Mole ratio from the equation
+    check_id: chk_build_chm_acids_0070_ab
+  - n: 3
+    latex: c = \frac{0.00270}{25.0 \div 1000} = 0.108\ \text{mol/dm}^3
+    reason: Amount over volume
+    check_id: chk_build_chm_acids_0070_r
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_acids_0070_ab:
+    args:
+      acid: HNO3
+      acid_volume: 25.0 cm^3
+      base: NaOH
+      base_concentration: 0.150 mol/dm^3
+      base_volume: 18.0 cm^3
+      task: neutralisation
+    tool: chem_acid_base
+  chk_build_chm_acids_0070_r:
+    args:
+      expression: 0.150*18.0/(1*25.0)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

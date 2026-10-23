@@ -1,0 +1,91 @@
+id: itm.chm.o.environment.0037
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.climate
+stem: Carbon dioxide and methane are greenhouse gases.
+parts:
+- id: a
+  prompt: How do greenhouse gases keep the Earth warmer?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: They absorb infrared radiation given off by the Earth's surface and re-emit some of it back down
+      correct: true
+    - id: B
+      text: Nitrogen and oxygen, the main gases of the air, trap the heat
+      correct: false
+      misconception_id: mc.chm.o.environment_climate_wrong_gas
+      feedback: The main greenhouse gases to know are carbon dioxide and methane. Nitrogen and oxygen are not greenhouse gases. Catalytic converters and desulfurisation fight other pollutants, not climate change.
+    - id: C
+      text: They make a hole in the ozone layer that lets more heat in
+      correct: false
+      misconception_id: mc.chm.o.environment_greenhouse_ozone_confused
+      feedback: These are two different problems. The ozone layer stops harmful ultraviolet light; damage to it raises the risk of skin cancer. Global warming is caused by greenhouse gases trapping heat (infrared) given off by the Earth.
+    - id: D
+      text: They act like a mirror, reflecting the Sun's light back onto the Earth
+      correct: false
+      misconception_id: mc.chm.o.environment_greenhouse_blocks_sunlight
+      feedback: Most sunlight passes through the air and warms the ground. The warm ground gives off infrared radiation. Greenhouse gases absorb this infrared and send some of it back towards the surface, so the lower air stays warmer.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Follow the energy: sunlight comes in, then the Earth gives energy back out.'
+  - rung: 2
+    name: concept
+    text:
+      en: Sunlight passes through the air and warms the ground. The warm ground gives off infrared radiation.
+  - rung: 3
+    name: first_step
+    text:
+      en: Greenhouse gas molecules absorb infrared radiation.
+  - rung: 4
+    name: worked_step
+    text:
+      en: After absorbing it, the molecules give out infrared again in all directions. Where does some of it go?
+  - rung: 5
+    name: full_step
+    text:
+      en: Greenhouse gases absorb the infrared given off by the Earth and re-emit part of it back towards the surface, so less heat escapes to space.
+  misconception_ids:
+  - mc.chm.o.environment_greenhouse_blocks_sunlight
+  - mc.chm.o.environment_greenhouse_ozone_confused
+  - mc.chm.o.environment_climate_wrong_gas
+solution:
+  steps:
+  - n: 1
+    latex: \text{sunlight in }\rightarrow\text{ ground warms }\rightarrow\text{ infrared out }\rightarrow\text{ absorbed and re-emitted by CO}_2\text{, CH}_4
+    reason: The greenhouse effect
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,179 @@
+{
+  "id": "dgm.bio.heart.v1",
+  "version": "1.0.0",
+  "subject": "bio",
+  "title": "The human heart",
+  "levels": [
+    "O"
+  ],
+  "kc_ids": [],
+  "svg_path": "diagrams/heart_v1.svg",
+  "parts": [
+    {
+      "id": "vena_cava",
+      "name": "Vena cava",
+      "function": "Brings deoxygenated blood from the body to the right atrium.",
+      "label_anchor": [
+        40,
+        50
+      ],
+      "tab_order": 0
+    },
+    {
+      "id": "pulmonary_artery",
+      "name": "Pulmonary artery",
+      "function": "Carries blood from the right ventricle to the lungs.",
+      "label_anchor": [
+        90,
+        14
+      ],
+      "tab_order": 1
+    },
+    {
+      "id": "right_atrium",
+      "name": "Right atrium",
+      "function": "Collects blood from the body and passes it to the right ventricle.",
+      "label_anchor": [
+        14,
+        140
+      ],
+      "tab_order": 2
+    },
+    {
+      "id": "right_ventricle",
+      "name": "Right ventricle",
+      "function": "Pumps blood to the lungs.",
+      "label_anchor": [
+        40,
+        345
+      ],
+      "tab_order": 3
+    },
+    {
+      "id": "septum",
+      "name": "Septum",
+      "function": "The wall that keeps blood in the two sides apart.",
+      "label_anchor": [
+        240,
+        352
+      ],
+      "tab_order": 4,
+      "essential": true
+    },
+    {
+      "id": "aorta",
+      "name": "Aorta",
+      "function": "Carries blood from the left ventricle to the body.",
+      "label_anchor": [
+        286,
+        14
+      ],
+      "tab_order": 5
+    },
+    {
+      "id": "pulmonary_vein",
+      "name": "Pulmonary vein",
+      "function": "Brings oxygenated blood from the lungs to the left atrium.",
+      "label_anchor": [
+        370,
+        40
+      ],
+      "tab_order": 6
+    },
+    {
+      "id": "left_atrium",
+      "name": "Left atrium",
+      "function": "Collects blood from the lungs and passes it to the left ventricle.",
+      "label_anchor": [
+        378,
+        140
+      ],
+      "tab_order": 7
+    },
+    {
+      "id": "left_ventricle",
+      "name": "Left ventricle",
+      "function": "Pumps oxygenated blood to the whole body, so its wall is the thickest.",
+      "aliases": [
+        "left ventricle"
+      ],
+      "label_anchor": [
+        340,
+        345
+      ],
+      "tab_order": 8
+    }
+  ],
+  "sequences": [
+    {
+      "id": "blood_flow",
+      "title": "Blood flow through the heart",
+      "steps": [
+        {
+          "highlight": [
+            "vena_cava",
+            "right_atrium"
+          ],
+          "caption": "Blood from the body enters the right atrium.",
+          "arrows": [
+            "arrow_vena_cava"
+          ]
+        },
+        {
+          "highlight": [
+            "right_ventricle"
+          ],
+          "caption": "It passes down into the right ventricle.",
+          "arrows": [
+            "arrow_ra_rv"
+          ]
+        },
+        {
+          "highlight": [
+            "pulmonary_artery"
+          ],
+          "caption": "The right ventricle pumps it to the lungs.",
+          "arrows": [
+            "arrow_pulmonary_artery"
+          ]
+        },
+        {
+          "highlight": [
+            "pulmonary_vein",
+            "left_atrium"
+          ],
+          "caption": "Blood from the lungs returns to the left atrium.",
+          "arrows": [
+            "arrow_pulmonary_vein"
+          ]
+        },
+        {
+          "highlight": [
+            "left_ventricle"
+          ],
+          "caption": "It passes into the left ventricle.",
+          "arrows": [
+            "arrow_la_lv"
+          ]
+        },
+        {
+          "highlight": [
+            "aorta"
+          ],
+          "caption": "The left ventricle pumps it to the body.",
+          "arrows": [
+            "arrow_aorta"
+          ]
+        }
+      ]
+    }
+  ],
+  "alt_text": "A schematic front view of the heart: two upper chambers, two lower chambers, the septum between the sides, and the main vessels above.",
+  "licence": "LicenseRef-Own",
+  "attribution": "Our own schematic drawing, made for Jana with AI assistance.",
+  "review": {
+    "status": "in_review",
+    "author_role_id": "rev_author_agent",
+    "style_version": 1
+  }
+}

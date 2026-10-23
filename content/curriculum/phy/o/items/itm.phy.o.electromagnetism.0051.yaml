@@ -1,0 +1,87 @@
+id: itm.phy.o.electromagnetism.0051
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.transformers
+stem: A transformer for a garden lamp works from the 230 V mains. The primary coil has 2300 turns and the output is 12 V.
+parts:
+- id: a
+  prompt: Calculate the number of turns on the secondary coil.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '120'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_emg_0051_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The voltages across the two coils are in the same ratio as their numbers of turns.
+  - rung: 2
+    name: concept
+    text:
+      en: Vs ÷ Vp = Ns ÷ Np.
+  - rung: 3
+    name: first_step
+    text:
+      en: Rearrange the equation to make Ns the subject.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply 2300 turns by 12 and divide by 230.
+  - rung: 5
+    name: full_step
+    text:
+      en: The secondary coil has 120 turns.
+  misconception_ids:
+  - mc.phy.o.turns_ratio_inverted
+  - mc.phy.o.turns_ratio_not_divided
+  - mc.phy.o.turns_ratio_given_as_answer
+solution:
+  steps:
+  - n: 1
+    latex: \frac{V_s}{V_p} = \frac{N_s}{N_p}
+    reason: Voltages are in the ratio of the turns
+  - n: 2
+    latex: N_s = N_p \times \frac{V_s}{V_p} = 2300 \times \frac{12}{230} = 120\ \text{turns}
+    reason: Rearrange for N_s
+    check_id: chk_build_phy_emg_0051_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_0051_ans:
+    args:
+      expression: 2300*12/230
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

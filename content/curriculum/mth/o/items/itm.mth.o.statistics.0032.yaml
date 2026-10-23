@@ -1,0 +1,92 @@
+id: itm.mth.o.statistics.0032
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.read_tables
+stem: 'A two-way table shows how students travel to school. Boys: walk ?, bus 16, car 7, total 41. Girls: walk 10, bus 12, car 6, total 28.'
+parts:
+- id: a
+  prompt: How many boys travel by walk?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '18'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_sta_0032_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Look only at the boys' row.
+  - rung: 2
+    name: concept
+    text:
+      en: The entries in a row add up to the row total.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Add the boys'' entries you know: 16 and 7.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: They make 23. Subtract this from 41.
+  - rung: 5
+    name: full_step
+    text:
+      en: 18 boys travel by walk.
+  misconception_ids:
+  - mc.mth.o.table_row_column_confused
+  - mc.mth.o.table_total_ignored
+  - mc.mth.o.compound_part_missing
+solution:
+  steps:
+  - n: 1
+    latex: 16 + 7 = 23
+    reason: The boys you know about
+    check_id: chk_build_mth_sta_0032_s
+  - n: 2
+    latex: 41 - 23 = 18
+    reason: The rest of the boys' total
+    check_id: chk_build_mth_sta_0032_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0032_ans:
+    args:
+      expression: 41 - 16 - 7
+    tool: math_evaluate
+  chk_build_mth_sta_0032_s:
+    args:
+      expression: 16 + 7
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

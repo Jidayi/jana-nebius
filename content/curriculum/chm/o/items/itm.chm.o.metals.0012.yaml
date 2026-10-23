@@ -1,0 +1,82 @@
+id: itm.chm.o.metals.0012
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.properties_and_uses
+- kc.chm.o.metals.properties_of_metals
+stem: Magnesium burns in oxygen to make magnesium oxide. When this oxide is shaken with water and tested with universal indicator, the indicator turns blue.
+parts:
+- id: a
+  prompt: What does this show about metal oxides?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Metal oxides are always neutral.
+      correct: false
+    - id: B
+      text: Metal oxides are acidic and turn indicator red.
+      correct: false
+    - id: C
+      text: Metal oxides are basic; those that dissolve give alkaline solutions.
+      correct: true
+    - id: D
+      text: The blue colour comes from oxygen released by the oxide.
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: This is a chemical property of metals, not a physical one.
+  - rung: 2
+    name: concept
+    text:
+      en: Non-metal oxides tend to be acidic; metal oxides tend to be basic.
+  - rung: 3
+    name: first_step
+    text:
+      en: Blue indicator means the solution has a pH above 7.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Decide whether a pH above 7 is acidic or alkaline.
+  - rung: 5
+    name: full_step
+    text:
+      en: The solution is alkaline, which shows that magnesium oxide, like most metal oxides, is basic.
+solution:
+  steps:
+  - n: 1
+    latex: '\text{pH > 7: alkaline, so the oxide is basic}'
+    reason: Metal oxides are basic
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,90 @@
+id: itm.chm.o.electrolysis.0005
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.molten_products
+stem: Solid lead(II) bromide does not conduct electricity. When it is melted, it conducts and is decomposed.
+parts:
+- id: a
+  prompt: Why must the lead(II) bromide be molten?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Melting frees electrons, which then carry the current through the liquid.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_electrons_through_electrolyte
+      feedback: Electrons flow only in the wires and electrodes. In the electrolyte the ions carry the charge, and ions can move only when the compound is molten or dissolved. That is why a solid ionic compound cannot be electrolysed.
+    - id: B
+      text: The solid would work too, as long as both electrodes touch it.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_electrons_through_electrolyte
+      feedback: Electrons flow only in the wires and electrodes. In the electrolyte the ions carry the charge, and ions can move only when the compound is molten or dissolved. That is why a solid ionic compound cannot be electrolysed.
+    - id: C
+      text: Melting makes hydrogen ions, which are needed at the cathode.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_molten_gives_hydrogen
+      feedback: A molten binary compound contains only its own two kinds of ion. There is no water, so there are no hydrogen or hydroxide ions. The metal forms at the cathode and the non-metal at the anode.
+    - id: D
+      text: In the solid the ions are held in place; when molten they can move to the electrodes.
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What carries the charge through an electrolyte?
+  - rung: 2
+    name: concept
+    text:
+      en: In an electrolyte the charge is carried by moving ions, not by electrons.
+  - rung: 3
+    name: first_step
+    text:
+      en: In solid lead(II) bromide the ions are fixed in a giant lattice.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Think about what melting does to the lattice and so to the ions.
+  - rung: 5
+    name: full_step
+    text:
+      en: The compound must be molten so that its Pb²⁺ and Br⁻ ions are free to move to the electrodes and carry the current.
+  misconception_ids:
+  - mc.chm.o.electrolysis_electrons_through_electrolyte
+  - mc.chm.o.electrolysis_molten_gives_hydrogen
+solution:
+  steps:
+  - n: 1
+    latex: '\text{molten: ions free to move}'
+    reason: Ions carry the charge
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,34 @@
+id: mc.phy.o.power_loss_uses_line_voltage
+kc_ids:
+- kc.phy.o.electromagnetism.power_transmission
+student_name: Using the line voltage for the loss
+description: Uses the transmission voltage in V²/R to find the power wasted in a cable; that voltage is across the whole load, not along the cable, so use I²R.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: contrast_example
+  text:
+    en: Only a small part of the voltage is lost along the cables. Find the current, then use current² × resistance.
+probe_item_ids:
+- itm.phy.o.electromagnetism.0071
+- itm.phy.o.electromagnetism.0063
+- itm.phy.o.electromagnetism.0067
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

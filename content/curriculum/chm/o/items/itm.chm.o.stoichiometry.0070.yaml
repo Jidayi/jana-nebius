@@ -1,0 +1,152 @@
+id: itm.chm.o.stoichiometry.0070
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.reacting_masses
+stem: Iron reacts with chlorine. The equation is 2Fe + 3Cl₂ → 2FeCl₃.
+parts:
+- id: a
+  prompt: Calculate the mass of FeCl₃ that forms from 25.0 g of Fe.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '72.5'
+    unit: g
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0070_chain
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'You know the mass of Fe. Plan: mass → moles → ratio → moles → mass.'
+  - rung: 2
+    name: concept
+    text:
+      en: Use the balanced equation's numbers as a mole ratio.
+  - rung: 3
+    name: first_step
+    text:
+      en: Moles of Fe = 25.0 ÷ 56 = 0.446 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Ratio Fe : FeCl₃ is 2 : 2, so moles of FeCl₃ = 0.446 mol.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Mass of FeCl₃ = 0.446 × 162.5 = 72.5 g.
+  misconception_ids:
+  - mc.chm.o.ratio_ignored
+  - mc.chm.o.mass_ratio_as_mole_ratio
+solution:
+  steps:
+  - n: 1
+    latex: n(\text{Fe}) = \frac{25.0}{56} = 0.446\ \text{mol}
+    reason: Moles of the given substance
+    check_id: chk_build_chm_stoichiometry_0070_ma
+  - n: 2
+    latex: '\text{Fe} : \text{FeCl}_3 = 2 : 2'
+    reason: Ratio from the equation
+    check_id: chk_build_chm_stoichiometry_0070_coef
+  - n: 3
+    latex: n(\text{FeCl}_3) = 0.446\ \text{mol}
+    reason: Mole ratio from the equation
+    check_id: chk_build_chm_stoichiometry_0070_chain
+  - n: 4
+    latex: m(\text{FeCl}_3) = 0.446 \times 162.5 = 72.5\ \text{g}
+    reason: Moles times molar mass
+    check_id: chk_build_chm_stoichiometry_0070_mb
+difficulty:
+  prior: 0.5
+  band: core
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0070_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_cl
+      equation: 2Fe + 3Cl2 -> 2FeCl3
+      sf: 3
+      steps:
+      - id: na
+        mass: 25.0 g
+        op: amount_from_mass
+        species: Fe
+      - amount: '@na'
+        from: Fe
+        id: nb
+        op: mole_ratio
+        to: FeCl3
+      - amount: '@nb'
+        id: mb
+        op: mass_from_amount
+        species: FeCl3
+    tool: chem_stoichiometry
+  chk_build_chm_stoichiometry_0070_coef:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_cl
+      equation: 2Fe + 3Cl2 -> 2FeCl3
+      sf: 3
+      steps:
+      - amount: '2'
+        from: Fe
+        id: ca
+        op: mole_ratio
+        to: Fe
+      - amount: '2'
+        from: Fe
+        id: cb
+        op: mole_ratio
+        to: FeCl3
+    tool: chem_stoichiometry
+  chk_build_chm_stoichiometry_0070_ma:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      formula: Fe
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0070_mb:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_cl
+      formula: FeCl3
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

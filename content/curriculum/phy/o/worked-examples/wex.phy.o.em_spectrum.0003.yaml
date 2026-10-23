@@ -1,0 +1,54 @@
+id: wex.phy.o.em_spectrum.0003
+kc_ids:
+- kc.phy.o.em_spectrum.em_wave_calculations
+problem: An FM radio station broadcasts on a frequency of 90 MHz. Calculate the wavelength of its radio waves.
+steps:
+- n: 1
+  latex: f = 90\ \text{MHz} = 90 \times 10^{6}\ \text{Hz}
+  reason: Write the prefix as a power of ten
+  check_id: chk_build_phy_ems_w0003_conv
+- n: 2
+  latex: \lambda = \frac{c}{f} = \frac{3.0 \times 10^{8}}{90 \times 10^{6}} = 3.33\ \text{m}
+  reason: Rearrange c = fλ
+  check_id: chk_build_phy_ems_w0003_ans
+final_answer:
+  latex: 3.33\ \text{m}
+  check_id: chk_build_phy_ems_w0003_ans
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ems_w0003_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: c/(90*10^6)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_ems_w0003_conv:
+    args:
+      quantity: 90 MHz
+      to: Hz
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

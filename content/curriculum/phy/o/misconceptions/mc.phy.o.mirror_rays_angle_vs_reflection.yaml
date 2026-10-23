@@ -1,0 +1,35 @@
+id: mc.phy.o.mirror_rays_angle_vs_reflection
+kc_ids:
+- kc.phy.o.light.plane_mirrors
+student_name: Mixing up the angle between the rays and the angle of reflection
+description: Gives the whole angle between the incident ray and the reflected ray when the angle of reflection is asked for, or only the angle of reflection when the angle between the rays is asked for.
+signatures:
+- kind: answer_transform
+  expression: 2*i
+fix:
+  strategy: diagram
+  text:
+    en: The normal splits the angle between the two rays into two equal halves. The angle of reflection is only the half between the normal and the reflected ray.
+probe_item_ids:
+- itm.phy.o.light.0001
+- itm.phy.o.light.0004
+- itm.phy.o.light.0007
+- itm.phy.o.light.0010
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

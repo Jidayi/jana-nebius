@@ -1,0 +1,90 @@
+id: itm.chm.o.reactions.0007
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.physical_chemical_change
+stem: Water is added to some white anhydrous copper(II) sulfate. The powder turns blue and the mixture gets hot. Heating the blue solid turns it white again.
+parts:
+- id: a
+  prompt: What kind of change happens when the water is added?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: 'A physical change: the white powder just dissolves in the water.'
+      correct: false
+      misconception_id: mc.chm.o.reactions_dissolving_is_chemical
+      feedback: 'When salt or sugar dissolves, its particles spread out between the water particles. Nothing new forms: evaporate the water and the same solid is left, with the same mass. Dissolving is a physical change.'
+    - id: B
+      text: A physical change, because only the colour changes.
+      correct: false
+      misconception_id: mc.chm.o.reactions_new_substance_missed
+      feedback: 'Ask one question: has a new substance formed? Signs are a gas given off, a new solid, a new colour, or heat given out or taken in. Burning, rusting, cooking and breaking down by heat all make new substances, so they are chemical changes even when heat started them.'
+    - id: C
+      text: A physical change, because heating can reverse it.
+      correct: false
+      misconception_id: mc.chm.o.reactions_new_substance_missed
+      feedback: 'Ask one question: has a new substance formed? Signs are a gas given off, a new solid, a new colour, or heat given out or taken in. Burning, rusting, cooking and breaking down by heat all make new substances, so they are chemical changes even when heat started them.'
+    - id: D
+      text: 'A chemical change: a new substance forms and heat is given out, even though heating reverses it.'
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Two things happen when the water is added: a colour change and a temperature change.'
+  - rung: 2
+    name: concept
+    text:
+      en: Heat given out and a new colour are both signs that a new substance has formed.
+  - rung: 3
+    name: first_step
+    text:
+      en: The water joins onto the copper(II) sulfate to make a new blue solid.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Being able to reverse a change does not by itself make it physical. Ask whether a new substance formed.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'It is a chemical change: the blue hydrated solid is a new substance and heat is given out. Some chemical changes, like this one, can be reversed.'
+  misconception_ids:
+  - mc.chm.o.reactions_new_substance_missed
+  - mc.chm.o.reactions_dissolving_is_chemical
+solution:
+  steps:
+  - n: 1
+    latex: \text{white} \rightarrow \text{blue, heat given out}
+    reason: 'New substance: a chemical change'
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

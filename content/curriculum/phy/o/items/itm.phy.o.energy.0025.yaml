@@ -1,0 +1,92 @@
+id: itm.phy.o.energy.0025
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.kinetic_energy
+stem: A car of mass 1200 kg travels at 72 km/h.
+parts:
+- id: a
+  prompt: Calculate its kinetic energy in kJ.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '240'
+    unit: kJ
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0025_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Check the units of the speed before you use Ek = ½mv².
+  - rung: 2
+    name: concept
+    text:
+      en: 'The speed must be in m/s: divide km/h by 3.6.'
+  - rung: 3
+    name: first_step
+    text:
+      en: 72 km/h = 20 m/s.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out ½ × 1200 × 20², then change joules to kilojoules.
+  - rung: 5
+    name: full_step
+    text:
+      en: The kinetic energy is 240 kJ.
+  misconception_ids:
+  - mc.phy.o.ke_kmh_not_converted
+  - mc.phy.o.ke_half_omitted
+  - mc.phy.o.kmh_conversion_inverted
+solution:
+  steps:
+  - n: 1
+    latex: v = \frac{72}{3.6} = 20\ \text{m/s}
+    reason: Speed in m/s
+    check_id: chk_build_phy_nrg_0025_v
+  - n: 2
+    latex: E_k = \frac{1}{2} \times 1200 \times 20^2 = 240\ \text{kJ}
+    reason: E_k = ½mv², in kJ
+    check_id: chk_build_phy_nrg_0025_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0025_ans:
+    args:
+      expression: 0.5*1200*(72/3.6)^2/1000
+    tool: math_evaluate
+  chk_build_phy_nrg_0025_v:
+    args:
+      expression: 72/3.6
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

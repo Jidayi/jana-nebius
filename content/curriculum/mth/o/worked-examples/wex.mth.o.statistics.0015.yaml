@@ -1,0 +1,45 @@
+id: wex.mth.o.statistics.0015
+kc_ids:
+- kc.mth.o.statistics.scatter_correlation
+problem: A line of best fit on a scatter diagram of mark (y) against hours of revision (x) passes through (10, 40) and (50, 70). Use the line to estimate the mark for 35 hours of revision.
+steps:
+- n: 1
+  latex: m = \frac{70 - 40}{50 - 10} = 0.75
+  reason: Gradient of the line
+  check_id: chk_build_mth_sta_w0015_m
+- n: 2
+  latex: y = 40 + 0.75 \times (35 - 10) = 58.75
+  reason: Move along the line from the first point
+  check_id: chk_build_mth_sta_w0015_ans
+final_answer:
+  latex: '58.75'
+  check_id: chk_build_mth_sta_w0015_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_w0015_ans:
+    args:
+      expression: 40 + (70 - 40)/(50 - 10)*(35 - 10)
+    tool: math_evaluate
+  chk_build_mth_sta_w0015_m:
+    args:
+      expression: (70 - 40)/(50 - 10)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

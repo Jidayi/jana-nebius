@@ -1,0 +1,83 @@
+id: itm.chm.o.metals.0046
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.corrosion
+stem: A student wants to show that both water and air are needed for iron to rust.
+parts:
+- id: a
+  prompt: Put the steps of the experiment in order.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s4
+      text: Look for rust and compare the three nails.
+    - id: s2
+      text: Give one nail water and air, one boiled water under oil, and one dry air with a drying agent.
+    - id: s1
+      text: Set up three tubes, each with a clean iron nail.
+    - id: s3
+      text: Leave the tubes for about a week.
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An experiment starts with identical starting materials.
+  - rung: 2
+    name: concept
+    text:
+      en: Each tube removes a different condition, so only one factor changes.
+  - rung: 3
+    name: first_step
+    text:
+      en: First set up the nails, then give each tube its condition.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rusting is slow, so the waiting step comes before looking.
+  - rung: 5
+    name: full_step
+    text:
+      en: Set up nails, give each tube its condition, wait, then compare the nails.
+  misconception_ids:
+  - mc.chm.o.metals_rust_one_condition
+solution:
+  steps:
+  - n: 1
+    latex: \text{set up, vary conditions, wait, compare}
+    reason: Fair test
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

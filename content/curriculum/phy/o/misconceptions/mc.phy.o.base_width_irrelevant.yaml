@@ -1,0 +1,36 @@
+id: mc.phy.o.base_width_irrelevant
+kc_ids:
+- kc.phy.o.forces.centre_of_gravity
+student_name: Only the height matters
+description: Thinks stability depends only on how high the centre of gravity is, and that the width of the base makes no difference.
+signatures:
+- kind: answer_transform
+  expression: width ignored
+fix:
+  strategy: contrast_example
+  text:
+    en: Stand with your feet together and someone can push you over easily; stand with them apart and it is much harder. A wider base means a bigger tilt before toppling.
+probe_item_ids:
+- itm.phy.o.forces.0109
+- itm.phy.o.forces.0111
+- itm.phy.o.forces.0112
+- itm.phy.o.forces.0096
+- itm.phy.o.forces.0098
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

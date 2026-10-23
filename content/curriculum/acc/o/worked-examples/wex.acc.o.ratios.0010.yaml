@@ -1,0 +1,60 @@
+id: wex.acc.o.ratios.0010
+kc_ids:
+- kc.acc.o.ratios.collection_periods
+problem: Trade receivables $5600; credit sales $51100. Find the collection period.
+steps:
+- n: 1
+  latex: \text{Period} = \frac{\text{trade receivables}}{\text{credit sales}} \times 365
+  reason: Credit sales, 365 days
+  check_id: chk_build_acc_ratios_w0010_t
+- n: 2
+  latex: \frac{5600}{51100} \times 365 = 40.00
+  reason: Substitute
+  check_id: chk_build_acc_ratios_w0010_a
+final_answer:
+  latex: 40.00\ \text{days}
+  check_id: chk_build_acc_ratios_w0010_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_w0010_a:
+    args:
+      dp: 2
+      expression: 5600 / 51100 * 365
+    tool: math_evaluate
+  chk_build_acc_ratios_w0010_t:
+    args:
+      credit_sales: '51100'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      ratios:
+      - receivable_days
+      revenue: '51100'
+      trade_receivables: '5600'
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

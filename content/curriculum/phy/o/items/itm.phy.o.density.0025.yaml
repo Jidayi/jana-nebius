@@ -1,0 +1,93 @@
+id: itm.phy.o.density.0025
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.measuring_density
+stem: A cork floats in a measuring cylinder of water with most of it above the surface.
+parts:
+- id: a
+  prompt: Why does the rise in the water level not give the cork's volume?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: 'It does: a floating object pushes aside its whole volume'
+      correct: false
+      misconception_id: mc.phy.o.displacement_partly_submerged_ok
+      feedback: Only the part below the surface pushes water aside. Push a floating object fully under, for example with a sinker, and take away the sinker's own volume.
+    - id: B
+      text: Only the part of the cork under the water pushes water aside
+      correct: true
+    - id: C
+      text: The final reading should be used instead of the rise
+      correct: false
+      misconception_id: mc.phy.o.displacement_final_reading_as_volume
+      feedback: The cylinder already held water before the object went in. Only the rise in level, the final reading minus the starting reading, is the object's volume.
+    - id: D
+      text: The rise must first be added to the starting reading
+      correct: false
+      misconception_id: mc.phy.o.displacement_readings_added
+      feedback: 'If nothing at all were put in, the two readings would be equal, and adding them would still give a volume. The object''s volume is the difference: final reading minus starting reading.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what each reading on the measuring cylinder actually measures.
+  - rung: 2
+    name: concept
+    text:
+      en: Think about which part of the cork takes up space in the water.
+  - rung: 3
+    name: first_step
+    text:
+      en: Rule out the options that would give a volume that is too big or too small.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option on a stone of known volume.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Only the part of the cork under the water pushes water aside.'
+  misconception_ids:
+  - mc.phy.o.displacement_final_reading_as_volume
+  - mc.phy.o.displacement_partly_submerged_ok
+  - mc.phy.o.displacement_readings_added
+solution:
+  steps:
+  - n: 1
+    latex: \text{Only the part of the cork under the water pushes water aside}
+    reason: The object's volume is the water it pushes aside
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,96 @@
+id: itm.mth.o.calculus.0007
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.calculus.differentiate_powers
+stem: A curve has equation $y = -x^3 + 5x^2 - 2x - 4$.
+parts:
+- id: a
+  prompt: Find the gradient of the curve at the point where x = -2.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '-34'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_cal_0007_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The gradient of a curve changes; dy/dx gives it at any point.
+  - rung: 2
+    name: concept
+    text:
+      en: For each term axⁿ, the derivative is naxⁿ⁻¹; a constant term disappears.
+  - rung: 3
+    name: first_step
+    text:
+      en: Differentiate term by term.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Substitute x = -2 into dy/dx, not into y.
+  - rung: 5
+    name: full_step
+    text:
+      en: The gradient at x = -2 is -34.
+  misconception_ids:
+  - mc.mth.o.derivative_power_not_brought_down
+  - mc.mth.o.derivative_power_not_reduced
+  - mc.mth.o.gradient_from_y
+solution:
+  steps:
+  - n: 1
+    latex: \frac{dy}{dx} = -\,3x^2 + 10x - 2
+    reason: Multiply by each power, then reduce the power by one
+    check_id: chk_build_mth_cal_0007_d
+  - n: 2
+    latex: '\text{at } x = -2: \frac{dy}{dx} = -34'
+    reason: Substitute into the derivative
+    check_id: chk_build_mth_cal_0007_ans
+difficulty:
+  prior: 0.8
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_cal_0007_ans:
+    args:
+      expression: (-3)*x^2 + (10)*x^1 + (-2)*x^0
+      values:
+        x: -2
+    tool: math_evaluate
+  chk_build_mth_cal_0007_d:
+    args:
+      at: -2
+      expression: (-1)*x^3 + (5)*x^2 + (-2)*x^1 + (-4)*x^0
+      variable: x
+    tool: math_differentiate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

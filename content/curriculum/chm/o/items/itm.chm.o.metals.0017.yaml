@@ -1,0 +1,81 @@
+id: itm.chm.o.metals.0017
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.alloys
+stem: Brass is a common alloy.
+parts:
+- id: a
+  prompt: What is brass mainly made of?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Copper and tin
+      correct: false
+    - id: B
+      text: Iron and carbon
+      correct: false
+    - id: C
+      text: Copper and zinc
+      correct: true
+    - id: D
+      text: Iron, chromium and nickel
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Recall the main metal in brass first.
+  - rung: 2
+    name: concept
+    text:
+      en: Brass and bronze are both based on copper; steels are based on iron.
+  - rung: 3
+    name: first_step
+    text:
+      en: Now recall what is mixed with the main metal in brass.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Do not mix up brass and bronze, or plain steel and stainless steel.
+  - rung: 5
+    name: full_step
+    text:
+      en: Brass is made mainly of copper and zinc.
+solution:
+  steps:
+  - n: 1
+    latex: '\text{brass: copper and zinc}'
+    reason: Composition of the alloy
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

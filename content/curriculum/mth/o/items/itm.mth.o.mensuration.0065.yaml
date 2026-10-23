@@ -1,0 +1,96 @@
+id: itm.mth.o.mensuration.0065
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.prism_volume
+stem: A cylinder has radius 4 cm and height 15 cm.
+parts:
+- id: a
+  prompt: Find its volume, to 3 significant figures.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '754'
+    unit: cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_mns_0065_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A cylinder is a prism with a circular cross-section.
+  - rung: 2
+    name: concept
+    text:
+      en: Volume = area of cross-section × height.
+  - rung: 3
+    name: first_step
+    text:
+      en: The end has area π × 4².
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply that by 15.
+  - rung: 5
+    name: full_step
+    text:
+      en: The volume is 754 cm³.
+  misconception_ids:
+  - mc.mth.o.diameter_for_radius
+  - mc.mth.o.radius_not_squared
+  - mc.mth.o.circumference_area_confused
+solution:
+  steps:
+  - n: 1
+    latex: V = \pi r^2 h
+    reason: Area of the circular end times the height
+  - n: 2
+    latex: V = \pi \times 4^2 \times 15 = 754\ \text{cm}^3
+    reason: Substitute and round
+    check_id: chk_build_mth_mns_0065_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  r: '4'
+checks:
+  chk_build_mth_mns_0065_ans:
+    args:
+      expression: pi*4^2*15
+      sf: 3
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

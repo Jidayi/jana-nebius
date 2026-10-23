@@ -1,0 +1,34 @@
+id: mc.acc.o.sd_cash_discount_on_list_price
+kc_ids:
+- kc.acc.o.source_documents.cash_discount
+student_name: Cash discount on the list price
+description: Works out cash discount on the list price instead of the amount after trade discount.
+signatures:
+- kind: answer_transform
+  expression: list * (1 - td - cd)
+fix:
+  strategy: rule_restatement
+  text:
+    en: Take trade discount first; cash discount is on the invoice amount that remains.
+probe_item_ids:
+- itm.acc.o.source_documents.0034
+- itm.acc.o.source_documents.0035
+- itm.acc.o.source_documents.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

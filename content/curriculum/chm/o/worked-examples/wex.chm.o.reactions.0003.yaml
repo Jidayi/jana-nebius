@@ -1,0 +1,49 @@
+id: wex.chm.o.reactions.0003
+kc_ids:
+- kc.chm.o.reactions.rate_factors
+problem: A cube of marble with 2 cm sides is cut into 8 small cubes with 1 cm sides. A cube has 6 faces. Compare the total surface area before and after cutting. Which reacts faster with acid?
+steps:
+- n: 1
+  latex: A = 6 \times 2 \times 2 = 24\ \text{cm}^2
+  reason: One large cube
+  check_id: chk_build_chm_reactions_w0003_big
+- n: 2
+  latex: A = 8 \times 6 \times 1 \times 1 = 48\ \text{cm}^2
+  reason: Eight small cubes
+  check_id: chk_build_chm_reactions_w0003_small
+- n: 3
+  latex: '\text{more surface exposed: more collisions each second}'
+  reason: Same mass, larger surface area
+final_answer:
+  latex: '48\ \text{cm}^2 \text{ (double): the small cubes react faster}'
+  check_id: chk_build_chm_reactions_w0003_small
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_w0003_big:
+    args:
+      expression: 6*2*2
+    tool: math_evaluate
+  chk_build_chm_reactions_w0003_small:
+    args:
+      expression: 8*6*1*1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

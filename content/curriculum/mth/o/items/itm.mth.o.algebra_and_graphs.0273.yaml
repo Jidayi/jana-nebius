@@ -1,0 +1,98 @@
+id: itm.mth.o.algebra_and_graphs.0273
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.graphical_solutions
+stem: The graphs of $y = x^2 + 4x - 14$ and $y = 3x - 2$ are drawn on the same axes.
+parts:
+- id: a
+  prompt: The graphs meet at two points. Find the smaller of their two x-coordinates.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '-4'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0273_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: At a point where two graphs meet, both equations give the same y.
+  - rung: 2
+    name: concept
+    text:
+      en: Set the two expressions for y equal to each other and solve.
+  - rung: 3
+    name: first_step
+    text:
+      en: Rearrange so that one side is zero, then factorise.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The equation gives two x-values.
+  - rung: 5
+    name: full_step
+    text:
+      en: The smaller x-value is -4.
+  misconception_ids:
+  - mc.mth.o.intersection_y_for_x
+  - mc.mth.o.root_sign_from_factor
+  - mc.mth.o.intersection_as_root
+solution:
+  steps:
+  - n: 1
+    latex: x^2 + 4x - 14 = 3x - 2
+    reason: Where the graphs meet, the y-values are equal
+  - n: 2
+    latex: x = -4 \text{ or } x = 3
+    reason: Solve the equation
+    check_id: chk_build_mth_alg_0273_sol
+  - n: 3
+    latex: x = -4
+    reason: The smaller value
+    check_id: chk_build_mth_alg_0273_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0273_ans:
+    args:
+      expression: '-4'
+    tool: math_evaluate
+  chk_build_mth_alg_0273_sol:
+    args:
+      equations:
+      - x^2 + (4)*x + (-14) = 3*x + (-2)
+      unknowns:
+      - x
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

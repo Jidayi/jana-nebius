@@ -1,0 +1,34 @@
+id: mc.acc.o.sofp_drawings_as_liability
+kc_ids:
+- kc.acc.o.sole_trader_statements.sofp_sections
+student_name: Drawings as a liability
+description: Lists drawings among the liabilities instead of deducting them from capital.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: drawings
+fix:
+  strategy: rule_restatement
+  text:
+    en: Drawings are not owed to anyone. They come off the owner's capital in the capital section.
+probe_item_ids:
+- itm.acc.o.sole_trader_statements.0037
+- itm.acc.o.sole_trader_statements.0044
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

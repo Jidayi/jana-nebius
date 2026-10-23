@@ -1,0 +1,125 @@
+id: itm.acc.o.inventory.0002
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.inventory.fifo
+stem: 'Ama''s shop: opening inventory 60 rolls of fabric at $4 each; then bought 50 at $7 each; then sold 70; then bought 30 at $9 each; then sold 30.'
+parts:
+- id: a
+  prompt: Using FIFO, calculate the value of the closing inventory.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '340.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_inventory_0002_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'First in, first out: which goods leave first, and which are left at the end?'
+  - rung: 2
+    name: concept
+    text:
+      en: Under FIFO the oldest goods are sold first, so the goods left are the most recent purchases.
+  - rung: 3
+    name: first_step
+    text:
+      en: Units left = total in − total sold. Value them at the latest prices, working backwards.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Take the remaining units from the last purchase first, then the one before.
+  - rung: 5
+    name: full_step
+    text:
+      en: Closing inventory = $340.
+  misconception_ids:
+  - mc.acc.o.inv_fifo_reversed
+  - mc.acc.o.inv_cos_for_closing
+solution:
+  steps:
+  - n: 1
+    latex: '\text{FIFO: the goods left are the latest bought}'
+    reason: Oldest goods go first
+    check_id: chk_build_acc_inventory_0002_t
+  - n: 2
+    latex: \text{Units left} = (60 + 50 + 30) - (70 + 30) = 40
+    reason: In less out
+    check_id: chk_build_acc_inventory_0002_s2
+  - n: 3
+    latex: \text{From the older batch} = 40 - (30) = 10
+    reason: The rest come from the batch before
+    check_id: chk_build_acc_inventory_0002_s3
+  - n: 4
+    latex: \text{Closing} = 10 \times 7 + 30 \times 9 = 340
+    reason: Value the remaining layers
+    check_id: chk_build_acc_inventory_0002_a
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_inventory_0002_a:
+    args:
+      dp: 2
+      expression: 10 * 7 + 30 * 9
+    tool: math_evaluate
+  chk_build_acc_inventory_0002_s2:
+    args:
+      dp: 4
+      expression: (60 + 50 + 30) - (70 + 30)
+    tool: math_evaluate
+  chk_build_acc_inventory_0002_s3:
+    args:
+      dp: 4
+      expression: (60 + 50 + 30) - (70 + 30) - (30)
+    tool: math_evaluate
+  chk_build_acc_inventory_0002_t:
+    args:
+      dp: 2
+      method: fifo
+      movements:
+      - kind: opening
+        quantity: 60
+        unit_cost: '4'
+      - kind: receipt
+        quantity: 50
+        unit_cost: '7'
+      - kind: issue
+        quantity: 70
+      - kind: receipt
+        quantity: 30
+        unit_cost: '9'
+      - kind: issue
+        quantity: 30
+    tool: acc_inventory
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

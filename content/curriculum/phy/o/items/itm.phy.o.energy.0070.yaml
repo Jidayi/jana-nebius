@@ -1,0 +1,108 @@
+id: itm.phy.o.energy.0070
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.work_done
+stem: Obi pushes a crate up a ramp with a force of 80 N along the ramp. The ramp is 5 m long and rises 0.8 m.
+parts:
+- id: a
+  prompt: Calculate the work done by Obi's push.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '400'
+    unit: J
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0070_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Use the distance moved in the direction of the force.
+  - rung: 2
+    name: concept
+    text:
+      en: The push acts along the ramp, so use the length of the ramp.
+  - rung: 3
+    name: first_step
+    text:
+      en: The height of the ramp is not along the push.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 80 × 5.
+  - rung: 5
+    name: full_step
+    text:
+      en: The work done is 400 J.
+  misconception_ids:
+  - mc.phy.o.work_distance_not_along_force
+  - mc.phy.o.work_total_path_used
+  - mc.phy.o.work_force_over_distance
+solution:
+  steps:
+  - n: 1
+    latex: W = 80 \times 5 = 400\ \text{J}
+    reason: The push and the movement are both along the ramp
+    check_id: chk_build_phy_nrg_0070_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  F: '80'
+  d: '5'
+checks:
+  chk_build_phy_nrg_0070_ans:
+    args:
+      expression: 80*5
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:41:41.420Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.energy.0070
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

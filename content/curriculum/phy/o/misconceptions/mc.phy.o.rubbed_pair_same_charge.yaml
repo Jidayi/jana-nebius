@@ -1,0 +1,36 @@
+id: mc.phy.o.rubbed_pair_same_charge
+kc_ids:
+- kc.phy.o.electrical_quantities.electric_charge
+student_name: Both objects get the same charge
+description: Thinks two objects rubbed together become charged with the same sign; the electrons one loses the other gains, so their charges are equal and opposite.
+signatures:
+- kind: step_error
+  error_category: sign
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'If the rod gains some electrons, the cloth has lost exactly those electrons: the rod is negative and the cloth is positive by the same amount.'
+probe_item_ids:
+- itm.phy.o.electrical_quantities.0011
+- itm.phy.o.electrical_quantities.0012
+- itm.phy.o.electrical_quantities.0002
+- itm.phy.o.electrical_quantities.0007
+- itm.phy.o.electrical_quantities.0008
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.acc.o.tb_discount_confused
+kc_ids:
+- kc.acc.o.trial_balance.classify_tb_balances
+- kc.acc.o.trial_balance.prepare_trial_balance
+student_name: Discount allowed and received swapped
+description: Treats discount allowed as income or discount received as an expense.
+signatures:
+- kind: structural
+  rule: debit_credit_swapped
+  account_class: expense
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Discount allowed is given away to customers: an expense, debit. Discount received is income: credit.'
+probe_item_ids:
+- itm.acc.o.trial_balance.0001
+- itm.acc.o.trial_balance.0002
+- itm.acc.o.trial_balance.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

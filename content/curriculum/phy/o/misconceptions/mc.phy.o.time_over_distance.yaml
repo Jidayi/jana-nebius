@@ -1,0 +1,40 @@
+id: mc.phy.o.time_over_distance
+kc_ids:
+- kc.phy.o.motion.average_speed
+- kc.phy.o.forces.circular_motion
+- kc.phy.o.sound.speed_and_echoes
+student_name: Dividing time by distance
+description: Divides the time by the distance, which gives the time per metre rather than the speed.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: Speed tells you how many metres you cover each second, so the metres go on top.
+probe_item_ids:
+- itm.phy.o.motion.0001
+severity: low
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.chm.o.acids_titration_values_swapped
+kc_ids:
+- kc.chm.o.acids.titration_calculations
+student_name: Putting the acid's figures in the base's place
+description: Multiplies by a volume or concentration that belongs in the divisor, for example c(base) = c(acid) × V(base) ÷ V(acid).
+signatures:
+- kind: answer_transform
+  expression: c_base = c_acid*V_base/V_acid
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'Work in two steps instead of one formula: first moles = concentration × volume for the solution you know everything about, then concentration = moles ÷ volume for the other one.'
+probe_item_ids:
+- itm.chm.o.acids.0061
+- itm.chm.o.acids.0062
+- itm.chm.o.acids.0063
+- itm.chm.o.acids.0064
+- itm.chm.o.acids.0065
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

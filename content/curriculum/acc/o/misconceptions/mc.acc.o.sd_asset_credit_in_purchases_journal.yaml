@@ -1,0 +1,34 @@
+id: mc.acc.o.sd_asset_credit_in_purchases_journal
+kc_ids:
+- kc.acc.o.source_documents.select_book_of_prime_entry
+student_name: Assets in the purchases journal
+description: Records a non-current asset bought on credit in the purchases journal.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: asset
+fix:
+  strategy: rule_restatement
+  text:
+    en: The purchases journal is for goods for resale. Assets bought on credit go in the general journal.
+probe_item_ids:
+- itm.acc.o.source_documents.0013
+- itm.acc.o.source_documents.0021
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

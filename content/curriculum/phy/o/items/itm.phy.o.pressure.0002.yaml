@@ -1,0 +1,107 @@
+id: itm.phy.o.pressure.0002
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.pressure_on_surfaces
+stem: A car resting on its four tyres has a mass of 1500 kg. The total area in contact with the ground is 0.1 m². Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate the pressure on the ground, in kPa.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '150'
+    unit: kPa
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_prs_0002_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The force pressing on the ground is a weight, measured in newtons.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the weight first (mass × g), then divide it by the area.
+  - rung: 3
+    name: first_step
+    text:
+      en: The weight is 1500 × 10 N.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The weight is 15000 N; divide it by 0.1 m².
+  - rung: 5
+    name: full_step
+    text:
+      en: The pressure is 150 kPa.
+  misconception_ids:
+  - mc.phy.o.pressure_mass_used_as_force
+  - mc.phy.o.pressure_force_times_area
+  - mc.phy.o.pressure_area_over_force
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: F = mg = 1500 \times 10 = 15000\ \text{N}
+    reason: The force is the weight
+    check_id: chk_build_phy_prs_0002_f
+  - n: 2
+    latex: p = \frac{15000}{0.1} = 150000\ \text{Pa}
+    reason: Pressure = force ÷ area
+    check_id: chk_build_phy_prs_0002_pa
+  - n: 3
+    latex: 150000\ \text{Pa} = 150\ \text{kPa}
+    reason: Pascals into kilopascals
+    check_id: chk_build_phy_prs_0002_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 75
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_0002_ans:
+    args:
+      expression: 1500*10/0.1/1000
+    tool: math_evaluate
+  chk_build_phy_prs_0002_f:
+    args:
+      expression: 1500*10
+    tool: math_evaluate
+  chk_build_phy_prs_0002_pa:
+    args:
+      expression: 1500*10/0.1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,101 @@
+id: itm.mth.o.mensuration.0030
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.area_perimeter
+stem: A triangle has base 7.5 cm and perpendicular height 10 cm.
+parts:
+- id: a
+  prompt: Find its area.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 75 cm²
+      correct: false
+      misconception_id: mc.mth.o.formula_half_dropped
+      feedback: Read the formula one symbol at a time and tick each one off as you substitute; the ½ multiplies everything that follows it.
+    - id: B
+      text: 17.5 cm²
+      correct: false
+      misconception_id: mc.mth.o.perimeter_area_confused
+      feedback: Perimeter is a length around the edge (add the sides); area is the space inside (square units).
+    - id: C
+      text: 37.5 cm²
+      correct: true
+    - id: D
+      text: 8.75 cm²
+      correct: false
+      misconception_id: mc.mth.o.sum_as_product
+      feedback: 'Read each sign in the formula: + means add, even when the letters sit next to brackets.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A triangle is half of a rectangle with the same base and height.
+  - rung: 2
+    name: concept
+    text:
+      en: Area of a triangle = ½ × base × height.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 7.5 × 10 first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Then halve it.
+  - rung: 5
+    name: full_step
+    text:
+      en: The area is 37.5 cm².
+  misconception_ids:
+  - mc.mth.o.formula_half_dropped
+  - mc.mth.o.perimeter_area_confused
+  - mc.mth.o.sum_as_product
+solution:
+  steps:
+  - n: 1
+    latex: A = \tfrac{1}{2}bh
+    reason: Area of a triangle
+  - n: 2
+    latex: A = \tfrac{1}{2} \times 7.5 \times 10 = 37.5\ \text{cm}^2
+    reason: Substitute
+    check_id: chk_build_mth_mns_0030_ans
+difficulty:
+  prior: -0.7
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_mns_0030_ans:
+    args:
+      expression: 7.5*10/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

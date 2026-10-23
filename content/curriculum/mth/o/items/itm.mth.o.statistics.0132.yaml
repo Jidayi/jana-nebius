@@ -1,0 +1,111 @@
+id: itm.mth.o.statistics.0132
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.histograms
+stem: In a frequency table, the class 0 < x ≤ 20 has frequency 24.
+parts:
+- id: a
+  prompt: Find the frequency density for a histogram.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1.2'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_sta_0132_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: In a histogram with unequal widths, the height is not the frequency.
+  - rung: 2
+    name: concept
+    text:
+      en: Frequency density = frequency ÷ class width.
+  - rung: 3
+    name: first_step
+    text:
+      en: The class width is 20 − 0.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 24 by the width.
+  - rung: 5
+    name: full_step
+    text:
+      en: The frequency density is 1.2.
+  misconception_ids:
+  - mc.mth.o.density_multiplied
+  - mc.mth.o.class_width_wrong
+  - mc.mth.o.pie_angle_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \text{width} = 20 - 0
+    reason: Class width
+  - n: 2
+    latex: \text{density} = \frac{24}{20} = 1.2
+    reason: Frequency over width
+    check_id: chk_build_mth_sta_0132_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  f: '24'
+  w: '20'
+checks:
+  chk_build_mth_sta_0132_ans:
+    args:
+      expression: 24/20
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:40:13.766Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.statistics.0132
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

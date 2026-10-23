@@ -1,0 +1,98 @@
+id: itm.mth.o.probability.0030
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.probability.expected_frequency
+stem: A drawing pin is dropped 200 times and lands point up 13 times.
+parts:
+- id: a
+  prompt: Find the relative frequency of landing point up.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '15.4'
+      correct: false
+      misconception_id: mc.mth.o.relative_frequency_inverted
+      feedback: Relative frequency = number of times it happened ÷ number of trials; it is never more than 1.
+    - id: B
+      text: '0.0695'
+      correct: false
+      misconception_id: mc.mth.o.probability_as_odds
+      feedback: 'A probability compares the outcomes you want with all the outcomes: divide by the total.'
+    - id: C
+      text: '0.065'
+      correct: true
+    - id: D
+      text: '0.935'
+      correct: false
+      misconception_id: mc.mth.o.complement_not_taken
+      feedback: P(not A) = 1 − P(A).
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Relative frequency estimates a probability from an experiment.
+  - rung: 2
+    name: concept
+    text:
+      en: Relative frequency = number of times it happened ÷ number of trials.
+  - rung: 3
+    name: first_step
+    text:
+      en: It happened 13 times in 200 trials.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 13 ÷ 200.
+  - rung: 5
+    name: full_step
+    text:
+      en: The relative frequency is 0.065.
+  misconception_ids:
+  - mc.mth.o.complement_not_taken
+  - mc.mth.o.probability_as_odds
+  - mc.mth.o.relative_frequency_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \frac{13}{200} = 0.065
+    reason: Successes over trials
+    check_id: chk_build_mth_prb_0030_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_prb_0030_ans:
+    args:
+      expression: 13/200
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,107 @@
+id: itm.mth.o.geometry.0052
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.bearings
+stem: The bearing of town B from town A is 108°.
+parts:
+- id: a
+  prompt: Find the bearing of A from B.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '288'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_geo_0052_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Draw a north line at A and at B. The two north lines are parallel.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Going back the other way is a half turn: the bearings differ by 180°.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Is 108° less than 180°? That decides whether you add or subtract.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 108 + 180.
+  - rung: 5
+    name: full_step
+    text:
+      en: The bearing of A from B is 288°.
+  misconception_ids:
+  - mc.mth.o.back_bearing_add_90
+  - mc.mth.o.back_bearing_from_360
+  - mc.mth.o.back_bearing_from_180
+solution:
+  steps:
+  - n: 1
+    latex: 108 + 180 = 288
+    reason: A back bearing differs by 180°
+    check_id: chk_build_mth_geo_0052_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  theta: '108'
+checks:
+  chk_build_mth_geo_0052_ans:
+    args:
+      expression: 108 + 180
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:36:47.276Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.geometry.0052
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

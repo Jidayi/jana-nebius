@@ -1,0 +1,83 @@
+id: itm.chm.o.reactions.0037
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.rate_data
+stem: Magnesium ribbon is added to dilute hydrochloric acid. A gas syringe collects 48 cm³ of hydrogen in the first 30 s.
+parts:
+- id: a
+  prompt: Calculate the mean rate of reaction over the first 30 s, in cm³/s.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1.60'
+    unit: cm^3/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_reactions_0037_r
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The mean rate compares how much product formed with the time it took.
+  - rung: 2
+    name: concept
+    text:
+      en: Mean rate = volume of gas formed ÷ time taken.
+  - rung: 3
+    name: first_step
+    text:
+      en: Volume of hydrogen = 48; time taken = 30 s.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Put the amount on top: divide 48 by 30.'
+  - rung: 5
+    name: full_step
+    text:
+      en: 48 ÷ 30 = 1.60 cm³/s.
+  misconception_ids:
+  - mc.chm.o.reactions_rate_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \text{rate} = \frac{48}{30} = 1.60
+    reason: Amount ÷ time
+    check_id: chk_build_chm_reactions_0037_r
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_0037_r:
+    args:
+      expression: 48/30
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

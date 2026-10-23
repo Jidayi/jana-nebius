@@ -1,0 +1,40 @@
+{
+  "id": "a.a.v0",
+  "version": "0.0.0",
+  "written_before_runs": true,
+  "applies_to": [
+    "guided_dialogue"
+  ],
+  "judging": {
+    "judges": [
+      {
+        "kind": "model",
+        "ref": "x"
+      },
+      {
+        "kind": "model",
+        "ref": "x"
+      }
+    ],
+    "independent": true,
+    "on_disagreement": "human_review",
+    "evidence_scope": [
+      "transcript"
+    ]
+  },
+  "criteria": [
+    {
+      "id": "aaa",
+      "dimension": "correctness",
+      "pass_if": "PASS if xx",
+      "fail_if": "FAIL if xx",
+      "critical": true
+    }
+  ],
+  "scoring": {
+    "criterion_pass_rate_gate": 0,
+    "report": [
+      "criterion_pass_rate"
+    ]
+  }
+}

@@ -1,0 +1,93 @@
+id: itm.phy.o.thermal_properties.0015
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.thermal_properties.thermal_expansion
+stem: A bimetallic strip is made of brass bonded to iron. Brass expands more than iron when heated.
+parts:
+- id: a
+  prompt: Which way does the strip bend when it is heated?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: It curves with the brass on the inside of the curve
+      correct: false
+      misconception_id: mc.phy.o.bimetal_bends_towards_greater_expansion
+      feedback: The metal that expands more becomes the longer strip, and the longer strip must go round the outside of the curve, like the outside lane of a running track.
+    - id: B
+      text: It stays straight, because solids hardly expand
+      correct: false
+      misconception_id: mc.phy.o.expansion_order_reversed
+      feedback: For the same temperature rise, gases expand most, then liquids, then solids. Solids expand only a little, but enough to buckle rails and crack glass.
+    - id: C
+      text: It stays straight, because both metals gain particles equally
+      correct: false
+      misconception_id: mc.phy.o.heating_creates_particles
+      feedback: 'Weigh a sealed flask before and after heating: its mass does not change. No particles are made; the same particles move faster and, in most materials, spread further apart.'
+    - id: D
+      text: It curves with the brass on the outside of the curve
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what heating does to the motion and spacing of particles.
+  - rung: 2
+    name: concept
+    text:
+      en: After heating, the brass strip is longer than the iron strip it is fixed to.
+  - rung: 3
+    name: first_step
+    text:
+      en: For each option, ask whether the particles themselves change, or only how they move and how far apart they are.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Remember that heating does not create particles and that gases expand most, solids least.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It curves with the brass on the outside of the curve.'
+  misconception_ids:
+  - mc.phy.o.bimetal_bends_towards_greater_expansion
+  - mc.phy.o.expansion_order_reversed
+  - mc.phy.o.heating_creates_particles
+solution:
+  steps:
+  - n: 1
+    latex: \text{It curves with the brass on the outside of the curve}
+    reason: Apply the particle model of expansion
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

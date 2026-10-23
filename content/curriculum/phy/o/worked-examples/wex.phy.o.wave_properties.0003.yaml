@@ -1,0 +1,46 @@
+id: wex.phy.o.wave_properties.0003
+kc_ids:
+- kc.phy.o.wave_properties.wave_equation
+problem: A dipper in a ripple tank vibrates at 8 Hz and makes ripples with a wavelength of 2.4 cm. Calculate the speed of the waves.
+steps:
+- n: 1
+  latex: \lambda = 2.4\ \text{cm} = 0.024\ \text{m}
+  reason: Put the wavelength in metres
+  check_id: chk_build_phy_wav_w0003_lsi
+- n: 2
+  latex: v = f\lambda = 8 \times 0.024 = 0.192\ \text{m/s}
+  reason: Wave equation
+  check_id: chk_build_phy_wav_w0003_ans
+final_answer:
+  latex: 0.192\ \text{m/s}
+  check_id: chk_build_phy_wav_w0003_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_wav_w0003_ans:
+    args:
+      expression: 8*0.024
+    tool: math_evaluate
+  chk_build_phy_wav_w0003_lsi:
+    args:
+      quantity: 2.4 cm
+      to: m
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

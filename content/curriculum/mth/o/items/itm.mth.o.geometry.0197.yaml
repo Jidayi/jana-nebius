@@ -1,0 +1,98 @@
+id: itm.mth.o.geometry.0197
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.circle_theorems_cyclic
+stem: 'ABCD is a cyclic quadrilateral: all four corners lie on a circle. Angle ABC = 98°.'
+parts:
+- id: a
+  prompt: Find angle ADC.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 98°
+      correct: false
+      misconception_id: mc.mth.o.cyclic_opposite_equal
+      feedback: Opposite angles of a quadrilateral drawn in a circle add to 180°.
+    - id: B
+      text: 82°
+      correct: true
+    - id: C
+      text: 262°
+      correct: false
+      misconception_id: mc.mth.o.cyclic_sum_360
+      feedback: All four angles add to 360°, but each opposite pair adds to 180°.
+    - id: D
+      text: 8°
+      correct: false
+      misconception_id: mc.mth.o.adjacent_angles_complementary
+      feedback: 'Angles on a straight line, and co-interior angles, make a half turn: 180°.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Angles B and D are opposite each other in the quadrilateral.
+  - rung: 2
+    name: concept
+    text:
+      en: Opposite angles of a cyclic quadrilateral add up to 180°.
+  - rung: 3
+    name: first_step
+    text:
+      en: Subtract 98 from 180.
+  - rung: 4
+    name: worked_step
+    text:
+      en: This works only because the corners lie on a circle.
+  - rung: 5
+    name: full_step
+    text:
+      en: Angle ADC = 82°.
+  misconception_ids:
+  - mc.mth.o.adjacent_angles_complementary
+  - mc.mth.o.cyclic_opposite_equal
+  - mc.mth.o.cyclic_sum_360
+solution:
+  steps:
+  - n: 1
+    latex: \angle ADC = 180 - 98 = 82
+    reason: Opposite angles of a cyclic quadrilateral add to 180°
+    check_id: chk_build_mth_geo_0197_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0197_ans:
+    args:
+      expression: 180 - 98
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

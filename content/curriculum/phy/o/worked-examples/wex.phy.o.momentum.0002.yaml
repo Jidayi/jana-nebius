@@ -1,0 +1,54 @@
+id: wex.phy.o.momentum.0002
+kc_ids:
+- kc.phy.o.momentum.momentum_calculation
+problem: Trolley X (0.5 kg) moves right at 4 m/s. Trolley Y (1 kg) moves left at 1 m/s, towards X. Take right as positive. Find the total momentum of the two trolleys.
+steps:
+- n: 1
+  latex: p_X = 0.5 \times 4 = 2\ \text{kg m/s}
+  reason: 'X moves right: positive'
+  check_id: chk_build_phy_mom_w0002_p1
+- n: 2
+  latex: p_Y = 1 \times (-1) = -1\ \text{kg m/s}
+  reason: 'Y moves left: negative'
+  check_id: chk_build_phy_mom_w0002_p2
+- n: 3
+  latex: p = 2 + (-1) = 1\ \text{kg m/s}
+  reason: Add the momenta with their signs
+  check_id: chk_build_phy_mom_w0002_ans
+final_answer:
+  latex: 1\ \text{kg m/s}
+  check_id: chk_build_phy_mom_w0002_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_w0002_ans:
+    args:
+      expression: 0.5*4 - 1*1
+    tool: math_evaluate
+  chk_build_phy_mom_w0002_p1:
+    args:
+      expression: 0.5*4
+    tool: math_evaluate
+  chk_build_phy_mom_w0002_p2:
+    args:
+      expression: 1*(-1)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

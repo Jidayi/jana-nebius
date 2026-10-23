@@ -1,0 +1,40 @@
+id: wex.mth.o.number.0045
+kc_ids:
+- kc.mth.o.number.simple_interest
+problem: $800 is invested at 2.5% per year simple interest for 2 years. Find the interest earned.
+steps:
+- n: 1
+  latex: I = \frac{800 \times 2.5 \times 2}{100} = 40
+  reason: Simple interest is the same each year
+  check_id: chk_build_mth_num_w0045_si
+final_answer:
+  latex: '40'
+  check_id: chk_build_mth_num_w0045_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0045_ans:
+    args:
+      expression: 800*2.5*2/100
+    tool: math_evaluate
+  chk_build_mth_num_w0045_si:
+    args:
+      expression: 800*2.5*2/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

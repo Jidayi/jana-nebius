@@ -1,0 +1,34 @@
+id: mc.acc.o.rb_on_cost
+kc_ids:
+- kc.acc.o.depreciation.reducing_balance
+student_name: Reducing balance on cost
+description: Applies the reducing-balance rate to the original cost every year, as if it were straight line.
+signatures:
+- kind: answer_transform
+  expression: cost * rate
+fix:
+  strategy: contrast_example
+  text:
+    en: Each year the rate is applied to what is left, so the charge gets smaller.
+probe_item_ids:
+- itm.acc.o.depreciation.0035
+- itm.acc.o.depreciation.0036
+- itm.acc.o.depreciation.0037
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

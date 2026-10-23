@@ -1,0 +1,141 @@
+id: itm.acc.o.sole_trader_statements.0030
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.sole_trader_statements.profit_for_year
+stem: 'Tariq''s figures for the year: gross profit $16500; discount received $200; stationery $3750; advertising $4400; carriage outwards $3150; drawings $5000; new equipment bought $8100.'
+parts:
+- id: a
+  prompt: What is the profit for the year?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $5400
+      correct: true
+    - id: B
+      text: $5200
+      correct: false
+      misconception_id: mc.acc.o.pfy_other_income_omitted
+    - id: C
+      text: $-2700
+      correct: false
+      misconception_id: mc.acc.o.pfy_capital_spending_deducted
+    - id: D
+      text: $400
+      correct: false
+      misconception_id: mc.acc.o.pfy_drawings_deducted
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Some of these figures are not income or expenses of the year. Which ones?
+  - rung: 2
+    name: concept
+    text:
+      en: Profit for the year = gross profit + other income − running expenses. Drawings reduce capital; equipment is a non-current asset.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Other income: discount received of $200.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 16500 + 200 − (3750 + 4400 + 3150).
+  - rung: 5
+    name: full_step
+    text:
+      en: 16500 + 200 − (3750 + 4400 + 3150) = $5400.
+  misconception_ids:
+  - mc.acc.o.pfy_drawings_deducted
+  - mc.acc.o.pfy_other_income_omitted
+  - mc.acc.o.pfy_capital_spending_deducted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Profit for the year} = \text{gross profit} + \text{other income} - \text{expenses}
+    reason: Only income and expenses of the year
+    check_id: chk_build_acc_sole_trader_statements_0030_t
+  - n: 2
+    latex: \text{Profit for the year} = 16500 + 200 - (3750 + 4400 + 3150) = 5400
+    reason: Substitute
+    check_id: chk_build_acc_sole_trader_statements_0030_a
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_0030_a:
+    args:
+      dp: 2
+      expression: 16500 + 200 - (3750 + 4400 + 3150)
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0030_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '42300'
+        role: revenue
+      - account: Purchases
+        debit: '25800'
+        role: purchases
+      - account: Stationery
+        debit: '3750'
+        role: expense
+      - account: Advertising
+        debit: '4400'
+        role: expense
+      - account: Carriage outwards
+        debit: '3150'
+        role: expense
+      - account: Discount received
+        credit: '200'
+        role: other_income
+      - account: Drawings
+        debit: '5000'
+        role: drawings
+      - account: Equipment
+        debit: '8100'
+        role: non_current_asset
+      - account: Capital
+        credit: '7700'
+        role: capital
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Family loan
+        credit: '1000'
+        role: non_current_liability
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

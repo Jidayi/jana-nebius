@@ -1,0 +1,79 @@
+id: wex.acc.o.ratios.0014
+kc_ids:
+- kc.acc.o.ratios.interpret_ratios
+problem: Last year revenue $40000, cost of sales $28000; this year revenue $42000, cost of sales $27300. Compare the gross margins and suggest a cause.
+steps:
+- n: 1
+  latex: \text{Gross margin each year}
+  reason: Same definition both years
+  check_id: chk_build_acc_ratios_w0014_t
+- n: 2
+  latex: \text{Last year} = 30.00\%
+  reason: Gross profit over revenue
+  check_id: chk_build_acc_ratios_w0014_s2
+- n: 3
+  latex: \text{This year} = 35.00\%
+  reason: Gross profit over revenue
+  check_id: chk_build_acc_ratios_w0014_s3
+- n: 4
+  latex: \text{Change} = 5.00\ \text{points; the margin rose}
+  reason: Prices or the cost of goods changed
+  check_id: chk_build_acc_ratios_w0014_a
+final_answer:
+  latex: 5.00\ \text{points}
+  check_id: chk_build_acc_ratios_w0014_a
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_w0014_a:
+    args:
+      dp: 2
+      expression: abs((42000 - 27300) / 42000 * 100 - (40000 - 28000) / 40000 * 100)
+    tool: math_evaluate
+  chk_build_acc_ratios_w0014_s2:
+    args:
+      dp: 4
+      expression: (40000 - 28000) / 40000 * 100
+    tool: math_evaluate
+  chk_build_acc_ratios_w0014_s3:
+    args:
+      dp: 4
+      expression: (42000 - 27300) / 42000 * 100
+    tool: math_evaluate
+  chk_build_acc_ratios_w0014_t:
+    args:
+      cost_of_sales: '27300'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      ratios:
+      - gross_margin
+      revenue: '42000'
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

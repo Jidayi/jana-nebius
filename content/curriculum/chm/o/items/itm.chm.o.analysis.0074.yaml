@@ -1,0 +1,104 @@
+id: itm.chm.o.analysis.0074
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.analysis.anion_tests
+stem: Dilute hydrochloric acid is added to a white solid. It fizzes and the gas turns limewater milky.
+parts:
+- id: a
+  prompt: Which anion is present?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: CO₃²⁻
+      correct: true
+    - id: B
+      text: A metal giving hydrogen
+      correct: false
+      misconception_id: mc.chm.o.analysis_carbonate_gas_hydrogen
+      feedback: Acid + carbonate gives carbon dioxide, which turns limewater milky. Hydrogen comes from acid + metal.
+    - id: C
+      text: Cl⁻
+      correct: false
+      misconception_id: mc.chm.o.analysis_halide_colours_mixed
+      feedback: 'Silver chloride is white, silver bromide cream, silver iodide yellow: the colour deepens down Group VII.'
+    - id: D
+      text: SO₄²⁻
+      correct: false
+      misconception_id: mc.chm.o.analysis_wrong_reagent_for_anion
+      feedback: 'Halides: acidified silver nitrate. Sulfate: acidified barium nitrate (or chloride). Carbonate: dilute acid.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which reagent was used, and what was seen?
+  - rung: 2
+    name: concept
+    text:
+      en: Silver nitrate tests for halides; barium nitrate for sulfate; dilute acid for carbonate.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Silver halides: chloride white, bromide cream, iodide yellow.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Match the reagent and the observation to one ion.
+  - rung: 5
+    name: full_step
+    text:
+      en: The anion is CO₃²⁻; the solid involved is CaCO₃ (Mr 100).
+  misconception_ids:
+  - mc.chm.o.analysis_wrong_reagent_for_anion
+  - mc.chm.o.analysis_halide_colours_mixed
+  - mc.chm.o.analysis_carbonate_gas_hydrogen
+solution:
+  steps:
+  - n: 1
+    latex: M_r(CaCO₃) = 100
+    reason: Product of the test
+    check_id: chk_build_chm_analysis_0074_mr
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_analysis_0074_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ca
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_o
+      formula: CaCO3
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

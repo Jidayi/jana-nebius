@@ -1,0 +1,36 @@
+id: mc.mth.o.exterior_for_interior
+kc_ids:
+- kc.mth.o.geometry.polygon_angles
+student_name: Exterior angle given as the interior angle
+description: Gives 360° ÷ n, the exterior angle, when the interior angle of a regular polygon is asked for.
+signatures:
+- kind: answer_transform
+  expression: 360/n
+fix:
+  strategy: rule_restatement
+  text:
+    en: Interior and exterior angles at a vertex add to 180°.
+probe_item_ids:
+- itm.mth.o.geometry.0165
+- itm.mth.o.geometry.0166
+- itm.mth.o.geometry.0167
+- itm.mth.o.geometry.0168
+- itm.mth.o.geometry.0169
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

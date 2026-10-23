@@ -1,0 +1,116 @@
+id: itm.acc.o.costing.0043
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.costing.margin_of_safety
+stem: Obi expects to sell 4100 solar lamps at $30 each. Variable cost is $25 each and fixed costs are $13250.
+parts:
+- id: a
+  prompt: What is the margin of safety in units?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 2650 units
+      correct: false
+      misconception_id: mc.acc.o.cost_mos_be_as_mos
+    - id: B
+      text: 6750 units
+      correct: false
+      misconception_id: mc.acc.o.cost_mos_added
+    - id: C
+      text: 4100 units
+      correct: false
+      misconception_id: mc.acc.o.cost_mos_output_as_mos
+    - id: D
+      text: 1450 units
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: How many units are sold above the break-even point?
+  - rung: 2
+    name: concept
+    text:
+      en: Margin of safety = expected output − break-even output.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Find break-even first: fixed costs ÷ contribution per unit.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 4100 − 13250 ÷ (30 − 25).
+  - rung: 5
+    name: full_step
+    text:
+      en: Margin of safety = 1450 units.
+  misconception_ids:
+  - mc.acc.o.cost_mos_be_as_mos
+  - mc.acc.o.cost_mos_output_as_mos
+  - mc.acc.o.cost_mos_added
+solution:
+  steps:
+  - n: 1
+    latex: \text{Margin of safety} = \text{output} - \text{break-even}
+    reason: Room before a loss
+    check_id: chk_build_acc_costing_0043_t
+  - n: 2
+    latex: \text{Break-even} = \frac{13250}{30 - 25} = 2650
+    reason: Units
+    check_id: chk_build_acc_costing_0043_s2
+  - n: 3
+    latex: 4100 - 2650 = 1450
+    reason: Subtract
+    check_id: chk_build_acc_costing_0043_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_costing_0043_a:
+    args:
+      dp: 2
+      expression: 4100 - 13250 / (30 - 25)
+    tool: math_evaluate
+  chk_build_acc_costing_0043_s2:
+    args:
+      dp: 4
+      expression: 13250 / (30 - 25)
+    tool: math_evaluate
+  chk_build_acc_costing_0043_t:
+    args:
+      dp: 2
+      fixed_costs: '13250'
+      output_units: 4100
+      selling_price: '30'
+      variable_cost_per_unit: '25'
+    tool: acc_break_even
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

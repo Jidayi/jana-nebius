@@ -1,0 +1,88 @@
+id: itm.chm.o.acids.0056
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.salt_preparation
+stem: To make a soluble salt from an insoluble base, the base is added to the acid until some is left over.
+parts:
+- id: a
+  prompt: Why is the base added in excess?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: To make sure all of the acid is used up
+      correct: true
+    - id: B
+      text: To make the salt precipitate
+      correct: false
+      misconception_id: mc.chm.o.acids_precipitation_confused
+      feedback: 'An insoluble salt comes out of solution as a precipitate as soon as two solutions are mixed: filter it off and wash it. A soluble salt stays dissolved: you get it by evaporating and crystallising the solution.'
+    - id: C
+      text: So that the leftover base can be crystallised with the salt
+      correct: false
+      misconception_id: mc.chm.o.acids_filtrate_residue_confused
+      feedback: Draw the filter funnel. The solid that stays on the paper is the residue; the liquid that passes through is the filtrate. A soluble salt is in the filtrate; an insoluble salt is the residue.
+    - id: D
+      text: To make the reaction endothermic
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What would be left in the solution if some acid did not react?
+  - rung: 2
+    name: concept
+    text:
+      en: Any unreacted acid would end up mixed with the salt.
+  - rung: 3
+    name: first_step
+    text:
+      en: An insoluble base that is left over can easily be removed.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Seeing solid left over tells you that nothing else can react with it.
+  - rung: 5
+    name: full_step
+    text:
+      en: Adding excess base makes sure all of the acid reacts; the leftover base is then filtered off.
+  misconception_ids:
+  - mc.chm.o.acids_precipitation_confused
+  - mc.chm.o.acids_filtrate_residue_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{excess base} \Rightarrow \text{no acid left}
+    reason: Purpose of the excess
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,127 @@
+id: itm.chm.o.acids.0072
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.titration_calculations
+stem: 25.0 cm³ of 0.100 mol/dm³ sulfuric acid is neutralised by 20.0 cm³ of potassium hydroxide solution. The equation is H₂SO₄ + 2KOH → K₂SO₄ + 2H₂O.
+parts:
+- id: a
+  prompt: Calculate the mass of KOH, in grams, dissolved in the 20.0 cm³ of solution.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '0.280'
+    unit: g
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_acids_0072_m
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The mass of KOH comes from its moles, and its moles come from the acid.
+  - rung: 2
+    name: concept
+    text:
+      en: The equation shows one mole of H₂SO₄ reacts with two moles of KOH. Mass = moles × molar mass.
+  - rung: 3
+    name: first_step
+    text:
+      en: Moles of H₂SO₄ = 0.100 × 25.0 ÷ 1000 = 0.00250 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Moles of KOH = 2 × 0.00250 = 0.00500 mol. The molar mass of KOH is 56 g/mol.
+  - rung: 5
+    name: full_step
+    text:
+      en: Mass = 0.00500 × 56 = 0.280 g.
+  misconception_ids:
+  - mc.chm.o.acids_titration_ratio_ignored
+  - mc.chm.o.acids_titration_ratio_upside_down
+solution:
+  steps:
+  - n: 1
+    latex: n(\text{acid}) = 0.100 \times \frac{25.0}{1000} = 0.00250\ \text{mol}
+    reason: Moles of acid from c × V
+    check_id: chk_build_chm_acids_0072_ab
+  - n: 2
+    latex: n(\text{base}) = 2 \times 0.00250 = 0.00500\ \text{mol}
+    reason: Mole ratio from the equation
+    check_id: chk_build_chm_acids_0072_ab
+  - n: 3
+    latex: M(\text{KOH}) = 56\ \text{g/mol}
+    reason: Molar mass
+    check_id: chk_build_chm_acids_0072_mr
+  - n: 4
+    latex: m = 0.00500 \times 56 = 0.280\ \text{g}
+    reason: Moles times molar mass
+    check_id: chk_build_chm_acids_0072_m
+difficulty:
+  prior: 0.9
+  band: stretch
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_acids_0072_ab:
+    args:
+      acid: H2SO4
+      acid_concentration: 0.100 mol/dm^3
+      acid_volume: 25.0 cm^3
+      base: KOH
+      base_volume: 20.0 cm^3
+      task: neutralisation
+    tool: chem_acid_base
+  chk_build_chm_acids_0072_m:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_k
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_h
+      sf: 3
+      steps:
+      - amount: 0.00500 mol
+        id: m
+        op: mass_from_amount
+        species: KOH
+    tool: chem_stoichiometry
+  chk_build_chm_acids_0072_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_k
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_h
+      formula: KOH
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

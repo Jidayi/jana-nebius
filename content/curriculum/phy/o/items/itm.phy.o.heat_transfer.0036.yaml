@@ -1,0 +1,93 @@
+id: itm.phy.o.heat_transfer.0036
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.radiation
+stem: A rough, dull surface and a smooth, shiny surface of the same colour are at the same high temperature.
+parts:
+- id: a
+  prompt: Which emits more infrared each second?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The rough, dull surface
+      correct: true
+    - id: B
+      text: The smooth, shiny surface
+      correct: false
+      misconception_id: mc.phy.o.shiny_surfaces_better_radiators
+      feedback: Dull black surfaces are the best absorbers and the best emitters of infrared. Shiny, light surfaces reflect most of it and emit little.
+    - id: C
+      text: Both equally, because only colour matters, not texture
+      correct: false
+      misconception_id: mc.phy.o.colour_irrelevant_for_infrared
+      feedback: In sunshine a black car bonnet gets much hotter than a white one. Surface colour and texture strongly change how much infrared is absorbed and emitted.
+    - id: D
+      text: Neither, until they are hot enough to glow
+      correct: false
+      misconception_id: mc.phy.o.cold_objects_do_not_radiate
+      feedback: Every object emits infrared. Hotter objects emit more, but even ice does; thermal cameras see people and animals by the infrared they give out.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Infrared is an electromagnetic wave given out by every object; hotter objects give out more.
+  - rung: 2
+    name: concept
+    text:
+      en: Texture, like colour, changes how good a surface is at emitting.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Compare the surfaces: dull black is the best absorber and emitter, shiny silver or white the worst.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options that need a material for radiation to travel through, or treat cold as something that flows.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The rough, dull surface.'
+  misconception_ids:
+  - mc.phy.o.cold_objects_do_not_radiate
+  - mc.phy.o.colour_irrelevant_for_infrared
+  - mc.phy.o.shiny_surfaces_better_radiators
+solution:
+  steps:
+  - n: 1
+    latex: \text{The rough, dull surface}
+    reason: Apply what affects emission and absorption
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

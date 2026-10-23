@@ -1,0 +1,64 @@
+id: wex.phy.o.practical_electricity.0004
+kc_ids:
+- kc.phy.o.practical_electricity.energy_cost
+problem: A 3000 W water heater is used for 2 hours every day for 31 days. Electricity costs 12 cents per kilowatt-hour. Calculate the cost of the electricity used, in cents.
+steps:
+- n: 1
+  latex: P = 3000\ \text{W} = 3\ \text{kW}
+  reason: Power in kilowatts
+  check_id: chk_build_phy_pel_w0004_pk
+- n: 2
+  latex: t = 2 \times 31 = 62\ \text{h}
+  reason: Total time in hours
+  check_id: chk_build_phy_pel_w0004_th
+- n: 3
+  latex: E = 3 \times 62 = 186\ \text{kWh}
+  reason: Energy in kWh
+  check_id: chk_build_phy_pel_w0004_kwh
+- n: 4
+  latex: \text{cost} = 186 \times 12 = 2232\ \text{cents}
+  reason: Units used times price
+  check_id: chk_build_phy_pel_w0004_ans
+final_answer:
+  latex: 2232\ \text{cents}
+  check_id: chk_build_phy_pel_w0004_ans
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_pel_w0004_ans:
+    args:
+      expression: 3*2*31*12
+    tool: math_evaluate
+  chk_build_phy_pel_w0004_kwh:
+    args:
+      expression: 3*2*31
+    tool: math_evaluate
+  chk_build_phy_pel_w0004_pk:
+    args:
+      quantity: 3000 W
+      to: kW
+    tool: units_convert
+  chk_build_phy_pel_w0004_th:
+    args:
+      expression: 2*31
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

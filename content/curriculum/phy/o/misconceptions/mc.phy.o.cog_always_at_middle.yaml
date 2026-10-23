@@ -1,0 +1,36 @@
+id: mc.phy.o.cog_always_at_middle
+kc_ids:
+- kc.phy.o.forces.centre_of_gravity
+student_name: Centre of gravity always in the middle
+description: Thinks the centre of gravity is always at the geometric middle of an object, even when its mass is spread unevenly.
+signatures:
+- kind: answer_transform
+  expression: cog at centre
+fix:
+  strategy: counterexample
+  text:
+    en: A hammer balances near its heavy head, not halfway along the handle. The centre of gravity moves towards where more of the mass is.
+probe_item_ids:
+- itm.phy.o.forces.0109
+- itm.phy.o.forces.0096
+- itm.phy.o.forces.0098
+- itm.phy.o.forces.0104
+- itm.phy.o.forces.0105
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

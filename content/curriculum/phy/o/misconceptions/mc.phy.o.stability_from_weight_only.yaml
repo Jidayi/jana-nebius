@@ -1,0 +1,36 @@
+id: mc.phy.o.stability_from_weight_only
+kc_ids:
+- kc.phy.o.forces.centre_of_gravity
+student_name: Heavier always means steadier
+description: Thinks adding weight always makes an object more stable, wherever the weight is put.
+signatures:
+- kind: answer_transform
+  expression: stable if heavy
+fix:
+  strategy: counterexample
+  text:
+    en: A load on the roof rack makes a car easier to tip over. Weight added high up raises the centre of gravity and makes an object less stable.
+probe_item_ids:
+- itm.phy.o.forces.0109
+- itm.phy.o.forces.0111
+- itm.phy.o.forces.0112
+- itm.phy.o.forces.0096
+- itm.phy.o.forces.0098
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

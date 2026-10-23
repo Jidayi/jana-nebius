@@ -1,0 +1,110 @@
+id: itm.acc.o.accruals_prepayments.0038
+version: 0.1.0
+type: mcq
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.accruals_prepayments.accrual_presentation
+stem: A trader's year-end adjustments include wages owing at the year end.
+parts:
+- id: a
+  prompt: In which section of the statement of financial position is it shown?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Current liabilities
+      correct: true
+    - id: B
+      text: Current assets
+      correct: false
+    - id: C
+      text: Non-current assets
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Does the business owe this amount, or is it owed to the business?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Owed by the business: current liability. Owed to it or paid in advance: current asset.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Year-end adjustments are settled within a year.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Decide asset or liability.
+  - rung: 5
+    name: full_step
+    text:
+      en: It is shown under current liabilities.
+solution:
+  steps:
+  - n: 1
+    latex: \text{Wages owing at the year end} \rightarrow \text{Current liabilities}
+    reason: Asset or liability
+    check_id: chk_build_acc_accruals_prepayments_0038_t
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_accruals_prepayments_0038_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Rent
+        amount: '300'
+        kind: accrued_expense
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '60000'
+        role: revenue
+      - account: Purchases
+        debit: '30000'
+        role: purchases
+      - account: Rent
+        debit: '2400'
+        role: expense
+      - account: Land
+        debit: '27600'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

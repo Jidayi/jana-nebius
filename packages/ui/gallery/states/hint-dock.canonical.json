@@ -1,0 +1,62 @@
+{
+  "id": "hint-dock.canonical",
+  "title": "Hint dock",
+  "component": "HintDock",
+  "note": "In guided mode the dock replaces the action row with the open hint card's actions (UXS-17), Show solution beside them (D87).",
+  "state": "canonical",
+  "payload": {
+    "events": [
+      {
+        "type": "turn.start",
+        "turn_id": "trn_55555555555555555555555555",
+        "user_message_id": "msg_55555555555555555555555555",
+        "client_message_id": null,
+        "intent": "ask",
+        "mode": "guided",
+        "fork": false
+      },
+      {
+        "type": "part.start",
+        "part_id": "prt_55555555555555555555555555",
+        "kind": "card",
+        "index": 0
+      },
+      {
+        "type": "card.open",
+        "request_id": "req_55555555555555555555555555",
+        "part_id": "prt_55555555555555555555555555",
+        "call_id": null,
+        "card": {
+          "card_type": "hint",
+          "rung": 2,
+          "of": 5,
+          "body": "Which way does gravity pull on the ball?",
+          "actions": [
+            "try_it",
+            "next_hint",
+            "show_step"
+          ]
+        }
+      },
+      {
+        "type": "part.end",
+        "part_id": "prt_55555555555555555555555555",
+        "status": "complete",
+        "duration_ms": 1
+      }
+    ]
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Try it",
+    "Next hint (3 of 5)",
+    "Show this step (counts as not yet mastered)",
+    "Show solution"
+  ]
+}

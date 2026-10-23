@@ -1,0 +1,93 @@
+id: itm.phy.o.light.0019
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.refraction
+stem: A ray of light passes at an angle from air into a glass block.
+parts:
+- id: a
+  prompt: Which way does the ray bend as it enters the glass?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Away from the normal, because it slows down
+      correct: false
+      misconception_id: mc.phy.o.refraction_bends_wrong_way
+      feedback: Light slows down in glass and swings towards the normal; it speeds up again in air and swings away. Picture a car whose first wheel hits sand and slows.
+    - id: B
+      text: Towards the normal, because it speeds up
+      correct: false
+      misconception_id: mc.phy.o.light_speed_times_index
+      feedback: 'Nothing travels faster than light in a vacuum. A material slows light down, so divide c by the refractive index: the bigger n is, the slower the light.'
+    - id: C
+      text: It does not bend; only its colour changes
+      correct: false
+      misconception_id: mc.phy.o.light_colour_changes_in_glass
+      feedback: Red light is still red inside a glass block. The source sets the frequency; at the boundary only the speed and the wavelength change.
+    - id: D
+      text: Towards the normal, because it slows down
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what happens to the speed of light at the boundary.
+  - rung: 2
+    name: concept
+    text:
+      en: Light slows down entering a denser material and bends towards the normal; it speeds up leaving and bends away.
+  - rung: 3
+    name: first_step
+    text:
+      en: A ray along the normal goes straight on; a ray at an angle bends because one side slows before the other.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against these rules.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Towards the normal, because it slows down.'
+  misconception_ids:
+  - mc.phy.o.light_colour_changes_in_glass
+  - mc.phy.o.light_speed_times_index
+  - mc.phy.o.refraction_bends_wrong_way
+solution:
+  steps:
+  - n: 1
+    latex: \text{Towards the normal, because it slows down}
+    reason: Apply the rules of refraction
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

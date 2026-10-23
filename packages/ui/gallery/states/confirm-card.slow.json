@@ -1,0 +1,26 @@
+{
+  "id": "confirm-card.slow",
+  "title": "Confirm card, slow",
+  "component": "ConfirmCard",
+  "state": "slow",
+  "payload": {
+    "card_type": "confirm",
+    "purpose": "memory_save",
+    "title": "Save a note about this?",
+    "body": "I'll remember that you prefer to take up as positive.",
+    "confirm_label_key": "card.confirm_yes",
+    "cancel_label_key": "card.confirm_no"
+  },
+  "payloadContract": "https://jana.dev/contracts/api/events#/$defs/card",
+  "context": {
+    "theme": "light",
+    "elapsedMs": 5000
+  },
+  "placements": [
+    "conversation"
+  ],
+  "expectText": [
+    "Please confirm",
+    "Waiting for the tutor (5 s)"
+  ]
+}

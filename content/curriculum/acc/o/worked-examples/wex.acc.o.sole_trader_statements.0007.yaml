@@ -1,0 +1,89 @@
+id: wex.acc.o.sole_trader_statements.0007
+kc_ids:
+- kc.acc.o.sole_trader_statements.sofp_sections
+problem: A trader has non-current assets of $45000, current assets of $12600, current liabilities of $5400 and a loan repayable in eight years of $15000. Show the sections and find the owner's capital.
+steps:
+- n: 1
+  latex: \text{Assets} = \text{non-current} + \text{current}
+  reason: Owned by the business
+  check_id: chk_build_acc_sole_trader_statements_w0007_t
+- n: 2
+  latex: \text{Liabilities} = 5400 + 15000 = 20400
+  reason: 'The loan is non-current: due after a year'
+  check_id: chk_build_acc_sole_trader_statements_w0007_b
+- n: 3
+  latex: \text{Capital} = 45000 + 12600 - (5400 + 15000) = 37200
+  reason: Assets less liabilities
+  check_id: chk_build_acc_sole_trader_statements_w0007_a
+final_answer:
+  latex: \$\,37200
+  check_id: chk_build_acc_sole_trader_statements_w0007_a
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_w0007_a:
+    args:
+      dp: 2
+      expression: 45000 + 12600 - (5400 + 15000)
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_w0007_b:
+    args:
+      dp: 2
+      expression: 5400 + 15000
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_w0007_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Premises
+        debit: '45000'
+        role: non_current_asset
+      - account: Trade receivables
+        debit: '11600'
+        role: trade_receivables
+      - account: Trade payables
+        credit: '5400'
+        role: trade_payables
+      - account: Loan
+        credit: '15000'
+        role: non_current_liability
+      - account: Capital
+        credit: '37200'
+        role: capital
+      - account: Land
+        debit: '1000'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Family loan
+        credit: '1000'
+        role: non_current_liability
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

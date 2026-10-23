@@ -1,0 +1,60 @@
+{
+  "id": "connectivity-indicator.canonical.metered",
+  "title": "Connectivity indicator, metered connection",
+  "note": "Online on a metered connection: large downloads wait.",
+  "component": "ConnectivityIndicator",
+  "state": "canonical",
+  "variant": "metered",
+  "payload": {
+    "status": {
+      "type": "connectivity.status",
+      "network": "metered",
+      "checked_ts": 1760000000000,
+      "features": [
+        {
+          "feature": "cloud_tier",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "downloads",
+          "enabled": true,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "update_checks",
+          "enabled": true,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "telemetry",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "crash_reports",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        }
+      ]
+    },
+    "open": true
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light",
+    "connectivity": "metered"
+  },
+  "placements": [
+    "rail"
+  ],
+  "expectText": [
+    "Online (metered)",
+    "On a metered connection. Large downloads are paused."
+  ]
+}

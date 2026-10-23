@@ -1,0 +1,81 @@
+id: dgm.chm.titration_apparatus.v1
+subject: chm
+title: Apparatus for a titration
+svg_path: diagrams/titration_apparatus_v1.svg
+parts:
+- id: burette
+  name: Burette
+  function: A long graduated tube that delivers a measured volume of one solution.
+  label_anchor:
+  - 210
+  - 60
+  tab_order: 0
+  essential: true
+- id: tap
+  name: Tap
+  function: Controls how fast the solution runs out of the burette, down to single drops near the end point.
+  label_anchor:
+  - 215
+  - 240
+  tab_order: 1
+- id: conical_flask
+  name: Conical flask
+  function: Holds the measured volume of the other solution; its shape lets you swirl it without spilling.
+  label_anchor:
+  - 250
+  - 300
+  tab_order: 2
+  essential: true
+- id: solution
+  name: Solution with indicator
+  function: The solution in the flask with a few drops of indicator; its colour change shows the end point.
+  label_anchor:
+  - 250
+  - 326
+  tab_order: 3
+- id: white_tile
+  name: White tile
+  function: Sits under the flask so the colour change is easy to see.
+  label_anchor:
+  - 280
+  - 352
+  tab_order: 4
+- id: clamp_stand
+  name: Clamp stand
+  function: Holds the burette upright and steady.
+  label_anchor:
+  - 30
+  - 372
+  tab_order: 5
+sequences:
+- id: carry_out
+  title: Carrying out a titration
+  steps:
+  - highlight:
+    - burette
+    caption: Fill the burette and read the starting volume at eye level.
+  - highlight:
+    - conical_flask
+    - solution
+    caption: Put a measured volume of the other solution and a few drops of indicator into the flask.
+  - highlight:
+    - tap
+    caption: Open the tap and add the solution slowly while you swirl the flask.
+    arrows:
+    - arrow_drip
+  - highlight:
+    - solution
+    - white_tile
+    caption: Stop at the first lasting colour change, the end point, and read the final volume.
+alt_text: A burette held upright by a clamp stand above a conical flask on a white tile; the solution in the flask has turned pink, labelled as such.
+licence: LicenseRef-Own
+attribution: Our own drawing, made for Jana with AI assistance.
+version: 1.0.0
+levels:
+- O
+kc_ids:
+- kc.chm.o.acids.titration_calculations
+review:
+  author_role_id: rev_author_agent
+  status: in_review
+  style_version: 1

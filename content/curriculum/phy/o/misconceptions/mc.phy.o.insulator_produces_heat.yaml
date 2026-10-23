@@ -1,0 +1,37 @@
+id: mc.phy.o.insulator_produces_heat
+kc_ids:
+- kc.phy.o.heat_transfer.conduction
+- kc.phy.o.heat_transfer.radiation
+student_name: Insulators make heat
+description: Thinks a blanket, jumper or foil sheet gives out heat of its own, rather than slowing the loss of energy from something warm.
+signatures:
+- kind: answer_transform
+  expression: source
+fix:
+  strategy: counterexample
+  text:
+    en: Wrap a blanket round a block of ice and the ice stays frozen longer. Insulators produce no energy; they only slow down how fast energy moves through them.
+probe_item_ids:
+- itm.phy.o.heat_transfer.0011
+- itm.phy.o.heat_transfer.0013
+- itm.phy.o.heat_transfer.0002
+- itm.phy.o.heat_transfer.0007
+- itm.phy.o.heat_transfer.0008
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,91 @@
+id: itm.chm.o.metals.0045
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.corrosion
+stem: Food cans are made of steel coated with a thin layer of tin. Tin is less reactive than iron.
+parts:
+- id: a
+  prompt: What happens if the tin layer is scratched?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: The tin rusts, turning orange-brown.
+      correct: false
+      misconception_id: mc.chm.o.metals_all_metals_rust
+      feedback: Rust is hydrated iron(III) oxide, so only iron and steel rust. Other metals may corrode, but their corrosion is not called rusting.
+    - id: B
+      text: The iron is safe because water alone cannot rust it.
+      correct: false
+      misconception_id: mc.chm.o.metals_rust_one_condition
+      feedback: 'Compare the test tubes: a nail in boiled water under oil (no air) and a nail in dry air (no water) both stay shiny. Only the nail with water AND air rusts.'
+    - id: C
+      text: 'Nothing: tin corrodes in place of the iron.'
+      correct: false
+      misconception_id: mc.chm.o.metals_sacrificial_less_reactive
+      feedback: Sacrificial protection needs a metal MORE reactive than iron, such as zinc or magnesium. It corrodes first, losing electrons instead of the iron, so the iron is saved.
+    - id: D
+      text: The iron underneath is exposed and rusts, because tin gives only barrier protection.
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Tin is below iron in the reactivity series.
+  - rung: 2
+    name: concept
+    text:
+      en: Only a more reactive metal can corrode in place of iron.
+  - rung: 3
+    name: first_step
+    text:
+      en: So the tin layer can only work as a barrier.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Think about what a scratch does to a barrier.
+  - rung: 5
+    name: full_step
+    text:
+      en: Once scratched, the iron meets water and air and rusts; tin cannot protect it by sacrifice.
+  misconception_ids:
+  - mc.chm.o.metals_sacrificial_less_reactive
+  - mc.chm.o.metals_all_metals_rust
+  - mc.chm.o.metals_rust_one_condition
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Sn below Fe: barrier only}'
+    reason: No sacrificial protection
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

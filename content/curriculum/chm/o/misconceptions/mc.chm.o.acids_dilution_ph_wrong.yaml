@@ -1,0 +1,36 @@
+id: mc.chm.o.acids_dilution_ph_wrong
+kc_ids:
+- kc.chm.o.acids.ph_and_indicators
+- kc.chm.o.acids.strong_and_weak
+student_name: Getting the effect of water wrong
+description: Thinks diluting an acid or alkali leaves the pH unchanged, or that enough water carries the pH past 7.
+signatures:
+- kind: answer_transform
+  expression: 'choice: dilution leaving the pH unchanged or taking it past 7'
+fix:
+  strategy: counterexample
+  text:
+    en: Adding water spreads the same ions through more solution, so the pH moves towards 7. Water itself is neutral, so it can never make an acid alkaline or an alkali acidic.
+probe_item_ids:
+- itm.chm.o.acids.0015
+- itm.chm.o.acids.0016
+- itm.chm.o.acids.0024
+- itm.chm.o.acids.0028
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

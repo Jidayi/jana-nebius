@@ -1,0 +1,112 @@
+id: itm.mth.o.trigonometry.0056
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.elevation_depression
+stem: From the top of a cliff 30 m high, the angle of depression of a boat at sea is 51°.
+parts:
+- id: a
+  prompt: Find how far the boat is from the foot of the cliff, to 3 significant figures.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '24.3'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_trg_0056_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The angle of depression is measured down from the horizontal at the top of the cliff.
+  - rung: 2
+    name: concept
+    text:
+      en: By alternate angles it equals the angle of elevation of the cliff top from the boat.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'In the triangle at the boat, 30 m is opposite and the distance is adjacent: use tan.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: d = 30 ÷ tan 51°.
+  - rung: 5
+    name: full_step
+    text:
+      en: The boat is 24.3 m from the foot of the cliff.
+  misconception_ids:
+  - mc.mth.o.trig_rearrange_wrong
+  - mc.mth.o.depression_from_vertical
+  - mc.mth.o.trig_ratio_wrong
+solution:
+  steps:
+  - n: 1
+    latex: \tan 51 = \frac{30}{d}
+    reason: The angle at the boat equals the angle of depression
+  - n: 2
+    latex: d = \frac{30}{\tan 51} = 24.3\ \text{m}
+    reason: Rearrange
+    check_id: chk_build_mth_trg_0056_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- transport
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  theta: '51'
+checks:
+  chk_build_mth_trg_0056_ans:
+    args:
+      angle_unit: degrees
+      expression: 30/tan(51)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:40:40.736Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.trigonometry.0056
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

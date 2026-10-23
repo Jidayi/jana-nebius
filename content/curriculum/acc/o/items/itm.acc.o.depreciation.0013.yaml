@@ -1,0 +1,88 @@
+id: itm.acc.o.depreciation.0013
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.depreciation.depreciation_purpose
+stem: Bola is studying depreciation.
+parts:
+- id: a
+  prompt: Why is depreciation charged in the income statement?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Because cash is paid out for depreciation each year
+      correct: false
+      misconception_id: mc.acc.o.dep_cash_outflow
+    - id: B
+      text: To build up cash to buy a replacement asset
+      correct: false
+      misconception_id: mc.acc.o.dep_saves_cash
+    - id: C
+      text: To match part of the asset's cost against the revenue of each year it is used
+      correct: true
+    - id: D
+      text: To show what the asset could be sold for today
+      correct: false
+      misconception_id: mc.acc.o.dep_is_market_value
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Depreciation is about spreading a cost, not about cash or selling prices.
+  - rung: 2
+    name: concept
+    text:
+      en: 'An asset is used up over several years, so part of its cost is an expense of each year: the matching of costs with the revenue they help earn.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Depreciation is not a payment of cash and does not set money aside.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Causes include wear and tear, the passing of time, becoming out of date and using up.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: to match part of the asset''s cost against the revenue of each year it is used.'
+  misconception_ids:
+  - mc.acc.o.dep_saves_cash
+  - mc.acc.o.dep_is_market_value
+  - mc.acc.o.dep_cash_outflow
+solution:
+  steps:
+  - n: 1
+    latex: \text{Depreciation spreads cost over useful life}
+    reason: Matching cost with revenue
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,112 @@
+id: itm.phy.o.energy.0053
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.energy_conversion
+stem: A pendulum bob is pulled aside so that it is 10 cm above its lowest point, and then released. Ignore air resistance and take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate the speed of the bob as it passes through its lowest point.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '1.41'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_nrg_0053_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The gravitational store empties as the kinetic store fills.
+  - rung: 2
+    name: concept
+    text:
+      en: Set mgΔh = ½mv²; the mass cancels, so v² = 2gΔh.
+  - rung: 3
+    name: first_step
+    text:
+      en: The drop in height is 0.1 m.
+  - rung: 4
+    name: worked_step
+    text:
+      en: v² = 2 × 10 × 0.1 = 2; take the square root.
+  - rung: 5
+    name: full_step
+    text:
+      en: The speed is 1.41 m/s.
+  misconception_ids:
+  - mc.phy.o.conversion_two_dropped
+  - mc.phy.o.ke_speed_not_rooted
+  - mc.phy.o.gpe_height_in_cm
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: h = 10\ \text{cm} = 0.1\ \text{m}
+    reason: Height in metres
+    check_id: chk_build_phy_nrg_0053_h
+  - n: 2
+    latex: mg\Delta h = \frac{1}{2}mv^2 \Rightarrow v^2 = 2g\Delta h
+    reason: Energy lost from the gravitational store = energy gained by the kinetic store; m cancels
+  - n: 3
+    latex: v^2 = 2 \times 10 \times 0.1 = 2
+    reason: Substitute
+    check_id: chk_build_phy_nrg_0053_vsq
+  - n: 4
+    latex: v = \sqrt{2} = 1.41\ \text{m/s}
+    reason: Square root
+    check_id: chk_build_phy_nrg_0053_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0053_ans:
+    args:
+      expression: sqrt(2*10*10/100)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_nrg_0053_h:
+    args:
+      quantity: 10 cm
+      to: m
+    tool: units_convert
+  chk_build_phy_nrg_0053_vsq:
+    args:
+      expression: 2*10*10/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

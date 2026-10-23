@@ -1,0 +1,106 @@
+id: itm.mth.o.geometry.0150
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.triangle_angles
+stem: Triangle ABC is isosceles with AB = AC. Angle BAC = 50°.
+parts:
+- id: a
+  prompt: Find angle ABC.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 130°
+      correct: false
+      misconception_id: mc.mth.o.isosceles_not_halved
+      feedback: Subtract the top angle from 180°, then share what is left equally between the two base angles.
+    - id: B
+      text: 50°
+      correct: false
+      misconception_id: mc.mth.o.isosceles_wrong_pair
+      feedback: The equal angles are opposite the equal sides, at the ends of the third side.
+    - id: C
+      text: 65°
+      correct: true
+    - id: D
+      text: 155°
+      correct: false
+      misconception_id: mc.mth.o.triangle_sum_360
+      feedback: The angles of a triangle add to 180°; it is a quadrilateral whose angles add to 360°.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which two angles are equal in an isosceles triangle?
+  - rung: 2
+    name: concept
+    text:
+      en: 'The angles opposite the equal sides are equal: here angles ABC and ACB.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Take 50 from 180 to find the total of the two base angles.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The base angles share 130 equally.
+  - rung: 5
+    name: full_step
+    text:
+      en: Angle ABC = 65°.
+  misconception_ids:
+  - mc.mth.o.isosceles_not_halved
+  - mc.mth.o.isosceles_wrong_pair
+  - mc.mth.o.triangle_sum_360
+solution:
+  steps:
+  - n: 1
+    latex: 180 - 50 = 130
+    reason: Angles in a triangle add to 180°
+    check_id: chk_build_mth_geo_0150_d
+  - n: 2
+    latex: \frac{130}{2} = 65
+    reason: The two base angles are equal
+    check_id: chk_build_mth_geo_0150_ans
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0150_ans:
+    args:
+      expression: (180 - 50)/2
+    tool: math_evaluate
+  chk_build_mth_geo_0150_d:
+    args:
+      expression: 180 - 50
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

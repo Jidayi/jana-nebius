@@ -1,0 +1,91 @@
+id: itm.chm.o.organic.0058
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.alkanes_and_alkenes
+stem: Propene, C₃H₆, reacts with bromine.
+parts:
+- id: a
+  prompt: What is the formula of the product?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: C₃H₆Br₂
+      correct: true
+    - id: B
+      text: C₃H₆Br
+      correct: false
+    - id: C
+      text: C₃H₅Br
+      correct: false
+      misconception_id: mc.chm.o.organic_addition_substitution_mixed
+      feedback: In addition, two molecules join into one product and the double bond becomes single. In substitution an atom such as H is swapped for another such as Cl, so a second product (HCl) forms. Alkenes add; alkanes substitute, in ultraviolet light.
+    - id: D
+      text: C₃H₈
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Propene is an alkene, so it reacts by addition.
+  - rung: 2
+    name: concept
+    text:
+      en: In addition, the whole bromine molecule, Br₂, joins the alkene.
+  - rung: 3
+    name: first_step
+    text:
+      en: No atoms are lost from propene.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Add the atoms of C₃H₆ and Br₂ together.
+  - rung: 5
+    name: full_step
+    text:
+      en: C₃H₆ + Br₂ → C₃H₆Br₂.
+  misconception_ids:
+  - mc.chm.o.organic_addition_substitution_mixed
+solution:
+  steps:
+  - n: 1
+    latex: \text{C}_3\text{H}_6 + \text{Br}_2 \rightarrow \text{C}_3\text{H}_6\text{Br}_2
+    reason: Addition of bromine
+    check_id: chk_build_chm_organic_0058_bal
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_0058_bal:
+    args:
+      equation: C3H6 + Br2 -> C3H6Br2
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

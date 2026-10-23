@@ -1,0 +1,36 @@
+id: mc.phy.o.thermistor_resistance_rises_with_heat
+kc_ids:
+- kc.phy.o.circuits.potential_dividers
+- kc.phy.o.circuits.circuit_components
+student_name: A thermistor's resistance rises when it is heated
+description: Thinks a thermistor's resistance increases as its temperature rises, as a metal wire's does.
+signatures:
+- kind: answer_transform
+  expression: R up as T up
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The thermistors used at this level have a resistance that falls as they get warmer: hot means low resistance.'
+probe_item_ids:
+- itm.phy.o.circuits.0059
+- itm.phy.o.circuits.0072
+- itm.phy.o.circuits.0053
+- itm.phy.o.circuits.0061
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,126 @@
+id: itm.mth.o.statistics.0067
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.averages_frequency
+stem: 'A frequency table shows the goals scored in a season: 0 goals: 4 matches, 2 goals: 1 matches, 4 goals: 3 matches, 5 goals: 2 matches, 6 goals: 10 matches.'
+parts:
+- id: a
+  prompt: Find the mean number of goals per match.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '16.8'
+      correct: false
+      misconception_id: mc.mth.o.frequency_mean_rows
+      feedback: 'The mean shares the total among all the items: divide by Σf.'
+    - id: B
+      text: '3.4'
+      correct: false
+      misconception_id: mc.mth.o.frequency_ignored
+      feedback: A value that occurs 10 times counts 10 times in the total.
+    - id: C
+      text: '4'
+      correct: false
+      misconception_id: mc.mth.o.mean_wrong_count
+      feedback: Count the values carefully, including repeats.
+    - id: D
+      text: '4.2'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Each value appears several times; the frequency says how many.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Mean = Σfx ÷ Σf: the total of all the goals divided by the number of matches.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Multiply each number of goals by its frequency, then add.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Σfx = 84 and Σf = 20.
+  - rung: 5
+    name: full_step
+    text:
+      en: The mean is 4.2.
+  misconception_ids:
+  - mc.mth.o.frequency_ignored
+  - mc.mth.o.frequency_mean_rows
+  - mc.mth.o.mean_wrong_count
+solution:
+  steps:
+  - n: 1
+    latex: \Sigma fx = 84,\ \Sigma f = 20
+    reason: Multiply each value by its frequency and add
+    check_id: chk_build_mth_sta_0067_t
+  - n: 2
+    latex: \text{mean} = \frac{84}{20} = 4.2
+    reason: Divide by the total frequency
+    check_id: chk_build_mth_sta_0067_sc
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0067_ans:
+    args:
+      expression: 84/20
+    tool: math_evaluate
+  chk_build_mth_sta_0067_sc:
+    args:
+      frequencies:
+      - frequency: 4
+        value: 0
+      - frequency: 1
+        value: 2
+      - frequency: 3
+        value: 4
+      - frequency: 2
+        value: 5
+      - frequency: 10
+        value: 6
+      quartile_method: exclusive
+    tool: stats_compute
+  chk_build_mth_sta_0067_t:
+    args:
+      equations:
+      - p = 84
+      - q = 20
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

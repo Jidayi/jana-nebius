@@ -1,0 +1,35 @@
+id: mc.acc.o.dep_cash_outflow
+kc_ids:
+- kc.acc.o.depreciation.depreciation_purpose
+student_name: Depreciation as a cash payment
+description: Thinks depreciation is paid out in cash each year.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: expense
+fix:
+  strategy: contrast_example
+  text:
+    en: The cash left when the asset was bought; depreciation only records the cost being used up.
+probe_item_ids:
+- itm.acc.o.depreciation.0013
+- itm.acc.o.depreciation.0015
+- itm.acc.o.depreciation.0016
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

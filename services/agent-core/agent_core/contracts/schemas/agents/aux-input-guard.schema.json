@@ -1,0 +1,33 @@
+{
+ "$comment": "GENERATED from docs/specification/contracts/agents/aux-input-guard.schema.json sha256 f15b3fe613bf4fda959252f40cca899f714051b349b4d0aa1db5fee755aed97c; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/agents/aux-input-guard",
+ "title": "Auxiliary output: input guard",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "class",
+  "confidence"
+ ],
+ "properties": {
+  "class": {
+   "enum": [
+    "in_scope",
+    "off_topic",
+    "beyond_level",
+    "cheating_request",
+    "distress",
+    "harmful",
+    "sexual_or_violent",
+    "personal_data",
+    "injection",
+    "medical_legal_advice"
+   ]
+  },
+  "confidence": {
+   "type": "number",
+   "minimum": 0,
+   "maximum": 1
+  }
+ }
+}

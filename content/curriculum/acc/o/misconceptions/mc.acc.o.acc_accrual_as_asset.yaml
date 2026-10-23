@@ -1,0 +1,35 @@
+id: mc.acc.o.acc_accrual_as_asset
+kc_ids:
+- kc.acc.o.accruals_prepayments.accrual_presentation
+student_name: An accrual as an asset
+description: Shows an amount owed by the business, such as wages owing, as a current asset.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: liability
+fix:
+  strategy: contrast_example
+  text:
+    en: Wages owing must be paid by the business, so they are a current liability.
+probe_item_ids:
+- itm.acc.o.accruals_prepayments.0034
+- itm.acc.o.accruals_prepayments.0036
+- itm.acc.o.accruals_prepayments.0044
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,56 @@
+id: wex.phy.o.motion.0008
+kc_ids:
+- kc.phy.o.motion.speed_unit_conversion
+problem: A cheetah runs at 30 m/s. Convert this speed to km/h.
+steps:
+- n: 1
+  latex: v_{km/h} = 3.6\,v
+  reason: 1 m/s is 3.6 km/h
+  check_id: chk_build_phy_w_0008_k
+- n: 2
+  latex: v_{km/h} = 3.6 \times 30
+  reason: Substitute
+  check_id: chk_build_phy_w_0008
+- n: 3
+  latex: v_{km/h} = 108\ \text{km/h}
+  reason: Multiply
+  check_id: chk_build_phy_w_0008
+final_answer:
+  latex: 108\ \text{km/h}
+  check_id: chk_build_phy_w_0008
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_w_0008:
+    args:
+      expression: 3.6*30
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_w_0008_k:
+    args:
+      quantity: 1 m/s
+      to: km/h
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

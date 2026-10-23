@@ -1,0 +1,89 @@
+id: itm.acc.o.sole_trader_statements.0044
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.sole_trader_statements.sofp_sections
+stem: A trader lists these items at the year end.
+parts:
+- id: a
+  prompt: Select every item that is a liability.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Bank loan repayable in four years
+      correct: true
+    - id: B
+      text: Bank overdraft
+      correct: true
+    - id: C
+      text: Wages owing
+      correct: true
+    - id: D
+      text: Drawings
+      correct: false
+    - id: E
+      text: Trade receivables
+      correct: false
+    - id: F
+      text: Capital
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Liabilities are amounts the business owes to people other than the owner.
+  - rung: 2
+    name: concept
+    text:
+      en: A loan, an overdraft and unpaid wages are all owed to someone outside the business.
+  - rung: 3
+    name: first_step
+    text:
+      en: Drawings reduce the owner's capital; capital is the owner's stake.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Trade receivables are owed to the business, so they are assets.
+  - rung: 5
+    name: full_step
+    text:
+      en: The loan, the overdraft and the wages owing are liabilities.
+  misconception_ids:
+  - mc.acc.o.sofp_loan_as_capital
+  - mc.acc.o.sofp_drawings_as_liability
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Liabilities: loan, overdraft, wages owing}'
+    reason: Owed to outsiders
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

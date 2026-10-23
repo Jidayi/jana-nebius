@@ -1,0 +1,32 @@
+id: mc.phy.o.work_done_without_movement
+kc_ids:
+- kc.phy.o.energy.work_done
+student_name: Work done holding something still
+description: Thinks a force does work on an object that does not move, for example a weightlifter holding a barbell still.
+signatures:
+- kind: answer_transform
+  expression: F*0
+fix:
+  strategy: counterexample
+  text:
+    en: A table holds a book up all day but transfers no energy to it. With no movement along the force, the work done is zero, however tiring it feels.
+probe_item_ids:
+- itm.phy.o.energy.0072
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

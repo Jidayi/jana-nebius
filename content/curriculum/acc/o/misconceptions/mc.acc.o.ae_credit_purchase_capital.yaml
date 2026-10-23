@@ -1,0 +1,35 @@
+id: mc.acc.o.ae_credit_purchase_capital
+kc_ids:
+- kc.acc.o.accounting_equation.effect_of_transactions
+student_name: Capital changes when buying on credit
+description: Thinks buying or paying for goods on credit changes capital rather than liabilities.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: capital
+fix:
+  strategy: contrast_example
+  text:
+    en: Only the owner's money in or out, or profit and loss, changes capital. Credit changes liabilities.
+probe_item_ids:
+- itm.acc.o.accounting_equation.0034
+- itm.acc.o.accounting_equation.0035
+- itm.acc.o.accounting_equation.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

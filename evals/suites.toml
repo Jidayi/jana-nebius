@@ -1,0 +1,118 @@
+# The evaluation suites (TABLE EVL-01a) with their frozen versions (EVL-18). Changing any file a suite locks needs a
+# version bump here and `python -m jana_tools eval lock --write`; a gate run refuses a modified suite whose version
+# did not change. `stage` is the first build that runs the suite; `files` are globs from the repository root.
+
+[suites.scenarios]
+owner = "Engine engineer"
+cadence = "every commit touching engine, prompts, skills"
+stage = "S1"
+version = "2026-10-14.3"
+files = ["evals/scenarios/*.yaml", "evals/scenarios/scripts/*.yaml"]
+
+[suites.safety]
+owner = "Safety lead"
+cadence = "every change; release"
+stage = "S1"
+version = "2026-10-14.2"
+files = ["evals/safety/*.yaml", "evals/safety/scripts/*.yaml"]
+
+[suites.answer_oracles]
+owner = "Subject leads"
+cadence = "nightly; every change"
+stage = "S1"
+version = "2026-10-23.1"
+files = ["content/curriculum/*/*/*.yaml", "content/curriculum/*/*/*/*.yaml", "content/curriculum/ref/*/*.yaml"]
+
+[suites.marking]
+owner = "Engine engineer"
+cadence = "every commit"
+stage = "S1"
+version = "2026-10-13.1"
+files = ["services/tool-worker/tool_worker/golden/*.yaml", "evals/marking/*.yaml"]
+
+[suites.prompt_regression]
+owner = "Engine engineer"
+cadence = "every commit"
+stage = "S1"
+version = "2026-10-21.1"
+files = ["evals/prompt-snapshots/*/*.txt"]
+
+[suites.ui_gallery]
+owner = "Client lead"
+cadence = "every commit touching client"
+stage = "S1"
+version = "2026-10-22.1"
+files = ["packages/ui/gallery/states/*.json"]
+
+[suites.performance]
+owner = "ML engineer"
+cadence = "nightly; release"
+stage = "S1"
+version = "2026-10-13.1"
+files = ["evals/devlab/scripts/*.toml"]
+device_lab = true
+
+[suites.simulated_students]
+owner = "Evaluation lead"
+cadence = "nightly"
+stage = "S1"
+version = "2026-10-13.1"
+files = ["evals/personas/*.yaml"]
+needs_model = true
+
+[suites.pedagogy_rubric]
+owner = "Learning designer"
+cadence = "nightly sample; release"
+stage = "S1"
+version = "2026-10-13.1"
+files = ["evals/rubrics/*.yaml", "evals/rubrics/judge-prompt.md"]
+needs_model = true
+
+[suites.skill_evals]
+owner = "Curriculum lead"
+cadence = "on skill change"
+stage = "S2"
+version = "2026-10-13.2"
+files = ["skills/*/*/evals/*.yaml", "skills/teaching/*/*/evals/*.yaml"]
+
+[suites.memory_recall]
+owner = "Engine engineer"
+cadence = "nightly"
+stage = "S2"
+version = "2026-10-13.1"
+files = ["evals/memory/*.yaml", "evals/memory/sessions/*.yaml"]
+
+[suites.perception]
+owner = "ML engineer"
+cadence = "nightly"
+stage = "S2"
+version = "2026-10-15.1"
+files = ["evals/perception/regression/set.json", "evals/perception/regression/*.png", "evals/perception/regression/*.jpg"]
+
+[suites.classification]
+owner = "ML engineer"
+cadence = "nightly"
+stage = "S2"
+version = "2026-10-09.1"
+files = []
+
+[suites.content_packs]
+owner = "Curriculum lead"
+cadence = "every pack build"
+stage = "S1"
+version = "2026-10-23.1"
+files = ["content/curriculum/*/*/*.yaml", "content/curriculum/*/*/*/*.yaml", "content/curriculum/ref/*/*.yaml"]
+
+[suites.mastery_model]
+owner = "Learning lead"
+cadence = "per parameter or model change; release"
+stage = "S2"
+version = "2026-10-09.1"
+files = []
+
+[suites.learning_gain]
+owner = "Evaluation lead"
+cadence = "per pilot"
+stage = "S2"
+version = "2026-10-09.1"
+files = []

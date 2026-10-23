@@ -1,0 +1,34 @@
+id: mc.phy.o.renewable_means_reusable
+kc_ids:
+- kc.phy.o.energy.energy_resources
+student_name: Renewable means reusable
+description: 'Confuses renewable with reusable or recyclable: thinks a fuel is renewable if it can be collected and used again.'
+signatures:
+- kind: answer_transform
+  expression: reusable
+fix:
+  strategy: rule_restatement
+  text:
+    en: No fuel can be burned twice. Renewable means nature replaces the resource, like new crops or more wind.
+probe_item_ids:
+- itm.phy.o.energy.0116
+- itm.phy.o.energy.0119
+- itm.phy.o.energy.0120
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

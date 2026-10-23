@@ -1,0 +1,58 @@
+{
+  "id": "model-manager.canonical.disk-full",
+  "title": "Tutor models, disk full",
+  "component": "ModelManager",
+  "state": "canonical",
+  "variant": "disk-full",
+  "payload": {
+    "installed": [
+      {
+        "model_pack_id": "mp.synth.8b.q4_k_m.low",
+        "model_id": "mp.synth.8b.q4_k_m.low",
+        "state": "installed",
+        "error_code": null,
+        "hardware_class": "low",
+        "size_bytes": 5476083302,
+        "licence": "Apache-2.0",
+        "attribution": "Synthetic model, made up for the gallery."
+      }
+    ],
+    "available": [
+      {
+        "model_pack_id": "mp.synth.14b.q4_k_m.mid",
+        "hardware_class": "mid",
+        "size_bytes": 10093173145,
+        "licence": "Apache-2.0",
+        "download": {
+          "download_id": "dl_00000000000000000000000000",
+          "state": "failed",
+          "error_code": "storage_full",
+          "bytes_done": 0,
+          "bytes_total": 10093173145,
+          "free_bytes": 1181116006
+        }
+      }
+    ],
+    "assignment": {
+      "fast": "mp.synth.8b.q4_k_m.low",
+      "strong": "mp.synth.8b.q4_k_m.low"
+    },
+    "recommended": {
+      "fast": "mp.synth.14b.q4_k_m.mid",
+      "strong": "mp.synth.14b.q4_k_m.mid",
+      "reason_key": "hardware_class.mid.measured"
+    }
+  },
+  "payloadContract": "https://jana.dev/contracts/api/commands#/$defs/ModelCatalogue",
+  "context": {
+    "theme": "light",
+    "connectivity": "online-idle"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "This needs 9.4 GB of free space and the computer has 1.1 GB",
+    "Free up space"
+  ]
+}

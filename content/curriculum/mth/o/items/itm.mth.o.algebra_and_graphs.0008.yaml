@@ -1,0 +1,107 @@
+id: itm.mth.o.algebra_and_graphs.0008
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.substitution
+stem: The distance travelled is $s = ut + \tfrac{1}{2}at^2$. Take u = 4, a = 2 and t = 7.
+parts:
+- id: a
+  prompt: Find s.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '77'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0008_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'There are two terms: ut and ½at². Work each one out separately.'
+  - rung: 2
+    name: concept
+    text:
+      en: In the second term only t is squared.
+  - rung: 3
+    name: first_step
+    text:
+      en: The first term is 4 × 7.
+  - rung: 4
+    name: worked_step
+    text:
+      en: ut = 28 and ½ × 2 × 7² = 49.
+  - rung: 5
+    name: full_step
+    text:
+      en: s = 28 + 49 = 77.
+  misconception_ids:
+  - mc.mth.o.multiply_before_power
+  - mc.mth.o.formula_half_dropped
+  - mc.mth.o.power_dropped
+solution:
+  steps:
+  - n: 1
+    latex: s = ut + \tfrac{1}{2}at^2
+    reason: The formula
+  - n: 2
+    latex: s = 4 \times 7 + \tfrac{1}{2} \times 2 \times 7^2
+    reason: Substitute
+  - n: 3
+    latex: s = 28 + 49
+    reason: Work out each term
+    check_id: chk_build_mth_alg_0008_p
+  - n: 4
+    latex: s = 77
+    reason: Add
+    check_id: chk_build_mth_alg_0008_ans
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 75
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0008_ans:
+    args:
+      expression: u*t + a*t^2/2
+      values:
+        a: 2
+        t: 7
+        u: 4
+    tool: math_evaluate
+  chk_build_mth_alg_0008_p:
+    args:
+      equations:
+      - p = 4*7
+      - q = 2*7^2/2
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

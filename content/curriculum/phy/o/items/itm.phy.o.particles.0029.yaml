@@ -1,0 +1,101 @@
+id: itm.phy.o.particles.0029
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.temperature_scales
+stem: Liquid helium boils at about 4 K.
+parts:
+- id: a
+  prompt: Write this temperature in degrees Celsius.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 277 °C
+      correct: false
+      misconception_id: mc.phy.o.kelvin_offset_wrong_way
+      feedback: 'Kelvin numbers are always the bigger ones: 0 °C is 273 K. Add 273 to go from °C to K, and subtract 273 to go back.'
+    - id: B
+      text: -269 °C
+      correct: true
+    - id: C
+      text: 4 °C
+      correct: false
+      misconception_id: mc.phy.o.kelvin_same_as_celsius
+      feedback: 'The steps are the same size, but the scales start in different places: water freezes at 0 °C, which is 273 K.'
+    - id: D
+      text: 269 °C
+      correct: false
+      misconception_id: mc.phy.o.kelvin_subtraction_reversed
+      feedback: 'Use T = θ + 273 and θ = T − 273 exactly as written, and keep the sign of a Celsius temperature below zero: −40 °C is −40 + 273 = 233 K.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Kelvin and Celsius degrees are the same size; only the zero is different.
+  - rung: 2
+    name: concept
+    text:
+      en: The Celsius number is always 273 less than the kelvin number.
+  - rung: 3
+    name: first_step
+    text:
+      en: θ = T − 273; a result below zero needs its minus sign.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 4 − 273.
+  - rung: 5
+    name: full_step
+    text:
+      en: 4 K = -269 °C.
+  misconception_ids:
+  - mc.phy.o.kelvin_offset_wrong_way
+  - mc.phy.o.kelvin_same_as_celsius
+  - mc.phy.o.kelvin_subtraction_reversed
+solution:
+  steps:
+  - n: 1
+    latex: \theta = T - 273
+    reason: Celsius temperature = kelvin temperature − 273
+  - n: 2
+    latex: \theta = 4 - 273 = -269\ ^\circ\text{C}
+    reason: Subtract 273
+    check_id: chk_build_phy_ptc_0029_ans
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ptc_0029_ans:
+    args:
+      expression: 4 - 273
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

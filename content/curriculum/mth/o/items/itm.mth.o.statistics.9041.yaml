@@ -1,0 +1,85 @@
+id: itm.mth.o.statistics.9041
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.pie_charts
+stem: A pie chart represents 180 learners. The sector for walking to school has angle 72 degrees.
+parts:
+- id: a
+  prompt: How many learners walk to school?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '36'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9041
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The sector angle as a fraction of a full turn equals its count as a fraction of the total.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply the learner total by the sector angle divided by the full-turn angle.
+  - rung: 3
+    name: first_step
+    text:
+      en: Multiply the learner total by the sector angle divided by the full-turn angle.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Check that the count is the same fraction of the total as the angle is of a full turn.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 36.
+solution:
+  steps:
+  - n: 1
+    latex: 180 \cdot 72 \cdot \frac{1}{360}
+    reason: Multiply the learner total by the sector angle divided by the full-turn angle.
+    check_id: chk_build_mastery_supplement_mth_9041
+  - n: 2
+    latex: '36'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9041
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9041:
+    args:
+      angle_unit: degrees
+      expression: 180*72/360
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

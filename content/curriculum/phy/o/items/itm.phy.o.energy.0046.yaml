@@ -1,0 +1,126 @@
+id: itm.phy.o.energy.0046
+version: 0.1.2
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.energy_conversion
+stem: A coconut of mass 1.5 kg falls from rest through a height of 3.2 m. Ignore air resistance and take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate its speed just before it lands.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '8'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0046_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The gravitational store empties as the kinetic store fills.
+  - rung: 2
+    name: concept
+    text:
+      en: Set mgΔh = ½mv²; the mass cancels, so v² = 2gΔh.
+  - rung: 3
+    name: first_step
+    text:
+      en: The drop in height is 3.2 m.
+  - rung: 4
+    name: worked_step
+    text:
+      en: v² = 2 × 10 × 3.2 = 64; take the square root.
+  - rung: 5
+    name: full_step
+    text:
+      en: The speed is 8 m/s.
+  misconception_ids:
+  - mc.phy.o.conversion_two_dropped
+  - mc.phy.o.ke_speed_not_rooted
+  - mc.phy.o.conversion_mass_not_cancelled
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: mg\Delta h = \frac{1}{2}mv^2 \Rightarrow v^2 = 2g\Delta h
+    reason: Energy lost from the gravitational store = energy gained by the kinetic store; m cancels
+  - n: 2
+    latex: v^2 = 2 \times 10 \times 3.2 = 64
+    reason: Substitute
+    check_id: chk_build_phy_nrg_0046_vsq
+  - n: 3
+    latex: v = \sqrt{64} = 8\ \text{m/s}
+    reason: Square root
+    check_id: chk_build_phy_nrg_0046_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  g: '10'
+  h: '3.2'
+checks:
+  chk_build_phy_nrg_0046_ans:
+    args:
+      expression: sqrt(2*10*3.2)
+    tool: math_evaluate
+  chk_build_phy_nrg_0046_vsq:
+    args:
+      expression: 2*10*3.2
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:41:35.797Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.energy.0046
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

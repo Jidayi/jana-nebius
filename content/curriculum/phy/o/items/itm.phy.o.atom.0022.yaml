@@ -1,0 +1,96 @@
+id: itm.phy.o.atom.0022
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.atom.isotopes
+stem: Potassium-39 and potassium-40 are isotopes of potassium, which has proton number 19.
+parts:
+- id: a
+  prompt: How many more neutrons are there in a nucleus of potassium-40 than in a nucleus of potassium-39?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_atm_0022_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Isotopes of one element have the same number of protons.
+  - rung: 2
+    name: concept
+    text:
+      en: So the difference in nucleon number must all be neutrons.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the neutrons in each nucleus (nucleon number − proton number), then compare.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Potassium-39 has 20 neutrons and potassium-40 has 21.
+  - rung: 5
+    name: full_step
+    text:
+      en: Potassium-40 has 1 more neutron.
+solution:
+  steps:
+  - n: 1
+    latex: N_1 = 39 - 19 = 20
+    reason: Neutrons in potassium-39
+    check_id: chk_build_phy_atm_0022_n1
+  - n: 2
+    latex: N_2 = 40 - 19 = 21
+    reason: Neutrons in potassium-40
+    check_id: chk_build_phy_atm_0022_n2
+  - n: 3
+    latex: N_2 - N_1 = 21 - 20 = 1
+    reason: Only the neutrons differ between isotopes
+    check_id: chk_build_phy_atm_0022_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_atm_0022_ans:
+    args:
+      expression: (40 - 19) - (39 - 19)
+    tool: math_evaluate
+  chk_build_phy_atm_0022_n1:
+    args:
+      expression: 39 - 19
+    tool: math_evaluate
+  chk_build_phy_atm_0022_n2:
+    args:
+      expression: 40 - 19
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

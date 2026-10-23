@@ -1,0 +1,255 @@
+- id: kc.phy.o.forces.resultant_force
+  code: PHY-O-01.05.K01
+  node_id: cur.phy.o.motion_forces_and_energy.forces
+  statement: Find the resultant of forces acting along a line and relate it to whether the motion changes
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.167
+  prerequisites:
+  - kc_id: kc.phy.o.measurement.resultant_vectors
+    strength: required
+  misconception_ids:
+  - mc.phy.o.balanced_means_at_rest
+  - mc.phy.o.force_of_motion_used_up
+  - mc.phy.o.largest_vector_only
+  - mc.phy.o.moving_needs_resultant_force
+  - mc.phy.o.opposite_vectors_added
+  - mc.phy.o.resultant_along_motion
+  - mc.phy.o.resultant_gives_steady_speed
+  - mc.phy.o.resultant_one_force_left_out
+  - mc.phy.o.steady_speed_no_forces
+  skill_ids:
+  - phy-o-forces
+  glossary:
+  - resultant force
+  - resultant
+  - force
+  - balanced
+  - unbalanced
+  - newton
+  - acceleration
+  - velocity
+  - steady velocity
+  - driving force
+  difficulty_prior: -0.5
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.forces.force_mass_acceleration
+  code: PHY-O-01.05.K02
+  node_id: cur.phy.o.motion_forces_and_energy.forces
+  statement: Use resultant force = mass × acceleration to find force, mass or acceleration
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.194
+  prerequisites:
+  - kc_id: kc.phy.o.forces.resultant_force
+    strength: required
+  - kc_id: kc.phy.o.motion.acceleration_from_change
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.fma_applied_force_not_resultant
+  - mc.phy.o.fma_grams_not_converted
+  - mc.phy.o.fma_mixed_with_weight
+  - mc.phy.o.fma_multiplied_not_divided
+  - mc.phy.o.fma_ratio_inverted
+  - mc.phy.o.opposite_vectors_added
+  - mc.phy.o.rearrange_sign_error
+  skill_ids:
+  - phy-o-forces
+  glossary:
+  - resultant force
+  - resultant
+  - force
+  - mass
+  - acceleration
+  - newton
+  - accelerate
+  - velocity
+  - steady velocity
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.forces.friction_and_terminal_velocity
+  code: PHY-O-01.05.K03
+  node_id: cur.phy.o.motion_forces_and_energy.forces
+  statement: Explain how friction and air resistance change motion, including how a falling object reaches terminal velocity
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.139
+  prerequisites:
+  - kc_id: kc.phy.o.forces.force_mass_acceleration
+    strength: required
+  - kc_id: kc.phy.o.mass_weight.weight_from_mass
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.drag_alone_as_resultant
+  - mc.phy.o.drag_independent_of_speed
+  - mc.phy.o.falling_drag_ignored
+  - mc.phy.o.fma_applied_force_not_resultant
+  - mc.phy.o.friction_always_unwanted
+  - mc.phy.o.mass_in_kg_used_as_force
+  - mc.phy.o.moving_needs_resultant_force
+  - mc.phy.o.parachute_sends_upwards
+  - mc.phy.o.terminal_velocity_fixed
+  - mc.phy.o.terminal_velocity_no_forces
+  - mc.phy.o.force_of_motion_used_up
+  - mc.phy.o.opposite_vectors_added
+  - mc.phy.o.resultant_along_motion
+  - mc.phy.o.steady_speed_no_forces
+  skill_ids:
+  - phy-o-forces
+  glossary:
+  - friction
+  - air resistance
+  - drag
+  - terminal velocity
+  - resultant force
+  - weight
+  - accelerate
+  - acceleration
+  - decelerate
+  - deceleration
+  - resultant
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.forces.springs
+  code: PHY-O-01.05.K04
+  node_id: cur.phy.o.motion_forces_and_energy.forces
+  statement: Use force = spring constant × extension for a spring within its limit of proportionality
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.139
+  prerequisites:
+  - kc_id: kc.phy.o.mass_weight.weight_from_mass
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.mass_in_kg_used_as_force
+  - mc.phy.o.spring_cm_not_converted
+  - mc.phy.o.spring_extension_given_as_length
+  - mc.phy.o.spring_length_for_extension
+  - mc.phy.o.spring_proportional_beyond_limit
+  - mc.phy.o.spring_ratio_inverted
+  - mc.phy.o.fma_multiplied_not_divided
+  skill_ids:
+  - phy-o-forces
+  glossary:
+  - spring constant
+  - extension
+  - limit of proportionality
+  - force
+  - spring
+  - elastic
+  - Hooke's law
+  - newton
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.forces.circular_motion
+  code: PHY-O-01.05.K05
+  node_id: cur.phy.o.motion_forces_and_energy.forces
+  statement: Explain why motion in a circle at constant speed needs a resultant force towards the centre
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.083
+  prerequisites:
+  - kc_id: kc.phy.o.forces.force_mass_acceleration
+    strength: required
+  - kc_id: kc.phy.o.measurement.scalars_and_vectors
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.centripetal_trend_reversed
+  - mc.phy.o.circular_force_outwards
+  - mc.phy.o.circular_no_force_needed
+  - mc.phy.o.orbit_radius_not_circumference
+  - mc.phy.o.orbit_total_time_as_period
+  - mc.phy.o.released_flies_outwards
+  - mc.phy.o.resultant_along_motion
+  - mc.phy.o.time_over_distance
+  skill_ids:
+  - phy-o-forces
+  glossary:
+  - circular motion
+  - centripetal force
+  - resultant force
+  - orbit
+  - velocity
+  - constant speed
+  - acceleration
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.forces.moments
+  code: PHY-O-01.05.K06
+  node_id: cur.phy.o.motion_forces_and_energy.forces
+  statement: Calculate the moment of a force and apply the principle of moments to an object in balance
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.181
+  prerequisites:
+  - kc_id: kc.phy.o.forces.resultant_force
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.balance_equal_distances
+  - mc.phy.o.balance_equal_forces
+  - mc.phy.o.mass_in_kg_used_as_force
+  - mc.phy.o.moment_cm_not_converted
+  - mc.phy.o.moment_distance_from_end
+  - mc.phy.o.moment_force_over_distance
+  - mc.phy.o.moment_left_as_answer
+  - mc.phy.o.moment_one_force_left_out
+  - mc.phy.o.moment_ratio_inverted
+  skill_ids:
+  - phy-o-forces
+  glossary:
+  - moment
+  - principle of moments
+  - pivot
+  - perpendicular distance
+  - clockwise
+  - anticlockwise
+  - balance
+  - newton metre
+  - force
+  - lever
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.forces.centre_of_gravity
+  code: PHY-O-01.05.K07
+  node_id: cur.phy.o.motion_forces_and_energy.forces
+  statement: Relate the stability of an object to the height of its centre of gravity and the width of its base
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.097
+  prerequisites:
+  - kc_id: kc.phy.o.forces.moments
+    strength: required
+  misconception_ids:
+  - mc.phy.o.base_width_irrelevant
+  - mc.phy.o.cog_always_at_middle
+  - mc.phy.o.cog_inside_material
+  - mc.phy.o.stability_from_weight_only
+  - mc.phy.o.tipping_full_base_width
+  - mc.phy.o.tipping_object_height_used
+  - mc.phy.o.tipping_ratio_inverted
+  - mc.phy.o.topples_whenever_tilted
+  skill_ids:
+  - phy-o-forces
+  glossary:
+  - centre of gravity
+  - stability
+  - stable
+  - unstable
+  - pivot
+  - moment
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active

@@ -1,0 +1,31 @@
+id: mc.phy.o.cog_inside_material
+kc_ids:
+- kc.phy.o.forces.centre_of_gravity
+student_name: Centre of gravity inside the material
+description: Thinks the centre of gravity must lie somewhere in the material of the object, so a ring or a horseshoe cannot have it in the gap.
+signatures:
+- kind: answer_transform
+  expression: cog in material
+fix:
+  strategy: counterexample
+  text:
+    en: A ring balances on a point under the middle of its hole. The centre of gravity is where the weight acts on average, and it can be in empty space.
+probe_item_ids: []
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

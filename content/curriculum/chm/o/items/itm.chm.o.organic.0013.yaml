@@ -1,0 +1,95 @@
+id: itm.chm.o.organic.0013
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.naming
+- kc.chm.o.organic.carboxylic_acids
+stem: A carboxylic acid has the formula CH₃COOH.
+parts:
+- id: a
+  prompt: What is its name?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Methanoic acid
+      correct: false
+      misconception_id: mc.chm.o.organic_prefix_wrong_atoms
+      feedback: The prefix counts every carbon atom in the molecule, including the carbon inside –COOH. CH₃COOH has two carbon atoms, so it is ethanoic acid. Hydrogen atoms never set the prefix.
+    - id: B
+      text: Propanoic acid
+      correct: false
+      misconception_id: mc.chm.o.organic_prefix_order_mixed
+      feedback: 'Learn the order: meth- means one carbon atom, eth- two, prop- three and but- four. A memory aid: Monkeys Eat Peeled Bananas.'
+    - id: C
+      text: Ethanol
+      correct: false
+      misconception_id: mc.chm.o.organic_ending_wrong_series
+      feedback: 'The ending names the family: -ane for alkanes, -ene for alkenes, -ol for alcohols and -oic acid for carboxylic acids. Find the functional group first, then choose the ending.'
+    - id: D
+      text: Ethanoic acid
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A name has a prefix for the number of carbon atoms and an ending for the family.
+  - rung: 2
+    name: concept
+    text:
+      en: Count every carbon atom, including the one in the –COOH group. Acids end in -oic acid.
+  - rung: 3
+    name: first_step
+    text:
+      en: In CH₃COOH there is one carbon in CH₃ and one more in COOH.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Two carbon atoms in total: which prefix means two?'
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Two carbon atoms (eth-) and a –COOH group (-oic acid): ethanoic acid.'
+  misconception_ids:
+  - mc.chm.o.organic_prefix_wrong_atoms
+  - mc.chm.o.organic_ending_wrong_series
+  - mc.chm.o.organic_prefix_order_mixed
+solution:
+  steps:
+  - n: 1
+    latex: '\text{CH}_3\text{COOH: 1 + 1 = 2 carbons}'
+    reason: Count every carbon
+  - n: 2
+    latex: \text{eth- + -oic acid}
+    reason: Name
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

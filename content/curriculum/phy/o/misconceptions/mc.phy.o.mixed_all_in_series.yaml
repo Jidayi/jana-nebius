@@ -1,0 +1,36 @@
+id: mc.phy.o.mixed_all_in_series
+kc_ids:
+- kc.phy.o.circuits.mixed_circuits
+student_name: Treating every resistor as in series
+description: Adds all the resistances in a mixed circuit, ignoring that some of them are in parallel.
+signatures:
+- kind: answer_transform
+  expression: R1 + R2 + R3
+fix:
+  strategy: diagram
+  text:
+    en: Redraw the circuit and mark the junctions. Combine each parallel group first with 1/R = 1/R1 + 1/R2, then add the series parts.
+probe_item_ids:
+- itm.phy.o.circuits.0042
+- itm.phy.o.circuits.0043
+- itm.phy.o.circuits.0031
+- itm.phy.o.circuits.0032
+- itm.phy.o.circuits.0035
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

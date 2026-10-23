@@ -1,0 +1,34 @@
+id: mc.phy.o.parallel_one_branch_only
+kc_ids:
+- kc.phy.o.circuits.parallel_circuits
+student_name: Counting one branch only
+description: Gives the current in one branch as the current from the supply, forgetting the other branches.
+signatures:
+- kind: answer_transform
+  expression: V/R1
+fix:
+  strategy: rule_restatement
+  text:
+    en: The supply feeds every branch at once. Find the current in each branch and add them.
+probe_item_ids:
+- itm.phy.o.circuits.0029
+- itm.phy.o.circuits.0017
+- itm.phy.o.circuits.0023
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

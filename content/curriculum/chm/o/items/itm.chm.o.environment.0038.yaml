@@ -1,0 +1,90 @@
+id: itm.chm.o.environment.0038
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.climate
+stem: Several pairs of gases are found in the air.
+parts:
+- id: a
+  prompt: Which pair are both greenhouse gases?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Carbon dioxide and methane
+      correct: true
+    - id: B
+      text: Carbon dioxide and sulfur dioxide, because both thin the ozone layer
+      correct: false
+      misconception_id: mc.chm.o.environment_greenhouse_ozone_confused
+      feedback: These are two different problems. The ozone layer stops harmful ultraviolet light; damage to it raises the risk of skin cancer. Global warming is caused by greenhouse gases trapping heat (infrared) given off by the Earth.
+    - id: C
+      text: Nitrogen and oxygen
+      correct: false
+      misconception_id: mc.chm.o.environment_climate_wrong_gas
+      feedback: The main greenhouse gases to know are carbon dioxide and methane. Nitrogen and oxygen are not greenhouse gases. Catalytic converters and desulfurisation fight other pollutants, not climate change.
+    - id: D
+      text: Sulfur dioxide and carbon monoxide
+      correct: false
+      misconception_id: mc.chm.o.environment_climate_wrong_gas
+      feedback: The main greenhouse gases to know are carbon dioxide and methane. Nitrogen and oxygen are not greenhouse gases. Catalytic converters and desulfurisation fight other pollutants, not climate change.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Greenhouse gases absorb infrared radiation.
+  - rung: 2
+    name: concept
+    text:
+      en: The two you must know both contain carbon.
+  - rung: 3
+    name: first_step
+    text:
+      en: Nitrogen and oxygen make up most of the air, but they do not absorb infrared.
+  - rung: 4
+    name: worked_step
+    text:
+      en: One of the pair comes from burning fuels; the other comes from cattle and rotting waste.
+  - rung: 5
+    name: full_step
+    text:
+      en: Carbon dioxide and methane are both greenhouse gases.
+  misconception_ids:
+  - mc.chm.o.environment_climate_wrong_gas
+  - mc.chm.o.environment_greenhouse_ozone_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{CO}_2\text{ and CH}_4
+    reason: Main greenhouse gases
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

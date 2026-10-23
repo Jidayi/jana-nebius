@@ -1,0 +1,61 @@
+id: wex.acc.o.ratios.0011
+kc_ids:
+- kc.acc.o.ratios.roce
+problem: Profit for the year $9600; closing capital $52000; long-term loan $12000. Find ROCE.
+steps:
+- n: 1
+  latex: \text{ROCE} = \frac{\text{profit for the year}}{\text{capital} + \text{loans}}
+  reason: The pack's definition
+  check_id: chk_build_acc_ratios_w0011_t
+- n: 2
+  latex: \frac{9600}{52000 + 12000} \rightarrow 15.00\%
+  reason: As a percentage
+  check_id: chk_build_acc_ratios_w0011_a
+final_answer:
+  latex: 15.00\%
+  check_id: chk_build_acc_ratios_w0011_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_w0011_a:
+    args:
+      dp: 2
+      expression: 9600 / (52000 + 12000) * 100
+    tool: math_evaluate
+  chk_build_acc_ratios_w0011_t:
+    args:
+      closing_capital: '52000'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      non_current_liabilities: '12000'
+      opening_capital: '52000'
+      profit_for_the_year: '9600'
+      ratios:
+      - roce
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

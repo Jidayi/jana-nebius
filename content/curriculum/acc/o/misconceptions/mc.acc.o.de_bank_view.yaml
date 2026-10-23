@@ -1,0 +1,36 @@
+id: mc.acc.o.de_bank_view
+kc_ids:
+- kc.acc.o.double_entry.debit_credit_rules
+- kc.acc.o.double_entry.record_cash_transactions
+student_name: Thinking like the bank statement
+description: Reverses the debit and credit for the bank account because a bank statement shows money in as a credit.
+signatures:
+- kind: structural
+  rule: debit_credit_swapped
+  account_class: asset
+fix:
+  strategy: contrast_example
+  text:
+    en: The bank statement is written from the bank's side. In your own Bank account, money in is a debit and money out is a credit.
+probe_item_ids:
+- itm.acc.o.double_entry.0001
+- itm.acc.o.double_entry.0002
+- itm.acc.o.double_entry.0003
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

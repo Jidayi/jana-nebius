@@ -1,0 +1,43 @@
+id: mc.mth.o.percent_change_only
+kc_ids:
+- kc.mth.o.number.percentage_change
+- kc.mth.o.number.simple_interest
+student_name: Giving only the change
+description: Gives the increase or decrease when the new amount is asked for.
+signatures:
+- kind: answer_transform
+  expression: x*p/100
+fix:
+  strategy: rule_restatement
+  text:
+    en: After finding the change, add it to (or take it from) the original, or use a multiplier.
+probe_item_ids:
+- itm.mth.o.number.0276
+- itm.mth.o.number.0277
+- itm.mth.o.number.0278
+- itm.mth.o.number.0279
+- itm.mth.o.number.0280
+severity: medium
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

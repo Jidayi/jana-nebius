@@ -1,0 +1,43 @@
+{
+  "id": "plan-card.slow",
+  "title": "Plan card, slow",
+  "component": "PlanCard",
+  "state": "slow",
+  "payload": {
+    "card_type": "plan",
+    "title": "How we'll solve it",
+    "items": [
+      {
+        "id": "1",
+        "text": "List what we know",
+        "status": "done"
+      },
+      {
+        "id": "2",
+        "text": "Pick an equation",
+        "status": "in_progress"
+      },
+      {
+        "id": "3",
+        "text": "Solve for the height",
+        "status": "pending"
+      }
+    ],
+    "actions": [
+      "start",
+      "change"
+    ]
+  },
+  "payloadContract": "https://jana.dev/contracts/api/events#/$defs/card",
+  "context": {
+    "theme": "light",
+    "elapsedMs": 5000
+  },
+  "placements": [
+    "conversation"
+  ],
+  "expectText": [
+    "Plan",
+    "Waiting for the tutor (5 s)"
+  ]
+}

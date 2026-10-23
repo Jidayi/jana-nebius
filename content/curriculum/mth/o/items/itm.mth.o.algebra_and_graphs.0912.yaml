@@ -1,0 +1,91 @@
+id: itm.mth.o.algebra_and_graphs.0912
+version: 0.1.0
+type: equation_solutions
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.linear_equations
+stem: Solve $\frac{x + 4}{3} = 4$.
+parts:
+- id: a
+  prompt: Type the value of x.
+  marks: 2
+  answer:
+    kind: equation_solutions
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_alg_0912_key
+    variable: x
+    values:
+    - '8'
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'The whole of the top is divided by a number: undo the division first.'
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply both sides by 3.
+  - rung: 3
+    name: first_step
+    text:
+      en: After multiplying, the left side is x + 4.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Now undo the number that is added to x, on both sides.
+  - rung: 5
+    name: full_step
+    text:
+      en: x = 8.
+solution:
+  steps:
+  - n: 1
+    latex: x + 4 = 12
+    reason: 'Clear the fraction: multiply each side by 3'
+    check_id: chk_build_mth_alg_0912_qr
+  - n: 2
+    latex: x = 8
+    reason: Undo the number added to x
+    check_id: chk_build_mth_alg_0912_key
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0912_key:
+    args:
+      equations:
+      - \frac{x + 4}{3} = 4
+      unknowns:
+      - x
+    tool: math_solve
+  chk_build_mth_alg_0912_qr:
+    args:
+      expression: 3*(4)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

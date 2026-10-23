@@ -1,0 +1,107 @@
+id: itm.phy.o.forces.0080
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.circular_motion
+stem: A conker on a string is whirled in a circle of radius 0.4 m. It makes 10 complete revolutions in 8 s at a steady speed.
+parts:
+- id: a
+  prompt: Find its speed.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 3.14 m/s
+      correct: true
+    - id: B
+      text: 0.5 m/s
+      correct: false
+      misconception_id: mc.phy.o.orbit_radius_not_circumference
+      feedback: 'In one turn the object goes all the way round: the circumference, 2πr. Speed = 2πr ÷ T.'
+    - id: C
+      text: 0.314 m/s
+      correct: false
+      misconception_id: mc.phy.o.orbit_total_time_as_period
+      feedback: 'The period is the time for one revolution: divide the total time by the number of revolutions.'
+    - id: D
+      text: 0.318 m/s
+      correct: false
+      misconception_id: mc.phy.o.time_over_distance
+      feedback: Speed tells you how many metres you cover each second, so the metres go on top.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: First find the time for one revolution.
+  - rung: 2
+    name: concept
+    text:
+      en: Speed round a circle is v = 2πr ÷ T, where T is the period.
+  - rung: 3
+    name: first_step
+    text:
+      en: Divide the total time by 10 to get the period.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The period is 0.8 s.
+  - rung: 5
+    name: full_step
+    text:
+      en: v = 2π × 0.4 ÷ 0.8 = 3.14 m/s.
+  misconception_ids:
+  - mc.phy.o.orbit_radius_not_circumference
+  - mc.phy.o.orbit_total_time_as_period
+  - mc.phy.o.time_over_distance
+solution:
+  steps:
+  - n: 1
+    latex: T = \frac{8}{10} = 0.8\ \text{s}
+    reason: Time for one revolution
+    check_id: chk_build_phy_frc_0080_per
+  - n: 2
+    latex: v = \frac{2\pi \times 0.4}{0.8} = 3.14\ \text{m/s}
+    reason: v = 2πr ÷ T
+    check_id: chk_build_phy_frc_0080_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0080_ans:
+    args:
+      expression: 2*pi*0.4*10/8
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_frc_0080_per:
+    args:
+      expression: 8/10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

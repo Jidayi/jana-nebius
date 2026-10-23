@@ -1,0 +1,98 @@
+id: itm.mth.o.geometry.0154
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.triangle_angles
+stem: In triangle PQR, angle P = 35° and angle Q = 44°. Side QR is extended beyond R.
+parts:
+- id: a
+  prompt: Find the exterior angle at R.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 145°
+      correct: false
+      misconception_id: mc.mth.o.exterior_as_supplement
+      feedback: An exterior angle of a triangle equals the sum of the two interior angles opposite it.
+    - id: B
+      text: 101°
+      correct: false
+      misconception_id: mc.mth.o.exterior_interior_confused
+      feedback: The exterior angle lies outside the triangle, between one side and the extension of the next.
+    - id: C
+      text: 79°
+      correct: true
+    - id: D
+      text: 281°
+      correct: false
+      misconception_id: mc.mth.o.triangle_sum_360
+      feedback: The angles of a triangle add to 180°; it is a quadrilateral whose angles add to 360°.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which two interior angles are not next to the exterior angle at R?
+  - rung: 2
+    name: concept
+    text:
+      en: The exterior angle of a triangle equals the sum of the two interior angles opposite it.
+  - rung: 3
+    name: first_step
+    text:
+      en: Those angles are 35° and 44°.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Add 35 and 44.
+  - rung: 5
+    name: full_step
+    text:
+      en: The exterior angle is 79°.
+  misconception_ids:
+  - mc.mth.o.exterior_as_supplement
+  - mc.mth.o.exterior_interior_confused
+  - mc.mth.o.triangle_sum_360
+solution:
+  steps:
+  - n: 1
+    latex: 35 + 44 = 79
+    reason: An exterior angle equals the sum of the two opposite interior angles
+    check_id: chk_build_mth_geo_0154_ans
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0154_ans:
+    args:
+      expression: 35 + 44
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

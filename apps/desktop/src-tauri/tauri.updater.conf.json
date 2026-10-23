@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "bundle": {
+    "createUpdaterArtifacts": false
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "PLACEHOLDER-updater-public-key-from-the-key-ceremony",
+      "endpoints": ["https://updates.PLACEHOLDER-production-host/v1/check/stable/{{target}}/{{current_version}}"],
+      "windows": { "installMode": "passive" }
+    }
+  }
+}

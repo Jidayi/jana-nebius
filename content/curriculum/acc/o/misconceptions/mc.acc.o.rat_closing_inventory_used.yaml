@@ -1,0 +1,34 @@
+id: mc.acc.o.rat_closing_inventory_used
+kc_ids:
+- kc.acc.o.ratios.inventory_turnover
+student_name: Closing inventory instead of average
+description: Uses closing inventory when the pack's definition uses average inventory.
+signatures:
+- kind: answer_transform
+  expression: cost_of_sales / closing_inventory
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Follow the stated definition: average inventory = (opening + closing) ÷ 2.'
+probe_item_ids:
+- itm.acc.o.ratios.0034
+- itm.acc.o.ratios.0035
+- itm.acc.o.ratios.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

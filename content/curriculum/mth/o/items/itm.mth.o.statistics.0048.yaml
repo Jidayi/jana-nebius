@@ -1,0 +1,114 @@
+id: itm.mth.o.statistics.0048
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.averages_list
+stem: 'Here are some marks: 2, 13, 28, 6, 27, 22.'
+parts:
+- id: a
+  prompt: Find the mean. Give your answer to 3 significant figures.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '16.3'
+      correct: true
+    - id: B
+      text: '14'
+      correct: false
+      misconception_id: mc.mth.o.mean_wrong_count
+      feedback: Count the values carefully, including repeats.
+    - id: C
+      text: '19.6'
+      correct: false
+      misconception_id: mc.mth.o.frequency_mean_rows
+      feedback: 'The mean shares the total among all the items: divide by Σf.'
+    - id: D
+      text: '17.5'
+      correct: false
+      misconception_id: mc.mth.o.median_not_ordered
+      feedback: Write the data from smallest to largest, then find the middle.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The mean shares the total equally between the values.
+  - rung: 2
+    name: concept
+    text:
+      en: Mean = total ÷ number of values.
+  - rung: 3
+    name: first_step
+    text:
+      en: Add all the marks.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide the total by 6, the number of marks.
+  - rung: 5
+    name: full_step
+    text:
+      en: The mean is 16.3.
+  misconception_ids:
+  - mc.mth.o.frequency_mean_rows
+  - mc.mth.o.mean_wrong_count
+  - mc.mth.o.median_not_ordered
+solution:
+  steps:
+  - n: 1
+    latex: \text{total} = 2 + 13 + 28 + 6 + 27 + 22
+    reason: Add every value
+    check_id: chk_build_mth_sta_0048_sc
+  - n: 2
+    latex: \text{mean} = \frac{\text{total}}{6} = 16.3
+    reason: There are 6 values
+    check_id: chk_build_mth_sta_0048_ans
+difficulty:
+  prior: -0.7
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0048_ans:
+    args:
+      expression: (2 + 13 + 28 + 6 + 27 + 22)/6
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_sta_0048_sc:
+    args:
+      data:
+      - 2
+      - 13
+      - 28
+      - 6
+      - 27
+      - 22
+      quartile_method: exclusive
+    tool: stats_compute
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

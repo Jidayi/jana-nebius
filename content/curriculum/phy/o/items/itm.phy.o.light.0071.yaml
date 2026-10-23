@@ -1,0 +1,93 @@
+id: itm.phy.o.light.0071
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.converging_lens
+stem: A projector throws a large picture of a small slide onto a screen.
+parts:
+- id: a
+  prompt: Where is the slide placed, compared with the lens's focal length f?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: More than 2f from the lens
+      correct: false
+      misconception_id: mc.phy.o.lens_size_rule_reversed
+      feedback: 'A camera photographs a whole building on a small sensor: far objects give small images. A projector puts the slide just beyond F to make a big image.'
+    - id: B
+      text: Closer to the lens than f
+      correct: false
+      misconception_id: mc.phy.o.lens_virtual_real_swapped
+      feedback: 'Beyond F the rays from the object meet after the lens: a real image. Inside F they spread out after the lens and only seem to meet behind it: a virtual image.'
+    - id: C
+      text: Exactly at 2f, where images are magnified
+      correct: false
+      misconception_id: mc.phy.o.lens_image_same_size
+      feedback: 'Only an object at 2F gives a same-size image. Compare v with u: the image is as many times bigger as v is bigger than u.'
+    - id: D
+      text: Between f and 2f from the lens
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about where the object is compared with F and 2F.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Beyond 2F: real, inverted, diminished. Between F and 2F: real, inverted, magnified. Inside F: virtual, upright, magnified.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Rays crossing the axis make a real image upside down; a ray through the optical centre goes straight on.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against these rules.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Between f and 2f from the lens.'
+  misconception_ids:
+  - mc.phy.o.lens_image_same_size
+  - mc.phy.o.lens_size_rule_reversed
+  - mc.phy.o.lens_virtual_real_swapped
+solution:
+  steps:
+  - n: 1
+    latex: \text{Between f and 2f from the lens}
+    reason: Use the image rules for a converging lens
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

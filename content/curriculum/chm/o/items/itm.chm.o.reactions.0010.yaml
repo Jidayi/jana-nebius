@@ -1,0 +1,87 @@
+id: itm.chm.o.reactions.0010
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.physical_chemical_change
+stem: When 2.4 g of magnesium ribbon burns completely in air, 4.0 g of white magnesium oxide forms.
+parts:
+- id: a
+  prompt: Where does the extra mass come from?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Oxygen from the air, which has combined with the magnesium
+      correct: true
+    - id: B
+      text: Heat from the flame, which has been added to the magnesium
+      correct: false
+    - id: C
+      text: Smoke from the flame, which has settled on the magnesium
+      correct: false
+    - id: D
+      text: 'Nowhere: the balance must be wrong, because mass cannot increase'
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Burning is a reaction with a gas from the air. Which gas?
+  - rung: 2
+    name: concept
+    text:
+      en: In a chemical change atoms are rearranged, never made or destroyed.
+  - rung: 3
+    name: first_step
+    text:
+      en: The mass went up by 4.0 − 2.4 = 1.6 g.
+  - rung: 4
+    name: worked_step
+    text:
+      en: That extra mass must be atoms of another element that joined the magnesium.
+  - rung: 5
+    name: full_step
+    text:
+      en: The extra 1.6 g is oxygen from the air, which combined with the magnesium to make magnesium oxide, a new substance.
+solution:
+  steps:
+  - n: 1
+    latex: 4.0 - 2.4 = 1.6\ \text{g of oxygen}
+    reason: Mass of oxygen that combined
+    check_id: chk_build_chm_reactions_0010_o
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_0010_o:
+    args:
+      expression: 4.0 - 2.4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

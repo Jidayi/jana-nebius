@@ -1,0 +1,106 @@
+id: itm.phy.o.electrical_quantities.0073
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.resistance_of_wires
+stem: A 0.8 m length of constantan wire has a resistance of 1.2 Ω.
+parts:
+- id: a
+  prompt: Find the resistance of a 2 m length of the same wire.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 0.48 Ω
+      correct: false
+      misconception_id: mc.phy.o.longer_wire_less_resistance
+      feedback: Two equal wires end to end are two resistors in series, so twice the length gives twice the resistance.
+    - id: B
+      text: 3 Ω
+      correct: true
+    - id: C
+      text: 1.2 Ω
+      correct: false
+      misconception_id: mc.phy.o.resistance_set_by_material_only
+      feedback: A longer piece of the same wire has more resistance and a thicker piece less. The material is only one of the factors.
+    - id: D
+      text: 1.8 Ω
+      correct: false
+      misconception_id: mc.phy.o.extra_length_only
+      feedback: Compare the whole new length with the old length. Going from 1 m to 3 m makes the resistance three times as big, not twice.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Does a longer wire have more resistance or less?
+  - rung: 2
+    name: concept
+    text:
+      en: For the same wire, resistance is proportional to length.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find how many times longer the new piece is.
+  - rung: 4
+    name: worked_step
+    text:
+      en: It is 2.5 times as long; multiply 1.2 Ω by that.
+  - rung: 5
+    name: full_step
+    text:
+      en: R = 1.2 × 2.5 = 3 Ω.
+  misconception_ids:
+  - mc.phy.o.extra_length_only
+  - mc.phy.o.longer_wire_less_resistance
+  - mc.phy.o.resistance_set_by_material_only
+solution:
+  steps:
+  - n: 1
+    latex: \frac{2}{0.8} = 2.5
+    reason: How many times longer
+    check_id: chk_build_phy_elq_0073_ratio
+  - n: 2
+    latex: R = 1.2 \times 2.5 = 3\ \Omega
+    reason: Resistance is proportional to length
+    check_id: chk_build_phy_elq_0073_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_elq_0073_ans:
+    args:
+      expression: 1.2*2/0.8
+    tool: math_evaluate
+  chk_build_phy_elq_0073_ratio:
+    args:
+      expression: 2/0.8
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

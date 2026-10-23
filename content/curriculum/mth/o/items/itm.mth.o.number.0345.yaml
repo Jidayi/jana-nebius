@@ -1,0 +1,117 @@
+id: itm.mth.o.number.0345
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.simple_interest
+stem: $800 is invested at 6% per year simple interest for 3 years.
+parts:
+- id: a
+  prompt: Find the total amount at the end.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '944'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0345_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Simple interest is worked out on the original amount every year.
+  - rung: 2
+    name: concept
+    text:
+      en: Interest = amount × rate × years ÷ 100.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 800 × 6 × 3 ÷ 100.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The interest is $144. Now add it to the amount invested.
+  - rung: 5
+    name: full_step
+    text:
+      en: The total is $944.
+  misconception_ids:
+  - mc.mth.o.simple_as_compound
+  - mc.mth.o.interest_not_added
+  - mc.mth.o.percent_not_divided
+solution:
+  steps:
+  - n: 1
+    latex: I = \frac{800 \times 6 \times 3}{100} = 144
+    reason: Simple interest is the same each year
+    check_id: chk_build_mth_num_0345_si
+  - n: 2
+    latex: 800 + 144 = 944
+    reason: Add the interest to the amount invested
+    check_id: chk_build_mth_num_0345_ans
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  P: '800'
+  R: '6'
+  T: '3'
+checks:
+  chk_build_mth_num_0345_ans:
+    args:
+      expression: 800 + 800*6*3/100
+    tool: math_evaluate
+  chk_build_mth_num_0345_si:
+    args:
+      expression: 800*6*3/100
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:39:11.168Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.number.0345
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

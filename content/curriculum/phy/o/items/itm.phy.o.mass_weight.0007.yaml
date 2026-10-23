@@ -1,0 +1,93 @@
+id: itm.phy.o.mass_weight.0007
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.mass_weight.weight_from_mass
+stem: A drilling machine has a mass of 95 kg. It is taken to Titan (the largest moon of Saturn), where g = 1.4 N/kg.
+parts:
+- id: a
+  prompt: Calculate its weight on Titan (the largest moon of Saturn).
+  marks: 1
+  answer:
+    kind: numeric
+    value: '133'
+    unit: N
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_mwt_0007_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Weight depends on where the object is; mass does not.
+  - rung: 2
+    name: concept
+    text:
+      en: On Titan (the largest moon of Saturn) each kilogram has a weight of 1.4 N.
+  - rung: 3
+    name: first_step
+    text:
+      en: Weight = mass × g, using the g for that place.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 95 × 1.4.
+  - rung: 5
+    name: full_step
+    text:
+      en: The weight on Titan (the largest moon of Saturn) is 133 N.
+  misconception_ids:
+  - mc.phy.o.planet_g_mismatched
+  - mc.phy.o.weight_given_as_mass_number
+  - mc.phy.o.weight_mass_divided_by_g
+solution:
+  steps:
+  - n: 1
+    latex: W = mg = 95 \times 1.4 = 133\ \text{N}
+    reason: Use the g of the place where the object is
+    check_id: chk_build_phy_mwt_0007_ans
+difficulty:
+  prior: -0.7
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  g: '1.4'
+  m: '95'
+checks:
+  chk_build_phy_mwt_0007_ans:
+    args:
+      expression: 95*1.4
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

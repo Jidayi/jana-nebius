@@ -1,0 +1,75 @@
+id: wex.phy.o.circuits.0003
+kc_ids:
+- kc.phy.o.circuits.parallel_circuits
+problem: A 36 Ω resistor and a 12 Ω resistor are connected in parallel across a 6 V battery. Calculate the current supplied by the battery.
+steps:
+- n: 1
+  latex: I_1 = \frac{6}{36} = 0.167\ \text{A}
+  reason: Each branch has the full supply p.d.
+  check_id: chk_build_phy_cir_w0003_i1
+- n: 2
+  latex: I_2 = \frac{6}{12} = 0.5\ \text{A}
+  reason: The same for the other branch
+  check_id: chk_build_phy_cir_w0003_i2
+- n: 3
+  latex: I = 0.167 + 0.5 = 0.667\ \text{A}
+  reason: Branch currents add
+  check_id: chk_build_phy_cir_w0003_ans
+final_answer:
+  latex: 0.667\ \text{A}
+  check_id: chk_build_phy_cir_w0003_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_w0003_ans:
+    args:
+      expression: 6/36 + 6/12
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_cir_w0003_i1:
+    args:
+      expression: 6/36
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_cir_w0003_i2:
+    args:
+      expression: 6/12
+    tool: math_evaluate
+  chk_build_phy_cir_w0003_tool:
+    args:
+      components:
+      - emf: '6'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '36'
+      - id: R2
+        kind: resistor
+        resistance: '12'
+      network:
+        series:
+        - B
+        - parallel:
+          - R1
+          - R2
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

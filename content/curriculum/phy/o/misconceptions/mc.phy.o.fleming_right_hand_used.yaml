@@ -1,0 +1,36 @@
+id: mc.phy.o.fleming_right_hand_used
+kc_ids:
+- kc.phy.o.electromagnetism.motor_effect
+student_name: Using the wrong hand
+description: Uses the right hand, or mixes up the fingers, for the motor effect, so finds the force in the opposite direction.
+signatures:
+- kind: step_error
+  error_category: sign
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'For motors use the left hand: first finger for the field, second finger for the current, thumb for the motion.'
+probe_item_ids:
+- itm.phy.o.electromagnetism.0026
+- itm.phy.o.electromagnetism.0027
+- itm.phy.o.electromagnetism.0029
+- itm.phy.o.electromagnetism.0017
+- itm.phy.o.electromagnetism.0018
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

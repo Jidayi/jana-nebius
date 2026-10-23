@@ -1,0 +1,36 @@
+id: mc.phy.o.momentum_grams_not_converted
+kc_ids:
+- kc.phy.o.momentum.momentum_calculation
+student_name: Mass left in grams
+description: Multiplies a mass in grams by a velocity in m/s and gives the result in kg m/s.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: Momentum in kg m/s needs the mass in kilograms. Change grams into kilograms first.
+probe_item_ids:
+- itm.phy.o.momentum.0011
+- itm.phy.o.momentum.0014
+- itm.phy.o.momentum.0002
+- itm.phy.o.momentum.0006
+- itm.phy.o.momentum.0010
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

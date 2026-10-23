@@ -1,0 +1,35 @@
+id: mc.phy.o.series_pd_same_everywhere
+kc_ids:
+- kc.phy.o.circuits.series_circuits
+student_name: The p.d. is the same across each part
+description: Thinks that, like the current, the p.d. is the same across every component in a series circuit.
+signatures:
+- kind: answer_transform
+  expression: V1
+fix:
+  strategy: contrast_example
+  text:
+    en: Current is the same at every point in series, but the p.d.s across the components add up to the supply p.d.
+probe_item_ids:
+- itm.phy.o.circuits.0011
+- itm.phy.o.circuits.0013
+- itm.phy.o.circuits.0004
+- itm.phy.o.circuits.0008
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

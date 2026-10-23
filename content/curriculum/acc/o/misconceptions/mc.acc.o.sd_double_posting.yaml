@@ -1,0 +1,34 @@
+id: mc.acc.o.sd_double_posting
+kc_ids:
+- kc.acc.o.source_documents.post_day_book_totals
+student_name: Posting the sales twice
+description: Credits sales with each invoice and again with the journal total, so the sales are counted twice.
+signatures:
+- kind: answer_transform
+  expression: 2 * total
+fix:
+  strategy: rule_restatement
+  text:
+    en: Personal accounts take each item; the nominal account takes the total once.
+probe_item_ids:
+- itm.acc.o.source_documents.0050
+- itm.acc.o.source_documents.0051
+- itm.acc.o.source_documents.0052
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

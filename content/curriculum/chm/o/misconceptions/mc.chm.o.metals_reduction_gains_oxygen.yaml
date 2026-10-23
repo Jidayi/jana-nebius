@@ -1,0 +1,36 @@
+id: mc.chm.o.metals_reduction_gains_oxygen
+kc_ids:
+- kc.chm.o.metals.extraction
+student_name: Reduction means gaining oxygen
+description: 'Mixes up oxidation and reduction: thinks the ore is reduced by gaining oxygen, or that carbon is reduced.'
+signatures:
+- kind: answer_transform
+  expression: 'choice: reduction described as gain of oxygen'
+fix:
+  strategy: rule_restatement
+  text:
+    en: Reduction is LOSS of oxygen. In extraction the metal oxide loses its oxygen and becomes the metal; the carbon or carbon monoxide gains that oxygen and is oxidised.
+probe_item_ids:
+- itm.chm.o.metals.0047
+- itm.chm.o.metals.0048
+- itm.chm.o.metals.0049
+- itm.chm.o.metals.0055
+- itm.chm.o.metals.0056
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

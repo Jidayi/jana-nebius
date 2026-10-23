@@ -1,0 +1,89 @@
+id: itm.acc.o.accounting_equation.0021
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.accounting_equation.classify_elements
+stem: A business lists these items.
+parts:
+- id: a
+  prompt: Select every asset.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Shop equipment
+      correct: true
+    - id: B
+      text: Cash in the till
+      correct: true
+    - id: C
+      text: Amounts owed by customers
+      correct: true
+    - id: D
+      text: A bank loan
+      correct: false
+    - id: E
+      text: Rent paid
+      correct: false
+    - id: F
+      text: The owner's capital
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An asset is something the business owns or is owed.
+  - rung: 2
+    name: concept
+    text:
+      en: Equipment, cash and receivables are owned.
+  - rung: 3
+    name: first_step
+    text:
+      en: A loan is owed by the business; rent is an expense; capital is the owner's stake.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick what the business owns or is owed.
+  - rung: 5
+    name: full_step
+    text:
+      en: Equipment, cash and amounts owed by customers.
+  misconception_ids:
+  - mc.acc.o.ae_expense_as_asset
+  - mc.acc.o.ae_liability_as_asset
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Assets: equipment, cash, receivables}'
+    reason: Owned by the business
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

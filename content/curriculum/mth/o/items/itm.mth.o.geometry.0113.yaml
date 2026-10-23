@@ -1,0 +1,91 @@
+id: itm.mth.o.geometry.0113
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.angle_facts
+stem: Three angles lie together on a straight line. Two of them are 64° and 71°.
+parts:
+- id: a
+  prompt: Find the third angle.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '45'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_geo_0113_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: All three angles sit on one straight line.
+  - rung: 2
+    name: concept
+    text:
+      en: Angles on a straight line add up to 180°.
+  - rung: 3
+    name: first_step
+    text:
+      en: Add 64 and 71 first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Subtract 135 from 180.
+  - rung: 5
+    name: full_step
+    text:
+      en: The third angle is 45°.
+  misconception_ids:
+  - mc.mth.o.line_angles_360
+  - mc.mth.o.point_angles_180
+solution:
+  steps:
+  - n: 1
+    latex: 64 + 71 = 135
+    reason: Add the angles you know
+    check_id: chk_build_mth_geo_0113_s
+  - n: 2
+    latex: 180 - 135 = 45
+    reason: Angles on a straight line add to 180°
+    check_id: chk_build_mth_geo_0113_ans
+difficulty:
+  prior: -0.9
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0113_ans:
+    args:
+      expression: 180 - 64 - 71
+    tool: math_evaluate
+  chk_build_mth_geo_0113_s:
+    args:
+      expression: 64 + 71
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

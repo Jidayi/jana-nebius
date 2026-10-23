@@ -1,0 +1,72 @@
+id: wex.phy.o.circuits.0010
+kc_ids:
+- kc.phy.o.circuits.circuit_components
+problem: A thermistor is connected in series with a 400 Ω resistor and a 3 V battery. The thermistor's resistance is 150 Ω at one of two temperatures, 20 °C and 80 °C, and 1200 Ω at the other. Calculate the p.d. across the 400 Ω resistor at 80 °C.
+steps:
+- n: 1
+  latex: \text{warmer} \Rightarrow R_{\text{sensor}} = \text{the smaller value}
+  reason: Warmer means lower resistance
+- n: 2
+  latex: R = 150 + 400 = 550\ \Omega
+  reason: Series resistances add
+  check_id: chk_build_phy_cir_w0010_rt
+- n: 3
+  latex: V = 3 \times \frac{400}{550} = 2.18\ \text{V}
+  reason: The resistor's share of the battery p.d.
+  check_id: chk_build_phy_cir_w0010_ans
+final_answer:
+  latex: 2.18\ \text{V}
+  check_id: chk_build_phy_cir_w0010_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_w0010_ans:
+    args:
+      expression: 3*400/(150 + 400)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_cir_w0010_rt:
+    args:
+      expression: 150 + 400
+    tool: math_evaluate
+  chk_build_phy_cir_w0010_tool:
+    args:
+      components:
+      - emf: '3'
+        id: B
+        kind: battery
+      - id: S
+        kind: resistor
+        resistance: '150'
+      - id: F
+        kind: resistor
+        resistance: '400'
+      network:
+        series:
+        - B
+        - S
+        - F
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

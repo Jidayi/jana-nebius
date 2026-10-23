@@ -1,0 +1,98 @@
+id: itm.phy.o.mass_weight.0012
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.mass_weight.weight_from_mass
+stem: A drilling machine has a mass of 95 kg. It is taken to Saturn, where g = 10.4 N/kg.
+parts:
+- id: a
+  prompt: Calculate its weight on Saturn.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 988 N
+      correct: true
+    - id: B
+      text: 931 N
+      correct: false
+      misconception_id: mc.phy.o.planet_g_mismatched
+      feedback: 'g depends on where the object is: about 9.8 N/kg on Earth but 1.6 N/kg on the Moon. Use the g of the place where the weight acts or was measured.'
+    - id: C
+      text: 95 N
+      correct: false
+      misconception_id: mc.phy.o.weight_given_as_mass_number
+      feedback: 'A bag of sugar pulls on your hand much less on the Moon than on Earth, yet it holds the same sugar. Weight is a force: multiply the mass by g to get it, and divide a weight by g to get the mass.'
+    - id: D
+      text: 9.13 N
+      correct: false
+      misconception_id: mc.phy.o.weight_mass_divided_by_g
+      feedback: 'Weight = mass × g: each kilogram has a weight of g newtons. So mass = weight ÷ g. Where g is bigger than 1 N/kg the weight in newtons is a bigger number than the mass in kilograms.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Weight depends on where the object is; mass does not.
+  - rung: 2
+    name: concept
+    text:
+      en: On Saturn each kilogram has a weight of 10.4 N.
+  - rung: 3
+    name: first_step
+    text:
+      en: Weight = mass × g, using the g for that place.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 95 × 10.4.
+  - rung: 5
+    name: full_step
+    text:
+      en: The weight on Saturn is 988 N.
+  misconception_ids:
+  - mc.phy.o.planet_g_mismatched
+  - mc.phy.o.weight_given_as_mass_number
+  - mc.phy.o.weight_mass_divided_by_g
+solution:
+  steps:
+  - n: 1
+    latex: W = mg = 95 \times 10.4 = 988\ \text{N}
+    reason: Use the g of the place where the object is
+    check_id: chk_build_phy_mwt_0012_ans
+difficulty:
+  prior: -0.7
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mwt_0012_ans:
+    args:
+      expression: 95*10.4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

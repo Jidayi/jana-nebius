@@ -1,0 +1,36 @@
+id: mc.mth.o.upper_bound_below
+kc_ids:
+- kc.mth.o.number.bounds
+student_name: An upper bound just below the half
+description: Gives the upper bound of 12 to the nearest whole number as 12.4 or 12.49 instead of 12.5.
+signatures:
+- kind: answer_transform
+  expression: x + h - d
+fix:
+  strategy: rule_restatement
+  text:
+    en: The upper bound is exactly halfway to the next value, 12.5, even though 12.5 itself would round up.
+probe_item_ids:
+- itm.mth.o.number.0200
+- itm.mth.o.number.0201
+- itm.mth.o.number.0202
+- itm.mth.o.number.0203
+- itm.mth.o.number.0204
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,91 @@
+id: itm.chm.o.organic.0054
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.alkanes_and_alkenes
+stem: Ethene reacts with hydrogen when heated with a nickel catalyst.
+parts:
+- id: a
+  prompt: What is the product?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Ethane and hydrogen chloride
+      correct: false
+      misconception_id: mc.chm.o.organic_addition_substitution_mixed
+      feedback: In addition, two molecules join into one product and the double bond becomes single. In substitution an atom such as H is swapped for another such as Cl, so a second product (HCl) forms. Alkenes add; alkanes substitute, in ultraviolet light.
+    - id: B
+      text: Ethanol
+      correct: false
+    - id: C
+      text: Ethane
+      correct: true
+    - id: D
+      text: Poly(ethene)
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: This is an addition reaction across the C=C bond.
+  - rung: 2
+    name: concept
+    text:
+      en: One hydrogen atom joins each carbon atom of the double bond.
+  - rung: 3
+    name: first_step
+    text:
+      en: C₂H₄ + H₂ gives a single product.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Count the atoms: two carbon atoms and six hydrogen atoms. Which compound is that?'
+  - rung: 5
+    name: full_step
+    text:
+      en: 'C₂H₄ + H₂ → C₂H₆: the product is ethane. The same reaction hardens vegetable oils into margarine.'
+  misconception_ids:
+  - mc.chm.o.organic_addition_substitution_mixed
+solution:
+  steps:
+  - n: 1
+    latex: \text{C}_2\text{H}_4 + \text{H}_2 \rightarrow \text{C}_2\text{H}_6
+    reason: Addition of hydrogen
+    check_id: chk_build_chm_organic_0054_bal
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_0054_bal:
+    args:
+      equation: C2H4 + H2 -> C2H6
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

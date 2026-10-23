@@ -1,0 +1,46 @@
+id: wex.phy.o.atom.0006
+kc_ids:
+- kc.phy.o.atom.nuclear_model_evidence
+problem: An atom is about 100000 times wider than its nucleus. In a model, the nucleus is a grain of rice 4 mm across. How wide would the whole atom be in this model, in metres?
+steps:
+- n: 1
+  latex: 4 \times 100000 = 400000\ \text{mm}
+  reason: Scale up the nucleus
+  check_id: chk_build_phy_atm_w0006_mm
+- n: 2
+  latex: 400000\ \text{mm} = 400\ \text{m}
+  reason: Change millimetres to metres
+  check_id: chk_build_phy_atm_w0006_ans
+final_answer:
+  latex: 400\ \text{m}
+  check_id: chk_build_phy_atm_w0006_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_atm_w0006_ans:
+    args:
+      quantity: 400000 mm
+      to: m
+    tool: units_convert
+  chk_build_phy_atm_w0006_mm:
+    args:
+      expression: 4*100000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

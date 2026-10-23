@@ -1,0 +1,92 @@
+id: itm.phy.o.pressure.0034
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.gas_and_atmospheric_pressure
+stem: Atmospheric pressure is 750 mm Hg. A mercury manometer joined to a gas cylinder has its mercury level at 230 mm in the open arm and at 150 mm in the arm joined to the cylinder.
+parts:
+- id: a
+  prompt: Find the pressure of the gas, in mm Hg.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '830'
+    unit: mmHg
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_prs_0034_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: In mm Hg, a pressure is the height of mercury it can hold up.
+  - rung: 2
+    name: concept
+    text:
+      en: The side that pushes harder pushes its mercury level down.
+  - rung: 3
+    name: first_step
+    text:
+      en: The mercury is higher in the open arm, so the gas pressure is above atmospheric pressure.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The levels differ by 80 mm; add this to 750.
+  - rung: 5
+    name: full_step
+    text:
+      en: The gas pressure is 830 mm Hg.
+  misconception_ids:
+  - mc.phy.o.manometer_excess_as_gas_pressure
+  - mc.phy.o.manometer_difference_sign_wrong
+  - mc.phy.o.manometer_one_level_used
+solution:
+  steps:
+  - n: 1
+    latex: \Delta h = 230 - 150 = 80\ \text{mm}
+    reason: The difference in levels
+    check_id: chk_build_phy_prs_0034_dh
+  - n: 2
+    latex: p = 750 + 80 = 830\ \text{mm Hg}
+    reason: The gas pushes harder
+    check_id: chk_build_phy_prs_0034_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_0034_ans:
+    args:
+      expression: 750 + 80
+    tool: math_evaluate
+  chk_build_phy_prs_0034_dh:
+    args:
+      expression: 230 - 150
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

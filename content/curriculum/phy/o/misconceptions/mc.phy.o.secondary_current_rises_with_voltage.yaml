@@ -1,0 +1,36 @@
+id: mc.phy.o.secondary_current_rises_with_voltage
+kc_ids:
+- kc.phy.o.electromagnetism.power_transmission
+student_name: Current rises with the voltage
+description: Thinks a transformer that steps the voltage up also steps the current up; for the same power, a higher voltage means a smaller current.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: simpler_numbers
+  text:
+    en: Power is p.d. × current and an ideal transformer keeps the power the same. Double the voltage and the current halves.
+probe_item_ids:
+- itm.phy.o.electromagnetism.0072
+- itm.phy.o.electromagnetism.0073
+- itm.phy.o.electromagnetism.0075
+- itm.phy.o.electromagnetism.0061
+- itm.phy.o.electromagnetism.0065
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

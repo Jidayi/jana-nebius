@@ -1,0 +1,150 @@
+id: itm.acc.o.clubs.0039
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.clubs.surplus_deficit
+stem: 'A gardening club''s figures for the year: subscriptions for the year $3550; competition fees $1300; rent $2800; groundsman''s wages $3250; electricity $300; new equipment bought $4900; depreciation of equipment $700.'
+parts:
+- id: a
+  prompt: Calculate the surplus for the year (give a deficit as a negative number).
+  marks: 3
+  answer:
+    kind: numeric
+    value: '-2200.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_clubs_0039_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A club's surplus is its income for the year less its expenditure for the year.
+  - rung: 2
+    name: concept
+    text:
+      en: Include this year's income and expenses, and depreciation; leave out capital spending.
+  - rung: 3
+    name: first_step
+    text:
+      en: The equipment bought is an asset; only its depreciation is expenditure.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 3550 + 1300 − (2800 + 3250 + 300 + 700).
+  - rung: 5
+    name: full_step
+    text:
+      en: The club has a deficit of $2200.
+  misconception_ids:
+  - mc.acc.o.club_capital_items_in_ie
+  - mc.acc.o.club_depreciation_omitted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Surplus} = \text{income} - \text{expenditure}
+    reason: Matching, like profit
+    check_id: chk_build_acc_clubs_0039_t
+  - n: 2
+    latex: \text{Income} = 3550 + 1300 = 4850
+    reason: Earned this year
+    check_id: chk_build_acc_clubs_0039_s2
+  - n: 3
+    latex: \text{Expenditure} = 2800 + 3250 + 300 + 700 = 7050
+    reason: Including depreciation
+    check_id: chk_build_acc_clubs_0039_s3
+  - n: 4
+    latex: 4850 - 7050 \rightarrow 2200\ \text{deficit}
+    reason: Subtract
+    check_id: chk_build_acc_clubs_0039_s4
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_clubs_0039_a:
+    args:
+      dp: 2
+      expression: 3550 + 1300 - (2800 + 3250 + 300 + 700)
+    tool: math_evaluate
+  chk_build_acc_clubs_0039_s2:
+    args:
+      dp: 4
+      expression: 3550 + 1300
+    tool: math_evaluate
+  chk_build_acc_clubs_0039_s3:
+    args:
+      dp: 4
+      expression: 2800 + 3250 + 300 + 700
+    tool: math_evaluate
+  chk_build_acc_clubs_0039_s4:
+    args:
+      dp: 4
+      expression: abs(3550 + 1300 - (2800 + 3250 + 300 + 700))
+    tool: math_evaluate
+  chk_build_acc_clubs_0039_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Equipment
+        amount: '700'
+        kind: depreciation
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Subscriptions
+        credit: '3550'
+        role: other_income
+      - account: Competition fees
+        credit: '1300'
+        role: other_income
+      - account: Rent
+        debit: '2800'
+        role: expense
+      - account: Wages
+        debit: '3250'
+        role: expense
+      - account: Electricity
+        debit: '300'
+        role: expense
+      - account: Equipment
+        debit: '4900'
+        role: non_current_asset
+      - account: Capital
+        credit: '6400'
+        role: capital
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Family loan
+        credit: '1000'
+        role: non_current_liability
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

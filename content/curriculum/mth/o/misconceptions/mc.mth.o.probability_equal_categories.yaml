@@ -1,0 +1,36 @@
+id: mc.mth.o.probability_equal_categories
+kc_ids:
+- kc.mth.o.probability.single_event
+student_name: Every category equally likely
+description: Gives 1 divided by the number of colours (or categories) even when they have different counts.
+signatures:
+- kind: answer_transform
+  expression: 1/k
+fix:
+  strategy: counterexample
+  text:
+    en: With 9 red and 1 blue, red is far more likely than blue, even though there are two colours.
+probe_item_ids:
+- itm.mth.o.probability.0011
+- itm.mth.o.probability.0012
+- itm.mth.o.probability.0013
+- itm.mth.o.probability.0014
+- itm.mth.o.probability.0015
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

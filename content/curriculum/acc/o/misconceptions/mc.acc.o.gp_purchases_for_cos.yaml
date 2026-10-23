@@ -1,0 +1,35 @@
+id: mc.acc.o.gp_purchases_for_cos
+kc_ids:
+- kc.acc.o.sole_trader_statements.gross_profit
+- kc.acc.o.sole_trader_statements.cost_of_sales
+student_name: Purchases instead of cost of sales
+description: Subtracts purchases from revenue, ignoring the opening and closing inventories.
+signatures:
+- kind: answer_transform
+  expression: revenue - sales_returns - purchases
+fix:
+  strategy: counterexample
+  text:
+    en: A shop that buys a lot at the year end has not sold it yet. Adjust purchases for the inventories.
+probe_item_ids:
+- itm.acc.o.sole_trader_statements.0012
+- itm.acc.o.sole_trader_statements.0013
+- itm.acc.o.sole_trader_statements.0014
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

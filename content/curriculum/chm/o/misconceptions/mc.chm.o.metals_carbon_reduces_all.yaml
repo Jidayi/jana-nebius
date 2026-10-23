@@ -1,0 +1,36 @@
+id: mc.chm.o.metals_carbon_reduces_all
+kc_ids:
+- kc.chm.o.metals.extraction
+student_name: Carbon can extract any metal
+description: Thinks heating with carbon extracts every metal from its oxide, including aluminium and magnesium.
+signatures:
+- kind: answer_transform
+  expression: 'choice: carbon reduction chosen for a metal above carbon'
+fix:
+  strategy: rule_restatement
+  text:
+    en: Carbon can only take oxygen from metals BELOW it in the reactivity series (zinc, iron, lead, copper). Metals above carbon hold their oxygen more strongly, so electrolysis is needed.
+probe_item_ids:
+- itm.chm.o.metals.0047
+- itm.chm.o.metals.0048
+- itm.chm.o.metals.0050
+- itm.chm.o.metals.0051
+- itm.chm.o.metals.0058
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

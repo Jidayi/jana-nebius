@@ -1,0 +1,110 @@
+id: itm.mth.o.algebra_and_graphs.0166
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.forming_equations
+stem: A rectangular garden is 2 m longer than it is wide. Its perimeter is 28 m.
+parts:
+- id: a
+  prompt: Form an equation in w, the width in metres, and solve it to find the width.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '6'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0166_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Let the width be w. What is the length?
+  - rung: 2
+    name: concept
+    text:
+      en: The length is w + 2. A rectangle has two lengths and two widths.
+  - rung: 3
+    name: first_step
+    text:
+      en: The perimeter is 2(w + w + 2) = 28.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Halving both sides gives 2w + 2 = 14.
+  - rung: 5
+    name: full_step
+    text:
+      en: w = 6 m.
+  misconception_ids:
+  - mc.mth.o.perimeter_half
+  - mc.mth.o.bracket_partly_expanded
+  - mc.mth.o.simultaneous_other_unknown
+solution:
+  steps:
+  - n: 1
+    latex: 2(w + w + 2) = 28
+    reason: Perimeter is twice length plus width
+  - n: 2
+    latex: 2w + 2 = 14
+    reason: Divide both sides by 2
+  - n: 3
+    latex: 2w = 12
+    reason: Subtract 2
+    check_id: chk_build_mth_alg_0166_s
+  - n: 4
+    latex: w = 6
+    reason: Divide by 2
+    check_id: chk_build_mth_alg_0166_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0166_ans:
+    args:
+      equations:
+      - 2*(w + w + 2) = 28
+      unknowns:
+      - w
+    tool: math_solve
+  chk_build_mth_alg_0166_s:
+    args:
+      equations:
+      - p = 28/2
+      - q = 28/2 - 2
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

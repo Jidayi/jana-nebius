@@ -1,0 +1,36 @@
+id: wex.mth.o.geometry.0023
+kc_ids:
+- kc.mth.o.geometry.polygon_angles
+problem: A polygon has 9 sides (a nonagon). Find the sum of its interior angles.
+steps:
+- n: 1
+  latex: (9 - 2) \times 180 = 1260
+  reason: It splits into n − 2 triangles from one vertex
+  check_id: chk_build_mth_geo_w0023_ans
+final_answer:
+  latex: 1260^\circ
+  check_id: chk_build_mth_geo_w0023_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_w0023_ans:
+    args:
+      expression: (9 - 2)*180
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

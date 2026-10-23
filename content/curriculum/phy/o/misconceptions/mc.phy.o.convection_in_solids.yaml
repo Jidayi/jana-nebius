@@ -1,0 +1,36 @@
+id: mc.phy.o.convection_in_solids
+kc_ids:
+- kc.phy.o.heat_transfer.convection
+student_name: Convection in solids
+description: Thinks convection can happen in solids, where the particles cannot flow.
+signatures:
+- kind: answer_transform
+  expression: solid
+fix:
+  strategy: rule_restatement
+  text:
+    en: Convection needs the material itself to move as a current. Particles in a solid stay in place, so solids pass energy on by conduction, not convection.
+probe_item_ids:
+- itm.phy.o.heat_transfer.0026
+- itm.phy.o.heat_transfer.0027
+- itm.phy.o.heat_transfer.0029
+- itm.phy.o.heat_transfer.0019
+- itm.phy.o.heat_transfer.0025
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,48 @@
+id: wex.chm.o.environment.0001
+kc_ids:
+- kc.chm.o.environment.water
+problem: A sample of water from a well turns anhydrous copper(II) sulfate blue and boils at 102 °C at standard pressure. Pure water boils at 100 °C. Is the sample pure water, and by how much is its boiling point raised?
+steps:
+- n: 1
+  latex: \text{blue copper(II) sulfate }\rightarrow\text{ water present}
+  reason: Test for water
+- n: 2
+  latex: 102 - 100 = 2
+  reason: Difference from pure water
+  check_id: chk_build_chm_environment_w0001_d
+- n: 3
+  latex: '\text{boiling point raised} \rightarrow \text{impure: dissolved substances}'
+  reason: Fixed point shows purity
+final_answer:
+  latex: '2\ ^\circ\text{C above: not pure}'
+  check_id: chk_build_chm_environment_w0001_d
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_environment_w0001_d:
+    args:
+      expression: 102 - 100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

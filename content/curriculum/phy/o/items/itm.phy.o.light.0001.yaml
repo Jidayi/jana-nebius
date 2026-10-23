@@ -1,0 +1,91 @@
+id: itm.phy.o.light.0001
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.plane_mirrors
+stem: A ray of light hits a plane mirror at 62° to the mirror surface. The normal is at 90° to the surface.
+parts:
+- id: a
+  prompt: Find the angle of reflection.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '28'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_lgt_0001_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Draw the normal: a line at right angles to the mirror where the ray hits it.'
+  - rung: 2
+    name: concept
+    text:
+      en: The angle of incidence is between the ray and the normal, not the mirror.
+  - rung: 3
+    name: first_step
+    text:
+      en: The normal is at 90° to the mirror, so take 62° away from 90°.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The angle of reflection equals the angle of incidence.
+  - rung: 5
+    name: full_step
+    text:
+      en: The angle of reflection is 28°.
+  misconception_ids:
+  - mc.phy.o.mirror_angle_from_surface
+  - mc.phy.o.mirror_rays_angle_vs_reflection
+solution:
+  steps:
+  - n: 1
+    latex: i = 90 - 62 = 28^\circ
+    reason: Angles are measured from the normal
+    check_id: chk_build_phy_lgt_0001_inc
+  - n: 2
+    latex: r = i = 28^\circ
+    reason: Angle of reflection = angle of incidence
+    check_id: chk_build_phy_lgt_0001_ans
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0001_ans:
+    args:
+      expression: 90 - 62
+    tool: math_evaluate
+  chk_build_phy_lgt_0001_inc:
+    args:
+      expression: 90 - 62
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

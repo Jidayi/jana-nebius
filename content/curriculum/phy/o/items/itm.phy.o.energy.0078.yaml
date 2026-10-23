@@ -1,0 +1,93 @@
+id: itm.phy.o.energy.0078
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.power
+stem: A kettle with a power of 3 kW is switched on for 4 minutes.
+parts:
+- id: a
+  prompt: Calculate the energy it transfers, in kJ.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '720'
+    unit: kJ
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0078_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Power is energy per second, so energy = power × time.
+  - rung: 2
+    name: concept
+    text:
+      en: Use E = P × t with the time in seconds; kW × s gives kJ.
+  - rung: 3
+    name: first_step
+    text:
+      en: 4 minutes = 240 s.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 3 × 240.
+  - rung: 5
+    name: full_step
+    text:
+      en: The energy transferred is 720 kJ.
+  misconception_ids:
+  - mc.phy.o.power_minutes_not_converted
+  - mc.phy.o.energy_formula_operation_swapped
+  - mc.phy.o.energy_kilo_prefix_ignored
+solution:
+  steps:
+  - n: 1
+    latex: t = 4\ \text{min} = 240\ \text{s}
+    reason: Time in seconds
+    check_id: chk_build_phy_nrg_0078_ts
+  - n: 2
+    latex: E = Pt = 3\ \text{kW} \times 240\ \text{s} = 720\ \text{kJ}
+    reason: kW × s gives kJ
+    check_id: chk_build_phy_nrg_0078_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0078_ans:
+    args:
+      expression: 3*4*60
+    tool: math_evaluate
+  chk_build_phy_nrg_0078_ts:
+    args:
+      quantity: 4 min
+      to: s
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

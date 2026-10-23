@@ -1,0 +1,50 @@
+id: wex.phy.o.motion.0012
+kc_ids:
+- kc.phy.o.motion.velocity_time_gradient
+problem: A velocity-time graph is a straight line from (0 s, 4 m/s) to (5 s, 14 m/s). Find the acceleration.
+steps:
+- n: 1
+  latex: a = \frac{\Delta v}{\Delta t}
+  reason: Gradient of a velocity-time graph
+- n: 2
+  latex: a = \frac{14 - 4}{5 - 0}
+  reason: Read the changes
+  check_id: chk_build_phy_w_0012
+- n: 3
+  latex: a = 2.0\ \text{m/s}^2
+  reason: Divide
+  check_id: chk_build_phy_w_0012
+final_answer:
+  latex: 2.0\ \text{m/s}^2
+  check_id: chk_build_phy_w_0012
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_w_0012:
+    args:
+      expression: (14 - 4)/(5 - 0)
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

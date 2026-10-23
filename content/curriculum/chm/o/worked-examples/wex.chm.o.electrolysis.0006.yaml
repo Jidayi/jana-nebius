@@ -1,0 +1,49 @@
+id: wex.chm.o.electrolysis.0006
+kc_ids:
+- kc.chm.o.electrolysis.half_equations
+problem: Write the half-equation for the formation of aluminium at the cathode of the aluminium cell.
+steps:
+- n: 1
+  latex: \text{Al}^{3+} \rightarrow \text{Al}
+  reason: Atoms already balance
+- n: 2
+  latex: 3 - 0 = 3
+  reason: Charge to cancel
+  check_id: chk_build_chm_electrolysis_w0006_n
+- n: 3
+  latex: \text{Al}^{3+} + 3e^{-} \rightarrow \text{Al}
+  reason: Electrons gained go on the left
+  check_id: chk_build_chm_electrolysis_w0006_bal
+final_answer:
+  latex: '3\ \text{electrons: } \text{Al}^{3+} + 3e^{-} \rightarrow \text{Al}'
+  check_id: chk_build_chm_electrolysis_w0006_n
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_w0006_bal:
+    args:
+      equation: 1Al^3+ + 3e- -> 1Al
+    tool: chem_balance
+  chk_build_chm_electrolysis_w0006_n:
+    args:
+      expression: 3 - 0
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

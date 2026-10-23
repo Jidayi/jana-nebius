@@ -1,0 +1,37 @@
+id: mc.chm.o.energetics_dh_sign_reversed
+kc_ids:
+- kc.chm.o.energetics.exo_endo
+- kc.chm.o.energetics.profiles
+student_name: Negative ΔH means energy taken in
+description: Thinks a negative enthalpy change means the reaction takes energy in.
+signatures:
+- kind: answer_transform
+  expression: 'choice: negative enthalpy change classed as endothermic'
+fix:
+  strategy: rule_restatement
+  text:
+    en: ΔH is the energy change of the chemicals. When they give energy out, they end with less, so ΔH is negative for an exothermic reaction.
+probe_item_ids:
+- itm.chm.o.energetics.0001
+- itm.chm.o.energetics.0002
+- itm.chm.o.energetics.0003
+- itm.chm.o.energetics.0004
+- itm.chm.o.energetics.0007
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

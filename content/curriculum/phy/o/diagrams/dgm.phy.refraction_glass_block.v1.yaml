@@ -1,0 +1,104 @@
+id: dgm.phy.refraction_glass_block.v1
+subject: phy
+title: Refraction through a rectangular glass block
+svg_path: diagrams/refraction_glass_block_v1.svg
+parts:
+- id: glass_block
+  name: Glass block
+  function: A rectangular block of glass with parallel faces.
+  label_anchor:
+  - 330
+  - 126
+  tab_order: 0
+  essential: true
+- id: incident_ray
+  name: Incident ray
+  function: The ray of light in air travelling towards the block.
+  label_anchor:
+  - 30
+  - 30
+  tab_order: 1
+  essential: true
+- id: normal_entry
+  name: Normal where the ray enters
+  function: A line at right angles to the surface where the ray goes into the glass.
+  aliases:
+  - normal
+  label_anchor:
+  - 216
+  - 58
+  tab_order: 2
+- id: angle_i
+  name: Angle of incidence
+  function: The angle between the incident ray and the normal, in air.
+  aliases:
+  - i
+  label_anchor:
+  - 190
+  - 72
+  tab_order: 3
+- id: refracted_ray
+  name: Refracted ray
+  function: The ray inside the glass; it bends towards the normal because light slows down in glass.
+  label_anchor:
+  - 270
+  - 178
+  tab_order: 4
+  essential: true
+- id: angle_r
+  name: Angle of refraction
+  function: The angle between the refracted ray and the normal, in glass; it is smaller than the angle of incidence.
+  aliases:
+  - r
+  label_anchor:
+  - 214
+  - 162
+  tab_order: 5
+- id: normal_exit
+  name: Normal where the ray leaves
+  function: A line at right angles to the surface where the ray comes out of the glass.
+  label_anchor:
+  - 266
+  - 290
+  tab_order: 6
+- id: emergent_ray
+  name: Emergent ray
+  function: The ray back in air; it bends away from the normal and runs parallel to the incident ray.
+  label_anchor:
+  - 356
+  - 300
+  tab_order: 7
+  essential: true
+sequences:
+- id: through_the_block
+  title: A ray passing through the block
+  steps:
+  - highlight:
+    - incident_ray
+    - normal_entry
+    caption: The ray meets the top face; draw the normal where it enters.
+    arrows:
+    - arrow_in
+  - highlight:
+    - refracted_ray
+    - angle_r
+    caption: In the glass the ray slows down and bends towards the normal.
+    arrows:
+    - arrow_through
+  - highlight:
+    - emergent_ray
+    - normal_exit
+    caption: Leaving the glass it speeds up, bends away from the normal and comes out parallel to the incident ray.
+    arrows:
+    - arrow_out
+alt_text: A ray of light enters a rectangular glass block, bends towards the normal inside the glass, then bends away from the normal as it leaves, emerging parallel to the incident ray.
+licence: LicenseRef-Own
+attribution: Our own drawing, made for Jana with AI assistance.
+version: 1.0.0
+levels:
+- O
+kc_ids: []
+review:
+  author_role_id: rev_author_agent
+  status: in_review
+  style_version: 1

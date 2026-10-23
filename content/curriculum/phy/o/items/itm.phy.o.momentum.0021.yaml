@@ -1,0 +1,108 @@
+id: itm.phy.o.momentum.0021
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.conservation_of_momentum
+stem: A dodgem car of mass 300 kg moving at 2.5 m/s hits a stationary dodgem of mass 220 kg. They couple together and move off as one.
+parts:
+- id: a
+  prompt: Find their velocity just after the collision.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '1.44'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_mom_0021_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Total momentum is conserved in the collision.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Before: only the moving one has momentum. After: both move together with the same velocity.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Set the momentum before equal to (total mass) × v.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The momentum before is 750 kg m/s and the total mass is 520 kg.
+  - rung: 5
+    name: full_step
+    text:
+      en: v = 750 ÷ 520 = 1.44 m/s, in the original direction.
+  misconception_ids:
+  - mc.phy.o.stuck_mass_one_object
+  - mc.phy.o.collision_velocities_averaged
+  - mc.phy.o.conservation_masses_swapped
+solution:
+  steps:
+  - n: 1
+    latex: p_\text{before} = 300 \times 2.5 + 0 = 750\ \text{kg m/s}
+    reason: The second one is at rest
+    check_id: chk_build_phy_mom_0021_pb
+  - n: 2
+    latex: (300 + 220)v = 520\,v = 750
+    reason: Momentum after = momentum before
+    check_id: chk_build_phy_mom_0021_mt
+  - n: 3
+    latex: v = \frac{750}{520} = 1.44\ \text{m/s}
+    reason: Solve for v
+    check_id: chk_build_phy_mom_0021_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_0021_ans:
+    args:
+      expression: 300*2.5/(300 + 220)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_mom_0021_mt:
+    args:
+      expression: 300 + 220
+    tool: math_evaluate
+  chk_build_phy_mom_0021_pb:
+    args:
+      expression: 300*2.5
+    tool: math_evaluate
+  chk_build_phy_mom_0021_tool:
+    args:
+      equations:
+      - 300*2.5 + 220*0 = (300 + 220)*v
+      unknowns:
+      - v
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,85 @@
+id: itm.chm.o.electrolysis.0020
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.aqueous_products
+stem: Aqueous silver nitrate is electrolysed using inert electrodes.
+parts:
+- id: a
+  prompt: Which products form?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Hydrogen at the cathode and oxygen at the anode
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_hydrogen_always_at_cathode
+      feedback: Hydrogen forms at the cathode only when the metal is more reactive than hydrogen. Copper and silver are less reactive, so their ions are discharged first and the metal coats the cathode.
+    - id: B
+      text: Silver at the cathode and nitrogen at the anode
+      correct: false
+    - id: C
+      text: Silver at the cathode and oxygen at the anode
+      correct: true
+    - id: D
+      text: Hydrogen at the cathode and nitrogen dioxide at the anode
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The solution contains Ag⁺, NO₃⁻, H⁺ and OH⁻ ions.
+  - rung: 2
+    name: concept
+    text:
+      en: Silver is less reactive than hydrogen; nitrate is not a halide.
+  - rung: 3
+    name: first_step
+    text:
+      en: At the cathode, the ion of the less reactive element is discharged.
+  - rung: 4
+    name: worked_step
+    text:
+      en: At the anode, with no halide present, which negative ion is discharged?
+  - rung: 5
+    name: full_step
+    text:
+      en: Silver ions are discharged at the cathode (silver is less reactive than hydrogen), and hydroxide ions at the anode give oxygen.
+  misconception_ids:
+  - mc.chm.o.electrolysis_hydrogen_always_at_cathode
+solution:
+  steps:
+  - n: 1
+    latex: '\text{cathode: Ag; anode: }\text{O}_2'
+    reason: Ag below H; no halide
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

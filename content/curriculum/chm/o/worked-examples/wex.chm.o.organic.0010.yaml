@@ -1,0 +1,84 @@
+id: wex.chm.o.organic.0010
+kc_ids:
+- kc.chm.o.organic.alkanes_and_alkenes
+problem: Ethene reacts with steam to make ethanol (C₂H₄ + H₂O → C₂H₅OH). What mass of ethanol can be made from 56 g of ethene?
+steps:
+- n: 1
+  latex: n = \frac{56}{28} = 2\ \text{mol}
+  reason: Moles of ethene
+  check_id: chk_build_chm_organic_w0010_c
+- n: 2
+  latex: 2\ \text{mol of } \text{C}_2\text{H}_5\text{OH}
+  reason: 'Addition: one to one'
+  check_id: chk_build_chm_organic_w0010_c
+- n: 3
+  latex: M_r(\text{C}_2\text{H}_5\text{OH}) = 46
+  reason: Ethanol
+  check_id: chk_build_chm_organic_w0010_e
+- n: 4
+  latex: 2 \times 46
+  reason: Mass = moles × Mr
+  check_id: chk_build_chm_organic_w0010_c
+final_answer:
+  latex: 92\ \text{g}
+  check_id: chk_build_chm_organic_w0010_c
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_w0010_c:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      equation: C2H4 + H2O -> C2H5OH
+      sf: 3
+      steps:
+      - id: n
+        mass: 56 g
+        op: amount_from_mass
+        species: C2H4
+      - amount: '@n'
+        from: C2H4
+        id: r
+        op: mole_ratio
+        to: C2H5OH
+      - amount: '@r'
+        id: m
+        op: mass_from_amount
+        species: C2H5OH
+    tool: chem_stoichiometry
+  chk_build_chm_organic_w0010_e:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      formula: C2H5OH
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

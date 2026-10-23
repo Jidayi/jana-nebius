@@ -1,0 +1,36 @@
+id: mc.phy.o.prefix_power_wrong
+kc_ids:
+- kc.phy.o.measurement.si_prefixes
+student_name: The wrong power of ten for a prefix
+description: Uses the wrong factor for a prefix, for example a hundred for milli or a thousand for micro.
+signatures:
+- kind: answer_transform
+  expression: x/(f/10)
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Learn the prefixes as powers of ten: kilo is a thousand, mega a million, milli a thousandth, micro a millionth and nano a thousand-millionth.'
+probe_item_ids:
+- itm.phy.o.measurement.0011
+- itm.phy.o.measurement.0012
+- itm.phy.o.measurement.0013
+- itm.phy.o.measurement.0014
+- itm.phy.o.measurement.0015
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.mth.o.reverse_percent_of_new
+kc_ids:
+- kc.mth.o.number.reverse_percentage
+student_name: Taking the percentage of the new amount
+description: Reverses a percentage increase by taking the same percentage off the new amount.
+signatures:
+- kind: answer_transform
+  expression: y*(1 - p/100)
+fix:
+  strategy: counterexample
+  text:
+    en: A 20% rise on 100 gives 120, but 20% off 120 gives 96, not 100. Divide by the multiplier instead.
+probe_item_ids:
+- itm.mth.o.number.0291
+- itm.mth.o.number.0292
+- itm.mth.o.number.0293
+- itm.mth.o.number.0294
+- itm.mth.o.number.0295
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

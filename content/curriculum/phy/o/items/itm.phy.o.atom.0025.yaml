@@ -1,0 +1,93 @@
+id: itm.phy.o.atom.0025
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.atom.isotopes
+stem: Carbon-12 and carbon-14 atoms take part in exactly the same chemical reactions.
+parts:
+- id: a
+  prompt: Why?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Their nuclei have the same number of neutrons
+      correct: false
+      misconception_id: mc.phy.o.isotopes_same_neutrons
+      feedback: Isotopes are the same element, so they share the proton number. Their neutron numbers are what differ.
+    - id: B
+      text: Their atoms have the same number of electrons
+      correct: true
+    - id: C
+      text: Their nuclei have the same nucleon number
+      correct: false
+      misconception_id: mc.phy.o.same_nucleon_number_isotopes
+      feedback: Carbon-14 and nitrogen-14 have the same nucleon number but different proton numbers, so they are different elements, not isotopes.
+    - id: D
+      text: They do not; carbon-14 reacts differently because it is heavier
+      correct: false
+      misconception_id: mc.phy.o.isotopes_differ_chemically
+      feedback: Chemical reactions depend on the electrons. Isotopes have the same electrons, so they react in the same way.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Decide what makes two nuclides the same element.
+  - rung: 2
+    name: concept
+    text:
+      en: Isotopes have the same proton number but different nucleon numbers.
+  - rung: 3
+    name: first_step
+    text:
+      en: Chemical reactions involve the particles outside the nucleus.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against that definition.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Their atoms have the same number of electrons.'
+  misconception_ids:
+  - mc.phy.o.isotopes_differ_chemically
+  - mc.phy.o.isotopes_same_neutrons
+  - mc.phy.o.same_nucleon_number_isotopes
+solution:
+  steps:
+  - n: 1
+    latex: \text{Their atoms have the same number of electrons}
+    reason: Compare the proton numbers, then the nucleon numbers
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,68 @@
+id: les.chm.o.environment.nitrogen_in_fertilisers
+node_id: cur.chm.o.chemistry_of_the_environment.fertilisers
+kc_ids:
+- kc.chm.o.environment.fertilisers
+title: Nitrogen in fertilisers
+estimated_minutes: 10
+blocks:
+- type: step
+  text:
+    en: 'Fertilisers put back elements that crops take out of the soil. Try this before any rule: which element do plants need for healthy green leaves?'
+  item_id: itm.chm.o.environment.0022
+  action: try_first
+  why:
+    en: Nitrogen is needed to make proteins, so it helps leaves grow.
+  names:
+    en: The three main elements in fertilisers are nitrogen, phosphorus and potassium, known as NPK.
+- type: step
+  text:
+    en: To compare fertilisers, find what percentage of the mass is nitrogen. Divide the mass of nitrogen by the Mr of the compound, then multiply by 100.
+  item_id: itm.chm.o.environment.0018
+  action: calculate
+  why:
+    en: One nitrogen atom of mass 14 in a total Mr of 101, times 100, gives 13.9 percent.
+  names:
+    en: This is the percentage by mass of nitrogen. The higher it is, the more nitrogen each bag supplies.
+- type: step
+  text:
+    en: This one has nitrogen in two places. Count every nitrogen atom before you divide.
+  item_id: itm.chm.o.environment.0013
+  action: choose
+  why:
+    en: There are two nitrogen atoms, so it is 28 out of 80, times 100, which is 35.0 percent. Forgetting one nitrogen halves the answer, and dividing the wrong way gives more than 100.
+- type: step
+  text:
+    en: Same idea, less help. The bracket doubles everything inside it.
+  item_id: itm.chm.o.environment.0019
+  action: calculate
+  why:
+    en: The bracket gives two nitrogen atoms, 28 in total, out of an Mr of 164.
+- type: step
+  text:
+    en: 'Now one on your own: use the fraction of nitrogen to find a mass, not a percentage.'
+  item_id: itm.chm.o.environment.0020
+  action: calculate
+  why:
+    en: The fraction of nitrogen is 28 out of 80, so multiply 500 grams by that fraction.
+- type: check
+  item_ids:
+  - itm.chm.o.environment.0015
+  - itm.chm.o.environment.0021
+  - itm.chm.o.environment.0024
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

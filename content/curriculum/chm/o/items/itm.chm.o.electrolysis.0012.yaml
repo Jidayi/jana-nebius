@@ -1,0 +1,83 @@
+id: itm.chm.o.electrolysis.0012
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.molten_products
+stem: A student describes the electrolysis of lead(II) bromide.
+parts:
+- id: a
+  prompt: Put the steps in order.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s4
+      text: Lead collects below the cathode and bromine vapour rises from the anode.
+    - id: s1
+      text: The lead(II) bromide is heated until it melts.
+    - id: s2
+      text: 'The current is switched on and the ions move: Pb²⁺ to the cathode and Br⁻ to the anode.'
+    - id: s3
+      text: At the electrodes the ions gain or lose electrons and are discharged.
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Start with what must happen before any current can flow.
+  - rung: 2
+    name: concept
+    text:
+      en: Ions must be free to move before they can reach the electrodes.
+  - rung: 3
+    name: first_step
+    text:
+      en: Movement of the ions comes before their discharge.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The visible products appear only after the ions have been discharged.
+  - rung: 5
+    name: full_step
+    text:
+      en: Melt; ions move to the oppositely charged electrodes; ions are discharged; lead and bromine appear.
+  misconception_ids:
+  - mc.chm.o.electrolysis_electrons_through_electrolyte
+solution:
+  steps:
+  - n: 1
+    latex: \text{melt, move, discharge, products}
+    reason: Cause before effect
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

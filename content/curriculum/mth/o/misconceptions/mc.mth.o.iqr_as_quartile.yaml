@@ -1,0 +1,36 @@
+id: mc.mth.o.iqr_as_quartile
+kc_ids:
+- kc.mth.o.statistics.cumulative_frequency
+student_name: Giving one quartile as the IQR
+description: Gives the upper quartile alone as the interquartile range.
+signatures:
+- kind: answer_transform
+  expression: Q3
+fix:
+  strategy: rule_restatement
+  text:
+    en: Interquartile range = upper quartile − lower quartile.
+probe_item_ids:
+- itm.mth.o.statistics.0125
+- itm.mth.o.statistics.0126
+- itm.mth.o.statistics.0127
+- itm.mth.o.statistics.0128
+- itm.mth.o.statistics.0129
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

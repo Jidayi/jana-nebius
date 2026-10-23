@@ -1,0 +1,60 @@
+id: wex.acc.o.costing.0008
+kc_ids:
+- kc.acc.o.costing.margin_of_safety
+problem: Price $25; variable cost $7; fixed costs $3600; output 2150. Find the margin of safety.
+steps:
+- n: 1
+  latex: \text{Margin of safety} = \text{output} - \text{break-even}
+  reason: Room before a loss
+  check_id: chk_build_acc_costing_w0008_t
+- n: 2
+  latex: \text{Break-even} = \frac{3600}{25 - 7} = 200
+  reason: Units
+  check_id: chk_build_acc_costing_w0008_s2
+- n: 3
+  latex: 2150 - 200 = 1950
+  reason: Subtract
+  check_id: chk_build_acc_costing_w0008_a
+final_answer:
+  latex: 1950\ \text{units}
+  check_id: chk_build_acc_costing_w0008_a
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_costing_w0008_a:
+    args:
+      dp: 2
+      expression: 2150 - 3600 / (25 - 7)
+    tool: math_evaluate
+  chk_build_acc_costing_w0008_s2:
+    args:
+      dp: 4
+      expression: 3600 / (25 - 7)
+    tool: math_evaluate
+  chk_build_acc_costing_w0008_t:
+    args:
+      dp: 2
+      fixed_costs: '3600'
+      output_units: 2150
+      selling_price: '25'
+      variable_cost_per_unit: '7'
+    tool: acc_break_even
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

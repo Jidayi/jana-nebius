@@ -1,0 +1,93 @@
+id: itm.phy.o.practical_electricity.0038
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+stem: A loose wire inside an earthed metal toaster touches the case.
+parts:
+- id: a
+  prompt: What happens?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: 'Nothing changes: the earth wire carries its usual current'
+      correct: false
+      misconception_id: mc.phy.o.earth_wire_carries_working_current
+      feedback: 'In normal use the earth wire carries no current: live and neutral carry it. The earth wire carries current only when a fault makes the case live.'
+    - id: B
+      text: The fuse melts because 13 A always flows through it
+      correct: false
+      misconception_id: mc.phy.o.fuse_rating_sets_current
+      feedback: The appliance and the supply p.d. decide the current. The rating is only the current at which the fuse melts.
+    - id: C
+      text: A large current flows through the earth wire and the fuse melts
+      correct: true
+    - id: D
+      text: The neutral wire becomes live and the case stays safe
+      correct: false
+      misconception_id: mc.phy.o.neutral_wire_is_live
+      feedback: The live wire is at a high, changing voltage; the neutral wire stays close to 0 V and completes the circuit.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what each wire or device is for.
+  - rung: 2
+    name: concept
+    text:
+      en: Live is at a high voltage, neutral stays near 0 V, and earth carries current only in a fault.
+  - rung: 3
+    name: first_step
+    text:
+      en: A fuse or switch must cut the appliance off from the high voltage when it opens.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that mix up the jobs of the different wires and devices.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: a large current flows through the earth wire and the fuse melts.'
+  misconception_ids:
+  - mc.phy.o.earth_wire_carries_working_current
+  - mc.phy.o.fuse_rating_sets_current
+  - mc.phy.o.neutral_wire_is_live
+solution:
+  steps:
+  - n: 1
+    latex: \text{A large current flows through the earth wire and the fuse melts}
+    reason: Match each wire and device to its job
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,96 @@
+id: itm.phy.o.energy.0032
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.potential_energy
+stem: A bucket of water of mass 8 kg is lifted through a height of 90 cm. Take g = 9.8 N/kg.
+parts:
+- id: a
+  prompt: Calculate the gain in its gravitational potential energy.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '70.56'
+    unit: J
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0032_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Check the units of the height first.
+  - rung: 2
+    name: concept
+    text:
+      en: Use ΔEp = mgΔh with the height in metres.
+  - rung: 3
+    name: first_step
+    text:
+      en: 90 cm = 0.9 m.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 8 × 9.8 × 0.9.
+  - rung: 5
+    name: full_step
+    text:
+      en: The gain is 70.56 J.
+  misconception_ids:
+  - mc.phy.o.gpe_height_in_cm
+  - mc.phy.o.energy_mass_for_weight
+  - mc.phy.o.gpe_half_from_ke
+solution:
+  steps:
+  - n: 1
+    latex: h = 90\ \text{cm} = 0.9\ \text{m}
+    reason: Height in metres
+    check_id: chk_build_phy_nrg_0032_h
+  - n: 2
+    latex: \Delta E_p = 8 \times 9.8 \times 0.9 = 70.56\ \text{J}
+    reason: ΔEp = mgΔh
+    check_id: chk_build_phy_nrg_0032_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0032_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 8*g*90/100
+    tool: math_evaluate
+  chk_build_phy_nrg_0032_h:
+    args:
+      quantity: 90 cm
+      to: m
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

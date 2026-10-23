@@ -1,0 +1,32 @@
+id: mc.phy.o.parallel_pd_shared_out
+kc_ids:
+- kc.phy.o.circuits.parallel_circuits
+student_name: Parallel branches share the p.d.
+description: Shares the supply p.d. between parallel branches in proportion to their resistances, as if they were in series.
+signatures:
+- kind: answer_transform
+  expression: V*R2/(R1 + R2)
+fix:
+  strategy: contrast_example
+  text:
+    en: Each parallel branch is connected straight across the supply, so each has the full supply p.d. across it.
+probe_item_ids:
+- itm.phy.o.circuits.0020
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

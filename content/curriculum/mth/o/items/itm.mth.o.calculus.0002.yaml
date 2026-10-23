@@ -1,0 +1,96 @@
+id: itm.mth.o.calculus.0002
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.calculus.differentiate_powers
+stem: A curve has equation $y = 6x^2 + 7x - 1$.
+parts:
+- id: a
+  prompt: Find the gradient of the curve at the point where x = 1.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '19'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_cal_0002_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The gradient of a curve changes; dy/dx gives it at any point.
+  - rung: 2
+    name: concept
+    text:
+      en: For each term axⁿ, the derivative is naxⁿ⁻¹; a constant term disappears.
+  - rung: 3
+    name: first_step
+    text:
+      en: Differentiate term by term.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Substitute x = 1 into dy/dx, not into y.
+  - rung: 5
+    name: full_step
+    text:
+      en: The gradient at x = 1 is 19.
+  misconception_ids:
+  - mc.mth.o.derivative_power_not_brought_down
+  - mc.mth.o.derivative_power_not_reduced
+  - mc.mth.o.gradient_from_y
+solution:
+  steps:
+  - n: 1
+    latex: \frac{dy}{dx} = 12x + 7
+    reason: Multiply by each power, then reduce the power by one
+    check_id: chk_build_mth_cal_0002_d
+  - n: 2
+    latex: '\text{at } x = 1: \frac{dy}{dx} = 19'
+    reason: Substitute into the derivative
+    check_id: chk_build_mth_cal_0002_ans
+difficulty:
+  prior: 0.8
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_cal_0002_ans:
+    args:
+      expression: (12)*x^1 + (7)*x^0
+      values:
+        x: 1
+    tool: math_evaluate
+  chk_build_mth_cal_0002_d:
+    args:
+      at: 1
+      expression: (6)*x^2 + (7)*x^1 + (-1)*x^0
+      variable: x
+    tool: math_differentiate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

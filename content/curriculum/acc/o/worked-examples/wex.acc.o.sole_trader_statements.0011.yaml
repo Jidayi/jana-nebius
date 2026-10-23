@@ -1,0 +1,75 @@
+id: wex.acc.o.sole_trader_statements.0011
+kc_ids:
+- kc.acc.o.sole_trader_statements.closing_capital
+problem: Opening capital $22300; the business made a profit of $18400; drawings $6100. Find the closing capital.
+steps:
+- n: 1
+  latex: \text{Closing capital} = \text{opening} + \text{profit} - \text{drawings}
+  reason: Profit belongs to the owner
+  check_id: chk_build_acc_sole_trader_statements_w0011_t
+- n: 2
+  latex: \text{Closing capital} = 22300 + 18400 - 6100 = 34600
+  reason: Substitute
+  check_id: chk_build_acc_sole_trader_statements_w0011_a
+final_answer:
+  latex: \$\,34600
+  check_id: chk_build_acc_sole_trader_statements_w0011_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_w0011_a:
+    args:
+      dp: 2
+      expression: 22300 + 18400 - 6100
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_w0011_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Capital
+        credit: '22300'
+        role: capital
+      - account: Drawings
+        debit: '6100'
+        role: drawings
+      - account: Sales
+        credit: '57800'
+        role: revenue
+      - account: Purchases
+        debit: '39400'
+        role: purchases
+      - account: Equipment
+        debit: '32300'
+        role: non_current_asset
+      - account: Land
+        debit: '2300'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Family loan
+        credit: '1000'
+        role: non_current_liability
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

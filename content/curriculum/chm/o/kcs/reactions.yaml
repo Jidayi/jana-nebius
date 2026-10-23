@@ -1,0 +1,219 @@
+- id: kc.chm.o.reactions.physical_chemical_change
+  code: CHM-O-06.01.K01
+  node_id: cur.chm.o.chemical_reactions.physical_and_chemical_changes
+  statement: Distinguish a physical change from a chemical change
+  kind: conceptual
+  tools: []
+  exam_weight: 0.1
+  prerequisites: []
+  misconception_ids:
+  - mc.chm.o.reactions_state_change_is_chemical
+  - mc.chm.o.reactions_dissolving_is_chemical
+  - mc.chm.o.reactions_new_substance_missed
+  skill_ids:
+  - chm-o-reactions
+  glossary:
+  - physical change
+  - chemical change
+  - new substance
+  - dissolving
+  - evaporation
+  - combustion
+  difficulty_prior: -1.0
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.reactions.rate_factors
+  code: CHM-O-06.02.K01
+  node_id: cur.chm.o.chemical_reactions.rate_of_reaction
+  statement: Predict how concentration, pressure, temperature, surface area and a catalyst change the rate of a reaction
+  kind: conceptual
+  tools: []
+  exam_weight: 0.18
+  prerequisites: []
+  misconception_ids:
+  - mc.chm.o.reactions_bigger_pieces_faster
+  - mc.chm.o.reactions_catalyst_used_up
+  - mc.chm.o.reactions_rate_changes_amount
+  skill_ids:
+  - chm-o-reactions
+  glossary:
+  - rate of reaction
+  - concentration
+  - surface area
+  - catalyst
+  - temperature
+  - collision
+  - successful collision
+  - activation energy
+  - particle
+  - hydrochloric acid
+  - magnesium
+  difficulty_prior: -0.4
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.reactions.collision_theory
+  code: CHM-O-06.02.K02
+  node_id: cur.chm.o.chemical_reactions.rate_of_reaction
+  statement: Explain changes in the rate of reaction using the frequency and energy of collisions
+  kind: conceptual
+  tools: []
+  exam_weight: 0.14
+  prerequisites:
+  - kc_id: kc.chm.o.reactions.rate_factors
+    strength: required
+  misconception_ids:
+  - mc.chm.o.reactions_all_collisions_react
+  - mc.chm.o.reactions_catalyst_gives_energy
+  - mc.chm.o.reactions_concentration_harder_collisions
+  skill_ids:
+  - chm-o-reactions
+  glossary:
+  - collision theory
+  - collision
+  - collide
+  - successful collision
+  - collision frequency
+  - temperature
+  - molecule
+  - activation energy
+  - particle
+  - concentration
+  - concentrated
+  - hydrochloric acid
+  - magnesium
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.reactions.rate_data
+  code: CHM-O-06.02.K03
+  node_id: cur.chm.o.chemical_reactions.rate_of_reaction
+  statement: Calculate a mean rate of reaction from measurements of gas volume or mass over time
+  kind: procedural
+  tools:
+  - math_evaluate
+  - chem_stoichiometry
+  exam_weight: 0.14
+  prerequisites:
+  - kc_id: kc.chm.o.reactions.rate_factors
+    strength: helpful
+  misconception_ids:
+  - mc.chm.o.reactions_rate_inverted
+  - mc.chm.o.reactions_rate_reading_not_change
+  - mc.chm.o.reactions_rate_end_time_not_interval
+  skill_ids:
+  - chm-o-reactions
+  glossary:
+  - rate of reaction
+  - mean rate
+  - gas syringe
+  - molar gas volume
+  - room temperature and pressure
+  - oxygen
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.reactions.equilibrium
+  code: CHM-O-06.03.K01
+  node_id: cur.chm.o.chemical_reactions.reversible_reactions_and_equilibrium
+  statement: Predict how changing temperature, pressure or concentration shifts the position of an equilibrium
+  kind: conceptual
+  tools: []
+  exam_weight: 0.16
+  prerequisites:
+  - kc_id: kc.chm.o.reactions.collision_theory
+    strength: helpful
+  misconception_ids:
+  - mc.chm.o.reactions_equilibrium_static
+  - mc.chm.o.reactions_shift_reinforces_change
+  - mc.chm.o.reactions_catalyst_shifts_equilibrium
+  skill_ids:
+  - chm-o-reactions
+  glossary:
+  - equilibrium
+  - dynamic equilibrium
+  - position of equilibrium
+  - reversible reaction
+  - reversible
+  - exothermic
+  - endothermic
+  - yield
+  - Haber process
+  - Contact process
+  - ammonia
+  - sulfur trioxide
+  - molecule
+  - temperature
+  - pressure
+  difficulty_prior: 0.6
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.reactions.redox
+  code: CHM-O-06.04.K01
+  node_id: cur.chm.o.chemical_reactions.redox
+  statement: Identify the substances oxidised and reduced, and the oxidising and reducing agents, in a reaction
+  kind: conceptual
+  tools: []
+  exam_weight: 0.16
+  prerequisites:
+  - kc_id: kc.chm.o.atoms.ion_formation
+    strength: helpful
+  confusable_with:
+  - kc.chm.o.reactions.oxidation_numbers
+  misconception_ids:
+  - mc.chm.o.reactions_oxidation_is_gaining_electrons
+  - mc.chm.o.reactions_oxidising_agent_is_oxidised
+  - mc.chm.o.reactions_redox_needs_oxygen
+  skill_ids:
+  - chm-o-reactions
+  glossary:
+  - redox
+  - oxidation
+  - reduction
+  - oxidised
+  - reduced
+  - oxidising agent
+  - reducing agent
+  - electron
+  - acidified potassium manganate(VII)
+  - potassium manganate(VII)
+  - manganate(VII)
+  - potassium iodide
+  - acidified
+  - colourless
+  - solution
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.reactions.oxidation_numbers
+  code: CHM-O-06.04.K02
+  node_id: cur.chm.o.chemical_reactions.redox
+  statement: Calculate the oxidation number of an element in a compound or ion
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.12
+  prerequisites:
+  - kc_id: kc.chm.o.reactions.redox
+    strength: helpful
+  confusable_with:
+  - kc.chm.o.reactions.redox
+  misconception_ids:
+  - mc.chm.o.reactions_oxnum_charge_ignored
+  - mc.chm.o.reactions_oxnum_sign_flipped
+  - mc.chm.o.reactions_oxnum_count_ignored
+  skill_ids:
+  - chm-o-reactions
+  glossary:
+  - oxidation number
+  - oxidation state
+  - oxidation
+  - ion
+  - overall charge
+  - compound
+  - manganese
+  - oxygen
+  - nitrogen
+  - hydrogen
+  difficulty_prior: 0.5
+  version: 0.1.1
+  status: active

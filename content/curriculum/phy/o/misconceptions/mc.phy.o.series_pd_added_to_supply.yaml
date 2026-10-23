@@ -1,0 +1,35 @@
+id: mc.phy.o.series_pd_added_to_supply
+kc_ids:
+- kc.phy.o.circuits.series_circuits
+student_name: Adding a p.d. to the supply instead of subtracting
+description: Adds the p.d. across one component to the supply p.d. instead of subtracting it to find the p.d. across the other component.
+signatures:
+- kind: answer_transform
+  expression: V + V1
+fix:
+  strategy: rule_restatement
+  text:
+    en: The p.d.s across the components add up to the supply p.d., so the remaining p.d. is the supply minus the part already used.
+probe_item_ids:
+- itm.phy.o.circuits.0011
+- itm.phy.o.circuits.0013
+- itm.phy.o.circuits.0004
+- itm.phy.o.circuits.0008
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,85 @@
+id: itm.chm.o.electrolysis.0024
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.aqueous_products
+stem: Concentrated hydrochloric acid is electrolysed using inert electrodes.
+parts:
+- id: a
+  prompt: Which products form?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Hydrogen at both electrodes
+      correct: false
+    - id: B
+      text: Chlorine at the cathode and hydrogen at the anode
+      correct: false
+    - id: C
+      text: Hydrogen at the cathode and oxygen at the anode
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_halide_concentration_ignored
+      feedback: At the anode, a concentrated chloride, bromide or iodide solution gives the halogen. A dilute halide solution, or a solution with no halide (a sulfate or nitrate), gives oxygen from the water.
+    - id: D
+      text: Hydrogen at the cathode and chlorine at the anode
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The solution contains H⁺, Cl⁻ and a little OH⁻.
+  - rung: 2
+    name: concept
+    text:
+      en: H⁺ is discharged at the cathode; a concentrated chloride gives chlorine at the anode.
+  - rung: 3
+    name: first_step
+    text:
+      en: The only positive ion present is H⁺.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The acid is concentrated, so compare Cl⁻ and OH⁻ at the anode.
+  - rung: 5
+    name: full_step
+    text:
+      en: Hydrogen forms at the cathode and chlorine at the anode.
+  misconception_ids:
+  - mc.chm.o.electrolysis_halide_concentration_ignored
+solution:
+  steps:
+  - n: 1
+    latex: '\text{cathode: }\text{H}_2\text{; anode: }\text{Cl}_2'
+    reason: Concentrated chloride
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,100 @@
+id: itm.mth.o.geometry.0088
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.similar_area_volume
+stem: Two similar jugs have heights 5 cm and 8 cm. The smaller one has a volume of 54 cm³.
+parts:
+- id: a
+  prompt: Find the volume of the larger one.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '221.184'
+    unit: cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_geo_0088_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Find the length scale factor first.
+  - rung: 2
+    name: concept
+    text:
+      en: For similar shapes, volumes change by the cube of the length scale factor.
+  - rung: 3
+    name: first_step
+    text:
+      en: The length scale factor is 8 ÷ 5.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The volume factor is 4.096.
+  - rung: 5
+    name: full_step
+    text:
+      en: The larger volume is 54 × 4.096 = 221.184.
+  misconception_ids:
+  - mc.mth.o.similar_length_factor_for_area
+  - mc.mth.o.similar_area_factor_for_volume
+  - mc.mth.o.similar_factor_inverted
+solution:
+  steps:
+  - n: 1
+    latex: k = \frac{8}{5}
+    reason: Length scale factor
+    check_id: chk_build_mth_geo_0088_k
+  - n: 2
+    latex: \text{volume factor} = k^3 = 4.096
+    reason: Volumes scale by k^3
+    check_id: chk_build_mth_geo_0088_f
+  - n: 3
+    latex: 54 \times 4.096 = 221.184
+    reason: Multiply
+    check_id: chk_build_mth_geo_0088_ans
+difficulty:
+  prior: 0.7
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0088_ans:
+    args:
+      expression: 54*(8/5)^3
+    tool: math_evaluate
+  chk_build_mth_geo_0088_f:
+    args:
+      expression: (8/5)^3
+    tool: math_evaluate
+  chk_build_mth_geo_0088_k:
+    args:
+      expression: 8/5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.displacement_readings_added
+kc_ids:
+- kc.phy.o.density.measuring_density
+student_name: Adding the two readings
+description: Adds the starting and final cylinder readings instead of subtracting them to find the volume displaced.
+signatures:
+- kind: answer_transform
+  expression: V1 + V2
+fix:
+  strategy: counterexample
+  text:
+    en: 'If nothing at all were put in, the two readings would be equal, and adding them would still give a volume. The object''s volume is the difference: final reading minus starting reading.'
+probe_item_ids:
+- itm.phy.o.density.0028
+- itm.phy.o.density.0030
+- itm.phy.o.density.0016
+- itm.phy.o.density.0024
+- itm.phy.o.density.0025
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

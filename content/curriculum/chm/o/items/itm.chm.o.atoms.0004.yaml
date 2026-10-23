@@ -1,0 +1,90 @@
+id: itm.chm.o.atoms.0004
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.atoms.element_compound_mixture
+stem: Water has the formula H₂O.
+parts:
+- id: a
+  prompt: Which statement about water is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: It is a mixture of hydrogen and oxygen that keeps their properties.
+      correct: false
+      misconception_id: mc.chm.o.compound_as_mixture
+      feedback: 'Water is not a mixture of hydrogen and oxygen: it does not burn or help things burn, and filtering or distilling it never gives the two gases.'
+    - id: B
+      text: It is an element, because water is one substance with one formula.
+      correct: false
+      misconception_id: mc.chm.o.compound_as_element
+      feedback: 'Look at the symbols in the formula: more than one element symbol means a compound, even though it is one pure substance.'
+    - id: C
+      text: It is a mixture, because it contains more than one element.
+      correct: false
+      misconception_id: mc.chm.o.compound_as_mixture
+      feedback: In a compound the elements are chemically joined in a fixed ratio and have new properties. In a mixture the parts are not joined, can be in any ratio and keep their own properties.
+    - id: D
+      text: 'It is a compound: hydrogen and oxygen are chemically joined in a fixed ratio.'
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Look at the formula H₂O: which elements does it contain?'
+  - rung: 2
+    name: concept
+    text:
+      en: An element has one kind of atom; a compound has different elements bonded in a fixed ratio; a mixture's parts are not bonded.
+  - rung: 3
+    name: first_step
+    text:
+      en: Are hydrogen and oxygen in water bonded together, or just mixed?
+  - rung: 4
+    name: worked_step
+    text:
+      en: Compare the properties of water with those of hydrogen and oxygen.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Water is a compound: hydrogen and oxygen are bonded in a fixed ratio and the properties are new.'
+  misconception_ids:
+  - mc.chm.o.compound_as_mixture
+  - mc.chm.o.compound_as_element
+solution:
+  steps:
+  - n: 1
+    latex: '\text{water}\ \text{H₂O}: \text{compound}'
+    reason: Elements bonded in a fixed ratio
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

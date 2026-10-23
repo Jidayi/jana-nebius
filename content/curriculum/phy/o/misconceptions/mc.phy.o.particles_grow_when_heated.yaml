@@ -1,0 +1,40 @@
+id: mc.phy.o.particles_grow_when_heated
+kc_ids:
+- kc.phy.o.particles.states_of_matter
+- kc.phy.o.particles.gas_pressure_particles
+- kc.phy.o.thermal_properties.thermal_expansion
+- kc.phy.o.heat_transfer.convection
+- kc.phy.o.heat_transfer.conduction
+student_name: Particles get bigger when heated
+description: Thinks the particles themselves swell when a substance is heated or turns into a gas (or shrink when it cools), instead of moving faster and further apart.
+signatures:
+- kind: answer_transform
+  expression: size
+fix:
+  strategy: contrast_example
+  text:
+    en: A water particle is the same size in ice, in water and in steam. Heating makes particles move faster and spread further apart; it does not make them bigger.
+probe_item_ids:
+- itm.phy.o.heat_transfer.0012
+- itm.phy.o.heat_transfer.0028
+- itm.phy.o.heat_transfer.0030
+- itm.phy.o.particles.0011
+- itm.phy.o.particles.0012
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

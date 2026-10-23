@@ -1,0 +1,85 @@
+id: itm.mth.o.number.9036
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.time_intervals
+stem: A train leaves at 23:45 and arrives at 01:20 the next day.
+parts:
+- id: a
+  prompt: Find the journey time in minutes.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '95'
+    unit: min
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9036
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A journey across midnight has a part before midnight and a part after it.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the minutes from departure to midnight, then add the minutes after midnight.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the minutes from departure to midnight, then add the minutes after midnight.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Add the two pieces of the trip; clock times themselves are not decimal hours.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 95 min.
+solution:
+  steps:
+  - n: 1
+    latex: (24\times 60 - (23\times 60+45))+(1\times 60+20)
+    reason: Find the minutes from departure to midnight, then add the minutes after midnight.
+    check_id: chk_build_mastery_supplement_mth_9036
+  - n: 2
+    latex: '95'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9036
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9036:
+    args:
+      angle_unit: degrees
+      expression: (24*60-(23*60+45))+(1*60+20)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

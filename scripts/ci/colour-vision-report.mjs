@@ -1,0 +1,14 @@
+import { readFile, writeFile, mkdir } from "node:fs/promises";
+import path from "node:path";
+import { createHash } from "node:crypto";
+import { TOKENS } from "../../packages/ui/src/generated/tokens.ts";
+import { colourVisionReport } from "./colour-vision.mjs";
+import { parseArgs } from "./performance-evidence.mjs";
+const args = parseArgs(process.argv.slice(2));
+const out = path.resolve(args.out ?? "dist/colour-vision.json");
+const source = await readFile("packages/ui/src/generated/tokens.ts");
+const report = { ...colourVisionReport(TOKENS), token_source_sha256: createHash("sha256").update(source).digest("hex") };
+await mkdir(path.dirname(out), { recursive: true });
+await writeFile(out, `${JSON.stringify(report, null, 2)}\n`);
+console.log(JSON.stringify({ out, comparisons: report.rows.length, failures: report.failures.length }));
+if (report.failures.length && !args["report-only"]) process.exitCode = 1;

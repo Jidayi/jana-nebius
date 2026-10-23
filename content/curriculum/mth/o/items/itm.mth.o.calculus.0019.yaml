@@ -1,0 +1,93 @@
+id: itm.mth.o.calculus.0019
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.calculus.tangents_normals
+stem: A curve has equation $y = x^2 - 5x + 8$.
+parts:
+- id: a
+  prompt: Find the gradient of the normal to the curve at the point where x = 1. Give your answer to 3 significant figures.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '0.333'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_cal_0019_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The normal is the line at right angles to the tangent.
+  - rung: 2
+    name: concept
+    text:
+      en: First find the tangent's gradient from dy/dx, then take the negative reciprocal.
+  - rung: 3
+    name: first_step
+    text:
+      en: Differentiate and substitute x = 1.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The tangent's gradient is -3.
+  - rung: 5
+    name: full_step
+    text:
+      en: The normal's gradient is 0.333.
+  misconception_ids:
+  - mc.mth.o.normal_gradient_as_tangent
+  - mc.mth.o.perpendicular_reciprocal_only
+  - mc.mth.o.gradient_from_y
+solution:
+  steps:
+  - n: 1
+    latex: \frac{dy}{dx} = -3 \text{ at } x = 1
+    reason: The tangent's gradient
+    check_id: chk_build_mth_cal_0019_m
+  - n: 2
+    latex: m_{\text{normal}} = -\frac{1}{-3} = 0.333
+    reason: Perpendicular to the tangent
+    check_id: chk_build_mth_cal_0019_ans
+difficulty:
+  prior: 1.0
+  band: core
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_cal_0019_ans:
+    args:
+      expression: -1/(2*1*(1) + (-5))
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_cal_0019_m:
+    args:
+      expression: 2*1*(1) + (-5)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

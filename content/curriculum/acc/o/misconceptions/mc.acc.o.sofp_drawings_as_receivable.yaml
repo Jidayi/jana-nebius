@@ -1,0 +1,33 @@
+id: mc.acc.o.sofp_drawings_as_receivable
+kc_ids:
+- kc.acc.o.sole_trader_statements.sofp_sections
+student_name: Drawings as money owed to the business
+description: Shows drawings as a current asset, as if the owner must pay them back.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: drawings
+fix:
+  strategy: rule_restatement
+  text:
+    en: The owner does not repay drawings; they simply reduce the owner's capital.
+probe_item_ids:
+- itm.acc.o.sole_trader_statements.0037
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

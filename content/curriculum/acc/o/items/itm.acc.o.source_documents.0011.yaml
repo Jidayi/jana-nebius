@@ -1,0 +1,92 @@
+id: itm.acc.o.source_documents.0011
+version: 0.1.1
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.source_documents.identify_source_document
+stem: A trader keeps copies of the papers used in trade.
+parts:
+- id: a
+  prompt: Select all the ones used for credit sales, credit purchases or returns.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Invoice
+      correct: true
+    - id: B
+      text: Credit note
+      correct: true
+    - id: C
+      text: Debit note
+      correct: true
+    - id: D
+      text: Receipt
+      correct: false
+    - id: E
+      text: Paying-in slip
+      correct: false
+    - id: F
+      text: Cheque counterfoil
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which documents involve no money changing hands yet?
+  - rung: 2
+    name: concept
+    text:
+      en: Invoices, credit notes and debit notes.
+  - rung: 3
+    name: first_step
+    text:
+      en: Receipts, paying-in slips and counterfoils record money.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the credit documents.
+  - rung: 5
+    name: full_step
+    text:
+      en: Invoice, credit note and debit note.
+  misconception_ids:
+  - mc.acc.o.sd_invoice_credit_note_confused
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Credit and returns: invoice, credit note, debit note}'
+    reason: No money yet
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

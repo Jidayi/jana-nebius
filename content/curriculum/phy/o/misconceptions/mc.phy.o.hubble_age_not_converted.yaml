@@ -1,0 +1,33 @@
+id: mc.phy.o.hubble_age_not_converted
+kc_ids:
+- kc.phy.o.stars.expanding_universe
+student_name: The age left in seconds
+description: Finds 1/H0 in seconds and then gives the age without changing it into years (or divides by the wrong number).
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: 1/H0 is in seconds. Divide by the number of seconds in a year to get years, then by a thousand million for billions of years.
+probe_item_ids:
+- itm.phy.o.stars.0033
+- itm.phy.o.stars.0040
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

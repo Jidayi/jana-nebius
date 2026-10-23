@@ -1,0 +1,36 @@
+id: mc.chm.o.empirical_mass_ratio
+kc_ids:
+- kc.chm.o.stoichiometry.empirical_formula
+student_name: Using the masses as the ratio
+description: Writes the ratio of the masses (or percentages) as the ratio of atoms, without dividing by relative atomic masses.
+signatures:
+- kind: answer_transform
+  expression: 'choice: formula from the mass ratio'
+fix:
+  strategy: counterexample
+  text:
+    en: 'Equal masses are not equal numbers of atoms: 12 g of carbon and 1 g of hydrogen both hold one mole of atoms. Divide each mass by its Ar.'
+probe_item_ids:
+- itm.chm.o.stoichiometry.0097
+- itm.chm.o.stoichiometry.0098
+- itm.chm.o.stoichiometry.0099
+- itm.chm.o.stoichiometry.0100
+- itm.chm.o.stoichiometry.0101
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

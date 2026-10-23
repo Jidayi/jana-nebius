@@ -1,0 +1,97 @@
+id: itm.chm.o.environment.0025
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.air_pollution
+stem: Car exhaust gases contain oxides of nitrogen, such as nitrogen monoxide, NO.
+parts:
+- id: a
+  prompt: Where does the nitrogen in these oxides come from?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Incomplete combustion of petrol in too little oxygen
+      correct: false
+      misconception_id: mc.chm.o.environment_pollutant_effects_mixed
+      feedback: 'Learn each pollutant as a pair: source and effect. Carbon monoxide comes from incomplete combustion and is toxic. Sulfur dioxide comes from burning fuels that contain sulfur and causes acid rain. Oxides of nitrogen come from car engines and also cause acid rain. Particulates come from incomplete com'
+    - id: B
+      text: Nitrogen compounds in the petrol burn in the engine
+      correct: false
+      misconception_id: mc.chm.o.environment_nox_from_fuel_nitrogen
+      feedback: 'Petrol is a mixture of hydrocarbons: it contains almost no nitrogen. Air is mostly nitrogen. In the very hot engine, nitrogen and oxygen from the air combine to form nitrogen monoxide and nitrogen dioxide.'
+    - id: C
+      text: The catalytic converter adds nitrogen to the exhaust gases
+      correct: false
+      misconception_id: mc.chm.o.environment_converter_removes_co2
+      feedback: A catalytic converter changes carbon monoxide and oxides of nitrogen into carbon dioxide and nitrogen. It makes carbon dioxide; it does not remove it, and it does nothing to sulfur dioxide.
+    - id: D
+      text: Nitrogen in the air reacts with oxygen at the high temperature inside the engine
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Petrol is a mixture of hydrocarbons. Which elements does it contain?
+  - rung: 2
+    name: concept
+    text:
+      en: Air is mostly nitrogen, with some oxygen.
+  - rung: 3
+    name: first_step
+    text:
+      en: Nitrogen is unreactive at room temperature, but the inside of an engine is extremely hot.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Which two gases are drawn into the engine with the fuel?
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Nitrogen and oxygen from the air combine at the high engine temperature: N₂ + O₂ → 2NO.'
+  misconception_ids:
+  - mc.chm.o.environment_nox_from_fuel_nitrogen
+  - mc.chm.o.environment_converter_removes_co2
+  - mc.chm.o.environment_pollutant_effects_mixed
+solution:
+  steps:
+  - n: 1
+    latex: \text{N}_2 + \text{O}_2 \rightarrow 2\text{NO}
+    reason: High temperature in the engine
+    check_id: chk_build_chm_environment_0025_bal
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_environment_0025_bal:
+    args:
+      equation: N2 + O2 -> NO
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

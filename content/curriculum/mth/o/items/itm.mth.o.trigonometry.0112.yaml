@@ -1,0 +1,95 @@
+id: itm.mth.o.trigonometry.0112
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.three_d
+stem: A cuboid measures 12 cm by 2 cm by 4 cm.
+parts:
+- id: a
+  prompt: Find the angle between a diagonal from a bottom corner to the opposite top corner and the base, to 1 decimal place.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '18.2'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.05
+    check_id: chk_build_mth_trg_0112_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The angle sits in a vertical right-angled triangle inside the cuboid.
+  - rung: 2
+    name: concept
+    text:
+      en: That triangle has the base diagonal along the bottom and the height going up.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the base diagonal from 12 and 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The base diagonal is 12.17 cm; tan θ = 4 ÷ 12.17.
+  - rung: 5
+    name: full_step
+    text:
+      en: θ = 18.2°.
+  misconception_ids:
+  - mc.mth.o.three_d_wrong_angle_side
+  - mc.mth.o.trig_ratio_inverted
+  - mc.mth.o.trig_ratio_wrong
+solution:
+  steps:
+  - n: 1
+    latex: \text{base diagonal} = \sqrt{12^2 + 2^2} = 12.17
+    reason: Pythagoras in the base
+    check_id: chk_build_mth_trg_0112_bd
+  - n: 2
+    latex: \theta = \tan^{-1}\left(\frac{4}{12.17}\right) = 18.2
+    reason: Height over base diagonal
+    check_id: chk_build_mth_trg_0112_ans
+difficulty:
+  prior: 1.1
+  band: core
+estimated_seconds: 140
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_trg_0112_ans:
+    args:
+      angle_unit: degrees
+      dp: 1
+      expression: atan(4/sqrt(12^2 + 2^2))
+    tool: math_evaluate
+  chk_build_mth_trg_0112_bd:
+    args:
+      expression: sqrt(12^2 + 2^2)
+      sf: 4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

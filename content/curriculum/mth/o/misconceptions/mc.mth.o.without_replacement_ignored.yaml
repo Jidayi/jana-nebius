@@ -1,0 +1,36 @@
+id: mc.mth.o.without_replacement_ignored
+kc_ids:
+- kc.mth.o.probability.dependent_events
+student_name: Treating the second pick as unchanged
+description: Uses the same probability for the second pick even though the first item was not put back.
+signatures:
+- kind: answer_transform
+  expression: (r/n)^2
+fix:
+  strategy: rule_restatement
+  text:
+    en: After one item is taken, there is one fewer item in the bag, and one fewer of that colour if it was that colour.
+probe_item_ids:
+- itm.mth.o.probability.0056
+- itm.mth.o.probability.0057
+- itm.mth.o.probability.0058
+- itm.mth.o.probability.0059
+- itm.mth.o.probability.0060
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

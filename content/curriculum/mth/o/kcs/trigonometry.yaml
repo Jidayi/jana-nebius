@@ -1,0 +1,235 @@
+- id: kc.mth.o.trigonometry.pythagoras
+  code: MTH-O-06.01.K01
+  node_id: cur.mth.o.trigonometry.pythagoras_theorem
+  statement: Use Pythagoras' theorem to find a missing side of a right-angled triangle
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.163
+  prerequisites:
+  - kc_id: kc.mth.o.number.powers_and_roots
+    strength: required
+  misconception_ids:
+  - mc.mth.o.pythag_add_for_leg
+  - mc.mth.o.pythag_no_root
+  - mc.mth.o.pythag_sides_added
+  - mc.mth.o.square_as_double
+  skill_ids:
+  - mth-o-trigonometry
+  glossary:
+  - Pythagoras' theorem
+  - Pythagoras
+  - hypotenuse
+  - right-angled triangle
+  - square root
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.trigonometry.trig_side
+  code: MTH-O-06.02.K01
+  node_id: cur.mth.o.trigonometry.right_angled_triangles
+  statement: Use sine, cosine or tangent to find a missing side of a right-angled triangle
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.163
+  prerequisites:
+  - kc_id: kc.mth.o.trigonometry.pythagoras
+    strength: helpful
+  - kc_id: kc.mth.o.algebra_and_graphs.change_subject
+    strength: required
+  misconception_ids:
+  - mc.mth.o.calculator_radians
+  - mc.mth.o.trig_ratio_wrong
+  - mc.mth.o.trig_rearrange_wrong
+  skill_ids:
+  - mth-o-trigonometry
+  glossary:
+  - sine
+  - cosine
+  - tangent
+  - hypotenuse
+  - opposite
+  - adjacent
+  - right-angled triangle
+  - trigonometry
+  - ratio
+  - Pythagoras' theorem
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.trigonometry.trig_angle
+  code: MTH-O-06.02.K02
+  node_id: cur.mth.o.trigonometry.right_angled_triangles
+  statement: Use inverse sine, cosine or tangent to find an angle in a right-angled triangle
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.mth.o.trigonometry.trig_side
+    strength: required
+  misconception_ids:
+  - mc.mth.o.calculator_radians
+  - mc.mth.o.trig_ratio_inverted
+  - mc.mth.o.trig_ratio_wrong
+  skill_ids:
+  - mth-o-trigonometry
+  glossary:
+  - inverse sine
+  - inverse cosine
+  - inverse tangent
+  - sine
+  - cosine
+  - tangent
+  - hypotenuse
+  - opposite
+  - adjacent
+  - right-angled triangle
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.trigonometry.elevation_depression
+  code: MTH-O-06.02.K03
+  node_id: cur.mth.o.trigonometry.right_angled_triangles
+  statement: Solve problems with angles of elevation and depression using right-angled triangles
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.1
+  prerequisites:
+  - kc_id: kc.mth.o.trigonometry.trig_side
+    strength: required
+  misconception_ids:
+  - mc.mth.o.calculator_radians
+  - mc.mth.o.depression_from_vertical
+  - mc.mth.o.eye_height_ignored
+  - mc.mth.o.trig_ratio_wrong
+  skill_ids:
+  - mth-o-trigonometry
+  glossary:
+  - angle of elevation
+  - angle of depression
+  - elevation
+  - depression
+  - horizontal
+  - vertical
+  - tangent
+  - right-angled triangle
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.trigonometry.sine_rule
+  code: MTH-O-06.03.K01
+  node_id: cur.mth.o.trigonometry.non_right_angled_triangles
+  statement: Use the sine rule to find a missing side or angle in any triangle
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.125
+  prerequisites:
+  - kc_id: kc.mth.o.trigonometry.trig_angle
+    strength: required
+  misconception_ids:
+  - mc.mth.o.calculator_radians
+  - mc.mth.o.sine_rule_inverted
+  - mc.mth.o.trig_rearrange_wrong
+  - mc.mth.o.trig_ratio_wrong
+  skill_ids:
+  - mth-o-trigonometry
+  glossary:
+  - sine rule
+  - sine
+  - opposite
+  - acute
+  - obtuse
+  difficulty_prior: 0.7
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.trigonometry.cosine_rule
+  code: MTH-O-06.03.K02
+  node_id: cur.mth.o.trigonometry.non_right_angled_triangles
+  statement: Use the cosine rule to find a missing side or angle in any triangle
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.125
+  prerequisites:
+  - kc_id: kc.mth.o.trigonometry.trig_angle
+    strength: required
+  misconception_ids:
+  - mc.mth.o.calculator_radians
+  - mc.mth.o.cosine_rule_order
+  - mc.mth.o.cosine_rule_sign
+  - mc.mth.o.cosine_rule_two_dropped
+  - mc.mth.o.pythag_no_root
+  skill_ids:
+  - mth-o-trigonometry
+  glossary:
+  - cosine rule
+  - cosine
+  - included angle
+  - opposite
+  difficulty_prior: 0.8
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.trigonometry.triangle_area_sine
+  code: MTH-O-06.03.K03
+  node_id: cur.mth.o.trigonometry.non_right_angled_triangles
+  statement: Calculate the area of any triangle from two sides and the angle between them
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.1
+  prerequisites:
+  - kc_id: kc.mth.o.trigonometry.trig_side
+    strength: required
+  - kc_id: kc.mth.o.mensuration.area_perimeter
+    strength: required
+  misconception_ids:
+  - mc.mth.o.calculator_radians
+  - mc.mth.o.trig_ratio_wrong
+  - mc.mth.o.formula_half_dropped
+  skill_ids:
+  - mth-o-trigonometry
+  glossary:
+  - included angle
+  - sine
+  - area of a triangle
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.trigonometry.three_d
+  code: MTH-O-06.04.K01
+  node_id: cur.mth.o.trigonometry.pythagoras_theorem_and_trigonometry
+  statement: Apply Pythagoras' theorem and trigonometry to lengths and angles inside solids
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.075
+  prerequisites:
+  - kc_id: kc.mth.o.trigonometry.pythagoras
+    strength: required
+  - kc_id: kc.mth.o.trigonometry.trig_angle
+    strength: required
+  misconception_ids:
+  - mc.mth.o.pythag_sides_added
+  - mc.mth.o.three_d_two_dimensions
+  - mc.mth.o.three_d_wrong_angle_side
+  - mc.mth.o.pythag_no_root
+  - mc.mth.o.trig_ratio_inverted
+  - mc.mth.o.trig_ratio_wrong
+  skill_ids:
+  - mth-o-trigonometry
+  glossary:
+  - cuboid
+  - diagonal
+  - space diagonal
+  - plane
+  - Pythagoras' theorem
+  - trigonometry
+  - vertical
+  - horizontal
+  difficulty_prior: 1.0
+  version: 0.1.1
+  status: active

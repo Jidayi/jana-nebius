@@ -1,0 +1,60 @@
+{
+  "id": "connectivity-indicator.offline.limited",
+  "title": "Connectivity indicator, connected without internet",
+  "note": "A network without a route to the internet reads as offline.",
+  "component": "ConnectivityIndicator",
+  "state": "offline",
+  "variant": "limited",
+  "payload": {
+    "status": {
+      "type": "connectivity.status",
+      "network": "limited",
+      "checked_ts": 1760000000000,
+      "features": [
+        {
+          "feature": "cloud_tier",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "downloads",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "update_checks",
+          "enabled": true,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "telemetry",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "crash_reports",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        }
+      ]
+    },
+    "open": true
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light",
+    "connectivity": "limited"
+  },
+  "placements": [
+    "rail"
+  ],
+  "expectText": [
+    "Offline",
+    "Connected, but the internet isn't reachable."
+  ]
+}

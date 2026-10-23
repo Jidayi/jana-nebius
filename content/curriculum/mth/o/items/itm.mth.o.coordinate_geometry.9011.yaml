@@ -1,0 +1,85 @@
+id: itm.mth.o.coordinate_geometry.9011
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.coordinate_geometry.midpoint
+stem: The midpoint of AB is (4, -1). Point A is (-2, 5).
+parts:
+- id: a
+  prompt: Find the y-coordinate of B.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '-7'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9011
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Each midpoint coordinate is the mean of the corresponding endpoint coordinates.
+  - rung: 2
+    name: concept
+    text:
+      en: Double the midpoint y-coordinate, then subtract the y-coordinate of A.
+  - rung: 3
+    name: first_step
+    text:
+      en: Double the midpoint y-coordinate, then subtract the y-coordinate of A.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The average of the two endpoint y-coordinates must be the given midpoint y-coordinate.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is -7.
+solution:
+  steps:
+  - n: 1
+    latex: 2\times(-1) - 5
+    reason: Double the midpoint y-coordinate, then subtract the y-coordinate of A.
+    check_id: chk_build_mastery_supplement_mth_9011
+  - n: 2
+    latex: '-7'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9011
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9011:
+    args:
+      angle_unit: degrees
+      expression: 2*(-1)-5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

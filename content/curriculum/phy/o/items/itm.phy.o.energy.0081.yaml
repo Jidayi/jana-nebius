@@ -1,0 +1,93 @@
+id: itm.phy.o.energy.0081
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.power
+stem: Two cranes lift identical loads to the top of the same building. Crane X takes half as long as crane Y.
+parts:
+- id: a
+  prompt: Which statement is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: They have the same power, because they lift the same loads
+      correct: false
+      misconception_id: mc.phy.o.power_same_if_same_work
+      feedback: A lift and the stairs take you to the same floor, but the lift does it faster. Same energy in less time means more power.
+    - id: B
+      text: Crane X has twice the power of crane Y
+      correct: true
+    - id: C
+      text: Crane Y has more power, because it works for longer
+      correct: false
+      misconception_id: mc.phy.o.power_energy_times_time
+      feedback: 'Power is how fast energy is transferred: energy ÷ time. Doing the same job in less time means more power.'
+    - id: D
+      text: Crane X does twice as much work
+      correct: false
+      misconception_id: mc.phy.o.power_is_energy
+      feedback: 'Two runners do the same work climbing the same stairs, but the faster one has more power. Power needs the time: divide the energy by it.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Power tells you how fast energy is transferred.
+  - rung: 2
+    name: concept
+    text:
+      en: The work done is the same; compare the times.
+  - rung: 3
+    name: first_step
+    text:
+      en: Check each option against P = E ÷ t.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options that leave out the time or use it the wrong way.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Crane X has twice the power of crane Y.'
+  misconception_ids:
+  - mc.phy.o.power_energy_times_time
+  - mc.phy.o.power_is_energy
+  - mc.phy.o.power_same_if_same_work
+solution:
+  steps:
+  - n: 1
+    latex: \text{Crane X has twice the power of crane Y}
+    reason: Power is energy transferred per second
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

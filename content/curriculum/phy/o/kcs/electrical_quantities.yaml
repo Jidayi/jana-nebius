@@ -1,0 +1,208 @@
+- id: kc.phy.o.electrical_quantities.electric_charge
+  code: PHY-O-04.02.K01
+  node_id: cur.phy.o.electricity_and_magnetism.electrical_quantities
+  statement: Explain charging by friction as a transfer of electrons and the forces between like and unlike charges
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.148
+  prerequisites: []
+  misconception_ids:
+  - mc.phy.o.charge_created_by_rubbing
+  - mc.phy.o.electron_count_divided_by_e
+  - mc.phy.o.electron_gain_sign_reversed
+  - mc.phy.o.like_charges_attract
+  - mc.phy.o.protons_move_in_charging
+  - mc.phy.o.rubbed_pair_same_charge
+  - mc.phy.o.prefix_multiply_divide_swapped
+  skill_ids:
+  - phy-o-electrical-quantities
+  glossary:
+  - charge
+  - electric charge
+  - electron
+  - friction
+  - insulator
+  - conductor
+  - positive charge
+  - negative charge
+  - attract
+  - repel
+  - electrostatic
+  - charged
+  - uncharged
+  - attraction
+  - repulsion
+  difficulty_prior: -0.6
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.electrical_quantities.current_and_charge
+  code: PHY-O-04.02.K02
+  node_id: cur.phy.o.electricity_and_magnetism.electrical_quantities
+  statement: Use charge = current × time to find the charge, current or time
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.197
+  prerequisites:
+  - kc_id: kc.phy.o.electrical_quantities.electric_charge
+    strength: required
+  misconception_ids:
+  - mc.phy.o.charge_current_divided_by_time
+  - mc.phy.o.milliamps_used_as_amps
+  - mc.phy.o.minutes_used_as_seconds
+  - mc.phy.o.q_it_multiplied
+  - mc.phy.o.q_it_upside_down
+  skill_ids:
+  - phy-o-electrical-quantities
+  glossary:
+  - current
+  - charge
+  - coulomb
+  - ampere
+  - amp
+  - milliamp
+  - electron
+  - circuit
+  - ammeter
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.electrical_quantities.potential_difference
+  code: PHY-O-04.02.K03
+  node_id: cur.phy.o.electricity_and_magnetism.electrical_quantities
+  statement: Relate e.m.f. and potential difference to the energy transferred per unit charge
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.164
+  prerequisites:
+  - kc_id: kc.phy.o.electrical_quantities.current_and_charge
+    strength: required
+  - kc_id: kc.phy.o.energy.stores_and_transfers
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.charge_used_up_in_lamp
+  - mc.phy.o.emf_is_a_force
+  - mc.phy.o.energy_time_left_out
+  - mc.phy.o.kilo_prefix_ignored
+  - mc.phy.o.minutes_used_as_seconds
+  - mc.phy.o.pd_flows_through_component
+  - mc.phy.o.w_qv_divided
+  - mc.phy.o.w_qv_multiplied
+  - mc.phy.o.w_qv_upside_down
+  skill_ids:
+  - phy-o-electrical-quantities
+  glossary:
+  - potential difference
+  - e.m.f.
+  - electromotive force
+  - volt
+  - voltage
+  - charge
+  - coulomb
+  - energy transferred
+  - joule
+  - cell
+  - circuit
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.electrical_quantities.resistance
+  code: PHY-O-04.02.K04
+  node_id: cur.phy.o.electricity_and_magnetism.electrical_quantities
+  statement: Calculate resistance, current or potential difference with R = V / I
+  kind: procedural
+  tools:
+  - math_evaluate
+  - phys_circuit
+  exam_weight: 0.213
+  prerequisites:
+  - kc_id: kc.phy.o.electrical_quantities.current_and_charge
+    strength: required
+  - kc_id: kc.phy.o.electrical_quantities.potential_difference
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.kilo_prefix_ignored
+  - mc.phy.o.milliamps_used_as_amps
+  - mc.phy.o.ohm_law_divided
+  - mc.phy.o.ohm_law_multiplied
+  - mc.phy.o.ohm_law_upside_down
+  skill_ids:
+  - phy-o-electrical-quantities
+  glossary:
+  - resistance
+  - resistor
+  - potential difference
+  - current
+  - ohm
+  - volt
+  - amp
+  - milliamp
+  - voltage
+  - circuit
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.electrical_quantities.resistance_of_wires
+  code: PHY-O-04.02.K05
+  node_id: cur.phy.o.electricity_and_magnetism.electrical_quantities
+  statement: Predict how the resistance of a wire changes with its length and cross-sectional area
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.131
+  prerequisites:
+  - kc_id: kc.phy.o.electrical_quantities.resistance
+    strength: required
+  misconception_ids:
+  - mc.phy.o.diameter_used_as_area
+  - mc.phy.o.extra_length_only
+  - mc.phy.o.longer_wire_less_resistance
+  - mc.phy.o.resistance_set_by_material_only
+  - mc.phy.o.thicker_wire_more_resistance
+  skill_ids:
+  - phy-o-electrical-quantities
+  glossary:
+  - resistance
+  - cross-sectional area
+  - ohm
+  - resistor
+  - conductor
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.electrical_quantities.current_voltage_graphs
+  code: PHY-O-04.02.K06
+  node_id: cur.phy.o.electricity_and_magnetism.electrical_quantities
+  statement: Interpret current-voltage graphs for a fixed resistor, a filament lamp and a diode
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.148
+  prerequisites:
+  - kc_id: kc.phy.o.electrical_quantities.resistance
+    strength: required
+  misconception_ids:
+  - mc.phy.o.diode_conducts_both_ways
+  - mc.phy.o.iv_gradient_is_resistance
+  - mc.phy.o.lamp_resistance_constant
+  - mc.phy.o.lamp_resistance_falls_when_hot
+  - mc.phy.o.milliamps_used_as_amps
+  - mc.phy.o.resistance_from_chord_slope
+  skill_ids:
+  - phy-o-electrical-quantities
+  glossary:
+  - current
+  - voltage
+  - potential difference
+  - resistor
+  - filament lamp
+  - diode
+  - current-voltage graph
+  - resistance
+  - gradient
+  - ohmic
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active

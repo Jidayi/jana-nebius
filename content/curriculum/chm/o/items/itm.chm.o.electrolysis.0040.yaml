@@ -1,0 +1,93 @@
+id: itm.chm.o.electrolysis.0040
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.applications
+stem: Impure copper is purified by electrolysis in copper(II) sulfate solution.
+parts:
+- id: a
+  prompt: What happens at each electrode?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: The impure copper is heated with carbon, and pure copper collects below it.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_aluminium_by_carbon
+      feedback: Carbon can only remove oxygen from oxides of metals less reactive than carbon. Aluminium is more reactive than carbon, so its oxide must be decomposed by electrolysis, even though that uses a lot of electricity.
+    - id: B
+      text: Pure copper collects on the anode while the cathode dissolves.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_impure_copper_as_cathode
+      feedback: 'The impure copper is the anode: its copper atoms lose electrons and go into solution as Cu²⁺. These ions gain electrons at the cathode, a thin sheet of pure copper, which grows. Impurities fall below the anode.'
+    - id: C
+      text: The impure copper cathode grows as pure copper is deposited on it.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_impure_copper_as_cathode
+      feedback: 'The impure copper is the anode: its copper atoms lose electrons and go into solution as Cu²⁺. These ions gain electrons at the cathode, a thin sheet of pure copper, which grows. Impurities fall below the anode.'
+    - id: D
+      text: The impure copper anode dissolves, and pure copper is deposited on the cathode.
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You want copper atoms to leave the impure lump and build up somewhere else.
+  - rung: 2
+    name: concept
+    text:
+      en: At the anode, copper atoms can lose electrons and go into solution as ions.
+  - rung: 3
+    name: first_step
+    text:
+      en: Cu²⁺ ions move to the cathode and gain electrons there.
+  - rung: 4
+    name: worked_step
+    text:
+      en: So one electrode gets smaller and the other gets larger. Which is which?
+  - rung: 5
+    name: full_step
+    text:
+      en: The impure copper anode dissolves (Cu → Cu²⁺ + 2e⁻) and pure copper is deposited on the cathode (Cu²⁺ + 2e⁻ → Cu).
+  misconception_ids:
+  - mc.chm.o.electrolysis_impure_copper_as_cathode
+  - mc.chm.o.electrolysis_aluminium_by_carbon
+solution:
+  steps:
+  - n: 1
+    latex: \text{Cu} \rightarrow \text{Cu}^{2+} + 2e^-
+    reason: At the impure anode
+  - n: 2
+    latex: \text{Cu}^{2+} + 2e^- \rightarrow \text{Cu}
+    reason: At the pure cathode
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

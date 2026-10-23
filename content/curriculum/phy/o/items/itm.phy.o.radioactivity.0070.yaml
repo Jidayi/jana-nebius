@@ -1,0 +1,93 @@
+id: itm.phy.o.radioactivity.0070
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+stem: Engineers want to find a leak in a water pipe buried under a road, by adding a radioactive tracer to the water.
+parts:
+- id: a
+  prompt: Which tracer should they use?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: An alpha emitter with a half-life of a few hours
+      correct: false
+      misconception_id: mc.phy.o.tracer_alpha_emitter
+      feedback: The radiation must reach a detector outside, so a tracer must emit gamma (or sometimes beta). Alpha is absorbed within centimetres.
+    - id: B
+      text: A gamma emitter with a half-life of many years
+      correct: false
+      misconception_id: mc.phy.o.tracer_long_half_life
+      feedback: A tracer is needed only for hours. A long half-life would leave the patient or the ground radioactive for years.
+    - id: C
+      text: A gamma emitter with a half-life of a few hours
+      correct: true
+    - id: D
+      text: A beta emitter with a half-life of a few hours
+      correct: false
+      misconception_id: mc.phy.o.radiation_fully_absorbed_choice
+      feedback: If none of the radiation gets through, the reading cannot change with thickness and nothing behind the material is reached. Match the radiation to the material.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Two things decide the choice: the kind of radiation and the half-life.'
+  - rung: 2
+    name: concept
+    text:
+      en: The radiation must reach where it is needed and be partly absorbed if a change is to be measured; the half-life must suit how long the job lasts.
+  - rung: 3
+    name: first_step
+    text:
+      en: The radiation must get up through the soil, and the water must not stay radioactive.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that fail on either point, or that would put people at risk.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: A gamma emitter with a half-life of a few hours.'
+  misconception_ids:
+  - mc.phy.o.radiation_fully_absorbed_choice
+  - mc.phy.o.tracer_alpha_emitter
+  - mc.phy.o.tracer_long_half_life
+solution:
+  steps:
+  - n: 1
+    latex: \text{A gamma emitter with a half-life of a few hours}
+    reason: Match the radiation and half-life to the job
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

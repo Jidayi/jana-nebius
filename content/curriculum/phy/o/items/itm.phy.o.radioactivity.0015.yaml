@@ -1,0 +1,104 @@
+id: itm.phy.o.radioactivity.0015
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.types_of_radiation
+stem: A counter near a source reads 747 counts/min with nothing in between, 567 counts/min with a sheet of paper in between, and 107 counts/min with 5 mm of aluminium in between. The background count rate is 22 counts/min.
+parts:
+- id: a
+  prompt: Find the count rate due to beta radiation alone.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 180 counts/min
+      correct: false
+      misconception_id: mc.phy.o.beta_stopped_by_paper
+      feedback: Beta particles pass through paper. It takes a few millimetres of aluminium to stop them.
+    - id: B
+      text: 545 counts/min
+      correct: false
+      misconception_id: mc.phy.o.gamma_stopped_completely
+      feedback: Gamma rays pass through paper and aluminium almost unchanged. Thick lead or concrete reduces them a great deal but never to exactly zero.
+    - id: C
+      text: 640 counts/min
+      correct: false
+      misconception_id: mc.phy.o.penetration_order_wrong
+      feedback: Paper stops alpha; a few millimetres of aluminium stop beta; gamma is only reduced by thick lead or concrete.
+    - id: D
+      text: 460 counts/min
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Each absorber removes the radiation it can stop; the background is in every reading.
+  - rung: 2
+    name: concept
+    text:
+      en: Paper stops alpha; a few millimetres of aluminium stop beta; gamma passes through both.
+  - rung: 3
+    name: first_step
+    text:
+      en: So the count rate lost when the paper is swapped for aluminium is the beta.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 567 − 107.
+  - rung: 5
+    name: full_step
+    text:
+      en: The beta radiation gives 460 counts/min.
+  misconception_ids:
+  - mc.phy.o.beta_stopped_by_paper
+  - mc.phy.o.gamma_stopped_completely
+  - mc.phy.o.penetration_order_wrong
+solution:
+  steps:
+  - n: 1
+    latex: 567\ \text{(beta + gamma + background)}
+    reason: Paper has stopped the alpha
+  - n: 2
+    latex: 107\ \text{(gamma + background)}
+    reason: Aluminium has stopped the beta
+  - n: 3
+    latex: 567 - 107 = 460\ \text{counts/min}
+    reason: The difference is the beta
+    check_id: chk_build_phy_rad_0015_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 75
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_0015_ans:
+    args:
+      expression: 567 - 107
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.chm.o.electrolysis_metal_at_anode
+kc_ids:
+- kc.chm.o.electrolysis.molten_products
+student_name: The metal forms at the anode
+description: 'Mixes up the electrodes: sends the positive metal ions to the anode and the negative non-metal ions to the cathode, so the products are swapped.'
+signatures:
+- kind: answer_transform
+  expression: 'choice: the metal named at the anode or the non-metal at the cathode'
+fix:
+  strategy: rule_restatement
+  text:
+    en: Opposite charges attract. Positive metal ions (cations) move to the negative electrode, the cathode, and become metal there. Negative non-metal ions (anions) move to the positive electrode, the anode.
+probe_item_ids:
+- itm.chm.o.electrolysis.0001
+- itm.chm.o.electrolysis.0002
+- itm.chm.o.electrolysis.0003
+- itm.chm.o.electrolysis.0004
+- itm.chm.o.electrolysis.0006
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

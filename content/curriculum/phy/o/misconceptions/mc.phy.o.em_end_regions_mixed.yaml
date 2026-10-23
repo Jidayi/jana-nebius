@@ -1,0 +1,36 @@
+id: mc.phy.o.em_end_regions_mixed
+kc_ids:
+- kc.phy.o.em_spectrum.order_and_properties
+student_name: Neighbouring regions out of order
+description: Gets the order of neighbouring regions wrong, such as placing X-rays beyond gamma rays or microwaves beyond radio waves.
+signatures:
+- kind: answer_transform
+  expression: swap neighbours
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Learn the full order from longest wavelength: radio, microwaves, infrared, visible, ultraviolet, X-rays, gamma rays.'
+probe_item_ids:
+- itm.phy.o.em_spectrum.0011
+- itm.phy.o.em_spectrum.0013
+- itm.phy.o.em_spectrum.0004
+- itm.phy.o.em_spectrum.0006
+- itm.phy.o.em_spectrum.0008
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

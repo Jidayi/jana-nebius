@@ -1,0 +1,132 @@
+{
+  "description": "One synthetic guided turn on the session channel.",
+  "envelopes": [
+    {
+      "v": 1,
+      "channel": "session",
+      "seq": 1,
+      "epoch": "epoch-0001",
+      "session_id": "ses_01JZ0000000000000000000001",
+      "turn_id": "trn_01JZ0000000000000000000002",
+      "ts": 1791460800000,
+      "event": {
+        "type": "turn.start",
+        "turn_id": "trn_01JZ0000000000000000000002",
+        "user_message_id": "msg_00000000000000000000000000",
+        "client_message_id": "cli_00000000000000000000000000",
+        "intent": "ask",
+        "mode": "guided",
+        "fork": true
+      }
+    },
+    {
+      "v": 1,
+      "channel": "session",
+      "seq": 2,
+      "epoch": "epoch-0001",
+      "session_id": "ses_01JZ0000000000000000000001",
+      "turn_id": "trn_01JZ0000000000000000000002",
+      "ts": 1791460800050,
+      "event": {
+        "type": "status",
+        "phase": "preparing",
+        "label_key": "x",
+        "progress": {
+          "done": 0,
+          "total": 0,
+          "unit": "bytes"
+        },
+        "phase_started_ts": 0,
+        "model_tier": "fast"
+      }
+    },
+    {
+      "v": 1,
+      "channel": "session",
+      "seq": 3,
+      "epoch": "epoch-0001",
+      "session_id": "ses_01JZ0000000000000000000001",
+      "turn_id": "trn_01JZ0000000000000000000002",
+      "ts": 1791460800100,
+      "event": {
+        "type": "part.start",
+        "part_id": "prt_01JZ0000000000000000000003",
+        "kind": "text",
+        "index": 0
+      }
+    },
+    {
+      "v": 1,
+      "channel": "session",
+      "seq": 4,
+      "epoch": "epoch-0001",
+      "session_id": "ses_01JZ0000000000000000000001",
+      "turn_id": "trn_01JZ0000000000000000000002",
+      "ts": 1791460800150,
+      "event": {
+        "type": "text.delta",
+        "part_id": "prt_01JZ0000000000000000000003",
+        "delta": "What do we know about the car's motion? "
+      }
+    },
+    {
+      "v": 1,
+      "channel": "session",
+      "seq": 5,
+      "epoch": "epoch-0001",
+      "session_id": "ses_01JZ0000000000000000000001",
+      "turn_id": "trn_01JZ0000000000000000000002",
+      "ts": 1791460800200,
+      "event": {
+        "type": "text.delta",
+        "part_id": "prt_01JZ0000000000000000000003",
+        "delta": "Write down u, v and t."
+      }
+    },
+    {
+      "v": 1,
+      "channel": "session",
+      "seq": 6,
+      "epoch": "epoch-0001",
+      "session_id": "ses_01JZ0000000000000000000001",
+      "turn_id": "trn_01JZ0000000000000000000002",
+      "ts": 1791460800250,
+      "event": {
+        "type": "part.end",
+        "part_id": "prt_01JZ0000000000000000000003",
+        "status": "complete",
+        "duration_ms": 420
+      }
+    },
+    {
+      "v": 1,
+      "channel": "session",
+      "seq": 7,
+      "epoch": "epoch-0001",
+      "session_id": "ses_01JZ0000000000000000000001",
+      "turn_id": "trn_01JZ0000000000000000000002",
+      "ts": 1791460800300,
+      "event": {
+        "type": "turn.end",
+        "status": "complete",
+        "stop_reason": "completed",
+        "elapsed_ms": 0,
+        "usage": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "cache_read_tokens": 0,
+          "model_served": "x",
+          "tier": "fast",
+          "location": "local"
+        },
+        "verification": "verified",
+        "persisted": {
+          "message_id": "msg_00000000000000000000000000",
+          "part_ids": []
+        },
+        "degraded": true,
+        "degraded_reason": "aa"
+      }
+    }
+  ]
+}

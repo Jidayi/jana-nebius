@@ -1,0 +1,36 @@
+id: mc.acc.o.tb_returns_with_main
+kc_ids:
+- kc.acc.o.trial_balance.classify_tb_balances
+- kc.acc.o.trial_balance.prepare_trial_balance
+student_name: Returns on the same side as sales or purchases
+description: Lists sales returns as a credit like sales, or purchases returns as a debit like purchases.
+signatures:
+- kind: structural
+  rule: debit_credit_swapped
+  account_class: contra
+fix:
+  strategy: contrast_example
+  text:
+    en: Returns undo the original transaction, so they sit on the opposite side to the account they reduce.
+probe_item_ids:
+- itm.acc.o.trial_balance.0001
+- itm.acc.o.trial_balance.0002
+- itm.acc.o.trial_balance.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

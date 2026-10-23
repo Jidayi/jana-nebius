@@ -1,0 +1,88 @@
+id: itm.chm.o.acids.0041
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.oxides
+stem: Sulfur burns in air to form sulfur dioxide, SO₂. The gas dissolves in rain.
+parts:
+- id: a
+  prompt: What type of oxide is sulfur dioxide?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Neutral
+      correct: false
+    - id: B
+      text: Acidic
+      correct: true
+    - id: C
+      text: Amphoteric
+      correct: false
+      misconception_id: mc.chm.o.acids_amphoteric_neutral_confused
+      feedback: 'Amphoteric means ''both'': aluminium oxide and zinc oxide react with acids and with alkalis. Neutral means ''neither'': carbon monoxide, nitrogen monoxide and water react with neither.'
+    - id: D
+      text: Basic
+      correct: false
+      misconception_id: mc.chm.o.acids_oxide_type_swapped
+      feedback: 'Metal oxides such as CaO and CuO are bases: they react with acids. Non-metal oxides such as CO₂ and SO₂ are acidic: they react with alkalis and give acidic solutions in water.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Is sulfur a metal or a non-metal?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Most non-metal oxides are acidic: they react with alkalis and dissolve to give acidic solutions.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Sulfur dioxide in rain gives acid rain.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Think about what sulfur dioxide would react with: an acid or an alkali?'
+  - rung: 5
+    name: full_step
+    text:
+      en: Sulfur dioxide is a non-metal oxide that gives an acidic solution and reacts with alkalis, so it is acidic.
+  misconception_ids:
+  - mc.chm.o.acids_oxide_type_swapped
+  - mc.chm.o.acids_amphoteric_neutral_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{SO}_2 + \text{H}_2\text{O} \rightarrow \text{acidic solution}
+    reason: Non-metal oxide
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

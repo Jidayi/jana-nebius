@@ -1,0 +1,85 @@
+id: itm.chm.o.metals.0055
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.extraction
+stem: Limestone (calcium carbonate) is added to the blast furnace with the iron ore and coke.
+parts:
+- id: a
+  prompt: What is the job of the limestone?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: It burns to heat the furnace.
+      correct: false
+    - id: B
+      text: It reduces the iron(III) oxide to iron.
+      correct: false
+      misconception_id: mc.chm.o.metals_reduction_gains_oxygen
+      feedback: Reduction is LOSS of oxygen. In extraction the metal oxide loses its oxygen and becomes the metal; the carbon or carbon monoxide gains that oxygen and is oxidised.
+    - id: C
+      text: It removes impurities such as sand (silicon dioxide) as slag.
+      correct: true
+    - id: D
+      text: It adds calcium to make the iron harder.
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The iron ore is not pure; it contains rocky material.
+  - rung: 2
+    name: concept
+    text:
+      en: Limestone breaks down in the heat to calcium oxide, a basic oxide.
+  - rung: 3
+    name: first_step
+    text:
+      en: Sand (silicon dioxide) is an acidic oxide.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Think about what a basic oxide does to an acidic one.
+  - rung: 5
+    name: full_step
+    text:
+      en: Calcium oxide reacts with the silicon dioxide to form slag (calcium silicate), removing the impurity.
+  misconception_ids:
+  - mc.chm.o.metals_reduction_gains_oxygen
+solution:
+  steps:
+  - n: 1
+    latex: \text{CaO + SiO}_2 \rightarrow \text{CaSiO}_3
+    reason: Slag removes impurities
+difficulty:
+  prior: 0.3
+  band: stretch
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,34 @@
+id: mc.acc.o.club_opening_items_ignored
+kc_ids:
+- kc.acc.o.clubs.subscriptions
+student_name: Forgetting last year's arrears and advances
+description: Adjusts only for the year-end arrears and advances.
+signatures:
+- kind: answer_transform
+  expression: received + a2 - p2
+fix:
+  strategy: rule_restatement
+  text:
+    en: Money received this year for last year is not this year's income, and last year's advance is.
+probe_item_ids:
+- itm.acc.o.clubs.0019
+- itm.acc.o.clubs.0020
+- itm.acc.o.clubs.0021
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

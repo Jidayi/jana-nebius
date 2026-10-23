@@ -1,0 +1,96 @@
+id: itm.acc.o.costing.0047
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.costing.target_profit
+stem: Kwame makes solar lamps that sell for $12 each. Variable cost is $6 each and fixed costs are $14400. Kwame wants a profit of $2400.
+parts:
+- id: a
+  prompt: Calculate the number of units that must be sold.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '2800.00'
+    unit: units
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_costing_0047_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Contribution must now cover the fixed costs and the profit wanted.
+  - rung: 2
+    name: concept
+    text:
+      en: Units = (fixed costs + target profit) ÷ contribution per unit.
+  - rung: 3
+    name: first_step
+    text:
+      en: Contribution per unit = selling price − variable cost.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out (14400 + 2400) ÷ (12 − 6).
+  - rung: 5
+    name: full_step
+    text:
+      en: 2800.00 units must be sold.
+  misconception_ids:
+  - mc.acc.o.cost_target_fc_omitted
+  - mc.acc.o.cost_target_subtracted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Units} = \frac{\text{fixed costs} + \text{target profit}}{\text{contribution per unit}}
+    reason: Cover costs and profit
+    check_id: chk_build_acc_costing_0047_t
+  - n: 2
+    latex: \frac{14400 + 2400}{12 - 6} = 2800
+    reason: Substitute
+    check_id: chk_build_acc_costing_0047_a
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_costing_0047_a:
+    args:
+      dp: 2
+      expression: (14400 + 2400) / (12 - 6)
+    tool: math_evaluate
+  chk_build_acc_costing_0047_t:
+    args:
+      dp: 2
+      fixed_costs: '14400'
+      selling_price: '12'
+      target_profit: '2400'
+      variable_cost_per_unit: '6'
+    tool: acc_break_even
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

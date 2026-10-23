@@ -1,0 +1,129 @@
+id: itm.phy.o.momentum.0022
+version: 0.1.2
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.conservation_of_momentum
+stem: A spring launcher of mass 3 kg sits on a smooth track. It pushes out a ball of mass 0.2 kg at 30 m/s. Everything starts at rest. Take the direction in which the ball moves as positive.
+parts:
+- id: a
+  prompt: Find the velocity of the launcher just afterwards.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '-2'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_mom_0022_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What was the total momentum before?
+  - rung: 2
+    name: concept
+    text:
+      en: The total momentum before is zero, so afterwards the two momenta must cancel.
+  - rung: 3
+    name: first_step
+    text:
+      en: The momentum of the launcher is equal in size and opposite in sign to the momentum of the ball.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The ball has momentum 6 kg m/s, so the launcher has the same size of momentum, negative.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'V = −6 ÷ 3 = -2 m/s: the launcher moves backwards.'
+  misconception_ids:
+  - mc.phy.o.recoil_sign_dropped
+  - mc.phy.o.recoil_equal_speeds
+  - mc.phy.o.conservation_masses_swapped
+solution:
+  steps:
+  - n: 1
+    latex: p_\text{before} = 0
+    reason: Everything starts at rest
+  - n: 2
+    latex: 0.2 \times 30 = 6\ \text{kg m/s}
+    reason: Momentum of the ball
+    check_id: chk_build_phy_mom_0022_pf
+  - n: 3
+    latex: 0 = 6 + 3V \Rightarrow V = -2\ \text{m/s}
+    reason: Total momentum stays zero
+    check_id: chk_build_phy_mom_0022_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  v: '30'
+checks:
+  chk_build_phy_mom_0022_ans:
+    args:
+      expression: -0.2*30/3
+    tool: math_evaluate
+  chk_build_phy_mom_0022_pf:
+    args:
+      expression: 0.2*30
+    tool: math_evaluate
+  chk_build_phy_mom_0022_tool:
+    args:
+      equations:
+      - 0 = 0.2*30 + 3*V
+      unknowns:
+      - V
+    tool: math_solve
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:42:32.838Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.momentum.0022
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

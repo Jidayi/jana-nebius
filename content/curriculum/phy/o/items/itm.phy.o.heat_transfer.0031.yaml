@@ -1,0 +1,88 @@
+id: itm.phy.o.heat_transfer.0031
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.radiation
+stem: Two identical cans start with hot water at 90 °C, one painted dull black and one shiny silver. After 10 minutes the black can is at 70 °C and the shiny can at 80 °C.
+parts:
+- id: a
+  prompt: Find the average rate of cooling of the black can, in °C per minute.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '2'
+    unit: °C/min
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_htr_0031_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The black can is the better emitter of infrared, so it cools faster.
+  - rung: 2
+    name: concept
+    text:
+      en: Average rate of cooling = fall in temperature ÷ time taken.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the fall from 90 °C to 70 °C.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 20 °C by 10 minutes.
+  - rung: 5
+    name: full_step
+    text:
+      en: The black can cools at 2 °C per minute.
+solution:
+  steps:
+  - n: 1
+    latex: 90 - 70 = 20\ ^\circ\text{C}
+    reason: Fall in temperature
+    check_id: chk_build_phy_htr_0031_drop
+  - n: 2
+    latex: \frac{20}{10} = 2\ ^\circ\text{C/min}
+    reason: Fall ÷ time
+    check_id: chk_build_phy_htr_0031_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_htr_0031_ans:
+    args:
+      expression: (90 - 70)/10
+    tool: math_evaluate
+  chk_build_phy_htr_0031_drop:
+    args:
+      expression: 90 - 70
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

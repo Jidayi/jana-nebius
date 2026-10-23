@@ -1,0 +1,71 @@
+- id: kc.phy.o.oscilloscope.time_base
+  code: PHY-O-04.06.K01
+  node_id: cur.phy.o.electricity_and_magnetism.uses_of_an_oscilloscope
+  statement: Find the period and frequency of a signal from an oscilloscope trace and the time-base setting
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.5
+  prerequisites:
+  - kc_id: kc.phy.o.wave_properties.describing_waves
+    strength: required
+  misconception_ids:
+  - mc.phy.o.osc_divisions_as_time
+  - mc.phy.o.osc_frequency_period_confused
+  - mc.phy.o.osc_half_wave_as_period
+  - mc.phy.o.osc_ms_read_as_s
+  - mc.phy.o.osc_timebase_divided
+  - mc.phy.o.osc_timebase_setting_inverted
+  - mc.phy.o.osc_waves_not_divided
+  - mc.phy.o.osc_ygain_timebase_confused
+  skill_ids:
+  - phy-o-oscilloscope
+  glossary:
+  - oscilloscope
+  - time base
+  - time-base
+  - trace
+  - period
+  - frequency
+  - division
+  - hertz
+  - oscillation
+  - cycle
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.oscilloscope.y_gain
+  code: PHY-O-04.06.K02
+  node_id: cur.phy.o.electricity_and_magnetism.uses_of_an_oscilloscope
+  statement: Find the peak voltage of a signal from an oscilloscope trace and the Y-gain setting
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.5
+  prerequisites:
+  - kc_id: kc.phy.o.oscilloscope.time_base
+    strength: helpful
+  - kc_id: kc.phy.o.electrical_quantities.potential_difference
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.osc_divisions_as_volts
+  - mc.phy.o.osc_peak_and_peak_to_peak_confused
+  - mc.phy.o.osc_peak_height_halved
+  - mc.phy.o.osc_ygain_divided
+  - mc.phy.o.osc_ygain_mv_as_v
+  - mc.phy.o.osc_ygain_timebase_confused
+  skill_ids:
+  - phy-o-oscilloscope
+  glossary:
+  - oscilloscope
+  - Y-gain
+  - trace
+  - peak voltage
+  - amplitude
+  - division
+  - voltage
+  difficulty_prior: 0.1
+  version: 0.1.1
+  status: active

@@ -1,0 +1,69 @@
+id: les.acc.o.accruals_prepayments.matching_to_the_year
+node_id: cur.acc.o.accruals_prepayments
+kc_ids:
+- kc.acc.o.accruals_prepayments.accrued_expense
+- kc.acc.o.accruals_prepayments.prepaid_expense
+- kc.acc.o.accruals_prepayments.income_adjustments
+- kc.acc.o.accruals_prepayments.accrual_presentation
+title: Matching expenses and income to the year
+estimated_minutes: 12
+blocks:
+- type: step
+  text:
+    en: 'Try this before any rules: the year''s cost is what was used this year, not just the cash that left.'
+  item_id: itm.acc.o.accruals_prepayments.0001
+  action: try_first
+  why:
+    en: The bill still owing at the end belongs to this year, so it is added. The amount owing at the start was last year's cost, so it is taken off.
+  names:
+    en: An expense owing at the year end is an accrual. It is added to the year's expense.
+- type: step
+  text:
+    en: Watch the direction of each adjustment.
+  item_id: itm.acc.o.accruals_prepayments.0008
+  action: choose
+  why:
+    en: The closing amount owing is added and the opening amount owing is taken off. Subtracting the closing accrual gives the wrong total.
+- type: step
+  text:
+    en: Now some of the money paid covers next year. That part is a prepayment.
+  item_id: itm.acc.o.accruals_prepayments.0012
+  action: calculate
+  why:
+    en: The part paid for next year is taken off, and the amount paid in advance last year for this year is added.
+- type: step
+  text:
+    en: 'Predict before you look at the choices: income works the same way as expenses.'
+  item_id: itm.acc.o.accruals_prepayments.0030
+  action: predict
+  why:
+    en: Rent received for next year is not earned yet, so it is taken off the cash received.
+- type: step
+  text:
+    en: Every adjustment also shows up in the statement of financial position.
+  item_id: itm.acc.o.accruals_prepayments.0034
+  action: choose
+  why:
+    en: Rent owing is money the business must still pay soon, so it is a current liability.
+- type: check
+  item_ids:
+  - itm.acc.o.accruals_prepayments.0002
+  - itm.acc.o.accruals_prepayments.0023
+  - itm.acc.o.accruals_prepayments.0035
+version: 0.2.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

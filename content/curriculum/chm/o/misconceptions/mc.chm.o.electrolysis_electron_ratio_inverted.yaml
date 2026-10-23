@@ -1,0 +1,35 @@
+id: mc.chm.o.electrolysis_electron_ratio_inverted
+kc_ids:
+- kc.chm.o.electrolysis.quantitative
+student_name: Multiplying by the electrons per ion
+description: Multiplies the moles of electrons by the number of electrons per ion instead of dividing.
+signatures:
+- kind: answer_transform
+  expression: answer * electrons^2
+fix:
+  strategy: simpler_numbers
+  text:
+    en: More electrons per ion means fewer ions discharged by the same charge. If each ion needs two electrons, the moles of metal are half the moles of electrons, not double.
+probe_item_ids:
+- itm.chm.o.electrolysis.0057
+- itm.chm.o.electrolysis.0058
+- itm.chm.o.electrolysis.0059
+- itm.chm.o.electrolysis.0060
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

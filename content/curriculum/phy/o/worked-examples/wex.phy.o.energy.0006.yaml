@@ -1,0 +1,51 @@
+id: wex.phy.o.energy.0006
+kc_ids:
+- kc.phy.o.energy.potential_energy
+problem: A rock of mass 12 kg gains 882 J of gravitational potential energy when it is lifted. Take g = 9.8 N/kg. Calculate the height it is lifted through.
+steps:
+- n: 1
+  latex: mg = 12 \times 9.8 = 117.6\ \text{N}
+  reason: The weight
+  check_id: chk_build_phy_nrg_w0006_wt
+- n: 2
+  latex: \Delta h = \frac{\Delta E_p}{mg} = \frac{882}{117.6} = 7.5\ \text{m}
+  reason: Rearrange ΔEp = mgΔh
+  check_id: chk_build_phy_nrg_w0006_ans
+final_answer:
+  latex: 7.5\ \text{m}
+  check_id: chk_build_phy_nrg_w0006_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_w0006_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 882/(12*g)
+    tool: math_evaluate
+  chk_build_phy_nrg_w0006_wt:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 12*g
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

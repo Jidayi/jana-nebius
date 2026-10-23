@@ -1,0 +1,110 @@
+<div class="my-2 rounded-card border border-line p-3" role="group" aria-label="An equilibrium simulation of N2 + 3H2 ⇌ 2NH3 at 723 K, where Kc is 0.0500; at equilibrium the concentrations in mol per cubic decimetre are N2 0.708, H2 2.13, NH3 0.583." data-kind="equilibrium_sim" data-visual-id="vis_2CVKTGJD6FK15BHZJACV37H681">
+<svg viewBox="0 0 480 260" class="w-full" role="img" aria-label="A reversible reaction: bars for each concentration, and arrows for the forward and backward rates, which become equal at equilibrium">
+<text x="20" y="26" font-size="14" fill="#ECECEE" data-sim-equation="true">
+<tspan>N</tspan>
+<tspan dy="3" font-size="0.75em">2</tspan>
+<tspan dy="-3"> + </tspan>
+<tspan>3</tspan>
+<tspan>H</tspan>
+<tspan dy="3" font-size="0.75em">2</tspan>
+<tspan dy="-3"> ⇌ </tspan>
+<tspan>2</tspan>
+<tspan>N</tspan>
+<tspan>H</tspan>
+<tspan dy="3" font-size="0.75em">3</tspan>
+</text>
+<line x1="20" x2="280" y1="210" y2="210" stroke="#71727B" stroke-width="1.5">
+</line>
+<g data-sim-bar="N2">
+<rect x="40" y="186.38551837052626" width="56" height="23.614481629473758" fill="#9944cc" stroke="#ECECEE" stroke-width="1">
+</rect>
+<text x="68" y="228" text-anchor="middle" font-size="13" fill="#ECECEE">
+<tspan>N</tspan>
+<tspan dy="3" font-size="0.75em">2</tspan>
+</text>
+</g>
+<g data-sim-bar="H2">
+<rect x="114" y="139.15655511157877" width="56" height="70.84344488842125" fill="#9944cc" stroke="#ECECEE" stroke-width="1">
+</rect>
+<text x="142" y="228" text-anchor="middle" font-size="13" fill="#ECECEE">
+<tspan>H</tspan>
+<tspan dy="3" font-size="0.75em">2</tspan>
+</text>
+</g>
+<g data-sim-bar="NH3">
+<rect x="188" y="190.562296592281" width="56" height="19.43770340771901" fill="#557777" stroke="#ECECEE" stroke-width="1">
+</rect>
+<text x="216" y="228" text-anchor="middle" font-size="13" fill="#ECECEE">
+<tspan>N</tspan>
+<tspan>H</tspan>
+<tspan dy="3" font-size="0.75em">3</tspan>
+</text>
+</g>
+<g data-sim-rates="true">
+<text x="300" y="70" font-size="12" fill="#C5C6CC">Forward rate</text>
+<rect x="300" y="78" width="160" height="10" fill="#9944cc" stroke="#ECECEE" stroke-width="1">
+</rect>
+<path d="M462,76 l10,7 l-10,7 z" fill="#ECECEE">
+</path>
+<text x="300" y="124" font-size="12" fill="#C5C6CC">Backward rate</text>
+<rect x="300.00001559266275" y="132" width="159.99998440733728" height="10" fill="#557777" stroke="#ECECEE" stroke-width="1">
+</rect>
+<path d="M298.00001559266275,130 l-10,7 l10,7 z" fill="#ECECEE">
+</path>
+</g>
+</svg>
+<div class="mt-3 grid gap-2">
+<label for="vis_2CVKTGJD6FK15BHZJACV37H681-temperature" class="grid grid-cols-[10rem_1fr_6rem] items-center gap-2 text-ui">
+<span>Temperature (K)</span>
+<input id="vis_2CVKTGJD6FK15BHZJACV37H681-temperature" type="range" class="min-h-11" min="523" max="923" step="1" aria-valuetext="723 K" data-part="ctrl.temperature" value="723"/>
+<output for="vis_2CVKTGJD6FK15BHZJACV37H681-temperature" class="tabular-nums">723 K</output>
+</label>
+<label for="vis_2CVKTGJD6FK15BHZJACV37H681-volume" class="grid grid-cols-[10rem_1fr_6rem] items-center gap-2 text-ui">
+<span>Volume (dm³)</span>
+<input id="vis_2CVKTGJD6FK15BHZJACV37H681-volume" type="range" class="min-h-11" min="0.5" max="5" step="0.1" aria-valuetext="1 dm³" data-part="ctrl.volume" value="1"/>
+<output for="vis_2CVKTGJD6FK15BHZJACV37H681-volume" class="tabular-nums">1 dm³</output>
+</label>
+<label for="vis_2CVKTGJD6FK15BHZJACV37H681-catalyst" class="flex min-h-11 items-center gap-2 text-ui">
+<input id="vis_2CVKTGJD6FK15BHZJACV37H681-catalyst" type="checkbox" data-part="ctrl.catalyst"/>Catalyst</label>
+</div>
+<dl class="mt-3 grid grid-cols-2 gap-x-4 text-ui">
+<div class="contents">
+<dt class="text-muted">Time <span class="text-meta">(3 s.f.)</span>
+</dt>
+<dd class="tabular-nums">10.2 s</dd>
+</div>
+<div class="contents">
+<dt class="text-muted">[N2] <span class="text-meta">(3 s.f.)</span>
+</dt>
+<dd class="tabular-nums" data-part="out.c_N2" tabindex="0">0.708 mol/dm³</dd>
+</div>
+<div class="contents">
+<dt class="text-muted">[H2] <span class="text-meta">(3 s.f.)</span>
+</dt>
+<dd class="tabular-nums" data-part="out.c_H2" tabindex="0">2.13 mol/dm³</dd>
+</div>
+<div class="contents">
+<dt class="text-muted">[NH3] <span class="text-meta">(3 s.f.)</span>
+</dt>
+<dd class="tabular-nums" data-part="out.c_NH3" tabindex="0">0.583 mol/dm³</dd>
+</div>
+<div class="contents">
+<dt class="text-muted">Kc <span class="text-meta">(3 s.f.)</span>
+</dt>
+<dd class="tabular-nums" data-part="out.kc" tabindex="0">0.0500</dd>
+</div>
+<div class="contents">
+<dt class="text-muted">Q <span class="text-meta">(3 s.f.)</span>
+</dt>
+<dd class="tabular-nums">0.0500</dd>
+</div>
+</dl>
+<p class="sr-only" aria-live="polite" data-sim-live="true">
+</p>
+<div class="mt-3 flex flex-wrap gap-2">
+<button type="button" class="rounded-control border border-line px-3 py-1 text-ui" aria-pressed="false">Play</button>
+<button type="button" class="rounded-control border border-line px-3 py-1 text-ui">Reset</button>
+<button type="button" class="rounded-control border border-line px-3 py-1 text-ui">Record this reading</button>
+<button type="button" class="rounded-control border border-line px-3 py-1 text-ui" aria-pressed="false">Show readings as a table</button>
+</div>
+</div>

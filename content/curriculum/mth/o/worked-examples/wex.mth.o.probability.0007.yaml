@@ -1,0 +1,66 @@
+id: wex.mth.o.probability.0007
+kc_ids:
+- kc.mth.o.probability.dependent_events
+problem: A bag holds 5 red and 8 blue counters. Two counters are taken out, one after the other, without replacement. Find the probability that both are red. Give your answer to 3 significant figures.
+steps:
+- n: 1
+  latex: \text{total} = 13,\ \text{then } 12 \text{ after one is taken}
+  reason: Count the counters before and after the first pick
+  check_id: chk_build_mth_prb_w0007_tot
+- n: 2
+  latex: P(\text{red, red}) = \frac{5}{13} \times \frac{5 - 1}{13 - 1}
+  reason: One red is gone for the second pick
+  check_id: chk_build_mth_prb_w0007_x
+- n: 3
+  latex: = 0.128
+  reason: Multiply
+  check_id: chk_build_mth_prb_w0007_ans
+final_answer:
+  latex: '0.128'
+  check_id: chk_build_mth_prb_w0007_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_prb_w0007_ans:
+    args:
+      expression: 5/13*(5 - 1)/(13 - 1)
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_prb_w0007_tot:
+    args:
+      equations:
+      - p = 5 + 8
+      - q = 5 + 8 - 1
+      - r = 5 - 1
+      unknowns:
+      - p
+      - q
+      - r
+    tool: math_solve
+  chk_build_mth_prb_w0007_x:
+    args:
+      expression: 5/13*(5 - 1)/(13 - 1)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

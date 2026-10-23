@@ -1,0 +1,53 @@
+id: wex.phy.o.light.0008
+kc_ids:
+- kc.phy.o.light.total_internal_reflection
+problem: The refractive index of diamond is 2.42. Calculate the critical angle for light inside diamond meeting a boundary with air.
+steps:
+- n: 1
+  latex: \sin C = \frac{1}{2.42} = 0.413
+  reason: sin C = 1 / n
+  check_id: chk_build_phy_lgt_w0008_sc
+- n: 2
+  latex: C = \sin^{-1}(0.413) = 24.4^\circ
+  reason: Inverse sine
+  check_id: chk_build_phy_lgt_w0008_ans
+final_answer:
+  latex: 24.4^\circ
+  check_id: chk_build_phy_lgt_w0008_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_w0008_ans:
+    args:
+      angle_unit: degrees
+      expression: asin(1/2.42)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_w0008_sc:
+    args:
+      expression: 1/2.42
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_w0008_tool:
+    args:
+      n1: '2.42'
+      task: critical_angle
+    tool: phys_optics
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

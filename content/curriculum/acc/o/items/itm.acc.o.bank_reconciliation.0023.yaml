@@ -1,0 +1,120 @@
+id: itm.acc.o.bank_reconciliation.0023
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.bank_reconciliation.reconciliation_statement
+stem: 'After updating, Ama''s cash book shows a debit bank balance of $3850. Cheques not yet presented: $960, $1080. Lodgements not yet credited by the bank: $410.'
+parts:
+- id: a
+  prompt: Calculate the balance shown on the bank statement.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '5480.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_bank_reconciliation_0023_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which items has the bank not yet dealt with?
+  - rung: 2
+    name: concept
+    text:
+      en: The bank statement has not yet taken off the unpresented cheques, and has not yet added the outstanding lodgements.
+  - rung: 3
+    name: first_step
+    text:
+      en: So the statement balance is higher by the unpresented cheques and lower by the lodgements.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Statement balance = 3850 − 410 + 960 + 1080.
+  - rung: 5
+    name: full_step
+    text:
+      en: Bank statement balance = $5480.
+  misconception_ids:
+  - mc.acc.o.br_rec_signs_reversed
+  - mc.acc.o.br_unpresented_vs_lodgement
+solution:
+  steps:
+  - n: 1
+    latex: \text{Statement balance} + \text{lodgements} - \text{unpresented cheques} = \text{cash book balance}
+    reason: The reconciliation
+    check_id: chk_build_acc_bank_reconciliation_0023_t
+  - n: 2
+    latex: 3850 - 410 + 960 + 1080 = 5480
+    reason: Substitute
+    check_id: chk_build_acc_bank_reconciliation_0023_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_names
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_bank_reconciliation_0023_a:
+    args:
+      dp: 2
+      expression: 3850 - 410 + 960 + 1080
+    tool: math_evaluate
+  chk_build_acc_bank_reconciliation_0023_t:
+    args:
+      bank_statement:
+        balance: '5480'
+        entries:
+        - amount: '580'
+          details: loan interest charged by the bank
+          direction: out
+        - amount: '250'
+          details: a credit transfer from a customer
+          direction: in
+        overdrawn: false
+      cash_book:
+        balance: '4180'
+        entries:
+        - amount: '960'
+          details: cheque number 100237
+          direction: out
+          ref: t0
+        - amount: '410'
+          details: cash paid in on the last day of the month
+          direction: in
+          ref: t1
+        - amount: '1080'
+          details: cheque number 100643
+          direction: out
+          ref: t2
+        overdrawn: false
+      dp: 2
+      start_from: bank_statement
+      task: reconcile
+    tool: acc_double_entry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

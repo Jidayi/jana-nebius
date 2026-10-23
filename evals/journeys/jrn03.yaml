@@ -1,0 +1,75 @@
+# JRN-03: the journey as an executable script (JRN-02). Steps and failure branches follow the
+# specification's journey (checked by jrn02_journey_suite_complete); requirement ids only, no wording.
+journey: JRN-03
+title: First run to a first plan
+persona: P1
+stage: S2
+steps:
+- n: 1
+  requirements:
+  - PLT-06
+  - PLT-12
+  - SEC-15
+  runs_on: device_lab
+- n: 2
+  requirements:
+  - UXS-10
+  - PLT-17
+  - PLT-08
+  - MDL-16
+  - TCH-13
+  - PRV-02
+  - PRV-12
+  - DAT-14
+  - CUR-01
+  - PLT-13
+  - CUR-08
+  - UXS-11
+  runs_on: harness
+- n: 3
+  requirements:
+  - UXS-10
+  - TOL-20
+  - LRN-03
+  - MEM-06
+  runs_on: harness
+- n: 4
+  requirements:
+  - UXS-40
+  - ASM-10
+  - ASM-11
+  - ASM-12
+  - LRN-10
+  - CUR-05
+  runs_on: harness
+- n: 5
+  requirements:
+  - LRN-28
+  - UXS-12
+  runs_on: harness
+branches:
+- id: F1
+  requirements:
+  - PRD-04
+  - ARC-26
+- id: F2
+  requirements:
+  - MDL-20
+  - ARC-22
+- id: F3
+  requirements:
+  - ARC-25
+- id: F4
+  requirements:
+  - LRN-10
+- id: F5
+  requirements:
+  - ARC-11
+  - PRV-05
+  - PRV-06
+  - MDL-24
+  online: true
+- id: F6
+  requirements:
+  - PLT-17
+  - UXS-47

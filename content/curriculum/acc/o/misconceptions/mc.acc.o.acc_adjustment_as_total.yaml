@@ -1,0 +1,34 @@
+id: mc.acc.o.acc_adjustment_as_total
+kc_ids:
+- kc.acc.o.accruals_prepayments.income_adjustments
+student_name: The adjustment as the whole figure
+description: Gives only the amount owing or in advance as the income for the year.
+signatures:
+- kind: answer_transform
+  expression: adjustment
+fix:
+  strategy: simpler_numbers
+  text:
+    en: Start from the money received and adjust it; the adjustment is only a part.
+probe_item_ids:
+- itm.acc.o.accruals_prepayments.0030
+- itm.acc.o.accruals_prepayments.0031
+- itm.acc.o.accruals_prepayments.0032
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

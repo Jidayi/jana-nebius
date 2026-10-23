@@ -1,0 +1,36 @@
+id: mc.chm.o.acids_titration_ratio_ignored
+kc_ids:
+- kc.chm.o.acids.titration_calculations
+student_name: Treating every titration as one to one
+description: 'Uses a 1 : 1 mole ratio for sulfuric acid with sodium or potassium hydroxide, so the answer is half (or twice) the right value.'
+signatures:
+- kind: answer_transform
+  expression: c_base = c_acid*V_acid/V_base
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Always write the balanced equation first. H₂SO₄ + 2NaOH → Na₂SO₄ + 2H₂O: one mole of sulfuric acid needs two moles of alkali.'
+probe_item_ids:
+- itm.chm.o.acids.0061
+- itm.chm.o.acids.0062
+- itm.chm.o.acids.0063
+- itm.chm.o.acids.0064
+- itm.chm.o.acids.0067
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

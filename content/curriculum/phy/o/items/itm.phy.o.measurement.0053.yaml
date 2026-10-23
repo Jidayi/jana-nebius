@@ -1,0 +1,108 @@
+id: itm.phy.o.measurement.0053
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.measurement.measuring_techniques
+stem: A student times 50 complete oscillations of a pendulum and records 82.5 s.
+parts:
+- id: a
+  prompt: Find the period of the pendulum.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '1.65'
+    unit: s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_mea_0053_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Timing many oscillations reduces the effect of reaction time.
+  - rung: 2
+    name: concept
+    text:
+      en: The period is the time for one complete oscillation.
+  - rung: 3
+    name: first_step
+    text:
+      en: Share the total time equally among the 50 oscillations.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 82.5 ÷ 50.
+  - rung: 5
+    name: full_step
+    text:
+      en: The period is 1.65 s.
+  misconception_ids:
+  - mc.phy.o.repeat_not_divided
+  - mc.phy.o.oscillation_counted_wrongly
+  - mc.phy.o.repeat_multiplied
+solution:
+  steps:
+  - n: 1
+    latex: T = \frac{82.5}{50} = 1.65\ \text{s}
+    reason: Total time over the number of swings
+    check_id: chk_build_phy_mea_0053_ans
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  n: '50'
+  t: '82.5'
+checks:
+  chk_build_phy_mea_0053_ans:
+    args:
+      expression: 82.5/50
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:42:28.804Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.measurement.0053
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

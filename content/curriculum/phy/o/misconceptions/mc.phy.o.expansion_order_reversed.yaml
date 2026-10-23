@@ -1,0 +1,37 @@
+id: mc.phy.o.expansion_order_reversed
+kc_ids:
+- kc.phy.o.thermal_properties.thermal_expansion
+- kc.phy.o.heat_transfer.convection
+student_name: Getting the order of expansion wrong
+description: Thinks solids expand more than liquids or gases, or that solids or liquids hardly expand at all, or that the wrong one of two solids expands more.
+signatures:
+- kind: answer_transform
+  expression: order
+fix:
+  strategy: rule_restatement
+  text:
+    en: For the same temperature rise, gases expand most, then liquids, then solids. Solids expand only a little, but enough to buckle rails and crack glass.
+probe_item_ids:
+- itm.phy.o.thermal_properties.0011
+- itm.phy.o.thermal_properties.0012
+- itm.phy.o.thermal_properties.0013
+- itm.phy.o.thermal_properties.0014
+- itm.phy.o.thermal_properties.0015
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

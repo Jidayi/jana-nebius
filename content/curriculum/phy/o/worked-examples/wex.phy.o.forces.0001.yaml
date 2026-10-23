@@ -1,0 +1,45 @@
+id: wex.phy.o.forces.0001
+kc_ids:
+- kc.phy.o.forces.resultant_force
+problem: A speedboat has a thrust from the engine of 7200 N acting forwards. Against it act water resistance of 3000 N and air resistance of 400 N. Find the size of the resultant force.
+steps:
+- n: 1
+  latex: 3000 + 400 = 3400\ \text{N}
+  reason: Add the two backward forces
+  check_id: chk_build_phy_frc_w0001_back
+- n: 2
+  latex: 7200 - 3400 = 3800\ \text{N}
+  reason: Forward minus backward
+  check_id: chk_build_phy_frc_w0001_ans
+final_answer:
+  latex: 3800\ \text{N}
+  check_id: chk_build_phy_frc_w0001_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_w0001_ans:
+    args:
+      expression: 7200 - 3000 - 400
+    tool: math_evaluate
+  chk_build_phy_frc_w0001_back:
+    args:
+      expression: 3000 + 400
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

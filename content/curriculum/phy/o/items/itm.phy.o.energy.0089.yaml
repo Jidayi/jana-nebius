@@ -1,0 +1,116 @@
+id: itm.phy.o.energy.0089
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.power
+stem: A water pump transfers 90 kJ of energy in 2 minutes.
+parts:
+- id: a
+  prompt: Calculate its power in watts.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 45000 W
+      correct: false
+      misconception_id: mc.phy.o.power_minutes_not_converted
+      feedback: A watt is a joule per second. Change minutes to seconds (sixty seconds in each minute) before you divide or multiply.
+    - id: B
+      text: 750 W
+      correct: true
+    - id: C
+      text: 0.75 W
+      correct: false
+      misconception_id: mc.phy.o.energy_kilo_prefix_ignored
+      feedback: Kilo means a thousand. Change every kilo value to the base unit first, then change the answer to the unit the question asks for.
+    - id: D
+      text: 10800000 W
+      correct: false
+      misconception_id: mc.phy.o.power_energy_times_time
+      feedback: 'Power is how fast energy is transferred: energy ÷ time. Doing the same job in less time means more power.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A watt is one joule per second.
+  - rung: 2
+    name: concept
+    text:
+      en: Change the energy to joules and the time to seconds, then use P = E ÷ t.
+  - rung: 3
+    name: first_step
+    text:
+      en: 90 kJ = 90000 J and 2 minutes = 120 s.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 90000 ÷ 120.
+  - rung: 5
+    name: full_step
+    text:
+      en: The power is 750 W.
+  misconception_ids:
+  - mc.phy.o.energy_kilo_prefix_ignored
+  - mc.phy.o.power_energy_times_time
+  - mc.phy.o.power_minutes_not_converted
+solution:
+  steps:
+  - n: 1
+    latex: E = 90\ \text{kJ} = 90000\ \text{J}
+    reason: Energy in joules
+    check_id: chk_build_phy_nrg_0089_ej
+  - n: 2
+    latex: t = 2\ \text{min} = 120\ \text{s}
+    reason: Time in seconds
+    check_id: chk_build_phy_nrg_0089_ts
+  - n: 3
+    latex: P = \frac{E}{t} = \frac{90000}{120} = 750\ \text{W}
+    reason: Power = energy ÷ time
+    check_id: chk_build_phy_nrg_0089_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0089_ans:
+    args:
+      expression: 90*1000/(2*60)
+    tool: math_evaluate
+  chk_build_phy_nrg_0089_ej:
+    args:
+      quantity: 90 kJ
+      to: J
+    tool: units_convert
+  chk_build_phy_nrg_0089_ts:
+    args:
+      quantity: 2 min
+      to: s
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

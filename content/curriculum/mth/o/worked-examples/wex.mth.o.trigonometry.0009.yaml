@@ -1,0 +1,57 @@
+id: wex.mth.o.trigonometry.0009
+kc_ids:
+- kc.mth.o.trigonometry.sine_rule
+problem: In triangle ABC, angle A = 42°, side a = BC = 9 cm and side b = AC = 8.7 cm. Angle B is acute. Find angle B, to 1 decimal place.
+steps:
+- n: 1
+  latex: \frac{\sin B}{b} = \frac{\sin A}{a}
+  reason: The sine rule, angles on top
+- n: 2
+  latex: \sin B = \frac{8.7 \sin 42}{9} = 0.6468
+  reason: Rearrange
+  check_id: chk_build_mth_trg_w0009_s
+- n: 3
+  latex: B = 40.3
+  reason: Inverse sine, in degrees
+  check_id: chk_build_mth_trg_w0009_ans
+final_answer:
+  latex: 40.3^\circ
+  check_id: chk_build_mth_trg_w0009_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_trg_w0009_ans:
+    args:
+      angle_unit: degrees
+      dp: 1
+      expression: asin(8.7*sin(42)/9)
+    tool: math_evaluate
+  chk_build_mth_trg_w0009_s:
+    args:
+      angle_unit: degrees
+      expression: 8.7*sin(42)/9
+      sf: 4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

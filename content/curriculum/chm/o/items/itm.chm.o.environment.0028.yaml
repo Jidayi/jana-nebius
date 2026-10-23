@@ -1,0 +1,90 @@
+id: itm.chm.o.environment.0028
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.air_pollution
+stem: A gas heater burns natural gas in a small room with poor ventilation.
+parts:
+- id: a
+  prompt: Why is the carbon monoxide it may produce dangerous?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: It is not dangerous, because it is made only when fuel burns completely
+      correct: false
+      misconception_id: mc.chm.o.environment_pollutant_effects_mixed
+      feedback: 'Learn each pollutant as a pair: source and effect. Carbon monoxide comes from incomplete combustion and is toxic. Sulfur dioxide comes from burning fuels that contain sulfur and causes acid rain. Oxides of nitrogen come from car engines and also cause acid rain. Particulates come from incomplete com'
+    - id: B
+      text: It is a greenhouse gas that a catalytic converter cannot change
+      correct: false
+      misconception_id: mc.chm.o.environment_converter_removes_co2
+      feedback: A catalytic converter changes carbon monoxide and oxides of nitrogen into carbon dioxide and nitrogen. It makes carbon dioxide; it does not remove it, and it does nothing to sulfur dioxide.
+    - id: C
+      text: It dissolves in the moisture of the lungs to form acid rain
+      correct: false
+      misconception_id: mc.chm.o.environment_pollutant_effects_mixed
+      feedback: 'Learn each pollutant as a pair: source and effect. Carbon monoxide comes from incomplete combustion and is toxic. Sulfur dioxide comes from burning fuels that contain sulfur and causes acid rain. Oxides of nitrogen come from car engines and also cause acid rain. Particulates come from incomplete com'
+    - id: D
+      text: It combines with haemoglobin in the blood, so the blood carries less oxygen
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Carbon monoxide forms when there is not enough oxygen for complete combustion.
+  - rung: 2
+    name: concept
+    text:
+      en: Carbon monoxide has no colour and no smell, so people do not notice it.
+  - rung: 3
+    name: first_step
+    text:
+      en: Red blood cells contain haemoglobin, which normally carries oxygen.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Carbon monoxide binds to haemoglobin more strongly than oxygen does.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Carbon monoxide combines with haemoglobin, so less oxygen reaches the body''s cells: it is toxic.'
+  misconception_ids:
+  - mc.chm.o.environment_pollutant_effects_mixed
+  - mc.chm.o.environment_converter_removes_co2
+solution:
+  steps:
+  - n: 1
+    latex: \text{CO + haemoglobin }\rightarrow\text{ less oxygen carried}
+    reason: Toxic effect
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

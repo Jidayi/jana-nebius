@@ -1,0 +1,93 @@
+id: itm.phy.o.radioactivity.0002
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.types_of_radiation
+stem: The three radiations differ in how strongly they ionise the air they pass through.
+parts:
+- id: a
+  prompt: Which statement is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Gamma ionises most strongly because it is the most penetrating
+      correct: false
+      misconception_id: mc.phy.o.ionising_follows_penetration
+      feedback: It is the other way round. Alpha ionises so strongly that it uses up its energy within a few centimetres of air; gamma ionises weakly, so it travels much further.
+    - id: B
+      text: Alpha ionises most strongly, so it travels furthest in air
+      correct: false
+      misconception_id: mc.phy.o.penetration_order_wrong
+      feedback: Paper stops alpha; a few millimetres of aluminium stop beta; gamma is only reduced by thick lead or concrete.
+    - id: C
+      text: Alpha ionises most strongly, so it travels only a few centimetres in air
+      correct: true
+    - id: D
+      text: Gamma ionises most strongly because it is a heavy charged particle
+      correct: false
+      misconception_id: mc.phy.o.gamma_is_particle
+      feedback: 'Gamma rays are electromagnetic waves, like X-rays: no mass and no charge.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Think about what each radiation is: its mass and its charge.'
+  - rung: 2
+    name: concept
+    text:
+      en: Alpha is heavy and doubly charged; beta is a light, charged electron; gamma is an uncharged wave.
+  - rung: 3
+    name: first_step
+    text:
+      en: A radiation that ionises a lot gives away its energy quickly.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that do not fit those properties.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Alpha ionises most strongly, so it travels only a few centimetres in air.'
+  misconception_ids:
+  - mc.phy.o.gamma_is_particle
+  - mc.phy.o.ionising_follows_penetration
+  - mc.phy.o.penetration_order_wrong
+solution:
+  steps:
+  - n: 1
+    latex: \text{Alpha ionises most strongly, so it travels only a few centimetres in air}
+    reason: Use the nature, charge and mass of each radiation
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

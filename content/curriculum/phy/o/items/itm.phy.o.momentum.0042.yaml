@@ -1,0 +1,114 @@
+id: itm.phy.o.momentum.0042
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.impulse
+stem: A cricket ball of mass 0.16 kg moving at 25 m/s is caught and stopped in 100 ms.
+parts:
+- id: a
+  prompt: Find the average force on it.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 0.04 N
+      correct: false
+      misconception_id: mc.phy.o.impulse_ms_not_converted
+      feedback: Force in newtons needs the time in seconds. Change milliseconds into seconds first.
+    - id: B
+      text: 0.4 N
+      correct: false
+      misconception_id: mc.phy.o.impulse_time_multiplied
+      feedback: Impulse is force × time, so force = change in momentum ÷ time. A shorter impact time gives a bigger force.
+    - id: C
+      text: 40 N
+      correct: true
+    - id: D
+      text: 4 N
+      correct: false
+      misconception_id: mc.phy.o.impulse_change_as_force
+      feedback: The change in momentum is the impulse, in N s. To get the force in N, divide the impulse by the time.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Impulse = force × time = change in momentum.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the change in momentum, then divide by the time in seconds.
+  - rung: 3
+    name: first_step
+    text:
+      en: It ends at rest, so the change in momentum is m × u.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Δp = 4 kg m/s and t = 0.1 s.
+  - rung: 5
+    name: full_step
+    text:
+      en: F = 4 ÷ 0.1 = 40 N.
+  misconception_ids:
+  - mc.phy.o.impulse_change_as_force
+  - mc.phy.o.impulse_ms_not_converted
+  - mc.phy.o.impulse_time_multiplied
+solution:
+  steps:
+  - n: 1
+    latex: \Delta p = 0.16 \times 25 - 0 = 4\ \text{kg m/s}
+    reason: Change in momentum
+    check_id: chk_build_phy_mom_0042_dp
+  - n: 2
+    latex: t = 100\ \text{ms} = 0.1\ \text{s}
+    reason: Time in seconds
+    check_id: chk_build_phy_mom_0042_ts
+  - n: 3
+    latex: F = \frac{\Delta p}{t} = \frac{4}{0.1} = 40\ \text{N}
+    reason: 'Impulse: Ft = Δp'
+    check_id: chk_build_phy_mom_0042_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_0042_ans:
+    args:
+      expression: 0.16*25/(100/1000)
+    tool: math_evaluate
+  chk_build_phy_mom_0042_dp:
+    args:
+      expression: 0.16*25
+    tool: math_evaluate
+  chk_build_phy_mom_0042_ts:
+    args:
+      expression: 100/1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

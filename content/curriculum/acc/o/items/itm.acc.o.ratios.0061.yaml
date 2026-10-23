@@ -1,0 +1,116 @@
+id: itm.acc.o.ratios.0061
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.roce
+stem: Yaw's capital was $83000 at the start of the year and $90700 at the end. Profit for the year was $21200 and the business has a long-term loan of $24000.
+parts:
+- id: a
+  prompt: Calculate the return on capital employed as a percentage, using the pack's definition (profit for the year ÷ closing capital plus non-current liabilities). Give your answer to 2 decimal places.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '18.48'
+    unit: '%'
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_ratios_0061_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Return on capital employed shows the profit made for each dollar invested in the business.
+  - rung: 2
+    name: concept
+    text:
+      en: ROCE = profit for the year ÷ capital employed, as a percentage. Capital employed = capital at the year end + non-current liabilities.
+  - rung: 3
+    name: first_step
+    text:
+      en: Use the closing capital, not the opening one.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 21200 by (90700 + 24000) and write it as a percentage.
+  - rung: 5
+    name: full_step
+    text:
+      en: ROCE = 18.48%.
+  misconception_ids:
+  - mc.acc.o.rat_capital_employed_wrong
+  - mc.acc.o.rat_capital_basis_wrong
+solution:
+  steps:
+  - n: 1
+    latex: \text{ROCE} = \frac{\text{profit for the year}}{\text{capital} + \text{non-current liabilities}}
+    reason: The pack's definition
+    check_id: chk_build_acc_ratios_0061_t
+  - n: 2
+    latex: \text{Capital employed} = 90700 + 24000 = 114700
+    reason: Closing capital and loans
+    check_id: chk_build_acc_ratios_0061_s2
+  - n: 3
+    latex: \frac{21200}{114700} \rightarrow 18.48\%
+    reason: As a percentage
+    check_id: chk_build_acc_ratios_0061_a
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_0061_a:
+    args:
+      dp: 2
+      expression: 21200 / (90700 + 24000) * 100
+    tool: math_evaluate
+  chk_build_acc_ratios_0061_s2:
+    args:
+      dp: 4
+      expression: 90700 + 24000
+    tool: math_evaluate
+  chk_build_acc_ratios_0061_t:
+    args:
+      closing_capital: '90700'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      non_current_liabilities: '24000'
+      opening_capital: '83000'
+      profit_for_the_year: '21200'
+      ratios:
+      - roce
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

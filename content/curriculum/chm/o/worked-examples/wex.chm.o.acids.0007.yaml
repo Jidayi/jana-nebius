@@ -1,0 +1,51 @@
+id: wex.chm.o.acids.0007
+kc_ids:
+- kc.chm.o.acids.oxides
+problem: Magnesium oxide reacts with dilute sulfuric acid but not with sodium hydroxide. Classify the oxide, write the equation and find the relative formula mass of the salt.
+steps:
+- n: 1
+  latex: \text{a basic oxide}
+  reason: 'Reacts with acid only: a basic oxide'
+- n: 2
+  latex: \text{MgO} + \text{H}_2\text{SO}_4 \rightarrow \text{MgSO}_4 + \text{H}_2\text{O}
+  reason: Oxide + acid or alkali → salt + water
+  check_id: chk_build_chm_acids_w0007_bal
+final_answer:
+  latex: M_r(\text{MgSO}_4) = 120
+  check_id: chk_build_chm_acids_w0007_mr
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_acids_w0007_bal:
+    args:
+      equation: MgO + H2SO4 -> MgSO4 + H2O
+    tool: chem_balance
+  chk_build_chm_acids_w0007_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_mg
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      formula: MgSO4
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

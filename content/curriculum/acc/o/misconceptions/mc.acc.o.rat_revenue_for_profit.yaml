@@ -1,0 +1,34 @@
+id: mc.acc.o.rat_revenue_for_profit
+kc_ids:
+- kc.acc.o.ratios.mark_up
+student_name: Revenue instead of profit
+description: Puts revenue on top when working out mark-up, giving a figure over 100%.
+signatures:
+- kind: answer_transform
+  expression: revenue / cost_of_sales
+fix:
+  strategy: simpler_numbers
+  text:
+    en: Mark-up is the profit added to cost, so the top line is gross profit.
+probe_item_ids:
+- itm.acc.o.ratios.0019
+- itm.acc.o.ratios.0020
+- itm.acc.o.ratios.0021
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

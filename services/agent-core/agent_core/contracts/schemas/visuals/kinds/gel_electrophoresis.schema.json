@@ -1,0 +1,60 @@
+{
+ "$comment": "GENERATED from docs/specification/contracts/visuals/kinds/gel_electrophoresis.schema.json sha256 2eb5b1c5a53f1d219b9ca65274baaae5d84a6980dc8a70d183a6c21b4c4992b6; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/gel_electrophoresis",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "ladder_bp": {
+   "type": "array",
+   "items": {
+    "type": "integer",
+    "minimum": 1
+   },
+   "minItems": 2,
+   "maxItems": 50
+  },
+  "lanes": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,63}$"
+     },
+     "label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+     },
+     "fragments_bp": {
+      "type": "array",
+      "items": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "minItems": 1,
+      "maxItems": 100
+     }
+    },
+    "required": [
+     "id",
+     "label",
+     "fragments_bp"
+    ]
+   },
+   "minItems": 1,
+   "maxItems": 20
+  },
+  "migration": {
+   "const": "log_size"
+  }
+ },
+ "required": [
+  "ladder_bp",
+  "lanes",
+  "migration"
+ ]
+}

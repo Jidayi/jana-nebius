@@ -1,0 +1,126 @@
+id: itm.acc.o.sole_trader_statements.0020
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.sole_trader_statements.gross_profit
+stem: 'Nomsa''s figures for the year: revenue $76900; sales returns $1400; opening inventory $6800; purchases $45700; closing inventory $3900; wages $8000.'
+parts:
+- id: a
+  prompt: What is the gross profit?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $18900
+      correct: false
+      misconception_id: mc.acc.o.gp_expenses_deducted
+    - id: B
+      text: $29800
+      correct: false
+      misconception_id: mc.acc.o.gp_purchases_for_cos
+    - id: C
+      text: $28300
+      correct: false
+      misconception_id: mc.acc.o.gp_sales_returns_ignored
+    - id: D
+      text: $26900
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Gross profit is worked out before any running expenses. Which figures belong in it?
+  - rung: 2
+    name: concept
+    text:
+      en: Gross profit = (revenue − sales returns) − cost of sales.
+  - rung: 3
+    name: first_step
+    text:
+      en: Cost of sales uses the inventories as well as the purchases.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out (76900 − 1400) − (6800 + 45700 − 3900).
+  - rung: 5
+    name: full_step
+    text:
+      en: (76900 − 1400) − (6800 + 45700 − 3900) = $26900; wages come later, in profit for the year.
+  misconception_ids:
+  - mc.acc.o.gp_sales_returns_ignored
+  - mc.acc.o.gp_purchases_for_cos
+  - mc.acc.o.gp_expenses_deducted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Gross profit} = (\text{revenue} - \text{sales returns}) - \text{cost of sales}
+    reason: Expenses are not deducted yet
+    check_id: chk_build_acc_sole_trader_statements_0020_t
+  - n: 2
+    latex: \text{Gross profit} = (76900 - 1400) - (6800 + 45700 - 3900) = 26900
+    reason: Substitute
+    check_id: chk_build_acc_sole_trader_statements_0020_a
+difficulty:
+  prior: -0.2
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_0020_a:
+    args:
+      dp: 2
+      expression: (76900 - 1400) - (6800 + 45700 - 3900)
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0020_t:
+    args:
+      adjustments:
+      - amount: '3900'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '76900'
+        role: revenue
+      - account: Sales returns
+        debit: '1400'
+        role: sales_returns
+      - account: Purchases
+        debit: '45700'
+        role: purchases
+      - account: Inventory
+        debit: '6800'
+        role: opening_inventory
+      - account: Wages
+        debit: '8000'
+        role: expense
+      - account: Land
+        debit: '15000'
+        role: non_current_asset
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

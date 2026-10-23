@@ -1,0 +1,93 @@
+id: itm.phy.o.radioactivity.0054
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.background_radiation
+stem: A student says background radiation is caused mainly by people.
+parts:
+- id: a
+  prompt: Which reply is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: 'The student is right: nuclear power gives most of it'
+      correct: false
+      misconception_id: mc.phy.o.background_mostly_artificial
+      feedback: 'Most background is natural: radon gas from the ground, rocks and buildings, cosmic rays, and our food. Nuclear power adds only a tiny share.'
+    - id: B
+      text: Background is only the radio waves people send out
+      correct: false
+      misconception_id: mc.phy.o.background_from_non_ionising
+      feedback: 'Background radiation means ionising radiation: alpha, beta and gamma from radioactive substances, and cosmic rays. Radio and phone signals do not ionise and are not counted.'
+    - id: C
+      text: Most background is natural; human activity adds only a small part
+      correct: true
+    - id: D
+      text: There is no background unless people bring a source
+      correct: false
+      misconception_id: mc.phy.o.background_zero_without_source
+      feedback: Switch on a counter in an empty room and it still clicks now and then. Radiation from rocks, the air, food and space reaches us all the time.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Background radiation is ionising radiation that is around us all the time.
+  - rung: 2
+    name: concept
+    text:
+      en: Most of it comes from natural sources in the ground, the air, space and our food.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'List the natural sources: the ground, the air, space and food.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that are not ionising radiation or that ignore natural sources.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Most background is natural; human activity adds only a small part.'
+  misconception_ids:
+  - mc.phy.o.background_from_non_ionising
+  - mc.phy.o.background_mostly_artificial
+  - mc.phy.o.background_zero_without_source
+solution:
+  steps:
+  - n: 1
+    latex: \text{Most background is natural; human activity adds only a small part}
+    reason: Background is natural ionising radiation
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

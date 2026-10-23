@@ -1,0 +1,79 @@
+id: les.phy.o.density.density_and_floating
+node_id: cur.phy.o.motion_forces_and_energy.density
+kc_ids:
+- kc.phy.o.density.density_calculation
+- kc.phy.o.density.measuring_density
+- kc.phy.o.density.floating_and_sinking
+title: Density, and why things float
+estimated_minutes: 11
+blocks:
+- type: step
+  text:
+    en: 'Try this before any rule: find how many grams there are in each cubic centimetre of the wood.'
+  item_id: itm.phy.o.density.0001
+  action: try_first
+  why:
+    en: The block holds 5 × 4 × 3 = 60 cubic centimetres. Sharing 30 g between them gives 0.5 g in each.
+  names:
+    en: 'That is density: mass divided by volume, ρ = m/V.'
+- type: step
+  text:
+    en: Now turn the rule round. You know the mass and the density, and you want the volume.
+  item_id: itm.phy.o.density.0010
+  action: calculate
+  why:
+    en: Volume is mass divided by density, so divide the mass by the density.
+- type: step
+  text:
+    en: An odd-shaped object's volume is how far the water level rises when it goes under. Use the rise, not the final reading.
+  item_id: itm.phy.o.density.0028
+  action: choose
+  why:
+    en: The level rises from 30 to 38, so the stopper's volume is 8 cm³. Then 20 ÷ 8 gives 2.5 g/cm³.
+  names:
+    en: This is the displacement method for finding the volume of an irregular solid.
+- type: step
+  text:
+    en: 'Predict: will the ball float or sink? Compare densities, not how heavy or how big it is.'
+  item_id: itm.phy.o.density.0042
+  action: predict
+  why:
+    en: The ball's density is 88 ÷ 80 = 1.1 g/cm³. That is less than the salt water's 1.2 g/cm³, so it floats.
+  names:
+    en: An object floats if it is less dense than the liquid, and sinks if it is denser.
+- type: step
+  text:
+    en: Same idea, less help this time.
+  item_id: itm.phy.o.density.0043
+  action: choose
+  why:
+    en: Each cubic centimetre of oil gives less support than water, so the block must sink further into the oil to be held up.
+- type: step
+  text:
+    en: Now one on your own. Change the unit at the end.
+  item_id: itm.phy.o.density.0006
+  action: calculate
+  why:
+    en: Find the density in g/cm³ first, then multiply by 1000 to get kg/m³.
+- type: check
+  item_ids:
+  - itm.phy.o.density.0012
+  - itm.phy.o.density.0026
+  - itm.phy.o.density.0045
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

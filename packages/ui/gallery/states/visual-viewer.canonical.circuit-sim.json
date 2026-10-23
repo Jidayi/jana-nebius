@@ -1,0 +1,174 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.circuit-sim",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "A circuit simulation with a 6 V cell and 2 resistors in series; the current is 1 A."
+    },
+    "computed": {
+      "alt": {
+        "arrangement": "series",
+        "count": 2,
+        "current": "1",
+        "emf": 6
+      },
+      "check_ids": [
+        "chk_build_fx_circuit_sim_1"
+      ],
+      "labels": {
+        "out.current": "1",
+        "out.pd_R1": "4",
+        "out.pd_R2": "2",
+        "out.resistance": "6"
+      },
+      "parts": [
+        {
+          "id": "ctrl.emf",
+          "label": "emf",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.arrangement",
+          "label": "arrangement",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.switch",
+          "label": "switch",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.R1",
+          "label": "R1",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.R2",
+          "label": "R2",
+          "role": "control"
+        },
+        {
+          "id": "out.current",
+          "label": "current",
+          "role": "readout"
+        },
+        {
+          "id": "out.resistance",
+          "label": "resistance",
+          "role": "readout"
+        },
+        {
+          "id": "out.pd_R1",
+          "label": "pd_R1",
+          "role": "readout"
+        },
+        {
+          "id": "out.pd_R2",
+          "label": "pd_R2",
+          "role": "readout"
+        }
+      ],
+      "units": {
+        "current": "A",
+        "pd": "V",
+        "power": "W",
+        "resistance": "Ω"
+      }
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_circuit_sim_1"
+    ],
+    "params": {
+      "arrangement": "series",
+      "emf": 6,
+      "resistors": [
+        {
+          "id": "R1",
+          "resistance": 4
+        },
+        {
+          "id": "R2",
+          "resistance": 2
+        }
+      ],
+      "switch_closed": true
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ctrl.emf",
+        "name": "emf",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.arrangement",
+        "name": "arrangement",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.switch",
+        "name": "switch",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.R1",
+        "name": "R1",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.R2",
+        "name": "R2",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "out.current",
+        "name": "current",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.resistance",
+        "name": "resistance",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.pd_R1",
+        "name": "pd_R1",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.pd_R2",
+        "name": "pd_R2",
+        "role": "readout"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:da2468aa6081de634e63054a8d168959a781547c6cdf6b867bb61bc77ce6b768",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "circuit_sim",
+    "visual_id": "vis_T48A01Y3E35ADP9S71MWCZB6VP"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: circuit sim (shown labels)",
+  "variant": "circuit-sim"
+}

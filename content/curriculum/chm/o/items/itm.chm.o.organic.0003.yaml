@@ -1,0 +1,91 @@
+id: itm.chm.o.organic.0003
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.functional_groups
+stem: Four pairs of organic compounds are listed below.
+parts:
+- id: a
+  prompt: Which pair belong to the same homologous series?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: C₂H₅OH and CH₃COOH
+      correct: false
+      misconception_id: mc.chm.o.organic_oh_and_cooh_confused
+      feedback: Look at the carbon at the end of the chain. If it carries C=O as well as O–H (written –COOH), the compound is a carboxylic acid. If a carbon carries only –OH, the compound is an alcohol.
+    - id: B
+      text: CH₄ and C₃H₈
+      correct: true
+    - id: C
+      text: CH₃OH and NaOH
+      correct: false
+      misconception_id: mc.chm.o.organic_oh_group_is_hydroxide
+      feedback: In sodium hydroxide the OH is a separate ion, OH⁻, which is set free in water. In an alcohol the O–H group is held to a carbon atom by a covalent bond and does not leave as an ion. A solution of ethanol is neutral.
+    - id: D
+      text: C₂H₆ and C₂H₄
+      correct: false
+      misconception_id: mc.chm.o.organic_series_by_carbon_count
+      feedback: A homologous series shares a functional group and a general formula. Ethane, ethene and ethanol all have two carbon atoms, but they belong to three different series and react in different ways. Neighbouring members of one series differ by CH₂.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A homologous series is a family with the same functional group and the same general formula.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Check each pair against the general formulae: CₙH₂ₙ₊₂ (alkanes), CₙH₂ₙ (alkenes), CₙH₂ₙ₊₁OH (alcohols).'
+  - rung: 3
+    name: first_step
+    text:
+      en: CH₄ and C₃H₈ contain only carbon and hydrogen with single bonds; test whether both fit CₙH₂ₙ₊₂.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Having the same number of carbon atoms, or the letters OH, does not put two compounds in one family.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'CH₄ and C₃H₈ both fit CₙH₂ₙ₊₂: they are alkanes that differ by two CH₂ units.'
+  misconception_ids:
+  - mc.chm.o.organic_series_by_carbon_count
+  - mc.chm.o.organic_oh_and_cooh_confused
+  - mc.chm.o.organic_oh_group_is_hydroxide
+solution:
+  steps:
+  - n: 1
+    latex: '\text{CH}_4,\text{C}_3\text{H}_8: \text{C}_n\text{H}_{2n+2}'
+    reason: Both alkanes
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

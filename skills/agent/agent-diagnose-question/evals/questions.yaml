@@ -1,0 +1,177 @@
+# Colocated skill evals (SKL-21). Synthetic questions and student lines written for this repository.
+suite: skill.agent-diagnose-question
+version: 2026-10-13.1
+description: 'Colocated evals for agent-diagnose-question (SKL-21, EVL-07): on five short questions the Diagnoser
+  looks the question up in the curriculum before the team works on it; the student is never shown the plan''s values.
+  Tool calls are checked across the session.'
+scenarios:
+- id: diagnose_acceleration
+  title: the Diagnoser looks the question up in the curriculum before the team works on it (acceleration)
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - session_tools
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+    mode: guided
+    question:
+      text: A car speeds up steadily from 4 m/s to 22 m/s in 6 s. Find its acceleration.
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 21
+    repeats: 1
+  turns:
+  - student: I'm not sure where to start.
+    expect:
+    - tool_call:
+        name: curriculum_lookup
+        role: diagnoser
+    - no_answer_leak: true
+    - turn_status: complete
+- id: diagnose_linear_equation
+  title: the Diagnoser looks the question up in the curriculum before the team works on it (linear equation)
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - session_tools
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+    mode: guided
+    question:
+      text: Solve 3x + 7 = 25 for x.
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 22
+    repeats: 1
+  turns:
+  - student: I'm not sure where to start.
+    expect:
+    - tool_call:
+        name: curriculum_lookup
+        role: diagnoser
+    - no_answer_leak: true
+    - turn_status: complete
+- id: diagnose_force
+  title: the Diagnoser looks the question up in the curriculum before the team works on it (force)
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - session_tools
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+    mode: guided
+    question:
+      text: A resultant force of 9 N acts on a 2 kg trolley. What is its acceleration?
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 23
+    repeats: 1
+  turns:
+  - student: I'm not sure where to start.
+    expect:
+    - tool_call:
+        name: curriculum_lookup
+        role: diagnoser
+    - no_answer_leak: true
+    - turn_status: complete
+- id: diagnose_resistance
+  title: the Diagnoser looks the question up in the curriculum before the team works on it (resistance)
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - session_tools
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+    mode: guided
+    question:
+      text: A resistor has 12 V across it and a current of 0.5 A through it. Find its resistance.
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 24
+    repeats: 1
+  turns:
+  - student: I'm not sure where to start.
+    expect:
+    - tool_call:
+        name: curriculum_lookup
+        role: diagnoser
+    - no_answer_leak: true
+    - turn_status: complete
+- id: diagnose_triangle_area
+  title: the Diagnoser looks the question up in the curriculum before the team works on it (triangle area)
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - session_tools
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+    mode: guided
+    question:
+      text: A triangle has a base of 9 cm and a height of 6 cm. Find its area.
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 25
+    repeats: 1
+  turns:
+  - student: I'm not sure where to start.
+    expect:
+    - tool_call:
+        name: curriculum_lookup
+        role: diagnoser
+    - no_answer_leak: true
+    - turn_status: complete

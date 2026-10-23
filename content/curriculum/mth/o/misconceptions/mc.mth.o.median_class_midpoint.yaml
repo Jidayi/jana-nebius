@@ -1,0 +1,36 @@
+id: mc.mth.o.median_class_midpoint
+kc_ids:
+- kc.mth.o.statistics.cumulative_frequency
+student_name: The middle class instead of the median
+description: Gives the midpoint of the class holding the median instead of estimating within the class.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: rule_restatement
+  text:
+    en: Read across from half the total frequency on the cumulative frequency curve, or interpolate within the class.
+probe_item_ids:
+- itm.mth.o.statistics.0126
+- itm.mth.o.statistics.0128
+- itm.mth.o.statistics.0115
+- itm.mth.o.statistics.0116
+- itm.mth.o.statistics.0117
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

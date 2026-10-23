@@ -1,0 +1,67 @@
+id: les.mth.o.mensuration.surface_area_and_volume
+node_id: cur.mth.o.mensuration.surface_area_and_volume
+kc_ids:
+- kc.mth.o.mensuration.prism_volume
+- kc.mth.o.mensuration.pyramid_cone_sphere
+title: Surface area and volume of solids
+estimated_minutes: 10
+blocks:
+- type: step
+  text:
+    en: Try this before any rules. Find the area of the triangle at one end, then think about how far it stretches.
+  item_id: itm.mth.o.mensuration.0062
+  action: try_first
+  why:
+    en: The triangle end has an area of half base times height. The prism is that area repeated along its length.
+  names:
+    en: The end face is the cross-section. The volume of a prism is its cross-section times its length.
+- type: step
+  text:
+    en: Think of a cylinder as a prism with a circle at each end.
+  item_id: itm.mth.o.mensuration.0061
+  action: calculate
+  why:
+    en: The circle end has area πr², and the volume is that times the height.
+- type: step
+  text:
+    en: Surface area is the total area of all the faces. Count the faces before you add.
+  item_id: itm.mth.o.mensuration.0074
+  action: choose
+  why:
+    en: A cuboid has six faces in three matching pairs, so double the sum of the three different faces. Adding only three faces is the usual slip.
+- type: step
+  text:
+    en: 'Before you work it out, predict: does a pyramid hold more or less than a box with the same base and height?'
+  item_id: itm.mth.o.mensuration.0089
+  action: predict
+  why:
+    en: A pyramid fills one third of that box, so take a third of base area times height. Forgetting the third gives three times too much.
+- type: step
+  text:
+    en: Now one on your own.
+  item_id: itm.mth.o.mensuration.0090
+  action: choose
+  why:
+    en: A cone fills one third of the cylinder with the same base and height. Leaving out the third, or using the diameter as the radius, are the usual slips.
+- type: check
+  item_ids:
+  - itm.mth.o.mensuration.0065
+  - itm.mth.o.mensuration.0081
+  - itm.mth.o.mensuration.0082
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

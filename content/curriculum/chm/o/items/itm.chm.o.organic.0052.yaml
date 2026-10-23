@@ -1,0 +1,91 @@
+id: itm.chm.o.organic.0052
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.alkanes_and_alkenes
+stem: A student shakes an unknown hydrocarbon with bromine water. The orange colour does not change.
+parts:
+- id: a
+  prompt: What does this result show?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: The hydrocarbon is saturated, like an alkane
+      correct: true
+    - id: B
+      text: The hydrocarbon is an alkene, because a positive test keeps the orange colour
+      correct: false
+      misconception_id: mc.chm.o.organic_bromine_colour_reversed
+      feedback: 'Bromine water starts orange-brown. An alkene adds the bromine across its double bond, so the orange colour disappears: orange to colourless. No change means no C=C bond.'
+    - id: C
+      text: The test went wrong, because every hydrocarbon removes the colour
+      correct: false
+      misconception_id: mc.chm.o.organic_alkanes_decolourise_bromine
+      feedback: 'Alkanes are saturated: they have no C=C bond for bromine to add to. An alkane leaves bromine water orange. Only an alkene removes the colour quickly, by addition.'
+    - id: D
+      text: The hydrocarbon reacted by substitution, which leaves the colour
+      correct: false
+      misconception_id: mc.chm.o.organic_addition_substitution_mixed
+      feedback: In addition, two molecules join into one product and the double bond becomes single. In substitution an atom such as H is swapped for another such as Cl, so a second product (HCl) forms. Alkenes add; alkanes substitute, in ultraviolet light.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What happens to bromine water when it meets a C=C double bond?
+  - rung: 2
+    name: concept
+    text:
+      en: An alkene uses up the bromine by addition, so the colour disappears.
+  - rung: 3
+    name: first_step
+    text:
+      en: In this test the orange colour stayed.
+  - rung: 4
+    name: worked_step
+    text:
+      en: If no bromine was used up, was there a C=C bond to add to?
+  - rung: 5
+    name: full_step
+    text:
+      en: 'No colour change means no C=C bond: the hydrocarbon is saturated, such as an alkane.'
+  misconception_ids:
+  - mc.chm.o.organic_bromine_colour_reversed
+  - mc.chm.o.organic_alkanes_decolourise_bromine
+  - mc.chm.o.organic_addition_substitution_mixed
+solution:
+  steps:
+  - n: 1
+    latex: \text{stays orange }\rightarrow\text{ no C=C }\rightarrow\text{ saturated}
+    reason: Interpreting the test
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

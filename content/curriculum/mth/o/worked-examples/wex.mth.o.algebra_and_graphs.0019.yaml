@@ -1,0 +1,59 @@
+id: wex.mth.o.algebra_and_graphs.0019
+kc_ids:
+- kc.mth.o.algebra_and_graphs.quadratic_equations
+problem: Solve the equation $3x^2 + 6x + 1 = 0$, giving your answers to 3 significant figures. Give the larger solution.
+steps:
+- n: 1
+  latex: b^2 - 4ac = 24
+  reason: The discriminant, with a = 3, b = 6 and c = 1
+  check_id: chk_build_mth_alg_w0019_d
+- n: 2
+  latex: x = \frac{-\,6 + \sqrt{24}}{2 \times 3}
+  reason: The quadratic formula
+  check_id: chk_build_mth_alg_w0019_qf
+- n: 3
+  latex: x = -0.184
+  reason: Evaluate
+  check_id: chk_build_mth_alg_w0019_ans
+final_answer:
+  latex: '-0.184'
+  check_id: chk_build_mth_alg_w0019_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0019_ans:
+    args:
+      expression: (-(6) + sqrt(24))/(2*3)
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_alg_w0019_d:
+    args:
+      expression: (6)^2 - 4*3*(1)
+    tool: math_evaluate
+  chk_build_mth_alg_w0019_qf:
+    args:
+      expression: (-(6) + sqrt(24))/(2*3)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

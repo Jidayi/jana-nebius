@@ -1,0 +1,34 @@
+id: mc.phy.o.density_units_not_converted
+kc_ids:
+- kc.phy.o.density.density_calculation
+student_name: Answer left in g/cm³
+description: Divides a mass in grams by a volume in cm³ and gives that number as the density in kg/m³ without converting it.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: Grams divided by cubic centimetres gives g/cm³. To give the density in kg/m³, multiply that number by a thousand.
+probe_item_ids:
+- itm.phy.o.density.0012
+- itm.phy.o.density.0015
+- itm.phy.o.density.0006
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

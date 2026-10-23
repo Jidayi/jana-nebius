@@ -1,0 +1,45 @@
+id: wex.phy.o.radioactivity.0009
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+problem: Sodium-24, half-life 15 hours, is used for a pipe-leak search. A dose has an activity of 96 MBq when it is prepared. What is its activity 60 hours later?
+steps:
+- n: 1
+  latex: \frac{60}{15} = 4\ \text{half-lives}
+  reason: Time ÷ half-life
+  check_id: chk_build_phy_rad_w0009_n
+- n: 2
+  latex: \frac{96}{2^{4}} = 6\ \text{MBq}
+  reason: Halve once per half-life
+  check_id: chk_build_phy_rad_w0009_ans
+final_answer:
+  latex: 6\ \text{MBq}
+  check_id: chk_build_phy_rad_w0009_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_w0009_ans:
+    args:
+      expression: 96/2^4
+    tool: math_evaluate
+  chk_build_phy_rad_w0009_n:
+    args:
+      expression: 60/15
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,111 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.bearing-diagram-hidden",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "Q is on a bearing of 65 degrees from P, 8 km away; the back bearing is 245 degrees."
+    },
+    "computed": {
+      "check_ids": [
+        "chk_build_fx_bearing_diagram_1"
+      ],
+      "figure": {
+        "P": [
+          0.0,
+          0.0
+        ],
+        "Q": [
+          7.250462296,
+          3.380946094
+        ]
+      },
+      "labels": {
+        "back_bearing": "245",
+        "bearing": "065",
+        "east": "7.25 km",
+        "north": "3.38 km"
+      }
+    },
+    "fallback_reason": null,
+    "labels": "hidden",
+    "numbers_from": [
+      "kn_brg",
+      "kn_dist",
+      "chk_build_fx_bearing_diagram_1"
+    ],
+    "params": {
+      "bearing": "65",
+      "distance": "8 km",
+      "from": "P",
+      "show": [
+        "back_bearing"
+      ],
+      "to": "Q"
+    },
+    "parts": [
+      {
+        "focusable": false,
+        "id": "north_P",
+        "name": "north line at P",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "P",
+        "name": "vertex P",
+        "role": "vertex"
+      },
+      {
+        "focusable": true,
+        "id": "Q",
+        "name": "vertex Q",
+        "role": "vertex"
+      },
+      {
+        "focusable": true,
+        "id": "path",
+        "name": "path from P to Q",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "bearing",
+        "name": "bearing of Q from P",
+        "quizzable": true,
+        "role": "angle"
+      },
+      {
+        "focusable": false,
+        "id": "north_Q",
+        "name": "north line at Q",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "back_bearing",
+        "name": "back bearing",
+        "quizzable": true,
+        "role": "angle"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:fc0b801b9687b5d2eddaf8a607b11361ed8ef35cd4f8c146fd12def0fceccc50",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "bearing_diagram",
+    "visual_id": "vis_WB0VP7NJDTR67HK1DEKWMR16XJ"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: bearing diagram (hidden labels)",
+  "variant": "bearing-diagram-hidden"
+}

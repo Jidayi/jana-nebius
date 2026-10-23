@@ -1,0 +1,106 @@
+id: itm.acc.o.incomplete_records.0040
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.incomplete_records.margin_markup_use
+stem: Yaw runs a hardware shop and adds a mark-up of 25% to cost. Cost of sales for the year was $15900.
+parts:
+- id: a
+  prompt: Calculate the revenue for the year.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '19875.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_incomplete_records_0040_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A mark-up is a percentage of cost.
+  - rung: 2
+    name: concept
+    text:
+      en: Revenue = cost of sales + mark-up × cost of sales.
+  - rung: 3
+    name: first_step
+    text:
+      en: Gross profit = 25% of $15900.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Revenue = 15900 + 25% × 15900.
+  - rung: 5
+    name: full_step
+    text:
+      en: Revenue = $19875.
+  misconception_ids:
+  - mc.acc.o.rat_margin_markup_confused
+  - mc.acc.o.ir_percent_of_wrong_base
+solution:
+  steps:
+  - n: 1
+    latex: \text{Revenue} = \text{cost of sales} \times (1 + \text{mark-up})
+    reason: Mark-up on cost
+    check_id: chk_build_acc_incomplete_records_0040_t
+  - n: 2
+    latex: \text{Gross profit} = 25\% \times 15900 = 3975
+    reason: Profit on cost
+    check_id: chk_build_acc_incomplete_records_0040_s2
+  - n: 3
+    latex: \text{Revenue} = 15900 + 3975 = 19875
+    reason: Add
+    check_id: chk_build_acc_incomplete_records_0040_a
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_incomplete_records_0040_a:
+    args:
+      dp: 2
+      expression: 15900 * (1 + 25/100)
+    tool: math_evaluate
+  chk_build_acc_incomplete_records_0040_s2:
+    args:
+      dp: 4
+      expression: 15900 * 25/100
+    tool: math_evaluate
+  chk_build_acc_incomplete_records_0040_t:
+    args:
+      cost_of_sales: '15900'
+      dp: 2
+      ratios:
+      - mark_up
+      - gross_margin
+      revenue: '19875'
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

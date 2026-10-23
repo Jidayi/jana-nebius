@@ -1,0 +1,85 @@
+id: itm.chm.o.atoms.0030
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.atoms.electron_arrangement
+stem: The proton number of phosphorus is 15.
+parts:
+- id: a
+  prompt: How many electrons are in the outer shell of a phosphorus atom?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '5'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_atoms_0030_o
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A phosphorus atom has 15 electrons. Where do they go?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Shells fill from the inside: the first holds 2, the second 8, the third 8.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Fill the inner shells completely before moving outwards.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Take away the electrons in the full inner shells (2 and 8) from 15.
+  - rung: 5
+    name: full_step
+    text:
+      en: 15 − 2 − 8 = 5 outer electrons.
+  misconception_ids:
+  - mc.chm.o.first_shell_holds_eight
+solution:
+  steps:
+  - n: 1
+    latex: 15 - 2 - 8
+    reason: Electrons left for the outer shell
+  - n: 2
+    latex: = 5
+    reason: Outer-shell electrons
+    check_id: chk_build_chm_atoms_0030_o
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_atoms_0030_o:
+    args:
+      expression: 15 - 2 - 8
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

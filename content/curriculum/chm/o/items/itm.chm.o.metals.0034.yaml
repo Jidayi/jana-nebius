@@ -1,0 +1,88 @@
+id: itm.chm.o.metals.0034
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.reactivity_series
+stem: An iron nail is placed in blue copper(II) sulfate solution.
+parts:
+- id: a
+  prompt: Which observations are expected?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: A brown coating forms on the nail and the solution turns from blue to pale green.
+      correct: true
+    - id: B
+      text: A grey coating forms and the solution turns colourless.
+      correct: false
+    - id: C
+      text: The nail fizzes as oxygen is given off.
+      correct: false
+      misconception_id: mc.chm.o.metals_gas_is_oxygen
+      feedback: 'The metal takes the oxygen (or the non-metal part) and keeps it, so it is hydrogen that is set free. The gas burns with a squeaky pop: that is the test for hydrogen.'
+    - id: D
+      text: No change, because copper is more reactive than iron.
+      correct: false
+      misconception_id: mc.chm.o.metals_displacement_reversed
+      feedback: 'A metal can only take the place of a metal BELOW it in the reactivity series. Find both metals in the series: if the free metal is higher, it displaces the other; if it is lower, nothing happens.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Iron and copper: which is higher in the series?'
+  - rung: 2
+    name: concept
+    text:
+      en: A higher metal displaces a lower one; the colour of the solution shows which ions are in it.
+  - rung: 3
+    name: first_step
+    text:
+      en: Iron is above copper, so copper metal forms.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Think about the colour of iron(II) ions in solution compared with copper(II) ions.
+  - rung: 5
+    name: full_step
+    text:
+      en: Brown copper coats the nail, and the iron(II) sulfate made is pale green.
+  misconception_ids:
+  - mc.chm.o.metals_displacement_reversed
+  - mc.chm.o.metals_gas_is_oxygen
+solution:
+  steps:
+  - n: 1
+    latex: \text{Fe + CuSO}_4 \rightarrow \text{FeSO}_4 + \text{Cu}
+    reason: Iron displaces copper
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

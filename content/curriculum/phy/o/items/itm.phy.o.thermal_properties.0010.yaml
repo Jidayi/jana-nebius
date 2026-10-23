@@ -1,0 +1,93 @@
+id: itm.phy.o.thermal_properties.0010
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.thermal_properties.thermal_expansion
+stem: Equal volumes of a solid, a liquid and a gas are all warmed by the same amount.
+parts:
+- id: a
+  prompt: Which of them expands the most?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The solid expands the most, because its particles are packed tightly
+      correct: false
+      misconception_id: mc.phy.o.expansion_order_reversed
+      feedback: For the same temperature rise, gases expand most, then liquids, then solids. Solids expand only a little, but enough to buckle rails and crack glass.
+    - id: B
+      text: They all expand equally, because their particles grow by the same amount
+      correct: false
+      misconception_id: mc.phy.o.particles_grow_when_heated
+      feedback: A water particle is the same size in ice, in water and in steam. Heating makes particles move faster and spread further apart; it does not make them bigger.
+    - id: C
+      text: The gas expands the most
+      correct: true
+    - id: D
+      text: None expands; only their mass increases
+      correct: false
+      misconception_id: mc.phy.o.heating_creates_particles
+      feedback: 'Weigh a sealed flask before and after heating: its mass does not change. No particles are made; the same particles move faster and, in most materials, spread further apart.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what heating does to the motion and spacing of particles.
+  - rung: 2
+    name: concept
+    text:
+      en: The weaker the forces between the particles, the easier it is for them to spread out.
+  - rung: 3
+    name: first_step
+    text:
+      en: For each option, ask whether the particles themselves change, or only how they move and how far apart they are.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Remember that heating does not create particles and that gases expand most, solids least.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The gas expands the most.'
+  misconception_ids:
+  - mc.phy.o.expansion_order_reversed
+  - mc.phy.o.heating_creates_particles
+  - mc.phy.o.particles_grow_when_heated
+solution:
+  steps:
+  - n: 1
+    latex: \text{The gas expands the most}
+    reason: Apply the particle model of expansion
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

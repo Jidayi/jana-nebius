@@ -1,0 +1,36 @@
+id: wex.mth.o.number.0020
+kc_ids:
+- kc.mth.o.number.standard_form_convert
+problem: Write $7.2 \times 10^{-3}$ as an ordinary number. Give the number.
+steps:
+- n: 1
+  latex: 7.2 \times 10^{-3} = 0.0072
+  reason: Move the decimal point 3 places to the left
+  check_id: chk_build_mth_num_w0020_ans
+final_answer:
+  latex: '0.0072'
+  check_id: chk_build_mth_num_w0020_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0020_ans:
+    args:
+      expression: 7.2*10^(-3)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

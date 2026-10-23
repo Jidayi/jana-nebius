@@ -1,0 +1,63 @@
+id: wex.phy.o.heat_transfer.0002
+kc_ids:
+- kc.phy.o.heat_transfer.conduction
+problem: A hot-water tank loses energy through its walls at 120 W. After a thick foam jacket is fitted, which is a poor conductor, it loses energy at only 60 W. How much energy does the jacket save in 24 hours? Give your answer in MJ.
+steps:
+- n: 1
+  latex: 120 - 60 = 60\ \text{W}
+  reason: Energy saved each second
+  check_id: chk_build_phy_htr_w0002_dp
+- n: 2
+  latex: t = 24\ \text{h} = 86400\ \text{s}
+  reason: Seconds, since a watt is a joule per second
+  check_id: chk_build_phy_htr_w0002_ts
+- n: 3
+  latex: E = 60 \times 86400 = 5184000\ \text{J}
+  reason: Energy = power × time
+  check_id: chk_build_phy_htr_w0002_e
+- n: 4
+  latex: E = 5.184\ \text{MJ}
+  reason: A megajoule is a million joules
+  check_id: chk_build_phy_htr_w0002_ans
+final_answer:
+  latex: 5.184\ \text{MJ}
+  check_id: chk_build_phy_htr_w0002_ans
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_htr_w0002_ans:
+    args:
+      expression: (120 - 60)*24*3600/1000000
+    tool: math_evaluate
+  chk_build_phy_htr_w0002_dp:
+    args:
+      expression: 120 - 60
+    tool: math_evaluate
+  chk_build_phy_htr_w0002_e:
+    args:
+      expression: (120 - 60)*24*3600
+    tool: math_evaluate
+  chk_build_phy_htr_w0002_ts:
+    args:
+      expression: 24*3600
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

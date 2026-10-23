@@ -1,0 +1,35 @@
+id: mc.chm.o.periodic_transition_white_compounds
+kc_ids:
+- kc.chm.o.periodic.transition_elements
+student_name: Transition metal compounds are white
+description: Thinks transition metal compounds are white like most Group I and Group II compounds.
+signatures:
+- kind: answer_transform
+  expression: 'choice: white compound expected from a transition metal'
+fix:
+  strategy: counterexample
+  text:
+    en: 'Copper(II) sulfate solution is blue and iron(III) compounds are orange-brown: transition metal compounds are usually coloured.'
+probe_item_ids:
+- itm.chm.o.periodic.0037
+- itm.chm.o.periodic.0038
+- itm.chm.o.periodic.0039
+- itm.chm.o.periodic.0040
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

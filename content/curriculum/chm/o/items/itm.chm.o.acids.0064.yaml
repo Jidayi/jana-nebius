@@ -1,0 +1,115 @@
+id: itm.chm.o.acids.0064
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.titration_calculations
+stem: In a titration, 16.0 cm³ of potassium hydroxide solution neutralises 25.0 cm³ of 0.100 mol/dm³ sulfuric acid. The equation is H₂SO₄ + 2KOH → K₂SO₄ + 2H₂O.
+parts:
+- id: a
+  prompt: What is the concentration of the potassium hydroxide?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: 0.0391 mol/dm³
+      correct: false
+      misconception_id: mc.chm.o.acids_titration_ratio_upside_down
+      feedback: Ask which substance needs more moles. With sulfuric acid, the alkali needs twice as many moles as the acid, so moles of alkali = 2 × moles of acid.
+    - id: B
+      text: 0.156 mol/dm³
+      correct: false
+      misconception_id: mc.chm.o.acids_titration_ratio_ignored
+      feedback: 'Always write the balanced equation first. H₂SO₄ + 2NaOH → Na₂SO₄ + 2H₂O: one mole of sulfuric acid needs two moles of alkali.'
+    - id: C
+      text: 0.128 mol/dm³
+      correct: false
+      misconception_id: mc.chm.o.acids_titration_values_swapped
+      feedback: 'Work in two steps instead of one formula: first moles = concentration × volume for the solution you know everything about, then concentration = moles ÷ volume for the other one.'
+    - id: D
+      text: 0.313 mol/dm³
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which solution do you know both the concentration and the volume of?
+  - rung: 2
+    name: concept
+    text:
+      en: Use moles = c × V for the acid, then the mole ratio, then c = n ÷ V for the alkali.
+  - rung: 3
+    name: first_step
+    text:
+      en: Moles of H₂SO₄ = 0.100 × 25.0 ÷ 1000 = 0.00250 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Moles of KOH = 2 × 0.00250 = 0.00500 mol, in 16.0 cm³ of solution.
+  - rung: 5
+    name: full_step
+    text:
+      en: c(KOH) = 0.00500 ÷ (16.0 ÷ 1000) = 0.313 mol/dm³.
+  misconception_ids:
+  - mc.chm.o.acids_titration_ratio_ignored
+  - mc.chm.o.acids_titration_ratio_upside_down
+  - mc.chm.o.acids_titration_values_swapped
+solution:
+  steps:
+  - n: 1
+    latex: n(\text{H}_2\text{SO}_4) = 0.00250
+    reason: Moles of acid
+    check_id: chk_build_chm_acids_0064_ab
+  - n: 2
+    latex: n(\text{KOH}) = 2 \times 0.00250 = 0.00500
+    reason: 'Ratio 1 : 2'
+    check_id: chk_build_chm_acids_0064_ab
+  - n: 3
+    latex: c = \frac{0.00500}{16.0 \div 1000} = 0.313\ \text{mol/dm}^3
+    reason: Amount over volume
+    check_id: chk_build_chm_acids_0064_r
+difficulty:
+  prior: 0.7
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_acids_0064_ab:
+    args:
+      acid: H2SO4
+      acid_concentration: 0.100 mol/dm^3
+      acid_volume: 25.0 cm^3
+      base: KOH
+      base_volume: 16.0 cm^3
+      task: neutralisation
+    tool: chem_acid_base
+  chk_build_chm_acids_0064_r:
+    args:
+      expression: 2*0.100*25.0/16.0
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

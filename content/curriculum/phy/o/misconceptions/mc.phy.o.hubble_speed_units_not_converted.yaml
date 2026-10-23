@@ -1,0 +1,33 @@
+id: mc.phy.o.hubble_speed_units_not_converted
+kc_ids:
+- kc.phy.o.stars.expanding_universe
+student_name: Metres per second given as km/s
+description: Works out a recession speed in m/s from a distance in metres but gives that number as km/s (or uses km/s with metres).
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: With the distance in metres and H0 per second, v comes out in m/s. Divide by a thousand for km/s.
+probe_item_ids:
+- itm.phy.o.stars.0031
+- itm.phy.o.stars.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

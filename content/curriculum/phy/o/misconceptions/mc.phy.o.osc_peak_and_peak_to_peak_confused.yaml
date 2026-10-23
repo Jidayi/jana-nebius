@@ -1,0 +1,36 @@
+id: mc.phy.o.osc_peak_and_peak_to_peak_confused
+kc_ids:
+- kc.phy.o.oscilloscope.y_gain
+student_name: Mixing up peak and peak-to-peak
+description: Gives the peak-to-peak voltage (crest to trough) when the peak voltage (centre line to crest) is asked for, or the other way round.
+signatures:
+- kind: answer_transform
+  expression: 2*Vp
+fix:
+  strategy: diagram
+  text:
+    en: The peak voltage is measured from the centre line to a crest; peak-to-peak is crest to trough, twice as big.
+probe_item_ids:
+- itm.phy.o.oscilloscope.0026
+- itm.phy.o.oscilloscope.0027
+- itm.phy.o.oscilloscope.0029
+- itm.phy.o.oscilloscope.0030
+- itm.phy.o.oscilloscope.0032
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

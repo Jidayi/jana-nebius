@@ -1,0 +1,35 @@
+id: mc.phy.o.renewables_always_available
+kc_ids:
+- kc.phy.o.energy.energy_resources
+student_name: Renewables never stop
+description: Thinks renewable resources such as solar and wind give a steady output at all times.
+signatures:
+- kind: answer_transform
+  expression: reliable
+fix:
+  strategy: counterexample
+  text:
+    en: Solar panels give nothing at night and wind turbines stop in calm weather. Many renewables are not reliable on their own.
+probe_item_ids:
+- itm.phy.o.energy.0117
+- itm.phy.o.energy.0118
+- itm.phy.o.energy.0109
+- itm.phy.o.energy.0110
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

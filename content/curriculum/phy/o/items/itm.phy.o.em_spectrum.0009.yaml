@@ -1,0 +1,92 @@
+id: itm.phy.o.em_spectrum.0009
+version: 0.1.0
+type: ordering
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.em_spectrum.order_and_properties
+stem: 'These regions of the electromagnetic spectrum are listed alphabetically: gamma rays, infrared, microwaves, radio waves, ultraviolet, visible light, X-rays.'
+parts:
+- id: a
+  prompt: Put them in order of increasing frequency, starting with the lowest frequency.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: exact
+    elements:
+    - id: e5
+      text: Ultraviolet
+    - id: e6
+      text: X-rays
+    - id: e7
+      text: Gamma rays
+    - id: e1
+      text: Radio waves
+    - id: e2
+      text: Microwaves
+    - id: e3
+      text: Infrared
+    - id: e4
+      text: Visible light
+    correct_order:
+    - e1
+    - e2
+    - e3
+    - e4
+    - e5
+    - e6
+    - e7
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Recall the whole spectrum from the longest wavelength to the shortest.
+  - rung: 2
+    name: concept
+    text:
+      en: Radio waves have the longest wavelength and gamma rays the shortest.
+  - rung: 3
+    name: first_step
+    text:
+      en: Visible light is in the middle, with infrared on its long-wavelength side and ultraviolet on its short side.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Higher frequency means shorter wavelength, so reverse the list when frequency increases.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The order is: radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, gamma rays.'
+solution:
+  steps:
+  - n: 1
+    latex: \text{radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, gamma rays}
+    reason: The order of the electromagnetic spectrum
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

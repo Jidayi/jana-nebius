@@ -1,0 +1,83 @@
+id: itm.chm.o.metals.0032
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.reactivity_series
+stem: Four metals P, Q, R and S are tested. P reacts with cold water. S does not react with cold water but displaces Q from a solution of a salt of Q. Q displaces R from a solution of a salt of R. R does not react with dilute acid.
+parts:
+- id: a
+  prompt: Put the metals in order of reactivity, most reactive first.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s1
+      text: P
+    - id: s3
+      text: Q
+    - id: s4
+      text: R
+    - id: s2
+      text: S
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Use each observation to place one metal above or below another.
+  - rung: 2
+    name: concept
+    text:
+      en: Reacting with cold water marks a very reactive metal; a metal displaces only a less reactive one.
+  - rung: 3
+    name: first_step
+    text:
+      en: P is the only metal that reacts with cold water, so it goes first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: S displaces Q, and Q displaces R, so these form a chain.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Order: P, S, Q, R. R does not even react with acid, so it is the least reactive.'
+  misconception_ids:
+  - mc.chm.o.metals_displacement_reversed
+solution:
+  steps:
+  - n: 1
+    latex: \text{P > S > Q > R}
+    reason: Water reaction and displacement results
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

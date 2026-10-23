@@ -1,0 +1,106 @@
+id: itm.phy.o.motion.0325
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.distance_time_gradient
+stem: A straight distance-time graph for a car passes through (2 s, 40 m) and (12 s, 100 m).
+parts:
+- id: a
+  prompt: What speed does the gradient of the line give?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 0.167 m/s
+      correct: false
+      misconception_id: mc.phy.o.gradient_axes_swapped
+      feedback: The gradient is the change up the graph (distance) divided by the change along it (time).
+    - id: B
+      text: 6 m/s
+      correct: true
+    - id: C
+      text: 8.33 m/s
+      correct: false
+      misconception_id: mc.phy.o.gradient_from_one_point
+      feedback: A line that does not start at the origin gives the wrong value from one point. Use the change between two points.
+    - id: D
+      text: 60 m/s
+      correct: false
+      misconception_id: mc.phy.o.distance_change_without_time
+      feedback: 'Speed is distance per unit time: the rise of the line divided by its run.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: On a distance-time graph the gradient is the speed.
+  - rung: 2
+    name: concept
+    text:
+      en: Gradient = change in distance ÷ change in time, between two points on the line.
+  - rung: 3
+    name: first_step
+    text:
+      en: Subtract the distances and subtract the times, in the same order.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The changes are 60 m and 10 s.
+  - rung: 5
+    name: full_step
+    text:
+      en: The speed is 6 m/s.
+  misconception_ids:
+  - mc.phy.o.distance_change_without_time
+  - mc.phy.o.gradient_axes_swapped
+  - mc.phy.o.gradient_from_one_point
+solution:
+  steps:
+  - n: 1
+    latex: \Delta d = 100 - 40 = 60\ \text{m},\ \Delta t = 12 - 2 = 10\ \text{s}
+    reason: Changes between the two points
+    check_id: chk_build_phy_mot_0325_dd
+  - n: 2
+    latex: v = \frac{60}{10} = 6\ \text{m/s}
+    reason: Gradient = change in distance ÷ change in time
+    check_id: chk_build_phy_mot_0325_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mot_0325_ans:
+    args:
+      expression: (100 - 40)/(12 - 2)
+    tool: math_evaluate
+  chk_build_phy_mot_0325_dd:
+    args:
+      expression: 100 - 40
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,87 @@
+id: wex.chm.o.environment.0002
+kc_ids:
+- kc.chm.o.environment.water
+problem: 'White anhydrous copper(II) sulfate turns blue in water: CuSO₄ + 5H₂O → CuSO₄·5H₂O. Find the relative formula mass of the blue solid.'
+steps:
+- n: 1
+  latex: '\text{white }\rightarrow\text{ blue: water has been taken in}'
+  reason: Test for water
+- n: 2
+  latex: M_r(\text{CuSO}_4) = 160
+  reason: White anhydrous solid
+  check_id: chk_build_chm_environment_w0002_a
+- n: 3
+  latex: M_r(\text{H}_2\text{O}) = 18
+  reason: One water molecule
+  check_id: chk_build_chm_environment_w0002_h
+- n: 4
+  latex: 160 + 5 \times 18
+  reason: Add five water molecules
+  check_id: chk_build_chm_environment_w0002_s4
+final_answer:
+  latex: M_r = 250
+  check_id: chk_build_chm_environment_w0002_mr
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_environment_w0002_a:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      formula: CuSO4
+    tool: chem_molar_mass
+  chk_build_chm_environment_w0002_h:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      formula: H2O
+    tool: chem_molar_mass
+  chk_build_chm_environment_w0002_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_h
+      formula: CuSO4.5H2O
+    tool: chem_molar_mass
+  chk_build_chm_environment_w0002_s4:
+    args:
+      expression: 160 + 5*18
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

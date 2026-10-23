@@ -1,0 +1,90 @@
+id: itm.chm.o.reactions.0005
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.physical_chemical_change
+stem: A puddle dries up on a sunny day. A student says that a chemical change has happened because the water has gone.
+parts:
+- id: a
+  prompt: Why is the student wrong?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: The water has dissolved in the air and turned into air.
+      correct: false
+      misconception_id: mc.chm.o.reactions_dissolving_is_chemical
+      feedback: 'When salt or sugar dissolves, its particles spread out between the water particles. Nothing new forms: evaporate the water and the same solid is left, with the same mass. Dissolving is a physical change.'
+    - id: B
+      text: 'The student is right: the sun''s heat has destroyed the water.'
+      correct: false
+      misconception_id: mc.chm.o.reactions_state_change_is_chemical
+      feedback: Ice, liquid water and steam are all the same substance, made of the same water molecules. A change of state only changes how close together the particles are and how they move. No new substance forms, so it is a physical change.
+    - id: C
+      text: 'The student is right: water vapour is a different substance from liquid water.'
+      correct: false
+      misconception_id: mc.chm.o.reactions_state_change_is_chemical
+      feedback: Ice, liquid water and steam are all the same substance, made of the same water molecules. A change of state only changes how close together the particles are and how they move. No new substance forms, so it is a physical change.
+    - id: D
+      text: The water has evaporated; it is still water, now as a gas mixed with the air.
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Where does the water in a puddle go when it dries up?
+  - rung: 2
+    name: concept
+    text:
+      en: Evaporation is a change of state from liquid to gas.
+  - rung: 3
+    name: first_step
+    text:
+      en: Water vapour is made of the same water molecules as liquid water, only further apart.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Cool the water vapour and think about what you would get back.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The student is wrong: evaporation is a physical change. The water is still water, now as a gas in the air, and it condenses back to liquid water when cooled.'
+  misconception_ids:
+  - mc.chm.o.reactions_state_change_is_chemical
+  - mc.chm.o.reactions_dissolving_is_chemical
+solution:
+  steps:
+  - n: 1
+    latex: \text{liquid water} \rightarrow \text{water vapour}
+    reason: A change of state only
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

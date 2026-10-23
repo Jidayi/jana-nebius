@@ -1,0 +1,662 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.mth-o-number
+version: 2026-10-13.1
+description: 'Colocated evals for mth-o-number (SKL-21, EVL-07): one case per misconception. The student answers
+  as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key away,
+  and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: mth_o_number_01
+  title: Holds 'Stopping at a factor that is not prime'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.composite_factor_used
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.number.0011
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.number.prime_factors
+        misconception: mc.mth.o.composite_factor_used
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: mth_o_number_02
+  title: Holds 'Multiplying the numbers for the LCM'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.lcm_as_product
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.number.0027
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.number.hcf_lcm
+        misconception: mc.mth.o.lcm_as_product
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: mth_o_number_03
+  title: Holds 'Counting the overlap twice'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.venn_double_count
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.number.0050
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.number.venn_counting
+        misconception: mc.mth.o.venn_double_count
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: mth_o_number_04
+  title: Holds 'Losing place value when squaring a decimal'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.decimal_square_place_value
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.number.0065
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.number.powers_and_roots
+        misconception: mc.mth.o.decimal_square_place_value
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_number_05
+  title: Holds 'Adding numerators and adding denominators'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.add_tops_and_bottoms
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.number.0070
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.number.fraction_arithmetic
+        misconception: mc.mth.o.add_tops_and_bottoms
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_number_06
+  title: Holds 'Moving the decimal point the wrong way'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.percent_scale_wrong
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.number.0095
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.number.fdp_conversion
+        misconception: mc.mth.o.percent_scale_wrong
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_number_07
+  title: Holds 'Longer decimals are bigger'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.longer_decimal_larger
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.number.0101
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.number.ordering_quantities
+        misconception: mc.mth.o.longer_decimal_larger
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_number_08
+  title: Holds 'A negative number squared stays negative'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.negative_squared_negative
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.algebra_and_graphs.0011
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.algebra_and_graphs.substitution
+        misconception: mc.mth.o.negative_squared_negative
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_number_09
+  title: Holds 'A negative index gives a negative number'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.negative_index_negative
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.number.0140
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.number.index_laws_numeric
+        misconception: mc.mth.o.negative_index_negative
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_number_10
+  title: Holds 'The wrong sign for the power of ten'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.sf_power_sign
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.number.0155
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.number.standard_form_convert
+        misconception: mc.mth.o.sf_power_sign
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_number_11
+  title: Holds 'Rounding to the wrong accuracy for an estimate'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.estimate_not_one_sf
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.number.0185
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.number.estimation
+        misconception: mc.mth.o.estimate_not_one_sf
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_number_12
+  title: Holds 'Adding a whole unit for a bound'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.bound_full_unit
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.number.0200
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 12
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.number.bounds
+        misconception: mc.mth.o.bound_full_unit
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_number_13
+  title: Holds 'Using the same bounds for a difference or quotient'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.bounds_same_ends
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.number.0216
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 13
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.number.bounds_calc
+        misconception: mc.mth.o.bounds_same_ends
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_number_14
+  title: Holds 'Counting leading zeros as significant'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.leading_zeros_significant
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.number.0065
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 14
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.number.powers_and_roots
+        misconception: mc.mth.o.leading_zeros_significant
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_number_15
+  title: Holds 'Adding numbers under the roots'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.surd_add_under_root
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.number.0382
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 15
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.number.surds
+        misconception: mc.mth.o.surd_add_under_root
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

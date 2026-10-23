@@ -1,0 +1,36 @@
+id: mc.phy.o.wavelength_crest_to_trough
+kc_ids:
+- kc.phy.o.wave_properties.describing_waves
+student_name: Wavelength from a crest to the next trough
+description: Measures the wavelength from a crest to the neighbouring trough, which is only half a wave.
+signatures:
+- kind: answer_transform
+  expression: lambda/2
+fix:
+  strategy: diagram
+  text:
+    en: 'One wavelength is one whole wave: from a crest to the next crest, or a trough to the next trough. A crest to the next trough is only half of it.'
+probe_item_ids:
+- itm.phy.o.wave_properties.0011
+- itm.phy.o.wave_properties.0013
+- itm.phy.o.wave_properties.0015
+- itm.phy.o.wave_properties.0002
+- itm.phy.o.wave_properties.0007
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

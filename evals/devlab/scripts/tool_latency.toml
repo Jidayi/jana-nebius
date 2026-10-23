@@ -1,0 +1,9 @@
+# Checker timings (VER-28): every golden case of every compute tool through the sandboxed worker pool, the CPU each
+# call needs, and repeated worker starts to a completed handshake. The budgets are checked on the low hardware class
+# reference laptop by `harness.devlab.tool_budget_errors`.
+title = "Checker latency, CPU and worker start"
+network = "disabled"
+measures = ["tools"]
+command = "python -m jana_tools worker-bench --lab"
+steps = ["close the app so no other worker runs", "run the command from the repository checkout",
+         "copy its tools object into the laptop's measurements file"]

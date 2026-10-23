@@ -1,0 +1,106 @@
+id: itm.mth.o.geometry.0161
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.polygon_angles
+stem: A polygon has 18 sides (a 18-sided polygon).
+parts:
+- id: a
+  prompt: Find the sum of its interior angles.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '2880'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_geo_0161_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Split the polygon into triangles by drawing diagonals from one corner.
+  - rung: 2
+    name: concept
+    text:
+      en: An n-sided polygon makes n − 2 triangles, each with angles adding to 180°.
+  - rung: 3
+    name: first_step
+    text:
+      en: Here there are 18 − 2 triangles.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out (18 − 2) × 180.
+  - rung: 5
+    name: full_step
+    text:
+      en: The sum is 2880°.
+  misconception_ids:
+  - mc.mth.o.polygon_sum_n_180
+  - mc.mth.o.exterior_for_interior
+solution:
+  steps:
+  - n: 1
+    latex: (18 - 2) \times 180 = 2880
+    reason: It splits into n − 2 triangles from one vertex
+    check_id: chk_build_mth_geo_0161_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  n: '18'
+checks:
+  chk_build_mth_geo_0161_ans:
+    args:
+      expression: (18 - 2)*180
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:37:23.461Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.geometry.0161
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

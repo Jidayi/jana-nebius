@@ -1,0 +1,34 @@
+id: mc.phy.o.terminal_velocity_no_forces
+kc_ids:
+- kc.phy.o.forces.friction_and_terminal_velocity
+student_name: No forces at terminal velocity
+description: Thinks that at terminal velocity no forces act on the falling object, rather than its weight and the drag balancing.
+signatures:
+- kind: answer_transform
+  expression: W = D = 0
+fix:
+  strategy: contrast_example
+  text:
+    en: Gravity never switches off while the skydiver falls. At terminal velocity the drag has grown until it is as big as the weight, so the two cancel.
+probe_item_ids:
+- itm.phy.o.forces.0031
+- itm.phy.o.forces.0035
+- itm.phy.o.forces.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

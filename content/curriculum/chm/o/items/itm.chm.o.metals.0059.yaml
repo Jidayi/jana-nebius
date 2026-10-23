@@ -1,0 +1,170 @@
+id: itm.chm.o.metals.0059
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.extraction_yield
+stem: In a blast furnace, iron(III) oxide is reduced by carbon monoxide. The equation is Fe₂O₃ + 3CO → 2Fe + 3CO₂.
+parts:
+- id: a
+  prompt: What mass of iron can be obtained from 40.0 g of Fe₂O₃?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: 14.0 g
+      correct: false
+      misconception_id: mc.chm.o.metals_yield_ratio_ignored
+      feedback: 'Look at the equation: Fe₂O₃ gives 2Fe. Each mole of iron(III) oxide holds two moles of iron atoms, so multiply by the equation''s ratio before you turn moles back into grams.'
+    - id: B
+      text: 7.00 g
+      correct: false
+      misconception_id: mc.chm.o.metals_yield_ratio_inverted
+      feedback: 'Write the ratio as ''wanted : given''. For Fe₂O₃ → 2Fe the wanted iron is two for every one of oxide, so moles of iron = moles of oxide × 2.'
+    - id: C
+      text: 28.0 g
+      correct: true
+    - id: D
+      text: 80.0 g
+      correct: false
+      misconception_id: mc.chm.o.metals_yield_mass_ratio
+      feedback: The equation counts particles, not grams. Change the mass of ore into moles first, use the ratio, then change the moles of metal back into grams.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Plan: mass of Fe₂O₃ → moles → ratio from the equation → moles of Fe → mass.'
+  - rung: 2
+    name: concept
+    text:
+      en: The numbers in the equation are a ratio of moles, never of grams.
+  - rung: 3
+    name: first_step
+    text:
+      en: Moles of Fe₂O₃ = 40.0 ÷ 160 = 0.250 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'The equation gives 1 Fe₂O₃ : 2 Fe, so moles of Fe = 0.500 mol.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Mass of Fe = 0.500 × 56 = 28.0 g.
+  misconception_ids:
+  - mc.chm.o.metals_yield_ratio_ignored
+  - mc.chm.o.metals_yield_mass_ratio
+  - mc.chm.o.metals_yield_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: n(\text{Fe}_2\text{O}_3) = \frac{40.0}{160} = 0.250\ \text{mol}
+    reason: Mass to moles
+    check_id: chk_build_chm_metals_0059_ma
+  - n: 2
+    latex: '\text{Fe}_2\text{O}_3 : \text{Fe} = 1 : 2'
+    reason: Ratio from the equation
+    check_id: chk_build_chm_metals_0059_coef
+  - n: 3
+    latex: n(\text{Fe}) = 0.500\ \text{mol}
+    reason: Mole ratio from the equation
+    check_id: chk_build_chm_metals_0059_chain
+  - n: 4
+    latex: m(\text{Fe}) = 0.500 \times 56 = 28.0\ \text{g}
+    reason: Moles to mass
+    check_id: chk_build_chm_metals_0059_mb
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_metals_0059_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_c
+      equation: Fe2O3 + 3CO -> 2Fe + 3CO2
+      sf: 3
+      steps:
+      - id: na
+        mass: 40.0 g
+        op: amount_from_mass
+        species: Fe2O3
+      - amount: '@na'
+        from: Fe2O3
+        id: nb
+        op: mole_ratio
+        to: Fe
+      - amount: '@nb'
+        id: mb
+        op: mass_from_amount
+        species: Fe
+    tool: chem_stoichiometry
+  chk_build_chm_metals_0059_coef:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_c
+      equation: Fe2O3 + 3CO -> 2Fe + 3CO2
+      sf: 3
+      steps:
+      - amount: '1'
+        from: Fe2O3
+        id: ca
+        op: mole_ratio
+        to: Fe2O3
+      - amount: '1'
+        from: Fe2O3
+        id: cb
+        op: mole_ratio
+        to: Fe
+    tool: chem_stoichiometry
+  chk_build_chm_metals_0059_ma:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_o
+      formula: Fe2O3
+    tool: chem_molar_mass
+  chk_build_chm_metals_0059_mb:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      formula: Fe
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

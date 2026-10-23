@@ -1,0 +1,118 @@
+id: itm.phy.o.sound.0029
+version: 0.1.1
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.sound.speed_and_echoes
+stem: Zainab stands between two cliffs and claps once. The first echo arrives after 0.5 s and the second after 2 s. Sound travels at 340 m/s.
+parts:
+- id: a
+  prompt: How far apart are the two cliffs?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 850 m
+      correct: false
+      misconception_id: mc.phy.o.echo_not_halved
+      feedback: 'Draw the path: the sound goes to the reflector and comes back. The echo time covers twice the distance to the reflector.'
+    - id: B
+      text: 425 m
+      correct: true
+    - id: C
+      text: 255 m
+      correct: false
+      misconception_id: mc.phy.o.echo_times_subtracted
+      feedback: Each echo gives the distance to one reflector. You stand between them, so add the two distances.
+    - id: D
+      text: 340 m
+      correct: false
+      misconception_id: mc.phy.o.only_far_echo_used
+      feedback: The gap between the reflectors is your distance to one plus your distance to the other. Use both echoes.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Each echo comes from a different cliff.
+  - rung: 2
+    name: concept
+    text:
+      en: For each echo the sound goes there and back, so halve speed × time.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Nearer cliff: 85 m; further cliff: 340 m.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Zainab is between the cliffs, so the two distances add.
+  - rung: 5
+    name: full_step
+    text:
+      en: The cliffs are 425 m apart.
+  misconception_ids:
+  - mc.phy.o.echo_not_halved
+  - mc.phy.o.echo_times_subtracted
+  - mc.phy.o.only_far_echo_used
+solution:
+  steps:
+  - n: 1
+    latex: d_1 = \frac{340 \times 0.5}{2} = 85\ \text{m}
+    reason: Distance to the nearer cliff
+    check_id: chk_build_phy_snd_0029_d1
+  - n: 2
+    latex: d_2 = \frac{340 \times 2}{2} = 340\ \text{m}
+    reason: Distance to the further cliff
+    check_id: chk_build_phy_snd_0029_d2
+  - n: 3
+    latex: d_1 + d_2 = 425\ \text{m}
+    reason: Zainab is between them, so add
+    check_id: chk_build_phy_snd_0029_ans
+difficulty:
+  prior: 0.7
+  band: stretch
+estimated_seconds: 110
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_snd_0029_ans:
+    args:
+      expression: 340*(0.5 + 2)/2
+    tool: math_evaluate
+  chk_build_phy_snd_0029_d1:
+    args:
+      expression: 340*0.5/2
+    tool: math_evaluate
+  chk_build_phy_snd_0029_d2:
+    args:
+      expression: 340*2/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

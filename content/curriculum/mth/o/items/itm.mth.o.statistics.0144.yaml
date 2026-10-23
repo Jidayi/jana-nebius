@@ -1,0 +1,101 @@
+id: itm.mth.o.statistics.0144
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.histograms
+stem: In a frequency table, the class 20 < x ≤ 30 has frequency 18.
+parts:
+- id: a
+  prompt: Find the frequency density for a histogram.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '1.8'
+      correct: true
+    - id: B
+      text: '180'
+      correct: false
+      misconception_id: mc.mth.o.density_multiplied
+      feedback: Frequency density = frequency ÷ class width.
+    - id: C
+      text: '0.6'
+      correct: false
+      misconception_id: mc.mth.o.class_width_wrong
+      feedback: Class width = upper boundary − lower boundary.
+    - id: D
+      text: '0.556'
+      correct: false
+      misconception_id: mc.mth.o.frequency_density_inverted
+      feedback: Frequency density is frequency ÷ class width, not class width ÷ frequency.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: In a histogram with unequal widths, the height is not the frequency.
+  - rung: 2
+    name: concept
+    text:
+      en: Frequency density = frequency ÷ class width.
+  - rung: 3
+    name: first_step
+    text:
+      en: The class width is 30 − 20.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 18 by the width.
+  - rung: 5
+    name: full_step
+    text:
+      en: The frequency density is 1.8.
+  misconception_ids:
+  - mc.mth.o.class_width_wrong
+  - mc.mth.o.density_multiplied
+  - mc.mth.o.frequency_density_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \text{width} = 30 - 20
+    reason: Class width
+  - n: 2
+    latex: \text{density} = \frac{18}{10} = 1.8
+    reason: Frequency over width
+    check_id: chk_build_mth_sta_0144_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0144_ans:
+    args:
+      expression: 18/10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

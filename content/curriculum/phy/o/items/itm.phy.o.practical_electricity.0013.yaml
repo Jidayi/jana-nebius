@@ -1,0 +1,120 @@
+id: itm.phy.o.practical_electricity.0013
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.electrical_power
+stem: A 2 Ω resistor is connected across a 24 V battery.
+parts:
+- id: a
+  prompt: Calculate the power transferred in the resistor.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 12 W
+      correct: false
+      misconception_id: mc.phy.o.electric_power_voltage_not_squared
+      feedback: V/R is the current. Power is P = IV = V × (V/R) = V²/R.
+    - id: B
+      text: 288 W
+      correct: true
+    - id: C
+      text: 24 W
+      correct: false
+      misconception_id: mc.phy.o.electric_power_square_as_double
+      feedback: 'Squaring means multiplying a number by itself: 3² is 3 × 3 = 9, not 3 × 2 = 6.'
+    - id: D
+      text: 1152 W
+      correct: false
+      misconception_id: mc.phy.o.electric_power_r_multiplied
+      feedback: 'With the same p.d., a bigger resistance lets less current through, so the power is smaller: divide by R.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the p.d. and the resistance.
+  - rung: 2
+    name: concept
+    text:
+      en: Since I = V/R and P = IV, the power is P = V²/R.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Square the p.d.: 24 × 24.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: The square is 576; divide by 2 Ω.
+  - rung: 5
+    name: full_step
+    text:
+      en: The power is 288 W.
+  misconception_ids:
+  - mc.phy.o.electric_power_r_multiplied
+  - mc.phy.o.electric_power_square_as_double
+  - mc.phy.o.electric_power_voltage_not_squared
+solution:
+  steps:
+  - n: 1
+    latex: V^2 = 24^2 = 576
+    reason: Square the p.d.
+    check_id: chk_build_phy_pel_0013_sq
+  - n: 2
+    latex: P = \frac{V^2}{R} = \frac{576}{2} = 288\ \text{W}
+    reason: Power from V and R
+    check_id: chk_build_phy_pel_0013_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_pel_0013_ans:
+    args:
+      expression: 24^2/2
+    tool: math_evaluate
+  chk_build_phy_pel_0013_sq:
+    args:
+      expression: 24^2
+    tool: math_evaluate
+  chk_build_phy_pel_0013_tool:
+    args:
+      components:
+      - emf: '24'
+        id: B
+        kind: battery
+      - id: R
+        kind: resistor
+        resistance: '2'
+      network:
+        series:
+        - B
+        - R
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

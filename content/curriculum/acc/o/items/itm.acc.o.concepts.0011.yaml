@@ -1,0 +1,88 @@
+id: itm.acc.o.concepts.0011
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.concepts.identify_concept
+stem: A trader is told to be prudent.
+parts:
+- id: a
+  prompt: Select every action prudence requires.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Value inventory at the lower of cost and net realisable value
+      correct: true
+    - id: B
+      text: Keep an allowance for debts that may not be paid
+      correct: true
+    - id: C
+      text: Record expected losses as soon as they are known
+      correct: true
+    - id: D
+      text: Record expected gains before they are earned
+      correct: false
+    - id: E
+      text: Value premises at their selling price
+      correct: false
+    - id: F
+      text: Change depreciation method each year to raise profit
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'What is the accountant deciding here: what to record, at what value, or when?'
+  - rung: 2
+    name: concept
+    text:
+      en: 'Entity: the business is separate from its owner. Money measurement: only items with a money value. Duality: every transaction has two sides. Historic cost: record at cost. Going concern: assume the business carries on. Accruals: match income and expenses to the period. Prudence: do not overstate profit or assets. Consistency: keep to the same methods. Realisation: revenue when goods pass to the customer. Materiality: small items need not follow strict treatment.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Several principles may seem to fit; choose the one the situation is mainly about.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the actions that avoid overstating profit and assets.
+  - rung: 5
+    name: full_step
+    text:
+      en: Lower of cost and NRV, an allowance, and recognising losses early.
+  misconception_ids:
+  - mc.acc.o.con_prudence_realisation_confused
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Prudence: losses now, gains when earned}'
+    reason: Do not overstate
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

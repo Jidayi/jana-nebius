@@ -1,0 +1,35 @@
+id: mc.mth.o.correlation_direction_swapped
+kc_ids:
+- kc.mth.o.statistics.scatter_correlation
+student_name: Up means negative
+description: Calls a rising trend negative correlation or a falling trend positive correlation.
+signatures:
+- kind: answer_transform
+  expression: 'choice: correlation direction swapped'
+fix:
+  strategy: rule_restatement
+  text:
+    en: Read the points from left to right. Going up is positive correlation; going down is negative correlation.
+probe_item_ids:
+- itm.mth.o.statistics.0099
+- itm.mth.o.statistics.0102
+- itm.mth.o.statistics.0107
+- itm.mth.o.statistics.0110
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

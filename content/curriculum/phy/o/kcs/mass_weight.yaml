@@ -1,0 +1,67 @@
+- id: kc.phy.o.mass_weight.weight_from_mass
+  code: PHY-O-01.03.K01
+  node_id: cur.phy.o.motion_forces_and_energy.mass_and_weight
+  statement: Calculate weight from mass and gravitational field strength, and mass from weight
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.6
+  prerequisites:
+  - kc_id: kc.phy.o.measurement.si_prefixes
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.planet_g_mismatched
+  - mc.phy.o.planet_g_ratio_inverted
+  - mc.phy.o.weight_given_as_mass_number
+  - mc.phy.o.weight_grams_not_converted
+  - mc.phy.o.weight_mass_divided_by_g
+  - mc.phy.o.weight_same_on_every_planet
+  skill_ids:
+  - phy-o-mass-weight
+  glossary:
+  - weight
+  - mass
+  - gravitational field strength
+  - newton meter
+  - newton
+  - kilogram
+  - gravity
+  difficulty_prior: -0.6
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.mass_weight.mass_or_weight
+  code: PHY-O-01.03.K02
+  node_id: cur.phy.o.motion_forces_and_energy.mass_and_weight
+  statement: Distinguish mass from weight and predict how each changes on another planet or moon
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.4
+  prerequisites:
+  - kc_id: kc.phy.o.mass_weight.weight_from_mass
+    strength: required
+  misconception_ids:
+  - mc.phy.o.balance_types_confused
+  - mc.phy.o.mass_changes_with_g
+  - mc.phy.o.mass_weight_roles_swapped
+  - mc.phy.o.mass_weight_units_swapped
+  - mc.phy.o.no_mass_in_space
+  - mc.phy.o.planet_g_mismatched
+  - mc.phy.o.planet_g_ratio_inverted
+  - mc.phy.o.weight_given_as_mass_number
+  - mc.phy.o.weight_mass_divided_by_g
+  - mc.phy.o.weight_same_on_every_planet
+  skill_ids:
+  - phy-o-mass-weight
+  glossary:
+  - weight
+  - mass
+  - gravitational field strength
+  - gravity
+  - newton meter
+  - newton
+  - kilogram
+  - planet
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active

@@ -1,0 +1,81 @@
+id: wex.chm.o.electrolysis.0010
+kc_ids:
+- kc.chm.o.electrolysis.quantitative
+problem: An aluminium cell runs at 10.0 A for 2895 s (Al³⁺ + 3e⁻ → Al; 96500 C per mole of electrons). Find the mass of aluminium formed.
+steps:
+- n: 1
+  latex: Q = 10.0 \times 2895 = 28950\ \text{C}
+  reason: Charge = current × time
+  check_id: chk_build_chm_electrolysis_w0010_m
+- n: 2
+  latex: n(e^-) = \frac{28950}{96500} = 0.300\ \text{mol}
+  reason: Divide by the Faraday constant
+  check_id: chk_build_chm_electrolysis_w0010_e
+- n: 3
+  latex: n(\text{Al}) = \frac{0.300}{3} = 0.100\ \text{mol}
+  reason: 3 mol of electrons per mol of aluminium
+  check_id: chk_build_chm_electrolysis_w0010_n
+- n: 4
+  latex: m = 0.100 \times 27
+  reason: Moles to mass
+  check_id: chk_build_chm_electrolysis_w0010_s4
+final_answer:
+  latex: 2.70\ \text{g}
+  check_id: chk_build_chm_electrolysis_w0010_m
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_w0010_e:
+    args:
+      expression: 28950/96500
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_electrolysis_w0010_m:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_al
+      - source: pack
+        symbol: faraday
+      sf: 3
+      steps:
+      - current: '10.0'
+        electrons: 3
+        id: m
+        op: electrolysis
+        species: Al
+        time: '2895'
+    tool: chem_stoichiometry
+  chk_build_chm_electrolysis_w0010_n:
+    args:
+      expression: 28950/(96500*3)
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_electrolysis_w0010_s4:
+    args:
+      expression: 0.100*27
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

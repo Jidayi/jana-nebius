@@ -1,0 +1,129 @@
+id: itm.acc.o.accruals_prepayments.0033
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.accruals_prepayments.income_adjustments
+stem: Nomsa's business received $5700 of rent received during the year; $150 was still owing from the tenant at the year end.
+parts:
+- id: a
+  prompt: What rent received is shown in the income statement for the year?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $150
+      correct: false
+      misconception_id: mc.acc.o.acc_adjustment_as_total
+    - id: B
+      text: $5700
+      correct: false
+      misconception_id: mc.acc.o.acc_cash_basis
+    - id: C
+      text: $5550
+      correct: false
+      misconception_id: mc.acc.o.acc_income_adjustment_reversed
+    - id: D
+      text: $5850
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Was all of the income earned this year, or is some of it earned but unpaid, or paid but unearned?
+  - rung: 2
+    name: concept
+    text:
+      en: Add income earned but not yet received; subtract income received for next year.
+  - rung: 3
+    name: first_step
+    text:
+      en: The income statement shows what was earned, not just what was received.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Adjust the amount received by the amount owing or in advance.
+  - rung: 5
+    name: full_step
+    text:
+      en: The income for the year is $5850.
+  misconception_ids:
+  - mc.acc.o.acc_income_adjustment_reversed
+  - mc.acc.o.acc_cash_basis
+  - mc.acc.o.acc_adjustment_as_total
+solution:
+  steps:
+  - n: 1
+    latex: \text{Income} = \text{received} + \text{owing} - \text{in advance}
+    reason: Earned this year
+    check_id: chk_build_acc_accruals_prepayments_0033_t
+  - n: 2
+    latex: \text{Income} = 5700 + 150 = 5850
+    reason: Substitute
+    check_id: chk_build_acc_accruals_prepayments_0033_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_accruals_prepayments_0033_a:
+    args:
+      dp: 2
+      expression: 5700 + 150
+    tool: math_evaluate
+  chk_build_acc_accruals_prepayments_0033_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Rent received
+        amount: '150'
+        kind: accrued_income
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '60000'
+        role: revenue
+      - account: Purchases
+        debit: '30000'
+        role: purchases
+      - account: Rent received
+        credit: '5700'
+        role: other_income
+      - account: Land
+        debit: '35700'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

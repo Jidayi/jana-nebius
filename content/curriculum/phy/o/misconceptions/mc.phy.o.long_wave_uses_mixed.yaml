@@ -1,0 +1,36 @@
+id: mc.phy.o.long_wave_uses_mixed
+kc_ids:
+- kc.phy.o.em_spectrum.uses_and_hazards
+student_name: Radio, microwave and infrared uses mixed up
+description: Mixes up the uses of radio waves, microwaves and infrared, for example thinking a TV remote uses microwaves or a microwave oven uses radio waves.
+signatures:
+- kind: answer_transform
+  expression: swap(radio, microwave, IR)
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Radio: broadcasting. Microwaves: cooking by heating water, mobile phones and satellites. Infrared: remote controls, heaters and thermal cameras.'
+probe_item_ids:
+- itm.phy.o.em_spectrum.0042
+- itm.phy.o.em_spectrum.0044
+- itm.phy.o.em_spectrum.0035
+- itm.phy.o.em_spectrum.0037
+- itm.phy.o.em_spectrum.0040
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

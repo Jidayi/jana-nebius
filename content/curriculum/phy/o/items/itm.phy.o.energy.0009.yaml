@@ -1,0 +1,93 @@
+id: itm.phy.o.energy.0009
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.stores_and_transfers
+stem: A generator at a power station is turned by high-pressure steam.
+parts:
+- id: a
+  prompt: Which statement about the generator is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It produces electrical energy from nothing
+      correct: false
+      misconception_id: mc.phy.o.energy_created
+      feedback: A generator only turns when something drives it, and a battery goes flat. Every joule that comes out was taken from a store somewhere else.
+    - id: B
+      text: It transfers energy; it does not make it
+      correct: true
+    - id: C
+      text: It stores energy as electricity
+      correct: false
+      misconception_id: mc.phy.o.transfer_named_as_store
+      feedback: 'A store is where energy sits (kinetic, gravitational, elastic, chemical, thermal, nuclear). A transfer is how it moves: by a force, electrically, by heating or by radiation such as light and sound.'
+    - id: D
+      text: It uses up the energy of the steam
+      correct: false
+      misconception_id: mc.phy.o.energy_used_up
+      feedback: 'When a car brakes, its kinetic energy does not vanish: the brakes and the air get warmer. Energy only moves between stores; the total stays the same.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Decide where the energy is at the start and where it ends up.
+  - rung: 2
+    name: concept
+    text:
+      en: The steam's energy must come from the fuel that heated it.
+  - rung: 3
+    name: first_step
+    text:
+      en: Energy is never made or destroyed; it only moves from store to store.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out each option that breaks one of these ideas.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It transfers energy; it does not make it.'
+  misconception_ids:
+  - mc.phy.o.energy_created
+  - mc.phy.o.energy_used_up
+  - mc.phy.o.transfer_named_as_store
+solution:
+  steps:
+  - n: 1
+    latex: \text{It transfers energy; it does not make it}
+    reason: Follow the energy from store to store
+difficulty:
+  prior: -0.9
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

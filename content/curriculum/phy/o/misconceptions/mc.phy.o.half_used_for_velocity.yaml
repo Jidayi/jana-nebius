@@ -1,0 +1,33 @@
+id: mc.phy.o.half_used_for_velocity
+kc_ids:
+- kc.phy.o.motion.free_fall
+student_name: A half in the velocity
+description: Puts a half into v = gt, giving half the true velocity of an object falling from rest.
+signatures:
+- kind: answer_transform
+  expression: g*t/2
+fix:
+  strategy: rule_restatement
+  text:
+    en: The half belongs to the distance equation. Velocity after t seconds from rest is simply g times t.
+probe_item_ids:
+- itm.phy.o.motion.0327
+- itm.phy.o.motion.0330
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

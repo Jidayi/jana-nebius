@@ -1,0 +1,93 @@
+id: itm.phy.o.particles.0021
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.temperature_scales
+stem: Absolute zero is the lowest temperature anything can have.
+parts:
+- id: a
+  prompt: What is absolute zero on the Celsius scale?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: 0 °C
+      correct: false
+      misconception_id: mc.phy.o.absolute_zero_is_freezing_point
+      feedback: Ice in a freezer is well below 0 °C. Absolute zero is far colder, −273 °C or 0 K, where particles have the least energy possible.
+    - id: B
+      text: −273 °C
+      correct: true
+    - id: C
+      text: +273 °C
+      correct: false
+      misconception_id: mc.phy.o.kelvin_subtraction_reversed
+      feedback: 'Use T = θ + 273 and θ = T − 273 exactly as written, and keep the sign of a Celsius temperature below zero: −40 °C is −40 + 273 = 233 K.'
+    - id: D
+      text: There is no lowest temperature
+      correct: false
+      misconception_id: mc.phy.o.absolute_zero_not_lowest
+      feedback: Cooling takes kinetic energy from particles. At absolute zero they have the least energy possible, so there is none left to remove and no lower temperature.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Recall what absolute zero means for the motion of particles.
+  - rung: 2
+    name: concept
+    text:
+      en: On the kelvin scale absolute zero is 0 K, and T = θ + 273.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against the rule T = θ + 273.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options that treat a temperature as a total amount of energy.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: −273 °C.'
+  misconception_ids:
+  - mc.phy.o.absolute_zero_is_freezing_point
+  - mc.phy.o.absolute_zero_not_lowest
+  - mc.phy.o.kelvin_subtraction_reversed
+solution:
+  steps:
+  - n: 1
+    latex: \text{−273 °C}
+    reason: Use T = θ + 273 and the meaning of absolute zero
+difficulty:
+  prior: -0.6
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

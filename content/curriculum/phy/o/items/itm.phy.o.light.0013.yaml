@@ -1,0 +1,106 @@
+id: itm.phy.o.light.0013
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.plane_mirrors
+stem: Chipo stands 3.5 m in front of a tall plane mirror and then walks 0.5 m straight towards it.
+parts:
+- id: a
+  prompt: How far is Chipo now from the image in the mirror?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 3 m
+      correct: false
+      misconception_id: mc.phy.o.mirror_image_on_surface
+      feedback: The image is as far behind the mirror as the object is in front of it. From the object to the image is the distance to the mirror and then the same distance again.
+    - id: B
+      text: 6 m
+      correct: true
+    - id: C
+      text: 6.5 m
+      correct: false
+      misconception_id: mc.phy.o.mirror_image_does_not_move
+      feedback: Step towards a mirror and your reflection steps towards you too, because the image is always as far behind the mirror as you are in front. Both distances shrink.
+    - id: D
+      text: 8 m
+      correct: false
+      misconception_id: mc.phy.o.mirror_move_direction_reversed
+      feedback: 'Walking towards the mirror makes you closer to it, so your distance from the mirror goes down: take the distance walked away from the starting distance.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Where is a plane-mirror image compared with the object?
+  - rung: 2
+    name: concept
+    text:
+      en: The image is always as far behind the mirror as the object is in front.
+  - rung: 3
+    name: first_step
+    text:
+      en: First find how far Chipo is from the mirror after walking.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Chipo is now 3 m from the mirror, and the image is 3 m behind it.
+  - rung: 5
+    name: full_step
+    text:
+      en: Chipo is 6 m from the image.
+  misconception_ids:
+  - mc.phy.o.mirror_image_does_not_move
+  - mc.phy.o.mirror_image_on_surface
+  - mc.phy.o.mirror_move_direction_reversed
+solution:
+  steps:
+  - n: 1
+    latex: 3.5 - 0.5 = 3\ \text{m}
+    reason: New distance from the mirror
+    check_id: chk_build_phy_lgt_0013_left
+  - n: 2
+    latex: 2 \times 3 = 6\ \text{m}
+    reason: The image is as far behind the mirror as the person is in front
+    check_id: chk_build_phy_lgt_0013_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0013_ans:
+    args:
+      expression: 2*(3.5 - 0.5)
+    tool: math_evaluate
+  chk_build_phy_lgt_0013_left:
+    args:
+      expression: 3.5 - 0.5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

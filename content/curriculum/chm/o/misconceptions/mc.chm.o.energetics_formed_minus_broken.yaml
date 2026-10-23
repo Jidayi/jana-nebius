@@ -1,0 +1,36 @@
+id: mc.chm.o.energetics_formed_minus_broken
+kc_ids:
+- kc.chm.o.energetics.bond_energies
+student_name: Formed minus broken
+description: Subtracts the energy of bonds broken from the energy of bonds formed, so the sign of ΔH is reversed.
+signatures:
+- kind: answer_transform
+  expression: formed - broken
+fix:
+  strategy: rule_restatement
+  text:
+    en: ΔH = energy in (bonds broken) − energy out (bonds formed). More out than in gives a negative ΔH.
+probe_item_ids:
+- itm.chm.o.energetics.0025
+- itm.chm.o.energetics.0026
+- itm.chm.o.energetics.0027
+- itm.chm.o.energetics.0028
+- itm.chm.o.energetics.0029
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

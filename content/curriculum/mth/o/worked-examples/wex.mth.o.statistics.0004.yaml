@@ -1,0 +1,45 @@
+id: wex.mth.o.statistics.0004
+kc_ids:
+- kc.mth.o.statistics.read_tables
+problem: 'A two-way table shows how students travel to school. Boys: walk ?, bus 16, car 5, total 36. Girls: walk 10, bus 19, car 6, total 35. How many boys travel by walk?'
+steps:
+- n: 1
+  latex: 16 + 5 = 21
+  reason: The boys you know about
+  check_id: chk_build_mth_sta_w0004_s
+- n: 2
+  latex: 36 - 21 = 15
+  reason: The rest of the boys' total
+  check_id: chk_build_mth_sta_w0004_ans
+final_answer:
+  latex: '15'
+  check_id: chk_build_mth_sta_w0004_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_w0004_ans:
+    args:
+      expression: 36 - 16 - 5
+    tool: math_evaluate
+  chk_build_mth_sta_w0004_s:
+    args:
+      expression: 16 + 5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

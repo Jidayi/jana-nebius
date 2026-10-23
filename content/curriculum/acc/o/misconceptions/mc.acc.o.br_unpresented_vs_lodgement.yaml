@@ -1,0 +1,35 @@
+id: mc.acc.o.br_unpresented_vs_lodgement
+kc_ids:
+- kc.acc.o.bank_reconciliation.timing_differences
+- kc.acc.o.bank_reconciliation.reconciliation_statement
+student_name: Cheques and lodgements mixed up
+description: Confuses unpresented cheques (paid out, not yet cleared) with outstanding lodgements (paid in, not yet credited), so adds and subtracts the wrong items.
+signatures:
+- kind: step_error
+  error_category: sign
+fix:
+  strategy: contrast_example
+  text:
+    en: Cheques go out of the account; lodgements come in. Each is waiting for the bank in the opposite direction.
+probe_item_ids:
+- itm.acc.o.bank_reconciliation.0001
+- itm.acc.o.bank_reconciliation.0002
+- itm.acc.o.bank_reconciliation.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

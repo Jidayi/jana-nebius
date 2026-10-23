@@ -1,0 +1,36 @@
+id: mc.phy.o.iv_gradient_is_resistance
+kc_ids:
+- kc.phy.o.electrical_quantities.current_voltage_graphs
+student_name: Current over p.d. is resistance
+description: Divides the current by the p.d. from an I-V graph (its gradient) and calls it the resistance; resistance is V/I, so a steeper I-V line means less resistance.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: On a graph of current against p.d., the steeper the line the more current flows for each volt, so the smaller the resistance. Use R = V/I.
+probe_item_ids:
+- itm.phy.o.electrical_quantities.0086
+- itm.phy.o.electrical_quantities.0087
+- itm.phy.o.electrical_quantities.0090
+- itm.phy.o.electrical_quantities.0076
+- itm.phy.o.electrical_quantities.0078
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

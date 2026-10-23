@@ -1,0 +1,49 @@
+id: wex.acc.o.costing.0001
+kc_ids:
+- kc.acc.o.costing.cost_classification
+problem: Fixed costs are $6000 and variable cost is $4 a unit. Find the total cost of making 1500 units.
+steps:
+- n: 1
+  latex: \text{Total cost} = \text{fixed} + \text{variable per unit} \times \text{units}
+  reason: Fixed stays the same; variable rises
+  check_id: chk_build_acc_costing_w0001_t
+- n: 2
+  latex: 6000 + 4 \times 1500 = 12000
+  reason: Substitute
+  check_id: chk_build_acc_costing_w0001_a
+final_answer:
+  latex: \$\,12000
+  check_id: chk_build_acc_costing_w0001_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_costing_w0001_a:
+    args:
+      dp: 2
+      expression: 6000 + 4 * 1500
+    tool: math_evaluate
+  chk_build_acc_costing_w0001_t:
+    args:
+      dp: 2
+      fixed_costs: '6000'
+      selling_price: '14'
+      variable_cost_per_unit: '4'
+    tool: acc_break_even
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

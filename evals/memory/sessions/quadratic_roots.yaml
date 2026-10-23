@@ -1,0 +1,47 @@
+# A long guided session on solving a quadratic by factorising (EVL-08, MEM-23). Synthetic; no real student data
+# (EVL-24). The dialogue is played `rounds` times; its numbers are distractors that live only in the dropped middle.
+id: quadratic_roots
+synthetic: true
+persona: p_o_mathematics
+subject: mathematics
+session_date: "2026-10-10"
+problem:
+  id: prb_mem_quad
+  statement: "Solve x^2 - 5x + 6 = 0 by factorising."
+plan:
+  steps:
+    - {index: 1, latex: "(x - 2)(x - 3) = 0", value: null, unit: null, check_id: null}
+    - {index: 2, latex: "x = 2", value: "2", unit: null, check_id: chk_mem_quad_1}
+    - {index: 3, latex: "x = 3", value: "3", unit: null, check_id: chk_mem_quad_2}
+  final: {value: "3", unit: null, check_id: chk_mem_quad_2}
+board:
+  - {latex: "(x + 2)(x + 3) = 0", owner: student, status: incorrect, check_id: null}
+  - {latex: "(x - 2)(x - 3) = 0", owner: student, status: correct, check_id: null}
+  - {latex: "x = 2", owner: student, status: final, check_id: chk_mem_quad_1}
+  - {latex: "x = -3", owner: student, status: incorrect, check_id: null}
+step: 3
+rung: 0
+rounds: 18
+dialogue:
+  - {kind: chat, student: "Round {n}: what does factorising actually mean here, in plain words please?",
+     tutor: "It means writing the left side as two brackets multiplied together. What two numbers multiply to give 6?"}
+  - {kind: attempt, student: "Round {n}: is it 1 and 6 because they multiply to 6?",
+     tutor: "They do multiply to 6, but they also need to add to the middle number. Do 1 and 6 add to -5?"}
+  - {kind: chat, student: "Round {n}: I keep forgetting whether the signs go inside the brackets or outside.",
+     tutor: "The signs go inside, with the numbers. Which signs make two numbers add to -5 and multiply to +6?"}
+  - {kind: attempt, student: "Round {n}: could the roots be 6 and -1 then?",
+     tutor: "Check them in the original equation: put 6 in for x. Does the left side come to zero?"}
+  - {kind: chat, student: "Round {n}: my book uses the formula instead, is that allowed here?",
+     tutor: "The formula always works, but the question asks for factorising. Let's keep to the brackets."}
+  - {kind: attempt, student: "Round {n}: if one bracket is zero then x is 4, right?",
+     tutor: "Set each bracket to zero on its own. What does x - 3 = 0 give you?"}
+  - {kind: chat, student: "Round {n}: why can't I just divide both sides by x to make it easier?",
+     tutor: "Dividing by x can lose a root, because x might be zero. Factorising keeps every root."}
+  - {kind: attempt, student: "Round {n}: so the answer is x equals 5 because the middle number is 5?",
+     tutor: "The middle number is the sum of the roots, not a root. What two values make each bracket zero?"}
+questions:
+  - {id: quad_q1, asks: value, index: 1, text: "Which root has been checked so far?", answers: ["x = 2"]}
+  - {id: quad_q2, asks: error, index: 1, text: "What was the first factorisation the student wrote that was marked incorrect?",
+     answers: ["(x + 2)(x + 3) = 0"]}
+  - {id: quad_q3, asks: error, index: 2, text: "Which wrong root did the student write?", answers: ["x = -3"]}
+  - {id: quad_q4, asks: step, index: 1, text: "Which step of the plan is the student working on now?", answers: ["step 3"]}

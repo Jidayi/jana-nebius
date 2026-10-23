@@ -1,0 +1,72 @@
+id: wex.acc.o.accruals_prepayments.0004
+kc_ids:
+- kc.acc.o.accruals_prepayments.prepaid_expense
+problem: Rent paid in the year $9600; paid in advance at the end $800; paid in advance at the start $600. Find the rent expense.
+steps:
+- n: 1
+  latex: \text{Expense} = \text{paid} - \text{closing prepayment} + \text{opening prepayment}
+  reason: Matching
+  check_id: chk_build_acc_accruals_prepayments_w0004_t
+- n: 2
+  latex: \text{Expense} = 9600 - 800 + 600 = 9400
+  reason: Substitute
+  check_id: chk_build_acc_accruals_prepayments_w0004_a
+final_answer:
+  latex: \$\,9400
+  check_id: chk_build_acc_accruals_prepayments_w0004_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_accruals_prepayments_w0004_a:
+    args:
+      dp: 2
+      expression: 9600 - 800 + 600
+    tool: math_evaluate
+  chk_build_acc_accruals_prepayments_w0004_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Rent
+        amount: '800'
+        kind: prepaid_expense
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '60000'
+        role: revenue
+      - account: Purchases
+        debit: '30000'
+        role: purchases
+      - account: Rent
+        debit: '10200'
+        role: expense
+      - account: Land
+        debit: '19800'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

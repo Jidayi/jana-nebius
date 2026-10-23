@@ -1,0 +1,106 @@
+id: itm.phy.o.density.0013
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.density_calculation
+stem: A beam mould measuring 3 m × 0.2 m × 0.4 m is completely filled with concrete. The density of concrete is 2400 kg/m³.
+parts:
+- id: a
+  prompt: Calculate the mass of the concrete.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 10000 kg
+      correct: false
+      misconception_id: mc.phy.o.density_rearranged_wrongly
+      feedback: 'Mass = density × volume, and volume = mass ÷ density. Check with the units: kg/m³ × m³ leaves kg.'
+    - id: B
+      text: 576 kg
+      correct: true
+    - id: C
+      text: 0.0001 kg
+      correct: false
+      misconception_id: mc.phy.o.density_volume_over_mass
+      feedback: 'Density says how much mass is packed into each unit of volume: mass ÷ volume. A small, heavy object must come out with a large density.'
+    - id: D
+      text: 1440 kg
+      correct: false
+      misconception_id: mc.phy.o.block_volume_two_sides
+      feedback: 'A volume needs all three measurements: length × width × height. Two of them only give the area of one face.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Density is the mass packed into one cubic metre of the material.
+  - rung: 2
+    name: concept
+    text:
+      en: Mass = density × volume.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Find the volume first: multiply the three measurements.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: The volume is 0.24 m³; multiply it by 2400.
+  - rung: 5
+    name: full_step
+    text:
+      en: The mass is 576 kg.
+  misconception_ids:
+  - mc.phy.o.block_volume_two_sides
+  - mc.phy.o.density_rearranged_wrongly
+  - mc.phy.o.density_volume_over_mass
+solution:
+  steps:
+  - n: 1
+    latex: V = 3 \times 0.2 \times 0.4 = 0.24\ \text{m}^3
+    reason: Volume of a box shape
+    check_id: chk_build_phy_den_0013_v
+  - n: 2
+    latex: m = \rho V = 2400 \times 0.24 = 576\ \text{kg}
+    reason: Mass = density × volume
+    check_id: chk_build_phy_den_0013_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_den_0013_ans:
+    args:
+      expression: 2400*3*0.2*0.4
+    tool: math_evaluate
+  chk_build_phy_den_0013_v:
+    args:
+      expression: 3*0.2*0.4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

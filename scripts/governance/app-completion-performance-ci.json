@@ -1,0 +1,506 @@
+{
+  "meaning": "Local automated 4x replay and fault injection, not calibrated CI hardware or release acceptance.",
+  "normal": {
+    "schema": 1,
+    "created_at": "2026-10-17T18:58:35.834Z",
+    "commit": "73fc3926f0bdd7b2c6e1689522df53cf42a17d2d",
+    "source_sha256": "88fc8e787db5248a92f0c33b30e47c7bbcec71fd7b4d11ac2dea5b754272b2a4",
+    "candidate_acceptance": false,
+    "reference_hardware": false,
+    "profile": {
+      "fixture": "transcript-v1",
+      "cpu_rate": 4,
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "input_metric": "keydown-to-second-animation-frame"
+    },
+    "runner": {
+      "os": "darwin",
+      "arch": "arm64",
+      "cpu": "Apple M4 Max",
+      "cores": 16,
+      "browser": "156.0.8078.4"
+    },
+    "runner_sha256": "4c55edeccc9b4f7f6d3cfc46107314e451e8cd1e7e5d5fc5715bdd1882012d5c",
+    "sample": {
+      "qualification": "Synthetic browser replay; hardware qualification is recorded separately by the runner",
+      "input_metric": "keydown-to-second-animation-frame upper bound (includes one paint opportunity)",
+      "turns": 500,
+      "board_steps": 30,
+      "deltas": 5000,
+      "max_transcript_nodes": 610,
+      "max_dom_nodes": 2255,
+      "frame_p50_ms": 16.7,
+      "frame_p95_ms": 16.7,
+      "input_p50_ms": 23.7,
+      "input_p95_ms": 34.4,
+      "input_samples": 50,
+      "long_tasks_supported": true,
+      "max_long_task_ms": 0,
+      "task_timeline": [],
+      "budget_failures": []
+    },
+    "console_errors": [],
+    "failures": [],
+    "qualification_gaps": [
+      "Reviewed baseline required for relative regression acceptance.",
+      "Device-lab calibration against the low reference laptop required.",
+      "Reference-laptop maximum-model-rate, startup and two-hour RSS evidence required."
+    ]
+  },
+  "slow_board_mutation": {
+    "schema": 1,
+    "created_at": "2026-10-17T18:58:58.947Z",
+    "commit": "73fc3926f0bdd7b2c6e1689522df53cf42a17d2d",
+    "source_sha256": "88fc8e787db5248a92f0c33b30e47c7bbcec71fd7b4d11ac2dea5b754272b2a4",
+    "candidate_acceptance": false,
+    "reference_hardware": false,
+    "profile": {
+      "fixture": "transcript-v1",
+      "cpu_rate": 4,
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "input_metric": "keydown-to-second-animation-frame"
+    },
+    "runner": {
+      "os": "darwin",
+      "arch": "arm64",
+      "cpu": "Apple M4 Max",
+      "cores": 16,
+      "browser": "156.0.8078.4"
+    },
+    "runner_sha256": "4c55edeccc9b4f7f6d3cfc46107314e451e8cd1e7e5d5fc5715bdd1882012d5c",
+    "sample": {
+      "qualification": "Synthetic browser replay; hardware qualification is recorded separately by the runner",
+      "input_metric": "keydown-to-second-animation-frame upper bound (includes one paint opportunity)",
+      "turns": 500,
+      "board_steps": 30,
+      "deltas": 5000,
+      "max_transcript_nodes": 610,
+      "max_dom_nodes": 2255,
+      "frame_p50_ms": 16.7,
+      "frame_p95_ms": 83.3,
+      "input_p50_ms": 18.2,
+      "input_p95_ms": 28.4,
+      "input_samples": 50,
+      "long_tasks_supported": true,
+      "max_long_task_ms": 94,
+      "task_timeline": [
+        {
+          "after_start_ms": 234,
+          "duration_ms": 90
+        },
+        {
+          "after_start_ms": 433,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 647,
+          "duration_ms": 87
+        },
+        {
+          "after_start_ms": 834,
+          "duration_ms": 86
+        },
+        {
+          "after_start_ms": 1035,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 1242,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 1436,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 1640,
+          "duration_ms": 86
+        },
+        {
+          "after_start_ms": 1848,
+          "duration_ms": 87
+        },
+        {
+          "after_start_ms": 2036,
+          "duration_ms": 86
+        },
+        {
+          "after_start_ms": 2236,
+          "duration_ms": 86
+        },
+        {
+          "after_start_ms": 2449,
+          "duration_ms": 86
+        },
+        {
+          "after_start_ms": 2635,
+          "duration_ms": 87
+        },
+        {
+          "after_start_ms": 2833,
+          "duration_ms": 86
+        },
+        {
+          "after_start_ms": 3034,
+          "duration_ms": 85
+        },
+        {
+          "after_start_ms": 3236,
+          "duration_ms": 86
+        },
+        {
+          "after_start_ms": 3434,
+          "duration_ms": 86
+        },
+        {
+          "after_start_ms": 3635,
+          "duration_ms": 87
+        },
+        {
+          "after_start_ms": 3837,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 4038,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 4257,
+          "duration_ms": 87
+        },
+        {
+          "after_start_ms": 4440,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 4634,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 4838,
+          "duration_ms": 87
+        },
+        {
+          "after_start_ms": 5037,
+          "duration_ms": 85
+        },
+        {
+          "after_start_ms": 5233,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 5437,
+          "duration_ms": 87
+        },
+        {
+          "after_start_ms": 5637,
+          "duration_ms": 86
+        },
+        {
+          "after_start_ms": 5833,
+          "duration_ms": 86
+        },
+        {
+          "after_start_ms": 6050,
+          "duration_ms": 87
+        },
+        {
+          "after_start_ms": 6238,
+          "duration_ms": 87
+        },
+        {
+          "after_start_ms": 6433,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 6650,
+          "duration_ms": 87
+        },
+        {
+          "after_start_ms": 6834,
+          "duration_ms": 86
+        },
+        {
+          "after_start_ms": 7034,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 7237,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 7438,
+          "duration_ms": 87
+        },
+        {
+          "after_start_ms": 7634,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 7837,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 8037,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 8233,
+          "duration_ms": 90
+        },
+        {
+          "after_start_ms": 8433,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 8636,
+          "duration_ms": 87
+        },
+        {
+          "after_start_ms": 8834,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 9050,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 9236,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 9437,
+          "duration_ms": 90
+        },
+        {
+          "after_start_ms": 9657,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 9842,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 10033,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 10239,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 10437,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 10634,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 10836,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 11037,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 11234,
+          "duration_ms": 87
+        },
+        {
+          "after_start_ms": 11436,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 11638,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 11834,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 12050,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 12234,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 12437,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 12638,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 12835,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 13036,
+          "duration_ms": 90
+        },
+        {
+          "after_start_ms": 13250,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 13435,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 13636,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 13840,
+          "duration_ms": 90
+        },
+        {
+          "after_start_ms": 14034,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 14233,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 14448,
+          "duration_ms": 90
+        },
+        {
+          "after_start_ms": 14635,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 14836,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 15034,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 15238,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 15435,
+          "duration_ms": 90
+        },
+        {
+          "after_start_ms": 15636,
+          "duration_ms": 88
+        },
+        {
+          "after_start_ms": 15836,
+          "duration_ms": 92
+        },
+        {
+          "after_start_ms": 16038,
+          "duration_ms": 91
+        },
+        {
+          "after_start_ms": 16235,
+          "duration_ms": 90
+        },
+        {
+          "after_start_ms": 16434,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 16635,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 16834,
+          "duration_ms": 90
+        },
+        {
+          "after_start_ms": 17035,
+          "duration_ms": 89
+        },
+        {
+          "after_start_ms": 17241,
+          "duration_ms": 94
+        },
+        {
+          "after_start_ms": 17435,
+          "duration_ms": 92
+        },
+        {
+          "after_start_ms": 17636,
+          "duration_ms": 91
+        },
+        {
+          "after_start_ms": 17837,
+          "duration_ms": 90
+        },
+        {
+          "after_start_ms": 18039,
+          "duration_ms": 91
+        },
+        {
+          "after_start_ms": 18234,
+          "duration_ms": 91
+        },
+        {
+          "after_start_ms": 18435,
+          "duration_ms": 92
+        },
+        {
+          "after_start_ms": 18637,
+          "duration_ms": 90
+        },
+        {
+          "after_start_ms": 18837,
+          "duration_ms": 91
+        },
+        {
+          "after_start_ms": 19034,
+          "duration_ms": 90
+        },
+        {
+          "after_start_ms": 19239,
+          "duration_ms": 91
+        },
+        {
+          "after_start_ms": 19439,
+          "duration_ms": 90
+        },
+        {
+          "after_start_ms": 19633,
+          "duration_ms": 91
+        },
+        {
+          "after_start_ms": 19834,
+          "duration_ms": 90
+        }
+      ],
+      "budget_failures": [
+        "frame_p95_ms: 83.3 exceeds 16.7.",
+        "max_long_task_ms: 94 exceeds 50."
+      ]
+    },
+    "console_errors": [],
+    "failures": [
+      "frame_p95_ms: 83.3 exceeds 16.7.",
+      "max_long_task_ms: 94 exceeds 50."
+    ],
+    "qualification_gaps": [
+      "Reviewed baseline required for relative regression acceptance.",
+      "Device-lab calibration against the low reference laptop required.",
+      "Reference-laptop maximum-model-rate, startup and two-hour RSS evidence required."
+    ]
+  }
+}

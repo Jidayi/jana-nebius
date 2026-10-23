@@ -1,0 +1,62 @@
+{
+  "description": "Synthetic worker handshake, ping, one call and shutdown.",
+  "exchanges": [
+    {
+      "method": "worker.hello",
+      "result": {
+        "kind": "hello",
+        "protocol": {
+          "major": 1,
+          "minor": 0
+        },
+        "worker_version": "x",
+        "placement": "device",
+        "functions": [],
+        "libraries": {},
+        "limits": {
+          "cpu_ms": 0,
+          "memory_mb": 0,
+          "max_expression_chars": 0,
+          "max_data_points": 0,
+          "max_frame_bytes": 0
+        }
+      }
+    },
+    {
+      "method": "worker.ping",
+      "result": {
+        "kind": "pong",
+        "uptime_ms": 0,
+        "busy": true
+      },
+      "repeat": true
+    },
+    {
+      "method": "fn.call",
+      "match": {
+        "name": "math_solve"
+      },
+      "result": {
+        "kind": "fn",
+        "value": {},
+        "check": {
+          "check_id": "chk_00000000000000000000000000",
+          "function": "aa",
+          "function_version": 1,
+          "worker_version": "x",
+          "args_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "result_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "method": "exact",
+          "confidence": "proved"
+        }
+      }
+    },
+    {
+      "method": "worker.shutdown",
+      "result": {
+        "kind": "ack",
+        "ok": true
+      }
+    }
+  ]
+}

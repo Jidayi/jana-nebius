@@ -1,0 +1,59 @@
+{
+  "id": "model-manager.canonical.below-minimum",
+  "title": "Tutor models, below the minimum laptop",
+  "component": "ModelManager",
+  "state": "canonical",
+  "variant": "below-minimum",
+  "note": "PLT-29: no pack is recommended; packs can still be copied for a later computer.",
+  "payload": {
+    "installed": [],
+    "available": [
+      {
+        "model_pack_id": "mp.synth.14b.q4_k_m.mid",
+        "hardware_class": "mid",
+        "size_bytes": 10093173145,
+        "licence": "Apache-2.0"
+      }
+    ],
+    "assignment": {
+      "fast": "mp.synth.8b.q4_k_m.low",
+      "strong": "mp.synth.8b.q4_k_m.low"
+    },
+    "recommended": {
+      "fast": null,
+      "strong": null,
+      "reason_key": "hardware_class.content_only.below_minimum_ram"
+    },
+    "hardware": {
+      "hardware_class": "content_only",
+      "basis": "below_minimum_ram",
+      "provisional": true,
+      "shortfalls": [
+        {
+          "check": "ram",
+          "have": 4,
+          "need": 8,
+          "unit": "GB"
+        }
+      ],
+      "benchmark": null,
+      "benchmark_due": false,
+      "class_choice": null,
+      "tutor_path": "none",
+      "runtime": null
+    }
+  },
+  "payloadContract": "https://jana.dev/contracts/api/commands#/$defs/ModelCatalogue",
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "below what a tutor model needs",
+    "4 GB of memory",
+    "Online features",
+    "Add from a USB stick or folder"
+  ]
+}

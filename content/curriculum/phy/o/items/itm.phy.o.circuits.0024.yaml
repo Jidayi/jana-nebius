@@ -1,0 +1,127 @@
+id: itm.phy.o.circuits.0024
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.parallel_circuits
+stem: Kwame connects two different lamps in parallel across a 24 V battery. The current from the battery is 1.15 A and the current through the first lamp is 0.4 A.
+parts:
+- id: a
+  prompt: Find the current through the second lamp.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '0.75'
+    unit: A
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_cir_0024_tool
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: At the junction the current from the battery splits between the two lamps.
+  - rung: 2
+    name: concept
+    text:
+      en: The branch currents add up to the current from the battery.
+  - rung: 3
+    name: first_step
+    text:
+      en: The second lamp carries whatever the first lamp does not.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Take 0.4 A away from 1.15 A.
+  - rung: 5
+    name: full_step
+    text:
+      en: The second lamp carries 0.75 A.
+  misconception_ids:
+  - mc.phy.o.parallel_current_same_each_branch
+  - mc.phy.o.parallel_current_split_equally
+  - mc.phy.o.parallel_branch_current_added
+solution:
+  steps:
+  - n: 1
+    latex: I_2 = 1.15 - 0.4 = 0.75\ \text{A}
+    reason: Branch currents add up to the total
+    check_id: chk_build_phy_cir_0024_ans
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  I: '1.15'
+  I1: '0.4'
+checks:
+  chk_build_phy_cir_0024_ans:
+    args:
+      expression: 1.15 - 0.4
+    tool: math_evaluate
+  chk_build_phy_cir_0024_tool:
+    args:
+      components:
+      - emf: '24'
+        id: B
+        kind: battery
+      - id: L1
+        kind: lamp
+        resistance: '60'
+      - id: L2
+        kind: lamp
+        resistance: '32'
+      network:
+        series:
+        - B
+        - parallel:
+          - L1
+          - L2
+    tool: phys_circuit
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:40:54.809Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.circuits.0024
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

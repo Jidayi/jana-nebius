@@ -1,0 +1,83 @@
+id: itm.chm.o.metals.0023
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.alloys
+stem: A student explains why an alloy is usually harder than the pure metal.
+parts:
+- id: a
+  prompt: Put the steps of the explanation in order.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s4
+      text: The layers cannot slide over each other easily, so the alloy is harder.
+    - id: s1
+      text: In a pure metal all the atoms are the same size and lie in regular layers.
+    - id: s2
+      text: Atoms of a different element, with a different size, are mixed in.
+    - id: s3
+      text: The regular layers are disrupted.
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Start with the structure of the pure metal.
+  - rung: 2
+    name: concept
+    text:
+      en: Hardness depends on how easily layers of atoms can slide.
+  - rung: 3
+    name: first_step
+    text:
+      en: Next comes the change you make to the metal.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Then describe what that change does to the layers before the result.
+  - rung: 5
+    name: full_step
+    text:
+      en: Pure metal in regular layers; different-sized atoms added; layers disrupted; layers cannot slide, so the alloy is harder.
+  misconception_ids:
+  - mc.chm.o.metals_alloy_stronger_bonds
+solution:
+  steps:
+  - n: 1
+    latex: \text{regular layers, atoms added, layers disrupted, harder}
+    reason: Cause before effect
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

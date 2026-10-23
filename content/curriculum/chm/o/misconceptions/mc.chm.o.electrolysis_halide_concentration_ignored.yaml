@@ -1,0 +1,36 @@
+id: mc.chm.o.electrolysis_halide_concentration_ignored
+kc_ids:
+- kc.chm.o.electrolysis.aqueous_products
+student_name: Ignoring how concentrated the halide is
+description: 'Ignores concentration at the anode: predicts the halogen from a dilute halide solution, or oxygen from a concentrated one.'
+signatures:
+- kind: answer_transform
+  expression: 'choice: anode product that ignores the halide concentration'
+fix:
+  strategy: contrast_example
+  text:
+    en: At the anode, a concentrated chloride, bromide or iodide solution gives the halogen. A dilute halide solution, or a solution with no halide (a sulfate or nitrate), gives oxygen from the water.
+probe_item_ids:
+- itm.chm.o.electrolysis.0013
+- itm.chm.o.electrolysis.0014
+- itm.chm.o.electrolysis.0015
+- itm.chm.o.electrolysis.0016
+- itm.chm.o.electrolysis.0017
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

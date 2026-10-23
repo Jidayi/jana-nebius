@@ -1,0 +1,332 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.titration-curve-hidden",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at equivalence point."
+      ],
+      "summary": "A titration curve: pH starts at 1.00 and the equivalence point is at 25 cm³ with pH 7.00."
+    },
+    "computed": {
+      "axes": {
+        "x": "volume of titrant",
+        "x_unit": "cm³",
+        "y": "pH"
+      },
+      "check_ids": [
+        "chk_build_fx_titration_curve_1"
+      ],
+      "equivalence": {
+        "ph": {
+          "decimal": "7.00000",
+          "latex": "7",
+          "rounded": "7.00",
+          "text": "7"
+        },
+        "volume": {
+          "decimal": "25.0000",
+          "latex": "25",
+          "shown": "25",
+          "text": "25",
+          "unit": "cm³"
+        }
+      },
+      "equivalence_index": 23,
+      "half_equivalence": {
+        "ph": {
+          "decimal": "1.47712",
+          "latex": "\\frac{\\log{\\left(3 \\right)}}{\\log{\\left(10 \\right)}} + 1",
+          "rounded": "1.48",
+          "text": "log(3)/log(10) + 1"
+        },
+        "volume": {
+          "decimal": "12.5000",
+          "latex": "\\frac{25}{2}",
+          "shown": "12.5",
+          "text": "25/2",
+          "unit": "cm³"
+        }
+      },
+      "labels": {
+        "equivalence": "7.00",
+        "equivalence_volume": "25 cm³",
+        "half_equivalence": "1.48",
+        "start_ph": "1.00"
+      },
+      "points": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          1.25,
+          1.043
+        ],
+        [
+          2.5,
+          1.087
+        ],
+        [
+          3.75,
+          1.131
+        ],
+        [
+          5.0,
+          1.176
+        ],
+        [
+          6.25,
+          1.222
+        ],
+        [
+          7.5,
+          1.269
+        ],
+        [
+          8.75,
+          1.317
+        ],
+        [
+          10.0,
+          1.368
+        ],
+        [
+          11.25,
+          1.421
+        ],
+        [
+          12.5,
+          1.477
+        ],
+        [
+          13.75,
+          1.537
+        ],
+        [
+          15.0,
+          1.602
+        ],
+        [
+          16.25,
+          1.673
+        ],
+        [
+          17.5,
+          1.753
+        ],
+        [
+          18.75,
+          1.845
+        ],
+        [
+          20.0,
+          1.954
+        ],
+        [
+          21.25,
+          2.091
+        ],
+        [
+          22.5,
+          2.279
+        ],
+        [
+          23.75,
+          2.591
+        ],
+        [
+          24.5,
+          2.996
+        ],
+        [
+          24.95,
+          4.0
+        ],
+        [
+          24.995,
+          5.0
+        ],
+        [
+          25.0,
+          7.0
+        ],
+        [
+          25.005,
+          9.0
+        ],
+        [
+          25.05,
+          10.0
+        ],
+        [
+          25.5,
+          10.996
+        ],
+        [
+          26.25,
+          11.387
+        ],
+        [
+          27.5,
+          11.678
+        ],
+        [
+          28.75,
+          11.844
+        ],
+        [
+          30.0,
+          11.959
+        ],
+        [
+          31.25,
+          12.046
+        ],
+        [
+          32.5,
+          12.115
+        ],
+        [
+          33.75,
+          12.173
+        ],
+        [
+          35.0,
+          12.222
+        ],
+        [
+          36.25,
+          12.264
+        ],
+        [
+          37.5,
+          12.301
+        ],
+        [
+          38.75,
+          12.334
+        ],
+        [
+          40.0,
+          12.363
+        ],
+        [
+          41.25,
+          12.39
+        ],
+        [
+          42.5,
+          12.414
+        ],
+        [
+          43.75,
+          12.436
+        ],
+        [
+          45.0,
+          12.456
+        ],
+        [
+          46.25,
+          12.475
+        ],
+        [
+          47.5,
+          12.492
+        ],
+        [
+          48.75,
+          12.508
+        ],
+        [
+          50.0,
+          12.523
+        ]
+      ],
+      "start_ph": {
+        "decimal": "1.00000",
+        "latex": "1",
+        "rounded": "1.00",
+        "text": "1"
+      }
+    },
+    "fallback_reason": null,
+    "labels": "hidden",
+    "numbers_from": [
+      "chk_build_fx_titration_curve_1"
+    ],
+    "params": {
+      "analyte": {
+        "concentration": "0.100 mol dm^-3",
+        "formula": "HCl",
+        "kind": "acid",
+        "strength": "strong"
+      },
+      "analyte_volume": "25.0 cm^3",
+      "indicator": "phenolphthalein",
+      "marks": [
+        "equivalence_point",
+        "half_equivalence",
+        "start_ph"
+      ],
+      "titrant": {
+        "concentration": "0.100 mol dm^-3",
+        "formula": "NaOH",
+        "kind": "base",
+        "strength": "strong"
+      }
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "curve",
+        "name": "pH curve",
+        "role": "curve"
+      },
+      {
+        "focusable": true,
+        "id": "equivalence",
+        "name": "equivalence point",
+        "quizzable": true,
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "half_equivalence",
+        "name": "half-equivalence point",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "start_ph",
+        "name": "starting pH",
+        "role": "point"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:d8918bde26639caa31c4baccc4d4209cda9e44ea860aa01abe428c10d85e4e2d",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "equivalence"
+        ]
+      }
+    ],
+    "type": "titration_curve",
+    "visual_id": "vis_RHBY63WAH4TC4M0WTY4A6A0TY2"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: titration curve (hidden labels)",
+  "variant": "titration-curve-hidden"
+}

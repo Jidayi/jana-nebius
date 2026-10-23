@@ -1,0 +1,54 @@
+id: wex.phy.o.atom.0004
+kc_ids:
+- kc.phy.o.atom.isotopes
+problem: Magnesium-24 and magnesium-25 are isotopes of magnesium, which has proton number 12. How many more neutrons are there in a nucleus of magnesium-25 than in a nucleus of magnesium-24?
+steps:
+- n: 1
+  latex: N_1 = 24 - 12 = 12
+  reason: Neutrons in magnesium-24
+  check_id: chk_build_phy_atm_w0004_n1
+- n: 2
+  latex: N_2 = 25 - 12 = 13
+  reason: Neutrons in magnesium-25
+  check_id: chk_build_phy_atm_w0004_n2
+- n: 3
+  latex: N_2 - N_1 = 13 - 12 = 1
+  reason: Only the neutrons differ between isotopes
+  check_id: chk_build_phy_atm_w0004_ans
+final_answer:
+  latex: '1'
+  check_id: chk_build_phy_atm_w0004_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_atm_w0004_ans:
+    args:
+      expression: (25 - 12) - (24 - 12)
+    tool: math_evaluate
+  chk_build_phy_atm_w0004_n1:
+    args:
+      expression: 24 - 12
+    tool: math_evaluate
+  chk_build_phy_atm_w0004_n2:
+    args:
+      expression: 25 - 12
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

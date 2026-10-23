@@ -1,0 +1,44 @@
+id: wex.chm.o.electrolysis.0002
+kc_ids:
+- kc.chm.o.electrolysis.molten_products
+problem: Molten lead(II) bromide is electrolysed. Name the products, and find how many electrons each lead ion gains at the cathode.
+steps:
+- n: 1
+  latex: '\text{cathode: }\text{Pb}^{2+} \rightarrow \text{lead}'
+  reason: Positive ions to the negative electrode
+- n: 2
+  latex: '\text{anode: }\text{Br}^{-} \rightarrow \text{bromine}'
+  reason: Negative ions to the positive electrode
+- n: 3
+  latex: 2 - 0 = 2
+  reason: Charge on the ion minus charge on the atom
+  check_id: chk_build_chm_electrolysis_w0002_e
+final_answer:
+  latex: 2\ \text{electrons per lead ion}
+  check_id: chk_build_chm_electrolysis_w0002_e
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_w0002_e:
+    args:
+      expression: 2 - 0
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

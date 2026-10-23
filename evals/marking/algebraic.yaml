@@ -1,0 +1,119 @@
+provenance: Synthetic items and responses written for the marking suite (CUR-14, CUR-15); expected verdicts follow
+  the marking rules, not the marker. Not real student work.
+items:
+  expand:
+    id: itm.mth.o.algebra.9401
+    type: algebraic
+    kc_ids: [kc.mth.o.algebra.expanding_brackets]
+    parts:
+    - id: a
+      prompt: Expand and simplify (x + 2)(x + 4).
+      marks: 2
+      answer: {kind: algebraic, expression: x^2 + 6x + 8, variables: [x], required_form: expanded,
+               check_id: chk_build_golden_expand}
+      hints: []
+  factorise:
+    id: itm.mth.o.algebra.9402
+    type: algebraic
+    kc_ids: [kc.mth.o.algebra.factorising]
+    parts:
+    - id: a
+      prompt: Factorise x^2 - 9 completely.
+      marks: 2
+      answer: {kind: algebraic, expression: (x - 3)(x + 3), variables: [x], required_form: factorised,
+               check_id: chk_build_golden_factorise}
+      hints: []
+  any_form:
+    id: itm.mth.o.algebra.9403
+    type: algebraic
+    kc_ids: [kc.mth.o.algebra.simplifying]
+    parts:
+    - id: a
+      prompt: Write an expression for the perimeter of a rectangle of width w and length 2w + 1.
+      marks: 1
+      answer: {kind: algebraic, expression: 6w + 2, variables: [w], required_form: any,
+               check_id: chk_build_golden_perimeter}
+      hints: []
+  quadratic:
+    id: itm.mth.o.algebra.9404
+    type: equation_solutions
+    kc_ids: [kc.mth.o.algebra.quadratic_equations]
+    parts:
+    - id: a
+      prompt: Solve x^2 - 7x + 12 = 0.
+      marks: 2
+      answer: {kind: equation_solutions, variable: x, values: ['3', '4'], tolerance: {mode: sig_figs, value: 3},
+               check_id: chk_build_golden_quadratic}
+      hints: []
+  surd_roots:
+    id: itm.mth.o.algebra.9405
+    type: equation_solutions
+    kc_ids: [kc.mth.o.algebra.quadratic_equations]
+    parts:
+    - id: a
+      prompt: Solve x^2 = 5, giving your answers to 3 significant figures.
+      marks: 2
+      answer: {kind: equation_solutions, variable: x, values: ['2.24', '-2.24'], tolerance: {mode: sig_figs, value: 3},
+               check_id: chk_build_golden_surd_roots}
+      hints: []
+cases:
+- id: expanded_as_asked
+  item: expand
+  response: x^2 + 6x + 8
+  rows: [algebraic_form.equivalent]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: expanded_terms_reordered
+  item: expand
+  response: 8 + 6x + x^2
+  rows: [algebraic_form.equivalent]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: equivalent_but_not_expanded
+  item: expand
+  response: (x + 4)(x + 2)
+  rows: [algebraic_form.not_in_form]
+  expect: {outcome: partial, marks_awarded: 1, error_category: form, criteria: {value: pass, form: fail}}
+- id: expanded_wrongly
+  item: expand
+  response: x^2 + 8x + 6
+  rows: [algebraic_form.equivalent]
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: value}
+- id: factorised_either_order
+  item: factorise
+  response: (x + 3)(x - 3)
+  rows: [algebraic_form.equivalent]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: equivalent_but_not_factorised
+  item: factorise
+  response: x^2 - 9
+  rows: [algebraic_form.not_in_form]
+  expect: {outcome: partial, marks_awarded: 1, error_category: form}
+- id: any_form_accepts_equivalents
+  item: any_form
+  response: 2(w + 2w + 1)
+  rows: [algebraic_form.equivalent]
+  expect: {outcome: correct, marks_awarded: 1}
+- id: both_roots
+  item: quadratic
+  response: x = 3 or x = 4
+  expect: {outcome: correct, marks_awarded: 2}
+- id: both_roots_as_a_set
+  item: quadratic
+  response: '{4, 3}'
+  expect: {outcome: correct, marks_awarded: 2}
+- id: one_root_missing
+  item: quadratic
+  response: x = 4
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: value}
+- id: extra_root
+  item: quadratic
+  response: x = 3, x = 4, x = 0
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: value}
+- id: plus_minus_roots
+  item: surd_roots
+  response: x = \pm 2.24
+  rows: [numeric_tolerance.sig_figs]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: both_roots_written_out
+  item: surd_roots
+  response: x = 2.24 or x = -2.24
+  expect: {outcome: correct, marks_awarded: 2}

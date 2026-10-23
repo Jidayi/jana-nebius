@@ -1,0 +1,113 @@
+id: itm.mth.o.mensuration.0074
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.prism_volume
+stem: A closed box is a cuboid 6 cm long, 4 cm wide and 7 cm high.
+parts:
+- id: a
+  prompt: Find its total surface area.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 94 cm²
+      correct: false
+      misconception_id: mc.mth.o.surface_area_half_faces
+      feedback: 'A cuboid has six faces in three matching pairs: double the sum of the three different faces.'
+    - id: B
+      text: 168 cm²
+      correct: false
+      misconception_id: mc.mth.o.perimeter_area_confused
+      feedback: Perimeter is a length around the edge (add the sides); area is the space inside (square units).
+    - id: C
+      text: 188 cm²
+      correct: true
+    - id: D
+      text: 144 cm²
+      correct: false
+      misconception_id: mc.mth.o.compound_part_missing
+      feedback: Split the shape into simple parts, label each one, and add every part.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A cuboid has six rectangular faces.
+  - rung: 2
+    name: concept
+    text:
+      en: The faces come in three matching pairs.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the areas 6 × 4, 6 × 7 and 4 × 7.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Add the three areas and double.
+  - rung: 5
+    name: full_step
+    text:
+      en: The surface area is 188 cm².
+  misconception_ids:
+  - mc.mth.o.compound_part_missing
+  - mc.mth.o.perimeter_area_confused
+  - mc.mth.o.surface_area_half_faces
+solution:
+  steps:
+  - n: 1
+    latex: 6 \times 4 = 24,\ 6 \times 7 = 42,\ 4 \times 7 = 28
+    reason: The three different faces
+    check_id: chk_build_mth_mns_0074_t
+  - n: 2
+    latex: 2(24 + 42 + 28) = 188\ \text{cm}^2
+    reason: Each face has a matching opposite face
+    check_id: chk_build_mth_mns_0074_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_mns_0074_ans:
+    args:
+      expression: 2*(6*4 + 6*7 + 4*7)
+    tool: math_evaluate
+  chk_build_mth_mns_0074_t:
+    args:
+      equations:
+      - p = 6*4
+      - q = 6*7
+      - r = 4*7
+      unknowns:
+      - p
+      - q
+      - r
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

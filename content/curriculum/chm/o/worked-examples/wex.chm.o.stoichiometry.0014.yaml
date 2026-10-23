@@ -1,0 +1,69 @@
+id: wex.chm.o.stoichiometry.0014
+kc_ids:
+- kc.chm.o.stoichiometry.gas_volumes
+problem: What volume does 4.0 g of oxygen, O₂ occupy at room temperature and pressure? (Molar gas volume 24 dm³.)
+steps:
+- n: 1
+  latex: n = \frac{4.0}{32} = 0.125\ \text{mol}
+  reason: Mass to moles
+  check_id: chk_build_chm_stoichiometry_w0014_mr
+- n: 2
+  latex: V = 0.125 \times 24
+  reason: Each mole occupies 24 dm³
+  check_id: chk_build_chm_stoichiometry_w0014_s2
+final_answer:
+  latex: V = 3.00\ \text{dm}^3
+  check_id: chk_build_chm_stoichiometry_w0014_chain
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_w0014_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: vm
+      sf: 3
+      steps:
+      - id: n
+        mass: 4.0 g
+        op: amount_from_mass
+        species: O2
+      - amount: '@n'
+        id: v
+        op: gas_volume_from_amount
+    tool: chem_stoichiometry
+  chk_build_chm_stoichiometry_w0014_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_o
+      formula: O2
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_w0014_s2:
+    args:
+      expression: 0.125*24
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

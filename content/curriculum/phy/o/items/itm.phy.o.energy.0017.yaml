@@ -1,0 +1,101 @@
+id: itm.phy.o.energy.0017
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.kinetic_energy
+stem: A car of mass 1500 kg has 108 kJ of kinetic energy.
+parts:
+- id: a
+  prompt: Calculate the speed.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '12'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0017_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the kinetic energy and the mass; the speed is the unknown.
+  - rung: 2
+    name: concept
+    text:
+      en: Rearrange Ek = ½mv² to get v² = 2Ek ÷ m, with Ek in joules.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 2 × 108000 ÷ 1500 to find v².
+  - rung: 4
+    name: worked_step
+    text:
+      en: v² = 144; now take the square root.
+  - rung: 5
+    name: full_step
+    text:
+      en: The speed is 12 m/s.
+  misconception_ids:
+  - mc.phy.o.ke_speed_not_rooted
+  - mc.phy.o.ke_half_omitted
+  - mc.phy.o.ke_rearrange_half_wrong
+solution:
+  steps:
+  - n: 1
+    latex: E_k = 108\ \text{kJ} = 108000\ \text{J}
+    reason: Change kJ to J
+    check_id: chk_build_phy_nrg_0017_e
+  - n: 2
+    latex: v^2 = \frac{2E_k}{m} = \frac{2 \times 108000}{1500} = 144
+    reason: Rearrange E_k = ½mv²
+    check_id: chk_build_phy_nrg_0017_vsq
+  - n: 3
+    latex: v = \sqrt{144} = 12\ \text{m/s}
+    reason: Take the square root
+    check_id: chk_build_phy_nrg_0017_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0017_ans:
+    args:
+      expression: sqrt(2*108000/1500)
+    tool: math_evaluate
+  chk_build_phy_nrg_0017_e:
+    args:
+      quantity: 108 kJ
+      to: J
+    tool: units_convert
+  chk_build_phy_nrg_0017_vsq:
+    args:
+      expression: 2*108000/1500
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

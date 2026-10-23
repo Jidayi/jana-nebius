@@ -1,0 +1,53 @@
+# One synthetic failure per row of the error table (MDL-07): the input a provider sees, the reason it is classified
+# as, and the router's actions in order when the failure repeats on every attempt.
+- input: {status: 429, body: {error: {message: "Rate limit reached", type: requests}}}
+  reason: rate_limit
+  actions: [backoff, retry, backoff, retry, fallback]
+- input: {status: 503, body: {error: {message: "Service overloaded"}}}
+  reason: overloaded
+  actions: [backoff, retry, backoff, retry, fallback]
+- input: {status: 502, body: "Bad gateway"}
+  reason: server_error
+  actions: [backoff, retry, backoff, retry, fallback]
+- input: {transport: timeout}
+  reason: timeout
+  actions: [retry, fallback]
+- input: {transport: connect, locality: cloud}
+  reason: network_unavailable
+  actions: [mark_cloud_offline, fallback_local]
+- input: {status: 401, body: {error: {message: "Invalid API key"}}}
+  reason: auth
+  actions: [disable_candidate, fallback]
+- input: {status: 429, body: {error: {code: insufficient_quota, message: "You exceeded your current quota"}}}
+  reason: quota_or_billing
+  actions: [pause_cloud, fallback]
+- input: {status: 400, body: {error: {message: "the request exceeds the available context size"}}}
+  reason: context_overflow
+  actions: [compact, retry, fail]
+- input: {status: 413, body: {error: {message: "Payload too large"}}}
+  reason: payload_too_large
+  actions: [shrink, retry, fail]
+- input: {status: 404, body: {error: {message: "model not found"}}}
+  reason: model_not_found
+  actions: [fallback]
+- input: {status: 400, body: {error: {code: content_filter, message: "flagged by the safety system"}}}
+  reason: content_filter
+  actions: [fallback_local]
+- input: {status: 400, body: {error: {message: "Unrecognized request argument supplied: top_k"}}}
+  reason: format_error
+  actions: [param_fix, retry, fallback]
+- input: {status: 400, body: {error: {message: "JSON schema conversion failed: unsupported schema keyword"}}}
+  reason: grammar_rejected
+  actions: [strip_keyword, retry, fail]
+- input: {transport: connect, locality: local}
+  reason: runtime_down
+  actions: [restart_runtime, retry, fallback_another_local]
+- input: {status: 500, body: {error: {message: "failed to allocate KV cache buffer"}}}
+  reason: out_of_memory
+  actions: [lower_context, retry, fallback_smaller_local]
+- input: {bad_response: empty}
+  reason: bad_response
+  actions: [fallback]
+- input: {status: 418, body: "I am a teapot"}
+  reason: unknown
+  actions: [backoff, retry, fallback]

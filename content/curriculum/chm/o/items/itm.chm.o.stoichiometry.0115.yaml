@@ -1,0 +1,103 @@
+id: itm.chm.o.stoichiometry.0115
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.yield_and_purity
+stem: A 12.5 g sample of limestone contains 11.0 g of pure CaCO₃.
+parts:
+- id: a
+  prompt: What is the percentage purity of the sample?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: 0.880%
+      correct: false
+      misconception_id: mc.chm.o.percent_ar_over_mr_no_100
+      feedback: 'A percentage is a fraction of 100: multiply the fraction by 100.'
+    - id: B
+      text: 88.0%
+      correct: true
+    - id: C
+      text: 12.0%
+      correct: false
+      misconception_id: mc.chm.o.purity_impurity_share
+      feedback: Purity is the share that is the wanted substance; the impurity is the rest. Check which one is asked for.
+    - id: D
+      text: 114%
+      correct: false
+      misconception_id: mc.chm.o.purity_inverted
+      feedback: 'Purity is the share of the sample that is the wanted substance: pure mass ÷ sample mass × 100.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Purity is the share of the sample that is the substance you want.
+  - rung: 2
+    name: concept
+    text:
+      en: Percentage purity = mass of pure substance ÷ mass of sample × 100.
+  - rung: 3
+    name: first_step
+    text:
+      en: The pure mass is 11.0 g and the sample mass is 12.5 g.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 11.0 ÷ 12.5, then multiply by 100.
+  - rung: 5
+    name: full_step
+    text:
+      en: 11.0 ÷ 12.5 × 100 = 88.0%.
+  misconception_ids:
+  - mc.chm.o.purity_inverted
+  - mc.chm.o.percent_ar_over_mr_no_100
+  - mc.chm.o.purity_impurity_share
+solution:
+  steps:
+  - n: 1
+    latex: \frac{11.0}{12.5} \times 100 = 88.0\%
+    reason: Pure over sample
+    check_id: chk_build_chm_stoichiometry_0115_chain
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0115_chain:
+    args:
+      constants: []
+      sf: 3
+      steps:
+      - id: p
+        op: purity
+        pure_mass: 11.0 g
+        sample_mass: 12.5 g
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

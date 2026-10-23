@@ -1,0 +1,99 @@
+id: itm.mth.o.number.0306
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.rounding
+stem: Round 0.00003883 to 2 significant figures.
+parts:
+- id: a
+  prompt: Give the rounded number.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '3.88e-5'
+      correct: false
+      misconception_id: mc.mth.o.rounding_wrong_digit
+      feedback: Underline exactly the digits you must keep, then look only at the next digit.
+    - id: B
+      text: '0.00'
+      correct: false
+      misconception_id: mc.mth.o.leading_zeros_significant
+      feedback: Zeros before the first non-zero digit only show the place value; they are not significant.
+    - id: C
+      text: '3.9e-5'
+      correct: true
+    - id: D
+      text: '0.000038'
+      correct: false
+      misconception_id: mc.mth.o.truncated_not_rounded
+      feedback: 'Look at the first digit you are removing: 5 or more rounds the last kept digit up.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Find the digit you are rounding to: count from the first non-zero digit for significant figures, from the decimal point for decimal places.'
+  - rung: 2
+    name: concept
+    text:
+      en: 'Look at the next digit: five or more rounds the last kept digit up; less than five leaves it.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Count 2 significant figures in the number, then look at the digit after them.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Keep place-holder zeros so the number keeps its size.
+  - rung: 5
+    name: full_step
+    text:
+      en: 0.00003883 rounds to 3.9e-5.
+  misconception_ids:
+  - mc.mth.o.leading_zeros_significant
+  - mc.mth.o.rounding_wrong_digit
+  - mc.mth.o.truncated_not_rounded
+solution:
+  steps:
+  - n: 1
+    latex: 0.00003883 \approx 3.9e-5
+    reason: Look at the next digit to decide whether to round up
+    check_id: chk_build_mth_num_0306_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0306_ans:
+    args:
+      expression: '0.00003883'
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

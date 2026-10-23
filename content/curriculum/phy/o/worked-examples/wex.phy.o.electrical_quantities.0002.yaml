@@ -1,0 +1,49 @@
+id: wex.phy.o.electrical_quantities.0002
+kc_ids:
+- kc.phy.o.electrical_quantities.electric_charge
+problem: A plastic ruler rubbed with a duster gains 3 × 10¹⁰ electrons. The charge on one electron is −1.6 × 10⁻¹⁹ C. Find the charge on the plastic ruler, in nC, with its sign.
+steps:
+- n: 1
+  latex: Q = n \times e = 3 \times 10^{10} \times (-\,1.6 \times 10^{-19}) = -4.8 \times 10^{-9}\ \text{C}
+  reason: Charge = number of electrons × charge on one
+  check_id: chk_build_phy_elq_w0002_q
+- n: 2
+  latex: Q = -4.8\ \text{nC}
+  reason: 1 nC is 10^{-9} C
+  check_id: chk_build_phy_elq_w0002_ans
+final_answer:
+  latex: -4.8\ \text{nC}
+  check_id: chk_build_phy_elq_w0002_ans
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_elq_w0002_ans:
+    args:
+      expression: -3*10^10*1.6*10^(-19)*10^9
+    tool: math_evaluate
+  chk_build_phy_elq_w0002_q:
+    args:
+      expression: 3*10^10*(-1.6*10^(-19))
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

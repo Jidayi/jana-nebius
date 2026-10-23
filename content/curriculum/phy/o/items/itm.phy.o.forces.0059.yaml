@@ -1,0 +1,106 @@
+id: itm.phy.o.forces.0059
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.springs
+stem: A spring with a spring constant of 30 N/m is 8 cm long. A force stretches it to 10 cm, within its limit of proportionality.
+parts:
+- id: a
+  prompt: Find the force.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 60 N
+      correct: false
+      misconception_id: mc.phy.o.spring_cm_not_converted
+      feedback: A spring constant in N/m needs the extension in metres. Change centimetres into metres before you use F = kx.
+    - id: B
+      text: 1500 N
+      correct: false
+      misconception_id: mc.phy.o.spring_ratio_inverted
+      feedback: 'The spring constant is the force needed for each metre of extension, so force goes on top: k = F ÷ x.'
+    - id: C
+      text: 3 N
+      correct: false
+      misconception_id: mc.phy.o.spring_length_for_extension
+      feedback: 'Extension means how much longer the spring has become: stretched length minus original length.'
+    - id: D
+      text: 0.6 N
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Use F = kx, where x is the extension.
+  - rung: 2
+    name: concept
+    text:
+      en: The extension is how much longer the spring has become.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the extension and change it into metres before multiplying by k.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The extension is 0.02 m.
+  - rung: 5
+    name: full_step
+    text:
+      en: F = 30 × 0.02 = 0.6 N.
+  misconception_ids:
+  - mc.phy.o.spring_cm_not_converted
+  - mc.phy.o.spring_length_for_extension
+  - mc.phy.o.spring_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: x = 10 - 8 = 2\ \text{cm} = 0.02\ \text{m}
+    reason: Extension in metres
+    check_id: chk_build_phy_frc_0059_ext_m
+  - n: 2
+    latex: F = kx = 30 \times 0.02 = 0.6\ \text{N}
+    reason: Hooke's law
+    check_id: chk_build_phy_frc_0059_ans
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0059_ans:
+    args:
+      expression: 30*(10 - 8)/100
+    tool: math_evaluate
+  chk_build_phy_frc_0059_ext_m:
+    args:
+      expression: (10 - 8)/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

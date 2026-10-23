@@ -1,0 +1,117 @@
+id: itm.phy.o.density.0001
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.density_calculation
+stem: A rectangular block of pine measures 5 cm × 4 cm × 3 cm and has a mass of 30 g.
+parts:
+- id: a
+  prompt: Calculate its density in g/cm³.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.5'
+    unit: g/cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_den_0001_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Density is the mass of each cubic centimetre.
+  - rung: 2
+    name: concept
+    text:
+      en: Density = mass ÷ volume.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Find the volume first: length × width × height.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: The volume is 60 cm³; divide the mass by it.
+  - rung: 5
+    name: full_step
+    text:
+      en: The density is 0.5 g/cm³.
+  misconception_ids:
+  - mc.phy.o.density_volume_over_mass
+  - mc.phy.o.density_mass_times_volume
+  - mc.phy.o.block_volume_two_sides
+solution:
+  steps:
+  - n: 1
+    latex: V = 5 \times 4 \times 3 = 60\ \text{cm}^3
+    reason: Volume of a block
+    check_id: chk_build_phy_den_0001_v
+  - n: 2
+    latex: \rho = \frac{m}{V} = \frac{30}{60} = 0.5\ \text{g/cm}^3
+    reason: Density = mass ÷ volume
+    check_id: chk_build_phy_den_0001_ans
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  l: '5'
+  m: '30'
+  w: '4'
+checks:
+  chk_build_phy_den_0001_ans:
+    args:
+      expression: 30/(5*4*3)
+    tool: math_evaluate
+  chk_build_phy_den_0001_v:
+    args:
+      expression: 5*4*3
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:41:06.892Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.density.0001
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

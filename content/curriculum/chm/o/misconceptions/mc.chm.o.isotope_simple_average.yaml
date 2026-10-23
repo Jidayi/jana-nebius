@@ -1,0 +1,36 @@
+id: mc.chm.o.isotope_simple_average
+kc_ids:
+- kc.chm.o.atoms.isotopes
+student_name: Plain average of the isotope masses
+description: Averages the isotope masses without weighting them by how common each isotope is.
+signatures:
+- kind: answer_transform
+  expression: (m1 + m2)/2
+fix:
+  strategy: counterexample
+  text:
+    en: If almost all atoms are the lighter isotope, the average must be close to the lighter mass. Weight each mass by its percentage.
+probe_item_ids:
+- itm.chm.o.atoms.0038
+- itm.chm.o.atoms.0039
+- itm.chm.o.atoms.0040
+- itm.chm.o.atoms.0041
+- itm.chm.o.atoms.0042
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

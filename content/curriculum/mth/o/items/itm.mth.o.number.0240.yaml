@@ -1,0 +1,118 @@
+id: itm.mth.o.number.0240
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.direct_proportion
+stem: 4 workers take 12 days to build a wall. All the workers work at the same rate.
+parts:
+- id: a
+  prompt: How many days would 9 workers take?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '5.33'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_num_0240_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'More workers finish faster: this is inverse proportion.'
+  - rung: 2
+    name: concept
+    text:
+      en: Find how long one worker would take, then share between the new number of workers.
+  - rung: 3
+    name: first_step
+    text:
+      en: One worker would take 4 × 12 days.
+  - rung: 4
+    name: worked_step
+    text:
+      en: That is 48 days for one worker. Divide by 9.
+  - rung: 5
+    name: full_step
+    text:
+      en: 9 workers take 5.33 days.
+  misconception_ids:
+  - mc.mth.o.variation_direct_for_inverse
+  - mc.mth.o.proportion_additive
+  - mc.mth.o.ratio_one_part
+solution:
+  steps:
+  - n: 1
+    latex: 4 \times 12 = 48
+    reason: Total work in worker-days
+    check_id: chk_build_mth_num_0240_tot
+  - n: 2
+    latex: 48 \div 9 = 5.33
+    reason: Share the work between 9 workers
+    check_id: chk_build_mth_num_0240_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  x1: '4'
+  x2: '9'
+  y1: '12'
+checks:
+  chk_build_mth_num_0240_ans:
+    args:
+      expression: 4*12/9
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_num_0240_tot:
+    args:
+      expression: 4*12
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:38:36.620Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.number.0240
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

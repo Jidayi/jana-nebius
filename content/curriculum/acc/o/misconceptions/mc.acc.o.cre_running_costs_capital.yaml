@@ -1,0 +1,35 @@
+id: mc.acc.o.cre_running_costs_capital
+kc_ids:
+- kc.acc.o.depreciation.capital_revenue_expenditure
+student_name: Running costs as capital
+description: Includes running costs such as fuel or insurance in the cost of a non-current asset.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: asset
+fix:
+  strategy: rule_restatement
+  text:
+    en: Costs of using an asset after it is ready are expenses of the year.
+probe_item_ids:
+- itm.acc.o.depreciation.0001
+- itm.acc.o.depreciation.0002
+- itm.acc.o.depreciation.0011
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

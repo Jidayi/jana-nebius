@@ -1,0 +1,35 @@
+id: mc.phy.o.year_seconds_factor_missed
+kc_ids:
+- kc.phy.o.stars.light_years
+student_name: A factor of 60 lost in the year
+description: Works out the seconds in a year as 365 × 24 × 60, which is the number of minutes, so the light-year is 60 times too small.
+signatures:
+- kind: step_error
+  error_category: arithmetic
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'An hour is 60 minutes and each minute is 60 seconds: an hour is 3600 s. A year is 365 × 24 × 3600 s.'
+probe_item_ids:
+- itm.phy.o.stars.0012
+- itm.phy.o.stars.0001
+- itm.phy.o.stars.0003
+- itm.phy.o.stars.0008
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

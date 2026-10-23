@@ -1,0 +1,116 @@
+id: itm.acc.o.ratios.0022
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.mark_up
+stem: Femi's revenue was $57000 and cost of sales $43500.
+parts:
+- id: a
+  prompt: What is the mark-up?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 23.68%
+      correct: false
+      misconception_id: mc.acc.o.rat_margin_markup_confused
+    - id: B
+      text: 322.22%
+      correct: false
+      misconception_id: mc.acc.o.rat_ratio_inverted
+    - id: C
+      text: 31.03%
+      correct: true
+    - id: D
+      text: 131.03%
+      correct: false
+      misconception_id: mc.acc.o.rat_revenue_for_profit
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Mark-up and margin use the same profit but compare it with different figures.
+  - rung: 2
+    name: concept
+    text:
+      en: Mark-up = gross profit ÷ cost of sales, as a percentage.
+  - rung: 3
+    name: first_step
+    text:
+      en: Gross profit is revenue less cost of sales.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out (57000 − 43500) ÷ 43500 as a percentage.
+  - rung: 5
+    name: full_step
+    text:
+      en: Mark-up = 31.03%.
+  misconception_ids:
+  - mc.acc.o.rat_margin_markup_confused
+  - mc.acc.o.rat_ratio_inverted
+  - mc.acc.o.rat_revenue_for_profit
+solution:
+  steps:
+  - n: 1
+    latex: \text{Mark-up} = \frac{\text{gross profit}}{\text{cost of sales}}
+    reason: Profit on cost
+    check_id: chk_build_acc_ratios_0022_t
+  - n: 2
+    latex: \frac{57000 - 43500}{43500} \rightarrow 31.03\%
+    reason: Substitute
+    check_id: chk_build_acc_ratios_0022_a
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_0022_a:
+    args:
+      dp: 2
+      expression: (57000 - 43500) / 43500 * 100
+    tool: math_evaluate
+  chk_build_acc_ratios_0022_t:
+    args:
+      cost_of_sales: '43500'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      ratios:
+      - mark_up
+      revenue: '57000'
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

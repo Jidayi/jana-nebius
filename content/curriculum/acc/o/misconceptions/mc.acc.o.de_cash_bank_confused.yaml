@@ -1,0 +1,36 @@
+id: mc.acc.o.de_cash_bank_confused
+kc_ids:
+- kc.acc.o.double_entry.record_cash_transactions
+- kc.acc.o.double_entry.record_owner_transactions
+- kc.acc.o.double_entry.record_credit_transactions
+student_name: Cash and bank mixed up
+description: Uses the cash account for a payment made through the bank, or the bank account for one made in cash.
+signatures:
+- kind: step_error
+  error_category: copy
+fix:
+  strategy: contrast_example
+  text:
+    en: Cash is notes and coins kept by the business; bank is money in the bank account. Cheques and transfers go through the bank.
+probe_item_ids:
+- itm.acc.o.double_entry.0012
+- itm.acc.o.double_entry.0013
+- itm.acc.o.double_entry.0015
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

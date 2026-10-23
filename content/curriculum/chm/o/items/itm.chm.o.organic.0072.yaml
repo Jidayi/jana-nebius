@@ -1,0 +1,92 @@
+id: itm.chm.o.organic.0072
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.alcohols_and_acids
+- kc.chm.o.organic.carboxylic_acids
+stem: Ethyl ethanoate is made from ethanol and ethanoic acid.
+parts:
+- id: a
+  prompt: Which is the formula of ethyl ethanoate?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: C₂H₅COOCH₃
+      correct: false
+      misconception_id: mc.chm.o.organic_ester_name_order
+      feedback: The alcohol gives the first word, ending in -yl; the acid gives the second word, ending in -oate. Methanol + ethanoic acid → methyl ethanoate. Ethanol + methanoic acid → ethyl methanoate.
+    - id: B
+      text: CH₃COOC₂H₅
+      correct: true
+    - id: C
+      text: C₂H₅OH
+      correct: false
+    - id: D
+      text: CH₃COOH
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An ester joins the acid part, –COO–, to the alcohol's carbon chain.
+  - rung: 2
+    name: concept
+    text:
+      en: The acid part comes from ethanoic acid, CH₃COOH, which loses its H.
+  - rung: 3
+    name: first_step
+    text:
+      en: The alcohol part comes from ethanol, C₂H₅OH, which loses its OH.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Join CH₃COO– to –C₂H₅.
+  - rung: 5
+    name: full_step
+    text:
+      en: Ethyl ethanoate is CH₃COOC₂H₅.
+  misconception_ids:
+  - mc.chm.o.organic_ester_name_order
+solution:
+  steps:
+  - n: 1
+    latex: \text{CH}_3\text{COOH} + \text{C}_2\text{H}_5\text{OH} \rightarrow \text{CH}_3\text{COOC}_2\text{H}_5 + \text{H}_2\text{O}
+    reason: Esterification
+    check_id: chk_build_chm_organic_0072_bal
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_0072_bal:
+    args:
+      equation: CH3COOH + C2H5OH -> CH3COOC2H5 + H2O
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

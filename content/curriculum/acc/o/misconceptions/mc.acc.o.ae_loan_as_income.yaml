@@ -1,0 +1,35 @@
+id: mc.acc.o.ae_loan_as_income
+kc_ids:
+- kc.acc.o.accounting_equation.classify_elements
+student_name: Money received as income
+description: Classifies a loan or capital paid in as income because money was received.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: income
+fix:
+  strategy: contrast_example
+  text:
+    en: Income is earned. Borrowed money must be repaid and capital belongs to the owner.
+probe_item_ids:
+- itm.acc.o.accounting_equation.0013
+- itm.acc.o.accounting_equation.0014
+- itm.acc.o.accounting_equation.0022
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

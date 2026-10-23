@@ -1,0 +1,91 @@
+id: itm.chm.o.atoms.0089
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.atoms.giant_covalent
+stem: Diamond is the hardest natural substance.
+parts:
+- id: a
+  prompt: Which statement explains its hardness?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Strong forces act between the layers of diamond.
+      correct: false
+      misconception_id: mc.chm.o.graphite_soft_bonds_weak
+      feedback: Inside each layer the covalent bonds are very strong. Between the layers the forces are weak, so layers slide over each other.
+    - id: B
+      text: Diamond is made of small molecules packed very tightly.
+      correct: false
+      misconception_id: mc.chm.o.giant_covalent_as_molecules
+      feedback: CO₂ is made of small molecules, but SiO₂ is one huge network of Si–O bonds. Melting it means breaking many strong covalent bonds.
+    - id: C
+      text: Every carbon atom is joined to four others by strong covalent bonds in a rigid network.
+      correct: true
+    - id: D
+      text: Diamond contains ions held by strong attraction.
+      correct: false
+      misconception_id: mc.chm.o.structure_type_misidentified
+      feedback: Ions need a metal and a non-metal. Non-metals alone give molecules or a covalent network. Metals alone give metallic bonding.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Diamond is the hardest natural substance. Picture how the atoms are arranged.
+  - rung: 2
+    name: concept
+    text:
+      en: Giant covalent structures are networks of atoms joined by strong covalent bonds, with no separate molecules.
+  - rung: 3
+    name: first_step
+    text:
+      en: Decide which bonds or forces are involved in the property asked about.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Remember the special features: graphite has layers and spare (delocalised) electrons; diamond and SiO₂ have rigid networks in three dimensions.'
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Every carbon atom is joined to four others by strong covalent bonds in a rigid network.'
+  misconception_ids:
+  - mc.chm.o.giant_covalent_as_molecules
+  - mc.chm.o.graphite_soft_bonds_weak
+  - mc.chm.o.structure_type_misidentified
+solution:
+  steps:
+  - n: 1
+    latex: \text{giant covalent network}
+    reason: Structure explains the property
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

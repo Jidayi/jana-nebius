@@ -1,0 +1,93 @@
+id: itm.phy.o.sound.0054
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.sound.ultrasound
+stem: Pregnant women are given ultrasound scans rather than X-rays.
+parts:
+- id: a
+  prompt: Why is ultrasound used?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Ultrasound is a gentler kind of X-ray
+      correct: false
+      misconception_id: mc.phy.o.ultrasound_is_em
+      feedback: 'Ultrasound is sound: a longitudinal vibration of particles that needs a medium. Only its frequency is beyond our hearing.'
+    - id: B
+      text: Ultrasound is ionising, but only weakly
+      correct: false
+      misconception_id: mc.phy.o.ultrasound_ionising
+      feedback: Ultrasound is a sound wave, a vibration of particles. It does not ionise atoms, which is why it is used to scan unborn babies.
+    - id: C
+      text: Ultrasound is not ionising, so it does not damage the baby's cells
+      correct: true
+    - id: D
+      text: Ultrasound is too quiet to do any harm
+      correct: false
+      misconception_id: mc.phy.o.inaudible_means_too_quiet
+      feedback: A dog whistle can be loud and still be silent to us. The ear cannot respond to frequencies outside about 20 Hz to 20 kHz.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about the harm X-rays can do to growing cells.
+  - rung: 2
+    name: concept
+    text:
+      en: Ultrasound is a sound wave, not an electromagnetic wave.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ask whether a vibration of particles can knock electrons out of atoms.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that treat ultrasound as a radiation.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Ultrasound is not ionising, so it does not damage the baby''s cells.'
+  misconception_ids:
+  - mc.phy.o.inaudible_means_too_quiet
+  - mc.phy.o.ultrasound_ionising
+  - mc.phy.o.ultrasound_is_em
+solution:
+  steps:
+  - n: 1
+    latex: \text{Ultrasound is not ionising, so it does not damage the baby's cells}
+    reason: Ultrasound is high-frequency sound that reflects at boundaries
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,105 @@
+id: itm.acc.o.costing.0040
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.costing.margin_of_safety
+stem: Chipo makes loaves of bread that sell for $25 each, with variable costs of $5 each and fixed costs of $37000. Expected output is 3050 units.
+parts:
+- id: a
+  prompt: Calculate the margin of safety in units.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '1200.00'
+    unit: units
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_costing_0040_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: How far can output fall before the business makes a loss?
+  - rung: 2
+    name: concept
+    text:
+      en: Margin of safety = expected output − break-even output.
+  - rung: 3
+    name: first_step
+    text:
+      en: Break-even = fixed costs ÷ contribution per unit.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 3050 − 37000 ÷ (25 − 5).
+  - rung: 5
+    name: full_step
+    text:
+      en: Margin of safety = 1200 units.
+  misconception_ids:
+  - mc.acc.o.cost_mos_be_as_mos
+  - mc.acc.o.cost_mos_output_as_mos
+solution:
+  steps:
+  - n: 1
+    latex: \text{Margin of safety} = \text{output} - \text{break-even}
+    reason: Room before a loss
+    check_id: chk_build_acc_costing_0040_t
+  - n: 2
+    latex: \text{Break-even} = \frac{37000}{25 - 5} = 1850
+    reason: Units
+    check_id: chk_build_acc_costing_0040_s2
+  - n: 3
+    latex: 3050 - 1850 = 1200
+    reason: Subtract
+    check_id: chk_build_acc_costing_0040_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_costing_0040_a:
+    args:
+      dp: 2
+      expression: 3050 - 37000 / (25 - 5)
+    tool: math_evaluate
+  chk_build_acc_costing_0040_s2:
+    args:
+      dp: 4
+      expression: 37000 / (25 - 5)
+    tool: math_evaluate
+  chk_build_acc_costing_0040_t:
+    args:
+      dp: 2
+      fixed_costs: '37000'
+      output_units: 3050
+      selling_price: '25'
+      variable_cost_per_unit: '5'
+    tool: acc_break_even
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

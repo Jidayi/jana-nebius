@@ -1,0 +1,45 @@
+id: wex.mth.o.number.0037
+kc_ids:
+- kc.mth.o.number.reverse_percentage
+problem: In a sale every price is reduced by 12%. A coat now costs $264. Find the price of the coat before the change.
+steps:
+- n: 1
+  latex: \text{multiplier} = 1 - \frac{12}{100} = 0.88
+  reason: The original was multiplied by this
+  check_id: chk_build_mth_num_w0037_m
+- n: 2
+  latex: 264 \div 0.88 = 300
+  reason: Divide to undo the change
+  check_id: chk_build_mth_num_w0037_ans
+final_answer:
+  latex: '300'
+  check_id: chk_build_mth_num_w0037_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0037_ans:
+    args:
+      expression: 264/(1 - 12/100)
+    tool: math_evaluate
+  chk_build_mth_num_w0037_m:
+    args:
+      expression: 1 - 12/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

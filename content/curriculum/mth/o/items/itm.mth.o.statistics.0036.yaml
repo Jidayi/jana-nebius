@@ -1,0 +1,106 @@
+id: itm.mth.o.statistics.0036
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.read_tables
+stem: 'A two-way table shows how students travel to school. Boys: walk 18, bus ?, car 9, total 35. Girls: walk 10, bus 19, car 4, total 33.'
+parts:
+- id: a
+  prompt: How many boys travel by bus?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '8'
+      correct: true
+    - id: B
+      text: '6'
+      correct: false
+      misconception_id: mc.mth.o.table_row_column_confused
+      feedback: Find a row or column where only one entry is missing, and use that line's own total.
+    - id: C
+      text: '62'
+      correct: false
+      misconception_id: mc.mth.o.table_total_ignored
+      feedback: The total is the sum of the entries, so a missing entry is the total minus the others.
+    - id: D
+      text: '17'
+      correct: false
+      misconception_id: mc.mth.o.table_entry_missed
+      feedback: Subtract every known entry in the row from the row total, not just one of them.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Look only at the boys' row.
+  - rung: 2
+    name: concept
+    text:
+      en: The entries in a row add up to the row total.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Add the boys'' entries you know: 18 and 9.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: They make 27. Subtract this from 35.
+  - rung: 5
+    name: full_step
+    text:
+      en: 8 boys travel by bus.
+  misconception_ids:
+  - mc.mth.o.table_row_column_confused
+  - mc.mth.o.table_total_ignored
+  - mc.mth.o.table_entry_missed
+solution:
+  steps:
+  - n: 1
+    latex: 18 + 9 = 27
+    reason: The boys you know about
+    check_id: chk_build_mth_sta_0036_s
+  - n: 2
+    latex: 35 - 27 = 8
+    reason: The rest of the boys' total
+    check_id: chk_build_mth_sta_0036_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0036_ans:
+    args:
+      expression: 35 - 18 - 9
+    tool: math_evaluate
+  chk_build_mth_sta_0036_s:
+    args:
+      expression: 18 + 9
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

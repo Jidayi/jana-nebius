@@ -1,0 +1,94 @@
+id: itm.mth.o.geometry.0095
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.symmetry
+stem: Think about a regular octagon.
+parts:
+- id: a
+  prompt: How many lines of symmetry does it have?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '8'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_geo_0095_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about folding the shape, or turning it about its centre.
+  - rung: 2
+    name: concept
+    text:
+      en: A regular polygon looks the same from every vertex.
+  - rung: 3
+    name: first_step
+    text:
+      en: Lines of symmetry go through every vertex and through the middle of every side.
+  - rung: 4
+    name: worked_step
+    text:
+      en: For an odd number of sides each line goes through a vertex and the middle of the opposite side.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 8.
+  misconception_ids:
+  - mc.mth.o.regular_symmetry_half
+  - mc.mth.o.symmetry_lines_double_counted
+solution:
+  steps:
+  - n: 1
+    latex: \text{a regular polygon with } 8 \text{ sides}
+    reason: Every side and angle is the same
+    check_id: chk_build_mth_geo_0095_n
+  - n: 2
+    latex: '8'
+    reason: One line (or position) for each side
+    check_id: chk_build_mth_geo_0095_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0095_ans:
+    args:
+      expression: '8'
+    tool: math_evaluate
+  chk_build_mth_geo_0095_n:
+    args:
+      equations:
+      - p = 8
+      unknowns:
+      - p
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

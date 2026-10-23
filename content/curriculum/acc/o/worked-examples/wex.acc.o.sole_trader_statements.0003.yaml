@@ -1,0 +1,69 @@
+id: wex.acc.o.sole_trader_statements.0003
+kc_ids:
+- kc.acc.o.sole_trader_statements.gross_profit
+problem: A trader's revenue was $68000, with sales returns of $1500, and the cost of sales was $41200. Find the gross profit.
+steps:
+- n: 1
+  latex: \text{Gross profit} = (\text{revenue} - \text{sales returns}) - \text{cost of sales}
+  reason: Net revenue less cost of sales
+  check_id: chk_build_acc_sole_trader_statements_w0003_t
+- n: 2
+  latex: \text{Gross profit} = (68000 - 1500) - 41200 = 25300
+  reason: Substitute
+  check_id: chk_build_acc_sole_trader_statements_w0003_a
+final_answer:
+  latex: \$\,25300
+  check_id: chk_build_acc_sole_trader_statements_w0003_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_w0003_a:
+    args:
+      dp: 2
+      expression: (68000 - 1500) - 41200
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_w0003_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '68000'
+        role: revenue
+      - account: Purchases
+        debit: '41200'
+        role: purchases
+      - account: Sales returns
+        debit: '1500'
+        role: sales_returns
+      - account: Land
+        debit: '25300'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

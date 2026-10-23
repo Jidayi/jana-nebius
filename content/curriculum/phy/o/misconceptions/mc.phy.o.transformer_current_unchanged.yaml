@@ -1,0 +1,36 @@
+id: mc.phy.o.transformer_current_unchanged
+kc_ids:
+- kc.phy.o.electromagnetism.power_transmission
+student_name: The current is the same on both sides
+description: Thinks the current out of a transformer equals the current into it; only the power stays the same, so the current changes the opposite way to the voltage.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: rule_restatement
+  text:
+    en: For an ideal transformer Vp × Ip = Vs × Is. If the voltage changes, the current must change the other way.
+probe_item_ids:
+- itm.phy.o.electromagnetism.0073
+- itm.phy.o.electromagnetism.0075
+- itm.phy.o.electromagnetism.0061
+- itm.phy.o.electromagnetism.0065
+- itm.phy.o.electromagnetism.0069
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

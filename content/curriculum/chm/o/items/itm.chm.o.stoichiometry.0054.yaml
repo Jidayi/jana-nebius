@@ -1,0 +1,108 @@
+id: itm.chm.o.stoichiometry.0054
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.moles_and_mass
+stem: A reaction needs 0.050 mol of zinc oxide, ZnO.
+parts:
+- id: a
+  prompt: Calculate the mass of ZnO needed.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '4.05'
+    unit: g
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0054_m
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the amount of ZnO in moles and want its mass in grams.
+  - rung: 2
+    name: concept
+    text:
+      en: Mass (g) = amount (mol) × molar mass (g/mol).
+  - rung: 3
+    name: first_step
+    text:
+      en: The molar mass of ZnO is 81 g/mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 0.050 × 81.
+  - rung: 5
+    name: full_step
+    text:
+      en: 0.050 × 81 = 4.05 g.
+  misconception_ids:
+  - mc.chm.o.moles_multiply_mass
+solution:
+  steps:
+  - n: 1
+    latex: M(\text{ZnO}) = 81\ \text{g/mol}
+    reason: Molar mass from Mr
+    check_id: chk_build_chm_stoichiometry_0054_mr
+  - n: 2
+    latex: m = 0.050 \times 81
+    reason: Mass is amount times molar mass
+  - n: 3
+    latex: m = 4.05\ \text{g}
+    reason: Multiply
+    check_id: chk_build_chm_stoichiometry_0054_m
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 70
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0054_m:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_zn
+      - source: pack
+        symbol: ar_o
+      sf: 3
+      steps:
+      - amount: 0.050 mol
+        id: m
+        op: mass_from_amount
+        species: ZnO
+    tool: chem_stoichiometry
+  chk_build_chm_stoichiometry_0054_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_zn
+      - source: pack
+        symbol: ar_o
+      formula: ZnO
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

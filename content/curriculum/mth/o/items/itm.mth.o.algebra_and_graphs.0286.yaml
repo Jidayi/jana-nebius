@@ -1,0 +1,112 @@
+id: itm.mth.o.algebra_and_graphs.0286
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.graphical_solutions
+stem: The graphs of $y = x^2 + x - 2$ and $y = 3x + 1$ are drawn on the same axes.
+parts:
+- id: a
+  prompt: The graphs meet at two points. Find the larger of their two x-coordinates.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '10'
+      correct: false
+      misconception_id: mc.mth.o.intersection_y_for_x
+      feedback: 'The solution of the equation is the x-value where the graphs meet: read down to the x-axis.'
+    - id: B
+      text: '-3'
+      correct: false
+      misconception_id: mc.mth.o.root_sign_from_factor
+      feedback: 'Set each bracket equal to zero and solve it: x + 3 = 0 gives x = −3.'
+    - id: C
+      text: '3'
+      correct: true
+    - id: D
+      text: '1'
+      correct: false
+      misconception_id: mc.mth.o.intersection_as_root
+      feedback: The equation f(x) = g(x) is solved where the two graphs cross each other, not where either crosses the x-axis.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: At a point where two graphs meet, both equations give the same y.
+  - rung: 2
+    name: concept
+    text:
+      en: Set the two expressions for y equal to each other and solve.
+  - rung: 3
+    name: first_step
+    text:
+      en: Rearrange so that one side is zero, then factorise.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The equation gives two x-values.
+  - rung: 5
+    name: full_step
+    text:
+      en: The larger x-value is 3.
+  misconception_ids:
+  - mc.mth.o.intersection_as_root
+  - mc.mth.o.intersection_y_for_x
+  - mc.mth.o.root_sign_from_factor
+solution:
+  steps:
+  - n: 1
+    latex: x^2 + x - 2 = 3x + 1
+    reason: Where the graphs meet, the y-values are equal
+  - n: 2
+    latex: x = -1 \text{ or } x = 3
+    reason: Solve the equation
+    check_id: chk_build_mth_alg_0286_sol
+  - n: 3
+    latex: x = 3
+    reason: The larger value
+    check_id: chk_build_mth_alg_0286_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0286_ans:
+    args:
+      expression: '3'
+    tool: math_evaluate
+  chk_build_mth_alg_0286_sol:
+    args:
+      equations:
+      - x^2 + (1)*x + (-2) = 3*x + (1)
+      unknowns:
+      - x
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,92 @@
+id: itm.chm.o.atoms.0047
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.atoms.isotopes
+stem: A sample of antimony contains 57% of atoms with mass 121 and 43% of atoms with mass 123.
+parts:
+- id: a
+  prompt: Calculate the relative atomic mass of antimony.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '122'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_atoms_0047_ar
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You need the weighted average mass of a antimony atom.
+  - rung: 2
+    name: concept
+    text:
+      en: Relative atomic mass = (mass × % + mass × %) ÷ 100.
+  - rung: 3
+    name: first_step
+    text:
+      en: Multiply 121 by 57 and 123 by 43.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The two products add to 12186.
+  - rung: 5
+    name: full_step
+    text:
+      en: 12186 ÷ 100 = 122.
+  misconception_ids:
+  - mc.chm.o.isotope_simple_average
+  - mc.chm.o.isotope_no_divide_100
+solution:
+  steps:
+  - n: 1
+    latex: 121 \times 57 + 123 \times 43 = 12186
+    reason: Weighted sum
+    check_id: chk_build_chm_atoms_0047_prod
+  - n: 2
+    latex: A_r = \frac{12186}{100} = 122
+    reason: Divide by 100
+    check_id: chk_build_chm_atoms_0047_ar
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_atoms_0047_ar:
+    args:
+      expression: (121*57 + 123*43)/100
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_atoms_0047_prod:
+    args:
+      expression: 121*57 + 123*43
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

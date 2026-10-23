@@ -1,0 +1,156 @@
+id: itm.acc.o.clubs.0044
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.clubs.surplus_deficit
+stem: 'A cycling club''s figures for the year: subscriptions for the year $10950; competition fees $250; rent $1150; groundsman''s wages $1550; electricity $1200; new equipment bought $2700; depreciation of equipment $300.'
+parts:
+- id: a
+  prompt: What is the result for the year?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Deficit of $7000
+      correct: false
+      misconception_id: mc.acc.o.club_surplus_deficit_reversed
+    - id: B
+      text: Surplus of $7300
+      correct: false
+      misconception_id: mc.acc.o.club_depreciation_omitted
+    - id: C
+      text: Surplus of $4300
+      correct: false
+      misconception_id: mc.acc.o.club_capital_items_in_ie
+    - id: D
+      text: Surplus of $7000
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which figures are income and expenditure of this year?
+  - rung: 2
+    name: concept
+    text:
+      en: Surplus = income − expenditure, where expenditure includes depreciation but not the cost of new equipment.
+  - rung: 3
+    name: first_step
+    text:
+      en: If expenditure is bigger than income, the result is a deficit.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Add the income, add the expenditure, and compare.
+  - rung: 5
+    name: full_step
+    text:
+      en: Surplus of $7000.
+  misconception_ids:
+  - mc.acc.o.club_capital_items_in_ie
+  - mc.acc.o.club_depreciation_omitted
+  - mc.acc.o.club_surplus_deficit_reversed
+solution:
+  steps:
+  - n: 1
+    latex: \text{Surplus} = \text{income} - \text{expenditure}
+    reason: Matching
+    check_id: chk_build_acc_clubs_0044_t
+  - n: 2
+    latex: \text{Income} = 10950 + 250 = 11200
+    reason: Earned
+    check_id: chk_build_acc_clubs_0044_s2
+  - n: 3
+    latex: \text{Expenditure} = 4200
+    reason: Including depreciation
+    check_id: chk_build_acc_clubs_0044_s3
+  - n: 4
+    latex: 11200 - 4200 \rightarrow 7000
+    reason: Compare
+    check_id: chk_build_acc_clubs_0044_s4
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_clubs_0044_s2:
+    args:
+      dp: 4
+      expression: 10950 + 250
+    tool: math_evaluate
+  chk_build_acc_clubs_0044_s3:
+    args:
+      dp: 4
+      expression: 1150 + 1550 + 1200 + 300
+    tool: math_evaluate
+  chk_build_acc_clubs_0044_s4:
+    args:
+      dp: 4
+      expression: abs(10950 + 250 - (1150 + 1550 + 1200 + 300))
+    tool: math_evaluate
+  chk_build_acc_clubs_0044_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Equipment
+        amount: '300'
+        kind: depreciation
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Subscriptions
+        credit: '10950'
+        role: other_income
+      - account: Competition fees
+        credit: '250'
+        role: other_income
+      - account: Rent
+        debit: '1150'
+        role: expense
+      - account: Wages
+        debit: '1550'
+        role: expense
+      - account: Electricity
+        debit: '1200'
+        role: expense
+      - account: Equipment
+        debit: '2700'
+        role: non_current_asset
+      - account: Land
+        debit: '4600'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

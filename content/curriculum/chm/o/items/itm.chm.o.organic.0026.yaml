@@ -1,0 +1,112 @@
+id: itm.chm.o.organic.0026
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.general_formulae
+stem: A molecule of an alcohol has 3 carbon atoms. The series has the general formula CₙH₂ₙ₊₁OH.
+parts:
+- id: a
+  prompt: Which gives its molecular formula and relative molecular mass?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: C₃H₈, Mr 44
+      correct: false
+      misconception_id: mc.chm.o.organic_gf_wrong_series
+      feedback: 'Match the formula to the family: alkanes CₙH₂ₙ₊₂, alkenes CₙH₂ₙ, alcohols CₙH₂ₙ₊₁OH, carboxylic acids CₙH₂ₙ₊₁COOH. Check: an alkene has exactly twice as many hydrogen atoms as carbon atoms.'
+    - id: B
+      text: C₃H₇OH, Mr 60
+      correct: true
+    - id: C
+      text: C₃H₇OH, Mr 43
+      correct: false
+      misconception_id: mc.chm.o.organic_gf_group_atoms_missed
+      feedback: Write the full formula first, functional group included, and count every atom. In CₙH₂ₙ₊₁COOH the –COOH group holds one more carbon atom, so the molecule has n + 1 carbon atoms.
+    - id: D
+      text: C₃H₇OH, Mr 36
+      correct: false
+      misconception_id: mc.chm.o.organic_gf_hydrogen_mass_ignored
+      feedback: 'Every atom adds its mass. Hydrogen atoms are light, but there are many of them: each CH₂ unit has a mass of 14, not 12.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Put n = 3 into CₙH₂ₙ₊₁OH, then add the masses of all the atoms.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Use Ar: C = 12, H = 1, O = 16. The atoms of the –OH group count too.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Hydrogen atoms in the chain = 2 × 3 + 1 = 7. Then add the OH group.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The formula is C₃H₇OH. Add 3 × 12 for the carbon and 1 for each hydrogen atom, then 16 for the oxygen.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'C₃H₇OH: Mr = 60.'
+  misconception_ids:
+  - mc.chm.o.organic_gf_group_atoms_missed
+  - mc.chm.o.organic_gf_hydrogen_mass_ignored
+  - mc.chm.o.organic_gf_wrong_series
+solution:
+  steps:
+  - n: 1
+    latex: H = 2 \times 3 + 1 = 7
+    reason: Hydrogen atoms from the general formula
+    check_id: chk_build_chm_organic_0026_h
+  - n: 2
+    latex: M_r(\text{C}_3\text{H}_7\text{OH}) = 60
+    reason: Sum of the Ar values
+    check_id: chk_build_chm_organic_0026_mr
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_0026_h:
+    args:
+      expression: 2*3+1
+    tool: math_evaluate
+  chk_build_chm_organic_0026_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      formula: C3H7OH
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

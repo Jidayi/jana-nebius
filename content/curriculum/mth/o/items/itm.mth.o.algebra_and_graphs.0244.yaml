@@ -1,0 +1,86 @@
+id: itm.mth.o.algebra_and_graphs.0244
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.travel_graphs
+stem: A minibus leaves at 10:00 and arrives 20 km away at 10:40. Its distance-time graph is a straight line, so its speed is steady.
+parts:
+- id: a
+  prompt: Find its speed in km/h.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '30'
+    unit: km/h
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0244_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Speed is the gradient of a distance-time graph: distance divided by time.'
+  - rung: 2
+    name: concept
+    text:
+      en: The speed is asked for in km/h, so the time must be in hours.
+  - rung: 3
+    name: first_step
+    text:
+      en: 40 minutes is 40 ÷ 60 hours.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The time is 40/60 of an hour. Now divide 20 km by this time.
+  - rung: 5
+    name: full_step
+    text:
+      en: Speed = 30 km/h.
+  misconception_ids:
+  - mc.mth.o.minutes_as_hours
+  - mc.mth.o.graph_time_over_distance
+solution:
+  steps:
+  - n: 1
+    latex: t = \frac{40}{60}\ \text{h}
+    reason: Change minutes to hours
+  - n: 2
+    latex: v = 20 \div \frac{40}{60} = 30\ \text{km/h}
+    reason: Speed is distance over time
+    check_id: chk_build_mth_alg_0244_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- transport
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0244_ans:
+    args:
+      expression: 20/(40/60)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

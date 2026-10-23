@@ -1,0 +1,88 @@
+id: itm.chm.o.organic.0066
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.alcohols_and_acids
+- kc.chm.o.organic.carboxylic_acids
+stem: Sodium carbonate powder is added to a solution of ethanoic acid.
+parts:
+- id: a
+  prompt: What is seen, and why?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: No change, because ethanoic acid is an organic compound, not an acid
+      correct: false
+    - id: B
+      text: Fizzing, because the acid reacts with the carbonate to give carbon dioxide
+      correct: true
+    - id: C
+      text: The solution turns purple
+      correct: false
+    - id: D
+      text: Fizzing, because hydrogen is given off
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Ethanoic acid is a carboxylic acid. Does it behave like other acids?
+  - rung: 2
+    name: concept
+    text:
+      en: Acids react with carbonates to give a salt, water and a gas.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ethanoic acid is a weak acid, but it still reacts with carbonates.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Which gas comes from a carbonate?
+  - rung: 5
+    name: full_step
+    text:
+      en: Ethanoic acid + sodium carbonate → sodium ethanoate + water + carbon dioxide, so it fizzes.
+solution:
+  steps:
+  - n: 1
+    latex: 2\text{CH}_3\text{COOH} + \text{Na}_2\text{CO}_3 \rightarrow 2\text{CH}_3\text{COONa} + \text{H}_2\text{O} + \text{CO}_2
+    reason: Acid + carbonate
+    check_id: chk_build_chm_organic_0066_bal
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_0066_bal:
+    args:
+      equation: CH3COOH + Na2CO3 -> CH3COONa + H2O + CO2
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

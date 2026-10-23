@@ -1,0 +1,91 @@
+id: itm.chm.o.organic.0040
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.fuels_and_cracking
+stem: A refinery makes more of the heavy fractions than people buy, and less petrol than people want.
+parts:
+- id: a
+  prompt: Why does the refinery crack some of the heavy fractions?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Because large molecules evaporate too easily to be stored
+      correct: false
+      misconception_id: mc.chm.o.organic_big_molecules_boil_low
+      feedback: Larger molecules attract each other more strongly, so they need more energy to boil. They stay low in the column, where it is hottest; small molecules rise to the cool top.
+    - id: B
+      text: To split each heavy fraction into the single compound it contains
+      correct: false
+      misconception_id: mc.chm.o.organic_fraction_is_one_compound
+      feedback: Fractional distillation sorts molecules into groups by boiling point. Each fraction is still a mixture of many hydrocarbons whose boiling points lie in a similar range.
+    - id: C
+      text: To turn large molecules into smaller ones, such as petrol, and into alkenes for making plastics
+      correct: true
+    - id: D
+      text: To separate out the petrol that is already mixed in with them
+      correct: false
+      misconception_id: mc.chm.o.organic_cracking_is_separation
+      feedback: 'Distillation separates molecules without changing them. Cracking is a chemical reaction: heat and a catalyst break C–C bonds, so large alkanes become smaller alkanes and alkenes.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Compare supply and demand: there is too much of the large-molecule fractions.'
+  - rung: 2
+    name: concept
+    text:
+      en: 'Cracking changes molecules: it makes new, smaller ones.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Petrol is made of fairly small molecules, and alkenes are made too.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Think about what the alkenes formed in cracking are used to make.
+  - rung: 5
+    name: full_step
+    text:
+      en: Cracking converts surplus large molecules into petrol-sized alkanes, plus alkenes for polymers.
+  misconception_ids:
+  - mc.chm.o.organic_cracking_is_separation
+  - mc.chm.o.organic_big_molecules_boil_low
+  - mc.chm.o.organic_fraction_is_one_compound
+solution:
+  steps:
+  - n: 1
+    latex: \text{surplus large molecules }\rightarrow\text{ useful small molecules + alkenes}
+    reason: Why crack
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

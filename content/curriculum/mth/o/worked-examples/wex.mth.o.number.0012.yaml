@@ -1,0 +1,45 @@
+id: wex.mth.o.number.0012
+kc_ids:
+- kc.mth.o.number.fdp_conversion
+problem: Write $\frac{1}{4}$ as a percentage. Give the percentage.
+steps:
+- n: 1
+  latex: \frac{1}{4} = 0.25
+  reason: Divide
+  check_id: chk_build_mth_num_w0012_d
+- n: 2
+  latex: 0.25 \times 100 = 25\%
+  reason: Multiply by 100 for a percentage
+  check_id: chk_build_mth_num_w0012_ans
+final_answer:
+  latex: 25\%
+  check_id: chk_build_mth_num_w0012_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0012_ans:
+    args:
+      expression: 1/4*100
+    tool: math_evaluate
+  chk_build_mth_num_w0012_d:
+    args:
+      expression: 1/4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

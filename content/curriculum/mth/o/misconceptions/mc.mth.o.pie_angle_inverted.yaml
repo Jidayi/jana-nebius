@@ -1,0 +1,43 @@
+id: mc.mth.o.pie_angle_inverted
+kc_ids:
+- kc.mth.o.statistics.pie_charts
+- kc.mth.o.statistics.histograms
+student_name: Angle over 360 the wrong way
+description: Divides 360 by the angle (or the angle by the total) when finding a frequency from a pie chart.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: rule_restatement
+  text:
+    en: Frequency = angle ÷ 360 × total.
+probe_item_ids:
+- itm.mth.o.statistics.0094
+- itm.mth.o.statistics.0095
+- itm.mth.o.statistics.0096
+- itm.mth.o.statistics.0097
+- itm.mth.o.statistics.0098
+severity: medium
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

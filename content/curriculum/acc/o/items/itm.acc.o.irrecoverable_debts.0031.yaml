@@ -1,0 +1,142 @@
+id: itm.acc.o.irrecoverable_debts.0031
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.irrecoverable_debts.allowance_change
+stem: Wanjiru's allowance for irrecoverable debts was $700. Trade receivables at the year end are $20400, and the allowance is to be 2% of them.
+parts:
+- id: a
+  prompt: How does the allowance affect this year's income statement?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: An increase of $292, charged as an expense
+      correct: false
+      misconception_id: mc.acc.o.id_change_direction_reversed
+    - id: B
+      text: An increase of $1108, charged as an expense
+      correct: false
+      misconception_id: mc.acc.o.id_old_allowance_added
+    - id: C
+      text: A decrease of $292, added as income
+      correct: true
+    - id: D
+      text: An increase of $408, charged as an expense
+      correct: false
+      misconception_id: mc.acc.o.id_full_allowance_charged
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What was the allowance before, and what must it be now?
+  - rung: 2
+    name: concept
+    text:
+      en: Only the change in the allowance goes to the income statement.
+  - rung: 3
+    name: first_step
+    text:
+      en: If the allowance rises, profit falls by the increase; if it falls, profit rises by the decrease.
+  - rung: 4
+    name: worked_step
+    text:
+      en: New allowance = 2% of 20400; compare it with 700.
+  - rung: 5
+    name: full_step
+    text:
+      en: A decrease of $292, added as income.
+  misconception_ids:
+  - mc.acc.o.id_full_allowance_charged
+  - mc.acc.o.id_change_direction_reversed
+  - mc.acc.o.id_old_allowance_added
+solution:
+  steps:
+  - n: 1
+    latex: \text{Change} = \text{new allowance} - \text{old allowance}
+    reason: Only the change
+    check_id: chk_build_acc_irrecoverable_debts_0031_t
+  - n: 2
+    latex: \text{New allowance} = 2\% \times 20400 = 408
+    reason: This year's balance
+    check_id: chk_build_acc_irrecoverable_debts_0031_s2
+  - n: 3
+    latex: 408 - 700 \rightarrow 292
+    reason: The change
+    check_id: chk_build_acc_irrecoverable_debts_0031_s3
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_irrecoverable_debts_0031_s2:
+    args:
+      dp: 4
+      expression: 20400 * 2/100
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_0031_s3:
+    args:
+      dp: 4
+      expression: abs(20400 * 2/100 - 700)
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_0031_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - amount: '1000'
+        kind: irrecoverable_debt
+      - kind: allowance
+        percent: '2'
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '80000'
+        role: revenue
+      - account: Purchases
+        debit: '40000'
+        role: purchases
+      - account: Trade receivables
+        debit: '21400'
+        role: trade_receivables
+      - account: Allowance for irrecoverable debts
+        credit: '700'
+        role: allowance_for_irrecoverable_debts
+      - account: Land
+        debit: '19300'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

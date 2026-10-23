@@ -1,0 +1,81 @@
+id: itm.chm.o.periodic.0012
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.periodic.arrangement
+stem: The Periodic Table arranges the elements in groups (columns) and periods (rows).
+parts:
+- id: a
+  prompt: Element Y is on the far left of the third period. Which is most likely true?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Y has a full outer shell.
+      correct: false
+    - id: B
+      text: Y is a non-metal gas.
+      correct: false
+    - id: C
+      text: Y forms a negative ion.
+      correct: false
+    - id: D
+      text: Y is a metal that forms a positive ion.
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Recall what groups and periods have in common.
+  - rung: 2
+    name: concept
+    text:
+      en: Elements in a group share the number of outer electrons; elements in a period share the number of shells.
+  - rung: 3
+    name: first_step
+    text:
+      en: Metals are on the left and in the middle; non-metals are on the right.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Use the electron arrangement of each element to check.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Y is a metal that forms a positive ion..'
+solution:
+  steps:
+  - n: 1
+    latex: '\text{group: outer electrons; period: shells}'
+    reason: How the table is built
+difficulty:
+  prior: -0.6
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

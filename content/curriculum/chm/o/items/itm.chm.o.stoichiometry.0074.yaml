@@ -1,0 +1,92 @@
+id: itm.chm.o.stoichiometry.0074
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.gas_volumes
+stem: Take the molar gas volume at room temperature and pressure as 24 dm³.
+parts:
+- id: a
+  prompt: Calculate the amount, in moles, of NH₃ in 6.0 dm³ of the gas at room conditions.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.250'
+    unit: mol
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0074_chain
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know a gas volume and want the amount in moles.
+  - rung: 2
+    name: concept
+    text:
+      en: One mole of gas occupies 24 dm³ at room conditions.
+  - rung: 3
+    name: first_step
+    text:
+      en: Amount = volume in dm³ ÷ 24.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 6.0 ÷ 24.
+  - rung: 5
+    name: full_step
+    text:
+      en: 6.0 ÷ 24 = 0.250 mol.
+  misconception_ids:
+  - mc.chm.o.gas_volume_divided
+solution:
+  steps:
+  - n: 1
+    latex: n = \frac{6.0}{24}
+    reason: Volume over molar gas volume
+  - n: 2
+    latex: n = 0.250\ \text{mol}
+    reason: Divide
+    check_id: chk_build_chm_stoichiometry_0074_chain
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0074_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: vm
+      sf: 3
+      steps:
+      - id: n
+        op: amount_from_gas_volume
+        volume: 6.0 dm^3
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

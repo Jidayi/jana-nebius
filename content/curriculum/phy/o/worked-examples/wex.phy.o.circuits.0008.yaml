@@ -1,0 +1,64 @@
+id: wex.phy.o.circuits.0008
+kc_ids:
+- kc.phy.o.circuits.potential_dividers
+problem: An LDR is connected in series with a 4000 Ω resistor across a 6 V supply. In the dark the LDR's resistance is 50000 Ω. The output p.d. is taken across the LDR. Calculate the output p.d. across the LDR.
+steps:
+- n: 1
+  latex: R = 4000 + 50000 = 54000\ \Omega
+  reason: Total resistance of the divider
+  check_id: chk_build_phy_cir_w0008_rt
+- n: 2
+  latex: V_{\text{out}} = 6 \times \frac{50000}{54000} = 5.56\ \text{V}
+  reason: The output's share is its fraction of the total resistance
+  check_id: chk_build_phy_cir_w0008_ans
+final_answer:
+  latex: 5.56\ \text{V}
+  check_id: chk_build_phy_cir_w0008_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_w0008_ans:
+    args:
+      expression: 6*50000/(4000 + 50000)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_cir_w0008_rt:
+    args:
+      expression: 4000 + 50000
+    tool: math_evaluate
+  chk_build_phy_cir_w0008_tool:
+    args:
+      components:
+      - emf: '6'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '4000'
+      - id: R2
+        kind: resistor
+        resistance: '50000'
+      network:
+        series:
+        - B
+        - R1
+        - R2
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

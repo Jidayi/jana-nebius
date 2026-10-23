@@ -1,0 +1,92 @@
+id: itm.phy.o.sound.0032
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.sound.pitch_and_loudness
+stem: Two sounds are shown on an oscilloscope with the same settings. Trace X is 3 cm tall and trace Y is 1.5 cm tall; both show the same number of waves.
+parts:
+- id: a
+  prompt: How does sound X compare with sound Y?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: X is louder and has the same pitch
+      correct: true
+    - id: B
+      text: X has a higher pitch and the same loudness
+      correct: false
+      misconception_id: mc.phy.o.pitch_from_amplitude
+      feedback: Strike a drum harder and it sounds louder but the note does not rise. Pitch depends only on frequency.
+    - id: C
+      text: X is louder and has a higher pitch
+      correct: false
+      misconception_id: mc.phy.o.pitch_from_amplitude
+      feedback: Strike a drum harder and it sounds louder but the note does not rise. Pitch depends only on frequency.
+    - id: D
+      text: X travels faster through the air
+      correct: false
+      misconception_id: mc.phy.o.higher_pitch_travels_faster
+      feedback: At a concert the high and low notes reach you together. In one material all sounds travel at the same speed; higher frequency means shorter wavelength.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Separate the two features of a sound: how high it sounds and how loud it is.'
+  - rung: 2
+    name: concept
+    text:
+      en: Pitch depends on the frequency; loudness depends on the amplitude.
+  - rung: 3
+    name: first_step
+    text:
+      en: A healthy young ear hears from about twenty hertz up to about twenty thousand hertz.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against these rules.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: X is louder and has the same pitch.'
+  misconception_ids:
+  - mc.phy.o.higher_pitch_travels_faster
+  - mc.phy.o.pitch_from_amplitude
+solution:
+  steps:
+  - n: 1
+    latex: \text{X is louder and has the same pitch}
+    reason: Pitch follows frequency; loudness follows amplitude
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

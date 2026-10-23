@@ -1,0 +1,72 @@
+id: wex.mth.o.calculus.0007
+kc_ids:
+- kc.mth.o.calculus.definite_integrals
+problem: Evaluate $\int_{-2}^{3} (2x^2 - 2x + 1)\,dx$. Give the exact value.
+steps:
+- n: 1
+  latex: F(x) = \frac{2x^3}{3} - x^2 + x
+  reason: Raise each power by one and divide by the new power
+  check_id: chk_build_mth_cal_w0007_f
+- n: 2
+  latex: F(3) = 12,\ F(-2) = -11.3333
+  reason: Substitute the limits
+  check_id: chk_build_mth_cal_w0007_fb
+- n: 3
+  latex: F(3) - F(-2) = 23.3
+  reason: Top limit minus bottom limit
+  check_id: chk_build_mth_cal_w0007_ig
+final_answer:
+  latex: '23.3'
+  check_id: chk_build_mth_cal_w0007_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_cal_w0007_ans:
+    args:
+      expression: (2*(3)^3/3 + (-2)*(3)^2/2 + (1)*(3)) - (2*(-2)^3/3 + (-2)*(-2)^2/2 + (1)*(-2))
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_cal_w0007_f:
+    args:
+      expression: 2*x^2 - 2*x + 1
+      variable: x
+    tool: math_integrate
+  chk_build_mth_cal_w0007_fb:
+    args:
+      equations:
+      - p = 2*(3)^3/3 + (-2)*(3)^2/2 + (1)*(3)
+      - q = 2*(-2)^3/3 + (-2)*(-2)^2/2 + (1)*(-2)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_cal_w0007_ig:
+    args:
+      expression: (2)*x^2 + (-2)*x^1 + (1)*x^0
+      lower: -2
+      upper: 3
+      variable: x
+    tool: math_integrate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

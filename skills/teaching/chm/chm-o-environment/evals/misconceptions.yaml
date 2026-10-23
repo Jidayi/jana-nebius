@@ -1,0 +1,536 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.chm-o-environment
+version: 2026-10-13.1
+description: 'Colocated evals for chm-o-environment (SKL-21, EVL-07): one case per misconception. The student answers
+  as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key away,
+  and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: chm_o_environment_01
+  title: Holds 'A water test proves the water is pure'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.environment_water_test_shows_purity
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.environment.0001
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.environment.water
+        misconception: mc.chm.o.environment_water_test_shows_purity
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: chm_o_environment_02
+  title: Holds 'Water-test colours the wrong way round'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.environment_water_test_colours_reversed
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.environment.0001
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.environment.water
+        misconception: mc.chm.o.environment_water_test_colours_reversed
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: chm_o_environment_03
+  title: Holds 'Mixing up the jobs of water treatment'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.environment_treatment_stages_mixed
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.environment.0001
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.environment.water
+        misconception: mc.chm.o.environment_treatment_stages_mixed
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: chm_o_environment_04
+  title: Holds 'Counting only one nitrogen atom'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.environment_n_atoms_count_ignored
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.environment.0013
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.environment.fertilisers
+        misconception: mc.chm.o.environment_n_atoms_count_ignored
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_environment_05
+  title: Holds 'Percentage fraction upside down'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.environment_n_percent_inverted
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.environment.0013
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.environment.fertilisers
+        misconception: mc.chm.o.environment_n_percent_inverted
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_environment_06
+  title: Holds 'Forgetting to multiply by 100'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.environment_percent_not_times_100
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.environment.0013
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.environment.fertilisers
+        misconception: mc.chm.o.environment_percent_not_times_100
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_environment_07
+  title: Holds 'Giving a pollutant another pollutant's effect'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.environment_pollutant_effects_mixed
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.environment.0025
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.environment.air_pollution
+        misconception: mc.chm.o.environment_pollutant_effects_mixed
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_environment_08
+  title: Holds 'Nitrogen oxides come from nitrogen in petrol'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.environment_nox_from_fuel_nitrogen
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.environment.0025
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.environment.air_pollution
+        misconception: mc.chm.o.environment_nox_from_fuel_nitrogen
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_environment_09
+  title: Holds 'A catalytic converter removes carbon dioxide'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.environment_converter_removes_co2
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.environment.0025
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.environment.air_pollution
+        misconception: mc.chm.o.environment_converter_removes_co2
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_environment_10
+  title: Holds 'The greenhouse effect is the ozone hole'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.environment_greenhouse_ozone_confused
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.environment.0037
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.environment.climate
+        misconception: mc.chm.o.environment_greenhouse_ozone_confused
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_environment_11
+  title: Holds 'Greenhouse gases block or reflect sunlight'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.environment_greenhouse_blocks_sunlight
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.environment.0037
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.environment.climate
+        misconception: mc.chm.o.environment_greenhouse_blocks_sunlight
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_environment_12
+  title: Holds 'Blaming the wrong gas for climate change'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.environment_climate_wrong_gas
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.environment.0037
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 12
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.environment.climate
+        misconception: mc.chm.o.environment_climate_wrong_gas
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

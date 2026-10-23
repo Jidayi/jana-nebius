@@ -1,0 +1,366 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.mth-o-transformations-and-vectors
+version: 2026-10-13.1
+description: 'Colocated evals for mth-o-transformations-and-vectors (SKL-21, EVL-07): one case per misconception.
+  The student answers as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not
+  give the key away, and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: mth_o_transformations_and_vectors_01
+  title: Holds 'Reflecting only to the mirror line'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.reflection_not_doubled
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.transformations_and_vectors.0013
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.transformations_and_vectors.transform_points
+        misconception: mc.mth.o.reflection_not_doubled
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: mth_o_transformations_and_vectors_02
+  title: Holds 'A quarter turn treated as a half turn'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  - no_probe_item
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.rotation_half_turn
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.transformations_and_vectors.0003
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: '-70'
+    note: a wrong value; no item tags a distractor with this wrong idea yet
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: mth_o_transformations_and_vectors_03
+  title: Holds 'Using the components the wrong way round'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.translation_components_swapped
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.transformations_and_vectors.0012
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.transformations_and_vectors.transform_points
+        misconception: mc.mth.o.translation_components_swapped
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: mth_o_transformations_and_vectors_04
+  title: Holds 'Enlarging from the origin'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.enlargement_centre_ignored
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.transformations_and_vectors.0011
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.transformations_and_vectors.transform_points
+        misconception: mc.mth.o.enlargement_centre_ignored
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_transformations_and_vectors_05
+  title: Holds 'Adding the scale factor'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.enlargement_added
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.transformations_and_vectors.0011
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.transformations_and_vectors.transform_points
+        misconception: mc.mth.o.enlargement_added
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_transformations_and_vectors_06
+  title: Holds 'Multiplying only one vector'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.vector_scalar_dropped
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.transformations_and_vectors.0042
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.transformations_and_vectors.vector_arithmetic
+        misconception: mc.mth.o.vector_scalar_dropped
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_transformations_and_vectors_07
+  title: Holds 'Sign slip when subtracting vectors'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.vector_subtract_sign
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.transformations_and_vectors.0042
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.transformations_and_vectors.vector_arithmetic
+        misconception: mc.mth.o.vector_subtract_sign
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: mth_o_transformations_and_vectors_08
+  title: Holds 'Adding the components'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - mathematics
+      age_band: '13_15'
+      misconceptions:
+      - mc.mth.o.magnitude_signed_sum
+    mode: guided
+    question:
+      item_ref: mth.o:itm.mth.o.transformations_and_vectors.0057
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.mth.o.transformations_and_vectors.vector_magnitude
+        misconception: mc.mth.o.magnitude_signed_sum
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

@@ -1,0 +1,106 @@
+id: itm.phy.o.density.0006
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.density_calculation
+stem: A glass stopper has a mass of 62.5 g and a volume of 25 cm³.
+parts:
+- id: a
+  prompt: Calculate its density in kg/m³.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '2500'
+    unit: kg/m^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_den_0006_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Grams divided by cubic centimetres gives a density in g/cm³.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the density in g/cm³ first, then change the unit.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 62.5 ÷ 25.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The density is 2.5 g/cm³; multiply by 1000 to get kg/m³.
+  - rung: 5
+    name: full_step
+    text:
+      en: The density is 2500 kg/m³.
+  misconception_ids:
+  - mc.phy.o.density_units_not_converted
+  - mc.phy.o.density_conversion_direction_swapped
+  - mc.phy.o.density_volume_over_mass
+solution:
+  steps:
+  - n: 1
+    latex: \rho = \frac{62.5}{25} = 2.5\ \text{g/cm}^3
+    reason: Density = mass ÷ volume
+    check_id: chk_build_phy_den_0006_gcc
+  - n: 2
+    latex: 1\ \text{g/cm}^3 = 1000\ \text{kg/m}^3
+    reason: The unit change
+    check_id: chk_build_phy_den_0006_k
+  - n: 3
+    latex: 2.5 \times 1000 = 2500\ \text{kg/m}^3
+    reason: Change g/cm³ into kg/m³
+    check_id: chk_build_phy_den_0006_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 75
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_den_0006_ans:
+    args:
+      expression: 62.5/25*1000
+    tool: math_evaluate
+  chk_build_phy_den_0006_gcc:
+    args:
+      expression: 62.5/25
+    tool: math_evaluate
+  chk_build_phy_den_0006_k:
+    args:
+      quantity: 1 g/cm^3
+      to: kg/m^3
+    tool: units_convert
+  chk_build_phy_den_0006_tool:
+    args:
+      quantity: 2.5 g/cm^3
+      to: kg/m^3
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

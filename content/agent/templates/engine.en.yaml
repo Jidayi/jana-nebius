@@ -1,0 +1,69 @@
+# Engine-written copy, English: interruption receipts (TOL-14) and the cards the engine opens on its own when a role
+# fails (AGT-27), and the plain names of a student's own method (ASM-09). Status: draft until the Content lead
+# reviews the wording.
+status: draft
+# When the student stops a turn, every tool call in the batch gets one of these as its result, saying what did and
+# did not happen. `not_started`: the call never ran; `running`: it was stopped while running; `applied`: an atomic
+# change that completed before the stop.
+receipts:
+  compute:
+    not_started: "The calculation had not started; nothing was computed."
+    running: "The calculation was stopped; no result was recorded."
+  update_board:
+    not_started: "No board change was made."
+    running: "The board change was not applied."
+    applied: "The board change was applied before the stop."
+  ask_student:
+    not_started: "The question had not been shown; nothing was asked."
+    running: "The question was shown but not answered; no choice was recorded."
+  show_visual:
+    not_started: "No visual was shown."
+    running: "The visual may be on screen; no step was revealed."
+  memory_note:
+    not_started: "Nothing was saved."
+    running: "The note was not saved."
+  tool:
+    not_started: "The tool had not started; nothing was done."
+    running: "The tool was stopped before it finished; nothing it found was used."
+cards:
+  # The Diagnoser could not place the question twice: the student picks the topic (AGT-27).
+  topic_chooser: "Which topic is this question from? Pick the closest one, or type the topic."
+  topic_chooser_ack: "Let me check which topic this belongs to."
+  # A question in another subject that does not move the session there (AGT-15, D94): the card offers it as a new
+  # question in that subject; the problem goes on here. {subject} and {current} are subject names.
+  new_subject_title: "This question looks like {subject}"
+  new_subject_body: "This chat is for {current}. Start a new question in {subject} with the same words, or keep going here."
+  # The lesson flow (AGT-22): a new problem asked during a lesson is kept for after it; a lesson that is not
+  # installed cannot open.
+  lesson_after: "That's a new question. Let's keep it and try it after the lesson. Back to the lesson now."
+  lesson_missing: "That lesson isn't installed on this computer."
+  # The engine's own offers after wrong answers (LRN-20, LRN-23): a hint offered and never shown, and a short detour to
+  # an earlier idea, on one card. {idea} is the earlier idea's statement from the pack; {minutes} its estimate.
+  offer_hint_prompt: "Want a hint for this step?"
+  offer_detour_prompt: "This step builds on an earlier idea: {idea}. Want to go over it first?"
+  offer_both_prompt: "Want some help with this step?"
+  offer_hint: "Yes, give me a hint"
+  offer_detour: "Go over an earlier idea first: {idea} (about {minutes} min)"
+  offer_not_now: "Not now, I'll keep trying"
+  # The first-session interview of the hand-off (UXS-10, JRN-03): one question per card, the same while the tutor
+  # warms up. The goal labels are stored as the student's goals; {subject} is a subject name.
+  interview_goals_prompt: "What would you most like help with? Pick any, or write your own."
+  interview_goal_exams: "Getting ready for my exams"
+  interview_goal_catch_up: "Catching up on topics I missed"
+  interview_goal_understand: "Understanding the ideas better"
+  interview_goal_faster: "Getting quicker at answering questions"
+  interview_confidence_prompt: "How confident do you feel about {subject} right now?"
+  interview_confident_very: "Very confident"
+  interview_confident_fairly: "Fairly confident"
+  interview_confident_not_very: "Not very confident"
+  interview_confident_not_at_all: "Not confident at all"
+  interview_confidence_goal: "Feeling more confident in {subject}"
+# The method a student's own route showed when the tutor accepts it (ASM-09): the tutor names it in plain words, so a
+# different valid route is praised, never steered back to the plan's.
+methods:
+  substitution: "substitution: you put one equation into the other"
+  elimination: "elimination: you combined the two equations to remove one unknown"
+  divide_first: "dividing both sides first, before opening the brackets"
+  expand_first: "opening the brackets first"
+  givens_formula: "putting the given values straight into a formula"
+  other_formula: "a different formula that also works"

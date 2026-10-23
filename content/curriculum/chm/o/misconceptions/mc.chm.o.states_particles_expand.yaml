@@ -1,0 +1,35 @@
+id: mc.chm.o.states_particles_expand
+kc_ids:
+- kc.chm.o.states.particle_model
+student_name: The particles themselves get bigger
+description: Thinks a substance expands on heating because each particle grows, rather than because the particles move further apart.
+signatures:
+- kind: answer_transform
+  expression: 'choice: particles said to grow on heating'
+fix:
+  strategy: rule_restatement
+  text:
+    en: Particles stay the same size. When heated they move faster and take up more room, so the gaps between them grow.
+probe_item_ids:
+- itm.chm.o.states.0001
+- itm.chm.o.states.0002
+- itm.chm.o.states.0003
+- itm.chm.o.states.0004
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

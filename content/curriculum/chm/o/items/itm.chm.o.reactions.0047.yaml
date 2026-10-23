@@ -1,0 +1,114 @@
+id: itm.chm.o.reactions.0047
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.rate_data
+stem: Carbon dioxide is collected in a gas syringe. It reads 21 cm³ at 15 s and 60 cm³ at 45 s.
+parts:
+- id: a
+  prompt: What is the mean rate of reaction between 15 s and 45 s, in cm³/s?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: '2.00'
+      correct: false
+      misconception_id: mc.chm.o.reactions_rate_reading_not_change
+      feedback: Gas collected before the interval began was not made during it. Subtract the earlier reading from the later one first, then divide that change by the time taken.
+    - id: B
+      text: '0.867'
+      correct: false
+      misconception_id: mc.chm.o.reactions_rate_end_time_not_interval
+      feedback: The time taken is the later time minus the earlier time. Use the same two moments for the time as you used for the readings.
+    - id: C
+      text: '1.30'
+      correct: true
+    - id: D
+      text: '0.769'
+      correct: false
+      misconception_id: mc.chm.o.reactions_rate_inverted
+      feedback: 'A rate says how much product forms each second, so the amount goes on top: mean rate = change in volume (or mass) ÷ time taken. The unit is a check: cm³/s or g/s, never s/cm³.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Readings at 15 s and 45 s are given. Which two differences do you need?
+  - rung: 2
+    name: concept
+    text:
+      en: Mean rate from 15 s to 45 s = change in the reading ÷ time taken.
+  - rung: 3
+    name: first_step
+    text:
+      en: Gas made = 60 − 21 = 39.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Time taken = 45 − 15 = 30 s. Divide the change by this time.
+  - rung: 5
+    name: full_step
+    text:
+      en: 39 ÷ 30 = 1.30 cm³/s.
+  misconception_ids:
+  - mc.chm.o.reactions_rate_inverted
+  - mc.chm.o.reactions_rate_reading_not_change
+  - mc.chm.o.reactions_rate_end_time_not_interval
+solution:
+  steps:
+  - n: 1
+    latex: \Delta = 60 - 21 = 39
+    reason: Change in the reading
+    check_id: chk_build_chm_reactions_0047_dv
+  - n: 2
+    latex: \Delta t = 45 - 15 = 30\ \text{s}
+    reason: Time taken
+    check_id: chk_build_chm_reactions_0047_dt
+  - n: 3
+    latex: \text{rate} = \frac{39}{30} = 1.30
+    reason: Change ÷ time
+    check_id: chk_build_chm_reactions_0047_r
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_0047_dt:
+    args:
+      expression: 45 - 15
+    tool: math_evaluate
+  chk_build_chm_reactions_0047_dv:
+    args:
+      expression: 60 - 21
+    tool: math_evaluate
+  chk_build_chm_reactions_0047_r:
+    args:
+      expression: (60 - 21)/(45 - 15)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

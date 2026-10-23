@@ -1,0 +1,56 @@
+id: wex.acc.o.bank_reconciliation.0008
+kc_ids:
+- kc.acc.o.bank_reconciliation.overdraft_sides
+problem: The bank statement shows a debit balance of $1400. Explain what it means.
+steps:
+- n: 1
+  latex: \text{Cash book debit} = \text{statement credit} = \text{money in the bank}
+  reason: Opposite points of view
+  check_id: chk_build_acc_bank_reconciliation_w0008_t
+- n: 2
+  latex: \text{Bank statement debit} \rightarrow \text{overdraft of }1400
+  reason: The business owes the bank
+  check_id: chk_build_acc_bank_reconciliation_w0008_a
+final_answer:
+  latex: \text{Overdrawn by }\$\,1400
+  check_id: chk_build_acc_bank_reconciliation_w0008_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_bank_reconciliation_w0008_a:
+    args:
+      dp: 2
+      expression: '1400'
+    tool: math_evaluate
+  chk_build_acc_bank_reconciliation_w0008_t:
+    args:
+      bank_statement:
+        balance: '1400'
+        entries: []
+        overdrawn: true
+      cash_book:
+        balance: '1400'
+        entries: []
+        overdrawn: true
+      dp: 2
+      start_from: bank_statement
+      task: reconcile
+    tool: acc_double_entry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,88 @@
+id: itm.phy.o.electromagnetism.0016
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.motor_effect
+stem: Ade measures the force on a wire at right angles to a magnetic field. With a current of 2 A the force is 0.03 N.
+parts:
+- id: a
+  prompt: The force is proportional to the current. Find the force when the current is 5 A.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.075'
+    unit: N
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_emg_0016_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A bigger current in the field gives a bigger force on the wire.
+  - rung: 2
+    name: concept
+    text:
+      en: The force is proportional to the current.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find how many times bigger the new current is.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The current is 2.5 times as big; multiply 0.03 N by that.
+  - rung: 5
+    name: full_step
+    text:
+      en: F = 0.03 × 2.5 = 0.075 N.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{5}{2} = 2.5
+    reason: How many times bigger the current is
+    check_id: chk_build_phy_emg_0016_ratio
+  - n: 2
+    latex: F = 0.03 \times 2.5 = 0.075\ \text{N}
+    reason: The force grows in the same ratio
+    check_id: chk_build_phy_emg_0016_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_0016_ans:
+    args:
+      expression: 0.03*5/2
+    tool: math_evaluate
+  chk_build_phy_emg_0016_ratio:
+    args:
+      expression: 5/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

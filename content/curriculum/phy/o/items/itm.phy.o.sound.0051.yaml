@@ -1,0 +1,93 @@
+id: itm.phy.o.sound.0051
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.sound.ultrasound
+stem: A ship uses pulses of ultrasound to measure the depth of the sea.
+parts:
+- id: a
+  prompt: Which statement is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The time for the echo is the time to reach the sea bed only
+      correct: false
+      misconception_id: mc.phy.o.echo_not_halved
+      feedback: 'Draw the path: the sound goes to the reflector and comes back. The echo time covers twice the distance to the reflector.'
+    - id: B
+      text: The pulses travel at the speed of light
+      correct: false
+      misconception_id: mc.phy.o.ultrasound_is_em
+      feedback: 'Ultrasound is sound: a longitudinal vibration of particles that needs a medium. Only its frequency is beyond our hearing.'
+    - id: C
+      text: The pulses travel at the same speed as sound in air
+      correct: false
+      misconception_id: mc.phy.o.ultrasound_air_speed_used
+      feedback: Sound travels about four times faster in water than in air. Use the speed for the material the pulse actually crosses.
+    - id: D
+      text: The time for the echo covers the journey down to the sea bed and back
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Ultrasound is sound with a frequency above the range of human hearing.
+  - rung: 2
+    name: concept
+    text:
+      en: It travels as compressions and rarefactions through a material, and reflects from boundaries between materials.
+  - rung: 3
+    name: first_step
+    text:
+      en: It does not ionise atoms, and a scanner builds its picture from the timing of echoes.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options that treat ultrasound as something else.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The time for the echo covers the journey down to the sea bed and back.'
+  misconception_ids:
+  - mc.phy.o.echo_not_halved
+  - mc.phy.o.ultrasound_air_speed_used
+  - mc.phy.o.ultrasound_is_em
+solution:
+  steps:
+  - n: 1
+    latex: \text{The time for the echo covers the journey down to the sea bed and back}
+    reason: Ultrasound is high-frequency sound that reflects at boundaries
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

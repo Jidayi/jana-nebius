@@ -1,0 +1,88 @@
+id: itm.chm.o.metals.0031
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.reactivity_series
+stem: Aluminium is above zinc in the reactivity series, yet an aluminium pan does not fizz when water is boiled in it.
+parts:
+- id: a
+  prompt: Why does the pan not react?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Water only reacts with metals that are magnetic.
+      correct: false
+    - id: B
+      text: Aluminium is really below copper in the series.
+      correct: false
+      misconception_id: mc.chm.o.metals_displacement_reversed
+      feedback: 'A metal can only take the place of a metal BELOW it in the reactivity series. Find both metals in the series: if the free metal is higher, it displaces the other; if it is lower, nothing happens.'
+    - id: C
+      text: Boiling water contains no oxygen to react with.
+      correct: false
+      misconception_id: mc.chm.o.metals_gas_is_oxygen
+      feedback: 'The metal takes the oxygen (or the non-metal part) and keeps it, so it is hydrogen that is set free. The gas burns with a squeaky pop: that is the test for hydrogen.'
+    - id: D
+      text: A thin layer of aluminium oxide covers the metal and stops water reaching it.
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Aluminium objects last for years even though the metal is reactive.
+  - rung: 2
+    name: concept
+    text:
+      en: The surface of a metal can be covered by a compound that protects it.
+  - rung: 3
+    name: first_step
+    text:
+      en: Aluminium reacts with oxygen in the air almost at once.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Think about what that first reaction leaves on the surface.
+  - rung: 5
+    name: full_step
+    text:
+      en: A tough, thin oxide layer seals the aluminium, so water cannot reach the metal.
+  misconception_ids:
+  - mc.chm.o.metals_displacement_reversed
+  - mc.chm.o.metals_gas_is_oxygen
+solution:
+  steps:
+  - n: 1
+    latex: \text{aluminium oxide layer protects the metal}
+    reason: Oxide layer
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

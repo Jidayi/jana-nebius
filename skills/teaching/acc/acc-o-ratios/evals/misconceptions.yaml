@@ -1,0 +1,536 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.acc-o-ratios
+version: 2026-10-13.1
+description: 'Colocated evals for acc-o-ratios (SKL-21, EVL-07): one case per misconception. The student answers
+  as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key away,
+  and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: acc_o_ratios_01
+  title: Holds 'Margin and mark-up mixed up'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.rat_margin_markup_confused
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.ratios.0008
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.ratios.margins
+        misconception: mc.acc.o.rat_margin_markup_confused
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: acc_o_ratios_02
+  title: Holds 'Revenue instead of profit'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.rat_revenue_for_profit
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.ratios.0019
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.ratios.mark_up
+        misconception: mc.acc.o.rat_revenue_for_profit
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: acc_o_ratios_03
+  title: Holds 'Gross and net profit mixed up'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.rat_gross_net_confused
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.ratios.0008
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.ratios.margins
+        misconception: mc.acc.o.rat_gross_net_confused
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: acc_o_ratios_04
+  title: Holds 'Ratio upside down'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.rat_ratio_inverted
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.ratios.0008
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.ratios.margins
+        misconception: mc.acc.o.rat_ratio_inverted
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_ratios_05
+  title: Holds 'Inventory in the acid test'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.rat_acid_includes_inventory
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.ratios.0030
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.ratios.liquidity
+        misconception: mc.acc.o.rat_acid_includes_inventory
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_ratios_06
+  title: Holds 'Leaving out the bank balance'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.rat_quick_assets_too_narrow
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.ratios.0030
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.ratios.liquidity
+        misconception: mc.acc.o.rat_quick_assets_too_narrow
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_ratios_07
+  title: Holds 'Closing inventory instead of average'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.rat_closing_inventory_used
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.ratios.0041
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.ratios.inventory_turnover
+        misconception: mc.acc.o.rat_closing_inventory_used
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_ratios_08
+  title: Holds 'Revenue instead of cost of sales'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.rat_revenue_for_cos
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.ratios.0041
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.ratios.inventory_turnover
+        misconception: mc.acc.o.rat_revenue_for_cos
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_ratios_09
+  title: Holds 'All sales instead of credit sales'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.rat_total_sales_used
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.ratios.0052
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.ratios.collection_periods
+        misconception: mc.acc.o.rat_total_sales_used
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_ratios_10
+  title: Holds 'Capital employed without loans'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.rat_capital_employed_wrong
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.ratios.0063
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.ratios.roce
+        misconception: mc.acc.o.rat_capital_employed_wrong
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_ratios_11
+  title: Holds 'More sales means a higher margin'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.rat_interpret_volume_margin
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.ratios.0067
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.ratios.interpret_ratios
+        misconception: mc.acc.o.rat_interpret_volume_margin
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_ratios_12
+  title: Holds 'Liquidity and profit mixed up'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.rat_interpret_liquidity_profit
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.ratios.0067
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 12
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.ratios.interpret_ratios
+        misconception: mc.acc.o.rat_interpret_liquidity_profit
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

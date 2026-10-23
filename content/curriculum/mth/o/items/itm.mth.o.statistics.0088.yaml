@@ -1,0 +1,108 @@
+id: itm.mth.o.statistics.0088
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.pie_charts
+stem: A pie chart shows how 45 students travel to school. The bus sector has an angle of 120°.
+parts:
+- id: a
+  prompt: How many students travel by bus?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '15'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_sta_0088_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The whole circle, 360°, stands for all the students.
+  - rung: 2
+    name: concept
+    text:
+      en: Frequency = angle ÷ 360 × total.
+  - rung: 3
+    name: first_step
+    text:
+      en: The bus sector is 120 out of 360.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 120 ÷ 360 × 45.
+  - rung: 5
+    name: full_step
+    text:
+      en: 15 students travel by bus.
+  misconception_ids:
+  - mc.mth.o.pie_frequency_as_angle
+  - mc.mth.o.pie_angle_inverted
+  - mc.mth.o.pie_percent_for_degrees
+solution:
+  steps:
+  - n: 1
+    latex: \frac{120}{360} \times 45 = 15
+    reason: The sector's share of the students
+    check_id: chk_build_mth_sta_0088_ans
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  f: '120'
+  total: '45'
+checks:
+  chk_build_mth_sta_0088_ans:
+    args:
+      expression: 120/360*45
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:40:01.712Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.statistics.0088
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

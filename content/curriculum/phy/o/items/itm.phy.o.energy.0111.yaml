@@ -1,0 +1,80 @@
+id: itm.phy.o.energy.0111
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.energy_resources
+stem: Burning each kilogram of coal releases 30 MJ of energy. A power station's boilers need 450 MJ every second.
+parts:
+- id: a
+  prompt: Calculate the mass of coal burned each second.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '15'
+    unit: kg
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0111_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Each kilogram supplies the same amount of energy.
+  - rung: 2
+    name: concept
+    text:
+      en: Divide the energy needed by the energy from each kilogram.
+  - rung: 3
+    name: first_step
+    text:
+      en: Each kilogram gives 30 MJ.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 450 ÷ 30.
+  - rung: 5
+    name: full_step
+    text:
+      en: 15 kg of coal is burned each second.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{450}{30} = 15\ \text{kg}
+    reason: Energy needed ÷ energy per kilogram
+    check_id: chk_build_phy_nrg_0111_ans
+difficulty:
+  prior: -0.2
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0111_ans:
+    args:
+      expression: 450/30
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

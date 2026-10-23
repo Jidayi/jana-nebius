@@ -1,0 +1,189 @@
+- id: kc.phy.o.light.plane_mirrors
+  code: PHY-O-03.02.K01
+  node_id: cur.phy.o.waves.light
+  statement: Apply the law of reflection and describe the image formed by a plane mirror
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.18
+  prerequisites:
+  - kc_id: kc.phy.o.wave_properties.wave_behaviour
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.mirror_angle_from_surface
+  - mc.phy.o.mirror_image_does_not_move
+  - mc.phy.o.mirror_image_on_surface
+  - mc.phy.o.mirror_image_real
+  - mc.phy.o.mirror_image_shrinks_with_distance
+  - mc.phy.o.mirror_image_upside_down
+  - mc.phy.o.mirror_move_direction_reversed
+  - mc.phy.o.mirror_rays_angle_vs_reflection
+  skill_ids:
+  - phy-o-light
+  glossary:
+  - plane mirror
+  - law of reflection
+  - angle of incidence
+  - angle of reflection
+  - normal
+  - incident ray
+  - reflected ray
+  - virtual image
+  - image
+  - reflection
+  difficulty_prior: -0.5
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.light.refraction
+  code: PHY-O-03.02.K02
+  node_id: cur.phy.o.waves.light
+  statement: Calculate a refractive index or an angle of refraction with refractive index = sin i / sin r
+  kind: procedural
+  tools:
+  - math_evaluate
+  - phys_optics
+  exam_weight: 0.24
+  prerequisites:
+  - kc_id: kc.phy.o.light.plane_mirrors
+    strength: helpful
+  - kc_id: kc.phy.o.wave_properties.wave_behaviour
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.light_colour_changes_in_glass
+  - mc.phy.o.light_index_ratio_inverted
+  - mc.phy.o.light_speed_times_index
+  - mc.phy.o.refraction_along_normal_bends
+  - mc.phy.o.refraction_angles_from_surface
+  - mc.phy.o.refraction_bends_wrong_way
+  - mc.phy.o.refraction_no_bending_at_angle
+  - mc.phy.o.snell_angles_not_sines
+  - mc.phy.o.snell_inverse_sine_missed
+  - mc.phy.o.snell_ratio_inverted
+  skill_ids:
+  - phy-o-light
+  glossary:
+  - refraction
+  - refractive index
+  - angle of incidence
+  - angle of refraction
+  - normal
+  - ray
+  - boundary
+  - medium
+  - denser
+  - refract
+  - sine
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.light.speed_in_medium
+  code: PHY-O-03.02.K03
+  node_id: cur.phy.o.waves.light
+  statement: Relate the refractive index of a material to the speed of light in it
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.16
+  prerequisites:
+  - kc_id: kc.phy.o.light.refraction
+    strength: required
+  misconception_ids:
+  - mc.phy.o.light_colour_changes_in_glass
+  - mc.phy.o.light_index_ratio_inverted
+  - mc.phy.o.light_speed_same_in_material
+  - mc.phy.o.light_speed_times_index
+  - mc.phy.o.light_speed_units_mixed
+  - mc.phy.o.refraction_angles_from_surface
+  skill_ids:
+  - phy-o-light
+  glossary:
+  - refractive index
+  - speed of light
+  - medium
+  - vacuum
+  - refraction
+  - denser
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.light.total_internal_reflection
+  code: PHY-O-03.02.K04
+  node_id: cur.phy.o.waves.light
+  statement: Find the critical angle from the refractive index and predict when total internal reflection happens
+  kind: procedural
+  tools:
+  - math_evaluate
+  - phys_optics
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.phy.o.light.refraction
+    strength: required
+  misconception_ids:
+  - mc.phy.o.critical_angle_same_for_all
+  - mc.phy.o.critical_sine_not_inverted
+  - mc.phy.o.refraction_angles_from_surface
+  - mc.phy.o.refraction_bends_wrong_way
+  - mc.phy.o.refraction_no_bending_at_angle
+  - mc.phy.o.snell_angles_not_sines
+  - mc.phy.o.snell_inverse_sine_missed
+  - mc.phy.o.tir_angle_below_critical
+  - mc.phy.o.tir_from_air_into_glass
+  - mc.phy.o.tir_some_light_escapes
+  - mc.phy.o.refraction_along_normal_bends
+  skill_ids:
+  - phy-o-light
+  glossary:
+  - total internal reflection
+  - critical angle
+  - refractive index
+  - normal
+  - boundary
+  - optical fibre
+  - denser
+  - totally internally reflected
+  - refraction
+  - sine
+  difficulty_prior: 0.5
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.light.converging_lens
+  code: PHY-O-03.02.K05
+  node_id: cur.phy.o.waves.light
+  statement: Determine the position, size and nature of the image formed by a thin converging lens
+  kind: procedural
+  tools:
+  - math_evaluate
+  - phys_optics
+  exam_weight: 0.22
+  prerequisites:
+  - kc_id: kc.phy.o.light.refraction
+    strength: required
+  misconception_ids:
+  - mc.phy.o.lens_centre_ray_bends
+  - mc.phy.o.lens_distances_subtracted
+  - mc.phy.o.lens_image_same_size
+  - mc.phy.o.lens_magnification_inverted
+  - mc.phy.o.lens_orientation_rule_swapped
+  - mc.phy.o.lens_reciprocal_not_inverted
+  - mc.phy.o.lens_reciprocals_added
+  - mc.phy.o.lens_size_rule_reversed
+  - mc.phy.o.lens_virtual_real_swapped
+  skill_ids:
+  - phy-o-light
+  glossary:
+  - converging lens
+  - focal length
+  - principal focus
+  - focal point
+  - image
+  - real image
+  - virtual image
+  - magnified
+  - diminished
+  - inverted
+  - upright
+  - principal axis
+  - lens
+  difficulty_prior: 0.5
+  version: 0.1.1
+  status: active

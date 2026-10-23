@@ -1,0 +1,36 @@
+id: mc.chm.o.metals_displacement_reversed
+kc_ids:
+- kc.chm.o.metals.reactivity_series
+student_name: The less reactive metal pushes out the more reactive one
+description: 'Gets the direction of displacement backwards: predicts that a less reactive metal displaces a more reactive metal from its salt, or that a more reactive metal cannot.'
+signatures:
+- kind: answer_transform
+  expression: 'choice: displacement predicted in the wrong direction'
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'A metal can only take the place of a metal BELOW it in the reactivity series. Find both metals in the series: if the free metal is higher, it displaces the other; if it is lower, nothing happens.'
+probe_item_ids:
+- itm.chm.o.metals.0024
+- itm.chm.o.metals.0025
+- itm.chm.o.metals.0026
+- itm.chm.o.metals.0027
+- itm.chm.o.metals.0028
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,52 @@
+id: wex.mth.o.algebra_and_graphs.0036
+kc_ids:
+- kc.mth.o.algebra_and_graphs.graphical_solutions
+problem: The graphs of $y = x^2 - 7x + 9$ and $y = -x + 4$ are drawn on the same axes. The graphs meet at two points. Find the larger of their two x-coordinates.
+steps:
+- n: 1
+  latex: x^2 - 7x + 9 = -x + 4 \Rightarrow x = 1 \text{ or } x = 5
+  reason: Where the graphs meet, the y-values are equal; solve
+  check_id: chk_build_mth_alg_w0036_sol
+- n: 2
+  latex: x = 5
+  reason: The larger value
+  check_id: chk_build_mth_alg_w0036_ans
+final_answer:
+  latex: '5'
+  check_id: chk_build_mth_alg_w0036_ans
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0036_ans:
+    args:
+      expression: '5'
+    tool: math_evaluate
+  chk_build_mth_alg_w0036_sol:
+    args:
+      equations:
+      - x^2 + (-7)*x + (9) = -1*x + (4)
+      unknowns:
+      - x
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

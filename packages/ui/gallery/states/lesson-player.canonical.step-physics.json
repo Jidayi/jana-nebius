@@ -1,0 +1,379 @@
+{
+  "id": "lesson-player.canonical.step-physics",
+  "title": "Lesson player, step lesson in Physics: a prediction checked",
+  "component": "LessonPlayer",
+  "note": "One step-shape lesson reply (GET /v1/lessons/{lesson_id}, TABLE CUR-11b, D110) and its check replies (LessonCheckResult), recorded from the real core with packs built from the repository's own curriculum sources; items are PracticeItem student views with no keys. A predict step in Physics answered correctly: units in the answer and working, the idea named after use (L1, L3).",
+  "state": "canonical",
+  "variant": "step-physics",
+  "payload": {
+    "lesson": {
+      "lesson_id": "les.phy.o.electrical_quantities.current_voltage_and_resistance",
+      "node_id": "cur.phy.o.electricity_and_magnetism.electrical_quantities",
+      "title": "Current, potential difference and resistance",
+      "estimated_minutes": 10,
+      "kc_ids": [
+        "kc.phy.o.electrical_quantities.current_and_charge",
+        "kc.phy.o.electrical_quantities.resistance"
+      ],
+      "version": "0.2.0",
+      "pack": {
+        "pack_id": "pack.phy.o",
+        "version": "0.1.0"
+      },
+      "blocks": [
+        {
+          "type": "step",
+          "action": "try_first",
+          "text": "A current of one amp means one coulomb of charge passes each second. Try this before any formula.",
+          "visual": null,
+          "items": [
+            {
+              "item_id": "itm.phy.o.electrical_quantities.0016",
+              "pack_id": "pack.phy.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.phy.o.electrical_quantities.current_and_charge"
+              ],
+              "kind": "numeric",
+              "stem": "The current in a torch lamp is 0.4 A for 40 s.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Calculate the charge that flows.",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "numeric",
+                    "unit_prompt": null
+                  },
+                  "marks": 2
+                }
+              ],
+              "visual": null,
+              "marks": 2
+            }
+          ]
+        },
+        {
+          "type": "step",
+          "action": "calculate",
+          "text": "Now the other way round: you know the charge and the time.",
+          "visual": null,
+          "items": [
+            {
+              "item_id": "itm.phy.o.electrical_quantities.0020",
+              "pack_id": "pack.phy.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.phy.o.electrical_quantities.current_and_charge"
+              ],
+              "kind": "numeric",
+              "stem": "A charge of 45 C flows through a phone charger in 90 s.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Calculate the current, in amps.",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "numeric",
+                    "unit_prompt": null
+                  },
+                  "marks": 2
+                }
+              ],
+              "visual": null,
+              "marks": 2
+            }
+          ]
+        },
+        {
+          "type": "step",
+          "action": "choose",
+          "text": "Watch the unit: there are 1000 milliamps in one amp.",
+          "visual": null,
+          "items": [
+            {
+              "item_id": "itm.phy.o.electrical_quantities.0026",
+              "pack_id": "pack.phy.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.phy.o.electrical_quantities.current_and_charge"
+              ],
+              "kind": "mcq_diagnostic",
+              "stem": "A small electric motor takes a current of 200 mA.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "How long does it take for 16 C of charge to flow through it, in seconds?",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "mcq",
+                    "options": [
+                      {
+                        "id": "A",
+                        "label": "3.2 s"
+                      },
+                      {
+                        "id": "B",
+                        "label": "0.0125 s"
+                      },
+                      {
+                        "id": "C",
+                        "label": "80 s"
+                      },
+                      {
+                        "id": "D",
+                        "label": "0.08 s"
+                      }
+                    ]
+                  },
+                  "marks": 1
+                }
+              ],
+              "visual": null,
+              "marks": 1
+            }
+          ]
+        },
+        {
+          "type": "step",
+          "action": "predict",
+          "text": "Resistance says how many volts it takes to push each amp through. Predict: will this wire need more or less than one volt per amp?",
+          "visual": null,
+          "items": [
+            {
+              "item_id": "itm.phy.o.electrical_quantities.0057",
+              "pack_id": "pack.phy.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.phy.o.electrical_quantities.resistance"
+              ],
+              "kind": "mcq_diagnostic",
+              "stem": "The p.d. across a length of wire is 0.8 V and the current through it is 100 mA.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Calculate its resistance.",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "mcq",
+                    "options": [
+                      {
+                        "id": "A",
+                        "label": "0.125 Ω"
+                      },
+                      {
+                        "id": "B",
+                        "label": "8 Ω"
+                      },
+                      {
+                        "id": "C",
+                        "label": "0.08 Ω"
+                      },
+                      {
+                        "id": "D",
+                        "label": "0.008 Ω"
+                      }
+                    ]
+                  },
+                  "marks": 1
+                }
+              ],
+              "visual": null,
+              "marks": 1
+            }
+          ]
+        },
+        {
+          "type": "step",
+          "action": "calculate",
+          "text": "Use the same rule to find the potential difference.",
+          "visual": null,
+          "items": [
+            {
+              "item_id": "itm.phy.o.electrical_quantities.0048",
+              "pack_id": "pack.phy.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.phy.o.electrical_quantities.resistance"
+              ],
+              "kind": "numeric",
+              "stem": "A current of 120 mA flows through a resistor of 25 Ω.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Calculate the p.d. across the resistor.",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "numeric",
+                    "unit_prompt": null
+                  },
+                  "marks": 2
+                }
+              ],
+              "visual": null,
+              "marks": 2
+            }
+          ]
+        },
+        {
+          "type": "check",
+          "items": [
+            {
+              "item_id": "itm.phy.o.electrical_quantities.0017",
+              "pack_id": "pack.phy.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.phy.o.electrical_quantities.current_and_charge"
+              ],
+              "kind": "numeric",
+              "stem": "A charge of 2160 C flows through a phone charger in 45 minutes.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Calculate the current, in amps.",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "numeric",
+                    "unit_prompt": null
+                  },
+                  "marks": 2
+                }
+              ],
+              "visual": null,
+              "marks": 2
+            },
+            {
+              "item_id": "itm.phy.o.electrical_quantities.0046",
+              "pack_id": "pack.phy.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.phy.o.electrical_quantities.resistance"
+              ],
+              "kind": "numeric",
+              "stem": "The p.d. across a motor coil is 48 V and the current through it is 2 A.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Calculate its resistance.",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "numeric",
+                    "unit_prompt": null
+                  },
+                  "marks": 2
+                }
+              ],
+              "visual": null,
+              "marks": 2
+            },
+            {
+              "item_id": "itm.phy.o.electrical_quantities.0056",
+              "pack_id": "pack.phy.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.phy.o.electrical_quantities.resistance"
+              ],
+              "kind": "mcq_diagnostic",
+              "stem": "A current of 300 mA flows through a resistor of 8 Ω.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Calculate the p.d. across the resistor.",
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "mcq",
+                    "options": [
+                      {
+                        "id": "A",
+                        "label": "2.4 V"
+                      },
+                      {
+                        "id": "B",
+                        "label": "26.7 V"
+                      },
+                      {
+                        "id": "C",
+                        "label": "0.0375 V"
+                      },
+                      {
+                        "id": "D",
+                        "label": "2400 V"
+                      }
+                    ]
+                  },
+                  "marks": 1
+                }
+              ],
+              "visual": null,
+              "marks": 1
+            }
+          ]
+        }
+      ],
+      "position": null
+    },
+    "index": 3,
+    "checks": {
+      "itm.phy.o.electrical_quantities.0057": {
+        "client_attempt_id": "cli_11111111111111111111111111",
+        "item_id": "itm.phy.o.electrical_quantities.0057",
+        "verdict": "correct",
+        "parts": [
+          {
+            "part_id": "a",
+            "verdict": "correct",
+            "marks_awarded": 1.0,
+            "marks_total": 1.0,
+            "category": null,
+            "misconception": null,
+            "feedback": null,
+            "check_ids": []
+          }
+        ],
+        "marks_awarded": 1.0,
+        "marks_total": 1.0,
+        "explanation": {
+          "shown": false,
+          "why": "Change 100 mA to 0.1 A, then share the 0.8 volts among the amps. Each amp needs 8 volts.",
+          "names": "Volts per amp is resistance: R = V/I, measured in ohms.",
+          "working": [
+            {
+              "latex": "I = 100\\ \\text{mA} = 0.1\\ \\text{A}",
+              "reason": "A thousand mA in 1 A",
+              "check_id": "chk_build_phy_elq_0057_ia"
+            },
+            {
+              "latex": "R = \\frac{V}{I} = \\frac{0.8}{0.1} = 8\\ \\Omega",
+              "reason": "Resistance = p.d. ÷ current",
+              "check_id": "chk_build_phy_elq_0057_ans"
+            }
+          ]
+        }
+      }
+    },
+    "tries": {
+      "itm.phy.o.electrical_quantities.0057": 1
+    },
+    "answers": {
+      "itm.phy.o.electrical_quantities.0057": [
+        {
+          "part_id": "a",
+          "kind": "mcq",
+          "option_id": "B"
+        }
+      ]
+    }
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Checked",
+    "Volts per amp is resistance",
+    "Next, you'll calculate"
+  ]
+}

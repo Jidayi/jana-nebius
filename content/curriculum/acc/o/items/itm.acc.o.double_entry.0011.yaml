@@ -1,0 +1,88 @@
+id: itm.acc.o.double_entry.0011
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.double_entry.debit_credit_rules
+stem: Here are six changes in a business's accounts.
+parts:
+- id: a
+  prompt: Select every change that is recorded on the credit side of the account that changes.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Cash decreases
+      correct: true
+    - id: B
+      text: Trade payables increase
+      correct: true
+    - id: C
+      text: Rent received increases
+      correct: true
+    - id: D
+      text: Equipment increases
+      correct: false
+    - id: E
+      text: Electricity paid increases
+      correct: false
+    - id: F
+      text: A loan decreases
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Is each change an increase or a decrease, and in which class of account?
+  - rung: 2
+    name: concept
+    text:
+      en: A credit records an increase in a liability, capital or income, or a decrease in an asset.
+  - rung: 3
+    name: first_step
+    text:
+      en: Cash is an asset, so a fall in cash is a credit.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A decrease in a liability is a debit, not a credit.
+  - rung: 5
+    name: full_step
+    text:
+      en: Cash decreasing, trade payables increasing and rent received increasing are credits.
+  misconception_ids:
+  - mc.acc.o.de_decrease_same_side
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Credit: cash down, payables up, rent received up}'
+    reason: Decrease in an asset; increases in a liability and income
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

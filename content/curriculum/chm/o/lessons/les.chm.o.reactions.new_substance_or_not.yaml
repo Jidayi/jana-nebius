@@ -1,0 +1,66 @@
+id: les.chm.o.reactions.new_substance_or_not
+node_id: cur.chm.o.chemical_reactions.physical_and_chemical_changes
+kc_ids:
+- kc.chm.o.reactions.physical_chemical_change
+title: Physical and chemical changes
+estimated_minutes: 10
+blocks:
+- type: step
+  text:
+    en: 'Melting ice and burning paper both look like big changes. Try this before any rule: in which one do you get something that was not there before?'
+  item_id: itm.chm.o.reactions.0001
+  action: try_first
+  why:
+    en: Melted ice is still water, just as a liquid. Burnt paper has become ash and smoke, which are new substances.
+  names:
+    en: A physical change makes no new substance. A chemical change makes at least one new substance.
+- type: step
+  text:
+    en: 'Ask the same question for each change: has a new substance formed? Something that disappears from view has not always become something new.'
+  item_id: itm.chm.o.reactions.0002
+  action: choose
+  why:
+    en: Dissolved salt is still salt, spread out in the water, so that is physical. A boiled egg cannot go back, because new substances have formed.
+- type: step
+  text:
+    en: Look for a sign that a new substance has formed, not just a change of state.
+  item_id: itm.chm.o.reactions.0006
+  action: choose
+  why:
+    en: A new solid forming from two solutions shows a new substance. Melting, dissolving and boiling only change how the particles are arranged.
+- type: step
+  text:
+    en: 'Same idea, less help. Predict: is water vapour a new substance or still water?'
+  item_id: itm.chm.o.reactions.0005
+  action: predict
+  why:
+    en: Evaporation is a change of state, so the water is still water, only now a gas in the air. A change of state is a physical change.
+- type: step
+  text:
+    en: Now one on your own.
+  item_id: itm.chm.o.reactions.0007
+  action: choose
+  why:
+    en: A new blue substance forms and heat is given out, so it is a chemical change. Being able to reverse it by heating does not make it physical.
+- type: check
+  item_ids:
+  - itm.chm.o.reactions.0004
+  - itm.chm.o.reactions.0008
+  - itm.chm.o.reactions.0010
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

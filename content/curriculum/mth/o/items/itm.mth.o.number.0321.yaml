@@ -1,0 +1,122 @@
+id: itm.mth.o.number.0321
+version: 0.1.1
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.time_intervals
+stem: A bus leaves at 9:55 am and arrives at 2:05 pm on the same day.
+parts:
+- id: a
+  prompt: How long is the journey, in minutes?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 450 minutes
+      correct: false
+      misconception_id: mc.mth.o.time_as_decimal
+      feedback: Count on to the next hour, then whole hours, then the minutes left. An hour has 60 minutes.
+    - id: B
+      text: 250 minutes
+      correct: true
+    - id: C
+      text: 350 minutes
+      correct: false
+      misconception_id: mc.mth.o.minutes_as_hours
+      feedback: Change minutes into hours by dividing by 60 before you divide the distance by the time.
+    - id: D
+      text: 470 minutes
+      correct: false
+      misconception_id: mc.mth.o.time_pm_not_converted
+      feedback: 'Change pm times to the 24-hour clock first: 3:15 pm is 15:15.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Write both times on the 24-hour clock.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Count on from the start time: first to the next whole hour, then whole hours, then the minutes left.'
+  - rung: 3
+    name: first_step
+    text:
+      en: From 9:55 to 10:00 is 5 minutes.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Then count the whole hours and the minutes left; remember an hour has 60 minutes, not 100.
+  - rung: 5
+    name: full_step
+    text:
+      en: The journey takes 250 minutes.
+  misconception_ids:
+  - mc.mth.o.minutes_as_hours
+  - mc.mth.o.time_as_decimal
+  - mc.mth.o.time_pm_not_converted
+solution:
+  steps:
+  - n: 1
+    latex: 9:55 \to 10:00 = 5\ \text{min}
+    reason: Count on to the next hour
+    check_id: chk_build_mth_num_0321_c
+  - n: 2
+    latex: 10:00 \to 14:05 = 4\ \text{h}\ 5\ \text{min}
+    reason: Whole hours, then the minutes left (24-hour clock)
+  - n: 3
+    latex: \text{journey} = 250\ \text{min}
+    reason: 60 minutes to the hour
+    check_id: chk_build_mth_num_0321_ans
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- transport
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0321_ans:
+    args:
+      expression: (14*60 + 5) - (9*60 + 55)
+    tool: math_evaluate
+  chk_build_mth_num_0321_c:
+    args:
+      equations:
+      - p = 60 - 55
+      - q = 9 + 1
+      - r = 14 - (9 + 1)
+      - s = 14
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,71 @@
+{
+  "id": "connectivity-indicator.online-unavailable",
+  "title": "Connectivity indicator, cloud tutor unavailable",
+  "note": "The turn fell back to the tutor on this computer: a fallback, not a failure.",
+  "component": "ConnectivityIndicator",
+  "state": "online-unavailable",
+  "payload": {
+    "status": {
+      "type": "connectivity.status",
+      "network": "online",
+      "checked_ts": 1760000000000,
+      "features": [
+        {
+          "feature": "cloud_tier",
+          "enabled": true,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "downloads",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "update_checks",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "telemetry",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "crash_reports",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        }
+      ]
+    },
+    "events": [
+      {
+        "type": "notice",
+        "notice_id": "ntc_44444444444444444444444444",
+        "level": "info",
+        "code": "cloud_unavailable_using_local",
+        "message_key": "notice.cloud_unavailable_using_local",
+        "params": {},
+        "action": null
+      }
+    ],
+    "open": true
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light",
+    "connectivity": "online-unavailable",
+    "cloudTier": true
+  },
+  "placements": [
+    "rail"
+  ],
+  "expectText": [
+    "Using local tutor",
+    "Cloud tutor unavailable. Using the tutor on this computer."
+  ]
+}

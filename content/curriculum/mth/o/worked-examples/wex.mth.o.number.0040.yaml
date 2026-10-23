@@ -1,0 +1,37 @@
+id: wex.mth.o.number.0040
+kc_ids:
+- kc.mth.o.number.rounding
+problem: Round 1.39269 to 2 significant figures. Give the rounded number.
+steps:
+- n: 1
+  latex: 1.39269 \approx 1.4
+  reason: Look at the next digit to decide whether to round up
+  check_id: chk_build_mth_num_w0040_ans
+final_answer:
+  latex: '1.4'
+  check_id: chk_build_mth_num_w0040_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0040_ans:
+    args:
+      expression: '1.39269'
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

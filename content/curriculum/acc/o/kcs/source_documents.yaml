@@ -1,0 +1,255 @@
+- id: kc.acc.o.source_documents.identify_source_document
+  code: ACC-O-02.K01
+  node_id: cur.acc.o.source_documents
+  statement: Identify the source document that records a given transaction
+  kind: factual
+  tools: []
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.accounting_equation.purpose_and_users
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.sd_counterfoil_vs_paying_in
+  - mc.acc.o.sd_invoice_credit_note_confused
+  - mc.acc.o.sd_receipt_invoice_confused
+  skill_ids:
+  - acc-o-source-documents
+  glossary:
+  - source document
+  - transaction
+  - invoice
+  - credit note
+  - debit note
+  - receipt
+  - cheque counterfoil
+  - counterfoil
+  - paying-in slip
+  - statement of account
+  - book of prime entry
+  - books of prime entry
+  - sales journal
+  - purchases journal
+  - sales returns journal
+  - purchases returns journal
+  - general journal
+  - journal
+  - cash book
+  - petty cash book
+  - day book
+  - trade discount
+  - cash discount
+  - discount allowed
+  - discount received
+  - list price
+  - ledger
+  - credit sale
+  - credit purchase
+  difficulty_prior: -1.2
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.source_documents.select_book_of_prime_entry
+  code: ACC-O-02.K02
+  node_id: cur.acc.o.source_documents
+  statement: Select the book of prime entry in which a transaction is first recorded
+  kind: conceptual
+  tools: []
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.acc.o.source_documents.identify_source_document
+    strength: required
+  misconception_ids:
+  - mc.acc.o.sd_asset_credit_in_purchases_journal
+  - mc.acc.o.sd_cash_sales_in_sales_journal
+  - mc.acc.o.sd_general_journal_catch_all
+  - mc.acc.o.sd_returns_journal_confused
+  skill_ids:
+  - acc-o-source-documents
+  glossary:
+  - source document
+  - transaction
+  - invoice
+  - credit note
+  - debit note
+  - receipt
+  - cheque counterfoil
+  - counterfoil
+  - paying-in slip
+  - statement of account
+  - book of prime entry
+  - books of prime entry
+  - sales journal
+  - purchases journal
+  - sales returns journal
+  - purchases returns journal
+  - general journal
+  - journal
+  - cash book
+  - petty cash book
+  - day book
+  - trade discount
+  - cash discount
+  - discount allowed
+  - discount received
+  - list price
+  - ledger
+  - credit sale
+  - credit purchase
+  difficulty_prior: -0.9
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.source_documents.trade_discount
+  code: ACC-O-02.K03
+  node_id: cur.acc.o.source_documents
+  statement: Calculate the amount entered for a credit sale or purchase after trade discount
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.source_documents.identify_source_document
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.sd_discount_added
+  - mc.acc.o.sd_discount_amount_as_net
+  - mc.acc.o.sd_trade_discount_recorded
+  skill_ids:
+  - acc-o-source-documents
+  glossary:
+  - source document
+  - transaction
+  - invoice
+  - credit note
+  - debit note
+  - receipt
+  - cheque counterfoil
+  - counterfoil
+  - paying-in slip
+  - statement of account
+  - book of prime entry
+  - books of prime entry
+  - sales journal
+  - purchases journal
+  - sales returns journal
+  - purchases returns journal
+  - general journal
+  - journal
+  - cash book
+  - petty cash book
+  - day book
+  - trade discount
+  - cash discount
+  - discount allowed
+  - discount received
+  - list price
+  - ledger
+  - credit sale
+  - credit purchase
+  difficulty_prior: -0.6
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.source_documents.cash_discount
+  code: ACC-O-02.K04
+  node_id: cur.acc.o.source_documents
+  statement: Calculate cash discount allowed or received and the amount paid
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.source_documents.trade_discount
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.sd_cash_discount_ignored
+  - mc.acc.o.sd_cash_discount_on_list_price
+  - mc.acc.o.sd_discount_as_payment
+  skill_ids:
+  - acc-o-source-documents
+  glossary:
+  - source document
+  - transaction
+  - invoice
+  - credit note
+  - debit note
+  - receipt
+  - cheque counterfoil
+  - counterfoil
+  - paying-in slip
+  - statement of account
+  - book of prime entry
+  - books of prime entry
+  - sales journal
+  - purchases journal
+  - sales returns journal
+  - purchases returns journal
+  - general journal
+  - journal
+  - cash book
+  - petty cash book
+  - day book
+  - trade discount
+  - cash discount
+  - discount allowed
+  - discount received
+  - list price
+  - ledger
+  - credit sale
+  - credit purchase
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.source_documents.post_day_book_totals
+  code: ACC-O-02.K05
+  node_id: cur.acc.o.source_documents
+  statement: Record the posting of day book totals and entries to the ledger
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.source_documents.select_book_of_prime_entry
+    strength: required
+  - kc_id: kc.acc.o.double_entry.record_credit_transactions
+    strength: required
+  misconception_ids:
+  - mc.acc.o.sd_double_posting
+  - mc.acc.o.sd_wrong_journal_account
+  - mc.acc.o.de_credit_as_cash
+  - mc.acc.o.de_debit_credit_swapped
+  skill_ids:
+  - acc-o-source-documents
+  glossary:
+  - source document
+  - transaction
+  - invoice
+  - credit note
+  - debit note
+  - receipt
+  - cheque counterfoil
+  - counterfoil
+  - paying-in slip
+  - statement of account
+  - book of prime entry
+  - books of prime entry
+  - sales journal
+  - purchases journal
+  - sales returns journal
+  - purchases returns journal
+  - general journal
+  - journal
+  - cash book
+  - petty cash book
+  - day book
+  - trade discount
+  - cash discount
+  - discount allowed
+  - discount received
+  - list price
+  - ledger
+  - credit sale
+  - credit purchase
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active

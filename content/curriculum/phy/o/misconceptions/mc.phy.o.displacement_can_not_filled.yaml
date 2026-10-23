@@ -1,0 +1,31 @@
+id: mc.phy.o.displacement_can_not_filled
+kc_ids:
+- kc.phy.o.density.measuring_density
+student_name: Starting with the can not full
+description: Does not fill the displacement can up to the spout before adding the object, or does not see why it matters, so less water overflows than the object's volume.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: rule_restatement
+  text:
+    en: Water only overflows once the can is full. Fill it until water drips from the spout and wait for it to stop; then all the water the object pushes aside is collected.
+probe_item_ids: []
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

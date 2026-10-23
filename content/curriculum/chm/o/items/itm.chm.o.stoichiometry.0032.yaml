@@ -1,0 +1,109 @@
+id: itm.chm.o.stoichiometry.0032
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.relative_formula_mass
+stem: Use relative atomic masses to work out the relative formula mass of carbon dioxide, CO₂.
+parts:
+- id: a
+  prompt: Calculate the relative formula mass, Mr, of CO₂.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '44'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0032_mr
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Mr is the sum of the relative atomic masses of all the atoms in CO₂.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply each element's relative atomic mass by the number of its atoms, then add.
+  - rung: 3
+    name: first_step
+    text:
+      en: Count the atoms of each element in CO₂.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'In CO₂: one C atom gives 12 and two O atoms give 32.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Mr of CO₂ = 44.
+  misconception_ids:
+  - mc.chm.o.mr_count_ignored
+solution:
+  steps:
+  - n: 1
+    latex: \text{C} = 12
+    reason: One C atom times Ar
+    check_id: chk_build_chm_stoichiometry_0032_g_c
+  - n: 2
+    latex: \text{O}_2 = 32
+    reason: Two O atoms times Ar
+    check_id: chk_build_chm_stoichiometry_0032_g_o
+  - n: 3
+    latex: M_r = 44
+    reason: Add the shares
+    check_id: chk_build_chm_stoichiometry_0032_mr
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 75
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0032_g_c:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      formula: C
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0032_g_o:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_o
+      formula: O2
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0032_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_o
+      formula: CO2
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

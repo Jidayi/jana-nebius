@@ -1,0 +1,93 @@
+id: itm.phy.o.magnetism.0025
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.magnetism.magnetic_fields
+stem: Point X is near a pole of a magnet and point Y is beside its middle, a little further away.
+parts:
+- id: a
+  prompt: At which point is the magnetic field stronger?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: At Y, beside the middle
+      correct: false
+      misconception_id: mc.phy.o.field_strongest_at_middle
+      feedback: Iron filings pile up at the ends of a bar magnet and hardly at all at its middle. The field is strongest at the poles.
+    - id: B
+      text: At X, near the pole
+      correct: true
+    - id: C
+      text: At Y, because the lines there are spread out
+      correct: false
+      misconception_id: mc.phy.o.field_lines_spacing_reversed
+      feedback: Lines crowd together at the poles, where the field is strongest. The closer the lines, the stronger the field.
+    - id: D
+      text: 'Neither: the field is only on the lines and both points may be between lines'
+      correct: false
+      misconception_id: mc.phy.o.field_only_on_drawn_lines
+      feedback: A compass placed between two drawn lines still turns. The lines show the field's direction and strength; the field is everywhere near the magnet.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Picture a small plotting compass placed at that point near the magnet.
+  - rung: 2
+    name: concept
+    text:
+      en: Field lines run from north to south outside a magnet, never cross, and are closest where the field is strongest, at the poles.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The field is strongest at the poles and weakens with distance.
+  - rung: 5
+    name: full_step
+    text:
+      en: At X, near the pole. The field is strongest at the poles and weakens with distance.
+  misconception_ids:
+  - mc.phy.o.field_lines_spacing_reversed
+  - mc.phy.o.field_only_on_drawn_lines
+  - mc.phy.o.field_strongest_at_middle
+solution:
+  steps:
+  - n: 1
+    latex: \text{At X, near the pole}
+    reason: Use the rules for magnetic field lines
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

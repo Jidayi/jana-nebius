@@ -1,0 +1,34 @@
+id: mc.acc.o.ir_receipts_only
+kc_ids:
+- kc.acc.o.incomplete_records.missing_credit_figures
+student_name: Cash received as credit sales
+description: Takes the cash received from customers (or paid to suppliers) as the credit sales (or purchases).
+signatures:
+- kind: answer_transform
+  expression: paid
+fix:
+  strategy: rule_restatement
+  text:
+    en: Adjust the cash for the change in what is owed and for discounts.
+probe_item_ids:
+- itm.acc.o.incomplete_records.0023
+- itm.acc.o.incomplete_records.0024
+- itm.acc.o.incomplete_records.0025
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

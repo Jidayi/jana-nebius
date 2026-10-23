@@ -1,0 +1,95 @@
+id: itm.phy.o.radioactivity.0024
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.decay_equations
+stem: A nucleus of radon-222 (proton number 86) decays by emitting an alpha particle.
+parts:
+- id: a
+  prompt: What is the proton number of the new nucleus?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '84'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_rad_0024_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Write down what an alpha particle contains.
+  - rung: 2
+    name: concept
+    text:
+      en: 'An alpha particle is two protons and two neutrons: nucleon number 4, proton number 2.'
+  - rung: 3
+    name: first_step
+    text:
+      en: The proton numbers on the two sides of the decay equation must balance.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Take 2 from the proton number 86.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The new proton number is 84: the nucleus is now polonium.'
+  misconception_ids:
+  - mc.phy.o.alpha_numbers_swapped
+  - mc.phy.o.decay_numbers_added
+  - mc.phy.o.decay_changes_one_number_only
+solution:
+  steps:
+  - n: 1
+    latex: '\text{alpha particle: } 2\ \text{protons} + 2\ \text{neutrons} = 4\ \text{nucleons}'
+    reason: An alpha particle is a helium nucleus
+    check_id: chk_build_phy_rad_0024_alpha_a
+  - n: 2
+    latex: '{}^{222}_{86}\text{Rn} \rightarrow {}^{218}_{84}\text{Po} + {}^{4}_{2}\text{He}'
+    reason: Both numbers balance on the two sides of the equation
+  - n: 3
+    latex: Z = 86 - 2 = 84
+    reason: Two protons leave in the alpha particle
+    check_id: chk_build_phy_rad_0024_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_0024_alpha_a:
+    args:
+      expression: 2 + 2
+    tool: math_evaluate
+  chk_build_phy_rad_0024_ans:
+    args:
+      expression: 86 - 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

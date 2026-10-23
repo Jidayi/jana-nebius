@@ -1,0 +1,99 @@
+id: itm.phy.o.practical_electricity.0042
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+stem: A 2500 W kettle is used on the 230 V mains. Fuses rated 3 A, 5 A, 10 A and 13 A are available.
+parts:
+- id: a
+  prompt: Which fuse should be fitted in its plug?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The 10 A fuse
+      correct: false
+      misconception_id: mc.phy.o.fuse_rating_below_current
+      feedback: 'The fuse must carry the normal current without melting, so its rating has to be above that current: pick the next rating up.'
+    - id: B
+      text: The 3 A fuse
+      correct: false
+      misconception_id: mc.phy.o.electric_power_current_inverted
+      feedback: 'A more powerful appliance on the same supply needs more current, so power goes on top: I = P ÷ V.'
+    - id: C
+      text: The 13 A fuse
+      correct: true
+    - id: D
+      text: The 5 A fuse
+      correct: false
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A fuse must let the normal current through but melt if the current rises much above it.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the normal current with I = P ÷ V.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 2500 ÷ 230.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The current is 10.9 A; choose the smallest available rating above this.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: the 13 A fuse.'
+  misconception_ids:
+  - mc.phy.o.electric_power_current_inverted
+  - mc.phy.o.fuse_rating_below_current
+solution:
+  steps:
+  - n: 1
+    latex: I = \frac{P}{V} = \frac{2500}{230} = 10.9\ \text{A}
+    reason: The normal working current
+    check_id: chk_build_phy_pel_0042_i
+  - n: 2
+    latex: \text{fuse} = 13\ \text{A}
+    reason: The smallest rating above the working current
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_pel_0042_i:
+    args:
+      expression: 2500/230
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

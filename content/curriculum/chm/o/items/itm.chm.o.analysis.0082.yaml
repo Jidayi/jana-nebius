@@ -1,0 +1,81 @@
+id: itm.chm.o.analysis.0082
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.analysis.anion_tests
+stem: Silver nitrate is used to test for halide ions.
+parts:
+- id: a
+  prompt: Why is the solution acidified with nitric acid before silver nitrate is added?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: To make the precipitate dissolve
+      correct: false
+    - id: B
+      text: To remove carbonate ions, which would also give a precipitate
+      correct: true
+    - id: C
+      text: To speed up the reaction
+      correct: false
+    - id: D
+      text: To add chloride ions
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about other ions that could give a false result.
+  - rung: 2
+    name: concept
+    text:
+      en: The acid used must not add the ion being tested for, and must remove interfering ions.
+  - rung: 3
+    name: first_step
+    text:
+      en: Carbonate ions also form precipitates with silver ions.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Choose the reason that avoids a false positive.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: To remove carbonate ions, which would also give a precipitate.'
+solution:
+  steps:
+  - n: 1
+    latex: \text{avoid false positives}
+    reason: Reason
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

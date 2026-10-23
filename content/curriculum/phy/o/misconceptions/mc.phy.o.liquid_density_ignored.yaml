@@ -1,0 +1,37 @@
+id: mc.phy.o.liquid_density_ignored
+kc_ids:
+- kc.phy.o.pressure.liquid_pressure
+- kc.phy.o.pressure.gas_and_atmospheric_pressure
+student_name: Every liquid behaves the same
+description: Thinks the pressure at a given depth, or the height of a column that balances a pressure, is the same for every liquid, ignoring the liquid's density.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: contrast_example
+  text:
+    en: 'At the same depth a denser liquid has more mass above each square metre, so it presses harder: Δp = ρgΔh. Mercury is far denser than water, so a far shorter column of it balances the air.'
+probe_item_ids:
+- itm.phy.o.pressure.0027
+- itm.phy.o.pressure.0029
+- itm.phy.o.pressure.0017
+- itm.phy.o.pressure.0019
+- itm.phy.o.pressure.0023
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

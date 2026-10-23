@@ -1,0 +1,35 @@
+id: mc.phy.o.evaporation_removes_slow_particles
+kc_ids:
+- kc.phy.o.thermal_properties.changes_of_state
+student_name: The slowest particles evaporate
+description: Thinks the slowest particles escape during evaporation, or that evaporation leaves the remaining liquid warmer.
+signatures:
+- kind: answer_transform
+  expression: slow
+fix:
+  strategy: rule_restatement
+  text:
+    en: Only the fastest particles have enough energy to break free from the surface. They take their energy with them, so the particles left have less on average and the liquid cools.
+probe_item_ids:
+- itm.phy.o.thermal_properties.0058
+- itm.phy.o.thermal_properties.0060
+- itm.phy.o.thermal_properties.0047
+- itm.phy.o.thermal_properties.0049
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

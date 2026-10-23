@@ -1,0 +1,132 @@
+id: itm.phy.o.momentum.0018
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.conservation_of_momentum
+stem: Trolley A (1 kg) moves right at 5 m/s and trolley B (0.5 kg) moves left at 6 m/s. They collide and stick together. Take right as positive.
+parts:
+- id: a
+  prompt: Find their velocity after the collision.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '1.33'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_mom_0018_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Total momentum before the collision equals total momentum after.
+  - rung: 2
+    name: concept
+    text:
+      en: B moves left, so its velocity is negative.
+  - rung: 3
+    name: first_step
+    text:
+      en: Add the two momenta with their signs, then divide by the total mass.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The momentum before is 2 kg m/s and the total mass is 1.5 kg.
+  - rung: 5
+    name: full_step
+    text:
+      en: v = 1.33 m/s, to the right.
+  misconception_ids:
+  - mc.phy.o.momentum_sign_ignored
+  - mc.phy.o.collision_velocities_averaged
+  - mc.phy.o.stuck_mass_one_object
+solution:
+  steps:
+  - n: 1
+    latex: p_\text{before} = 1 \times 5 + 0.5 \times (-\,6) = 2\ \text{kg m/s}
+    reason: B moves left, so its momentum is negative
+    check_id: chk_build_phy_mom_0018_pb
+  - n: 2
+    latex: (1 + 0.5)v = 1.5\,v = 2
+    reason: Momentum is conserved
+    check_id: chk_build_phy_mom_0018_mt
+  - n: 3
+    latex: v = \frac{2}{1.5} = 1.33\ \text{m/s}
+    reason: Positive, so they move right
+    check_id: chk_build_phy_mom_0018_ans
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  u1: '5'
+  u2: '6'
+checks:
+  chk_build_phy_mom_0018_ans:
+    args:
+      expression: (1*5 - 0.5*6)/(1 + 0.5)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_mom_0018_mt:
+    args:
+      expression: 1 + 0.5
+    tool: math_evaluate
+  chk_build_phy_mom_0018_pb:
+    args:
+      expression: 1*5 - 0.5*6
+    tool: math_evaluate
+  chk_build_phy_mom_0018_tool:
+    args:
+      equations:
+      - 1*5 + 0.5*(-6) = (1 + 0.5)*v
+      unknowns:
+      - v
+    tool: math_solve
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:42:31.239Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.momentum.0018
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

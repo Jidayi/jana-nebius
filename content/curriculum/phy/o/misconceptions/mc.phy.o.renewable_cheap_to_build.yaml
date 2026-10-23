@@ -1,0 +1,34 @@
+id: mc.phy.o.renewable_cheap_to_build
+kc_ids:
+- kc.phy.o.energy.energy_resources
+student_name: Free fuel means cheap to build
+description: Thinks renewable power stations are cheap to build because their energy source is free.
+signatures:
+- kind: answer_transform
+  expression: cheap
+fix:
+  strategy: contrast_example
+  text:
+    en: Wind, sunlight and water cost nothing, but turbines, panels and dams cost a lot to build. Their running costs are low, not their building costs.
+probe_item_ids:
+- itm.phy.o.energy.0117
+- itm.phy.o.energy.0118
+- itm.phy.o.energy.0110
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

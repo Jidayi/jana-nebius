@@ -1,0 +1,34 @@
+id: mc.acc.o.br_includes_timing
+kc_ids:
+- kc.acc.o.bank_reconciliation.update_cash_book
+student_name: Unpresented cheques in the cash book update
+description: Takes unpresented cheques off the cash book balance again when updating it.
+signatures:
+- kind: answer_transform
+  expression: updated - unpresented
+fix:
+  strategy: rule_restatement
+  text:
+    en: An unpresented cheque is already in the cash book. Entering it again counts it twice.
+probe_item_ids:
+- itm.acc.o.bank_reconciliation.0012
+- itm.acc.o.bank_reconciliation.0013
+- itm.acc.o.bank_reconciliation.0014
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

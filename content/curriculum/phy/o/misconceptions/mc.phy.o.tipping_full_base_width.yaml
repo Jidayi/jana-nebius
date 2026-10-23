@@ -1,0 +1,36 @@
+id: mc.phy.o.tipping_full_base_width
+kc_ids:
+- kc.phy.o.forces.centre_of_gravity
+student_name: Using the whole base width
+description: Uses the full width of the base when finding the toppling angle, instead of the distance from the centre of gravity to the edge it tips about.
+signatures:
+- kind: answer_transform
+  expression: atan(w/h)
+fix:
+  strategy: diagram
+  text:
+    en: The object tips about one edge. The centre of gravity sits above the middle of the base, so the distance to that edge is half the width.
+probe_item_ids:
+- itm.phy.o.forces.0108
+- itm.phy.o.forces.0110
+- itm.phy.o.forces.0097
+- itm.phy.o.forces.0100
+- itm.phy.o.forces.0103
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

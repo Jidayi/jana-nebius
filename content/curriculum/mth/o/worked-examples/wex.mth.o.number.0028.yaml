@@ -1,0 +1,55 @@
+id: wex.mth.o.number.0028
+kc_ids:
+- kc.mth.o.number.bounds_calc
+problem: a = 12.4 and b = 2.8, each correct to 1 decimal place. Find the upper bound of a ÷ b. Give your answer to 4 significant figures.
+steps:
+- n: 1
+  latex: 'a: 12.35 \text{ to } 12.45,\ b: 2.75 \text{ to } 2.85'
+  reason: Bounds are 0.05 either side
+  check_id: chk_build_mth_num_w0028_bd
+- n: 2
+  latex: 12.45 \div 2.75 = 4.527
+  reason: Use the upper bound of a and the lower bound of b
+  check_id: chk_build_mth_num_w0028_ans
+final_answer:
+  latex: '4.527'
+  check_id: chk_build_mth_num_w0028_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0028_ans:
+    args:
+      expression: (12.4 + 0.05)/(2.8 - 0.05)
+      sf: 4
+    tool: math_evaluate
+  chk_build_mth_num_w0028_bd:
+    args:
+      equations:
+      - p = 12.4 + 0.05
+      - q = 2.8 - 0.05
+      - r = 2.8 + 0.05
+      - s = 12.4 - 0.05
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

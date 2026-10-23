@@ -1,0 +1,96 @@
+id: itm.mth.o.statistics.0043
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.averages_list
+stem: 'Here are some marks: 22, 27, 17, 28, 27, 27, 27.'
+parts:
+- id: a
+  prompt: Find the mode.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '27'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_sta_0043_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The mode is about how often values appear.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the value that appears most often.
+  - rung: 3
+    name: first_step
+    text:
+      en: Tally each value.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Give the value itself, not how many times it appears.
+  - rung: 5
+    name: full_step
+    text:
+      en: The mode is 27.
+  misconception_ids:
+  - mc.mth.o.mode_as_frequency
+  - mc.mth.o.median_not_ordered
+  - mc.mth.o.range_as_largest
+solution:
+  steps:
+  - n: 1
+    latex: \text{mode} = 27
+    reason: The value that appears most often
+    check_id: chk_build_mth_sta_0043_sc
+difficulty:
+  prior: -0.9
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0043_ans:
+    args:
+      expression: '27'
+    tool: math_evaluate
+  chk_build_mth_sta_0043_sc:
+    args:
+      data:
+      - 22
+      - 27
+      - 17
+      - 28
+      - 27
+      - 27
+      - 27
+      quartile_method: exclusive
+    tool: stats_compute
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

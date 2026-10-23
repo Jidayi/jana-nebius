@@ -1,0 +1,44 @@
+id: mc.phy.o.series_pd_inverse_to_resistance
+kc_ids:
+- kc.phy.o.circuits.series_circuits
+- kc.phy.o.circuits.potential_dividers
+- kc.phy.o.circuits.mixed_circuits
+student_name: The bigger resistor gets the smaller p.d.
+description: Thinks the larger resistance in a series pair takes the smaller share of the supply p.d. (or that a resistance that falls takes a bigger share).
+signatures:
+- kind: answer_transform
+  expression: V*R1/(R1 + R2)
+fix:
+  strategy: rule_restatement
+  text:
+    en: The same current flows through both, so V = IR is bigger where R is bigger. The larger resistance always takes the larger share of the p.d.
+probe_item_ids:
+- itm.phy.o.circuits.0015
+- itm.phy.o.circuits.0044
+- itm.phy.o.circuits.0057
+- itm.phy.o.circuits.0059
+- itm.phy.o.circuits.0003
+severity: medium
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

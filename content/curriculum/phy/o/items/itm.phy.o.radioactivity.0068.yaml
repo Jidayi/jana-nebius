@@ -1,0 +1,93 @@
+id: itm.phy.o.radioactivity.0068
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+stem: A worker leaves a gamma source on the bench at the end of the day.
+parts:
+- id: a
+  prompt: Why must it be returned to its lead-lined box?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It keeps emitting radiation, and only thick shielding absorbs most of it
+      correct: true
+    - id: B
+      text: It does not need to be; it stops emitting when no one is using it
+      correct: false
+      misconception_id: mc.phy.o.source_can_be_switched_off
+      feedback: An X-ray tube stops when the power is cut, but a radioactive source keeps decaying whatever we do. It must be shielded and stored safely.
+    - id: C
+      text: It does not need to be; the air in the room stops gamma rays
+      correct: false
+      misconception_id: mc.phy.o.gamma_stopped_completely
+      feedback: Gamma rays pass through paper and aluminium almost unchanged. Thick lead or concrete reduces them a great deal but never to exactly zero.
+    - id: D
+      text: It does not need to be; standing a few metres away is no different from standing next to it
+      correct: false
+      misconception_id: mc.phy.o.distance_does_not_matter
+      feedback: Radiation spreads out from a source, and air absorbs alpha and some beta. Being further away greatly reduces the dose.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about how radiation can harm people and how the dose can be kept low.
+  - rung: 2
+    name: concept
+    text:
+      en: A source keeps decaying whatever we do; distance, short times and thick shielding cut the dose, and being exposed to radiation does not make anything radioactive.
+  - rung: 3
+    name: first_step
+    text:
+      en: Can anything turn a radioactive source off?
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that would leave people exposed or that rest on a false idea about radiation.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It keeps emitting radiation, and only thick shielding absorbs most of it.'
+  misconception_ids:
+  - mc.phy.o.distance_does_not_matter
+  - mc.phy.o.gamma_stopped_completely
+  - mc.phy.o.source_can_be_switched_off
+solution:
+  steps:
+  - n: 1
+    latex: \text{It keeps emitting radiation, and only thick shielding absorbs most of it}
+    reason: Match the radiation and half-life to the job
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

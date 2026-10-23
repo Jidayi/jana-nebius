@@ -1,0 +1,37 @@
+id: mc.mth.o.percent_not_divided
+kc_ids:
+- kc.mth.o.number.simple_interest
+- kc.mth.o.number.compound_growth
+student_name: Using the rate as a whole number
+description: Uses a rate such as 4% as 4 instead of 4/100 in a formula.
+signatures:
+- kind: step_error
+  error_category: arithmetic
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'A percentage rate must be divided by 100: 4% is 0.04.'
+probe_item_ids:
+- itm.mth.o.number.0351
+- itm.mth.o.number.0352
+- itm.mth.o.number.0353
+- itm.mth.o.number.0355
+- itm.mth.o.number.0356
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

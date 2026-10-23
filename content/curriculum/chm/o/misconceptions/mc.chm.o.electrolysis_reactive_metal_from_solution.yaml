@@ -1,0 +1,36 @@
+id: mc.chm.o.electrolysis_reactive_metal_from_solution
+kc_ids:
+- kc.chm.o.electrolysis.aqueous_products
+student_name: A reactive metal forms from its solution
+description: Predicts that a reactive metal such as sodium or potassium forms at the cathode when its aqueous salt is electrolysed.
+signatures:
+- kind: answer_transform
+  expression: 'choice: a metal more reactive than hydrogen named at the cathode from a solution'
+fix:
+  strategy: rule_restatement
+  text:
+    en: In a solution, water also provides H⁺ ions. At the cathode, hydrogen forms unless the metal is less reactive than hydrogen (such as copper or silver). Sodium and potassium are far more reactive, so hydrogen forms instead.
+probe_item_ids:
+- itm.chm.o.electrolysis.0013
+- itm.chm.o.electrolysis.0014
+- itm.chm.o.electrolysis.0016
+- itm.chm.o.electrolysis.0017
+- itm.chm.o.electrolysis.0022
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,253 @@
+{
+  "version": 2,
+  "note": "The bundled recommendations file (MDL-28): the signed model pack carries its own copy, which wins; offline installs without one use this. D6 decided 2026-10-12: Gemma 4 12B for the high and mid hardware classes, Qwen3-VL 8B for the low class, on a provisional high-class bake-off; each class names the bake-off record that chose it, and none is recorded yet, so the release check refuses these assignments until the full EVL-15 record exists (MDL-27). Every model is 7B or larger (D58). Context per class is TABLE MDL-16a's (null: the model does not fit that class). Thinking is off by default on every class (router_thinking_budget; D6 condition). Sampling presets are the router configuration's role temperatures. Model ids are the ids the local runtime lists.",
+  "models": [
+    {
+      "model": "qwen3-vl-8b",
+      "family": "qwen3",
+      "licence": "Apache-2.0",
+      "params_b": 8,
+      "status": "low class (D6; fit on the low reference laptop to be confirmed)",
+      "context_for_agents": {
+        "low": 6144,
+        "mid": 8192,
+        "high": 16384
+      },
+      "max_output": 4096,
+      "thinking": {
+        "available": true,
+        "default": "off"
+      },
+      "sampling": {
+        "coach": {
+          "temperature": 0.6
+        },
+        "diagnoser": {
+          "temperature": 0.2
+        },
+        "solver": {
+          "temperature": 0.2
+        },
+        "checker": {
+          "temperature": 0.0
+        },
+        "reflector": {
+          "temperature": 0.3
+        }
+      },
+      "template_quirks": [],
+      "feature_rejections": [],
+      "classes": {
+        "low": {
+          "tiers": [
+            "fast",
+            "strong",
+            "judge"
+          ],
+          "bakeoff": null
+        }
+      },
+      "capabilities": {
+        "tools": true,
+        "parallel_tools": true,
+        "reasoning": "toggle",
+        "reasoning_default": "on",
+        "family": "qwen3"
+      }
+    },
+    {
+      "model": "gemma-4-12b",
+      "family": "gemma4",
+      "licence": "Apache-2.0",
+      "params_b": 12,
+      "status": "high and mid classes (D6)",
+      "context_for_agents": {
+        "low": null,
+        "mid": 8192,
+        "high": 16384
+      },
+      "max_output": 4096,
+      "thinking": {
+        "available": true,
+        "default": "off"
+      },
+      "sampling": {
+        "coach": {
+          "temperature": 0.6
+        },
+        "diagnoser": {
+          "temperature": 0.2
+        },
+        "solver": {
+          "temperature": 0.2
+        },
+        "checker": {
+          "temperature": 0.0
+        },
+        "reflector": {
+          "temperature": 0.3
+        }
+      },
+      "template_quirks": [],
+      "feature_rejections": [],
+      "classes": {
+        "mid": {
+          "tiers": [
+            "fast",
+            "strong",
+            "judge"
+          ],
+          "bakeoff": null
+        },
+        "high": {
+          "tiers": [
+            "fast",
+            "strong",
+            "judge"
+          ],
+          "bakeoff": null
+        }
+      },
+      "capabilities": {
+        "tools": true,
+        "parallel_tools": true,
+        "reasoning": "toggle",
+        "reasoning_default": "on",
+        "family": "gemma4"
+      }
+    },
+    {
+      "model": "gemma-4-26b-a4b",
+      "family": "gemma4",
+      "licence": "Apache-2.0",
+      "params_b": 26,
+      "status": "strong-tier candidate, not yet evaluated",
+      "context_for_agents": {
+        "low": null,
+        "mid": null,
+        "high": 16384
+      },
+      "max_output": 4096,
+      "thinking": {
+        "available": true,
+        "default": "off"
+      },
+      "sampling": {
+        "coach": {
+          "temperature": 0.6
+        },
+        "diagnoser": {
+          "temperature": 0.2
+        },
+        "solver": {
+          "temperature": 0.2
+        },
+        "checker": {
+          "temperature": 0.0
+        },
+        "reflector": {
+          "temperature": 0.3
+        }
+      },
+      "template_quirks": [],
+      "feature_rejections": [],
+      "classes": {},
+      "capabilities": {
+        "tools": true,
+        "parallel_tools": true,
+        "reasoning": "toggle",
+        "reasoning_default": "on",
+        "family": "gemma4"
+      }
+    },
+    {
+      "model": "qwen3-vl-30b",
+      "family": "qwen3",
+      "licence": "Apache-2.0",
+      "params_b": 30,
+      "status": "strong-tier candidate, not yet evaluated",
+      "context_for_agents": {
+        "low": null,
+        "mid": null,
+        "high": 16384
+      },
+      "max_output": 4096,
+      "thinking": {
+        "available": true,
+        "default": "off"
+      },
+      "sampling": {
+        "coach": {
+          "temperature": 0.6
+        },
+        "diagnoser": {
+          "temperature": 0.2
+        },
+        "solver": {
+          "temperature": 0.2
+        },
+        "checker": {
+          "temperature": 0.0
+        },
+        "reflector": {
+          "temperature": 0.3
+        }
+      },
+      "template_quirks": [],
+      "feature_rejections": [],
+      "classes": {},
+      "capabilities": {
+        "tools": true,
+        "parallel_tools": true,
+        "reasoning": "toggle",
+        "reasoning_default": "on",
+        "family": "qwen3"
+      }
+    },
+    {
+      "model": "gemma-4-31b",
+      "family": "gemma4",
+      "licence": "Apache-2.0",
+      "params_b": 31,
+      "status": "provisional strong-tier candidate, high class only (D6 open)",
+      "context_for_agents": {
+        "low": null,
+        "mid": null,
+        "high": 16384
+      },
+      "max_output": 4096,
+      "thinking": {
+        "available": true,
+        "default": "off"
+      },
+      "sampling": {
+        "coach": {
+          "temperature": 0.6
+        },
+        "diagnoser": {
+          "temperature": 0.2
+        },
+        "solver": {
+          "temperature": 0.2
+        },
+        "checker": {
+          "temperature": 0.0
+        },
+        "reflector": {
+          "temperature": 0.3
+        }
+      },
+      "template_quirks": [],
+      "feature_rejections": [],
+      "classes": {},
+      "capabilities": {
+        "tools": true,
+        "parallel_tools": true,
+        "reasoning": "toggle",
+        "reasoning_default": "on",
+        "family": "gemma4"
+      }
+    }
+  ],
+  "__unknown_field__": 1
+}

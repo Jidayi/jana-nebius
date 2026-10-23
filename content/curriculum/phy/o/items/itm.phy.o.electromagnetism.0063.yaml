@@ -1,0 +1,116 @@
+id: itm.phy.o.electromagnetism.0063
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.power_transmission
+stem: A power line delivers 1000 kW at 10 kV. The cables have a total resistance of 8 Ω.
+parts:
+- id: a
+  prompt: Calculate the power wasted as heat in the cables, in kW.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '80'
+    unit: kW
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_emg_0063_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The heating in the cables depends on the current in them.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the current from P = V × I, then use P = I² × R for the power wasted.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change kW into W and kV into V first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The current is 100 A; square it and multiply by 8 Ω.
+  - rung: 5
+    name: full_step
+    text:
+      en: The power wasted is 80000 W, which is 80 kW.
+  misconception_ids:
+  - mc.phy.o.power_loss_not_squared
+  - mc.phy.o.power_loss_uses_line_voltage
+  - mc.phy.o.transmission_current_upside_down
+solution:
+  steps:
+  - n: 1
+    latex: P = 1000\ \text{kW} = 1000000\ \text{W}
+    reason: A thousand watts in 1 kW
+    check_id: chk_build_phy_emg_0063_pw
+  - n: 2
+    latex: V = 10\ \text{kV} = 10000\ \text{V}
+    reason: A thousand volts in 1 kV
+    check_id: chk_build_phy_emg_0063_vv
+  - n: 3
+    latex: I = \frac{P}{V} = \frac{1000000}{10000} = 100\ \text{A}
+    reason: Current = power ÷ p.d.
+    check_id: chk_build_phy_emg_0063_cur
+  - n: 4
+    latex: P_{loss} = I^2 R = 100^2 \times 8 = 80000\ \text{W}
+    reason: Heating in the cables
+    check_id: chk_build_phy_emg_0063_lw
+  - n: 5
+    latex: P_{loss} = 80\ \text{kW}
+    reason: A thousand watts in 1 kW
+    check_id: chk_build_phy_emg_0063_ans
+difficulty:
+  prior: 0.7
+  band: stretch
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_0063_ans:
+    args:
+      expression: (1000/10)^2*8/1000
+    tool: math_evaluate
+  chk_build_phy_emg_0063_cur:
+    args:
+      expression: 1000/10
+    tool: math_evaluate
+  chk_build_phy_emg_0063_lw:
+    args:
+      expression: (1000/10)^2*8
+    tool: math_evaluate
+  chk_build_phy_emg_0063_pw:
+    args:
+      expression: 1000*1000
+    tool: math_evaluate
+  chk_build_phy_emg_0063_vv:
+    args:
+      expression: 10*1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

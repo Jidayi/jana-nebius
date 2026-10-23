@@ -1,0 +1,34 @@
+id: mc.acc.o.rat_capital_employed_wrong
+kc_ids:
+- kc.acc.o.ratios.roce
+student_name: Capital employed without loans
+description: Leaves non-current liabilities out of capital employed when the definition includes them.
+signatures:
+- kind: answer_transform
+  expression: profit / capital
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Capital employed is all long-term money in the business: the owner''s capital and long-term loans.'
+probe_item_ids:
+- itm.acc.o.ratios.0056
+- itm.acc.o.ratios.0057
+- itm.acc.o.ratios.0058
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,85 @@
+id: itm.chm.o.organic.0084
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.polymers
+stem: Polyesters such as PET are condensation polymers.
+parts:
+- id: a
+  prompt: Which small molecule is usually given off as the monomers join?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Hydrogen
+      correct: false
+    - id: B
+      text: Water
+      correct: true
+    - id: C
+      text: Carbon dioxide
+      correct: false
+    - id: D
+      text: Nothing; no small molecule forms
+      correct: false
+      misconception_id: mc.chm.o.organic_addition_condensation_mixed
+      feedback: In addition polymerisation, monomers with a C=C bond simply join and nothing else forms. In condensation polymerisation, groups on two monomers react as they join and a small molecule, such as water, is given off each time.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: In condensation polymerisation a small molecule is lost at every link.
+  - rung: 2
+    name: concept
+    text:
+      en: Polyesters form when acid groups react with alcohol groups, as when an ester is made.
+  - rung: 3
+    name: first_step
+    text:
+      en: When an acid and an alcohol form an ester, what else forms?
+  - rung: 4
+    name: worked_step
+    text:
+      en: The –OH from the acid and the H from the alcohol leave together.
+  - rung: 5
+    name: full_step
+    text:
+      en: Water is given off each time two monomers join in a polyester.
+  misconception_ids:
+  - mc.chm.o.organic_addition_condensation_mixed
+solution:
+  steps:
+  - n: 1
+    latex: \text{–COOH + HO– }\rightarrow\text{ –COO– + H}_2\text{O}
+    reason: Ester link
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

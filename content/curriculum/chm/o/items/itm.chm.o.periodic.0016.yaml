@@ -1,0 +1,104 @@
+id: itm.chm.o.periodic.0016
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.periodic.group_i
+stem: A small piece of sodium is dropped into water containing universal indicator.
+parts:
+- id: a
+  prompt: Which describes the products?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Sodium hydroxide solution and oxygen gas
+      correct: false
+      misconception_id: mc.chm.o.periodic_group1_water_gives_oxygen
+      feedback: The metal takes the place of hydrogen in water, so hydrogen is released; a lighted splint gives a pop.
+    - id: B
+      text: An acidic solution and hydrogen gas
+      correct: false
+      misconception_id: mc.chm.o.periodic_group1_solution_acidic
+      feedback: 'The hydroxide formed is an alkali: universal indicator turns blue or purple.'
+    - id: C
+      text: Sodium oxide and hydrogen gas
+      correct: false
+      misconception_id: mc.chm.o.periodic_group1_forms_oxide
+      feedback: Group I metals with water give a hydroxide (which dissolves to make an alkaline solution) and hydrogen.
+    - id: D
+      text: Sodium hydroxide solution and hydrogen gas
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What does sodium take from the water molecules?
+  - rung: 2
+    name: concept
+    text:
+      en: A Group I metal with water gives a metal hydroxide and a gas.
+  - rung: 3
+    name: first_step
+    text:
+      en: The hydroxide dissolves. Is a metal hydroxide solution acidic or alkaline?
+  - rung: 4
+    name: worked_step
+    text:
+      en: The gas comes from the hydrogen in water; a lighted splint would pop.
+  - rung: 5
+    name: full_step
+    text:
+      en: Sodium + water → sodium hydroxide + hydrogen; the indicator turns blue or purple.
+  misconception_ids:
+  - mc.chm.o.periodic_group1_water_gives_oxygen
+  - mc.chm.o.periodic_group1_forms_oxide
+  - mc.chm.o.periodic_group1_solution_acidic
+solution:
+  steps:
+  - n: 1
+    latex: 2\text{Na} + 2\text{H}_2\text{O} \rightarrow 2\text{NaOH} + \text{H}_2
+    reason: Metal + water → hydroxide + hydrogen
+    check_id: chk_build_chm_periodic_0016_mr
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_periodic_0016_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_na
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_h
+      formula: NaOH
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

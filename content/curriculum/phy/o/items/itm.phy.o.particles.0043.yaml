@@ -1,0 +1,93 @@
+id: itm.phy.o.particles.0043
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.gas_pressure_particles
+stem: A gas is sealed inside a strong metal can.
+parts:
+- id: a
+  prompt: What causes the pressure the gas exerts on the inside of the can?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: The weight of the gas pressing down on the bottom of the can
+      correct: false
+      misconception_id: mc.phy.o.gas_pressure_from_weight
+      feedback: A balloon is pushed out evenly on every side, not only at the bottom. Gas pressure comes from particles striking every wall in random directions.
+    - id: B
+      text: Gas particles colliding with one another in the middle of the can
+      correct: false
+      misconception_id: mc.phy.o.pressure_from_interparticle_collisions
+      feedback: Pressure is a force on a surface. Only collisions with the container's walls push on it; particles bumping into each other in the middle push on no wall.
+    - id: C
+      text: The gas particles swelling and pushing on the walls
+      correct: false
+      misconception_id: mc.phy.o.particles_grow_when_heated
+      feedback: A water particle is the same size in ice, in water and in steam. Heating makes particles move faster and spread further apart; it does not make them bigger.
+    - id: D
+      text: Gas particles colliding with the walls of the can
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Pressure is a force on each square metre of a surface. What exerts force on the walls of a container of gas?
+  - rung: 2
+    name: concept
+    text:
+      en: Each time a particle bounces off a wall, it pushes on that wall.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ask whether the change alters how fast the particles move, how often they hit the walls, or both.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out explanations that rely on the weight of the gas or on particles changing size.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Gas particles colliding with the walls of the can.'
+  misconception_ids:
+  - mc.phy.o.gas_pressure_from_weight
+  - mc.phy.o.particles_grow_when_heated
+  - mc.phy.o.pressure_from_interparticle_collisions
+solution:
+  steps:
+  - n: 1
+    latex: \text{Gas particles colliding with the walls of the can}
+    reason: Explain the pressure by collisions with the walls
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

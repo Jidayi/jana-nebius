@@ -1,0 +1,37 @@
+id: mc.phy.o.light_speed_times_index
+kc_ids:
+- kc.phy.o.light.speed_in_medium
+- kc.phy.o.light.refraction
+student_name: Light goes faster in glass
+description: Multiplies the speed of light by the refractive index, as if light travelled faster in a denser material.
+signatures:
+- kind: answer_transform
+  expression: c*n
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Nothing travels faster than light in a vacuum. A material slows light down, so divide c by the refractive index: the bigger n is, the slower the light.'
+probe_item_ids:
+- itm.phy.o.light.0027
+- itm.phy.o.light.0041
+- itm.phy.o.light.0042
+- itm.phy.o.light.0043
+- itm.phy.o.light.0044
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

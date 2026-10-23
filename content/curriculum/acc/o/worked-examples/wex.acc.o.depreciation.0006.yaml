@@ -1,0 +1,52 @@
+id: wex.acc.o.depreciation.0006
+kc_ids:
+- kc.acc.o.depreciation.straight_line
+problem: A van costs $7200, will last 4 years and then be worth $0. Find the yearly straight-line charge.
+steps:
+- n: 1
+  latex: \text{Yearly charge} = \frac{\text{cost} - \text{residual}}{\text{life}}
+  reason: Same each year
+  check_id: chk_build_acc_depreciation_w0006_t
+- n: 2
+  latex: \text{Yearly charge} = \frac{7200 - 0}{4} = 1800
+  reason: Substitute
+  check_id: chk_build_acc_depreciation_w0006_a
+final_answer:
+  latex: \$\,1800
+  check_id: chk_build_acc_depreciation_w0006_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_depreciation_w0006_a:
+    args:
+      dp: 2
+      expression: (7200 - 0) / 4
+    tool: math_evaluate
+  chk_build_acc_depreciation_w0006_t:
+    args:
+      cost: '7200'
+      dp: 2
+      life_years: 4
+      method: straight_line
+      part_year_policy: full_year
+      residual: '0'
+      years: 1
+    tool: acc_depreciation
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

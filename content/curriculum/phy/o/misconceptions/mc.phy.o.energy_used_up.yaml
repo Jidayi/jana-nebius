@@ -1,0 +1,36 @@
+id: mc.phy.o.energy_used_up
+kc_ids:
+- kc.phy.o.energy.stores_and_transfers
+student_name: Energy gets used up
+description: Thinks energy is destroyed or used up when a device runs or a moving object stops, instead of being transferred to other stores, often the thermal store of the surroundings.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: counterexample
+  text:
+    en: 'When a car brakes, its kinetic energy does not vanish: the brakes and the air get warmer. Energy only moves between stores; the total stays the same.'
+probe_item_ids:
+- itm.phy.o.energy.0011
+- itm.phy.o.energy.0012
+- itm.phy.o.energy.0013
+- itm.phy.o.energy.0014
+- itm.phy.o.energy.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,93 @@
+id: itm.chm.o.acids.0015
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.ph_and_indicators
+stem: A beaker holds dilute hydrochloric acid with a pH of 2. A student adds a large volume of pure water and stirs.
+parts:
+- id: a
+  prompt: What happens to the pH?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: It stays at 2, because no acid has been removed
+      correct: false
+      misconception_id: mc.chm.o.acids_dilution_ph_wrong
+      feedback: Adding water spreads the same ions through more solution, so the pH moves towards 7. Water itself is neutral, so it can never make an acid alkaline or an alkali acidic.
+    - id: B
+      text: It rises above 7 once enough water is added
+      correct: false
+      misconception_id: mc.chm.o.acids_dilution_ph_wrong
+      feedback: Adding water spreads the same ions through more solution, so the pH moves towards 7. Water itself is neutral, so it can never make an acid alkaline or an alkali acidic.
+    - id: C
+      text: It falls, because the acid becomes weaker
+      correct: false
+      misconception_id: mc.chm.o.acids_high_ph_more_acidic
+      feedback: 'Picture the pH scale as a line: acids at the low end (below 7), neutral at 7, alkalis at the high end (above 7). The lower the pH, the more acidic the solution.'
+    - id: D
+      text: It rises towards 7 but stays below 7
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Adding water does not remove any acid. What does it change?
+  - rung: 2
+    name: concept
+    text:
+      en: Diluting spreads the same hydrogen ions through more water, so each dm³ holds fewer of them.
+  - rung: 3
+    name: first_step
+    text:
+      en: Fewer hydrogen ions per dm³ means the solution is less acidic.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Water is neutral. Think about whether mixing an acid with a neutral liquid could ever make an alkali.
+  - rung: 5
+    name: full_step
+    text:
+      en: The pH rises towards 7 as the acid is diluted, but it never passes 7 because water cannot make the solution alkaline.
+  misconception_ids:
+  - mc.chm.o.acids_high_ph_more_acidic
+  - mc.chm.o.acids_dilution_ph_wrong
+solution:
+  steps:
+  - n: 1
+    latex: \text{fewer H}^{+}\ \text{per dm}^3
+    reason: Dilution lowers the concentration of hydrogen ions
+  - n: 2
+    latex: 2 < \text{pH} < 7
+    reason: Less acidic, but still an acid
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

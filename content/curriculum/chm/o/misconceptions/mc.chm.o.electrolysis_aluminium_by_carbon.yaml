@@ -1,0 +1,36 @@
+id: mc.chm.o.electrolysis_aluminium_by_carbon
+kc_ids:
+- kc.chm.o.electrolysis.applications
+student_name: Aluminium can be extracted with carbon
+description: Thinks aluminium is extracted like iron, by heating its oxide with carbon, or that electrolysis is chosen only because it is cheaper.
+signatures:
+- kind: answer_transform
+  expression: 'choice: aluminium extracted by reduction with carbon'
+fix:
+  strategy: prerequisite_detour
+  text:
+    en: Carbon can only remove oxygen from oxides of metals less reactive than carbon. Aluminium is more reactive than carbon, so its oxide must be decomposed by electrolysis, even though that uses a lot of electricity.
+probe_item_ids:
+- itm.chm.o.electrolysis.0037
+- itm.chm.o.electrolysis.0039
+- itm.chm.o.electrolysis.0040
+- itm.chm.o.electrolysis.0043
+- itm.chm.o.electrolysis.0047
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.chm.o.energetics_bond_count_ignored
+kc_ids:
+- kc.chm.o.energetics.bond_energies
+student_name: Counting each kind of bond once
+description: Uses each bond energy once instead of multiplying by the number of those bonds in the equation.
+signatures:
+- kind: answer_transform
+  expression: sum of each bond energy once
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'Count every bond: CH₄ has four C–H bonds, and 2H₂O has four O–H bonds. Multiply each bond energy by its number.'
+probe_item_ids:
+- itm.chm.o.energetics.0025
+- itm.chm.o.energetics.0026
+- itm.chm.o.energetics.0027
+- itm.chm.o.energetics.0028
+- itm.chm.o.energetics.0029
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

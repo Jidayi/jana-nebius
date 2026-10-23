@@ -1,0 +1,100 @@
+id: itm.chm.o.energetics.0003
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.energetics.exo_endo
+stem: Magnesium ribbon is added to dilute sulfuric acid. The temperature changes from 20 °C to 34 °C.
+parts:
+- id: a
+  prompt: Which describes this change?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: 'Exothermic: energy is given out to the surroundings'
+      correct: true
+    - id: B
+      text: 'Endothermic: bonds were broken, which gives out heat'
+      correct: false
+      misconception_id: mc.chm.o.energetics_breaking_releases
+      feedback: You must put energy in to pull two bonded atoms apart, just as you must pull to separate two magnets. Energy is given out when bonds form.
+    - id: C
+      text: Endothermic, so ΔH is negative
+      correct: false
+      misconception_id: mc.chm.o.energetics_dh_sign_reversed
+      feedback: ΔH is the energy change of the chemicals. When they give energy out, they end with less, so ΔH is negative for an exothermic reaction.
+    - id: D
+      text: 'Endothermic: the solution has taken in heat'
+      correct: false
+      misconception_id: mc.chm.o.energetics_temp_rise_endo
+      feedback: 'The thermometer measures the surroundings. If they get warmer, the reaction gave energy out: exothermic.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Did the temperature go up or down when this happened (20 °C to 34 °C)?
+  - rung: 2
+    name: concept
+    text:
+      en: The thermometer measures the surroundings (the water and the beaker), not the chemicals.
+  - rung: 3
+    name: first_step
+    text:
+      en: The change in temperature is 14 °C.
+  - rung: 4
+    name: worked_step
+    text:
+      en: If the surroundings get warmer, energy left the reacting chemicals; if they cool, energy went into the chemicals.
+  - rung: 5
+    name: full_step
+    text:
+      en: The temperature rose, so the change is exothermic.
+  misconception_ids:
+  - mc.chm.o.energetics_temp_rise_endo
+  - mc.chm.o.energetics_dh_sign_reversed
+  - mc.chm.o.energetics_breaking_releases
+solution:
+  steps:
+  - n: 1
+    latex: \Delta T = 34 - 20 = 14
+    reason: Temperature change
+    check_id: chk_build_chm_energetics_0003_d
+  - n: 2
+    latex: \text{exothermic}
+    reason: Warmer surroundings mean energy out
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_energetics_0003_d:
+    args:
+      expression: 34 - 20
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

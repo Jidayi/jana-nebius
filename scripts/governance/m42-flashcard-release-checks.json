@@ -1,0 +1,771 @@
+{
+  "checked_at": "2026-10-18T22:39:41.559447+00:00",
+  "status": "Staging v4 corpus 115/117, Unicode stress 12/12 and upload formats 6/6 complete; production release gates remain open",
+  "release_ready": false,
+  "feature_default_enabled": false,
+  "production_modified": false,
+  "project_id": "jana-staging-512005",
+  "gateway_origin": "https://staging-api.getjana.app",
+  "provider_endpoint": "https://aiplatform.eu.rep.googleapis.com/v1/projects/jana-staging-512005/locations/eu/publishers/google",
+  "model": "gemini-3.8-flash",
+  "source_bundle_sha256": "f0fb235807e70aace50144106bccb6e0345c9d68bb5b07a691b2dbcd8f976b76",
+  "source_inputs": {
+    "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-source-inputs.json",
+    "sha256": "8d043d8fef799d10f5d364786f569a4272b6664cfa1ab9949e7a00e3ab42c35d"
+  },
+  "owner_approval": "scripts/governance/m42-owner-approval.json",
+  "changes": [
+    "Flashcard source terminology and literal symbols are preserved in claims and both card sides; source units alone cannot define a physical quantity.",
+    "One correction is allowed only for a fully observed, explicitly repairable safe/consistent/answerable drafting rejection; every revision repeats canonical, exact-citation and fresh support/safety checks.",
+    "Maximum two drafts and two verifications within 180 seconds; conservative four-call reservation, one actual settlement, and no automatic resend of unknown outcomes.",
+    "Corpus v4 explicitly defines the speed requested by six Unicode positives and retains old material in negative/value/flashcard contrasts. No original failed observation was rescored."
+  ],
+  "checks": {
+    "gateway": {
+      "passed": 102,
+      "skipped": 3,
+      "report": {
+        "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-v4-gateway.xml",
+        "sha256": "765ac801feb36d7a6da5753caf1b7d93efdaece7fb63a76f130efc8930989e64"
+      }
+    },
+    "corpus_inventory_and_release_preparation": {
+      "passed": 15,
+      "skipped": 1,
+      "report": {
+        "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-v4-release.xml",
+        "sha256": "deeb3e59d46a7369696ce89f0844019f7da1f16b2b92787ab7fa9700e42ba375"
+      }
+    },
+    "static": {
+      "passed": true,
+      "checks": [
+        {
+          "command": [
+            ".venv/bin/ruff",
+            "check",
+            "services/cloud-gateway/cloud_gateway/study.py",
+            "services/cloud-gateway/tests/test_m42_study.py",
+            "services/cloud-gateway/tests/test_m42_quality_corpus.py"
+          ],
+          "exit_code": 0,
+          "output": "All checks passed!\n"
+        },
+        {
+          "command": [
+            ".venv/bin/ruff",
+            "format",
+            "--check",
+            "services/cloud-gateway/cloud_gateway/study.py",
+            "services/cloud-gateway/tests/test_m42_study.py",
+            "services/cloud-gateway/tests/test_m42_quality_corpus.py"
+          ],
+          "exit_code": 0,
+          "output": "3 files already formatted\n"
+        },
+        {
+          "command": [
+            ".venv/bin/mypy",
+            "services/cloud-gateway/cloud_gateway"
+          ],
+          "exit_code": 0,
+          "output": "Success: no issues found in 30 source files\n"
+        },
+        {
+          "command": [
+            ".venv/bin/python",
+            "-m",
+            "jana_tools",
+            "eval",
+            "lock"
+          ],
+          "exit_code": 0,
+          "output": "eval lock: ok\n"
+        }
+      ]
+    },
+    "public_quality": {
+      "corpus_version": 4,
+      "expected_cases": 117,
+      "observed": 117,
+      "passed": 115,
+      "failed": [
+        "chm-equilibrium-flashcards",
+        "phy-motion-chat"
+      ],
+      "complete": true,
+      "requested_full_corpus": true,
+      "passed_gate": false,
+      "report": {
+        "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-approved-quality-full.json",
+        "sha256": "1d9d48a1464e1fcd38aeb3627398472826270a172bc31cf48b8a2bc635e2c450"
+      },
+      "corpus_sha256": "9fdcaab8313ad457ef7ba84c24466639aa9262dfca5cf16d8e29f02eedb5a025",
+      "independent_held_out_review": false
+    },
+    "last_complete_v3_correction_run": {
+      "observed": 114,
+      "passed": 112,
+      "failed": [
+        "unicode-chat",
+        "mth-probability-contradictory-draw-rule-chat"
+      ],
+      "complete": true,
+      "report": {
+        "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-quality-full.json",
+        "sha256": "8b062319df32147f661297b6af251a3217941e16a5da6b21d746a9cc43edf148"
+      },
+      "scope": "Historical observed run; retained without rescoring. Its Unicode chat source/question mismatch is documented by the v4 amendment."
+    },
+    "intermediate_v3_run": {
+      "observed": 114,
+      "passed": 109,
+      "failed": [
+        "bio-translation-audio-overview",
+        "bio-photosynthesis-summary",
+        "bio-photosynthesis-audio-overview",
+        "chm-structure-quiz",
+        "unicode-notes"
+      ],
+      "complete": true,
+      "report": {
+        "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-quality-full.json",
+        "sha256": "00110e96c9d747d883654e7e1c8fb02e2723752b476655f68bd7efbccc9f179c"
+      },
+      "scope": "Historical observed run; retained without rescoring. Its Unicode chat source/question mismatch is documented by the v4 amendment."
+    },
+    "unicode_stress_before_final_clarification": {
+      "passed": 12,
+      "report": {
+        "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-public-stress.json",
+        "sha256": "ffa5190f1a6d7f179b850afc07a99cecb7860de4078076a3a82f533a407e9a1a"
+      },
+      "source_bundle_sha256": "b0039d41b8bcec88176bfd6210a74b47c19ef9682b05c31a30ffb49f7aa4d075",
+      "qualifies_current_bundle": false
+    },
+    "upload_formats_before_final_clarification": {
+      "passed": 6,
+      "report": {
+        "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-uploads.json",
+        "sha256": "75df208afe83759c97ebbc502749ef0eacdd89b6f9ad349c0984f5b61142c61f"
+      },
+      "source_bundle_sha256": "b0039d41b8bcec88176bfd6210a74b47c19ef9682b05c31a30ffb49f7aa4d075",
+      "qualifies_current_bundle": false
+    },
+    "previous_blocked_v4_attempt": {
+      "corpus_version": 4,
+      "expected_cases": 117,
+      "observed": 1,
+      "passed": 0,
+      "failed": [
+        "bio-enzymes-notes"
+      ],
+      "complete": false,
+      "requested_full_corpus": true,
+      "passed_gate": false,
+      "blocked_by": "Configured $10 monthly Vertex spend cap is ENFORCED",
+      "report": {
+        "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-v4-quality-full.json",
+        "sha256": "079cea4476f1c7811f79cb35812b6b533b98b9ea500bfa980b256e535c9369cb"
+      },
+      "corpus_sha256": "9fdcaab8313ad457ef7ba84c24466639aa9262dfca5cf16d8e29f02eedb5a025",
+      "independent_held_out_review": false
+    },
+    "public_unicode_stress": {
+      "passed": 12,
+      "NFC": 6,
+      "NFD": 6,
+      "source_case": "undefined-v-flashcards",
+      "report": {
+        "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-v4-public-stress.json",
+        "sha256": "4ea50790596987970dad4b372202bd9408f347eef1aabd3d73a74934ce07fe01"
+      },
+      "source_bundle_sha256": "f0fb235807e70aace50144106bccb6e0345c9d68bb5b07a691b2dbcd8f976b76"
+    },
+    "public_uploads": {
+      "passed": 6,
+      "formats": [
+        "text",
+        "docx",
+        "pdf",
+        "photo-ocr",
+        "scanned-pdf-ocr",
+        "recording"
+      ],
+      "report": {
+        "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-approved-uploads.json",
+        "sha256": "6e1223fc2a53e0aa3972e25ca0d7f52118e819d85d29d478eeece38739fd9be1"
+      },
+      "source_bundle_sha256": "f0fb235807e70aace50144106bccb6e0345c9d68bb5b07a691b2dbcd8f976b76"
+    }
+  },
+  "failure_reproduction": {
+    "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/reproduced-refusal.json",
+    "sha256": "ee876fb23f55b2e72cccd2105cfdd8952427039f8d9e41171f257ac4670381cd"
+  },
+  "corpus_amendment": {
+    "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/unicode-fixture-amendment.json",
+    "sha256": "ddc4db51e301fffe7ba8c153c0e62d8c68c18b214d8b94de445c38745a900d30"
+  },
+  "prior_checks": {
+    "path": "scripts/governance/m42-probability-release-checks.json",
+    "sha256": "a37fde3ab8a6bd6fc21321abf61e49c56353b273e7303fd5acfcbf6efb29e2fd"
+  },
+  "independent_review_complete": false,
+  "budget": {
+    "normal_daily_usd": 2,
+    "temporary_qualification_ceilings_used_usd": [
+      6,
+      7,
+      8,
+      10
+    ],
+    "normal_restored": true,
+    "vertex_monthly_cap_usd": 20,
+    "vertex_monthly_cap_state": "CONFIGURED",
+    "monthly_cap_not_lifted": false,
+    "known_and_held_receipts": [
+      [
+        "completed",
+        1093,
+        5.241918,
+        0.0
+      ],
+      [
+        "failed",
+        168,
+        0.9838851,
+        0.0
+      ],
+      [
+        "reconciled",
+        7,
+        0.0,
+        0.0
+      ],
+      [
+        "reserved",
+        5,
+        0.0,
+        1.90240875
+      ]
+    ],
+    "known_token_price_ledger_usd": 6.2258031,
+    "held_usd": 1.90240875,
+    "all_uncertain_receipts_preserved": true,
+    "uncertain_receipts": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-holds-final.json",
+      "sha256": "153dec9503cae2708fd55d5c8a8067a3ce3e9ab8bc9d13028baad890ceeb9d0b"
+    },
+    "billing_note": "Cloud Billing uses gross estimated list costs excluding savings/credits; this is not the same measure as the gateway token-price ledger.",
+    "monthly_lift_only_for_approved_reconfiguration": true,
+    "approval": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-budget-authorization.json",
+      "sha256": "ebc6326019ef6e4cc7cef9a15f51a488239ec43e6f3b0f8670e3b2991ec54d3f"
+    }
+  },
+  "host_checks": {
+    "source_digests_match": true,
+    "no_swap": true,
+    "scratch_tmpfs": true,
+    "credential_mount_read_only": true,
+    "privacy": {
+      "synthetic_source_strings_checked": 42,
+      "persistent_files_checked": 4,
+      "source_body_found": false,
+      "scope": "Gateway persistent metadata only; raw and frozen/redacted NFC/NFD corpus sources."
+    },
+    "public_boundaries": {
+      "hostname": "staging-api.getjana.app",
+      "system_ca_verified": true,
+      "spki_sha256": "anjl0qoSsJRc6RBeee5IjYBdBKt704Z0bhvqAiWEtZk=",
+      "not_after": "2027-01-16T14:15:03+00:00",
+      "ping": 204,
+      "unauthenticated_study": 401,
+      "unqualified_tutor_route": 404,
+      "wrong_audience": 401,
+      "normal_spend_guard": 429,
+      "guard_code": "allowance_exhausted"
+    }
+  },
+  "remaining": [
+    "Resolve observed live quality failures and rerun the complete corpus: chm-equilibrium-flashcards, phy-motion-chat",
+    "Confirm production hostname (api.getjana.app proposed), London/EU deployment decision and authorise production provisioning; engineering will create the actual configuration, pins and deployment.",
+    "Actual production-project provider retention/abuse-monitoring confirmation, approved assessment/Safety lead records, public production trust hierarchy and content-HSM signature; owner approval is already recorded.",
+    "Installer signing/notarisation access and final signed Mac Apple Silicon/VoiceOver, Windows x64/NVDA including non-AVX2, and required Ubuntu/Debian device/model-class measurements.",
+    "Independent held-out content/safety review, including the probability expectation amendment and Unicode source-definition amendment, local reference models and OCR/ASR; human prompt snapshot reviews (60 pending).",
+    "Engineering after those inputs: actual production extraction costs, immutable SBOM/licence/source-offer provenance, exact production qualification and strict preflight."
+  ],
+  "release_handoff": "services/cloud-gateway/deploy/M42-RELEASE-HANDOFF.md",
+  "device_handoff": "scripts/packaging/M42-DEVICE-CHECKS.md",
+  "production_preflight": {
+    "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-production-preflight.json",
+    "sha256": "f3016ff972d5d42a70119ebc2e41bf90208858d51bfdeb1fa16c66770c9cce6b"
+  },
+  "evidence": {
+    "add-known-draft-repair.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/add-known-draft-repair.py",
+      "sha256": "6f52c10992ecc9e0a739ef26721691ff1fd585e47ee404b1c2a78774ba342037"
+    },
+    "approved-before-primary.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-before-primary.json",
+      "sha256": "2a8ee189c6952026b7afbbf591fc7283ed6d8363616149794d0bacd32f0d2493"
+    },
+    "approved-before-production-preflight.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-before-production-preflight.json",
+      "sha256": "9e99571f79b8f39af4e80a60046174c2687f10306fd54788a2d78bb3d203474f"
+    },
+    "approved-before-release-checks.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-before-release-checks.json",
+      "sha256": "be2eb2fbf0d2dbdb24977c3a46e155859d6d37464c76bd50768df52b63dfc361"
+    },
+    "approved-before-source-inputs.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-before-source-inputs.json",
+      "sha256": "8e2031548055943d070ff92a9ae30d2f4d4b5fbd3321def8c33fed6ef8f787f9"
+    },
+    "approved-before-staging.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-before-staging.json",
+      "sha256": "9b9edab5380b83ec40ef897b93d0411d27cf72f1101cc3a97f7ca9b282ffabe8"
+    },
+    "approved-boundaries.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-boundaries.json",
+      "sha256": "ad9724266669ac97ecad7fed5899c67f0e342e117c844bc38f24aa9ab2e710bf"
+    },
+    "approved-boundaries.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-boundaries.py",
+      "sha256": "c21b0afba13a7f961605ba18f64feda37b398f3d406f8374c7ef33c5d829c039"
+    },
+    "approved-budget-authorization.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-budget-authorization.json",
+      "sha256": "ebc6326019ef6e4cc7cef9a15f51a488239ec43e6f3b0f8670e3b2991ec54d3f"
+    },
+    "approved-budget-restored.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-budget-restored.json",
+      "sha256": "73d4f0e301ac4e30ded0025f929dd7539eda5abf431c1198ebf8af7894670396"
+    },
+    "approved-budget-restored.txt": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-budget-restored.txt",
+      "sha256": "88324bc3f66959b31eb5d23ee3c9157d4986b73996077e95996fd58d2872bb71"
+    },
+    "approved-budget-start.txt": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-budget-start.txt",
+      "sha256": "f3609a2afdd504350970d41f0d9f736ad38b7bc358eb8edb558481ddb28eb36d"
+    },
+    "approved-budget.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-budget.py",
+      "sha256": "723f0272b2bf8a8a1d55cb18501fef40d1ee9b8d7d994c20d37ade768ec4fe18"
+    },
+    "approved-holds-final.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-holds-final.json",
+      "sha256": "153dec9503cae2708fd55d5c8a8067a3ce3e9ab8bc9d13028baad890ceeb9d0b"
+    },
+    "approved-host-final.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-host-final.json",
+      "sha256": "027d8117d8c99cb54da7eff8b1b08c8c052993e0d5704772d858282c0cf58897"
+    },
+    "approved-monthly-cap.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-monthly-cap.py",
+      "sha256": "fb1623147ff3e20a8ef49dbae49431c316d1b8f36eacf9718e378dc84c89478d"
+    },
+    "approved-monthly-configure.jsonl": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-monthly-configure.jsonl",
+      "sha256": "c8ff8103e1ef46990c6fc4f45faf40dc3dee599f75d62d4bf69eebce5a34aabb"
+    },
+    "approved-monthly-final.jsonl": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-monthly-final.jsonl",
+      "sha256": "0e5bb55cc353de2eb6ca173caaea865008b51c09caffcc1abc8a61c401c03eb8"
+    },
+    "approved-monthly-lift.jsonl": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-monthly-lift.jsonl",
+      "sha256": "a96f7799f70230a4c8ec42e56502bc07f5c5c202b96dedfcd34f63e16ec153a5"
+    },
+    "approved-monthly-status.jsonl": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-monthly-status.jsonl",
+      "sha256": "7cad4ef86989582059db2408373f3d348ff2e723394f06961c0f1713a5ce5211"
+    },
+    "approved-monthly-verified.jsonl": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-monthly-verified.jsonl",
+      "sha256": "f3fc693e324d2c4d9538a85d08375471bd488a648885b9ea16a45ed8800f2402"
+    },
+    "approved-privacy.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-privacy.json",
+      "sha256": "bfca269ab7c61f98e1be5955f348442e7bc64ad5d1e64a8cf1120ffeab380767"
+    },
+    "approved-production-preflight.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-production-preflight.json",
+      "sha256": "f3016ff972d5d42a70119ebc2e41bf90208858d51bfdeb1fa16c66770c9cce6b"
+    },
+    "approved-quality-findings.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-quality-findings.json",
+      "sha256": "eebeeee2be2726ef997d43d20afe4d309e5b78c2104dd4f5970eddc4fa17ebad"
+    },
+    "approved-refusal-phases-midrun.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-refusal-phases-midrun.json",
+      "sha256": "caf11d3ba42d0988833f2a4da8e70db27f67fd291464fd5f8f950fa0b9e7a77a"
+    },
+    "approved-refusal-phases.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-refusal-phases.json",
+      "sha256": "3db071a47ae77f3b21611bacef6579416c5cf0736b5289f0ba0fd768dc373e3e"
+    },
+    "approved-restore-hook.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-restore-hook.py",
+      "sha256": "c756539fb1d4987d70070bf3cf058ea9986122e70831a582bf04360a55b182da"
+    },
+    "approved-restore-hook.txt": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-restore-hook.txt",
+      "sha256": "aa9a7c6335a0f3b04866eec236ad32bf82d1e84cf71e2bcd0bcd018f0aed5203"
+    },
+    "approved-source-inputs.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-source-inputs.json",
+      "sha256": "8d043d8fef799d10f5d364786f569a4272b6664cfa1ab9949e7a00e3ab42c35d"
+    },
+    "approved-spend-midrun.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-spend-midrun.json",
+      "sha256": "631bcb6c65225a0c9c20bdc22f0ce03de33c64f6a59339d8b977713db09aeba6"
+    },
+    "bundle-manifest-repair.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/bundle-manifest-repair.json",
+      "sha256": "4efa8dee03f29b3407d62aadf50deb4d67c5eb4367e980f5094024764606146e"
+    },
+    "bundle-manifest-v4.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/bundle-manifest-v4.json",
+      "sha256": "05de7dba6fb1a324dffd36a0155ec19b3e054ee65e462ddaef01bb865f60dac8"
+    },
+    "bundle-manifest.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/bundle-manifest.json",
+      "sha256": "e4c50814ae6591fbb3301ad28d2f94b40f8f30d24d679a53c7d1d8628f37f369"
+    },
+    "bundle-reproducibility-repair.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/bundle-reproducibility-repair.json",
+      "sha256": "46b79ba127be24e5413cfc54dcf3d74d83ed8b2468d22eb8dbb08d9ae9570713"
+    },
+    "bundle-reproducibility-v4.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/bundle-reproducibility-v4.json",
+      "sha256": "02a3c8325d3bd496c19bf4f18e22c62a398d8c68ee7f60302e99c75093e8afae"
+    },
+    "bundle-reproducibility.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/bundle-reproducibility.json",
+      "sha256": "ae4a6934604aae870edf8ec912db451b3afcf9b7c3bc5878ed6e07e92089777f"
+    },
+    "corpus-v3.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/corpus-v3.json",
+      "sha256": "52beeca249e1a66b20d19cf9fa886d51ba22e92037457b174c9c5b7fc6d0cf1d"
+    },
+    "corpus-v4.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/corpus-v4.json",
+      "sha256": "9fdcaab8313ad457ef7ba84c24466639aa9262dfca5cf16d8e29f02eedb5a025"
+    },
+    "flashcard-approved-quality-full.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-approved-quality-full.json",
+      "sha256": "1d9d48a1464e1fcd38aeb3627398472826270a172bc31cf48b8a2bc635e2c450"
+    },
+    "flashcard-approved-quality-full.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-approved-quality-full.xml",
+      "sha256": "b2e12995d56c3f7e68cd6b783e4d38905688b2325a0c679c6f4fa2fd9fec581f"
+    },
+    "flashcard-approved-uploads.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-approved-uploads.json",
+      "sha256": "6e1223fc2a53e0aa3972e25ca0d7f52118e819d85d29d478eeece38739fd9be1"
+    },
+    "flashcard-approved-uploads.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-approved-uploads.xml",
+      "sha256": "84b0db0890395ca9489be82271fc77cef1ee19ef6f8553a4480feef2aa4a85fa"
+    },
+    "flashcard-budget-start.txt": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-budget-start.txt",
+      "sha256": "da4fde25cc0fe226402d9e0b65639a7d4d22e51ae260a2d0eab9e6c0a32bf044"
+    },
+    "flashcard-budget.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-budget.py",
+      "sha256": "7dfebedcbab7cb0980bb4efe425b3ffbc4e5cfc52bf59b29271b5f5a8e49a423"
+    },
+    "flashcard-diagnostic.jsonl": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-diagnostic.jsonl",
+      "sha256": "39f487b12a9cb42607525161ed65a94ca49a7cb6b9d3c50fd310cad6188561d7"
+    },
+    "flashcard-diagnostic.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-diagnostic.py",
+      "sha256": "93b21a516286f670634588f9e8763b56b24c569821848c534a06f107d0ca1d3f"
+    },
+    "flashcard-diagnostic.stderr": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-diagnostic.stderr",
+      "sha256": "b5810ac7ca30f69c572c2a62d4e18b7e9a0965a63651d3efdee16eb28c748177"
+    },
+    "flashcard-gateway-final.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-gateway-final.xml",
+      "sha256": "c74e528e84e0d96c936b835ec8ed98819eeb92479964c89580fcddc812e58b8a"
+    },
+    "flashcard-gateway.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-gateway.xml",
+      "sha256": "93989cfe25fc25c70d6dd67865c026f565909dd37a537a3c5e3ec6b462b2b2ae"
+    },
+    "flashcard-holds-after-v4.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-holds-after-v4.json",
+      "sha256": "153dec9503cae2708fd55d5c8a8067a3ce3e9ab8bc9d13028baad890ceeb9d0b"
+    },
+    "flashcard-holds-before-v4.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-holds-before-v4.json",
+      "sha256": "f9218882d02457114fcb800d541522ea7dd7042af7cc5e0aed9280cfad0d5f66"
+    },
+    "flashcard-holds.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-holds.py",
+      "sha256": "ee3abc588e48a4c1a72d13c5e43cf07501ff018c5e54e3b49899ea096edc8c31"
+    },
+    "flashcard-provider-state.jsonl": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-provider-state.jsonl",
+      "sha256": "63f1c46485231b5b9f7421c95f2fce83ddb33a5e8d0502536ae0beb4c92c7fc9"
+    },
+    "flashcard-provider-state.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-provider-state.py",
+      "sha256": "7ebb6499adcaf13a6f8fcb77a644449f7c58d621d010b21e7b8d5b6bd6e3bbb3"
+    },
+    "flashcard-public-stress.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-public-stress.json",
+      "sha256": "8d0c6a63edb602e26ad03ff3e55080cf340bd5c90cb33a778c1c1706c52f7741"
+    },
+    "flashcard-public-stress.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-public-stress.py",
+      "sha256": "7ecaf42f7562d37861d68745442ff60eb886a1e12f7c78a011a928a05e22a6a7"
+    },
+    "flashcard-quality-full.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-quality-full.json",
+      "sha256": "00110e96c9d747d883654e7e1c8fb02e2723752b476655f68bd7efbccc9f179c"
+    },
+    "flashcard-quality-full.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-quality-full.xml",
+      "sha256": "1a024eaa893e72892b2210fb011ae8d42e64ff793433e9ab070b45be96bfd4d7"
+    },
+    "flashcard-refusal-phases.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-refusal-phases.json",
+      "sha256": "de967dd4ff6629c8cdf26e4889f3b448c99f9f54c25492dea0e4312ce31ea753"
+    },
+    "flashcard-refusal-phases.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-refusal-phases.py",
+      "sha256": "4fd66d0364f59a820a89701dc2ea957d8fa01177ae28e8c7f0557b878531fa86"
+    },
+    "flashcard-release.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-release.xml",
+      "sha256": "776bfe443a8ea3bede1430ccafdaecfaf19e4e278bd4d6360424914b9dd5e7af"
+    },
+    "flashcard-repair-boundaries.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-boundaries.json",
+      "sha256": "ad9724266669ac97ecad7fed5899c67f0e342e117c844bc38f24aa9ab2e710bf"
+    },
+    "flashcard-repair-boundaries.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-boundaries.py",
+      "sha256": "4a022ccb6863e572141a299cf435f4cf1eda1f934e5c5f67990ef9cc1be0681f"
+    },
+    "flashcard-repair-budget-final-start.txt": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-budget-final-start.txt",
+      "sha256": "e7ce6427f7bc9ee0d93147b64951464c3a144eb782d8c7720f4683c60a082afd"
+    },
+    "flashcard-repair-budget-restored.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-budget-restored.json",
+      "sha256": "73d4f0e301ac4e30ded0025f929dd7539eda5abf431c1198ebf8af7894670396"
+    },
+    "flashcard-repair-budget-restored.txt": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-budget-restored.txt",
+      "sha256": "88324bc3f66959b31eb5d23ee3c9157d4986b73996077e95996fd58d2872bb71"
+    },
+    "flashcard-repair-budget.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-budget.py",
+      "sha256": "8a01dfa1b2ec53d2cdf8bac74c65b03ead2b4793cf4ac7040a1e524f417e0398"
+    },
+    "flashcard-repair-deployment.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-deployment.json",
+      "sha256": "52db080317ef9cad1f5217e08ec723416d4dc5bbdd0d20d435a36445476e6d72"
+    },
+    "flashcard-repair-gateway-final.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-gateway-final.xml",
+      "sha256": "252e28f24f91bbb10a2d8d51ea1d912154e78943d1a079a73d48a87784fdc83d"
+    },
+    "flashcard-repair-gateway.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-gateway.xml",
+      "sha256": "1513ab20a0d976efff447b44acdf33f0b0a90fb931fac330db6238cf540f1102"
+    },
+    "flashcard-repair-host-final.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-host-final.json",
+      "sha256": "6e90866a0104f07e6e5c590ad1a5143aa6d83381f17408ff78a9857f1597efa7"
+    },
+    "flashcard-repair-privacy.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-privacy.json",
+      "sha256": "bfca269ab7c61f98e1be5955f348442e7bc64ad5d1e64a8cf1120ffeab380767"
+    },
+    "flashcard-repair-privacy.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-privacy.py",
+      "sha256": "ecc013e4a17b566c767f6c7648c93046740755f4d4f25b4912e71d9a3abb523e"
+    },
+    "flashcard-repair-protocol.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-protocol.xml",
+      "sha256": "c4462dd1733ddb161c1a9e8198d0ba20bf7d75b1892d62a03f652e6a914c0c79"
+    },
+    "flashcard-repair-public-stress.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-public-stress.json",
+      "sha256": "ffa5190f1a6d7f179b850afc07a99cecb7860de4078076a3a82f533a407e9a1a"
+    },
+    "flashcard-repair-public-stress.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-public-stress.py",
+      "sha256": "34770f83c792c35bd0eb494bcfcc70d04b89074a177096ab2ca5e8dc60fae694"
+    },
+    "flashcard-repair-quality-full.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-quality-full.json",
+      "sha256": "8b062319df32147f661297b6af251a3217941e16a5da6b21d746a9cc43edf148"
+    },
+    "flashcard-repair-quality-full.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-quality-full.xml",
+      "sha256": "8c2a5310f19c75e58e1ffaec89daaab8d8b4c53a11c039d886f8dda704acbc72"
+    },
+    "flashcard-repair-release.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-release.xml",
+      "sha256": "504c2ce279be7abbc6af1a5f45bf0928425ef63dc17be41e83d57098bb2cd236"
+    },
+    "flashcard-repair-restore-hook.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-restore-hook.py",
+      "sha256": "66ebbbe4c9c3eaa292011ee9bbf8b278e68db9a09d29f804feef6a13eefe989f"
+    },
+    "flashcard-repair-static.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-static.json",
+      "sha256": "b052ec95d2da6f50494f2134a15c230f80b9b32b5d6276345b5c2fb06b7bfb93"
+    },
+    "flashcard-repair-symbol-review.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-symbol-review.json",
+      "sha256": "af00f5d0cb52c792c68d25f248cff307e2a550e20027b84a3abcb27e924212ea"
+    },
+    "flashcard-repair-unit.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-unit.xml",
+      "sha256": "afe8467985fea545e7a55e220cd027e0f749da752111033d01b7a1c818a1859e"
+    },
+    "flashcard-repair-uploads.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-uploads.json",
+      "sha256": "75df208afe83759c97ebbc502749ef0eacdd89b6f9ad349c0984f5b61142c61f"
+    },
+    "flashcard-repair-uploads.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-repair-uploads.xml",
+      "sha256": "965ef64a546f1096570324b95cd417cb632c80f6072b52cf71764369bb9c6172"
+    },
+    "flashcard-restore-hook.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-restore-hook.py",
+      "sha256": "1b68760293bb263d4b7091b6c1188e665426805b3325a04554e7c4790faf7ef7"
+    },
+    "flashcard-spend-before-v4.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-spend-before-v4.json",
+      "sha256": "cce033acd4e45e1f143806f93d27e824d68d3ffdfc406a754a18b3f58ea022dd"
+    },
+    "flashcard-v4-budget-final-start.txt": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-v4-budget-final-start.txt",
+      "sha256": "c6ad55b2471f2f41d06ad81d7dcfde18e61bf2734dcdc16e9cee793a3eaa70d9"
+    },
+    "flashcard-v4-budget.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-v4-budget.py",
+      "sha256": "fa106bcde23925bbe5535097081ef034bb73158ebfa01632ea1be1b2a7206689"
+    },
+    "flashcard-v4-deployment.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-v4-deployment.json",
+      "sha256": "d735bf6e5cbf58c69a08e15b353081c402452a93b4032a82ef02d5abea5fb583"
+    },
+    "flashcard-v4-gateway.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-v4-gateway.xml",
+      "sha256": "765ac801feb36d7a6da5753caf1b7d93efdaece7fb63a76f130efc8930989e64"
+    },
+    "flashcard-v4-public-stress.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-v4-public-stress.json",
+      "sha256": "4ea50790596987970dad4b372202bd9408f347eef1aabd3d73a74934ce07fe01"
+    },
+    "flashcard-v4-public-stress.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-v4-public-stress.py",
+      "sha256": "75ab4c435967b0ca9629959cf6498e8ef025c35b114d36a4df7c93b4b0527a21"
+    },
+    "flashcard-v4-quality-full.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-v4-quality-full.json",
+      "sha256": "079cea4476f1c7811f79cb35812b6b533b98b9ea500bfa980b256e535c9369cb"
+    },
+    "flashcard-v4-quality-full.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-v4-quality-full.xml",
+      "sha256": "41f034f3a627cbe4cbc991fadb52fb29be031efb8d3b4552788e0baf3fac82bd"
+    },
+    "flashcard-v4-release.xml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-v4-release.xml",
+      "sha256": "deeb3e59d46a7369696ce89f0844019f7da1f16b2b92787ab7fa9700e42ba375"
+    },
+    "flashcard-v4-restore-hook.py": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-v4-restore-hook.py",
+      "sha256": "4d0528161f00cb9867160e535210f492be1c6203d75f3db1466a77f51ec3bcb1"
+    },
+    "flashcard-v4-static.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-v4-static.json",
+      "sha256": "405b90a413e1e9a76f8ca91d517104ad3049055b7d9f5a3cb36902e9a95404ca"
+    },
+    "gateway-repair.toml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/gateway-repair.toml",
+      "sha256": "1af898c081921727e93b1331a47f70266ff045897a7dd0b6dc37fffdf6282086"
+    },
+    "gateway-v4.toml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/gateway-v4.toml",
+      "sha256": "1af898c081921727e93b1331a47f70266ff045897a7dd0b6dc37fffdf6282086"
+    },
+    "gateway.toml": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/gateway.toml",
+      "sha256": "1af898c081921727e93b1331a47f70266ff045897a7dd0b6dc37fffdf6282086"
+    },
+    "m42-probability-release-checks-before.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/m42-probability-release-checks-before.json",
+      "sha256": "a37fde3ab8a6bd6fc21321abf61e49c56353b273e7303fd5acfcbf6efb29e2fd"
+    },
+    "m42-release-candidate-before.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/m42-release-candidate-before.json",
+      "sha256": "4d1d87e6ce02d67b17592e24ab853c8092ab7944d6862bb6c7b5dae48c5f4f2f"
+    },
+    "m42-release-verification-before.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/m42-release-verification-before.json",
+      "sha256": "17f26b53b7669e362917c4b342cb00435802cb2a6642450899e736246af7d9ad"
+    },
+    "m42-staging-deployment-before.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/m42-staging-deployment-before.json",
+      "sha256": "79c90142b5bf1f8cbf07647c08d4ec8b504ac7cbf297ea934f7fe47a1c0f3bd2"
+    },
+    "production-preflight.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/production-preflight.json",
+      "sha256": "9e99571f79b8f39af4e80a60046174c2687f10306fd54788a2d78bb3d203474f"
+    },
+    "provider-cap-blocker.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/provider-cap-blocker.json",
+      "sha256": "3ecee0c6a1c9a916a3b5ecb2299111cc2ff1d4c2ac3a8a0a48bd489cd9bcb31a"
+    },
+    "reproduced-refusal.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/reproduced-refusal.json",
+      "sha256": "ee876fb23f55b2e72cccd2105cfdd8952427039f8d9e41171f257ac4670381cd"
+    },
+    "requirements-repair.txt": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/requirements-repair.txt",
+      "sha256": "ac1f1b69cd2583a4e4e6cbf6d0e8c37ea7de45d8c2cd5859c2360a7a8e2defec"
+    },
+    "requirements-v4.txt": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/requirements-v4.txt",
+      "sha256": "ac1f1b69cd2583a4e4e6cbf6d0e8c37ea7de45d8c2cd5859c2360a7a8e2defec"
+    },
+    "requirements.txt": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/requirements.txt",
+      "sha256": "ac1f1b69cd2583a4e4e6cbf6d0e8c37ea7de45d8c2cd5859c2360a7a8e2defec"
+    },
+    "source-inputs.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/source-inputs.json",
+      "sha256": "8e2031548055943d070ff92a9ae30d2f4d4b5fbd3321def8c33fed6ef8f787f9"
+    },
+    "unicode-fixture-amendment.json": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/unicode-fixture-amendment.json",
+      "sha256": "ddc4db51e301fffe7ba8c153c0e62d8c68c18b214d8b94de445c38745a900d30"
+    }
+  },
+  "provider_cap_before_approved_change": {
+    "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/provider-cap-blocker.json",
+    "sha256": "3ecee0c6a1c9a916a3b5ecb2299111cc2ff1d4c2ac3a8a0a48bd489cd9bcb31a"
+  },
+  "provider_cap": {
+    "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-monthly-final.jsonl",
+    "sha256": "0e5bb55cc353de2eb6ca173caaea865008b51c09caffcc1abc8a61c401c03eb8"
+  },
+  "prior_blocked_record": {
+    "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/approved-before-release-checks.json",
+    "sha256": "be2eb2fbf0d2dbdb24977c3a46e155859d6d37464c76bd50768df52b63dfc361"
+  }
+}

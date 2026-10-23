@@ -1,0 +1,92 @@
+id: itm.acc.o.partnerships.0011
+version: 0.1.1
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.partnerships.partnership_agreement
+stem: Partners are writing a partnership agreement.
+parts:
+- id: a
+  prompt: Select all the things it usually covers.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: The profit-sharing ratio
+      correct: true
+    - id: B
+      text: Interest on capital
+      correct: true
+    - id: C
+      text: Partners' salaries
+      correct: true
+    - id: D
+      text: Interest on drawings
+      correct: true
+    - id: E
+      text: The business's opening hours
+      correct: false
+    - id: F
+      text: Customers' credit limits
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The agreement is about each partner's rights in the business.
+  - rung: 2
+    name: concept
+    text:
+      en: Profit shares, interest on capital, salaries and interest on drawings are typical terms.
+  - rung: 3
+    name: first_step
+    text:
+      en: Day-to-day running is not part of it.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the four profit-sharing terms.
+  - rung: 5
+    name: full_step
+    text:
+      en: Ratio, interest on capital, salaries and interest on drawings.
+  misconception_ids:
+  - mc.acc.o.pa_agreement_scope
+solution:
+  steps:
+  - n: 1
+    latex: \text{Ratio, interest on capital, salaries, interest on drawings}
+    reason: Typical terms
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

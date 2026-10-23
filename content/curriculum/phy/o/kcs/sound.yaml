@@ -1,0 +1,161 @@
+- id: kc.phy.o.sound.sound_waves
+  code: PHY-O-03.04.K01
+  node_id: cur.phy.o.waves.sound
+  statement: Describe sound as a longitudinal wave of compressions and rarefactions that needs a medium
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.237
+  prerequisites:
+  - kc_id: kc.phy.o.wave_properties.transverse_and_longitudinal
+    strength: required
+  misconception_ids:
+  - mc.phy.o.compression_rarefaction_as_wavelength
+  - mc.phy.o.compression_rarefaction_swapped
+  - mc.phy.o.compressions_counted_not_gaps
+  - mc.phy.o.longitudinal_means_long
+  - mc.phy.o.medium_stays_still
+  - mc.phy.o.radio_is_sound
+  - mc.phy.o.rarefaction_is_empty
+  - mc.phy.o.sound_called_transverse
+  - mc.phy.o.sound_speed_media_order
+  - mc.phy.o.sound_speed_same_everywhere
+  - mc.phy.o.sound_travels_in_vacuum
+  - mc.phy.o.vacuum_stops_source
+  - mc.phy.o.vibration_direction_swapped
+  - mc.phy.o.wave_carries_medium
+  skill_ids:
+  - phy-o-sound
+  glossary:
+  - longitudinal
+  - longitudinal wave
+  - compression
+  - rarefaction
+  - medium
+  - vibration
+  - vibrate
+  - vacuum
+  - sound wave
+  difficulty_prior: -0.5
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.sound.speed_and_echoes
+  code: PHY-O-03.04.K02
+  node_id: cur.phy.o.waves.sound
+  statement: Calculate the speed of sound or a distance from an echo, allowing for the journey there and back
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.316
+  prerequisites:
+  - kc_id: kc.phy.o.sound.sound_waves
+    strength: required
+  - kc_id: kc.phy.o.motion.average_speed
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.direct_sound_factor_two
+  - mc.phy.o.echo_halving_misapplied
+  - mc.phy.o.echo_not_halved
+  - mc.phy.o.echo_times_subtracted
+  - mc.phy.o.only_far_echo_used
+  - mc.phy.o.speed_as_distance_times_time
+  - mc.phy.o.speed_divided_by_time
+  - mc.phy.o.time_over_distance
+  skill_ids:
+  - phy-o-sound
+  glossary:
+  - echo
+  - speed of sound
+  - reflection
+  - reflect
+  - sound wave
+  difficulty_prior: 0.1
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.sound.pitch_and_loudness
+  code: PHY-O-03.04.K03
+  node_id: cur.phy.o.waves.sound
+  statement: Relate pitch to frequency and loudness to amplitude, and recall the range of human hearing
+  kind: conceptual
+  tools:
+  - math_solve
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.237
+  prerequisites:
+  - kc_id: kc.phy.o.sound.sound_waves
+    strength: required
+  - kc_id: kc.phy.o.wave_properties.describing_waves
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.hearing_limit_wrong
+  - mc.phy.o.higher_pitch_travels_faster
+  - mc.phy.o.inaudible_means_too_quiet
+  - mc.phy.o.loudness_from_frequency
+  - mc.phy.o.period_frequency_confused
+  - mc.phy.o.pitch_from_amplitude
+  - mc.phy.o.ultrasound_infrasound_swapped
+  - mc.phy.o.ultrasound_means_loud
+  - mc.phy.o.wave_equation_multiplied
+  - mc.phy.o.wave_prefix_ignored
+  - mc.phy.o.wave_equation_inverted
+  skill_ids:
+  - phy-o-sound
+  glossary:
+  - pitch
+  - loudness
+  - frequency
+  - amplitude
+  - hertz
+  - kilohertz
+  - range of human hearing
+  - vibration
+  - audible
+  - oscilloscope
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.sound.ultrasound
+  code: PHY-O-03.04.K04
+  node_id: cur.phy.o.waves.sound
+  statement: Explain uses of ultrasound and calculate depths and distances from ultrasound echoes
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.211
+  prerequisites:
+  - kc_id: kc.phy.o.sound.speed_and_echoes
+    strength: required
+  - kc_id: kc.phy.o.sound.pitch_and_loudness
+    strength: required
+  misconception_ids:
+  - mc.phy.o.echo_halving_misapplied
+  - mc.phy.o.echo_not_halved
+  - mc.phy.o.frequency_wavelength_rise_together
+  - mc.phy.o.hearing_limit_wrong
+  - mc.phy.o.higher_pitch_travels_faster
+  - mc.phy.o.inaudible_means_too_quiet
+  - mc.phy.o.sound_called_transverse
+  - mc.phy.o.speed_divided_by_time
+  - mc.phy.o.ultrasound_air_speed_used
+  - mc.phy.o.ultrasound_infrasound_swapped
+  - mc.phy.o.ultrasound_ionising
+  - mc.phy.o.ultrasound_is_em
+  - mc.phy.o.ultrasound_means_loud
+  - mc.phy.o.ultrasound_shadow_image
+  - mc.phy.o.wave_prefix_ignored
+  skill_ids:
+  - phy-o-sound
+  glossary:
+  - ultrasound
+  - frequency
+  - echo
+  - hertz
+  - kilohertz
+  - sonar
+  - pulse
+  - boundary
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active

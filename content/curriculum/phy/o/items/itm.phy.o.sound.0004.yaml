@@ -1,0 +1,96 @@
+id: itm.phy.o.sound.0004
+version: 0.1.2
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.sound.sound_waves
+stem: A worker strikes one end of a steel railway line 1200 m long. A sensor at the far end picks up the sound through the steel 0.2 s later.
+parts:
+- id: a
+  prompt: Calculate the speed of sound in steel.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '6000'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_snd_0004_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The sound travels along the rail once, from one end to the other.
+  - rung: 2
+    name: concept
+    text:
+      en: Speed = distance ÷ time.
+  - rung: 3
+    name: first_step
+    text:
+      en: The distance is 1200 m and the time is 0.2 s.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 1200 ÷ 0.2.
+  - rung: 5
+    name: full_step
+    text:
+      en: v = 6000 m/s, much faster than in air.
+  misconception_ids:
+  - mc.phy.o.time_over_distance
+  - mc.phy.o.direct_sound_factor_two
+solution:
+  steps:
+  - n: 1
+    latex: v = \frac{d}{t} = \frac{1200}{0.2} = 6000\ \text{m/s}
+    reason: Speed = distance ÷ time
+    check_id: chk_build_phy_snd_0004_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  d: '1200'
+  t: '0.2'
+checks:
+  chk_build_phy_snd_0004_ans:
+    args:
+      expression: 1200/0.2
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

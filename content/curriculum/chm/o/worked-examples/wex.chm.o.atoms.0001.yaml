@@ -1,0 +1,64 @@
+id: wex.chm.o.atoms.0001
+kc_ids:
+- kc.chm.o.atoms.element_compound_mixture
+problem: Iron filings and sulfur powder are mixed, then heated to form iron(II) sulfide, FeS. Classify the substance before and after heating, and find the relative formula mass of the product.
+steps:
+- n: 1
+  latex: '\text{Fe} + \text{S (mixed)}: \text{mixture}'
+  reason: Not joined; a magnet removes the iron
+- n: 2
+  latex: '\text{FeS}: \text{compound}'
+  reason: Elements bonded in a fixed ratio
+- n: 3
+  latex: M_r(\text{FeS}) = 56 + 32
+  reason: Add the relative atomic masses
+  check_id: chk_build_chm_atoms_w0001_s3
+final_answer:
+  latex: M_r(\text{FeS}) = 88
+  check_id: chk_build_chm_atoms_w0001_mr
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_atoms_w0001_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_s
+      formula: FeS
+    tool: chem_molar_mass
+  chk_build_chm_atoms_w0001_s3:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_s
+      expression: ar_fe + ar_s
+      variables:
+      - ar
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

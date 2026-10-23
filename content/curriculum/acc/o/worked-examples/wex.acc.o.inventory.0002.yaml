@@ -1,0 +1,81 @@
+id: wex.acc.o.inventory.0002
+kc_ids:
+- kc.acc.o.inventory.fifo
+problem: 'A shop: opening inventory 30 items at $14 each; then bought 50 at $15 each; then sold 40; then bought 30 at $17 each; then sold 20. Value the closing inventory by FIFO.'
+steps:
+- n: 1
+  latex: '\text{FIFO: the goods left are the latest bought}'
+  reason: Oldest goods go first
+  check_id: chk_build_acc_inventory_w0002_t
+- n: 2
+  latex: \text{Units left} = (30 + 50 + 30) - (40 + 20) = 50
+  reason: In less out
+  check_id: chk_build_acc_inventory_w0002_s2
+- n: 3
+  latex: \text{From the older batch} = 50 - (30) = 20
+  reason: The rest come from the batch before
+  check_id: chk_build_acc_inventory_w0002_s3
+- n: 4
+  latex: \text{Closing} = 20 \times 15 + 30 \times 17 = 810
+  reason: Value the remaining layers
+  check_id: chk_build_acc_inventory_w0002_a
+final_answer:
+  latex: \$\,810
+  check_id: chk_build_acc_inventory_w0002_a
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_inventory_w0002_a:
+    args:
+      dp: 2
+      expression: 20 * 15 + 30 * 17
+    tool: math_evaluate
+  chk_build_acc_inventory_w0002_s2:
+    args:
+      dp: 4
+      expression: (30 + 50 + 30) - (40 + 20)
+    tool: math_evaluate
+  chk_build_acc_inventory_w0002_s3:
+    args:
+      dp: 4
+      expression: (30 + 50 + 30) - (40 + 20) - (30)
+    tool: math_evaluate
+  chk_build_acc_inventory_w0002_t:
+    args:
+      dp: 2
+      method: fifo
+      movements:
+      - kind: opening
+        quantity: 30
+        unit_cost: '14'
+      - kind: receipt
+        quantity: 50
+        unit_cost: '15'
+      - kind: issue
+        quantity: 40
+      - kind: receipt
+        quantity: 30
+        unit_cost: '17'
+      - kind: issue
+        quantity: 20
+    tool: acc_inventory
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

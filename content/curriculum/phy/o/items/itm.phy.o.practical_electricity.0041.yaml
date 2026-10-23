@@ -1,0 +1,93 @@
+id: itm.phy.o.practical_electricity.0041
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+stem: A fault trips the circuit breaker for a kitchen. The fault is then found and repaired.
+parts:
+- id: a
+  prompt: What is done with the circuit breaker?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It is thrown away, because its wire has melted
+      correct: false
+      misconception_id: mc.phy.o.breaker_must_be_replaced
+      feedback: A circuit breaker is a switch that opens automatically. Once the fault is fixed, it is simply reset.
+    - id: B
+      text: It is reset by moving its switch back
+      correct: true
+    - id: C
+      text: It is swapped for one with a higher rating so it trips less
+      correct: false
+      misconception_id: mc.phy.o.fuse_largest_always_safest
+      feedback: A fuse rated far above the working current would let a fault current overheat the cable before it melted. Choose the smallest rating just above the normal current.
+    - id: D
+      text: It is moved into the neutral wire
+      correct: false
+      misconception_id: mc.phy.o.fuse_in_neutral_wire
+      feedback: Fuses and switches go in the live wire, so when they open the appliance is cut off from the high voltage.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what each wire or device is for.
+  - rung: 2
+    name: concept
+    text:
+      en: Live is at a high voltage, neutral stays near 0 V, and earth carries current only in a fault.
+  - rung: 3
+    name: first_step
+    text:
+      en: A fuse or switch must cut the appliance off from the high voltage when it opens.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that mix up the jobs of the different wires and devices.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: it is reset by moving its switch back.'
+  misconception_ids:
+  - mc.phy.o.breaker_must_be_replaced
+  - mc.phy.o.fuse_in_neutral_wire
+  - mc.phy.o.fuse_largest_always_safest
+solution:
+  steps:
+  - n: 1
+    latex: \text{It is reset by moving its switch back}
+    reason: Match each wire and device to its job
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.gpe_heights_added
+kc_ids:
+- kc.phy.o.energy.potential_energy
+student_name: Adding the two heights
+description: Adds the starting and final heights when it should subtract them to find the change in height.
+signatures:
+- kind: step_error
+  error_category: sign
+fix:
+  strategy: diagram
+  text:
+    en: Moving from a 1 m table to a 3 m shelf raises an object 2 m, not 4 m. Subtract the lower height from the higher one.
+probe_item_ids:
+- itm.phy.o.energy.0043
+- itm.phy.o.energy.0031
+- itm.phy.o.energy.0034
+- itm.phy.o.energy.0037
+- itm.phy.o.energy.0040
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

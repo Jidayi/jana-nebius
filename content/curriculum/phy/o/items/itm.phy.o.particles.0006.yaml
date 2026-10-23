@@ -1,0 +1,81 @@
+id: itm.phy.o.particles.0006
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.states_of_matter
+stem: A flask holds 2400 cm³ of argon gas at 20 °C, which has a density of 1.66 kg/m³. All of it condenses into liquid argon, of density 1400 kg/m³.
+parts:
+- id: a
+  prompt: Find the volume of the liquid formed.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '2.85'
+    unit: cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_ptc_0006_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Condensing does not change the number of particles, so the mass stays the same.
+  - rung: 2
+    name: concept
+    text:
+      en: The particles end up nearly touching, so the liquid takes up far less room.
+  - rung: 3
+    name: first_step
+    text:
+      en: Volume is inversely proportional to density for a fixed mass.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply 2400 cm³ by 1.66 ÷ 1400.
+  - rung: 5
+    name: full_step
+    text:
+      en: The liquid has a volume of 2.85 cm³.
+solution:
+  steps:
+  - n: 1
+    latex: V_{liquid} = V_{gas} \times \frac{\rho_{gas}}{\rho_{liquid}} = 2400 \times \frac{1.66}{1400} = 2.85\ \text{cm}^3
+    reason: The mass is the same; the particles are just much closer together
+    check_id: chk_build_phy_ptc_0006_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ptc_0006_ans:
+    args:
+      expression: 2400*1.66/1400
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

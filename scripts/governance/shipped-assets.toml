@@ -1,0 +1,76 @@
+# Fonts, icons, data sets and models shipped with a release (OPS-36). Every shipped asset needs an entry: its licence
+# as the publisher states it, any use restriction, and a review of that restriction for use with minors (PLT-10).
+# A release is blocked when a shipped asset has no entry, or has a use restriction without `reviewed_for_minors = true`
+# (set only by the Safety lead after a review).
+
+[[asset]]
+kind = "font"
+name = "@fontsource/noto-sans"
+licence = "OFL-1.1"
+source = "package LICENSE (Noto Project Authors)"
+restrictions = "none"  # the OFL limits selling the font alone and reusing reserved names; no limit on use
+
+# The D89 brand faces (DSN-06), bundled as copies of the Fontsource variable packages' files: the LICENSE of each sits
+# beside its files in packages/ui/assets/fonts, and vendored.json records their hashes.
+[[asset]]
+kind = "font"
+name = "@fontsource-variable/funnel-sans"
+licence = "OFL-1.1"
+source = "package LICENSE (The Funnel Project Authors), copied to packages/ui/assets/fonts/funnel-sans/LICENSE"
+restrictions = "none"  # the OFL limits selling the font alone and reusing reserved names; no limit on use
+
+[[asset]]
+kind = "font"
+name = "@fontsource-variable/funnel-display"
+licence = "OFL-1.1"
+source = "package LICENSE (The Funnel Project Authors), copied to packages/ui/assets/fonts/funnel-display/LICENSE"
+restrictions = "none"  # the OFL limits selling the font alone and reusing reserved names; no limit on use
+
+[[asset]]
+kind = "font"
+name = "@fontsource-variable/geist-mono"
+licence = "OFL-1.1"
+source = "package LICENSE (The Geist Project Authors), copied to packages/ui/assets/fonts/geist-mono/LICENSE"
+restrictions = "none"  # the OFL limits selling the font alone and reusing reserved names; no limit on use
+
+[[asset]]
+kind = "font"
+name = "katex"
+licence = "MIT"
+source = "package LICENSE (Khan Academy and contributors); covers the bundled KaTeX fonts"
+restrictions = "none"
+
+[[asset]]
+kind = "icons"
+name = "lucide-react"
+licence = "ISC"
+source = "package licence field"
+restrictions = "none"
+
+# Data sets.
+
+[[asset]]
+kind = "data"
+name = "ciaaw-abridged-standard-atomic-weights"
+licence = "not applicable: factual values (no text or layout copied)"
+source = "IUPAC CIAAW abridged standard atomic weights (2021), re-keyed by hand into services/tool-worker/tool_worker/functions/elements.py as the chemistry checkers' default table (VER-18)"
+restrictions = "none"
+
+# Models: entries for the D58 candidates downloaded for the M7 bake-off. The licence is the text the model
+# distribution carries (`ollama show --license`), hashed so the bake-off report can show it was re-read (EVL-15).
+# The other candidates get entries when they are downloaded. S1 ships no model pack; model licences are part of the
+# release record from S2 (OPS-36, PLT-10).
+
+[[asset]]
+kind = "model"
+name = "qwen3-vl-8b"
+licence = "Apache-2.0"
+source = "model card of huggingface.co/Qwen/Qwen3-VL-8B-Instruct-GGUF (license: apache-2.0); files Qwen3VL-8B-Instruct-Q4_K_M.gguf sha256 67d1659bfe71b89d50b45a4ad1a9e5b997e5bb16ce5da66a6a6167abd569e9e2 and mmproj-Qwen3VL-8B-Instruct-Q8_0.gguf sha256 c6ba85508d82f42590e6eb77d5340369ab6fecf107a7561d809523d8aa5f3bfd"
+restrictions = "none"
+
+[[asset]]
+kind = "model"
+name = "gemma-4-12b"
+licence = "Apache-2.0"
+source = "licence text of the gemma4:12b-it-q4_K_M distribution; sha256 809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+restrictions = "none"

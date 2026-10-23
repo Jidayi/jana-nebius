@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jana</title>
+  <link rel="stylesheet" href="/vendor/katex/katex.min.css" />
+  <link rel="stylesheet" href="/style.css" />
+  <script src="/vendor/katex/katex.min.js"></script>
+  <script src="/vendor/marked/marked.umd.js"></script>
+  <script src="/vendor/function-plot/function-plot.js"></script>
+</head>
+<body>
+  <aside id="sidebar">
+    <div class="brand"><span class="logo">∑</span> Jana</div>
+    <button id="newChat" class="primary wide">+ New problem</button>
+    <div class="side-label">Recent chats</div>
+    <ul id="chatList"></ul>
+    <div class="side-foot">
+      <label class="side-label" for="modelSelect">Model</label>
+      <select id="modelSelect"></select>
+      <div id="modelCaps" class="caps"></div>
+      <div id="status" class="status"></div>
+    </div>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <button id="toggleSidebar" class="icon" title="Chats">☰</button>
+      <nav id="subjects" class="subjects"></nav>
+      <nav id="levels" class="subjects levels"></nav>
+    </header>
+
+    <section id="thread">
+      <div id="hero" class="hero">
+        <h1>Your personal <span id="heroSubject">math</span> solver</h1>
+        <p>Step-by-step solutions, graphs and practice quizzes, running entirely on this computer.<br/>Type a question, or drop / paste a photo of your homework.</p>
+        <div id="examples" class="examples"></div>
+      </div>
+    </section>
+
+    <form id="composer" autocomplete="off">
+      <div id="attachments" class="attachments"></div>
+      <div id="symbolBar" class="symbol-bar" hidden></div>
+      <div class="input-row">
+        <button type="button" id="attachBtn" class="icon" title="Attach photo">📷</button>
+        <button type="button" id="symbolsBtn" class="icon" title="Math input">√x</button>
+        <textarea id="input" rows="1" placeholder="Type your question here…"></textarea>
+        <button type="submit" id="sendBtn" class="primary">Solve</button>
+      </div>
+      <input type="file" id="fileInput" accept="image/*" multiple hidden />
+      <div class="disclaimer">Runs locally via Ollama. AI can make mistakes — double-check important steps.</div>
+    </form>
+  </main>
+
+  <div id="dropOverlay" hidden>Drop your problem photo</div>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+{
+  "rows": [
+    [
+      "18/10/2026",
+      "Equipment",
+      "FA1",
+      "$5,000.00",
+      ""
+    ],
+    [
+      "",
+      "Cash",
+      "C1",
+      "",
+      "$2,500.00"
+    ],
+    [
+      "",
+      "Payables",
+      "P1",
+      "",
+      "$2,500.00"
+    ]
+  ],
+  "block": {
+    "type": "ledger_table",
+    "template": "journal",
+    "columns": [
+      "Date",
+      "Particulars",
+      "Folio",
+      "Dr",
+      "Cr"
+    ],
+    "rows": [
+      [
+        "18/10/2026",
+        "Equipment",
+        "FA1",
+        "$5,000.00",
+        ""
+      ],
+      [
+        "",
+        "Cash",
+        "C1",
+        "",
+        "$2,500.00"
+      ],
+      [
+        "",
+        "Payables",
+        "P1",
+        "",
+        "$2,500.00"
+      ]
+    ],
+    "text_fallback": "Date | Particulars | Folio | Dr | Cr\n18/10/2026 | Equipment | FA1 | $5,000.00 | \n | Cash | C1 |  | $2,500.00\n | Payables | P1 |  | $2,500.00"
+  },
+  "entries": [
+    {
+      "date": "18/10/2026",
+      "lines": [
+        {
+          "account": "Equipment",
+          "label": "Equipment",
+          "side": "debit",
+          "amount": "5000.00"
+        },
+        {
+          "account": "Cash",
+          "label": "Cash",
+          "side": "credit",
+          "amount": "2500.00"
+        },
+        {
+          "account": "Payables",
+          "label": "Payables",
+          "side": "credit",
+          "amount": "2500.00"
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "dr": "5000",
+    "cr": "5000",
+    "currency": "USD"
+  }
+}

@@ -1,0 +1,112 @@
+id: itm.mth.o.coordinate_geometry.0011
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.coordinate_geometry.points_on_lines
+stem: The point (h, -10) lies on the line $y = -2x - 4$.
+parts:
+- id: a
+  prompt: Find h.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '16'
+      correct: false
+      misconception_id: mc.mth.o.coordinates_swapped
+      feedback: 'A point is written (x, y): along first, then up.'
+    - id: B
+      text: '7'
+      correct: false
+      misconception_id: mc.mth.o.rearrange_inverse_sign
+      feedback: 'Do the same to both sides: to remove + u, subtract u from both sides.'
+    - id: C
+      text: '9'
+      correct: false
+      misconception_id: mc.mth.o.equation_divide_first
+      feedback: 'Undo in reverse order: the + b was done last, so remove it first, then divide by a.'
+    - id: D
+      text: '3'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: This time you know y and want x.
+  - rung: 2
+    name: concept
+    text:
+      en: Put the y-coordinate into the equation and solve for x.
+  - rung: 3
+    name: first_step
+    text:
+      en: -10 = -2x - 4.
+  - rung: 4
+    name: worked_step
+    text:
+      en: -2x = -6.
+  - rung: 5
+    name: full_step
+    text:
+      en: h = 3.
+  misconception_ids:
+  - mc.mth.o.coordinates_swapped
+  - mc.mth.o.equation_divide_first
+  - mc.mth.o.rearrange_inverse_sign
+solution:
+  steps:
+  - n: 1
+    latex: -10 = -2x - 4
+    reason: Substitute y
+  - n: 2
+    latex: -2x = -6
+    reason: Rearrange
+    check_id: chk_build_mth_crd_0011_s
+  - n: 3
+    latex: h = 3
+    reason: Divide by -2
+    check_id: chk_build_mth_crd_0011_ans
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_crd_0011_ans:
+    args:
+      equations:
+      - -10 = -2*x + (-4)
+      unknowns:
+      - x
+    tool: math_solve
+  chk_build_mth_crd_0011_s:
+    args:
+      expression: -10 - (-4)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

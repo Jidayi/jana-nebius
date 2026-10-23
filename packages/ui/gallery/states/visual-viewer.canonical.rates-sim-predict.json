@@ -1,0 +1,136 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.rates-sim-predict",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "A reaction rate simulation at 293 K with a reactant concentration of 0.5 mol per cubic decimetre. It runs after you predict, so the result is not given here."
+    },
+    "computed": {
+      "alt": {
+        "concentration": "0.5",
+        "k": "0.00999",
+        "temperature": "293",
+        "time": "1380"
+      },
+      "check_ids": [
+        "chk_build_fx_rates_sim_predict_1",
+        "chk_build_fx_rates_sim_predict_2",
+        "chk_build_fx_rates_sim_predict_3"
+      ],
+      "labels": {
+        "end.time": "1380",
+        "out.product": "0",
+        "out.rate": "0.00500",
+        "out.rate_constant": "0.00999"
+      },
+      "parts": [
+        {
+          "id": "ctrl.temperature",
+          "label": "temperature",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.concentration",
+          "label": "concentration",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.catalyst",
+          "label": "catalyst",
+          "role": "control"
+        },
+        {
+          "id": "out.rate_constant",
+          "label": "rate constant",
+          "role": "readout"
+        },
+        {
+          "id": "out.rate",
+          "label": "rate",
+          "role": "readout"
+        },
+        {
+          "id": "out.product",
+          "label": "product",
+          "role": "readout"
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_rates_sim_predict_1",
+      "chk_build_fx_rates_sim_predict_2",
+      "chk_build_fx_rates_sim_predict_3"
+    ],
+    "params": {
+      "activation_energy_j_mol": 50000,
+      "catalysed_activation_energy_j_mol": 35000,
+      "concentration_mol_l": 0.5,
+      "locked": [
+        "concentration",
+        "catalyst"
+      ],
+      "pre_exponential_s": 8200000,
+      "predict": "poe.chm.rates_hotter_same_amount.v1",
+      "temperature_k": 293
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ctrl.temperature",
+        "name": "temperature",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.concentration",
+        "name": "concentration",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.catalyst",
+        "name": "catalyst",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "out.rate_constant",
+        "name": "rate constant",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.rate",
+        "name": "rate",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.product",
+        "name": "product",
+        "role": "readout"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:6a9f65f0fa5317907750e7b2b2b94c4a054abd60e9219ecf1a4d008ef079e256",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "rates_sim",
+    "visual_id": "vis_AZ5GTKQGQG7JJSCA5AX091YFTD"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: rates sim predict (shown labels)",
+  "variant": "rates-sim-predict"
+}

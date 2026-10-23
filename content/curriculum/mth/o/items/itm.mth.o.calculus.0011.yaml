@@ -1,0 +1,110 @@
+id: itm.mth.o.calculus.0011
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.calculus.differentiate_powers
+stem: A curve has equation $y = 4x^2 + 4x$.
+parts:
+- id: a
+  prompt: Find the gradient of the curve at the point where x = -2.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '-4'
+      correct: false
+      misconception_id: mc.mth.o.derivative_power_not_brought_down
+      feedback: 'Bring the power down as a multiplier, then reduce it by one: x³ becomes 3x².'
+    - id: B
+      text: '24'
+      correct: false
+      misconception_id: mc.mth.o.derivative_power_not_reduced
+      feedback: After multiplying by the power, reduce the power by one.
+    - id: C
+      text: '8'
+      correct: false
+      misconception_id: mc.mth.o.gradient_from_y
+      feedback: The gradient comes from dy/dx. The curve's equation gives the y-coordinate.
+    - id: D
+      text: '-12'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The gradient of a curve changes; dy/dx gives it at any point.
+  - rung: 2
+    name: concept
+    text:
+      en: For each term axⁿ, the derivative is naxⁿ⁻¹; a constant term disappears.
+  - rung: 3
+    name: first_step
+    text:
+      en: Differentiate term by term.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Substitute x = -2 into dy/dx, not into y.
+  - rung: 5
+    name: full_step
+    text:
+      en: The gradient at x = -2 is -12.
+  misconception_ids:
+  - mc.mth.o.derivative_power_not_brought_down
+  - mc.mth.o.derivative_power_not_reduced
+  - mc.mth.o.gradient_from_y
+solution:
+  steps:
+  - n: 1
+    latex: \frac{dy}{dx} = 8x + 4
+    reason: Multiply by each power, then reduce the power by one
+    check_id: chk_build_mth_cal_0011_d
+  - n: 2
+    latex: '\text{at } x = -2: \frac{dy}{dx} = -12'
+    reason: Substitute into the derivative
+    check_id: chk_build_mth_cal_0011_ans
+difficulty:
+  prior: 0.8
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_cal_0011_ans:
+    args:
+      expression: (8)*x^1 + (4)*x^0
+      values:
+        x: -2
+    tool: math_evaluate
+  chk_build_mth_cal_0011_d:
+    args:
+      at: -2
+      expression: (4)*x^2 + (4)*x^1
+      variable: x
+    tool: math_differentiate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,98 @@
+id: itm.chm.o.electrolysis.0035
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.half_equations
+stem: 'Hydrogen forms at the cathode when dilute sulfuric acid is electrolysed: 2H⁺ + ne⁻ → H₂.'
+parts:
+- id: a
+  prompt: How many electrons, n, are in the balanced half-equation?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '2'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_electrolysis_0035_n
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Electrons on the left of a half-equation are gained; find how many.
+  - rung: 2
+    name: concept
+    text:
+      en: The charges on the two sides must balance.
+  - rung: 3
+    name: first_step
+    text:
+      en: Each hydrogen ion carries one positive charge; the hydrogen molecule is neutral.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out how many negative charges cancel the positive charges of both hydrogen ions.
+  - rung: 5
+    name: full_step
+    text:
+      en: '2H⁺ + 2e⁻ → H₂: n = 2, so the charges balance.'
+  misconception_ids:
+  - mc.chm.o.electrolysis_half_charge_unbalanced
+solution:
+  steps:
+  - n: 1
+    latex: '\text{left: } +2;\ \text{right without electrons: } 0'
+    reason: Charges before electrons
+    check_id: chk_build_chm_electrolysis_0035_l
+  - n: 2
+    latex: n = 2 - 0 = 2
+    reason: Electrons cancel the positive charge
+    check_id: chk_build_chm_electrolysis_0035_n
+  - n: 3
+    latex: 2\text{H}^{+} + 2e^{-} \rightarrow \text{H}_2
+    reason: Balanced half-equation
+    check_id: chk_build_chm_electrolysis_0035_bal
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: structured
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_0035_bal:
+    args:
+      equation: 2H^+ + 2e- -> 1H2
+    tool: chem_balance
+  chk_build_chm_electrolysis_0035_l:
+    args:
+      expression: 2*(1)
+    tool: math_evaluate
+  chk_build_chm_electrolysis_0035_n:
+    args:
+      expression: 2*(1) - 0
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

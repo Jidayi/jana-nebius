@@ -1,0 +1,85 @@
+id: itm.phy.o.radioactivity.0006
+version: 0.1.0
+type: multi_select
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.types_of_radiation
+stem: Some statements about beta particles are listed.
+parts:
+- id: a
+  prompt: Which statements are true? Choose every correct answer.
+  marks: 1
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: They are stopped by a few millimetres of aluminium
+      correct: true
+    - id: B
+      text: They bend the opposite way to alpha particles in a magnetic field
+      correct: true
+    - id: C
+      text: They are stopped by a sheet of paper
+      correct: false
+    - id: D
+      text: They carry a positive charge
+      correct: false
+    - id: E
+      text: They are fast electrons that come from the nucleus
+      correct: true
+    scoring: exact_set
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Recall what a beta particle is.
+  - rung: 2
+    name: concept
+    text:
+      en: It is an electron made in the nucleus when a neutron changes into a proton.
+  - rung: 3
+    name: first_step
+    text:
+      en: Think about what stops it and which way it bends compared with alpha.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Paper is not enough to stop it; a few millimetres of metal are.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'True: fast electrons from the nucleus; stopped by a few mm of aluminium; bent the opposite way to alpha.'
+solution:
+  steps:
+  - n: 1
+    latex: \text{fast electrons from the nucleus, stopped by aluminium}
+    reason: The nature of beta radiation
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

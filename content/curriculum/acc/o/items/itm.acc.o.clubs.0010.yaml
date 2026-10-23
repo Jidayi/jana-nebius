@@ -1,0 +1,88 @@
+id: itm.acc.o.clubs.0010
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.clubs.club_statements
+stem: A club's treasurer lists items.
+parts:
+- id: a
+  prompt: Select every item that appears in the income and expenditure account.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Depreciation of equipment
+      correct: true
+    - id: B
+      text: Subscriptions for this year
+      correct: true
+    - id: C
+      text: Rent for the year
+      correct: true
+    - id: D
+      text: Cost of new equipment
+      correct: false
+    - id: E
+      text: Opening bank balance
+      correct: false
+    - id: F
+      text: Subscriptions for next year
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Is the statement about cash moving, or about income earned and expenses used up?
+  - rung: 2
+    name: concept
+    text:
+      en: A receipts and payments account summarises cash and bank for the year, whatever it was for. An income and expenditure account matches the year's income with its expenses, like an income statement, and shows a surplus or a deficit.
+  - rung: 3
+    name: first_step
+    text:
+      en: Capital spending such as equipment is not expenditure of the year; only its depreciation is.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick this year's income and expenses.
+  - rung: 5
+    name: full_step
+    text:
+      en: Depreciation, this year's subscriptions and rent.
+  misconception_ids:
+  - mc.acc.o.club_capital_items_in_ie
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Income and expenditure: this year''s income and expenses}'
+    reason: Matching
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

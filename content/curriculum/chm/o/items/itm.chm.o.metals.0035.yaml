@@ -1,0 +1,87 @@
+id: itm.chm.o.metals.0035
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.reactivity_series
+stem: Silver is put into zinc sulfate solution, and zinc is put into silver nitrate solution.
+parts:
+- id: a
+  prompt: Which statement is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Both react, because metals always swap places.
+      correct: false
+      misconception_id: mc.chm.o.metals_displacement_reversed
+      feedback: 'A metal can only take the place of a metal BELOW it in the reactivity series. Find both metals in the series: if the free metal is higher, it displaces the other; if it is lower, nothing happens.'
+    - id: B
+      text: 'Only the silver reacts: zinc forms on the silver.'
+      correct: false
+      misconception_id: mc.chm.o.metals_displacement_reversed
+      feedback: 'A metal can only take the place of a metal BELOW it in the reactivity series. Find both metals in the series: if the free metal is higher, it displaces the other; if it is lower, nothing happens.'
+    - id: C
+      text: 'Only the zinc reacts: silver forms on the zinc.'
+      correct: true
+    - id: D
+      text: Neither reacts, because salts never react with metals.
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Consider the two mixtures one at a time.
+  - rung: 2
+    name: concept
+    text:
+      en: Only the more reactive metal of the pair can displace the other.
+  - rung: 3
+    name: first_step
+    text:
+      en: Zinc is well above silver in the series.
+  - rung: 4
+    name: worked_step
+    text:
+      en: So in which mixture is the free metal the more reactive one?
+  - rung: 5
+    name: full_step
+    text:
+      en: Zinc displaces silver from silver nitrate; silver cannot displace zinc.
+  misconception_ids:
+  - mc.chm.o.metals_displacement_reversed
+solution:
+  steps:
+  - n: 1
+    latex: \text{Zn above Ag}
+    reason: Only one direction works
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

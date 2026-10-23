@@ -1,0 +1,67 @@
+{
+ "$comment": "GENERATED from docs/specification/contracts/ops/cloud-switch.schema.json sha256 840285f1bbfb61df1fc721bded9d189a6116efee49fcbfc024d30c07552d1c68; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/cloud-switch",
+ "title": "Cloud switch",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "kind",
+  "target",
+  "disabled",
+  "actor",
+  "reason",
+  "incident_id"
+ ],
+ "properties": {
+  "kind": {
+   "enum": [
+    "global",
+    "provider",
+    "model",
+    "licence"
+   ]
+  },
+  "disabled": {
+   "type": "boolean"
+  },
+  "target": {
+   "type": "string",
+   "minLength": 1,
+   "pattern": "\\S"
+  },
+  "actor": {
+   "type": "string",
+   "minLength": 1,
+   "pattern": "\\S"
+  },
+  "reason": {
+   "type": "string",
+   "minLength": 1,
+   "pattern": "\\S"
+  },
+  "incident_id": {
+   "type": "string",
+   "minLength": 1,
+   "pattern": "\\S"
+  }
+ },
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "kind": {
+      "const": "global"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "target": {
+      "const": "*"
+     }
+    }
+   }
+  }
+ ]
+}

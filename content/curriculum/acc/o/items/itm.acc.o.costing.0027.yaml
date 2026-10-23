@@ -1,0 +1,104 @@
+id: itm.acc.o.costing.0027
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.costing.break_even
+stem: Yaw makes jars of honey that sell for $40 each. Variable cost is $33 each; fixed costs are $18900.
+parts:
+- id: a
+  prompt: Calculate the break-even revenue.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '108000.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_costing_0027_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Find the break-even point in units first.
+  - rung: 2
+    name: concept
+    text:
+      en: Break-even units = fixed costs ÷ contribution per unit; revenue = units × selling price.
+  - rung: 3
+    name: first_step
+    text:
+      en: Contribution per unit = selling price − variable cost.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 18900 ÷ (40 − 33), then multiply by 40.
+  - rung: 5
+    name: full_step
+    text:
+      en: Break-even revenue = $108000.
+  misconception_ids:
+  - mc.acc.o.cost_be_units_revenue_confused
+  - mc.acc.o.cost_be_divides_by_price
+solution:
+  steps:
+  - n: 1
+    latex: \text{Break-even revenue} = \text{break-even units} \times \text{price}
+    reason: Units first
+    check_id: chk_build_acc_costing_0027_t
+  - n: 2
+    latex: \text{Break-even units} = \frac{18900}{40 - 33} = 2700
+    reason: Units
+    check_id: chk_build_acc_costing_0027_s2
+  - n: 3
+    latex: 2700 \times 40 = 108000
+    reason: Revenue
+    check_id: chk_build_acc_costing_0027_a
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_costing_0027_a:
+    args:
+      dp: 2
+      expression: 18900 / (40 - 33) * 40
+    tool: math_evaluate
+  chk_build_acc_costing_0027_s2:
+    args:
+      dp: 4
+      expression: 18900 / (40 - 33)
+    tool: math_evaluate
+  chk_build_acc_costing_0027_t:
+    args:
+      dp: 2
+      fixed_costs: '18900'
+      selling_price: '40'
+      variable_cost_per_unit: '33'
+    tool: acc_break_even
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

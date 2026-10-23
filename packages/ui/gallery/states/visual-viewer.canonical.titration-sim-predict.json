@@ -1,0 +1,346 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.titration-sim-predict",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "A titration simulation: NaOH will be added to 25 cubic centimetres of HCl. It runs after you predict, so the result is not given here."
+    },
+    "computed": {
+      "alt": {
+        "acid": "HCl",
+        "base": "NaOH",
+        "end": "12.5",
+        "volume": 25
+      },
+      "check_ids": [
+        "chk_build_fx_titration_sim_predict_1"
+      ],
+      "labels": {
+        "out.end_point": "12.5",
+        "out.ph": "1.00",
+        "out.volume": "0"
+      },
+      "parts": [
+        {
+          "id": "ctrl.volume",
+          "label": "volume added",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.tap",
+          "label": "tap",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.indicator",
+          "label": "indicator",
+          "role": "control"
+        },
+        {
+          "id": "out.volume",
+          "label": "volume",
+          "role": "readout"
+        },
+        {
+          "id": "out.ph",
+          "label": "ph",
+          "role": "readout"
+        },
+        {
+          "id": "out.end_point",
+          "label": "end point",
+          "role": "readout"
+        }
+      ],
+      "points": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.625,
+          1.033
+        ],
+        [
+          1.25,
+          1.067
+        ],
+        [
+          1.875,
+          1.102
+        ],
+        [
+          2.5,
+          1.138
+        ],
+        [
+          3.125,
+          1.176
+        ],
+        [
+          3.75,
+          1.216
+        ],
+        [
+          4.375,
+          1.257
+        ],
+        [
+          5.0,
+          1.301
+        ],
+        [
+          5.625,
+          1.348
+        ],
+        [
+          6.25,
+          1.398
+        ],
+        [
+          6.875,
+          1.452
+        ],
+        [
+          7.5,
+          1.512
+        ],
+        [
+          8.125,
+          1.578
+        ],
+        [
+          8.75,
+          1.653
+        ],
+        [
+          9.375,
+          1.74
+        ],
+        [
+          10.0,
+          1.845
+        ],
+        [
+          10.625,
+          1.978
+        ],
+        [
+          11.25,
+          2.161
+        ],
+        [
+          11.875,
+          2.47
+        ],
+        [
+          12.25,
+          2.872
+        ],
+        [
+          12.475,
+          3.875
+        ],
+        [
+          12.4975,
+          4.875
+        ],
+        [
+          12.5,
+          7.0
+        ],
+        [
+          12.5025,
+          9.125
+        ],
+        [
+          12.525,
+          10.125
+        ],
+        [
+          12.75,
+          11.122
+        ],
+        [
+          13.125,
+          11.516
+        ],
+        [
+          13.75,
+          11.81
+        ],
+        [
+          14.375,
+          11.979
+        ],
+        [
+          15.0,
+          12.097
+        ],
+        [
+          15.625,
+          12.187
+        ],
+        [
+          16.25,
+          12.26
+        ],
+        [
+          16.875,
+          12.32
+        ],
+        [
+          17.5,
+          12.372
+        ],
+        [
+          18.125,
+          12.416
+        ],
+        [
+          18.75,
+          12.456
+        ],
+        [
+          19.375,
+          12.491
+        ],
+        [
+          20.0,
+          12.523
+        ],
+        [
+          20.625,
+          12.552
+        ],
+        [
+          21.25,
+          12.578
+        ],
+        [
+          21.875,
+          12.602
+        ],
+        [
+          22.5,
+          12.624
+        ],
+        [
+          23.125,
+          12.645
+        ],
+        [
+          23.75,
+          12.664
+        ],
+        [
+          24.375,
+          12.682
+        ],
+        [
+          25.0,
+          12.699
+        ]
+      ],
+      "samples": [
+        {
+          "ph": 1.0,
+          "volume": 0.0
+        },
+        {
+          "ph": 1.39794,
+          "volume": 6.25
+        },
+        {
+          "ph": 7.0,
+          "volume": 12.5
+        },
+        {
+          "ph": 12.4559,
+          "volume": 18.75
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_titration_sim_predict_1"
+    ],
+    "params": {
+      "acid": {
+        "concentration": 0.1,
+        "formula": "HCl"
+      },
+      "acid_volume": 25,
+      "base": {
+        "concentration": 0.2,
+        "formula": "NaOH"
+      },
+      "indicator": "phenolphthalein",
+      "locked": [
+        "acid",
+        "base",
+        "acid_volume",
+        "indicator"
+      ],
+      "predict": "poe.chm.titration_double_strength_alkali.v1"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ctrl.volume",
+        "name": "volume added",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.tap",
+        "name": "tap",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.indicator",
+        "name": "indicator",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "out.volume",
+        "name": "volume",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.ph",
+        "name": "ph",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.end_point",
+        "name": "end point",
+        "role": "readout"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:f944c6cc3eeccbf32bdf5cbb5d7626d3f4fda9ba38b271a0e4bf76673fc3b12a",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "titration_sim",
+    "visual_id": "vis_S46CYCBKBZWVXP6KMX9TRJH04Z"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: titration sim predict (shown labels)",
+  "variant": "titration-sim-predict"
+}

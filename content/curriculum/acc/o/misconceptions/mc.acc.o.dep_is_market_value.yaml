@@ -1,0 +1,36 @@
+id: mc.acc.o.dep_is_market_value
+kc_ids:
+- kc.acc.o.depreciation.depreciation_purpose
+- kc.acc.o.depreciation.net_book_value
+student_name: Book value as selling price
+description: Believes depreciation measures the fall in what the asset could be sold for, so net book value is its market value.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: asset
+fix:
+  strategy: counterexample
+  text:
+    en: Net book value is unused cost. A van may sell for more or less than its book value.
+probe_item_ids:
+- itm.acc.o.depreciation.0013
+- itm.acc.o.depreciation.0014
+- itm.acc.o.depreciation.0015
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

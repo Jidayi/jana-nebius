@@ -1,0 +1,93 @@
+id: itm.phy.o.motion.0104
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.velocity_time_area
+stem: The velocity-time graph for a tram is a horizontal line at 9 m/s from 0 s to 15 s.
+parts:
+- id: a
+  prompt: Find the distance travelled in this time.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '135'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_k_0104_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The area under a velocity-time graph gives the distance travelled. What shape is the area here?
+  - rung: 2
+    name: concept
+    text:
+      en: 'A horizontal line makes a rectangle: area = height × width.'
+  - rung: 3
+    name: first_step
+    text:
+      en: The height is the velocity and the width is the time.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Distance = 9 × 15.
+  - rung: 5
+    name: full_step
+    text:
+      en: Distance = 9 × 15 = 135 m.
+  misconception_ids:
+  - mc.phy.o.vt_area_divided
+solution:
+  steps:
+  - n: 1
+    latex: d = v t
+    reason: The area under the line is a rectangle
+  - n: 2
+    latex: d = 9 \times 15
+    reason: Substitute
+  - n: 3
+    latex: d = 135\ \text{m}
+    reason: Multiply
+    check_id: chk_build_phy_k_0104_a
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_k_0104_a:
+    args:
+      expression: 9*15
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

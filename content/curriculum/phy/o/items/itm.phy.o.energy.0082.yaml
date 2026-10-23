@@ -1,0 +1,99 @@
+id: itm.phy.o.energy.0082
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.power
+stem: Wanjiru, of mass 65 kg, runs up a flight of stairs 6 m high in 8 s. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate Wanjiru's useful power output.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '487.5'
+    unit: W
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0082_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Power is the work done each second.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the work done against gravity (mgh), then divide by the time.
+  - rung: 3
+    name: first_step
+    text:
+      en: The work done is 65 × 10 × 6 = 3900 J.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 3900 ÷ 8.
+  - rung: 5
+    name: full_step
+    text:
+      en: The power is 487.5 W.
+  misconception_ids:
+  - mc.phy.o.energy_mass_for_weight
+  - mc.phy.o.power_energy_times_time
+  - mc.phy.o.power_is_energy
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: W = mgh = 65 \times 10 \times 6 = 3900\ \text{J}
+    reason: Work done against gravity
+    check_id: chk_build_phy_nrg_0082_ep
+  - n: 2
+    latex: P = \frac{W}{t} = \frac{3900}{8} = 487.5\ \text{W}
+    reason: Power = work ÷ time
+    check_id: chk_build_phy_nrg_0082_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0082_ans:
+    args:
+      expression: 65*10*6/8
+    tool: math_evaluate
+  chk_build_phy_nrg_0082_ep:
+    args:
+      expression: 65*10*6
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

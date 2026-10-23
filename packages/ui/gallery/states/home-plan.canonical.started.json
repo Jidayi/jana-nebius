@@ -1,0 +1,130 @@
+{
+  "id": "home-plan.canonical.started",
+  "title": "Home: Next up",
+  "component": "HomePlan",
+  "note": "A started plan stopped after its reviews (LRN-31): the finished activity ticked, Continue at the next one; nothing marked done early.",
+  "state": "canonical",
+  "variant": "started",
+  "payload": {
+    "plan": {
+      "status": "ready",
+      "plan": {
+        "plan_id": "01J9ZZPLANFIXTURE000000001",
+        "request_id": "req_01J9ZZPLANFIXTURE000000001",
+        "date": "2026-10-17",
+        "phase": "normal",
+        "status": "started",
+        "minutes": 31,
+        "blocks": [
+          {
+            "index": 0,
+            "kind": "warmup",
+            "kc_ids": [
+              "kc.phy.o.motion.speed",
+              "kc.phy.o.motion.velocity"
+            ],
+            "minutes": 5,
+            "status": "done",
+            "done": 2,
+            "target": 2
+          },
+          {
+            "index": 1,
+            "kind": "main",
+            "kc_ids": [
+              "kc.phy.o.forces.newton_second"
+            ],
+            "minutes": 20,
+            "status": "in_progress",
+            "done": 0,
+            "target": 1
+          },
+          {
+            "index": 2,
+            "kind": "mixed",
+            "kc_ids": [
+              "kc.phy.o.motion.speed"
+            ],
+            "minutes": 5,
+            "status": "pending",
+            "done": 0,
+            "target": 1
+          },
+          {
+            "index": 3,
+            "kind": "reflect",
+            "kc_ids": [],
+            "minutes": 1,
+            "status": "pending",
+            "done": 0,
+            "target": 0
+          }
+        ],
+        "next_block": 1,
+        "alternatives": [],
+        "keep_learning": false,
+        "decided_ts": 1792000000000,
+        "card": {
+          "card_type": "plan",
+          "title": "Next up",
+          "actions": [
+            "start",
+            "change"
+          ],
+          "items": [
+            {
+              "id": "b0",
+              "text": "warmup",
+              "status": "done"
+            },
+            {
+              "id": "b1",
+              "text": "main",
+              "status": "in_progress"
+            },
+            {
+              "id": "b2",
+              "text": "mixed",
+              "status": "pending"
+            },
+            {
+              "id": "b3",
+              "text": "reflect",
+              "status": "pending"
+            }
+          ]
+        }
+      },
+      "busy": false,
+      "actionFailed": false
+    },
+    "streak": {
+      "days": 5,
+      "freezes": 1
+    },
+    "topics": {
+      "kc.phy.o.motion.speed": "Speed and velocity",
+      "kc.phy.o.motion.velocity": "Speed and velocity",
+      "kc.phy.o.forces.newton_second": "Force and acceleration",
+      "kc.phy.o.forces.mass_weight": "Mass and weight",
+      "kc.phy.o.energy.kinetic": "Kinetic energy",
+      "kc.phy.o.motion.acceleration": "Acceleration"
+    },
+    "started": [
+      "kc.phy.o.motion.speed",
+      "kc.phy.o.forces.newton_second"
+    ]
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Done",
+    "Continue",
+    "Force and acceleration"
+  ]
+}

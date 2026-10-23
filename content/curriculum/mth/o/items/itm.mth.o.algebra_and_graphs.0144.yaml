@@ -1,0 +1,101 @@
+id: itm.mth.o.algebra_and_graphs.0144
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.quadratic_equations
+stem: Solve the equation $x^2 + 5x + 6 = 0$.
+parts:
+- id: a
+  prompt: Give the smaller solution.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '-3'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0144_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Can the quadratic be factorised?
+  - rung: 2
+    name: concept
+    text:
+      en: If two brackets multiply to give zero, one of them must be zero.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find two numbers that multiply to 6 and add to 5.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The factorised form is $(x + 2)(x + 3) = 0$. Set each bracket equal to zero.
+  - rung: 5
+    name: full_step
+    text:
+      en: The solutions are x = -3 and x = -2, so the smaller one is -3.
+  misconception_ids:
+  - mc.mth.o.root_sign_from_factor
+  - mc.mth.o.factor_signs_swapped
+  - mc.mth.o.formula_partial_division
+solution:
+  steps:
+  - n: 1
+    latex: x^2 + 5x + 6 = (x + 2)(x + 3)
+    reason: Factorise
+  - n: 2
+    latex: (x + 2)(x + 3) = 0
+    reason: Each bracket can be zero
+  - n: 3
+    latex: x = -3 \text{ or } x = -2
+    reason: Solve each bracket equal to zero
+    check_id: chk_build_mth_alg_0144_sol
+  - n: 4
+    latex: x = -3
+    reason: The smaller solution
+    check_id: chk_build_mth_alg_0144_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0144_ans:
+    args:
+      expression: '-3'
+    tool: math_evaluate
+  chk_build_mth_alg_0144_sol:
+    args:
+      equations:
+      - (1)*x^2 + (5)*x^1 + (6)*x^0 = 0
+      unknowns:
+      - x
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

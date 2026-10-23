@@ -1,0 +1,34 @@
+id: mc.acc.o.cost_vc_added
+kc_ids:
+- kc.acc.o.costing.contribution
+student_name: Adding the variable cost
+description: Adds the variable cost to the price instead of subtracting it.
+signatures:
+- kind: answer_transform
+  expression: units * (price + variable)
+fix:
+  strategy: simpler_numbers
+  text:
+    en: Contribution is what is left of the price after the variable cost.
+probe_item_ids:
+- itm.acc.o.costing.0019
+- itm.acc.o.costing.0020
+- itm.acc.o.costing.0021
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

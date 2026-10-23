@@ -1,0 +1,116 @@
+id: itm.chm.o.electrolysis.0049
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.quantitative
+stem: 'Copper is deposited on the cathode when copper(II) sulfate solution is electrolysed: Cu²⁺ + 2e⁻ → Cu. A current of 2.0 A flows for 965 s. (Faraday constant: 96500 C per mole of electrons.)'
+parts:
+- id: a
+  prompt: Calculate the mass of copper deposited.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '0.640'
+    unit: g
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_electrolysis_0049_m
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Plan: charge → moles of electrons → moles of copper → mass of copper.'
+  - rung: 2
+    name: concept
+    text:
+      en: Q = I × t; moles of electrons = Q ÷ 96500; the half-equation gives the electrons per copper atom.
+  - rung: 3
+    name: first_step
+    text:
+      en: Q = 2.0 × 965 = 1930 C, so moles of electrons = 1930 ÷ 96500 = 0.0200 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Each copper ion needs 2 electrons, so moles of copper = 0.0200 ÷ 2 = 0.0100 mol. Multiply by 64.
+  - rung: 5
+    name: full_step
+    text:
+      en: Mass = 0.0100 × 64 = 0.640 g.
+  misconception_ids:
+  - mc.chm.o.electrolysis_electron_ratio_ignored
+solution:
+  steps:
+  - n: 1
+    latex: Q = 2.0 \times 965 = 1930\ \text{C}
+    reason: Charge = current × time
+    check_id: chk_build_chm_electrolysis_0049_m
+  - n: 2
+    latex: n(e^-) = \frac{1930}{96500} = 0.0200\ \text{mol}
+    reason: Divide by the Faraday constant
+    check_id: chk_build_chm_electrolysis_0049_e
+  - n: 3
+    latex: n(\text{Cu}) = \frac{0.0200}{2} = 0.0100\ \text{mol}
+    reason: 2 mol of electrons per mol of copper
+    check_id: chk_build_chm_electrolysis_0049_n
+  - n: 4
+    latex: m = n \times 64 = 0.640\ \text{g}
+    reason: Moles to mass
+    check_id: chk_build_chm_electrolysis_0049_m
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_0049_e:
+    args:
+      expression: 1930/96500
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_electrolysis_0049_m:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: faraday
+      sf: 3
+      steps:
+      - current: '2.0'
+        electrons: 2
+        id: m
+        op: electrolysis
+        species: Cu
+        time: '965'
+    tool: chem_stoichiometry
+  chk_build_chm_electrolysis_0049_n:
+    args:
+      expression: 1930/(96500*2)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

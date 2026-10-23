@@ -1,0 +1,109 @@
+id: itm.phy.o.pressure.0031
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.gas_and_atmospheric_pressure
+stem: A mercury barometer has a column 740 mm high. Mercury has a density of 13600 kg/m³. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate the atmospheric pressure, in kPa.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '101'
+    unit: kPa
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_prs_0031_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The air pressure holds up the mercury column, so it equals the column's pressure.
+  - rung: 2
+    name: concept
+    text:
+      en: Pressure of the column = ρgh, with h in metres.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change 740 mm into metres first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 13600 × 10 × 0.74 in pascals, then change to kPa.
+  - rung: 5
+    name: full_step
+    text:
+      en: The atmospheric pressure is 101 kPa.
+  misconception_ids:
+  - mc.phy.o.barometer_mm_not_converted
+  - mc.phy.o.barometer_liquid_density_swapped
+  - mc.phy.o.liquid_pressure_g_left_out
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: h = 740\ \text{mm} = 0.74\ \text{m}
+    reason: Height in metres
+    check_id: chk_build_phy_prs_0031_hm
+  - n: 2
+    latex: p = \rho g h = 13600 \times 10 \times 0.74 = 101000\ \text{Pa}
+    reason: Pressure = ρgh
+    check_id: chk_build_phy_prs_0031_pa
+  - n: 3
+    latex: 101000\ \text{Pa} = 101\ \text{kPa}
+    reason: Pascals into kilopascals
+    check_id: chk_build_phy_prs_0031_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_0031_ans:
+    args:
+      expression: 13600*10*740/1000/1000
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_prs_0031_hm:
+    args:
+      expression: 740/1000
+    tool: math_evaluate
+  chk_build_phy_prs_0031_pa:
+    args:
+      expression: 13600*10*740/1000
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

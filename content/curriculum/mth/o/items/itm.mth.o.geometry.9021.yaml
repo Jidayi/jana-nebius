@@ -1,0 +1,85 @@
+id: itm.mth.o.geometry.9021
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.similar_lengths
+stem: A pole 1.5 m tall casts a shadow 2 m long. At the same time a tree casts a shadow 12 m long. The ground is level and the sun rays are parallel.
+parts:
+- id: a
+  prompt: Find the height of the tree.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '9'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9021
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The sun makes similar right triangles, so height divided by shadow length is equal for both objects.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply the pole height by the ratio of the tree shadow to the pole shadow.
+  - rung: 3
+    name: first_step
+    text:
+      en: Multiply the pole height by the ratio of the tree shadow to the pole shadow.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The tree-to-pole height ratio must match the tree-to-pole shadow ratio.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 9 m.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{1.5\times 12}{2}
+    reason: Multiply the pole height by the ratio of the tree shadow to the pole shadow.
+    check_id: chk_build_mastery_supplement_mth_9021
+  - n: 2
+    latex: '9'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9021
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9021:
+    args:
+      angle_unit: degrees
+      expression: 1.5*12/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,83 @@
+id: itm.phy.o.light.0010
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.plane_mirrors
+stem: A ray reflects off a plane mirror. The angle between the incident ray and the reflected ray is 84°.
+parts:
+- id: a
+  prompt: Find the angle of reflection.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '42'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_lgt_0010_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Draw the normal between the incident and reflected rays.
+  - rung: 2
+    name: concept
+    text:
+      en: The angles of incidence and reflection are equal.
+  - rung: 3
+    name: first_step
+    text:
+      en: So the normal splits the 84° into two equal parts.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Halve 84°.
+  - rung: 5
+    name: full_step
+    text:
+      en: The angle of reflection is 42°.
+  misconception_ids:
+  - mc.phy.o.mirror_rays_angle_vs_reflection
+  - mc.phy.o.mirror_angle_from_surface
+solution:
+  steps:
+  - n: 1
+    latex: r = \frac{84}{2} = 42^\circ
+    reason: The normal halves the angle between equal angles
+    check_id: chk_build_phy_lgt_0010_ans
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0010_ans:
+    args:
+      expression: 84/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

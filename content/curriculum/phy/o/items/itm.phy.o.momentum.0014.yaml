@@ -1,0 +1,106 @@
+id: itm.phy.o.momentum.0014
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.momentum_calculation
+stem: A golf ball of mass 46 g moves at 25 m/s.
+parts:
+- id: a
+  prompt: Find the size of its momentum.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 1150 kg m/s
+      correct: false
+      misconception_id: mc.phy.o.momentum_grams_not_converted
+      feedback: Momentum in kg m/s needs the mass in kilograms. Change grams into kilograms first.
+    - id: B
+      text: 0.00184 kg m/s
+      correct: false
+      misconception_id: mc.phy.o.momentum_ratio_inverted
+      feedback: A 2 kg ball at 3 m/s has momentum 6 kg m/s. Momentum grows with both mass and velocity, so multiply them; to find a velocity, divide the momentum by the mass.
+    - id: C
+      text: 1.15 kg m/s
+      correct: true
+    - id: D
+      text: 14.375 kg m/s
+      correct: false
+      misconception_id: mc.phy.o.momentum_as_kinetic_energy
+      feedback: 'Momentum is mass × velocity, in kg m/s. Half m v squared is kinetic energy, in joules: a different quantity.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Momentum = mass × velocity.
+  - rung: 2
+    name: concept
+    text:
+      en: For momentum in kg m/s the mass must be in kilograms.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change 46 g into kilograms first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The mass is 0.046 kg; multiply by 25.
+  - rung: 5
+    name: full_step
+    text:
+      en: p = 1.15 kg m/s.
+  misconception_ids:
+  - mc.phy.o.momentum_as_kinetic_energy
+  - mc.phy.o.momentum_grams_not_converted
+  - mc.phy.o.momentum_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: m = 46\ \text{g} = 0.046\ \text{kg}
+    reason: Mass in kilograms
+    check_id: chk_build_phy_mom_0014_kg
+  - n: 2
+    latex: p = mv = 0.046 \times 25 = 1.15\ \text{kg m/s}
+    reason: Momentum = mass × velocity
+    check_id: chk_build_phy_mom_0014_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_0014_ans:
+    args:
+      expression: 46/1000*25
+    tool: math_evaluate
+  chk_build_phy_mom_0014_kg:
+    args:
+      expression: 46/1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

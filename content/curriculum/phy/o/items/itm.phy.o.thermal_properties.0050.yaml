@@ -1,0 +1,86 @@
+id: itm.phy.o.thermal_properties.0050
+version: 0.1.0
+type: ordering
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.thermal_properties.changes_of_state
+stem: Ice at −20 °C is heated steadily until it has all turned to steam above 100 °C.
+parts:
+- id: a
+  prompt: Put the stages of the heating curve in order.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: exact
+    elements:
+    - id: e4
+      text: The water boils at constant temperature
+    - id: e5
+      text: The steam warms up
+    - id: e1
+      text: The ice warms up
+    - id: e2
+      text: The ice melts at constant temperature
+    - id: e3
+      text: The water warms up
+    correct_order:
+    - e1
+    - e2
+    - e3
+    - e4
+    - e5
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A heating curve has sloping sections and flat sections.
+  - rung: 2
+    name: concept
+    text:
+      en: On a sloping section one state warms up; on a flat section the state changes.
+  - rung: 3
+    name: first_step
+    text:
+      en: The substance goes from solid to liquid to gas.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Each change of state happens between two warming stages.
+  - rung: 5
+    name: full_step
+    text:
+      en: Ice warms, ice melts, water warms, water boils, steam warms.
+solution:
+  steps:
+  - n: 1
+    latex: \text{The ice warms up → The ice melts at constant temperature → The water warms up → The water boils at constant temperature → The steam warms up}
+    reason: Sloping parts warm one state; flat parts change the state
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

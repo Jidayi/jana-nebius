@@ -1,0 +1,98 @@
+id: itm.mth.o.coordinate_geometry.0111
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.coordinate_geometry.parallel_lines
+stem: Line L has equation $y = 3x - 1$. Line N is parallel to L and passes through (1, -1).
+parts:
+- id: a
+  prompt: The equation of N is y = mx + c. Find c.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '-4'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_crd_0111_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Parallel lines never meet, so they have the same steepness.
+  - rung: 2
+    name: concept
+    text:
+      en: N has gradient 3, the same as L, but a different intercept.
+  - rung: 3
+    name: first_step
+    text:
+      en: Substitute x = 1, y = -1 and m = 3 into y = mx + c.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 3 × (1) = 3.
+  - rung: 5
+    name: full_step
+    text:
+      en: c = -4.
+  misconception_ids:
+  - mc.mth.o.parallel_same_intercept
+  - mc.mth.o.parallel_perpendicular_confused
+  - mc.mth.o.intercept_sign
+solution:
+  steps:
+  - n: 1
+    latex: m = 3
+    reason: Parallel lines have the same gradient
+  - n: 2
+    latex: -1 = 3 \times (1) + c
+    reason: Substitute the point
+  - n: 3
+    latex: 3 \times (1) = 3
+    reason: Multiply
+    check_id: chk_build_mth_crd_0111_t
+  - n: 4
+    latex: c = -1 - 3 = -4
+    reason: Solve for c
+    check_id: chk_build_mth_crd_0111_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_crd_0111_ans:
+    args:
+      expression: -1 - 3*(1)
+    tool: math_evaluate
+  chk_build_mth_crd_0111_t:
+    args:
+      expression: 3*(1)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

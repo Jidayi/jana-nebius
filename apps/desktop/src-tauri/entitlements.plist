@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  macOS entitlements of the signed app (PLT-05): the minimum. The hardened runtime is on and nothing here weakens it:
+  no allow-unsigned-executable-memory, no disable-library-validation (every bundled library, including the llama.cpp
+  builds and the PyInstaller sidecars, is signed with the same Developer ID). The release check
+  (jana_tools.release.packaging.entitlement_errors) refuses either key unless the release notes record a reason.
+-->
+<plist version="1.0">
+<dict>
+  <key>com.apple.security.device.camera</key>
+  <true/>
+  <key>com.apple.security.device.audio-input</key>
+  <true/>
+</dict>
+</plist>

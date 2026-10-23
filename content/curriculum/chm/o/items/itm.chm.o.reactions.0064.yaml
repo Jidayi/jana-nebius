@@ -1,0 +1,94 @@
+id: itm.chm.o.reactions.0064
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.redox
+stem: 'Chlorine water is added to colourless potassium bromide solution. The solution turns orange: Cl₂ + 2Br⁻ → 2Cl⁻ + Br₂.'
+parts:
+- id: a
+  prompt: Which substance is the oxidising agent?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: There is no oxidising agent, because no oxygen takes part.
+      correct: false
+      misconception_id: mc.chm.o.reactions_redox_needs_oxygen
+      feedback: 'Oxygen is only one way to see redox. Any transfer of electrons is redox: when magnesium burns in chlorine, magnesium loses electrons (oxidised) and chlorine gains them (reduced), with no oxygen at all.'
+    - id: B
+      text: Chlorine
+      correct: true
+    - id: C
+      text: Bromide ions, because they gain electrons to become bromine.
+      correct: false
+      misconception_id: mc.chm.o.reactions_oxidation_is_gaining_electrons
+      feedback: Oxidation is loss of electrons; reduction is gain of electrons. A metal atom that becomes a positive ion has lost electrons, so it has been oxidised.
+    - id: D
+      text: Bromide ions, because they are oxidised.
+      correct: false
+      misconception_id: mc.chm.o.reactions_oxidising_agent_is_oxidised
+      feedback: An agent does the job to something else. The oxidising agent oxidises another substance by taking its electrons, so the oxidising agent itself is reduced. The reducing agent gives electrons away and is oxidised.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which particles lose electrons, and which gain them?
+  - rung: 2
+    name: concept
+    text:
+      en: The oxidising agent takes electrons from another substance and is itself reduced.
+  - rung: 3
+    name: first_step
+    text:
+      en: Bromide ions lose electrons to form bromine; chlorine molecules gain electrons to form chloride ions.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Find the substance that takes the electrons from the bromide ions.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Chlorine is the oxidising agent: it takes electrons from bromide ions (oxidising them to bromine) and is reduced to chloride ions.'
+  misconception_ids:
+  - mc.chm.o.reactions_oxidising_agent_is_oxidised
+  - mc.chm.o.reactions_oxidation_is_gaining_electrons
+  - mc.chm.o.reactions_redox_needs_oxygen
+solution:
+  steps:
+  - n: 1
+    latex: 2\text{Br}^- \rightarrow \text{Br}_2 + 2e^-
+    reason: Bromide oxidised
+  - n: 2
+    latex: \text{Cl}_2 + 2e^- \rightarrow 2\text{Cl}^-
+    reason: 'Chlorine reduced: the oxidising agent'
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

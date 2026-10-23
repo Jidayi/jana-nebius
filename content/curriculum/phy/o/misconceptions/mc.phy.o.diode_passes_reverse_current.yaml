@@ -1,0 +1,32 @@
+id: mc.phy.o.diode_passes_reverse_current
+kc_ids:
+- kc.phy.o.circuits.circuit_components
+student_name: A diode conducts both ways
+description: Thinks a diode lets current through in either direction, like a resistor or a wire.
+signatures:
+- kind: answer_transform
+  expression: I_reverse = I_forward
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'A diode is a one-way valve for current: it conducts when the triangle points along the conventional current and blocks it the other way.'
+probe_item_ids:
+- itm.phy.o.circuits.0071
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

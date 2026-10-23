@@ -1,0 +1,92 @@
+id: itm.mth.o.geometry.0038
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.map_scales
+stem: 'A plan is drawn to a scale of 1 : 200000. A straight road is 2.4 km long.'
+parts:
+- id: a
+  prompt: How long is the road on the plan, in centimetres?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1.2'
+    unit: cm
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_geo_0038_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The plan is much smaller than real life, so the answer is a small number of centimetres.
+  - rung: 2
+    name: concept
+    text:
+      en: Change the real length to centimetres, then divide by the scale.
+  - rung: 3
+    name: first_step
+    text:
+      en: 2.4 km = 2.4 × 1000 × 100 cm.
+  - rung: 4
+    name: worked_step
+    text:
+      en: That is 240000 cm. Divide by 200000.
+  - rung: 5
+    name: full_step
+    text:
+      en: On the plan the road is 1.2 cm.
+  misconception_ids:
+  - mc.mth.o.scale_wrong_direction
+  - mc.mth.o.scale_units_not_converted
+  - mc.mth.o.scale_conversion_factor
+solution:
+  steps:
+  - n: 1
+    latex: 2.4\ \text{km} = 240000\ \text{cm}
+    reason: Change kilometres to centimetres
+    check_id: chk_build_mth_geo_0038_cm
+  - n: 2
+    latex: 240000 \div 200000 = 1.2\ \text{cm}
+    reason: Divide by the scale
+    check_id: chk_build_mth_geo_0038_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0038_ans:
+    args:
+      expression: 2.4*100000/200000
+    tool: math_evaluate
+  chk_build_mth_geo_0038_cm:
+    args:
+      expression: 2.4*100000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

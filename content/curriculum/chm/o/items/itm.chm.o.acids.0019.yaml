@@ -1,0 +1,85 @@
+id: itm.chm.o.acids.0019
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.ph_and_indicators
+stem: Phenolphthalein is added to dilute nitric acid.
+parts:
+- id: a
+  prompt: What colour is the solution?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Blue
+      correct: false
+    - id: B
+      text: Pink
+      correct: false
+      misconception_id: mc.chm.o.acids_indicator_colours_swapped
+      feedback: 'Learn each pair: litmus is red in acid and blue in alkali; methyl orange is red in acid and yellow in alkali; phenolphthalein is colourless in acid and pink in alkali.'
+    - id: C
+      text: Colourless
+      correct: true
+    - id: D
+      text: Yellow
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Is nitric acid acidic or alkaline?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Phenolphthalein has two forms: one in acid and one in alkali.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Phenolphthalein turns pink only in alkali.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Think about what you would see in an acid if the pink colour does not appear.
+  - rung: 5
+    name: full_step
+    text:
+      en: Phenolphthalein is colourless in acid, so dilute nitric acid stays colourless.
+  misconception_ids:
+  - mc.chm.o.acids_indicator_colours_swapped
+solution:
+  steps:
+  - n: 1
+    latex: \text{acid} \Rightarrow \text{phenolphthalein colourless}
+    reason: Phenolphthalein colours
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,98 @@
+id: itm.phy.o.sound.0018
+version: 0.1.2
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.sound.speed_and_echoes
+stem: At a sports ground, Esi stands 500 m from a starter. Esi sees the starter bang two wooden blocks together and hears the bang 1.49 s later.
+parts:
+- id: a
+  prompt: Calculate the speed of sound. The light arrives almost at once.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '336'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_snd_0018_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The blocks are seen to meet almost at once, so the time is how long the sound takes.
+  - rung: 2
+    name: concept
+    text:
+      en: 'The bang travels straight from the blocks to the listener: there is no echo.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Speed = distance ÷ time.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 500 ÷ 1.49.
+  - rung: 5
+    name: full_step
+    text:
+      en: v = 336 m/s.
+  misconception_ids:
+  - mc.phy.o.direct_sound_factor_two
+  - mc.phy.o.time_over_distance
+  - mc.phy.o.speed_as_distance_times_time
+solution:
+  steps:
+  - n: 1
+    latex: v = \frac{d}{t} = \frac{500}{1.49} = 336\ \text{m/s}
+    reason: The sound travels the distance once
+    check_id: chk_build_phy_snd_0018_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  d: '500'
+  t: '1.49'
+checks:
+  chk_build_phy_snd_0018_ans:
+    args:
+      expression: 500/1.49
+      sf: 3
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

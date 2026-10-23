@@ -1,0 +1,115 @@
+id: itm.mth.o.number.0232
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.ratio_share
+stem: 'Ade and Kwame share $40 in the ratio 3 : 5, in that order.'
+parts:
+- id: a
+  prompt: How much does Kwame receive?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '25'
+      correct: true
+    - id: B
+      text: '5'
+      correct: false
+      misconception_id: mc.mth.o.ratio_one_part
+      feedback: 'One part is only the start: multiply it by the number of parts in the share you want.'
+    - id: C
+      text: '20'
+      correct: false
+      misconception_id: mc.mth.o.ratio_divide_by_terms
+      feedback: 'A ratio of 2 : 3 shares unequally, in 5 parts, not 2 equal halves.'
+    - id: D
+      text: '15'
+      correct: false
+      misconception_id: mc.mth.o.ratio_wrong_share
+      feedback: Match the order of the ratio to the order of the names.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: How many equal parts is the money split into?
+  - rung: 2
+    name: concept
+    text:
+      en: Add the numbers in the ratio to find the total number of parts; then find the value of one part.
+  - rung: 3
+    name: first_step
+    text:
+      en: There are 8 parts altogether.
+  - rung: 4
+    name: worked_step
+    text:
+      en: One part is $40 ÷ 8 = $5. Kwame gets 5 parts.
+  - rung: 5
+    name: full_step
+    text:
+      en: Kwame receives $25.
+  misconception_ids:
+  - mc.mth.o.ratio_divide_by_terms
+  - mc.mth.o.ratio_one_part
+  - mc.mth.o.ratio_wrong_share
+solution:
+  steps:
+  - n: 1
+    latex: 3 + 5 = 8
+    reason: Total number of parts
+    check_id: chk_build_mth_num_0232_parts
+  - n: 2
+    latex: \$ 40 \div 8 = \$ 5
+    reason: Value of one part
+    check_id: chk_build_mth_num_0232_one
+  - n: 3
+    latex: 5 \times 5 = 25
+    reason: Kwame has 5 parts
+    check_id: chk_build_mth_num_0232_ans
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+- local_names
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0232_ans:
+    args:
+      expression: 40/(3 + 5)*5
+    tool: math_evaluate
+  chk_build_mth_num_0232_one:
+    args:
+      expression: 40/(3 + 5)
+    tool: math_evaluate
+  chk_build_mth_num_0232_parts:
+    args:
+      expression: 3 + 5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

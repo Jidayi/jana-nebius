@@ -1,0 +1,93 @@
+id: itm.phy.o.energy.0006
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.stores_and_transfers
+stem: A ball is held still at the top of a ramp, then released and rolls down.
+parts:
+- id: a
+  prompt: What happens to its energy as it rolls down?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Energy is created as it speeds up
+      correct: false
+      misconception_id: mc.phy.o.energy_created
+      feedback: A generator only turns when something drives it, and a battery goes flat. Every joule that comes out was taken from a store somewhere else.
+    - id: B
+      text: It had no energy at the top because it was still
+      correct: false
+      misconception_id: mc.phy.o.stationary_has_no_energy
+      feedback: A book on a high shelf is still, but if it falls it speeds up. The energy was already there, in its gravitational store.
+    - id: C
+      text: Its gravitational store empties as its kinetic store fills
+      correct: true
+    - id: D
+      text: Its energy is used up as it goes faster
+      correct: false
+      misconception_id: mc.phy.o.energy_used_up
+      feedback: 'When a car brakes, its kinetic energy does not vanish: the brakes and the air get warmer. Energy only moves between stores; the total stays the same.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Decide where the energy is at the start and where it ends up.
+  - rung: 2
+    name: concept
+    text:
+      en: The ball loses height and gains speed.
+  - rung: 3
+    name: first_step
+    text:
+      en: Energy is never made or destroyed; it only moves from store to store.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out each option that breaks one of these ideas.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Its gravitational store empties as its kinetic store fills.'
+  misconception_ids:
+  - mc.phy.o.energy_created
+  - mc.phy.o.energy_used_up
+  - mc.phy.o.stationary_has_no_energy
+solution:
+  steps:
+  - n: 1
+    latex: \text{Its gravitational store empties as its kinetic store fills}
+    reason: Follow the energy from store to store
+difficulty:
+  prior: -0.9
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

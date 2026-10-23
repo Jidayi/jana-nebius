@@ -1,0 +1,67 @@
+id: wex.mth.o.algebra_and_graphs.0008
+kc_ids:
+- kc.mth.o.algebra_and_graphs.factorise_quadratic
+problem: Factorise $x^2 + 2x - 8$.
+steps:
+- n: 1
+  latex: 4 \times (-\,2) = (-\,8),\ 4 + (-\,2) = 2
+  reason: Two numbers that multiply to the last term and add to the middle coefficient
+  check_id: chk_build_mth_alg_w0008_m
+- n: 2
+  latex: x^2 + 2x - 8 = (x + 4)(x - 2)
+  reason: Put the two numbers in the brackets
+  check_id: chk_build_mth_alg_w0008_final
+- n: 3
+  latex: '\text{Check: the solutions of } x^2 + 2x - 8 = 0 \text{ are } x = -4, 2'
+  reason: Each bracket equal to zero
+  check_id: chk_build_mth_alg_w0008_roots
+final_answer:
+  latex: (x + 4)(x - 2)
+  check_id: chk_build_mth_alg_w0008_final
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0008_final:
+    args:
+      equations:
+      - p = abs(4)
+      - q = abs(-2)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_alg_w0008_m:
+    args:
+      equations:
+      - p = abs((4)*(-2))
+      - q = abs((4) + (-2))
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_alg_w0008_roots:
+    args:
+      equations:
+      - x^2 + (2)*x + (-8) = 0
+      unknowns:
+      - x
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

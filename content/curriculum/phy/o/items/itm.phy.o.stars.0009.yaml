@@ -1,0 +1,93 @@
+id: itm.phy.o.stars.0009
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.stars.light_years
+stem: A star 500 light-years away explodes today.
+parts:
+- id: a
+  prompt: When could people on the Earth first see the explosion?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Straight away
+      correct: false
+      misconception_id: mc.phy.o.distant_light_seen_now
+      feedback: Light takes time to travel. Light from a star 100 light-years away left it 100 years ago, so we see the star as it was then.
+    - id: B
+      text: In about 500 years' time
+      correct: true
+    - id: C
+      text: Never, because a light-year is a speed, not a distance
+      correct: false
+      misconception_id: mc.phy.o.light_year_is_speed
+      feedback: Speed × time = distance. The speed of light multiplied by one year gives a distance, the light-year.
+    - id: D
+      text: In 500 light-years, which is longer than 500 years
+      correct: false
+      misconception_id: mc.phy.o.light_year_is_time
+      feedback: 'A light-year is a distance: how far light travels in one year, about 9.5 × 10¹⁵ m.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Remember what kind of quantity a light-year is.
+  - rung: 2
+    name: concept
+    text:
+      en: A light-year measures how far light goes in a year.
+  - rung: 3
+    name: first_step
+    text:
+      en: One light-year = speed of light × the number of seconds in a year.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against this.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: In about 500 years'' time.'
+  misconception_ids:
+  - mc.phy.o.distant_light_seen_now
+  - mc.phy.o.light_year_is_speed
+  - mc.phy.o.light_year_is_time
+solution:
+  steps:
+  - n: 1
+    latex: \text{In about 500 years' time}
+    reason: A light-year is a distance
+difficulty:
+  prior: -0.5
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

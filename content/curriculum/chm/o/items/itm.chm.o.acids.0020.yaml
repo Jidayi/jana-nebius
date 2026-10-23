@@ -1,0 +1,85 @@
+id: itm.chm.o.acids.0020
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.ph_and_indicators
+stem: Red litmus paper is dipped into a solution of calcium hydroxide (limewater).
+parts:
+- id: a
+  prompt: What happens to the litmus paper?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: It stays red, because the solution is alkaline
+      correct: false
+      misconception_id: mc.chm.o.acids_indicator_colours_swapped
+      feedback: 'Learn each pair: litmus is red in acid and blue in alkali; methyl orange is red in acid and yellow in alkali; phenolphthalein is colourless in acid and pink in alkali.'
+    - id: B
+      text: It turns blue, because the solution is alkaline
+      correct: true
+    - id: C
+      text: It stays red, because the solution is neutral
+      correct: false
+    - id: D
+      text: It turns colourless, because the solution is alkaline
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Is calcium hydroxide solution acidic, neutral or alkaline?
+  - rung: 2
+    name: concept
+    text:
+      en: Calcium hydroxide is a soluble base, so its solution is an alkali.
+  - rung: 3
+    name: first_step
+    text:
+      en: Litmus is red in acid and blue in alkali.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Red litmus can only change colour if the solution is not acidic or neutral.
+  - rung: 5
+    name: full_step
+    text:
+      en: Limewater is alkaline, so red litmus turns blue.
+  misconception_ids:
+  - mc.chm.o.acids_indicator_colours_swapped
+solution:
+  steps:
+  - n: 1
+    latex: \text{Ca(OH)}_2 \text{(aq) alkaline} \Rightarrow \text{litmus blue}
+    reason: Litmus in alkali
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

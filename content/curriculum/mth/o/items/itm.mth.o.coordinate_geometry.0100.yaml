@@ -1,0 +1,109 @@
+id: itm.mth.o.coordinate_geometry.0100
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.coordinate_geometry.line_equation
+stem: A straight line passes through (4, 1) and (6, 2). Its equation is y = mx + c.
+parts:
+- id: a
+  prompt: Find c.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '-1'
+      correct: true
+    - id: B
+      text: '3'
+      correct: false
+      misconception_id: mc.mth.o.intercept_sign
+      feedback: 'Solve 0 = mx + c carefully: mx = −c, so x = −c/m.'
+    - id: C
+      text: '1'
+      correct: false
+      misconception_id: mc.mth.o.c_as_y_coordinate
+      feedback: 'Substitute the point into y = mx + c and solve for c: c = y₁ − mx₁.'
+    - id: D
+      text: '-7'
+      correct: false
+      misconception_id: mc.mth.o.gradient_inverted
+      feedback: 'Gradient = change in y ÷ change in x: how far up for each step across.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Find the gradient first, from the two points.
+  - rung: 2
+    name: concept
+    text:
+      en: Then put one point into y = mx + c and solve for c.
+  - rung: 3
+    name: first_step
+    text:
+      en: m = (2 − (1)) ÷ (6 − (4)).
+  - rung: 4
+    name: worked_step
+    text:
+      en: m = 0.5. Substitute (4, 1).
+  - rung: 5
+    name: full_step
+    text:
+      en: c = -1.
+  misconception_ids:
+  - mc.mth.o.c_as_y_coordinate
+  - mc.mth.o.gradient_inverted
+  - mc.mth.o.intercept_sign
+solution:
+  steps:
+  - n: 1
+    latex: m = \frac{2 - (1)}{6 - (4)} = 0.5
+    reason: Gradient first
+    check_id: chk_build_mth_crd_0100_m
+  - n: 2
+    latex: 1 = 0.5 \times (4) + c
+    reason: Substitute one point
+  - n: 3
+    latex: c = -1
+    reason: Solve for c
+    check_id: chk_build_mth_crd_0100_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_crd_0100_ans:
+    args:
+      expression: 1 - (2 - (1))/(6 - (4))*(4)
+    tool: math_evaluate
+  chk_build_mth_crd_0100_m:
+    args:
+      expression: (2 - (1))/(6 - (4))
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

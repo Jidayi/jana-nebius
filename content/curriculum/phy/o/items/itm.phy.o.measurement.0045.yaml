@@ -1,0 +1,98 @@
+id: itm.phy.o.measurement.0045
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.measurement.resultant_vectors
+stem: 'Two forces act on a crate along the same line: 300 N to the right and 30 N to the left.'
+parts:
+- id: a
+  prompt: Find the size of the resultant force.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 330 N
+      correct: false
+      misconception_id: mc.phy.o.opposite_vectors_added
+      feedback: 'Two teams pulling a rope in opposite directions cancel each other out: subtract the smaller pull from the larger.'
+    - id: B
+      text: 270 N
+      correct: true
+    - id: C
+      text: 301 N
+      correct: false
+      misconception_id: mc.phy.o.pythagoras_for_a_line
+      feedback: Pythagoras is for vectors at right angles. Along one line, add vectors that point the same way and subtract vectors that point opposite ways.
+    - id: D
+      text: 300 N
+      correct: false
+      misconception_id: mc.phy.o.largest_vector_only
+      feedback: A small current still slows a boat. Every vector acting changes the resultant, so combine them all.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Draw the two arrows along one line.
+  - rung: 2
+    name: concept
+    text:
+      en: Vectors in opposite directions partly cancel.
+  - rung: 3
+    name: first_step
+    text:
+      en: Take the smaller one away from the larger one.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 300 − 30.
+  - rung: 5
+    name: full_step
+    text:
+      en: The resultant is 270 N, in the direction of the larger one.
+  misconception_ids:
+  - mc.phy.o.largest_vector_only
+  - mc.phy.o.opposite_vectors_added
+  - mc.phy.o.pythagoras_for_a_line
+solution:
+  steps:
+  - n: 1
+    latex: 300 - 30 = 270\ \text{N}
+    reason: 'Opposite directions: subtract'
+    check_id: chk_build_phy_mea_0045_ans
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mea_0045_ans:
+    args:
+      expression: 300 - 30
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

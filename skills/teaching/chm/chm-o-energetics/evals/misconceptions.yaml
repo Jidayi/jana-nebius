@@ -1,0 +1,410 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.chm-o-energetics
+version: 2026-10-13.1
+description: 'Colocated evals for chm-o-energetics (SKL-21, EVL-07): one case per misconception. The student answers
+  as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key away,
+  and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: chm_o_energetics_01
+  title: Holds 'A warmer mixture took energy in'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.energetics_temp_rise_endo
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.energetics.0001
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.energetics.exo_endo
+        misconception: mc.chm.o.energetics_temp_rise_endo
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: chm_o_energetics_02
+  title: Holds 'Breaking bonds gives energy out'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.energetics_breaking_releases
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.energetics.0001
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.energetics.exo_endo
+        misconception: mc.chm.o.energetics_breaking_releases
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: chm_o_energetics_03
+  title: Holds 'Activation energy measured from zero'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.energetics_ea_from_zero
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.energetics.0013
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.energetics.profiles
+        misconception: mc.chm.o.energetics_ea_from_zero
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: chm_o_energetics_04
+  title: Holds 'A catalyst changes ΔH'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.energetics_catalyst_changes_dh
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.energetics.0023
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.energetics.profiles
+        misconception: mc.chm.o.energetics_catalyst_changes_dh
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_energetics_05
+  title: Holds 'Formed minus broken'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.energetics_formed_minus_broken
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.energetics.0025
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.energetics.bond_energies
+        misconception: mc.chm.o.energetics_formed_minus_broken
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_energetics_06
+  title: Holds 'Counting each kind of bond once'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.energetics_bond_count_ignored
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.energetics.0025
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.energetics.bond_energies
+        misconception: mc.chm.o.energetics_bond_count_ignored
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_energetics_07
+  title: Holds 'Using the mass of the solid'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.energetics_mass_of_reactant
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.energetics.0037
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.energetics.calorimetry
+        misconception: mc.chm.o.energetics_mass_of_reactant
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_energetics_08
+  title: Holds 'Not dividing by the moles'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.energetics_q_not_per_mole
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.energetics.0037
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.energetics.calorimetry
+        misconception: mc.chm.o.energetics_q_not_per_mole
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_energetics_09
+  title: Holds 'Positive ΔH when the water warms'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.energetics_calorimetry_sign
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.energetics.0037
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.energetics.calorimetry
+        misconception: mc.chm.o.energetics_calorimetry_sign
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

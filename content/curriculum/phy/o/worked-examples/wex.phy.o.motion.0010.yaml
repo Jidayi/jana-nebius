@@ -1,0 +1,50 @@
+id: wex.phy.o.motion.0010
+kc_ids:
+- kc.phy.o.motion.distance_time_gradient
+problem: A distance-time graph is a straight line from (0 s, 0 m) to (40 s, 120 m). Find the speed.
+steps:
+- n: 1
+  latex: v = \frac{\Delta d}{\Delta t}
+  reason: Gradient of a distance-time graph
+- n: 2
+  latex: v = \frac{120 - 0}{40 - 0}
+  reason: Read the changes between the two points
+  check_id: chk_build_phy_w_0010
+- n: 3
+  latex: v = 3.0\ \text{m/s}
+  reason: Divide
+  check_id: chk_build_phy_w_0010
+final_answer:
+  latex: 3.0\ \text{m/s}
+  check_id: chk_build_phy_w_0010
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_w_0010:
+    args:
+      expression: (120 - 0)/(40 - 0)
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

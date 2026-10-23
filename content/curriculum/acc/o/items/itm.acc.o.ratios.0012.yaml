@@ -1,0 +1,113 @@
+id: itm.acc.o.ratios.0012
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.mark_up
+stem: 'Juma runs a pharmacy. For the year: revenue $57100; cost of sales $41000.'
+parts:
+- id: a
+  prompt: Calculate the mark-up as a percentage. Give your answer to 2 decimal places.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '39.27'
+    unit: '%'
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_ratios_0012_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Mark-up compares the profit on goods with what the goods cost.
+  - rung: 2
+    name: concept
+    text:
+      en: Mark-up = gross profit ÷ cost of sales, as a percentage.
+  - rung: 3
+    name: first_step
+    text:
+      en: Gross profit = revenue − cost of sales.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide (57100 − 41000) by 41000 and write it as a percentage.
+  - rung: 5
+    name: full_step
+    text:
+      en: Mark-up = 39.27%.
+  misconception_ids:
+  - mc.acc.o.rat_margin_markup_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{Mark-up} = \frac{\text{gross profit}}{\text{cost of sales}}
+    reason: Profit on cost
+    check_id: chk_build_acc_ratios_0012_t
+  - n: 2
+    latex: \text{Gross profit} = 57100 - 41000 = 16100
+    reason: Revenue less cost of sales
+    check_id: chk_build_acc_ratios_0012_s2
+  - n: 3
+    latex: \frac{16100}{41000} \rightarrow 39.27\%
+    reason: As a percentage
+    check_id: chk_build_acc_ratios_0012_a
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_0012_a:
+    args:
+      dp: 2
+      expression: (57100 - 41000) / 41000 * 100
+    tool: math_evaluate
+  chk_build_acc_ratios_0012_s2:
+    args:
+      dp: 4
+      expression: 57100 - 41000
+    tool: math_evaluate
+  chk_build_acc_ratios_0012_t:
+    args:
+      cost_of_sales: '41000'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      ratios:
+      - mark_up
+      revenue: '57100'
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

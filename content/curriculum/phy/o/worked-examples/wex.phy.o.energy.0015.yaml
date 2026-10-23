@@ -1,0 +1,45 @@
+id: wex.phy.o.energy.0015
+kc_ids:
+- kc.phy.o.energy.energy_resources
+problem: In a small hydroelectric power station, 800 kg of water falls through a height of 50 m every second. Take g = 10 N/kg. Calculate the power supplied by the falling water, in kW.
+steps:
+- n: 1
+  latex: \Delta E_p = 800 \times 10 \times 50 = 400000\ \text{J}
+  reason: Energy lost each second
+  check_id: chk_build_phy_nrg_w0015_ep
+- n: 2
+  latex: 400000\ \text{J/s} = 400\ \text{kW}
+  reason: Joules per second are watts
+  check_id: chk_build_phy_nrg_w0015_ans
+final_answer:
+  latex: 400\ \text{kW}
+  check_id: chk_build_phy_nrg_w0015_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_w0015_ans:
+    args:
+      expression: 800*10*50/1000
+    tool: math_evaluate
+  chk_build_phy_nrg_w0015_ep:
+    args:
+      expression: 800*10*50
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

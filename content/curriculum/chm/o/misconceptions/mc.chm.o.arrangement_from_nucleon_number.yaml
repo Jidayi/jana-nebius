@@ -1,0 +1,35 @@
+id: mc.chm.o.arrangement_from_nucleon_number
+kc_ids:
+- kc.chm.o.atoms.electron_arrangement
+student_name: Counting from the nucleon number
+description: Works out the electrons from the nucleon number instead of the proton number.
+signatures:
+- kind: answer_transform
+  expression: 'choice: arrangement built from the nucleon number'
+fix:
+  strategy: rule_restatement
+  text:
+    en: A neutral atom has as many electrons as protons. Use the proton number, the smaller of the two numbers.
+probe_item_ids:
+- itm.chm.o.atoms.0026
+- itm.chm.o.atoms.0027
+- itm.chm.o.atoms.0028
+- itm.chm.o.atoms.0029
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

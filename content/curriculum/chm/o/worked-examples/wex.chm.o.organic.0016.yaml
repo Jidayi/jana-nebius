@@ -1,0 +1,125 @@
+id: wex.chm.o.organic.0016
+kc_ids:
+- kc.chm.o.organic.combustion
+problem: Write the balanced equation for the complete combustion of ethanol, C₂H₅OH, and give the number of O₂ molecules needed.
+steps:
+- n: 1
+  latex: '\text{one }\text{C}_2\text{H}_5\text{OH}: 2\text{CO}_2 + 3\text{H}_2\text{O}'
+  reason: Balance carbon, then hydrogen
+  check_id: chk_build_chm_organic_w0016_one
+- n: 2
+  latex: 2 \times 2 + 3 = 7
+  reason: Oxygen atoms on the right
+  check_id: chk_build_chm_organic_w0016_oright
+- n: 3
+  latex: 7 - 1 = 6
+  reason: Ethanol supplies one oxygen atom
+  check_id: chk_build_chm_organic_w0016_oneed
+- n: 4
+  latex: \text{C}_2\text{H}_5\text{OH} + 3\text{O}_2 \rightarrow 2\text{CO}_2 + 3\text{H}_2\text{O}
+  reason: Balanced equation
+  check_id: chk_build_chm_organic_w0016_bal
+final_answer:
+  latex: 3\text{O}_2
+  check_id: chk_build_chm_organic_w0016_ratios
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_w0016_bal:
+    args:
+      equation: C2H5OH + O2 -> CO2 + H2O
+    tool: chem_balance
+  chk_build_chm_organic_w0016_one:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      equation: C2H5OH + O2 -> CO2 + H2O
+      sf: 3
+      steps:
+      - amount: '1'
+        from: C2H5OH
+        id: p0
+        op: mole_ratio
+        to: C2H5OH
+      - amount: '1'
+        from: C2H5OH
+        id: p1
+        op: mole_ratio
+        to: O2
+      - amount: '1'
+        from: C2H5OH
+        id: p2
+        op: mole_ratio
+        to: CO2
+      - amount: '1'
+        from: C2H5OH
+        id: p3
+        op: mole_ratio
+        to: H2O
+    tool: chem_stoichiometry
+  chk_build_chm_organic_w0016_oneed:
+    args:
+      expression: 2*2 + 3 - 1
+    tool: math_evaluate
+  chk_build_chm_organic_w0016_oright:
+    args:
+      expression: 2*2 + 3
+    tool: math_evaluate
+  chk_build_chm_organic_w0016_ratios:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      equation: C2H5OH + O2 -> CO2 + H2O
+      sf: 3
+      steps:
+      - amount: '1'
+        from: C2H5OH
+        id: r0
+        op: mole_ratio
+        to: C2H5OH
+      - amount: '1'
+        from: C2H5OH
+        id: r1
+        op: mole_ratio
+        to: O2
+      - amount: '1'
+        from: C2H5OH
+        id: r2
+        op: mole_ratio
+        to: CO2
+      - amount: '1'
+        from: C2H5OH
+        id: r3
+        op: mole_ratio
+        to: H2O
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,153 @@
+- id: kc.acc.o.inventory.fifo
+  code: ACC-O-08.K01
+  node_id: cur.acc.o.inventory
+  statement: Calculate closing inventory and cost of sales by first in, first out
+  kind: procedural
+  tools:
+  - acc_inventory
+  - math_evaluate
+  exam_weight: 0.3
+  prerequisites:
+  - kc_id: kc.acc.o.double_entry.record_credit_transactions
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.inv_avco_for_fifo
+  - mc.acc.o.inv_cos_for_closing
+  - mc.acc.o.inv_fifo_reversed
+  skill_ids:
+  - acc-o-inventory
+  glossary:
+  - inventory
+  - closing inventory
+  - opening inventory
+  - cost of sales
+  - first in, first out
+  - FIFO
+  - AVCO
+  - weighted average cost
+  - net realisable value
+  - valuation
+  - gross profit
+  - profit for the year
+  - overstated
+  - understated
+  - overstate
+  - understate
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.inventory.avco
+  code: ACC-O-08.K02
+  node_id: cur.acc.o.inventory
+  statement: Calculate closing inventory by the weighted average cost method
+  kind: procedural
+  tools:
+  - acc_inventory
+  - math_evaluate
+  exam_weight: 0.3
+  prerequisites:
+  - kc_id: kc.acc.o.inventory.fifo
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.inv_cos_for_closing
+  - mc.acc.o.inv_fifo_for_avco
+  - mc.acc.o.inv_simple_average
+  skill_ids:
+  - acc-o-inventory
+  glossary:
+  - inventory
+  - closing inventory
+  - opening inventory
+  - cost of sales
+  - first in, first out
+  - FIFO
+  - AVCO
+  - weighted average cost
+  - net realisable value
+  - valuation
+  - gross profit
+  - profit for the year
+  - overstated
+  - understated
+  - overstate
+  - understate
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.inventory.lower_cost_nrv
+  code: ACC-O-08.K03
+  node_id: cur.acc.o.inventory
+  statement: Apply the lower of cost and net realisable value to value inventory
+  kind: procedural
+  tools:
+  - acc_inventory
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.inventory.fifo
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.inv_nrv_costs_added
+  - mc.acc.o.inv_nrv_ignored
+  - mc.acc.o.inv_selling_price_used
+  skill_ids:
+  - acc-o-inventory
+  glossary:
+  - inventory
+  - closing inventory
+  - opening inventory
+  - cost of sales
+  - first in, first out
+  - FIFO
+  - AVCO
+  - weighted average cost
+  - net realisable value
+  - valuation
+  - gross profit
+  - profit for the year
+  - overstated
+  - understated
+  - overstate
+  - understate
+  difficulty_prior: 0.1
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.inventory.inventory_profit_effect
+  code: ACC-O-08.K04
+  node_id: cur.acc.o.inventory
+  statement: Predict how overstating or understating closing inventory changes profit
+  kind: conceptual
+  tools: []
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.inventory.lower_cost_nrv
+    strength: helpful
+  - kc_id: kc.acc.o.sole_trader_statements.cost_of_sales
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.inv_effect_reversed
+  - mc.acc.o.inv_no_profit_effect
+  - mc.acc.o.inv_no_profit_effect_sofp
+  - mc.acc.o.inv_opening_closing_confused
+  skill_ids:
+  - acc-o-inventory
+  glossary:
+  - inventory
+  - closing inventory
+  - opening inventory
+  - cost of sales
+  - first in, first out
+  - FIFO
+  - AVCO
+  - weighted average cost
+  - net realisable value
+  - valuation
+  - gross profit
+  - profit for the year
+  - overstated
+  - understated
+  - overstate
+  - understate
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active

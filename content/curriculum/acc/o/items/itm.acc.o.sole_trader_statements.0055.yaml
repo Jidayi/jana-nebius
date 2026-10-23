@@ -1,0 +1,141 @@
+id: itm.acc.o.sole_trader_statements.0055
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.sole_trader_statements.working_capital
+stem: 'At the year end Amina''s business has: inventory $7000; trade receivables $3300; prepaid expenses $850; bank overdraft $1400; cash in hand $350; trade payables $2500; accrued expenses $450; equipment $27000; loan repayable in six years $7600.'
+parts:
+- id: a
+  prompt: What are the net current assets?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $34150
+      correct: false
+      misconception_id: mc.acc.o.wc_non_current_included
+    - id: B
+      text: $9950
+      correct: false
+      misconception_id: mc.acc.o.sofp_overdraft_as_asset
+    - id: C
+      text: $7150
+      correct: true
+    - id: D
+      text: $-450
+      correct: false
+      misconception_id: mc.acc.o.sofp_term_confused
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Net current assets uses only the items that are current. Which items are not?
+  - rung: 2
+    name: concept
+    text:
+      en: Net current assets = current assets − current liabilities. An overdraft is owed to the bank.
+  - rung: 3
+    name: first_step
+    text:
+      en: The equipment and the loan due in six years are non-current, so leave them out.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out (7000 + 3300 + 850 + 350) − (2500 + 450 + 1400).
+  - rung: 5
+    name: full_step
+    text:
+      en: (7000 + 3300 + 850 + 350) − (2500 + 450 + 1400) = $7150.
+  misconception_ids:
+  - mc.acc.o.sofp_overdraft_as_asset
+  - mc.acc.o.wc_non_current_included
+  - mc.acc.o.sofp_term_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{Net current assets} = \text{current assets} - \text{current liabilities}
+    reason: Non-current items are left out
+    check_id: chk_build_acc_sole_trader_statements_0055_t
+  - n: 2
+    latex: \text{Net current assets} = (7000 + 3300 + 850 + 350) - (2500 + 450 + 1400) = 7150
+    reason: Substitute
+    check_id: chk_build_acc_sole_trader_statements_0055_a
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_0055_a:
+    args:
+      dp: 2
+      expression: (7000 + 3300 + 850 + 350) - (2500 + 450 + 1400)
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0055_t:
+    args:
+      adjustments:
+      - amount: '7000'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Trade receivables
+        debit: '3300'
+        role: trade_receivables
+      - account: Prepayments
+        debit: '850'
+        role: other_receivables
+      - account: Cash
+        debit: '350'
+        role: cash
+      - account: Trade payables
+        credit: '2500'
+        role: trade_payables
+      - account: Accruals
+        credit: '450'
+        role: other_payables
+      - account: Equipment
+        debit: '27000'
+        role: non_current_asset
+      - account: Loan
+        credit: '7600'
+        role: non_current_liability
+      - account: Bank overdraft
+        credit: '1400'
+        role: bank_overdraft
+      - account: Sales
+        credit: '50000'
+        role: revenue
+      - account: Purchases
+        debit: '30000'
+        role: purchases
+      - account: Land
+        debit: '450'
+        role: non_current_asset
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

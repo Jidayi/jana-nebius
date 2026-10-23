@@ -1,0 +1,106 @@
+id: itm.phy.o.momentum.0043
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.impulse
+stem: A tennis ball of mass 0.06 kg hits a wall at 8 m/s and bounces straight back at 6 m/s. It is in contact with the wall for 0.02 s.
+parts:
+- id: a
+  prompt: Find the average force of the wall on the ball.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 6 N
+      correct: false
+      misconception_id: mc.phy.o.rebound_change_subtracted
+      feedback: 'Take towards the wall as positive: the velocity goes from +u to −v, a change of u + v. A bounce changes the momentum more than a stop does.'
+    - id: B
+      text: 24 N
+      correct: false
+      misconception_id: mc.phy.o.impulse_initial_momentum_only
+      feedback: The change in momentum is final momentum minus initial momentum. After a bounce the final momentum is not zero.
+    - id: C
+      text: 0.0168 N
+      correct: false
+      misconception_id: mc.phy.o.impulse_time_multiplied
+      feedback: Impulse is force × time, so force = change in momentum ÷ time. A shorter impact time gives a bigger force.
+    - id: D
+      text: 42 N
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Force × time = change in momentum.
+  - rung: 2
+    name: concept
+    text:
+      en: The ball's direction reverses, so take one direction as positive and give each velocity a sign.
+  - rung: 3
+    name: first_step
+    text:
+      en: The velocity changes from −8 m/s to +6 m/s, so the change is the two speeds added.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The change in momentum is 0.84 kg m/s.
+  - rung: 5
+    name: full_step
+    text:
+      en: F = 0.84 ÷ 0.02 = 42 N.
+  misconception_ids:
+  - mc.phy.o.impulse_initial_momentum_only
+  - mc.phy.o.impulse_time_multiplied
+  - mc.phy.o.rebound_change_subtracted
+solution:
+  steps:
+  - n: 1
+    latex: \Delta p = 0.06 \times (6 - (-\,8)) = 0.84\ \text{kg m/s}
+    reason: 'Away from the wall positive: the velocity reverses'
+    check_id: chk_build_phy_mom_0043_dp
+  - n: 2
+    latex: F = \frac{0.84}{0.02} = 42\ \text{N}
+    reason: Force = change in momentum ÷ time
+    check_id: chk_build_phy_mom_0043_ans
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 110
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_0043_ans:
+    args:
+      expression: 0.06*(6 + 8)/0.02
+    tool: math_evaluate
+  chk_build_phy_mom_0043_dp:
+    args:
+      expression: 0.06*(6 + 8)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

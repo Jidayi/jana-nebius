@@ -1,0 +1,47 @@
+{
+  "id": "licence.canonical.school",
+  "title": "Settings, a school licence",
+  "component": "Licence",
+  "note": "A school's licence file is installed; it never gates learning.",
+  "state": "canonical",
+  "variant": "school",
+  "payload": {
+    "state": "active",
+    "offer": "school_seat",
+    "licence_id": "lic-fixture-0001",
+    "seats": 40,
+    "expires_at": "2027-08-31T00:00:00Z",
+    "channel": "stable",
+    "install_kind": "school_lab",
+    "clock_behind": false,
+    "entitlements": {
+      "lessons": true,
+      "practice": true,
+      "tool_checks": true,
+      "progress": true,
+      "local_tutor": true,
+      "mock_exams": true,
+      "offline_study_area": true,
+      "content_updates": "all",
+      "student_profiles": "all",
+      "parent_summary": false,
+      "cloud_tier": "available",
+      "study_materials": "available",
+      "cloud_backup": "available",
+      "multi_device": "available",
+      "parent_remote_view": "available",
+      "web_client": "available"
+    }
+  },
+  "payloadContract": "https://jana.dev/contracts/api/commands#/$defs/LicenceStatus",
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "School licence lic-fixture-0001",
+    "A school lab computer"
+  ]
+}

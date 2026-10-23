@@ -1,0 +1,94 @@
+id: itm.chm.o.environment.0004
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.water
+stem: A sample of sea water turns white anhydrous copper(II) sulfate blue. At standard pressure it boils at 101 °C. Pure water boils at 100 °C.
+parts:
+- id: a
+  prompt: What can you conclude?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: It contains no water, because water would turn the copper(II) sulfate white
+      correct: false
+      misconception_id: mc.chm.o.environment_water_test_colours_reversed
+      feedback: The dry form is the starting colour and water gives the hydrated colour. Anhydrous copper(II) sulfate is white and turns blue. Dry cobalt(II) chloride paper is blue and turns pink.
+    - id: B
+      text: It is pure water, because the copper(II) sulfate turned blue
+      correct: false
+      misconception_id: mc.chm.o.environment_water_test_shows_purity
+      feedback: These tests react with any water, even water with salt or other substances dissolved in it. They show that water is present, not that it is pure. To check purity, measure the boiling point or the melting point and compare it with the value for pure water.
+    - id: C
+      text: It is pure, because the salt would be removed by filtering at the water works
+      correct: false
+      misconception_id: mc.chm.o.environment_treatment_stages_mixed
+      feedback: Each stage has one job. Sedimentation lets large particles settle. Filtration removes small insoluble particles. Carbon removes tastes and smells. Chlorine kills microbes. None of these removes dissolved salts, so tap water is not pure.
+    - id: D
+      text: It contains water, but it is not pure water
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'There are two results: a colour test and a boiling point.'
+  - rung: 2
+    name: concept
+    text:
+      en: The colour test shows whether water is present. The boiling point shows whether it is pure.
+  - rung: 3
+    name: first_step
+    text:
+      en: Blue copper(II) sulfate means water is present.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Compare 101 °C with 100 °C: what raises the boiling point of water?'
+  - rung: 5
+    name: full_step
+    text:
+      en: Water is present, but the boiling point is above 100 °C because of dissolved salt, so it is not pure.
+  misconception_ids:
+  - mc.chm.o.environment_water_test_shows_purity
+  - mc.chm.o.environment_water_test_colours_reversed
+  - mc.chm.o.environment_treatment_stages_mixed
+solution:
+  steps:
+  - n: 1
+    latex: \text{blue }\rightarrow\text{ water present}
+    reason: Colour test
+  - n: 2
+    latex: \text{101\ }^\circ\text{C > 100\ }^\circ\text{C }\rightarrow\text{ impure}
+    reason: Boiling point
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,46 @@
+id: wex.chm.o.electrolysis.0001
+kc_ids:
+- kc.chm.o.electrolysis.molten_products
+problem: Molten sodium chloride is electrolysed with graphite electrodes. Name the product at each electrode and find the relative molecular mass of the gas formed.
+steps:
+- n: 1
+  latex: '\text{ions: }\text{Na}^{+},\ \text{Cl}^{-}'
+  reason: A melt has only the ions of the compound
+- n: 2
+  latex: '\text{cathode: }\text{Na}^{+} \rightarrow \text{sodium}'
+  reason: Cations go to the cathode
+- n: 3
+  latex: '\text{anode: }\text{Cl}^{-} \rightarrow \text{Cl}_2'
+  reason: Anions go to the anode
+final_answer:
+  latex: M_r(\text{Cl}_2) = 71
+  check_id: chk_build_chm_electrolysis_w0001_mr
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_w0001_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cl
+      formula: Cl2
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

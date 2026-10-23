@@ -1,0 +1,34 @@
+id: mc.phy.o.pressure_area_changes_force
+kc_ids:
+- kc.phy.o.pressure.pressure_on_surfaces
+student_name: Changing the area changes the weight
+description: Thinks spreading an object's weight over a different area, or turning it onto another face, changes its weight or the force it exerts.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: contrast_example
+  text:
+    en: Turning a brick onto its end does not change how much it weighs. The force stays the same; only the area, and so the pressure, changes.
+probe_item_ids:
+- itm.phy.o.pressure.0011
+- itm.phy.o.pressure.0013
+- itm.phy.o.pressure.0015
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,46 @@
+id: dgm.phy.circuit_series_two_lamps.v1
+subject: phy
+title: Two lamps in series with an ammeter and a voltmeter
+kind: circuit
+params:
+  components:
+  - id: B
+    type: battery
+    value: 6 V
+  - id: A1
+    type: ammeter
+  - id: L1
+    type: lamp
+    value: 4 Ω
+  - id: L2
+    type: lamp
+    value: 2 Ω
+  - id: V1
+    type: voltmeter
+  connections:
+  - from: B.pos
+    to: A1.a
+  - from: A1.b
+    to: L1.a
+  - from: L1.b
+    to: L2.a
+  - from: L2.b
+    to: B.neg
+  - from: V1.a
+    to: L1.a
+  - from: V1.b
+    to: L1.b
+  layout_hint: series
+  show:
+  - meter_readings
+alt_text: A battery drives a current through two lamps in series; an ammeter measures the current and a voltmeter is connected across the first lamp.
+licence: LicenseRef-Own
+attribution: Our own preset, made for Jana with AI assistance.
+version: 1.0.0
+levels:
+- O
+kc_ids: []
+review:
+  author_role_id: rev_author_agent
+  status: in_review
+  style_version: 1

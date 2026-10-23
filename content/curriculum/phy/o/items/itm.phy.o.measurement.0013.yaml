@@ -1,0 +1,110 @@
+id: itm.phy.o.measurement.0013
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.measurement.si_prefixes
+stem: A voltage is measured as 2500 V.
+parts:
+- id: a
+  prompt: Write this voltage in kV.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 2500000 kV
+      correct: false
+      misconception_id: mc.phy.o.prefix_multiply_divide_swapped
+      feedback: A milliamp is much smaller than an amp, so a current in milliamps becomes a smaller number of amps. Ask whether the new unit is bigger or smaller before you multiply or divide.
+    - id: B
+      text: 2.5 kV
+      correct: true
+    - id: C
+      text: 25 kV
+      correct: false
+      misconception_id: mc.phy.o.prefix_power_wrong
+      feedback: 'Learn the prefixes as powers of ten: kilo is a thousand, mega a million, milli a thousandth, micro a millionth and nano a thousand-millionth.'
+    - id: D
+      text: 0.0025 kV
+      correct: false
+      misconception_id: mc.phy.o.prefix_confused_with_neighbour
+      feedback: Milli and micro differ by a factor of a thousand, and so do kilo and mega. Write the prefix as a power of ten before you convert.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Which is the bigger unit: V or kV?'
+  - rung: 2
+    name: concept
+    text:
+      en: The prefix in kV means a thousand times the base unit, V.
+  - rung: 3
+    name: first_step
+    text:
+      en: Changing to a bigger unit makes the number smaller.
+  - rung: 4
+    name: worked_step
+    text:
+      en: So divide by a thousand.
+  - rung: 5
+    name: full_step
+    text:
+      en: 2500 V = 2.5 kV.
+  misconception_ids:
+  - mc.phy.o.prefix_confused_with_neighbour
+  - mc.phy.o.prefix_multiply_divide_swapped
+  - mc.phy.o.prefix_power_wrong
+solution:
+  steps:
+  - n: 1
+    latex: 1\ \text{kV} = 10^{3}\ \text{V}
+    reason: What the prefix means
+  - n: 2
+    latex: 2500\ \text{V} \rightarrow 2.5\ \text{kV}
+    reason: Divide when the unit gets bigger, multiply when it gets smaller
+    check_id: chk_build_phy_mea_0013_calc
+  - n: 3
+    latex: 2.5\ \text{kV}
+    reason: Checked by converting the units
+    check_id: chk_build_phy_mea_0013_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mea_0013_ans:
+    args:
+      quantity: 2500 V
+      to: kV
+    tool: units_convert
+  chk_build_phy_mea_0013_calc:
+    args:
+      expression: 2500/1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

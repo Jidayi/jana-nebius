@@ -1,0 +1,34 @@
+id: mc.acc.o.gp_expenses_deducted
+kc_ids:
+- kc.acc.o.sole_trader_statements.gross_profit
+student_name: Taking expenses off gross profit
+description: Subtracts running expenses such as wages when asked for gross profit.
+signatures:
+- kind: answer_transform
+  expression: revenue - sales_returns - cost_of_sales - expenses
+fix:
+  strategy: rule_restatement
+  text:
+    en: Gross profit stops at cost of sales. Running expenses come off gross profit to give profit for the year.
+probe_item_ids:
+- itm.acc.o.sole_trader_statements.0019
+- itm.acc.o.sole_trader_statements.0020
+- itm.acc.o.sole_trader_statements.0021
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

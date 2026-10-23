@@ -1,0 +1,72 @@
+id: wex.acc.o.accruals_prepayments.0001
+kc_ids:
+- kc.acc.o.accruals_prepayments.accrued_expense
+problem: Electricity paid in the year $3240; owing at the end $380. Find the electricity expense.
+steps:
+- n: 1
+  latex: \text{Expense} = \text{paid} + \text{closing accrual} - \text{opening accrual}
+  reason: Matching
+  check_id: chk_build_acc_accruals_prepayments_w0001_t
+- n: 2
+  latex: \text{Expense} = 3240 + 380 = 3620
+  reason: Substitute
+  check_id: chk_build_acc_accruals_prepayments_w0001_a
+final_answer:
+  latex: \$\,3620
+  check_id: chk_build_acc_accruals_prepayments_w0001_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_accruals_prepayments_w0001_a:
+    args:
+      dp: 2
+      expression: 3240 + 380
+    tool: math_evaluate
+  chk_build_acc_accruals_prepayments_w0001_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Electricity
+        amount: '380'
+        kind: accrued_expense
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '60000'
+        role: revenue
+      - account: Purchases
+        debit: '30000'
+        role: purchases
+      - account: Electricity
+        debit: '3240'
+        role: expense
+      - account: Land
+        debit: '26760'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

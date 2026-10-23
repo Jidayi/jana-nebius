@@ -1,0 +1,92 @@
+id: itm.phy.o.electromagnetism.0069
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.power_transmission
+stem: The ideal transformer in a doorbell takes a current of 0.04 A from the 230 V mains and gives an output of 8 V.
+parts:
+- id: a
+  prompt: Calculate the current in the secondary coil.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1.15'
+    unit: A
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_emg_0069_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An ideal transformer wastes no energy.
+  - rung: 2
+    name: concept
+    text:
+      en: 'So the power in equals the power out: Vp × Ip = Vs × Is.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the power in first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The power in is 9.2 W; divide it by 8 V.
+  - rung: 5
+    name: full_step
+    text:
+      en: Is = 9.2 ÷ 8 = 1.15 A.
+  misconception_ids:
+  - mc.phy.o.secondary_current_rises_with_voltage
+  - mc.phy.o.transformer_current_unchanged
+  - mc.phy.o.transmission_current_upside_down
+solution:
+  steps:
+  - n: 1
+    latex: V_p I_p = 230 \times 0.04 = 9.2\ \text{W}
+    reason: The power in
+    check_id: chk_build_phy_emg_0069_p
+  - n: 2
+    latex: I_s = \frac{9.2}{8} = 1.15\ \text{A}
+    reason: Power out = power in
+    check_id: chk_build_phy_emg_0069_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_0069_ans:
+    args:
+      expression: 230*0.04/8
+    tool: math_evaluate
+  chk_build_phy_emg_0069_p:
+    args:
+      expression: 230*0.04
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,44 @@
+id: wex.phy.o.stars.0003
+kc_ids:
+- kc.phy.o.stars.life_cycle_of_stars
+problem: A star has a mass of 4.0 × 10³¹ kg. The Sun's mass is 2.0 × 10³⁰ kg. Stars more than about 8 times as massive as the Sun end their lives in a supernova. How many times the Sun's mass is the star, and how will its life end?
+steps:
+- n: 1
+  latex: \frac{4.0 \times 10^{31}}{2.0 \times 10^{30}} = 20 > 8
+  reason: Mass compared with the Sun, and with the supernova limit
+  check_id: chk_build_phy_str_w0003_ratio
+- n: 2
+  latex: \text{It becomes a red supergiant, explodes as a supernova and leaves a neutron star or black hole}
+  reason: The end that goes with this mass
+final_answer:
+  latex: \frac{M}{M_{\text{Sun}}} = 20
+  check_id: chk_build_phy_str_w0003_ratio
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_str_w0003_ratio:
+    args:
+      expression: 4.0e31/2.0e30
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

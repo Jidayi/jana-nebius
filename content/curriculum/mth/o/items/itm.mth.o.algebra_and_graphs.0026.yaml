@@ -1,0 +1,111 @@
+id: itm.mth.o.algebra_and_graphs.0026
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.expand_brackets
+stem: Expand and simplify $(x + 6)(x + 7)$.
+parts:
+- id: a
+  prompt: Choose the correct expansion.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $x^2 + 42$
+      correct: false
+      misconception_id: mc.mth.o.expand_missing_middle
+      feedback: Draw a grid with x and a on one side and x and b on the other. Every box gives a term, so there are four products, not two.
+    - id: B
+      text: $x^2 - 13x + 42$
+      correct: false
+      misconception_id: mc.mth.o.expand_sign_slip
+      feedback: 'Multiply the signs as well as the numbers: negative times positive is negative, negative times negative is positive.'
+    - id: C
+      text: $x^2 + 13x + 42$
+      correct: true
+    - id: D
+      text: $x^2 + 13x + 13$
+      correct: false
+      misconception_id: mc.mth.o.expand_add_constants
+      feedback: 'Try x = 1 in both forms: the brackets and your expansion must give the same value. The last term comes from multiplying the two numbers.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: There are two terms in each bracket, so you should get four products.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply x by both terms in the second bracket, then the number by both terms.
+  - rung: 3
+    name: first_step
+    text:
+      en: x × x = x², and x × 7 gives the first x term.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The two x terms are 7x and 6x; the number term is 6 × 7.
+  - rung: 5
+    name: full_step
+    text:
+      en: Collecting gives $x^2 + 13x + 42$.
+  misconception_ids:
+  - mc.mth.o.expand_add_constants
+  - mc.mth.o.expand_missing_middle
+  - mc.mth.o.expand_sign_slip
+solution:
+  steps:
+  - n: 1
+    latex: (x + 6)(x + 7) = x^2 + 7x + 6x + 42
+    reason: Multiply each term in the first bracket by each term in the second
+    check_id: chk_build_mth_alg_0026_m
+  - n: 2
+    latex: = x^2 + 13x + 42
+    reason: Collect the two x terms
+    check_id: chk_build_mth_alg_0026_final
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0026_final:
+    args:
+      expression: abs((6)*(7))
+    tool: math_evaluate
+  chk_build_mth_alg_0026_m:
+    args:
+      equations:
+      - p = abs((6)*(7))
+      - q = abs(6 + 7)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

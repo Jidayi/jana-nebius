@@ -1,0 +1,68 @@
+id: wex.chm.o.stoichiometry.0010
+kc_ids:
+- kc.chm.o.stoichiometry.moles_and_mass
+problem: How many moles are in 9.0 g of water, H₂O?
+steps:
+- n: 1
+  latex: M = 18\ \text{g/mol}
+  reason: Molar mass is Mr in g/mol
+  check_id: chk_build_chm_stoichiometry_w0010_mr
+- n: 2
+  latex: n = \frac{9.0}{18}
+  reason: Amount is mass over molar mass
+  check_id: chk_build_chm_stoichiometry_w0010_s2
+final_answer:
+  latex: n = 0.500\ \text{mol}
+  check_id: chk_build_chm_stoichiometry_w0010_n
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_w0010_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      formula: H2O
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_w0010_n:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      sf: 3
+      steps:
+      - id: n
+        mass: 9.0 g
+        op: amount_from_mass
+        species: H2O
+    tool: chem_stoichiometry
+  chk_build_chm_stoichiometry_w0010_s2:
+    args:
+      expression: 9.0/18
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

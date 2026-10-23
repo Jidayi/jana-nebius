@@ -1,0 +1,108 @@
+id: itm.mth.o.number.0247
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.direct_proportion
+stem: 5 bread rolls cost $2.25.
+parts:
+- id: a
+  prompt: Find the cost of 7 bread rolls.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '4.25'
+      correct: false
+      misconception_id: mc.mth.o.proportion_additive
+      feedback: 'If 2 pens cost $3, 4 pens cost $6, not $5: double the pens, double the cost.'
+    - id: B
+      text: '1.61'
+      correct: false
+      misconception_id: mc.mth.o.proportion_ratio_inverted
+      feedback: Find the value for one first, then multiply by how many you want.
+    - id: C
+      text: '15.75'
+      correct: false
+      misconception_id: mc.mth.o.rate_multiplied
+      feedback: 'A rate is ''per'': how much for each one, so it is a division.'
+    - id: D
+      text: '3.15'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The cost goes up in proportion to the number bought.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the cost of one item first.
+  - rung: 3
+    name: first_step
+    text:
+      en: One costs $2.25 ÷ 5.
+  - rung: 4
+    name: worked_step
+    text:
+      en: One costs $0.45. Now multiply by 7.
+  - rung: 5
+    name: full_step
+    text:
+      en: 7 bread rolls cost $3.15.
+  misconception_ids:
+  - mc.mth.o.proportion_additive
+  - mc.mth.o.proportion_ratio_inverted
+  - mc.mth.o.rate_multiplied
+solution:
+  steps:
+  - n: 1
+    latex: \text{one costs } 2.25 \div 5 = 0.45
+    reason: Find the cost of one
+    check_id: chk_build_mth_num_0247_one
+  - n: 2
+    latex: 0.45 \times 7 = 3.15
+    reason: Multiply by 7
+    check_id: chk_build_mth_num_0247_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- market
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0247_ans:
+    args:
+      dp: 2
+      expression: 2.25/5*7
+    tool: math_evaluate
+  chk_build_mth_num_0247_one:
+    args:
+      expression: 2.25/5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

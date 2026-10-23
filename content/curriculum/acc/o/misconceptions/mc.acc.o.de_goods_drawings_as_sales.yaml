@@ -1,0 +1,32 @@
+id: mc.acc.o.de_goods_drawings_as_sales
+kc_ids:
+- kc.acc.o.double_entry.record_owner_transactions
+student_name: Goods taken as a sale
+description: Credits sales when the owner takes goods, as if the goods had been sold.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: income
+fix:
+  strategy: rule_restatement
+  text:
+    en: Taking goods is not a sale. Their cost comes off purchases and goes to drawings.
+probe_item_ids: []
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

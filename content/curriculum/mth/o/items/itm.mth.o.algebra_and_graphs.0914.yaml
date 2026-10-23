@@ -1,0 +1,137 @@
+id: itm.mth.o.algebra_and_graphs.0914
+version: 0.1.0
+type: equation_solutions
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.simultaneous_equations
+stem: Solve the simultaneous equations $5x - 3y = -25$ and $x - 3y = -17$.
+parts:
+- id: a
+  prompt: Type the value of x.
+  marks: 2
+  answer:
+    kind: equation_solutions
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_alg_0914_key
+    variable: x
+    values:
+    - '-2'
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Use one equation to write x in terms of y, then substitute into the other.
+  - rung: 2
+    name: concept
+    text:
+      en: The second equation has a single x, so make x its subject.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Substituting gives one equation in y only: expand the bracket and collect terms.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Find y first, then put it back into x = ... to find x.
+  - rung: 5
+    name: full_step
+    text:
+      en: y = 5 and x = -2.
+- id: b
+  prompt: Type the value of y.
+  marks: 2
+  answer:
+    kind: equation_solutions
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_alg_0914_key
+    variable: y
+    values:
+    - '5'
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Use one equation to write x in terms of y, then substitute into the other.
+  - rung: 2
+    name: concept
+    text:
+      en: The second equation has a single x, so make x its subject.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Substituting gives one equation in y only: expand the bracket and collect terms.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Find y first, then put it back into x = ... to find x.
+  - rung: 5
+    name: full_step
+    text:
+      en: y = 5 and x = -2.
+solution:
+  steps:
+  - n: 1
+    latex: x = -17 + 3y
+    reason: Make x the subject of the second equation
+  - n: 2
+    latex: 5(-17 + 3y) - 3y = -25
+    reason: Substitute it into the first equation
+  - n: 3
+    latex: 12y = 60
+    reason: Expand and collect the y terms and the numbers
+    check_id: chk_build_mth_alg_0914_cy
+  - n: 4
+    latex: y = 5, \ x = -2
+    reason: Divide, then substitute y back
+    check_id: chk_build_mth_alg_0914_key
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 180
+exam_style:
+  paper_style: structured
+  total_marks: 4
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0914_cy:
+    args:
+      expression: -3 - 5*(-3)
+    tool: math_evaluate
+  chk_build_mth_alg_0914_key:
+    args:
+      equations:
+      - 5x - 3y = -25
+      - x - 3y = -17
+      unknowns:
+      - x
+      - y
+    tool: math_solve
+  chk_build_mth_alg_0914_rh:
+    args:
+      expression: -25 - 5*(-17)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

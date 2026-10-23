@@ -1,0 +1,97 @@
+id: itm.phy.o.heat_transfer.0035
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.radiation
+stem: Two identical cans start with hot water at 85 °C, one painted dull black and one shiny silver. After 10 minutes the black can is at 55 °C and the shiny can at 76 °C.
+parts:
+- id: a
+  prompt: How many times faster did the black can cool than the shiny can, on average?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '3.33'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_htr_0035_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Dull black surfaces emit infrared faster than shiny ones at the same temperature.
+  - rung: 2
+    name: concept
+    text:
+      en: In the same time, the ratio of the rates equals the ratio of the temperature falls.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find how far each can's temperature fell.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide the black can's fall, 30 °C, by the shiny can's fall, 9 °C.
+  - rung: 5
+    name: full_step
+    text:
+      en: The black can cooled 3.33 times as fast.
+solution:
+  steps:
+  - n: 1
+    latex: 85 - 55 = 30\ ^\circ\text{C}
+    reason: Fall for the black can
+    check_id: chk_build_phy_htr_0035_db
+  - n: 2
+    latex: 85 - 76 = 9\ ^\circ\text{C}
+    reason: Fall for the shiny can
+    check_id: chk_build_phy_htr_0035_ds
+  - n: 3
+    latex: \frac{30}{9} = 3.33
+    reason: Same time, so compare the falls
+    check_id: chk_build_phy_htr_0035_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_htr_0035_ans:
+    args:
+      expression: (85 - 55)/(85 - 76)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_htr_0035_db:
+    args:
+      expression: 85 - 55
+    tool: math_evaluate
+  chk_build_phy_htr_0035_ds:
+    args:
+      expression: 85 - 76
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

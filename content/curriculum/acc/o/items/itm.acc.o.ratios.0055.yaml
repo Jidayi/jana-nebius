@@ -1,0 +1,117 @@
+id: itm.acc.o.ratios.0055
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.collection_periods
+stem: Kwame's credit sales were $103000 and cash sales $10500. Year-end trade receivables were $17100 and trade payables $10600.
+parts:
+- id: a
+  prompt: What is the trade receivables collection period (365-day year)?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 37.56 days
+      correct: false
+      misconception_id: mc.acc.o.rat_receivables_payables_swapped
+    - id: B
+      text: 2198.54 days
+      correct: false
+      misconception_id: mc.acc.o.rat_ratio_inverted
+    - id: C
+      text: 60.60 days
+      correct: true
+    - id: D
+      text: 54.99 days
+      correct: false
+      misconception_id: mc.acc.o.rat_total_sales_used
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which balance belongs with which sales figure?
+  - rung: 2
+    name: concept
+    text:
+      en: Collection period = trade receivables ÷ credit sales × 365.
+  - rung: 3
+    name: first_step
+    text:
+      en: Cash sales never become receivables, so they are left out.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 17100 by 103000 and multiply by 365.
+  - rung: 5
+    name: full_step
+    text:
+      en: The collection period is 60.60 days.
+  misconception_ids:
+  - mc.acc.o.rat_total_sales_used
+  - mc.acc.o.rat_ratio_inverted
+  - mc.acc.o.rat_receivables_payables_swapped
+solution:
+  steps:
+  - n: 1
+    latex: \text{Period} = \frac{\text{trade receivables}}{\text{credit sales}} \times 365
+    reason: The pack's definition
+    check_id: chk_build_acc_ratios_0055_t
+  - n: 2
+    latex: \frac{17100}{103000} \times 365 = 60.60
+    reason: Substitute
+    check_id: chk_build_acc_ratios_0055_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_0055_a:
+    args:
+      dp: 2
+      expression: 17100 / 103000 * 365
+    tool: math_evaluate
+  chk_build_acc_ratios_0055_t:
+    args:
+      credit_sales: '103000'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      ratios:
+      - receivable_days
+      revenue: '113500'
+      trade_receivables: '17100'
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

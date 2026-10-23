@@ -1,0 +1,105 @@
+id: itm.chm.o.states.0030
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.states.diffusion
+stem: Two gas jars hold oxygen, O₂, and sulfur dioxide, SO₂, at the same temperature.
+parts:
+- id: a
+  prompt: Which gas will spread through a room more quickly?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: oxygen
+      correct: true
+    - id: B
+      text: they spread equally quickly
+      correct: false
+      misconception_id: mc.chm.o.states_all_gases_same_rate
+    - id: C
+      text: sulfur dioxide
+      correct: false
+      misconception_id: mc.chm.o.states_heavier_faster
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which molecules are lighter?
+  - rung: 2
+    name: concept
+    text:
+      en: Lighter molecules move faster at the same temperature.
+  - rung: 3
+    name: first_step
+    text:
+      en: Mr of O₂ = 32; Mr of SO₂ = 64.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Choose the gas with the smaller Mr.
+  - rung: 5
+    name: full_step
+    text:
+      en: Oxygen spreads more quickly.
+  misconception_ids:
+  - mc.chm.o.states_heavier_faster
+  - mc.chm.o.states_all_gases_same_rate
+solution:
+  steps:
+  - n: 1
+    latex: 32 < 64
+    reason: Smaller Mr diffuses faster
+    check_id: chk_build_chm_states_0030_m1
+  - n: 2
+    latex: M_r = 64
+    reason: Heavier gas
+    check_id: chk_build_chm_states_0030_m2
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_states_0030_m1:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_o
+      formula: O2
+    tool: chem_molar_mass
+  chk_build_chm_states_0030_m2:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      formula: SO2
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

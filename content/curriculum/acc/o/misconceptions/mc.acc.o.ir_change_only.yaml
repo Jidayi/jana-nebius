@@ -1,0 +1,34 @@
+id: mc.acc.o.ir_change_only
+kc_ids:
+- kc.acc.o.incomplete_records.profit_from_capital
+student_name: The change in capital as profit
+description: Takes the increase in capital as the profit, ignoring drawings and capital introduced.
+signatures:
+- kind: answer_transform
+  expression: closing - opening
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Capital changes for three reasons: profit, drawings and capital introduced.'
+probe_item_ids:
+- itm.acc.o.incomplete_records.0019
+- itm.acc.o.incomplete_records.0020
+- itm.acc.o.incomplete_records.0021
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

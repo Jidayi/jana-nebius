@@ -1,0 +1,88 @@
+id: itm.acc.o.control_accounts.0011
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.control_accounts.control_purpose
+stem: A sales ledger control account agrees with the customers' balances.
+parts:
+- id: a
+  prompt: Select every error that could still be present.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: A payment credited to the wrong customer
+      correct: true
+    - id: B
+      text: A credit sale left out completely
+      correct: true
+    - id: C
+      text: An invoice entered with the wrong amount everywhere
+      correct: true
+    - id: D
+      text: A customer's account added up wrongly
+      correct: false
+    - id: E
+      text: A sale posted only to the control account
+      correct: false
+    - id: F
+      text: A receipt entered only in the customer's account
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What does a control account summarise, and what can it not tell you?
+  - rung: 2
+    name: concept
+    text:
+      en: A control account holds the totals of all the entries in a personal ledger, so its balance should equal the total of the personal balances.
+  - rung: 3
+    name: first_step
+    text:
+      en: Agreement checks the arithmetic of the ledger as a whole; an error within one account, such as posting to the wrong customer, can still be there.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the errors that change both records equally or neither.
+  - rung: 5
+    name: full_step
+    text:
+      en: Wrong customer, omission and wrong amount everywhere.
+  misconception_ids:
+  - mc.acc.o.ca_control_finds_all_errors
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Hidden: commission, omission, original entry}'
+    reason: Totals still agree
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

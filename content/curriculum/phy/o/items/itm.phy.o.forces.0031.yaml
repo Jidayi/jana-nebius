@@ -1,0 +1,93 @@
+id: itm.phy.o.forces.0031
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.friction_and_terminal_velocity
+stem: A skydiver jumps from a plane and falls for a long time before opening her parachute.
+parts:
+- id: a
+  prompt: Why does she stop speeding up?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Gravity stops acting on her once she is moving fast
+      correct: false
+      misconception_id: mc.phy.o.terminal_velocity_no_forces
+      feedback: Gravity never switches off while the skydiver falls. At terminal velocity the drag has grown until it is as big as the weight, so the two cancel.
+    - id: B
+      text: The air resistance on her stays the same, so she slows to a steady speed
+      correct: false
+      misconception_id: mc.phy.o.drag_independent_of_speed
+      feedback: 'Put your hand out of a car window: the push of the air grows as the car goes faster. Drag rises with speed.'
+    - id: C
+      text: The force from her jump has been used up
+      correct: false
+      misconception_id: mc.phy.o.force_of_motion_used_up
+      feedback: Once a ball leaves your hand nothing from your push travels with it. It slows down only if a force such as friction acts against it.
+    - id: D
+      text: The air resistance grows until it equals her weight
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about which forces act and how big each one is at this moment.
+  - rung: 2
+    name: concept
+    text:
+      en: Friction and air resistance act against the motion, and air resistance grows as the speed grows.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out whether the forces are balanced and what that does to the speed.
+  - rung: 4
+    name: worked_step
+    text:
+      en: How does air resistance change as she falls faster?
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The air resistance grows until it equals her weight. Faster motion means more drag; when drag matches her weight the resultant force is zero.'
+  misconception_ids:
+  - mc.phy.o.drag_independent_of_speed
+  - mc.phy.o.force_of_motion_used_up
+  - mc.phy.o.terminal_velocity_no_forces
+solution:
+  steps:
+  - n: 1
+    latex: \text{The air resistance grows until it equals her weight}
+    reason: Compare the forces and how they change
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

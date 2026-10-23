@@ -1,0 +1,93 @@
+id: itm.phy.o.wave_properties.0017
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.wave_equation
+stem: Ripples cross a ripple tank at 0.5 m/s. Their wavelength is 2.5 cm.
+parts:
+- id: a
+  prompt: Calculate the frequency of the waves.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '20'
+    unit: Hz
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_wav_0017_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Start from v = f × λ.
+  - rung: 2
+    name: concept
+    text:
+      en: 'To find f, divide the speed by the wavelength: f = v ÷ λ.'
+  - rung: 3
+    name: first_step
+    text:
+      en: 'First put the values in hertz and metres: 2.5 cm = 0.025 m.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 0.5 by the wavelength in metres.
+  - rung: 5
+    name: full_step
+    text:
+      en: f = 20 Hz.
+  misconception_ids:
+  - mc.phy.o.wave_prefix_ignored
+  - mc.phy.o.wave_equation_inverted
+  - mc.phy.o.wave_equation_multiplied
+solution:
+  steps:
+  - n: 1
+    latex: \lambda = 2.5\ \text{cm} = 0.025\ \text{m}
+    reason: Put the wavelength in metres
+    check_id: chk_build_phy_wav_0017_lsi
+  - n: 2
+    latex: f = \frac{v}{\lambda} = \frac{0.5}{0.025} = 20\ \text{Hz}
+    reason: Rearrange v = fλ
+    check_id: chk_build_phy_wav_0017_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 75
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_wav_0017_ans:
+    args:
+      expression: 0.5/0.025
+    tool: math_evaluate
+  chk_build_phy_wav_0017_lsi:
+    args:
+      quantity: 2.5 cm
+      to: m
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.tipping_ratio_inverted
+kc_ids:
+- kc.phy.o.forces.centre_of_gravity
+student_name: Tangent the wrong way up
+description: Divides the height by the half-width when finding the toppling angle, giving the angle to the base instead of to the vertical.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: diagram
+  text:
+    en: At the tipping point the centre of gravity is straight above the edge. The angle from the vertical has the half-width opposite it and the height next to it.
+probe_item_ids:
+- itm.phy.o.forces.0108
+- itm.phy.o.forces.0110
+- itm.phy.o.forces.0097
+- itm.phy.o.forces.0100
+- itm.phy.o.forces.0103
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

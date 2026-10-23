@@ -1,0 +1,115 @@
+id: itm.mth.o.number.0386
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.surds
+stem: $\sqrt{150} + \sqrt{96}$ can be written as $k\sqrt{6}$.
+parts:
+- id: a
+  prompt: Find k.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '6.40'
+      correct: false
+      misconception_id: mc.mth.o.surd_add_under_root
+      feedback: √9 + √16 = 3 + 4 = 7, but √25 = 5. Simplify each surd and add like surds.
+    - id: B
+      text: '41'
+      correct: false
+      misconception_id: mc.mth.o.surd_factor_not_rooted
+      feedback: '√72 = √36 × √2 = 6√2: take the square root of the square factor.'
+    - id: C
+      text: '9'
+      correct: true
+    - id: D
+      text: '20'
+      correct: false
+      misconception_id: mc.mth.o.multiply_before_power
+      feedback: The power belongs only to the letter next to it. Square x first, then multiply by the number in front.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You cannot add the numbers under the square roots.
+  - rung: 2
+    name: concept
+    text:
+      en: Write each surd as a multiple of √6, then add.
+  - rung: 3
+    name: first_step
+    text:
+      en: 150 = 25 × 6 and 96 = 16 × 6.
+  - rung: 4
+    name: worked_step
+    text:
+      en: √150 = 5√6 and √96 = 4√6.
+  - rung: 5
+    name: full_step
+    text:
+      en: k = 9.
+  misconception_ids:
+  - mc.mth.o.multiply_before_power
+  - mc.mth.o.surd_add_under_root
+  - mc.mth.o.surd_factor_not_rooted
+solution:
+  steps:
+  - n: 1
+    latex: \sqrt{150} = 5\sqrt{6},\ \sqrt{96} = 4\sqrt{6}
+    reason: Simplify each surd
+    check_id: chk_build_mth_num_0386_t
+  - n: 2
+    latex: k = 5 + 4 = 9
+    reason: Add like surds
+    check_id: chk_build_mth_num_0386_ans
+difficulty:
+  prior: 0.7
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0386_ans:
+    args:
+      expression: (sqrt(150) + sqrt(96))/sqrt(6)
+    tool: math_evaluate
+  chk_build_mth_num_0386_t:
+    args:
+      equations:
+      - p = sqrt(25)
+      - q = sqrt(16)
+      - r = 150/6
+      - s = 96/6
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

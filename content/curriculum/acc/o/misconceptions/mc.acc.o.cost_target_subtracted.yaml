@@ -1,0 +1,34 @@
+id: mc.acc.o.cost_target_subtracted
+kc_ids:
+- kc.acc.o.costing.target_profit
+student_name: Subtracting the target
+description: Subtracts the target profit from the fixed costs instead of adding it.
+signatures:
+- kind: answer_transform
+  expression: (fixed - target) / contribution
+fix:
+  strategy: rule_restatement
+  text:
+    en: A profit is earned on top of covering costs, so add it.
+probe_item_ids:
+- itm.acc.o.costing.0045
+- itm.acc.o.costing.0046
+- itm.acc.o.costing.0047
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

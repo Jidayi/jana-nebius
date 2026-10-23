@@ -1,0 +1,109 @@
+id: itm.phy.o.radioactivity.0027
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.decay_equations
+stem: A nucleus of cobalt-60 (proton number 27) decays by emitting a beta particle.
+parts:
+- id: a
+  prompt: How many neutrons are in the new nucleus?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '33'
+      correct: false
+      misconception_id: mc.phy.o.beta_changes_nothing
+      feedback: 'The mass barely changes, but the charge does: a neutron has become a proton, so the proton number rises by one and the element changes.'
+    - id: B
+      text: '34'
+      correct: false
+      misconception_id: mc.phy.o.beta_lowers_proton_number
+      feedback: In beta decay a neutron becomes a proton and an electron. The proton stays, so the proton number goes up by one.
+    - id: C
+      text: '60'
+      correct: false
+      misconception_id: mc.phy.o.neutrons_equal_nucleon_number
+      feedback: 'The nucleon number counts every particle in the nucleus: protons and neutrons together. Take away the proton number to leave the neutrons.'
+    - id: D
+      text: '32'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: First find the new nucleon number and proton number.
+  - rung: 2
+    name: concept
+    text:
+      en: 'In beta decay a neutron becomes a proton: the proton number rises by one and the nucleon number stays the same.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Then neutrons = nucleon number − proton number.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The new nucleus has proton number 28.
+  - rung: 5
+    name: full_step
+    text:
+      en: The new nucleus (nickel-60) has 32 neutrons.
+  misconception_ids:
+  - mc.phy.o.beta_changes_nothing
+  - mc.phy.o.beta_lowers_proton_number
+  - mc.phy.o.neutrons_equal_nucleon_number
+solution:
+  steps:
+  - n: 1
+    latex: Z = 27 + 1 = 28,\ A = 60
+    reason: A neutron became a proton
+    check_id: chk_build_phy_rad_0027_z2
+  - n: 2
+    latex: '{}^{60}_{27}\text{Co} \rightarrow {}^{60}_{28}\text{Ni} + {}^{0}_{-\,1}\text{e}'
+    reason: A beta particle is an electron from the nucleus
+  - n: 3
+    latex: N = 60 - 28 = 32
+    reason: Neutrons = nucleon number − proton number
+    check_id: chk_build_phy_rad_0027_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_0027_ans:
+    args:
+      expression: 60 - (27 + 1)
+    tool: math_evaluate
+  chk_build_phy_rad_0027_z2:
+    args:
+      expression: 27 + 1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

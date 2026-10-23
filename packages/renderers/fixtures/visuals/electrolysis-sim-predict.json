@@ -1,0 +1,162 @@
+{
+  "claims": [
+    "0",
+    "1",
+    "24000.0",
+    "600",
+    "74.6",
+    "96500.0"
+  ],
+  "id": "electrolysis-sim-predict",
+  "kind": "electrolysis_sim",
+  "modes": [
+    "shown"
+  ],
+  "spec": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "An electrolysis simulation: aqueous concentrated sodium chloride with inert electrodes, 1 A for 600 seconds. It runs after you predict, so the result is not given here."
+    },
+    "computed": {
+      "alt": {
+        "anode": "chlorine",
+        "cathode": "hydrogen",
+        "current": "1",
+        "duration": "600",
+        "electrodes": "inert",
+        "electrolyte": "concentrated sodium chloride",
+        "phase": "aqueous"
+      },
+      "check_ids": [
+        "chk_build_fx_electrolysis_sim_predict_1",
+        "chk_build_fx_electrolysis_sim_predict_2",
+        "chk_build_fx_electrolysis_sim_predict_3",
+        "chk_build_fx_electrolysis_sim_predict_4",
+        "chk_build_fx_electrolysis_sim_predict_5"
+      ],
+      "constants": {
+        "faraday": 96500.0,
+        "molar_mass": {},
+        "vm_cm3": 24000.0
+      },
+      "labels": {
+        "out.anode_gas": "74.6",
+        "out.anode_mass": "0",
+        "out.cathode_gas": "74.6",
+        "out.cathode_mass": "0",
+        "out.charge": "600"
+      },
+      "parts": [
+        {
+          "id": "ctrl.current",
+          "label": "current",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.ions",
+          "label": "ions",
+          "role": "control"
+        },
+        {
+          "id": "out.charge",
+          "label": "charge",
+          "role": "readout"
+        },
+        {
+          "id": "out.cathode_mass",
+          "label": "cathode mass",
+          "role": "readout"
+        },
+        {
+          "id": "out.cathode_gas",
+          "label": "cathode gas",
+          "role": "readout"
+        },
+        {
+          "id": "out.anode_mass",
+          "label": "anode mass",
+          "role": "readout"
+        },
+        {
+          "id": "out.anode_gas",
+          "label": "anode gas",
+          "role": "readout"
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_electrolysis_sim_predict_1",
+      "chk_build_fx_electrolysis_sim_predict_2",
+      "chk_build_fx_electrolysis_sim_predict_3",
+      "chk_build_fx_electrolysis_sim_predict_4",
+      "chk_build_fx_electrolysis_sim_predict_5"
+    ],
+    "params": {
+      "current_a": 1,
+      "duration_s": 600,
+      "electrodes": "inert",
+      "electrolyte": "concentrated sodium chloride",
+      "locked": [
+        "current"
+      ],
+      "phase": "aqueous",
+      "predict": "poe.chm.electrolysis_brine_cathode.v1",
+      "preset_id": "sim.chm.electrolysis_brine.v1"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ctrl.current",
+        "name": "current",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.ions",
+        "name": "ions",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "out.charge",
+        "name": "charge",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.cathode_mass",
+        "name": "cathode mass",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.cathode_gas",
+        "name": "cathode gas",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.anode_mass",
+        "name": "anode mass",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.anode_gas",
+        "name": "anode gas",
+        "role": "readout"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:5249468e8c0033c198a5ef6d452701075b40b7e9d911b235122f7100c59a9722",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "electrolysis_sim",
+    "visual_id": "vis_J96EC0K1R5FD5717V0Q9SHJNJF"
+  },
+  "subject": "chemistry"
+}

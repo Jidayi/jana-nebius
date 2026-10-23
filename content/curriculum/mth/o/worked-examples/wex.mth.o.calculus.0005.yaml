@@ -1,0 +1,84 @@
+id: wex.mth.o.calculus.0005
+kc_ids:
+- kc.mth.o.calculus.stationary_points
+problem: A curve has equation $y = x^3 - 75x - 5$. Find the x-coordinate of its maximum point.
+steps:
+- n: 1
+  latex: \frac{dy}{dx} = 3x^2 + 0x - 75
+  reason: Differentiate
+  check_id: chk_build_mth_cal_w0005_dd
+- n: 2
+  latex: \frac{dy}{dx} = 0 \Rightarrow x = -5 \text{ or } x = 5
+  reason: Set the gradient equal to zero
+  check_id: chk_build_mth_cal_w0005_sx
+- n: 3
+  latex: \frac{d^2y}{dx^2} = 6x
+  reason: The second derivative decides the nature
+  check_id: chk_build_mth_cal_w0005_d2
+- n: 4
+  latex: \text{maximum at } x = -5
+  reason: 'Negative second derivative: maximum; positive: minimum'
+  check_id: chk_build_mth_cal_w0005_d
+final_answer:
+  latex: '-5'
+  check_id: chk_build_mth_cal_w0005_ans
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_cal_w0005_ans:
+    args:
+      expression: '-5'
+    tool: math_evaluate
+  chk_build_mth_cal_w0005_d:
+    args:
+      expression: (1)*x^3 + (-75)*x^1 + (-5)*x^0
+      stationary_points: true
+      variable: x
+    tool: math_differentiate
+  chk_build_mth_cal_w0005_d2:
+    args:
+      expression: 3*x^2 - 75
+      variable: x
+    tool: math_differentiate
+  chk_build_mth_cal_w0005_dd:
+    args:
+      equations:
+      - p = 3*-5*5
+      - q = -3*(-5 + 5)
+      - r = 6
+      unknowns:
+      - p
+      - q
+      - r
+    tool: math_solve
+  chk_build_mth_cal_w0005_sx:
+    args:
+      equations:
+      - 3*x^2 + (0)*x + (-75) = 0
+      unknowns:
+      - x
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

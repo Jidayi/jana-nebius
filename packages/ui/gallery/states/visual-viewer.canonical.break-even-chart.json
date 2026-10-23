@@ -1,0 +1,141 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.break-even-chart",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at break-even point.",
+        "Step 2: look at margin of safety."
+      ],
+      "summary": "A break-even chart: fixed costs 2000.00, break-even at 500 units and revenue 5000.00; margin of safety 300 units."
+    },
+    "computed": {
+      "break_even": [
+        500.0,
+        5000.0
+      ],
+      "check_ids": [
+        "chk_build_fx_break_even_chart_1"
+      ],
+      "labels": {
+        "break_even": "500, 5000.00",
+        "break_even_revenue": "5000.00",
+        "break_even_units": "500",
+        "fixed_cost": "2000.00",
+        "margin_of_safety": "300",
+        "margin_units": "300"
+      },
+      "lines": {
+        "fixed_cost": [
+          [
+            0.0,
+            2000.0
+          ],
+          [
+            1000.0,
+            2000.0
+          ]
+        ],
+        "revenue": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1000.0,
+            10000.0
+          ]
+        ],
+        "total_cost": [
+          [
+            0.0,
+            2000.0
+          ],
+          [
+            1000.0,
+            8000.0
+          ]
+        ]
+      },
+      "max_units": 1000
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "kn_fc",
+      "kn_vc",
+      "kn_sp",
+      "chk_build_fx_break_even_chart_1"
+    ],
+    "params": {
+      "chart_max_units": 1000,
+      "currency": "$",
+      "fixed_costs": "2000",
+      "output_units": 800,
+      "selling_price": "10",
+      "variable_cost_per_unit": "6"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "margin_of_safety",
+        "name": "margin of safety",
+        "role": "region"
+      },
+      {
+        "focusable": true,
+        "id": "fixed_cost",
+        "name": "fixed cost line",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "total_cost",
+        "name": "total cost line",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "revenue",
+        "name": "revenue line",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "break_even",
+        "name": "break-even point",
+        "quizzable": true,
+        "role": "point"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:17baddb900c5fe9c1e48a2504b327447fb867d3083e5ef99fef36fce9d5f9bd3",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "break_even"
+        ]
+      },
+      {
+        "highlight": [
+          "margin_of_safety"
+        ]
+      }
+    ],
+    "type": "break_even_chart",
+    "visual_id": "vis_QTXS05YWY82GBJM7V6XG35FSYK"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: break even chart (shown labels)",
+  "variant": "break-even-chart"
+}

@@ -1,0 +1,311 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.library-heart-hidden",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: Blood from the body enters the right atrium.",
+        "Step 2: It passes down into the right ventricle.",
+        "Step 3: The right ventricle pumps it to the lungs.",
+        "Step 4: Blood from the lungs returns to the left atrium.",
+        "Step 5: It passes into the left ventricle.",
+        "Step 6: The left ventricle pumps it to the body."
+      ],
+      "summary": "A schematic front view of the heart: two upper chambers, two lower chambers, the septum between the sides, and the main vessels above."
+    },
+    "computed": {
+      "entry": {
+        "alt_text": "A schematic front view of the heart: two upper chambers, two lower chambers, the septum between the sides, and the main vessels above.",
+        "attribution": "Our own schematic drawing, made for Jana with AI assistance.",
+        "id": "dgm.bio.heart.v1",
+        "licence": "LicenseRef-Own",
+        "parts": [
+          {
+            "function": "Brings deoxygenated blood from the body to the right atrium.",
+            "id": "vena_cava",
+            "label_anchor": [
+              40,
+              50
+            ],
+            "name": "Vena cava",
+            "tab_order": 0
+          },
+          {
+            "function": "Carries blood from the right ventricle to the lungs.",
+            "id": "pulmonary_artery",
+            "label_anchor": [
+              90,
+              14
+            ],
+            "name": "Pulmonary artery",
+            "tab_order": 1
+          },
+          {
+            "function": "Collects blood from the body and passes it to the right ventricle.",
+            "id": "right_atrium",
+            "label_anchor": [
+              14,
+              140
+            ],
+            "name": "Right atrium",
+            "tab_order": 2
+          },
+          {
+            "function": "Pumps blood to the lungs.",
+            "id": "right_ventricle",
+            "label_anchor": [
+              40,
+              345
+            ],
+            "name": "Right ventricle",
+            "tab_order": 3
+          },
+          {
+            "essential": true,
+            "function": "The wall that keeps blood in the two sides apart.",
+            "id": "septum",
+            "label_anchor": [
+              240,
+              352
+            ],
+            "name": "Septum",
+            "tab_order": 4
+          },
+          {
+            "function": "Carries blood from the left ventricle to the body.",
+            "id": "aorta",
+            "label_anchor": [
+              286,
+              14
+            ],
+            "name": "Aorta",
+            "tab_order": 5
+          },
+          {
+            "function": "Brings oxygenated blood from the lungs to the left atrium.",
+            "id": "pulmonary_vein",
+            "label_anchor": [
+              370,
+              40
+            ],
+            "name": "Pulmonary vein",
+            "tab_order": 6
+          },
+          {
+            "function": "Collects blood from the lungs and passes it to the left ventricle.",
+            "id": "left_atrium",
+            "label_anchor": [
+              378,
+              140
+            ],
+            "name": "Left atrium",
+            "tab_order": 7
+          },
+          {
+            "aliases": [
+              "left ventricle"
+            ],
+            "function": "Pumps oxygenated blood to the whole body, so its wall is the thickest.",
+            "id": "left_ventricle",
+            "label_anchor": [
+              340,
+              345
+            ],
+            "name": "Left ventricle",
+            "tab_order": 8
+          }
+        ],
+        "sequences": [
+          {
+            "id": "blood_flow",
+            "steps": [
+              {
+                "arrows": [
+                  "arrow_vena_cava"
+                ],
+                "caption": "Blood from the body enters the right atrium.",
+                "highlight": [
+                  "vena_cava",
+                  "right_atrium"
+                ]
+              },
+              {
+                "arrows": [
+                  "arrow_ra_rv"
+                ],
+                "caption": "It passes down into the right ventricle.",
+                "highlight": [
+                  "right_ventricle"
+                ]
+              },
+              {
+                "arrows": [
+                  "arrow_pulmonary_artery"
+                ],
+                "caption": "The right ventricle pumps it to the lungs.",
+                "highlight": [
+                  "pulmonary_artery"
+                ]
+              },
+              {
+                "arrows": [
+                  "arrow_pulmonary_vein"
+                ],
+                "caption": "Blood from the lungs returns to the left atrium.",
+                "highlight": [
+                  "pulmonary_vein",
+                  "left_atrium"
+                ]
+              },
+              {
+                "arrows": [
+                  "arrow_la_lv"
+                ],
+                "caption": "It passes into the left ventricle.",
+                "highlight": [
+                  "left_ventricle"
+                ]
+              },
+              {
+                "arrows": [
+                  "arrow_aorta"
+                ],
+                "caption": "The left ventricle pumps it to the body.",
+                "highlight": [
+                  "aorta"
+                ]
+              }
+            ],
+            "title": "Blood flow through the heart"
+          }
+        ],
+        "title": "The human heart",
+        "version": "1.0.0"
+      },
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 360\"><title>The human heart (schematic test fixture)</title><defs><marker id=\"head\" viewBox=\"0 0 8 8\" refX=\"4\" refY=\"4\" markerWidth=\"8\" markerHeight=\"8\" orient=\"auto\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"var(--color-diagram-stroke)\"/></marker></defs><g data-part=\"vena_cava\"><rect x=\"135\" y=\"30\" width=\"28\" height=\"70\" fill=\"var(--color-panel)\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"40\" y=\"50\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"vena_cava\">vena cava</text></g><g data-part=\"pulmonary_artery\"><rect x=\"200\" y=\"20\" width=\"20\" height=\"160\" fill=\"var(--color-panel)\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"90\" y=\"14\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"pulmonary_artery\">pulmonary artery</text></g><g data-part=\"right_atrium\"><rect x=\"110\" y=\"100\" width=\"85\" height=\"75\" rx=\"18\" fill=\"var(--color-paper)\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"14\" y=\"140\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"right_atrium\">right atrium</text></g><g data-part=\"right_ventricle\"><polygon points=\"110,185 220,185 220,310 160,310\" fill=\"var(--color-paper)\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"40\" y=\"345\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"right_ventricle\">right ventricle</text></g><g data-part=\"septum\"><rect x=\"228\" y=\"100\" width=\"24\" height=\"230\" fill=\"var(--color-panel)\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"240\" y=\"352\" font-size=\"13\" text-anchor=\"middle\" fill=\"var(--color-ink)\" data-label-for=\"septum\">septum</text></g><g data-part=\"aorta\"><rect x=\"258\" y=\"10\" width=\"22\" height=\"170\" fill=\"var(--color-panel)\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"286\" y=\"14\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"aorta\">aorta</text></g><g data-part=\"pulmonary_vein\"><rect x=\"335\" y=\"40\" width=\"28\" height=\"60\" fill=\"var(--color-panel)\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"370\" y=\"40\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"pulmonary_vein\">pulmonary vein</text></g><g data-part=\"left_atrium\"><rect x=\"285\" y=\"100\" width=\"85\" height=\"75\" rx=\"18\" fill=\"var(--color-paper)\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"378\" y=\"140\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"left_atrium\">left atrium</text></g><g data-part=\"left_ventricle\"><polygon points=\"260,185 370,185 320,330 260,330\" fill=\"var(--color-paper)\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"3\"/><text x=\"340\" y=\"345\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"left_ventricle\">left ventricle</text></g><g data-arrow=\"arrow_vena_cava\"><line x1=\"149\" y1=\"60\" x2=\"149\" y2=\"88\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\" marker-end=\"url(#head)\"/></g><g data-arrow=\"arrow_ra_rv\"><line x1=\"160\" y1=\"160\" x2=\"160\" y2=\"205\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\" marker-end=\"url(#head)\"/></g><g data-arrow=\"arrow_pulmonary_artery\"><line x1=\"210\" y1=\"170\" x2=\"210\" y2=\"40\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\" marker-end=\"url(#head)\"/></g><g data-arrow=\"arrow_pulmonary_vein\"><line x1=\"349\" y1=\"60\" x2=\"349\" y2=\"110\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\" marker-end=\"url(#head)\"/></g><g data-arrow=\"arrow_la_lv\"><line x1=\"320\" y1=\"160\" x2=\"320\" y2=\"205\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\" marker-end=\"url(#head)\"/></g><g data-arrow=\"arrow_aorta\"><line x1=\"269\" y1=\"170\" x2=\"269\" y2=\"30\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\" marker-end=\"url(#head)\"/></g></svg>\n"
+    },
+    "fallback_reason": null,
+    "labels": "hidden",
+    "numbers_from": [],
+    "params": {
+      "sequence": "blood_flow"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "vena_cava",
+        "name": "Vena cava",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "pulmonary_artery",
+        "name": "Pulmonary artery",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "right_atrium",
+        "name": "Right atrium",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "right_ventricle",
+        "name": "Right ventricle",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "septum",
+        "name": "Septum",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "aorta",
+        "name": "Aorta",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "pulmonary_vein",
+        "name": "Pulmonary vein",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "left_atrium",
+        "name": "Left atrium",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "left_ventricle",
+        "name": "Left ventricle",
+        "quizzable": true,
+        "role": "part"
+      }
+    ],
+    "ref": "dgm.bio.heart.v1",
+    "repairs": [],
+    "resolution_hash": "sha256:26e1392c0df21031220f951a68a2713e15a9e1cb242d85e2cb58370a51d9fd86",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "vena_cava",
+          "right_atrium"
+        ]
+      },
+      {
+        "highlight": [
+          "right_ventricle"
+        ]
+      },
+      {
+        "highlight": [
+          "pulmonary_artery"
+        ]
+      },
+      {
+        "highlight": [
+          "pulmonary_vein",
+          "left_atrium"
+        ]
+      },
+      {
+        "highlight": [
+          "left_ventricle"
+        ]
+      },
+      {
+        "highlight": [
+          "aorta"
+        ]
+      }
+    ],
+    "type": "library_diagram",
+    "visual_id": "vis_61SCDJGH2FNT82HYN91B4D52BR"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: library heart (hidden labels)",
+  "variant": "library-heart-hidden"
+}

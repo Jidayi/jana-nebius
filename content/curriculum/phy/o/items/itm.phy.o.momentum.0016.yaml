@@ -1,0 +1,108 @@
+id: itm.phy.o.momentum.0016
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.conservation_of_momentum
+stem: A dodgem car of mass 240 kg moving at 2.5 m/s hits a stationary dodgem of mass 320 kg. They couple together and move off as one.
+parts:
+- id: a
+  prompt: Find their velocity just after the collision.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '1.07'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_mom_0016_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Total momentum is conserved in the collision.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Before: only the moving one has momentum. After: both move together with the same velocity.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Set the momentum before equal to (total mass) × v.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The momentum before is 600 kg m/s and the total mass is 560 kg.
+  - rung: 5
+    name: full_step
+    text:
+      en: v = 600 ÷ 560 = 1.07 m/s, in the original direction.
+  misconception_ids:
+  - mc.phy.o.stuck_mass_one_object
+  - mc.phy.o.collision_velocities_averaged
+  - mc.phy.o.conservation_masses_swapped
+solution:
+  steps:
+  - n: 1
+    latex: p_\text{before} = 240 \times 2.5 + 0 = 600\ \text{kg m/s}
+    reason: The second one is at rest
+    check_id: chk_build_phy_mom_0016_pb
+  - n: 2
+    latex: (240 + 320)v = 560\,v = 600
+    reason: Momentum after = momentum before
+    check_id: chk_build_phy_mom_0016_mt
+  - n: 3
+    latex: v = \frac{600}{560} = 1.07\ \text{m/s}
+    reason: Solve for v
+    check_id: chk_build_phy_mom_0016_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_0016_ans:
+    args:
+      expression: 240*2.5/(240 + 320)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_mom_0016_mt:
+    args:
+      expression: 240 + 320
+    tool: math_evaluate
+  chk_build_phy_mom_0016_pb:
+    args:
+      expression: 240*2.5
+    tool: math_evaluate
+  chk_build_phy_mom_0016_tool:
+    args:
+      equations:
+      - 240*2.5 + 320*0 = (240 + 320)*v
+      unknowns:
+      - v
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

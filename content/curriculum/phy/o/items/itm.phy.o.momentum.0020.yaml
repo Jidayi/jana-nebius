@@ -1,0 +1,93 @@
+id: itm.phy.o.momentum.0020
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.conservation_of_momentum
+stem: A firework at rest explodes into many pieces flying in all directions.
+parts:
+- id: a
+  prompt: What is the total momentum of the pieces just after the explosion?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Zero, the same as before
+      correct: true
+    - id: B
+      text: Large, because the explosion gives the pieces momentum
+      correct: false
+      misconception_id: mc.phy.o.explosion_creates_momentum
+      feedback: The forces in an explosion are internal and equal and opposite, so they give equal and opposite momenta. The total stays what it was before.
+    - id: C
+      text: The sum of the sizes of all the pieces' momenta
+      correct: false
+      misconception_id: mc.phy.o.momentum_sign_ignored
+      feedback: Momentum is a vector. Choose a positive direction; anything moving the other way has a negative velocity, so its momentum is negative too.
+    - id: D
+      text: The momentum of the fastest piece
+      correct: false
+      misconception_id: mc.phy.o.largest_vector_only
+      feedback: A small current still slows a boat. Every vector acting changes the resultant, so combine them all.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about the total momentum of everything involved, before and after.
+  - rung: 2
+    name: concept
+    text:
+      en: In a collision or explosion with no outside forces, total momentum is conserved; momentum has a sign.
+  - rung: 3
+    name: first_step
+    text:
+      en: Compare the total momentum before with the total momentum after.
+  - rung: 4
+    name: worked_step
+    text:
+      en: What was the firework's momentum before it exploded?
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Zero, the same as before. Momentum is conserved and the firework started at rest, so the momenta of the pieces cancel.'
+  misconception_ids:
+  - mc.phy.o.explosion_creates_momentum
+  - mc.phy.o.largest_vector_only
+  - mc.phy.o.momentum_sign_ignored
+solution:
+  steps:
+  - n: 1
+    latex: \text{Zero, the same as before}
+    reason: Apply conservation of momentum
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

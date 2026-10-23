@@ -1,0 +1,86 @@
+id: itm.mth.o.trigonometry.9050
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.trig_angle
+stem: A ladder of length 5 m rests against a vertical wall with its foot 3 m from the wall on level ground.
+parts:
+- id: a
+  prompt: Find the acute angle that the ladder makes with the ground, in degrees. Give 3 significant figures.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '53.1'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mastery_supplement_mth_9050
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The ladder is the hypotenuse and the distance from the wall is adjacent to the ground angle, so use cosine.
+  - rung: 2
+    name: concept
+    text:
+      en: Divide adjacent length by hypotenuse length, then take inverse cosine in degree mode.
+  - rung: 3
+    name: first_step
+    text:
+      en: Divide adjacent length by hypotenuse length, then take inverse cosine in degree mode.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The required angle is acute; check its cosine against adjacent divided by hypotenuse.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 53.1.
+solution:
+  steps:
+  - n: 1
+    latex: \theta=\cos^{-1}(3/5)
+    reason: Divide adjacent length by hypotenuse length, then take inverse cosine in degree mode.
+    check_id: chk_build_mastery_supplement_mth_9050
+  - n: 2
+    latex: '53.1'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9050
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9050:
+    args:
+      angle_unit: degrees
+      expression: acos(3/5)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

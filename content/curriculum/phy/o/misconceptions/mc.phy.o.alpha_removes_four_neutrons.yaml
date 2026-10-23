@@ -1,0 +1,34 @@
+id: mc.phy.o.alpha_removes_four_neutrons
+kc_ids:
+- kc.phy.o.radioactivity.decay_equations
+student_name: Alpha decay removes four neutrons
+description: Thinks an alpha particle takes four neutrons from the nucleus, reading its nucleon number as neutrons.
+signatures:
+- kind: answer_transform
+  expression: N - 4
+fix:
+  strategy: rule_restatement
+  text:
+    en: An alpha particle is two protons and two neutrons, so the nucleus loses two neutrons, not four.
+probe_item_ids:
+- itm.phy.o.radioactivity.0026
+- itm.phy.o.radioactivity.0030
+- itm.phy.o.radioactivity.0020
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

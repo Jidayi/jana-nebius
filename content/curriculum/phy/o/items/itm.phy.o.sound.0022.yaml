@@ -1,0 +1,93 @@
+id: itm.phy.o.sound.0022
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.sound.speed_and_echoes
+stem: Wanjiru stands 85 m from a tall wall and claps once. The echo is heard 0.51 s after the clap.
+parts:
+- id: a
+  prompt: Calculate the speed of sound in air.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '333'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_snd_0022_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: In the echo time, how far does the sound travel?
+  - rung: 2
+    name: concept
+    text:
+      en: 'It goes to the wall and comes back: twice the distance to the wall.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Total distance = 2 × 85 = 170 m.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 170 m by 0.51 s.
+  - rung: 5
+    name: full_step
+    text:
+      en: v = 333 m/s.
+  misconception_ids:
+  - mc.phy.o.echo_not_halved
+  - mc.phy.o.echo_halving_misapplied
+  - mc.phy.o.time_over_distance
+solution:
+  steps:
+  - n: 1
+    latex: 2 \times 85 = 170\ \text{m}
+    reason: The sound goes to the wall and back
+    check_id: chk_build_phy_snd_0022_tot
+  - n: 2
+    latex: v = \frac{170}{0.51} = 333\ \text{m/s}
+    reason: Speed = distance ÷ time
+    check_id: chk_build_phy_snd_0022_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_snd_0022_ans:
+    args:
+      expression: 2*85/0.51
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_snd_0022_tot:
+    args:
+      expression: 2*85
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

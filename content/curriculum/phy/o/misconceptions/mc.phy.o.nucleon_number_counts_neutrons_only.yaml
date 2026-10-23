@@ -1,0 +1,35 @@
+id: mc.phy.o.nucleon_number_counts_neutrons_only
+kc_ids:
+- kc.phy.o.atom.atomic_structure
+student_name: Nucleon number as the neutrons only
+description: Thinks the nucleon number is the number of neutrons, leaving out the protons.
+signatures:
+- kind: answer_transform
+  expression: N
+fix:
+  strategy: rule_restatement
+  text:
+    en: Protons and neutrons are both nucleons. The nucleon number counts them together.
+probe_item_ids:
+- itm.phy.o.atom.0011
+- itm.phy.o.atom.0015
+- itm.phy.o.atom.0005
+- itm.phy.o.atom.0009
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

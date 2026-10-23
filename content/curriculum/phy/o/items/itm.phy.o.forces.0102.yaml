@@ -1,0 +1,93 @@
+id: itm.phy.o.forces.0102
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.centre_of_gravity
+stem: A double-decker bus is tested by tilting it on a platform.
+parts:
+- id: a
+  prompt: Why are passengers not allowed to stand on the top deck during the test?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Their extra weight would always make the bus steadier
+      correct: false
+      misconception_id: mc.phy.o.stability_from_weight_only
+      feedback: A load on the roof rack makes a car easier to tip over. Weight added high up raises the centre of gravity and makes an object less stable.
+    - id: B
+      text: The bus would topple as soon as it tilted at all
+      correct: false
+      misconception_id: mc.phy.o.topples_whenever_tilted
+      feedback: 'Tilt a box slightly and let go: it falls back. Its weight still acts inside the base and turns it back. It topples only once the weight acts outside the base.'
+    - id: C
+      text: Standing passengers would raise the centre of gravity and reduce stability
+      correct: true
+    - id: D
+      text: Only the width of the bus affects its stability
+      correct: false
+      misconception_id: mc.phy.o.base_width_irrelevant
+      feedback: Stand with your feet together and someone can push you over easily; stand with them apart and it is much harder. A wider base means a bigger tilt before toppling.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about where the weight of the object acts and where its base is.
+  - rung: 2
+    name: concept
+    text:
+      en: An object topples when the vertical line through its centre of gravity falls outside its base.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ask how far the object could tilt before the line of its weight passes outside the base.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Where would the passengers' weight be?
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Standing passengers would raise the centre of gravity and reduce stability. Weight high up raises the centre of gravity, so the bus would topple at a smaller angle.'
+  misconception_ids:
+  - mc.phy.o.base_width_irrelevant
+  - mc.phy.o.stability_from_weight_only
+  - mc.phy.o.topples_whenever_tilted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Standing passengers would raise the centre of gravity and reduce stability}
+    reason: Find where the weight acts relative to the base
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

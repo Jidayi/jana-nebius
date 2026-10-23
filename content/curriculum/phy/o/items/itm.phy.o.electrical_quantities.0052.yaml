@@ -1,0 +1,92 @@
+id: itm.phy.o.electrical_quantities.0052
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.resistance
+stem: The p.d. across a lamp is 144 V and the current through it is 3 A.
+parts:
+- id: a
+  prompt: Calculate its resistance.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '48'
+    unit: Ω
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_elq_0052_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Resistance tells you how many volts are needed for each amp.
+  - rung: 2
+    name: concept
+    text:
+      en: R = V ÷ I, with V in volts and I in amps.
+  - rung: 3
+    name: first_step
+    text:
+      en: The current is already in amps.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 144 V by 3 A.
+  - rung: 5
+    name: full_step
+    text:
+      en: R = 144 ÷ 3 = 48 Ω.
+  misconception_ids:
+  - mc.phy.o.ohm_law_upside_down
+  - mc.phy.o.ohm_law_multiplied
+solution:
+  steps:
+  - n: 1
+    latex: R = \frac{V}{I} = \frac{144}{3} = 48\ \Omega
+    reason: Resistance = p.d. ÷ current
+    check_id: chk_build_phy_elq_0052_ans
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  I: '3'
+  V: '144'
+checks:
+  chk_build_phy_elq_0052_ans:
+    args:
+      expression: 144/3
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.mixed_all_in_parallel
+kc_ids:
+- kc.phy.o.circuits.mixed_circuits
+student_name: Treating every resistor as in parallel
+description: Uses the reciprocal rule on all the resistors at once, as if every one were a separate branch across the supply.
+signatures:
+- kind: answer_transform
+  expression: 1/(1/R1 + 1/R2 + 1/R3)
+fix:
+  strategy: diagram
+  text:
+    en: Only resistors joined at both ends to the same two junctions are in parallel. Combine those first, then add any resistor in series.
+probe_item_ids:
+- itm.phy.o.circuits.0042
+- itm.phy.o.circuits.0031
+- itm.phy.o.circuits.0035
+- itm.phy.o.circuits.0036
+- itm.phy.o.circuits.0039
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,181 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.circuit-sim-predict",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "A circuit simulation with a 6 V cell and 2 resistors in series. It runs after you predict, so the result is not given here."
+    },
+    "computed": {
+      "alt": {
+        "arrangement": "series",
+        "count": 2,
+        "current": "3/10",
+        "emf": 6
+      },
+      "check_ids": [
+        "chk_build_fx_circuit_sim_predict_1"
+      ],
+      "labels": {
+        "out.current": "3/10",
+        "out.pd_R1": "3",
+        "out.pd_R2": "3",
+        "out.resistance": "20"
+      },
+      "parts": [
+        {
+          "id": "ctrl.emf",
+          "label": "emf",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.arrangement",
+          "label": "arrangement",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.switch",
+          "label": "switch",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.R1",
+          "label": "R1",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.R2",
+          "label": "R2",
+          "role": "control"
+        },
+        {
+          "id": "out.current",
+          "label": "current",
+          "role": "readout"
+        },
+        {
+          "id": "out.resistance",
+          "label": "resistance",
+          "role": "readout"
+        },
+        {
+          "id": "out.pd_R1",
+          "label": "pd_R1",
+          "role": "readout"
+        },
+        {
+          "id": "out.pd_R2",
+          "label": "pd_R2",
+          "role": "readout"
+        }
+      ],
+      "units": {
+        "current": "A",
+        "pd": "V",
+        "power": "W",
+        "resistance": "Ω"
+      }
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_circuit_sim_predict_1"
+    ],
+    "params": {
+      "arrangement": "series",
+      "emf": 6,
+      "locked": [
+        "emf",
+        "R1",
+        "R2",
+        "switch"
+      ],
+      "predict": "poe.phy.circuit_series_to_parallel.v1",
+      "resistors": [
+        {
+          "id": "R1",
+          "resistance": 10
+        },
+        {
+          "id": "R2",
+          "resistance": 10
+        }
+      ],
+      "switch_closed": true
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ctrl.emf",
+        "name": "emf",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.arrangement",
+        "name": "arrangement",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.switch",
+        "name": "switch",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.R1",
+        "name": "R1",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.R2",
+        "name": "R2",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "out.current",
+        "name": "current",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.resistance",
+        "name": "resistance",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.pd_R1",
+        "name": "pd_R1",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.pd_R2",
+        "name": "pd_R2",
+        "role": "readout"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:500d84cb8dceb9f95d8e2396e1b480c6e398e246f7f02cb4ab805da6ee8c966b",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "circuit_sim",
+    "visual_id": "vis_GD4BDESSXE3P1M063R26QGCMB0"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: circuit sim predict (shown labels)",
+  "variant": "circuit-sim-predict"
+}

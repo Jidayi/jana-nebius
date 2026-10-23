@@ -1,0 +1,88 @@
+id: itm.acc.o.sole_trader_statements.0034
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.sole_trader_statements.sofp_sections
+stem: Ama's statement of financial position is being prepared. One item is a bank loan that is repayable in five years' time.
+parts:
+- id: a
+  prompt: Where is it shown?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Non-current assets
+      correct: false
+      misconception_id: mc.acc.o.sofp_asset_liability_confused
+    - id: B
+      text: Current liabilities
+      correct: false
+      misconception_id: mc.acc.o.sofp_term_confused
+    - id: C
+      text: Non-current liabilities
+      correct: true
+    - id: D
+      text: Capital
+      correct: false
+      misconception_id: mc.acc.o.sofp_loan_as_capital
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Ask two questions: is it something the business owns, owes, or the owner''s own stake? And when does it fall due or get used up?'
+  - rung: 2
+    name: concept
+    text:
+      en: Current means due or used within one year; non-current means longer. Anything owed to someone other than the owner is a liability.
+  - rung: 3
+    name: first_step
+    text:
+      en: Money the owner takes out reduces the owner's stake; it is not owed to anyone.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Decide owns, owes or owner's stake first, then current or non-current.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'It is shown under: non-current liabilities.'
+  misconception_ids:
+  - mc.acc.o.sofp_term_confused
+  - mc.acc.o.sofp_asset_liability_confused
+  - mc.acc.o.sofp_loan_as_capital
+solution:
+  steps:
+  - n: 1
+    latex: \text{A bank loan that is repayable in five years' time} \rightarrow \text{Non-current liabilities}
+    reason: Classify by what it is and when it falls due
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_names
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

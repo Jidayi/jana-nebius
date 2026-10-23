@@ -1,0 +1,112 @@
+id: itm.chm.o.environment.0021
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.fertilisers
+stem: A bag holds 264 g of ammonium sulfate, (NH₄)₂SO₄.
+parts:
+- id: a
+  prompt: Calculate the mass of nitrogen, in grams, that the bag supplies to the soil.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '56.0'
+    unit: g
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_environment_0021_m
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Find the fraction of (NH₄)₂SO₄ that is nitrogen, then take that fraction of 264 g.
+  - rung: 2
+    name: concept
+    text:
+      en: Mass of nitrogen = mass of ammonium sulfate × (mass of N atoms ÷ Mr).
+  - rung: 3
+    name: first_step
+    text:
+      en: Mr of (NH₄)₂SO₄ is 132, and its two nitrogen atoms have a mass of 28.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply 264 g by 28 ÷ 132.
+  - rung: 5
+    name: full_step
+    text:
+      en: 264 × 28 ÷ 132 = 56.0 g of nitrogen.
+  misconception_ids:
+  - mc.chm.o.environment_n_atoms_count_ignored
+  - mc.chm.o.environment_n_percent_inverted
+solution:
+  steps:
+  - n: 1
+    latex: M_r(\text{(NH}_4\text{)}_2\text{SO}_4) = 132
+    reason: Relative formula mass of ammonium sulfate
+    check_id: chk_build_chm_environment_0021_mr
+  - n: 2
+    latex: 2 \times 14 = 28
+    reason: Mass of nitrogen in one formula unit
+    check_id: chk_build_chm_environment_0021_n
+  - n: 3
+    latex: 264 \times \frac{28}{132} = 56.0\ \text{g}
+    reason: Nitrogen's share of the bag
+    check_id: chk_build_chm_environment_0021_m
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_environment_0021_m:
+    args:
+      expression: 264*28/132
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_environment_0021_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      formula: (NH4)2SO4
+    tool: chem_molar_mass
+  chk_build_chm_environment_0021_n:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      formula: N2
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

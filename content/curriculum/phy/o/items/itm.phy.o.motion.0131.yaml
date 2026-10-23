@@ -1,0 +1,93 @@
+id: itm.phy.o.motion.0131
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.solve_with_equation
+stem: A car reaches 18 m/s after accelerating steadily at 1.5 m/s^2 for 6 s.
+parts:
+- id: a
+  prompt: Find its speed at the start.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '9.00'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_k_0131_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which quantities do you know, and which one are you asked for?
+  - rung: 2
+    name: concept
+    text:
+      en: Pick the equation of uniform acceleration with those quantities, then make the unknown its subject.
+  - rung: 3
+    name: first_step
+    text:
+      en: Rearrange to u = v − at.
+  - rung: 4
+    name: worked_step
+    text:
+      en: u = 18 − 1.5 × 6.
+  - rung: 5
+    name: full_step
+    text:
+      en: u = 18 − 1.5 × 6 = 9.00 m/s.
+  misconception_ids:
+  - mc.phy.o.rearrange_sign_error
+  - mc.phy.o.square_not_rooted
+solution:
+  steps:
+  - n: 1
+    latex: v = u + at
+    reason: The equation linking the known quantities
+  - n: 2
+    latex: u = v - at
+    reason: Make the unknown the subject
+  - n: 3
+    latex: u = 18 - 1.5 \times 6
+    reason: Substitute
+  - n: 4
+    latex: u = 9.00\ \text{m/s}
+    reason: Evaluate
+    check_id: chk_build_phy_k_0131_a
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- transport
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_k_0131_a:
+    args:
+      expression: 18 - 1.5*6
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

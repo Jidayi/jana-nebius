@@ -1,0 +1,37 @@
+id: mc.phy.o.liquid_pressure_g_left_out
+kc_ids:
+- kc.phy.o.pressure.liquid_pressure
+- kc.phy.o.pressure.gas_and_atmospheric_pressure
+student_name: Leaving g out of ρgh
+description: Multiplies only the density by the depth (or divides only by the density) and leaves out g when working with the pressure of a column of liquid.
+signatures:
+- kind: answer_transform
+  expression: rho*h
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The pressure comes from the weight of the liquid above, so g is needed: pressure = ρ × g × h. Without g the answer is not in pascals.'
+probe_item_ids:
+- itm.phy.o.pressure.0027
+- itm.phy.o.pressure.0028
+- itm.phy.o.pressure.0030
+- itm.phy.o.pressure.0041
+- itm.phy.o.pressure.0042
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

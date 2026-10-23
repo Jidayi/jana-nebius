@@ -1,0 +1,92 @@
+id: itm.phy.o.pressure.0005
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.pressure_on_surfaces
+stem: A block measuring 0.25 m × 0.12 m × 0.06 m has a weight of 45 N. It can rest on any of its faces.
+parts:
+- id: a
+  prompt: Calculate the greatest pressure it can exert on the ground.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '6250'
+    unit: Pa
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_prs_0005_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The weight is the same whichever face the block rests on.
+  - rung: 2
+    name: concept
+    text:
+      en: For the same force, a smaller area gives a greater pressure.
+  - rung: 3
+    name: first_step
+    text:
+      en: Choose the smallest face and multiply its two sides.
+  - rung: 4
+    name: worked_step
+    text:
+      en: That face has an area of 0.0072 m²; divide 45 N by it.
+  - rung: 5
+    name: full_step
+    text:
+      en: The greatest pressure is 6250 Pa.
+  misconception_ids:
+  - mc.phy.o.larger_area_larger_pressure
+  - mc.phy.o.pressure_force_times_area
+  - mc.phy.o.pressure_area_sides_added
+solution:
+  steps:
+  - n: 1
+    latex: A = 0.12 \times 0.06 = 0.0072\ \text{m}^2
+    reason: The smallest face gives the greatest pressure
+    check_id: chk_build_phy_prs_0005_area
+  - n: 2
+    latex: p = \frac{45}{0.0072} = 6250\ \text{Pa}
+    reason: Pressure = force ÷ area
+    check_id: chk_build_phy_prs_0005_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_0005_ans:
+    args:
+      expression: 45/(0.12*0.06)
+    tool: math_evaluate
+  chk_build_phy_prs_0005_area:
+    args:
+      expression: 0.12*0.06
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

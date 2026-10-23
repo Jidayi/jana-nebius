@@ -1,0 +1,81 @@
+id: itm.chm.o.organic.0044
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.fuels_and_cracking
+stem: 'A refinery sells a fraction used for this purpose: making road surfaces and roofing.'
+parts:
+- id: a
+  prompt: Which fraction is it?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Kerosene (paraffin)
+      correct: false
+    - id: B
+      text: Bitumen
+      correct: true
+    - id: C
+      text: Naphtha
+      correct: false
+    - id: D
+      text: Refinery gas
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Think about the size of molecule that suits this use: making road surfaces and roofing.'
+  - rung: 2
+    name: concept
+    text:
+      en: Gases and runny fuels come from high in the column; thick oils and solids come from low down. Where does making road surfaces and roofing fit?
+  - rung: 3
+    name: first_step
+    text:
+      en: Bitumen is the thick, sticky residue left at the very bottom of the column.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Its molecules are the largest of all, so it is a black, sticky solid at room temperature.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Bitumen is used for this: making road surfaces and roofing.'
+solution:
+  steps:
+  - n: 1
+    latex: '\text{bitumen: making road surfaces and roofing}'
+    reason: Fraction and use
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

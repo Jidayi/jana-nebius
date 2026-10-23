@@ -1,0 +1,8 @@
+# The release job's build-only tools (PLT-02, PLT-03): never shipped, never in the product's dependency closure.
+# Compiled with exact versions and every hash into requirements-build.txt (see README.md, "Pins"):
+#   uv pip compile --universal --generate-hashes --python-version 3.12 \
+#     scripts/packaging/requirements-build.in -o scripts/packaging/requirements-build.txt
+# PyInstaller pulls altgraph, macholib (macOS) and pefile (Windows) itself; the universal compile keeps each one's
+# platform marker.
+pyinstaller
+pyinstaller-hooks-contrib

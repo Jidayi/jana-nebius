@@ -1,0 +1,84 @@
+id: itm.phy.o.forces.0020
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.force_mass_acceleration
+stem: A car of mass 1500 kg brakes. The total braking force on it is 8000 N and the other horizontal forces are small enough to ignore.
+parts:
+- id: a
+  prompt: Find the size of its deceleration.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '5.33'
+    unit: m/s^2
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_frc_0020_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The braking force is the resultant force here.
+  - rung: 2
+    name: concept
+    text:
+      en: Use F = ma with a as the subject.
+  - rung: 3
+    name: first_step
+    text:
+      en: Divide the braking force by the mass.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 8000 ÷ 1500.
+  - rung: 5
+    name: full_step
+    text:
+      en: The deceleration is 5.33 m/s².
+  misconception_ids:
+  - mc.phy.o.fma_ratio_inverted
+  - mc.phy.o.fma_multiplied_not_divided
+solution:
+  steps:
+  - n: 1
+    latex: a = \frac{8000}{1500} = 5.33\ \text{m/s}^2
+    reason: a = F ÷ m
+    check_id: chk_build_phy_frc_0020_ans
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0020_ans:
+    args:
+      expression: 8000/1500
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,63 @@
+id: wex.acc.o.inventory.0005
+kc_ids:
+- kc.acc.o.inventory.lower_cost_nrv
+problem: 60 items cost $25 each; they sell for $24 each after spending $3 each. Value the inventory.
+steps:
+- n: 1
+  latex: \text{Lower of cost and NRV}
+  reason: Prudence
+  check_id: chk_build_acc_inventory_w0005_t
+- n: 2
+  latex: \text{NRV} = 24 - 3 = 21
+  reason: Selling price less costs to sell
+  check_id: chk_build_acc_inventory_w0005_s2
+- n: 3
+  latex: \text{Value} = 60 \times 21 = 1260
+  reason: The lower figure
+  check_id: chk_build_acc_inventory_w0005_a
+final_answer:
+  latex: \$\,1260
+  check_id: chk_build_acc_inventory_w0005_a
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_inventory_w0005_a:
+    args:
+      dp: 2
+      expression: 60 * (24 - 3)
+    tool: math_evaluate
+  chk_build_acc_inventory_w0005_s2:
+    args:
+      dp: 4
+      expression: 24 - 3
+    tool: math_evaluate
+  chk_build_acc_inventory_w0005_t:
+    args:
+      dp: 2
+      method: fifo
+      movements:
+      - kind: receipt
+        quantity: 60
+        unit_cost: '25'
+      nrv:
+        per_unit: '21'
+    tool: acc_inventory
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

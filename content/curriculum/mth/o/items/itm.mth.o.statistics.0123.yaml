@@ -1,0 +1,106 @@
+id: itm.mth.o.statistics.0123
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.cumulative_frequency
+stem: 'The masses (kg) of 44 parcels are summarised in a cumulative frequency table: none under 20; up to 40: 7; up to 60: 13; up to 80: 29; up to 100: 34; up to 120: 44.'
+parts:
+- id: a
+  prompt: Estimate the median mass, to 3 significant figures, by interpolating within the class.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '71.3'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_sta_0123_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The median is the value halfway through the data.
+  - rung: 2
+    name: concept
+    text:
+      en: Find half the total frequency, then the class where the cumulative frequency passes it.
+  - rung: 3
+    name: first_step
+    text:
+      en: Half of 44 is 22.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The median lies in the class 60 to 80; work out how far into it.
+  - rung: 5
+    name: full_step
+    text:
+      en: The median is about 71.3 kg.
+  misconception_ids:
+  - mc.mth.o.median_class_midpoint
+  - mc.mth.o.median_position_as_value
+  - mc.mth.o.iqr_as_quartile
+solution:
+  steps:
+  - n: 1
+    latex: \frac{44}{2} = 22
+    reason: Position of the median
+    check_id: chk_build_mth_sta_0123_h
+  - n: 2
+    latex: \text{class frequency} = 29 - 13 = 16
+    reason: Parcels in the median class
+    check_id: chk_build_mth_sta_0123_f
+  - n: 3
+    latex: \text{median} \approx 60 + \frac{22 - 13}{16} \times 20 = 71.3
+    reason: Interpolate in the median class
+    check_id: chk_build_mth_sta_0123_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0123_ans:
+    args:
+      expression: '71.25'
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_sta_0123_f:
+    args:
+      equations:
+      - p = 29 - 13
+      - q = 20
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_sta_0123_h:
+    args:
+      expression: 44/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

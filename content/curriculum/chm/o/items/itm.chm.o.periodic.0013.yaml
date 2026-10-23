@@ -1,0 +1,91 @@
+id: itm.chm.o.periodic.0013
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.periodic.group_i
+stem: Small pieces of lithium and sodium are added to separate troughs of water.
+parts:
+- id: a
+  prompt: Which reacts more vigorously, and why?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Lithium, because it is higher in the group
+      correct: false
+      misconception_id: mc.chm.o.periodic_group1_reactivity_decreases
+      feedback: 'Down Group I the outer electron is further from the nucleus and is lost more easily, so reactivity increases: potassium reacts more violently than sodium.'
+    - id: B
+      text: Sodium, because it has more outer electrons to lose
+      correct: false
+      misconception_id: mc.chm.o.periodic_group1_more_outer_electrons
+      feedback: Every Group I atom has one outer electron. Lower down there are more shells, so that electron is further from the nucleus.
+    - id: C
+      text: Sodium, because its outer electron is further from the nucleus and is lost more easily
+      correct: true
+    - id: D
+      text: They react equally, because both have one outer electron
+      correct: false
+      misconception_id: mc.chm.o.periodic_same_group_identical
+      feedback: 'Lithium fizzes gently on water but potassium bursts into flame: same type of reaction, very different vigour.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Where are lithium and sodium in Group I?
+  - rung: 2
+    name: concept
+    text:
+      en: Group I metals react by losing their single outer electron.
+  - rung: 3
+    name: first_step
+    text:
+      en: Lower in the group, the atoms have more shells.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Think about how strongly the nucleus holds an electron that is further away.
+  - rung: 5
+    name: full_step
+    text:
+      en: Sodium is lower, loses its electron more easily and reacts more vigorously.
+  misconception_ids:
+  - mc.chm.o.periodic_group1_reactivity_decreases
+  - mc.chm.o.periodic_same_group_identical
+  - mc.chm.o.periodic_group1_more_outer_electrons
+solution:
+  steps:
+  - n: 1
+    latex: '\text{down Group I: reactivity increases}'
+    reason: Outer electron further from nucleus
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

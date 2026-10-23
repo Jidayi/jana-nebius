@@ -1,0 +1,125 @@
+id: itm.phy.o.circuits.0058
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.potential_dividers
+stem: A thermistor and a 4700 Ω fixed resistor are connected in series across a 6 V supply. At 20 °C the thermistor's resistance is 3000 Ω. The output p.d. is taken across the thermistor.
+parts:
+- id: a
+  prompt: Calculate the output p.d. across the thermistor.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 3.66 V
+      correct: false
+      misconception_id: mc.phy.o.divider_wrong_resistor
+      feedback: Vout = V × R(across the output) ÷ (R1 + R2). Put on top the resistor that the output is taken across.
+    - id: B
+      text: 3.83 V
+      correct: false
+      misconception_id: mc.phy.o.divider_ratio_of_resistors
+      feedback: The output can never be more than the supply p.d. Divide by the total resistance, R1 + R2, not by the other resistor.
+    - id: C
+      text: 2.34 V
+      correct: true
+    - id: D
+      text: 3 V
+      correct: false
+      misconception_id: mc.phy.o.series_pd_shared_equally
+      feedback: 'The p.d. is shared in proportion to resistance: the resistor with twice the resistance has twice the p.d. Only equal resistors share equally.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The two parts of the divider share the supply p.d. in the ratio of their resistances.
+  - rung: 2
+    name: concept
+    text:
+      en: Vout = V × (resistance across the output) ÷ (total resistance).
+  - rung: 3
+    name: first_step
+    text:
+      en: The total resistance is 4700 Ω + 3000 Ω.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The total is 7700 Ω; find 3000/7700 of 6 V.
+  - rung: 5
+    name: full_step
+    text:
+      en: The output p.d. is 2.34 V.
+  misconception_ids:
+  - mc.phy.o.divider_ratio_of_resistors
+  - mc.phy.o.divider_wrong_resistor
+  - mc.phy.o.series_pd_shared_equally
+solution:
+  steps:
+  - n: 1
+    latex: R = 4700 + 3000 = 7700\ \Omega
+    reason: Total resistance of the divider
+    check_id: chk_build_phy_cir_0058_rt
+  - n: 2
+    latex: V_{\text{out}} = 6 \times \frac{3000}{7700} = 2.34\ \text{V}
+    reason: The output's share is its fraction of the total resistance
+    check_id: chk_build_phy_cir_0058_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_0058_ans:
+    args:
+      expression: 6*3000/(4700 + 3000)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_cir_0058_rt:
+    args:
+      expression: 4700 + 3000
+    tool: math_evaluate
+  chk_build_phy_cir_0058_tool:
+    args:
+      components:
+      - emf: '6'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '4700'
+      - id: R2
+        kind: resistor
+        resistance: '3000'
+      network:
+        series:
+        - B
+        - R1
+        - R2
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

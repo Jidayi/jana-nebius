@@ -1,0 +1,20 @@
+{
+  "_comment": "The installers' own words (LOC-01): one object per locale, keyed, ICU placeholders in braces. installer/strings.nsh is generated from this file (uv run python -m jana_tools installer-strings --write); the `installer-strings` check fails when it is stale or when hooks.nsh shows a word that is not one of these keys. PLT-24: the uninstaller's two choices and its keychain step. PLT-01, PLT-06, PLT-29: the janaPrecheck* keys are the precheck's messages, which jana-precheck reads from this file itself (src/installer.rs embeds it), so they are not NSIS LangStrings.",
+  "en": {
+    "janaUninstallTitle": "Students' progress",
+    "janaUninstallQuestion": "This removes the app. What should happen to the students' progress on this computer?",
+    "janaUninstallKeep": "Keep students' progress on this computer",
+    "janaUninstallKeepHelp": "It stays here for a later reinstall.",
+    "janaUninstallDelete": "Delete all students' progress",
+    "janaUninstallDeleteHelp": "Every student's records and saved keys are removed from this computer. This can't be undone.",
+    "janaUninstallKeysFailed": "Some saved keys could not be removed from this computer's keychain. You can remove the entries named app.jana.desktop yourself in Credential Manager.",
+    "janaPrecheckWindowsTooOld": "This computer's operating system is too old for the tutor. It needs Windows 10 version 22H2 or a later version of Windows, on a 64-bit Intel or AMD processor.",
+    "janaPrecheckMacIntel": "The tutor needs a Mac with Apple silicon (M1 or later). Macs with Intel processors are not supported.",
+    "janaPrecheckMacTooOld": "This Mac's system is too old for the tutor. It needs macOS 13 (Ventura) or a later version.",
+    "janaPrecheckLinuxArch": "The tutor runs on 64-bit Intel or AMD computers on Linux.",
+    "janaPrecheckLinuxTooOld": "This computer's system is too old for the tutor. It needs Ubuntu 22.04 or Debian 12, or a later version.",
+    "janaPrecheckOtherSystem": "The tutor does not run on this kind of computer.",
+    "janaPrecheckDiskFull": "Installing needs {needed} GB of free space and this computer has {free} GB free. Free up some space, then run the installer again.",
+    "janaPrecheckBelowMinimum": "This computer is below the minimum for running the tutor model offline. Lessons and practice will work, and the tutor can run through your school's server or online."
+  }
+}

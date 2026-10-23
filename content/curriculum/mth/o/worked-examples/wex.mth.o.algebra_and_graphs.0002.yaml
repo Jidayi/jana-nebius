@@ -1,0 +1,62 @@
+id: wex.mth.o.algebra_and_graphs.0002
+kc_ids:
+- kc.mth.o.algebra_and_graphs.substitution
+problem: The area of a trapezium is $A = \tfrac{1}{2}(a + b)h$. The parallel sides are a = 5 cm and b = 10 cm, and the height is h = 3 cm. Find the area A.
+steps:
+- n: 1
+  latex: A = \tfrac{1}{2}(5 + 10) \times 3
+  reason: Substitute
+  check_id: chk_build_mth_alg_w0002_sub
+- n: 2
+  latex: A = \tfrac{1}{2} \times 15 \times 3
+  reason: Bracket first
+  check_id: chk_build_mth_alg_w0002_s
+- n: 3
+  latex: A = 22.5\ \text{cm}^2
+  reason: Multiply
+  check_id: chk_build_mth_alg_w0002_ans
+final_answer:
+  latex: 22.5\ \text{cm}^2
+  check_id: chk_build_mth_alg_w0002_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0002_ans:
+    args:
+      expression: (a + b)*h/2
+      values:
+        a: 5
+        b: 10
+        h: 3
+    tool: math_evaluate
+  chk_build_mth_alg_w0002_s:
+    args:
+      expression: 5 + 10
+    tool: math_evaluate
+  chk_build_mth_alg_w0002_sub:
+    args:
+      expression: (1/2)*(5 + 10)*3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

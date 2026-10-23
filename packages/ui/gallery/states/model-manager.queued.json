@@ -1,0 +1,55 @@
+{
+  "id": "model-manager.queued",
+  "title": "Tutor models, waiting for internet",
+  "component": "ModelManager",
+  "state": "queued",
+  "payload": {
+    "installed": [
+      {
+        "model_pack_id": "mp.synth.8b.q4_k_m.low",
+        "model_id": "mp.synth.8b.q4_k_m.low",
+        "state": "installed",
+        "error_code": null,
+        "hardware_class": "low",
+        "size_bytes": 5476083302,
+        "licence": "Apache-2.0",
+        "attribution": "Synthetic model, made up for the gallery."
+      }
+    ],
+    "available": [
+      {
+        "model_pack_id": "mp.synth.14b.q4_k_m.mid",
+        "hardware_class": "mid",
+        "size_bytes": 10093173145,
+        "licence": "Apache-2.0",
+        "download": {
+          "download_id": "dl_00000000000000000000000000",
+          "state": "queued",
+          "error_code": "waiting_for_network",
+          "bytes_done": 0,
+          "bytes_total": 10093173145
+        }
+      }
+    ],
+    "assignment": {
+      "fast": "mp.synth.8b.q4_k_m.low",
+      "strong": "mp.synth.8b.q4_k_m.low"
+    },
+    "recommended": {
+      "fast": "mp.synth.14b.q4_k_m.mid",
+      "strong": "mp.synth.14b.q4_k_m.mid",
+      "reason_key": "hardware_class.mid.measured"
+    }
+  },
+  "payloadContract": "https://jana.dev/contracts/api/commands#/$defs/ModelCatalogue",
+  "context": {
+    "theme": "light",
+    "connectivity": "online-idle"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Waiting for an internet connection"
+  ]
+}

@@ -1,0 +1,140 @@
+id: itm.phy.o.circuits.0036
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.mixed_circuits
+stem: A 15 Ω resistor is connected in series with a parallel pair made of a 24 Ω resistor and an 8 Ω resistor. The circuit is connected to a 6 V battery.
+parts:
+- id: a
+  prompt: Calculate the total resistance of the circuit.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '21'
+    unit: Ω
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_cir_0036_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Find the part of the circuit that is in parallel and deal with it first.
+  - rung: 2
+    name: concept
+    text:
+      en: Replace the parallel pair by its combined resistance, then add the series resistor.
+  - rung: 3
+    name: first_step
+    text:
+      en: For the pair, use (24 × 8) ÷ (24 + 8).
+  - rung: 4
+    name: worked_step
+    text:
+      en: The pair is 6 Ω; now add 15 Ω.
+  - rung: 5
+    name: full_step
+    text:
+      en: The total resistance is 21 Ω.
+  misconception_ids:
+  - mc.phy.o.mixed_all_in_series
+  - mc.phy.o.mixed_series_resistor_left_out
+  - mc.phy.o.mixed_all_in_parallel
+solution:
+  steps:
+  - n: 1
+    latex: R_p = \frac{24 \times 8}{24 + 8} = 6\ \Omega
+    reason: Combine the parallel pair
+    check_id: chk_build_phy_cir_0036_rp
+  - n: 2
+    latex: R = 15 + 6 = 21\ \Omega
+    reason: Add the series resistor
+    check_id: chk_build_phy_cir_0036_ans
+difficulty:
+  prior: 0.5
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  R1: '15'
+  R2: '24'
+  R3: '8'
+checks:
+  chk_build_phy_cir_0036_ans:
+    args:
+      expression: (15 + 24*8/(24 + 8))
+    tool: math_evaluate
+  chk_build_phy_cir_0036_rp:
+    args:
+      expression: 24*8/(24 + 8)
+    tool: math_evaluate
+  chk_build_phy_cir_0036_tool:
+    args:
+      components:
+      - emf: '6'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '15'
+      - id: R2
+        kind: resistor
+        resistance: '24'
+      - id: R3
+        kind: resistor
+        resistance: '8'
+      network:
+        series:
+        - B
+        - R1
+        - parallel:
+          - R2
+          - R3
+    tool: phys_circuit
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:40:59.525Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.circuits.0036
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

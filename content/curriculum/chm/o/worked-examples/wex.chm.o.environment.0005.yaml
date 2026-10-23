@@ -1,0 +1,95 @@
+id: wex.chm.o.environment.0005
+kc_ids:
+- kc.chm.o.environment.air_pollution
+problem: 'In flue gas desulfurisation, calcium carbonate removes sulfur dioxide: CaCO₃ + SO₂ → CaSO₃ + CO₂. What mass of calcium carbonate is needed to remove 64 g of sulfur dioxide?'
+steps:
+- n: 1
+  latex: M_r(\text{SO}_2) = 64
+  reason: Sulfur dioxide
+  check_id: chk_build_chm_environment_w0005_s
+- n: 2
+  latex: n = \frac{64}{64} = 1\ \text{mol}
+  reason: Moles of SO₂
+  check_id: chk_build_chm_environment_w0005_c
+- n: 3
+  latex: 1\ \text{mol of } \text{CaCO}_3
+  reason: One to one
+  check_id: chk_build_chm_environment_w0005_c
+- n: 4
+  latex: M_r(\text{CaCO}_3) = 100
+  reason: Calcium carbonate
+  check_id: chk_build_chm_environment_w0005_k
+final_answer:
+  latex: 100\ \text{g}
+  check_id: chk_build_chm_environment_w0005_c
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_environment_w0005_c:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_ca
+      - source: pack
+        symbol: ar_c
+      equation: CaCO3 + SO2 -> CaSO3 + CO2
+      sf: 3
+      steps:
+      - id: n
+        mass: 64 g
+        op: amount_from_mass
+        species: SO2
+      - amount: '@n'
+        from: SO2
+        id: r
+        op: mole_ratio
+        to: CaCO3
+      - amount: '@r'
+        id: m
+        op: mass_from_amount
+        species: CaCO3
+    tool: chem_stoichiometry
+  chk_build_chm_environment_w0005_k:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ca
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_o
+      formula: CaCO3
+    tool: chem_molar_mass
+  chk_build_chm_environment_w0005_s:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      formula: SO2
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,34 @@
+id: mc.phy.o.ultrasound_means_loud
+kc_ids:
+- kc.phy.o.sound.pitch_and_loudness
+- kc.phy.o.sound.ultrasound
+student_name: Ultrasound is very loud sound
+description: Thinks ultrasound means extremely loud sound rather than sound too high in frequency to hear.
+signatures:
+- kind: answer_transform
+  expression: ultra = loud
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Ultra means beyond: ultrasound is beyond the top of our hearing range, above 20 kHz. It can be loud or quiet.'
+probe_item_ids:
+- itm.phy.o.sound.0041
+- itm.phy.o.sound.0048
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

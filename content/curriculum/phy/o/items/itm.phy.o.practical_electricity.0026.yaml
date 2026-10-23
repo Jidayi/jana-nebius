@@ -1,0 +1,111 @@
+id: itm.phy.o.practical_electricity.0026
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.energy_cost
+stem: A 750 W microwave oven is used for 15 minutes every day for 28 days. Electricity costs 10 cents per kilowatt-hour.
+parts:
+- id: a
+  prompt: Calculate the cost of the electricity used, in cents.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '52.5'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_pel_0026_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Electricity is paid for by the kilowatt-hour (one unit).
+  - rung: 2
+    name: concept
+    text:
+      en: Find the number of kWh used in all, then multiply by the price of one kWh.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Change the power into kilowatts and find the total time in hours: 15 minutes a day for 28 days.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: The total time is 7 h, so the energy is 5.25 kWh; multiply by 10 cents.
+  - rung: 5
+    name: full_step
+    text:
+      en: The cost is 52.5 cents.
+  misconception_ids:
+  - mc.phy.o.energy_cost_days_left_out
+  - mc.phy.o.kwh_power_left_in_watts
+  - mc.phy.o.kwh_time_left_in_minutes
+  - mc.phy.o.elec_energy_power_over_time
+solution:
+  steps:
+  - n: 1
+    latex: P = 750\ \text{W} = 0.75\ \text{kW}
+    reason: Power in kilowatts
+    check_id: chk_build_phy_pel_0026_pk
+  - n: 2
+    latex: t = 15\ \text{min} \times 28 = 7\ \text{h}
+    reason: Total time in hours
+    check_id: chk_build_phy_pel_0026_th
+  - n: 3
+    latex: E = 0.75 \times 7 = 5.25\ \text{kWh}
+    reason: Energy in kWh
+    check_id: chk_build_phy_pel_0026_kwh
+  - n: 4
+    latex: \text{cost} = 5.25 \times 10 = 52.5\ \text{cents}
+    reason: Units used times price
+    check_id: chk_build_phy_pel_0026_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_pel_0026_ans:
+    args:
+      expression: 0.75*0.25*28*10
+    tool: math_evaluate
+  chk_build_phy_pel_0026_kwh:
+    args:
+      expression: 0.75*0.25*28
+    tool: math_evaluate
+  chk_build_phy_pel_0026_pk:
+    args:
+      quantity: 750 W
+      to: kW
+    tool: units_convert
+  chk_build_phy_pel_0026_th:
+    args:
+      quantity: 420 min
+      to: h
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,127 @@
+id: itm.chm.o.stoichiometry.0005
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.ionic_formulae
+- kc.chm.o.stoichiometry.relative_formula_mass
+stem: Potassium carbonate contains K⁺ and CO₃²⁻ ions.
+parts:
+- id: a
+  prompt: Write the formula of potassium carbonate and use it to calculate its relative formula mass.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '138'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0005_mr
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: First you need the formula of potassium carbonate; then add up the relative atomic masses in it.
+  - rung: 2
+    name: concept
+    text:
+      en: The charges on the ions must cancel; the relative formula mass is the sum of the relative atomic masses of every atom in the formula.
+  - rung: 3
+    name: first_step
+    text:
+      en: The formula is K₂CO₃. Now count the atoms of each element in it.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'In K₂CO₃: two K atoms give 78, one C atom gives 12 and three O atoms give 48.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Mr of K₂CO₃ = 138.
+  misconception_ids:
+  - mc.chm.o.formula_one_of_each
+  - mc.chm.o.formula_own_charge_as_count
+solution:
+  steps:
+  - n: 1
+    latex: \text{K}_2\text{CO}_3
+    reason: Charges cancel in potassium carbonate
+  - n: 2
+    latex: \text{K}_2 = 78
+    reason: Two K atoms times Ar
+    check_id: chk_build_chm_stoichiometry_0005_g_k
+  - n: 3
+    latex: \text{C} = 12
+    reason: One C atom times Ar
+    check_id: chk_build_chm_stoichiometry_0005_g_c
+  - n: 4
+    latex: \text{O}_3 = 48
+    reason: Three O atoms times Ar
+    check_id: chk_build_chm_stoichiometry_0005_g_o
+  - n: 5
+    latex: M_r = 138
+    reason: Add the shares
+    check_id: chk_build_chm_stoichiometry_0005_mr
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0005_g_c:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      formula: C
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0005_g_k:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_k
+      formula: K2
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0005_g_o:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_o
+      formula: O3
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0005_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_k
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_o
+      formula: K2CO3
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

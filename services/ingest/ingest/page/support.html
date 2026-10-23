@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Send a report to Jana support</title>
+<link rel="stylesheet" href="/support/style.css">
+<script src="/support/upload.js" defer></script>
+</head>
+<body>
+<main>
+  <h1>Send a report to Jana support</h1>
+  <p>Use this page only when Jana support has given you a ticket reference. It looks like <code>JT-ABCD-EFGH-JKMN</code>.</p>
+  <p>Choose the report file the app saved (Settings, Help, "Save a report for support"). It ends in <code>.zip</code>,
+     or in <code>.janadiag</code> if you added a conversation.</p>
+  <p>If your report is protected with a passphrase, do not type the passphrase here. Tell it to support another way,
+     for example by phone.</p>
+  <form id="upload">
+    <label for="ticket">Ticket reference</label>
+    <input id="ticket" name="ticket" required autocomplete="off" spellcheck="false" placeholder="JT-XXXX-XXXX-XXXX">
+    <label for="file">Report file</label>
+    <input id="file" name="file" type="file" required accept=".zip,.janadiag">
+    <button type="submit">Send the report</button>
+  </form>
+  <p id="result" role="status" aria-live="polite"></p>
+  <p class="small">Reports are kept only for your ticket and deleted when it is closed, or after {{BUNDLE_DAYS}} days at the latest.
+     Only the support people working on your ticket can open them, and every opening is recorded.</p>
+</main>
+</body>
+</html>

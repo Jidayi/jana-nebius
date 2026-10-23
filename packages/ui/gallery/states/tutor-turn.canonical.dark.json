@@ -1,0 +1,105 @@
+{
+  "id": "tutor-turn.canonical.dark",
+  "title": "Tutor turn, dark theme",
+  "component": "TutorTurn",
+  "state": "canonical",
+  "payload": {
+    "student": "A ball is thrown straight up at 14 m/s. How high does it rise?",
+    "events": [
+      {
+        "type": "turn.start",
+        "turn_id": "trn_00000000000000000000000001",
+        "user_message_id": "msg_00000000000000000000000002",
+        "client_message_id": null,
+        "intent": "ask",
+        "mode": "guided",
+        "fork": false
+      },
+      {
+        "type": "part.start",
+        "part_id": "prt_00000000000000000000000003",
+        "kind": "text",
+        "index": 0
+      },
+      {
+        "type": "text.delta",
+        "part_id": "prt_00000000000000000000000003",
+        "delta": "Let me look at this problem."
+      },
+      {
+        "type": "part.end",
+        "part_id": "prt_00000000000000000000000003",
+        "status": "complete",
+        "duration_ms": 1
+      },
+      {
+        "type": "part.start",
+        "part_id": "prt_00000000000000000000000004",
+        "kind": "tool",
+        "index": 1
+      },
+      {
+        "type": "tool.state",
+        "part_id": "prt_00000000000000000000000004",
+        "call_id": "call_1",
+        "name": "math_solve",
+        "render_class": "ephemeral",
+        "state": {
+          "status": "completed",
+          "title": {
+            "pre": "x"
+          }
+        }
+      },
+      {
+        "type": "part.end",
+        "part_id": "prt_00000000000000000000000004",
+        "status": "complete",
+        "duration_ms": 6
+      },
+      {
+        "type": "part.start",
+        "part_id": "prt_00000000000000000000000005",
+        "kind": "text",
+        "index": 2
+      },
+      {
+        "type": "text.delta",
+        "part_id": "prt_00000000000000000000000005",
+        "delta": "Which equation links the starting speed, the acceleration and the height?"
+      },
+      {
+        "type": "part.end",
+        "part_id": "prt_00000000000000000000000005",
+        "status": "complete",
+        "duration_ms": 1
+      },
+      {
+        "type": "turn.end",
+        "status": "complete",
+        "stop_reason": "completed",
+        "elapsed_ms": 14000,
+        "usage": null,
+        "verification": "not_applicable",
+        "persisted": {
+          "message_id": "msg_00000000000000000000000009",
+          "part_ids": []
+        },
+        "degraded": false,
+        "degraded_reason": null
+      }
+    ]
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "dark",
+    "textScale": 1.5
+  },
+  "placements": [
+    "conversation"
+  ],
+  "variant": "dark",
+  "expectText": [
+    "Worked for 14 s"
+  ]
+}

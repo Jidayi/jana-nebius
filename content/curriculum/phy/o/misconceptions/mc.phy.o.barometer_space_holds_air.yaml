@@ -1,0 +1,33 @@
+id: mc.phy.o.barometer_space_holds_air
+kc_ids:
+- kc.phy.o.pressure.gas_and_atmospheric_pressure
+student_name: Air above the mercury
+description: Thinks the space at the top of a mercury barometer tube holds air at atmospheric pressure, rather than a near vacuum.
+signatures:
+- kind: step_error
+  error_category: copy
+fix:
+  strategy: rule_restatement
+  text:
+    en: The tube was filled with mercury and turned upside down, so no air could get in at the top. The space left is almost empty, which is why the air outside can hold the column up.
+probe_item_ids:
+- itm.phy.o.pressure.0045
+- itm.phy.o.pressure.0037
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

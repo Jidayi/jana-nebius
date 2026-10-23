@@ -1,0 +1,102 @@
+id: itm.phy.o.energy.0083
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.power
+stem: An electric heater transfers 300 kJ of energy in 5 minutes.
+parts:
+- id: a
+  prompt: Calculate its power in watts.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1000'
+    unit: W
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0083_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A watt is one joule per second.
+  - rung: 2
+    name: concept
+    text:
+      en: Change the energy to joules and the time to seconds, then use P = E ÷ t.
+  - rung: 3
+    name: first_step
+    text:
+      en: 300 kJ = 300000 J and 5 minutes = 300 s.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 300000 ÷ 300.
+  - rung: 5
+    name: full_step
+    text:
+      en: The power is 1000 W.
+  misconception_ids:
+  - mc.phy.o.power_minutes_not_converted
+  - mc.phy.o.energy_kilo_prefix_ignored
+  - mc.phy.o.power_energy_times_time
+solution:
+  steps:
+  - n: 1
+    latex: E = 300\ \text{kJ} = 300000\ \text{J}
+    reason: Energy in joules
+    check_id: chk_build_phy_nrg_0083_ej
+  - n: 2
+    latex: t = 5\ \text{min} = 300\ \text{s}
+    reason: Time in seconds
+    check_id: chk_build_phy_nrg_0083_ts
+  - n: 3
+    latex: P = \frac{E}{t} = \frac{300000}{300} = 1000\ \text{W}
+    reason: Power = energy ÷ time
+    check_id: chk_build_phy_nrg_0083_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0083_ans:
+    args:
+      expression: 300*1000/(5*60)
+    tool: math_evaluate
+  chk_build_phy_nrg_0083_ej:
+    args:
+      quantity: 300 kJ
+      to: J
+    tool: units_convert
+  chk_build_phy_nrg_0083_ts:
+    args:
+      quantity: 5 min
+      to: s
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

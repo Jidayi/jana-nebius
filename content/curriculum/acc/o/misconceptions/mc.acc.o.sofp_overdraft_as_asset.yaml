@@ -1,0 +1,36 @@
+id: mc.acc.o.sofp_overdraft_as_asset
+kc_ids:
+- kc.acc.o.sole_trader_statements.sofp_sections
+- kc.acc.o.sole_trader_statements.working_capital
+student_name: Overdraft as an asset
+description: Treats a bank overdraft as money in the bank and adds it to current assets.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: liability
+fix:
+  strategy: rule_restatement
+  text:
+    en: An overdraft is money the business owes the bank. It is a current liability.
+probe_item_ids:
+- itm.acc.o.sole_trader_statements.0045
+- itm.acc.o.sole_trader_statements.0046
+- itm.acc.o.sole_trader_statements.0047
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

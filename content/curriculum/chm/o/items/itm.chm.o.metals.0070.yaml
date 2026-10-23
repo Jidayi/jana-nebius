@@ -1,0 +1,165 @@
+id: itm.chm.o.metals.0070
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.extraction_yield
+stem: 'A 400 g sample of haematite ore contains 60.0% iron(III) oxide by mass; the rest is rock. In the furnace: Fe₂O₃ + 3CO → 2Fe + 3CO₂.'
+parts:
+- id: a
+  prompt: Calculate the greatest mass of iron that can be obtained from the sample.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '168'
+    unit: g
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_metals_0070_chain
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Only part of the ore is iron(III) oxide; find that part first.
+  - rung: 2
+    name: concept
+    text:
+      en: Take the percentage of the ore mass, then follow mass → moles → ratio → moles → mass.
+  - rung: 3
+    name: first_step
+    text:
+      en: Mass of Fe₂O₃ = 60.0% of 400 g = 240 g, which is 1.50 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'The ratio Fe₂O₃ : Fe is 1 : 2, so moles of Fe = 3.00 mol.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Mass of iron = 3.00 × 56 = 168 g.
+  misconception_ids:
+  - mc.chm.o.metals_yield_ratio_ignored
+  - mc.chm.o.metals_yield_mass_ratio
+solution:
+  steps:
+  - n: 1
+    latex: m(\text{Fe}_2\text{O}_3) = \frac{60.0}{100} \times 400 = 240\ \text{g}
+    reason: The oxide's share of the ore
+    check_id: chk_build_chm_metals_0070_ox
+  - n: 2
+    latex: n(\text{Fe}_2\text{O}_3) = \frac{240}{160} = 1.50\ \text{mol}
+    reason: Mass to moles
+    check_id: chk_build_chm_metals_0070_ma
+  - n: 3
+    latex: '\text{Fe}_2\text{O}_3 : \text{Fe} = 1 : 2'
+    reason: Ratio from the equation
+    check_id: chk_build_chm_metals_0070_coef
+  - n: 4
+    latex: n(\text{Fe}) = 3.00\ \text{mol}
+    reason: Mole ratio from the equation
+    check_id: chk_build_chm_metals_0070_chain
+  - n: 5
+    latex: m(\text{Fe}) = 3.00 \times 56 = 168\ \text{g}
+    reason: Moles to mass
+    check_id: chk_build_chm_metals_0070_mb
+difficulty:
+  prior: 0.8
+  band: stretch
+estimated_seconds: 180
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_metals_0070_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_c
+      equation: Fe2O3 + 3CO -> 2Fe + 3CO2
+      sf: 3
+      steps:
+      - id: na
+        mass: 240 g
+        op: amount_from_mass
+        species: Fe2O3
+      - amount: '@na'
+        from: Fe2O3
+        id: nb
+        op: mole_ratio
+        to: Fe
+      - amount: '@nb'
+        id: mb
+        op: mass_from_amount
+        species: Fe
+    tool: chem_stoichiometry
+  chk_build_chm_metals_0070_coef:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_c
+      equation: Fe2O3 + 3CO -> 2Fe + 3CO2
+      sf: 3
+      steps:
+      - amount: '1'
+        from: Fe2O3
+        id: ca
+        op: mole_ratio
+        to: Fe2O3
+      - amount: '1'
+        from: Fe2O3
+        id: cb
+        op: mole_ratio
+        to: Fe
+    tool: chem_stoichiometry
+  chk_build_chm_metals_0070_ma:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_o
+      formula: Fe2O3
+    tool: chem_molar_mass
+  chk_build_chm_metals_0070_mb:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      formula: Fe
+    tool: chem_molar_mass
+  chk_build_chm_metals_0070_ox:
+    args:
+      expression: 400*60.0/100
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

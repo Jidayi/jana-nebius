@@ -1,0 +1,99 @@
+id: itm.phy.o.energy.0049
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.energy_conversion
+stem: A child on a swing passes through the lowest point of the swing at 4 m/s. Ignore air resistance and take g = 9.8 N/kg.
+parts:
+- id: a
+  prompt: Calculate the greatest height above that point they can rise without being pushed.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '0.816'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_nrg_0049_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: At the highest point the speed is zero, so all the kinetic energy has gone to the gravitational store.
+  - rung: 2
+    name: concept
+    text:
+      en: Set ½mv² = mgh; the mass cancels, so h = v² ÷ 2g.
+  - rung: 3
+    name: first_step
+    text:
+      en: v² = 4² = 16.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 16 ÷ (2 × 9.8).
+  - rung: 5
+    name: full_step
+    text:
+      en: The greatest height is 0.816 m.
+  misconception_ids:
+  - mc.phy.o.conversion_two_dropped
+  - mc.phy.o.ke_speed_not_squared
+  - mc.phy.o.energy_mass_for_weight
+solution:
+  steps:
+  - n: 1
+    latex: \frac{1}{2}mv^2 = mgh \Rightarrow h = \frac{v^2}{2g}
+    reason: Kinetic energy becomes gravitational potential energy; m cancels
+  - n: 2
+    latex: v^2 = 4^2 = 16
+    reason: The speed squared
+    check_id: chk_build_phy_nrg_0049_vsq
+  - n: 3
+    latex: h = \frac{16}{2 \times 9.8} = 0.816\ \text{m}
+    reason: Substitute
+    check_id: chk_build_phy_nrg_0049_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0049_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 4^2/(2*g)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_nrg_0049_vsq:
+    args:
+      expression: 4^2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

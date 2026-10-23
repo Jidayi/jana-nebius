@@ -1,0 +1,95 @@
+id: itm.phy.o.magnetism.0010
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.magnetism.magnets_and_materials
+stem: Nia puts a soft-iron rod and then a steel rod of the same size inside a coil carrying a current. With the current on, the iron rod holds 36 paper clips and the steel rod holds 26. With the current switched off, the iron rod holds 1 and the steel rod holds 24.
+parts:
+- id: a
+  prompt: The rod that keeps its magnetism would make a permanent magnet. What percentage of its paper clips does it still hold after the current is switched off?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '92.3'
+    unit: '%'
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_mag_0010_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which material keeps its magnetism once the current stops?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Steel is a hard magnetic material: it keeps most of its magnetism.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Compare the clips the steel rod holds after with the clips it held before.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 24 by 26 and multiply by a hundred.
+  - rung: 5
+    name: full_step
+    text:
+      en: 24 ÷ 26 = 0.923, which is 92.3%.
+  misconception_ids:
+  - mc.phy.o.soft_iron_steel_swapped
+solution:
+  steps:
+  - n: 1
+    latex: '\text{steel: a permanent magnet}'
+    reason: Steel keeps its magnetism
+  - n: 2
+    latex: \frac{24}{26} = 0.923
+    reason: Clips after over clips before
+    check_id: chk_build_phy_mag_0010_frac
+  - n: 3
+    latex: 0.923 \rightarrow 92.3\%
+    reason: Multiply by a hundred for a percentage
+    check_id: chk_build_phy_mag_0010_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mag_0010_ans:
+    args:
+      expression: 24/26*100
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_mag_0010_frac:
+    args:
+      expression: 24/26
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

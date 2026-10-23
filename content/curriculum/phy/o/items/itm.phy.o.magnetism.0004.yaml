@@ -1,0 +1,85 @@
+id: itm.phy.o.magnetism.0004
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.magnetism.magnets_and_materials
+stem: Obi puts a soft-iron rod and then a steel rod of the same size inside a coil carrying a current. With the current on, the iron rod holds 24 paper clips and the steel rod holds 18. With the current switched off, the iron rod holds 2 and the steel rod holds 15.
+parts:
+- id: a
+  prompt: How many paper clips does the rod that would make the better electromagnet core drop when the current is switched off?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '22'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_mag_0004_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An electromagnet must stop being a magnet when its current stops.
+  - rung: 2
+    name: concept
+    text:
+      en: Soft iron loses its magnetism easily; steel keeps it.
+  - rung: 3
+    name: first_step
+    text:
+      en: So use the soft-iron rod's numbers.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 24 − 2.
+  - rung: 5
+    name: full_step
+    text:
+      en: The soft-iron rod drops 24 − 2 = 22 paper clips.
+  misconception_ids:
+  - mc.phy.o.soft_iron_steel_swapped
+solution:
+  steps:
+  - n: 1
+    latex: '\text{soft iron: a temporary magnet}'
+    reason: An electromagnet's core must lose its magnetism
+  - n: 2
+    latex: 24 - 2 = 22
+    reason: Clips held before minus clips held after
+    check_id: chk_build_phy_mag_0004_ans
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mag_0004_ans:
+    args:
+      expression: 24 - 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

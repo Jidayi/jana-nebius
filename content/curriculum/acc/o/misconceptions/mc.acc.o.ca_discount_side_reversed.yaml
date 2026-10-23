@@ -1,0 +1,35 @@
+id: mc.acc.o.ca_discount_side_reversed
+kc_ids:
+- kc.acc.o.control_accounts.sales_ledger_control
+- kc.acc.o.control_accounts.purchases_ledger_control
+student_name: Discount on the wrong side
+description: Adds discount allowed to what customers owe, or discount received to what the business owes.
+signatures:
+- kind: answer_transform
+  expression: closing + 2 * discount
+fix:
+  strategy: rule_restatement
+  text:
+    en: A discount reduces the debt it relates to.
+probe_item_ids:
+- itm.acc.o.control_accounts.0023
+- itm.acc.o.control_accounts.0024
+- itm.acc.o.control_accounts.0025
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

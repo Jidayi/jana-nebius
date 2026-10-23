@@ -1,0 +1,84 @@
+id: itm.mth.o.algebra_and_graphs.0907
+version: 0.1.0
+type: algebraic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.change_subject
+stem: Rearrange $y = 5x - 5$ to make x the subject.
+parts:
+- id: a
+  prompt: Type the formula for x.
+  marks: 2
+  answer:
+    kind: algebraic
+    check_id: chk_build_mth_alg_0907_key
+    expression: x = \frac{y + 5}{5}
+    variables:
+    - x
+    - y
+    required_form: solved_for
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'x is multiplied by a number and then a number is added: undo these in reverse order.'
+  - rung: 2
+    name: concept
+    text:
+      en: Deal with the number term first.
+  - rung: 3
+    name: first_step
+    text:
+      en: Add 5 to both sides.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Then divide both sides by 5.
+  - rung: 5
+    name: full_step
+    text:
+      en: x = (y + 5)/5.
+solution:
+  steps:
+  - n: 1
+    latex: y + 5 = 5x
+    reason: Undo the number term on both sides
+  - n: 2
+    latex: x = \frac{y + 5}{5}
+    reason: Divide both sides by 5
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0907_key:
+    args:
+      equations:
+      - y = 5x - 5
+      unknowns:
+      - x
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

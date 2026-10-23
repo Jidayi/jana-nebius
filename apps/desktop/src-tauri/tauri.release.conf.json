@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "bundle": {
+    "active": true,
+    "targets": ["nsis", "msi", "app", "dmg", "appimage", "deb"],
+    "publisher": "PLACEHOLDER-legal-entity-name",
+    "copyright": "PLACEHOLDER-copyright-line",
+    "category": "Education",
+    "shortDescription": "A personal tutor for secondary school students.",
+    "icon": ["icons/32x32.png", "icons/128x128.png", "icons/256x256.png", "icons/icon.icns", "icons/icon.ico"],
+    "licenseFile": "../../../LICENSE",
+    "resources": {
+      "resources/agent-core/": "agent-core/",
+      "resources/tool-worker/": "tool-worker/",
+      "resources/runtime/": "runtime/",
+      "resources/config/": "config/",
+      "resources/keys/": "keys/",
+      "resources/legal/": "legal/",
+      "../../../content/agent/": "content/agent/",
+      "../../../skills/": "skills/"
+    },
+    "windows": {
+      "digestAlgorithm": "sha256",
+      "certificateThumbprint": null,
+      "timestampUrl": "PLACEHOLDER-authenticode-timestamp-url",
+      "signCommand": "PLACEHOLDER-authenticode-sign-command %1",
+      "webviewInstallMode": { "type": "downloadBootstrapper", "silent": true },
+      "nsis": {
+        "installMode": "currentUser",
+        "installerHooks": "installer/hooks.nsh",
+        "displayLanguageSelector": false
+      },
+      "wix": {
+        "fragmentPaths": ["installer/precheck.wxs"],
+        "componentRefs": ["JanaPrecheck"]
+      }
+    },
+    "macOS": {
+      "minimumSystemVersion": "13.0",
+      "hardenedRuntime": true,
+      "entitlements": "entitlements.plist",
+      "signingIdentity": "PLACEHOLDER-Developer-ID-Application-identity",
+      "providerShortName": "PLACEHOLDER-notarisation-team-id"
+    },
+    "linux": {
+      "deb": { "depends": ["libwebkit2gtk-4.1-0", "libgtk-3-0", "bubblewrap"] },
+      "appimage": { "bundleMediaFramework": false }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+id: itm.acc.o.source_documents.0014
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.source_documents.select_book_of_prime_entry
+stem: Goods sold on credit are returned by a customer.
+parts:
+- id: a
+  prompt: In which book is the return first recorded?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: General journal
+      correct: false
+      misconception_id: mc.acc.o.sd_general_journal_catch_all
+    - id: B
+      text: Purchases returns journal
+      correct: false
+      misconception_id: mc.acc.o.sd_returns_journal_confused
+    - id: C
+      text: Sales journal
+      correct: false
+      misconception_id: mc.acc.o.sd_cash_sales_in_sales_journal
+    - id: D
+      text: Sales returns journal
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Is the transaction on credit, in cash, a return, or something unusual?
+  - rung: 2
+    name: concept
+    text:
+      en: Credit sales go in the sales journal, credit purchases of goods in the purchases journal, returns in the returns journals, cash and bank in the cash book, and anything else in the general journal.
+  - rung: 3
+    name: first_step
+    text:
+      en: Only goods for resale bought on credit go in the purchases journal.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Match the situation to the rule.
+  - rung: 5
+    name: full_step
+    text:
+      en: Sales returns journal.
+  misconception_ids:
+  - mc.acc.o.sd_returns_journal_confused
+  - mc.acc.o.sd_cash_sales_in_sales_journal
+  - mc.acc.o.sd_general_journal_catch_all
+solution:
+  steps:
+  - n: 1
+    latex: \text{Sales returns journal}
+    reason: The rule for this situation
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

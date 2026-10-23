@@ -1,0 +1,44 @@
+id: wex.phy.o.density.0005
+kc_ids:
+- kc.phy.o.density.floating_and_sinking
+problem: A pebble has a mass of 26 g and a volume of 10 cm³. It is placed in cooking oil, which has a density of 0.92 g/cm³. Does it float or sink?
+steps:
+- n: 1
+  latex: \rho = \frac{26}{10} = 2.6\ \text{g/cm}^3
+  reason: Density = mass ÷ volume
+  check_id: chk_build_phy_den_w0005_rho
+- n: 2
+  latex: \rho_{\text{object}} > \rho_{\text{oil}} \Rightarrow \text{it sinks}
+  reason: An object less dense than the liquid floats; a denser one sinks
+final_answer:
+  latex: \rho = 2.6\ \text{g/cm}^3
+  check_id: chk_build_phy_den_w0005_rho
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_den_w0005_rho:
+    args:
+      expression: 26/10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

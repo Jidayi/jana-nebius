@@ -1,0 +1,89 @@
+id: itm.chm.o.energetics.0012
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.energetics.exo_endo
+stem: When a reaction happens, some bonds break and new bonds form.
+parts:
+- id: a
+  prompt: Which statement about the energy changes is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Breaking bonds takes energy in; forming bonds gives energy out.
+      correct: true
+    - id: B
+      text: Both breaking and forming bonds give energy out.
+      correct: false
+      misconception_id: mc.chm.o.energetics_breaking_releases
+      feedback: You must put energy in to pull two bonded atoms apart, just as you must pull to separate two magnets. Energy is given out when bonds form.
+    - id: C
+      text: Only exothermic reactions break bonds.
+      correct: false
+      misconception_id: mc.chm.o.energetics_temp_rise_endo
+    - id: D
+      text: Breaking bonds gives energy out; forming bonds takes energy in.
+      correct: false
+      misconception_id: mc.chm.o.energetics_breaking_releases
+      feedback: You must put energy in to pull two bonded atoms apart, just as you must pull to separate two magnets. Energy is given out when bonds form.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about pulling two joined atoms apart.
+  - rung: 2
+    name: concept
+    text:
+      en: Separating attracting particles needs energy; letting them come together releases energy.
+  - rung: 3
+    name: first_step
+    text:
+      en: Apply this to bonds breaking in the reactants.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Now apply it to bonds forming in the products.
+  - rung: 5
+    name: full_step
+    text:
+      en: Breaking bonds is endothermic; forming bonds is exothermic.
+  misconception_ids:
+  - mc.chm.o.energetics_breaking_releases
+  - mc.chm.o.energetics_temp_rise_endo
+solution:
+  steps:
+  - n: 1
+    latex: '\text{break: in};\ \text{form: out}'
+    reason: Bond energy rule
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

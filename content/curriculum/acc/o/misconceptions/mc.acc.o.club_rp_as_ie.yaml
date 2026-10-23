@@ -1,0 +1,36 @@
+id: mc.acc.o.club_rp_as_ie
+kc_ids:
+- kc.acc.o.clubs.club_statements
+- kc.acc.o.clubs.subscriptions
+student_name: Cash summary as the income statement
+description: Treats the receipts and payments account as if it showed the club's income and expenditure for the year.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: income
+fix:
+  strategy: contrast_example
+  text:
+    en: Receipts and payments lists cash only; income and expenditure matches the year's income and expenses.
+probe_item_ids:
+- itm.acc.o.clubs.0001
+- itm.acc.o.clubs.0002
+- itm.acc.o.clubs.0003
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

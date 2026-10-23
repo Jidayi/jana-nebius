@@ -1,0 +1,536 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.chm-o-acids
+version: 2026-10-13.1
+description: 'Colocated evals for chm-o-acids (SKL-21, EVL-07): one case per misconception. The student answers
+  as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key away,
+  and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: chm_o_acids_01
+  title: Holds 'Metals and acids make water'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.acids_metal_gives_water
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.acids.0001
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.acids.reactions_of_acids
+        misconception: mc.chm.o.acids_metal_gives_water
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: chm_o_acids_02
+  title: Holds 'Mixing up which gas comes off'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.acids_wrong_gas
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.acids.0001
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.acids.reactions_of_acids
+        misconception: mc.chm.o.acids_wrong_gas
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: chm_o_acids_03
+  title: Holds 'Naming the salt from the wrong acid'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.acids_salt_anion_confused
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.acids.0001
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.acids.reactions_of_acids
+        misconception: mc.chm.o.acids_salt_anion_confused
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: chm_o_acids_04
+  title: Holds 'Reading the pH scale backwards'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.acids_high_ph_more_acidic
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.acids.0013
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.acids.ph_and_indicators
+        misconception: mc.chm.o.acids_high_ph_more_acidic
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_acids_05
+  title: Holds 'Swapping an indicator's colours'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.acids_indicator_colours_swapped
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.acids.0013
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.acids.ph_and_indicators
+        misconception: mc.chm.o.acids_indicator_colours_swapped
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_acids_06
+  title: Holds 'Strong means concentrated'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.acids_strong_means_concentrated
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.acids.0025
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.acids.strong_and_weak
+        misconception: mc.chm.o.acids_strong_means_concentrated
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_acids_07
+  title: Holds 'Weak acids make less product'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.acids_weak_gives_less_gas
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.acids.0025
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.acids.strong_and_weak
+        misconception: mc.chm.o.acids_weak_gives_less_gas
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_acids_08
+  title: Holds 'Sorting oxides by metal or non-metal only'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.acids_oxide_by_element_only
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.acids.0037
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.acids.oxides
+        misconception: mc.chm.o.acids_oxide_by_element_only
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_acids_09
+  title: Holds 'Wrong method for the starting base'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.acids_method_mismatch_base
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.acids.0049
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.acids.salt_preparation
+        misconception: mc.chm.o.acids_method_mismatch_base
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_acids_10
+  title: Holds 'Keeping the wrong part after filtering'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.acids_filtrate_residue_confused
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.acids.0049
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.acids.salt_preparation
+        misconception: mc.chm.o.acids_filtrate_residue_confused
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_acids_11
+  title: Holds 'Treating every titration as one to one'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.acids_titration_ratio_ignored
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.acids.0061
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.acids.titration_calculations
+        misconception: mc.chm.o.acids_titration_ratio_ignored
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_acids_12
+  title: Holds 'Leaving the volume in cm³'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.conc_volume_not_converted
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.stoichiometry.0093
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 12
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.stoichiometry.solution_concentration
+        misconception: mc.chm.o.conc_volume_not_converted
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

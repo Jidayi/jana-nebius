@@ -1,0 +1,35 @@
+id: mc.chm.o.empirical_rounded_early
+kc_ids:
+- kc.chm.o.stoichiometry.empirical_formula
+student_name: Rounding a ratio like 1.5
+description: 'Rounds a mole ratio such as 1 : 1.5 to 1 : 1 or 1 : 2 instead of doubling it to 2 : 3.'
+signatures:
+- kind: answer_transform
+  expression: 'choice: ratio rounded instead of scaled to whole numbers'
+fix:
+  strategy: rule_restatement
+  text:
+    en: If a ratio ends in .5, multiply every number by 2; if it ends in .33 or .67, multiply by 3.
+probe_item_ids:
+- itm.chm.o.stoichiometry.0097
+- itm.chm.o.stoichiometry.0098
+- itm.chm.o.stoichiometry.0099
+- itm.chm.o.stoichiometry.0100
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

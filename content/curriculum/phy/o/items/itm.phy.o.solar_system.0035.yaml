@@ -1,0 +1,81 @@
+id: itm.phy.o.solar_system.0035
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.solar_system.planets_and_gravity
+stem: Jupiter takes 4330 Earth days to orbit the Sun once. One Earth year is 365 days.
+parts:
+- id: a
+  prompt: How many Earth years long is a year on Jupiter?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '11.9'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_sol_0035_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A planet's year is the time it takes to orbit the Sun once.
+  - rung: 2
+    name: concept
+    text:
+      en: Compare it with the Earth's year of 365 days.
+  - rung: 3
+    name: first_step
+    text:
+      en: Divide the planet's orbit time by 365.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 4330 ÷ 365.
+  - rung: 5
+    name: full_step
+    text:
+      en: A year on Jupiter is 11.9 Earth years.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{4330}{365} = 11.9\ \text{years}
+    reason: Days divided by days per Earth year
+    check_id: chk_build_phy_sol_0035_ans
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_sol_0035_ans:
+    args:
+      expression: 4330/365
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

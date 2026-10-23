@@ -1,0 +1,44 @@
+id: wex.chm.o.metals.0010
+kc_ids:
+- kc.chm.o.metals.extraction
+problem: Lead is below carbon in the reactivity series. When 223 g of lead(II) oxide is heated with carbon, 207 g of lead forms (PbO + C → Pb + CO). Name the method and find the mass of oxygen removed from the oxide.
+steps:
+- n: 1
+  latex: '\text{Pb below C: heat the oxide with carbon}'
+  reason: Choice of method
+- n: 2
+  latex: 223 - 207 = 16
+  reason: Mass of oxygen lost by the oxide
+  check_id: chk_build_chm_metals_w0010_o
+- n: 3
+  latex: '\text{the oxide loses oxygen: it is reduced}'
+  reason: Reduction is loss of oxygen
+final_answer:
+  latex: 16\ \text{g of oxygen}
+  check_id: chk_build_chm_metals_w0010_o
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_metals_w0010_o:
+    args:
+      expression: 223 - 207
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

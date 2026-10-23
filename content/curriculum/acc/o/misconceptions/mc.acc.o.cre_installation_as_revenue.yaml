@@ -1,0 +1,34 @@
+id: mc.acc.o.cre_installation_as_revenue
+kc_ids:
+- kc.acc.o.depreciation.capital_revenue_expenditure
+student_name: Getting-ready costs as revenue
+description: Treats delivery, installation or legal costs of a new asset as expenses instead of part of its cost.
+signatures:
+- kind: answer_transform
+  expression: price
+fix:
+  strategy: rule_restatement
+  text:
+    en: Everything needed to get a new asset ready for use is part of its cost.
+probe_item_ids:
+- itm.acc.o.depreciation.0003
+- itm.acc.o.depreciation.0004
+- itm.acc.o.depreciation.0010
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

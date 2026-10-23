@@ -1,0 +1,126 @@
+id: itm.acc.o.clubs.0014
+version: 0.1.1
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.clubs.subscriptions
+stem: 'A football club: During the year the club received $2350 in subscriptions, including $550 owing from last year. At the end of the year $470 is owing for this year and $380 has been paid in advance for next year.'
+parts:
+- id: a
+  prompt: Calculate the subscriptions income for the year.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '1890.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_clubs_0014_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which subscriptions belong to this year, whenever the money arrived?
+  - rung: 2
+    name: concept
+    text:
+      en: Income = received − last year's arrears received + paid in advance last year for this year + owing at the end − paid in advance for next year.
+  - rung: 3
+    name: first_step
+    text:
+      en: Subscriptions are income of the year they cover, just like rent received.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Income = 2350 − 550 + 470 − 380.
+  - rung: 5
+    name: full_step
+    text:
+      en: Subscriptions income = $1890.
+  misconception_ids:
+  - mc.acc.o.club_receipts_only
+  - mc.acc.o.club_arrears_reversed
+solution:
+  steps:
+  - n: 1
+    latex: \text{Income} = \text{received} - \text{old arrears} + \text{old advance} + \text{new arrears} - \text{new advance}
+    reason: Earned this year
+    check_id: chk_build_acc_clubs_0014_t
+  - n: 2
+    latex: \text{Income} = 2350 - 550 + 470 - 380 = 1890
+    reason: Substitute
+    check_id: chk_build_acc_clubs_0014_a
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  received: '2350'
+checks:
+  chk_build_acc_clubs_0014_a:
+    args:
+      dp: 2
+      expression: 2350 - 550 + 470 - 380
+    tool: math_evaluate
+  chk_build_acc_clubs_0014_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Subscriptions
+        amount: '470'
+        kind: accrued_income
+      - account: Subscriptions
+        amount: '380'
+        kind: income_in_advance
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Subscriptions
+        credit: '1800'
+        role: other_income
+      - account: Rent
+        debit: '500'
+        role: expense
+      - account: Land
+        debit: '1300'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

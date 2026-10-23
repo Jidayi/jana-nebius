@@ -1,0 +1,85 @@
+id: itm.mth.o.coordinate_geometry.9009
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.coordinate_geometry.gradient
+stem: A line passes through (2, 3) and (8, k). Its gradient is -0.5.
+parts:
+- id: a
+  prompt: Find k.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9009
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The change in y equals the gradient multiplied by the change in x.
+  - rung: 2
+    name: concept
+    text:
+      en: Add the gradient times the horizontal change to the known y-coordinate.
+  - rung: 3
+    name: first_step
+    text:
+      en: Add the gradient times the horizontal change to the known y-coordinate.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A negative gradient means the y-coordinate must fall as x increases.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 0.
+solution:
+  steps:
+  - n: 1
+    latex: 3 + (-0.5)\times (8 - 2)
+    reason: Add the gradient times the horizontal change to the known y-coordinate.
+    check_id: chk_build_mastery_supplement_mth_9009
+  - n: 2
+    latex: '0'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9009
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9009:
+    args:
+      angle_unit: degrees
+      expression: 3+(-0.5)*(8-2)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

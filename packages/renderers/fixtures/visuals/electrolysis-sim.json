@@ -1,0 +1,165 @@
+{
+  "claims": [
+    "0",
+    "1.19",
+    "1800",
+    "2",
+    "224",
+    "24000.0",
+    "3600",
+    "64.0",
+    "96500.0"
+  ],
+  "id": "electrolysis-sim",
+  "kind": "electrolysis_sim",
+  "modes": [
+    "shown"
+  ],
+  "spec": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "An electrolysis simulation: aqueous copper(II) sulfate with inert electrodes, 2 A for 1800 seconds; copper forms at the cathode and oxygen at the anode."
+    },
+    "computed": {
+      "alt": {
+        "anode": "oxygen",
+        "cathode": "copper",
+        "current": "2",
+        "duration": "1800",
+        "electrodes": "inert",
+        "electrolyte": "copper(II) sulfate",
+        "phase": "aqueous"
+      },
+      "check_ids": [
+        "chk_build_fx_electrolysis_sim_1",
+        "chk_build_fx_electrolysis_sim_2",
+        "chk_build_fx_electrolysis_sim_3",
+        "chk_build_fx_electrolysis_sim_4",
+        "chk_build_fx_electrolysis_sim_5",
+        "chk_build_fx_electrolysis_sim_6"
+      ],
+      "constants": {
+        "faraday": 96500.0,
+        "molar_mass": {
+          "Cu": 64.0
+        },
+        "vm_cm3": 24000.0
+      },
+      "labels": {
+        "out.anode_gas": "224",
+        "out.anode_mass": "0",
+        "out.cathode_gas": "0",
+        "out.cathode_mass": "1.19",
+        "out.charge": "3600"
+      },
+      "parts": [
+        {
+          "id": "ctrl.current",
+          "label": "current",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.ions",
+          "label": "ions",
+          "role": "control"
+        },
+        {
+          "id": "out.charge",
+          "label": "charge",
+          "role": "readout"
+        },
+        {
+          "id": "out.cathode_mass",
+          "label": "cathode mass",
+          "role": "readout"
+        },
+        {
+          "id": "out.cathode_gas",
+          "label": "cathode gas",
+          "role": "readout"
+        },
+        {
+          "id": "out.anode_mass",
+          "label": "anode mass",
+          "role": "readout"
+        },
+        {
+          "id": "out.anode_gas",
+          "label": "anode gas",
+          "role": "readout"
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_electrolysis_sim_1",
+      "chk_build_fx_electrolysis_sim_2",
+      "chk_build_fx_electrolysis_sim_3",
+      "chk_build_fx_electrolysis_sim_4",
+      "chk_build_fx_electrolysis_sim_5",
+      "chk_build_fx_electrolysis_sim_6"
+    ],
+    "params": {
+      "current_a": 2,
+      "duration_s": 1800,
+      "electrodes": "inert",
+      "electrolyte": "copper(II) sulfate",
+      "phase": "aqueous",
+      "preset_id": "sim.chm.electrolysis_copper_sulfate.v1"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ctrl.current",
+        "name": "current",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.ions",
+        "name": "ions",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "out.charge",
+        "name": "charge",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.cathode_mass",
+        "name": "cathode mass",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.cathode_gas",
+        "name": "cathode gas",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.anode_mass",
+        "name": "anode mass",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.anode_gas",
+        "name": "anode gas",
+        "role": "readout"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:2869a9bb0a2210224f8823ce4f157046c545d936ab49fb31bf6f15ed89d0d2cf",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "electrolysis_sim",
+    "visual_id": "vis_899VA2G2F83EFNG655SPB9VHZF"
+  },
+  "subject": "chemistry"
+}

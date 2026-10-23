@@ -1,0 +1,72 @@
+id: wex.acc.o.incomplete_records.0003
+kc_ids:
+- kc.acc.o.incomplete_records.profit_from_capital
+problem: A trader's capital was $34300 at the start of the year and $35100 at the end. During the year the trader took drawings of $7200 and paid in extra capital of $3000. Find the profit.
+steps:
+- n: 1
+  latex: \text{Profit} = \text{closing} - \text{opening} + \text{drawings} - \text{introduced}
+  reason: Explain the change in capital
+  check_id: chk_build_acc_incomplete_records_w0003_t
+- n: 2
+  latex: \text{Profit} = 35100 - 34300 + 7200 - 3000 = 5000
+  reason: Substitute
+  check_id: chk_build_acc_incomplete_records_w0003_a
+final_answer:
+  latex: \$\,5000
+  check_id: chk_build_acc_incomplete_records_w0003_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_incomplete_records_w0003_a:
+    args:
+      dp: 2
+      expression: 35100 - 34300 + 7200 - 3000
+    tool: math_evaluate
+  chk_build_acc_incomplete_records_w0003_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Capital
+        credit: '37300'
+        role: capital
+      - account: Drawings
+        debit: '7200'
+        role: drawings
+      - account: Sales
+        credit: '25000'
+        role: revenue
+      - account: Purchases
+        debit: '20000'
+        role: purchases
+      - account: Land
+        debit: '35100'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Family loan
+        credit: '1000'
+        role: non_current_liability
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

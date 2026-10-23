@@ -1,0 +1,179 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.probability-tree",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at branch red and branch blue.",
+        "Step 2: look at outcome R then B."
+      ],
+      "summary": "A probability tree with 4 outcomes: R then R with probability 9/25, R then B with probability 6/25, B then R with probability 6/25 and B then B with probability 4/25."
+    },
+    "computed": {
+      "check_ids": [
+        "chk_build_fx_probability_tree_1",
+        "chk_build_fx_probability_tree_2",
+        "chk_build_fx_probability_tree_3",
+        "chk_build_fx_probability_tree_4"
+      ],
+      "labels": {
+        "o_B_B": "4/25",
+        "o_B_R": "6/25",
+        "o_R_B": "6/25",
+        "o_R_R": "9/25"
+      },
+      "outcomes": {
+        "B_B": "4/25",
+        "B_R": "6/25",
+        "R_B": "6/25",
+        "R_R": "9/25"
+      }
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "kn_red",
+      "kn_blue",
+      "chk_build_fx_probability_tree_1",
+      "chk_build_fx_probability_tree_2",
+      "chk_build_fx_probability_tree_3",
+      "chk_build_fx_probability_tree_4"
+    ],
+    "params": {
+      "branches": [
+        {
+          "id": "R",
+          "label": "red",
+          "p": "3/5",
+          "then": [
+            {
+              "id": "R",
+              "label": "red",
+              "p": "3/5"
+            },
+            {
+              "id": "B",
+              "label": "blue",
+              "p": "2/5"
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "label": "blue",
+          "p": "2/5",
+          "then": [
+            {
+              "id": "R",
+              "label": "red",
+              "p": "3/5"
+            },
+            {
+              "id": "B",
+              "label": "blue",
+              "p": "2/5"
+            }
+          ]
+        }
+      ]
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "b_R",
+        "name": "branch red",
+        "quizzable": true,
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "b_R_R",
+        "name": "branch red",
+        "quizzable": true,
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "b_R_B",
+        "name": "branch blue",
+        "quizzable": true,
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "b_B",
+        "name": "branch blue",
+        "quizzable": true,
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "b_B_R",
+        "name": "branch red",
+        "quizzable": true,
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "b_B_B",
+        "name": "branch blue",
+        "quizzable": true,
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "o_R_R",
+        "name": "outcome R then R",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "o_R_B",
+        "name": "outcome R then B",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "o_B_R",
+        "name": "outcome B then R",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "o_B_B",
+        "name": "outcome B then B",
+        "role": "label"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:38b8b1abc7e0e52ee96234d70160c35f4f00176dabd40cf4195fa7298cdff989",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "b_R",
+          "b_R_B"
+        ]
+      },
+      {
+        "highlight": [
+          "o_R_B"
+        ]
+      }
+    ],
+    "type": "probability_tree",
+    "visual_id": "vis_RRHB705E92MQ103ZF0QDBMCMSZ"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: probability tree (shown labels)",
+  "variant": "probability-tree"
+}

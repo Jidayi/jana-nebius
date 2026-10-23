@@ -1,0 +1,33 @@
+id: mc.chm.o.analysis_mean_includes_rough
+kc_ids:
+- kc.chm.o.analysis.titration_technique
+student_name: Averaging every titre
+description: Includes the rough titre, or titres that do not agree, in the mean titre.
+signatures:
+- kind: answer_transform
+  expression: mean of all titres
+fix:
+  strategy: rule_restatement
+  text:
+    en: Use only concordant titres (within 0.10 cm³ of each other) for the mean; the rough titre is a guide only.
+probe_item_ids:
+- itm.chm.o.analysis.0015
+- itm.chm.o.analysis.0016
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,104 @@
+id: itm.acc.o.costing.0025
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.costing.break_even
+stem: Femi makes pairs of sandals that sell for $50 each. Variable cost is $4 each; fixed costs are $78200.
+parts:
+- id: a
+  prompt: Calculate the break-even revenue.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '85000.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_costing_0025_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Find the break-even point in units first.
+  - rung: 2
+    name: concept
+    text:
+      en: Break-even units = fixed costs ÷ contribution per unit; revenue = units × selling price.
+  - rung: 3
+    name: first_step
+    text:
+      en: Contribution per unit = selling price − variable cost.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 78200 ÷ (50 − 4), then multiply by 50.
+  - rung: 5
+    name: full_step
+    text:
+      en: Break-even revenue = $85000.
+  misconception_ids:
+  - mc.acc.o.cost_be_units_revenue_confused
+  - mc.acc.o.cost_be_divides_by_price
+solution:
+  steps:
+  - n: 1
+    latex: \text{Break-even revenue} = \text{break-even units} \times \text{price}
+    reason: Units first
+    check_id: chk_build_acc_costing_0025_t
+  - n: 2
+    latex: \text{Break-even units} = \frac{78200}{50 - 4} = 1700
+    reason: Units
+    check_id: chk_build_acc_costing_0025_s2
+  - n: 3
+    latex: 1700 \times 50 = 85000
+    reason: Revenue
+    check_id: chk_build_acc_costing_0025_a
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_costing_0025_a:
+    args:
+      dp: 2
+      expression: 78200 / (50 - 4) * 50
+    tool: math_evaluate
+  chk_build_acc_costing_0025_s2:
+    args:
+      dp: 4
+      expression: 78200 / (50 - 4)
+    tool: math_evaluate
+  chk_build_acc_costing_0025_t:
+    args:
+      dp: 2
+      fixed_costs: '78200'
+      selling_price: '50'
+      variable_cost_per_unit: '4'
+    tool: acc_break_even
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,85 @@
+id: itm.mth.o.trigonometry.9047
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.three_d
+stem: A cuboid has length 6 cm, width 8 cm and height 10 cm. A space diagonal joins one bottom corner to the opposite top corner.
+parts:
+- id: a
+  prompt: Find the angle the space diagonal makes with the base plane, in degrees.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '45'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9047
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The diagonal projects onto the diagonal of the base.
+  - rung: 2
+    name: concept
+    text:
+      en: Use that projection as the adjacent side of a right triangle.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the base diagonal by Pythagoras, then use inverse tangent of height divided by that diagonal.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The angle to the base plane is measured against the diagonal projection in the base.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 45.
+solution:
+  steps:
+  - n: 1
+    latex: \theta=\tan^{-1}\left(\frac{10}{\sqrt{6^2+8^2}}\right)
+    reason: Find the base diagonal by Pythagoras, then use inverse tangent of height divided by that diagonal.
+    check_id: chk_build_mastery_supplement_mth_9047
+  - n: 2
+    latex: '45'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9047
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9047:
+    args:
+      angle_unit: degrees
+      expression: atan(10/sqrt(6^2+8^2))
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.chm.o.organic_gf_hydrogen_mass_ignored
+kc_ids:
+- kc.chm.o.organic.general_formulae
+student_name: Leaving out the hydrogen mass
+description: 'Treats the molecule as if it were carbon only: Mr = 12n, or n = Mr ÷ 12.'
+signatures:
+- kind: answer_transform
+  expression: 12*n
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'Every atom adds its mass. Hydrogen atoms are light, but there are many of them: each CH₂ unit has a mass of 14, not 12.'
+probe_item_ids:
+- itm.chm.o.organic.0025
+- itm.chm.o.organic.0026
+- itm.chm.o.organic.0027
+- itm.chm.o.organic.0028
+- itm.chm.o.organic.0029
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,57 @@
+id: wex.chm.o.acids.0010
+kc_ids:
+- kc.chm.o.acids.salt_preparation
+problem: Choose a method to make copper(II) sulfate crystals from copper(II) oxide, and find the relative formula mass of the crystals, CuSO₄·5H₂O.
+steps:
+- n: 1
+  latex: \text{CuO insoluble} \Rightarrow \text{add excess, filter}
+  reason: Excess solid method
+- n: 2
+  latex: \text{CuO} + \text{H}_2\text{SO}_4 \rightarrow \text{CuSO}_4 + \text{H}_2\text{O}
+  reason: Base + acid → salt + water
+  check_id: chk_build_chm_acids_w0010_bal
+- n: 3
+  latex: \text{concentrate filtrate, cool, crystallise}
+  reason: The salt is in the filtrate
+final_answer:
+  latex: M_r = 250
+  check_id: chk_build_chm_acids_w0010_mr
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_acids_w0010_bal:
+    args:
+      equation: CuO + H2SO4 -> CuSO4 + H2O
+    tool: chem_balance
+  chk_build_chm_acids_w0010_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_h
+      formula: CuSO4.5H2O
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

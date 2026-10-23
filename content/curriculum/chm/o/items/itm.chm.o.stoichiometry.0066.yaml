@@ -1,0 +1,164 @@
+id: itm.chm.o.stoichiometry.0066
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.reacting_masses
+stem: Copper(II) oxide reacts with sulfuric acid. The equation is CuO + H₂SO₄ → CuSO₄ + H₂O.
+parts:
+- id: a
+  prompt: Calculate the mass of CuSO₄ that forms from 8.0 g of CuO.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '16.0'
+    unit: g
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0066_chain
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'You know the mass of CuO. Plan: mass → moles → ratio → moles → mass.'
+  - rung: 2
+    name: concept
+    text:
+      en: Use the balanced equation's numbers as a mole ratio.
+  - rung: 3
+    name: first_step
+    text:
+      en: Moles of CuO = 8.0 ÷ 80 = 0.100 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Ratio CuO : CuSO₄ is 1 : 1, so moles of CuSO₄ = 0.100 mol.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Mass of CuSO₄ = 0.100 × 160 = 16.0 g.
+  misconception_ids:
+  - mc.chm.o.ratio_ignored
+  - mc.chm.o.mass_ratio_as_mole_ratio
+solution:
+  steps:
+  - n: 1
+    latex: n(\text{CuO}) = \frac{8.0}{80} = 0.100\ \text{mol}
+    reason: Moles of the given substance
+    check_id: chk_build_chm_stoichiometry_0066_ma
+  - n: 2
+    latex: '\text{CuO} : \text{CuSO}_4 = 1 : 1'
+    reason: Ratio from the equation
+    check_id: chk_build_chm_stoichiometry_0066_coef
+  - n: 3
+    latex: n(\text{CuSO}_4) = 0.100\ \text{mol}
+    reason: Mole ratio from the equation
+    check_id: chk_build_chm_stoichiometry_0066_chain
+  - n: 4
+    latex: m(\text{CuSO}_4) = 0.100 \times 160 = 16.0\ \text{g}
+    reason: Moles times molar mass
+    check_id: chk_build_chm_stoichiometry_0066_mb
+difficulty:
+  prior: 0.5
+  band: core
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0066_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_h
+      equation: CuO + H2SO4 -> CuSO4 + H2O
+      sf: 3
+      steps:
+      - id: na
+        mass: 8.0 g
+        op: amount_from_mass
+        species: CuO
+      - amount: '@na'
+        from: CuO
+        id: nb
+        op: mole_ratio
+        to: CuSO4
+      - amount: '@nb'
+        id: mb
+        op: mass_from_amount
+        species: CuSO4
+    tool: chem_stoichiometry
+  chk_build_chm_stoichiometry_0066_coef:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_h
+      equation: CuO + H2SO4 -> CuSO4 + H2O
+      sf: 3
+      steps:
+      - amount: '1'
+        from: CuO
+        id: ca
+        op: mole_ratio
+        to: CuO
+      - amount: '1'
+        from: CuO
+        id: cb
+        op: mole_ratio
+        to: CuSO4
+    tool: chem_stoichiometry
+  chk_build_chm_stoichiometry_0066_ma:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_o
+      formula: CuO
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0066_mb:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      formula: CuSO4
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

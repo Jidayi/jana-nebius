@@ -1,0 +1,37 @@
+id: mc.phy.o.ke_speed_not_squared
+kc_ids:
+- kc.phy.o.energy.kinetic_energy
+- kc.phy.o.energy.energy_conversion
+student_name: Forgetting to square the speed
+description: Multiplies by the speed instead of the speed squared, working out ½mv for kinetic energy.
+signatures:
+- kind: answer_transform
+  expression: m*v/2
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'Try a speed of 2 m/s and then 4 m/s: the kinetic energy goes up four times, not twice. The speed is squared.'
+probe_item_ids:
+- itm.phy.o.energy.0026
+- itm.phy.o.energy.0028
+- itm.phy.o.energy.0030
+- itm.phy.o.energy.0057
+- itm.phy.o.energy.0058
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

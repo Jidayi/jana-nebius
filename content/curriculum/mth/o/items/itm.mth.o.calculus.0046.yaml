@@ -1,0 +1,107 @@
+id: itm.mth.o.calculus.0046
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.calculus.definite_integrals
+stem: Evaluate $\int_{-2}^{4} (2x^2 + 6)\,dx$.
+parts:
+- id: a
+  prompt: Give the exact value.
+  marks: 4
+  answer:
+    kind: numeric
+    value: '84'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_cal_0046_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'A definite integral is evaluated in two stages: integrate, then substitute the limits.'
+  - rung: 2
+    name: concept
+    text:
+      en: 'Integrate each term: xⁿ becomes xⁿ⁺¹ ÷ (n + 1).'
+  - rung: 3
+    name: first_step
+    text:
+      en: Write F(x), then work out F(4) and F(-2).
+  - rung: 4
+    name: worked_step
+    text:
+      en: F(4) = 66.6667 and F(-2) = -17.3333.
+  - rung: 5
+    name: full_step
+    text:
+      en: The integral is 84.
+  misconception_ids:
+  - mc.mth.o.integrate_by_differentiating
+  - mc.mth.o.integral_power_not_divided
+  - mc.mth.o.integral_limits_reversed
+solution:
+  steps:
+  - n: 1
+    latex: \int x^n\,dx = \frac{x^{n+1}}{n+1}
+    reason: Raise each power by one and divide by the new power
+  - n: 2
+    latex: F(4) = 66.6667,\ F(-2) = -17.3333
+    reason: Substitute the limits
+    check_id: chk_build_mth_cal_0046_fb
+  - n: 3
+    latex: F(4) - F(-2) = 84
+    reason: Top limit minus bottom limit
+    check_id: chk_build_mth_cal_0046_ig
+difficulty:
+  prior: 1.0
+  band: core
+estimated_seconds: 140
+exam_style:
+  paper_style: structured
+  total_marks: 4
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_cal_0046_ans:
+    args:
+      expression: (2*(4)^3/3 + (0)*(4)^2/2 + (6)*(4)) - (2*(-2)^3/3 + (0)*(-2)^2/2 + (6)*(-2))
+    tool: math_evaluate
+  chk_build_mth_cal_0046_fb:
+    args:
+      equations:
+      - p = 2*(4)^3/3 + (0)*(4)^2/2 + (6)*(4)
+      - q = 2*(-2)^3/3 + (0)*(-2)^2/2 + (6)*(-2)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_cal_0046_ig:
+    args:
+      expression: (2)*x^2 + (6)*x^0
+      lower: -2
+      upper: 4
+      variable: x
+    tool: math_integrate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

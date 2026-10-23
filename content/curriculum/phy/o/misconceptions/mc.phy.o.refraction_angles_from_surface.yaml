@@ -1,0 +1,38 @@
+id: mc.phy.o.refraction_angles_from_surface
+kc_ids:
+- kc.phy.o.light.refraction
+- kc.phy.o.light.speed_in_medium
+- kc.phy.o.light.total_internal_reflection
+student_name: Measuring refraction angles from the surface
+description: Measures the angles of incidence and refraction (or the critical angle) from the surface of the block instead of from the normal.
+signatures:
+- kind: answer_transform
+  expression: 90 - x
+fix:
+  strategy: diagram
+  text:
+    en: Draw the normal at right angles to the surface where the ray crosses it. Every angle in the refraction formula is measured from that normal.
+probe_item_ids:
+- itm.phy.o.light.0026
+- itm.phy.o.light.0028
+- itm.phy.o.light.0029
+- itm.phy.o.light.0030
+- itm.phy.o.light.0045
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,87 @@
+id: itm.chm.o.organic.0055
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.alkanes_and_alkenes
+stem: Ethene and steam are passed over a phosphoric acid catalyst at a high temperature and pressure.
+parts:
+- id: a
+  prompt: What is the product?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Ethanoic acid
+      correct: false
+    - id: B
+      text: Ethane
+      correct: false
+    - id: C
+      text: Ethanol
+      correct: true
+    - id: D
+      text: Ethene and hydrogen
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Steam is water. What happens when water adds across a C=C bond?
+  - rung: 2
+    name: concept
+    text:
+      en: This addition reaction is called hydration.
+  - rung: 3
+    name: first_step
+    text:
+      en: H joins one carbon atom and OH joins the other.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The product has the formula C₂H₅OH. Which family has an –OH group?
+  - rung: 5
+    name: full_step
+    text:
+      en: 'C₂H₄ + H₂O → C₂H₅OH: the product is ethanol.'
+solution:
+  steps:
+  - n: 1
+    latex: \text{C}_2\text{H}_4 + \text{H}_2\text{O} \rightarrow \text{C}_2\text{H}_5\text{OH}
+    reason: Hydration of ethene
+    check_id: chk_build_chm_organic_0055_bal
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_0055_bal:
+    args:
+      equation: C2H4 + H2O -> C2H5OH
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

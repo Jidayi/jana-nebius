@@ -1,0 +1,32 @@
+id: mc.phy.o.vacuum_stops_radiation
+kc_ids:
+- kc.phy.o.heat_transfer.radiation
+student_name: The vacuum stops radiation
+description: Thinks the vacuum in a vacuum flask stops energy transfer by radiation, when it stops conduction and convection and the silvered walls reduce radiation.
+signatures:
+- kind: answer_transform
+  expression: vacuum
+fix:
+  strategy: rule_restatement
+  text:
+    en: Radiation crosses a vacuum easily. The vacuum stops conduction and convection, which need particles; the shiny silvering reflects infrared to cut radiation.
+probe_item_ids:
+- itm.phy.o.heat_transfer.0032
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

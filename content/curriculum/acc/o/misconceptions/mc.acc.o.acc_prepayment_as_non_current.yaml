@@ -1,0 +1,35 @@
+id: mc.acc.o.acc_prepayment_as_non_current
+kc_ids:
+- kc.acc.o.accruals_prepayments.accrual_presentation
+student_name: Year-end adjustments as non-current
+description: Puts prepayments or accruals among non-current items.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: asset
+fix:
+  strategy: rule_restatement
+  text:
+    en: These amounts are settled within a year, so they are current.
+probe_item_ids:
+- itm.acc.o.accruals_prepayments.0034
+- itm.acc.o.accruals_prepayments.0035
+- itm.acc.o.accruals_prepayments.0036
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

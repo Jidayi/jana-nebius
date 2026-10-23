@@ -1,0 +1,81 @@
+id: itm.chm.o.metals.0033
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.reactivity_series
+stem: 'These metals are used in a school laboratory: copper, magnesium, zinc and calcium.'
+parts:
+- id: a
+  prompt: Put them in order of reactivity, most reactive first.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s1
+      text: calcium
+    - id: s3
+      text: zinc
+    - id: s4
+      text: copper
+    - id: s2
+      text: magnesium
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Recall the reactivity series from the top.
+  - rung: 2
+    name: concept
+    text:
+      en: K, Na, Ca, Mg, Al, (C), Zn, Fe, (H), Cu, Ag, Au.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find which of the four is nearest the top.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Calcium reacts with cold water; copper does not even react with dilute acid.
+  - rung: 5
+    name: full_step
+    text:
+      en: Calcium, magnesium, zinc, copper.
+solution:
+  steps:
+  - n: 1
+    latex: \text{Ca > Mg > Zn > Cu}
+    reason: Reactivity series
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

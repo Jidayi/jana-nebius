@@ -1,0 +1,87 @@
+id: itm.mth.o.number.0376
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.surds
+stem: Rationalise the denominator of $\frac{50}{\sqrt{10}}$ and write it as $k\sqrt{10}$.
+parts:
+- id: a
+  prompt: Find k.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '5'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0376_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Rationalising means making the denominator a whole number.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply the top and the bottom by √10.
+  - rung: 3
+    name: first_step
+    text:
+      en: The bottom becomes √10 × √10 = 10.
+  - rung: 4
+    name: worked_step
+    text:
+      en: You get 50√10 ÷ 10. Simplify.
+  - rung: 5
+    name: full_step
+    text:
+      en: k = 5.
+  misconception_ids:
+  - mc.mth.o.rationalise_numerator_only
+  - mc.mth.o.square_as_double
+  - mc.mth.o.fraction_multiply_inverts
+solution:
+  steps:
+  - n: 1
+    latex: \frac{50}{\sqrt{10}} \times \frac{\sqrt{10}}{\sqrt{10}} = \frac{50\sqrt{10}}{10}
+    reason: Multiply top and bottom by the root
+  - n: 2
+    latex: = 5\sqrt{10}
+    reason: Simplify the fraction
+    check_id: chk_build_mth_num_0376_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0376_ans:
+    args:
+      expression: 50/10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

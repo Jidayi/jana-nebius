@@ -1,0 +1,109 @@
+id: itm.phy.o.stars.0003
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.stars.light_years
+stem: A star is 8.1 × 10¹⁶ m from the Earth. Light travels at 3.0 × 10⁸ m/s; take a year as 365 days.
+parts:
+- id: a
+  prompt: How far away is the star in light-years?
+  marks: 3
+  answer:
+    kind: numeric
+    value: '8.56'
+    unit: light-years
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_str_0003_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Find how many metres there are in one light-year first.
+  - rung: 2
+    name: concept
+    text:
+      en: One light-year = speed of light × one year in seconds.
+  - rung: 3
+    name: first_step
+    text:
+      en: Then divide the distance in metres by one light-year in metres.
+  - rung: 4
+    name: worked_step
+    text:
+      en: One light-year is 9.46 × 10¹⁵ m.
+  - rung: 5
+    name: full_step
+    text:
+      en: The star is 8.56 light-years away.
+  misconception_ids:
+  - mc.phy.o.light_year_conversion_inverted
+  - mc.phy.o.light_year_missing_seconds
+  - mc.phy.o.year_seconds_factor_missed
+solution:
+  steps:
+  - n: 1
+    latex: 1\ \text{year} = 365\ \text{days} = 31536000\ \text{s}
+    reason: A year in seconds
+    check_id: chk_build_phy_str_0003_ts
+  - n: 2
+    latex: 1\ \text{ly} = 3.0 \times 10^{8} \times 31536000 = 9.46 \times 10^{15}\ \text{m}
+    reason: Distance light travels in a year
+    check_id: chk_build_phy_str_0003_ly_m
+  - n: 3
+    latex: \frac{8.1 \times 10^{16}}{9.46 \times 10^{15}} = 8.56\ \text{ly}
+    reason: Divide by the metres in one light-year
+    check_id: chk_build_phy_str_0003_ans
+difficulty:
+  prior: 0.5
+  band: stretch
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_str_0003_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: 8.1e16/(c*31536000)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_str_0003_ly_m:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: (c*31536000)/10^(15)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_str_0003_ts:
+    args:
+      quantity: 365 day
+      to: s
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

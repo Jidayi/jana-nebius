@@ -1,0 +1,83 @@
+id: itm.chm.o.metals.0056
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.extraction
+stem: Iron is extracted from haematite in a blast furnace using coke, hot air and limestone.
+parts:
+- id: a
+  prompt: Put the main reactions in the furnace in order.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s2
+      text: Carbon dioxide reacts with more coke to form carbon monoxide.
+    - id: s4
+      text: Molten iron runs to the bottom of the furnace and is tapped off.
+    - id: s3
+      text: Carbon monoxide reduces iron(III) oxide to iron.
+    - id: s1
+      text: Coke (carbon) burns in hot air to form carbon dioxide.
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The furnace first needs heat and a reducing gas.
+  - rung: 2
+    name: concept
+    text:
+      en: The reducing agent for the iron ore is carbon monoxide, which is made from coke.
+  - rung: 3
+    name: first_step
+    text:
+      en: Burning the coke comes first; it gives out heat.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Carbon monoxide must exist before it can reduce the ore.
+  - rung: 5
+    name: full_step
+    text:
+      en: Coke burns to carbon dioxide; carbon dioxide and coke give carbon monoxide; carbon monoxide reduces the ore; molten iron is tapped.
+  misconception_ids:
+  - mc.chm.o.metals_reduction_gains_oxygen
+solution:
+  steps:
+  - n: 1
+    latex: \text{C to CO}_2\text{ to CO, then CO reduces Fe}_2\text{O}_3
+    reason: Order of the blast furnace reactions
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

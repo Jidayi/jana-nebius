@@ -1,0 +1,50 @@
+id: wex.mth.o.algebra_and_graphs.0038
+kc_ids:
+- kc.mth.o.algebra_and_graphs.quadratic_features
+problem: The graph of $y = x^2 - 10x + 27$ is a parabola. Find the x-coordinate of its turning point.
+steps:
+- n: 1
+  latex: x^2 - 10x + 27 = (x - 5)^2 + 2
+  reason: Complete the square
+  check_id: chk_build_mth_alg_w0038_cs
+- n: 2
+  latex: x = 5
+  reason: The bracket is zero at the turning point
+  check_id: chk_build_mth_alg_w0038_ans
+final_answer:
+  latex: '5'
+  check_id: chk_build_mth_alg_w0038_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0038_ans:
+    args:
+      expression: -(-10)/2
+    tool: math_evaluate
+  chk_build_mth_alg_w0038_cs:
+    args:
+      equations:
+      - p = abs((-10)/2)
+      - q = abs(27 - (-10)^2/4)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

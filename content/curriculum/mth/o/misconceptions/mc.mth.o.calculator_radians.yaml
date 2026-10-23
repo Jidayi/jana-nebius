@@ -1,0 +1,41 @@
+id: mc.mth.o.calculator_radians
+kc_ids:
+- kc.mth.o.trigonometry.trig_side
+- kc.mth.o.trigonometry.trig_angle
+- kc.mth.o.trigonometry.sine_rule
+- kc.mth.o.trigonometry.cosine_rule
+- kc.mth.o.trigonometry.triangle_area_sine
+- kc.mth.o.trigonometry.elevation_depression
+student_name: Calculator in radians
+description: Works with the calculator set to radians, so the sines, cosines and angles are wrong.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Check the calculator shows D (degrees): sin 30 should give 0.5.'
+probe_item_ids:
+- itm.mth.o.trigonometry.0027
+- itm.mth.o.trigonometry.0028
+- itm.mth.o.trigonometry.0029
+- itm.mth.o.trigonometry.0030
+- itm.mth.o.trigonometry.0031
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

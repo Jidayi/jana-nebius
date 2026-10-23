@@ -1,0 +1,104 @@
+id: itm.acc.o.bank_reconciliation.0035
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.bank_reconciliation.overdraft_sides
+stem: A trader's bank statement shows a debit balance of $2670.
+parts:
+- id: a
+  prompt: What does this balance mean?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: The business is overdrawn by $2670
+      correct: true
+    - id: B
+      text: The business has $2670 in the bank
+      correct: false
+      misconception_id: mc.acc.o.br_statement_view_reversed
+    - id: C
+      text: The bank has made an error of $2670
+      correct: false
+      misconception_id: mc.acc.o.br_bank_error_assumed
+    - id: D
+      text: The business owes nothing to the bank
+      correct: false
+      misconception_id: mc.acc.o.br_credit_means_money
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Whose books are these: the business''s own cash book, or the bank''s statement?'
+  - rung: 2
+    name: concept
+    text:
+      en: In the business's cash book, money in the bank is a debit balance. The bank's statement shows the same money as a credit, because the bank owes it to the customer.
+  - rung: 3
+    name: first_step
+    text:
+      en: So a credit in the cash book, or a debit on the statement, means an overdraft.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Decide whose point of view the record takes, then read the balance.
+  - rung: 5
+    name: full_step
+    text:
+      en: The business is overdrawn by $2670.
+  misconception_ids:
+  - mc.acc.o.br_statement_view_reversed
+  - mc.acc.o.br_credit_means_money
+  - mc.acc.o.br_bank_error_assumed
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Cash book: debit = money in the bank. Statement: credit = money in the bank}'
+    reason: Two points of view
+    check_id: chk_build_acc_bank_reconciliation_0035_t
+difficulty:
+  prior: 0.1
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_bank_reconciliation_0035_t:
+    args:
+      bank_statement:
+        balance: '2670'
+        entries: []
+        overdrawn: true
+      cash_book:
+        balance: '2670'
+        entries: []
+        overdrawn: true
+      dp: 2
+      start_from: bank_statement
+      task: reconcile
+    tool: acc_double_entry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

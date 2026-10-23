@@ -1,0 +1,175 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.t-account",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at e1 debit and e1 credit.",
+        "Step 2: look at balance carried down on Cash."
+      ],
+      "summary": "T-accounts for Cash, Capital and Rent. Cash has a balance carried down of 380.00 on the credit side; Capital has a balance carried down of 500.00 on the debit side; Rent has a balance carried down of 120.00 on the credit side."
+    },
+    "computed": {
+      "balances": {
+        "capital": {
+          "amount": "500.00",
+          "side": "debit"
+        },
+        "cash": {
+          "amount": "380.00",
+          "side": "credit"
+        },
+        "rent": {
+          "amount": "120.00",
+          "side": "credit"
+        }
+      },
+      "check_ids": [
+        "chk_build_fx_t_account_1"
+      ],
+      "labels": {
+        "capital.balance_cd": "500.00",
+        "cash.balance_cd": "380.00",
+        "rent.balance_cd": "120.00"
+      },
+      "totals": {
+        "capital": "500.00",
+        "cash": "500.00",
+        "rent": "120.00"
+      }
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "kn_500",
+      "kn_120",
+      "chk_build_fx_t_account_1"
+    ],
+    "params": {
+      "accounts": [
+        {
+          "id": "cash",
+          "name": "Cash",
+          "type": "asset"
+        },
+        {
+          "id": "capital",
+          "name": "Capital",
+          "type": "equity"
+        },
+        {
+          "id": "rent",
+          "name": "Rent",
+          "type": "expense"
+        }
+      ],
+      "currency": "$",
+      "entries": [
+        {
+          "amount": "500",
+          "credit": "capital",
+          "debit": "cash",
+          "id": "e1"
+        },
+        {
+          "amount": "120",
+          "credit": "cash",
+          "debit": "rent",
+          "id": "e2"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "cash",
+        "name": "Cash account",
+        "role": "region"
+      },
+      {
+        "focusable": true,
+        "id": "cash.e1",
+        "name": "e1 debit",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "cash.e2",
+        "name": "e2 credit",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "cash.balance_cd",
+        "name": "balance carried down on Cash",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "capital",
+        "name": "Capital account",
+        "role": "region"
+      },
+      {
+        "focusable": true,
+        "id": "capital.e1",
+        "name": "e1 credit",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "capital.balance_cd",
+        "name": "balance carried down on Capital",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "rent",
+        "name": "Rent account",
+        "role": "region"
+      },
+      {
+        "focusable": true,
+        "id": "rent.e2",
+        "name": "e2 debit",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "rent.balance_cd",
+        "name": "balance carried down on Rent",
+        "role": "row"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:63a738363233f02601a3fce3398a07241800e866a49d3c3db4a3f0537c98e36e",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "cash.e1",
+          "capital.e1"
+        ]
+      },
+      {
+        "highlight": [
+          "cash.balance_cd"
+        ]
+      }
+    ],
+    "type": "t_account",
+    "visual_id": "vis_37RPJKG613W3SA74R0864XWXM3"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: t account (shown labels)",
+  "variant": "t-account"
+}

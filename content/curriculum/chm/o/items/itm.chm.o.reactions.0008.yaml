@@ -1,0 +1,87 @@
+id: itm.chm.o.reactions.0008
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.physical_chemical_change
+stem: Green copper(II) carbonate powder is heated strongly. It turns black, and a gas comes off that turns limewater milky.
+parts:
+- id: a
+  prompt: Which statement is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: It is not a change at all, because the copper is still there.
+      correct: false
+    - id: B
+      text: 'It is a chemical change: copper(II) oxide and carbon dioxide are new substances.'
+      correct: true
+    - id: C
+      text: 'It is a physical change: the solid melts and part of it boils away.'
+      correct: false
+      misconception_id: mc.chm.o.reactions_new_substance_missed
+      feedback: 'Ask one question: has a new substance formed? Signs are a gas given off, a new solid, a new colour, or heat given out or taken in. Burning, rusting, cooking and breaking down by heat all make new substances, so they are chemical changes even when heat started them.'
+    - id: D
+      text: 'It is a physical change: the solid only changes colour when it gets hot.'
+      correct: false
+      misconception_id: mc.chm.o.reactions_new_substance_missed
+      feedback: 'Ask one question: has a new substance formed? Signs are a gas given off, a new solid, a new colour, or heat given out or taken in. Burning, rusting, cooking and breaking down by heat all make new substances, so they are chemical changes even when heat started them.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What two things do you see when the green powder is heated?
+  - rung: 2
+    name: concept
+    text:
+      en: A gas that turns limewater milky is carbon dioxide, which was not there at the start.
+  - rung: 3
+    name: first_step
+    text:
+      en: The black solid left behind stays black when it cools, so it is not just hot green powder.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Heating can start a chemical change. Ask whether new substances have formed here.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'It is chemical: the carbonate breaks down into black copper(II) oxide and carbon dioxide gas.'
+  misconception_ids:
+  - mc.chm.o.reactions_new_substance_missed
+solution:
+  steps:
+  - n: 1
+    latex: \text{CuCO}_3 \rightarrow \text{CuO} + \text{CO}_2
+    reason: Breaking down by heat makes new substances
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

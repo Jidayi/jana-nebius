@@ -1,0 +1,83 @@
+id: itm.phy.o.density.0010
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.density_calculation
+stem: A cork stopper has a mass of 2.4 g. The density of the material is 0.24 g/cm³.
+parts:
+- id: a
+  prompt: Calculate its volume.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '10'
+    unit: cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_den_0010_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Each cubic centimetre of the material has the same mass.
+  - rung: 2
+    name: concept
+    text:
+      en: Rearrange density = mass ÷ volume to make volume the subject.
+  - rung: 3
+    name: first_step
+    text:
+      en: Volume = mass ÷ density.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 2.4 ÷ 0.24.
+  - rung: 5
+    name: full_step
+    text:
+      en: The volume is 10 cm³.
+  misconception_ids:
+  - mc.phy.o.density_volume_over_mass
+  - mc.phy.o.density_rearranged_wrongly
+solution:
+  steps:
+  - n: 1
+    latex: V = \frac{m}{\rho} = \frac{2.4}{0.24} = 10\ \text{cm}^3
+    reason: Volume = mass ÷ density
+    check_id: chk_build_phy_den_0010_ans
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_den_0010_ans:
+    args:
+      expression: 2.4/0.24
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

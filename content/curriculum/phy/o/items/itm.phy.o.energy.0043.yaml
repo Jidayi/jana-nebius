@@ -1,0 +1,113 @@
+id: itm.phy.o.energy.0043
+version: 0.1.1
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.potential_energy
+stem: A toolbox of mass 9 kg is lifted from a table 0.6 m above the floor onto a shelf 2 m above the floor. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate the increase in its gravitational potential energy.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 180 J
+      correct: false
+      misconception_id: mc.phy.o.gpe_height_not_change
+      feedback: Only the change in height counts. Sketch the start and end positions and find the vertical distance between them.
+    - id: B
+      text: 234 J
+      correct: false
+      misconception_id: mc.phy.o.gpe_heights_added
+      feedback: Moving from a 1 m table to a 3 m shelf raises an object 2 m, not 4 m. Subtract the lower height from the higher one.
+    - id: C
+      text: 12.6 J
+      correct: false
+      misconception_id: mc.phy.o.energy_mass_for_weight
+      feedback: Lifting works against the weight, mg, in newtons. Multiply the mass by g before you multiply by the height.
+    - id: D
+      text: 126 J
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Only the change in height matters, not the height above the floor.
+  - rung: 2
+    name: concept
+    text:
+      en: Use ΔEp = mgΔh.
+  - rung: 3
+    name: first_step
+    text:
+      en: It rises 2 − 0.6 = 1.4 m.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 9 × 10 × 1.4.
+  - rung: 5
+    name: full_step
+    text:
+      en: The gravitational potential energy increases by 126 J.
+  misconception_ids:
+  - mc.phy.o.energy_mass_for_weight
+  - mc.phy.o.gpe_height_not_change
+  - mc.phy.o.gpe_heights_added
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: \Delta h = 2 - 0.6 = 1.4\ \text{m}
+    reason: The change in height
+    check_id: chk_build_phy_nrg_0043_dh
+  - n: 2
+    latex: \Delta E_p = mg\Delta h = 9 \times 10 \times 1.4 = 126\ \text{J}
+    reason: ΔEp = mgΔh
+    check_id: chk_build_phy_nrg_0043_ans
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0043_ans:
+    args:
+      expression: 9*10*(2.0 - 0.6)
+    tool: math_evaluate
+  chk_build_phy_nrg_0043_dh:
+    args:
+      expression: 2.0 - 0.6
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

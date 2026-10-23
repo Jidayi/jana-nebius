@@ -1,0 +1,91 @@
+id: itm.chm.o.stoichiometry.0001
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.ionic_formulae
+stem: Zinc nitrate is made of Zn²⁺ and NO₃⁻ ions.
+parts:
+- id: a
+  prompt: Which is the formula of zinc nitrate?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Zn₂NO₃
+      correct: false
+      misconception_id: mc.chm.o.formula_own_charge_as_count
+      feedback: 'Cross the charges over: the size of the cation''s charge becomes the number of anions, and the anion''s charge becomes the number of cations. Then check that the charges add up to zero.'
+    - id: B
+      text: Zn(NO₃)₂
+      correct: true
+    - id: C
+      text: ZnNO₃
+      correct: false
+      misconception_id: mc.chm.o.formula_one_of_each
+      feedback: The total positive charge must cancel the total negative charge. Count how many of each ion you need before you write the formula.
+    - id: D
+      text: ZnNO₃₂
+      correct: false
+      misconception_id: mc.chm.o.formula_brackets_missing
+      feedback: 'When you need more than one of an ion made of several atoms, put that ion in brackets and write the number after the bracket: (OH)₂, (NO₃)₂, (SO₄)₃.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Look at the size of the charge on each ion in zinc nitrate.
+  - rung: 2
+    name: concept
+    text:
+      en: In an ionic compound the positive and negative charges cancel exactly.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out how many Zn²⁺ ions balance how many NO₃⁻ ions.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Swap the sizes of the charges to get the numbers of each ion, and keep a group ion in brackets if you need more than one of it.
+  - rung: 5
+    name: full_step
+    text:
+      en: The charges cancel in Zn(NO₃)₂, so that is the formula of zinc nitrate.
+  misconception_ids:
+  - mc.chm.o.formula_one_of_each
+  - mc.chm.o.formula_own_charge_as_count
+  - mc.chm.o.formula_brackets_missing
+solution:
+  steps:
+  - n: 1
+    latex: \text{Zn(NO}_3\text{)}_2
+    reason: Total positive charge equals total negative charge in zinc nitrate
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

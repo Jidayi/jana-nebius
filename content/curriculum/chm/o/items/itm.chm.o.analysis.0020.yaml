@@ -1,0 +1,86 @@
+id: itm.chm.o.analysis.0020
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.analysis.titration_technique
+stem: Put these steps for preparing the burette in order.
+parts:
+- id: a
+  prompt: Drag the steps into the correct order.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s3
+      text: Fill it with acid using a funnel, below eye level.
+    - id: s2
+      text: Rinse it with a little of the acid.
+    - id: s1
+      text: Rinse the burette with distilled water.
+    - id: s5
+      text: Read the bottom of the meniscus at eye level.
+    - id: s4
+      text: Remove the funnel and run a little acid through the tap to fill the jet.
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+    - s5
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What has to be ready before anything else can happen?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Each step needs something from the step before it: work out what must already be done.'
+  - rung: 3
+    name: first_step
+    text:
+      en: 'The first step is: rinse the burette with distilled water.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'The last step is: read the bottom of the meniscus at eye level.'
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Correct order: Rinse the burette with distilled water → Rinse it with a little of the acid → Fill it with acid using a funnel, below eye level → Remove the funnel and run a little acid through the tap to fill the jet → Read the bottom of the meniscus at eye level.'
+  misconception_ids:
+  - mc.chm.o.analysis_rinse_with_water
+solution:
+  steps:
+  - n: 1
+    latex: \text{prepare} \rightarrow \text{measure} \rightarrow \text{titrate} \rightarrow \text{record}
+    reason: Logical order
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,35 @@
+id: mc.phy.o.good_absorber_poor_emitter
+kc_ids:
+- kc.phy.o.heat_transfer.radiation
+student_name: A good absorber must be a poor emitter
+description: Thinks a surface that absorbs infrared well must be a poor emitter, as if it held on to the energy.
+signatures:
+- kind: answer_transform
+  expression: holds
+fix:
+  strategy: counterexample
+  text:
+    en: A good absorber is also a good emitter. A dull black kettle warms quickly in sunshine and also cools quickly in the shade.
+probe_item_ids:
+- itm.phy.o.heat_transfer.0041
+- itm.phy.o.heat_transfer.0044
+- itm.phy.o.heat_transfer.0032
+- itm.phy.o.heat_transfer.0040
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

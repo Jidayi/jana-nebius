@@ -1,0 +1,90 @@
+id: itm.chm.o.metals.0002
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.properties_and_uses
+stem: The wiring inside the walls of a house is made of copper.
+parts:
+- id: a
+  prompt: Which pair of properties makes copper suitable for this wiring?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: It conducts electricity very well and it is ductile (can be drawn into wires).
+      correct: true
+    - id: B
+      text: Its ions move easily through the wire, so it carries charge well.
+      correct: false
+      misconception_id: mc.chm.o.metals_conduct_by_moving_ions
+      feedback: In a solid metal the positive ions stay in their places in the lattice. The delocalised electrons move through the structure and carry the current.
+    - id: C
+      text: It corrodes quickly, so old wires are easy to find and replace.
+      correct: false
+      misconception_id: mc.chm.o.metals_use_wrong_property
+      feedback: Ask what the job needs first. A wire must carry current and bend; a plane body must be light and strong; a ring must stay shiny. Then pick the property that meets that need.
+    - id: D
+      text: It is very hard and strong, so the wires do not snap.
+      correct: false
+      misconception_id: mc.chm.o.metals_use_wrong_property
+      feedback: Ask what the job needs first. A wire must carry current and bend; a plane body must be light and strong; a ring must stay shiny. Then pick the property that meets that need.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What does a wire in a wall have to do?
+  - rung: 2
+    name: concept
+    text:
+      en: A wire must carry a current, and the metal must be easy to pull into long thin strands.
+  - rung: 3
+    name: first_step
+    text:
+      en: Copper is fairly soft, so strength is not the reason it is chosen.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Look for the option that names both conducting and being drawn into wires.
+  - rung: 5
+    name: full_step
+    text:
+      en: Copper is chosen because it is an excellent electrical conductor and is ductile.
+  misconception_ids:
+  - mc.chm.o.metals_use_wrong_property
+  - mc.chm.o.metals_conduct_by_moving_ions
+solution:
+  steps:
+  - n: 1
+    latex: '\text{copper: excellent conductor, ductile}'
+    reason: The properties the job needs
+difficulty:
+  prior: -0.6
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

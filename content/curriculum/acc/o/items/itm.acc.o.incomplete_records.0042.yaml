@@ -1,0 +1,108 @@
+id: itm.acc.o.incomplete_records.0042
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.incomplete_records.margin_markup_use
+stem: Aisha adds a mark-up of 25% to cost. Cost of sales was $53100.
+parts:
+- id: a
+  prompt: What was the revenue?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $39825
+      correct: false
+      misconception_id: mc.acc.o.ir_markup_subtracted
+    - id: B
+      text: $66375
+      correct: true
+    - id: C
+      text: $13275
+      correct: false
+      misconception_id: mc.acc.o.ir_percent_of_wrong_base
+    - id: D
+      text: $70800
+      correct: false
+      misconception_id: mc.acc.o.rat_margin_markup_confused
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Is the percentage on cost or on the selling price?
+  - rung: 2
+    name: concept
+    text:
+      en: 'A mark-up is on cost: revenue = cost + mark-up × cost.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Mark-up is added to cost; it does not come off it.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 53100 + 25% of 53100.
+  - rung: 5
+    name: full_step
+    text:
+      en: Revenue = $66375.
+  misconception_ids:
+  - mc.acc.o.rat_margin_markup_confused
+  - mc.acc.o.ir_percent_of_wrong_base
+  - mc.acc.o.ir_markup_subtracted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Revenue} = \text{cost of sales} \times (1 + \text{mark-up})
+    reason: Mark-up on cost
+    check_id: chk_build_acc_incomplete_records_0042_t
+  - n: 2
+    latex: 53100 + 25\% \times 53100 = 66375
+    reason: Substitute
+    check_id: chk_build_acc_incomplete_records_0042_a
+difficulty:
+  prior: 0.5
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_incomplete_records_0042_a:
+    args:
+      dp: 2
+      expression: 53100 * (1 + 25/100)
+    tool: math_evaluate
+  chk_build_acc_incomplete_records_0042_t:
+    args:
+      cost_of_sales: '53100'
+      dp: 2
+      ratios:
+      - mark_up
+      - gross_margin
+      revenue: '66375'
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

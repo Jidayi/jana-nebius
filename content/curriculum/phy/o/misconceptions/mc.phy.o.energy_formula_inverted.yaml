@@ -1,0 +1,38 @@
+id: mc.phy.o.energy_formula_inverted
+kc_ids:
+- kc.phy.o.energy.potential_energy
+- kc.phy.o.energy.work_done
+- kc.phy.o.energy.power
+student_name: Dividing the wrong way round
+description: Turns a quotient upside down, for example working out time ÷ energy for power, or m × g ÷ ΔEp for a height.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Power is energy per second, so energy goes on top. Check the units of the answer: J ÷ s is a watt, s ÷ J is not.'
+probe_item_ids:
+- itm.phy.o.energy.0041
+- itm.phy.o.energy.0071
+- itm.phy.o.energy.0086
+- itm.phy.o.energy.0035
+- itm.phy.o.energy.0065
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

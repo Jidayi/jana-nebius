@@ -1,0 +1,36 @@
+id: mc.chm.o.environment_percent_not_times_100
+kc_ids:
+- kc.chm.o.environment.fertilisers
+student_name: Forgetting to multiply by 100
+description: Gives the fraction of the mass that is nitrogen (such as 0.35) as the percentage.
+signatures:
+- kind: answer_transform
+  expression: n*14/Mr
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'A fraction becomes a percentage when you multiply by 100: a fraction of 0.35 is 35%.'
+probe_item_ids:
+- itm.chm.o.environment.0013
+- itm.chm.o.environment.0014
+- itm.chm.o.environment.0015
+- itm.chm.o.environment.0016
+- itm.chm.o.environment.0017
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

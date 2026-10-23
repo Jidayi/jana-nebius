@@ -1,0 +1,99 @@
+id: itm.mth.o.number.0339
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.currency_conversion
+stem: The exchange rate is $1 = 1.35 cedis.
+parts:
+- id: a
+  prompt: Change 480 cedis into dollars, to the nearest cent.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '648.00'
+      correct: false
+      misconception_id: mc.mth.o.exchange_wrong_operation
+      feedback: 'Check whether the answer should be more or fewer units: if one dollar buys several units, dollars to units multiplies and units to dollars divides.'
+    - id: B
+      text: '478.65'
+      correct: false
+      misconception_id: mc.mth.o.exchange_added
+      feedback: An exchange rate says how many units match one dollar, so it scales the amount.
+    - id: C
+      text: '480.00'
+      correct: false
+      misconception_id: mc.mth.o.rounded_too_early
+      feedback: Keep the full value in your calculator until the end, then round once.
+    - id: D
+      text: '355.56'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: How many lots of 1.35 cedis are there in 480 cedis?
+  - rung: 2
+    name: concept
+    text:
+      en: Divide by the rate to change into dollars.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 480 ÷ 1.35.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Round to 2 decimal places for cents.
+  - rung: 5
+    name: full_step
+    text:
+      en: 480 cedis = $355.56.
+  misconception_ids:
+  - mc.mth.o.exchange_added
+  - mc.mth.o.exchange_wrong_operation
+  - mc.mth.o.rounded_too_early
+solution:
+  steps:
+  - n: 1
+    latex: 480 \div 1.35 = 355.56
+    reason: Each 1.35 cedis make one dollar
+    check_id: chk_build_mth_num_0339_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0339_ans:
+    args:
+      dp: 2
+      expression: 480/1.35
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,100 @@
+{
+  "id": "ask-answer.canonical",
+  "title": "Ask anything, Teach me",
+  "component": "AskAnswer",
+  "note": "An under-18 learner's general question: where Jana looked first, the cited short answer, one statement with the general-knowledge label and the check question before the explanation (STU-20).",
+  "state": "canonical",
+  "payload": {
+    "status": "answered",
+    "question": "Why is the sky blue?",
+    "answer": {
+      "ask_id": "ask_00000000000000000000000001",
+      "question": "Why is the sky blue?",
+      "mode": "teach",
+      "audience": "under_18",
+      "reach": "allow_list",
+      "steps": [
+        {
+          "kind": "own",
+          "count": 0
+        },
+        {
+          "kind": "trusted",
+          "count": 2
+        }
+      ],
+      "sources": [
+        {
+          "ref": "web1",
+          "kind": "web",
+          "title": "Why is the sky blue?",
+          "url": "https://www.nasa.gov/blue-sky/",
+          "domain": "nasa.gov"
+        },
+        {
+          "ref": "web2",
+          "kind": "web",
+          "title": "Rayleigh scattering",
+          "url": "https://www.britannica.com/science/Rayleigh-scattering",
+          "domain": "britannica.com"
+        }
+      ],
+      "own_excerpts": [],
+      "answer": [
+        {
+          "text": "Sunlight is a mix of colours, and air scatters the short blue wavelengths much more than red ones.",
+          "refs": [
+            "web1",
+            "web2"
+          ],
+          "supported": true,
+          "checked": false
+        },
+        {
+          "text": "So blue light reaches your eyes from every part of the sky.",
+          "refs": [
+            "web1"
+          ],
+          "supported": true,
+          "checked": false
+        },
+        {
+          "text": "People have asked this question for thousands of years.",
+          "refs": [],
+          "supported": false,
+          "checked": false
+        }
+      ],
+      "check_question": "Why do you think sunsets look red or orange instead of blue?",
+      "explanation": [
+        {
+          "text": "Scattering grows quickly as the wavelength gets shorter: roughly as \\(1/\\lambda^4\\).",
+          "refs": [
+            "web2"
+          ],
+          "supported": true,
+          "checked": false
+        }
+      ],
+      "general_knowledge": true,
+      "checked": false,
+      "can_switch": false
+    },
+    "reason": null,
+    "explained": false
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Looked in your notes: nothing on this yet",
+    "Looked at 2 trusted sources",
+    "General knowledge, not checked against your syllabus or your material",
+    "Check yourself",
+    "Show the explanation"
+  ]
+}

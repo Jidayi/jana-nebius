@@ -1,0 +1,88 @@
+id: itm.acc.o.partnerships.0003
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.partnerships.partnership_agreement
+stem: A partnership agreement is being written.
+parts:
+- id: a
+  prompt: Which of these is it usually used to settle?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 'Nothing about profit: profit is always shared by capital'
+      correct: false
+      misconception_id: mc.acc.o.pa_capital_ratio_default
+    - id: B
+      text: The selling prices of the business's goods
+      correct: false
+      misconception_id: mc.acc.o.pa_agreement_scope
+    - id: C
+      text: The wages of the business's employees
+      correct: false
+      misconception_id: mc.acc.o.pa_salary_default
+    - id: D
+      text: The ratio in which profits and losses are shared
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Without an agreement, the partners fall back on the default rules.
+  - rung: 2
+    name: concept
+    text:
+      en: By default profits and losses are shared equally, with no interest on capital, no salaries and no interest on drawings.
+  - rung: 3
+    name: first_step
+    text:
+      en: Interest on capital, salaries and a capital-based ratio only apply when the partners agree them.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Separate what partners usually agree from what applies when nothing is agreed.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: the ratio in which profits and losses are shared.'
+  misconception_ids:
+  - mc.acc.o.pa_agreement_scope
+  - mc.acc.o.pa_salary_default
+  - mc.acc.o.pa_capital_ratio_default
+solution:
+  steps:
+  - n: 1
+    latex: '\text{No agreement: equal shares, no interest, no salaries}'
+    reason: The default rules
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

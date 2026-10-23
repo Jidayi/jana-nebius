@@ -1,0 +1,33 @@
+id: mc.phy.o.neutral_wire_is_live
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+student_name: Mixing up live and neutral
+description: Thinks the neutral wire is the one at a high voltage, swapping the roles of the live and neutral wires.
+signatures:
+- kind: answer_transform
+  expression: swap live neutral
+fix:
+  strategy: rule_restatement
+  text:
+    en: The live wire is at a high, changing voltage; the neutral wire stays close to 0 V and completes the circuit.
+probe_item_ids:
+- itm.phy.o.practical_electricity.0035
+- itm.phy.o.practical_electricity.0038
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

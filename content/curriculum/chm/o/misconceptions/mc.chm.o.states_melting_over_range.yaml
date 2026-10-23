@@ -1,0 +1,35 @@
+id: mc.chm.o.states_melting_over_range
+kc_ids:
+- kc.chm.o.states.changes_of_state
+student_name: Melting all the way to the boiling point
+description: Thinks a pure substance is partly solid and partly liquid at every temperature between its melting and boiling points.
+signatures:
+- kind: answer_transform
+  expression: 'choice: mixture of solid and liquid chosen between the fixed points'
+fix:
+  strategy: rule_restatement
+  text:
+    en: A pure substance melts at one temperature. Once it is above that temperature it is all liquid.
+probe_item_ids:
+- itm.chm.o.states.0013
+- itm.chm.o.states.0014
+- itm.chm.o.states.0015
+- itm.chm.o.states.0016
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

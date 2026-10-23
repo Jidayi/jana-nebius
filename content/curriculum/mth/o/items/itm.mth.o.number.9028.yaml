@@ -1,0 +1,107 @@
+id: itm.mth.o.number.9028
+version: 0.1.0
+type: ordering
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.ordering_quantities
+stem: Four ribbons have lengths 0.48 m, 47 cm, 0.5 m and 490 mm.
+parts:
+- id: a
+  prompt: Put the ribbon lengths in order, shortest first.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: exact
+    elements:
+    - id: e1
+      text: 0.48 m
+    - id: e2
+      text: 47 cm
+    - id: e3
+      text: 0.5 m
+    - id: e4
+      text: 490 mm
+    correct_order:
+    - e2
+    - e1
+    - e4
+    - e3
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Convert all measurements to one unit before comparing their size.
+  - rung: 2
+    name: concept
+    text:
+      en: Express metres and millimetres as centimetres, then choose the least length.
+  - rung: 3
+    name: first_step
+    text:
+      en: Express metres and millimetres as centimetres, then choose the least length.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Compare every ribbon in the same unit before deciding the full order.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Shortest first: 47 cm, 0.48 m, 490 mm, 0.5 m.'
+solution:
+  steps:
+  - n: 1
+    latex: 0.48\times 100=48
+    reason: Convert the ribbon length to centimetres.
+    check_id: chk_build_mastery_supplement_mth_9028_convert_1
+  - n: 2
+    latex: 0.5\times 100=50
+    reason: Convert the ribbon length to centimetres.
+    check_id: chk_build_mastery_supplement_mth_9028_convert_2
+  - n: 3
+    latex: 490/10=49
+    reason: Convert the ribbon length to centimetres.
+    check_id: chk_build_mastery_supplement_mth_9028_convert_3
+  - n: 4
+    latex: 47<48<49<50
+    reason: Compare all lengths in centimetres.
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9028_convert_1:
+    args:
+      expression: 0.48*100
+    tool: math_evaluate
+  chk_build_mastery_supplement_mth_9028_convert_2:
+    args:
+      expression: 0.5*100
+    tool: math_evaluate
+  chk_build_mastery_supplement_mth_9028_convert_3:
+    args:
+      expression: 490/10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

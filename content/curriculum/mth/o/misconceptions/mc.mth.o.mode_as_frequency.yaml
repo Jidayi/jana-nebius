@@ -1,0 +1,37 @@
+id: mc.mth.o.mode_as_frequency
+kc_ids:
+- kc.mth.o.statistics.averages_list
+- kc.mth.o.statistics.averages_frequency
+student_name: Giving the frequency for the mode
+description: Gives how many times the mode appears instead of the value itself.
+signatures:
+- kind: answer_transform
+  expression: max f
+fix:
+  strategy: rule_restatement
+  text:
+    en: The mode is the value that appears most often, not the number of times it appears.
+probe_item_ids:
+- itm.mth.o.statistics.0050
+- itm.mth.o.statistics.0051
+- itm.mth.o.statistics.0052
+- itm.mth.o.statistics.0063
+- itm.mth.o.statistics.0064
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

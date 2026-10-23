@@ -1,0 +1,34 @@
+id: mc.acc.o.id_writeoff_not_deducted
+kc_ids:
+- kc.acc.o.irrecoverable_debts.net_receivables
+student_name: Write-off left in receivables
+description: Deducts the allowance but leaves a debt written off in trade receivables.
+signatures:
+- kind: answer_transform
+  expression: receivables - allowance
+fix:
+  strategy: rule_restatement
+  text:
+    en: A debt written off is no longer owed; take it out before anything else.
+probe_item_ids:
+- itm.acc.o.irrecoverable_debts.0034
+- itm.acc.o.irrecoverable_debts.0035
+- itm.acc.o.irrecoverable_debts.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

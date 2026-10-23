@@ -1,0 +1,37 @@
+id: mc.phy.o.minutes_used_as_seconds
+kc_ids:
+- kc.phy.o.electrical_quantities.current_and_charge
+- kc.phy.o.electrical_quantities.potential_difference
+student_name: Leaving the time in minutes
+description: Uses a time given in minutes as if it were in seconds, so the charge or energy is sixty times too small.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'An amp is a coulomb per second, so the time must be in seconds: multiply minutes by sixty first.'
+probe_item_ids:
+- itm.phy.o.electrical_quantities.0027
+- itm.phy.o.electrical_quantities.0028
+- itm.phy.o.electrical_quantities.0030
+- itm.phy.o.electrical_quantities.0043
+- itm.phy.o.electrical_quantities.0045
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

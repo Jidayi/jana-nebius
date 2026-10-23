@@ -1,0 +1,42 @@
+id: wex.chm.o.analysis.0012
+kc_ids:
+- kc.chm.o.analysis.cation_tests
+problem: Sodium hydroxide gives a light blue precipitate, insoluble in excess. Identify the ion and give the relative formula mass of the precipitate.
+steps:
+- n: 1
+  latex: \text{Cu}^{2+}
+  reason: Colour of the hydroxide
+final_answer:
+  latex: M_r = 98
+  check_id: chk_build_chm_analysis_w0012_mr
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_analysis_w0012_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_h
+      formula: Cu(OH)2
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

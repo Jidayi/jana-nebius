@@ -1,0 +1,34 @@
+id: mc.phy.o.only_far_echo_used
+kc_ids:
+- kc.phy.o.sound.speed_and_echoes
+student_name: Using only the later echo
+description: Between two reflectors, uses only the later echo and forgets the distance to the nearer reflector.
+signatures:
+- kind: answer_transform
+  expression: v*t2/2
+fix:
+  strategy: diagram
+  text:
+    en: The gap between the reflectors is your distance to one plus your distance to the other. Use both echoes.
+probe_item_ids:
+- itm.phy.o.sound.0029
+- itm.phy.o.sound.0019
+- itm.phy.o.sound.0024
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.mth.o.scale_units_not_converted
+kc_ids:
+- kc.mth.o.geometry.map_scales
+student_name: Leaving the answer in map units
+description: Multiplies by the scale correctly but gives the real distance in centimetres without converting to metres or kilometres.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: 100 cm = 1 m and 1000 m = 1 km, so 100000 cm = 1 km.
+probe_item_ids:
+- itm.mth.o.geometry.0045
+- itm.mth.o.geometry.0046
+- itm.mth.o.geometry.0047
+- itm.mth.o.geometry.0048
+- itm.mth.o.geometry.0049
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.impulse_ms_not_converted
+kc_ids:
+- kc.phy.o.momentum.impulse
+student_name: Milliseconds used as seconds
+description: Uses a time in milliseconds as if it were in seconds, so the force comes out a thousand times too small.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: Force in newtons needs the time in seconds. Change milliseconds into seconds first.
+probe_item_ids:
+- itm.phy.o.momentum.0042
+- itm.phy.o.momentum.0045
+- itm.phy.o.momentum.0031
+- itm.phy.o.momentum.0034
+- itm.phy.o.momentum.0038
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

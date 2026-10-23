@@ -1,0 +1,33 @@
+id: mc.phy.o.ke_final_not_change
+kc_ids:
+- kc.phy.o.energy.kinetic_energy
+student_name: Final energy instead of the change
+description: Gives the kinetic energy at the final speed when the question asks for the increase in kinetic energy.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: rule_restatement
+  text:
+    en: An increase is final minus starting value. The object already had kinetic energy before it sped up.
+probe_item_ids:
+- itm.phy.o.energy.0027
+- itm.phy.o.energy.0020
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

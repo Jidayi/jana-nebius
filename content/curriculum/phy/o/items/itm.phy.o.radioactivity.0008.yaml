@@ -1,0 +1,93 @@
+id: itm.phy.o.radioactivity.0008
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.types_of_radiation
+stem: A beta particle and an alpha particle are compared.
+parts:
+- id: a
+  prompt: Which statement is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The beta particle is lighter and penetrates further
+      correct: true
+    - id: B
+      text: The beta particle is a whole atom, while the alpha particle is a nucleus
+      correct: false
+      misconception_id: mc.phy.o.radiation_natures_swapped
+      feedback: 'Alpha: two protons and two neutrons. Beta: a fast electron from the nucleus. Gamma: an electromagnetic wave.'
+    - id: C
+      text: The alpha particle penetrates further because it is bigger
+      correct: false
+      misconception_id: mc.phy.o.penetration_order_wrong
+      feedback: Paper stops alpha; a few millimetres of aluminium stop beta; gamma is only reduced by thick lead or concrete.
+    - id: D
+      text: The beta particle came from the atom's electron shells
+      correct: false
+      misconception_id: mc.phy.o.beta_from_electron_shell
+      feedback: In beta decay a neutron in the nucleus turns into a proton and a fast electron, and that electron is shot out. It never orbited the atom.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Think about what each radiation is: its mass and its charge.'
+  - rung: 2
+    name: concept
+    text:
+      en: Alpha is heavy and doubly charged; beta is a light, charged electron; gamma is an uncharged wave.
+  - rung: 3
+    name: first_step
+    text:
+      en: Compare their masses, then their penetrating power.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that do not fit those properties.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The beta particle is lighter and penetrates further.'
+  misconception_ids:
+  - mc.phy.o.beta_from_electron_shell
+  - mc.phy.o.penetration_order_wrong
+  - mc.phy.o.radiation_natures_swapped
+solution:
+  steps:
+  - n: 1
+    latex: \text{The beta particle is lighter and penetrates further}
+    reason: Use the nature, charge and mass of each radiation
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

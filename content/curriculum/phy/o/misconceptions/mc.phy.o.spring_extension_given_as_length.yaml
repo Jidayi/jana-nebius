@@ -1,0 +1,34 @@
+id: mc.phy.o.spring_extension_given_as_length
+kc_ids:
+- kc.phy.o.forces.springs
+student_name: Extension given as the length
+description: Gives the extension when the new length of the spring was asked for, forgetting to add the original length.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: rule_restatement
+  text:
+    en: F = kx gives how much the spring grows. Its new length is the original length plus that extension.
+probe_item_ids:
+- itm.phy.o.forces.0060
+- itm.phy.o.forces.0053
+- itm.phy.o.forces.0057
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

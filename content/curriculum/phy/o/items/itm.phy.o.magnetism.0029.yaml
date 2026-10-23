@@ -1,0 +1,93 @@
+id: itm.phy.o.magnetism.0029
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.magnetism.magnetic_fields
+stem: Field lines are drawn round a bar magnet lying on a table.
+parts:
+- id: a
+  prompt: Which way do the field lines point outside the magnet?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: From the south pole round to the north pole
+      correct: false
+      misconception_id: mc.phy.o.field_lines_s_to_n
+      feedback: Outside a magnet the field points from the north pole round to the south pole, the way a small compass's north end points.
+    - id: B
+      text: From the north pole round to the south pole
+      correct: true
+    - id: C
+      text: Only along the middle of the magnet
+      correct: false
+      misconception_id: mc.phy.o.field_strongest_at_middle
+      feedback: Iron filings pile up at the ends of a bar magnet and hardly at all at its middle. The field is strongest at the poles.
+    - id: D
+      text: Only along the lines that are drawn, nowhere else
+      correct: false
+      misconception_id: mc.phy.o.field_only_on_drawn_lines
+      feedback: A compass placed between two drawn lines still turns. The lines show the field's direction and strength; the field is everywhere near the magnet.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Picture a small plotting compass placed at that point near the magnet.
+  - rung: 2
+    name: concept
+    text:
+      en: Field lines run from north to south outside a magnet, never cross, and are closest where the field is strongest, at the poles.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A field line shows the way the north end of a small compass would point.
+  - rung: 5
+    name: full_step
+    text:
+      en: From the north pole round to the south pole. A field line shows the way the north end of a small compass would point.
+  misconception_ids:
+  - mc.phy.o.field_lines_s_to_n
+  - mc.phy.o.field_only_on_drawn_lines
+  - mc.phy.o.field_strongest_at_middle
+solution:
+  steps:
+  - n: 1
+    latex: \text{From the north pole round to the south pole}
+    reason: Use the rules for magnetic field lines
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

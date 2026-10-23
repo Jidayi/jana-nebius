@@ -1,0 +1,110 @@
+id: itm.phy.o.particles.0059
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.pressure_and_volume
+stem: A fixed mass of gas has a volume of 100 cm³ at 250 kPa. Its pressure is changed to 150 kPa without changing its temperature.
+parts:
+- id: a
+  prompt: Find its new volume.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 60 cm³
+      correct: false
+      misconception_id: mc.phy.o.boyle_direct_proportion
+      feedback: Squash a gas into half the space and its pressure doubles, it does not halve. For a fixed mass at constant temperature pV stays the same, so as one goes up the other goes down.
+    - id: B
+      text: 100 cm³
+      correct: false
+      misconception_id: mc.phy.o.gas_pressure_unchanged
+      feedback: 'Push in a sealed syringe and you feel the push back grow: the same gas in a smaller space hits the walls more often. Pressure depends on volume and temperature, not only on the amount of gas.'
+    - id: C
+      text: 1.67 cm³
+      correct: false
+      misconception_id: mc.phy.o.boyle_ratio_only
+      feedback: The ratio only says how many times bigger the new value is. Multiply the starting value by it, or use p₁V₁ = p₂V₂ in full.
+    - id: D
+      text: 167 cm³
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The mass and temperature of the gas stay the same, so pressure × volume stays constant.
+  - rung: 2
+    name: concept
+    text:
+      en: Use p₁V₁ = p₂V₂ and rearrange for V₂.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out p₁V₁ = 250 × 100 first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 25000 by 150.
+  - rung: 5
+    name: full_step
+    text:
+      en: The new volume is 167 cm³.
+  misconception_ids:
+  - mc.phy.o.boyle_direct_proportion
+  - mc.phy.o.boyle_ratio_only
+  - mc.phy.o.gas_pressure_unchanged
+solution:
+  steps:
+  - n: 1
+    latex: p_1V_1 = p_2V_2
+    reason: 'Boyle''s law: fixed mass at constant temperature'
+  - n: 2
+    latex: p_1V_1 = 250 \times 100 = 25000
+    reason: pV before the change
+    check_id: chk_build_phy_ptc_0059_k
+  - n: 3
+    latex: V_2 = \frac{25000}{150} = 167\ \text{cm}^3
+    reason: Divide by the new pressure
+    check_id: chk_build_phy_ptc_0059_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ptc_0059_ans:
+    args:
+      expression: 250*100/150
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_ptc_0059_k:
+    args:
+      expression: 250*100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

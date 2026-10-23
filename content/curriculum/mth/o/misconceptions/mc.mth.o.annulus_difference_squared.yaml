@@ -1,0 +1,36 @@
+id: mc.mth.o.annulus_difference_squared
+kc_ids:
+- kc.mth.o.mensuration.compound_shapes
+student_name: Subtracting the radii first
+description: Finds the area of a ring as π(R − r)² instead of πR² − πr².
+signatures:
+- kind: answer_transform
+  expression: pi*(R - r)^2
+fix:
+  strategy: counterexample
+  text:
+    en: 'Work out each circle''s area and subtract: the ring is the big disc with the small disc removed.'
+probe_item_ids:
+- itm.mth.o.mensuration.0103
+- itm.mth.o.mensuration.0091
+- itm.mth.o.mensuration.0094
+- itm.mth.o.mensuration.0096
+- itm.mth.o.mensuration.0098
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

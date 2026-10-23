@@ -1,0 +1,33 @@
+id: mc.phy.o.osc_ygain_timebase_confused
+kc_ids:
+- kc.phy.o.oscilloscope.time_base
+- kc.phy.o.oscilloscope.y_gain
+student_name: Mixing up the Y-gain and the time-base
+description: Uses the Y-gain control to change the spacing of the waves, or the time-base to change their height.
+signatures:
+- kind: answer_transform
+  expression: swap controls
+fix:
+  strategy: contrast_example
+  text:
+    en: The time-base sets the time per division across the screen; the Y-gain sets the volts per division up the screen.
+probe_item_ids:
+- itm.phy.o.oscilloscope.0006
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

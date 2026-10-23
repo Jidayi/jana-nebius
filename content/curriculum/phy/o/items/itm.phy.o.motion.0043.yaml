@@ -1,0 +1,89 @@
+id: itm.phy.o.motion.0043
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.speed_unit_conversion
+stem: A motorbike moves at 15 m/s.
+parts:
+- id: a
+  prompt: Convert this speed to kilometres per hour.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '54.0'
+    unit: km/h
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_k_0043_a
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You need the same speed in kilometres per hour.
+  - rung: 2
+    name: concept
+    text:
+      en: 1 m/s is 3.6 km/h.
+  - rung: 3
+    name: first_step
+    text:
+      en: To go from m/s to km/h, multiply by 3.6.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 15 × 3.6.
+  - rung: 5
+    name: full_step
+    text:
+      en: 15 × 3.6 = 54.0 km/h.
+  misconception_ids:
+  - mc.phy.o.kmh_conversion_inverted
+solution:
+  steps:
+  - n: 1
+    latex: v_{km/h} = 3.6\,v
+    reason: 1 m/s is 3.6 km/h
+  - n: 2
+    latex: v_{km/h} = 3.6 \times 15
+    reason: Substitute
+  - n: 3
+    latex: v_{km/h} = 54.0\ \text{km/h}
+    reason: Multiply
+    check_id: chk_build_phy_k_0043_a
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- transport
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_k_0043_a:
+    args:
+      expression: 15*3.6
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

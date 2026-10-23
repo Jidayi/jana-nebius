@@ -1,0 +1,44 @@
+id: wex.phy.o.density.0006
+kc_ids:
+- kc.phy.o.density.floating_and_sinking
+problem: A glass marble has a mass of 5 g and a volume of 2 cm³. It is placed in sea water, which has a density of 1.03 g/cm³. Does it float or sink?
+steps:
+- n: 1
+  latex: \rho = \frac{5}{2} = 2.5\ \text{g/cm}^3
+  reason: Density = mass ÷ volume
+  check_id: chk_build_phy_den_w0006_rho
+- n: 2
+  latex: \rho_{\text{object}} > \rho_{\text{sea water}} \Rightarrow \text{it sinks}
+  reason: An object less dense than the liquid floats; a denser one sinks
+final_answer:
+  latex: \rho = 2.5\ \text{g/cm}^3
+  check_id: chk_build_phy_den_w0006_rho
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_den_w0006_rho:
+    args:
+      expression: 5/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,494 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.acc-o-partnerships
+version: 2026-10-13.1
+description: 'Colocated evals for acc-o-partnerships (SKL-21, EVL-07): one case per misconception. The student answers
+  as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key away,
+  and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: acc_o_partnerships_01
+  title: Holds 'Sharing by capital by default'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.pa_capital_ratio_default
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.partnerships.0001
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.partnerships.partnership_agreement
+        misconception: mc.acc.o.pa_capital_ratio_default
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: acc_o_partnerships_02
+  title: Holds 'Salaries by default'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.pa_salary_default
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.partnerships.0001
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.partnerships.partnership_agreement
+        misconception: mc.acc.o.pa_salary_default
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: acc_o_partnerships_03
+  title: Holds 'Interest on the wrong amount'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.pa_rate_on_wrong_base
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.partnerships.0019
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.partnerships.interest_and_salary
+        misconception: mc.acc.o.pa_rate_on_wrong_base
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: acc_o_partnerships_04
+  title: Holds 'Forgetting the salary'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.pa_salary_omitted
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.partnerships.0019
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.partnerships.interest_and_salary
+        misconception: mc.acc.o.pa_salary_omitted
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_partnerships_05
+  title: Holds 'Interest on drawings reduces the profit to share'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.pa_iod_subtracted
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.partnerships.0030
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.partnerships.appropriation
+        misconception: mc.acc.o.pa_iod_subtracted
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_partnerships_06
+  title: Holds 'Sharing the whole profit'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.pa_share_before_appropriations
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.partnerships.0030
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.partnerships.appropriation
+        misconception: mc.acc.o.pa_share_before_appropriations
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_partnerships_07
+  title: Holds 'Ratio the wrong way round'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.pa_ratio_reversed
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.partnerships.0030
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.partnerships.appropriation
+        misconception: mc.acc.o.pa_ratio_reversed
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_partnerships_08
+  title: Holds 'Appropriations as expenses'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.pa_appropriation_as_expense
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.partnerships.0045
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.partnerships.capital_vs_current
+        misconception: mc.acc.o.pa_appropriation_as_expense
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_partnerships_09
+  title: Holds 'Adding drawings to the current account'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.pa_drawings_added_current
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.partnerships.0041
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.partnerships.current_accounts
+        misconception: mc.acc.o.pa_drawings_added_current
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_partnerships_10
+  title: Holds 'Opening balance on the wrong side'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.pa_opening_side_reversed
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.partnerships.0041
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.partnerships.current_accounts
+        misconception: mc.acc.o.pa_opening_side_reversed
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_partnerships_11
+  title: Holds 'Profit share to the capital account'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.pa_profit_to_capital
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.partnerships.0045
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.partnerships.capital_vs_current
+        misconception: mc.acc.o.pa_profit_to_capital
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

@@ -1,0 +1,107 @@
+id: itm.phy.o.wave_properties.0029
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.wave_equation
+stem: An underwater loudspeaker sends out sound of frequency 7.5 kHz. The wavelength in the water is 0.2 m.
+parts:
+- id: a
+  prompt: Calculate the speed of the waves.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 37500 m/s
+      correct: false
+      misconception_id: mc.phy.o.wave_speed_divided
+      feedback: Each second f waves pass a point and each one is λ long, so the wave moves f × λ metres each second.
+    - id: B
+      text: 1500 m/s
+      correct: true
+    - id: C
+      text: 1.5 m/s
+      correct: false
+      misconception_id: mc.phy.o.wave_prefix_ignored
+      feedback: Put every value into hertz, metres and seconds before using a formula, then change the answer into the unit the question asks for.
+    - id: D
+      text: 2.67 × 10^-5 m/s
+      correct: false
+      misconception_id: mc.phy.o.wave_equation_inverted
+      feedback: 'From v = fλ: λ = v/f and f = v/λ. The speed always goes on top when you divide.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which equation links wave speed, frequency and wavelength?
+  - rung: 2
+    name: concept
+    text:
+      en: v = f × λ, with f in hertz and λ in metres.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'First put the values in hertz and metres: 7.5 kHz = 7500 Hz.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply the frequency by the wavelength.
+  - rung: 5
+    name: full_step
+    text:
+      en: v = 1500 m/s.
+  misconception_ids:
+  - mc.phy.o.wave_equation_inverted
+  - mc.phy.o.wave_prefix_ignored
+  - mc.phy.o.wave_speed_divided
+solution:
+  steps:
+  - n: 1
+    latex: f = 7.5\ \text{kHz} = 7500\ \text{Hz}
+    reason: Put the frequency in hertz
+    check_id: chk_build_phy_wav_0029_fsi
+  - n: 2
+    latex: v = f\lambda = 7500 \times 0.2 = 1500\ \text{m/s}
+    reason: Wave equation
+    check_id: chk_build_phy_wav_0029_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 75
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_wav_0029_ans:
+    args:
+      expression: 7500*0.2
+    tool: math_evaluate
+  chk_build_phy_wav_0029_fsi:
+    args:
+      quantity: 7.5 kHz
+      to: Hz
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

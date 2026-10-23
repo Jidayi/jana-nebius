@@ -1,0 +1,98 @@
+id: itm.chm.o.energetics.0023
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.energetics.profiles
+stem: Without a catalyst the reactants are at 40 kJ/mol, the peak at 190 kJ/mol and the products at 0 kJ/mol. A catalyst lowers the peak to 120 kJ/mol.
+parts:
+- id: a
+  prompt: What does the catalyst change?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: It lowers both the activation energy and ΔH.
+      correct: false
+      misconception_id: mc.chm.o.energetics_catalyst_changes_dh
+      feedback: A catalyst lowers the hump only. The reactants and products stay at the same levels, so ΔH is unchanged.
+    - id: B
+      text: It lowers the activation energy; ΔH stays the same.
+      correct: true
+    - id: C
+      text: It changes ΔH but not the activation energy.
+      correct: false
+      misconception_id: mc.chm.o.energetics_catalyst_changes_dh
+      feedback: A catalyst lowers the hump only. The reactants and products stay at the same levels, so ΔH is unchanged.
+    - id: D
+      text: It raises the energy of the products.
+      correct: false
+      misconception_id: mc.chm.o.energetics_catalyst_changes_dh
+      feedback: A catalyst lowers the hump only. The reactants and products stay at the same levels, so ΔH is unchanged.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which levels on the diagram does the catalyst move?
+  - rung: 2
+    name: concept
+    text:
+      en: A catalyst gives a different route with a lower hump.
+  - rung: 3
+    name: first_step
+    text:
+      en: The peak falls from 190 to 120 kJ/mol, a drop of 70 kJ/mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Do the reactants (40) or products (0) move?
+  - rung: 5
+    name: full_step
+    text:
+      en: Only the activation energy falls; ΔH is unchanged.
+  misconception_ids:
+  - mc.chm.o.energetics_catalyst_changes_dh
+solution:
+  steps:
+  - n: 1
+    latex: 190 - 120 = 70
+    reason: Fall in the peak
+    check_id: chk_build_chm_energetics_0023_drop
+  - n: 2
+    latex: \Delta H\ \text{unchanged}
+    reason: Reactants and products fixed
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_energetics_0023_drop:
+    args:
+      expression: 190 - 120
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

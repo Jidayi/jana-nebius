@@ -1,0 +1,92 @@
+id: itm.phy.o.thermal_properties.0031
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.thermal_properties.latent_heat
+stem: The specific latent heat of fusion of ice is 334 kJ/kg, and the specific latent heat of vaporisation of water is 2260 kJ/kg.
+parts:
+- id: a
+  prompt: How much energy is needed to melt 120 g of ice at 0 °C? Give your answer in kJ.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '40.08'
+    unit: kJ
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_thp_0031_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The temperature does not change, so all the energy goes into changing the state.
+  - rung: 2
+    name: concept
+    text:
+      en: Melting uses the specific latent heat of fusion.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Use E = mL with the mass in kilograms: change 120 g to kg.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply 0.12 kg by 334 kJ/kg.
+  - rung: 5
+    name: full_step
+    text:
+      en: E = 40.08 kJ.
+  misconception_ids:
+  - mc.phy.o.latent_wrong_kind
+  - mc.phy.o.thermal_grams_as_kg
+  - mc.phy.o.latent_divided_by_mass
+solution:
+  steps:
+  - n: 1
+    latex: m = 120\ \text{g} = 0.12\ \text{kg}
+    reason: Specific latent heat is per kilogram
+    check_id: chk_build_phy_thp_0031_m
+  - n: 2
+    latex: E = mL = 0.12 \times 334 = 40.08\ \text{kJ}
+    reason: Latent heat of fusion
+    check_id: chk_build_phy_thp_0031_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_thp_0031_ans:
+    args:
+      expression: 120/1000*334
+    tool: math_evaluate
+  chk_build_phy_thp_0031_m:
+    args:
+      expression: 120/1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

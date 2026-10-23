@@ -1,0 +1,35 @@
+id: mc.acc.o.cost_fixed_variable_by_size
+kc_ids:
+- kc.acc.o.costing.cost_classification
+student_name: Fixed or variable by size
+description: Classifies a cost as fixed or variable by how large it is rather than by whether its total changes with output.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: expense
+fix:
+  strategy: counterexample
+  text:
+    en: 'A small cost per item can be variable and a large rent fixed: ask whether the total moves with output.'
+probe_item_ids:
+- itm.acc.o.costing.0001
+- itm.acc.o.costing.0002
+- itm.acc.o.costing.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,58 @@
+id: wex.mth.o.number.0022
+kc_ids:
+- kc.mth.o.number.standard_form_calc
+problem: Work out $(9 \times 10^{4}) \div (3 \times 10^{-2})$, giving your answer in standard form $A \times 10^p$. Find the power p.
+steps:
+- n: 1
+  latex: 9 \div 3 = 3
+  reason: Divide the numbers
+  check_id: chk_build_mth_num_w0022_c
+- n: 2
+  latex: 10^{4} \div 10^{-2} = 10^{6}
+  reason: Subtract the powers
+  check_id: chk_build_mth_num_w0022_p
+- n: 3
+  latex: p = 6
+  reason: Already between 1 and 10
+  check_id: chk_build_mth_num_w0022_ans
+final_answer:
+  latex: '6'
+  check_id: chk_build_mth_num_w0022_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0022_ans:
+    args:
+      expression: 4 - (-2) + (0)
+    tool: math_evaluate
+  chk_build_mth_num_w0022_c:
+    args:
+      expression: 9/3
+    tool: math_evaluate
+  chk_build_mth_num_w0022_p:
+    args:
+      expression: 4 - (-2)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

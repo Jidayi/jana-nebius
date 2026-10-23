@@ -1,0 +1,88 @@
+id: itm.chm.o.metals.0057
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.extraction
+stem: Electrolysis uses a lot of electrical energy.
+parts:
+- id: a
+  prompt: Why is electrolysis not used to extract iron, even though it could work?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Iron oxide gains oxygen in electrolysis.
+      correct: false
+      misconception_id: mc.chm.o.metals_reduction_gains_oxygen
+      feedback: Reduction is LOSS of oxygen. In extraction the metal oxide loses its oxygen and becomes the metal; the carbon or carbon monoxide gains that oxygen and is oxidised.
+    - id: B
+      text: Iron is above carbon, so electrolysis would fail.
+      correct: false
+      misconception_id: mc.chm.o.metals_extraction_reversed
+      feedback: A reactive metal clings to the elements in its compounds, so it is HARD to extract. The higher a metal is in the series, the more energy its extraction needs; gold is so unreactive it is found as the metal.
+    - id: C
+      text: Iron does not form an oxide.
+      correct: false
+    - id: D
+      text: Heating with carbon is far cheaper, and carbon is reactive enough to reduce iron oxide.
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Industry chooses the cheapest method that works.
+  - rung: 2
+    name: concept
+    text:
+      en: Electrolysis is expensive because it uses so much electricity.
+  - rung: 3
+    name: first_step
+    text:
+      en: Iron is below carbon in the reactivity series.
+  - rung: 4
+    name: worked_step
+    text:
+      en: So ask whether the cheap carbon method can already do the job.
+  - rung: 5
+    name: full_step
+    text:
+      en: Carbon can reduce iron oxide, and this is much cheaper than electrolysis.
+  misconception_ids:
+  - mc.chm.o.metals_extraction_reversed
+  - mc.chm.o.metals_reduction_gains_oxygen
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Fe below C: cheap carbon reduction}'
+    reason: Cost decides
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

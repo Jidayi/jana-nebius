@@ -1,0 +1,93 @@
+id: itm.phy.o.forces.0074
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.circular_motion
+stem: A hammer thrower swings a heavy ball round in a circle and then lets go.
+parts:
+- id: a
+  prompt: Which statement is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: While it circles the wire pushes it outwards; after release it flies straight out
+      correct: false
+      misconception_id: mc.phy.o.circular_force_outwards
+      feedback: 'Draw the circle and the velocity along it at two moments: the change in velocity points into the circle. The resultant force points towards the centre.'
+    - id: B
+      text: No force acts while it circles at steady speed
+      correct: false
+      misconception_id: mc.phy.o.circular_no_force_needed
+      feedback: Speed stays the same but the direction changes all the time, so the velocity changes. A changing velocity needs a resultant force.
+    - id: C
+      text: While it circles the wire pulls it inwards; after release it moves off along a tangent
+      correct: true
+    - id: D
+      text: After release it flies straight out from the centre
+      correct: false
+      misconception_id: mc.phy.o.released_flies_outwards
+      feedback: 'When the string breaks the inward force stops, so the object carries on in the direction it was moving at that moment: along the tangent to the circle.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about the velocity of the object, not just its speed.
+  - rung: 2
+    name: concept
+    text:
+      en: Going round a circle the direction of motion changes all the time, so the velocity changes.
+  - rung: 3
+    name: first_step
+    text:
+      en: A changing velocity needs a resultant force; think about which way the velocity is being turned.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Think separately about the force while it circles and the path once the force stops.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: While it circles the wire pulls it inwards; after release it moves off along a tangent. The inward pull of the wire turns its velocity; with that pull gone, it travels straight on.'
+  misconception_ids:
+  - mc.phy.o.circular_force_outwards
+  - mc.phy.o.circular_no_force_needed
+  - mc.phy.o.released_flies_outwards
+solution:
+  steps:
+  - n: 1
+    latex: \text{While it circles the wire pulls it inwards; after release it moves off along a tangent}
+    reason: Think about the change in velocity
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

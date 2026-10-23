@@ -1,0 +1,92 @@
+id: itm.phy.o.electromagnetism.0049
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.transformers
+stem: In a transformer the primary and secondary coils are wound on the same iron core.
+parts:
+- id: a
+  prompt: How is energy passed from the primary coil to the secondary coil?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: By a current flowing through the iron core
+      correct: false
+      misconception_id: mc.phy.o.current_flows_through_core
+      feedback: The coils are insulated from the core and from each other. The primary's changing field, guided by the core, induces an e.m.f. in the secondary.
+    - id: B
+      text: By a changing magnetic field in the core
+      correct: true
+    - id: C
+      text: By a steady magnetic field from a d.c. supply
+      correct: false
+      misconception_id: mc.phy.o.transformer_works_on_dc
+      feedback: A steady current makes a steady field, and a steady field induces nothing. A transformer needs a.c.
+    - id: D
+      text: By charges jumping across the gap between the coils
+      correct: false
+      misconception_id: mc.phy.o.current_flows_through_core
+      feedback: The coils are insulated from the core and from each other. The primary's changing field, guided by the core, induces an e.m.f. in the secondary.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Compare the numbers of turns on the two coils, and remember what drives the output.
+  - rung: 2
+    name: concept
+    text:
+      en: The voltages are in the same ratio as the turns, Vs/Vp = Ns/Np, and only a changing current induces an output.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The coils are insulated; the alternating current makes a changing field that induces the output.
+  - rung: 5
+    name: full_step
+    text:
+      en: By a changing magnetic field in the core. The coils are insulated; the alternating current makes a changing field that induces the output.
+  misconception_ids:
+  - mc.phy.o.current_flows_through_core
+  - mc.phy.o.transformer_works_on_dc
+solution:
+  steps:
+  - n: 1
+    latex: \text{By a changing magnetic field in the core}
+    reason: Use the turns ratio and the need for a.c.
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,34 @@
+id: mc.acc.o.club_arrears_reversed
+kc_ids:
+- kc.acc.o.clubs.subscriptions
+student_name: Arrears and advances at the end reversed
+description: Subtracts subscriptions owing at the end, or adds subscriptions paid in advance for next year.
+signatures:
+- kind: answer_transform
+  expression: received - a1 + p1 - a2 + p2
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Owing at the end was earned this year: add it. Paid in advance for next year was not: subtract it.'
+probe_item_ids:
+- itm.acc.o.clubs.0012
+- itm.acc.o.clubs.0013
+- itm.acc.o.clubs.0014
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,44 @@
+id: wex.mth.o.algebra_and_graphs.0010
+kc_ids:
+- kc.mth.o.algebra_and_graphs.change_subject
+problem: In the formula $y = mx + c$, y = 29, m = 4, c = 5. Make x the subject, then find the value of x.
+steps:
+- n: 1
+  latex: x = \frac{y - c}{m}
+  reason: Make x the subject
+- n: 2
+  latex: x = 6
+  reason: Substitute y = 29, m = 4, c = 5 and evaluate
+  check_id: chk_build_mth_alg_w0010_ans
+final_answer:
+  latex: '6'
+  check_id: chk_build_mth_alg_w0010_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0010_ans:
+    args:
+      expression: (y - c)/m
+      values:
+        c: 5
+        m: 4
+        y: 29
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

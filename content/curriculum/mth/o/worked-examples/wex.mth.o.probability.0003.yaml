@@ -1,0 +1,36 @@
+id: wex.mth.o.probability.0003
+kc_ids:
+- kc.mth.o.probability.expected_frequency
+problem: The probability that a bus is late is 0.3. In 500 trials, how many times would you expect it to happen?
+steps:
+- n: 1
+  latex: 0.3 \times 500 = 150
+  reason: Expected frequency = probability × number of trials
+  check_id: chk_build_mth_prb_w0003_ans
+final_answer:
+  latex: '150'
+  check_id: chk_build_mth_prb_w0003_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_prb_w0003_ans:
+    args:
+      expression: 0.3*500
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

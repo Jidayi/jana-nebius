@@ -1,0 +1,112 @@
+id: itm.mth.o.statistics.0129
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.cumulative_frequency
+stem: 'The masses (kg) of 76 parcels are summarised in a cumulative frequency table: none under 40; up to 60: 16; up to 80: 32; up to 100: 50; up to 120: 62; up to 140: 76.'
+parts:
+- id: a
+  prompt: Estimate the interquartile range, to 3 significant figures, by interpolating within the classes.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 112 kg
+      correct: false
+      misconception_id: mc.mth.o.iqr_as_quartile
+      feedback: Interquartile range = upper quartile − lower quartile.
+    - id: B
+      text: 47.9 kg
+      correct: true
+    - id: C
+      text: 100 kg
+      correct: false
+      misconception_id: mc.mth.o.range_as_largest
+      feedback: 'Range measures spread: largest value − smallest value.'
+    - id: D
+      text: 38 kg
+      correct: false
+      misconception_id: mc.mth.o.median_position_as_value
+      feedback: n/2 tells you where to read across from; the median is the value on the other axis.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The interquartile range measures the spread of the middle half of the data.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the lower quartile at n/4 and the upper quartile at 3n/4, then subtract.
+  - rung: 3
+    name: first_step
+    text:
+      en: The positions are 76 ÷ 4 and 3 × 76 ÷ 4.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Interpolate within each class to find Q₁ and Q₃.
+  - rung: 5
+    name: full_step
+    text:
+      en: The interquartile range is about 47.9 kg.
+  misconception_ids:
+  - mc.mth.o.iqr_as_quartile
+  - mc.mth.o.median_position_as_value
+  - mc.mth.o.range_as_largest
+solution:
+  steps:
+  - n: 1
+    latex: Q_1 = 63.75,\ Q_3 = 111.667
+    reason: Read at a quarter and three quarters of the total
+    check_id: chk_build_mth_sta_0129_q
+  - n: 2
+    latex: \text{IQR} = 111.667 - 63.75 = 47.9
+    reason: Upper quartile minus lower quartile
+    check_id: chk_build_mth_sta_0129_ans
+difficulty:
+  prior: 0.8
+  band: core
+estimated_seconds: 150
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0129_ans:
+    args:
+      expression: 111.667 - 63.75
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_sta_0129_q:
+    args:
+      equations:
+      - p = 63.75
+      - q = 111.667
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

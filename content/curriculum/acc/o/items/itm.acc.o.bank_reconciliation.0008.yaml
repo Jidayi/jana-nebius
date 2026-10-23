@@ -1,0 +1,100 @@
+id: itm.acc.o.bank_reconciliation.0008
+version: 0.1.0
+type: mcq
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.bank_reconciliation.timing_differences
+stem: When reconciling a bank account, one item is a cheque sent to a supplier last week that the supplier has not yet paid into a bank.
+parts:
+- id: a
+  prompt: How is it treated?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: An outstanding lodgement
+      correct: false
+    - id: B
+      text: An unpresented cheque
+      correct: true
+    - id: C
+      text: An item to enter in the cash book
+      correct: false
+    - id: D
+      text: An error made by the bank
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Is the item already in the cash book, or only on the statement?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Only on the statement: update the cash book. Only in the cash book: a timing difference.'
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Paid out and not yet cleared: unpresented. Paid in and not yet credited: outstanding lodgement.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Match the item to the rule.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'It is treated as: an unpresented cheque.'
+solution:
+  steps:
+  - n: 1
+    latex: \text{Sort by where the item is recorded}
+    reason: Cash book or statement
+    check_id: chk_build_acc_bank_reconciliation_0008_t
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_bank_reconciliation_0008_t:
+    args:
+      bank_statement:
+        balance: '5250'
+        entries: []
+        overdrawn: false
+      cash_book:
+        balance: '5000'
+        entries:
+        - amount: '250'
+          direction: out
+          ref: x1
+        overdrawn: false
+      dp: 2
+      start_from: bank_statement
+      task: reconcile
+    tool: acc_double_entry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,100 @@
+id: itm.mth.o.algebra_and_graphs.0204
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.linear_sequences
+stem: A sequence begins 11, 16, 21, 26, …
+parts:
+- id: a
+  prompt: Find the 25th term.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '131'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0204_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: How much does the sequence change from one term to the next?
+  - rung: 2
+    name: concept
+    text:
+      en: The nth term of a linear sequence is dn + c, where d is the common difference.
+  - rung: 3
+    name: first_step
+    text:
+      en: Here d = 5. To find c, compare 5n with the first term.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The nth term is 5n + 6. Substitute n = 25.
+  - rung: 5
+    name: full_step
+    text:
+      en: The 25th term is 131.
+  misconception_ids:
+  - mc.mth.o.nth_term_off_by_one
+  - mc.mth.o.nth_term_no_constant
+  - mc.mth.o.nth_term_first_as_coefficient
+solution:
+  steps:
+  - n: 1
+    latex: d = 5
+    reason: The common difference
+    check_id: chk_build_mth_alg_0204_dd
+  - n: 2
+    latex: \text{nth term} = 5n + 6
+    reason: The number added is the first term minus the difference
+    check_id: chk_build_mth_alg_0204_c
+  - n: 3
+    latex: 5 \times 25 + 6 = 131
+    reason: Substitute n = 25
+    check_id: chk_build_mth_alg_0204_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 75
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0204_ans:
+    args:
+      expression: 11 + (25 - 1)*(5)
+    tool: math_evaluate
+  chk_build_mth_alg_0204_c:
+    args:
+      expression: 11 - (5)
+    tool: math_evaluate
+  chk_build_mth_alg_0204_dd:
+    args:
+      expression: 16 - (11)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

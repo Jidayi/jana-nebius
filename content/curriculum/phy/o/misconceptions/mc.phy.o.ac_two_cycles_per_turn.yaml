@@ -1,0 +1,35 @@
+id: mc.phy.o.ac_two_cycles_per_turn
+kc_ids:
+- kc.phy.o.electromagnetism.electromagnetic_induction
+student_name: Two cycles each turn
+description: Counts two cycles of a.c. for each turn of the generator coil because the e.m.f. peaks twice; each turn gives one cycle, one positive peak and one negative.
+signatures:
+- kind: step_error
+  error_category: arithmetic
+fix:
+  strategy: diagram
+  text:
+    en: 'In one turn the e.m.f. rises to a peak, falls, reaches a peak the other way and returns: that is one cycle.'
+probe_item_ids:
+- itm.phy.o.electromagnetism.0042
+- itm.phy.o.electromagnetism.0044
+- itm.phy.o.electromagnetism.0031
+- itm.phy.o.electromagnetism.0037
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

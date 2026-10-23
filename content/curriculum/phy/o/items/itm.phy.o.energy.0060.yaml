@@ -1,0 +1,121 @@
+id: itm.phy.o.energy.0060
+version: 0.1.1
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.energy_conversion
+stem: Zainab, of mass 25 kg, starts from rest at the top of a slide 2 m high and reaches the bottom at 6 m/s. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate the energy transferred to thermal stores by friction on the way down.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 50 J
+      correct: true
+    - id: B
+      text: 950 J
+      correct: false
+      misconception_id: mc.phy.o.energy_lost_added
+      feedback: If 100 J was in the gravitational store and 80 J reached the kinetic store, 20 J went somewhere else. The energy wasted is start minus end.
+    - id: C
+      text: 500 J
+      correct: false
+      misconception_id: mc.phy.o.energy_lost_is_one_store
+      feedback: Energy wasted = energy at the start − useful energy at the end. Work out both, then subtract.
+    - id: D
+      text: 425 J
+      correct: false
+      misconception_id: mc.phy.o.ke_speed_not_squared
+      feedback: 'Try a speed of 2 m/s and then 4 m/s: the kinetic energy goes up four times, not twice. The speed is squared.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Without friction, all the gravitational energy would become kinetic energy.
+  - rung: 2
+    name: concept
+    text:
+      en: Energy wasted = gravitational energy lost − kinetic energy gained.
+  - rung: 3
+    name: first_step
+    text:
+      en: The gravitational energy lost is 500 J.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The kinetic energy at the bottom is 450 J; subtract.
+  - rung: 5
+    name: full_step
+    text:
+      en: 50 J is transferred to thermal stores.
+  misconception_ids:
+  - mc.phy.o.energy_lost_added
+  - mc.phy.o.energy_lost_is_one_store
+  - mc.phy.o.ke_speed_not_squared
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: E_p = 25 \times 10 \times 2 = 500\ \text{J}
+    reason: Energy at the top
+    check_id: chk_build_phy_nrg_0060_ep
+  - n: 2
+    latex: E_k = \frac{1}{2} \times 25 \times 6^2 = 450\ \text{J}
+    reason: Energy at the bottom
+    check_id: chk_build_phy_nrg_0060_ek
+  - n: 3
+    latex: 500 - 450 = 50\ \text{J}
+    reason: Energy wasted = start − end
+    check_id: chk_build_phy_nrg_0060_ans
+difficulty:
+  prior: 0.7
+  band: stretch
+estimated_seconds: 110
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0060_ans:
+    args:
+      expression: 25*10*2 - 0.5*25*6^2
+    tool: math_evaluate
+  chk_build_phy_nrg_0060_ek:
+    args:
+      expression: 0.5*25*6^2
+    tool: math_evaluate
+  chk_build_phy_nrg_0060_ep:
+    args:
+      expression: 25*10*2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

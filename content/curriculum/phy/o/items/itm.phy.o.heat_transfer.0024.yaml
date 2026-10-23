@@ -1,0 +1,91 @@
+id: itm.phy.o.heat_transfer.0024
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.convection
+stem: A fixed mass of 1.2 kg of air fills 1 m³ at 20 °C. Heated to 50 °C at constant pressure, it expands to 1.1 m³.
+parts:
+- id: a
+  prompt: Find the density of the air after heating.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1.09'
+    unit: kg/m^3
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_htr_0024_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Heating does not change the mass of the air, only its volume.
+  - rung: 2
+    name: concept
+    text:
+      en: Density = mass ÷ volume, using the volume after heating.
+  - rung: 3
+    name: first_step
+    text:
+      en: Divide 1.2 kg by the new volume.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 1.2 ÷ 1.1.
+  - rung: 5
+    name: full_step
+    text:
+      en: The warm air has a density of 1.09 kg/m³, less than before, so it rises.
+  misconception_ids:
+  - mc.phy.o.density_unchanged_on_heating
+solution:
+  steps:
+  - n: 1
+    latex: \rho_1 = \frac{1.2}{1} = 1.2\ \text{kg/m}^3
+    reason: Density before heating
+    check_id: chk_build_phy_htr_0024_before
+  - n: 2
+    latex: \rho_2 = \frac{1.2}{1.1} = 1.09\ \text{kg/m}^3
+    reason: Same mass, bigger volume, so lower density
+    check_id: chk_build_phy_htr_0024_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_htr_0024_ans:
+    args:
+      expression: 1.2/1.1
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_htr_0024_before:
+    args:
+      expression: 1.2/1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,139 @@
+id: itm.chm.o.electrolysis.0060
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.quantitative
+stem: 'Molten lead(II) bromide is electrolysed: Pb²⁺ + 2e⁻ → Pb. A current of 1.2 A flows for 25 minutes (1 minute = 60 s). One mole of electrons carries 96500 C.'
+parts:
+- id: a
+  prompt: What mass of lead is deposited, in grams?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: '1.93'
+      correct: true
+    - id: B
+      text: '0.0322'
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_time_not_in_seconds
+      feedback: In Q = I × t the current is in amperes and the time must be in seconds, so that Q comes out in coulombs. Change minutes to seconds first.
+    - id: C
+      text: '3.86'
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_electron_ratio_ignored
+      feedback: Look at the half-equation. Cu²⁺ + 2e⁻ → Cu needs two moles of electrons for every mole of copper, so divide the moles of electrons by two.
+    - id: D
+      text: '7.72'
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_electron_ratio_inverted
+      feedback: More electrons per ion means fewer ions discharged by the same charge. If each ion needs two electrons, the moles of metal are half the moles of electrons, not double.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Convert the 25 minutes to seconds first, then find the charge.
+  - rung: 2
+    name: concept
+    text:
+      en: Q = I × t with t in seconds; moles of electrons = Q ÷ 96500; then use the lead half-equation.
+  - rung: 3
+    name: first_step
+    text:
+      en: t = 25 × 60 = 1500 s, so Q = 1.2 × 1500 = 1800 C.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Moles of electrons = 0.0187 mol. Each lead ion needs 2 electrons, so moles of lead = 0.00933 mol.
+  - rung: 5
+    name: full_step
+    text:
+      en: Mass = moles × 207 = 1.93 g.
+  misconception_ids:
+  - mc.chm.o.electrolysis_time_not_in_seconds
+  - mc.chm.o.electrolysis_electron_ratio_ignored
+  - mc.chm.o.electrolysis_electron_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: t = 25 \times 60 = 1500\ \text{s}
+    reason: Minutes to seconds
+    check_id: chk_build_chm_electrolysis_0060_t
+  - n: 2
+    latex: Q = 1.2 \times 1500 = 1800\ \text{C}
+    reason: Charge = current × time
+    check_id: chk_build_chm_electrolysis_0060_m
+  - n: 3
+    latex: n(e^-) = \frac{1800}{96500} = 0.0187\ \text{mol}
+    reason: Divide by the Faraday constant
+    check_id: chk_build_chm_electrolysis_0060_e
+  - n: 4
+    latex: n(\text{Pb}) = \frac{0.0187}{2} = 0.00933\ \text{mol}
+    reason: 2 mol of electrons per mol of lead
+    check_id: chk_build_chm_electrolysis_0060_n
+  - n: 5
+    latex: m = n \times 207 = 1.93\ \text{g}
+    reason: Moles to mass
+    check_id: chk_build_chm_electrolysis_0060_m
+difficulty:
+  prior: 0.8
+  band: stretch
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_0060_e:
+    args:
+      expression: 1800/96500
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_electrolysis_0060_m:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_pb
+      - source: pack
+        symbol: faraday
+      sf: 3
+      steps:
+      - current: '1.2'
+        electrons: 2
+        id: m
+        op: electrolysis
+        species: Pb
+        time: '1500'
+    tool: chem_stoichiometry
+  chk_build_chm_electrolysis_0060_n:
+    args:
+      expression: 1800/(96500*2)
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_electrolysis_0060_t:
+    args:
+      expression: 25*60
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

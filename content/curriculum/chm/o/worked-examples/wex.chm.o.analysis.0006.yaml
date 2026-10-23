@@ -1,0 +1,41 @@
+id: wex.chm.o.analysis.0006
+kc_ids:
+- kc.chm.o.analysis.chromatography
+problem: A spot moves 2.1 cm and the solvent front 8.4 cm from the start line. Find the Rf value.
+steps:
+- n: 1
+  latex: R_f = \frac{2.1}{8.4}
+  reason: Spot over solvent
+  check_id: chk_build_chm_analysis_w0006_r
+final_answer:
+  latex: R_f = 0.25
+  check_id: chk_build_chm_analysis_w0006_r
+fading_order:
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_analysis_w0006_r:
+    args:
+      expression: 2.1/8.4
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

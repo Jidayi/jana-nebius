@@ -1,0 +1,36 @@
+id: mc.mth.o.divide_by_decimal_smaller
+kc_ids:
+- kc.mth.o.number.estimation
+student_name: Dividing always makes smaller
+description: Thinks dividing by a number less than 1 makes the answer smaller, so it multiplies instead.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: counterexample
+  text:
+    en: How many 0.5s are in 10? Twenty. Dividing by a number less than 1 gives a bigger answer.
+probe_item_ids:
+- itm.mth.o.number.0185
+- itm.mth.o.number.0186
+- itm.mth.o.number.0187
+- itm.mth.o.number.0188
+- itm.mth.o.number.0189
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

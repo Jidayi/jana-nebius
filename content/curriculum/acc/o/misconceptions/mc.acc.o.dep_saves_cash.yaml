@@ -1,0 +1,35 @@
+id: mc.acc.o.dep_saves_cash
+kc_ids:
+- kc.acc.o.depreciation.depreciation_purpose
+student_name: Depreciation saves cash
+description: Believes depreciation builds up a fund of cash to replace the asset.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: asset
+fix:
+  strategy: contrast_example
+  text:
+    en: Charging depreciation moves no money. It spreads a cost already paid.
+probe_item_ids:
+- itm.acc.o.depreciation.0013
+- itm.acc.o.depreciation.0014
+- itm.acc.o.depreciation.0015
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

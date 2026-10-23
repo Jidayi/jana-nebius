@@ -1,0 +1,36 @@
+id: wex.phy.o.electrical_quantities.0012
+kc_ids:
+- kc.phy.o.electrical_quantities.current_voltage_graphs
+problem: 'Two points are read from the current-voltage graph of a filament lamp: a current of 0.4 A at 2 V, and 1 A at 10 V. Find the resistance of the lamp when the p.d. across it is 10 V.'
+steps:
+- n: 1
+  latex: R = \frac{V}{I} = \frac{10}{1} = 10\ \Omega
+  reason: Use the readings at that point
+  check_id: chk_build_phy_elq_w0012_ans
+final_answer:
+  latex: 10\ \text{Ω}
+  check_id: chk_build_phy_elq_w0012_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_elq_w0012_ans:
+    args:
+      expression: 10/1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

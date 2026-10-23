@@ -1,0 +1,36 @@
+id: mc.mth.o.numbers_always_continuous
+kc_ids:
+- kc.mth.o.statistics.data_types
+student_name: Every number is continuous
+description: Calls any numerical data continuous, including counts such as the number of siblings.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Counted data (people, goals) jumps in whole steps: discrete. Measured data (height, time) can take any value: continuous.'
+probe_item_ids:
+- itm.mth.o.statistics.0015
+- itm.mth.o.statistics.0018
+- itm.mth.o.statistics.0019
+- itm.mth.o.statistics.0022
+- itm.mth.o.statistics.0002
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.spring_ratio_inverted
+kc_ids:
+- kc.phy.o.forces.springs
+student_name: Spring constant the wrong way up
+description: Puts force and extension the wrong way round in F = kx, for example working out the spring constant as extension ÷ force, or the force as spring constant ÷ extension.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The spring constant is the force needed for each metre of extension, so force goes on top: k = F ÷ x.'
+probe_item_ids:
+- itm.phy.o.forces.0059
+- itm.phy.o.forces.0062
+- itm.phy.o.forces.0064
+- itm.phy.o.forces.0065
+- itm.phy.o.forces.0051
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

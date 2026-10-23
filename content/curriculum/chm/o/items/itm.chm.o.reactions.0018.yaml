@@ -1,0 +1,85 @@
+id: itm.chm.o.reactions.0018
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.rate_factors
+stem: Zinc granules react slowly with dilute sulfuric acid at room temperature.
+parts:
+- id: a
+  prompt: Which change would make the reaction faster?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Adding water to the acid
+      correct: false
+    - id: B
+      text: Cooling the flask in ice
+      correct: false
+    - id: C
+      text: Using larger zinc lumps of the same total mass
+      correct: false
+      misconception_id: mc.chm.o.reactions_bigger_pieces_faster
+      feedback: Only the particles on the surface of a solid can be hit by the other reactant. Cutting a lump into small pieces, or grinding it to powder, exposes much more surface for the same mass, so the reaction is faster.
+    - id: D
+      text: Warming the acid
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which change gives the particles more energy or more chances to react?
+  - rung: 2
+    name: concept
+    text:
+      en: Higher temperature, higher concentration, larger surface area and a catalyst all increase the rate.
+  - rung: 3
+    name: first_step
+    text:
+      en: Adding water dilutes the acid; larger lumps have less surface; ice lowers the temperature.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Only one option increases one of the four factors.
+  - rung: 5
+    name: full_step
+    text:
+      en: Warming the acid makes the reaction faster.
+  misconception_ids:
+  - mc.chm.o.reactions_bigger_pieces_faster
+solution:
+  steps:
+  - n: 1
+    latex: '\text{higher temperature: faster}'
+    reason: A rate factor
+difficulty:
+  prior: -0.9
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

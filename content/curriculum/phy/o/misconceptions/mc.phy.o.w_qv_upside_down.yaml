@@ -1,0 +1,36 @@
+id: mc.phy.o.w_qv_upside_down
+kc_ids:
+- kc.phy.o.electrical_quantities.potential_difference
+student_name: Rearranging W = QV upside down
+description: Rearranges W = QV the wrong way up, writing V = Q/W or Q = V/W.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The p.d. is the energy per coulomb, so V = W/Q: energy on top, charge underneath.'
+probe_item_ids:
+- itm.phy.o.electrical_quantities.0041
+- itm.phy.o.electrical_quantities.0032
+- itm.phy.o.electrical_quantities.0033
+- itm.phy.o.electrical_quantities.0036
+- itm.phy.o.electrical_quantities.0037
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

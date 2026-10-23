@@ -1,0 +1,82 @@
+id: dgm.phy.measuring_resistance.v1
+subject: phy
+title: Measuring resistance with an ammeter and a voltmeter
+svg_path: diagrams/measuring_resistance_v1.svg
+parts:
+- id: connecting_wires
+  name: Connecting wires
+  function: Connect the components into the series circuit and the parallel voltmeter branch.
+  label_anchor:
+  - 410
+  - 140
+  tab_order: 0
+  quizzable: false
+- id: cell
+  name: Cell
+  function: Pushes charge round the circuit; the longer line is the positive terminal.
+  label_anchor:
+  - 222
+  - 35
+  tab_order: 1
+  essential: true
+- id: switch
+  name: Switch
+  function: Opens or closes the circuit; current flows only when it is closed.
+  label_anchor:
+  - 20
+  - 135
+  tab_order: 2
+- id: ammeter
+  name: Ammeter
+  function: Measures the current; it is connected in series.
+  label_anchor:
+  - 122
+  - 255
+  tab_order: 3
+  essential: true
+- id: resistor
+  name: Resistor
+  function: The component whose resistance is being measured.
+  label_anchor:
+  - 272
+  - 204
+  tab_order: 4
+  essential: true
+- id: voltmeter
+  name: Voltmeter
+  function: Measures the potential difference across the resistor; it is connected in parallel with it.
+  label_anchor:
+  - 322
+  - 296
+  tab_order: 5
+  essential: true
+sequences:
+- id: set_up
+  title: Setting up the measurement
+  steps:
+  - highlight:
+    - cell
+    - switch
+    caption: Close the switch so the cell drives a current round the circuit.
+    arrows:
+    - arrow_current
+  - highlight:
+    - ammeter
+    caption: The ammeter is in series, so it reads the same current that passes through the resistor.
+  - highlight:
+    - voltmeter
+    caption: The voltmeter is connected across the resistor to read the potential difference.
+  - highlight:
+    - resistor
+    caption: Divide the potential difference by the current to find the resistance.
+alt_text: A circuit with a cell, a switch, an ammeter in series with a resistor, and a voltmeter connected in parallel across the resistor.
+licence: LicenseRef-Own
+attribution: Our own drawing, made for Jana with AI assistance.
+version: 1.0.1
+levels:
+- O
+kc_ids: []
+review:
+  author_role_id: rev_author_agent
+  status: in_review
+  style_version: 1

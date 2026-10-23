@@ -1,0 +1,100 @@
+id: itm.phy.o.momentum.0003
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.momentum_calculation
+stem: Trolley X (0.5 kg) moves right at 2 m/s. Trolley Y (0.5 kg) moves left at 1 m/s, towards X. Take right as positive.
+parts:
+- id: a
+  prompt: Find the total momentum of the two trolleys.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.5'
+    unit: kg m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_mom_0003_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Momentum has a direction: give each trolley''s momentum a sign.'
+  - rung: 2
+    name: concept
+    text:
+      en: Find each momentum as mass × velocity, then add them with their signs.
+  - rung: 3
+    name: first_step
+    text:
+      en: Y moves left, so its velocity and momentum are negative.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The momenta are 1 kg m/s and -0.5 kg m/s.
+  - rung: 5
+    name: full_step
+    text:
+      en: Total momentum = 0.5 kg m/s.
+  misconception_ids:
+  - mc.phy.o.momentum_sign_ignored
+  - mc.phy.o.momentum_totals_multiplied
+  - mc.phy.o.largest_vector_only
+solution:
+  steps:
+  - n: 1
+    latex: p_X = 0.5 \times 2 = 1\ \text{kg m/s}
+    reason: 'X moves right: positive'
+    check_id: chk_build_phy_mom_0003_p1
+  - n: 2
+    latex: p_Y = 0.5 \times (-\,1) = -0.5\ \text{kg m/s}
+    reason: 'Y moves left: negative'
+    check_id: chk_build_phy_mom_0003_p2
+  - n: 3
+    latex: p = 1 + (-0.5) = 0.5\ \text{kg m/s}
+    reason: Add the momenta with their signs
+    check_id: chk_build_phy_mom_0003_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_0003_ans:
+    args:
+      expression: 0.5*2 - 0.5*1
+    tool: math_evaluate
+  chk_build_phy_mom_0003_p1:
+    args:
+      expression: 0.5*2
+    tool: math_evaluate
+  chk_build_phy_mom_0003_p2:
+    args:
+      expression: 0.5*(-1)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

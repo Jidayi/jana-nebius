@@ -1,0 +1,91 @@
+id: itm.mth.o.algebra_and_graphs.0910
+version: 0.1.0
+type: algebraic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.algebraic_fractions
+stem: Write $\frac{7x + 63}{x^2 - 81}$ in its simplest form.
+parts:
+- id: a
+  prompt: Type the simplified fraction.
+  marks: 2
+  answer:
+    kind: algebraic
+    check_id: chk_build_mth_alg_0910_key
+    expression: \frac{7}{x - 9}
+    variables:
+    - x
+    required_form: simplest
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Factorise the top and the bottom before you cancel anything.
+  - rung: 2
+    name: concept
+    text:
+      en: The top has a common factor of 7.
+  - rung: 3
+    name: first_step
+    text:
+      en: The bottom is x² − 81, a difference of two squares.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'One bracket appears on the top and on the bottom: cancel it.'
+  - rung: 5
+    name: full_step
+    text:
+      en: The simplest form is $\frac{7}{x - 9}$.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{7x + 63}{x^2 - 81} = \frac{7(x + 9)}{(x - 9)(x + 9)}
+    reason: Take out the common factor on top; the bottom is a difference of squares
+    check_id: chk_build_mth_alg_0910_c
+  - n: 2
+    latex: = \frac{7}{x - 9}
+    reason: Cancel (x + 9)
+    check_id: chk_build_mth_alg_0910_q
+difficulty:
+  prior: 0.7
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0910_c:
+    args:
+      expression: sqrt(81)
+    tool: math_evaluate
+  chk_build_mth_alg_0910_key:
+    args:
+      expression: \frac{7x + 63}{x^2 - 81}
+      form: simplest
+    tool: math_simplify
+  chk_build_mth_alg_0910_q:
+    args:
+      expression: 63/7
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

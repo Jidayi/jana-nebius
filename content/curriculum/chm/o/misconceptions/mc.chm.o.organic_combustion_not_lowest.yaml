@@ -1,0 +1,36 @@
+id: mc.chm.o.organic_combustion_not_lowest
+kc_ids:
+- kc.chm.o.organic.combustion
+student_name: Balanced, but not the smallest numbers
+description: Gives a balanced combustion equation whose coefficients all share a common factor.
+signatures:
+- kind: answer_transform
+  expression: 'choice: balanced equation that is a multiple of the lowest one'
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'After balancing, check whether every coefficient divides by the same number. If it does, divide them all: 2, 4, 2, 4 becomes 1, 2, 1, 2.'
+probe_item_ids:
+- itm.chm.o.organic.0085
+- itm.chm.o.organic.0086
+- itm.chm.o.organic.0087
+- itm.chm.o.organic.0088
+- itm.chm.o.organic.0089
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

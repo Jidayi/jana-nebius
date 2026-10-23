@@ -1,0 +1,36 @@
+id: mc.mth.o.hcf_lcm_swapped
+kc_ids:
+- kc.mth.o.number.hcf_lcm
+student_name: Mixing up HCF and LCM
+description: Gives the lowest common multiple when the highest common factor is asked for, or the reverse.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: rule_restatement
+  text:
+    en: The HCF divides both numbers, so it is no bigger than the smaller number. The LCM is a multiple of both, so it is at least as big as the larger number.
+probe_item_ids:
+- itm.mth.o.number.0027
+- itm.mth.o.number.0031
+- itm.mth.o.number.0036
+- itm.mth.o.number.0038
+- itm.mth.o.number.0039
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

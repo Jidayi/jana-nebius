@@ -1,0 +1,91 @@
+id: itm.phy.o.em_spectrum.0017
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.em_spectrum.em_wave_calculations
+stem: A medium-wave radio station transmits at 750 kHz.
+parts:
+- id: a
+  prompt: Calculate the wavelength of its radio waves.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '400'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_ems_0017_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which equation links the speed, frequency and wavelength of a wave?
+  - rung: 2
+    name: concept
+    text:
+      en: Every electromagnetic wave travels at c = 3.0 × 10⁸ m/s, and c = f × λ, so λ = c ÷ f.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Write the frequency in hertz: 750 kHz = 750 × 10³ Hz.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: λ = 3.0 × 10⁸ ÷ (750 × 10³).
+  - rung: 5
+    name: full_step
+    text:
+      en: λ = 400 m.
+  misconception_ids:
+  - mc.phy.o.wave_prefix_ignored
+  - mc.phy.o.wave_equation_inverted
+  - mc.phy.o.em_uses_sound_speed
+  - mc.phy.o.prefix_confused_with_neighbour
+solution:
+  steps:
+  - n: 1
+    latex: f = 750\ \text{kHz} = 750 \times 10^{3}\ \text{Hz}
+    reason: Write the prefix as a power of ten
+  - n: 2
+    latex: \lambda = \frac{c}{f} = \frac{3.0 \times 10^{8}}{750 \times 10^{3}} = 400\ \text{m}
+    reason: Rearrange c = fλ
+    check_id: chk_build_phy_ems_0017_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ems_0017_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: c/(750*10^3)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,113 @@
+id: itm.chm.o.stoichiometry.0014
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.balancing_equations
+stem: The unbalanced equation is Fe + O₂ → Fe₂O₃.
+parts:
+- id: a
+  prompt: Balance the equation using the smallest whole numbers. What number goes in front of O₂?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '3'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0014_ratios
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Count the atoms of each element on each side of Fe + O₂ → Fe₂O₃.
+  - rung: 2
+    name: concept
+    text:
+      en: Only the numbers in front of formulae may change; the formulae themselves stay as they are.
+  - rung: 3
+    name: first_step
+    text:
+      en: Start with an element that appears in only one substance on each side, and leave elements that appear on their own until last.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Adjust one number at a time and recount every element after each change; you should find 4Fe, 2Fe₂O₃.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Balanced: 4Fe + 3O₂ → 2Fe₂O₃. The number in front of O₂ is 3.'
+  misconception_ids:
+  - mc.chm.o.subscript_changed_to_balance
+  - mc.chm.o.balance_one_element_only
+solution:
+  steps:
+  - n: 1
+    latex: 4\text{Fe} + 3\text{O}_2 \rightarrow 2\text{Fe}_2\text{O}_3
+    reason: Smallest whole numbers that balance every element
+    check_id: chk_build_chm_stoichiometry_0014_bal
+  - n: 2
+    latex: '\text{O}_2: 3'
+    reason: Coefficient of O₂
+    check_id: chk_build_chm_stoichiometry_0014_ratios
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0014_bal:
+    args:
+      equation: Fe + O2 -> Fe2O3
+    tool: chem_balance
+  chk_build_chm_stoichiometry_0014_ratios:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_o
+      equation: Fe + O2 -> Fe2O3
+      sf: 3
+      steps:
+      - amount: '4'
+        from: Fe
+        id: r0
+        op: mole_ratio
+        to: Fe
+      - amount: '4'
+        from: Fe
+        id: r1
+        op: mole_ratio
+        to: O2
+      - amount: '4'
+        from: Fe
+        id: r2
+        op: mole_ratio
+        to: Fe2O3
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

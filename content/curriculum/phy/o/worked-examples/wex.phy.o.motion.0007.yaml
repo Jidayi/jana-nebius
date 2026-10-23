@@ -1,0 +1,50 @@
+id: wex.phy.o.motion.0007
+kc_ids:
+- kc.phy.o.motion.average_speed
+problem: A bus travels 1800 m in 240 s, waits for 60 s, then travels 1200 m in 100 s. Find its average speed for the whole trip, including the wait.
+steps:
+- n: 1
+  latex: v = \frac{\text{total distance}}{\text{total time}}
+  reason: Average speed uses totals
+- n: 2
+  latex: v = \frac{1800 + 1200}{240 + 60 + 100}
+  reason: Add the distances and every time, including the wait
+  check_id: chk_build_phy_w_0007
+- n: 3
+  latex: v = 7.5\ \text{m/s}
+  reason: Divide
+  check_id: chk_build_phy_w_0007
+final_answer:
+  latex: 7.5\ \text{m/s}
+  check_id: chk_build_phy_w_0007
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_w_0007:
+    args:
+      expression: (1800 + 1200)/(240 + 60 + 100)
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

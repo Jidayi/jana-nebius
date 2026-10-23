@@ -1,0 +1,100 @@
+id: itm.mth.o.coordinate_geometry.0066
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.coordinate_geometry.segment_length
+stem: P is the point (3, 0) and Q is the point (0, 5).
+parts:
+- id: a
+  prompt: Find the length of PQ, to 3 significant figures.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '5.83'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_crd_0066_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Sketch the two points: the segment is the hypotenuse of a right-angled triangle.'
+  - rung: 2
+    name: concept
+    text:
+      en: The other two sides are the change in x and the change in y.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change in x = 0 − (3); change in y = 5 − (0).
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Square both changes and add: 34. Then take the square root.'
+  - rung: 5
+    name: full_step
+    text:
+      en: PQ = 5.83.
+  misconception_ids:
+  - mc.mth.o.length_changes_added
+  - mc.mth.o.pythag_no_root
+  - mc.mth.o.coordinates_added_not_subtracted
+solution:
+  steps:
+  - n: 1
+    latex: PQ^2 = (x_2 - x_1)^2 + (y_2 - y_1)^2
+    reason: Pythagoras on the changes
+  - n: 2
+    latex: PQ^2 = (-\,3)^2 + (5)^2 = 34
+    reason: Square and add
+    check_id: chk_build_mth_crd_0066_s
+  - n: 3
+    latex: PQ = \sqrt{34} = 5.83
+    reason: Square root
+    check_id: chk_build_mth_crd_0066_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_crd_0066_ans:
+    args:
+      expression: sqrt((0 - (3))^2 + (5 - (0))^2)
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_crd_0066_s:
+    args:
+      expression: (0 - (3))^2 + (5 - (0))^2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

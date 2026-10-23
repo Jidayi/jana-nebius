@@ -1,0 +1,59 @@
+id: wex.acc.o.costing.0003
+kc_ids:
+- kc.acc.o.costing.contribution
+problem: Price $25; variable cost $15; 800 units sold. Find the total contribution.
+steps:
+- n: 1
+  latex: \text{Contribution} = \text{price} - \text{variable cost}
+  reason: Per unit
+  check_id: chk_build_acc_costing_w0003_t
+- n: 2
+  latex: \text{Per unit} = 25 - 15 = 10
+  reason: Before fixed costs
+  check_id: chk_build_acc_costing_w0003_s2
+- n: 3
+  latex: 800 \times 10 = 8000
+  reason: Total
+  check_id: chk_build_acc_costing_w0003_a
+final_answer:
+  latex: \$\,8000
+  check_id: chk_build_acc_costing_w0003_a
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_costing_w0003_a:
+    args:
+      dp: 2
+      expression: 800 * (25 - 15)
+    tool: math_evaluate
+  chk_build_acc_costing_w0003_s2:
+    args:
+      dp: 4
+      expression: 25 - 15
+    tool: math_evaluate
+  chk_build_acc_costing_w0003_t:
+    args:
+      dp: 2
+      fixed_costs: '1000'
+      selling_price: '25'
+      variable_cost_per_unit: '15'
+    tool: acc_break_even
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,93 @@
+id: itm.phy.o.radioactivity.0073
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+stem: A hospital needs a source to inject into a patient, so that a camera outside the body can follow where it goes.
+parts:
+- id: a
+  prompt: Which source is most suitable?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: A gamma emitter with a half-life of thirty years
+      correct: false
+      misconception_id: mc.phy.o.tracer_long_half_life
+      feedback: A tracer is needed only for hours. A long half-life would leave the patient or the ground radioactive for years.
+    - id: B
+      text: A gamma emitter with a half-life of a few hours
+      correct: true
+    - id: C
+      text: An alpha emitter with a half-life of a few hours
+      correct: false
+      misconception_id: mc.phy.o.tracer_alpha_emitter
+      feedback: The radiation must reach a detector outside, so a tracer must emit gamma (or sometimes beta). Alpha is absorbed within centimetres.
+    - id: D
+      text: A gamma emitter with a half-life of two seconds
+      correct: false
+      misconception_id: mc.phy.o.shortest_half_life_best
+      feedback: A tracer with a half-life of a few seconds would have almost gone before the scan began. The half-life must be long enough for the job.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Two things decide the choice: the kind of radiation and the half-life.'
+  - rung: 2
+    name: concept
+    text:
+      en: The radiation must reach where it is needed and be partly absorbed if a change is to be measured; the half-life must suit how long the job lasts.
+  - rung: 3
+    name: first_step
+    text:
+      en: The radiation has to get out of the body, and the source should fade soon after the scan.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that fail on either point, or that would put people at risk.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: A gamma emitter with a half-life of a few hours.'
+  misconception_ids:
+  - mc.phy.o.shortest_half_life_best
+  - mc.phy.o.tracer_alpha_emitter
+  - mc.phy.o.tracer_long_half_life
+solution:
+  steps:
+  - n: 1
+    latex: \text{A gamma emitter with a half-life of a few hours}
+    reason: Match the radiation and half-life to the job
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

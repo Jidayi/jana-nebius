@@ -1,0 +1,91 @@
+id: itm.chm.o.reactions.0030
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.collision_theory
+stem: Chemists talk about the activation energy of a reaction.
+parts:
+- id: a
+  prompt: What is the activation energy?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: The minimum energy colliding particles need for a reaction to happen.
+      correct: true
+    - id: B
+      text: The energy a catalyst gives the particles to start the reaction.
+      correct: false
+      misconception_id: mc.chm.o.reactions_catalyst_gives_energy
+      feedback: 'Heating gives particles more energy, so more collisions reach the activation energy. A catalyst does not add energy: it gives a different route with a lower activation energy, so more collisions succeed at the same temperature.'
+    - id: C
+      text: The energy released whenever two particles collide.
+      correct: false
+      misconception_id: mc.chm.o.reactions_all_collisions_react
+      feedback: Particles in a gas collide billions of times a second, yet many mixtures hardly react. Only collisions with at least the activation energy lead to a reaction; the rest bounce apart unchanged.
+    - id: D
+      text: The extra energy particles gain when a solution is made more concentrated.
+      correct: false
+      misconception_id: mc.chm.o.reactions_concentration_harder_collisions
+      feedback: Concentration, pressure and surface area change how often particles collide, not how hard. Only temperature changes the energy of the particles.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think of the activation energy as a barrier.
+  - rung: 2
+    name: concept
+    text:
+      en: Not every collision leads to a reaction.
+  - rung: 3
+    name: first_step
+    text:
+      en: A collision with less energy than the barrier does not react; the particles bounce apart.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The barrier belongs to the reaction itself; it is not something added to the particles.
+  - rung: 5
+    name: full_step
+    text:
+      en: The activation energy is the minimum energy that colliding particles must have for them to react.
+  misconception_ids:
+  - mc.chm.o.reactions_catalyst_gives_energy
+  - mc.chm.o.reactions_all_collisions_react
+  - mc.chm.o.reactions_concentration_harder_collisions
+solution:
+  steps:
+  - n: 1
+    latex: 'E_a\text{: minimum energy for a successful collision}'
+    reason: Collision theory
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

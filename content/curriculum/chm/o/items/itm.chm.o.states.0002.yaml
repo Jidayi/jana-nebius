@@ -1,0 +1,91 @@
+id: itm.chm.o.states.0002
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.states.particle_model
+stem: A syringe full of water cannot be squashed, but a syringe full of air can.
+parts:
+- id: a
+  prompt: Which explains the difference?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Water particles are far apart but repel each other strongly.
+      correct: false
+      misconception_id: mc.chm.o.states_liquid_far_apart
+      feedback: Liquid particles are close together and touching, almost as close as in a solid, which is why liquids cannot be squashed. They slide past each other.
+    - id: B
+      text: Water particles do not move at all, so they cannot be pushed.
+      correct: false
+      misconception_id: mc.chm.o.states_solid_particles_still
+      feedback: Particles in a solid cannot move from place to place, but they vibrate about fixed positions; the hotter the solid, the more they vibrate.
+    - id: C
+      text: Air particles shrink when they are squeezed.
+      correct: false
+      misconception_id: mc.chm.o.states_particles_expand
+      feedback: Particles stay the same size. When heated they move faster and take up more room, so the gaps between them grow.
+    - id: D
+      text: Water particles are already touching; air particles have large gaps between them.
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A syringe full of water cannot be squashed, but a syringe full of air can. Think about how the particles are arranged and how they move.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Solid: close, regular, vibrating. Liquid: close, irregular, sliding past each other. Gas: far apart, fast, random.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Particles never change size; heating changes how fast they move and how far apart they are.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Use the model to explain the observation in the question.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Water particles are already touching; air particles have large gaps between them.'
+  misconception_ids:
+  - mc.chm.o.states_liquid_far_apart
+  - mc.chm.o.states_particles_expand
+  - mc.chm.o.states_solid_particles_still
+solution:
+  steps:
+  - n: 1
+    latex: \text{arrangement, spacing and motion of particles}
+    reason: Particle model
+difficulty:
+  prior: -1.0
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

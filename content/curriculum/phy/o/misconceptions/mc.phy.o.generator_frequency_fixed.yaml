@@ -1,0 +1,32 @@
+id: mc.phy.o.generator_frequency_fixed
+kc_ids:
+- kc.phy.o.electromagnetism.electromagnetic_induction
+student_name: Speed does not change the frequency
+description: Thinks the frequency of a generator's output stays the same when its coil turns faster; each turn is one cycle, so the frequency rises.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: rule_restatement
+  text:
+    en: One turn gives one cycle, so turning twice as fast gives twice as many cycles each second.
+probe_item_ids:
+- itm.phy.o.electromagnetism.0045
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

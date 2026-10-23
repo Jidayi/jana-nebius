@@ -1,0 +1,32 @@
+id: mc.phy.o.energy_lost_added
+kc_ids:
+- kc.phy.o.energy.energy_conversion
+student_name: Adding the stores to find the loss
+description: Adds the energy at the start to the energy at the end instead of subtracting to find the energy wasted.
+signatures:
+- kind: step_error
+  error_category: sign
+fix:
+  strategy: simpler_numbers
+  text:
+    en: If 100 J was in the gravitational store and 80 J reached the kinetic store, 20 J went somewhere else. The energy wasted is start minus end.
+probe_item_ids:
+- itm.phy.o.energy.0060
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

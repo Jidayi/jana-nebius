@@ -1,0 +1,103 @@
+id: itm.chm.o.states.0029
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.states.diffusion
+stem: Two gas jars hold nitrogen, N₂, and chlorine, Cl₂, at the same temperature.
+parts:
+- id: a
+  prompt: Which gas will spread through a room more quickly?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: chlorine
+      correct: false
+      misconception_id: mc.chm.o.states_heavier_faster
+    - id: B
+      text: they spread equally quickly
+      correct: false
+      misconception_id: mc.chm.o.states_all_gases_same_rate
+    - id: C
+      text: nitrogen
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which molecules are lighter?
+  - rung: 2
+    name: concept
+    text:
+      en: Lighter molecules move faster at the same temperature.
+  - rung: 3
+    name: first_step
+    text:
+      en: Mr of N₂ = 28; Mr of Cl₂ = 71.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Choose the gas with the smaller Mr.
+  - rung: 5
+    name: full_step
+    text:
+      en: Nitrogen spreads more quickly.
+  misconception_ids:
+  - mc.chm.o.states_heavier_faster
+  - mc.chm.o.states_all_gases_same_rate
+solution:
+  steps:
+  - n: 1
+    latex: 28 < 71
+    reason: Smaller Mr diffuses faster
+    check_id: chk_build_chm_states_0029_m1
+  - n: 2
+    latex: M_r = 71
+    reason: Heavier gas
+    check_id: chk_build_chm_states_0029_m2
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_states_0029_m1:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      formula: N2
+    tool: chem_molar_mass
+  chk_build_chm_states_0029_m2:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cl
+      formula: Cl2
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

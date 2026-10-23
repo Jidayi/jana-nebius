@@ -1,0 +1,33 @@
+id: mc.phy.o.parachute_sends_upwards
+kc_ids:
+- kc.phy.o.forces.friction_and_terminal_velocity
+student_name: A parachute lifts you up
+description: Thinks that opening a parachute makes the skydiver move upwards, because the drag becomes bigger than the weight.
+signatures:
+- kind: answer_transform
+  expression: v upwards
+fix:
+  strategy: rule_restatement
+  text:
+    en: A resultant force upwards on a falling skydiver slows the fall; it does not reverse it. The skydiver keeps falling, more slowly, until the forces balance again.
+probe_item_ids:
+- itm.phy.o.forces.0048
+- itm.phy.o.forces.0033
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

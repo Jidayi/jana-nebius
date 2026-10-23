@@ -1,0 +1,36 @@
+id: mc.acc.o.rat_gross_net_confused
+kc_ids:
+- kc.acc.o.ratios.margins
+- kc.acc.o.ratios.roce
+- kc.acc.o.ratios.interpret_ratios
+student_name: Gross and net profit mixed up
+description: Uses gross profit where profit for the year is needed, or the reverse.
+signatures:
+- kind: answer_transform
+  expression: gross_profit / revenue
+fix:
+  strategy: contrast_example
+  text:
+    en: Gross profit is before expenses; profit for the year is after them.
+probe_item_ids:
+- itm.acc.o.ratios.0001
+- itm.acc.o.ratios.0002
+- itm.acc.o.ratios.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

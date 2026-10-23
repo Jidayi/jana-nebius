@@ -1,0 +1,40 @@
+id: wex.phy.o.electromagnetism.0005
+kc_ids:
+- kc.phy.o.electromagnetism.electromagnetic_induction
+problem: The coil of an a.c. generator turns 1200 times every minute. Find the frequency of the alternating e.m.f. it produces.
+steps:
+- n: 1
+  latex: \text{one turn} = \text{one cycle}
+  reason: Each turn gives one full cycle
+- n: 2
+  latex: f = 20\ \text{Hz}
+  reason: Turns per minute ÷ sixty = cycles per second
+  check_id: chk_build_phy_emg_w0005_ans
+final_answer:
+  latex: 20\ \text{Hz}
+  check_id: chk_build_phy_emg_w0005_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_w0005_ans:
+    args:
+      expression: 1200/60
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,89 @@
+id: itm.phy.o.atom.0040
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.atom.nuclear_model_evidence
+stem: In a scattering experiment, 16000 alpha particles strike a thin gold foil. 24 are deflected through small angles, 4 are turned back through more than 90°, and the rest go straight through.
+parts:
+- id: a
+  prompt: What percentage of the alpha particles went straight through?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '99.8'
+    unit: '%'
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_atm_0040_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Each result tells you something about the atom: straight through, small deflections, turned back.'
+  - rung: 2
+    name: concept
+    text:
+      en: A percentage is the fraction of the total, times a hundred.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find how many particles fall in the group asked about, then divide by the total.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The number going straight through is 15972.
+  - rung: 5
+    name: full_step
+    text:
+      en: 99.8% went straight through, so the atom must be mostly empty space.
+solution:
+  steps:
+  - n: 1
+    latex: 16000 - 24 - 4 = 15972
+    reason: Those not deflected
+    check_id: chk_build_phy_atm_0040_through
+  - n: 2
+    latex: \frac{15972}{16000} \rightarrow 99.8\%
+    reason: Fraction, as a percentage
+    check_id: chk_build_phy_atm_0040_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_atm_0040_ans:
+    args:
+      expression: 100*15972/16000
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_atm_0040_through:
+    args:
+      expression: 16000 - 24 - 4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

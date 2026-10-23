@@ -1,0 +1,94 @@
+{
+  "claims": [
+    "500",
+    "500.00"
+  ],
+  "id": "journal-entry",
+  "kind": "journal_entry",
+  "modes": [
+    "shown",
+    "hidden"
+  ],
+  "spec": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "A journal entry: debit Purchases 500 and credit Cash 500; debits total 500.00 and credits total 500.00."
+    },
+    "computed": {
+      "balanced": true,
+      "check_ids": [
+        "chk_build_fx_journal_entry_1"
+      ],
+      "labels": {
+        "total_credit": "500.00",
+        "total_debit": "500.00"
+      }
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "kn_500",
+      "chk_build_fx_journal_entry_1"
+    ],
+    "params": {
+      "currency": "$",
+      "date": "1 March",
+      "lines": [
+        {
+          "account": "Purchases",
+          "amount": "500",
+          "id": "l1",
+          "side": "debit"
+        },
+        {
+          "account": "Cash",
+          "amount": "500",
+          "id": "l2",
+          "side": "credit"
+        }
+      ],
+      "narration": "Goods bought for cash"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "l1",
+        "name": "debit Purchases",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "l2",
+        "name": "credit Cash",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "total_debit",
+        "name": "debit total",
+        "role": "cell"
+      },
+      {
+        "focusable": true,
+        "id": "total_credit",
+        "name": "credit total",
+        "role": "cell"
+      },
+      {
+        "focusable": true,
+        "id": "narration",
+        "name": "narration",
+        "role": "row"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:73ab44412e2eeb64bc03743836f0f19a27a9051992c5a311a73dfe1e7ac6b2df",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "journal_entry",
+    "visual_id": "vis_KB41EEB4W3MRPGHT795SJ53H7X"
+  },
+  "subject": "accounting"
+}

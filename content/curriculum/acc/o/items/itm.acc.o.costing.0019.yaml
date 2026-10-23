@@ -1,0 +1,107 @@
+id: itm.acc.o.costing.0019
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.costing.contribution
+stem: Thabo makes and sells 2650 pairs of sandals at $30 each. Variable cost is $8 each and fixed costs are $39600.
+parts:
+- id: a
+  prompt: What is the total contribution?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $18700
+      correct: false
+      misconception_id: mc.acc.o.cost_contribution_as_profit
+    - id: B
+      text: $79500
+      correct: false
+      misconception_id: mc.acc.o.cost_fixed_in_contribution
+    - id: C
+      text: $58300
+      correct: true
+    - id: D
+      text: $100700
+      correct: false
+      misconception_id: mc.acc.o.cost_vc_added
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What does contribution leave out?
+  - rung: 2
+    name: concept
+    text:
+      en: Total contribution = units × (selling price − variable cost); fixed costs come off later.
+  - rung: 3
+    name: first_step
+    text:
+      en: Contribution minus fixed costs is profit, not contribution.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 2650 × (30 − 8).
+  - rung: 5
+    name: full_step
+    text:
+      en: Total contribution = $58300.
+  misconception_ids:
+  - mc.acc.o.cost_contribution_as_profit
+  - mc.acc.o.cost_vc_added
+  - mc.acc.o.cost_fixed_in_contribution
+solution:
+  steps:
+  - n: 1
+    latex: \text{Contribution} = \text{units} \times (\text{price} - \text{variable cost})
+    reason: Before fixed costs
+    check_id: chk_build_acc_costing_0019_t
+  - n: 2
+    latex: 2650 \times (30 - 8) = 58300
+    reason: Substitute
+    check_id: chk_build_acc_costing_0019_a
+difficulty:
+  prior: -0.2
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_costing_0019_a:
+    args:
+      dp: 2
+      expression: 2650 * (30 - 8)
+    tool: math_evaluate
+  chk_build_acc_costing_0019_t:
+    args:
+      dp: 2
+      fixed_costs: '39600'
+      output_units: 2650
+      selling_price: '30'
+      variable_cost_per_unit: '8'
+    tool: acc_break_even
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

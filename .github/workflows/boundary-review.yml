@@ -1,0 +1,30 @@
+name: boundary-review
+# SEC-02: a pull request that touches a file tagged with a trust boundary cannot merge without
+# approval from that boundary's owning role and the Security lead (owners in .github/CODEOWNERS).
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  pull_request_review:
+    types: [submitted, dismissed]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  owners-approved:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - name: Changed files and approvals
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh pr diff "$PR" --repo "$REPO" --name-only > "$RUNNER_TEMP/changed.txt"
+          gh api "repos/$REPO/pulls/$PR/reviews" --paginate \
+            --jq '[.[] | select(.state == "APPROVED") | .user.login] | unique | .[]' > "$RUNNER_TEMP/approvers.txt"
+      - name: Boundary owners approved every tagged change
+        run: PYTHONPATH=scripts python3 -m jana_tools boundary-review "$RUNNER_TEMP/changed.txt" $(cat "$RUNNER_TEMP/approvers.txt")

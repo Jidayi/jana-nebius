@@ -1,0 +1,61 @@
+{
+  "spec_version": 1,
+  "type": "free_body",
+  "params": {
+    "object": "block",
+    "surface": {
+      "incline_deg": 30,
+      "friction": true
+    },
+    "forces": [
+      {
+        "id": "W",
+        "name": "Weight",
+        "magnitude": "49 N",
+        "direction_deg": 270
+      },
+      {
+        "id": "R",
+        "name": "Normal reaction",
+        "magnitude": "42.4 N",
+        "direction_deg": 120
+      },
+      {
+        "id": "F",
+        "name": "Friction",
+        "magnitude": "24.5 N",
+        "direction_deg": 30
+      }
+    ]
+  },
+  "numbers_from": [
+    "chk_118",
+    "chk_119"
+  ],
+  "steps": [
+    {
+      "highlight": [
+        "W"
+      ]
+    },
+    {
+      "add": [
+        {
+          "element": "components_of",
+          "of": "W"
+        }
+      ],
+      "highlight": [
+        "W.parallel",
+        "W.perpendicular"
+      ]
+    },
+    {
+      "highlight": [
+        "R",
+        "W.perpendicular"
+      ]
+    }
+  ],
+  "labels": "shown"
+}

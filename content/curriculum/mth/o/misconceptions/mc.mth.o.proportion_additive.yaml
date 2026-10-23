@@ -1,0 +1,36 @@
+id: mc.mth.o.proportion_additive
+kc_ids:
+- kc.mth.o.number.direct_proportion
+student_name: Adding instead of scaling
+description: Adds the difference in one quantity to the other quantity instead of scaling by the same factor.
+signatures:
+- kind: answer_transform
+  expression: y1 + (x2 - x1)
+fix:
+  strategy: counterexample
+  text:
+    en: 'If 2 pens cost $3, 4 pens cost $6, not $5: double the pens, double the cost.'
+probe_item_ids:
+- itm.mth.o.number.0245
+- itm.mth.o.number.0246
+- itm.mth.o.number.0247
+- itm.mth.o.number.0248
+- itm.mth.o.number.0249
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

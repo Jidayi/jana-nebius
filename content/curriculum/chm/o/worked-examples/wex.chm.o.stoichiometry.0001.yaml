@@ -1,0 +1,78 @@
+id: wex.chm.o.stoichiometry.0001
+kc_ids:
+- kc.chm.o.stoichiometry.ionic_formulae
+problem: Write the formula of aluminium sulfate, made of Al³⁺ and SO₄²⁻ ions, and find its relative formula mass.
+steps:
+- n: 1
+  latex: \text{Al}_2\text{(SO}_4\text{)}_3
+  reason: Swap the sizes of the charges; the group ion goes in brackets
+- n: 2
+  latex: \text{Al}_2 = 54
+  reason: Two Al atoms times Ar
+  check_id: chk_build_chm_stoichiometry_w0001_g_al
+- n: 3
+  latex: \text{S}_3 = 96
+  reason: Three S atoms times Ar
+  check_id: chk_build_chm_stoichiometry_w0001_g_s
+- n: 4
+  latex: \text{O}_{12} = 192
+  reason: Twelve O atoms times Ar
+  check_id: chk_build_chm_stoichiometry_w0001_g_o
+final_answer:
+  latex: \text{Al}_2\text{(SO}_4\text{)}_3,\ M_r = 342
+  check_id: chk_build_chm_stoichiometry_w0001_mr
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_w0001_g_al:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_al
+      formula: Al2
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_w0001_g_o:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_o
+      formula: O12
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_w0001_g_s:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_s
+      formula: S3
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_w0001_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_al
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      formula: Al2(SO4)3
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

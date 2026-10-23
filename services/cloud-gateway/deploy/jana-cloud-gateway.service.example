@@ -1,0 +1,33 @@
+# Linux deployment template, not proof of host capabilities or a built image.
+# Requires an operator-created dedicated user, storage directory, immutable venv and bwrap.
+[Unit]
+Description=Jana cloud gateway
+After=network-online.target
+Wants=network-online.target
+[Service]
+Type=simple
+User=jana-gateway
+Group=jana-gateway
+WorkingDirectory=/opt/jana-gateway
+ExecStart=/opt/jana-gateway/venv/bin/python -m cloud_gateway --config /etc/jana-gateway/production.toml --host 127.0.0.1 --port 8080
+# Configure the real secret-manager source; this is a reference, never an inline credential.
+# LoadCredential=gemini_api_key:/REQUIRED/secret-manager-mounted-file
+UMask=0077
+Restart=on-failure
+LimitCORE=0
+MemorySwapMax=0
+# TemporaryFileSystem creates the private scratch mounts; PrivateTmp would override them with disk binds.
+TemporaryFileSystem=/tmp:rw,nosuid,nodev,noexec,mode=1777,size=256M
+TemporaryFileSystem=/var/tmp:rw,nosuid,nodev,noexec,mode=1777,size=256M
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/jana-cloud-gateway
+NoNewPrivileges=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
+# AF_NETLINK is required by bwrap to initialise its isolated loopback, never to join the host network.
+# Do not set PrivateUsers or RestrictNamespaces: the child bwrap sandbox needs user namespaces.
+# Verify sandbox operation under THIS unit, with the deployed OCR/ASR runtimes, before sign-off.
+StandardOutput=null
+StandardError=journal
+[Install]
+WantedBy=multi-user.target

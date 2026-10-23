@@ -1,0 +1,85 @@
+id: itm.chm.o.environment.0032
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.air_pollution
+stem: Clean, dry air contains about 78% nitrogen and 21% oxygen by volume.
+parts:
+- id: a
+  prompt: Which gas makes up most of the remaining 1%?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Argon
+      correct: true
+    - id: B
+      text: Carbon dioxide
+      correct: false
+    - id: C
+      text: Carbon monoxide
+      correct: false
+      misconception_id: mc.chm.o.environment_pollutant_effects_mixed
+      feedback: 'Learn each pollutant as a pair: source and effect. Carbon monoxide comes from incomplete combustion and is toxic. Sulfur dioxide comes from burning fuels that contain sulfur and causes acid rain. Oxides of nitrogen come from car engines and also cause acid rain. Particulates come from incomplete com'
+    - id: D
+      text: Hydrogen
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Add up the nitrogen and oxygen first: 78 + 21.'
+  - rung: 2
+    name: concept
+    text:
+      en: That leaves 1% for all the other gases together.
+  - rung: 3
+    name: first_step
+    text:
+      en: Carbon dioxide is present, but only in a very small amount.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The largest part of the rest is a noble gas from Group VIII.
+  - rung: 5
+    name: full_step
+    text:
+      en: Argon makes up most of the remaining 1%; carbon dioxide is only a tiny part.
+  misconception_ids:
+  - mc.chm.o.environment_pollutant_effects_mixed
+solution:
+  steps:
+  - n: 1
+    latex: 100 - 78 - 21 = 1
+    reason: Remaining percentage
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

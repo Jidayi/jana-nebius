@@ -1,0 +1,54 @@
+id: wex.phy.o.sound.0002
+kc_ids:
+- kc.phy.o.sound.sound_waves
+problem: A loudspeaker sends a sound of frequency 500 Hz through the air. The distance from the centre of a compression to the centre of the next rarefaction is 34 cm. Calculate the speed of the sound.
+steps:
+- n: 1
+  latex: \lambda = 2 \times 34 = 68\ \text{cm}
+  reason: Compression to rarefaction is half a wave
+  check_id: chk_build_phy_snd_w0002_lam
+- n: 2
+  latex: \lambda = 68\ \text{cm} = 0.68\ \text{m}
+  reason: Put the wavelength in metres
+  check_id: chk_build_phy_snd_w0002_lm
+- n: 3
+  latex: v = f\lambda = 500 \times 0.68 = 340\ \text{m/s}
+  reason: Wave equation
+  check_id: chk_build_phy_snd_w0002_ans
+final_answer:
+  latex: 340\ \text{m/s}
+  check_id: chk_build_phy_snd_w0002_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_snd_w0002_ans:
+    args:
+      expression: 500*2*34/100
+    tool: math_evaluate
+  chk_build_phy_snd_w0002_lam:
+    args:
+      expression: 2*34
+    tool: math_evaluate
+  chk_build_phy_snd_w0002_lm:
+    args:
+      expression: 2*34/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

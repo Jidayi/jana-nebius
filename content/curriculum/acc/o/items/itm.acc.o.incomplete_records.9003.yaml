@@ -1,0 +1,85 @@
+id: itm.acc.o.incomplete_records.9003
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.incomplete_records.profit_from_capital
+stem: A sole trader started with assets of $25000 and liabilities of $7000. At the year end, assets were $34000 and liabilities were $9000. During the year the owner added $2000 of capital and took drawings of $3500.
+parts:
+- id: a
+  prompt: Calculate the profit for the year.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '8500'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_acc_9003
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Capital equals assets less liabilities.
+  - rung: 2
+    name: concept
+    text:
+      en: Profit is the rise in capital after removing new capital and adding back drawings.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find opening and closing net assets, subtract the capital introduced, and add drawings.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Check that drawings increase the calculated profit and new capital reduces it.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 8500 $.
+solution:
+  steps:
+  - n: 1
+    latex: (34000 - 9000) - (25000 - 7000) - 2000+3500
+    reason: Find opening and closing net assets, subtract the capital introduced, and add drawings.
+    check_id: chk_build_mastery_supplement_acc_9003
+  - n: 2
+    latex: '8500'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_acc_9003
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_acc_9003:
+    args:
+      angle_unit: degrees
+      expression: (34000-9000)-(25000-7000)-2000+3500
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

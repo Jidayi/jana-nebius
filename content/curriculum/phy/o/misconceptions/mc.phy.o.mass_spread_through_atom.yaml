@@ -1,0 +1,34 @@
+id: mc.phy.o.mass_spread_through_atom
+kc_ids:
+- kc.phy.o.atom.nuclear_model_evidence
+student_name: The mass is spread through the atom
+description: Thinks most of an atom's mass is spread through its volume or carried by the electrons, not concentrated in the nucleus.
+signatures:
+- kind: answer_transform
+  expression: spread
+fix:
+  strategy: rule_restatement
+  text:
+    en: Only a very massive object can turn back a fast alpha particle. Almost all of the atom's mass is in the tiny nucleus.
+probe_item_ids:
+- itm.phy.o.atom.0044
+- itm.phy.o.atom.0032
+- itm.phy.o.atom.0038
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

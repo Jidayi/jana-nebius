@@ -1,0 +1,86 @@
+id: itm.chm.o.organic.0065
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.alcohols_and_acids
+- kc.chm.o.organic.carboxylic_acids
+stem: A perfume maker wants the ester propyl ethanoate.
+parts:
+- id: a
+  prompt: Which alcohol and acid are used?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Propane and ethanoic acid
+      correct: false
+    - id: B
+      text: Propanol and ethanoic acid
+      correct: true
+    - id: C
+      text: Propanol and ethanol
+      correct: false
+    - id: D
+      text: Ethanol and propanoic acid
+      correct: false
+      misconception_id: mc.chm.o.organic_ester_name_order
+      feedback: The alcohol gives the first word, ending in -yl; the acid gives the second word, ending in -oate. Methanol + ethanoic acid → methyl ethanoate. Ethanol + methanoic acid → ethyl methanoate.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An ester is made from an alcohol and a carboxylic acid.
+  - rung: 2
+    name: concept
+    text:
+      en: The first word of the ester's name comes from the alcohol; the second comes from the acid.
+  - rung: 3
+    name: first_step
+    text:
+      en: Propyl comes from the alcohol with three carbon atoms.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Ethanoate comes from the acid with two carbon atoms.
+  - rung: 5
+    name: full_step
+    text:
+      en: Propyl ethanoate is made from propanol and ethanoic acid.
+  misconception_ids:
+  - mc.chm.o.organic_ester_name_order
+solution:
+  steps:
+  - n: 1
+    latex: \text{propyl }\leftarrow\text{ propanol; ethanoate }\leftarrow\text{ ethanoic acid}
+    reason: Naming in reverse
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

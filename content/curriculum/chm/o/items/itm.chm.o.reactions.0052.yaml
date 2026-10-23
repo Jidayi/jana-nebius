@@ -1,0 +1,100 @@
+id: itm.chm.o.reactions.0052
+version: 0.1.1
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.equilibrium
+stem: The reaction 2SO₂ + O₂ ⇌ 2SO₃ has reached equilibrium in a closed container. The forward reaction is exothermic. More oxygen is pumped in.
+parts:
+- id: a
+  prompt: Which substance is there less of once the new equilibrium is reached?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Sulfur trioxide
+      correct: false
+      misconception_id: mc.chm.o.reactions_shift_reinforces_change
+      feedback: The position moves to oppose a change. Adding oxygen favours the reaction that uses it up, which makes more sulfur trioxide.
+    - id: B
+      text: Sulfur dioxide
+      correct: true
+    - id: C
+      text: 'None of them: the reactions have stopped'
+      correct: false
+      misconception_id: mc.chm.o.reactions_equilibrium_static
+      feedback: 'Equilibrium is dynamic: the forward and backward reactions both keep going, at the same rate. Change the conditions and one reaction speeds up more than the other, so the amounts change until a new equilibrium is reached.'
+    - id: D
+      text: 'None of them: the position does not move'
+      correct: false
+      misconception_id: mc.chm.o.reactions_equilibrium_static
+      feedback: 'Equilibrium is dynamic: the forward and backward reactions both keep going, at the same rate. Change the conditions and one reaction speeds up more than the other, so the amounts change until a new equilibrium is reached.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: More oxygen is pumped in, so the mixture 2SO₂ + O₂ ⇌ 2SO₃ is no longer at equilibrium.
+  - rung: 2
+    name: concept
+    text:
+      en: The position moves to use up what was added.
+  - rung: 3
+    name: first_step
+    text:
+      en: Oxygen is a reactant, on the left of the equation, so the position moves to the right.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Moving to the right uses up oxygen together with another reactant.
+  - rung: 5
+    name: full_step
+    text:
+      en: The forward reaction uses up sulfur dioxide with the added oxygen, so there is less sulfur dioxide.
+  misconception_ids:
+  - mc.chm.o.reactions_shift_reinforces_change
+  - mc.chm.o.reactions_equilibrium_static
+solution:
+  steps:
+  - n: 1
+    latex: 2\text{SO}_2 + \text{O}_2 \rightleftharpoons 2\text{SO}_3
+    reason: The equilibrium
+  - n: 2
+    latex: \text{The position moves to the right}
+    reason: The forward reaction uses up the added oxygen
+  - n: 3
+    latex: \text{less SO}_2
+    reason: Sulfur dioxide reacts with the extra oxygen
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

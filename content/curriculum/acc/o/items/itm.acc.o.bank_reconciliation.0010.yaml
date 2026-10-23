@@ -1,0 +1,88 @@
+id: itm.acc.o.bank_reconciliation.0010
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.bank_reconciliation.timing_differences
+stem: A trader compares the cash book with the bank statement.
+parts:
+- id: a
+  prompt: Select every item that must be entered in the cash book before the reconciliation is drawn up.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Bank charges on the statement only
+      correct: true
+    - id: B
+      text: A credit transfer on the statement only
+      correct: true
+    - id: C
+      text: A dishonoured cheque on the statement only
+      correct: true
+    - id: D
+      text: An unpresented cheque
+      correct: false
+    - id: E
+      text: An outstanding lodgement
+      correct: false
+    - id: F
+      text: A cheque written today and posted to a supplier
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The cash book must be brought up to date with what the bank has already done.
+  - rung: 2
+    name: concept
+    text:
+      en: Anything on the statement but not in the cash book is entered in the cash book.
+  - rung: 3
+    name: first_step
+    text:
+      en: Items in the cash book but not yet on the statement are timing differences.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the three items seen only on the statement.
+  - rung: 5
+    name: full_step
+    text:
+      en: Bank charges, the credit transfer and the dishonoured cheque go in the cash book.
+  misconception_ids:
+  - mc.acc.o.br_update_vs_timing
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Update: charges, transfer, dishonoured cheque}'
+    reason: Only on the statement
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

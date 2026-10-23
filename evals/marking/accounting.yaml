@@ -1,0 +1,178 @@
+provenance: Synthetic items and responses written for the marking suite (CUR-14, CUR-15); expected verdicts follow
+  the marking rules, not the marker. Not real student work.
+items:
+  furniture:
+    id: itm.acc.o.double_entry.9601
+    type: journal_entry
+    kc_ids: [kc.acc.o.double_entry.credit_purchases]
+    parts:
+    - id: a
+      prompt: A trader buys office furniture for 3000, paying 1000 from the bank and owing the rest to the supplier.
+        Write the journal entry.
+      marks: 3
+      answer:
+        kind: journal_entry
+        chart_of_accounts: coa.acc.o.golden_marking.v1
+        currency: USD
+        lines:
+        - {account_id: furniture, account_name: Furniture, accepted_names: [Furniture, Office furniture,
+           Furniture and fittings], debit: '3000', credit: '0'}
+        - {account_id: bank, account_name: Bank, accepted_names: [Bank, Cash at bank], debit: '0', credit: '1000'}
+        - {account_id: trade_payables, account_name: Trade payables, accepted_names: [Trade payables, Creditors,
+           Payables], debit: '0', credit: '2000'}
+        check_id: chk_build_golden_furniture
+      hints: []
+  trial_balance:
+    id: itm.acc.o.trial_balance.9602
+    type: accounting_table
+    kc_ids: [kc.acc.o.trial_balance.extraction]
+    parts:
+    - id: a
+      prompt: Prepare the trial balance from the balances given.
+      marks: 4
+      answer:
+        kind: accounting_table
+        table_kind: trial_balance
+        chart_of_accounts: coa.acc.o.golden_marking.v1
+        currency: USD
+        rows:
+        - {label: Furniture, account_id: furniture, amount: '4000', side: debit}
+        - {label: Bank, account_id: bank, amount: '1500', side: debit}
+        - {label: Capital, account_id: capital, amount: '5500', side: credit}
+        - {label: Totals, amount: '5500', side: total}
+        check_id: chk_build_golden_trial_balance
+      hints: []
+cases:
+- id: lines_in_key_order
+  item: furniture
+  response:
+  - {account: Furniture, side: debit, amount: '3000'}
+  - {account: Bank, side: credit, amount: '1000'}
+  - {account: Trade payables, side: credit, amount: '2000'}
+  rows: [journal_entries.line_order]
+  expect: {outcome: correct, marks_awarded: 3}
+- id: line_order_ignored
+  item: furniture
+  response:
+  - {account: Trade payables, side: credit, amount: '2000'}
+  - {account: Furniture, side: debit, amount: '3000'}
+  - {account: Bank, side: credit, amount: '1000'}
+  rows: [journal_entries.line_order]
+  expect: {outcome: correct, marks_awarded: 3}
+- id: alias_for_the_supplier
+  item: furniture
+  response:
+  - {account: Furniture, side: debit, amount: '3000'}
+  - {account: Bank, side: credit, amount: '1000'}
+  - {account: Creditors, side: credit, amount: '2000'}
+  rows: [journal_entries.alias]
+  expect: {outcome: correct, marks_awarded: 3}
+- id: aliases_in_columns
+  item: furniture
+  response:
+  - {account: Office furniture, debit: '3000', credit: ''}
+  - {account: Cash at bank, debit: '', credit: '1000'}
+  - {account: payables, debit: '0', credit: '2000'}
+  rows: [journal_entries.alias]
+  expect: {outcome: correct, marks_awarded: 3}
+- id: alias_in_text
+  item: furniture
+  response: Dr Furniture and fittings 3000; Cr Cash at bank 1000; Cr Creditors 2000
+  rows: [journal_entries.alias]
+  expect: {outcome: correct, marks_awarded: 3}
+- id: account_not_in_the_aliases
+  item: furniture
+  response:
+  - {account: Equipment, side: debit, amount: '3000'}
+  - {account: Bank, side: credit, amount: '1000'}
+  - {account: Trade payables, side: credit, amount: '2000'}
+  rows: [journal_entries.alias]
+  expect: {outcome: partial, marks_awarded: 2, error_category: wrong_account}
+- id: currency_symbol_and_commas
+  item: furniture
+  response:
+  - {account: Furniture, side: debit, amount: '$3,000'}
+  - {account: Bank, side: credit, amount: '$1,000.00'}
+  - {account: Trade payables, side: credit, amount: USD 2000}
+  rows: [journal_entries.currency_symbol]
+  expect: {outcome: correct, marks_awarded: 3}
+- id: currency_code_in_text
+  item: furniture
+  response: Dr Furniture $3000; Cr Bank $1000; Cr Trade payables $2000
+  rows: [journal_entries.currency_symbol]
+  expect: {outcome: correct, marks_awarded: 3}
+- id: amounts_to_the_cent
+  item: furniture
+  response:
+  - {account: Furniture, side: debit, amount: '3000.00'}
+  - {account: Bank, side: credit, amount: '1000.00'}
+  - {account: Trade payables, side: credit, amount: '2000.00'}
+  rows: [journal_entries.amounts_exact]
+  expect: {outcome: correct, marks_awarded: 3}
+- id: amounts_not_exact
+  item: furniture
+  response:
+  - {account: Furniture, side: debit, amount: '3100'}
+  - {account: Bank, side: credit, amount: '1100'}
+  - {account: Trade payables, side: credit, amount: '2000'}
+  rows: [journal_entries.amounts_exact]
+  expect: {outcome: partial, marks_awarded: 1, error_category: value}
+- id: amount_off_by_one
+  item: furniture
+  response:
+  - {account: Furniture, side: debit, amount: '3000'}
+  - {account: Bank, side: credit, amount: '999'}
+  - {account: Trade payables, side: credit, amount: '2001'}
+  rows: [journal_entries.amounts_exact]
+  expect: {outcome: partial, marks_awarded: 1, error_category: value}
+- id: narration_not_marked
+  item: furniture
+  response:
+    lines:
+    - {account: Furniture, side: debit, amount: '3000'}
+    - {account: Bank, side: credit, amount: '1000'}
+    - {account: Trade payables, side: credit, amount: '2000'}
+    narration: Office furniture bought, part paid by cheque
+  rows: [journal_entries.narration]
+  expect: {outcome: correct, marks_awarded: 3}
+- id: unhelpful_narration_not_marked
+  item: furniture
+  response:
+    lines:
+    - {account: Furniture, side: debit, amount: '3000'}
+    - {account: Bank, side: credit, amount: '1000'}
+    - {account: Trade payables, side: credit, amount: '2000'}
+    narration: see above
+  rows: [journal_entries.narration]
+  expect: {outcome: correct, marks_awarded: 3}
+- id: sides_reversed
+  item: furniture
+  response:
+  - {account: Furniture, side: credit, amount: '3000'}
+  - {account: Bank, side: debit, amount: '1000'}
+  - {account: Trade payables, side: debit, amount: '2000'}
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: wrong_side}
+- id: trial_balance_right
+  item: trial_balance
+  response:
+  - {label: Furniture, side: debit, amount: '4000'}
+  - {label: Bank, side: debit, amount: '1500'}
+  - {label: Capital, side: credit, amount: '5500'}
+  - {label: Totals, amount: '5500'}
+  expect: {outcome: correct, marks_awarded: 4}
+- id: trial_balance_wrong_total
+  item: trial_balance
+  response:
+  - {label: Furniture, side: debit, amount: '4000'}
+  - {label: Bank, side: debit, amount: '1500'}
+  - {label: Capital, side: credit, amount: '5500'}
+  - {label: Totals, amount: '5000'}
+  expect: {outcome: partial, marks_awarded: 3, error_category: value}
+- id: trial_balance_wrong_side
+  item: trial_balance
+  response:
+  - {label: Furniture, side: debit, amount: '4000'}
+  - {label: Bank, side: credit, amount: '1500'}
+  - {label: Capital, side: credit, amount: '5500'}
+  - {label: Totals, amount: '5500'}
+  expect: {outcome: partial, marks_awarded: 3, error_category: wrong_side}

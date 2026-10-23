@@ -1,0 +1,34 @@
+id: mc.acc.o.br_rec_uses_unadjusted_cb
+kc_ids:
+- kc.acc.o.bank_reconciliation.reconciliation_statement
+student_name: Reconciling from the old cash book balance
+description: Starts the reconciliation from the cash book balance before it was updated.
+signatures:
+- kind: answer_transform
+  expression: cash_book - lodgements + unpresented
+fix:
+  strategy: rule_restatement
+  text:
+    en: Update the cash book first; only timing differences should remain.
+probe_item_ids:
+- itm.acc.o.bank_reconciliation.0030
+- itm.acc.o.bank_reconciliation.0031
+- itm.acc.o.bank_reconciliation.0032
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

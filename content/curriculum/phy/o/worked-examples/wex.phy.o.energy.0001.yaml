@@ -1,0 +1,36 @@
+id: wex.phy.o.energy.0001
+kc_ids:
+- kc.phy.o.energy.stores_and_transfers
+problem: Each second, an LED lamp transfers 270 J as light and 330 J by heating the surroundings. How much energy is supplied to it electrically each second?
+steps:
+- n: 1
+  latex: 270 + 330 = 600\ \text{J}
+  reason: Energy in = total energy out
+  check_id: chk_build_phy_nrg_w0001_ans
+final_answer:
+  latex: 600\ \text{J}
+  check_id: chk_build_phy_nrg_w0001_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_w0001_ans:
+    args:
+      expression: 270 + 330
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

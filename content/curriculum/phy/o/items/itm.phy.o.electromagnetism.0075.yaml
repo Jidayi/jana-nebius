@@ -1,0 +1,93 @@
+id: itm.phy.o.electromagnetism.0075
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.power_transmission
+stem: An ideal transformer steps a voltage up by a factor of ten.
+parts:
+- id: a
+  prompt: What happens to the current?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: It rises ten times
+      correct: false
+      misconception_id: mc.phy.o.secondary_current_rises_with_voltage
+      feedback: Power is p.d. × current and an ideal transformer keeps the power the same. Double the voltage and the current halves.
+    - id: B
+      text: It stays the same
+      correct: false
+      misconception_id: mc.phy.o.transformer_current_unchanged
+      feedback: For an ideal transformer Vp × Ip = Vs × Is. If the voltage changes, the current must change the other way.
+    - id: C
+      text: It falls to a hundredth
+      correct: false
+      misconception_id: mc.phy.o.transformer_current_squared
+      feedback: An ideal transformer keeps the power the same, and power is p.d. × current. Ten times the voltage means one tenth of the current, not the square of the factor.
+    - id: D
+      text: It falls to a tenth
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what happens to the current, since the cables heat up because of it.
+  - rung: 2
+    name: concept
+    text:
+      en: An ideal transformer keeps Vp × Ip = Vs × Is, and the power wasted in a cable is I² × R.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The power in equals the power out, so V × I stays the same.
+  - rung: 5
+    name: full_step
+    text:
+      en: It falls to a tenth. The power in equals the power out, so V × I stays the same.
+  misconception_ids:
+  - mc.phy.o.secondary_current_rises_with_voltage
+  - mc.phy.o.transformer_current_unchanged
+  - mc.phy.o.transformer_current_squared
+solution:
+  steps:
+  - n: 1
+    latex: \text{It falls to a tenth}
+    reason: Power is kept; heating goes with current squared
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

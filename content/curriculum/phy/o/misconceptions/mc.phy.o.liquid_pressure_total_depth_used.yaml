@@ -1,0 +1,34 @@
+id: mc.phy.o.liquid_pressure_total_depth_used
+kc_ids:
+- kc.phy.o.pressure.liquid_pressure
+student_name: Using a depth instead of the change in depth
+description: Uses the deeper depth instead of the difference between the two depths when finding a change in pressure.
+signatures:
+- kind: answer_transform
+  expression: rho*g*h2
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The change in pressure depends on the change in depth: Δp = ρgΔh, with Δh the deeper depth minus the shallower one.'
+probe_item_ids:
+- itm.phy.o.pressure.0028
+- itm.phy.o.pressure.0018
+- itm.phy.o.pressure.0024
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

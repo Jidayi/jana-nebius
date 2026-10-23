@@ -1,0 +1,66 @@
+id: wex.chm.o.energetics.0008
+kc_ids:
+- kc.chm.o.energetics.calorimetry
+problem: 0.0400 mol of ammonium nitrate dissolves in water; 100 g of water goes from 22.0 °C to 19.0 °C (c = 4.2 J/(g °C)). Find ΔH.
+steps:
+- n: 1
+  latex: Q = 100 \times 4.2 \times -3 = -1260\ \text{J}
+  reason: Q = mc\Delta T for the water
+  check_id: chk_build_chm_energetics_w0008_dh
+- n: 2
+  latex: Q = -1.26\ \text{kJ}
+  reason: J to kJ
+  check_id: chk_build_chm_energetics_w0008_q
+- n: 3
+  latex: \Delta H = -\frac{-1.26}{0.0400}
+  reason: Per mole; sign from the temperature change
+  check_id: chk_build_chm_energetics_w0008_s3
+final_answer:
+  latex: \Delta H = 31.5\ \text{kJ/mol}
+  check_id: chk_build_chm_energetics_w0008_dh
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_energetics_w0008_dh:
+    args:
+      amount: 0.0400 mol
+      constants:
+      - source: pack
+        symbol: c_water
+      final_temperature: 19.0 °C
+      initial_temperature: 22.0 °C
+      mass: 100 g
+      task: calorimetry
+    tool: chem_energetics
+  chk_build_chm_energetics_w0008_q:
+    args:
+      expression: 100*4.2*(19.0 - 22.0)/1000
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_energetics_w0008_s3:
+    args:
+      expression: -(-1.26)/0.0400
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

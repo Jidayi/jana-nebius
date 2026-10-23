@@ -1,0 +1,36 @@
+id: mc.mth.o.left_to_right
+kc_ids:
+- kc.mth.o.number.order_of_operations
+student_name: Working strictly from left to right
+description: Works out a calculation from left to right, ignoring that multiplication and division come before addition and subtraction.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: rule_restatement
+  text:
+    en: Brackets first, then powers, then multiply and divide, then add and subtract.
+probe_item_ids:
+- itm.mth.o.number.0125
+- itm.mth.o.number.0126
+- itm.mth.o.number.0127
+- itm.mth.o.number.0128
+- itm.mth.o.number.0129
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

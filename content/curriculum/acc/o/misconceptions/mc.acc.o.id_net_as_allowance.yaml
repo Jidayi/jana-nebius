@@ -1,0 +1,34 @@
+id: mc.acc.o.id_net_as_allowance
+kc_ids:
+- kc.acc.o.irrecoverable_debts.allowance_amount
+student_name: Net receivables as the allowance
+description: Gives the receivables left after the allowance instead of the allowance itself.
+signatures:
+- kind: answer_transform
+  expression: receivables - receivables * rate
+fix:
+  strategy: simpler_numbers
+  text:
+    en: The allowance is the small percentage; what is left is net receivables.
+probe_item_ids:
+- itm.acc.o.irrecoverable_debts.0012
+- itm.acc.o.irrecoverable_debts.0013
+- itm.acc.o.irrecoverable_debts.0014
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

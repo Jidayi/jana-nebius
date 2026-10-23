@@ -1,0 +1,22 @@
+# The update_board golden fixture (TOL-17, TOL-18), synthetic: the board before, the board ops as a tutor turn carries
+# them, and the board events the handler emits for them. Ids are replaced by their kind and order of first appearance
+# in the events (brd_1, stp_1, ...), so the fixture is the same on every run.
+board_before:
+- {latex: I think we need the speed at the top, owner: student, status: unchecked}
+ops:
+- {op: add_step, step: null, latex: 'v^2 = u^2 + 2as', reason: 'links u, v, a and s', owner: tutor, status: draft,
+   terms: [], prompt: null, check_id: null}
+- {op: highlight, step: 1, latex: null, reason: null, owner: null, status: null, terms: [u], prompt: null,
+   check_id: null}
+- {op: set_knowns, step: null, latex: null, reason: null, owner: null, status: null, terms: [], prompt: null,
+   check_id: null}
+- {op: await_student, step: null, latex: null, reason: null, owner: null, status: null, terms: [],
+   prompt: 'What is v at the top?', check_id: null}
+events:
+- {type: board.step, board_id: brd_1, step_id: stp_1, index: 1, latex: 'v^2 = u^2 + 2as',
+   reason: 'links u, v, a and s', owner: tutor, status: unchecked, check_id: null, error: null}
+- {type: board.highlight, board_id: brd_1, step_ids: [stp_2], ttl_ms: null}
+- {type: board.knowns, board_id: brd_1, knowns: [], unknowns: [], conventions: []}
+- {type: board.step, board_id: brd_1, step_id: stp_3, index: 2, latex: '', reason: null, owner: student,
+   status: awaiting, check_id: null, error: null}
+- {type: board.await, board_id: brd_1, step_id: stp_3, prompt: 'What is v at the top?', input_kind: latex}

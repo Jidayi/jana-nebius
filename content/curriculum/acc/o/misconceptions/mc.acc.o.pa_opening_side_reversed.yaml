@@ -1,0 +1,34 @@
+id: mc.acc.o.pa_opening_side_reversed
+kc_ids:
+- kc.acc.o.partnerships.current_accounts
+student_name: Opening balance on the wrong side
+description: Treats an opening debit balance on a current account as a credit balance.
+signatures:
+- kind: answer_transform
+  expression: closing + 2 * opening
+fix:
+  strategy: contrast_example
+  text:
+    en: A debit balance means the partner owes the firm; it reduces what the partner has in the account.
+probe_item_ids:
+- itm.acc.o.partnerships.0034
+- itm.acc.o.partnerships.0035
+- itm.acc.o.partnerships.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

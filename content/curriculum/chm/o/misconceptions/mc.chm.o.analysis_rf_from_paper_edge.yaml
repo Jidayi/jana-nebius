@@ -1,0 +1,35 @@
+id: mc.chm.o.analysis_rf_from_paper_edge
+kc_ids:
+- kc.chm.o.analysis.chromatography
+student_name: Measuring from the bottom of the paper
+description: Measures distances from the bottom edge of the paper instead of from the start (pencil) line.
+signatures:
+- kind: answer_transform
+  expression: (d_spot + b)/(d_solvent + b)
+fix:
+  strategy: diagram
+  text:
+    en: Both distances start at the pencil line where the sample was put.
+probe_item_ids:
+- itm.chm.o.analysis.0025
+- itm.chm.o.analysis.0026
+- itm.chm.o.analysis.0027
+- itm.chm.o.analysis.0028
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

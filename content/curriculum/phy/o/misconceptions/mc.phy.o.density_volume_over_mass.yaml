@@ -1,0 +1,37 @@
+id: mc.phy.o.density_volume_over_mass
+kc_ids:
+- kc.phy.o.density.density_calculation
+- kc.phy.o.density.measuring_density
+student_name: Volume divided by mass
+description: Calculates density as volume divided by mass instead of mass divided by volume (and so finds a mass or a volume from the upside-down rule).
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Density says how much mass is packed into each unit of volume: mass ÷ volume. A small, heavy object must come out with a large density.'
+probe_item_ids:
+- itm.phy.o.density.0012
+- itm.phy.o.density.0013
+- itm.phy.o.density.0015
+- itm.phy.o.density.0026
+- itm.phy.o.density.0028
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

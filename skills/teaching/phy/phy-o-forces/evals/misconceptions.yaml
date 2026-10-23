@@ -1,0 +1,578 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.phy-o-forces
+version: 2026-10-13.1
+description: 'Colocated evals for phy-o-forces (SKL-21, EVL-07): one case per misconception. The student answers
+  as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key away,
+  and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: phy_o_forces_01
+  title: Holds 'Balanced forces mean no motion'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.balanced_means_at_rest
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.forces.0009
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.forces.resultant_force
+        misconception: mc.phy.o.balanced_means_at_rest
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: phy_o_forces_02
+  title: Holds 'Leaving out one of the forces'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.resultant_one_force_left_out
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.forces.0002
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.forces.resultant_force
+        misconception: mc.phy.o.resultant_one_force_left_out
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: phy_o_forces_03
+  title: Holds 'Using the applied force in F = ma'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.fma_applied_force_not_resultant
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.forces.0026
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.forces.force_mass_acceleration
+        misconception: mc.phy.o.fma_applied_force_not_resultant
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: phy_o_forces_04
+  title: Holds 'Dividing F = ma the wrong way'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.fma_ratio_inverted
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.forces.0027
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.forces.force_mass_acceleration
+        misconception: mc.phy.o.fma_ratio_inverted
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_forces_05
+  title: Holds 'No forces at terminal velocity'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.terminal_velocity_no_forces
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.forces.0031
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.forces.friction_and_terminal_velocity
+        misconception: mc.phy.o.terminal_velocity_no_forces
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_forces_06
+  title: Holds 'Drag stays the same'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.drag_independent_of_speed
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.forces.0031
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.forces.friction_and_terminal_velocity
+        misconception: mc.phy.o.drag_independent_of_speed
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_forces_07
+  title: Holds 'Using the length, not the extension'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.spring_length_for_extension
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.forces.0050
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.forces.springs
+        misconception: mc.phy.o.spring_length_for_extension
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_forces_08
+  title: Holds 'Proportional for any load'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.spring_proportional_beyond_limit
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.forces.0049
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.forces.springs
+        misconception: mc.phy.o.spring_proportional_beyond_limit
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_forces_09
+  title: Holds 'The force points outwards'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.circular_force_outwards
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.forces.0066
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.forces.circular_motion
+        misconception: mc.phy.o.circular_force_outwards
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_forces_10
+  title: Holds 'Measuring from the end, not the pivot'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.moment_distance_from_end
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.forces.0092
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.forces.moments
+        misconception: mc.phy.o.moment_distance_from_end
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_forces_11
+  title: Holds 'Balance means equal forces'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.balance_equal_forces
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.forces.0083
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.forces.moments
+        misconception: mc.phy.o.balance_equal_forces
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_forces_12
+  title: Holds 'Any tilt makes it fall'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.topples_whenever_tilted
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.forces.0099
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 12
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.forces.centre_of_gravity
+        misconception: mc.phy.o.topples_whenever_tilted
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: phy_o_forces_13
+  title: Holds 'Only the height matters'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - physics
+      age_band: '13_15'
+      misconceptions:
+      - mc.phy.o.base_width_irrelevant
+    mode: guided
+    question:
+      item_ref: phy.o:itm.phy.o.forces.0096
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 13
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.phy.o.forces.centre_of_gravity
+        misconception: mc.phy.o.base_width_irrelevant
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

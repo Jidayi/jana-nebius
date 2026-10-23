@@ -1,0 +1,114 @@
+id: itm.mth.o.algebra_and_graphs.0203
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.linear_sequences
+stem: A sequence begins 7, 12, 17, 22, … One of its terms is 117.
+parts:
+- id: a
+  prompt: Which term number is equal to 117?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '23'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0203_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: First find the rule for the nth term.
+  - rung: 2
+    name: concept
+    text:
+      en: Then set the rule equal to the value and solve for n.
+  - rung: 3
+    name: first_step
+    text:
+      en: The common difference is 5.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The nth term is 5n + 2. Solve 5n + 2 = 117.
+  - rung: 5
+    name: full_step
+    text:
+      en: n = 23.
+  misconception_ids:
+  - mc.mth.o.nth_term_no_constant
+  - mc.mth.o.nth_term_off_by_one
+  - mc.mth.o.nth_term_first_as_coefficient
+solution:
+  steps:
+  - n: 1
+    latex: d = 5
+    reason: The common difference
+    check_id: chk_build_mth_alg_0203_dd
+  - n: 2
+    latex: \text{nth term} = 5n + 2
+    reason: Common difference and adjustment
+    check_id: chk_build_mth_alg_0203_c
+  - n: 3
+    latex: 5n + 2 = 117
+    reason: Set the nth term equal to the value
+  - n: 4
+    latex: 5n = 115
+    reason: Rearrange
+    check_id: chk_build_mth_alg_0203_s
+  - n: 5
+    latex: n = 23
+    reason: Divide
+    check_id: chk_build_mth_alg_0203_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0203_ans:
+    args:
+      equations:
+      - 5*n + (2) = 117
+      unknowns:
+      - n
+    tool: math_solve
+  chk_build_mth_alg_0203_c:
+    args:
+      expression: 7 - (5)
+    tool: math_evaluate
+  chk_build_mth_alg_0203_dd:
+    args:
+      expression: 12 - (7)
+    tool: math_evaluate
+  chk_build_mth_alg_0203_s:
+    args:
+      expression: 117 - (2)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

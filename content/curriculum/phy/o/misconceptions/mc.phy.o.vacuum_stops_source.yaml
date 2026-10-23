@@ -1,0 +1,33 @@
+id: mc.phy.o.vacuum_stops_source
+kc_ids:
+- kc.phy.o.sound.sound_waves
+student_name: The vacuum stops the vibration
+description: Thinks a bell in a jar goes quiet because removing the air stops the bell from vibrating.
+signatures:
+- kind: answer_transform
+  expression: source stops
+fix:
+  strategy: counterexample
+  text:
+    en: You can still see the hammer hitting the bell. The source keeps vibrating; without air there is nothing to carry the sound away.
+probe_item_ids:
+- itm.phy.o.sound.0014
+- itm.phy.o.sound.0010
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

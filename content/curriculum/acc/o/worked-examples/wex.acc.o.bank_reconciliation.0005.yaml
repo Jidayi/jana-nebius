@@ -1,0 +1,59 @@
+id: wex.acc.o.bank_reconciliation.0005
+kc_ids:
+- kc.acc.o.bank_reconciliation.timing_differences
+problem: An item of $640 is a cheque paid to a supplier on the last day of the month, entered in the cash book but not yet on the bank statement. How is it treated, and by how much does it make the statement differ from the cash book?
+steps:
+- n: 1
+  latex: \text{Only in the cash book} \rightarrow \text{timing difference}
+  reason: Not yet through the bank
+  check_id: chk_build_acc_bank_reconciliation_w0005_t
+- n: 2
+  latex: '\text{An unpresented cheque: }640'
+  reason: In the reconciliation statement
+  check_id: chk_build_acc_bank_reconciliation_w0005_a
+final_answer:
+  latex: \$\,640
+  check_id: chk_build_acc_bank_reconciliation_w0005_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_bank_reconciliation_w0005_a:
+    args:
+      dp: 2
+      expression: '640'
+    tool: math_evaluate
+  chk_build_acc_bank_reconciliation_w0005_t:
+    args:
+      bank_statement:
+        balance: '5640'
+        entries: []
+        overdrawn: false
+      cash_book:
+        balance: '5000'
+        entries:
+        - amount: '640'
+          direction: out
+          ref: x1
+        overdrawn: false
+      dp: 2
+      start_from: bank_statement
+      task: reconcile
+    tool: acc_double_entry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

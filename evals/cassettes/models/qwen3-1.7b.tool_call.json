@@ -1,0 +1,498 @@
+{
+ "provenance": "Synthetic prompts recorded against a local llama-server; replies are model output, not student data.",
+ "model": "qwen3-1.7b",
+ "server_build": "b10180-11b068d06",
+ "scenario": "tool_call",
+ "request": {
+  "model": "qwen3-1.7b",
+  "temperature": 0,
+  "seed": 7,
+  "messages": [
+   {
+    "role": "user",
+    "content": "Use the tool to solve 3x - 4 = 11."
+   }
+  ],
+  "tools": [
+   {
+    "type": "function",
+    "function": {
+     "name": "math_solve",
+     "description": "Solves equations exactly.",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "equations": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      },
+      "required": [
+       "equations"
+      ]
+     }
+    }
+   }
+  ],
+  "max_tokens": 200,
+  "chat_template_kwargs": {
+   "enable_thinking": false
+  }
+ },
+ "reply": {
+  "choices": [
+   {
+    "finish_reason": "tool_calls",
+    "index": 0,
+    "message": {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "type": "function",
+       "function": {
+        "name": "math_solve",
+        "arguments": "{\"equations\": [\"3x - 4 = 11\"]}"
+       },
+       "id": "3GQI1N2VgcM1VAE3vQkZFlS0jqfhW2GD"
+      }
+     ]
+    }
+   }
+  ],
+  "created": 1791537750,
+  "model": "qwen3-1.7b",
+  "system_fingerprint": "b10180-11b068d06",
+  "object": "chat.completion",
+  "usage": {
+   "completion_tokens": 30,
+   "prompt_tokens": 176,
+   "total_tokens": 206,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "id": "chatcmpl-Qg8O0NMEQvT2MrRhbK7eppTSFhQgKvay",
+  "timings": {
+   "cache_n": 0,
+   "prompt_n": 176,
+   "prompt_ms": 63.591,
+   "prompt_per_token_ms": 0.3613125,
+   "prompt_per_second": 2767.687251340599,
+   "predicted_n": 30,
+   "predicted_ms": 115.835,
+   "predicted_per_token_ms": 3.8611666666666666,
+   "predicted_per_second": 258.9890792938231
+  }
+ },
+ "events": [
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "role": "assistant",
+      "content": null
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "id": "Oq4s9ttEutKa2QkwymfTDzphH8I7lmbh",
+        "type": "function",
+        "function": {
+         "name": "math_solve",
+         "arguments": "{"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "\""
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "equ"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "ations"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "\":"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": " [\""
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "3"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "x"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": " -"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": " 4"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": " ="
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": " 1"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "1"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "\"]"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "}"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": "tool_calls",
+     "index": 0,
+     "delta": {}
+    }
+   ],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [],
+   "created": 1791537750,
+   "id": "chatcmpl-Cr60vwjVVQ27uV2Jjj6TGKxvYjCHcuxx",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk",
+   "usage": {
+    "completion_tokens": 30,
+    "prompt_tokens": 176,
+    "total_tokens": 206,
+    "prompt_tokens_details": {
+     "cached_tokens": 175
+    }
+   },
+   "timings": {
+    "cache_n": 175,
+    "prompt_n": 1,
+    "prompt_ms": 4.482,
+    "prompt_per_token_ms": 4.482,
+    "prompt_per_second": 223.11468094600625,
+    "predicted_n": 30,
+    "predicted_ms": 115.666,
+    "predicted_per_token_ms": 3.8555333333333333,
+    "predicted_per_second": 259.36748914979336
+   }
+  }
+ ]
+}

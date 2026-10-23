@@ -1,0 +1,147 @@
+id: itm.acc.o.sole_trader_statements.0062
+version: 0.1.1
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.sole_trader_statements.closing_capital
+stem: Sipho runs a market stall. Capital at the start of the year was $46400. During the year the business made a profit of $17000 and Sipho took drawings of $3800 and paid in extra capital of $5000.
+parts:
+- id: a
+  prompt: Calculate the capital at the end of the year.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '64600.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_sole_trader_statements_0062_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Capital is the owner's stake. What made it grow and what made it shrink this year?
+  - rung: 2
+    name: concept
+    text:
+      en: Closing capital = opening capital + capital introduced + profit (or − loss) − drawings.
+  - rung: 3
+    name: first_step
+    text:
+      en: A profit belongs to the owner and adds to capital; drawings take it away.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Closing capital = 46400 + 5000 + 17000 − 3800.
+  - rung: 5
+    name: full_step
+    text:
+      en: Closing capital = $64600.
+  misconception_ids:
+  - mc.acc.o.cc_drawings_added
+  - mc.acc.o.cc_capital_introduced_omitted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Closing capital} = \text{opening capital} + \text{capital introduced} + \text{profit} - \text{drawings}
+    reason: The owner's stake at the year end
+    check_id: chk_build_acc_sole_trader_statements_0062_t
+  - n: 2
+    latex: \text{Closing capital} = 46400 + 5000 + 17000 - 3800 = 64600
+    reason: Substitute
+    check_id: chk_build_acc_sole_trader_statements_0062_a
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  drawings: '3800'
+  introduced: '5000'
+  opening: '46400'
+  profit: '17000'
+checks:
+  chk_build_acc_sole_trader_statements_0062_a:
+    args:
+      dp: 2
+      expression: 46400 + 5000 + 17000 - 3800
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0062_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Capital
+        credit: '51400'
+        role: capital
+      - account: Drawings
+        debit: '3800'
+        role: drawings
+      - account: Sales
+        credit: '53500'
+        role: revenue
+      - account: Purchases
+        debit: '36500'
+        role: purchases
+      - account: Equipment
+        debit: '56400'
+        role: non_current_asset
+      - account: Land
+        debit: '8200'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Family loan
+        credit: '1000'
+        role: non_current_liability
+    tool: acc_statements
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:33:40.514Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.acc.o.sole_trader_statements.0062
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

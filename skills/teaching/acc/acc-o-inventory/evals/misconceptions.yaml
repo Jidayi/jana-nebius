@@ -1,0 +1,494 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.acc-o-inventory
+version: 2026-10-13.1
+description: 'Colocated evals for acc-o-inventory (SKL-21, EVL-07): one case per misconception. The student answers
+  as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key away,
+  and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: acc_o_inventory_01
+  title: Holds 'Closing inventory at the oldest prices'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.inv_fifo_reversed
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.inventory.0008
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.inventory.fifo
+        misconception: mc.acc.o.inv_fifo_reversed
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: acc_o_inventory_02
+  title: Holds 'Averaging under FIFO'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.inv_avco_for_fifo
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.inventory.0008
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.inventory.fifo
+        misconception: mc.acc.o.inv_avco_for_fifo
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: acc_o_inventory_03
+  title: Holds 'Cost of sales instead of closing inventory'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.inv_cos_for_closing
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.inventory.0008
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.inventory.fifo
+        misconception: mc.acc.o.inv_cos_for_closing
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: acc_o_inventory_04
+  title: Holds 'Simple average of prices'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.inv_simple_average
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.inventory.0019
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.inventory.avco
+        misconception: mc.acc.o.inv_simple_average
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_inventory_05
+  title: Holds 'FIFO instead of AVCO'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.inv_fifo_for_avco
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.inventory.0019
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.inventory.avco
+        misconception: mc.acc.o.inv_fifo_for_avco
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_inventory_06
+  title: Holds 'Valuing at selling price'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.inv_selling_price_used
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.inventory.0030
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.inventory.lower_cost_nrv
+        misconception: mc.acc.o.inv_selling_price_used
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_inventory_07
+  title: Holds 'Ignoring a lower NRV'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.inv_nrv_ignored
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.inventory.0030
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.inventory.lower_cost_nrv
+        misconception: mc.acc.o.inv_nrv_ignored
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_inventory_08
+  title: Holds 'Adding the costs to sell'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.inv_nrv_costs_added
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.inventory.0030
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.inventory.lower_cost_nrv
+        misconception: mc.acc.o.inv_nrv_costs_added
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_inventory_09
+  title: Holds 'Effect on profit reversed'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.inv_effect_reversed
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.inventory.0034
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.inventory.inventory_profit_effect
+        misconception: mc.acc.o.inv_effect_reversed
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_inventory_10
+  title: Holds 'Inventory errors do not change profit'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.inv_no_profit_effect
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.inventory.0034
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.inventory.inventory_profit_effect
+        misconception: mc.acc.o.inv_no_profit_effect
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_inventory_11
+  title: Holds 'Opening and closing inventory effects mixed up'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.inv_opening_closing_confused
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.inventory.0034
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.inventory.inventory_profit_effect
+        misconception: mc.acc.o.inv_opening_closing_confused
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

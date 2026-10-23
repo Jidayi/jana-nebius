@@ -1,0 +1,85 @@
+id: itm.mth.o.coordinate_geometry.9008
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.coordinate_geometry.gradient
+stem: A straight ramp rises from height 2 m to height 5 m over a horizontal distance of 12 m.
+parts:
+- id: a
+  prompt: Find its gradient as a decimal.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.25'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9008
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Gradient compares vertical change with horizontal change, not with the sloping length.
+  - rung: 2
+    name: concept
+    text:
+      en: Subtract the starting height from the final height and divide by the horizontal run.
+  - rung: 3
+    name: first_step
+    text:
+      en: Subtract the starting height from the final height and divide by the horizontal run.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Use the rise between the two heights, rather than the final height alone.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 0.25.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{5 - 2}{12}
+    reason: Subtract the starting height from the final height and divide by the horizontal run.
+    check_id: chk_build_mastery_supplement_mth_9008
+  - n: 2
+    latex: '0.25'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9008
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9008:
+    args:
+      angle_unit: degrees
+      expression: (5-2)/12
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,85 @@
+id: itm.chm.o.reactions.0078
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.oxidation_numbers
+stem: Find the oxidation number of sulfur in hydrogen sulfide (H₂S). Hydrogen has oxidation number +1.
+parts:
+- id: a
+  prompt: What is the oxidation number of sulfur?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '-2'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_reactions_0078_x
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: In hydrogen sulfide (H₂S) the oxidation numbers of all the atoms add up to zero.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Every hydrogen atom in hydrogen sulfide (H₂S) counts: multiply its oxidation number by the number of atoms.'
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Let the oxidation number of sulfur be x and write the sum: 2(+1) + x = 0.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Get x on its own in 2(+1) + x = 0: move the hydrogen total across and change its sign.'
+  - rung: 5
+    name: full_step
+    text:
+      en: x = 0 - 2(+1) = -2, so sulfur has oxidation number -2.
+  misconception_ids:
+  - mc.chm.o.reactions_oxnum_sign_flipped
+solution:
+  steps:
+  - n: 1
+    latex: 2(+1) + x = 0
+    reason: Total = zero
+  - n: 2
+    latex: x = 0 - 2(+1) = -2
+    reason: Solve for x
+    check_id: chk_build_chm_reactions_0078_x
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 75
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_0078_x:
+    args:
+      expression: 0 - 2*(1)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

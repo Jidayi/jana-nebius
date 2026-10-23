@@ -1,0 +1,36 @@
+id: mc.chm.o.environment_climate_wrong_gas
+kc_ids:
+- kc.chm.o.environment.climate
+student_name: Blaming the wrong gas for climate change
+description: Names gases that are not the main greenhouse gases (nitrogen, oxygen, sulfur dioxide, carbon monoxide) as the cause of climate change, or treats remedies for other pollutants as remedies for climate change.
+signatures:
+- kind: answer_transform
+  expression: 'choice: non-greenhouse gas or unrelated remedy linked to climate change'
+fix:
+  strategy: rule_restatement
+  text:
+    en: The main greenhouse gases to know are carbon dioxide and methane. Nitrogen and oxygen are not greenhouse gases. Catalytic converters and desulfurisation fight other pollutants, not climate change.
+probe_item_ids:
+- itm.chm.o.environment.0037
+- itm.chm.o.environment.0038
+- itm.chm.o.environment.0039
+- itm.chm.o.environment.0040
+- itm.chm.o.environment.0043
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.moment_ratio_inverted
+kc_ids:
+- kc.phy.o.forces.moments
+student_name: Distances the wrong way up
+description: Uses the two distances the wrong way up when solving the principle of moments for a force or a distance.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Write the balance first: F1 × d1 = F2 × d2. Then divide both sides by the quantity next to the unknown.'
+probe_item_ids:
+- itm.phy.o.forces.0091
+- itm.phy.o.forces.0092
+- itm.phy.o.forces.0095
+- itm.phy.o.forces.0082
+- itm.phy.o.forces.0086
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

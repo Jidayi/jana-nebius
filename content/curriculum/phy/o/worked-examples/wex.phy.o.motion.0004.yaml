@@ -1,0 +1,51 @@
+id: wex.phy.o.motion.0004
+kc_ids:
+- kc.phy.o.motion.free_fall
+- kc.phy.o.motion.solve_with_equation
+problem: A ball is dropped from rest from a high balcony. Take g = 9.8 m/s^2 and ignore air resistance. Find its speed after 3.0 s.
+steps:
+- n: 1
+  latex: v = u + at
+  reason: Links final velocity, initial velocity, acceleration and time
+- n: 2
+  latex: v = 0 + (9.8)(3.0)
+  reason: Dropped from rest so u = 0
+  check_id: chk_build_phy_w_0004
+- n: 3
+  latex: v = 29.4\ \text{m/s}
+  reason: Evaluate
+  check_id: chk_build_phy_w_0004
+final_answer:
+  latex: 29.4\ \text{m/s}
+  check_id: chk_build_phy_w_0004
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_w_0004:
+    args:
+      expression: 0 + 9.8*3.0
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

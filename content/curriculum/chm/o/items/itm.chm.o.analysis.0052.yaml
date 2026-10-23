@@ -1,0 +1,91 @@
+id: itm.chm.o.analysis.0052
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.analysis.purity
+stem: A chemist adds a little salt to pure ice.
+parts:
+- id: a
+  prompt: What happens to the melting point?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: It becomes sharper.
+      correct: false
+      misconception_id: mc.chm.o.analysis_range_means_pure
+      feedback: A pure substance melts sharply at one temperature. Melting over a range is a sign of impurity.
+    - id: B
+      text: It rises above 0 °C.
+      correct: false
+      misconception_id: mc.chm.o.analysis_impurity_raises_mp
+      feedback: Impurities lower the melting point and make the solid melt over a range of temperatures.
+    - id: C
+      text: It falls below 0 °C.
+      correct: true
+    - id: D
+      text: It stays at 0 °C because salt dissolves completely.
+      correct: false
+      misconception_id: mc.chm.o.analysis_purity_by_appearance
+      feedback: The salt cannot be seen once it dissolves, but it is still there. An impurity lowers the melting point of ice below 0 °C.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A chemist adds a little salt to pure ice. Compare with the pure substance.
+  - rung: 2
+    name: concept
+    text:
+      en: A pure substance melts and boils at one fixed temperature.
+  - rung: 3
+    name: first_step
+    text:
+      en: Impurities lower the melting point, raise the boiling point and spread melting over a range.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Appearance alone cannot show purity.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It falls below 0 °C.'
+  misconception_ids:
+  - mc.chm.o.analysis_impurity_raises_mp
+  - mc.chm.o.analysis_range_means_pure
+  - mc.chm.o.analysis_purity_by_appearance
+solution:
+  steps:
+  - n: 1
+    latex: \text{sharp fixed point = pure}
+    reason: Reason
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

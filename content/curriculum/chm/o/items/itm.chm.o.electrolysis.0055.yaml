@@ -1,0 +1,121 @@
+id: itm.chm.o.electrolysis.0055
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.quantitative
+stem: 'Concentrated aqueous sodium chloride is electrolysed with a current of 2.0 A for 1930 s. At the anode: 2Cl⁻ → Cl₂ + 2e⁻. One mole of gas occupies 24 dm³ at room conditions, and 96500 C is one mole of electrons.'
+parts:
+- id: a
+  prompt: Calculate the volume of chlorine formed at room conditions.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '0.480'
+    unit: dm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_electrolysis_0055_v
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Charge → moles of electrons → moles of chlorine → volume.
+  - rung: 2
+    name: concept
+    text:
+      en: Two electrons are lost for every Cl₂ molecule formed.
+  - rung: 3
+    name: first_step
+    text:
+      en: Q = 2.0 × 1930 = 3860 C, so moles of electrons = 3860 ÷ 96500 = 0.0400 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Moles of Cl₂ = 0.0400 ÷ 2 = 0.0200 mol. Multiply by 24 dm³.
+  - rung: 5
+    name: full_step
+    text:
+      en: Volume = 0.0200 × 24 = 0.480 dm³.
+  misconception_ids:
+  - mc.chm.o.electrolysis_electron_ratio_ignored
+solution:
+  steps:
+  - n: 1
+    latex: Q = 2.0 \times 1930 = 3860\ \text{C}
+    reason: Charge
+    check_id: chk_build_chm_electrolysis_0055_m
+  - n: 2
+    latex: n(e^-) = \frac{3860}{96500} = 0.0400\ \text{mol}
+    reason: Moles of electrons
+    check_id: chk_build_chm_electrolysis_0055_e
+  - n: 3
+    latex: n(\text{Cl}_2) = \frac{0.0400}{2} = 0.0200\ \text{mol}
+    reason: Two electrons per molecule
+    check_id: chk_build_chm_electrolysis_0055_n
+  - n: 4
+    latex: V = 0.0200 \times 24 = 0.480\ \text{dm}^3
+    reason: Moles to volume
+    check_id: chk_build_chm_electrolysis_0055_v
+difficulty:
+  prior: 0.8
+  band: stretch
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_0055_e:
+    args:
+      expression: 3860/96500
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_electrolysis_0055_m:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cl
+      - source: pack
+        symbol: faraday
+      sf: 3
+      steps:
+      - current: '2.0'
+        electrons: 2
+        id: m
+        op: electrolysis
+        species: Cl2
+        time: '1930'
+    tool: chem_stoichiometry
+  chk_build_chm_electrolysis_0055_n:
+    args:
+      expression: 3860/(96500*2)
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_electrolysis_0055_v:
+    args:
+      expression: 0.02*24
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

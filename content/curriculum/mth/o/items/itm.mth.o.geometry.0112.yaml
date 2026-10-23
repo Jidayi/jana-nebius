@@ -1,0 +1,107 @@
+id: itm.mth.o.geometry.0112
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.angle_facts
+stem: Two straight lines cross. One of the four angles formed is 128°.
+parts:
+- id: a
+  prompt: Find the angle vertically opposite it.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '128'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_geo_0112_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Sketch two crossing lines and mark the angle.
+  - rung: 2
+    name: concept
+    text:
+      en: Opposite angles are equal; neighbouring angles lie on a straight line.
+  - rung: 3
+    name: first_step
+    text:
+      en: Decide whether the angle you want is opposite the given one or next to it.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Use 'equal' for opposite angles and '180°' for neighbours.
+  - rung: 5
+    name: full_step
+    text:
+      en: The angle is 128°.
+  misconception_ids:
+  - mc.mth.o.vertically_opposite_supplementary
+  - mc.mth.o.line_angles_360
+  - mc.mth.o.adjacent_angles_complementary
+solution:
+  steps:
+  - n: 1
+    latex: '128'
+    reason: Vertically opposite angles are equal
+    check_id: chk_build_mth_geo_0112_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  s: '128'
+checks:
+  chk_build_mth_geo_0112_ans:
+    args:
+      expression: '128'
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:37:06.040Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.geometry.0112
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

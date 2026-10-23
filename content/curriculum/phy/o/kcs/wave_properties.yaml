@@ -1,0 +1,164 @@
+- id: kc.phy.o.wave_properties.describing_waves
+  code: PHY-O-03.01.K01
+  node_id: cur.phy.o.waves.general_properties_of_waves
+  statement: Identify amplitude, wavelength, frequency and period, and calculate the period from the frequency
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.phy.o.measurement.si_prefixes
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.amplitude_peak_to_trough
+  - mc.phy.o.amplitude_wavelength_swapped
+  - mc.phy.o.cycle_count_as_frequency
+  - mc.phy.o.period_frequency_confused
+  - mc.phy.o.wave_prefix_ignored
+  - mc.phy.o.wavelength_crest_to_trough
+  - mc.phy.o.wavelength_whole_diagram
+  - mc.phy.o.whole_time_as_period
+  - mc.phy.o.repeat_multiplied
+  skill_ids:
+  - phy-o-wave-properties
+  glossary:
+  - amplitude
+  - wavelength
+  - frequency
+  - period
+  - crest
+  - trough
+  - hertz
+  - oscillation
+  - displacement
+  - displacement-time graph
+  - rest position
+  - cycle
+  difficulty_prior: -0.6
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.wave_properties.wave_equation
+  code: PHY-O-03.01.K02
+  node_id: cur.phy.o.waves.general_properties_of_waves
+  statement: Use wave speed = frequency × wavelength to find any one of the three
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.325
+  prerequisites:
+  - kc_id: kc.phy.o.wave_properties.describing_waves
+    strength: required
+  - kc_id: kc.phy.o.motion.average_speed
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.wave_equation_inverted
+  - mc.phy.o.wave_equation_multiplied
+  - mc.phy.o.wave_prefix_ignored
+  - mc.phy.o.wave_speed_divided
+  skill_ids:
+  - phy-o-wave-properties
+  glossary:
+  - wave speed
+  - frequency
+  - wavelength
+  - hertz
+  - kilohertz
+  - wave equation
+  - crest
+  - trough
+  - period
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.wave_properties.transverse_and_longitudinal
+  code: PHY-O-03.01.K03
+  node_id: cur.phy.o.waves.general_properties_of_waves
+  statement: Distinguish transverse from longitudinal waves and give examples of each
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.phy.o.wave_properties.describing_waves
+    strength: required
+  misconception_ids:
+  - mc.phy.o.compression_rarefaction_as_wavelength
+  - mc.phy.o.compression_rarefaction_swapped
+  - mc.phy.o.compressions_counted_not_gaps
+  - mc.phy.o.em_needs_medium
+  - mc.phy.o.light_called_longitudinal
+  - mc.phy.o.longitudinal_means_long
+  - mc.phy.o.medium_stays_still
+  - mc.phy.o.only_transverse_has_wavelength
+  - mc.phy.o.ripples_called_longitudinal
+  - mc.phy.o.sound_called_transverse
+  - mc.phy.o.vibration_direction_swapped
+  - mc.phy.o.wave_carries_medium
+  - mc.phy.o.wavelength_whole_diagram
+  skill_ids:
+  - phy-o-wave-properties
+  glossary:
+  - transverse
+  - longitudinal
+  - transverse wave
+  - longitudinal wave
+  - compression
+  - rarefaction
+  - oscillation
+  - vibration
+  - electromagnetic wave
+  - seismic wave
+  - P-wave
+  - S-wave
+  difficulty_prior: -0.4
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.wave_properties.wave_behaviour
+  code: PHY-O-03.01.K04
+  node_id: cur.phy.o.waves.general_properties_of_waves
+  statement: Describe how waves reflect, refract and diffract, and what happens to their speed and wavelength
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.225
+  prerequisites:
+  - kc_id: kc.phy.o.wave_properties.wave_equation
+    strength: required
+  misconception_ids:
+  - mc.phy.o.bends_at_normal_incidence
+  - mc.phy.o.depth_speed_reversed
+  - mc.phy.o.diffraction_changes_wavelength
+  - mc.phy.o.diffraction_independent_of_gap
+  - mc.phy.o.diffraction_wider_gap_more
+  - mc.phy.o.frequency_changes_on_refraction
+  - mc.phy.o.reflection_angle_doubled
+  - mc.phy.o.reflection_angle_from_surface
+  - mc.phy.o.reflection_changes_wavelength
+  - mc.phy.o.reflection_deviation_given
+  - mc.phy.o.refraction_no_direction_change
+  - mc.phy.o.refraction_speed_unchanged
+  - mc.phy.o.slower_bends_away_from_normal
+  - mc.phy.o.wave_effects_confused
+  - mc.phy.o.wave_equation_inverted
+  - mc.phy.o.wavelength_inverse_to_speed
+  - mc.phy.o.wavelength_unchanged_on_refraction
+  - mc.phy.o.wave_equation_multiplied
+  skill_ids:
+  - phy-o-wave-properties
+  glossary:
+  - reflection
+  - refraction
+  - diffraction
+  - reflect
+  - refract
+  - diffract
+  - wavelength
+  - wave speed
+  - ripple tank
+  - wavefront
+  - boundary
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active

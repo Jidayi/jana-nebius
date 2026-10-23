@@ -1,0 +1,35 @@
+id: mc.phy.o.charge_used_up_in_lamp
+kc_ids:
+- kc.phy.o.electrical_quantities.potential_difference
+student_name: The lamp uses up the charge
+description: Thinks charge is used up in a lamp, so less flows back to the cell; the charge is not used up, only the energy it carries is transferred.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: contrast_example
+  text:
+    en: Ammeters before and after a lamp read the same. The charges keep flowing; what they lose in the lamp is energy.
+probe_item_ids:
+- itm.phy.o.electrical_quantities.0042
+- itm.phy.o.electrical_quantities.0044
+- itm.phy.o.electrical_quantities.0034
+- itm.phy.o.electrical_quantities.0038
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

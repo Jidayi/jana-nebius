@@ -1,0 +1,113 @@
+id: itm.phy.o.light.0016
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.refraction
+stem: A ray of light passes from air into a Perspex block. The angle of incidence is 45° and the angle of refraction is 29°.
+parts:
+- id: a
+  prompt: Calculate the refractive index of the material.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1.46'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_lgt_0016_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which angle is in air and which is in the material?
+  - rung: 2
+    name: concept
+    text:
+      en: Refractive index n = sin i ÷ sin r, with i in air and r in the material.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find sin 45° and sin 29°.
+  - rung: 4
+    name: worked_step
+    text:
+      en: sin i = 0.707 and sin r = 0.485; divide the first by the second.
+  - rung: 5
+    name: full_step
+    text:
+      en: The refractive index is 1.46.
+  misconception_ids:
+  - mc.phy.o.snell_ratio_inverted
+  - mc.phy.o.snell_angles_not_sines
+  - mc.phy.o.refraction_angles_from_surface
+solution:
+  steps:
+  - n: 1
+    latex: \sin 45^\circ = 0.707
+    reason: Sine of the angle in air
+    check_id: chk_build_phy_lgt_0016_si
+  - n: 2
+    latex: \sin 29^\circ = 0.485
+    reason: Sine of the angle in the material
+    check_id: chk_build_phy_lgt_0016_sr
+  - n: 3
+    latex: n = \frac{\sin 45^\circ}{\sin 29^\circ} = 1.46
+    reason: n = sin i / sin r
+    check_id: chk_build_phy_lgt_0016_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0016_ans:
+    args:
+      angle_unit: degrees
+      expression: sin(45)/sin(29)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0016_si:
+    args:
+      angle_unit: degrees
+      expression: sin(45)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0016_sr:
+    args:
+      angle_unit: degrees
+      expression: sin(29)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0016_tool:
+    args:
+      angle1: 45
+      angle2: 29
+      n1: 1
+      task: refraction
+    tool: phys_optics
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

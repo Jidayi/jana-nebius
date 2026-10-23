@@ -1,0 +1,33 @@
+id: mc.phy.o.critical_angle_same_for_all
+kc_ids:
+- kc.phy.o.light.total_internal_reflection
+student_name: Every material has the same critical angle
+description: Thinks the critical angle is a fixed value (such as 42°) for every material, rather than depending on the refractive index.
+signatures:
+- kind: answer_transform
+  expression: '42'
+fix:
+  strategy: contrast_example
+  text:
+    en: sin C = 1 ÷ n, so a material with a bigger refractive index has a smaller critical angle. Diamond's is about 24°, water's about 49°.
+probe_item_ids:
+- itm.phy.o.light.0057
+- itm.phy.o.light.0053
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

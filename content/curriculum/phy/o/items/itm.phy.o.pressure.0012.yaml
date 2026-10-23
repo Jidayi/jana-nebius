@@ -1,0 +1,127 @@
+id: itm.phy.o.pressure.0012
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.pressure_on_surfaces
+stem: The heel of a shoe presses on the floor with a force of 300 N over an area of 1 cm².
+parts:
+- id: a
+  prompt: Calculate the pressure in kilopascals.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 3000 kPa
+      correct: true
+    - id: B
+      text: 0.3 kPa
+      correct: false
+      misconception_id: mc.phy.o.pressure_area_cm2_not_converted
+      feedback: A pascal is a newton on each square metre. Change cm² into m² (divide by ten thousand) before using pressure = force ÷ area.
+    - id: C
+      text: 30 kPa
+      correct: false
+      misconception_id: mc.phy.o.pressure_area_factor_not_squared
+      feedback: A square metre is a hundred centimetres long and a hundred centimetres wide, so it holds a hundred times a hundred square centimetres.
+    - id: D
+      text: 3.00 × 10^-5 kPa
+      correct: false
+      misconception_id: mc.phy.o.pressure_force_times_area
+      feedback: 'Pressure is the force on each square metre: force ÷ area. Spreading a force over a bigger area must give a smaller pressure, which multiplying by the area cannot do.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A pascal is one newton on each square metre, so the area must be in m².
+  - rung: 2
+    name: concept
+    text:
+      en: 1 m² is 10000 cm², because the length factor of a hundred is squared.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change 1 cm² into m² by dividing by 10000.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The area is 0.0001 m²; divide 300 N by it and change pascals into kilopascals.
+  - rung: 5
+    name: full_step
+    text:
+      en: The pressure is 3000 kPa.
+  misconception_ids:
+  - mc.phy.o.pressure_area_cm2_not_converted
+  - mc.phy.o.pressure_area_factor_not_squared
+  - mc.phy.o.pressure_force_times_area
+solution:
+  steps:
+  - n: 1
+    latex: 1\ \text{m}^2 = 10000\ \text{cm}^2
+    reason: 100 cm by 100 cm
+    check_id: chk_build_phy_prs_0012_k
+  - n: 2
+    latex: A = 1 \div 10000 = 0.0001\ \text{m}^2
+    reason: Change cm² into m²
+    check_id: chk_build_phy_prs_0012_am
+  - n: 3
+    latex: p = \frac{300}{0.0001} = 3000000\ \text{Pa}
+    reason: Pressure = force ÷ area
+    check_id: chk_build_phy_prs_0012_pa
+  - n: 4
+    latex: 3000000\ \text{Pa} = 3000\ \text{kPa}
+    reason: Pascals into kilopascals
+    check_id: chk_build_phy_prs_0012_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_0012_am:
+    args:
+      expression: 1/10000
+    tool: math_evaluate
+  chk_build_phy_prs_0012_ans:
+    args:
+      expression: 300/(1/10000)/1000
+    tool: math_evaluate
+  chk_build_phy_prs_0012_k:
+    args:
+      expression: 100^2
+    tool: math_evaluate
+  chk_build_phy_prs_0012_pa:
+    args:
+      expression: 300/(1/10000)
+    tool: math_evaluate
+  chk_build_phy_prs_0012_tool:
+    args:
+      quantity: 300 N/cm^2
+      to: kPa
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

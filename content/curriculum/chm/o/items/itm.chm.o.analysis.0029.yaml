@@ -1,0 +1,86 @@
+id: itm.chm.o.analysis.0029
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.analysis.chromatography
+stem: A dye spot moves 4.2 cm from the start line while the solvent front moves 8.4 cm.
+parts:
+- id: a
+  prompt: Calculate the Rf value of the dye.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.50'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_analysis_0029_r
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Rf compares two distances measured from the start line.
+  - rung: 2
+    name: concept
+    text:
+      en: Rf = distance moved by the substance ÷ distance moved by the solvent.
+  - rung: 3
+    name: first_step
+    text:
+      en: The substance moved 4.2 cm; the solvent moved 8.4 cm.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 4.2 by 8.4.
+  - rung: 5
+    name: full_step
+    text:
+      en: Rf = 0.50.
+  misconception_ids:
+  - mc.chm.o.analysis_rf_inverted
+solution:
+  steps:
+  - n: 1
+    latex: R_f = \frac{4.2}{8.4}
+    reason: Spot over solvent
+  - n: 2
+    latex: R_f = 0.50
+    reason: Divide
+    check_id: chk_build_chm_analysis_0029_r
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_analysis_0029_r:
+    args:
+      expression: 4.2/8.4
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

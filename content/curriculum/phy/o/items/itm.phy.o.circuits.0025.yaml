@@ -1,0 +1,119 @@
+id: itm.phy.o.circuits.0025
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.parallel_circuits
+stem: A current of 1.8 A enters a junction and divides between an 8 Ω resistor and a 24 Ω resistor connected in parallel.
+parts:
+- id: a
+  prompt: Calculate the current through the 8 Ω resistor.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '1.35'
+    unit: A
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_cir_0025_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Both resistors have the same p.d. across them.
+  - rung: 2
+    name: concept
+    text:
+      en: Find that p.d. from the total current and the combined resistance, then use I = V/R for one branch.
+  - rung: 3
+    name: first_step
+    text:
+      en: The combined resistance is (8 × 24) ÷ (8 + 24).
+  - rung: 4
+    name: worked_step
+    text:
+      en: The p.d. across the pair is 10.8 V; divide it by 8 Ω.
+  - rung: 5
+    name: full_step
+    text:
+      en: The current through the 8 Ω resistor is 1.35 A.
+  misconception_ids:
+  - mc.phy.o.parallel_more_current_higher_resistance
+  - mc.phy.o.parallel_current_split_equally
+  - mc.phy.o.parallel_current_same_each_branch
+solution:
+  steps:
+  - n: 1
+    latex: R = \frac{8 \times 24}{8 + 24} = 6\ \Omega
+    reason: Combined resistance
+    check_id: chk_build_phy_cir_0025_rp
+  - n: 2
+    latex: V = IR = 1.8 \times 6 = 10.8\ \text{V}
+    reason: The p.d. across both branches
+    check_id: chk_build_phy_cir_0025_v
+  - n: 3
+    latex: I_1 = \frac{10.8}{8} = 1.35\ \text{A}
+    reason: Ohm's law for one branch
+    check_id: chk_build_phy_cir_0025_ans
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_0025_ans:
+    args:
+      expression: 1.8*24/(8 + 24)
+    tool: math_evaluate
+  chk_build_phy_cir_0025_rp:
+    args:
+      expression: 8*24/(8 + 24)
+    tool: math_evaluate
+  chk_build_phy_cir_0025_tool:
+    args:
+      components:
+      - emf: '10.8'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '8'
+      - id: R2
+        kind: resistor
+        resistance: '24'
+      network:
+        series:
+        - B
+        - parallel:
+          - R1
+          - R2
+    tool: phys_circuit
+  chk_build_phy_cir_0025_v:
+    args:
+      expression: 1.8*8*24/(8 + 24)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

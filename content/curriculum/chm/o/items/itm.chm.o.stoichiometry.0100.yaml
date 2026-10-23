@@ -1,0 +1,119 @@
+id: itm.chm.o.stoichiometry.0100
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.empirical_formula
+stem: A compound of magnesium and nitrogen contains 3.6 g of Mg combined with 1.4 g of N.
+parts:
+- id: a
+  prompt: What is its empirical formula?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Mg₁₈N₇
+      correct: false
+      misconception_id: mc.chm.o.empirical_mass_ratio
+      feedback: 'Equal masses are not equal numbers of atoms: 12 g of carbon and 1 g of hydrogen both hold one mole of atoms. Divide each mass by its Ar.'
+    - id: B
+      text: Mg₂N₃
+      correct: false
+      misconception_id: mc.chm.o.empirical_divided_wrong_way
+      feedback: Moles of atoms = mass ÷ Ar. Dividing the other way round gives the ratio upside down.
+    - id: C
+      text: Mg₃N₂
+      correct: true
+    - id: D
+      text: MgN
+      correct: false
+      misconception_id: mc.chm.o.empirical_rounded_early
+      feedback: If a ratio ends in .5, multiply every number by 2; if it ends in .33 or .67, multiply by 3.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An empirical formula is the simplest whole-number ratio of atoms.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the moles of atoms of each element (mass ÷ Ar), then find their simplest ratio.
+  - rung: 3
+    name: first_step
+    text:
+      en: Moles of Mg atoms = 3.6 ÷ 24 = 0.150; moles of N atoms = 1.4 ÷ 14 = 0.100.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Divide by the smaller: N ÷ Mg = 0.667. Scale up to whole numbers if needed.'
+  - rung: 5
+    name: full_step
+    text:
+      en: The simplest whole-number ratio gives Mg₃N₂.
+  misconception_ids:
+  - mc.chm.o.empirical_mass_ratio
+  - mc.chm.o.empirical_divided_wrong_way
+  - mc.chm.o.empirical_rounded_early
+solution:
+  steps:
+  - n: 1
+    latex: n(Mg) = \frac{3.6}{24} = 0.150
+    reason: Moles of atoms
+    check_id: chk_build_chm_stoichiometry_0100_n1
+  - n: 2
+    latex: n(N) = \frac{1.4}{14} = 0.100
+    reason: Moles of atoms
+    check_id: chk_build_chm_stoichiometry_0100_n2
+  - n: 3
+    latex: 'N : Mg = 0.667'
+    reason: Ratio to the smaller
+    check_id: chk_build_chm_stoichiometry_0100_ratio
+  - n: 4
+    latex: \text{Mg}_3\text{N}_2
+    reason: Whole-number ratio
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0100_n1:
+    args:
+      expression: 3.6/24
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_stoichiometry_0100_n2:
+    args:
+      expression: 1.4/14
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_stoichiometry_0100_ratio:
+    args:
+      expression: (1.4/14)/(3.6/24)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

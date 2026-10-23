@@ -1,0 +1,92 @@
+id: itm.phy.o.sound.0036
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.sound.pitch_and_loudness
+stem: The frequency of a note from a signal generator is doubled, with the amplitude kept the same.
+parts:
+- id: a
+  prompt: What does a listener notice?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The pitch rises and the loudness stays the same
+      correct: true
+    - id: B
+      text: The sound gets louder and the pitch stays the same
+      correct: false
+      misconception_id: mc.phy.o.loudness_from_frequency
+      feedback: A quiet whistle can be high and a loud drum low. Loudness depends on the amplitude; frequency sets the pitch.
+    - id: C
+      text: The pitch rises and the sound gets louder
+      correct: false
+      misconception_id: mc.phy.o.loudness_from_frequency
+      feedback: A quiet whistle can be high and a loud drum low. Loudness depends on the amplitude; frequency sets the pitch.
+    - id: D
+      text: The sound reaches the listener sooner
+      correct: false
+      misconception_id: mc.phy.o.higher_pitch_travels_faster
+      feedback: At a concert the high and low notes reach you together. In one material all sounds travel at the same speed; higher frequency means shorter wavelength.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Separate the two features of a sound: how high it sounds and how loud it is.'
+  - rung: 2
+    name: concept
+    text:
+      en: Pitch depends on the frequency; loudness depends on the amplitude.
+  - rung: 3
+    name: first_step
+    text:
+      en: A healthy young ear hears from about twenty hertz up to about twenty thousand hertz.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against these rules.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The pitch rises and the loudness stays the same.'
+  misconception_ids:
+  - mc.phy.o.higher_pitch_travels_faster
+  - mc.phy.o.loudness_from_frequency
+solution:
+  steps:
+  - n: 1
+    latex: \text{The pitch rises and the loudness stays the same}
+    reason: Pitch follows frequency; loudness follows amplitude
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,44 @@
+{
+ "$comment": "GENERATED from docs/specification/contracts/visuals/kinds/enzyme_sim.schema.json sha256 396f5b35c105a97776066e7e78b2c1f81d2365ca38d3d8ce5019f57b81c5eb17; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/enzyme_sim",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "preset_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 100
+  },
+  "substrate": {
+   "type": "number",
+   "minimum": 0
+  },
+  "vmax": {
+   "type": "number",
+   "minimum": 0
+  },
+  "km": {
+   "type": "number",
+   "minimum": 1e-06
+  },
+  "temperature_c": {
+   "type": "number",
+   "minimum": 0,
+   "maximum": 100
+  },
+  "ph": {
+   "type": "number",
+   "minimum": 0,
+   "maximum": 14
+  }
+ },
+ "required": [
+  "preset_id",
+  "substrate",
+  "vmax",
+  "km",
+  "temperature_c",
+  "ph"
+ ]
+}

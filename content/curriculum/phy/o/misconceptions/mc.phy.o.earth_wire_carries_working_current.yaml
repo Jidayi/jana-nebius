@@ -1,0 +1,35 @@
+id: mc.phy.o.earth_wire_carries_working_current
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+student_name: The earth wire carries the normal current
+description: Thinks the earth wire carries current in normal use, for example as the return path for the current.
+signatures:
+- kind: answer_transform
+  expression: earth
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'In normal use the earth wire carries no current: live and neutral carry it. The earth wire carries current only when a fault makes the case live.'
+probe_item_ids:
+- itm.phy.o.practical_electricity.0043
+- itm.phy.o.practical_electricity.0035
+- itm.phy.o.practical_electricity.0038
+- itm.phy.o.practical_electricity.0039
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

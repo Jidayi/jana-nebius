@@ -1,0 +1,36 @@
+id: mc.phy.o.larger_area_larger_pressure
+kc_ids:
+- kc.phy.o.pressure.pressure_on_surfaces
+student_name: Bigger area, bigger pressure
+description: Thinks a larger contact area gives a larger pressure for the same force, or a smaller area a smaller pressure.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: counterexample
+  text:
+    en: Snowshoes stop you sinking because they spread your weight over a big area. For the same force, the bigger the area the smaller the pressure.
+probe_item_ids:
+- itm.phy.o.pressure.0011
+- itm.phy.o.pressure.0013
+- itm.phy.o.pressure.0015
+- itm.phy.o.pressure.0005
+- itm.phy.o.pressure.0010
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

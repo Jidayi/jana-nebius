@@ -1,0 +1,50 @@
+id: wex.phy.o.motion.0016
+kc_ids:
+- kc.phy.o.motion.choose_equation
+problem: A car moving at 6 m/s accelerates at 2.0 m/s^2 for 5 s. Find its final velocity.
+steps:
+- n: 1
+  latex: v = u + at
+  reason: u, a and t are known; s is not involved
+- n: 2
+  latex: v = 6 + 2.0 \times 5
+  reason: Substitute
+  check_id: chk_build_phy_w_0016
+- n: 3
+  latex: v = 16\ \text{m/s}
+  reason: Evaluate
+  check_id: chk_build_phy_w_0016
+final_answer:
+  latex: 16\ \text{m/s}
+  check_id: chk_build_phy_w_0016
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_w_0016:
+    args:
+      expression: 6 + 2.0*5
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

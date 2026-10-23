@@ -1,0 +1,64 @@
+id: wex.chm.o.organic.0002
+kc_ids:
+- kc.chm.o.organic.functional_groups
+problem: Ethane, C₂H₆, and propane, C₃H₈, are neighbouring members of the alkane series. Find the difference between their relative molecular masses and say which group of atoms it represents.
+steps:
+- n: 1
+  latex: M_r(\text{C}_2\text{H}_6) = 30
+  reason: Ethane
+  check_id: chk_build_chm_organic_w0002_a
+- n: 2
+  latex: M_r(\text{C}_3\text{H}_8) = 44
+  reason: Propane
+  check_id: chk_build_chm_organic_w0002_b
+- n: 3
+  latex: 44 - 30 = 14
+  reason: Difference
+  check_id: chk_build_chm_organic_w0002_d
+final_answer:
+  latex: 14 = \text{one CH}_2 \text{ unit}
+  check_id: chk_build_chm_organic_w0002_d
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_w0002_a:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      formula: C2H6
+    tool: chem_molar_mass
+  chk_build_chm_organic_w0002_b:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      formula: C3H8
+    tool: chem_molar_mass
+  chk_build_chm_organic_w0002_d:
+    args:
+      expression: 44 - 30
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

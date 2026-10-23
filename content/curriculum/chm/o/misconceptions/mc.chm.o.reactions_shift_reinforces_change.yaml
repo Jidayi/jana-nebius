@@ -1,0 +1,36 @@
+id: mc.chm.o.reactions_shift_reinforces_change
+kc_ids:
+- kc.chm.o.reactions.equilibrium
+student_name: The equilibrium moves with the change
+description: 'Predicts the position moves in the direction that adds to a change: towards more moles of gas when the pressure rises, towards the exothermic side when heated, or away from a reactant that was added.'
+signatures:
+- kind: answer_transform
+  expression: 'choice: the shift in the direction that increases the change'
+fix:
+  strategy: rule_restatement
+  text:
+    en: The position of equilibrium moves to oppose a change. Heating favours the direction that takes in heat. Higher pressure favours the side with fewer gas molecules. Adding a substance favours the reaction that uses it up.
+probe_item_ids:
+- itm.chm.o.reactions.0049
+- itm.chm.o.reactions.0050
+- itm.chm.o.reactions.0051
+- itm.chm.o.reactions.0052
+- itm.chm.o.reactions.0053
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

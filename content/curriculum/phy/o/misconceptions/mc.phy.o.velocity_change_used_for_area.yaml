@@ -1,0 +1,36 @@
+id: mc.phy.o.velocity_change_used_for_area
+kc_ids:
+- kc.phy.o.motion.velocity_time_area
+student_name: Using the change in velocity
+description: Uses the change in velocity instead of the average velocity when finding the area under a sloping line.
+signatures:
+- kind: answer_transform
+  expression: (v - u)*t/2
+fix:
+  strategy: contrast_example
+  text:
+    en: The change in velocity gives only the triangle on top. The rectangle underneath, from the starting velocity, is distance travelled too.
+probe_item_ids:
+- itm.phy.o.motion.0341
+- itm.phy.o.motion.0342
+- itm.phy.o.motion.0343
+- itm.phy.o.motion.0344
+- itm.phy.o.motion.0345
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

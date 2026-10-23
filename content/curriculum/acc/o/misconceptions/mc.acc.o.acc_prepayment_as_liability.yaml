@@ -1,0 +1,35 @@
+id: mc.acc.o.acc_prepayment_as_liability
+kc_ids:
+- kc.acc.o.accruals_prepayments.accrual_presentation
+student_name: A prepayment as a liability
+description: Shows an amount paid in advance by the business as a current liability.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: asset
+fix:
+  strategy: contrast_example
+  text:
+    en: 'A prepayment is a service the business is still owed: a current asset.'
+probe_item_ids:
+- itm.acc.o.accruals_prepayments.0035
+- itm.acc.o.accruals_prepayments.0037
+- itm.acc.o.accruals_prepayments.0043
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

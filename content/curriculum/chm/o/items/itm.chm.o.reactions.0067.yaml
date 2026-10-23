@@ -1,0 +1,85 @@
+id: itm.chm.o.reactions.0067
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.redox
+stem: Acidified potassium manganate(VII) solution is purple. It turns colourless when it reacts with a reducing agent such as iron(II) ions.
+parts:
+- id: a
+  prompt: What happens to the manganate(VII) ions in this reaction?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: They are reduced.
+      correct: true
+    - id: B
+      text: They are neutralised.
+      correct: false
+    - id: C
+      text: They are not changed.
+      correct: false
+    - id: D
+      text: They are oxidised.
+      correct: false
+      misconception_id: mc.chm.o.reactions_oxidising_agent_is_oxidised
+      feedback: An agent does the job to something else. The oxidising agent oxidises another substance by taking its electrons, so the oxidising agent itself is reduced. The reducing agent gives electrons away and is oxidised.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The manganate(VII) reacts with a reducing agent.
+  - rung: 2
+    name: concept
+    text:
+      en: A reducing agent reduces something else and is itself oxidised.
+  - rung: 3
+    name: first_step
+    text:
+      en: The manganate(VII) ions are the substance being acted on by the reducing agent.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The colour change from purple to colourless shows that the manganate(VII) ions have changed.
+  - rung: 5
+    name: full_step
+    text:
+      en: The manganate(VII) ions are reduced, which is why the purple colour disappears; they act as an oxidising agent.
+  misconception_ids:
+  - mc.chm.o.reactions_oxidising_agent_is_oxidised
+solution:
+  steps:
+  - n: 1
+    latex: \text{MnO}_4^- \text{ reduced}
+    reason: Reacts with a reducing agent
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

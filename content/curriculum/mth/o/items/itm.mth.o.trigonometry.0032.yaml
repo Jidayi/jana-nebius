@@ -1,0 +1,89 @@
+id: itm.mth.o.trigonometry.0032
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.trig_angle
+stem: In a right-angled triangle, the side opposite angle θ is 11 cm and the side adjacent to it is 12 cm.
+parts:
+- id: a
+  prompt: Find θ, to 1 decimal place.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '42.5'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.05
+    check_id: chk_build_mth_trg_0032_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which two sides do you know, measured from θ?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Opposite and adjacent: use tan.'
+  - rung: 3
+    name: first_step
+    text:
+      en: tan θ = 11/12.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Use the inverse tangent of 11/12, in degrees.
+  - rung: 5
+    name: full_step
+    text:
+      en: θ = 42.5°.
+  misconception_ids:
+  - mc.mth.o.trig_ratio_wrong
+  - mc.mth.o.trig_ratio_inverted
+  - mc.mth.o.calculator_radians
+solution:
+  steps:
+  - n: 1
+    latex: \tan \theta = \frac{11}{12}
+    reason: Opposite over adjacent
+  - n: 2
+    latex: \theta = \tan^{-1}\left(\frac{11}{12}\right) = 42.5
+    reason: Inverse tangent
+    check_id: chk_build_mth_trg_0032_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_trg_0032_ans:
+    args:
+      angle_unit: degrees
+      dp: 1
+      expression: atan(11/12)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

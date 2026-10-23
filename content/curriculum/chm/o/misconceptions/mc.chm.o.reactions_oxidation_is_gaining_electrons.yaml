@@ -1,0 +1,36 @@
+id: mc.chm.o.reactions_oxidation_is_gaining_electrons
+kc_ids:
+- kc.chm.o.reactions.redox
+student_name: Oxidation is gaining electrons
+description: 'Swaps the electron definitions: thinks oxidation is gain of electrons and reduction is loss.'
+signatures:
+- kind: answer_transform
+  expression: 'choice: oxidation described as electron gain, or reduction as electron loss'
+fix:
+  strategy: rule_restatement
+  text:
+    en: Oxidation is loss of electrons; reduction is gain of electrons. A metal atom that becomes a positive ion has lost electrons, so it has been oxidised.
+probe_item_ids:
+- itm.chm.o.reactions.0061
+- itm.chm.o.reactions.0062
+- itm.chm.o.reactions.0063
+- itm.chm.o.reactions.0064
+- itm.chm.o.reactions.0065
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,85 @@
+id: itm.chm.o.reactions.0068
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.redox
+stem: Colourless potassium iodide solution turns brown when an oxidising agent is added.
+parts:
+- id: a
+  prompt: Why does the solution turn brown?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Potassium ions are oxidised to potassium.
+      correct: false
+    - id: B
+      text: Iodide ions are oxidised to iodine, which is brown in solution.
+      correct: true
+    - id: C
+      text: Iodide ions are reduced to iodine.
+      correct: false
+      misconception_id: mc.chm.o.reactions_oxidation_is_gaining_electrons
+      feedback: Oxidation is loss of electrons; reduction is gain of electrons. A metal atom that becomes a positive ion has lost electrons, so it has been oxidised.
+    - id: D
+      text: The oxidising agent dissolves and is brown.
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An oxidising agent oxidises something else. What is there to oxidise?
+  - rung: 2
+    name: concept
+    text:
+      en: Iodide ions, I⁻, can lose electrons.
+  - rung: 3
+    name: first_step
+    text:
+      en: When two iodide ions each lose an electron, a molecule of iodine forms.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Iodine dissolved in water is brown. Decide whether losing electrons is oxidation or reduction.
+  - rung: 5
+    name: full_step
+    text:
+      en: The iodide ions lose electrons and are oxidised to iodine, which gives the brown colour.
+  misconception_ids:
+  - mc.chm.o.reactions_oxidation_is_gaining_electrons
+solution:
+  steps:
+  - n: 1
+    latex: 2\text{I}^- \rightarrow \text{I}_2 + 2e^-
+    reason: Oxidation of iodide
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

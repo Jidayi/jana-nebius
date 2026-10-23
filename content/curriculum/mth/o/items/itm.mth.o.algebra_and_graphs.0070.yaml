@@ -1,0 +1,91 @@
+id: itm.mth.o.algebra_and_graphs.0070
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.change_subject
+stem: In the formula $V = \pi r^2 h$, V = 800, r = 5.
+parts:
+- id: a
+  prompt: Make h the subject, then find the value of h. Give your answer to 3 significant figures.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '10.2'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_alg_0070_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: First rearrange the formula so that h is on its own.
+  - rung: 2
+    name: concept
+    text:
+      en: Undo the operations on the subject in reverse order, doing the same to both sides.
+  - rung: 3
+    name: first_step
+    text:
+      en: The rearranged formula is $h = \frac{V}{\pi r^2}$.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Now substitute V = 800, r = 5 into $h = \frac{V}{\pi r^2}$.
+  - rung: 5
+    name: full_step
+    text:
+      en: h = 10.2.
+  misconception_ids:
+  - mc.mth.o.rearrange_wrong_inverse
+  - mc.mth.o.rearrange_inverse_sign
+  - mc.mth.o.rearrange_root_forgotten
+solution:
+  steps:
+  - n: 1
+    latex: h = \frac{V}{\pi r^2}
+    reason: Make h the subject
+  - n: 2
+    latex: h = 10.2
+    reason: Substitute V = 800, r = 5 and evaluate
+    check_id: chk_build_mth_alg_0070_ans
+difficulty:
+  prior: 0.5
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0070_ans:
+    args:
+      expression: V/(pi*r^2)
+      sf: 3
+      values:
+        V: 800
+        r: 5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

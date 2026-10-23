@@ -1,0 +1,34 @@
+id: mc.acc.o.ca_cash_purchases_included
+kc_ids:
+- kc.acc.o.control_accounts.purchases_ledger_control
+student_name: Cash purchases in the purchases ledger control
+description: Includes cash purchases in the purchases ledger control account.
+signatures:
+- kind: answer_transform
+  expression: closing + cash_purchases
+fix:
+  strategy: rule_restatement
+  text:
+    en: Only credit purchases create amounts owed to suppliers.
+probe_item_ids:
+- itm.acc.o.control_accounts.0034
+- itm.acc.o.control_accounts.0035
+- itm.acc.o.control_accounts.0036
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

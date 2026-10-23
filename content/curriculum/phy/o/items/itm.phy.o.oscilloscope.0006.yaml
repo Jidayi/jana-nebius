@@ -1,0 +1,90 @@
+id: itm.phy.o.oscilloscope.0006
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.oscilloscope.time_base
+stem: An oscilloscope shows just over one complete wave of a steady signal across its screen.
+parts:
+- id: a
+  prompt: Which change would show more complete waves across the screen?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Decrease the time-base setting (fewer ms per division)
+      correct: false
+      misconception_id: mc.phy.o.osc_timebase_setting_inverted
+      feedback: A bigger time-base setting means more time across the screen, so more waves fit on it.
+    - id: B
+      text: Increase the Y-gain setting
+      correct: false
+      misconception_id: mc.phy.o.osc_ygain_timebase_confused
+      feedback: The time-base sets the time per division across the screen; the Y-gain sets the volts per division up the screen.
+    - id: C
+      text: Increase the time-base setting (more ms per division)
+      correct: true
+    - id: D
+      text: Decrease the Y-gain setting
+      correct: false
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The horizontal axis of the screen shows time.
+  - rung: 2
+    name: concept
+    text:
+      en: The time-base sets how much time each horizontal division stands for; the Y-gain only changes height.
+  - rung: 3
+    name: first_step
+    text:
+      en: More waves fit on the screen if the screen covers a longer time.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Decide which way to turn the control that sets the time per division.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: increase the time-base setting (more ms per division).'
+  misconception_ids:
+  - mc.phy.o.osc_timebase_setting_inverted
+  - mc.phy.o.osc_ygain_timebase_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{time across screen} = \text{divisions} \times \text{time-base}
+    reason: More time, more waves
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

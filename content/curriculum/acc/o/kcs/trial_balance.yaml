@@ -1,0 +1,243 @@
+- id: kc.acc.o.trial_balance.classify_tb_balances
+  code: ACC-O-04.K01
+  node_id: cur.acc.o.trial_balance
+  statement: Classify each ledger balance as a debit or a credit balance in a trial balance
+  kind: conceptual
+  tools:
+  - acc_double_entry
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.double_entry.debit_credit_rules
+    strength: required
+  misconception_ids:
+  - mc.acc.o.tb_capital_debit
+  - mc.acc.o.tb_discount_confused
+  - mc.acc.o.tb_drawings_credit
+  - mc.acc.o.tb_returns_with_main
+  skill_ids:
+  - acc-o-trial-balance
+  glossary:
+  - trial balance
+  - debit
+  - credit
+  - debit column
+  - credit column
+  - ledger
+  - suspense account
+  - suspense
+  - error of omission
+  - error of commission
+  - error of principle
+  - compensating error
+  - complete reversal
+  - error of original entry
+  - journal
+  - journal entry
+  - correcting entry
+  - undercast
+  - overcast
+  - discount received
+  - discount allowed
+  - carriage inwards
+  - purchases returns
+  - sales returns
+  - transposition
+  difficulty_prior: -0.6
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.trial_balance.prepare_trial_balance
+  code: ACC-O-04.K02
+  node_id: cur.acc.o.trial_balance
+  statement: Calculate the totals of a trial balance and the difference when it fails
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.trial_balance.classify_tb_balances
+    strength: required
+  - kc_id: kc.acc.o.double_entry.balance_account
+    strength: required
+  misconception_ids:
+  - mc.acc.o.tb_discount_confused
+  - mc.acc.o.tb_drawings_credit
+  - mc.acc.o.tb_returns_with_main
+  skill_ids:
+  - acc-o-trial-balance
+  glossary:
+  - trial balance
+  - debit
+  - credit
+  - debit column
+  - credit column
+  - ledger
+  - suspense account
+  - suspense
+  - error of omission
+  - error of commission
+  - error of principle
+  - compensating error
+  - complete reversal
+  - error of original entry
+  - journal
+  - journal entry
+  - correcting entry
+  - undercast
+  - overcast
+  - discount received
+  - discount allowed
+  - carriage inwards
+  - purchases returns
+  - sales returns
+  - transposition
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.trial_balance.errors_not_revealed
+  code: ACC-O-04.K03
+  node_id: cur.acc.o.trial_balance
+  statement: Identify the type of an error that leaves the trial balance totals in agreement
+  kind: conceptual
+  tools:
+  - acc_double_entry
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.trial_balance.prepare_trial_balance
+    strength: required
+  misconception_ids:
+  - mc.acc.o.err_commission_principle_confused
+  - mc.acc.o.err_original_vs_omission
+  - mc.acc.o.err_reversal_vs_original
+  - mc.acc.o.err_thinks_tb_reveals
+  - mc.acc.o.err_type_names_confused
+  skill_ids:
+  - acc-o-trial-balance
+  glossary:
+  - trial balance
+  - debit
+  - credit
+  - debit column
+  - credit column
+  - ledger
+  - suspense account
+  - suspense
+  - error of omission
+  - error of commission
+  - error of principle
+  - compensating error
+  - complete reversal
+  - error of original entry
+  - journal
+  - journal entry
+  - correcting entry
+  - undercast
+  - overcast
+  - discount received
+  - discount allowed
+  - carriage inwards
+  - purchases returns
+  - sales returns
+  - transposition
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.trial_balance.correcting_entries
+  code: ACC-O-04.K04
+  node_id: cur.acc.o.trial_balance
+  statement: Construct the journal entry that corrects an error in the ledger
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.trial_balance.errors_not_revealed
+    strength: required
+  - kc_id: kc.acc.o.double_entry.record_cash_transactions
+    strength: required
+  misconception_ids:
+  - mc.acc.o.corr_direction_reversed
+  - mc.acc.o.corr_doubled_amount
+  - mc.acc.o.corr_full_amount
+  - mc.acc.o.corr_reversal_once
+  - mc.acc.o.corr_through_suspense
+  skill_ids:
+  - acc-o-trial-balance
+  glossary:
+  - trial balance
+  - debit
+  - credit
+  - debit column
+  - credit column
+  - ledger
+  - suspense account
+  - suspense
+  - error of omission
+  - error of commission
+  - error of principle
+  - compensating error
+  - complete reversal
+  - error of original entry
+  - journal
+  - journal entry
+  - correcting entry
+  - undercast
+  - overcast
+  - discount received
+  - discount allowed
+  - carriage inwards
+  - purchases returns
+  - sales returns
+  - transposition
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.trial_balance.suspense_account
+  code: ACC-O-04.K05
+  node_id: cur.acc.o.trial_balance
+  statement: Calculate the suspense account balance and the entries that clear it
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.trial_balance.correcting_entries
+    strength: required
+  misconception_ids:
+  - mc.acc.o.corr_through_suspense
+  - mc.acc.o.susp_adds_all_errors
+  - mc.acc.o.susp_includes_balanced_error
+  - mc.acc.o.susp_side_reversed
+  skill_ids:
+  - acc-o-trial-balance
+  glossary:
+  - trial balance
+  - debit
+  - credit
+  - debit column
+  - credit column
+  - ledger
+  - suspense account
+  - suspense
+  - error of omission
+  - error of commission
+  - error of principle
+  - compensating error
+  - complete reversal
+  - error of original entry
+  - journal
+  - journal entry
+  - correcting entry
+  - undercast
+  - overcast
+  - discount received
+  - discount allowed
+  - carriage inwards
+  - purchases returns
+  - sales returns
+  - transposition
+  difficulty_prior: 0.6
+  version: 0.1.1
+  status: active

@@ -1,0 +1,93 @@
+id: itm.phy.o.light.0011
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.plane_mirrors
+stem: The word AMBULANCE is printed reversed on the front of an ambulance.
+parts:
+- id: a
+  prompt: Why is it printed that way?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: A mirror turns the word upside down, so it must be printed reversed
+      correct: false
+      misconception_id: mc.phy.o.mirror_image_upside_down
+      feedback: 'Look in a mirror: your head is still at the top. Only left and right swap over, which is why ambulance lettering is printed reversed.'
+    - id: B
+      text: The mirror makes a real image on the driver's windscreen
+      correct: false
+      misconception_id: mc.phy.o.mirror_image_real
+      feedback: No light goes behind a mirror. The reflected rays only seem to come from a point behind it, so the image is virtual and no screen can catch it.
+    - id: C
+      text: The image in the mirror is smaller, so reversed letters are easier to read
+      correct: false
+      misconception_id: mc.phy.o.mirror_image_shrinks_with_distance
+      feedback: A plane-mirror image is always the same size as the object. It only looks smaller from far away, just as a real person does when they walk away from you.
+    - id: D
+      text: A driver ahead sees it in a mirror with left and right swapped back
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Picture yourself looking into a flat bathroom mirror.
+  - rung: 2
+    name: concept
+    text:
+      en: A plane mirror gives a virtual, upright image, the same size as the object.
+  - rung: 3
+    name: first_step
+    text:
+      en: The image is as far behind the mirror as the object is in front, and left and right are swapped.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against these facts.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: A driver ahead sees it in a mirror with left and right swapped back.'
+  misconception_ids:
+  - mc.phy.o.mirror_image_real
+  - mc.phy.o.mirror_image_shrinks_with_distance
+  - mc.phy.o.mirror_image_upside_down
+solution:
+  steps:
+  - n: 1
+    latex: \text{A driver ahead sees it in a mirror with left and right swapped back}
+    reason: Use the properties of a plane-mirror image
+difficulty:
+  prior: -0.6
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

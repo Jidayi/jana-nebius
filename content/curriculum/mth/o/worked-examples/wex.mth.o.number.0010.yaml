@@ -1,0 +1,55 @@
+id: wex.mth.o.number.0010
+kc_ids:
+- kc.mth.o.number.fraction_arithmetic
+problem: Work out $\frac{1}{8} \times \frac{1}{3}$.
+steps:
+- n: 1
+  latex: \frac{1 \times 1}{8 \times 3} = \frac{1}{24}
+  reason: Multiply the numerators and the denominators
+  check_id: chk_build_mth_num_w0010_t
+- n: 2
+  latex: = \frac{1}{24}
+  reason: Simplify
+  check_id: chk_build_mth_num_w0010_k
+final_answer:
+  latex: \frac{1}{24}
+  check_id: chk_build_mth_num_w0010_k
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0010_k:
+    args:
+      equations:
+      - p = 1
+      - q = 24
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_num_w0010_t:
+    args:
+      equations:
+      - p = 1*1
+      - q = 8*3
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

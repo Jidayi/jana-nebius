@@ -1,0 +1,96 @@
+id: itm.chm.o.acids.0004
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.reactions_of_acids
+stem: Lumps of calcium carbonate are added to dilute nitric acid. The mixture fizzes.
+parts:
+- id: a
+  prompt: Which list gives all the products?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Calcium nitrate, water and carbon dioxide
+      correct: true
+    - id: B
+      text: Calcium nitrate and hydrogen
+      correct: false
+      misconception_id: mc.chm.o.acids_wrong_gas
+      feedback: Look at what the acid reacts with. A metal gives hydrogen. A carbonate gives carbon dioxide, because the carbonate contains carbon and oxygen. An oxide or hydroxide gives only a salt and water, with no gas.
+    - id: C
+      text: Calcium sulfate, water and carbon dioxide
+      correct: false
+      misconception_id: mc.chm.o.acids_salt_anion_confused
+      feedback: The acid names the salt. Hydrochloric acid makes chlorides, sulfuric acid makes sulfates and nitric acid makes nitrates. The metal (or ammonium) gives the first part of the name.
+    - id: D
+      text: Calcium nitrate, water and hydrogen
+      correct: false
+      misconception_id: mc.chm.o.acids_wrong_gas
+      feedback: Look at what the acid reacts with. A metal gives hydrogen. A carbonate gives carbon dioxide, because the carbonate contains carbon and oxygen. An oxide or hydroxide gives only a salt and water, with no gas.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Calcium carbonate is a carbonate. What do carbonates give with acids?
+  - rung: 2
+    name: concept
+    text:
+      en: 'A carbonate and an acid give three products: a salt, water and a gas.'
+  - rung: 3
+    name: first_step
+    text:
+      en: The salt is named from the metal in calcium carbonate and from nitric acid.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The gas comes from the carbonate part, which contains carbon and oxygen. Which gas turns limewater milky?
+  - rung: 5
+    name: full_step
+    text:
+      en: 'CaCO₃ + 2HNO₃ → Ca(NO₃)₂ + H₂O + CO₂: calcium nitrate, water and carbon dioxide. The fizzing is carbon dioxide.'
+  misconception_ids:
+  - mc.chm.o.acids_wrong_gas
+  - mc.chm.o.acids_salt_anion_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{CaCO}_3 + 2\text{HNO}_3 \rightarrow \text{Ca(NO}_3\text{)}_2 + \text{H}_2\text{O} + \text{CO}_2
+    reason: Carbonate + acid → salt + water + carbon dioxide
+    check_id: chk_build_chm_acids_0004_bal
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_acids_0004_bal:
+    args:
+      equation: CaCO3 + HNO3 -> Ca(NO3)2 + H2O + CO2
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

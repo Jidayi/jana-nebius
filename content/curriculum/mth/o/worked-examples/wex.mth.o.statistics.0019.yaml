@@ -1,0 +1,49 @@
+id: wex.mth.o.statistics.0019
+kc_ids:
+- kc.mth.o.statistics.histograms
+problem: In a frequency table, the class 0 < x ≤ 40 has frequency 60. Find the frequency density for a histogram.
+steps:
+- n: 1
+  latex: \text{width} = 40 - 0 = 40
+  reason: Class width
+  check_id: chk_build_mth_sta_w0019_w
+- n: 2
+  latex: \text{density} = \frac{60}{40} = 1.5
+  reason: Frequency over width
+  check_id: chk_build_mth_sta_w0019_ans
+final_answer:
+  latex: '1.5'
+  check_id: chk_build_mth_sta_w0019_ans
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_w0019_ans:
+    args:
+      expression: 60/40
+    tool: math_evaluate
+  chk_build_mth_sta_w0019_w:
+    args:
+      expression: 40 - 0
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

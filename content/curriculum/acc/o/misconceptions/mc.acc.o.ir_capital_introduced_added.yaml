@@ -1,0 +1,34 @@
+id: mc.acc.o.ir_capital_introduced_added
+kc_ids:
+- kc.acc.o.incomplete_records.profit_from_capital
+student_name: Counting new capital as profit
+description: Adds capital introduced to the profit instead of taking it out of the increase in capital.
+signatures:
+- kind: answer_transform
+  expression: closing - opening + drawings + introduced
+fix:
+  strategy: rule_restatement
+  text:
+    en: Money the owner pays in raises capital without being profit, so subtract it.
+probe_item_ids:
+- itm.acc.o.incomplete_records.0012
+- itm.acc.o.incomplete_records.0013
+- itm.acc.o.incomplete_records.0014
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

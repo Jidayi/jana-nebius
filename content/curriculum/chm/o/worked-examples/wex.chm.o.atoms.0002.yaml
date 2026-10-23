@@ -1,0 +1,48 @@
+id: wex.chm.o.atoms.0002
+kc_ids:
+- kc.chm.o.atoms.element_compound_mixture
+problem: Air contains oxygen, O₂, nitrogen, N₂, and carbon dioxide, CO₂. Classify air and each of the three gases, and find the relative molecular mass of the compound among them.
+steps:
+- n: 1
+  latex: '\text{air}: \text{mixture}'
+  reason: The gases are not joined
+- n: 2
+  latex: '\text{O}_2,\ \text{N}_2: \text{elements}'
+  reason: One kind of atom each
+- n: 3
+  latex: '\text{CO}_2: \text{compound}'
+  reason: Two elements bonded
+final_answer:
+  latex: M_r(\text{CO}_2) = 44
+  check_id: chk_build_chm_atoms_w0002_mr
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_atoms_w0002_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_o
+      formula: CO2
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

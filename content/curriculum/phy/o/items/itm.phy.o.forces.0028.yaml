@@ -1,0 +1,98 @@
+id: itm.phy.o.forces.0028
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.force_mass_acceleration
+stem: A resultant force of 120 N gives a cart on a level track an acceleration of 2 m/s².
+parts:
+- id: a
+  prompt: Find the mass that is accelerated.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 60 kg
+      correct: true
+    - id: B
+      text: 240 kg
+      correct: false
+      misconception_id: mc.phy.o.fma_multiplied_not_divided
+      feedback: 'Try easy numbers: 10 N on a 2 kg trolley gives 5 m/s², not 20. Only the product F = ma needs a multiplication; the other two unknowns need a division.'
+    - id: C
+      text: 0.0167 kg
+      correct: false
+      misconception_id: mc.phy.o.fma_ratio_inverted
+      feedback: 'A bigger force gives a bigger acceleration, so force goes on top: a = F ÷ m. Check that your answer grows when the force grows.'
+    - id: D
+      text: 6.12 kg
+      correct: false
+      misconception_id: mc.phy.o.fma_mixed_with_weight
+      feedback: g belongs in weight = mg, the pull of gravity. When a horizontal push accelerates a trolley, use F = ma with the trolley's acceleration and leave g out.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Start from F = ma.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Make m the subject: divide both sides by a.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Mass = resultant force ÷ acceleration.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 120 ÷ 2.
+  - rung: 5
+    name: full_step
+    text:
+      en: m = 60 kg.
+  misconception_ids:
+  - mc.phy.o.fma_mixed_with_weight
+  - mc.phy.o.fma_multiplied_not_divided
+  - mc.phy.o.fma_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: m = \frac{F}{a} = \frac{120}{2} = 60\ \text{kg}
+    reason: Rearrange F = ma
+    check_id: chk_build_phy_frc_0028_ans
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0028_ans:
+    args:
+      expression: 120/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

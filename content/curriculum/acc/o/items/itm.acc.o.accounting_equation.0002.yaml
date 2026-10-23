@@ -1,0 +1,87 @@
+id: itm.acc.o.accounting_equation.0002
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.accounting_equation.purpose_and_users
+stem: A supplier offering credit reads the accounts of Chipo's business.
+parts:
+- id: a
+  prompt: What is a supplier offering credit most interested in?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: The profit on which tax is charged
+      correct: false
+      misconception_id: mc.acc.o.ae_users_interest_confused
+    - id: B
+      text: Only the amount of cash in the till
+      correct: false
+      misconception_id: mc.acc.o.ae_purpose_cash_only
+    - id: C
+      text: How much profit the business made
+      correct: false
+      misconception_id: mc.acc.o.ae_users_interest_confused
+    - id: D
+      text: Whether the business pays its bills on time
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Each user of accounts reads them to make a decision. What decision does this user face?
+  - rung: 2
+    name: concept
+    text:
+      en: Owners look at profit; lenders at repayment; suppliers at prompt payment; tax authorities at taxable profit; employees at security.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Accounts show far more than cash: profit, what is owned and what is owed.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Match the user to the decision they must make.
+  - rung: 5
+    name: full_step
+    text:
+      en: Whether the business pays its bills on time.
+  misconception_ids:
+  - mc.acc.o.ae_users_interest_confused
+  - mc.acc.o.ae_purpose_cash_only
+solution:
+  steps:
+  - n: 1
+    latex: \text{A supplier offering credit} \rightarrow \text{whether the business pays its bills on time}
+    reason: The user's decision
+difficulty:
+  prior: -1.2
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_names
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

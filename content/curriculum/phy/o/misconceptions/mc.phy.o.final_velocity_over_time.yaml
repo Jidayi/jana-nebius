@@ -1,0 +1,33 @@
+id: mc.phy.o.final_velocity_over_time
+kc_ids:
+- kc.phy.o.motion.acceleration_from_change
+student_name: Dividing the final velocity by the time
+description: Uses the final velocity instead of the change in velocity when working out acceleration, so any starting velocity is ignored.
+signatures:
+- kind: answer_transform
+  expression: v/t
+  applies_to_part: a
+fix:
+  strategy: contrast_example
+  text:
+    en: Compare two cars that both end at 20 m/s after 4 s, one starting at rest and one starting at 16 m/s. Only the first gains 20 m/s of velocity.
+probe_item_ids:
+- itm.phy.o.motion.0002
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

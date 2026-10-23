@@ -1,0 +1,85 @@
+id: itm.chm.o.organic.0083
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.polymers
+stem: Propene, CH₂=CHCH₃, is used as a monomer.
+parts:
+- id: a
+  prompt: What is the name of the polymer it forms?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Poly(propane)
+      correct: false
+      misconception_id: mc.chm.o.organic_monomer_is_alkane
+      feedback: A monomer for addition polymerisation must have a C=C double bond. Alkanes are saturated and cannot add to one another. Poly(ethene) is made from ethene, not ethane.
+    - id: B
+      text: Polyester
+      correct: false
+    - id: C
+      text: Poly(propene)
+      correct: true
+    - id: D
+      text: Propene oxide
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Addition polymers are named from their monomers.
+  - rung: 2
+    name: concept
+    text:
+      en: Put the monomer's name in brackets after poly.
+  - rung: 3
+    name: first_step
+    text:
+      en: The monomer here is propene, an alkene.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The name of the polymer keeps the monomer's name, even though the C=C bonds have opened.
+  - rung: 5
+    name: full_step
+    text:
+      en: Propene forms poly(propene).
+  misconception_ids:
+  - mc.chm.o.organic_monomer_is_alkane
+solution:
+  steps:
+  - n: 1
+    latex: \text{poly(propene)}
+    reason: Name from the monomer
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

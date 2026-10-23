@@ -1,0 +1,494 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.acc-o-accruals-prepayments
+version: 2026-10-13.1
+description: 'Colocated evals for acc-o-accruals-prepayments (SKL-21, EVL-07): one case per misconception. The student
+  answers as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key
+  away, and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: acc_o_accruals_prepayments_01
+  title: Holds 'Cash paid as the expense'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.acc_cash_basis
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accruals_prepayments.0008
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accruals_prepayments.accrued_expense
+        misconception: mc.acc.o.acc_cash_basis
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: acc_o_accruals_prepayments_02
+  title: Holds 'Subtracting an accrual'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.acc_accrual_subtracted
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accruals_prepayments.0008
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accruals_prepayments.accrued_expense
+        misconception: mc.acc.o.acc_accrual_subtracted
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: acc_o_accruals_prepayments_03
+  title: Holds 'Adding last year's accrual'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.acc_opening_accrual_added
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accruals_prepayments.0008
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accruals_prepayments.accrued_expense
+        misconception: mc.acc.o.acc_opening_accrual_added
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: acc_o_accruals_prepayments_04
+  title: Holds 'Adding a prepayment'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.acc_prepayment_added
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accruals_prepayments.0019
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accruals_prepayments.prepaid_expense
+        misconception: mc.acc.o.acc_prepayment_added
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_accruals_prepayments_05
+  title: Holds 'Forgetting last year's prepayment'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.acc_opening_ignored
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accruals_prepayments.0019
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accruals_prepayments.prepaid_expense
+        misconception: mc.acc.o.acc_opening_ignored
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_accruals_prepayments_06
+  title: Holds 'The adjustment as the whole figure'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.acc_adjustment_as_total
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accruals_prepayments.0030
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accruals_prepayments.income_adjustments
+        misconception: mc.acc.o.acc_adjustment_as_total
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_accruals_prepayments_07
+  title: Holds 'Income adjustments reversed'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.acc_income_adjustment_reversed
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accruals_prepayments.0030
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accruals_prepayments.income_adjustments
+        misconception: mc.acc.o.acc_income_adjustment_reversed
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_accruals_prepayments_08
+  title: Holds 'An accrual as an asset'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.acc_accrual_as_asset
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accruals_prepayments.0034
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accruals_prepayments.accrual_presentation
+        misconception: mc.acc.o.acc_accrual_as_asset
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_accruals_prepayments_09
+  title: Holds 'A prepayment as a liability'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.acc_prepayment_as_liability
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accruals_prepayments.0035
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accruals_prepayments.accrual_presentation
+        misconception: mc.acc.o.acc_prepayment_as_liability
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_accruals_prepayments_10
+  title: Holds 'Adjustments only change profit'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.acc_adjustment_in_is_only
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accruals_prepayments.0034
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accruals_prepayments.accrual_presentation
+        misconception: mc.acc.o.acc_adjustment_in_is_only
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: acc_o_accruals_prepayments_11
+  title: Holds 'Year-end adjustments as non-current'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - accounting
+      age_band: '13_15'
+      misconceptions:
+      - mc.acc.o.acc_prepayment_as_non_current
+    mode: guided
+    question:
+      item_ref: acc.o:itm.acc.o.accruals_prepayments.0034
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.acc.o.accruals_prepayments.accrual_presentation
+        misconception: mc.acc.o.acc_prepayment_as_non_current
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

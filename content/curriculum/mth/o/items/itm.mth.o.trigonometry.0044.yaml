@@ -1,0 +1,103 @@
+id: itm.mth.o.trigonometry.0044
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.trig_angle
+stem: In a right-angled triangle, the hypotenuse is 18 cm and the side opposite angle θ is 11 cm.
+parts:
+- id: a
+  prompt: Find θ, to 1 decimal place.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 37.7°
+      correct: true
+    - id: B
+      text: 52.3°
+      correct: false
+      misconception_id: mc.mth.o.trig_ratio_wrong
+      feedback: 'Label the sides from the angle you are using: opposite faces it, adjacent is next to it, hypotenuse is opposite the right angle.'
+    - id: C
+      text: 31.4°
+      correct: false
+      misconception_id: mc.mth.o.trig_ratio_inverted
+      feedback: tan θ = opposite ÷ adjacent. Write the ratio before pressing tan⁻¹.
+    - id: D
+      text: 0.66°
+      correct: false
+      misconception_id: mc.mth.o.calculator_radians
+      feedback: 'Check the calculator shows D (degrees): sin 30 should give 0.5.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which two sides do you know, measured from θ?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Opposite and hypotenuse: use sin.'
+  - rung: 3
+    name: first_step
+    text:
+      en: sin θ = 11/18.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Use the inverse sine of 11/18, in degrees.
+  - rung: 5
+    name: full_step
+    text:
+      en: θ = 37.7°.
+  misconception_ids:
+  - mc.mth.o.calculator_radians
+  - mc.mth.o.trig_ratio_inverted
+  - mc.mth.o.trig_ratio_wrong
+solution:
+  steps:
+  - n: 1
+    latex: \sin \theta = \frac{11}{18}
+    reason: Opposite over hypotenuse
+  - n: 2
+    latex: \theta = \sin^{-1}\left(\frac{11}{18}\right) = 37.7
+    reason: Inverse sine
+    check_id: chk_build_mth_trg_0044_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_trg_0044_ans:
+    args:
+      angle_unit: degrees
+      dp: 1
+      expression: asin(11/18)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

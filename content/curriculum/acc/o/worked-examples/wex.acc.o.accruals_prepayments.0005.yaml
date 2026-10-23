@@ -1,0 +1,72 @@
+id: wex.acc.o.accruals_prepayments.0005
+kc_ids:
+- kc.acc.o.accruals_prepayments.income_adjustments
+problem: Rent received during the year $4800; owing at the end $400. Find the rent received for the year.
+steps:
+- n: 1
+  latex: \text{Income} = \text{received} + \text{owing} - \text{in advance}
+  reason: Earned this year
+  check_id: chk_build_acc_accruals_prepayments_w0005_t
+- n: 2
+  latex: \text{Income} = 4800 + 400 = 5200
+  reason: Substitute
+  check_id: chk_build_acc_accruals_prepayments_w0005_a
+final_answer:
+  latex: \$\,5200
+  check_id: chk_build_acc_accruals_prepayments_w0005_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_accruals_prepayments_w0005_a:
+    args:
+      dp: 2
+      expression: 4800 + 400
+    tool: math_evaluate
+  chk_build_acc_accruals_prepayments_w0005_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Rent received
+        amount: '400'
+        kind: accrued_income
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '60000'
+        role: revenue
+      - account: Purchases
+        debit: '30000'
+        role: purchases
+      - account: Rent received
+        credit: '4800'
+        role: other_income
+      - account: Land
+        debit: '34800'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

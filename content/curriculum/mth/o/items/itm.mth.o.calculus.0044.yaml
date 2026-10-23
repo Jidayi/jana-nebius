@@ -1,0 +1,133 @@
+id: itm.mth.o.calculus.0044
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.calculus.stationary_points
+stem: A curve has equation $y = x^3 - 3x^2 - 9x - 1$.
+parts:
+- id: a
+  prompt: Find the x-coordinate of its maximum point.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '-1'
+      correct: true
+    - id: B
+      text: '3'
+      correct: false
+      misconception_id: mc.mth.o.max_min_confused
+      feedback: 'Second derivative positive: the curve is a valley, a minimum. Negative: a hill, a maximum.'
+    - id: C
+      text: '0'
+      correct: false
+      misconception_id: mc.mth.o.stationary_from_y_zero
+      feedback: 'Stationary points are where the gradient is zero: solve dy/dx = 0.'
+    - id: D
+      text: '4'
+      correct: false
+      misconception_id: mc.mth.o.gradient_from_y
+      feedback: The gradient comes from dy/dx. The curve's equation gives the y-coordinate.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Stationary points are where the gradient is zero.
+  - rung: 2
+    name: concept
+    text:
+      en: Solve dy/dx = 0, then use the second derivative to tell a maximum from a minimum.
+  - rung: 3
+    name: first_step
+    text:
+      en: Differentiate, set the result equal to zero and solve the quadratic.
+  - rung: 4
+    name: worked_step
+    text:
+      en: At a maximum the second derivative is negative; at a minimum it is positive.
+  - rung: 5
+    name: full_step
+    text:
+      en: The maximum is at x = -1.
+  misconception_ids:
+  - mc.mth.o.gradient_from_y
+  - mc.mth.o.max_min_confused
+  - mc.mth.o.stationary_from_y_zero
+solution:
+  steps:
+  - n: 1
+    latex: \frac{dy}{dx} = 3x^2 - 6x - 9
+    reason: Differentiate
+    check_id: chk_build_mth_cal_0044_dd
+  - n: 2
+    latex: \frac{dy}{dx} = 0 \Rightarrow x = -1 \text{ or } x = 3
+    reason: Set the gradient equal to zero
+    check_id: chk_build_mth_cal_0044_sx
+  - n: 3
+    latex: \frac{d^2y}{dx^2} = 6x - 6
+    reason: The second derivative decides the nature
+  - n: 4
+    latex: \text{maximum at } x = -1
+    reason: 'Negative second derivative: maximum; positive: minimum'
+    check_id: chk_build_mth_cal_0044_d
+difficulty:
+  prior: 1.2
+  band: core
+estimated_seconds: 160
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_cal_0044_ans:
+    args:
+      expression: '-1'
+    tool: math_evaluate
+  chk_build_mth_cal_0044_d:
+    args:
+      expression: (1)*x^3 + (-3)*x^2 + (-9)*x^1 + (-1)*x^0
+      stationary_points: true
+      variable: x
+    tool: math_differentiate
+  chk_build_mth_cal_0044_dd:
+    args:
+      equations:
+      - p = 3*-1*3
+      - q = -3*(-1 + 3)
+      - r = 6
+      unknowns:
+      - p
+      - q
+      - r
+    tool: math_solve
+  chk_build_mth_cal_0044_sx:
+    args:
+      equations:
+      - 3*x^2 + (-6)*x + (-9) = 0
+      unknowns:
+      - x
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,88 @@
+id: itm.acc.o.concepts.0022
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.concepts.apply_concept
+stem: A trader applies the accruals principle at the year end.
+parts:
+- id: a
+  prompt: Select every adjustment the principle requires.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Add wages owing to this year's wages
+      correct: true
+    - id: B
+      text: Take rent paid for next year off this year's rent
+      correct: true
+    - id: C
+      text: Add commission earned but not yet received to income
+      correct: true
+    - id: D
+      text: Record next year's expected sales now
+      correct: false
+    - id: E
+      text: Ignore bills that arrive after the year end
+      correct: false
+    - id: F
+      text: Treat cash paid as the expense
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'What is the accountant deciding here: what to record, at what value, or when?'
+  - rung: 2
+    name: concept
+    text:
+      en: 'Entity: the business is separate from its owner. Money measurement: only items with a money value. Duality: every transaction has two sides. Historic cost: record at cost. Going concern: assume the business carries on. Accruals: match income and expenses to the period. Prudence: do not overstate profit or assets. Consistency: keep to the same methods. Realisation: revenue when goods pass to the customer. Materiality: small items need not follow strict treatment.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Several principles may seem to fit; choose the one the situation is mainly about.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the adjustments that match income and expenses to the year.
+  - rung: 5
+    name: full_step
+    text:
+      en: Wages owing, rent prepaid and commission owing.
+  misconception_ids:
+  - mc.acc.o.con_cash_basis_principle
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Accruals: match to the year}'
+    reason: Year-end adjustments
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

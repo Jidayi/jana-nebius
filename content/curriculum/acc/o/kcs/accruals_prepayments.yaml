@@ -1,0 +1,177 @@
+- id: kc.acc.o.accruals_prepayments.accrued_expense
+  code: ACC-O-09.K01
+  node_id: cur.acc.o.accruals_prepayments
+  statement: Calculate the expense for the year when part of it is still owing
+  kind: procedural
+  tools:
+  - acc_statements
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.3
+  prerequisites:
+  - kc_id: kc.acc.o.double_entry.debit_credit_rules
+    strength: helpful
+  confusable_with:
+  - kc.acc.o.accruals_prepayments.prepaid_expense
+  misconception_ids:
+  - mc.acc.o.acc_accrual_subtracted
+  - mc.acc.o.acc_cash_basis
+  - mc.acc.o.acc_opening_accrual_added
+  skill_ids:
+  - acc-o-accruals-prepayments
+  glossary:
+  - accrual
+  - accruals
+  - accrued expense
+  - accrued
+  - prepayment
+  - prepaid expense
+  - prepaid
+  - income owing
+  - income received in advance
+  - accrued income
+  - year-end adjustment
+  - adjustment
+  - current asset
+  - current liability
+  - current liabilities
+  - statement of financial position
+  - income statement
+  - other payables
+  - other receivables
+  - commission
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.accruals_prepayments.prepaid_expense
+  code: ACC-O-09.K02
+  node_id: cur.acc.o.accruals_prepayments
+  statement: Calculate the expense for the year when part of the payment is for the next year
+  kind: procedural
+  tools:
+  - acc_statements
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.3
+  prerequisites:
+  - kc_id: kc.acc.o.accruals_prepayments.accrued_expense
+    strength: helpful
+  confusable_with:
+  - kc.acc.o.accruals_prepayments.accrued_expense
+  misconception_ids:
+  - mc.acc.o.acc_cash_basis
+  - mc.acc.o.acc_opening_ignored
+  - mc.acc.o.acc_prepayment_added
+  skill_ids:
+  - acc-o-accruals-prepayments
+  glossary:
+  - accrual
+  - accruals
+  - accrued expense
+  - accrued
+  - prepayment
+  - prepaid expense
+  - prepaid
+  - income owing
+  - income received in advance
+  - accrued income
+  - year-end adjustment
+  - adjustment
+  - current asset
+  - current liability
+  - current liabilities
+  - statement of financial position
+  - income statement
+  - other payables
+  - other receivables
+  - commission
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.accruals_prepayments.income_adjustments
+  code: ACC-O-09.K03
+  node_id: cur.acc.o.accruals_prepayments
+  statement: Calculate income for the year with income owing or received in advance
+  kind: procedural
+  tools:
+  - acc_statements
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.accruals_prepayments.accrued_expense
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.acc_adjustment_as_total
+  - mc.acc.o.acc_cash_basis
+  - mc.acc.o.acc_income_adjustment_reversed
+  skill_ids:
+  - acc-o-accruals-prepayments
+  glossary:
+  - accrual
+  - accruals
+  - accrued expense
+  - accrued
+  - prepayment
+  - prepaid expense
+  - prepaid
+  - income owing
+  - income received in advance
+  - accrued income
+  - year-end adjustment
+  - adjustment
+  - current asset
+  - current liability
+  - current liabilities
+  - statement of financial position
+  - income statement
+  - other payables
+  - other receivables
+  - commission
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.accruals_prepayments.accrual_presentation
+  code: ACC-O-09.K04
+  node_id: cur.acc.o.accruals_prepayments
+  statement: Classify accruals and prepayments as current assets or current liabilities
+  kind: conceptual
+  tools:
+  - acc_statements
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.accruals_prepayments.accrued_expense
+    strength: required
+  - kc_id: kc.acc.o.accruals_prepayments.prepaid_expense
+    strength: required
+  misconception_ids:
+  - mc.acc.o.acc_accrual_as_asset
+  - mc.acc.o.acc_adjustment_in_is_only
+  - mc.acc.o.acc_prepayment_as_liability
+  - mc.acc.o.acc_prepayment_as_non_current
+  skill_ids:
+  - acc-o-accruals-prepayments
+  glossary:
+  - accrual
+  - accruals
+  - accrued expense
+  - accrued
+  - prepayment
+  - prepaid expense
+  - prepaid
+  - income owing
+  - income received in advance
+  - accrued income
+  - year-end adjustment
+  - adjustment
+  - current asset
+  - current liability
+  - current liabilities
+  - statement of financial position
+  - income statement
+  - other payables
+  - other receivables
+  - commission
+  difficulty_prior: -0.1
+  version: 0.1.1
+  status: active

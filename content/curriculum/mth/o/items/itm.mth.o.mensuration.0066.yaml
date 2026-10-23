@@ -1,0 +1,117 @@
+id: itm.mth.o.mensuration.0066
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.prism_volume
+stem: A prism has a triangular cross-section with base 6 cm and height 7 cm. The prism is 12 cm long.
+parts:
+- id: a
+  prompt: Find its volume.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '252'
+    unit: cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_mns_0066_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The volume of any prism is the area of its cross-section times its length.
+  - rung: 2
+    name: concept
+    text:
+      en: 'The cross-section here is a triangle: ½ × base × height.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Area = ½ × 6 × 7.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The cross-section is 21 cm². Multiply by 12.
+  - rung: 5
+    name: full_step
+    text:
+      en: The volume is 252 cm³.
+  misconception_ids:
+  - mc.mth.o.prism_triangle_half_dropped
+  - mc.mth.o.compound_part_missing
+  - mc.mth.o.perimeter_area_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{cross-section} = \tfrac{1}{2} \times 6 \times 7 = 21\ \text{cm}^2
+    reason: Area of the triangle
+    check_id: chk_build_mth_mns_0066_a
+  - n: 2
+    latex: V = 21 \times 12 = 252\ \text{cm}^3
+    reason: Cross-section times length
+    check_id: chk_build_mth_mns_0066_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  b: '6'
+  h: '7'
+  l: '12'
+checks:
+  chk_build_mth_mns_0066_a:
+    args:
+      expression: 6*7/2
+    tool: math_evaluate
+  chk_build_mth_mns_0066_ans:
+    args:
+      expression: 6*7/2*12
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:37:46.677Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.mensuration.0066
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

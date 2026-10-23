@@ -1,0 +1,36 @@
+id: mc.phy.o.orbit_radius_not_circumference
+kc_ids:
+- kc.phy.o.forces.circular_motion
+student_name: Using the radius as the distance
+description: Divides the radius by the time for one turn, as if the radius were the distance travelled in one revolution.
+signatures:
+- kind: answer_transform
+  expression: r/T
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'In one turn the object goes all the way round: the circumference, 2πr. Speed = 2πr ÷ T.'
+probe_item_ids:
+- itm.phy.o.forces.0078
+- itm.phy.o.forces.0080
+- itm.phy.o.forces.0067
+- itm.phy.o.forces.0069
+- itm.phy.o.forces.0071
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

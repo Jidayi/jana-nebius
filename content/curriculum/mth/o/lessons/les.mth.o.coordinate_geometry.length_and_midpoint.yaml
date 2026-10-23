@@ -1,0 +1,67 @@
+id: les.mth.o.coordinate_geometry.length_and_midpoint
+node_id: cur.mth.o.coordinate_geometry.length_and_midpoint
+kc_ids:
+- kc.mth.o.coordinate_geometry.segment_length
+- kc.mth.o.coordinate_geometry.midpoint
+title: Length and midpoint of a line segment
+estimated_minutes: 10
+blocks:
+- type: step
+  text:
+    en: Try this before any rules. Which x-value sits exactly halfway between the two ends?
+  item_id: itm.mth.o.coordinate_geometry.0081
+  action: try_first
+  why:
+    en: Halfway between two numbers is their average. You add them and divide by 2.
+  names:
+    en: 'That halfway point has a name: the midpoint. Each of its coordinates is the average of the two ends.'
+- type: step
+  text:
+    en: Now the y-coordinate of a midpoint. Use the two y-values this time.
+  item_id: itm.mth.o.coordinate_geometry.0085
+  action: choose
+  why:
+    en: 'The midpoint is the average of the two y-values: add, then halve. Forgetting to halve, or halving the difference instead of the sum, are the usual slips.'
+- type: step
+  text:
+    en: Now find how far apart two points are. Find the change across and the change up, then picture a right-angled triangle.
+  item_id: itm.mth.o.coordinate_geometry.0063
+  action: calculate
+  why:
+    en: The changes are 3 and 4, the two short sides of a right-angled triangle. Pythagoras gives 25 for the length squared, so the length is 5.
+- type: step
+  text:
+    en: 'Before you work it out, predict: is the length more or less than the two changes added together?'
+  item_id: itm.mth.o.coordinate_geometry.0070
+  action: predict
+  why:
+    en: The segment is the hypotenuse, which is shorter than going across and then up. Square the changes, add them, then take the square root; stopping before the root is a common slip.
+- type: step
+  text:
+    en: Now one on your own. Give the length to 3 significant figures.
+  item_id: itm.mth.o.coordinate_geometry.0061
+  action: calculate
+  why:
+    en: The changes are 4 and 7, so the length squared is 65. Its square root is 8.06 to 3 significant figures.
+- type: check
+  item_ids:
+  - itm.mth.o.coordinate_geometry.0077
+  - itm.mth.o.coordinate_geometry.0073
+  - itm.mth.o.coordinate_geometry.0060
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

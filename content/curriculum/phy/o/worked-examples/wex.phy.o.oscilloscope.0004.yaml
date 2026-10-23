@@ -1,0 +1,36 @@
+id: wex.phy.o.oscilloscope.0004
+kc_ids:
+- kc.phy.o.oscilloscope.y_gain
+problem: The Y-gain of an oscilloscope is set to 1 V/div. A crest of the trace is 3 divisions above the centre line. Find the peak voltage of the signal.
+steps:
+- n: 1
+  latex: V_0 = 3 \times 1 = 3\ \text{V}
+  reason: Divisions times volts per division
+  check_id: chk_build_phy_osc_w0004_ans
+final_answer:
+  latex: 3\ \text{V}
+  check_id: chk_build_phy_osc_w0004_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_osc_w0004_ans:
+    args:
+      expression: 3*1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

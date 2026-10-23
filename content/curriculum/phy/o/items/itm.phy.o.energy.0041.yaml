@@ -1,0 +1,113 @@
+id: itm.phy.o.energy.0041
+version: 0.1.1
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.potential_energy
+stem: A rock of mass 8 kg gains 240 J of gravitational potential energy when it is lifted. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate the height it is lifted through.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 30 m
+      correct: false
+      misconception_id: mc.phy.o.energy_mass_for_weight
+      feedback: Lifting works against the weight, mg, in newtons. Multiply the mass by g before you multiply by the height.
+    - id: B
+      text: 3 m
+      correct: true
+    - id: C
+      text: 0.333 m
+      correct: false
+      misconception_id: mc.phy.o.energy_formula_inverted
+      feedback: 'Power is energy per second, so energy goes on top. Check the units of the answer: J ÷ s is a watt, s ÷ J is not.'
+    - id: D
+      text: 6 m
+      correct: false
+      misconception_id: mc.phy.o.gpe_half_from_ke
+      feedback: The half belongs to kinetic energy only. The change in gravitational potential energy is simply mgh.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the energy and the mass; the height is the unknown.
+  - rung: 2
+    name: concept
+    text:
+      en: Rearrange ΔEp = mgΔh to get Δh = ΔEp ÷ mg.
+  - rung: 3
+    name: first_step
+    text:
+      en: The weight mg is 8 × 10 = 80 N.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 240 ÷ 80.
+  - rung: 5
+    name: full_step
+    text:
+      en: It is lifted 3 m.
+  misconception_ids:
+  - mc.phy.o.energy_formula_inverted
+  - mc.phy.o.energy_mass_for_weight
+  - mc.phy.o.gpe_half_from_ke
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: mg = 8 \times 10 = 80\ \text{N}
+    reason: The weight
+    check_id: chk_build_phy_nrg_0041_wt
+  - n: 2
+    latex: \Delta h = \frac{\Delta E_p}{mg} = \frac{240}{80} = 3\ \text{m}
+    reason: Rearrange ΔEp = mgΔh
+    check_id: chk_build_phy_nrg_0041_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0041_ans:
+    args:
+      expression: 240/(8*10)
+    tool: math_evaluate
+  chk_build_phy_nrg_0041_wt:
+    args:
+      expression: 8*10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

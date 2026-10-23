@@ -1,0 +1,634 @@
+{
+  "checked_at": "2026-10-19T02:43:54.466974+00:00",
+  "environment": "staging",
+  "project_id": "jana-staging-512005",
+  "project_number": "760039669159",
+  "production_modified": false,
+  "data_scope": "synthetic only; no learner material authorised for staging qualification",
+  "region": "europe-west2",
+  "zone": "europe-west2-a",
+  "instance": "jana-staging-gateway",
+  "instance_id": "3188408566221988822",
+  "machine_type": "e2-medium",
+  "boot_disk_gib": 20,
+  "network": "jana-staging",
+  "subnet_cidr": "10.42.0.0/24",
+  "runtime_identity": "jana-staging-gateway@jana-staging-512005.iam.gserviceaccount.com",
+  "runtime_role": "projects/jana-staging-512005/roles/janaStagingPredictor",
+  "runtime_role_permissions": [
+    "aiplatform.endpoints.predict",
+    "serviceusage.services.use"
+  ],
+  "runtime_key_custody": "attached VM identity; no exported service-account JSON or provider API key",
+  "provider_endpoint": "https://aiplatform.eu.rep.googleapis.com/v1/projects/jana-staging-512005/locations/eu/publishers/google",
+  "model": "gemini-3.8-flash",
+  "optional_prompt_cache_disabled": true,
+  "provider_zero_retention_approval_verified": false,
+  "gateway_origin": "https://staging-api.getjana.app",
+  "test_transport": "Public HTTPS, system CA and hostname verification",
+  "public_gateway_origin": "https://staging-api.getjana.app",
+  "public_gateway_active": false,
+  "dns": {
+    "hostname": "staging-api.getjana.app",
+    "type": "A",
+    "address": "35.214.70.189",
+    "region": "europe-west2",
+    "address_name": "jana-staging-gateway"
+  },
+  "dns_status": "Owner-created A record verified against authoritative and public DNS; ACME certificate issued",
+  "gateway_audience": "staging-api.getjana.app",
+  "source_bundle_sha256": "1297f31090f1b9539fd3e339429b4461b554c117769dfe04ed004cb50606eeb4",
+  "source_bundle_uri": "gs://jana-staging-512005-deploy/gateway/1297f31090f1b9539fd3e339429b4461b554c117769dfe04ed004cb50606eeb4.tar.gz",
+  "private_deploy_bucket": {
+    "public_access_prevention": true,
+    "uniform_bucket_level_access": true,
+    "artifact_delete_after_days": 7
+  },
+  "secret_references": [
+    {
+      "name": "jana-staging-admin",
+      "version": "1",
+      "runtime_access": true
+    },
+    {
+      "name": "jana-staging-tls-key",
+      "version": "1",
+      "runtime_access": true
+    },
+    {
+      "name": "jana-staging-test-issuer",
+      "version": "1",
+      "runtime_access": false
+    },
+    {
+      "name": "jana-staging-tls-backup",
+      "version": "1",
+      "runtime_access": false
+    }
+  ],
+  "spending": {
+    "currency": "USD",
+    "study_daily_application_cap": 2,
+    "vertex_monthly_service_spend_cap": 20,
+    "project_monthly_alert_budget": 60,
+    "alert_thresholds": [
+      0.5,
+      0.8,
+      1
+    ],
+    "vertex_cap_budget_id": "4a7bfdac-db4c-43ef-b294-72401af1378a",
+    "project_alert_budget_id": "43b96efb-c9c7-434d-8f46-56280de965da",
+    "vm_auto_stop_seconds_per_start": 14400,
+    "notes": [
+      "Service spend-cap enforcement is delayed and does not cap Compute/storage/IP charges.",
+      "The project budget is alerts only.",
+      "Disk, reserved IP and secret storage continue to accrue charges after the VM stops.",
+      "Daily Study cap includes actual charges and unknown-outcome reservations across devices."
+    ],
+    "qualification_temporary_daily_cap_usd": 10,
+    "normal_daily_cap_restored_and_verified": true,
+    "known_and_held_usd_after_qualification": {
+      "completed": {
+        "receipts": 1228,
+        "known_usd": 6.069420225,
+        "held_usd": 0.0
+      },
+      "failed": {
+        "receipts": 184,
+        "known_usd": 1.151722275,
+        "held_usd": 0.0
+      },
+      "reconciled": {
+        "receipts": 7,
+        "known_usd": 0.0,
+        "held_usd": 0.0
+      },
+      "reserved": {
+        "receipts": 5,
+        "known_usd": 0.0,
+        "held_usd": 1.90240875
+      }
+    },
+    "daily_reset": "00:00 UTC (01:00 Africa/Lagos)",
+    "vertex_monthly_service_spend_cap_state": "CONFIGURED",
+    "normal_daily_cap_verified_at": "2026-10-18T23:15:17.537655+00:00"
+  },
+  "enabled_apis_requested": [
+    "compute.googleapis.com",
+    "secretmanager.googleapis.com",
+    "artifactregistry.googleapis.com",
+    "aiplatform.googleapis.com",
+    "iam.googleapis.com",
+    "iamcredentials.googleapis.com",
+    "billingbudgets.googleapis.com",
+    "cloudresourcemanager.googleapis.com",
+    "cloudbilling.googleapis.com",
+    "iap.googleapis.com",
+    "oslogin.googleapis.com"
+  ],
+  "software_checks": {
+    "gateway_regression": {
+      "passed": 114,
+      "skipped": 12,
+      "report": {
+        "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-gateway.xml",
+        "sha256": "8f518418457f52ff597c8e723e57c6a034f3778d177db8021b0b74de3f5b740a"
+      }
+    },
+    "deployed_upload_formats_passed": 6,
+    "first_quality_run": {
+      "complete": false,
+      "observed": 103,
+      "passed": 100,
+      "note": "One grounded chemistry-card refusal, one Unicode quiz processing error, one cancelled in-flight case. All retained."
+    },
+    "public_quality": {
+      "corpus_version": 4,
+      "expected_cases": 117,
+      "observed": 117,
+      "passed": 117,
+      "failed": [],
+      "complete": true,
+      "requested_full_corpus": true,
+      "passed_gate": true,
+      "workers": 1,
+      "report": {
+        "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-quality-full.json",
+        "sha256": "fe197b7d480cde271917020ba69c397fbb4d62983afe018806ae8270307b0548"
+      },
+      "corpus_sha256": "9fdcaab8313ad457ef7ba84c24466639aa9262dfca5cf16d8e29f02eedb5a025",
+      "corpus_unchanged": true,
+      "independent_held_out_review": false
+    },
+    "public_uploads": [
+      {
+        "name": "text",
+        "passed": true,
+        "status": 200,
+        "response": {
+          "request_id": "stj_3FRS8A6H1QBR0TMNSJ2XJAQC43",
+          "sha256": "d83010660eb66aae5b8fd52dd6ccb8674edbec49a8fa928ec96538a098b2e9e6",
+          "chunks": [
+            {
+              "chunk_id": "sck_AMQQZ8WBVJECTHGRCBS6FA25ZH",
+              "source_id": "src_Z8WTFSM1Y2N5NK4DEM6YXEA5K4",
+              "revision": 1,
+              "ordinal": 0,
+              "locator": {
+                "kind": "text",
+                "paragraph": 1
+              },
+              "text": "Enzymes are biological catalysts.",
+              "sha256": "d83010660eb66aae5b8fd52dd6ccb8674edbec49a8fa928ec96538a098b2e9e6"
+            }
+          ],
+          "unreadable_units": [],
+          "extractor_version": "study-document-2",
+          "next_cursor": null,
+          "usage": {
+            "receipt_id": "3e1985da2fe3fe668adb0b022ca95bd821a57f1bb14f2064f8938651cca7a15e",
+            "cost_usd": 0.0,
+            "input_tokens": 0,
+            "output_tokens": 0
+          }
+        },
+        "cleanup_ack": true
+      },
+      {
+        "name": "docx",
+        "passed": true,
+        "status": 200,
+        "response": {
+          "request_id": "stj_6XW0NDQ1EYZN54RNX45SRNHE7P",
+          "sha256": "b717c1c2213a007b7e5157a90d03651396e782f33c342907b1613c90d7f1f42a",
+          "chunks": [
+            {
+              "chunk_id": "sck_MW5946RKB98V8Z1V76JEGHAQKQ",
+              "source_id": "src_RNMJ7A25Q6RS58R2H7M48H60VT",
+              "revision": 1,
+              "ordinal": 0,
+              "locator": {
+                "kind": "text",
+                "paragraph": 1
+              },
+              "text": "Enzymes are biological catalysts.",
+              "sha256": "d83010660eb66aae5b8fd52dd6ccb8674edbec49a8fa928ec96538a098b2e9e6"
+            }
+          ],
+          "unreadable_units": [],
+          "extractor_version": "study-document-2",
+          "next_cursor": null,
+          "usage": {
+            "receipt_id": "bf7cd2f3a0bc4fd6de4fcdf34a3e94073001ae718609316c38bd3510fc6e2414",
+            "cost_usd": 0.0,
+            "input_tokens": 0,
+            "output_tokens": 0
+          }
+        },
+        "cleanup_ack": true
+      },
+      {
+        "name": "pdf",
+        "passed": true,
+        "status": 200,
+        "response": {
+          "request_id": "stj_8T24V1B4635W7HB93Z1G0DJ4R2",
+          "sha256": "354e14acbc03e8b93a233f7ee7f3d409076ee755e6487407d1067a25c16e734f",
+          "chunks": [
+            {
+              "chunk_id": "sck_1MMRHG1QG4WTTXSTQ3TMQD4ZFP",
+              "source_id": "src_VH28WSYNEYN5KH05RQS31KWE83",
+              "revision": 1,
+              "ordinal": 0,
+              "locator": {
+                "kind": "page",
+                "page": 1
+              },
+              "text": "Enzymes are biological catalysts.",
+              "sha256": "d83010660eb66aae5b8fd52dd6ccb8674edbec49a8fa928ec96538a098b2e9e6"
+            }
+          ],
+          "unreadable_units": [],
+          "extractor_version": "study-document-2",
+          "next_cursor": null,
+          "usage": {
+            "receipt_id": "a74de9b37c61189213fa4b3c58f74ae64214979ce4ce8ff08aac735084ef5190",
+            "cost_usd": 0.0,
+            "input_tokens": 0,
+            "output_tokens": 0
+          }
+        },
+        "cleanup_ack": true
+      },
+      {
+        "name": "photo-ocr",
+        "passed": true,
+        "status": 200,
+        "response": {
+          "request_id": "stj_210FEBDPW1CKJV9EKPV5AQNWXV",
+          "sha256": "24031898b14e84d0b52486116f883d9ef9a6f28cd164cdd234f4fe8211f7a7a6",
+          "chunks": [
+            {
+              "chunk_id": "sck_K7NFS2567GXHMGZZWVGDH40NNE",
+              "source_id": "src_9S1188Q0F4BGZMJS4REPCSEGF7",
+              "revision": 1,
+              "ordinal": 0,
+              "locator": {
+                "kind": "page",
+                "page": 1
+              },
+              "text": "Enzymes are biological catalysts.",
+              "sha256": "d83010660eb66aae5b8fd52dd6ccb8674edbec49a8fa928ec96538a098b2e9e6"
+            }
+          ],
+          "unreadable_units": [],
+          "extractor_version": "study-document-2",
+          "next_cursor": null,
+          "usage": {
+            "receipt_id": "87c7bb25b95936a3e3e7dba891f5f63a4ff810b6decccc646a0c06180d9c5dbc",
+            "cost_usd": 0.0,
+            "input_tokens": 0,
+            "output_tokens": 0
+          }
+        },
+        "cleanup_ack": true
+      },
+      {
+        "name": "scanned-pdf-ocr",
+        "passed": true,
+        "status": 200,
+        "response": {
+          "request_id": "stj_VVTPQGM01FA6BSWEY3RNSG87G9",
+          "sha256": "0a58cd808845a3b4f0ed61fd2bb03e76ca521c5ba318f68f4b84de46f0021664",
+          "chunks": [
+            {
+              "chunk_id": "sck_CF3WNSDKZF3T42E9AMJ17CFPSK",
+              "source_id": "src_8Y6HVGNQ2XA5YV6H5CHW6J288Z",
+              "revision": 1,
+              "ordinal": 0,
+              "locator": {
+                "kind": "page",
+                "page": 1
+              },
+              "text": "Enzymes are biological catalysts.",
+              "sha256": "d83010660eb66aae5b8fd52dd6ccb8674edbec49a8fa928ec96538a098b2e9e6"
+            }
+          ],
+          "unreadable_units": [],
+          "extractor_version": "study-document-2",
+          "next_cursor": null,
+          "usage": {
+            "receipt_id": "448bb80558eb8abeac79ebec664ad7b5340d9fc29f51e8e971c2cd289e4f4302",
+            "cost_usd": 0.0,
+            "input_tokens": 0,
+            "output_tokens": 0
+          }
+        },
+        "cleanup_ack": true
+      },
+      {
+        "name": "recording",
+        "passed": true,
+        "status": 200,
+        "response": {
+          "request_id": "stj_174M054KD0MPAEY79WJ9N2E6XF",
+          "sha256": "1c80dc56b53734e10b477a2a7c954c4e0a92d77a6d4dc6733752299e0707d9e4",
+          "chunks": [
+            {
+              "chunk_id": "sck_2V2C25Z6QWA2TNR1BFNA2BY5HY",
+              "source_id": "src_BFJ71XJ2TBKE8WWBDWGH5EH2T9",
+              "revision": 1,
+              "ordinal": 0,
+              "locator": {
+                "kind": "time",
+                "start_ms": 0,
+                "end_ms": 1890
+              },
+              "text": "Enzymes are biological catalysts.",
+              "sha256": "d83010660eb66aae5b8fd52dd6ccb8674edbec49a8fa928ec96538a098b2e9e6"
+            }
+          ],
+          "unreadable_units": [],
+          "extractor_version": "study-document-2",
+          "next_cursor": null,
+          "duration_ms": 1890,
+          "usage": {
+            "receipt_id": "8f7f625807262159f626a20a791c1ab8957e181b9c06890ee6ca321189a485c7",
+            "cost_usd": 0.00028132499999999997,
+            "input_tokens": 231,
+            "output_tokens": 22
+          }
+        },
+        "cleanup_ack": true
+      }
+    ],
+    "public_boundaries": {
+      "hostname": "staging-api.getjana.app",
+      "system_ca_verified": true,
+      "spki_sha256": "anjl0qoSsJRc6RBeee5IjYBdBKt704Z0bhvqAiWEtZk=",
+      "not_after": "2027-01-16T14:15:03+00:00",
+      "ping": 204,
+      "unauthenticated_study": 401,
+      "unqualified_tutor_route": 404,
+      "wrong_audience": 401,
+      "normal_spend_guard": 429,
+      "guard_code": "allowance_exhausted"
+    },
+    "sandbox_isolation": {
+      "network_denied": true,
+      "secret_path_absent": true,
+      "nested_userns_denied": true,
+      "profile": "jana-bwrap (unconfined)"
+    },
+    "persistent_material_scan": {
+      "synthetic_source_strings_checked": 42,
+      "persistent_files_checked": 4,
+      "source_body_found": false,
+      "scope": "Gateway persistent metadata only; raw and frozen/redacted NFC/NFD corpus sources."
+    },
+    "public_unicode_stress": {
+      "passed": 12,
+      "NFC": 6,
+      "NFD": 6,
+      "source_case": "undefined-v-flashcards",
+      "report": {
+        "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-unicode-stress.json",
+        "sha256": "f807a8047ca64a82dbcff15e34d6f5ef106588dba37a54344d0f05b4d89ee532"
+      },
+      "source_bundle_sha256": "1297f31090f1b9539fd3e339429b4461b554c117769dfe04ed004cb50606eeb4"
+    },
+    "curriculum_lock": {
+      "passed": true,
+      "suite_versions": {
+        "answer_oracles": "2026-10-19.2",
+        "content_packs": "2026-10-19.2"
+      },
+      "existing_fix_validated": true,
+      "content_oracles_edited_by_this_task": false,
+      "offline_symbolic_window_ms": 3000,
+      "learner_symbolic_window_ms": 800
+    },
+    "m42_current_regressions": {
+      "passed": 174,
+      "skipped": 12,
+      "report": {
+        "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/m42-regressions-after-build-window.xml",
+        "sha256": "7671540e76243ca0ba9fb40665e8382a5a675d6f173bad1aac8f0f981eec8349"
+      }
+    }
+  },
+  "release_ready": false,
+  "feature_default_enabled": false,
+  "remaining": [
+    "Reproduce/stabilise the broader-harness oracle failure for itm.mth.o.coordinate_geometry.0061; no owner input needed.",
+    "Resolve held-out fingerprint overlaps in three development questions via the corpus custodian; the EVL-24 isolation gate currently fails.",
+    "Confirm production hostname (api.getjana.app proposed), London/EU deployment decision and authorise production provisioning; engineering will create the actual configuration, pins and deployment.",
+    "Actual production-project provider retention/abuse-monitoring confirmation, approved assessment/Safety lead records, public production trust hierarchy and content-HSM signature; owner approval is already recorded.",
+    "Installer signing/notarisation access and final signed Mac Apple Silicon/VoiceOver, Windows x64/NVDA including non-AVX2, and required Ubuntu/Debian device/model-class measurements.",
+    "Independent held-out content/safety review, including the probability expectation amendment and Unicode source-definition amendment, local reference models and OCR/ASR; human prompt snapshot reviews (60 pending).",
+    "Engineering after those inputs: actual production extraction costs, immutable SBOM/licence/source-offer provenance, exact production qualification and strict preflight."
+  ],
+  "evidence": {
+    "bundle-manifest.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/bundle-manifest.json",
+      "sha256": "82822bae8e5563744b05f79148e787dbef846a7d18ad82ff4f2bbc9cda391f96"
+    },
+    "bundle-reproducibility.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/bundle-reproducibility.json",
+      "sha256": "54aba2e0f448d1c7df2cb3c4b787067e9e00c10cbf30e8d32af660241a6e44f7"
+    },
+    "certificate-renewal-dry-run.txt": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/certificate-renewal-dry-run.txt",
+      "sha256": "fba1bf957d604a9a0903d47a7a94bd0e62c51508e8b392b5b0fef3b979fe5b34"
+    },
+    "first-host-checks.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/first-host-checks.json",
+      "sha256": "e5963de7d5d7799a18c0ed894107007c42545b180cb80de711e09b5ee5530a7a"
+    },
+    "first-smoke-failed.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/first-smoke-failed.json",
+      "sha256": "5c96ccc448412ea7efca3fc52ae213face001afbdc6c955615b7e275005f0beb"
+    },
+    "first-uploads-failed.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/first-uploads-failed.json",
+      "sha256": "091d6fd0825389613f1382938c4ce2b721db15f2ccf438167d0c98e441fa5018"
+    },
+    "gateway-76-qualified.xml": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/gateway-76-qualified.xml",
+      "sha256": "b97ce1b4309c7c974b28de7b13391a661072548340c839ce1a9f3e46f79504ef"
+    },
+    "gateway-76.xml": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/gateway-76.xml",
+      "sha256": "e383c960f7a3d6d3ce2e8b6efaec44c0d306acd46618ba5fa9b7239dd6ea8dbd"
+    },
+    "gateway-82-qualified.xml": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/gateway-82-qualified.xml",
+      "sha256": "be968aed5fe4f4fa7c0bb9756f0461a348152881a145d14c8682d68af727bd5e"
+    },
+    "gateway.toml": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/gateway.toml",
+      "sha256": "1af898c081921727e93b1331a47f70266ff045897a7dd0b6dc37fffdf6282086"
+    },
+    "gcp-attestation.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/gcp-attestation.json",
+      "sha256": "76ff3fdbb31eaedf4672d3bdb1203f077f4f2eb8440ebd4963924e4514139842"
+    },
+    "host-after-spend-guard.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/host-after-spend-guard.json",
+      "sha256": "5c63af0d65de5379a6e4c41001cc80f2cdb89e1018fff76da74d1dddcbe87567"
+    },
+    "host-final.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/host-final.json",
+      "sha256": "95ddec044294149655a1d4e4408705f9c1fe1b9778ac557e6ca5f5c2fdd62be0"
+    },
+    "host-normal-budget.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/host-normal-budget.json",
+      "sha256": "5c63af0d65de5379a6e4c41001cc80f2cdb89e1018fff76da74d1dddcbe87567"
+    },
+    "material-privacy.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/material-privacy.json",
+      "sha256": "b8dcc95e3769bded66ae01013800ef23b9fa2d4e12cb0752021a29e66f33ad3e"
+    },
+    "notes-smoke-passed.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/notes-smoke-passed.json",
+      "sha256": "4bbdd616cdcb2ccf3e0042b0c6ba505179c105dfc7d9e96698edecab4195a11d"
+    },
+    "pricing-amendment.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/pricing-amendment.json",
+      "sha256": "203e37a14f02692f5524a3664e531eae89ec134619069e1f0f85dc83346bcdce"
+    },
+    "public-boundaries.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/public-boundaries.json",
+      "sha256": "9fb43690c2706751c5f5d142c71b12fe5574213eac5d83d86b4f32dd3c6bf099"
+    },
+    "public-tls.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/public-tls.json",
+      "sha256": "a557abff1eb8e4124abecabff154e0cc3526ad73e0eb55ef18da60c8481ed36c"
+    },
+    "quality-first-partial.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/quality-first-partial.json",
+      "sha256": "2d596d44921ad18b3824c3832f86b18575475ce227aea428ad21506518924e1c"
+    },
+    "quality-first-partial.xml": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/quality-first-partial.xml",
+      "sha256": "aa2848a6d69e3b672d3871588c11de6a38cb2fa6856e9d28e3c8d02c2f62e7f9"
+    },
+    "quality-public-final.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/quality-public-final.json",
+      "sha256": "0358a105e7b7c7a41c15d95d6d091c8f666837f33b2768c6b9095aadeffc4a25"
+    },
+    "quality-public-final.xml": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/quality-public-final.xml",
+      "sha256": "38fd7c089cc77f7dc86dd08267e16575d0ee1532d71f5ab59e5964ab24ca6d14"
+    },
+    "quality-second-partial.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/quality-second-partial.json",
+      "sha256": "19abc8f48e4ef2fcbcaeca7b9327f5fb13ed5c8339721e6f87513030b0472669"
+    },
+    "quality-second-partial.xml": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/quality-second-partial.xml",
+      "sha256": "2d42eba64ddef8bf22aebb1081fe5d7a28531062b98bc5d2f6aeec8051476af5"
+    },
+    "requirements.txt": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/requirements.txt",
+      "sha256": "ac1f1b69cd2583a4e4e6cbf6d0e8c37ea7de45d8c2cd5859c2360a7a8e2defec"
+    },
+    "sandbox-isolation-final.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/sandbox-isolation-final.json",
+      "sha256": "86ded9610a4eed9c449584638e3b7d8d37ca8d99cfffc019d2ee4e1b8bf4b5d2"
+    },
+    "secret-permissions.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/secret-permissions.json",
+      "sha256": "0c94d7f804a129179bd249134272391c2f0496c0085ffc3235465b170280fe3a"
+    },
+    "source-inputs.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/source-inputs.json",
+      "sha256": "8c2ab9d463323c95c0b4e93625a0123e8f6f3c93661bb9ea87c9e56a81f9f5dd"
+    },
+    "unicode-diagnostic.jsonl": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/unicode-diagnostic.jsonl",
+      "sha256": "58cc0efddf74ecf26518e28f9bb8a80a2453266409aa1ff8f891389c74d30023"
+    },
+    "uploads-passed.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/uploads-passed.json",
+      "sha256": "021ee87c9a4af9cb629da00e062d5567d43e6658ed2e165ec8eb40ce74a93812"
+    },
+    "uploads-passed.xml": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/uploads-passed.xml",
+      "sha256": "3c57141e673ffa81638b65f34109872a5635ac805612e790cdb128a2f678beab"
+    },
+    "uploads-public-final.json": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/uploads-public-final.json",
+      "sha256": "d98a021f4f34957831172cf114ff9c9bbc6ec6dd3afdd99a0f421dc3c4b18854"
+    },
+    "uploads-public-final.xml": {
+      "path": "scripts/governance/evidence/m42-staging-2026-10-18/uploads-public-final.xml",
+      "sha256": "cef714c59b95fe9be1a84d240a54fabe8013f889628cc4b9f401dcff660f34ad"
+    }
+  },
+  "public_tls": {
+    "hostname": "staging-api.getjana.app",
+    "verified_by": "system CA and hostname validation",
+    "primary_spki_sha256": "anjl0qoSsJRc6RBeee5IjYBdBKt704Z0bhvqAiWEtZk=",
+    "certificate_sha256": "0720fc02acd3800e37a76f4de04bc2886b0b5e1ebc63cf25b3772931ea34b600",
+    "not_after": "2027-01-16T14:15:03+00:00",
+    "renewal": "Certbot timer with --reuse-key and Nginx reload hook; VM must run for renewal",
+    "renewal_dry_run_passed": true,
+    "private_key_custody": "root-only encrypted VM disk under /etc/letsencrypt; provider uses attached identity, no provider key"
+  },
+  "device_policy": "services/cloud-gateway/deploy/staging/device-policy.json",
+  "prices": {
+    "scope": "Vertex non-global EU introductory through 2026-12-31",
+    "input_per_million": 0.825,
+    "cached_input_per_million": 0.0825,
+    "output_per_million": 4.125,
+    "previous_synthetic_receipts_amended": true
+  },
+  "prior_public_quality": {
+    "complete": true,
+    "observed": 110,
+    "passed": 108,
+    "failures": [
+      {
+        "id": "unicode-summary",
+        "http_status": 422,
+        "failure": "AssertionError: insufficient_evidence\nassert 422 == 200\n +  where 422 = <Response [422 Unprocessable Entity]>.status_code"
+      },
+      {
+        "id": "unicode-quiz",
+        "http_status": 422,
+        "failure": "AssertionError: insufficient_evidence\nassert 422 == 200\n +  where 422 = <Response [422 Unprocessable Entity]>.status_code"
+      }
+    ],
+    "independent_heldout_review": false
+  },
+  "latest_checks": {
+    "path": "scripts/governance/m42-curriculum-lock-release-checks.json",
+    "sha256": "ee87a5df71a57e7b9c7e7e82e0595f7b1b21434caf9fb69e9f0be26141865833"
+  },
+  "previous_public_quality": {
+    "corpus_version": 4,
+    "expected_cases": 117,
+    "observed": 117,
+    "passed": 115,
+    "failed": [
+      "chm-equilibrium-flashcards",
+      "phy-motion-chat"
+    ],
+    "complete": true,
+    "requested_full_corpus": true,
+    "passed_gate": false,
+    "report": {
+      "path": "scripts/governance/evidence/m42-flashcard-2026-10-18/flashcard-approved-quality-full.json",
+      "sha256": "1d9d48a1464e1fcd38aeb3627398472826270a172bc31cf48b8a2bc635e2c450"
+    },
+    "corpus_sha256": "9fdcaab8313ad457ef7ba84c24466639aa9262dfca5cf16d8e29f02eedb5a025",
+    "independent_held_out_review": false
+  },
+  "operational_status": {
+    "vm_status": "TERMINATED",
+    "fresh_host_inspection_available": false,
+    "last_host_verified_at": "2026-10-18T23:15:17.537655+00:00",
+    "qualified_bundle_unchanged": true
+  }
+}

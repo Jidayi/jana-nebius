@@ -1,0 +1,34 @@
+id: mc.acc.o.err_thinks_tb_reveals
+kc_ids:
+- kc.acc.o.trial_balance.errors_not_revealed
+student_name: Every error shows in the trial balance
+description: Believes that a trial balance that agrees proves the books are free of errors.
+signatures:
+- kind: structural
+  rule: debit_credit_swapped
+fix:
+  strategy: counterexample
+  text:
+    en: A trial balance only checks that debits equal credits. Leaving out a whole transaction keeps them equal.
+probe_item_ids:
+- itm.acc.o.trial_balance.0023
+- itm.acc.o.trial_balance.0024
+- itm.acc.o.trial_balance.0025
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

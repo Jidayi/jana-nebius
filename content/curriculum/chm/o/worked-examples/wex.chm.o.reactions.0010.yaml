@@ -1,0 +1,57 @@
+id: wex.chm.o.reactions.0010
+kc_ids:
+- kc.chm.o.reactions.equilibrium
+problem: For 2SO₂ + O₂ ⇌ 2SO₃ (forward reaction exothermic), count the molecules of gas on each side. Then decide how raising the pressure and how raising the temperature change the yield of sulfur trioxide.
+steps:
+- n: 1
+  latex: 2\text{SO}_2 + \text{O}_2 \rightleftharpoons 2\text{SO}_3
+  reason: The equilibrium
+  check_id: chk_build_chm_reactions_w0010_s1
+- n: 2
+  latex: '\text{left: } 2 + 1 = 3;\ \text{right: } 2'
+  reason: Gas molecules on each side
+  check_id: chk_build_chm_reactions_w0010_l
+- n: 3
+  latex: '\text{higher pressure: moves right, more sulfur trioxide}'
+  reason: Fewer gas molecules on the right
+- n: 4
+  latex: '\text{higher temperature: moves left, less sulfur trioxide}'
+  reason: The endothermic direction is backward
+final_answer:
+  latex: '3 \rightarrow 2\text{: pressure raises the yield; heating lowers it}'
+  check_id: chk_build_chm_reactions_w0010_l
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_w0010_l:
+    args:
+      expression: 2 + 1
+    tool: math_evaluate
+  chk_build_chm_reactions_w0010_s1:
+    args:
+      equation: 2SO2 + O2 <=> 2SO3
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

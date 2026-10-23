@@ -1,0 +1,83 @@
+id: itm.phy.o.thermal_properties.0048
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.thermal_properties.changes_of_state
+stem: Some solid lauric acid is heated by a steady heater. It warms from 19 °C to its melting point, 44 °C, in 4 minutes, and then takes 12 minutes to melt completely.
+parts:
+- id: a
+  prompt: How many times more energy does melting take than warming the solid to its melting point?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '3'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_thp_0048_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The heater gives out the same energy every minute.
+  - rung: 2
+    name: concept
+    text:
+      en: So the energy taken in each stage is proportional to how long it lasts.
+  - rung: 3
+    name: first_step
+    text:
+      en: Compare the time spent melting with the time spent warming the solid.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 12 ÷ 4.
+  - rung: 5
+    name: full_step
+    text:
+      en: Melting takes 3 times as much energy.
+solution:
+  steps:
+  - n: 1
+    latex: E = Pt, \text{ with the same } P
+    reason: A steady heater supplies energy in proportion to time
+  - n: 2
+    latex: \frac{E_{melt}}{E_{warm}} = \frac{12}{4} = 3
+    reason: Ratio of the times
+    check_id: chk_build_phy_thp_0048_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_thp_0048_ans:
+    args:
+      expression: 12/4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

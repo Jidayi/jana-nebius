@@ -1,0 +1,87 @@
+id: itm.chm.o.environment.0007
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.water
+stem: Muddy river water is pumped into large tanks and left to stand.
+parts:
+- id: a
+  prompt: What is this stage called, and what does it remove?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: 'Distillation: dissolved salts are removed'
+      correct: false
+    - id: B
+      text: 'Sedimentation: large insoluble particles settle to the bottom'
+      correct: true
+    - id: C
+      text: 'Filtration: tastes and smells are removed'
+      correct: false
+      misconception_id: mc.chm.o.environment_treatment_stages_mixed
+      feedback: Each stage has one job. Sedimentation lets large particles settle. Filtration removes small insoluble particles. Carbon removes tastes and smells. Chlorine kills microbes. None of these removes dissolved salts, so tap water is not pure.
+    - id: D
+      text: 'Chlorination: microbes are killed'
+      correct: false
+      misconception_id: mc.chm.o.environment_treatment_stages_mixed
+      feedback: Each stage has one job. Sedimentation lets large particles settle. Filtration removes small insoluble particles. Carbon removes tastes and smells. Chlorine kills microbes. None of these removes dissolved salts, so tap water is not pure.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Nothing is added to the water at this stage; it just stands still.
+  - rung: 2
+    name: concept
+    text:
+      en: Heavy particles sink when water is not moving.
+  - rung: 3
+    name: first_step
+    text:
+      en: Mud and sand are insoluble and denser than water.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Name the stage in which solids settle out as a sediment.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Sedimentation: large insoluble particles such as mud settle to the bottom of the tanks.'
+  misconception_ids:
+  - mc.chm.o.environment_treatment_stages_mixed
+solution:
+  steps:
+  - n: 1
+    latex: '\text{sedimentation: solids settle}'
+    reason: First stage
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

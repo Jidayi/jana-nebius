@@ -1,0 +1,64 @@
+id: wex.phy.o.circuits.0002
+kc_ids:
+- kc.phy.o.circuits.series_circuits
+problem: Obi connects a 6 Ω resistor and a 20 Ω resistor in series with a 3 V battery. Calculate the current in the circuit.
+steps:
+- n: 1
+  latex: R = 6 + 20 = 26\ \Omega
+  reason: Series resistances add
+  check_id: chk_build_phy_cir_w0002_rt
+- n: 2
+  latex: I = \frac{V}{R} = \frac{3}{26} = 0.115\ \text{A}
+  reason: Ohm's law
+  check_id: chk_build_phy_cir_w0002_ans
+final_answer:
+  latex: 0.115\ \text{A}
+  check_id: chk_build_phy_cir_w0002_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_w0002_ans:
+    args:
+      expression: 3/(6 + 20)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_cir_w0002_rt:
+    args:
+      expression: 6 + 20
+    tool: math_evaluate
+  chk_build_phy_cir_w0002_tool:
+    args:
+      components:
+      - emf: '3'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '6'
+      - id: R2
+        kind: resistor
+        resistance: '20'
+      network:
+        series:
+        - B
+        - R1
+        - R2
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

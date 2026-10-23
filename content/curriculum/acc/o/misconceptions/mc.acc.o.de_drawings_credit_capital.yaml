@@ -1,0 +1,34 @@
+id: mc.acc.o.de_drawings_credit_capital
+kc_ids:
+- kc.acc.o.double_entry.record_owner_transactions
+student_name: Crediting capital for drawings
+description: Credits capital when the owner takes money out, as if the owner had paid money in.
+signatures:
+- kind: structural
+  rule: debit_credit_swapped
+  account_class: capital
+fix:
+  strategy: rule_restatement
+  text:
+    en: Taking money out reduces what the owner has in the business; the asset given is credited.
+probe_item_ids:
+- itm.acc.o.double_entry.0034
+- itm.acc.o.double_entry.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

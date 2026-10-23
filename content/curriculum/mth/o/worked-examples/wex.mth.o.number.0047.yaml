@@ -1,0 +1,46 @@
+id: wex.mth.o.number.0047
+kc_ids:
+- kc.mth.o.number.compound_growth
+problem: $1200 is invested at 12% per year compound interest. Find its value after 4 years, to the nearest cent.
+steps:
+- n: 1
+  latex: \text{multiplier} = 1 + \frac{12}{100} = 1.12
+  reason: The yearly multiplier
+  check_id: chk_build_mth_num_w0047_m
+- n: 2
+  latex: 1200 \times 1.12^{4} = 1888.22
+  reason: Multiply by it once for each of the 4 years
+  check_id: chk_build_mth_num_w0047_ans
+final_answer:
+  latex: '1888.22'
+  check_id: chk_build_mth_num_w0047_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0047_ans:
+    args:
+      dp: 2
+      expression: 1200*(1 + 12/100)^4
+    tool: math_evaluate
+  chk_build_mth_num_w0047_m:
+    args:
+      expression: 1 + 12/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

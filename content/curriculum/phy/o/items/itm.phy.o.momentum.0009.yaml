@@ -1,0 +1,87 @@
+id: itm.phy.o.momentum.0009
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.momentum_calculation
+stem: A ball of mass 0.45 kg rolls south at 4 m/s. Take north as the positive direction.
+parts:
+- id: a
+  prompt: Find the momentum, giving its sign.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '-1.8'
+    unit: kg m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_mom_0009_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Momentum is a vector, so its sign shows its direction.
+  - rung: 2
+    name: concept
+    text:
+      en: Momentum = mass × velocity.
+  - rung: 3
+    name: first_step
+    text:
+      en: The object moves opposite to north, so its velocity is negative.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 0.45 × (−4).
+  - rung: 5
+    name: full_step
+    text:
+      en: p = -1.8 kg m/s; the minus sign shows it is against the positive direction.
+  misconception_ids:
+  - mc.phy.o.momentum_sign_ignored
+  - mc.phy.o.momentum_as_kinetic_energy
+  - mc.phy.o.momentum_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: v = -\,4\ \text{m/s}
+    reason: Moving against the positive (north) direction
+  - n: 2
+    latex: p = mv = 0.45 \times (-\,4) = -1.8\ \text{kg m/s}
+    reason: Momentum = mass × velocity
+    check_id: chk_build_phy_mom_0009_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_0009_ans:
+    args:
+      expression: 0.45*(-4)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

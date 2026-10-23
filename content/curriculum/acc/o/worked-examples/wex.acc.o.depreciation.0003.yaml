@@ -1,0 +1,51 @@
+id: wex.acc.o.depreciation.0003
+kc_ids:
+- kc.acc.o.depreciation.depreciation_purpose
+problem: A machine cost $10000 and is depreciated by $2000 a year. After 3 years it could be sold for $5500. Find its net book value and say whether it shows the selling price.
+steps:
+- n: 1
+  latex: \text{Net book value} = \text{cost} - \text{accumulated depreciation}
+  reason: Unused cost, not market value
+  check_id: chk_build_acc_depreciation_w0003_t
+- n: 2
+  latex: \text{Net book value} = 10000 - 2000 \times 3 = 4000
+  reason: Differs from the selling price
+  check_id: chk_build_acc_depreciation_w0003_a
+final_answer:
+  latex: \$\,4000
+  check_id: chk_build_acc_depreciation_w0003_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_depreciation_w0003_a:
+    args:
+      dp: 2
+      expression: 10000 - 2000 * 3
+    tool: math_evaluate
+  chk_build_acc_depreciation_w0003_t:
+    args:
+      cost: '10000'
+      dp: 2
+      life_years: 5
+      method: straight_line
+      part_year_policy: full_year
+      years: 3
+    tool: acc_depreciation
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

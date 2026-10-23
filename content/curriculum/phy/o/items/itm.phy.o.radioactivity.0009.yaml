@@ -1,0 +1,93 @@
+id: itm.phy.o.radioactivity.0009
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.types_of_radiation
+stem: A sheet of paper hardly changes the count rate from a source, but 5 mm of aluminium brings it down to the background level.
+parts:
+- id: a
+  prompt: What does the source emit?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Alpha radiation only
+      correct: false
+      misconception_id: mc.phy.o.penetration_order_wrong
+      feedback: Paper stops alpha; a few millimetres of aluminium stop beta; gamma is only reduced by thick lead or concrete.
+    - id: B
+      text: Beta radiation only
+      correct: true
+    - id: C
+      text: Gamma radiation only
+      correct: false
+      misconception_id: mc.phy.o.gamma_stopped_completely
+      feedback: Gamma rays pass through paper and aluminium almost unchanged. Thick lead or concrete reduces them a great deal but never to exactly zero.
+    - id: D
+      text: Alpha and beta radiation
+      correct: false
+      misconception_id: mc.phy.o.beta_stopped_by_paper
+      feedback: Beta particles pass through paper. It takes a few millimetres of aluminium to stop them.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Think about what each radiation is: its mass and its charge.'
+  - rung: 2
+    name: concept
+    text:
+      en: Alpha is heavy and doubly charged; beta is a light, charged electron; gamma is an uncharged wave.
+  - rung: 3
+    name: first_step
+    text:
+      en: What gets through paper but is stopped by a few millimetres of metal?
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that do not fit those properties.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Beta radiation only.'
+  misconception_ids:
+  - mc.phy.o.beta_stopped_by_paper
+  - mc.phy.o.gamma_stopped_completely
+  - mc.phy.o.penetration_order_wrong
+solution:
+  steps:
+  - n: 1
+    latex: \text{Beta radiation only}
+    reason: Use the nature, charge and mass of each radiation
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

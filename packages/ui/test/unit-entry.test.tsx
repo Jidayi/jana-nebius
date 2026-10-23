@@ -1,0 +1,20 @@
+import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { createRef } from "react";
+import { afterEach, expect, test, vi } from "vitest";
+import goldens from "../gallery/unit-entry-golden.json";
+import { EntryEditor, type EntryHandle } from "../src/composer/EntryEditor.js";
+import { LocaleProvider } from "../src/i18n.js";
+afterEach(cleanup);
+for (const mode of ["maths", "units"] as const) test.each(goldens)(`inp09_units_golden: ${mode} $id`, async ({ source, serialised, latex }) => {
+  const ref = createRef<EntryHandle>(), sent = vi.fn((_text: string, _pasted: boolean) => false);
+  const view = render(<LocaleProvider locale="en"><EntryEditor ref={ref} mode={mode} initialText={`\\(${source}\\)`} label="Expression" placeholder="" onSubmit={sent} /></LocaleProvider>);
+  await waitFor(() => expect(view.container.querySelector("annotation")?.textContent).toBe(latex));
+  expect(view.container.querySelector("math")).not.toBeNull();
+  expect(view.container.querySelector("math mtext")?.textContent).toBe("\u2009");
+  fireEvent.click(screen.getByRole("button", { description: /Maths/ }));
+  expect((screen.getByRole("textbox", { name: "Maths as typed" }) as HTMLInputElement).value).toBe(source);
+  fireEvent.keyDown(screen.getByRole("textbox", { name: "Maths as typed" }), { key: "Escape" });
+  await waitFor(() => expect(view.container.querySelector("annotation")?.textContent).toBe(latex));
+  act(() => ref.current?.submit()); expect(sent).toHaveBeenCalledWith(serialised, false);
+  expect(ref.current?.blocks()).toEqual([{ type: "text", text: serialised }]);
+});

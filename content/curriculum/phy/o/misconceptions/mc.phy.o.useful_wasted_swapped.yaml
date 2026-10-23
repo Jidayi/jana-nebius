@@ -1,0 +1,36 @@
+id: mc.phy.o.useful_wasted_swapped
+kc_ids:
+- kc.phy.o.energy.efficiency
+student_name: Swapping useful and wasted
+description: Uses the wasted energy where the useful energy belongs (or the reverse), for example wasted ÷ input for the efficiency.
+signatures:
+- kind: step_error
+  error_category: copy
+fix:
+  strategy: diagram
+  text:
+    en: 'Sort the outputs first: what was the device for? That output is useful; everything else is wasted.'
+probe_item_ids:
+- itm.phy.o.energy.0101
+- itm.phy.o.energy.0102
+- itm.phy.o.energy.0103
+- itm.phy.o.energy.0104
+- itm.phy.o.energy.0105
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

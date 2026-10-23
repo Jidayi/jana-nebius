@@ -1,0 +1,103 @@
+id: itm.phy.o.particles.0052
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.pressure_and_volume
+stem: A fixed mass of gas has a volume of 100 cm³ at 150 kPa. Its pressure is changed to 200 kPa without changing its temperature.
+parts:
+- id: a
+  prompt: Find its new volume.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '75'
+    unit: cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_ptc_0052_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The mass and temperature of the gas stay the same, so pressure × volume stays constant.
+  - rung: 2
+    name: concept
+    text:
+      en: Use p₁V₁ = p₂V₂ and rearrange for V₂.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out p₁V₁ = 150 × 100 first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 15000 by 200.
+  - rung: 5
+    name: full_step
+    text:
+      en: The new volume is 75 cm³.
+  misconception_ids:
+  - mc.phy.o.boyle_direct_proportion
+  - mc.phy.o.gas_pressure_unchanged
+  - mc.phy.o.boyle_ratio_only
+solution:
+  steps:
+  - n: 1
+    latex: p_1V_1 = p_2V_2
+    reason: 'Boyle''s law: fixed mass at constant temperature'
+  - n: 2
+    latex: p_1V_1 = 150 \times 100 = 15000
+    reason: pV before the change
+    check_id: chk_build_phy_ptc_0052_k
+  - n: 3
+    latex: V_2 = \frac{15000}{200} = 75\ \text{cm}^3
+    reason: Divide by the new pressure
+    check_id: chk_build_phy_ptc_0052_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  p1: '150'
+checks:
+  chk_build_phy_ptc_0052_ans:
+    args:
+      expression: 150*100/200
+    tool: math_evaluate
+  chk_build_phy_ptc_0052_k:
+    args:
+      expression: 150*100
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

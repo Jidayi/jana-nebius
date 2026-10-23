@@ -1,0 +1,107 @@
+id: itm.mth.o.number.0280
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.percentage_change
+stem: A price of $80 is increased by 20%.
+parts:
+- id: a
+  prompt: Find the new price.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '96'
+      correct: true
+    - id: B
+      text: '100'
+      correct: false
+      misconception_id: mc.mth.o.percent_added_as_number
+      feedback: 15% of 240 is 36, not 15. Find the percentage of the amount first.
+    - id: C
+      text: '16'
+      correct: false
+      misconception_id: mc.mth.o.percent_change_only
+      feedback: After finding the change, add it to (or take it from) the original, or use a multiplier.
+    - id: D
+      text: '240'
+      correct: false
+      misconception_id: mc.mth.o.percent_scale_wrong
+      feedback: 'Per cent means out of 100: to go from a percentage to a decimal, divide by 100, so 35% = 0.35.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An increase adds a percentage of the original price to it.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Use a multiplier: 100% + 20%.'
+  - rung: 3
+    name: first_step
+    text:
+      en: The multiplier is 1 + 20/100 = 1.2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply $80 by 1.2.
+  - rung: 5
+    name: full_step
+    text:
+      en: The new price is $96.
+  misconception_ids:
+  - mc.mth.o.percent_added_as_number
+  - mc.mth.o.percent_change_only
+  - mc.mth.o.percent_scale_wrong
+solution:
+  steps:
+  - n: 1
+    latex: \text{multiplier} = 1 + \frac{20}{100} = 1.2
+    reason: An increase of the percentage
+    check_id: chk_build_mth_num_0280_m
+  - n: 2
+    latex: 80 \times 1.2 = 96
+    reason: Apply the multiplier
+    check_id: chk_build_mth_num_0280_ans
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- market
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0280_ans:
+    args:
+      expression: 80*(1 + 20/100)
+    tool: math_evaluate
+  chk_build_mth_num_0280_m:
+    args:
+      expression: 1 + 20/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

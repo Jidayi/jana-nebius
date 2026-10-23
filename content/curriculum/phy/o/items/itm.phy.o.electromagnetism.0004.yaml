@@ -1,0 +1,92 @@
+id: itm.phy.o.electromagnetism.0004
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.fields_of_currents
+stem: An electromagnet lifts some paper clips. The current in its coil is then increased.
+parts:
+- id: a
+  prompt: What happens?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It lifts more paper clips
+      correct: true
+    - id: B
+      text: It lifts the same number, as only the core matters
+      correct: false
+      misconception_id: mc.phy.o.electromagnet_factor_ignored
+      feedback: 'Each turn adds its own field, and a bigger current makes each turn''s field stronger: more turns or more current lift more paper clips.'
+    - id: C
+      text: It lifts fewer, as a larger current makes a weaker electromagnet
+      correct: false
+      misconception_id: mc.phy.o.electromagnet_factor_ignored
+      feedback: 'Each turn adds its own field, and a bigger current makes each turn''s field stronger: more turns or more current lift more paper clips.'
+    - id: D
+      text: It lifts the same number, as the core is steel and already magnetised
+      correct: false
+      misconception_id: mc.phy.o.soft_iron_steel_swapped
+      feedback: Soft iron is magnetised easily and loses it as easily, which suits an electromagnet's core. Steel is harder to magnetise but keeps it, which suits a permanent magnet.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Picture the field lines round the wire or coil.
+  - rung: 2
+    name: concept
+    text:
+      en: A wire's field lines are circles round it, set by the right-hand grip rule; a coil's field is like a bar magnet's, and grows with the current, the number of turns and an iron core.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A larger current gives a stronger field.
+  - rung: 5
+    name: full_step
+    text:
+      en: It lifts more paper clips. A larger current gives a stronger field.
+  misconception_ids:
+  - mc.phy.o.electromagnet_factor_ignored
+  - mc.phy.o.soft_iron_steel_swapped
+solution:
+  steps:
+  - n: 1
+    latex: \text{It lifts more paper clips}
+    reason: Use the shape and direction of the field
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

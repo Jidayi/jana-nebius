@@ -1,0 +1,93 @@
+id: itm.phy.o.motion.0116
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.choose_equation
+stem: A train speeds up steadily from 0 m/s to 20 m/s while it travels 200 m.
+parts:
+- id: a
+  prompt: Find its acceleration.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '1.00'
+    unit: m/s^2
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_k_0116_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'List u, v, a, s and t: which do you know, which is asked for, and which is not involved?'
+  - rung: 2
+    name: concept
+    text:
+      en: Choose the equation of uniform acceleration that has the quantities you know and the one you want, and leaves out the one that is not involved.
+  - rung: 3
+    name: first_step
+    text:
+      en: Use v^2 = u^2 + 2as.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 20^2 = 0^2 + 2 × a × 200; rearrange for a.
+  - rung: 5
+    name: full_step
+    text:
+      en: 20^2 = 0^2 + 2 × a × 200 gives 1.00 m/s^2.
+  misconception_ids:
+  - mc.phy.o.equation_with_unknown_time
+solution:
+  steps:
+  - n: 1
+    latex: v^2 = u^2 + 2as
+    reason: The equation with the known and wanted quantities only
+  - n: 2
+    latex: 20^2 = 0^2 + 2a \times 200
+    reason: Substitute
+  - n: 3
+    latex: a = 1.00\ \text{m/s}^2
+    reason: Evaluate
+    check_id: chk_build_phy_k_0116_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- transport
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_k_0116_a:
+    args:
+      expression: (20^2 - 0^2)/(2*200)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,72 @@
+id: wex.acc.o.accruals_prepayments.0002
+kc_ids:
+- kc.acc.o.accruals_prepayments.accrued_expense
+problem: Wages paid in the year $18600; owing at the end $450; owing at the start $320. Find the wages expense.
+steps:
+- n: 1
+  latex: \text{Expense} = \text{paid} + \text{closing accrual} - \text{opening accrual}
+  reason: Matching
+  check_id: chk_build_acc_accruals_prepayments_w0002_t
+- n: 2
+  latex: \text{Expense} = 18600 + 450 - 320 = 18730
+  reason: Substitute
+  check_id: chk_build_acc_accruals_prepayments_w0002_a
+final_answer:
+  latex: \$\,18730
+  check_id: chk_build_acc_accruals_prepayments_w0002_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_accruals_prepayments_w0002_a:
+    args:
+      dp: 2
+      expression: 18600 + 450 - 320
+    tool: math_evaluate
+  chk_build_acc_accruals_prepayments_w0002_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Wages
+        amount: '450'
+        kind: accrued_expense
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '60000'
+        role: revenue
+      - account: Purchases
+        debit: '30000'
+        role: purchases
+      - account: Wages
+        debit: '18280'
+        role: expense
+      - account: Land
+        debit: '11720'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

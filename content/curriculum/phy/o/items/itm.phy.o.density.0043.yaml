@@ -1,0 +1,93 @@
+id: itm.phy.o.density.0043
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.floating_and_sinking
+stem: The same wooden block floats in water and also floats in a less dense oil.
+parts:
+- id: a
+  prompt: In which liquid does it float lower, with more of it below the surface?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: In the water, which is denser
+      correct: false
+      misconception_id: mc.phy.o.density_float_rule_reversed
+      feedback: A stone is denser than water and sinks; a cork is less dense and floats. An object floats when its density is less than the liquid's.
+    - id: B
+      text: The same in both, because the block has not changed
+      correct: false
+      misconception_id: mc.phy.o.floating_ignores_liquid
+      feedback: 'An egg sinks in fresh water but floats in very salty water. Floating depends on two densities: the object''s and the liquid''s.'
+    - id: C
+      text: In whichever liquid there is more of
+      correct: false
+      misconception_id: mc.phy.o.volume_decides_floating
+      feedback: 'Cut a piece of wood in half and both halves still float. Size does not decide it: compare the densities.'
+    - id: D
+      text: In the oil, which is less dense
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Floating depends on densities, not on mass or size alone.
+  - rung: 2
+    name: concept
+    text:
+      en: A floating object sinks until it has pushed aside its own weight of liquid.
+  - rung: 3
+    name: first_step
+    text:
+      en: Compare the density of the object with the density of the liquid.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that look only at how heavy or how big something is.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: In the oil, which is less dense.'
+  misconception_ids:
+  - mc.phy.o.density_float_rule_reversed
+  - mc.phy.o.floating_ignores_liquid
+  - mc.phy.o.volume_decides_floating
+solution:
+  steps:
+  - n: 1
+    latex: \text{In the oil, which is less dense}
+    reason: Compare the object's density with the liquid's
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

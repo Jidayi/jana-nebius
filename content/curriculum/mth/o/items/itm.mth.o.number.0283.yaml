@@ -1,0 +1,92 @@
+id: itm.mth.o.number.0283
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.reverse_percentage
+stem: After a pay rise of 40%, a monthly salary is $420.
+parts:
+- id: a
+  prompt: Find the salary before the change.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '300'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0283_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The new amount is the original times a multiplier.
+  - rung: 2
+    name: concept
+    text:
+      en: To go back, divide by the multiplier; do not take the percentage of the new amount.
+  - rung: 3
+    name: first_step
+    text:
+      en: The multiplier is 1 + 40/100 = 1.4.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 420 by 1.4.
+  - rung: 5
+    name: full_step
+    text:
+      en: The original was $300.
+  misconception_ids:
+  - mc.mth.o.reverse_percent_of_new
+  - mc.mth.o.reverse_multiplied
+  - mc.mth.o.percent_added_as_number
+solution:
+  steps:
+  - n: 1
+    latex: \text{multiplier} = 1 + \frac{40}{100} = 1.4
+    reason: The original was multiplied by this
+    check_id: chk_build_mth_num_0283_m
+  - n: 2
+    latex: 420 \div 1.4 = 300
+    reason: Divide to undo the change
+    check_id: chk_build_mth_num_0283_ans
+difficulty:
+  prior: 0.5
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0283_ans:
+    args:
+      expression: 420/(1 + 40/100)
+    tool: math_evaluate
+  chk_build_mth_num_0283_m:
+    args:
+      expression: 1 + 40/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

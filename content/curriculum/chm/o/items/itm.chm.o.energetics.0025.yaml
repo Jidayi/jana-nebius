@@ -1,0 +1,116 @@
+id: itm.chm.o.energetics.0025
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.energetics.bond_energies
+stem: 'For the reaction H₂ + Cl₂ → 2HCl, use these bond energies in kJ/mol: H–H 436, Cl–Cl 242, H–Cl 431.'
+parts:
+- id: a
+  prompt: What is the enthalpy change, ΔH, for the reaction?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: +247 kJ/mol
+      correct: false
+      misconception_id: mc.chm.o.energetics_bond_count_ignored
+      feedback: 'Count every bond: CH₄ has four C–H bonds, and 2H₂O has four O–H bonds. Multiply each bond energy by its number.'
+    - id: B
+      text: +184 kJ/mol
+      correct: false
+      misconception_id: mc.chm.o.energetics_formed_minus_broken
+      feedback: ΔH = energy in (bonds broken) − energy out (bonds formed). More out than in gives a negative ΔH.
+    - id: C
+      text: +678 kJ/mol
+      correct: false
+      misconception_id: mc.chm.o.energetics_only_broken
+      feedback: 'Both halves matter: energy goes in to break bonds and comes out when new bonds form. ΔH is the difference.'
+    - id: D
+      text: -184 kJ/mol
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which bonds break in the reactants of H₂ + Cl₂ → 2HCl, and which form in the products?
+  - rung: 2
+    name: concept
+    text:
+      en: ΔH = total energy of bonds broken − total energy of bonds formed.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Bonds broken: one H–H and one Cl–Cl, a total of 678 kJ/mol.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Bonds formed: two H–Cl, a total of 862 kJ/mol.'
+  - rung: 5
+    name: full_step
+    text:
+      en: ΔH = 678 − 862 = -184 kJ/mol.
+  misconception_ids:
+  - mc.chm.o.energetics_formed_minus_broken
+  - mc.chm.o.energetics_bond_count_ignored
+  - mc.chm.o.energetics_only_broken
+solution:
+  steps:
+  - n: 1
+    latex: \text{broken} = 678
+    reason: Energy taken in
+    check_id: chk_build_chm_energetics_0025_dh
+  - n: 2
+    latex: \text{formed} = 862
+    reason: Energy given out
+    check_id: chk_build_chm_energetics_0025_dh
+  - n: 3
+    latex: \Delta H = 678 - 862 = -184\ \text{kJ/mol}
+    reason: In minus out
+    check_id: chk_build_chm_energetics_0025_dh
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_energetics_0025_dh:
+    args:
+      broken:
+      - bond: H-H
+        count: 1
+        energy: 436
+      - bond: Cl-Cl
+        count: 1
+        energy: 242
+      formed:
+      - bond: H-Cl
+        count: 2
+        energy: 431
+      task: bond_energies
+    tool: chem_energetics
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,92 @@
+id: itm.phy.o.energy.0024
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.kinetic_energy
+stem: A cyclist with her bicycle moving at 8 m/s has 2400 J of kinetic energy.
+parts:
+- id: a
+  prompt: Calculate the total mass.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '75'
+    unit: kg
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0024_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the kinetic energy and the speed; the mass is the unknown.
+  - rung: 2
+    name: concept
+    text:
+      en: Rearrange Ek = ½mv² to get m = 2Ek ÷ v².
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Square the speed: 8² = 64.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 2 × 2400 ÷ 64.
+  - rung: 5
+    name: full_step
+    text:
+      en: The mass is 75 kg.
+  misconception_ids:
+  - mc.phy.o.ke_half_omitted
+  - mc.phy.o.ke_speed_not_squared
+  - mc.phy.o.ke_rearrange_half_wrong
+solution:
+  steps:
+  - n: 1
+    latex: v^2 = 8^2 = 64
+    reason: Square the speed
+    check_id: chk_build_phy_nrg_0024_sq
+  - n: 2
+    latex: m = \frac{2E_k}{v^2} = \frac{2 \times 2400}{64} = 75\ \text{kg}
+    reason: Rearrange E_k = ½mv²
+    check_id: chk_build_phy_nrg_0024_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0024_ans:
+    args:
+      expression: 2*2400/8^2
+    tool: math_evaluate
+  chk_build_phy_nrg_0024_sq:
+    args:
+      expression: 8^2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

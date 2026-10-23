@@ -1,0 +1,36 @@
+id: mc.phy.o.resultant_one_force_left_out
+kc_ids:
+- kc.phy.o.forces.resultant_force
+student_name: Leaving out one of the forces
+description: Combines only some of the forces acting, for example taking friction from the driving force but forgetting the air resistance as well.
+signatures:
+- kind: answer_transform
+  expression: a - b
+fix:
+  strategy: rule_restatement
+  text:
+    en: List every force acting along the line before you combine them. Each one changes the resultant, so tick them off as you use them.
+probe_item_ids:
+- itm.phy.o.forces.0011
+- itm.phy.o.forces.0013
+- itm.phy.o.forces.0001
+- itm.phy.o.forces.0002
+- itm.phy.o.forces.0006
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,334 @@
+- id: kc.acc.o.sole_trader_statements.cost_of_sales
+  code: ACC-O-11.K01
+  node_id: cur.acc.o.sole_trader_statements
+  statement: Calculate cost of sales from inventories, purchases, returns and carriage inwards
+  kind: procedural
+  tools:
+  - acc_statements
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.double_entry.record_credit_transactions
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.cos_carriage_inwards_omitted
+  - mc.acc.o.cos_carriage_outwards_included
+  - mc.acc.o.cos_closing_added
+  - mc.acc.o.cos_returns_added
+  - mc.acc.o.gp_purchases_for_cos
+  skill_ids:
+  - acc-o-sole-trader-statements
+  glossary:
+  - income statement
+  - statement of financial position
+  - revenue
+  - cost of sales
+  - gross profit
+  - profit for the year
+  - opening inventory
+  - closing inventory
+  - inventory
+  - purchases
+  - carriage inwards
+  - carriage outwards
+  - sales returns
+  - purchases returns
+  - non-current asset
+  - current asset
+  - current liabilities
+  - non-current liabilities
+  - liability
+  - liabilities
+  - net current assets
+  - working capital
+  - capital
+  - opening capital
+  - closing capital
+  - drawings
+  - trade receivables
+  - trade payables
+  - expense
+  - other income
+  - discount received
+  - discount allowed
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.sole_trader_statements.gross_profit
+  code: ACC-O-11.K02
+  node_id: cur.acc.o.sole_trader_statements
+  statement: Calculate revenue net of returns and the gross profit
+  kind: procedural
+  tools:
+  - acc_statements
+  - math_evaluate
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.sole_trader_statements.cost_of_sales
+    strength: required
+  misconception_ids:
+  - mc.acc.o.cos_carriage_outwards_included
+  - mc.acc.o.gp_expenses_deducted
+  - mc.acc.o.gp_purchases_for_cos
+  - mc.acc.o.gp_sales_returns_ignored
+  skill_ids:
+  - acc-o-sole-trader-statements
+  glossary:
+  - income statement
+  - statement of financial position
+  - revenue
+  - cost of sales
+  - gross profit
+  - profit for the year
+  - opening inventory
+  - closing inventory
+  - inventory
+  - purchases
+  - carriage inwards
+  - carriage outwards
+  - sales returns
+  - purchases returns
+  - non-current asset
+  - current asset
+  - current liabilities
+  - non-current liabilities
+  - liability
+  - liabilities
+  - net current assets
+  - working capital
+  - capital
+  - opening capital
+  - closing capital
+  - drawings
+  - trade receivables
+  - trade payables
+  - expense
+  - other income
+  - discount received
+  - discount allowed
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.sole_trader_statements.profit_for_year
+  code: ACC-O-11.K03
+  node_id: cur.acc.o.sole_trader_statements
+  statement: Calculate profit for the year from gross profit, other income and expenses
+  kind: procedural
+  tools:
+  - acc_statements
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.sole_trader_statements.gross_profit
+    strength: required
+  - kc_id: kc.acc.o.accruals_prepayments.accrued_expense
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.pfy_capital_spending_deducted
+  - mc.acc.o.pfy_drawings_deducted
+  - mc.acc.o.pfy_other_income_omitted
+  skill_ids:
+  - acc-o-sole-trader-statements
+  glossary:
+  - income statement
+  - statement of financial position
+  - revenue
+  - cost of sales
+  - gross profit
+  - profit for the year
+  - opening inventory
+  - closing inventory
+  - inventory
+  - purchases
+  - carriage inwards
+  - carriage outwards
+  - sales returns
+  - purchases returns
+  - non-current asset
+  - current asset
+  - current liabilities
+  - non-current liabilities
+  - liability
+  - liabilities
+  - net current assets
+  - working capital
+  - capital
+  - opening capital
+  - closing capital
+  - drawings
+  - trade receivables
+  - trade payables
+  - expense
+  - other income
+  - discount received
+  - discount allowed
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.sole_trader_statements.sofp_sections
+  code: ACC-O-11.K04
+  node_id: cur.acc.o.sole_trader_statements
+  statement: Classify items into the sections of the statement of financial position
+  kind: conceptual
+  tools: []
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.accounting_equation.classify_elements
+    strength: required
+  misconception_ids:
+  - mc.acc.o.sofp_asset_liability_confused
+  - mc.acc.o.sofp_drawings_as_liability
+  - mc.acc.o.sofp_drawings_as_receivable
+  - mc.acc.o.sofp_loan_as_capital
+  - mc.acc.o.sofp_overdraft_as_asset
+  - mc.acc.o.sofp_term_confused
+  skill_ids:
+  - acc-o-sole-trader-statements
+  glossary:
+  - income statement
+  - statement of financial position
+  - revenue
+  - cost of sales
+  - gross profit
+  - profit for the year
+  - opening inventory
+  - closing inventory
+  - inventory
+  - purchases
+  - carriage inwards
+  - carriage outwards
+  - sales returns
+  - purchases returns
+  - non-current asset
+  - current asset
+  - current liabilities
+  - non-current liabilities
+  - liability
+  - liabilities
+  - net current assets
+  - working capital
+  - capital
+  - opening capital
+  - closing capital
+  - drawings
+  - trade receivables
+  - trade payables
+  - expense
+  - other income
+  - discount received
+  - discount allowed
+  difficulty_prior: -0.4
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.sole_trader_statements.working_capital
+  code: ACC-O-11.K05
+  node_id: cur.acc.o.sole_trader_statements
+  statement: Calculate total current assets, current liabilities and net current assets
+  kind: procedural
+  tools:
+  - acc_statements
+  - math_evaluate
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.sole_trader_statements.sofp_sections
+    strength: required
+  misconception_ids:
+  - mc.acc.o.sofp_overdraft_as_asset
+  - mc.acc.o.sofp_term_confused
+  - mc.acc.o.wc_non_current_included
+  skill_ids:
+  - acc-o-sole-trader-statements
+  glossary:
+  - income statement
+  - statement of financial position
+  - revenue
+  - cost of sales
+  - gross profit
+  - profit for the year
+  - opening inventory
+  - closing inventory
+  - inventory
+  - purchases
+  - carriage inwards
+  - carriage outwards
+  - sales returns
+  - purchases returns
+  - non-current asset
+  - current asset
+  - current liabilities
+  - non-current liabilities
+  - liability
+  - liabilities
+  - net current assets
+  - working capital
+  - capital
+  - opening capital
+  - closing capital
+  - drawings
+  - trade receivables
+  - trade payables
+  - expense
+  - other income
+  - discount received
+  - discount allowed
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.sole_trader_statements.closing_capital
+  code: ACC-O-11.K06
+  node_id: cur.acc.o.sole_trader_statements
+  statement: Calculate closing capital from opening capital, profit or loss and drawings
+  kind: procedural
+  tools:
+  - acc_statements
+  - math_evaluate
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.sole_trader_statements.profit_for_year
+    strength: required
+  - kc_id: kc.acc.o.double_entry.record_owner_transactions
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.cc_capital_introduced_omitted
+  - mc.acc.o.cc_drawings_added
+  - mc.acc.o.cc_loss_added
+  - mc.acc.o.cc_profit_omitted
+  - mc.acc.o.pfy_drawings_deducted
+  skill_ids:
+  - acc-o-sole-trader-statements
+  glossary:
+  - income statement
+  - statement of financial position
+  - revenue
+  - cost of sales
+  - gross profit
+  - profit for the year
+  - opening inventory
+  - closing inventory
+  - inventory
+  - purchases
+  - carriage inwards
+  - carriage outwards
+  - sales returns
+  - purchases returns
+  - non-current asset
+  - current asset
+  - current liabilities
+  - non-current liabilities
+  - liability
+  - liabilities
+  - net current assets
+  - working capital
+  - capital
+  - opening capital
+  - closing capital
+  - drawings
+  - trade receivables
+  - trade payables
+  - expense
+  - other income
+  - discount received
+  - discount allowed
+  difficulty_prior: 0.1
+  version: 0.1.1
+  status: active

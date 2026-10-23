@@ -1,0 +1,34 @@
+id: mc.phy.o.pressure_area_cm2_not_converted
+kc_ids:
+- kc.phy.o.pressure.pressure_on_surfaces
+student_name: Leaving the area in cm²
+description: Divides a force in newtons by an area in cm² and gives the result in pascals, so the pressure is ten thousand times too small.
+signatures:
+- kind: answer_transform
+  expression: F/A_cm2
+fix:
+  strategy: rule_restatement
+  text:
+    en: A pascal is a newton on each square metre. Change cm² into m² (divide by ten thousand) before using pressure = force ÷ area.
+probe_item_ids:
+- itm.phy.o.pressure.0012
+- itm.phy.o.pressure.0003
+- itm.phy.o.pressure.0008
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

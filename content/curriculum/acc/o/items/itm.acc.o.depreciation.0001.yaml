@@ -1,0 +1,88 @@
+id: itm.acc.o.depreciation.0001
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.depreciation.capital_revenue_expenditure
+stem: Femi is sorting the business's spending for the year.
+parts:
+- id: a
+  prompt: Which of these is capital expenditure?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: A large repair to the shop roof
+      correct: false
+      misconception_id: mc.acc.o.cre_big_amount_rule
+    - id: B
+      text: Fuel for the delivery van
+      correct: false
+      misconception_id: mc.acc.o.cre_running_costs_capital
+    - id: C
+      text: The cost of installing a new machine
+      correct: true
+    - id: D
+      text: The yearly service of the generator
+      correct: false
+      misconception_id: mc.acc.o.cre_repairs_as_capital
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Ask what each payment buys: something the business keeps for years, or something used up this year?'
+  - rung: 2
+    name: concept
+    text:
+      en: Capital expenditure buys or improves a non-current asset, including the costs of getting it ready for use. Revenue expenditure runs and maintains the business.
+  - rung: 3
+    name: first_step
+    text:
+      en: Delivery and installation of a new asset are part of its cost. Repairs and running costs only keep things as they were.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The size of the amount does not decide it; what it pays for does.
+  - rung: 5
+    name: full_step
+    text:
+      en: The cost of installing a new machine is capital expenditure.
+  misconception_ids:
+  - mc.acc.o.cre_repairs_as_capital
+  - mc.acc.o.cre_running_costs_capital
+  - mc.acc.o.cre_big_amount_rule
+solution:
+  steps:
+  - n: 1
+    latex: \text{The cost of installing a new machine} \rightarrow \text{capital}
+    reason: Keeps or improves an asset, or runs the business
+difficulty:
+  prior: -0.7
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_names
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

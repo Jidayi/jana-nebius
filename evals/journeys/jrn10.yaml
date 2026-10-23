@@ -1,0 +1,40 @@
+# JRN-10: the journey as an executable script (JRN-02). Steps and failure branches follow the
+# specification's journey (checked by jrn02_journey_suite_complete); requirement ids only, no wording.
+journey: JRN-10
+title: Off-topic and distress handled safely
+persona: P3
+stage: S2
+steps:
+- n: 1
+  requirements:
+  - PRV-13
+  - PRV-18
+  runs_on: harness
+- n: 2
+  requirements:
+  - PRV-14
+  - PRV-19
+  - PED-18
+  - UXS-43
+  runs_on: harness
+- n: 3
+  requirements:
+  - MEM-10
+  - PRV-04
+  runs_on: harness
+branches:
+- id: F1
+  requirements:
+  - PRV-16
+  - SEC-04
+- id: F2
+  requirements:
+  - PRV-14
+- id: F3
+  requirements:
+  - PRV-14
+  - UXS-43
+- id: F4
+  requirements:
+  - PRV-14
+  - TCH-14

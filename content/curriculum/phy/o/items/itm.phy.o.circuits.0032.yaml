@@ -1,0 +1,150 @@
+id: itm.phy.o.circuits.0032
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.mixed_circuits
+stem: A 15 Ω resistor is connected in series with a parallel pair made of a 30 Ω resistor and a 60 Ω resistor. The circuit is connected to a 12 V battery.
+parts:
+- id: a
+  prompt: Calculate the current from the battery.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '0.343'
+    unit: A
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_cir_0032_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The battery current depends on the total resistance of the whole circuit.
+  - rung: 2
+    name: concept
+    text:
+      en: Combine the parallel pair first, then add the series resistor, then use I = V/R.
+  - rung: 3
+    name: first_step
+    text:
+      en: For the pair, use (30 × 60) ÷ (30 + 60).
+  - rung: 4
+    name: worked_step
+    text:
+      en: The pair is 20 Ω and the total is 35 Ω; divide 12 V by the total.
+  - rung: 5
+    name: full_step
+    text:
+      en: The current from the battery is 0.343 A.
+  misconception_ids:
+  - mc.phy.o.mixed_all_in_series
+  - mc.phy.o.mixed_series_resistor_left_out
+  - mc.phy.o.series_current_from_one_resistor
+solution:
+  steps:
+  - n: 1
+    latex: R_p = \frac{30 \times 60}{30 + 60} = 20\ \Omega
+    reason: Combine the parallel pair
+    check_id: chk_build_phy_cir_0032_rp
+  - n: 2
+    latex: R = 15 + 20 = 35\ \Omega
+    reason: Add the series resistor
+    check_id: chk_build_phy_cir_0032_rt
+  - n: 3
+    latex: I = \frac{12}{35} = 0.343\ \text{A}
+    reason: Ohm's law for the circuit
+    check_id: chk_build_phy_cir_0032_ans
+difficulty:
+  prior: 0.7
+  band: core
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  R1: '15'
+  R2: '30'
+  R3: '60'
+  V: '12'
+checks:
+  chk_build_phy_cir_0032_ans:
+    args:
+      expression: 12/(15 + 30*60/(30 + 60))
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_cir_0032_rp:
+    args:
+      expression: 30*60/(30 + 60)
+    tool: math_evaluate
+  chk_build_phy_cir_0032_rt:
+    args:
+      expression: (15 + 30*60/(30 + 60))
+    tool: math_evaluate
+  chk_build_phy_cir_0032_tool:
+    args:
+      components:
+      - emf: '12'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '15'
+      - id: R2
+        kind: resistor
+        resistance: '30'
+      - id: R3
+        kind: resistor
+        resistance: '60'
+      network:
+        series:
+        - B
+        - R1
+        - parallel:
+          - R2
+          - R3
+    tool: phys_circuit
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:40:56.888Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.circuits.0032
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

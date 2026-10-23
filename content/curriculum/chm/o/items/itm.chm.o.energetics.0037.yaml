@@ -1,0 +1,117 @@
+id: itm.chm.o.energetics.0037
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.energetics.calorimetry
+stem: 0.0250 mol of zinc reacts with excess copper(II) sulfate solution. The 50.0 g of water (or solution) changes temperature from 20.0 °C to 32.0 °C. Take the specific heat capacity of water as 4.2 J/(g °C).
+parts:
+- id: a
+  prompt: What is the enthalpy change, ΔH, in kJ/mol?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: -0.101 kJ/mol
+      correct: false
+      misconception_id: mc.chm.o.energetics_mass_of_reactant
+      feedback: Q = mcΔT is about the water (or solution) whose temperature changed, so m is the mass of that water.
+    - id: B
+      text: -2.52 kJ/mol
+      correct: false
+      misconception_id: mc.chm.o.energetics_q_not_per_mole
+      feedback: ΔH is per mole. Divide the energy in kJ by the number of moles that reacted.
+    - id: C
+      text: 101 kJ/mol
+      correct: false
+      misconception_id: mc.chm.o.energetics_calorimetry_sign
+      feedback: The water gained the energy that the reaction lost, so ΔH for the reaction is negative when the water warms.
+    - id: D
+      text: -101 kJ/mol
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: First find the energy the water took in or gave out, then share it per mole.
+  - rung: 2
+    name: concept
+    text:
+      en: Q = m × c × ΔT, with m the mass of water; ΔH = −Q ÷ moles (negative when the water warms).
+  - rung: 3
+    name: first_step
+    text:
+      en: ΔT = 12 °C, so Q = 50.0 × 4.2 × ΔT = 2520 J = 2.52 kJ.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 2.52 kJ by 0.0250 mol and decide the sign.
+  - rung: 5
+    name: full_step
+    text:
+      en: ΔH = -101 kJ/mol.
+  misconception_ids:
+  - mc.chm.o.energetics_calorimetry_sign
+  - mc.chm.o.energetics_q_not_per_mole
+  - mc.chm.o.energetics_mass_of_reactant
+solution:
+  steps:
+  - n: 1
+    latex: Q = 50.0 \times 4.2 \times 12 = 2520\ \text{J}
+    reason: Energy taken in by the water
+    check_id: chk_build_chm_energetics_0037_dh
+  - n: 2
+    latex: Q = 2.52\ \text{kJ}
+    reason: J to kJ
+    check_id: chk_build_chm_energetics_0037_q
+  - n: 3
+    latex: \Delta H = -\frac{2.52}{0.0250} = -101\ \text{kJ/mol}
+    reason: Per mole, with sign
+    check_id: chk_build_chm_energetics_0037_dh
+difficulty:
+  prior: 0.7
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_energetics_0037_dh:
+    args:
+      amount: 0.0250 mol
+      constants:
+      - source: pack
+        symbol: c_water
+      final_temperature: 32.0 °C
+      initial_temperature: 20.0 °C
+      mass: 50.0 g
+      task: calorimetry
+    tool: chem_energetics
+  chk_build_chm_energetics_0037_q:
+    args:
+      expression: 50.0*4.2*(32.0 - 20.0)/1000
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,51 @@
+id: wex.chm.o.organic.0012
+kc_ids:
+- kc.chm.o.organic.alcohols_and_acids
+problem: Ethanoic acid is warmed with ethanol and a little concentrated sulfuric acid. Name the ester, write the equation and find the ester's relative molecular mass.
+steps:
+- n: 1
+  latex: \text{ethanol }\rightarrow\text{ ethyl; ethanoic acid }\rightarrow\text{ ethanoate}
+  reason: Alcohol first, acid second
+- n: 2
+  latex: \text{CH}_3\text{COOH} + \text{C}_2\text{H}_5\text{OH} \rightarrow \text{CH}_3\text{COOC}_2\text{H}_5 + \text{H}_2\text{O}
+  reason: Esterification
+  check_id: chk_build_chm_organic_w0012_bal
+final_answer:
+  latex: M_r = 88
+  check_id: chk_build_chm_organic_w0012_mr
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_w0012_bal:
+    args:
+      equation: CH3COOH + C2H5OH -> CH3COOC2H5 + H2O
+    tool: chem_balance
+  chk_build_chm_organic_w0012_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      formula: CH3COOC2H5
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

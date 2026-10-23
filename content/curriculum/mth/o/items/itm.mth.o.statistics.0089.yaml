@@ -1,0 +1,108 @@
+id: itm.mth.o.statistics.0089
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.pie_charts
+stem: In a survey of 36 people, 7 chose football as their favourite sport. The results are shown in a pie chart.
+parts:
+- id: a
+  prompt: Find the angle of the football sector.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '70'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_sta_0089_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The whole circle stands for all the people surveyed.
+  - rung: 2
+    name: concept
+    text:
+      en: Angle = frequency ÷ total × 360°.
+  - rung: 3
+    name: first_step
+    text:
+      en: Football is 7 out of 36.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 7 ÷ 36 × 360.
+  - rung: 5
+    name: full_step
+    text:
+      en: The sector angle is 70°.
+  misconception_ids:
+  - mc.mth.o.pie_frequency_as_angle
+  - mc.mth.o.pie_percent_for_degrees
+  - mc.mth.o.pie_angle_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \frac{7}{36} \times 360 = 70
+    reason: The share of the full circle
+    check_id: chk_build_mth_sta_0089_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  f: '7'
+  total: '36'
+checks:
+  chk_build_mth_sta_0089_ans:
+    args:
+      expression: 7/36*360
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:40:02.057Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.statistics.0089
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

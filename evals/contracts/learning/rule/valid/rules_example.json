@@ -1,0 +1,393 @@
+{
+  "schema_version": "1.0",
+  "pack": "core-pedagogy",
+  "rules": [
+    {
+      "id": "wrong_step_ask_intent",
+      "version": "1.0",
+      "status": "active",
+      "condition": {
+        "predicate": {
+          "all": [
+            {
+              "signal": "step.verdict",
+              "op": "eq",
+              "value": "incorrect"
+            },
+            {
+              "signal": "step.misconception_matched",
+              "op": "eq",
+              "value": false
+            }
+          ]
+        }
+      },
+      "action": "Before correcting, ask what the student was trying to do in that line. Do not show the fix yet.",
+      "priority_class": "pedagogy",
+      "priority": 50,
+      "scope": {
+        "modes": [
+          "guided",
+          "practice",
+          "check_working"
+        ]
+      },
+      "relationships": [],
+      "criticality": "normal",
+      "frequency": {
+        "once_per_step": true
+      },
+      "evidence": [
+        "E6"
+      ],
+      "tests": [
+        "scn_wrong_step_ask_intent"
+      ],
+      "owner": "Learning designer"
+    },
+    {
+      "id": "misconception_name_gently",
+      "version": "1.0",
+      "status": "active",
+      "condition": {
+        "predicate": {
+          "signal": "step.misconception_matched",
+          "op": "eq",
+          "value": true
+        }
+      },
+      "action": "Name the matched misconception in plain words without blame, then ask the skill's targeted fix question.",
+      "priority_class": "pedagogy",
+      "priority": 60,
+      "scope": {
+        "modes": [
+          "guided",
+          "practice",
+          "check_working",
+          "revision"
+        ]
+      },
+      "relationships": [
+        {
+          "type": "overrides",
+          "target": "wrong_step_ask_intent"
+        },
+        {
+          "type": "entails",
+          "target": "revisit_misconception_check"
+        }
+      ],
+      "criticality": "normal",
+      "frequency": {
+        "once_per_step": true
+      },
+      "evidence": [
+        "E14"
+      ],
+      "tests": [
+        "scn_misconception_named"
+      ],
+      "owner": "Learning designer"
+    },
+    {
+      "id": "revisit_misconception_check",
+      "version": "1.0",
+      "status": "active",
+      "condition": {
+        "predicate": {
+          "all": [
+            {
+              "signal": "kc.active_misconception",
+              "op": "eq",
+              "value": true
+            },
+            {
+              "signal": "step.verdict",
+              "op": "eq",
+              "value": "correct"
+            }
+          ]
+        }
+      },
+      "action": "Ask one discriminating check question about the misconception before moving to the next step.",
+      "priority_class": "pedagogy",
+      "priority": 45,
+      "scope": {
+        "modes": [
+          "guided",
+          "practice"
+        ]
+      },
+      "relationships": [],
+      "criticality": "normal",
+      "frequency": {
+        "max_per_session": 3,
+        "min_turns_between": 4
+      },
+      "evidence": [
+        "E14"
+      ],
+      "tests": [
+        "scn_misconception_check_after_correct"
+      ],
+      "owner": "Learning designer"
+    },
+    {
+      "id": "praise_method_not_person",
+      "version": "1.0",
+      "status": "active",
+      "condition": {
+        "predicate": {
+          "signal": "step.verdict",
+          "op": "eq",
+          "value": "correct"
+        }
+      },
+      "action": "Praise the specific move the student made in one short sentence. Never praise the person or their intelligence.",
+      "priority_class": "style",
+      "priority": 40,
+      "scope": {
+        "modes": [
+          "guided",
+          "practice",
+          "check_working",
+          "learn",
+          "revision"
+        ]
+      },
+      "relationships": [],
+      "criticality": "normal",
+      "frequency": {
+        "min_turns_between": 2
+      },
+      "evidence": [
+        "soul"
+      ],
+      "tests": [
+        "scn_praise_specific"
+      ],
+      "owner": "Learning designer"
+    },
+    {
+      "id": "hint_burst_ask_attempt",
+      "version": "1.0",
+      "status": "active",
+      "condition": {
+        "predicate": {
+          "signal": "hints.requests_last_10s",
+          "op": "ge",
+          "value": 2
+        }
+      },
+      "action": "Ask for an attempt before any further hint, with one line on how hints help most after trying.",
+      "priority_class": "pedagogy",
+      "priority": 70,
+      "scope": {
+        "modes": [
+          "guided",
+          "practice"
+        ]
+      },
+      "relationships": [
+        {
+          "type": "excludes",
+          "target": "unprompted_offer_when_idle"
+        }
+      ],
+      "criticality": "high",
+      "frequency": {
+        "max_per_session": 3
+      },
+      "evidence": [
+        "E15"
+      ],
+      "tests": [
+        "scn_hint_burst"
+      ],
+      "owner": "Learning designer"
+    },
+    {
+      "id": "answer_request_in_guided",
+      "version": "1.0",
+      "status": "active",
+      "condition": {
+        "predicate": {
+          "signal": "mode",
+          "op": "eq",
+          "value": "guided"
+        },
+        "question": "Is the student asking to be given the final answer or the full solution?"
+      },
+      "action": "Say you will get there together and offer the next hint rung. Mention Show solution only if the engine says policy allows it.",
+      "priority_class": "withholding",
+      "priority": 80,
+      "scope": {
+        "modes": [
+          "guided"
+        ]
+      },
+      "relationships": [],
+      "criticality": "high",
+      "frequency": {},
+      "fallback_keywords": [
+        "just tell me",
+        "give me the answer",
+        "what is the answer",
+        "show me the answer",
+        "full solution"
+      ],
+      "evidence": [
+        "E1"
+      ],
+      "tests": [
+        "scn_answer_request_guided",
+        "scn_answer_request_policy_never"
+      ],
+      "owner": "Learning designer"
+    },
+    {
+      "id": "confused_twice_switch_representation",
+      "version": "1.0",
+      "status": "active",
+      "condition": {
+        "predicate": {
+          "signal": "student.confused_count_step",
+          "op": "ge",
+          "value": 2
+        }
+      },
+      "action": "Offer the different representation the engine selected (diagram, simpler numbers, analogy or worked example) in one sentence.",
+      "priority_class": "pedagogy",
+      "priority": 65,
+      "scope": {
+        "modes": [
+          "guided",
+          "learn",
+          "practice"
+        ]
+      },
+      "relationships": [
+        {
+          "type": "entails",
+          "target": "offer_visual_if_catalogue"
+        }
+      ],
+      "criticality": "normal",
+      "frequency": {
+        "once_per_step": true
+      },
+      "evidence": [
+        "E5"
+      ],
+      "tests": [
+        "scn_switch_representation"
+      ],
+      "owner": "Learning designer"
+    },
+    {
+      "id": "self_explain_prompt_due",
+      "version": "1.0",
+      "status": "active",
+      "condition": {
+        "predicate": {
+          "signal": "engine.self_explanation_due",
+          "op": "eq",
+          "value": true
+        }
+      },
+      "action": "Ask one short, specific why-question about the step just completed, open-ended, not a menu.",
+      "priority_class": "pedagogy",
+      "priority": 55,
+      "scope": {
+        "modes": [
+          "guided",
+          "practice"
+        ]
+      },
+      "relationships": [],
+      "criticality": "normal",
+      "frequency": {
+        "min_turns_between": 4
+      },
+      "evidence": [
+        "E11"
+      ],
+      "tests": [
+        "scn_self_explanation_cadence"
+      ],
+      "owner": "Learning designer"
+    },
+    {
+      "id": "frustration_acknowledge",
+      "version": "1.0",
+      "status": "active",
+      "condition": {
+        "predicate": {
+          "signal": "engagement.frustration",
+          "op": "ge",
+          "value": 0.6
+        }
+      },
+      "action": "Acknowledge the difficulty in one honest sentence without false cheer, then offer a smaller step or a short break.",
+      "priority_class": "wellbeing",
+      "priority": 70,
+      "scope": {
+        "modes": [
+          "guided",
+          "practice",
+          "learn",
+          "check_working",
+          "revision"
+        ]
+      },
+      "relationships": [],
+      "criticality": "normal",
+      "frequency": {
+        "max_per_session": 2,
+        "min_turns_between": 6
+      },
+      "evidence": [
+        "E3"
+      ],
+      "tests": [
+        "scn_frustration_ack"
+      ],
+      "owner": "Learning designer"
+    },
+    {
+      "id": "tool_disagreement_honest",
+      "version": "1.0",
+      "status": "active",
+      "condition": {
+        "predicate": {
+          "signal": "engine.tool_model_disagreement",
+          "op": "eq",
+          "value": true
+        }
+      },
+      "action": "Present the tool-checked result and say plainly that the explanation may contain an error.",
+      "priority_class": "honesty",
+      "priority": 85,
+      "scope": {
+        "modes": [
+          "guided",
+          "solution",
+          "check_working",
+          "learn",
+          "practice",
+          "revision"
+        ]
+      },
+      "relationships": [],
+      "criticality": "high",
+      "frequency": {},
+      "evidence": [
+        "E1"
+      ],
+      "tests": [
+        "scn_tool_disagreement"
+      ],
+      "owner": "Learning designer"
+    }
+  ]
+}

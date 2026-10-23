@@ -1,0 +1,37 @@
+id: mc.chm.o.percent_count_ignored
+kc_ids:
+- kc.chm.o.stoichiometry.percentage_composition
+- kc.chm.o.environment.fertilisers
+student_name: Forgetting how many atoms of the element
+description: Uses one atom of the element on top of the fraction even when the formula has several.
+signatures:
+- kind: answer_transform
+  expression: 100*Ar/Mr
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'The top of the fraction is the mass of all the atoms of that element in the formula: number of atoms × Ar.'
+probe_item_ids:
+- itm.chm.o.stoichiometry.0037
+- itm.chm.o.stoichiometry.0038
+- itm.chm.o.stoichiometry.0039
+- itm.chm.o.stoichiometry.0040
+- itm.chm.o.stoichiometry.0041
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

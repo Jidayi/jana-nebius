@@ -1,0 +1,34 @@
+id: mc.acc.o.cc_drawings_added
+kc_ids:
+- kc.acc.o.sole_trader_statements.closing_capital
+student_name: Adding drawings to capital
+description: Adds drawings to capital instead of subtracting them.
+signatures:
+- kind: answer_transform
+  expression: opening + introduced + profit + drawings
+fix:
+  strategy: rule_restatement
+  text:
+    en: Drawings are taken out of the business by the owner, so they reduce capital.
+probe_item_ids:
+- itm.acc.o.sole_trader_statements.0056
+- itm.acc.o.sole_trader_statements.0057
+- itm.acc.o.sole_trader_statements.0058
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,207 @@
+- id: kc.phy.o.circuits.series_circuits
+  code: PHY-O-04.03.K01
+  node_id: cur.phy.o.electricity_and_magnetism.electric_circuits
+  statement: Find the current, the potential differences and the total resistance in a series circuit
+  kind: procedural
+  tools:
+  - math_evaluate
+  - phys_circuit
+  exam_weight: 0.24
+  prerequisites:
+  - kc_id: kc.phy.o.electrical_quantities.resistance
+    strength: required
+  misconception_ids:
+  - mc.phy.o.circuit_current_r_over_v
+  - mc.phy.o.series_current_from_one_resistor
+  - mc.phy.o.series_current_used_up
+  - mc.phy.o.series_pd_added_to_supply
+  - mc.phy.o.series_pd_inverse_to_resistance
+  - mc.phy.o.series_pd_same_everywhere
+  - mc.phy.o.series_pd_shared_equally
+  - mc.phy.o.series_resistance_averaged
+  - mc.phy.o.series_treated_as_parallel
+  skill_ids:
+  - phy-o-circuits
+  glossary:
+  - circuit
+  - series
+  - series circuit
+  - resistor
+  - resistance
+  - current
+  - potential difference
+  - component
+  - cell
+  - ammeter
+  - voltmeter
+  - voltage
+  - total resistance
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.circuits.parallel_circuits
+  code: PHY-O-04.03.K02
+  node_id: cur.phy.o.electricity_and_magnetism.electric_circuits
+  statement: Find the branch currents and the combined resistance of resistors in parallel
+  kind: procedural
+  tools:
+  - math_solve
+  - math_evaluate
+  - phys_circuit
+  exam_weight: 0.24
+  prerequisites:
+  - kc_id: kc.phy.o.circuits.series_circuits
+    strength: required
+  misconception_ids:
+  - mc.phy.o.parallel_adding_branch_raises_resistance
+  - mc.phy.o.parallel_branch_current_added
+  - mc.phy.o.parallel_current_same_each_branch
+  - mc.phy.o.parallel_current_split_equally
+  - mc.phy.o.parallel_more_current_higher_resistance
+  - mc.phy.o.parallel_one_branch_only
+  - mc.phy.o.parallel_pd_shared_out
+  - mc.phy.o.parallel_reciprocal_not_inverted
+  - mc.phy.o.parallel_resistance_averaged
+  - mc.phy.o.parallel_resistances_added
+  skill_ids:
+  - phy-o-circuits
+  glossary:
+  - circuit
+  - parallel
+  - parallel circuit
+  - resistor
+  - resistance
+  - current
+  - potential difference
+  - branch
+  - junction
+  - combined resistance
+  - component
+  - voltage
+  - heating element
+  - series
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.circuits.mixed_circuits
+  code: PHY-O-04.03.K03
+  node_id: cur.phy.o.electricity_and_magnetism.electric_circuits
+  statement: Solve circuits that combine resistors in series and in parallel
+  kind: procedural
+  tools:
+  - math_evaluate
+  - phys_circuit
+  exam_weight: 0.18
+  prerequisites:
+  - kc_id: kc.phy.o.circuits.parallel_circuits
+    strength: required
+  misconception_ids:
+  - mc.phy.o.mixed_all_in_parallel
+  - mc.phy.o.mixed_all_in_series
+  - mc.phy.o.mixed_branch_gets_full_supply
+  - mc.phy.o.mixed_series_resistor_left_out
+  - mc.phy.o.parallel_current_same_each_branch
+  - mc.phy.o.parallel_current_split_equally
+  - mc.phy.o.parallel_resistances_added
+  - mc.phy.o.series_current_from_one_resistor
+  - mc.phy.o.series_pd_shared_equally
+  - mc.phy.o.series_pd_inverse_to_resistance
+  skill_ids:
+  - phy-o-circuits
+  glossary:
+  - circuit
+  - series
+  - parallel
+  - resistor
+  - resistance
+  - current
+  - potential difference
+  - branch
+  - junction
+  - combined resistance
+  - voltage
+  difficulty_prior: 0.8
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.circuits.potential_dividers
+  code: PHY-O-04.03.K04
+  node_id: cur.phy.o.electricity_and_magnetism.electric_circuits
+  statement: Calculate the output of a potential divider and predict the effect of a thermistor or a light-dependent resistor
+  kind: procedural
+  tools:
+  - math_evaluate
+  - phys_circuit
+  exam_weight: 0.18
+  prerequisites:
+  - kc_id: kc.phy.o.circuits.series_circuits
+    strength: required
+  misconception_ids:
+  - mc.phy.o.divider_output_fixed_by_supply
+  - mc.phy.o.divider_ratio_of_resistors
+  - mc.phy.o.divider_wrong_resistor
+  - mc.phy.o.ldr_resistance_rises_with_light
+  - mc.phy.o.series_pd_inverse_to_resistance
+  - mc.phy.o.series_pd_shared_equally
+  - mc.phy.o.thermistor_resistance_rises_with_heat
+  skill_ids:
+  - phy-o-circuits
+  glossary:
+  - potential divider
+  - resistor
+  - resistance
+  - thermistor
+  - light-dependent resistor
+  - potential difference
+  - output voltage
+  - input voltage
+  - variable resistor
+  - voltage
+  - circuit
+  difficulty_prior: 0.6
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.circuits.circuit_components
+  code: PHY-O-04.03.K05
+  node_id: cur.phy.o.electricity_and_magnetism.electric_circuits
+  statement: Identify circuit symbols and describe how thermistors, light-dependent resistors and diodes behave
+  kind: conceptual
+  tools:
+  - math_evaluate
+  - phys_circuit
+  exam_weight: 0.16
+  prerequisites:
+  - kc_id: kc.phy.o.electrical_quantities.current_voltage_graphs
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.circuit_current_r_over_v
+  - mc.phy.o.diode_as_resistor
+  - mc.phy.o.diode_direction_reversed
+  - mc.phy.o.diode_passes_reverse_current
+  - mc.phy.o.divider_wrong_resistor
+  - mc.phy.o.ldr_resistance_rises_with_light
+  - mc.phy.o.led_ldr_arrows_confused
+  - mc.phy.o.sensor_resistance_constant
+  - mc.phy.o.thermistor_ldr_confused
+  - mc.phy.o.thermistor_resistance_rises_with_heat
+  - mc.phy.o.variable_resistor_is_sensor
+  skill_ids:
+  - phy-o-circuits
+  glossary:
+  - circuit
+  - circuit symbol
+  - thermistor
+  - light-dependent resistor
+  - diode
+  - resistor
+  - variable resistor
+  - resistance
+  - current
+  - ammeter
+  - voltmeter
+  - fuse
+  - light-emitting diode
+  - forward direction
+  - reverse direction
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active

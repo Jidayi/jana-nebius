@@ -1,0 +1,35 @@
+id: mc.acc.o.ae_expense_as_asset
+kc_ids:
+- kc.acc.o.accounting_equation.classify_elements
+student_name: Expenses as assets
+description: Classifies money spent on something used up, such as rent, as an asset because it was bought.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: expense
+fix:
+  strategy: contrast_example
+  text:
+    en: An asset lasts and is owned; an expense is used up in earning this period's income.
+probe_item_ids:
+- itm.acc.o.accounting_equation.0012
+- itm.acc.o.accounting_equation.0015
+- itm.acc.o.accounting_equation.0021
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

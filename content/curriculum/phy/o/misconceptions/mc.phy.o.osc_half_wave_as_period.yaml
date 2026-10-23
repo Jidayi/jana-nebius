@@ -1,0 +1,36 @@
+id: mc.phy.o.osc_half_wave_as_period
+kc_ids:
+- kc.phy.o.oscilloscope.time_base
+student_name: Half a wave taken as a whole one
+description: Takes the distance from a crest to the next trough as one complete wave, so the period is half the true value.
+signatures:
+- kind: answer_transform
+  expression: T/2
+fix:
+  strategy: diagram
+  text:
+    en: One complete wave runs from a crest to the next crest. Crest to trough is only half a wave.
+probe_item_ids:
+- itm.phy.o.oscilloscope.0013
+- itm.phy.o.oscilloscope.0015
+- itm.phy.o.oscilloscope.0002
+- itm.phy.o.oscilloscope.0005
+- itm.phy.o.oscilloscope.0007
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

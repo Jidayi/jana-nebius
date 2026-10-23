@@ -1,0 +1,113 @@
+id: itm.phy.o.mass_weight.0011
+version: 0.1.1
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.mass_weight.weight_from_mass
+stem: A textbook has a mass of 950 g. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate its weight.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 9500 N
+      correct: false
+      misconception_id: mc.phy.o.weight_grams_not_converted
+      feedback: An apple cannot weigh as much as a grown person. Change grams into kilograms (divide by a thousand) before you use weight = mass × g.
+    - id: B
+      text: 0.95 N
+      correct: false
+      misconception_id: mc.phy.o.weight_given_as_mass_number
+      feedback: 'A bag of sugar pulls on your hand much less on the Moon than on Earth, yet it holds the same sugar. Weight is a force: multiply the mass by g to get it, and divide a weight by g to get the mass.'
+    - id: C
+      text: 0.095 N
+      correct: false
+      misconception_id: mc.phy.o.weight_mass_divided_by_g
+      feedback: 'Weight = mass × g: each kilogram has a weight of g newtons. So mass = weight ÷ g. Where g is bigger than 1 N/kg the weight in newtons is a bigger number than the mass in kilograms.'
+    - id: D
+      text: 9.5 N
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Weight is a force, so it is measured in newtons.
+  - rung: 2
+    name: concept
+    text:
+      en: Weight = mass × gravitational field strength, with the mass in kilograms.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change 950 g into kilograms first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 0.95 kg × 10 N/kg.
+  - rung: 5
+    name: full_step
+    text:
+      en: The weight is 9.5 N.
+  misconception_ids:
+  - mc.phy.o.weight_given_as_mass_number
+  - mc.phy.o.weight_grams_not_converted
+  - mc.phy.o.weight_mass_divided_by_g
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: m = 950\ \text{g} = 0.95\ \text{kg}
+    reason: Change grams into kilograms
+    check_id: chk_build_phy_mwt_0011_kg
+  - n: 2
+    latex: W = mg = 0.95 \times 10 = 9.5\ \text{N}
+    reason: Weight = mass × g
+    check_id: chk_build_phy_mwt_0011_ans
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mwt_0011_ans:
+    args:
+      expression: 950/1000*10
+    tool: math_evaluate
+  chk_build_phy_mwt_0011_kg:
+    args:
+      expression: 950/1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

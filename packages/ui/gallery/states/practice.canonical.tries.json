@@ -1,0 +1,154 @@
+{
+  "id": "practice.canonical.tries",
+  "title": "Practice, tries marked",
+  "component": "Practice",
+  "note": "Two tries marked at once (UXS-16): Not quite with the look-here note of the first error (misconception colour), then Checked with the mastery change and Next question (verified colour).",
+  "state": "canonical",
+  "variant": "tries",
+  "payload": {
+    "subjectLabel": "Physics",
+    "setId": "set_0123456789ABCDEFGHJKMNPQRS",
+    "subject": "physics",
+    "number": 1,
+    "total": 3,
+    "item": {
+      "item_id": "itm.phy.o.motion.0022",
+      "pack_id": "pack.phy.o",
+      "pack_version": "0.1.0",
+      "kc_ids": [
+        "kc.phy.o.motion.average_speed"
+      ],
+      "kind": "numeric",
+      "stem": "A swimmer swims 240 m in 200 s.",
+      "parts": [
+        {
+          "part_id": "a",
+          "prompt": "Calculate the swimmer's average speed.",
+          "marks": 2,
+          "uses_parts": [],
+          "input": {
+            "kind": "numeric",
+            "unit_prompt": null
+          }
+        }
+      ],
+      "visual": null,
+      "marks": 2
+    },
+    "next": {
+      "item_id": "itm.phy.o.motion.0002",
+      "pack_id": "pack.phy.o",
+      "pack_version": "0.1.0",
+      "kc_ids": [
+        "kc.phy.o.motion.acceleration_from_change"
+      ],
+      "kind": "numeric",
+      "stem": "A minibus on a straight road speeds up steadily from 5.0 m/s to 17.0 m/s in 6.0 s.",
+      "parts": [
+        {
+          "part_id": "a",
+          "prompt": "Calculate the acceleration of the minibus.",
+          "marks": 3,
+          "uses_parts": [],
+          "input": {
+            "kind": "numeric",
+            "unit_prompt": null
+          }
+        }
+      ],
+      "visual": null,
+      "marks": 3
+    },
+    "tries": [
+      {
+        "answers": [
+          {
+            "part_id": "a",
+            "kind": "numeric",
+            "value": "1.2",
+            "unit": "m"
+          }
+        ],
+        "marked": {
+          "attempt_id": "att_0123456789ABCDEFGHJKMNPQRS",
+          "verdict": "incorrect",
+          "marks_awarded": 0,
+          "marks_total": 2,
+          "feedback_key": "practice.feedback.incorrect",
+          "first_error": {
+            "category": "units",
+            "message_key": "board.error.units"
+          },
+          "mastery_change": {
+            "kc_id": "kc.phy.o.motion.average_speed",
+            "band_before": "learning",
+            "band_after": "learning"
+          },
+          "next_item": null
+        }
+      },
+      {
+        "answers": [
+          {
+            "part_id": "a",
+            "kind": "numeric",
+            "value": "1.2",
+            "unit": "m/s"
+          }
+        ],
+        "marked": {
+          "attempt_id": "att_SRQPNMKJHGFEDCBA9876543210",
+          "verdict": "correct",
+          "marks_awarded": 2,
+          "marks_total": 2,
+          "feedback_key": "practice.feedback.correct",
+          "first_error": null,
+          "mastery_change": {
+            "kc_id": "kc.phy.o.motion.average_speed",
+            "band_before": "learning",
+            "band_after": "secure"
+          },
+          "next_item": {
+            "item_id": "itm.phy.o.motion.0002",
+            "pack_id": "pack.phy.o",
+            "pack_version": "0.1.0",
+            "kc_ids": [
+              "kc.phy.o.motion.acceleration_from_change"
+            ],
+            "kind": "numeric",
+            "stem": "A minibus on a straight road speeds up steadily from 5.0 m/s to 17.0 m/s in 6.0 s.",
+            "parts": [
+              {
+                "part_id": "a",
+                "prompt": "Calculate the acceleration of the minibus.",
+                "marks": 3,
+                "uses_parts": [],
+                "input": {
+                  "kind": "numeric",
+                  "unit_prompt": null
+                }
+              }
+            ],
+            "visual": null,
+            "marks": 3
+          }
+        }
+      }
+    ]
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Try 1: 1.2 m",
+    "Not quite",
+    "Look at the units",
+    "Checked",
+    "This idea moved from Learning to Secure.",
+    "Next question"
+  ]
+}

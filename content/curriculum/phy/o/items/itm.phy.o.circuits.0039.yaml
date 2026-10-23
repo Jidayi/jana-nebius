@@ -1,0 +1,141 @@
+id: itm.phy.o.circuits.0039
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.mixed_circuits
+stem: Two lamps of resistance 8 Ω and 10 Ω are connected in series to make one branch. A 15 Ω resistor forms a second branch in parallel with them, and the two branches are connected across a 6 V battery.
+parts:
+- id: a
+  prompt: Calculate the total resistance of the circuit.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '8.18'
+    unit: Ω
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_cir_0039_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Work out each branch on its own first.
+  - rung: 2
+    name: concept
+    text:
+      en: The two lamps in one branch are in series; that branch is then in parallel with the resistor.
+  - rung: 3
+    name: first_step
+    text:
+      en: The lamp branch has 8 Ω + 10 Ω = 18 Ω.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Combine 18 Ω and 15 Ω in parallel: product over sum.'
+  - rung: 5
+    name: full_step
+    text:
+      en: The total resistance is 8.18 Ω.
+  misconception_ids:
+  - mc.phy.o.mixed_all_in_series
+  - mc.phy.o.mixed_all_in_parallel
+solution:
+  steps:
+  - n: 1
+    latex: R_s = 8 + 10 = 18\ \Omega
+    reason: The lamps in series in one branch
+    check_id: chk_build_phy_cir_0039_rs
+  - n: 2
+    latex: R = \frac{18 \times 15}{18 + 15} = 8.18\ \Omega
+    reason: The two branches in parallel
+    check_id: chk_build_phy_cir_0039_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  R1: '8'
+  R2: '10'
+  R3: '15'
+checks:
+  chk_build_phy_cir_0039_ans:
+    args:
+      expression: (8 + 10)*15/(8 + 10 + 15)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_cir_0039_rs:
+    args:
+      expression: 8 + 10
+    tool: math_evaluate
+  chk_build_phy_cir_0039_tool:
+    args:
+      components:
+      - emf: '6'
+        id: B
+        kind: battery
+      - id: R1
+        kind: lamp
+        resistance: '8'
+      - id: R2
+        kind: lamp
+        resistance: '10'
+      - id: R3
+        kind: resistor
+        resistance: '15'
+      network:
+        series:
+        - B
+        - parallel:
+          - series:
+            - R1
+            - R2
+          - R3
+    tool: phys_circuit
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:41:01.743Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.circuits.0039
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,83 @@
+{
+  "checked_at": "2026-10-19T02:43:54.466974+00:00",
+  "owner_approval_already_recorded": "scripts/governance/m42-owner-approval.json",
+  "production_project": "jana-prod-512005",
+  "owner_or_custodian_inputs": [
+    {
+      "id": "production_decision",
+      "required_from": "Owner",
+      "need": "Confirm https://api.getjana.app, a London gateway (europe-west2) and EU Vertex in jana-prod-512005; choose production daily/monthly spending limits. Authorise provisioning once the concrete deployment candidate and retention evidence are reviewed.",
+      "preflight_groups": [
+        "gateway_origin",
+        "hosting_environment",
+        "region",
+        "gateway_config",
+        "network_policy"
+      ],
+      "proposed_values": {
+        "project_id": "jana-prod-512005",
+        "gateway_origin": "https://api.getjana.app",
+        "gateway_region": "europe-west2",
+        "vertex_location": "eu",
+        "model": "gemini-3.8-flash"
+      },
+      "status": "awaiting_actual_decisions"
+    },
+    {
+      "id": "production_provider_retention",
+      "required_from": "Google Cloud/provider custodian",
+      "need": "Supply the project-specific paid-service retention/abuse-monitoring and disabled request-logging confirmation for jana-prod-512005, Gemini 3.8 Flash and the exact EU Vertex endpoint, with confirmation reference, verifier and validity/expiry.",
+      "preflight_groups": [
+        "provider_retention"
+      ],
+      "status": "missing_actual_record"
+    },
+    {
+      "id": "dpia_and_safety_record",
+      "required_from": "Safety lead / assessment custodian",
+      "need": "Supply the actual approved Study-material DPIA assessment file and canonical Safety lead record with assessment reference/digest and required policy fields. Owner approval is already recorded.",
+      "preflight_groups": [
+        "dpia_list"
+      ],
+      "status": "missing_assessment_and_canonical_record"
+    },
+    {
+      "id": "production_signing_access",
+      "required_from": "Signing custodians",
+      "need": "Provide secure access to Apple Developer ID/notarisation, Windows Authenticode/timestamp and Linux signing; production public trust hierarchy and the content-HSM signing interface/ceremony are also required for the DPIA list. Do not send private keys in chat.",
+      "preflight_groups": [
+        "signing_key_reference",
+        "dpia_list"
+      ],
+      "status": "missing_secure_signing_access"
+    },
+    {
+      "id": "independent_reviews",
+      "required_from": "Subject/content and safety reviewers",
+      "need": "Assign reviewers and supply actual held-out content/safety, local-reference-model and OCR/ASR reports bound to the qualified artifacts. Review the probability and Unicode expectation amendments and approve the 60 pending prompt snapshot hashes. The corpus custodian must resolve the three development items matching four held-out fingerprints (see heldout-collisions.json); protected hashes and encrypted benchmark were not changed.",
+      "preflight_groups": [
+        "quality_review"
+      ],
+      "status": "missing_independent_reports_and_60_prompt_reviews"
+    },
+    {
+      "id": "signed_device_measurements",
+      "required_from": "Owner and device testers",
+      "need": "After final signed packages exist, run D01-D08 on the owner's Apple Silicon Mac with VoiceOver; arrange Windows 10/11 x64 with NVDA including non-AVX2, plus Ubuntu 22.04+/Debian 12 x64. Cover content-only/low/mid/high classes and eligible local models; return artifact-bound measurements.",
+      "preflight_groups": [
+        "devices"
+      ],
+      "status": "awaiting_final_signed_packages_and_testers"
+    }
+  ],
+  "engineering_open_now": [
+    "Reproduce and stabilise the remaining broader-harness oracle failure for itm.mth.o.coordinate_geometry.0061; this does not need owner input and a separate full-content pass does not erase the failed observation."
+  ],
+  "engineering_after_inputs": [
+    "Prepare and provision the actual production environment after the deployment decisions, retention evidence and authorisation are available.",
+    "Measure production extraction costs; build immutable runtime/installers and generate image-bound SBOM, licence/source-offer provenance and production pins.",
+    "Verify returned signatures and reviewed records, qualify the exact production project/endpoint, collect signed-device results and rerun strict preflight."
+  ],
+  "device_guide": "scripts/packaging/M42-DEVICE-CHECKS.md",
+  "secrets_in_chat_required": false
+}

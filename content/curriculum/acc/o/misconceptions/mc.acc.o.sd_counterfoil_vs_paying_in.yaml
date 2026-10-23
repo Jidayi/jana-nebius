@@ -1,0 +1,35 @@
+id: mc.acc.o.sd_counterfoil_vs_paying_in
+kc_ids:
+- kc.acc.o.source_documents.identify_source_document
+student_name: Counterfoil and paying-in slip mixed up
+description: Confuses the cheque counterfoil (a payment out) with the paying-in slip (money paid into the bank).
+signatures:
+- kind: structural
+  rule: debit_credit_swapped
+  account_class: asset
+fix:
+  strategy: contrast_example
+  text:
+    en: The counterfoil records money going out by cheque; the paying-in slip records money going in.
+probe_item_ids:
+- itm.acc.o.source_documents.0001
+- itm.acc.o.source_documents.0002
+- itm.acc.o.source_documents.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

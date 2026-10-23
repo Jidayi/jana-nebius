@@ -1,0 +1,88 @@
+id: itm.phy.o.em_spectrum.0039
+version: 0.1.0
+type: multi_select
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.em_spectrum.uses_and_hazards
+stem: Several uses of electromagnetic radiation are listed.
+parts:
+- id: a
+  prompt: Select every use of infrared.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Checking banknotes for hidden ink
+      correct: false
+    - id: B
+      text: Heating food from the inside in a microwave oven
+      correct: false
+    - id: C
+      text: Imaging broken bones
+      correct: false
+    - id: D
+      text: TV remote controls
+      correct: true
+    - id: E
+      text: Thermal imaging cameras
+      correct: true
+    - id: F
+      text: Electric grills and toasters
+      correct: true
+    scoring: exact_set
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what each region does when it meets matter.
+  - rung: 2
+    name: concept
+    text:
+      en: Long-wavelength regions mostly carry signals or heat things; short-wavelength regions pass through soft tissue or damage cells.
+  - rung: 3
+    name: first_step
+    text:
+      en: Only the highest-frequency regions are ionising, and danger rises with frequency.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options that give a region a property it does not have.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Correct: TV remote controls; Thermal imaging cameras; Electric grills and toasters.'
+solution:
+  steps:
+  - n: 1
+    latex: \text{TV remote controls; Thermal imaging cameras; Electric grills and toasters}
+    reason: Infrared is used for heating, sensing warmth and short-range signals
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

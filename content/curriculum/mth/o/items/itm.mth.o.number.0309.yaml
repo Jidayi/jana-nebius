@@ -1,0 +1,99 @@
+id: itm.mth.o.number.0309
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.rounding
+stem: Round 13.7685 to 2 significant figures.
+parts:
+- id: a
+  prompt: Give the rounded number.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '13.77'
+      correct: false
+      misconception_id: mc.mth.o.sf_dp_confused
+      feedback: Significant figures start at the first non-zero digit; decimal places start at the decimal point.
+    - id: B
+      text: '14'
+      correct: true
+    - id: C
+      text: '13'
+      correct: false
+      misconception_id: mc.mth.o.truncated_not_rounded
+      feedback: 'Look at the first digit you are removing: 5 or more rounds the last kept digit up.'
+    - id: D
+      text: '13.8'
+      correct: false
+      misconception_id: mc.mth.o.rounding_wrong_digit
+      feedback: Underline exactly the digits you must keep, then look only at the next digit.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Find the digit you are rounding to: count from the first non-zero digit for significant figures, from the decimal point for decimal places.'
+  - rung: 2
+    name: concept
+    text:
+      en: 'Look at the next digit: five or more rounds the last kept digit up; less than five leaves it.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Count 2 significant figures in the number, then look at the digit after them.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Keep place-holder zeros so the number keeps its size.
+  - rung: 5
+    name: full_step
+    text:
+      en: 13.7685 rounds to 14.
+  misconception_ids:
+  - mc.mth.o.rounding_wrong_digit
+  - mc.mth.o.sf_dp_confused
+  - mc.mth.o.truncated_not_rounded
+solution:
+  steps:
+  - n: 1
+    latex: 13.7685 \approx 14
+    reason: Look at the next digit to decide whether to round up
+    check_id: chk_build_mth_num_0309_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0309_ans:
+    args:
+      expression: '13.7685'
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

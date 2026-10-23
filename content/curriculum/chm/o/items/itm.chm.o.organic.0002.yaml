@@ -1,0 +1,91 @@
+id: itm.chm.o.organic.0002
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.functional_groups
+stem: A compound has the formula C₂H₅COOH.
+parts:
+- id: a
+  prompt: To which homologous series does it belong?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Alkanes, because it has the same number of carbon atoms as propane
+      correct: false
+      misconception_id: mc.chm.o.organic_series_by_carbon_count
+      feedback: A homologous series shares a functional group and a general formula. Ethane, ethene and ethanol all have two carbon atoms, but they belong to three different series and react in different ways. Neighbouring members of one series differ by CH₂.
+    - id: B
+      text: Alcohols, because it contains an –OH
+      correct: false
+      misconception_id: mc.chm.o.organic_oh_and_cooh_confused
+      feedback: Look at the carbon at the end of the chain. If it carries C=O as well as O–H (written –COOH), the compound is a carboxylic acid. If a carbon carries only –OH, the compound is an alcohol.
+    - id: C
+      text: Carboxylic acids
+      correct: true
+    - id: D
+      text: Alkalis, because the OH at the end forms hydroxide ions
+      correct: false
+      misconception_id: mc.chm.o.organic_oh_group_is_hydroxide
+      feedback: In sodium hydroxide the OH is a separate ion, OH⁻, which is set free in water. In an alcohol the O–H group is held to a carbon atom by a covalent bond and does not leave as an ion. A solution of ethanol is neutral.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Look at the end of C₂H₅COOH: which group of atoms is joined to the C₂H₅ part?'
+  - rung: 2
+    name: concept
+    text:
+      en: The –COOH group (a carbon with C=O and O–H) is the functional group of the carboxylic acids.
+  - rung: 3
+    name: first_step
+    text:
+      en: In C₂H₅COOH the O–H is part of a –COOH group, not an –OH on its own.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Decide whether the last carbon carries a C=O as well as the O–H.
+  - rung: 5
+    name: full_step
+    text:
+      en: C₂H₅COOH contains –COOH, so it is a carboxylic acid (propanoic acid).
+  misconception_ids:
+  - mc.chm.o.organic_oh_and_cooh_confused
+  - mc.chm.o.organic_series_by_carbon_count
+  - mc.chm.o.organic_oh_group_is_hydroxide
+solution:
+  steps:
+  - n: 1
+    latex: '\text{C}_2\text{H}_5\text{COOH}: \text{–COOH group}'
+    reason: Carboxylic acid functional group
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

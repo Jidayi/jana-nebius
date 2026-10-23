@@ -1,0 +1,82 @@
+id: itm.chm.o.atoms.9051
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.atoms.element_compound_mixture
+stem: A sealed sample contains only identical molecules. Each molecule has one carbon atom joined to two oxygen atoms.
+parts:
+- id: a
+  prompt: How should the sample be classified?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: An element, because all its molecules are identical.
+      correct: false
+    - id: B
+      text: A compound, because different elements are chemically joined in a fixed ratio.
+      correct: true
+    - id: C
+      text: A mixture, because it contains two elements.
+      correct: false
+    - id: D
+      text: A mixture, because the molecules can move.
+      correct: false
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A pure compound contains more than one element chemically joined in a fixed ratio.
+  - rung: 2
+    name: concept
+    text:
+      en: A mixture contains substances that are not chemically joined to one another.
+  - rung: 3
+    name: first_step
+    text:
+      en: Decide whether the different atoms are bonded within each particle or merely mixed as separate substances.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Identical particles can contain different kinds of bonded atom; that does not make the sample an element.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is A compound, because different elements are chemically joined in a fixed ratio..
+solution:
+  steps:
+  - n: 1
+    latex: \text{B}
+    reason: Different elements are chemically bonded in a fixed ratio, so the pure sample is a compound.
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 75
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

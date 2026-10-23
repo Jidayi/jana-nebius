@@ -1,0 +1,46 @@
+# Packaged gateway defaults. A deployment file is merged over this one; `slots` and `providers` are replaced whole.
+# Quotas, the online tier's allowance (D33, D121), objectives, token lifetimes and retention take their declared
+# defaults from config.py; the plans and prices are TABLE BIZ-18a in plans.toml, merged under this file.
+
+environment = "production"
+study_model = "primary/strong-model" # Hackathon: Ultra generates and checks cited Study artefacts.
+
+# MDL-26: the device asks for "<slot>/<alias>" (for example "primary/strong-model"). Swapping providers between the
+# primary and fallback slots is a change here only. This hackathon fork uses NVIDIA Nemotron on Token Factory.
+# No cross-vendor fallback: the demonstrated online tutor always calls Nebius.
+[slots]
+primary = "nebius"
+
+# Routing keys, prices and text-only capabilities checked in the live catalogue on 2026-10-23:
+# https://tokenfactory.nebius.com/endpoints
+# API base: https://docs.tokenfactory.nebius.com/api-reference/introduction
+# Public endpoint regions can change, so use the global URL rather than a region-specific endpoint.
+[providers.nebius]
+adapter = "nebius"
+base_url = "https://api.tokenfactory.nebius.com/v1/"
+secret = "nebius_api_key"
+
+[providers.nebius.models.fast-model]
+id = "nvidia/nemotron-3-super-120b-a12b"
+
+[providers.nebius.models.strong-model]
+id = "nvidia/Nemotron-3-Ultra-550b-a55b"
+
+[providers.nebius.models.small-model]
+id = "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B"
+
+[prices."nvidia/nemotron-3-super-120b-a12b"]
+input = 0.30
+cached_input = 0.06
+output = 0.90
+
+[prices."nvidia/Nemotron-3-Ultra-550b-a55b"]
+input = 1.00
+cached_input = 0.12
+output = 3.00
+
+[prices."nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B"]
+input = 0.06
+cached_input = 0.06 # No cache discount advertised; meter conservatively.
+output = 0.24
+

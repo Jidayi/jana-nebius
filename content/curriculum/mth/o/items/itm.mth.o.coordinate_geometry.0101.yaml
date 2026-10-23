@@ -1,0 +1,109 @@
+id: itm.mth.o.coordinate_geometry.0101
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.coordinate_geometry.line_equation
+stem: A line has gradient 2 and passes through the point (-2, -10). Its equation is y = mx + c.
+parts:
+- id: a
+  prompt: Find c.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '-14'
+      correct: false
+      misconception_id: mc.mth.o.intercept_sign
+      feedback: 'Solve 0 = mx + c carefully: mx = −c, so x = −c/m.'
+    - id: B
+      text: '-6'
+      correct: true
+    - id: C
+      text: '-10'
+      correct: false
+      misconception_id: mc.mth.o.c_as_y_coordinate
+      feedback: 'Substitute the point into y = mx + c and solve for c: c = y₁ − mx₁.'
+    - id: D
+      text: '-9'
+      correct: false
+      misconception_id: mc.mth.o.gradient_inverted
+      feedback: 'Gradient = change in y ÷ change in x: how far up for each step across.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know m, and one point on the line.
+  - rung: 2
+    name: concept
+    text:
+      en: Substitute m and the point's coordinates into y = mx + c, then solve for c.
+  - rung: 3
+    name: first_step
+    text:
+      en: -10 = 2 × (-2) + c.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 2 × (-2) = -4.
+  - rung: 5
+    name: full_step
+    text:
+      en: c = -6.
+  misconception_ids:
+  - mc.mth.o.c_as_y_coordinate
+  - mc.mth.o.gradient_inverted
+  - mc.mth.o.intercept_sign
+solution:
+  steps:
+  - n: 1
+    latex: -10 = 2 \times (-2) + c
+    reason: Substitute the point and the gradient
+  - n: 2
+    latex: -10 = -4 + c
+    reason: Multiply
+    check_id: chk_build_mth_crd_0101_t
+  - n: 3
+    latex: c = -6
+    reason: Rearrange
+    check_id: chk_build_mth_crd_0101_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_crd_0101_ans:
+    args:
+      expression: -10 - 2*(-2)
+    tool: math_evaluate
+  chk_build_mth_crd_0101_t:
+    args:
+      expression: 2*(-2)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

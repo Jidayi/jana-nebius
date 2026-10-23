@@ -1,0 +1,111 @@
+id: itm.mth.o.algebra_and_graphs.0167
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.forming_equations
+stem: The sum of 4 consecutive whole numbers is 62.
+parts:
+- id: a
+  prompt: Find the smallest of the numbers.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '14'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0167_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Call the smallest number k. What are the next numbers?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Consecutive means each is one more than the last: k, k + 1, and so on.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Add the 4 expressions and set the total equal to 62.
+  - rung: 4
+    name: worked_step
+    text:
+      en: You get 4k + 6 = 62.
+  - rung: 5
+    name: full_step
+    text:
+      en: k = 14.
+  misconception_ids:
+  - mc.mth.o.equation_wrong_relation
+  - mc.mth.o.simultaneous_other_unknown
+  - mc.mth.o.bracket_partly_expanded
+solution:
+  steps:
+  - n: 1
+    latex: k + (k + 1) + (k + 2) + (k + 3) = 62
+    reason: Call the smallest number k
+    check_id: chk_build_mth_alg_0167_c
+  - n: 2
+    latex: 4k + 6 = 62
+    reason: Collect like terms
+  - n: 3
+    latex: 4k = 56
+    reason: Subtract
+    check_id: chk_build_mth_alg_0167_s
+  - n: 4
+    latex: k = 14
+    reason: Divide by 4
+    check_id: chk_build_mth_alg_0167_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0167_ans:
+    args:
+      equations:
+      - 4*k + 6 = 62
+      unknowns:
+      - k
+    tool: math_solve
+  chk_build_mth_alg_0167_c:
+    args:
+      equations:
+      - p = 4*(4 - 1)/2
+      - q = 4 - 1
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_alg_0167_s:
+    args:
+      expression: 62 - 6
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

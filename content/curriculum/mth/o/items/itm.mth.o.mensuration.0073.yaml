@@ -1,0 +1,106 @@
+id: itm.mth.o.mensuration.0073
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.prism_volume
+stem: A prism has a triangular cross-section with base 10 cm and height 3 cm. The prism is 20 cm long.
+parts:
+- id: a
+  prompt: Find its volume.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 600 cm³
+      correct: false
+      misconception_id: mc.mth.o.prism_triangle_half_dropped
+      feedback: The area of a triangle is half base times height; then multiply by the length.
+    - id: B
+      text: 300 cm³
+      correct: true
+    - id: C
+      text: 15 cm³
+      correct: false
+      misconception_id: mc.mth.o.compound_part_missing
+      feedback: Split the shape into simple parts, label each one, and add every part.
+    - id: D
+      text: 33 cm³
+      correct: false
+      misconception_id: mc.mth.o.perimeter_area_confused
+      feedback: Perimeter is a length around the edge (add the sides); area is the space inside (square units).
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The volume of any prism is the area of its cross-section times its length.
+  - rung: 2
+    name: concept
+    text:
+      en: 'The cross-section here is a triangle: ½ × base × height.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Area = ½ × 10 × 3.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The cross-section is 15 cm². Multiply by 20.
+  - rung: 5
+    name: full_step
+    text:
+      en: The volume is 300 cm³.
+  misconception_ids:
+  - mc.mth.o.compound_part_missing
+  - mc.mth.o.perimeter_area_confused
+  - mc.mth.o.prism_triangle_half_dropped
+solution:
+  steps:
+  - n: 1
+    latex: \text{cross-section} = \tfrac{1}{2} \times 10 \times 3 = 15\ \text{cm}^2
+    reason: Area of the triangle
+    check_id: chk_build_mth_mns_0073_a
+  - n: 2
+    latex: V = 15 \times 20 = 300\ \text{cm}^3
+    reason: Cross-section times length
+    check_id: chk_build_mth_mns_0073_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_mns_0073_a:
+    args:
+      expression: 10*3/2
+    tool: math_evaluate
+  chk_build_mth_mns_0073_ans:
+    args:
+      expression: 10*3/2*20
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,126 @@
+id: itm.acc.o.accruals_prepayments.0002
+version: 0.1.1
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.accruals_prepayments.accrued_expense
+stem: Kofi runs a hardware shop. During the year $5900 was paid for wages. At the year end $800 for wages was still owing; at the start of the year $500 had been owing, and was paid during the year.
+parts:
+- id: a
+  prompt: Calculate the wages expense for the year in the income statement.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '6200.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_accruals_prepayments_0002_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The income statement shows the cost of what was used this year, whether paid or not.
+  - rung: 2
+    name: concept
+    text:
+      en: Expense for the year = amount paid + amount owing at the end − amount owing at the start.
+  - rung: 3
+    name: first_step
+    text:
+      en: An amount still owing at the end belongs to this year, so it is added.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Expense = 5900 + 800 − 500.
+  - rung: 5
+    name: full_step
+    text:
+      en: The wages expense is $6200.
+  misconception_ids:
+  - mc.acc.o.acc_accrual_subtracted
+  - mc.acc.o.acc_cash_basis
+solution:
+  steps:
+  - n: 1
+    latex: \text{Expense} = \text{paid} + \text{closing accrual} - \text{opening accrual}
+    reason: Match the cost to the year it was used
+    check_id: chk_build_acc_accruals_prepayments_0002_t
+  - n: 2
+    latex: \text{Expense} = 5900 + 800 - 500 = 6200
+    reason: Substitute
+    check_id: chk_build_acc_accruals_prepayments_0002_a
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  paid: '5900'
+checks:
+  chk_build_acc_accruals_prepayments_0002_a:
+    args:
+      dp: 2
+      expression: 5900 + 800 - 500
+    tool: math_evaluate
+  chk_build_acc_accruals_prepayments_0002_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Wages
+        amount: '800'
+        kind: accrued_expense
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '60000'
+        role: revenue
+      - account: Purchases
+        debit: '30000'
+        role: purchases
+      - account: Wages
+        debit: '5400'
+        role: expense
+      - account: Land
+        debit: '24600'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

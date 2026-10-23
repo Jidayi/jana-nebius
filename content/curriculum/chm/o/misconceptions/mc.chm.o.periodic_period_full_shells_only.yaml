@@ -1,0 +1,36 @@
+id: mc.chm.o.periodic_period_full_shells_only
+kc_ids:
+- kc.chm.o.periodic.arrangement
+student_name: Counting only the full shells
+description: Counts only the full inner shells when finding the period, so gives one period too few.
+signatures:
+- kind: answer_transform
+  expression: 'choice: period one too small'
+fix:
+  strategy: rule_restatement
+  text:
+    en: Count every shell that has electrons in it, including the outer one, even if it is not full.
+probe_item_ids:
+- itm.chm.o.periodic.0001
+- itm.chm.o.periodic.0002
+- itm.chm.o.periodic.0003
+- itm.chm.o.periodic.0004
+- itm.chm.o.periodic.0005
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

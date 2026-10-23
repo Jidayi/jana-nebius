@@ -1,0 +1,88 @@
+id: itm.acc.o.costing.0004
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.costing.cost_classification
+stem: A small manufacturer pays for wages paid per item to the workers who sew each bag.
+parts:
+- id: a
+  prompt: How is this cost classified?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Direct variable cost
+      correct: true
+    - id: B
+      text: Indirect fixed cost
+      correct: false
+      misconception_id: mc.acc.o.cost_direct_indirect_confused
+    - id: C
+      text: Not a cost of production
+      correct: false
+      misconception_id: mc.acc.o.cost_fixed_not_cost
+    - id: D
+      text: Fixed cost
+      correct: false
+      misconception_id: mc.acc.o.cost_fixed_variable_by_size
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Does the total cost change when output changes? Can it be traced to each item?
+  - rung: 2
+    name: concept
+    text:
+      en: Variable costs rise in total with output; fixed costs stay the same in total. Direct costs can be traced to each unit; indirect costs (overheads) cannot.
+  - rung: 3
+    name: first_step
+    text:
+      en: Fixed cost per unit falls as output rises, but the total stays the same.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Ask both questions.
+  - rung: 5
+    name: full_step
+    text:
+      en: Direct variable cost.
+  misconception_ids:
+  - mc.acc.o.cost_direct_indirect_confused
+  - mc.acc.o.cost_fixed_variable_by_size
+  - mc.acc.o.cost_fixed_not_cost
+solution:
+  steps:
+  - n: 1
+    latex: \text{Direct variable cost}
+    reason: Behaviour and traceability
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,69 @@
+id: wex.acc.o.ratios.0004
+kc_ids:
+- kc.acc.o.ratios.mark_up
+problem: An item costs $85 and is sold at a mark-up of 40%. Find the selling price.
+steps:
+- n: 1
+  latex: \text{Price} = \text{cost} + \text{mark-up} \times \text{cost}
+  reason: Mark-up is on cost
+  check_id: chk_build_acc_ratios_w0004_t
+- n: 2
+  latex: \text{Mark-up} = 40\% \times 85 = 34
+  reason: Profit added
+  check_id: chk_build_acc_ratios_w0004_s2
+- n: 3
+  latex: \text{Price} = 85 + 34 = 119
+  reason: Add
+  check_id: chk_build_acc_ratios_w0004_a
+final_answer:
+  latex: \$\,119
+  check_id: chk_build_acc_ratios_w0004_a
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_w0004_a:
+    args:
+      dp: 2
+      expression: 85 + 85 * 40/100
+    tool: math_evaluate
+  chk_build_acc_ratios_w0004_s2:
+    args:
+      dp: 4
+      expression: 85 * 40/100
+    tool: math_evaluate
+  chk_build_acc_ratios_w0004_t:
+    args:
+      cost_of_sales: '85'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      ratios:
+      - mark_up
+      revenue: '119'
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

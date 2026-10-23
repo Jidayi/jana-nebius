@@ -1,0 +1,93 @@
+id: itm.phy.o.electrical_quantities.0006
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.electric_charge
+stem: An acetate strip is rubbed with a cloth and becomes positively charged.
+parts:
+- id: a
+  prompt: How did the strip become positive?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It gained protons from the cloth
+      correct: false
+      misconception_id: mc.phy.o.protons_move_in_charging
+      feedback: 'Protons are held in the nuclei of atoms and cannot move. Rubbing moves electrons: losing them leaves an object positive.'
+    - id: B
+      text: It gained electrons from the cloth
+      correct: false
+      misconception_id: mc.phy.o.electron_gain_sign_reversed
+      feedback: Electrons are negative. Gaining them makes an object negative; losing them leaves it positive.
+    - id: C
+      text: It lost electrons to the cloth
+      correct: true
+    - id: D
+      text: Rubbing made new positive charge in the strip
+      correct: false
+      misconception_id: mc.phy.o.charge_created_by_rubbing
+      feedback: Rubbing makes no new charge. Electrons move from one object to the other, so one becomes negative and the other positive.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about which particles can move and what charge they carry.
+  - rung: 2
+    name: concept
+    text:
+      en: Rubbing moves tiny negative particles from one object to the other. Like charges repel and unlike charges attract.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Losing negative electrons leaves more positive charge than negative.
+  - rung: 5
+    name: full_step
+    text:
+      en: It lost electrons to the cloth. Losing negative electrons leaves more positive charge than negative.
+  misconception_ids:
+  - mc.phy.o.charge_created_by_rubbing
+  - mc.phy.o.electron_gain_sign_reversed
+  - mc.phy.o.protons_move_in_charging
+solution:
+  steps:
+  - n: 1
+    latex: \text{It lost electrons to the cloth}
+    reason: Electrons move; like charges repel
+difficulty:
+  prior: -0.6
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

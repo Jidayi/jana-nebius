@@ -1,0 +1,36 @@
+id: mc.phy.o.angle_uses_wrong_ratio
+kc_ids:
+- kc.phy.o.measurement.resultant_vectors
+student_name: Sine instead of tangent
+description: Uses the sine of the angle with the two vectors, as if one of them were the hypotenuse.
+signatures:
+- kind: answer_transform
+  expression: asin(b/a)
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Neither vector is the hypotenuse; the resultant is. With the two vectors, use tangent: opposite over adjacent.'
+probe_item_ids:
+- itm.phy.o.measurement.0042
+- itm.phy.o.measurement.0044
+- itm.phy.o.measurement.0033
+- itm.phy.o.measurement.0036
+- itm.phy.o.measurement.0039
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

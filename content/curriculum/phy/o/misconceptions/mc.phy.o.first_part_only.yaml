@@ -1,0 +1,36 @@
+id: mc.phy.o.first_part_only
+kc_ids:
+- kc.phy.o.motion.distance_or_displacement
+student_name: Only the first part of the journey
+description: Gives the length of the first part of a journey as the distance or displacement, leaving out the later parts.
+signatures:
+- kind: answer_transform
+  expression: d1
+fix:
+  strategy: rule_restatement
+  text:
+    en: Every part of the journey counts. For distance add them all; for displacement add the parts that go forwards and subtract the parts that come back.
+probe_item_ids:
+- itm.phy.o.motion.0316
+- itm.phy.o.motion.0317
+- itm.phy.o.motion.0318
+- itm.phy.o.motion.0319
+- itm.phy.o.motion.0320
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

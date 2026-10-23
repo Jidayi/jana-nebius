@@ -1,0 +1,108 @@
+id: itm.phy.o.motion.0326
+version: 0.1.1
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.free_fall
+stem: A bean bag is thrown straight up at 15 m/s. Take g = 10 m/s² and ignore air resistance.
+parts:
+- id: a
+  prompt: How long does it take to reach its highest point?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 3 s
+      correct: false
+      misconception_id: mc.phy.o.whole_flight_time
+      feedback: Going up, the velocity falls from u to zero, which takes u/g. Coming down takes as long again, but that is not part of the question.
+    - id: B
+      text: 0 s
+      correct: false
+      misconception_id: mc.phy.o.top_speed_not_zero
+      feedback: At the very top the object stops for an instant before falling back, so its speed there is zero.
+    - id: C
+      text: 1.5 s
+      correct: true
+    - id: D
+      text: 150 s
+      correct: false
+      misconception_id: mc.phy.o.speed_times_g_for_time
+      feedback: Each second gravity takes g off the upward velocity, so the number of seconds is the velocity divided by g.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Taking up as positive, gravity reduces the upward velocity every second.
+  - rung: 2
+    name: concept
+    text:
+      en: At the highest point the velocity is zero.
+  - rung: 3
+    name: first_step
+    text:
+      en: Use v = u − gt with v = 0.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Solve 0 = 15 − 10t.
+  - rung: 5
+    name: full_step
+    text:
+      en: It takes 1.5 s to reach the top.
+  misconception_ids:
+  - mc.phy.o.speed_times_g_for_time
+  - mc.phy.o.top_speed_not_zero
+  - mc.phy.o.whole_flight_time
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: v = 0\ \text{at the top}
+    reason: It stops rising for an instant
+  - n: 2
+    latex: t = \frac{u}{g} = \frac{15}{10} = 1.5\ \text{s}
+    reason: From v = u − gt with v = 0
+    check_id: chk_build_phy_mot_0326_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mot_0326_ans:
+    args:
+      expression: 15/10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

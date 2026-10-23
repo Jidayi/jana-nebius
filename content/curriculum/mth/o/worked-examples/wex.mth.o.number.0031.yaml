@@ -1,0 +1,46 @@
+id: wex.mth.o.number.0031
+kc_ids:
+- kc.mth.o.number.direct_proportion
+problem: 4 exercise books cost $1.8. Find the cost of 10 exercise books.
+steps:
+- n: 1
+  latex: \text{one costs } 1.8 \div 4 = 0.45
+  reason: Find the cost of one
+  check_id: chk_build_mth_num_w0031_one
+- n: 2
+  latex: 0.45 \times 10 = 4.50
+  reason: Multiply by 10
+  check_id: chk_build_mth_num_w0031_ans
+final_answer:
+  latex: '4.50'
+  check_id: chk_build_mth_num_w0031_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0031_ans:
+    args:
+      dp: 2
+      expression: 1.8/4*10
+    tool: math_evaluate
+  chk_build_mth_num_w0031_one:
+    args:
+      expression: 1.8/4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

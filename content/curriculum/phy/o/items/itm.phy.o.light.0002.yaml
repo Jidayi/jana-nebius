@@ -1,0 +1,116 @@
+id: itm.phy.o.light.0002
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.plane_mirrors
+stem: Sipho stands 4 m in front of a tall plane mirror and then walks 2 m straight towards it.
+parts:
+- id: a
+  prompt: How far is Sipho now from the image in the mirror?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '4'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_lgt_0002_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Where is a plane-mirror image compared with the object?
+  - rung: 2
+    name: concept
+    text:
+      en: The image is always as far behind the mirror as the object is in front.
+  - rung: 3
+    name: first_step
+    text:
+      en: First find how far Sipho is from the mirror after walking.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Sipho is now 2 m from the mirror, and the image is 2 m behind it.
+  - rung: 5
+    name: full_step
+    text:
+      en: Sipho is 4 m from the image.
+  misconception_ids:
+  - mc.phy.o.mirror_image_on_surface
+  - mc.phy.o.mirror_image_does_not_move
+  - mc.phy.o.mirror_move_direction_reversed
+solution:
+  steps:
+  - n: 1
+    latex: 4 - 2 = 2\ \text{m}
+    reason: New distance from the mirror
+    check_id: chk_build_phy_lgt_0002_left
+  - n: 2
+    latex: 2 \times 2 = 4\ \text{m}
+    reason: The image is as far behind the mirror as the person is in front
+    check_id: chk_build_phy_lgt_0002_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  d: '4'
+  x: '2'
+checks:
+  chk_build_phy_lgt_0002_ans:
+    args:
+      expression: 2*(4 - 2)
+    tool: math_evaluate
+  chk_build_phy_lgt_0002_left:
+    args:
+      expression: 4 - 2
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:41:50.634Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.light.0002
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

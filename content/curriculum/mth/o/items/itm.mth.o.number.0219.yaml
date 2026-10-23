@@ -1,0 +1,115 @@
+id: itm.mth.o.number.0219
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.bounds_calc
+stem: a = 12.4 and b = 2.8, each correct to 1 decimal place.
+parts:
+- id: a
+  prompt: Find the upper bound of a × b.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '36.25'
+      correct: false
+      misconception_id: mc.mth.o.bound_full_unit
+      feedback: 'Draw the number line: values that round to 12 go from 11.5 to 12.5, half a unit either side.'
+    - id: B
+      text: '34.72'
+      correct: false
+      misconception_id: mc.mth.o.bounds_not_used
+      feedback: Write the bounds of each value first, then choose which bound goes into the calculation.
+    - id: C
+      text: '34.2375'
+      correct: false
+      misconception_id: mc.mth.o.bounds_wrong_choice
+      feedback: To make a sum or a product as big as possible, make every value as big as possible.
+    - id: D
+      text: '35.4825'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Write down the lower and upper bounds of a and b first.
+  - rung: 2
+    name: concept
+    text:
+      en: To make the result as large as possible, think about which bound of each value to use.
+  - rung: 3
+    name: first_step
+    text:
+      en: a lies between 12.35 and 12.45; b lies between 2.75 and 2.85.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Use both upper bounds.
+  - rung: 5
+    name: full_step
+    text:
+      en: The upper bound of a × b is 35.4825.
+  misconception_ids:
+  - mc.mth.o.bound_full_unit
+  - mc.mth.o.bounds_not_used
+  - mc.mth.o.bounds_wrong_choice
+solution:
+  steps:
+  - n: 1
+    latex: 'a: 12.35 \text{ to } 12.45,\ b: 2.75 \text{ to } 2.85'
+    reason: Bounds are 0.05 either side
+    check_id: chk_build_mth_num_0219_bd
+  - n: 2
+    latex: 12.45 \times 2.85 = 35.4825
+    reason: Use both upper bounds
+    check_id: chk_build_mth_num_0219_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0219_ans:
+    args:
+      expression: (12.4 + 0.05)*(2.8 + 0.05)
+    tool: math_evaluate
+  chk_build_mth_num_0219_bd:
+    args:
+      equations:
+      - p = 12.4 + 0.05
+      - q = 2.8 - 0.05
+      - r = 2.8 + 0.05
+      - s = 12.4 - 0.05
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

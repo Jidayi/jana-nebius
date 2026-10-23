@@ -1,0 +1,37 @@
+id: mc.chm.o.ion_charge_from_period
+kc_ids:
+- kc.chm.o.atoms.ion_formation
+- kc.chm.o.periodic.arrangement
+student_name: Charge from the period
+description: Uses the number of shells (the period) to decide the charge on an ion.
+signatures:
+- kind: answer_transform
+  expression: 'choice: ion charge equal to the number of shells'
+fix:
+  strategy: rule_restatement
+  text:
+    en: The charge depends on outer-shell electrons (the group), not on how many shells there are (the period).
+probe_item_ids:
+- itm.chm.o.atoms.0050
+- itm.chm.o.atoms.0051
+- itm.chm.o.atoms.0052
+- itm.chm.o.atoms.0053
+- itm.chm.o.atoms.0054
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

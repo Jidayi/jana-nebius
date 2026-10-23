@@ -1,0 +1,309 @@
+- id: kc.chm.o.stoichiometry.ionic_formulae
+  code: CHM-O-03.01.K01
+  node_id: cur.chm.o.stoichiometry.formulae
+  statement: Construct the formula of an ionic compound from the charges on its ions
+  kind: procedural
+  tools:
+  - chem_molar_mass
+  exam_weight: 0.1
+  prerequisites:
+  - kc_id: kc.chm.o.atoms.ion_formation
+    strength: required
+  misconception_ids:
+  - mc.chm.o.formula_one_of_each
+  - mc.chm.o.formula_own_charge_as_count
+  - mc.chm.o.formula_brackets_missing
+  skill_ids:
+  - chm-o-stoichiometry
+  glossary:
+  - ionic formula
+  - ionic compound
+  - ion
+  - charge
+  - formula
+  - aluminium
+  - potassium
+  - carbonate
+  - sulfate
+  - nitrate
+  - hydroxide
+  - ammonium
+  - relative formula mass
+  difficulty_prior: -0.4
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.stoichiometry.balancing_equations
+  code: CHM-O-03.01.K02
+  node_id: cur.chm.o.stoichiometry.formulae
+  statement: Construct a balanced symbol equation by changing coefficients only, never formulae
+  kind: procedural
+  tools:
+  - chem_balance
+  - chem_stoichiometry
+  exam_weight: 0.12
+  prerequisites:
+  - kc_id: kc.chm.o.stoichiometry.ionic_formulae
+    strength: helpful
+  misconception_ids:
+  - mc.chm.o.subscript_changed_to_balance
+  - mc.chm.o.balanced_not_lowest
+  - mc.chm.o.balance_one_element_only
+  skill_ids:
+  - chm-o-stoichiometry
+  glossary:
+  - balanced equation
+  - symbol equation
+  - equation
+  - coefficient
+  - formula
+  - formulae
+  - reactant
+  - product
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.stoichiometry.relative_formula_mass
+  code: CHM-O-03.02.K01
+  node_id: cur.chm.o.stoichiometry.relative_masses_of_atoms_and_molecules
+  statement: Calculate the relative formula mass of a compound from relative atomic masses
+  kind: procedural
+  tools:
+  - chem_molar_mass
+  exam_weight: 0.1
+  prerequisites:
+  - kc_id: kc.chm.o.stoichiometry.ionic_formulae
+    strength: helpful
+  misconception_ids:
+  - mc.chm.o.formula_brackets_missing
+  - mc.chm.o.mr_count_ignored
+  - mc.chm.o.mr_bracket_multiplier
+  - mc.chm.o.mr_atomic_number
+  skill_ids:
+  - chm-o-stoichiometry
+  glossary:
+  - relative formula mass
+  - relative molecular mass
+  - relative atomic mass
+  - formula
+  - carbonate
+  - hydroxide
+  - sulfate
+  - nitrate
+  - ammonium
+  - aluminium
+  - magnesium
+  difficulty_prior: -0.6
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.stoichiometry.percentage_composition
+  code: CHM-O-03.02.K02
+  node_id: cur.chm.o.stoichiometry.relative_masses_of_atoms_and_molecules
+  statement: Calculate the percentage by mass of an element in a compound
+  kind: procedural
+  tools:
+  - chem_molar_mass
+  - math_evaluate
+  exam_weight: 0.08
+  prerequisites:
+  - kc_id: kc.chm.o.stoichiometry.relative_formula_mass
+    strength: required
+  misconception_ids:
+  - mc.chm.o.percent_count_ignored
+  - mc.chm.o.percent_inverted
+  - mc.chm.o.percent_ar_over_mr_no_100
+  skill_ids:
+  - chm-o-stoichiometry
+  glossary:
+  - percentage composition
+  - percentage by mass
+  - relative formula mass
+  - relative atomic mass
+  - ammonium
+  - aluminium
+  difficulty_prior: -0.1
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.stoichiometry.moles_and_mass
+  code: CHM-O-03.03.K01
+  node_id: cur.chm.o.stoichiometry.the_mole_and_the_avogadro_constant
+  statement: Convert between the mass of a substance and its amount in moles using its molar mass
+  kind: procedural
+  tools:
+  - chem_stoichiometry
+  - chem_molar_mass
+  exam_weight: 0.12
+  prerequisites:
+  - kc_id: kc.chm.o.stoichiometry.relative_formula_mass
+    strength: required
+  misconception_ids:
+  - mc.chm.o.mr_bracket_multiplier
+  - mc.chm.o.moles_ratio_inverted
+  - mc.chm.o.moles_multiply_mass
+  - mc.chm.o.diatomic_as_atoms
+  skill_ids:
+  - chm-o-stoichiometry
+  glossary:
+  - mole
+  - amount of substance
+  - molar mass
+  - relative formula mass
+  - Avogadro constant
+  - equation
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.stoichiometry.reacting_masses
+  code: CHM-O-03.03.K02
+  node_id: cur.chm.o.stoichiometry.the_mole_and_the_avogadro_constant
+  statement: Calculate a reacting mass from a balanced equation and a given mass
+  kind: procedural
+  tools:
+  - chem_stoichiometry
+  - chem_balance
+  exam_weight: 0.12
+  prerequisites:
+  - kc_id: kc.chm.o.stoichiometry.moles_and_mass
+    strength: required
+  - kc_id: kc.chm.o.stoichiometry.balancing_equations
+    strength: required
+  misconception_ids:
+  - mc.chm.o.moles_ratio_inverted
+  - mc.chm.o.ratio_ignored
+  - mc.chm.o.mass_ratio_as_mole_ratio
+  - mc.chm.o.ratio_inverted
+  skill_ids:
+  - chm-o-stoichiometry
+  glossary:
+  - reacting mass
+  - mole ratio
+  - balanced equation
+  - equation
+  - molar mass
+  - relative formula mass
+  - limiting reactant
+  - excess
+  difficulty_prior: 0.5
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.stoichiometry.gas_volumes
+  code: CHM-O-03.03.K03
+  node_id: cur.chm.o.stoichiometry.the_mole_and_the_avogadro_constant
+  statement: Calculate gas volumes at room conditions from amounts using the molar gas volume
+  kind: procedural
+  tools:
+  - chem_stoichiometry
+  exam_weight: 0.08
+  prerequisites:
+  - kc_id: kc.chm.o.stoichiometry.moles_and_mass
+    strength: required
+  confusable_with:
+  - kc.chm.o.stoichiometry.solution_concentration
+  misconception_ids:
+  - mc.chm.o.diatomic_as_atoms
+  - mc.chm.o.ratio_ignored
+  - mc.chm.o.gas_volume_divided
+  - mc.chm.o.gas_cm3_dm3
+  - mc.chm.o.gas_stp_volume
+  - mc.chm.o.gas_volume_from_mass
+  skill_ids:
+  - chm-o-stoichiometry
+  glossary:
+  - molar gas volume
+  - room temperature and pressure
+  - mole
+  - dm³
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.stoichiometry.solution_concentration
+  code: CHM-O-03.03.K04
+  node_id: cur.chm.o.stoichiometry.the_mole_and_the_avogadro_constant
+  statement: Calculate the concentration, volume or amount of solute in a solution
+  kind: procedural
+  tools:
+  - chem_stoichiometry
+  exam_weight: 0.1
+  prerequisites:
+  - kc_id: kc.chm.o.stoichiometry.moles_and_mass
+    strength: required
+  confusable_with:
+  - kc.chm.o.stoichiometry.gas_volumes
+  misconception_ids:
+  - mc.chm.o.gas_cm3_dm3
+  - mc.chm.o.conc_volume_not_converted
+  - mc.chm.o.conc_inverted
+  - mc.chm.o.conc_mass_as_moles
+  skill_ids:
+  - chm-o-stoichiometry
+  glossary:
+  - concentration
+  - solution
+  - solute
+  - solvent
+  - mol/dm³
+  - g/dm³
+  - hydrochloric acid
+  - sodium hydroxide
+  - potassium hydroxide
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.stoichiometry.empirical_formula
+  code: CHM-O-03.03.K05
+  node_id: cur.chm.o.stoichiometry.the_mole_and_the_avogadro_constant
+  statement: Determine an empirical or molecular formula from reacting masses or percentage composition
+  kind: procedural
+  tools:
+  - chem_molar_mass
+  - math_evaluate
+  exam_weight: 0.08
+  prerequisites:
+  - kc_id: kc.chm.o.stoichiometry.moles_and_mass
+    strength: required
+  misconception_ids:
+  - mc.chm.o.empirical_mass_ratio
+  - mc.chm.o.empirical_divided_wrong_way
+  - mc.chm.o.empirical_rounded_early
+  skill_ids:
+  - chm-o-stoichiometry
+  glossary:
+  - empirical formula
+  - molecular formula
+  - relative molecular mass
+  - molecule
+  - mole ratio
+  - formula
+  - aluminium
+  difficulty_prior: 0.6
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.stoichiometry.yield_and_purity
+  code: CHM-O-03.03.K06
+  node_id: cur.chm.o.stoichiometry.the_mole_and_the_avogadro_constant
+  statement: Calculate the percentage yield or percentage purity of a product from experimental masses
+  kind: procedural
+  tools:
+  - chem_stoichiometry
+  exam_weight: 0.1
+  prerequisites:
+  - kc_id: kc.chm.o.stoichiometry.reacting_masses
+    strength: required
+  misconception_ids:
+  - mc.chm.o.yield_inverted
+  - mc.chm.o.yield_uses_reactant_mass
+  - mc.chm.o.purity_impurity_share
+  - mc.chm.o.purity_inverted
+  - mc.chm.o.percent_ar_over_mr_no_100
+  skill_ids:
+  - chm-o-stoichiometry
+  glossary:
+  - percentage yield
+  - percentage purity
+  - theoretical yield
+  - actual yield
+  - yield
+  - purity
+  - impurities
+  difficulty_prior: 0.6
+  version: 0.1.1
+  status: active

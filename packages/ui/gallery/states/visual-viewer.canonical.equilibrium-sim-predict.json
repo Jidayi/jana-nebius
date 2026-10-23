@@ -1,0 +1,175 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.equilibrium-sim-predict",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "An equilibrium simulation of H2 + I2 ⇌ 2HI at 698 K. It runs after you predict, so the result is not given here."
+    },
+    "computed": {
+      "alt": {
+        "equation": "H2 + I2 ⇌ 2HI",
+        "equilibrium": "H2 0.214, I2 0.214, HI 1.57",
+        "kc": "54.0",
+        "temperature": "698"
+      },
+      "check_ids": [
+        "chk_build_fx_equilibrium_sim_predict_1",
+        "chk_build_fx_equilibrium_sim_predict_2"
+      ],
+      "extent": 0.786061,
+      "labels": {
+        "eq.c_H2": "0.214",
+        "eq.c_HI": "1.57",
+        "eq.c_I2": "0.214",
+        "out.kc": "54.0"
+      },
+      "parts": [
+        {
+          "id": "ctrl.temperature",
+          "label": "temperature",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.catalyst",
+          "label": "catalyst",
+          "role": "control"
+        },
+        {
+          "id": "out.c_H2",
+          "label": "H2",
+          "role": "readout"
+        },
+        {
+          "id": "out.c_I2",
+          "label": "I2",
+          "role": "readout"
+        },
+        {
+          "id": "out.c_HI",
+          "label": "HI",
+          "role": "readout"
+        },
+        {
+          "id": "out.kc",
+          "label": "Kc",
+          "role": "readout"
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_equilibrium_sim_predict_1",
+      "chk_build_fx_equilibrium_sim_predict_2"
+    ],
+    "params": {
+      "controls": [
+        "temperature",
+        "catalyst"
+      ],
+      "forward_enthalpy_j_mol": -9500,
+      "forward_rate_constant": 0.05,
+      "initial_concentrations": [
+        {
+          "species_id": "H2",
+          "value": 1
+        },
+        {
+          "species_id": "I2",
+          "value": 1
+        },
+        {
+          "species_id": "HI",
+          "value": 0
+        }
+      ],
+      "predict": "poe.chm.equilibrium_catalyst.v1",
+      "reaction": {
+        "species": [
+          {
+            "coefficient": 1,
+            "formula": "H2",
+            "id": "H2",
+            "side": "reactant",
+            "state": "gas"
+          },
+          {
+            "coefficient": 1,
+            "formula": "I2",
+            "id": "I2",
+            "side": "reactant",
+            "state": "gas"
+          },
+          {
+            "coefficient": 2,
+            "formula": "HI",
+            "id": "HI",
+            "side": "product",
+            "state": "gas"
+          }
+        ]
+      },
+      "reference_kc": 54,
+      "reference_temperature_k": 698,
+      "temperature_k": 698,
+      "volume_l": 1
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ctrl.temperature",
+        "name": "temperature",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.catalyst",
+        "name": "catalyst",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "out.c_H2",
+        "name": "H2",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.c_I2",
+        "name": "I2",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.c_HI",
+        "name": "HI",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.kc",
+        "name": "Kc",
+        "role": "readout"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:ac804658bc5d17e411e45614758118bb5d24948fb1b7469a3e41781466626157",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "equilibrium_sim",
+    "visual_id": "vis_C06RWXQ4H4PMN1RVX4MFHQ6TY1"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: equilibrium sim predict (shown labels)",
+  "variant": "equilibrium-sim-predict"
+}

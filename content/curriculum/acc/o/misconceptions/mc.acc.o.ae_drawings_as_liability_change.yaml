@@ -1,0 +1,33 @@
+id: mc.acc.o.ae_drawings_as_liability_change
+kc_ids:
+- kc.acc.o.accounting_equation.effect_of_transactions
+student_name: Drawings reduce liabilities
+description: Thinks the owner's drawings reduce liabilities instead of capital.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: drawings
+fix:
+  strategy: rule_restatement
+  text:
+    en: Drawings are the owner taking value out, so they reduce capital.
+probe_item_ids:
+- itm.acc.o.accounting_equation.0043
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

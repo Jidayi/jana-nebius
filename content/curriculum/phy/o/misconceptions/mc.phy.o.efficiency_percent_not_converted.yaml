@@ -1,0 +1,36 @@
+id: mc.phy.o.efficiency_percent_not_converted
+kc_ids:
+- kc.phy.o.energy.efficiency
+student_name: Using the percentage as a number
+description: Uses an efficiency percentage as if it were a fraction, multiplying or dividing by 75 instead of 0.75.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Change a percentage to a fraction before using it: 75% is 75 ÷ 100 = 0.75.'
+probe_item_ids:
+- itm.phy.o.energy.0103
+- itm.phy.o.energy.0104
+- itm.phy.o.energy.0093
+- itm.phy.o.energy.0094
+- itm.phy.o.energy.0098
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

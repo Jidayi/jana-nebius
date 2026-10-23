@@ -1,0 +1,224 @@
+{
+  "id": "practice.canonical.worked",
+  "title": "Practice, the worked answer after a second miss",
+  "component": "Practice",
+  "note": "After the second miss (or Don't know) the worked answer shows (ASM-28): each step with its check and the answer from the verified key, then Next question.",
+  "state": "canonical",
+  "variant": "worked",
+  "payload": {
+    "subjectLabel": "Physics",
+    "setId": "set_0123456789ABCDEFGHJKMNPQRS",
+    "subject": "physics",
+    "number": 1,
+    "total": 3,
+    "item": {
+      "item_id": "itm.phy.o.motion.0022",
+      "pack_id": "pack.phy.o",
+      "pack_version": "0.1.0",
+      "kc_ids": [
+        "kc.phy.o.motion.average_speed"
+      ],
+      "kind": "numeric",
+      "stem": "A swimmer swims 240 m in 200 s.",
+      "parts": [
+        {
+          "part_id": "a",
+          "prompt": "Calculate the swimmer's average speed.",
+          "marks": 2,
+          "uses_parts": [],
+          "input": {
+            "kind": "numeric",
+            "unit_prompt": null
+          }
+        }
+      ],
+      "visual": null,
+      "marks": 2
+    },
+    "next": {
+      "item_id": "itm.phy.o.motion.0002",
+      "pack_id": "pack.phy.o",
+      "pack_version": "0.1.0",
+      "kc_ids": [
+        "kc.phy.o.motion.acceleration_from_change"
+      ],
+      "kind": "numeric",
+      "stem": "A minibus on a straight road speeds up steadily from 5.0 m/s to 17.0 m/s in 6.0 s.",
+      "parts": [
+        {
+          "part_id": "a",
+          "prompt": "Calculate the acceleration of the minibus.",
+          "marks": 3,
+          "uses_parts": [],
+          "input": {
+            "kind": "numeric",
+            "unit_prompt": null
+          }
+        }
+      ],
+      "visual": null,
+      "marks": 3
+    },
+    "tries": [
+      {
+        "answers": [
+          {
+            "part_id": "a",
+            "kind": "numeric",
+            "value": "1.2",
+            "unit": "m"
+          }
+        ],
+        "marked": {
+          "attempt_id": "att_0123456789ABCDEFGHJKMNPQRS",
+          "verdict": "incorrect",
+          "marks_awarded": 0,
+          "marks_total": 2,
+          "feedback_key": "practice.feedback.incorrect",
+          "first_error": {
+            "category": "units",
+            "message_key": "board.error.units"
+          },
+          "mastery_change": {
+            "kc_id": "kc.phy.o.motion.average_speed",
+            "band_before": "learning",
+            "band_after": "learning"
+          },
+          "next_item": {
+            "item_id": "itm.phy.o.motion.0022",
+            "pack_id": "pack.phy.o",
+            "pack_version": "0.1.0",
+            "kc_ids": [
+              "kc.phy.o.motion.average_speed"
+            ],
+            "kind": "numeric",
+            "stem": "A swimmer swims 240 m in 200 s.",
+            "parts": [
+              {
+                "part_id": "a",
+                "prompt": "Calculate the swimmer's average speed.",
+                "marks": 2,
+                "uses_parts": [],
+                "input": {
+                  "kind": "numeric",
+                  "unit_prompt": null
+                }
+              }
+            ],
+            "visual": null,
+            "marks": 2
+          }
+        }
+      },
+      {
+        "answers": [
+          {
+            "part_id": "a",
+            "kind": "numeric",
+            "value": "0.8",
+            "unit": "m/s"
+          }
+        ],
+        "marked": {
+          "attempt_id": "att_SRQPNMKJHGFEDCBA9876543210",
+          "verdict": "incorrect",
+          "marks_awarded": 0,
+          "marks_total": 2,
+          "feedback_key": "practice.feedback.incorrect",
+          "first_error": null,
+          "mastery_change": {
+            "kc_id": "kc.phy.o.motion.average_speed",
+            "band_before": "learning",
+            "band_after": "learning"
+          },
+          "next_item": {
+            "item_id": "itm.phy.o.motion.0002",
+            "pack_id": "pack.phy.o",
+            "pack_version": "0.1.0",
+            "kc_ids": [
+              "kc.phy.o.motion.acceleration_from_change"
+            ],
+            "kind": "numeric",
+            "stem": "A minibus on a straight road speeds up steadily from 5.0 m/s to 17.0 m/s in 6.0 s.",
+            "parts": [
+              {
+                "part_id": "a",
+                "prompt": "Calculate the acceleration of the minibus.",
+                "marks": 3,
+                "uses_parts": [],
+                "input": {
+                  "kind": "numeric",
+                  "unit_prompt": null
+                }
+              }
+            ],
+            "visual": null,
+            "marks": 3
+          },
+          "worked": {
+            "worked_example_id": "itm.phy.o.motion.0022",
+            "problem": "A swimmer swims 240 m in 200 s.",
+            "steps": [
+              {
+                "n": 1,
+                "latex": "v = \\frac{d}{t}",
+                "reason": "Average speed is distance over time",
+                "check_id": "chk_formula"
+              },
+              {
+                "n": 2,
+                "latex": "v = \\frac{240\\ \\mathrm{m}}{200\\ \\mathrm{s}}",
+                "reason": "Substitute the distance and the time",
+                "check_id": "chk_substitute"
+              }
+            ],
+            "final_answer": {
+              "latex": "1.2\\ \\mathrm{m/s}",
+              "check_id": "chk_key"
+            },
+            "faded_steps": []
+          }
+        }
+      }
+    ],
+    "worked": {
+      "worked_example_id": "itm.phy.o.motion.0022",
+      "problem": "A swimmer swims 240 m in 200 s.",
+      "steps": [
+        {
+          "n": 1,
+          "latex": "v = \\frac{d}{t}",
+          "reason": "Average speed is distance over time",
+          "check_id": "chk_formula"
+        },
+        {
+          "n": 2,
+          "latex": "v = \\frac{240\\ \\mathrm{m}}{200\\ \\mathrm{s}}",
+          "reason": "Substitute the distance and the time",
+          "check_id": "chk_substitute"
+        }
+      ],
+      "final_answer": {
+        "latex": "1.2\\ \\mathrm{m/s}",
+        "check_id": "chk_key"
+      },
+      "faded_steps": []
+    },
+    "closed": true
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Try 2: 0.8 m/s",
+    "Worked answer",
+    "Average speed is distance over time",
+    "Answer",
+    "checked against this question's verified key",
+    "Next question"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+ "$comment": "GENERATED from docs/specification/contracts/visuals/kinds/osmosis_sim.schema.json sha256 26ff6128682ca8e2dbf302be071179f0ba8574c884f0d4928be03cbc87b20a60; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/osmosis_sim",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "preset_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 100
+  },
+  "cell_type": {
+   "enum": [
+    "plant",
+    "animal"
+   ]
+  },
+  "inside_concentration": {
+   "type": "number",
+   "minimum": 0
+  },
+  "outside_concentration": {
+   "type": "number",
+   "minimum": 0
+  },
+  "temperature_k": {
+   "type": "number",
+   "minimum": 1,
+   "maximum": 1000
+  }
+ },
+ "required": [
+  "preset_id",
+  "cell_type",
+  "inside_concentration",
+  "outside_concentration",
+  "temperature_k"
+ ]
+}

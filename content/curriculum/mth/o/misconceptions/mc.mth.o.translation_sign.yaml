@@ -1,0 +1,36 @@
+id: mc.mth.o.translation_sign
+kc_ids:
+- kc.mth.o.transformations_and_vectors.transform_points
+student_name: Moving the wrong way in a translation
+description: Subtracts a component of the translation vector instead of adding it (or adds a negative as a positive).
+signatures:
+- kind: step_error
+  error_category: sign
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The top number moves right (negative: left); the bottom number moves up (negative: down). Add each to the matching coordinate.'
+probe_item_ids:
+- itm.mth.o.transformations_and_vectors.0011
+- itm.mth.o.transformations_and_vectors.0012
+- itm.mth.o.transformations_and_vectors.0013
+- itm.mth.o.transformations_and_vectors.0015
+- itm.mth.o.transformations_and_vectors.0016
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

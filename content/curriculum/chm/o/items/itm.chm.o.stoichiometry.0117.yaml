@@ -1,0 +1,91 @@
+id: itm.chm.o.stoichiometry.0117
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.yield_and_purity
+stem: A 5.00 g sample of impure copper is found to contain 4.60 g of Cu.
+parts:
+- id: a
+  prompt: Calculate the percentage purity of the sample.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '92.0'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0117_chain
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Compare the mass of the pure substance with the whole sample.
+  - rung: 2
+    name: concept
+    text:
+      en: Percentage purity = pure mass ÷ sample mass × 100.
+  - rung: 3
+    name: first_step
+    text:
+      en: Pure mass 4.60 g; sample mass 5.00 g.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 4.60 ÷ 5.00 × 100.
+  - rung: 5
+    name: full_step
+    text:
+      en: 4.60 ÷ 5.00 × 100 = 92.0%.
+  misconception_ids:
+  - mc.chm.o.purity_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \frac{4.60}{5.00} \times 100
+    reason: Pure over sample
+  - n: 2
+    latex: = 92.0\%
+    reason: Evaluate
+    check_id: chk_build_chm_stoichiometry_0117_chain
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0117_chain:
+    args:
+      constants: []
+      sf: 3
+      steps:
+      - id: p
+        op: purity
+        pure_mass: 4.60 g
+        sample_mass: 5.00 g
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

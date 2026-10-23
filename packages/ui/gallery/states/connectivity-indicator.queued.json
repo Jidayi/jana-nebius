@@ -1,0 +1,60 @@
+{
+  "id": "connectivity-indicator.queued",
+  "title": "Connectivity indicator, updates waiting to sync",
+  "note": "Offline with queued items: the popover counts them (UXS-08).",
+  "component": "ConnectivityIndicator",
+  "state": "queued",
+  "payload": {
+    "status": {
+      "type": "connectivity.status",
+      "network": "offline",
+      "checked_ts": 1760000000000,
+      "features": [
+        {
+          "feature": "cloud_tier",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "downloads",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "update_checks",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "telemetry",
+          "enabled": true,
+          "state": "queued",
+          "queued_items": 2
+        },
+        {
+          "feature": "crash_reports",
+          "enabled": true,
+          "state": "queued",
+          "queued_items": 1
+        }
+      ]
+    },
+    "open": true
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light",
+    "connectivity": "offline"
+  },
+  "placements": [
+    "rail"
+  ],
+  "expectText": [
+    "Offline",
+    "Working offline. 3 updates will be sent when you're connected.",
+    "Waiting to sync · 3 updates"
+  ]
+}

@@ -1,0 +1,93 @@
+id: itm.phy.o.stars.0020
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.stars.life_cycle_of_stars
+stem: A protostar forms as a cloud of gas and dust collapses.
+parts:
+- id: a
+  prompt: What makes a protostar get hotter?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Gravity pulling its gas inwards
+      correct: true
+    - id: B
+      text: Nuclear fusion, which has already started in it
+      correct: false
+      misconception_id: mc.phy.o.protostar_already_fusing
+      feedback: A protostar heats up because gravity pulls its gas inwards. Once its core is hot enough fusion starts and it becomes a main-sequence star.
+    - id: C
+      text: Burning of the gas in the cloud
+      correct: false
+      misconception_id: mc.phy.o.stars_shine_by_burning
+      feedback: There is no oxygen fire in a star. In its core hydrogen nuclei fuse into helium, releasing far more energy than any chemical burning could.
+    - id: D
+      text: Gravity pushing its gas outwards
+      correct: false
+      misconception_id: mc.phy.o.main_sequence_forces_unbalanced
+      feedback: Gravity pulls a star's gas inwards all its life. On the main sequence the outward pressure of the hot gas, heated by fusion, balances it.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about how a star's mass decides its life story.
+  - rung: 2
+    name: concept
+    text:
+      en: Stars form from collapsing gas, shine for most of their lives by fusing hydrogen, and end when the fuel runs out.
+  - rung: 3
+    name: first_step
+    text:
+      en: A star like the Sun ends as a white dwarf; a much more massive star ends in a supernova.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against these stages.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Gravity pulling its gas inwards.'
+  misconception_ids:
+  - mc.phy.o.main_sequence_forces_unbalanced
+  - mc.phy.o.protostar_already_fusing
+  - mc.phy.o.stars_shine_by_burning
+solution:
+  steps:
+  - n: 1
+    latex: \text{Gravity pulling its gas inwards}
+    reason: Follow the life cycle for the star's mass
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

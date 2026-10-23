@@ -1,0 +1,128 @@
+id: itm.chm.o.stoichiometry.0093
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.solution_concentration
+stem: A solution is made by dissolving 4.0 g of sodium hydroxide, NaOH in water and making it up to 500 cm³.
+parts:
+- id: a
+  prompt: What is its concentration in mol/dm³?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: 8.00 mol/dm³
+      correct: false
+      misconception_id: mc.chm.o.conc_mass_as_moles
+      feedback: 'Concentration in mol/dm³ needs moles: divide the mass by the molar mass first.'
+    - id: B
+      text: 0.000200 mol/dm³
+      correct: false
+      misconception_id: mc.chm.o.conc_volume_not_converted
+      feedback: 'Concentration in mol/dm³ needs the volume in dm³: divide cm³ by 1000 first.'
+    - id: C
+      text: 0.200 mol/dm³
+      correct: true
+    - id: D
+      text: 5.00 mol/dm³
+      correct: false
+      misconception_id: mc.chm.o.conc_inverted
+      feedback: 'Concentration is how many moles are in each dm³: amount ÷ volume.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Concentration in mol/dm³ needs moles of solute and the volume in dm³.
+  - rung: 2
+    name: concept
+    text:
+      en: c = n ÷ V; n comes from the mass and the molar mass.
+  - rung: 3
+    name: first_step
+    text:
+      en: Moles of NaOH = 4.0 ÷ 40 = 0.100 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The volume is 500 ÷ 1000 dm³. Divide 0.100 by that volume.
+  - rung: 5
+    name: full_step
+    text:
+      en: c = 0.200 mol/dm³.
+  misconception_ids:
+  - mc.chm.o.conc_volume_not_converted
+  - mc.chm.o.conc_inverted
+  - mc.chm.o.conc_mass_as_moles
+solution:
+  steps:
+  - n: 1
+    latex: n = \frac{4.0}{40} = 0.100
+    reason: Mass to moles
+    check_id: chk_build_chm_stoichiometry_0093_mr
+  - n: 2
+    latex: c = \frac{0.100}{500 \div 1000} = 0.200
+    reason: Amount over volume in dm³
+    check_id: chk_build_chm_stoichiometry_0093_chain
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0093_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_na
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_h
+      sf: 3
+      steps:
+      - id: n
+        mass: 4.0 g
+        op: amount_from_mass
+        species: NaOH
+      - amount: '@n'
+        id: c
+        op: concentration_from_amount
+        volume: 500 cm^3
+    tool: chem_stoichiometry
+  chk_build_chm_stoichiometry_0093_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_na
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_h
+      formula: NaOH
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,91 @@
+id: itm.chm.o.environment.0030
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.air_pollution
+stem: Acid rain falls on a city for many years.
+parts:
+- id: a
+  prompt: Which is an effect of acid rain?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: People's blood carries less oxygen
+      correct: false
+      misconception_id: mc.chm.o.environment_pollutant_effects_mixed
+      feedback: 'Learn each pollutant as a pair: source and effect. Carbon monoxide comes from incomplete combustion and is toxic. Sulfur dioxide comes from burning fuels that contain sulfur and causes acid rain. Oxides of nitrogen come from car engines and also cause acid rain. Particulates come from incomplete com'
+    - id: B
+      text: Limestone and marble buildings are slowly worn away
+      correct: true
+    - id: C
+      text: Lakes become more alkaline
+      correct: false
+    - id: D
+      text: The ozone layer becomes thinner
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Acid rain contains dilute sulfuric and nitric acids.
+  - rung: 2
+    name: concept
+    text:
+      en: Acids react with carbonates.
+  - rung: 3
+    name: first_step
+    text:
+      en: Limestone and marble are forms of calcium carbonate.
+  - rung: 4
+    name: worked_step
+    text:
+      en: What happens to a carbonate when an acid reacts with it?
+  - rung: 5
+    name: full_step
+    text:
+      en: Acid rain reacts with the calcium carbonate in limestone and marble, wearing buildings and statues away. It also harms trees and life in lakes.
+  misconception_ids:
+  - mc.chm.o.environment_pollutant_effects_mixed
+solution:
+  steps:
+  - n: 1
+    latex: \text{CaCO}_3 + \text{H}_2\text{SO}_4 \rightarrow \text{CaSO}_4 + \text{H}_2\text{O} + \text{CO}_2
+    reason: Acid attacks carbonate
+    check_id: chk_build_chm_environment_0030_bal
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_environment_0030_bal:
+    args:
+      equation: CaCO3 + H2SO4 -> CaSO4 + H2O + CO2
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

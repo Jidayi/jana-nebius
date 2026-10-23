@@ -1,0 +1,119 @@
+id: itm.acc.o.inventory.0031
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.inventory.lower_cost_nrv
+stem: Halima holds 140 crates of soda that cost $68 each. They can be sold for $65 each after repairs of $1 each.
+parts:
+- id: a
+  prompt: What value is placed on this inventory?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $9100
+      correct: false
+      misconception_id: mc.acc.o.inv_selling_price_used
+    - id: B
+      text: $8960
+      correct: true
+    - id: C
+      text: $9240
+      correct: false
+      misconception_id: mc.acc.o.inv_nrv_costs_added
+    - id: D
+      text: $9520
+      correct: false
+      misconception_id: mc.acc.o.inv_nrv_ignored
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Can the goods be sold for more than they cost, once the repairs are paid for?
+  - rung: 2
+    name: concept
+    text:
+      en: Use the lower of cost and net realisable value (selling price − costs to sell).
+  - rung: 3
+    name: first_step
+    text:
+      en: Never value inventory above what it will bring in.
+  - rung: 4
+    name: worked_step
+    text:
+      en: NRV = 65 − 1; compare it with 68.
+  - rung: 5
+    name: full_step
+    text:
+      en: Value = $8960.
+  misconception_ids:
+  - mc.acc.o.inv_nrv_ignored
+  - mc.acc.o.inv_selling_price_used
+  - mc.acc.o.inv_nrv_costs_added
+solution:
+  steps:
+  - n: 1
+    latex: \text{Value} = \text{quantity} \times \text{lower of cost and NRV}
+    reason: Prudence
+    check_id: chk_build_acc_inventory_0031_t
+  - n: 2
+    latex: \text{NRV} = 65 - 1 = 64
+    reason: Less than cost
+    check_id: chk_build_acc_inventory_0031_s2
+  - n: 3
+    latex: 140 \times 64 = 8960
+    reason: Use NRV
+    check_id: chk_build_acc_inventory_0031_a
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_inventory_0031_a:
+    args:
+      dp: 2
+      expression: 140 * (65 - 1)
+    tool: math_evaluate
+  chk_build_acc_inventory_0031_s2:
+    args:
+      dp: 4
+      expression: 65 - 1
+    tool: math_evaluate
+  chk_build_acc_inventory_0031_t:
+    args:
+      dp: 2
+      method: fifo
+      movements:
+      - kind: receipt
+        quantity: 140
+        unit_cost: '68'
+      nrv:
+        per_unit: '64'
+    tool: acc_inventory
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

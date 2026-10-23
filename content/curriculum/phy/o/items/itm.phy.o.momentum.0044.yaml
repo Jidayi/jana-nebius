@@ -1,0 +1,93 @@
+id: itm.phy.o.momentum.0044
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.impulse
+stem: A cricketer catching a fast ball moves her hands backwards as she catches it.
+parts:
+- id: a
+  prompt: Why?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: To increase the time taken to stop the ball, which reduces the force
+      correct: true
+    - id: B
+      text: To reduce the ball's change in momentum
+      correct: false
+      misconception_id: mc.phy.o.cushioning_reduces_momentum_change
+      feedback: The car still goes from moving to stopped, so the change in momentum is the same. Spreading it over a longer time makes the force smaller.
+    - id: C
+      text: To stop the ball more quickly
+      correct: false
+      misconception_id: mc.phy.o.impulse_time_multiplied
+      feedback: Impulse is force × time, so force = change in momentum ÷ time. A shorter impact time gives a bigger force.
+    - id: D
+      text: To make the ball bounce out, reducing the momentum change
+      correct: false
+      misconception_id: mc.phy.o.rebound_change_subtracted
+      feedback: 'Take towards the wall as positive: the velocity goes from +u to −v, a change of u + v. A bounce changes the momentum more than a stop does.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Impulse = force × time, and it equals the change in momentum.
+  - rung: 2
+    name: concept
+    text:
+      en: For a given change in momentum, a longer stopping time means a smaller force.
+  - rung: 3
+    name: first_step
+    text:
+      en: Decide whether each option changes the momentum change or the time it takes.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The ball must go from its speed to rest either way.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: To increase the time taken to stop the ball, which reduces the force. A longer stopping time gives a smaller average force for the same change in momentum.'
+  misconception_ids:
+  - mc.phy.o.cushioning_reduces_momentum_change
+  - mc.phy.o.impulse_time_multiplied
+  - mc.phy.o.rebound_change_subtracted
+solution:
+  steps:
+  - n: 1
+    latex: \text{To increase the time taken to stop the ball, which reduces the force}
+    reason: Use impulse = FΔt = Δp
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

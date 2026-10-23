@@ -1,0 +1,98 @@
+id: itm.mth.o.number.0095
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.fdp_conversion
+stem: Write 12.5% as a decimal.
+parts:
+- id: a
+  prompt: Give the decimal.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '1250'
+      correct: false
+      misconception_id: mc.mth.o.percent_scale_wrong
+      feedback: 'Per cent means out of 100: to go from a percentage to a decimal, divide by 100, so 35% = 0.35.'
+    - id: B
+      text: '1.25'
+      correct: false
+      misconception_id: mc.mth.o.percent_one_place
+      feedback: '0.5 is a half, which is 50%. To change a decimal to a percentage, multiply by 100: two places.'
+    - id: C
+      text: '0.0125'
+      correct: false
+      misconception_id: mc.mth.o.leading_zeros_significant
+      feedback: Zeros before the first non-zero digit only show the place value; they are not significant.
+    - id: D
+      text: '0.125'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Per cent means 'out of 100'.
+  - rung: 2
+    name: concept
+    text:
+      en: To change a percentage to a decimal, divide by 100.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 12.5 ÷ 100.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Dividing by 100 moves every digit two places to the right.
+  - rung: 5
+    name: full_step
+    text:
+      en: 12.5% = 0.125.
+  misconception_ids:
+  - mc.mth.o.leading_zeros_significant
+  - mc.mth.o.percent_one_place
+  - mc.mth.o.percent_scale_wrong
+solution:
+  steps:
+  - n: 1
+    latex: 12.5\% = \frac{12.5}{100} = 0.125
+    reason: Per cent means out of 100
+    check_id: chk_build_mth_num_0095_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 30
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0095_ans:
+    args:
+      expression: 12.5/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

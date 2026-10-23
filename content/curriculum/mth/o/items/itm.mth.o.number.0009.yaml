@@ -1,0 +1,107 @@
+id: itm.mth.o.number.0009
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.prime_factors
+stem: Write 280 as a product of its prime factors in index form.
+parts:
+- id: a
+  prompt: What is the index of 2?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '3'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0009_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Start dividing by the smallest prime as many times as you can.
+  - rung: 2
+    name: concept
+    text:
+      en: Then divide by the next primes in turn until you reach 1. The index of the smallest prime counts how many times it divided.
+  - rung: 3
+    name: first_step
+    text:
+      en: Begin by halving 280, and keep halving.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Count how many times you halved before moving on to the next prime.
+  - rung: 5
+    name: full_step
+    text:
+      en: 280 = 2^3 × 5 × 7, so the index of 2 is 3.
+  misconception_ids:
+  - mc.mth.o.prime_power_value_for_index
+  - mc.mth.o.composite_factor_used
+  - mc.mth.o.index_counts_all_primes
+solution:
+  steps:
+  - n: 1
+    latex: 280 = 2^{3} \times 5 \times 7
+    reason: Divide by the smallest prime repeatedly, then the next primes
+    check_id: chk_build_mth_num_0009_n
+  - n: 2
+    latex: \text{the factors are all prime}
+    reason: None of them can be split further
+    check_id: chk_build_mth_num_0009_pr
+  - n: 3
+    latex: \text{index of } 2 = 3
+    reason: Count the factors of 2
+    check_id: chk_build_mth_num_0009_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0009_ans:
+    args:
+      expression: '3'
+    tool: math_evaluate
+  chk_build_mth_num_0009_n:
+    args:
+      expression: 2^3*5^1*7^1
+    tool: math_evaluate
+  chk_build_mth_num_0009_pr:
+    args:
+      equations:
+      - p = 2
+      - q = 5
+      - r = 7
+      unknowns:
+      - p
+      - q
+      - r
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,34 @@
+id: mc.acc.o.rat_interpret_liquidity_profit
+kc_ids:
+- kc.acc.o.ratios.interpret_ratios
+student_name: Liquidity and profit mixed up
+description: Explains a change in a liquidity ratio by profit, or a change in profitability by liquidity.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+fix:
+  strategy: contrast_example
+  text:
+    en: Profit ratios come from the income statement; liquidity ratios from current assets and liabilities.
+probe_item_ids:
+- itm.acc.o.ratios.0067
+- itm.acc.o.ratios.0068
+- itm.acc.o.ratios.0069
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,229 @@
+- id: kc.acc.o.double_entry.debit_credit_rules
+  code: ACC-O-03.K01
+  node_id: cur.acc.o.double_entry
+  statement: State which side records an increase and a decrease for each class of account
+  kind: conceptual
+  tools: []
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.accounting_equation.classify_elements
+    strength: required
+  misconception_ids:
+  - mc.acc.o.de_bank_view
+  - mc.acc.o.de_class_confused
+  - mc.acc.o.de_decrease_same_side
+  skill_ids:
+  - acc-o-double-entry
+  glossary:
+  - double entry
+  - debit
+  - credit
+  - ledger
+  - ledger account
+  - transaction
+  - capital
+  - drawings
+  - asset
+  - liability
+  - liabilities
+  - expense
+  - income
+  - inventory
+  - purchases
+  - trade receivables
+  - trade payables
+  - sales returns
+  - purchases returns
+  difficulty_prior: -1.0
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.double_entry.record_cash_transactions
+  code: ACC-O-03.K02
+  node_id: cur.acc.o.double_entry
+  statement: Record a cash or bank transaction as a debit and a credit
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.acc.o.double_entry.debit_credit_rules
+    strength: required
+  confusable_with:
+  - kc.acc.o.double_entry.record_credit_transactions
+  misconception_ids:
+  - mc.acc.o.de_asset_as_purchases
+  - mc.acc.o.de_bank_view
+  - mc.acc.o.de_cash_bank_confused
+  - mc.acc.o.de_debit_credit_swapped
+  - mc.acc.o.de_expense_as_drawings
+  - mc.acc.o.de_goods_to_inventory
+  - mc.acc.o.de_income_as_capital
+  - mc.acc.o.de_loan_as_income
+  skill_ids:
+  - acc-o-double-entry
+  glossary:
+  - double entry
+  - debit
+  - credit
+  - ledger
+  - ledger account
+  - transaction
+  - capital
+  - drawings
+  - asset
+  - liability
+  - liabilities
+  - expense
+  - income
+  - inventory
+  - purchases
+  - trade receivables
+  - trade payables
+  - sales returns
+  - purchases returns
+  difficulty_prior: -0.6
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.double_entry.record_credit_transactions
+  code: ACC-O-03.K03
+  node_id: cur.acc.o.double_entry
+  statement: Record credit sales, credit purchases and returns in the ledger
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.acc.o.double_entry.debit_credit_rules
+    strength: required
+  confusable_with:
+  - kc.acc.o.double_entry.record_cash_transactions
+  misconception_ids:
+  - mc.acc.o.de_cash_bank_confused
+  - mc.acc.o.de_credit_as_cash
+  - mc.acc.o.de_debit_credit_swapped
+  - mc.acc.o.de_goods_to_inventory
+  - mc.acc.o.de_payment_as_new_purchase
+  - mc.acc.o.de_returns_in_main_account
+  - mc.acc.o.de_sale_credits_inventory
+  skill_ids:
+  - acc-o-double-entry
+  glossary:
+  - double entry
+  - debit
+  - credit
+  - ledger
+  - ledger account
+  - transaction
+  - capital
+  - drawings
+  - asset
+  - liability
+  - liabilities
+  - expense
+  - income
+  - inventory
+  - purchases
+  - trade receivables
+  - trade payables
+  - sales returns
+  - purchases returns
+  - credit sale
+  - credit purchase
+  - returns inwards
+  - returns outwards
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.double_entry.record_owner_transactions
+  code: ACC-O-03.K04
+  node_id: cur.acc.o.double_entry
+  statement: Record capital introduced and drawings of cash or goods by the owner
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.1
+  prerequisites:
+  - kc_id: kc.acc.o.double_entry.debit_credit_rules
+    strength: required
+  misconception_ids:
+  - mc.acc.o.de_capital_as_income
+  - mc.acc.o.de_capital_as_loan
+  - mc.acc.o.de_cash_bank_confused
+  - mc.acc.o.de_debit_credit_swapped
+  - mc.acc.o.de_drawings_as_expense
+  - mc.acc.o.de_drawings_credit_capital
+  - mc.acc.o.de_goods_drawings_as_sales
+  - mc.acc.o.de_goods_to_inventory
+  - mc.acc.o.de_income_as_capital
+  skill_ids:
+  - acc-o-double-entry
+  glossary:
+  - double entry
+  - debit
+  - credit
+  - ledger
+  - ledger account
+  - transaction
+  - capital
+  - drawings
+  - asset
+  - liability
+  - liabilities
+  - expense
+  - income
+  - inventory
+  - purchases
+  - trade receivables
+  - trade payables
+  - sales returns
+  - purchases returns
+  - capital introduced
+  difficulty_prior: -0.4
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.double_entry.balance_account
+  code: ACC-O-03.K05
+  node_id: cur.acc.o.double_entry
+  statement: Calculate the balance of a ledger account and the side it is brought down on
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.double_entry.record_cash_transactions
+    strength: required
+  misconception_ids:
+  - mc.acc.o.de_balance_side_reversed
+  - mc.acc.o.de_opening_balance_omitted
+  - mc.acc.o.de_total_as_balance
+  skill_ids:
+  - acc-o-double-entry
+  glossary:
+  - double entry
+  - debit
+  - credit
+  - ledger
+  - ledger account
+  - transaction
+  - capital
+  - drawings
+  - asset
+  - liability
+  - liabilities
+  - expense
+  - income
+  - inventory
+  - purchases
+  - trade receivables
+  - trade payables
+  - sales returns
+  - purchases returns
+  - balance carried down
+  - balance brought down
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active

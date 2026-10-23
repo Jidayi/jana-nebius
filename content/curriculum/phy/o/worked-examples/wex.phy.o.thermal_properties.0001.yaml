@@ -1,0 +1,55 @@
+id: wex.phy.o.thermal_properties.0001
+kc_ids:
+- kc.phy.o.thermal_properties.thermal_expansion
+problem: An unmarked liquid-in-glass thermometer has a thread 30 mm long in melting ice (0 °C) and 180 mm long in steam from boiling water (100 °C). In a beaker of warm water the thread is 86 mm long. Find the temperature of the water, assuming the liquid expands evenly.
+steps:
+- n: 1
+  latex: \frac{180 - 30}{100} = 1.5\ \text{mm per}\ ^\circ\text{C}
+  reason: Length per degree
+  check_id: chk_build_phy_thp_w0001_per
+- n: 2
+  latex: 86 - 30 = 56\ \text{mm}
+  reason: Length above the 0 °C mark
+  check_id: chk_build_phy_thp_w0001_d
+- n: 3
+  latex: \theta = \frac{56}{1.5} = 37.3\ ^\circ\text{C}
+  reason: Number of degrees above 0 °C
+  check_id: chk_build_phy_thp_w0001_ans
+final_answer:
+  latex: 37.3\ \text{°C}
+  check_id: chk_build_phy_thp_w0001_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_thp_w0001_ans:
+    args:
+      expression: (86 - 30)*100/(180 - 30)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_thp_w0001_d:
+    args:
+      expression: 86 - 30
+    tool: math_evaluate
+  chk_build_phy_thp_w0001_per:
+    args:
+      expression: (180 - 30)/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

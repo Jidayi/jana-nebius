@@ -1,0 +1,87 @@
+id: itm.chm.o.metals.0051
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.extraction
+stem: A company wants to obtain sodium.
+parts:
+- id: a
+  prompt: Which method is used to obtain sodium?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Heating its oxide with carbon
+      correct: false
+      misconception_id: mc.chm.o.metals_carbon_reduces_all
+      feedback: Carbon can only take oxygen from metals BELOW it in the reactivity series (zinc, iron, lead, copper). Metals above carbon hold their oxygen more strongly, so electrolysis is needed.
+    - id: B
+      text: Electrolysis of the molten chloride
+      correct: true
+    - id: C
+      text: Heating its oxide with carbon monoxide in a blast furnace
+      correct: false
+      misconception_id: mc.chm.o.metals_carbon_reduces_all
+      feedback: Carbon can only take oxygen from metals BELOW it in the reactivity series (zinc, iron, lead, copper). Metals above carbon hold their oxygen more strongly, so electrolysis is needed.
+    - id: D
+      text: It is found as the metal, so it is simply separated from rock
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Find sodium in the reactivity series.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Above carbon: electrolysis. Below carbon: reduction with carbon. Very unreactive: found as the metal.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Is sodium above carbon, below carbon, or right at the bottom?
+  - rung: 4
+    name: worked_step
+    text:
+      en: Sodium is above carbon.
+  - rung: 5
+    name: full_step
+    text:
+      en: Electrolysis of the molten chloride, because it holds its compounds too strongly for carbon.
+  misconception_ids:
+  - mc.chm.o.metals_carbon_reduces_all
+solution:
+  steps:
+  - n: 1
+    latex: '\text{sodium: above carbon}'
+    reason: Position decides method
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

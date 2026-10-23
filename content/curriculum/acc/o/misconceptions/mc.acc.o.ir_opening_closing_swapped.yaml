@@ -1,0 +1,34 @@
+id: mc.acc.o.ir_opening_closing_swapped
+kc_ids:
+- kc.acc.o.incomplete_records.missing_credit_figures
+student_name: Opening and closing balances swapped
+description: Subtracts the closing balance and adds the opening balance when finding credit sales or purchases.
+signatures:
+- kind: answer_transform
+  expression: opening - closing + paid
+fix:
+  strategy: simpler_numbers
+  text:
+    en: What is owed at the end was added by this year's sales; what was owed at the start was not.
+probe_item_ids:
+- itm.acc.o.incomplete_records.0023
+- itm.acc.o.incomplete_records.0024
+- itm.acc.o.incomplete_records.0025
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

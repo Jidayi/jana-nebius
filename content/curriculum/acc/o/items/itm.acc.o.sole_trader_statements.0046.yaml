@@ -1,0 +1,148 @@
+id: itm.acc.o.sole_trader_statements.0046
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.sole_trader_statements.working_capital
+stem: 'At the year end Thabo''s business has: inventory $6800; trade receivables $6400; prepaid expenses $200; bank balance $3700; cash in hand $100; trade payables $6300; accrued expenses $750; equipment $30000; loan repayable in six years $8200.'
+parts:
+- id: a
+  prompt: Calculate the net current assets (working capital).
+  marks: 3
+  answer:
+    kind: numeric
+    value: '10150.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_sole_trader_statements_0046_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Working capital compares what the business will turn into cash within a year with what it must pay within a year.
+  - rung: 2
+    name: concept
+    text:
+      en: Net current assets = current assets − current liabilities. Leave out the equipment and the long-term loan.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Current assets: 6800 + 6400 + 200 + 3700 + 100. Current liabilities: 6300 + 750.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Net current assets = (6800 + 6400 + 200 + 3700 + 100) − (6300 + 750).
+  - rung: 5
+    name: full_step
+    text:
+      en: $17200 − $7050 = $10150.
+  misconception_ids:
+  - mc.acc.o.sofp_overdraft_as_asset
+  - mc.acc.o.sofp_term_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{Net current assets} = \text{current assets} - \text{current liabilities}
+    reason: Working capital
+    check_id: chk_build_acc_sole_trader_statements_0046_t
+  - n: 2
+    latex: \text{Current assets} = 6800 + 6400 + 200 + 3700 + 100 = 17200
+    reason: Owned, turned into cash within a year
+    check_id: chk_build_acc_sole_trader_statements_0046_s2
+  - n: 3
+    latex: \text{Current liabilities} = 6300 + 750 = 7050
+    reason: Owed within a year
+    check_id: chk_build_acc_sole_trader_statements_0046_s3
+  - n: 4
+    latex: \text{Net current assets} = 17200 - 7050 = 10150
+    reason: Subtract
+    check_id: chk_build_acc_sole_trader_statements_0046_a
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_0046_a:
+    args:
+      dp: 2
+      expression: (6800 + 6400 + 200 + 3700 + 100) - (6300 + 750)
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0046_s2:
+    args:
+      dp: 4
+      expression: 6800 + 6400 + 200 + 3700 + 100
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0046_s3:
+    args:
+      dp: 4
+      expression: 6300 + 750
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0046_t:
+    args:
+      adjustments:
+      - amount: '6800'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Trade receivables
+        debit: '6400'
+        role: trade_receivables
+      - account: Prepayments
+        debit: '200'
+        role: other_receivables
+      - account: Cash
+        debit: '100'
+        role: cash
+      - account: Trade payables
+        credit: '6300'
+        role: trade_payables
+      - account: Accruals
+        credit: '750'
+        role: other_payables
+      - account: Equipment
+        debit: '30000'
+        role: non_current_asset
+      - account: Loan
+        credit: '8200'
+        role: non_current_liability
+      - account: Bank
+        debit: '3700'
+        role: bank
+      - account: Sales
+        credit: '50000'
+        role: revenue
+      - account: Purchases
+        debit: '30000'
+        role: purchases
+      - account: Capital
+        credit: '5150'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

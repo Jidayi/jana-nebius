@@ -1,0 +1,88 @@
+id: itm.chm.o.metals.0030
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.reactivity_series
+- kc.chm.o.metals.properties_of_metals
+stem: Magnesium does not react much with cold water, but it burns brightly when heated in steam.
+parts:
+- id: a
+  prompt: What are the products with steam?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Magnesium oxide and hydrogen
+      correct: true
+    - id: B
+      text: Magnesium hydroxide and oxygen
+      correct: false
+      misconception_id: mc.chm.o.metals_gas_is_oxygen
+      feedback: 'The metal takes the oxygen (or the non-metal part) and keeps it, so it is hydrogen that is set free. The gas burns with a squeaky pop: that is the test for hydrogen.'
+    - id: C
+      text: Magnesium oxide and oxygen
+      correct: false
+      misconception_id: mc.chm.o.metals_gas_is_oxygen
+      feedback: 'The metal takes the oxygen (or the non-metal part) and keeps it, so it is hydrogen that is set free. The gas burns with a squeaky pop: that is the test for hydrogen.'
+    - id: D
+      text: Magnesium and hydrogen peroxide
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Steam is water as a gas; think about what the metal takes from it.
+  - rung: 2
+    name: concept
+    text:
+      en: With steam, a metal forms its oxide and sets hydrogen free.
+  - rung: 3
+    name: first_step
+    text:
+      en: The magnesium joins with the oxygen of the water molecules.
+  - rung: 4
+    name: worked_step
+    text:
+      en: What is left of each water molecule once the oxygen is taken?
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Mg + H₂O → MgO + H₂: magnesium oxide and hydrogen.'
+  misconception_ids:
+  - mc.chm.o.metals_gas_is_oxygen
+solution:
+  steps:
+  - n: 1
+    latex: \text{Mg + H}_2\text{O} \rightarrow \text{MgO + H}_2
+    reason: Metal + steam
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

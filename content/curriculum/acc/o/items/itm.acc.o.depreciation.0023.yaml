@@ -1,0 +1,92 @@
+id: itm.acc.o.depreciation.0023
+version: 0.1.1
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.depreciation.depreciation_purpose
+stem: A trader owns several non-current assets.
+parts:
+- id: a
+  prompt: Select all the assets that are usually depreciated.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Delivery vans
+      correct: true
+    - id: B
+      text: Office furniture
+      correct: true
+    - id: C
+      text: Buildings
+      correct: true
+    - id: D
+      text: Freehold land
+      correct: false
+    - id: E
+      text: Goods held for resale
+      correct: false
+    - id: F
+      text: Trade receivables
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Depreciation applies to non-current assets with a limited useful life.
+  - rung: 2
+    name: concept
+    text:
+      en: Vans, furniture and buildings wear out or age.
+  - rung: 3
+    name: first_step
+    text:
+      en: Freehold land does not usually wear out.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Inventory and receivables are current assets, not depreciated.
+  - rung: 5
+    name: full_step
+    text:
+      en: Vans, furniture and buildings are depreciated.
+  misconception_ids:
+  - mc.acc.o.dep_land_depreciated
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Depreciated: vans, furniture, buildings}'
+    reason: Limited useful life
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

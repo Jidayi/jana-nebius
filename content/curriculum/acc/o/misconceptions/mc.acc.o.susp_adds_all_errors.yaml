@@ -1,0 +1,34 @@
+id: mc.acc.o.susp_adds_all_errors
+kc_ids:
+- kc.acc.o.trial_balance.suspense_account
+student_name: Adding errors without their direction
+description: Adds the effects of all errors together, ignoring that some make debits larger and others credits.
+signatures:
+- kind: answer_transform
+  expression: abs(e1) + abs(e2)
+fix:
+  strategy: simpler_numbers
+  text:
+    en: An error that adds to the debits and one that adds to the credits partly cancel. Net them.
+probe_item_ids:
+- itm.acc.o.trial_balance.0045
+- itm.acc.o.trial_balance.0046
+- itm.acc.o.trial_balance.0047
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

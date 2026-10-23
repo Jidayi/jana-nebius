@@ -1,0 +1,93 @@
+id: itm.phy.o.magnetism.0009
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.magnetism.magnets_and_materials
+stem: A steel pin and a soft-iron pin are each stroked with a magnet and then left for a day.
+parts:
+- id: a
+  prompt: Which pin is more likely to still be a magnet?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The soft-iron pin, because it was magnetised more easily
+      correct: false
+      misconception_id: mc.phy.o.soft_iron_steel_swapped
+      feedback: Soft iron is magnetised easily and loses it as easily, which suits an electromagnet's core. Steel is harder to magnetise but keeps it, which suits a permanent magnet.
+    - id: B
+      text: The steel pin
+      correct: true
+    - id: C
+      text: 'Neither: stroking with a magnet has no effect on a pin'
+      correct: false
+      misconception_id: mc.phy.o.unmagnetised_iron_unaffected
+      feedback: A magnet picks up ordinary steel paper clips. It first induces magnetism in them, and then attracts them.
+    - id: D
+      text: 'Neither: a pin is a magnet only while a magnet touches it'
+      correct: false
+      misconception_id: mc.phy.o.magnetic_force_needs_contact
+      feedback: A compass needle swings when a magnet is still a hand's width away. Magnetic forces act at a distance.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Recall the two rules: how poles act on each other, and which materials are magnetic.'
+  - rung: 2
+    name: concept
+    text:
+      en: Like poles repel and unlike poles attract. Only a few metals are magnetic, and magnetic materials differ in how easily they gain and lose their magnetism.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Steel is a hard magnetic material and keeps its magnetism; soft iron loses it.
+  - rung: 5
+    name: full_step
+    text:
+      en: The steel pin. Steel is a hard magnetic material and keeps its magnetism; soft iron loses it.
+  misconception_ids:
+  - mc.phy.o.magnetic_force_needs_contact
+  - mc.phy.o.soft_iron_steel_swapped
+  - mc.phy.o.unmagnetised_iron_unaffected
+solution:
+  steps:
+  - n: 1
+    latex: \text{The steel pin}
+    reason: Apply the rules for poles and magnetic materials
+difficulty:
+  prior: -0.7
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

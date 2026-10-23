@@ -1,0 +1,87 @@
+id: itm.chm.o.environment.0008
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.water
+stem: After sedimentation, water still looks slightly cloudy. It is passed through beds of sand and gravel.
+parts:
+- id: a
+  prompt: What does this filtration remove?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Bacteria and viruses
+      correct: false
+      misconception_id: mc.chm.o.environment_treatment_stages_mixed
+      feedback: Each stage has one job. Sedimentation lets large particles settle. Filtration removes small insoluble particles. Carbon removes tastes and smells. Chlorine kills microbes. None of these removes dissolved salts, so tap water is not pure.
+    - id: B
+      text: Bad tastes and smells
+      correct: false
+      misconception_id: mc.chm.o.environment_treatment_stages_mixed
+      feedback: Each stage has one job. Sedimentation lets large particles settle. Filtration removes small insoluble particles. Carbon removes tastes and smells. Chlorine kills microbes. None of these removes dissolved salts, so tap water is not pure.
+    - id: C
+      text: Dissolved salts
+      correct: false
+    - id: D
+      text: Small insoluble particles
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The cloudiness comes from tiny solid particles that did not settle.
+  - rung: 2
+    name: concept
+    text:
+      en: A filter traps particles that are too big to pass between the grains.
+  - rung: 3
+    name: first_step
+    text:
+      en: Dissolved substances are spread out as single particles and pass through any filter.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Which kind of particle is held back by sand: insoluble or dissolved?'
+  - rung: 5
+    name: full_step
+    text:
+      en: Filtration through sand removes small insoluble particles that made the water cloudy.
+  misconception_ids:
+  - mc.chm.o.environment_treatment_stages_mixed
+solution:
+  steps:
+  - n: 1
+    latex: '\text{filtration: removes insoluble particles}'
+    reason: Second stage
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,135 @@
+id: itm.chm.o.stoichiometry.0029
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.relative_formula_mass
+stem: Use relative atomic masses to work out the relative formula mass of hydrated copper(II) sulfate, CuSO₄·5H₂O.
+parts:
+- id: a
+  prompt: Calculate the relative formula mass, Mr, of CuSO₄·5H₂O.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '250'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0029_mr
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Mr is the sum of the relative atomic masses of all the atoms in CuSO₄·5H₂O.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply each element's relative atomic mass by the number of its atoms, then add.
+  - rung: 3
+    name: first_step
+    text:
+      en: Count the atoms of each element in CuSO₄·5H₂O.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'In CuSO₄·5H₂O: one Cu atom gives 64, one S atom gives 32, nine O atoms give 144 and ten H atoms give 10.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Mr of CuSO₄·5H₂O = 250.
+  misconception_ids:
+  - mc.chm.o.mr_count_ignored
+solution:
+  steps:
+  - n: 1
+    latex: \text{Cu} = 64
+    reason: One Cu atom times Ar
+    check_id: chk_build_chm_stoichiometry_0029_g_cu
+  - n: 2
+    latex: \text{S} = 32
+    reason: One S atom times Ar
+    check_id: chk_build_chm_stoichiometry_0029_g_s
+  - n: 3
+    latex: \text{O}_9 = 144
+    reason: Nine O atoms times Ar
+    check_id: chk_build_chm_stoichiometry_0029_g_o
+  - n: 4
+    latex: \text{H}_{10} = 10
+    reason: Ten H atoms times Ar
+    check_id: chk_build_chm_stoichiometry_0029_g_h
+  - n: 5
+    latex: M_r = 250
+    reason: Add the shares
+    check_id: chk_build_chm_stoichiometry_0029_mr
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 75
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0029_g_cu:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      formula: Cu
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0029_g_h:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_h
+      formula: H10
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0029_g_o:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_o
+      formula: O9
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0029_g_s:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_s
+      formula: S
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0029_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_cu
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_h
+      formula: CuSO4.5H2O
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

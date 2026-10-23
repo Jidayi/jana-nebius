@@ -1,0 +1,31 @@
+id: mc.phy.o.vt_gradient_from_one_point
+kc_ids:
+- kc.phy.o.motion.velocity_time_gradient
+student_name: Acceleration from a single point
+description: Divides one velocity by one time instead of using the changes between two points.
+signatures:
+- kind: answer_transform
+  expression: v2/t2
+fix:
+  strategy: counterexample
+  text:
+    en: Use the change in velocity over the change in time between two points.
+probe_item_ids: []
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

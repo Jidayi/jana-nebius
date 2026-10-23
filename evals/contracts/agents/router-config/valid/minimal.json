@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "tiers": {
+    "fast": [
+      "local:aa"
+    ],
+    "strong": [
+      "local:aa"
+    ],
+    "judge": [
+      "local:aa"
+    ]
+  },
+  "roles": {
+    "coach": {
+      "tier": "fast",
+      "reasoning": "none"
+    },
+    "diagnoser": {
+      "tier": "fast",
+      "reasoning": "none"
+    },
+    "solver": {
+      "tier": "fast",
+      "reasoning": "none"
+    },
+    "checker": {
+      "tier": "fast",
+      "reasoning": "none"
+    },
+    "reflector": {
+      "tier": "fast",
+      "reasoning": "none"
+    }
+  },
+  "auxiliary": {},
+  "retry": {
+    "same_model": 0,
+    "backoff": {
+      "initial_s": 1,
+      "factor": 1,
+      "max_s": 1,
+      "jitter": 0
+    },
+    "honor_retry_after": true
+  },
+  "fallback": {
+    "triggers": [],
+    "never_after_tool_side_effect": true,
+    "offline_to_local": true
+  },
+  "local": {
+    "readiness": "real_generation",
+    "context": "auto_by_memory",
+    "context_shift": false,
+    "ladder": [
+      2048
+    ],
+    "min_agent_context": 2048,
+    "memory_headroom_gb": 0,
+    "restart": {
+      "backoff_s": [],
+      "max_restarts": 0,
+      "window_s": 1
+    }
+  },
+  "cloud": {
+    "enabled": true,
+    "probe_interval_s": 5,
+    "send_photos": true,
+    "redaction_check": true
+  },
+  "budget": {
+    "per_session_usd": 0,
+    "reminders_at": []
+  }
+}

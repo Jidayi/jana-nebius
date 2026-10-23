@@ -1,0 +1,109 @@
+id: itm.mth.o.coordinate_geometry.0072
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.coordinate_geometry.segment_length
+stem: P is the point (-2, -3) and Q is the point (-5, 1).
+parts:
+- id: a
+  prompt: Find the length of PQ.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '5'
+      correct: true
+    - id: B
+      text: '7'
+      correct: false
+      misconception_id: mc.mth.o.length_changes_added
+      feedback: The segment is the hypotenuse of a right-angled triangle with the two changes as its other sides.
+    - id: C
+      text: '25'
+      correct: false
+      misconception_id: mc.mth.o.pythag_no_root
+      feedback: a² + b² is the square of the side. Take the square root as the last step.
+    - id: D
+      text: '7.28'
+      correct: false
+      misconception_id: mc.mth.o.coordinates_added_not_subtracted
+      feedback: 'A change is a difference: subtract the coordinates.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Sketch the two points: the segment is the hypotenuse of a right-angled triangle.'
+  - rung: 2
+    name: concept
+    text:
+      en: The other two sides are the change in x and the change in y.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change in x = -5 − (-2); change in y = 1 − (-3).
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Square both changes and add: 25. Then take the square root.'
+  - rung: 5
+    name: full_step
+    text:
+      en: PQ = 5.
+  misconception_ids:
+  - mc.mth.o.coordinates_added_not_subtracted
+  - mc.mth.o.length_changes_added
+  - mc.mth.o.pythag_no_root
+solution:
+  steps:
+  - n: 1
+    latex: PQ^2 = (x_2 - x_1)^2 + (y_2 - y_1)^2
+    reason: Pythagoras on the changes
+  - n: 2
+    latex: PQ^2 = (-3)^2 + (4)^2 = 25
+    reason: Square and add
+    check_id: chk_build_mth_crd_0072_s
+  - n: 3
+    latex: PQ = \sqrt{25} = 5
+    reason: Square root
+    check_id: chk_build_mth_crd_0072_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_crd_0072_ans:
+    args:
+      expression: sqrt((-5 - (-2))^2 + (1 - (-3))^2)
+    tool: math_evaluate
+  chk_build_mth_crd_0072_s:
+    args:
+      expression: (-5 - (-2))^2 + (1 - (-3))^2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

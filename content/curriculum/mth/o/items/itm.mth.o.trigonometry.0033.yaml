@@ -1,0 +1,89 @@
+id: itm.mth.o.trigonometry.0033
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.trig_angle
+stem: In a right-angled triangle, the hypotenuse is 11 cm and the side opposite angle θ is 9 cm.
+parts:
+- id: a
+  prompt: Find θ, to 1 decimal place.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '54.9'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.05
+    check_id: chk_build_mth_trg_0033_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which two sides do you know, measured from θ?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Opposite and hypotenuse: use sin.'
+  - rung: 3
+    name: first_step
+    text:
+      en: sin θ = 9/11.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Use the inverse sine of 9/11, in degrees.
+  - rung: 5
+    name: full_step
+    text:
+      en: θ = 54.9°.
+  misconception_ids:
+  - mc.mth.o.trig_ratio_wrong
+  - mc.mth.o.trig_ratio_inverted
+  - mc.mth.o.calculator_radians
+solution:
+  steps:
+  - n: 1
+    latex: \sin \theta = \frac{9}{11}
+    reason: Opposite over hypotenuse
+  - n: 2
+    latex: \theta = \sin^{-1}\left(\frac{9}{11}\right) = 54.9
+    reason: Inverse sine
+    check_id: chk_build_mth_trg_0033_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_trg_0033_ans:
+    args:
+      angle_unit: degrees
+      dp: 1
+      expression: asin(9/11)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

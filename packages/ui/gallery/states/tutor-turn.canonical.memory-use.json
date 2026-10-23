@@ -1,0 +1,116 @@
+{
+  "id": "tutor-turn.canonical.memory-use",
+  "title": "Tutor turn, memory read and a saved note",
+  "note": "A memory_recall that returned two records shows the memory-use line with its link (MEM-28); a note saved at the student's request is announced after the turn (MEM-11).",
+  "component": "TutorTurn",
+  "state": "canonical",
+  "variant": "memory-use",
+  "payload": {
+    "student": "Remember that I like to sketch a diagram first. How high does the ball rise?",
+    "events": [
+      {
+        "type": "turn.start",
+        "turn_id": "trn_00000000000000000000000001",
+        "user_message_id": "msg_00000000000000000000000002",
+        "client_message_id": null,
+        "intent": "ask",
+        "mode": "guided",
+        "fork": false
+      },
+      {
+        "type": "part.start",
+        "part_id": "prt_00000000000000000000000003",
+        "kind": "text",
+        "index": 0
+      },
+      {
+        "type": "text.delta",
+        "part_id": "prt_00000000000000000000000003",
+        "delta": "Let me look at this problem."
+      },
+      {
+        "type": "part.end",
+        "part_id": "prt_00000000000000000000000003",
+        "status": "complete",
+        "duration_ms": 1
+      },
+      {
+        "type": "part.start",
+        "part_id": "prt_00000000000000000000000004",
+        "kind": "tool",
+        "index": 1
+      },
+      {
+        "type": "tool.state",
+        "part_id": "prt_00000000000000000000000004",
+        "call_id": "call_1",
+        "name": "memory_recall",
+        "render_class": "ephemeral",
+        "state": {
+          "status": "completed",
+          "title": {
+            "pre": "x"
+          },
+          "output": {
+            "items": 2
+          }
+        }
+      },
+      {
+        "type": "part.end",
+        "part_id": "prt_00000000000000000000000004",
+        "status": "complete",
+        "duration_ms": 6
+      },
+      {
+        "type": "part.start",
+        "part_id": "prt_00000000000000000000000005",
+        "kind": "text",
+        "index": 2
+      },
+      {
+        "type": "text.delta",
+        "part_id": "prt_00000000000000000000000005",
+        "delta": "Which equation links the starting speed, the acceleration and the height?"
+      },
+      {
+        "type": "part.end",
+        "part_id": "prt_00000000000000000000000005",
+        "status": "complete",
+        "duration_ms": 1
+      },
+      {
+        "type": "memory.saved",
+        "note_id": "mem_00000000000000000000000201",
+        "text": "Likes to sketch a diagram before the equations",
+        "undo_until_ts": 1791547230000
+      },
+      {
+        "type": "turn.end",
+        "status": "complete",
+        "stop_reason": "completed",
+        "elapsed_ms": 14000,
+        "usage": null,
+        "verification": "not_applicable",
+        "persisted": {
+          "message_id": "msg_00000000000000000000000009",
+          "part_ids": []
+        },
+        "degraded": false,
+        "degraded_reason": null
+      }
+    ]
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "conversation"
+  ],
+  "expectText": [
+    "Looked back at your notes and earlier work",
+    "What the tutor knows about you",
+    "Saved to your notes"
+  ]
+}

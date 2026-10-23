@@ -1,0 +1,36 @@
+id: mc.phy.o.impulse_change_as_force
+kc_ids:
+- kc.phy.o.momentum.impulse
+student_name: The momentum change is not the force
+description: Gives the change in momentum as the average force, forgetting to divide by the time of the impact.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: rule_restatement
+  text:
+    en: The change in momentum is the impulse, in N s. To get the force in N, divide the impulse by the time.
+probe_item_ids:
+- itm.phy.o.momentum.0042
+- itm.phy.o.momentum.0045
+- itm.phy.o.momentum.0031
+- itm.phy.o.momentum.0034
+- itm.phy.o.momentum.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

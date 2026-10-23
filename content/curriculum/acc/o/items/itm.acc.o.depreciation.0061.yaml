@@ -1,0 +1,156 @@
+id: itm.acc.o.depreciation.0061
+version: 0.1.1
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.depreciation.disposal
+stem: 'Tendai''s business bought a photocopier for $20800 in 2019. It is depreciated by the straight-line method over 10 years with a residual value of $1400: a full year''s charge in the year of purchase and none in the year of sale. The photocopier was sold in 2023 for $11550.'
+parts:
+- id: a
+  prompt: Calculate the profit or loss on disposal. Give a loss as a negative number.
+  marks: 4
+  answer:
+    kind: numeric
+    value: '-1490.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_depreciation_0061_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Compare what the asset was sold for with its net book value on the day it was sold.
+  - rung: 2
+    name: concept
+    text:
+      en: Profit (or loss) on disposal = proceeds − net book value. Net book value = cost − accumulated depreciation.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Count the years charged: from 2019 up to, but not including, 2023.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Net book value = 20800 − yearly charge × (2023 − 2019); then subtract it from 11550.
+  - rung: 5
+    name: full_step
+    text:
+      en: Proceeds $11550 − net book value $13040 gives a loss of $1490.
+  misconception_ids:
+  - mc.acc.o.disp_cost_not_nbv
+  - mc.acc.o.disp_disposal_year_depreciated
+solution:
+  steps:
+  - n: 1
+    latex: \text{Profit or loss} = \text{proceeds} - \text{net book value}
+    reason: Compare with what is left of the cost
+    check_id: chk_build_acc_depreciation_0061_t
+  - n: 2
+    latex: \text{Years charged} = 2023 - 2019 = 4
+    reason: None in the year of sale
+    check_id: chk_build_acc_depreciation_0061_s2
+  - n: 3
+    latex: \text{Yearly charge} = \frac{20800 - 1400}{10} = 1940
+    reason: Straight line
+    check_id: chk_build_acc_depreciation_0061_s3
+  - n: 4
+    latex: \text{Net book value} = 20800 - 1940 \times 4 = 13040
+    reason: Cost less accumulated depreciation
+    check_id: chk_build_acc_depreciation_0061_s4
+  - n: 5
+    latex: \text{Loss} = 11550 - 13040, \text{ that is } 1490
+    reason: Proceeds less net book value
+    check_id: chk_build_acc_depreciation_0061_s5
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 4
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  cost: '20800'
+  proceeds: '11550'
+checks:
+  chk_build_acc_depreciation_0061_a:
+    args:
+      dp: 2
+      expression: 11550 - (20800 - (20800 - 1400) / 10 * (2023 - 2019))
+    tool: math_evaluate
+  chk_build_acc_depreciation_0061_s2:
+    args:
+      dp: 4
+      expression: 2023 - 2019
+    tool: math_evaluate
+  chk_build_acc_depreciation_0061_s3:
+    args:
+      dp: 4
+      expression: (20800 - 1400) / 10
+    tool: math_evaluate
+  chk_build_acc_depreciation_0061_s4:
+    args:
+      dp: 4
+      expression: 20800 - (20800 - 1400) / 10 * (2023 - 2019)
+    tool: math_evaluate
+  chk_build_acc_depreciation_0061_s5:
+    args:
+      dp: 4
+      expression: abs(11550 - (20800 - (20800 - 1400) / 10 * (2023 - 2019)))
+    tool: math_evaluate
+  chk_build_acc_depreciation_0061_t:
+    args:
+      cost: '20800'
+      disposal:
+        proceeds: '11550'
+        year: 5
+      dp: 2
+      life_years: 10
+      method: straight_line
+      part_year_policy: full_year
+      residual: '1400'
+    tool: acc_depreciation
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:32:17.144Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.acc.o.depreciation.0061
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

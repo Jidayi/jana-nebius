@@ -1,0 +1,98 @@
+id: itm.mth.o.geometry.0137
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.parallel_line_angles
+stem: A straight line crosses two parallel lines. Angle p = 74°. Angle q is in matching positions at the two crossings (an F shape).
+parts:
+- id: a
+  prompt: Find angle q.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 106°
+      correct: false
+      misconception_id: mc.mth.o.alternate_supplementary
+      feedback: Alternate angles make a Z shape and are equal; corresponding angles make an F shape and are equal.
+    - id: B
+      text: 74°
+      correct: true
+    - id: C
+      text: 286°
+      correct: false
+      misconception_id: mc.mth.o.line_angles_360
+      feedback: 'A straight line is a half turn: 180°. A full turn round a point is 360°.'
+    - id: D
+      text: 16°
+      correct: false
+      misconception_id: mc.mth.o.adjacent_angles_complementary
+      feedback: 'Angles on a straight line, and co-interior angles, make a half turn: 180°.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Mark the two angles on a sketch of the parallel lines.
+  - rung: 2
+    name: concept
+    text:
+      en: Alternate and corresponding angles are equal; co-interior angles add up to 180°.
+  - rung: 3
+    name: first_step
+    text:
+      en: These are corresponding angles.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Equal angles need no working; co-interior ones are subtracted from 180.
+  - rung: 5
+    name: full_step
+    text:
+      en: q = 74°.
+  misconception_ids:
+  - mc.mth.o.adjacent_angles_complementary
+  - mc.mth.o.alternate_supplementary
+  - mc.mth.o.line_angles_360
+solution:
+  steps:
+  - n: 1
+    latex: q = 74
+    reason: Corresponding angles are equal
+    check_id: chk_build_mth_geo_0137_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0137_ans:
+    args:
+      expression: '74'
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

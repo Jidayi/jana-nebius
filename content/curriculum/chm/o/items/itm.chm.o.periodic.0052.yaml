@@ -1,0 +1,91 @@
+id: itm.chm.o.periodic.0052
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.periodic.noble_gases
+stem: Neon does not form compounds, but fluorine, next to it in the table, is very reactive.
+parts:
+- id: a
+  prompt: Which explains the difference?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Neon atoms are already bonded in Ne₂ molecules.
+      correct: false
+      misconception_id: mc.chm.o.periodic_noble_diatomic
+      feedback: 'Noble gas atoms already have full outer shells, so they do not bond to each other: they exist as single atoms.'
+    - id: B
+      text: Neon has a full outer shell; fluorine needs one more electron.
+      correct: true
+    - id: C
+      text: Neon is a gas but fluorine is not.
+      correct: false
+      misconception_id: mc.chm.o.periodic_noble_unreactive_because_gas
+      feedback: Oxygen and chlorine are gases but react readily. Noble gases are unreactive because their outer shells are full.
+    - id: D
+      text: Neon has two outer electrons, like helium.
+      correct: false
+      misconception_id: mc.chm.o.periodic_helium_eight
+      feedback: Helium has only two electrons, which fill its only shell. A full first shell holds two.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Neon does not form compounds, but fluorine, next to it in the table, is very reactive. Think about the outer shells of noble gas atoms.
+  - rung: 2
+    name: concept
+    text:
+      en: Noble gases have full outer shells, so they do not need to gain, lose or share electrons.
+  - rung: 3
+    name: first_step
+    text:
+      en: Because they do not bond, they exist as single atoms.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Helium's only shell is full with two electrons; the others have eight outer electrons.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Neon has a full outer shell; fluorine needs one more electron.'
+  misconception_ids:
+  - mc.chm.o.periodic_noble_unreactive_because_gas
+  - mc.chm.o.periodic_noble_diatomic
+  - mc.chm.o.periodic_helium_eight
+solution:
+  steps:
+  - n: 1
+    latex: \text{full outer shell} \Rightarrow \text{unreactive, monatomic}
+    reason: Electron arrangement
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.isotope_means_radioactive
+kc_ids:
+- kc.phy.o.atom.isotopes
+student_name: Isotope means a radioactive form
+description: Thinks the word isotope means a radioactive version of an element, so a stable nuclide is not an isotope.
+signatures:
+- kind: answer_transform
+  expression: radioactive
+fix:
+  strategy: counterexample
+  text:
+    en: Carbon-12 is a stable isotope of carbon and carbon-14 a radioactive one. Being an isotope is about protons and neutrons, not about decay.
+probe_item_ids:
+- itm.phy.o.atom.0017
+- itm.phy.o.atom.0019
+- itm.phy.o.atom.0020
+- itm.phy.o.atom.0023
+- itm.phy.o.atom.0024
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

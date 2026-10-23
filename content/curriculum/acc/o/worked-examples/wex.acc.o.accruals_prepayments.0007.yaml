@@ -1,0 +1,72 @@
+id: wex.acc.o.accruals_prepayments.0007
+kc_ids:
+- kc.acc.o.accruals_prepayments.accrual_presentation
+problem: At the year end wages of $560 are owing and insurance of $240 is prepaid. Show where each goes and find the total of these current liabilities.
+steps:
+- n: 1
+  latex: \text{Accrual} \rightarrow \text{current liabilities; prepayment} \rightarrow \text{current assets}
+  reason: Owed by or to the business
+  check_id: chk_build_acc_accruals_prepayments_w0007_t
+- n: 2
+  latex: \text{Current liabilities from adjustments} = 560
+  reason: Only the accrual
+  check_id: chk_build_acc_accruals_prepayments_w0007_a
+final_answer:
+  latex: \$\,560
+  check_id: chk_build_acc_accruals_prepayments_w0007_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_accruals_prepayments_w0007_a:
+    args:
+      dp: 2
+      expression: '560'
+    tool: math_evaluate
+  chk_build_acc_accruals_prepayments_w0007_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Rent
+        amount: '560'
+        kind: accrued_expense
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '60000'
+        role: revenue
+      - account: Purchases
+        debit: '30000'
+        role: purchases
+      - account: Rent
+        debit: '6000'
+        role: expense
+      - account: Land
+        debit: '24000'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

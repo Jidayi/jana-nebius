@@ -1,0 +1,98 @@
+id: itm.mth.o.algebra_and_graphs.0182
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.linear_inequalities
+stem: The integer x satisfies $0 < 3x + 3 \leq 12$.
+parts:
+- id: a
+  prompt: How many integer values of x are there?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '4'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0182_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Do the same thing to all three parts of the inequality.
+  - rung: 2
+    name: concept
+    text:
+      en: Subtract 3 from every part, then divide every part by 3.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the two boundary values for x.
+  - rung: 4
+    name: worked_step
+    text:
+      en: You should get -1 < x ≤ 3. Which end is included?
+  - rung: 5
+    name: full_step
+    text:
+      en: 'List the integers from just above -1 up to 3: there are 4 of them.'
+  misconception_ids:
+  - mc.mth.o.inequality_boundary
+  - mc.mth.o.inequality_no_flip
+  - mc.mth.o.rearrange_inverse_sign
+solution:
+  steps:
+  - n: 1
+    latex: 0 < 3x + 3 \leq 12
+    reason: The double inequality
+  - n: 2
+    latex: -1 < x \leq 3
+    reason: Solve both parts together
+    check_id: chk_build_mth_alg_0182_b1
+  - n: 3
+    latex: \text{count} = 4
+    reason: 'Count the integers: the lower end is left out, the upper end included'
+    check_id: chk_build_mth_alg_0182_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0182_ans:
+    args:
+      expression: 3 - (-1)
+    tool: math_evaluate
+  chk_build_mth_alg_0182_b1:
+    args:
+      equations:
+      - 3*x + (3) = 0
+      unknowns:
+      - x
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

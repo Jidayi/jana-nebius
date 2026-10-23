@@ -1,0 +1,34 @@
+id: mc.phy.o.balance_equal_distances
+kc_ids:
+- kc.phy.o.forces.moments
+student_name: Balance means equal distances
+description: Thinks a beam balances when the loads are the same distance from the pivot, whatever their sizes.
+signatures:
+- kind: answer_transform
+  expression: d2 = d1
+fix:
+  strategy: counterexample
+  text:
+    en: 'An adult and a small child on a see-saw at equal distances do not balance: the adult goes down. The heavier load must sit closer to the pivot.'
+probe_item_ids:
+- itm.phy.o.forces.0092
+- itm.phy.o.forces.0087
+- itm.phy.o.forces.0090
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

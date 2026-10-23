@@ -1,0 +1,33 @@
+id: mc.phy.o.wavelength_inverse_to_speed
+kc_ids:
+- kc.phy.o.wave_properties.wave_behaviour
+student_name: Wavelength grows as the wave slows
+description: Scales the wavelength by the wrong ratio of speeds, so the wavelength gets longer when the wave slows down.
+signatures:
+- kind: answer_transform
+  expression: lambda1*v1/v2
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'With the frequency fixed, half the speed means half the wavelength: wavelength changes in the same proportion as speed.'
+probe_item_ids:
+- itm.phy.o.wave_properties.0046
+- itm.phy.o.wave_properties.0054
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

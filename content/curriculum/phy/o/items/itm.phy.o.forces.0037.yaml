@@ -1,0 +1,115 @@
+id: itm.phy.o.forces.0037
+version: 0.1.2
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.friction_and_terminal_velocity
+stem: A skydiver of mass 75 kg is falling. At one moment the air resistance on them is 480 N. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Find their acceleration at that moment.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '3.6'
+    unit: m/s^2
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_frc_0037_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Two forces act: the weight downwards and the air resistance upwards.'
+  - rung: 2
+    name: concept
+    text:
+      en: The resultant force is weight − air resistance; then use a = F ÷ m.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the weight from mass × g first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The weight is 750 N, so the resultant force is 270 N.
+  - rung: 5
+    name: full_step
+    text:
+      en: a = 270 ÷ 75 = 3.6 m/s², less than g because of the drag.
+  misconception_ids:
+  - mc.phy.o.falling_drag_ignored
+  - mc.phy.o.opposite_vectors_added
+  - mc.phy.o.drag_alone_as_resultant
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: W = mg = 75 \times 10 = 750\ \text{N}
+    reason: Weight
+    check_id: chk_build_phy_frc_0037_w
+  - n: 2
+    latex: F = 750 - 480 = 270\ \text{N}
+    reason: 'Resultant force downwards: weight − drag'
+    check_id: chk_build_phy_frc_0037_net
+  - n: 3
+    latex: a = \frac{270}{75} = 3.6\ \text{m/s}^2
+    reason: a = F ÷ m
+    check_id: chk_build_phy_frc_0037_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  g: '10'
+checks:
+  chk_build_phy_frc_0037_ans:
+    args:
+      expression: (75*10 - 480)/75
+    tool: math_evaluate
+  chk_build_phy_frc_0037_net:
+    args:
+      expression: 75*10 - 480
+    tool: math_evaluate
+  chk_build_phy_frc_0037_w:
+    args:
+      expression: 75*10
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

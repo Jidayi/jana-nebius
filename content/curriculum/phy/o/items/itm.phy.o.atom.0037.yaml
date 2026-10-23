@@ -1,0 +1,89 @@
+id: itm.phy.o.atom.0037
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.atom.nuclear_model_evidence
+stem: An atom is about 20000 times wider than its nucleus. In a model, the nucleus is a bead 2 mm across.
+parts:
+- id: a
+  prompt: How wide would the whole atom be in this model, in metres?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '40'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_atm_0037_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The scattering experiment showed the nucleus is tiny compared with the atom.
+  - rung: 2
+    name: concept
+    text:
+      en: Every length in the model is scaled by the same factor.
+  - rung: 3
+    name: first_step
+    text:
+      en: Multiply the nucleus's width by 20000, then change millimetres into metres.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 2 × 20000 = 40000 mm; there are a thousand millimetres in a metre.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The atom would be 40 m across: almost all of it empty space.'
+solution:
+  steps:
+  - n: 1
+    latex: 2 \times 20000 = 40000\ \text{mm}
+    reason: Scale up the nucleus
+    check_id: chk_build_phy_atm_0037_mm
+  - n: 2
+    latex: 40000\ \text{mm} = 40\ \text{m}
+    reason: Change millimetres to metres
+    check_id: chk_build_phy_atm_0037_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_atm_0037_ans:
+    args:
+      quantity: 40000 mm
+      to: m
+    tool: units_convert
+  chk_build_phy_atm_0037_mm:
+    args:
+      expression: 2*20000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

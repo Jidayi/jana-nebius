@@ -1,0 +1,85 @@
+id: itm.mth.o.algebra_and_graphs.9006
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.linear_sequences
+stem: A hall has 12 seats in the first row. Each next row has 4 more seats than the row before it.
+parts:
+- id: a
+  prompt: Which row has 60 seats? Give the row number.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '13'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9006
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The first row is already counted; each further row adds the common difference.
+  - rung: 2
+    name: concept
+    text:
+      en: Find how many increases of four take twelve to sixty, then include the first row.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find how many increases of four take twelve to sixty, then include the first row.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Check the row number by substituting it into the first-row-plus-increases rule.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 13.
+solution:
+  steps:
+  - n: 1
+    latex: 1 + \frac{60 - 12}{4}
+    reason: Find how many increases of four take twelve to sixty, then include the first row.
+    check_id: chk_build_mastery_supplement_mth_9006
+  - n: 2
+    latex: '13'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9006
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9006:
+    args:
+      angle_unit: degrees
+      expression: (60-12)/4+1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

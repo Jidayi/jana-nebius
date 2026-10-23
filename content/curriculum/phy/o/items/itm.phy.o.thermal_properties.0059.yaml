@@ -1,0 +1,92 @@
+id: itm.phy.o.thermal_properties.0059
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.thermal_properties.changes_of_state
+stem: Ice at −10 °C is heated steadily until it has all melted.
+parts:
+- id: a
+  prompt: What happens to the temperature while the ice is melting?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: It keeps rising at the same rate as before
+      correct: false
+      misconception_id: mc.phy.o.temperature_rises_during_melting
+      feedback: 'While a pure substance changes state its temperature stays constant: the energy goes into separating the particles, not into speeding them up.'
+    - id: B
+      text: It rises slowly, because the ice is melting
+      correct: false
+      misconception_id: mc.phy.o.temperature_rises_during_melting
+      feedback: 'While a pure substance changes state its temperature stays constant: the energy goes into separating the particles, not into speeding them up.'
+    - id: C
+      text: It stays constant, because the ice stops taking in energy
+      correct: false
+      misconception_id: mc.phy.o.no_energy_when_temperature_constant
+      feedback: The heater is still on during the flat part, so energy is still going in. It is used to pull particles apart instead of raising the temperature.
+    - id: D
+      text: It stays at 0 °C until all the ice has melted
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Think about what the energy does to the particles: speed them up, or separate them.'
+  - rung: 2
+    name: concept
+    text:
+      en: The heater is still on, but the energy is now used to free particles from their fixed positions.
+  - rung: 3
+    name: first_step
+    text:
+      en: During a change of state of a pure substance, ask what happens to the temperature and to the energy.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Remember that evaporation happens at the surface and that only some particles escape.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It stays at 0 °C until all the ice has melted.'
+  misconception_ids:
+  - mc.phy.o.no_energy_when_temperature_constant
+  - mc.phy.o.temperature_rises_during_melting
+solution:
+  steps:
+  - n: 1
+    latex: \text{It stays at 0 °C until all the ice has melted}
+    reason: Use the particle model of changes of state
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

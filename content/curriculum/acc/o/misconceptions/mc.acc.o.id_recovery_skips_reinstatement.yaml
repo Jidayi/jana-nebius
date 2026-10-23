@@ -1,0 +1,33 @@
+id: mc.acc.o.id_recovery_skips_reinstatement
+kc_ids:
+- kc.acc.o.irrecoverable_debts.write_off
+student_name: Skipping the reinstatement
+description: Records the money received from a debt written off without first putting the debt back.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: asset
+fix:
+  strategy: rule_restatement
+  text:
+    en: Reinstate the debt first, so the customer's account shows the full history, then record the payment.
+probe_item_ids:
+- itm.acc.o.irrecoverable_debts.0004
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

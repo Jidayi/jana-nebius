@@ -1,0 +1,90 @@
+id: itm.chm.o.analysis.0014
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.analysis.titration_technique
+stem: A student reads a burette.
+parts:
+- id: a
+  prompt: How should the reading be taken?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Looking down from above the meniscus
+      correct: false
+      misconception_id: mc.chm.o.analysis_meniscus_top
+      feedback: Read the bottom of the meniscus with your eye level with it.
+    - id: B
+      text: After rinsing the burette with water
+      correct: false
+      misconception_id: mc.chm.o.analysis_rinse_with_water
+      feedback: Rinse with water, then with a little of the solution that will go in. Otherwise leftover water dilutes it.
+    - id: C
+      text: At the top of the meniscus
+      correct: false
+      misconception_id: mc.chm.o.analysis_meniscus_top
+      feedback: Read the bottom of the meniscus with your eye level with it.
+    - id: D
+      text: At the bottom of the meniscus, with the eye level with it
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A student reads a burette. What could make the result wrong?
+  - rung: 2
+    name: concept
+    text:
+      en: Every step of a titration is designed to keep concentrations and readings accurate.
+  - rung: 3
+    name: first_step
+    text:
+      en: Water left in a burette dilutes the solution poured in.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Volumes are read at the bottom of the meniscus with the eye level.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: At the bottom of the meniscus, with the eye level with it.'
+  misconception_ids:
+  - mc.chm.o.analysis_meniscus_top
+  - mc.chm.o.analysis_rinse_with_water
+solution:
+  steps:
+  - n: 1
+    latex: \text{accurate technique}
+    reason: Reason
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

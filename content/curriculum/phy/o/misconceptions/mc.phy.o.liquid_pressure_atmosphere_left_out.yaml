@@ -1,0 +1,33 @@
+id: mc.phy.o.liquid_pressure_atmosphere_left_out
+kc_ids:
+- kc.phy.o.pressure.liquid_pressure
+student_name: Forgetting the air above the liquid
+description: Gives only ρgh as the total pressure at a depth, leaving out the atmospheric pressure acting on the liquid's surface.
+signatures:
+- kind: answer_transform
+  expression: rho*g*h
+fix:
+  strategy: rule_restatement
+  text:
+    en: The air presses down on the surface of the water too. Total pressure at a depth = atmospheric pressure + ρgh.
+probe_item_ids:
+- itm.phy.o.pressure.0019
+- itm.phy.o.pressure.0025
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

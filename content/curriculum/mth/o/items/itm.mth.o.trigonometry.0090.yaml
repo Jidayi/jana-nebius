@@ -1,0 +1,112 @@
+id: itm.mth.o.trigonometry.0090
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.cosine_rule
+stem: Triangle ABC has sides a = 11 cm, b = 7 cm and c = 11 cm.
+parts:
+- id: a
+  prompt: Find angle A, opposite side a, to 1 decimal place.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 108.6°
+      correct: false
+      misconception_id: mc.mth.o.cosine_rule_sign
+      feedback: 'a² = b² + c² − 2bc cos A: the last term is taken away.'
+    - id: B
+      text: 1.25°
+      correct: false
+      misconception_id: mc.mth.o.calculator_radians
+      feedback: 'Check the calculator shows D (degrees): sin 30 should give 0.5.'
+    - id: C
+      text: 71.4°
+      correct: true
+    - id: D
+      text: 50.5°
+      correct: false
+      misconception_id: mc.mth.o.cosine_rule_two_dropped
+      feedback: 'The cosine rule has 2bc: cos A = (b² + c² − a²) ÷ (2bc).'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know all three sides.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Rearrange the cosine rule: cos A = (b² + c² − a²) ÷ (2bc).'
+  - rung: 3
+    name: first_step
+    text:
+      en: Here a = 11 is the side opposite the angle you want.
+  - rung: 4
+    name: worked_step
+    text:
+      en: cos A = 0.3182; use the inverse cosine.
+  - rung: 5
+    name: full_step
+    text:
+      en: A = 71.4°.
+  misconception_ids:
+  - mc.mth.o.calculator_radians
+  - mc.mth.o.cosine_rule_sign
+  - mc.mth.o.cosine_rule_two_dropped
+solution:
+  steps:
+  - n: 1
+    latex: \cos A = \frac{b^2 + c^2 - a^2}{2bc}
+    reason: The cosine rule for an angle
+  - n: 2
+    latex: \cos A = \frac{7^2 + 11^2 - 11^2}{2 \times 7 \times 11} = 0.3182
+    reason: Substitute
+    check_id: chk_build_mth_trg_0090_cs
+  - n: 3
+    latex: A = 71.4
+    reason: Inverse cosine, in degrees
+    check_id: chk_build_mth_trg_0090_ans
+difficulty:
+  prior: 0.8
+  band: core
+estimated_seconds: 130
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_trg_0090_ans:
+    args:
+      angle_unit: degrees
+      dp: 1
+      expression: acos((7^2 + 11^2 - 11^2)/(2*7*11))
+    tool: math_evaluate
+  chk_build_mth_trg_0090_cs:
+    args:
+      expression: (7^2 + 11^2 - 11^2)/(2*7*11)
+      sf: 4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

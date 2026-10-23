@@ -1,0 +1,112 @@
+id: itm.mth.o.algebra_and_graphs.0313
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.function_notation
+stem: The function f is given by $f(x) = 4x + 5$.
+parts:
+- id: a
+  prompt: Find $f^{-1}(13)$.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '0.0175'
+      correct: false
+      misconception_id: mc.mth.o.inverse_as_reciprocal
+      feedback: 'f⁻¹ undoes f: it answers ''which input gives this output?''. Solve f(y) = x for y.'
+    - id: B
+      text: '2'
+      correct: true
+    - id: C
+      text: '4.5'
+      correct: false
+      misconception_id: mc.mth.o.rearrange_inverse_sign
+      feedback: 'Do the same to both sides: to remove + u, subtract u from both sides.'
+    - id: D
+      text: '57'
+      correct: false
+      misconception_id: mc.mth.o.composite_order_reversed
+      feedback: 'fg(x) means f(g(x)): the function next to x acts first, so do g, then f.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The inverse function undoes f.
+  - rung: 2
+    name: concept
+    text:
+      en: f⁻¹(13) is the value of x for which f(x) = 13.
+  - rung: 3
+    name: first_step
+    text:
+      en: Solve 4x + 5 = 13.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 4x = 8.
+  - rung: 5
+    name: full_step
+    text:
+      en: f⁻¹(13) = 2.
+  misconception_ids:
+  - mc.mth.o.composite_order_reversed
+  - mc.mth.o.inverse_as_reciprocal
+  - mc.mth.o.rearrange_inverse_sign
+solution:
+  steps:
+  - n: 1
+    latex: 4x + 5 = 13
+    reason: f⁻¹(13) is the input that gives 13
+  - n: 2
+    latex: 4x = 8
+    reason: Rearrange
+    check_id: chk_build_mth_alg_0313_s
+  - n: 3
+    latex: x = 2
+    reason: Divide by 4
+    check_id: chk_build_mth_alg_0313_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0313_ans:
+    args:
+      equations:
+      - 4*x + (5) = 13
+      unknowns:
+      - x
+    tool: math_solve
+  chk_build_mth_alg_0313_s:
+    args:
+      expression: 13 - (5)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,92 @@
+id: itm.phy.o.electrical_quantities.0020
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.current_and_charge
+stem: A charge of 45 C flows through a phone charger in 90 s.
+parts:
+- id: a
+  prompt: Calculate the current, in amps.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.5'
+    unit: A
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_elq_0020_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Current is the rate at which charge flows.
+  - rung: 2
+    name: concept
+    text:
+      en: From Q = I t, the current is I = Q ÷ t.
+  - rung: 3
+    name: first_step
+    text:
+      en: The time is already in seconds.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 45 C by 90 s.
+  - rung: 5
+    name: full_step
+    text:
+      en: I = 45 ÷ 90 = 0.5 A.
+  misconception_ids:
+  - mc.phy.o.q_it_multiplied
+  - mc.phy.o.q_it_upside_down
+solution:
+  steps:
+  - n: 1
+    latex: I = \frac{Q}{t} = \frac{45}{90} = 0.5\ \text{A}
+    reason: Rearrange Q = It
+    check_id: chk_build_phy_elq_0020_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  Q: '45'
+  t: '90'
+checks:
+  chk_build_phy_elq_0020_ans:
+    args:
+      expression: 45/90
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

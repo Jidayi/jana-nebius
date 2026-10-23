@@ -1,0 +1,91 @@
+id: itm.chm.o.energetics.0011
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.energetics.exo_endo
+stem: A reaction has ΔH = −92 kJ/mol.
+parts:
+- id: a
+  prompt: Which statement is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: It is endothermic because the mixture gets hotter.
+      correct: false
+      misconception_id: mc.chm.o.energetics_temp_rise_endo
+      feedback: 'The thermometer measures the surroundings. If they get warmer, the reaction gave energy out: exothermic.'
+    - id: B
+      text: 'It is exothermic: the products have less energy than the reactants.'
+      correct: true
+    - id: C
+      text: 'It is endothermic: energy is taken in.'
+      correct: false
+      misconception_id: mc.chm.o.energetics_dh_sign_reversed
+      feedback: ΔH is the energy change of the chemicals. When they give energy out, they end with less, so ΔH is negative for an exothermic reaction.
+    - id: D
+      text: It is exothermic because bonds are broken.
+      correct: false
+      misconception_id: mc.chm.o.energetics_breaking_releases
+      feedback: You must put energy in to pull two bonded atoms apart, just as you must pull to separate two magnets. Energy is given out when bonds form.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What does the minus sign on ΔH tell you?
+  - rung: 2
+    name: concept
+    text:
+      en: 'ΔH is the energy change of the reacting chemicals: negative means they lose energy.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Energy lost by the chemicals goes to the surroundings.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Think about whether the products end up with more or less energy than the reactants.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Negative ΔH: exothermic, products lower in energy than reactants.'
+  misconception_ids:
+  - mc.chm.o.energetics_dh_sign_reversed
+  - mc.chm.o.energetics_breaking_releases
+  - mc.chm.o.energetics_temp_rise_endo
+solution:
+  steps:
+  - n: 1
+    latex: \Delta H < 0 \Rightarrow \text{exothermic}
+    reason: Sign convention
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

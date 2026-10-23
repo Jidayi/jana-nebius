@@ -1,0 +1,92 @@
+id: itm.phy.o.electrical_quantities.0070
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.resistance_of_wires
+stem: A 2 m length of manganin wire has a resistance of 6 Ω.
+parts:
+- id: a
+  prompt: Find the resistance of a 5 m length of the same wire.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '15'
+    unit: Ω
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_elq_0070_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Does a longer wire have more resistance or less?
+  - rung: 2
+    name: concept
+    text:
+      en: For the same wire, resistance is proportional to length.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find how many times longer the new piece is.
+  - rung: 4
+    name: worked_step
+    text:
+      en: It is 2.5 times as long; multiply 6 Ω by that.
+  - rung: 5
+    name: full_step
+    text:
+      en: R = 6 × 2.5 = 15 Ω.
+  misconception_ids:
+  - mc.phy.o.longer_wire_less_resistance
+  - mc.phy.o.resistance_set_by_material_only
+  - mc.phy.o.extra_length_only
+solution:
+  steps:
+  - n: 1
+    latex: \frac{5}{2} = 2.5
+    reason: How many times longer
+    check_id: chk_build_phy_elq_0070_ratio
+  - n: 2
+    latex: R = 6 \times 2.5 = 15\ \Omega
+    reason: Resistance is proportional to length
+    check_id: chk_build_phy_elq_0070_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_elq_0070_ans:
+    args:
+      expression: 6*5/2
+    tool: math_evaluate
+  chk_build_phy_elq_0070_ratio:
+    args:
+      expression: 5/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,34 @@
+id: mc.acc.o.disp_disposal_year_depreciated
+kc_ids:
+- kc.acc.o.depreciation.disposal
+student_name: Depreciating in the year of sale
+description: Charges depreciation in the year of sale when the policy says none is charged then.
+signatures:
+- kind: answer_transform
+  expression: proceeds - (nbv - annual)
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Read the policy: here a full year in the year of purchase and none in the year of sale.'
+probe_item_ids:
+- itm.acc.o.depreciation.0057
+- itm.acc.o.depreciation.0058
+- itm.acc.o.depreciation.0059
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

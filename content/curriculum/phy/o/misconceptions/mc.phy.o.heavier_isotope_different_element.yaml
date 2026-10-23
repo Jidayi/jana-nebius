@@ -1,0 +1,36 @@
+id: mc.phy.o.heavier_isotope_different_element
+kc_ids:
+- kc.phy.o.atom.isotopes
+student_name: A different mass means a different element
+description: Thinks atoms with different nucleon numbers must belong to different elements.
+signatures:
+- kind: answer_transform
+  expression: element
+fix:
+  strategy: counterexample
+  text:
+    en: 'Carbon-12 and carbon-14 are both carbon: both have six protons. The proton number alone decides the element.'
+probe_item_ids:
+- itm.phy.o.atom.0026
+- itm.phy.o.atom.0028
+- itm.phy.o.atom.0029
+- itm.phy.o.atom.0021
+- itm.phy.o.atom.0023
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

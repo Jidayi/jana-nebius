@@ -1,0 +1,95 @@
+id: itm.phy.o.motion.0050
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.acceleration_from_change
+stem: A train speeds up steadily from 0.0 m/s to 6.0 m/s in 6.0 s.
+parts:
+- id: a
+  prompt: Calculate the acceleration.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '1.0'
+    unit: m/s^2
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_k_0050_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the speed at the start, the speed at the end and the time. What are you asked for?
+  - rung: 2
+    name: concept
+    text:
+      en: Acceleration is the change in velocity divided by the time taken.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change in velocity = final velocity − initial velocity. Then divide by the time.
+  - rung: 4
+    name: worked_step
+    text:
+      en: a = (6.0 − 0.0) ÷ 6.0
+  - rung: 5
+    name: full_step
+    text:
+      en: a = (6.0 − 0.0) ÷ 6.0 = 1.0 m/s^2.
+  misconception_ids:
+  - mc.phy.o.final_velocity_over_time
+solution:
+  steps:
+  - n: 1
+    latex: a = \frac{v - u}{t}
+    reason: Acceleration is the change in velocity over the time
+  - n: 2
+    latex: v - u = 6.00\ \text{m/s}
+    reason: Change in velocity
+    check_id: chk_build_phy_k_0050_s2
+  - n: 3
+    latex: a = 1.0\ \text{m/s}^2
+    reason: Divide by the time
+    check_id: chk_build_phy_k_0050_a
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- transport
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_k_0050_a:
+    args:
+      expression: (6.0 - 0.0)/6.0
+      sf: 2
+    tool: math_evaluate
+  chk_build_phy_k_0050_s2:
+    args:
+      expression: 6.0 - 0.0
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

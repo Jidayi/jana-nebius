@@ -1,0 +1,146 @@
+provenance: Synthetic items and responses written for the marking suite (CUR-14, CUR-15); expected verdicts follow
+  the marking rules, not the marker. Not real student work.
+items:
+  speed:
+    id: itm.phy.o.kinematics.9101
+    type: numeric
+    kc_ids: [kc.phy.o.kinematics.speed]
+    parts:
+    - id: a
+      prompt: A cyclist rides 300 m in 20 s. Find the average speed.
+      marks: 2
+      answer: {kind: numeric, value: '15', unit: m/s, unit_policy: equivalent,
+               tolerance: {mode: relative, value: 0.005}, check_id: chk_build_golden_speed}
+      hints: []
+  speed_unit_fixed:
+    id: itm.phy.o.kinematics.9102
+    type: numeric
+    kc_ids: [kc.phy.o.kinematics.speed]
+    parts:
+    - id: a
+      prompt: A cyclist rides 300 m in 20 s. Find the average speed in metres per second.
+      marks: 2
+      answer: {kind: numeric, value: '15', unit: m/s, unit_policy: exact,
+               tolerance: {mode: relative, value: 0.005}, check_id: chk_build_golden_speed_fixed}
+      hints: []
+  length_3sf:
+    id: itm.phy.o.measurement.9103
+    type: numeric
+    kc_ids: [kc.phy.o.measurement.precision]
+    parts:
+    - id: a
+      prompt: Give the length of the rod to three significant figures.
+      marks: 2
+      answer: {kind: numeric, value: '4.00', unit: m, unit_policy: equivalent,
+               tolerance: {mode: sig_figs, value: 3}, check_id: chk_build_golden_length}
+      hints: []
+  force_override:
+    id: itm.phy.o.forces.9104
+    type: numeric
+    kc_ids: [kc.phy.o.forces.resultant]
+    parts:
+    - id: a
+      prompt: Estimate the resultant force from the graph, to the nearest 5 N.
+      marks: 1
+      answer: {kind: numeric, value: '120', unit: N, unit_policy: equivalent,
+               tolerance: {mode: absolute, value: 5}, check_id: chk_build_golden_force}
+      hints: []
+cases:
+- id: value_and_unit_right
+  item: speed
+  response: 15 m/s
+  rows: [numeric_tolerance.default]
+  expect: {outcome: correct, marks_awarded: 2, error_category: null}
+- id: within_default_tolerance
+  item: speed
+  response: 15.05 m/s
+  rows: [numeric_tolerance.default]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: outside_default_tolerance
+  item: speed
+  response: 15.6 m/s
+  rows: [numeric_tolerance.default]
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: value}
+- id: off_by_power_of_ten
+  item: speed
+  response: 150 m/s
+  rows: [numeric_tolerance.default]
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: power_of_ten}
+- id: stated_figures
+  item: length_3sf
+  response: 4.00 m
+  rows: [numeric_tolerance.sig_figs]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: one_figure_short_within_slack
+  item: length_3sf
+  response: 4.0 m
+  rows: [numeric_tolerance.sig_figs]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: too_many_figures_costs_nothing
+  item: length_3sf
+  response: 4.0000 m
+  rows: [numeric_tolerance.sig_figs]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: too_few_figures
+  item: length_3sf
+  response: 4 m
+  rows: [numeric_tolerance.sig_figs]
+  expect: {outcome: partial, marks_awarded: 1, error_category: sig_figs}
+- id: override_tolerance_inside
+  item: force_override
+  response: 116 N
+  rows: [numeric_tolerance.item_override]
+  expect: {outcome: correct, marks_awarded: 1}
+- id: override_tolerance_outside
+  item: force_override
+  response: 126 N
+  rows: [numeric_tolerance.item_override]
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: value}
+- id: equivalent_unit_accepted
+  item: speed
+  response: 54 km/h
+  rows: [units.equivalent]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: equivalent_unit_in_centimetres
+  item: speed
+  response: 1500 cm/s
+  rows: [units.equivalent]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: item_fixes_the_unit
+  item: speed_unit_fixed
+  response: 54 km/h
+  rows: [units.equivalent]
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: unit_error}
+- id: missing_unit_loses_accuracy_mark_only
+  item: speed
+  response: '15'
+  rows: [units.missing]
+  expect: {outcome: partial, marks_awarded: 1, error_category: units_missing}
+- id: wrong_dimension
+  item: speed
+  response: 15 kg
+  rows: [units.wrong_dimension]
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: unit_error}
+- id: wrong_dimension_and_value
+  item: speed
+  response: 20 s
+  rows: [units.wrong_dimension]
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: value}
+- id: bottom_out_hint_not_mastered
+  item: speed
+  response: 15 m/s
+  rows: [hints.bottom_out]
+  hints: {max_rung: 5, mastered: false}
+  expect: {outcome: correct, marks_awarded: 2}
+- id: no_hint_counts_towards_mastery
+  item: speed
+  response: 15 m/s
+  rows: [hints.bottom_out]
+  hints: {max_rung: 0, mastered: true}
+  expect: {outcome: correct, marks_awarded: 2}
+- id: rung_four_hint_still_counts
+  item: speed
+  response: 15 m/s
+  rows: [hints.bottom_out]
+  hints: {max_rung: 4, mastered: true}
+  expect: {outcome: correct, marks_awarded: 2}

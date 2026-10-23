@@ -1,0 +1,93 @@
+id: itm.mth.o.number.0363
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.compound_growth
+stem: $500 is invested at 4% per year compound interest.
+parts:
+- id: a
+  prompt: Find its value after 3 years, to the nearest cent.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '562.43'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_mth_num_0363_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Each year the value is multiplied by the same factor.
+  - rung: 2
+    name: concept
+    text:
+      en: Value = starting amount × multiplier to the power of the number of years.
+  - rung: 3
+    name: first_step
+    text:
+      en: The multiplier is 1 + 4/100 = 1.04.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 500 × 1.04^3.
+  - rung: 5
+    name: full_step
+    text:
+      en: The value after 3 years is $562.43.
+  misconception_ids:
+  - mc.mth.o.compound_as_simple
+  - mc.mth.o.compound_times_years
+  - mc.mth.o.interest_not_added
+solution:
+  steps:
+  - n: 1
+    latex: \text{multiplier} = 1 + \frac{4}{100} = 1.04
+    reason: The yearly multiplier
+    check_id: chk_build_mth_num_0363_m
+  - n: 2
+    latex: 500 \times 1.04^{3} = 562.43
+    reason: Multiply by it once for each of the 3 years
+    check_id: chk_build_mth_num_0363_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0363_ans:
+    args:
+      dp: 2
+      expression: 500*(1 + 4/100)^3
+    tool: math_evaluate
+  chk_build_mth_num_0363_m:
+    args:
+      expression: 1 + 4/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

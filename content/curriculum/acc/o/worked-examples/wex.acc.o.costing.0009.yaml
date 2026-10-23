@@ -1,0 +1,50 @@
+id: wex.acc.o.costing.0009
+kc_ids:
+- kc.acc.o.costing.target_profit
+problem: Price $12; variable cost $7; fixed costs $4500; target profit $5500. Find the units needed.
+steps:
+- n: 1
+  latex: \text{Units} = \frac{\text{fixed} + \text{target}}{\text{contribution}}
+  reason: Cover both
+  check_id: chk_build_acc_costing_w0009_t
+- n: 2
+  latex: \frac{4500 + 5500}{12 - 7} = 2000
+  reason: Substitute
+  check_id: chk_build_acc_costing_w0009_a
+final_answer:
+  latex: 2000\ \text{units}
+  check_id: chk_build_acc_costing_w0009_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_costing_w0009_a:
+    args:
+      dp: 2
+      expression: (4500 + 5500) / (12 - 7)
+    tool: math_evaluate
+  chk_build_acc_costing_w0009_t:
+    args:
+      dp: 2
+      fixed_costs: '4500'
+      selling_price: '12'
+      target_profit: '5500'
+      variable_cost_per_unit: '7'
+    tool: acc_break_even
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

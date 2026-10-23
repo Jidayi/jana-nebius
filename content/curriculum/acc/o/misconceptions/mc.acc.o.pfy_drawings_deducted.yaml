@@ -1,0 +1,35 @@
+id: mc.acc.o.pfy_drawings_deducted
+kc_ids:
+- kc.acc.o.sole_trader_statements.profit_for_year
+- kc.acc.o.sole_trader_statements.closing_capital
+student_name: Drawings treated as an expense
+description: Subtracts the owner's drawings as if they were a business expense.
+signatures:
+- kind: answer_transform
+  expression: profit_for_the_year - drawings
+fix:
+  strategy: contrast_example
+  text:
+    en: Drawings are the owner taking value out, not a cost of earning revenue. They reduce capital, not profit.
+probe_item_ids:
+- itm.acc.o.sole_trader_statements.0023
+- itm.acc.o.sole_trader_statements.0024
+- itm.acc.o.sole_trader_statements.0025
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

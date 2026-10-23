@@ -1,0 +1,119 @@
+id: itm.phy.o.wave_properties.0040
+version: 0.1.2
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.transverse_and_longitudinal
+stem: Nia pushes and pulls one end of a stretched slinky spring. A photo shows 5 compressions in a row, and the distance from the centre of the first to the centre of the last is 72 cm.
+parts:
+- id: a
+  prompt: Find the wavelength of the wave.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '18'
+    unit: cm
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_wav_0040_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: One wavelength is the distance from one compression to the next.
+  - rung: 2
+    name: concept
+    text:
+      en: Between 5 compressions in a row there are fewer gaps than compressions.
+  - rung: 3
+    name: first_step
+    text:
+      en: There are 4 gaps in the 72 cm.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 72 cm by 4.
+  - rung: 5
+    name: full_step
+    text:
+      en: λ = 18 cm.
+  misconception_ids:
+  - mc.phy.o.compressions_counted_not_gaps
+  - mc.phy.o.wavelength_whole_diagram
+  - mc.phy.o.compression_rarefaction_as_wavelength
+solution:
+  steps:
+  - n: 1
+    latex: 5 - 1 = 4
+    reason: The number of gaps between the compressions
+    check_id: chk_build_phy_wav_0040_gaps
+  - n: 2
+    latex: \lambda = \frac{72}{4} = 18\ \text{cm}
+    reason: One wavelength per gap
+    check_id: chk_build_phy_wav_0040_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  d: '72'
+checks:
+  chk_build_phy_wav_0040_ans:
+    args:
+      expression: 72/(5 - 1)
+    tool: math_evaluate
+  chk_build_phy_wav_0040_gaps:
+    args:
+      expression: 5 - 1
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:44:32.225Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.wave_properties.0040
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

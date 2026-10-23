@@ -1,0 +1,190 @@
+{
+  "claims": [
+    "0.0500",
+    "0.291566",
+    "0.583",
+    "0.708",
+    "2",
+    "2.13",
+    "3",
+    "723"
+  ],
+  "id": "equilibrium-sim",
+  "kind": "equilibrium_sim",
+  "modes": [
+    "shown"
+  ],
+  "spec": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "An equilibrium simulation of N2 + 3H2 ⇌ 2NH3 at 723 K, where Kc is 0.0500; at equilibrium the concentrations in mol per cubic decimetre are N2 0.708, H2 2.13, NH3 0.583."
+    },
+    "computed": {
+      "alt": {
+        "equation": "N2 + 3H2 ⇌ 2NH3",
+        "equilibrium": "N2 0.708, H2 2.13, NH3 0.583",
+        "kc": "0.0500",
+        "temperature": "723"
+      },
+      "check_ids": [
+        "chk_build_fx_equilibrium_sim_1",
+        "chk_build_fx_equilibrium_sim_2"
+      ],
+      "extent": 0.291566,
+      "labels": {
+        "eq.c_H2": "2.13",
+        "eq.c_N2": "0.708",
+        "eq.c_NH3": "0.583",
+        "out.kc": "0.0500"
+      },
+      "parts": [
+        {
+          "id": "ctrl.temperature",
+          "label": "temperature",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.volume",
+          "label": "volume",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.catalyst",
+          "label": "catalyst",
+          "role": "control"
+        },
+        {
+          "id": "out.c_N2",
+          "label": "N2",
+          "role": "readout"
+        },
+        {
+          "id": "out.c_H2",
+          "label": "H2",
+          "role": "readout"
+        },
+        {
+          "id": "out.c_NH3",
+          "label": "NH3",
+          "role": "readout"
+        },
+        {
+          "id": "out.kc",
+          "label": "Kc",
+          "role": "readout"
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_equilibrium_sim_1",
+      "chk_build_fx_equilibrium_sim_2"
+    ],
+    "params": {
+      "controls": [
+        "temperature",
+        "volume",
+        "catalyst"
+      ],
+      "forward_enthalpy_j_mol": -92000,
+      "forward_rate_constant": 0.02,
+      "initial_concentrations": [
+        {
+          "species_id": "N2",
+          "value": 1
+        },
+        {
+          "species_id": "H2",
+          "value": 3
+        },
+        {
+          "species_id": "NH3",
+          "value": 0
+        }
+      ],
+      "reaction": {
+        "species": [
+          {
+            "coefficient": 1,
+            "formula": "N2",
+            "id": "N2",
+            "side": "reactant",
+            "state": "gas"
+          },
+          {
+            "coefficient": 3,
+            "formula": "H2",
+            "id": "H2",
+            "side": "reactant",
+            "state": "gas"
+          },
+          {
+            "coefficient": 2,
+            "formula": "NH3",
+            "id": "NH3",
+            "side": "product",
+            "state": "gas"
+          }
+        ]
+      },
+      "reference_kc": 0.05,
+      "reference_temperature_k": 723,
+      "temperature_k": 723,
+      "volume_l": 1
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ctrl.temperature",
+        "name": "temperature",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.volume",
+        "name": "volume",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.catalyst",
+        "name": "catalyst",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "out.c_N2",
+        "name": "N2",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.c_H2",
+        "name": "H2",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.c_NH3",
+        "name": "NH3",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.kc",
+        "name": "Kc",
+        "role": "readout"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:428cbb53ba90b22d26af93e1c52b11bf726a8cfb23671106a801483f484c0851",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "equilibrium_sim",
+    "visual_id": "vis_2CVKTGJD6FK15BHZJACV37H681"
+  },
+  "subject": "chemistry"
+}

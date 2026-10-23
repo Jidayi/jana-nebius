@@ -1,0 +1,88 @@
+id: itm.chm.o.atoms.0048
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.atoms.isotopes
+stem: Chlorine-35 and chlorine-37 are isotopes.
+parts:
+- id: a
+  prompt: Which statement about them is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: They react in the same way because they have the same number of electrons.
+      correct: true
+    - id: B
+      text: Chlorine-37 reacts more slowly because its atoms are heavier.
+      correct: false
+      misconception_id: mc.chm.o.isotopes_differ_chemically
+    - id: C
+      text: Chlorine-37 has two more electrons, so it forms a different ion.
+      correct: false
+      misconception_id: mc.chm.o.ion_electrons_unchanged
+    - id: D
+      text: They have different numbers of protons, so they are different elements.
+      correct: false
+      misconception_id: mc.chm.o.neutrons_equal_protons
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Isotopes are atoms of the same element. What must they have in common?
+  - rung: 2
+    name: concept
+    text:
+      en: Isotopes have the same proton number but different nucleon numbers.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'The difference is only in the nucleus: the number of neutrons.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Chemical reactions depend on electrons, which isotopes share.
+  - rung: 5
+    name: full_step
+    text:
+      en: They react in the same way because they have the same number of electrons.
+  misconception_ids:
+  - mc.chm.o.isotopes_differ_chemically
+  - mc.chm.o.neutrons_equal_protons
+  - mc.chm.o.ion_electrons_unchanged
+solution:
+  steps:
+  - n: 1
+    latex: \text{same protons and electrons, different neutrons}
+    reason: What isotopes share
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

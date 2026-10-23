@@ -1,0 +1,102 @@
+id: itm.phy.o.practical_electricity.0031
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.energy_cost
+stem: A plug-in energy meter shows that an electric drill transferred 1.8 MJ (1800000 J) of energy in a week.
+parts:
+- id: a
+  prompt: Write this energy in kilowatt-hours.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 1800 kWh
+      correct: false
+      misconception_id: mc.phy.o.kwh_joules_divided_by_1000
+      feedback: 1 kWh is 1000 W for 3600 s, which is 3 600 000 J. Divide joules by 3 600 000 to get kWh.
+    - id: B
+      text: 500 kWh
+      correct: false
+      misconception_id: mc.phy.o.kwh_divided_by_3600_only
+      feedback: Dividing by 3600 turns joules into watt-hours. A kilowatt-hour is a thousand of those.
+    - id: C
+      text: 6.48 × 10^12 kWh
+      correct: false
+      misconception_id: mc.phy.o.kwh_conversion_multiplied
+      feedback: 'The kWh is a big unit, so the number of kWh is much smaller than the number of joules: divide.'
+    - id: D
+      text: 0.5 kWh
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A kilowatt-hour is a much bigger unit than a joule.
+  - rung: 2
+    name: concept
+    text:
+      en: 1 kWh is the energy of 1 kW for one hour, which is 3600000 J.
+  - rung: 3
+    name: first_step
+    text:
+      en: To change joules into kWh, divide by the number of joules in one kWh.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 1800000 ÷ 3600000.
+  - rung: 5
+    name: full_step
+    text:
+      en: The energy is 0.5 kWh.
+  misconception_ids:
+  - mc.phy.o.kwh_conversion_multiplied
+  - mc.phy.o.kwh_divided_by_3600_only
+  - mc.phy.o.kwh_joules_divided_by_1000
+solution:
+  steps:
+  - n: 1
+    latex: 1\ \text{kWh} = 3600000\ \text{J}
+    reason: 1 kW for 1 hour
+  - n: 2
+    latex: E = \frac{1800000}{3600000} = 0.5\ \text{kWh}
+    reason: Divide by joules per kWh
+    check_id: chk_build_phy_pel_0031_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_pel_0031_ans:
+    args:
+      quantity: 1800000 J
+      to: kWh
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

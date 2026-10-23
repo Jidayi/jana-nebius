@@ -1,0 +1,108 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.bank-reconciliation",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "A bank reconciliation: the updated cash book balance is 1150.00; balance as per bank statement 1450.00, unpresented cheque cheque 101 300.00 and balance as per cash book (updated) 1150.00."
+    },
+    "computed": {
+      "check_ids": [
+        "chk_build_fx_bank_reconciliation_1"
+      ],
+      "labels": {
+        "line_bank_statement_balance": "1450.00",
+        "line_cash_book_balance": "1150.00",
+        "line_unpresented_1": "300.00"
+      },
+      "lines": [
+        {
+          "id": "line_bank_statement_balance",
+          "label": "balance as per bank statement",
+          "op": "start"
+        },
+        {
+          "id": "line_unpresented_1",
+          "label": "unpresented cheque cheque 101",
+          "op": "less"
+        },
+        {
+          "id": "line_cash_book_balance",
+          "label": "balance as per cash book (updated)",
+          "op": "total"
+        }
+      ],
+      "reconciled": true,
+      "updated_balance": "1150.00"
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "kn_1200",
+      "kn_1450",
+      "kn_300",
+      "kn_50",
+      "chk_build_fx_bank_reconciliation_1"
+    ],
+    "params": {
+      "bank_statement": [
+        {
+          "amount": "50",
+          "details": "bank charges",
+          "direction": "out",
+          "id": "s1"
+        }
+      ],
+      "bank_statement_balance": "1450",
+      "cash_book": [
+        {
+          "amount": "300",
+          "details": "cheque",
+          "direction": "out",
+          "id": "c1",
+          "ref": "101"
+        }
+      ],
+      "cash_book_balance": "1200",
+      "currency": "$"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "line_bank_statement_balance",
+        "name": "balance as per bank statement",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "line_unpresented_1",
+        "name": "unpresented cheque cheque 101",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "line_cash_book_balance",
+        "name": "balance as per cash book (updated)",
+        "role": "row"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:0ff17a050fb709107ccca6e1c6346eeee1437f18cc9522454be421a56da2950f",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "bank_reconciliation",
+    "visual_id": "vis_FHT5FQ9GWC616MEE13ZRCN25B4"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: bank reconciliation (shown labels)",
+  "variant": "bank-reconciliation"
+}

@@ -1,0 +1,116 @@
+id: itm.phy.o.solar_system.0044
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.solar_system.planets_and_gravity
+stem: Neptune is 4.5 × 10⁹ km from the Sun. Light travels at 3.0 × 10⁸ m/s.
+parts:
+- id: a
+  prompt: How long does light from the Sun take to reach Neptune, in minutes?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 250 min
+      correct: true
+    - id: B
+      text: 15000 min
+      correct: false
+      misconception_id: mc.phy.o.light_time_seconds_as_minutes
+      feedback: Distance ÷ speed in metres per second gives seconds. Divide by sixty to change seconds into minutes.
+    - id: C
+      text: 0.250 min
+      correct: false
+      misconception_id: mc.phy.o.light_time_km_not_converted
+      feedback: The speed of light, 3.0 × 10⁸ m/s, is in metres per second. Change the distance into metres first.
+    - id: D
+      text: 1.11 × 10^-6 min
+      correct: false
+      misconception_id: mc.phy.o.light_time_inverted
+      feedback: Time = distance ÷ speed. A longer journey must take longer, so the distance goes on top.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Light crosses the Solar System at a fixed speed.
+  - rung: 2
+    name: concept
+    text:
+      en: Time = distance ÷ speed, with the distance in metres.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change 4.5 × 10⁹ km into metres first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The light takes 15000 s; change this into minutes.
+  - rung: 5
+    name: full_step
+    text:
+      en: Sunlight takes 250 minutes to reach Neptune.
+  misconception_ids:
+  - mc.phy.o.light_time_inverted
+  - mc.phy.o.light_time_km_not_converted
+  - mc.phy.o.light_time_seconds_as_minutes
+solution:
+  steps:
+  - n: 1
+    latex: d = 4.5 \times 10^{12}\ \text{m}
+    reason: Kilometres to metres
+  - n: 2
+    latex: t = \frac{4.5 \times 10^{12}}{3.0 \times 10^{8}} = 15000\ \text{s}
+    reason: Time = distance / speed
+    check_id: chk_build_phy_sol_0044_ts
+  - n: 3
+    latex: t = 15000\ \text{s} = 250\ \text{min}
+    reason: Seconds to minutes
+    check_id: chk_build_phy_sol_0044_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_sol_0044_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: 4.5e12/c/60
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_sol_0044_ts:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: 4.5e12/c
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

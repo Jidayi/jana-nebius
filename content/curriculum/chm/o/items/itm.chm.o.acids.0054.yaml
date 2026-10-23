@@ -1,0 +1,86 @@
+id: itm.chm.o.acids.0054
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.salt_preparation
+stem: A student makes a dry sample of insoluble lead(II) iodide from two solutions.
+parts:
+- id: a
+  prompt: Put the steps in the correct order.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s2
+      text: Filter the mixture to collect the yellow precipitate
+    - id: s1
+      text: Mix lead(II) nitrate solution with potassium iodide solution
+    - id: s4
+      text: Leave the solid to dry in a warm oven
+    - id: s3
+      text: Wash the solid on the filter paper with distilled water
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Lead(II) iodide is insoluble. How is an insoluble salt made?
+  - rung: 2
+    name: concept
+    text:
+      en: An insoluble salt forms as a precipitate when two solutions are mixed.
+  - rung: 3
+    name: first_step
+    text:
+      en: The precipitate must be separated from the solution first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The solid on the paper still has traces of the other dissolved salts on it.
+  - rung: 5
+    name: full_step
+    text:
+      en: Mix the solutions, filter, wash the residue with distilled water, then dry it.
+  misconception_ids:
+  - mc.chm.o.acids_precipitation_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{Pb}^{2+} + 2\text{I}^{-} \rightarrow \text{PbI}_2\text{(s)}
+    reason: Precipitation
+  - n: 2
+    latex: \text{mix} \rightarrow \text{filter} \rightarrow \text{wash} \rightarrow \text{dry}
+    reason: Order of the method
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

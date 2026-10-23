@@ -1,0 +1,114 @@
+id: itm.chm.o.reactions.0046
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.rate_data
+stem: A flask of acid and marble chips on a balance reads 80.46 g at 30 s and 79.98 g at 90 s.
+parts:
+- id: a
+  prompt: What is the mean rate of reaction between 30 s and 90 s, in g/s?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: '0.00800'
+      correct: true
+    - id: B
+      text: '0.00533'
+      correct: false
+      misconception_id: mc.chm.o.reactions_rate_end_time_not_interval
+      feedback: The time taken is the later time minus the earlier time. Use the same two moments for the time as you used for the readings.
+    - id: C
+      text: '125'
+      correct: false
+      misconception_id: mc.chm.o.reactions_rate_inverted
+      feedback: 'A rate says how much product forms each second, so the amount goes on top: mean rate = change in volume (or mass) ÷ time taken. The unit is a check: cm³/s or g/s, never s/cm³.'
+    - id: D
+      text: '1.33'
+      correct: false
+      misconception_id: mc.chm.o.reactions_rate_reading_not_change
+      feedback: Gas collected before the interval began was not made during it. Subtract the earlier reading from the later one first, then divide that change by the time taken.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Readings at 30 s and 90 s are given. Which two differences do you need?
+  - rung: 2
+    name: concept
+    text:
+      en: Mean rate from 30 s to 90 s = change in the reading ÷ time taken.
+  - rung: 3
+    name: first_step
+    text:
+      en: Mass lost = 80.46 − 79.98 = 0.48.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Time taken = 90 − 30 = 60 s. Divide the change by this time.
+  - rung: 5
+    name: full_step
+    text:
+      en: 0.48 ÷ 60 = 0.00800 g/s.
+  misconception_ids:
+  - mc.chm.o.reactions_rate_inverted
+  - mc.chm.o.reactions_rate_reading_not_change
+  - mc.chm.o.reactions_rate_end_time_not_interval
+solution:
+  steps:
+  - n: 1
+    latex: \Delta = 80.46 - 79.98 = 0.48
+    reason: Change in the reading
+    check_id: chk_build_chm_reactions_0046_dv
+  - n: 2
+    latex: \Delta t = 90 - 30 = 60\ \text{s}
+    reason: Time taken
+    check_id: chk_build_chm_reactions_0046_dt
+  - n: 3
+    latex: \text{rate} = \frac{0.48}{60} = 0.00800
+    reason: Change ÷ time
+    check_id: chk_build_chm_reactions_0046_r
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_0046_dt:
+    args:
+      expression: 90 - 30
+    tool: math_evaluate
+  chk_build_chm_reactions_0046_dv:
+    args:
+      expression: 80.46 - 79.98
+    tool: math_evaluate
+  chk_build_chm_reactions_0046_r:
+    args:
+      expression: (80.46 - 79.98)/(90 - 30)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

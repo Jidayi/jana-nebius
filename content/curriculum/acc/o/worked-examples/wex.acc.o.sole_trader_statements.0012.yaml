@@ -1,0 +1,78 @@
+id: wex.acc.o.sole_trader_statements.0012
+kc_ids:
+- kc.acc.o.sole_trader_statements.closing_capital
+problem: Opening capital $42900; the business made a loss of $4100; drawings $4900. Find the closing capital.
+steps:
+- n: 1
+  latex: \text{Closing capital} = \text{opening} + \text{profit} - \text{drawings}
+  reason: A loss is subtracted like drawings
+  check_id: chk_build_acc_sole_trader_statements_w0012_t
+- n: 2
+  latex: \text{Closing capital} = 42900 - 4100 - 4900 = 33900
+  reason: Substitute
+  check_id: chk_build_acc_sole_trader_statements_w0012_a
+final_answer:
+  latex: \$\,33900
+  check_id: chk_build_acc_sole_trader_statements_w0012_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_w0012_a:
+    args:
+      dp: 2
+      expression: 42900 - 4100 - 4900
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_w0012_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Capital
+        credit: '42900'
+        role: capital
+      - account: Drawings
+        debit: '4900'
+        role: drawings
+      - account: Sales
+        credit: '28400'
+        role: revenue
+      - account: Purchases
+        debit: '28400'
+        role: purchases
+      - account: Equipment
+        debit: '52900'
+        role: non_current_asset
+      - account: Wages
+        debit: '4100'
+        role: expense
+      - account: Loan
+        credit: '19000'
+        role: non_current_liability
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Family loan
+        credit: '1000'
+        role: non_current_liability
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

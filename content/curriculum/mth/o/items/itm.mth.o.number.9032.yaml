@@ -1,0 +1,85 @@
+id: itm.mth.o.number.9032
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.rounding
+stem: A rod length is recorded as 8.4 cm, correct to the nearest 0.1 cm.
+parts:
+- id: a
+  prompt: Find the lower bound of its actual length, in centimetres.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '8.35'
+    unit: cm
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9032
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The rounding interval extends half a rounding unit below and above the recorded value.
+  - rung: 2
+    name: concept
+    text:
+      en: Subtract half of the stated rounding unit from the recorded length.
+  - rung: 3
+    name: first_step
+    text:
+      en: Subtract half of the stated rounding unit from the recorded length.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The lower bound is included when rounding to the recorded value; the upper bound is excluded.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 8.35 cm.
+solution:
+  steps:
+  - n: 1
+    latex: 8.4 - \frac{0.1}{2}
+    reason: Subtract half of the stated rounding unit from the recorded length.
+    check_id: chk_build_mastery_supplement_mth_9032
+  - n: 2
+    latex: '8.35'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9032
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9032:
+    args:
+      angle_unit: degrees
+      expression: 8.4-0.1/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

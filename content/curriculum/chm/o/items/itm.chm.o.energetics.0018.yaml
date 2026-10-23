@@ -1,0 +1,89 @@
+id: itm.chm.o.energetics.0018
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.energetics.profiles
+stem: A reaction pathway diagram shows the reactants at 80 kJ/mol, the products at 140 kJ/mol and the highest point of the pathway at 300 kJ/mol.
+parts:
+- id: a
+  prompt: Calculate the activation energy.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '220'
+    unit: kJ/mol
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_energetics_0018_ea
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Activation energy is the energy needed to start the reaction.
+  - rung: 2
+    name: concept
+    text:
+      en: It is measured from the reactants up to the highest point.
+  - rung: 3
+    name: first_step
+    text:
+      en: The reactants are at 80 kJ/mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The highest point is at 300 kJ/mol; subtract the reactants.
+  - rung: 5
+    name: full_step
+    text:
+      en: Ea = 300 − 80 = 220 kJ/mol.
+  misconception_ids:
+  - mc.chm.o.energetics_ea_from_zero
+solution:
+  steps:
+  - n: 1
+    latex: E_a = 300 - 80
+    reason: Peak minus reactants
+  - n: 2
+    latex: E_a = 220\ \text{kJ/mol}
+    reason: Subtract
+    check_id: chk_build_chm_energetics_0018_ea
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_energetics_0018_dh:
+    args:
+      expression: 140 - 80
+    tool: math_evaluate
+  chk_build_chm_energetics_0018_ea:
+    args:
+      expression: 300 - 80
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

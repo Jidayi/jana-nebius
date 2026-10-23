@@ -1,0 +1,76 @@
+{
+  "id": "question-dock.loading",
+  "title": "QuestionDock",
+  "component": "QuestionDock",
+  "state": "loading",
+  "payload": {
+    "events": [
+      {
+        "type": "turn.start",
+        "turn_id": "trn_00000000000000000000000001",
+        "user_message_id": "msg_00000000000000000000000002",
+        "client_message_id": null,
+        "intent": "ask",
+        "mode": "guided",
+        "fork": false
+      },
+      {
+        "type": "part.start",
+        "part_id": "prt_55555555555555555555555555",
+        "kind": "card",
+        "index": 0
+      },
+      {
+        "type": "card.open",
+        "part_id": "prt_55555555555555555555555555",
+        "request_id": "req_66666666666666666666666666",
+        "call_id": null,
+        "card": {
+          "card_type": "question",
+          "prompt": "Which equation links \\(u\\), \\(v\\), \\(a\\) and \\(s\\)?",
+          "options": [
+            {
+              "id": "opt_0",
+              "label": "v^2 = u^2 + 2as",
+              "recommended": true
+            },
+            {
+              "id": "opt_1",
+              "label": "s = ut + \u00bdat\u00b2"
+            }
+          ],
+          "allow_free_text": true,
+          "multi": false,
+          "placeholder_key": "card.something_else"
+        }
+      },
+      {
+        "type": "part.end",
+        "part_id": "prt_55555555555555555555555555",
+        "status": "complete",
+        "duration_ms": 1
+      },
+      {
+        "type": "turn.end",
+        "status": "complete",
+        "stop_reason": "completed",
+        "elapsed_ms": 14000,
+        "usage": null,
+        "verification": "not_applicable",
+        "persisted": {
+          "message_id": "msg_00000000000000000000000009",
+          "part_ids": []
+        },
+        "degraded": false,
+        "degraded_reason": null
+      }
+    ]
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ]
+}

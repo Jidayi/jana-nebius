@@ -1,0 +1,105 @@
+id: itm.chm.o.atoms.0053
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.atoms.ion_formation
+stem: An atom of potassium has the electron arrangement 2,8,8,1.
+parts:
+- id: a
+  prompt: Which ion does potassium form?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: K⁷⁻
+      correct: false
+      misconception_id: mc.chm.o.ion_wrong_direction
+      feedback: 'Atoms take the shortest route to a full outer shell: one or two outer electrons are lost; six or seven are completed by gaining one or two.'
+    - id: B
+      text: K⁴⁺
+      correct: false
+      misconception_id: mc.chm.o.ion_charge_from_period
+      feedback: The charge depends on outer-shell electrons (the group), not on how many shells there are (the period).
+    - id: C
+      text: K⁺
+      correct: true
+    - id: D
+      text: K⁻
+      correct: false
+      misconception_id: mc.chm.o.ion_sign_reversed
+      feedback: Electrons carry negative charge. Take negatives away and the ion is left positive; add negatives and it becomes negative.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Look at the outer shell of potassium: how far is it from being full?'
+  - rung: 2
+    name: concept
+    text:
+      en: Atoms lose or gain the fewest electrons that give a full outer shell. Losing electrons gives a positive ion; gaining gives a negative ion.
+  - rung: 3
+    name: first_step
+    text:
+      en: Potassium has one outer electron.
+  - rung: 4
+    name: worked_step
+    text:
+      en: It is easier for potassium to lose electrons than to gain them.
+  - rung: 5
+    name: full_step
+    text:
+      en: Potassium loses one electron, forming K⁺.
+  misconception_ids:
+  - mc.chm.o.ion_sign_reversed
+  - mc.chm.o.ion_wrong_direction
+  - mc.chm.o.ion_charge_from_period
+solution:
+  steps:
+  - n: 1
+    latex: \text{outer electrons} = 1
+    reason: From the arrangement
+    check_id: chk_build_chm_atoms_0053_outer
+  - n: 2
+    latex: \text{electrons lost} = 1
+    reason: Shortest way to a full shell
+    check_id: chk_build_chm_atoms_0053_moved
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_atoms_0053_moved:
+    args:
+      expression: 19 - 2 - 8 - 8
+    tool: math_evaluate
+  chk_build_chm_atoms_0053_outer:
+    args:
+      expression: 19 - 2 - 8 - 8
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

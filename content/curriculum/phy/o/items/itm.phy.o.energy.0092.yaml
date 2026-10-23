@@ -1,0 +1,100 @@
+id: itm.phy.o.energy.0092
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.efficiency
+stem: Each second, a kettle transfers 170 J to the thermal store of the water and wastes 30 J by heating the surroundings.
+parts:
+- id: a
+  prompt: Calculate its efficiency as a percentage.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '85'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0092_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The total input is not given directly.
+  - rung: 2
+    name: concept
+    text:
+      en: Energy in = useful out + wasted, and efficiency = useful ÷ total in.
+  - rung: 3
+    name: first_step
+    text:
+      en: The total input each second is 170 + 30 = 200 J.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 170 ÷ 200 and write it as a percentage.
+  - rung: 5
+    name: full_step
+    text:
+      en: The efficiency is 85%.
+  misconception_ids:
+  - mc.phy.o.efficiency_useful_over_wasted
+  - mc.phy.o.useful_wasted_swapped
+  - mc.phy.o.efficiency_fraction_percent_mixed
+solution:
+  steps:
+  - n: 1
+    latex: \text{total in} = 170 + 30 = 200\ \text{J}
+    reason: Input = useful + wasted
+    check_id: chk_build_phy_nrg_0092_tot
+  - n: 2
+    latex: \frac{170}{200} = 0.85
+    reason: Efficiency as a fraction
+    check_id: chk_build_phy_nrg_0092_frac
+  - n: 3
+    latex: 0.85 = 85\%
+    reason: As a percentage
+    check_id: chk_build_phy_nrg_0092_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0092_ans:
+    args:
+      expression: 170/(170 + 30)*100
+    tool: math_evaluate
+  chk_build_phy_nrg_0092_frac:
+    args:
+      expression: 170/(170 + 30)
+    tool: math_evaluate
+  chk_build_phy_nrg_0092_tot:
+    args:
+      expression: 170 + 30
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

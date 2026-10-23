@@ -1,0 +1,36 @@
+id: mc.phy.o.thimble_read_as_fiftieths
+kc_ids:
+- kc.phy.o.measurement.measuring_techniques
+student_name: One division as a fiftieth
+description: Takes each thimble division as a fiftieth of a millimetre because the thimble has fifty divisions.
+signatures:
+- kind: answer_transform
+  expression: m + t/50
+fix:
+  strategy: rule_restatement
+  text:
+    en: Fifty divisions make one turn, but one turn moves the spindle only half a millimetre, so each division is a hundredth of a millimetre.
+probe_item_ids:
+- itm.phy.o.measurement.0057
+- itm.phy.o.measurement.0059
+- itm.phy.o.measurement.0047
+- itm.phy.o.measurement.0051
+- itm.phy.o.measurement.0055
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

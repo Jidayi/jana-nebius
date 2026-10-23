@@ -1,0 +1,34 @@
+id: mc.acc.o.ir_cash_sales_included
+kc_ids:
+- kc.acc.o.incomplete_records.missing_credit_figures
+student_name: Adding cash sales
+description: Adds cash sales when asked only for credit sales.
+signatures:
+- kind: answer_transform
+  expression: credit_sales + cash_sales
+fix:
+  strategy: rule_restatement
+  text:
+    en: Cash sales never pass through trade receivables.
+probe_item_ids:
+- itm.acc.o.incomplete_records.0030
+- itm.acc.o.incomplete_records.0031
+- itm.acc.o.incomplete_records.0032
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

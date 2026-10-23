@@ -1,0 +1,94 @@
+id: itm.mth.o.algebra_and_graphs.0304
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.function_notation
+stem: The functions f and g are given by $f(x) = 4x - 3$ and $g(x) = x^2 + 3$.
+parts:
+- id: a
+  prompt: Find gf(-3).
+  marks: 2
+  answer:
+    kind: numeric
+    value: '228'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0304_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: gf(x) means g(f(x)). Which function is applied first?
+  - rung: 2
+    name: concept
+    text:
+      en: Work out f of the number first, then put that answer into g.
+  - rung: 3
+    name: first_step
+    text:
+      en: f(-3) = 4 × (-3) - 3.
+  - rung: 4
+    name: worked_step
+    text:
+      en: f(-3) = -15. Now find g(-15).
+  - rung: 5
+    name: full_step
+    text:
+      en: gf(-3) = 228.
+  misconception_ids:
+  - mc.mth.o.composite_order_reversed
+  - mc.mth.o.composite_as_product
+  - mc.mth.o.multiply_before_power
+solution:
+  steps:
+  - n: 1
+    latex: f(-3) = 4 \times (-3) - 3 = -15
+    reason: The function next to x acts first
+    check_id: chk_build_mth_alg_0304_f
+  - n: 2
+    latex: g(-15) = (-15)^2 + 3 = 228
+    reason: Then apply g
+    check_id: chk_build_mth_alg_0304_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0304_ans:
+    args:
+      expression: (-15)^2 + (3)
+    tool: math_evaluate
+  chk_build_mth_alg_0304_f:
+    args:
+      expression: 4*x + (-3)
+      values:
+        x: -3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

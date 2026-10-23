@@ -1,0 +1,28 @@
+import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { afterEach, beforeEach, expect, test, vi } from "vitest";
+import { NOTE, notesCore } from "../../../packages/client-core/test/notescore.js";
+import { PROFILES } from "../../../packages/client-core/test/profilecore.js";
+import { App, createRuntime } from "../src/App.js";
+import { menuItem } from "./student-menu.js";
+beforeEach(() => vi.stubGlobal("matchMedia", (query: string) => ({ matches: !query.includes("prefers-color-scheme"), media: query, addEventListener() {}, removeEventListener() {} })));
+afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
+test("a note reference opens the accepted turn in history with no model, and another profile sees no note", async () => {
+  const fake = notesCore();
+  vi.stubGlobal("fetch", fake.fetch);
+  fake.core.packs.push({ pack_id: "pack.phy.o", subject: "phy", level: "O", version: "0.1.0", signature_ok: true, size_bytes: 1 });
+  fake.core.models = { ...fake.core.models, installed: [] }; fake.core.health = { status: "ok", components: { core: "ok", runtime: "down" }, readiness: "core_ready" };
+  render(<App runtime={createRuntime(fake.core.launch, fake.fetch)} />);
+  fireEvent.click(await screen.findByRole("button", { name: /^Ada/ }));
+  const nav = await screen.findByRole("navigation", { name: "Main" }); fireEvent.click(within(nav).getByRole("button", { name: "Notes and saved" }));
+  fireEvent.click(await screen.findByRole("button", { name: "Speed" }));
+  fireEvent.click(await screen.findByRole("button", { name: "Open source turn" }));
+  await screen.findByRole("log", { name: "Conversation" });
+  await waitFor(() => expect((document.activeElement as HTMLElement)?.dataset.turnId).toBe(NOTE.statements[0]!.reference.turn_id));
+  expect(screen.queryByRole("textbox", { name: /Ask/ })).toBeNull();
+  fireEvent.click(menuItem("Switch student"));
+  fireEvent.click(await screen.findByRole("button", { name: /^Ben/ }));
+  fireEvent.click(within(await screen.findByRole("navigation", { name: "Main" })).getByRole("button", { name: "Notes and saved" }));
+  await screen.findByText("No notes yet. A note is written here when a tutoring session ends.");
+  expect(screen.queryByRole("button", { name: "Speed" })).toBeNull();
+  expect(fake.rows.get(PROFILES[0]!.profile_id)).toHaveLength(1);
+});

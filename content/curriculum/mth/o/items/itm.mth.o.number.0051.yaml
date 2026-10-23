@@ -1,0 +1,101 @@
+id: itm.mth.o.number.0051
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.venn_counting
+stem: In a class of 50 students, 18 take art, 16 take music and 3 do both. Let A be the set of students who take art and B the set who take music.
+parts:
+- id: a
+  prompt: Find n(A ∪ B), the number who do at least one of them.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '34'
+      correct: false
+      misconception_id: mc.mth.o.venn_double_count
+      feedback: 'Shade A, then shade B: the middle region gets shaded twice. Subtract it once.'
+    - id: B
+      text: '28'
+      correct: false
+      misconception_id: mc.mth.o.venn_only_includes_overlap
+      feedback: '''A only'' is the part of circle A outside circle B: n(A) minus the overlap.'
+    - id: C
+      text: '19'
+      correct: false
+      misconception_id: mc.mth.o.venn_complement_wrong
+      feedback: Find n(A ∪ B) first, then subtract it from the total.
+    - id: D
+      text: '31'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Draw a Venn diagram with two overlapping circles.
+  - rung: 2
+    name: concept
+    text:
+      en: Students who do both are inside both circles, so adding n(A) and n(B) counts them twice.
+  - rung: 3
+    name: first_step
+    text:
+      en: Put 3 in the overlap first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Add 18 and 16, then take away the 3 counted twice.
+  - rung: 5
+    name: full_step
+    text:
+      en: n(A ∪ B) = 18 + 16 − 3 = 31.
+  misconception_ids:
+  - mc.mth.o.venn_complement_wrong
+  - mc.mth.o.venn_double_count
+  - mc.mth.o.venn_only_includes_overlap
+solution:
+  steps:
+  - n: 1
+    latex: n(A \cup B) = n(A) + n(B) - n(A \cap B)
+    reason: The overlap is counted in both sets
+  - n: 2
+    latex: = 18 + 16 - 3 = 31
+    reason: Substitute
+    check_id: chk_build_mth_num_0051_ans
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0051_ans:
+    args:
+      expression: 18 + 16 - 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

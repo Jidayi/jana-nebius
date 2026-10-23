@@ -1,0 +1,115 @@
+id: itm.phy.o.light.0073
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.converging_lens
+stem: A small lamp stands 32 cm from a thin converging lens of focal length 24 cm.
+parts:
+- id: a
+  prompt: Calculate the magnification of the image.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '0.333'
+      correct: false
+      misconception_id: mc.phy.o.lens_magnification_inverted
+      feedback: Magnification = image height ÷ object height = v ÷ u. An image further from the lens than the object is larger than the object.
+    - id: B
+      text: '3'
+      correct: true
+    - id: C
+      text: '0.429'
+      correct: false
+      misconception_id: mc.phy.o.lens_reciprocals_added
+      feedback: 'Take 1/u away from both sides: 1/v = 1/f − 1/u. A real image is always further from the lens than the focal point.'
+    - id: D
+      text: '1'
+      correct: false
+      misconception_id: mc.phy.o.lens_image_same_size
+      feedback: 'Only an object at 2F gives a same-size image. Compare v with u: the image is as many times bigger as v is bigger than u.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You need the image distance before the magnification.
+  - rung: 2
+    name: concept
+    text:
+      en: 1/v = 1/f − 1/u, and then magnification = v ÷ u.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find v from 1/24 − 1/32.
+  - rung: 4
+    name: worked_step
+    text:
+      en: v = 96 cm; divide it by 32.
+  - rung: 5
+    name: full_step
+    text:
+      en: The magnification is 3.
+  misconception_ids:
+  - mc.phy.o.lens_image_same_size
+  - mc.phy.o.lens_magnification_inverted
+  - mc.phy.o.lens_reciprocals_added
+solution:
+  steps:
+  - n: 1
+    latex: \frac{1}{v} = \frac{1}{24} - \frac{1}{32} \Rightarrow v = 96\ \text{cm}
+    reason: Lens formula
+    check_id: chk_build_phy_lgt_0073_v
+  - n: 2
+    latex: m = \frac{v}{u} = \frac{96}{32} = 3
+    reason: Magnification = v / u
+    check_id: chk_build_phy_lgt_0073_ans
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 110
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0073_ans:
+    args:
+      expression: 24/(32 - 24)
+    tool: math_evaluate
+  chk_build_phy_lgt_0073_tool:
+    args:
+      focal_length: 24
+      object_distance: 32
+      optic: converging_lens
+      sign_convention: real_is_positive
+      sign_convention_source: pack
+      task: image
+    tool: phys_optics
+  chk_build_phy_lgt_0073_v:
+    args:
+      expression: 32*24/(32 - 24)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

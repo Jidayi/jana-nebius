@@ -1,0 +1,92 @@
+id: itm.phy.o.electromagnetism.0036
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.electromagnetic_induction
+stem: A magnet is pushed into a coil connected to a meter.
+parts:
+- id: a
+  prompt: Which change gives a bigger reading?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Pushing the magnet in faster
+      correct: true
+    - id: B
+      text: Pushing the magnet in more slowly
+      correct: false
+      misconception_id: mc.phy.o.induction_factor_reversed
+      feedback: The faster the field changes, the bigger the e.m.f. Faster motion, a stronger magnet and more turns all increase it.
+    - id: C
+      text: Using a coil with fewer turns
+      correct: false
+      misconception_id: mc.phy.o.induction_factor_reversed
+      feedback: The faster the field changes, the bigger the e.m.f. Faster motion, a stronger magnet and more turns all increase it.
+    - id: D
+      text: Holding the magnet still inside the coil
+      correct: false
+      misconception_id: mc.phy.o.stationary_magnet_induces
+      feedback: Leave a magnet still inside a coil and the meter reads zero. Only movement, or a changing field, induces an e.m.f.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Ask what is changing in the magnetic field through the coil.
+  - rung: 2
+    name: concept
+    text:
+      en: An e.m.f. is induced while the field through a coil changes; faster change, a stronger magnet and more turns give a bigger e.m.f., and reversing the change reverses it.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A faster change in the field induces a larger e.m.f.
+  - rung: 5
+    name: full_step
+    text:
+      en: Pushing the magnet in faster. A faster change in the field induces a larger e.m.f.
+  misconception_ids:
+  - mc.phy.o.induction_factor_reversed
+  - mc.phy.o.stationary_magnet_induces
+solution:
+  steps:
+  - n: 1
+    latex: \text{Pushing the magnet in faster}
+    reason: A changing field induces an e.m.f.
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

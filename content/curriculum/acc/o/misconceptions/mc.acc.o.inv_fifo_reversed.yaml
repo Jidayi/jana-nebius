@@ -1,0 +1,34 @@
+id: mc.acc.o.inv_fifo_reversed
+kc_ids:
+- kc.acc.o.inventory.fifo
+student_name: Closing inventory at the oldest prices
+description: Values closing inventory under FIFO at the earliest prices, as if the newest goods had been sold first.
+signatures:
+- kind: answer_transform
+  expression: closing_units_at_earliest_cost
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'First in, first out: the old goods have gone, so what is left was bought most recently.'
+probe_item_ids:
+- itm.acc.o.inventory.0001
+- itm.acc.o.inventory.0002
+- itm.acc.o.inventory.0003
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

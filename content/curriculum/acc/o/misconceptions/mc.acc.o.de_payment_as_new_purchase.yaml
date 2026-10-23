@@ -1,0 +1,33 @@
+id: mc.acc.o.de_payment_as_new_purchase
+kc_ids:
+- kc.acc.o.double_entry.record_credit_transactions
+student_name: A payment as a new purchase or sale
+description: Records paying a supplier as a purchase, or receiving money from a customer as a sale, so it is counted twice.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: expense
+fix:
+  strategy: counterexample
+  text:
+    en: The purchase or sale was recorded when it happened. Paying for it later settles the personal account.
+probe_item_ids:
+- itm.acc.o.double_entry.0025
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

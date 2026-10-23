@@ -1,0 +1,96 @@
+{
+  "id": "card-gallery.canonical",
+  "title": "CardGallery",
+  "component": "CardGallery",
+  "state": "canonical",
+  "payload": {
+    "cards": [
+      {
+        "card_type": "question",
+        "prompt": "Which equation links \\(u\\), \\(v\\), \\(a\\) and \\(s\\)?",
+        "options": [
+          {
+            "id": "opt_0",
+            "label": "v^2 = u^2 + 2as",
+            "recommended": true
+          },
+          {
+            "id": "opt_1",
+            "label": "s = ut + \u00bdat\u00b2"
+          }
+        ],
+        "allow_free_text": true,
+        "multi": false,
+        "placeholder_key": "card.something_else"
+      },
+      {
+        "card_type": "hint",
+        "rung": 2,
+        "of": 5,
+        "body": "At the highest point the ball stops for an instant. What is its speed there?",
+        "actions": [
+          "try_it",
+          "next_hint"
+        ]
+      },
+      {
+        "card_type": "plan",
+        "title": "How we'll solve it",
+        "items": [
+          {
+            "id": "1",
+            "text": "List what we know",
+            "status": "done"
+          },
+          {
+            "id": "2",
+            "text": "Pick an equation",
+            "status": "in_progress"
+          },
+          {
+            "id": "3",
+            "text": "Solve for the height",
+            "status": "pending"
+          }
+        ],
+        "actions": [
+          "start",
+          "change"
+        ]
+      },
+      {
+        "card_type": "reflection",
+        "did": "You chose v\u00b2 = u\u00b2 + 2as and solved for s.",
+        "right": "Using v = 0 at the top.",
+        "next_goal": "Try one where the ball is thrown at an angle.",
+        "marks": [
+          {
+            "criterion": "Chose a suitable equation",
+            "type": "method",
+            "awarded": true
+          },
+          {
+            "criterion": "Correct height with units",
+            "type": "accuracy",
+            "awarded": true
+          }
+        ]
+      },
+      {
+        "card_type": "confirm",
+        "purpose": "memory_save",
+        "title": "Save a note about this?",
+        "body": "I'll remember that you prefer to take up as positive.",
+        "confirm_label_key": "card.confirm_yes",
+        "cancel_label_key": "card.confirm_no"
+      }
+    ]
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ]
+}

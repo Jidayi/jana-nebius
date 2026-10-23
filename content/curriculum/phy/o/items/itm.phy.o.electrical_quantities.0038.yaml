@@ -1,0 +1,93 @@
+id: itm.phy.o.electrical_quantities.0038
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.potential_difference
+stem: A battery drives a current round a circuit with one lamp.
+parts:
+- id: a
+  prompt: Which statement about the circuit is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Charges are used up in the lamp to make light
+      correct: false
+      misconception_id: mc.phy.o.charge_used_up_in_lamp
+      feedback: Ammeters before and after a lamp read the same. The charges keep flowing; what they lose in the lamp is energy.
+    - id: B
+      text: Voltage flows out of the battery, through the lamp and back
+      correct: false
+      misconception_id: mc.phy.o.pd_flows_through_component
+      feedback: Current flows through a lamp; p.d. is across it. That is why a voltmeter is connected across, in parallel.
+    - id: C
+      text: Charges gain energy in the battery and transfer it in the lamp
+      correct: true
+    - id: D
+      text: The battery's e.m.f. is the force in newtons on each charge
+      correct: false
+      misconception_id: mc.phy.o.emf_is_a_force
+      feedback: Despite its name, e.m.f. is not a force. It is the energy the cell transfers to each coulomb, so its unit is the volt (a joule per coulomb).
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what a volt measures.
+  - rung: 2
+    name: concept
+    text:
+      en: P.d. and e.m.f. both measure the energy transferred per unit charge, and charge is never used up.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The charges go round and round; energy is what passes from the battery to the lamp.
+  - rung: 5
+    name: full_step
+    text:
+      en: Charges gain energy in the battery and transfer it in the lamp. The charges go round and round; energy is what passes from the battery to the lamp.
+  misconception_ids:
+  - mc.phy.o.charge_used_up_in_lamp
+  - mc.phy.o.emf_is_a_force
+  - mc.phy.o.pd_flows_through_component
+solution:
+  steps:
+  - n: 1
+    latex: \text{Charges gain energy in the battery and transfer it in the lamp}
+    reason: A volt is a joule per coulomb
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

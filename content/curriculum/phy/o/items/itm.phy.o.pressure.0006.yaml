@@ -1,0 +1,88 @@
+id: itm.phy.o.pressure.0006
+version: 0.1.0
+type: multi_select
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.pressure_on_surfaces
+stem: Pressure on the ground can be changed without changing anyone's weight.
+parts:
+- id: a
+  prompt: Which of these increase the pressure on the ground? Select all that apply.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Standing on tiptoe
+      correct: true
+    - id: B
+      text: Wearing shoes with narrow heels
+      correct: true
+    - id: C
+      text: Standing on one foot
+      correct: true
+    - id: D
+      text: Wearing snowshoes
+      correct: false
+    - id: E
+      text: Lying flat on the ground
+      correct: false
+    - id: F
+      text: Riding a bicycle with wider tyres
+      correct: false
+    scoring: exact_set
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Pressure = force ÷ area, and here the force (the weight) stays the same.
+  - rung: 2
+    name: concept
+    text:
+      en: So look only at the area in contact.
+  - rung: 3
+    name: first_step
+    text:
+      en: A smaller area gives a greater pressure.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick every option that makes the contact area smaller.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The correct choices are: Standing on tiptoe; Wearing shoes with narrow heels; Standing on one foot.'
+solution:
+  steps:
+  - n: 1
+    latex: \text{small area} \Rightarrow \text{high pressure}
+    reason: Same force, smaller area, greater pressure
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

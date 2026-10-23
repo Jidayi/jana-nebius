@@ -1,0 +1,50 @@
+id: wex.mth.o.algebra_and_graphs.0005
+kc_ids:
+- kc.mth.o.algebra_and_graphs.factorise_common
+problem: Factorise $x^2 - 64$.
+steps:
+- n: 1
+  latex: x^2 - 64 = (x)^2 - 8^2
+  reason: Both terms are perfect squares
+  check_id: chk_build_mth_alg_w0005_root
+- n: 2
+  latex: = (x - 8)(x + 8)
+  reason: a² − b² = (a − b)(a + b)
+  check_id: chk_build_mth_alg_w0005_f
+final_answer:
+  latex: (x - 8)(x + 8)
+  check_id: chk_build_mth_alg_w0005_root
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0005_f:
+    args:
+      a: (x - 8)*(x + 8)
+      b: x^2 - 64
+    tool: math_check_equivalence
+  chk_build_mth_alg_w0005_root:
+    args:
+      expression: sqrt(64)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

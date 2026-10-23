@@ -1,0 +1,36 @@
+id: mc.mth.o.ratio_wrong_share
+kc_ids:
+- kc.mth.o.number.ratio_share
+student_name: Giving the other person's share
+description: Works out a share correctly but for the wrong part of the ratio.
+signatures:
+- kind: answer_transform
+  expression: total*other/parts
+fix:
+  strategy: rule_restatement
+  text:
+    en: Match the order of the ratio to the order of the names.
+probe_item_ids:
+- itm.mth.o.number.0230
+- itm.mth.o.number.0231
+- itm.mth.o.number.0232
+- itm.mth.o.number.0233
+- itm.mth.o.number.0234
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

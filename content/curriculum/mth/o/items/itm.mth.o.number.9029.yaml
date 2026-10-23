@@ -1,0 +1,85 @@
+id: itm.mth.o.number.9029
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.prime_factors
+stem: The prime factorisation of N is 2^3 times 3^2 times 5.
+parts:
+- id: a
+  prompt: Find the smallest positive whole number k such that N times k is a perfect square.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '10'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9029
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A square has an even exponent for each prime in its factorisation.
+  - rung: 2
+    name: concept
+    text:
+      en: Supply one more factor for each prime whose exponent is odd; leave the even exponent alone.
+  - rung: 3
+    name: first_step
+    text:
+      en: Supply one more factor for each prime whose exponent is odd; leave the even exponent alone.
+  - rung: 4
+    name: worked_step
+    text:
+      en: After multiplying, each prime exponent should be even; use no extra pairs of factors.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 10.
+solution:
+  steps:
+  - n: 1
+    latex: 2 \cdot 5
+    reason: Supply one more factor for each prime whose exponent is odd; leave the even exponent alone.
+    check_id: chk_build_mastery_supplement_mth_9029
+  - n: 2
+    latex: '10'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9029
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9029:
+    args:
+      angle_unit: degrees
+      expression: 2*5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,89 @@
+id: itm.phy.o.motion.0112
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.choose_equation
+stem: A car moving at 5 m/s accelerates at 1.5 m/s^2 for 3 s.
+parts:
+- id: a
+  prompt: Find its final velocity.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '9.50'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_k_0112_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'List u, v, a, s and t: which do you know, which is asked for, and which is not involved?'
+  - rung: 2
+    name: concept
+    text:
+      en: Choose the equation of uniform acceleration that has the quantities you know and the one you want, and leaves out the one that is not involved.
+  - rung: 3
+    name: first_step
+    text:
+      en: Use v = u + at.
+  - rung: 4
+    name: worked_step
+    text:
+      en: v = 5 + 1.5 × 3.
+  - rung: 5
+    name: full_step
+    text:
+      en: v = 5 + 1.5 × 3 gives 9.50 m/s.
+  misconception_ids:
+  - mc.phy.o.equation_with_unknown_time
+solution:
+  steps:
+  - n: 1
+    latex: v = u + at
+    reason: The equation with the known and wanted quantities only
+  - n: 2
+    latex: v = 5 + 1.5 \times 3
+    reason: Substitute
+  - n: 3
+    latex: v = 9.50\ \text{m/s}
+    reason: Evaluate
+    check_id: chk_build_phy_k_0112_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- transport
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_k_0112_a:
+    args:
+      expression: 5 + 1.5*3
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

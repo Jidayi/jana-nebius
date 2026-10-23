@@ -1,0 +1,115 @@
+id: itm.phy.o.practical_electricity.0006
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.electrical_power
+stem: A 36 Ω resistor is connected across a 9 V battery.
+parts:
+- id: a
+  prompt: Calculate the power transferred in the resistor.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '2.25'
+    unit: W
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_pel_0006_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the p.d. and the resistance.
+  - rung: 2
+    name: concept
+    text:
+      en: Since I = V/R and P = IV, the power is P = V²/R.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Square the p.d.: 9 × 9.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: The square is 81; divide by 36 Ω.
+  - rung: 5
+    name: full_step
+    text:
+      en: The power is 2.25 W.
+  misconception_ids:
+  - mc.phy.o.electric_power_voltage_not_squared
+  - mc.phy.o.electric_power_square_as_double
+  - mc.phy.o.electric_power_r_multiplied
+solution:
+  steps:
+  - n: 1
+    latex: V^2 = 9^2 = 81
+    reason: Square the p.d.
+    check_id: chk_build_phy_pel_0006_sq
+  - n: 2
+    latex: P = \frac{V^2}{R} = \frac{81}{36} = 2.25\ \text{W}
+    reason: Power from V and R
+    check_id: chk_build_phy_pel_0006_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  R: '36'
+  V: '9'
+checks:
+  chk_build_phy_pel_0006_ans:
+    args:
+      expression: 9^2/36
+    tool: math_evaluate
+  chk_build_phy_pel_0006_sq:
+    args:
+      expression: 9^2
+    tool: math_evaluate
+  chk_build_phy_pel_0006_tool:
+    args:
+      components:
+      - emf: '9'
+        id: B
+        kind: battery
+      - id: R
+        kind: resistor
+        resistance: '36'
+      network:
+        series:
+        - B
+        - R
+    tool: phys_circuit
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.mixed_branch_gets_full_supply
+kc_ids:
+- kc.phy.o.circuits.mixed_circuits
+student_name: The parallel pair gets the whole supply p.d.
+description: Uses the full supply p.d. across a parallel group that is in series with another resistor.
+signatures:
+- kind: answer_transform
+  expression: V/R2
+fix:
+  strategy: rule_restatement
+  text:
+    en: The series resistor takes part of the supply p.d. first. Find the current from the supply, then the p.d. across the parallel group with V = IR.
+probe_item_ids:
+- itm.phy.o.circuits.0041
+- itm.phy.o.circuits.0044
+- itm.phy.o.circuits.0045
+- itm.phy.o.circuits.0033
+- itm.phy.o.circuits.0034
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

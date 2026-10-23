@@ -1,0 +1,78 @@
+id: wex.chm.o.stoichiometry.0002
+kc_ids:
+- kc.chm.o.stoichiometry.ionic_formulae
+problem: Write the formula of calcium nitrate, made of Ca²⁺ and NO₃⁻ ions, and find its relative formula mass.
+steps:
+- n: 1
+  latex: \text{Ca(NO}_3\text{)}_2
+  reason: Swap the sizes of the charges; the group ion goes in brackets
+- n: 2
+  latex: \text{Ca} = 40
+  reason: One Ca atom times Ar
+  check_id: chk_build_chm_stoichiometry_w0002_g_ca
+- n: 3
+  latex: \text{N}_2 = 28
+  reason: Two N atoms times Ar
+  check_id: chk_build_chm_stoichiometry_w0002_g_n
+- n: 4
+  latex: \text{O}_6 = 96
+  reason: Six O atoms times Ar
+  check_id: chk_build_chm_stoichiometry_w0002_g_o
+final_answer:
+  latex: \text{Ca(NO}_3\text{)}_2,\ M_r = 164
+  check_id: chk_build_chm_stoichiometry_w0002_mr
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_w0002_g_ca:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ca
+      formula: Ca
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_w0002_g_n:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      formula: N2
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_w0002_g_o:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_o
+      formula: O6
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_w0002_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ca
+      - source: pack
+        symbol: ar_n
+      - source: pack
+        symbol: ar_o
+      formula: Ca(NO3)2
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

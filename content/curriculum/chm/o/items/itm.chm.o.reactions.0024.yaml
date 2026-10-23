@@ -1,0 +1,83 @@
+id: itm.chm.o.reactions.0024
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.rate_factors
+stem: Calcium carbonate reacts with dilute hydrochloric acid. Four experiments use the same mass of carbonate and the same volume of acid.
+parts:
+- id: a
+  prompt: Put the experiments in order of rate, slowest first.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s4
+      text: Powdered carbonate in hot concentrated acid
+    - id: s2
+      text: Lumps of carbonate in hot dilute acid
+    - id: s1
+      text: Lumps of carbonate in cold dilute acid
+    - id: s3
+      text: Powdered carbonate in hot dilute acid
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Compare the experiments one factor at a time.
+  - rung: 2
+    name: concept
+    text:
+      en: Higher temperature, larger surface area and higher concentration each increase the rate.
+  - rung: 3
+    name: first_step
+    text:
+      en: The slowest has none of the helpful factors; the fastest has all three.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Each step up the list adds one more factor that speeds up the reaction.
+  - rung: 5
+    name: full_step
+    text:
+      en: Cold lumps in dilute acid; hot lumps in dilute acid; hot powder in dilute acid; hot powder in concentrated acid.
+  misconception_ids:
+  - mc.chm.o.reactions_bigger_pieces_faster
+solution:
+  steps:
+  - n: 1
+    latex: \text{each step adds one rate factor}
+    reason: Temperature, then surface area, then concentration
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

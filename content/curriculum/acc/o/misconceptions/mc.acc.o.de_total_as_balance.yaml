@@ -1,0 +1,34 @@
+id: mc.acc.o.de_total_as_balance
+kc_ids:
+- kc.acc.o.double_entry.balance_account
+student_name: The side total as the balance
+description: Gives the total of the larger side as the balance instead of the difference between the sides.
+signatures:
+- kind: answer_transform
+  expression: larger_side_total
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'The balance is what you add to the smaller side to make both sides equal: it is a difference.'
+probe_item_ids:
+- itm.acc.o.double_entry.0045
+- itm.acc.o.double_entry.0046
+- itm.acc.o.double_entry.0047
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

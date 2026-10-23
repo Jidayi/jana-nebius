@@ -1,0 +1,69 @@
+id: les.mth.o.geometry.scale_drawings
+node_id: cur.mth.o.geometry.scale_drawings
+kc_ids:
+- kc.mth.o.geometry.map_scales
+- kc.mth.o.geometry.bearings
+title: Scale drawings and bearings
+estimated_minutes: 10
+blocks:
+- type: step
+  text:
+    en: Try this before any rules. Each centimetre on the map stands for many real centimetres.
+  item_id: itm.mth.o.geometry.0035
+  action: try_first
+  why:
+    en: One cm on the map is 20000 cm in real life, so multiply. Then change the answer to km.
+  names:
+    en: 'The 1 : 20000 is the map scale. From map to real, you multiply by it.'
+- type: step
+  text:
+    en: Same idea with a bigger scale. Watch the units at the end.
+  item_id: itm.mth.o.geometry.0046
+  action: choose
+  why:
+    en: Multiply by the scale to get centimetres, then change to metres and then to kilometres. Dividing by the scale, or stopping in centimetres, are the usual slips.
+- type: step
+  text:
+    en: 'Now go the other way, from the real road to the plan. Before you work it out, predict: should you multiply or divide by the scale?'
+  item_id: itm.mth.o.geometry.0045
+  action: predict
+  why:
+    en: Plan lengths are smaller, so change the kilometres to centimetres and divide by the scale. Multiplying gives a huge, impossible length.
+- type: step
+  text:
+    en: A bearing is measured clockwise from north. To face back the way you came, you make a half turn.
+  item_id: itm.mth.o.geometry.0052
+  action: calculate
+  why:
+    en: A half turn is 180°, and this bearing is under 180°, so add 180°.
+  names:
+    en: The bearing for the return trip is called the back bearing.
+- type: step
+  text:
+    en: Now one on your own.
+  item_id: itm.mth.o.geometry.0061
+  action: choose
+  why:
+    en: This bearing is over 180°, so subtract 180°; adding would go past a full turn. Adding a quarter turn, or taking the bearing from a full turn, are the usual slips.
+- type: check
+  item_ids:
+  - itm.mth.o.geometry.0036
+  - itm.mth.o.geometry.0062
+  - itm.mth.o.geometry.0050
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

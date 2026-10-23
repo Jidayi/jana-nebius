@@ -1,0 +1,88 @@
+id: itm.mth.o.number.0252
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.rates
+stem: A 400 g bag of rice costs $2.4.
+parts:
+- id: a
+  prompt: Find the price per kilogram, in dollars.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '6.00'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_mth_num_0252_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'A price per kilogram is a rate: dollars for each kilogram.'
+  - rung: 2
+    name: concept
+    text:
+      en: Divide the cost by the mass, with the mass in kilograms.
+  - rung: 3
+    name: first_step
+    text:
+      en: 400 g is 400/1000 kg.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 2.4 ÷ (400/1000).
+  - rung: 5
+    name: full_step
+    text:
+      en: The price is $6.00 per kg.
+  misconception_ids:
+  - mc.mth.o.rate_inverted
+  - mc.mth.o.rate_multiplied
+solution:
+  steps:
+  - n: 1
+    latex: \text{price per g} = 2.4 \div 400
+    reason: Unit price
+  - n: 2
+    latex: \text{price per kg} = 6.00
+    reason: Multiply by 1000 grams
+    check_id: chk_build_mth_num_0252_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- market
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0252_ans:
+    args:
+      dp: 2
+      expression: 2.4/400*1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,86 @@
+id: dgm.phy.plane_mirror_reflection.v1
+subject: phy
+title: Reflection at a plane mirror
+svg_path: diagrams/plane_mirror_reflection_v1.svg
+parts:
+- id: incident_ray
+  name: Incident ray
+  function: The ray of light travelling towards the mirror.
+  label_anchor:
+  - 40
+  - 90
+  tab_order: 0
+  essential: true
+- id: normal
+  name: Normal
+  function: A line at right angles to the mirror where the ray meets it; both angles are measured from it.
+  label_anchor:
+  - 248
+  - 72
+  tab_order: 1
+- id: angle_i
+  name: Angle of incidence
+  function: The angle between the incident ray and the normal.
+  aliases:
+  - i
+  label_anchor:
+  - 218
+  - 192
+  tab_order: 2
+- id: reflected_ray
+  name: Reflected ray
+  function: The ray of light leaving the mirror after reflection.
+  label_anchor:
+  - 340
+  - 90
+  tab_order: 3
+  essential: true
+- id: angle_r
+  name: Angle of reflection
+  function: The angle between the reflected ray and the normal; it equals the angle of incidence.
+  aliases:
+  - r
+  label_anchor:
+  - 256
+  - 192
+  tab_order: 4
+- id: mirror
+  name: Plane mirror
+  function: A flat reflecting surface; the hatching marks its back.
+  label_anchor:
+  - 60
+  - 290
+  tab_order: 5
+  essential: true
+sequences:
+- id: law_of_reflection
+  title: The law of reflection
+  steps:
+  - highlight:
+    - incident_ray
+    caption: A ray of light travels towards the mirror.
+    arrows:
+    - arrow_in
+  - highlight:
+    - normal
+    caption: Draw the normal at right angles to the mirror where the ray meets it.
+  - highlight:
+    - angle_i
+    caption: The angle of incidence is measured from the normal, not from the mirror.
+  - highlight:
+    - reflected_ray
+    - angle_r
+    caption: The ray leaves with the angle of reflection equal to the angle of incidence.
+    arrows:
+    - arrow_out
+alt_text: A ray of light meets a flat mirror and reflects; a dashed normal stands at right angles to the mirror, and the angle of incidence i on one side of it matches the angle of reflection r on the other.
+licence: LicenseRef-Own
+attribution: Our own drawing, made for Jana with AI assistance.
+version: 1.0.0
+levels:
+- O
+kc_ids: []
+review:
+  author_role_id: rev_author_agent
+  status: in_review
+  style_version: 1

@@ -1,0 +1,35 @@
+id: mc.phy.o.background_rate_from_count
+kc_ids:
+- kc.phy.o.radioactivity.background_radiation
+student_name: Subtracting a rate from a total count
+description: Subtracts a background count rate (per minute) from a total count taken over several minutes, mixing a count with a rate.
+signatures:
+- kind: answer_transform
+  expression: (N - B)/t
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Put both into the same form first: turn the total count into counts per minute, then subtract the background per minute.'
+probe_item_ids:
+- itm.phy.o.radioactivity.0057
+- itm.phy.o.radioactivity.0059
+- itm.phy.o.radioactivity.0049
+- itm.phy.o.radioactivity.0051
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

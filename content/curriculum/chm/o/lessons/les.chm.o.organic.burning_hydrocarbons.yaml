@@ -1,0 +1,68 @@
+id: les.chm.o.organic.burning_hydrocarbons
+node_id: cur.chm.o.organic_chemistry.alkanes
+kc_ids:
+- kc.chm.o.organic.combustion
+title: Burning hydrocarbons
+estimated_minutes: 12
+blocks:
+- type: step
+  text:
+    en: 'Methane burns in plenty of air to make carbon dioxide and water. Try this before any rule: count each kind of atom on both sides of each equation.'
+  item_id: itm.chm.o.organic.0085
+  action: try_first
+  why:
+    en: Only CH₄ + 2O₂ → CO₂ + 2H₂O has the same atoms on both sides using the smallest whole numbers. Oxygen stays as O₂, and the carbon ends up as CO₂, not CO.
+  names:
+    en: 'That is complete combustion: all the carbon becomes carbon dioxide and all the hydrogen becomes water.'
+- type: step
+  text:
+    en: Balance the carbon first, then the hydrogen, and count the oxygen atoms you need last. Keep O₂ as it is and use the smallest whole numbers.
+  item_id: itm.chm.o.organic.0086
+  action: choose
+  why:
+    en: Three carbons give three CO₂ and eight hydrogens give four H₂O, so ten oxygen atoms are needed, which is five O₂. Doubling everything still balances, but it is not in lowest terms.
+- type: step
+  text:
+    en: Same steps, less help this time.
+  item_id: itm.chm.o.organic.0095
+  action: calculate
+  why:
+    en: Five CO₂ and six H₂O need sixteen oxygen atoms, which is eight O₂.
+- type: step
+  text:
+    en: This time the oxygen atoms needed come to an odd number. Half a molecule is not allowed, so what can you do?
+  item_id: itm.chm.o.organic.0090
+  action: calculate
+  why:
+    en: 'One ethane needs seven oxygen atoms, which would be three and a half O₂. Doubling everything gives whole numbers: seven O₂ for two ethane.'
+  names:
+    en: If the oxygen atoms come to an odd number, double all the numbers.
+- type: step
+  text:
+    en: Now one on your own.
+  item_id: itm.chm.o.organic.0092
+  action: calculate
+  why:
+    en: 'Butane gives four CO₂ and five H₂O, which need thirteen oxygen atoms. That is odd, so double everything: thirteen O₂ for two butane.'
+- type: check
+  item_ids:
+  - itm.chm.o.organic.0087
+  - itm.chm.o.organic.0094
+  - itm.chm.o.organic.0096
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

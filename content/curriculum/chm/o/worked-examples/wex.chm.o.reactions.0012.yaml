@@ -1,0 +1,58 @@
+id: wex.chm.o.reactions.0012
+kc_ids:
+- kc.chm.o.reactions.redox
+problem: In the blast furnace, Fe₂O₃ + 3CO → 2Fe + 3CO₂. Identify the substance reduced and the reducing agent, and find how many electrons each iron ion gains.
+steps:
+- n: 1
+  latex: \text{Fe}_2\text{O}_3 + 3\text{CO} \rightarrow 2\text{Fe} + 3\text{CO}_2
+  reason: The reaction
+  check_id: chk_build_chm_reactions_w0012_s1
+- n: 2
+  latex: '\text{Fe: }+3 \rightarrow 0'
+  reason: Iron(III) oxide loses oxygen
+  check_id: chk_build_chm_reactions_w0012_e
+- n: 3
+  latex: '\text{CO gains oxygen: the reducing agent}'
+  reason: It is oxidised to carbon dioxide
+- n: 4
+  latex: 3 - 0 = 3
+  reason: Fall in oxidation number of iron
+  check_id: chk_build_chm_reactions_w0012_e
+final_answer:
+  latex: 3\ \text{electrons gained by each iron ion}
+  check_id: chk_build_chm_reactions_w0012_e
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_w0012_e:
+    args:
+      expression: 3 - 0
+    tool: math_evaluate
+  chk_build_chm_reactions_w0012_s1:
+    args:
+      equation: Fe2O3 + 3CO -> 2Fe + 3CO2
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

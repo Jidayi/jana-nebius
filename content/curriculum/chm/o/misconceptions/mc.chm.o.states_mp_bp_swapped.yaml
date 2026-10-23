@@ -1,0 +1,36 @@
+id: mc.chm.o.states_mp_bp_swapped
+kc_ids:
+- kc.chm.o.states.changes_of_state
+- kc.chm.o.analysis.purity
+student_name: Melting point read as boiling point
+description: Uses the boiling point where the melting point belongs (or the reverse) when deciding a state.
+signatures:
+- kind: answer_transform
+  expression: 'choice: solid chosen between the melting and boiling points'
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Below the melting point: solid. Between the melting point and the boiling point: liquid. Above the boiling point: gas.'
+probe_item_ids:
+- itm.chm.o.states.0013
+- itm.chm.o.states.0014
+- itm.chm.o.states.0015
+- itm.chm.o.states.0016
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,310 @@
+- id: kc.phy.o.energy.stores_and_transfers
+  code: PHY-O-01.07.K01
+  node_id: cur.phy.o.motion_forces_and_energy.energy_work_and_power
+  statement: Identify energy stores and transfers and apply conservation of energy to simple systems
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.12
+  prerequisites: []
+  misconception_ids:
+  - mc.phy.o.energy_created
+  - mc.phy.o.energy_force_confused
+  - mc.phy.o.energy_used_up
+  - mc.phy.o.stationary_has_no_energy
+  - mc.phy.o.stores_before_after_swapped
+  - mc.phy.o.transfer_named_as_store
+  skill_ids:
+  - phy-o-energy
+  glossary:
+  - energy store
+  - kinetic store
+  - thermal store
+  - chemical store
+  - gravitational store
+  - elastic store
+  - nuclear store
+  - conservation of energy
+  - filament lamp
+  - generator
+  - kinetic energy
+  - power station
+  - turbine
+  difficulty_prior: -0.8
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.energy.kinetic_energy
+  code: PHY-O-01.07.K02
+  node_id: cur.phy.o.motion_forces_and_energy.energy_work_and_power
+  statement: Calculate kinetic energy from mass and speed, and speed from kinetic energy
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.145
+  prerequisites:
+  - kc_id: kc.phy.o.energy.stores_and_transfers
+    strength: required
+  - kc_id: kc.phy.o.motion.average_speed
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.ke_change_from_speed_difference
+  - mc.phy.o.ke_final_not_change
+  - mc.phy.o.ke_half_omitted
+  - mc.phy.o.ke_kmh_not_converted
+  - mc.phy.o.ke_mass_in_grams
+  - mc.phy.o.ke_proportional_to_speed
+  - mc.phy.o.ke_rearrange_half_wrong
+  - mc.phy.o.ke_speed_not_rooted
+  - mc.phy.o.ke_speed_not_squared
+  - mc.phy.o.square_taken_as_double
+  skill_ids:
+  - phy-o-energy
+  glossary:
+  - kinetic energy
+  - kinetic store
+  - mass
+  - speed
+  - joule
+  - velocity
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.energy.potential_energy
+  code: PHY-O-01.07.K03
+  node_id: cur.phy.o.motion_forces_and_energy.energy_work_and_power
+  statement: Calculate the change in gravitational potential energy when an object is raised or lowered
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.133
+  prerequisites:
+  - kc_id: kc.phy.o.energy.stores_and_transfers
+    strength: required
+  - kc_id: kc.phy.o.mass_weight.weight_from_mass
+    strength: required
+  misconception_ids:
+  - mc.phy.o.energy_formula_inverted
+  - mc.phy.o.energy_kilo_prefix_ignored
+  - mc.phy.o.energy_mass_for_weight
+  - mc.phy.o.gpe_half_from_ke
+  - mc.phy.o.gpe_height_in_cm
+  - mc.phy.o.gpe_height_not_change
+  - mc.phy.o.gpe_heights_added
+  - mc.phy.o.gpe_weight_times_g
+  skill_ids:
+  - phy-o-energy
+  glossary:
+  - gravitational potential energy
+  - potential energy
+  - gravitational store
+  - gravitational field strength
+  - mass
+  - joule
+  - weight
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.energy.energy_conversion
+  code: PHY-O-01.07.K04
+  node_id: cur.phy.o.motion_forces_and_energy.energy_work_and_power
+  statement: Use conservation of energy to link potential and kinetic energy for falling, swinging and sliding objects
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.133
+  prerequisites:
+  - kc_id: kc.phy.o.energy.kinetic_energy
+    strength: required
+  - kc_id: kc.phy.o.energy.potential_energy
+    strength: required
+  misconception_ids:
+  - mc.phy.o.conversion_mass_not_cancelled
+  - mc.phy.o.conversion_two_dropped
+  - mc.phy.o.energy_lost_added
+  - mc.phy.o.energy_lost_is_one_store
+  - mc.phy.o.energy_mass_for_weight
+  - mc.phy.o.gpe_half_from_ke
+  - mc.phy.o.gpe_height_in_cm
+  - mc.phy.o.gpe_height_not_change
+  - mc.phy.o.ke_half_omitted
+  - mc.phy.o.ke_speed_not_rooted
+  - mc.phy.o.ke_speed_not_squared
+  skill_ids:
+  - phy-o-energy
+  glossary:
+  - conservation of energy
+  - kinetic energy
+  - potential energy
+  - gravitational potential energy
+  - kinetic store
+  - gravitational store
+  - thermal store
+  - pendulum
+  - friction
+  - air resistance
+  difficulty_prior: 0.6
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.energy.work_done
+  code: PHY-O-01.07.K05
+  node_id: cur.phy.o.motion_forces_and_energy.energy_work_and_power
+  statement: Calculate work done as force × distance moved in the direction of the force
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.133
+  prerequisites:
+  - kc_id: kc.phy.o.energy.stores_and_transfers
+    strength: required
+  - kc_id: kc.phy.o.forces.resultant_force
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.energy_force_confused
+  - mc.phy.o.energy_formula_inverted
+  - mc.phy.o.energy_formula_operation_swapped
+  - mc.phy.o.energy_kilo_prefix_ignored
+  - mc.phy.o.energy_mass_for_weight
+  - mc.phy.o.work_distance_not_along_force
+  - mc.phy.o.work_done_without_movement
+  - mc.phy.o.work_force_over_distance
+  - mc.phy.o.work_force_times_time
+  - mc.phy.o.work_total_path_used
+  skill_ids:
+  - phy-o-energy
+  glossary:
+  - work done
+  - force
+  - joule
+  - newton
+  - direction of the force
+  - energy transferred
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.energy.power
+  code: PHY-O-01.07.K06
+  node_id: cur.phy.o.motion_forces_and_energy.energy_work_and_power
+  statement: Calculate power as the energy transferred or the work done per unit time
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.133
+  prerequisites:
+  - kc_id: kc.phy.o.energy.work_done
+    strength: required
+  misconception_ids:
+  - mc.phy.o.energy_force_confused
+  - mc.phy.o.energy_formula_inverted
+  - mc.phy.o.energy_formula_operation_swapped
+  - mc.phy.o.energy_kilo_prefix_ignored
+  - mc.phy.o.energy_mass_for_weight
+  - mc.phy.o.power_energy_times_time
+  - mc.phy.o.power_is_energy
+  - mc.phy.o.power_minutes_not_converted
+  - mc.phy.o.power_same_if_same_work
+  - mc.phy.o.work_force_over_distance
+  skill_ids:
+  - phy-o-energy
+  glossary:
+  - power
+  - watt
+  - kilowatt
+  - energy transferred
+  - work done
+  - joule
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.energy.efficiency
+  code: PHY-O-01.07.K07
+  node_id: cur.phy.o.motion_forces_and_energy.energy_work_and_power
+  statement: Calculate the efficiency of an energy transfer as useful output over total input
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.12
+  prerequisites:
+  - kc_id: kc.phy.o.energy.stores_and_transfers
+    strength: required
+  - kc_id: kc.phy.o.energy.power
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.efficiency_fraction_percent_mixed
+  - mc.phy.o.efficiency_inverted
+  - mc.phy.o.efficiency_percent_not_converted
+  - mc.phy.o.efficiency_useful_over_wasted
+  - mc.phy.o.energy_formula_operation_swapped
+  - mc.phy.o.useful_wasted_swapped
+  skill_ids:
+  - phy-o-energy
+  glossary:
+  - efficiency
+  - useful energy
+  - useful output
+  - total input
+  - wasted energy
+  - energy transfer
+  - thermal store
+  - kinetic store
+  - electrical energy
+  - solar cell
+  - motor
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.energy.energy_resources
+  code: PHY-O-01.07.K08
+  node_id: cur.phy.o.motion_forces_and_energy.energy_work_and_power
+  statement: Compare energy resources by renewability, reliability, cost and effect on the environment
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.084
+  prerequisites:
+  - kc_id: kc.phy.o.energy.stores_and_transfers
+    strength: required
+  - kc_id: kc.phy.o.energy.efficiency
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.biofuel_seen_as_nonrenewable
+  - mc.phy.o.energy_created
+  - mc.phy.o.energy_mass_for_weight
+  - mc.phy.o.energy_source_traced_wrongly
+  - mc.phy.o.gpe_half_from_ke
+  - mc.phy.o.nuclear_is_renewable
+  - mc.phy.o.plentiful_seen_as_renewable
+  - mc.phy.o.renewability_confused_with_reliability
+  - mc.phy.o.renewable_cheap_to_build
+  - mc.phy.o.renewable_means_clean
+  - mc.phy.o.renewable_means_reusable
+  - mc.phy.o.renewables_always_available
+  skill_ids:
+  - phy-o-energy
+  glossary:
+  - energy resource
+  - renewable
+  - non-renewable
+  - fossil fuel
+  - nuclear
+  - nuclear power station
+  - power station
+  - uranium
+  - solar
+  - solar cell
+  - wind turbine
+  - hydroelectric
+  - geothermal
+  - tidal
+  - tidal barrage
+  - biofuel
+  - renewability
+  - generator
+  - turbine
+  difficulty_prior: -0.4
+  version: 0.1.1
+  status: active

@@ -1,0 +1,57 @@
+id: wex.chm.o.electrolysis.0005
+kc_ids:
+- kc.chm.o.electrolysis.half_equations
+problem: Write the half-equation for the discharge of bromide ions at the anode when molten lead(II) bromide is electrolysed.
+steps:
+- n: 1
+  latex: \text{Br}^{-} \rightarrow \text{Br}_2
+  reason: Bromine is diatomic
+- n: 2
+  latex: 2\text{Br}^{-} \rightarrow \text{Br}_2:\ \text{left } -2,\ \text{right } 0
+  reason: Balance the atoms, then compare the charges
+  check_id: chk_build_chm_electrolysis_w0005_l
+- n: 3
+  latex: 2\text{Br}^{-} \rightarrow \text{Br}_2 + 2e^{-}
+  reason: Electrons lost go on the right
+  check_id: chk_build_chm_electrolysis_w0005_bal
+final_answer:
+  latex: '2\ \text{electrons: } 2\text{Br}^{-} \rightarrow \text{Br}_2 + 2e^{-}'
+  check_id: chk_build_chm_electrolysis_w0005_n
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_w0005_bal:
+    args:
+      equation: 2Br^- -> 1Br2 + 2e-
+    tool: chem_balance
+  chk_build_chm_electrolysis_w0005_l:
+    args:
+      expression: 2*(-1)
+    tool: math_evaluate
+  chk_build_chm_electrolysis_w0005_n:
+    args:
+      expression: 0 - 2*(-1)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

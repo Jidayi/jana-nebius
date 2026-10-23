@@ -1,0 +1,97 @@
+id: itm.phy.o.momentum.0025
+version: 0.1.1
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.conservation_of_momentum
+stem: A skater at rest throws a heavy ball forwards.
+parts:
+- id: a
+  prompt: What happens to the skater?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: She moves forwards with the ball
+      correct: false
+      misconception_id: mc.phy.o.recoil_sign_dropped
+      feedback: 'The total momentum before the explosion is zero, so afterwards the two momenta must cancel: one of the velocities is negative.'
+    - id: B
+      text: She moves backwards, more slowly than the ball moves forwards
+      correct: true
+    - id: C
+      text: She moves backwards at the same speed as the ball
+      correct: false
+      misconception_id: mc.phy.o.recoil_equal_speeds
+      feedback: The skater moves back as fast as the ball only if their masses are equal. Equal and opposite momenta mean the heavier part moves more slowly.
+    - id: D
+      text: She stays still, because the throw creates new momentum
+      correct: false
+      misconception_id: mc.phy.o.explosion_creates_momentum
+      feedback: The forces in an explosion are internal and equal and opposite, so they give equal and opposite momenta. The total stays what it was before.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about the total momentum of everything involved, before and after.
+  - rung: 2
+    name: concept
+    text:
+      en: In a collision or explosion with no outside forces, total momentum is conserved; momentum has a sign.
+  - rung: 3
+    name: first_step
+    text:
+      en: Compare the total momentum before with the total momentum after.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The total momentum must stay zero, and she is heavier than the ball.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: She moves backwards, more slowly than the ball moves forwards. Her momentum is equal and opposite to the ball''s; with more mass she moves more slowly.'
+  misconception_ids:
+  - mc.phy.o.explosion_creates_momentum
+  - mc.phy.o.recoil_equal_speeds
+  - mc.phy.o.recoil_sign_dropped
+solution:
+  steps:
+  - n: 1
+    latex: \text{She moves backwards, more slowly than the ball moves forwards}
+    reason: Apply conservation of momentum
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

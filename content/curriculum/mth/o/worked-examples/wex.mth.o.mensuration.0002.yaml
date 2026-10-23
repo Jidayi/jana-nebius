@@ -1,0 +1,50 @@
+id: wex.mth.o.mensuration.0002
+kc_ids:
+- kc.mth.o.mensuration.metric_units
+problem: A jug holds 450 cm³ of water. How many litres is this?
+steps:
+- n: 1
+  latex: 1\ \text{litre} = 1000\ \text{cm}^3
+  reason: The metric link between volume and capacity
+  check_id: chk_build_mth_mns_w0002_l
+- n: 2
+  latex: 450 \div 1000 = 0.45
+  reason: Divide to change to the larger unit
+  check_id: chk_build_mth_mns_w0002_ans
+final_answer:
+  latex: 0.45\ \text{litres}
+  check_id: chk_build_mth_mns_w0002_ans
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_mns_w0002_ans:
+    args:
+      expression: 450/1000
+    tool: math_evaluate
+  chk_build_mth_mns_w0002_l:
+    args:
+      quantity: 1 L
+      to: cm^3
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,35 @@
+id: mc.chm.o.analysis_litmus_colours_reversed
+kc_ids:
+- kc.chm.o.analysis.gas_tests
+student_name: Ammonia turns litmus red
+description: Expects ammonia to turn damp blue litmus red, as an acidic gas would.
+signatures:
+- kind: answer_transform
+  expression: 'choice: ammonia given an acidic litmus result'
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Ammonia is alkaline: it turns damp red litmus blue.'
+probe_item_ids:
+- itm.chm.o.analysis.0084
+- itm.chm.o.analysis.0085
+- itm.chm.o.analysis.0086
+- itm.chm.o.analysis.0087
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

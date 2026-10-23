@@ -1,0 +1,98 @@
+id: itm.chm.o.acids.0053
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.salt_preparation
+stem: A student makes crystals of magnesium sulfate from magnesium oxide and dilute sulfuric acid.
+parts:
+- id: a
+  prompt: Put the steps in the correct order.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s2
+      text: Add magnesium oxide a little at a time, stirring, until some is left over
+    - id: s4
+      text: Heat the filtrate to evaporate some of the water
+    - id: s1
+      text: Warm some dilute sulfuric acid in a beaker
+    - id: s6
+      text: Pour off the liquid and dry the crystals between filter papers
+    - id: s5
+      text: Leave the concentrated solution to cool so that crystals form
+    - id: s3
+      text: Filter the mixture to remove the leftover magnesium oxide
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+    - s5
+    - s6
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Think about what each step is for: react, remove, concentrate, crystallise, dry.'
+  - rung: 2
+    name: concept
+    text:
+      en: Magnesium oxide is insoluble, so an excess is added and then filtered off.
+  - rung: 3
+    name: first_step
+    text:
+      en: The reaction must happen before anything can be filtered.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The filtrate holds magnesium sulfate in solution; water is removed before crystals can form.
+  - rung: 5
+    name: full_step
+    text:
+      en: Warm acid, add excess oxide, filter, concentrate the filtrate, cool to crystallise, dry.
+  misconception_ids:
+  - mc.chm.o.acids_filtrate_residue_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{MgO} + \text{H}_2\text{SO}_4 \rightarrow \text{MgSO}_4 + \text{H}_2\text{O}
+    reason: Insoluble base + acid
+    check_id: chk_build_chm_acids_0053_bal
+  - n: 2
+    latex: \text{react} \rightarrow \text{filter} \rightarrow \text{concentrate} \rightarrow \text{crystallise}
+    reason: Order of the method
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_acids_0053_bal:
+    args:
+      equation: MgO + H2SO4 -> MgSO4 + H2O
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

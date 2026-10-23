@@ -1,0 +1,36 @@
+id: mc.chm.o.mr_count_ignored
+kc_ids:
+- kc.chm.o.stoichiometry.relative_formula_mass
+student_name: Ignoring the number of atoms
+description: Adds each element's relative atomic mass once, ignoring how many atoms of it are in the formula.
+signatures:
+- kind: answer_transform
+  expression: sum of Ar for each element once
+fix:
+  strategy: simpler_numbers
+  text:
+    en: Write out the atoms one by one for a small formula such as H₂O (H + H + O) and see that each atom counts.
+probe_item_ids:
+- itm.chm.o.stoichiometry.0025
+- itm.chm.o.stoichiometry.0026
+- itm.chm.o.stoichiometry.0027
+- itm.chm.o.stoichiometry.0028
+- itm.chm.o.stoichiometry.0029
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

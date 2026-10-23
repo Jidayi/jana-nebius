@@ -1,0 +1,123 @@
+id: itm.phy.o.radioactivity.0022
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.decay_equations
+stem: A nucleus of thorium-232 (proton number 90) decays in several steps, giving out 6 alpha particles and 4 beta particles in all, to become lead-208.
+parts:
+- id: a
+  prompt: What is the proton number of lead-208?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '82'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_rad_0022_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Treat each kind of decay separately and add up the changes.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Alpha: nucleon number −4, proton number −2. Beta: nucleon number unchanged, proton number +1.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Each alpha lowers the proton number by 2; each beta raises it by 1.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 90 − 2 × 6 + 4.
+  - rung: 5
+    name: full_step
+    text:
+      en: The proton number of lead-208 is 82.
+  misconception_ids:
+  - mc.phy.o.beta_lowers_proton_number
+  - mc.phy.o.alpha_numbers_swapped
+  - mc.phy.o.beta_changes_nothing
+solution:
+  steps:
+  - n: 1
+    latex: '\text{alpha particle: } 2\ \text{protons} + 2\ \text{neutrons} = 4\ \text{nucleons}'
+    reason: An alpha particle is a helium nucleus
+    check_id: chk_build_phy_rad_0022_alpha_a
+  - n: 2
+    latex: 6 \times 2 = 12\ \text{protons lost}
+    reason: Each alpha takes 2 protons
+    check_id: chk_build_phy_rad_0022_pz
+  - n: 3
+    latex: 90 - 12 + 4 = 82
+    reason: Each beta adds 1 proton
+    check_id: chk_build_phy_rad_0022_ans
+difficulty:
+  prior: 0.7
+  band: stretch
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  Z: '90'
+checks:
+  chk_build_phy_rad_0022_alpha_a:
+    args:
+      expression: 2 + 2
+    tool: math_evaluate
+  chk_build_phy_rad_0022_ans:
+    args:
+      expression: 90 - 2*6 + 4
+    tool: math_evaluate
+  chk_build_phy_rad_0022_pz:
+    args:
+      expression: 2*6
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:43:47.953Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.radioactivity.0022
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

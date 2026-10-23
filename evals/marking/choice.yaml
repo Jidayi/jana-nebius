@@ -1,0 +1,176 @@
+provenance: Synthetic items and responses written for the marking suite (CUR-14); expected verdicts follow the keys,
+  not the marker. Not real student work.
+items:
+  boiling:
+    id: itm.chm.o.particles.9201
+    type: mcq
+    kc_ids: [kc.chm.o.particles.changes_of_state]
+    parts:
+    - id: a
+      prompt: Which change happens when water boils?
+      marks: 1
+      answer:
+        kind: mcq
+        diagnostic: false
+        options:
+        - {id: A, text: The molecules break into atoms, correct: false}
+        - {id: B, text: The molecules move apart and escape as a gas, correct: true}
+        - {id: C, text: The molecules get larger, correct: false}
+        - {id: D, text: The molecules stop moving, correct: false}
+      hints: []
+  current_probe:
+    id: itm.phy.o.electricity.9202
+    type: mcq_diagnostic
+    kc_ids: [kc.phy.o.electricity.current]
+    parts:
+    - id: a
+      prompt: Two identical lamps are in series. How does the current through the second lamp compare with the first?
+      marks: 1
+      answer:
+        kind: mcq
+        diagnostic: true
+        options:
+        - {id: A, text: It is the same, correct: true}
+        - {id: B, text: It is smaller because the first lamp used some up, correct: false,
+           misconception_id: mc.phy.o.current_used_up}
+        - {id: C, text: It is larger because the current speeds up, correct: false,
+           misconception_id: mc.phy.o.current_speeds_up}
+        - {id: D, text: It is zero because all the current stays in the first lamp, correct: false,
+           misconception_id: mc.phy.o.current_stays_first}
+      hints: []
+  metals:
+    id: itm.chm.o.periodic_table.9203
+    type: multi_select
+    kc_ids: [kc.chm.o.periodic_table.metals]
+    parts:
+    - id: a
+      prompt: Select every metal.
+      marks: 2
+      answer:
+        kind: multi_select
+        scoring: exact_set
+        options:
+        - {id: A, text: Copper, correct: true}
+        - {id: B, text: Sulfur, correct: false}
+        - {id: C, text: Sodium, correct: true}
+        - {id: D, text: Neon, correct: false}
+      hints: []
+  metals_per_option:
+    id: itm.chm.o.periodic_table.9204
+    type: multi_select
+    kc_ids: [kc.chm.o.periodic_table.metals]
+    parts:
+    - id: a
+      prompt: Select every metal.
+      marks: 2
+      answer:
+        kind: multi_select
+        scoring: per_option
+        options:
+        - {id: A, text: Copper, correct: true}
+        - {id: B, text: Sulfur, correct: false}
+        - {id: C, text: Sodium, correct: true}
+        - {id: D, text: Neon, correct: false}
+      hints: []
+  separation:
+    id: itm.chm.o.separation.9205
+    type: ordering
+    kc_ids: [kc.chm.o.separation.crystallisation]
+    parts:
+    - id: a
+      prompt: Put the steps for making salt crystals from a salt solution in order.
+      marks: 3
+      answer:
+        kind: ordering
+        scoring: exact
+        elements:
+        - {id: filter, text: Filter off any solid}
+        - {id: heat, text: Heat to evaporate some water}
+        - {id: cool, text: Leave to cool}
+        - {id: dry, text: Dry the crystals}
+        correct_order: [filter, heat, cool, dry]
+      hints: []
+  separation_pairs:
+    id: itm.chm.o.separation.9206
+    type: ordering
+    kc_ids: [kc.chm.o.separation.crystallisation]
+    parts:
+    - id: a
+      prompt: Put the steps for making salt crystals from a salt solution in order.
+      marks: 3
+      answer:
+        kind: ordering
+        scoring: adjacent_pairs
+        elements:
+        - {id: filter, text: Filter off any solid}
+        - {id: heat, text: Heat to evaporate some water}
+        - {id: cool, text: Leave to cool}
+        - {id: dry, text: Dry the crystals}
+        correct_order: [filter, heat, cool, dry]
+      hints: []
+cases:
+- id: mcq_key
+  item: boiling
+  response: B
+  expect: {outcome: correct, marks_awarded: 1}
+- id: mcq_distractor
+  item: boiling
+  response: A
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: value, misconception_id: null}
+- id: mcq_not_an_option
+  item: boiling
+  response: F
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: unreadable}
+- id: diagnostic_key
+  item: current_probe
+  response: A
+  expect: {outcome: correct, marks_awarded: 1, misconception_id: null}
+- id: diagnostic_distractor_names_misconception
+  item: current_probe
+  response: B
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: misconception,
+           misconception_id: mc.phy.o.current_used_up}
+- id: diagnostic_other_distractor
+  item: current_probe
+  response: D
+  expect: {outcome: incorrect, misconception_id: mc.phy.o.current_stays_first}
+- id: exact_set_right
+  item: metals
+  response: [C, A]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: exact_set_one_missing
+  item: metals
+  response: [A]
+  expect: {outcome: incorrect, marks_awarded: 0}
+- id: per_option_one_of_two
+  item: metals_per_option
+  response: [A]
+  expect: {outcome: partial, marks_awarded: 1}
+- id: per_option_wrong_cancels_right
+  item: metals_per_option
+  response: [A, B]
+  expect: {outcome: incorrect, marks_awarded: 0}
+- id: per_option_all_right
+  item: metals_per_option
+  response: [A, C]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: ordering_exact
+  item: separation
+  response: [filter, heat, cool, dry]
+  expect: {outcome: correct, marks_awarded: 3}
+- id: ordering_exact_one_swap
+  item: separation
+  response: [filter, cool, heat, dry]
+  expect: {outcome: incorrect, marks_awarded: 0}
+- id: ordering_adjacent_pairs
+  item: separation_pairs
+  response: [heat, cool, filter, dry]
+  expect: {outcome: partial, marks_awarded: 1}
+- id: ordering_adjacent_pairs_two
+  item: separation_pairs
+  response: [dry, filter, heat, cool]
+  expect: {outcome: partial, marks_awarded: 2}
+- id: ordering_no_pair
+  item: separation_pairs
+  response: [dry, cool, heat, filter]
+  expect: {outcome: incorrect, marks_awarded: 0}

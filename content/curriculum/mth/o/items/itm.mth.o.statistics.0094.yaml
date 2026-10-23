@@ -1,0 +1,98 @@
+id: itm.mth.o.statistics.0094
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.pie_charts
+stem: A pie chart shows how 45 students travel to school. The bus sector has an angle of 32°.
+parts:
+- id: a
+  prompt: How many students travel by bus?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '32'
+      correct: false
+      misconception_id: mc.mth.o.pie_frequency_as_angle
+      feedback: Angle = frequency ÷ total × 360°.
+    - id: B
+      text: '506.25'
+      correct: false
+      misconception_id: mc.mth.o.pie_angle_inverted
+      feedback: Frequency = angle ÷ 360 × total.
+    - id: C
+      text: '4'
+      correct: true
+    - id: D
+      text: '14.4'
+      correct: false
+      misconception_id: mc.mth.o.pie_percent_for_degrees
+      feedback: A full circle is 360°, not 100. Multiply the fraction by 360.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The whole circle, 360°, stands for all the students.
+  - rung: 2
+    name: concept
+    text:
+      en: Frequency = angle ÷ 360 × total.
+  - rung: 3
+    name: first_step
+    text:
+      en: The bus sector is 32 out of 360.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 32 ÷ 360 × 45.
+  - rung: 5
+    name: full_step
+    text:
+      en: 4 students travel by bus.
+  misconception_ids:
+  - mc.mth.o.pie_angle_inverted
+  - mc.mth.o.pie_frequency_as_angle
+  - mc.mth.o.pie_percent_for_degrees
+solution:
+  steps:
+  - n: 1
+    latex: \frac{32}{360} \times 45 = 4
+    reason: The sector's share of the students
+    check_id: chk_build_mth_sta_0094_ans
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0094_ans:
+    args:
+      expression: 32/360*45
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

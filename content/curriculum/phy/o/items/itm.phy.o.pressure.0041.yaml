@@ -1,0 +1,117 @@
+id: itm.phy.o.pressure.0041
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.gas_and_atmospheric_pressure
+stem: A water manometer is joined to a gas tap. On its scale, the water level is at 16 cm in the open arm and at 12 cm in the arm joined to the tap. Water has a density of 1000 kg/m³. Take g = 9.8 N/kg.
+parts:
+- id: a
+  prompt: By how many pascals is the gas pressure above atmospheric pressure?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 40 Pa
+      correct: false
+      misconception_id: mc.phy.o.liquid_pressure_g_left_out
+      feedback: 'The pressure comes from the weight of the liquid above, so g is needed: pressure = ρ × g × h. Without g the answer is not in pascals.'
+    - id: B
+      text: 392 Pa
+      correct: true
+    - id: C
+      text: 39200 Pa
+      correct: false
+      misconception_id: mc.phy.o.liquid_depth_cm_not_converted
+      feedback: 'With the density in kg/m³ and g in N/kg, the depth must be in metres: divide centimetres by a hundred and millimetres by a thousand first.'
+    - id: D
+      text: 1568 Pa
+      correct: false
+      misconception_id: mc.phy.o.manometer_one_level_used
+      feedback: Only the difference in height between the two liquid surfaces shows the difference in pressure. Subtract one scale reading from the other.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The gas pushes the water down in its own arm, so the water rises in the open arm.
+  - rung: 2
+    name: concept
+    text:
+      en: The extra pressure of the gas equals ρgΔh for the difference between the two levels.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the difference in levels and change it into metres.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Δh = 0.04 m; work out 1000 × 9.8 × 0.04.
+  - rung: 5
+    name: full_step
+    text:
+      en: The gas pressure is 392 Pa above atmospheric pressure.
+  misconception_ids:
+  - mc.phy.o.liquid_depth_cm_not_converted
+  - mc.phy.o.liquid_pressure_g_left_out
+  - mc.phy.o.manometer_one_level_used
+solution:
+  steps:
+  - n: 1
+    latex: \Delta h = 16 - 12 = 4\ \text{cm}
+    reason: The difference in levels
+    check_id: chk_build_phy_prs_0041_dh
+  - n: 2
+    latex: 4\ \text{cm} = 0.04\ \text{m}
+    reason: Centimetres into metres
+    check_id: chk_build_phy_prs_0041_dhm
+  - n: 3
+    latex: \Delta p = \rho g \Delta h = 1000 \times 9.8 \times 0.04 = 392\ \text{Pa}
+    reason: Δp = ρgΔh
+    check_id: chk_build_phy_prs_0041_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_0041_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 1000*g*4/100
+    tool: math_evaluate
+  chk_build_phy_prs_0041_dh:
+    args:
+      expression: 16 - 12
+    tool: math_evaluate
+  chk_build_phy_prs_0041_dhm:
+    args:
+      expression: 4/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

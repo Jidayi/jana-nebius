@@ -1,0 +1,52 @@
+id: wex.phy.o.light.0006
+kc_ids:
+- kc.phy.o.light.speed_in_medium
+problem: Light passes from a vacuum into flint glass, which has a refractive index of 1.62. Calculate the speed of light in flint glass, in km/s.
+steps:
+- n: 1
+  latex: c = 3.0 \times 10^{8}\ \text{m/s} = 300000\ \text{km/s}
+  reason: Divide by a thousand for km/s
+  check_id: chk_build_phy_lgt_w0006_ckm
+- n: 2
+  latex: v = \frac{300000}{1.62} = 185000\ \text{km/s}
+  reason: v = c / n
+  check_id: chk_build_phy_lgt_w0006_ans
+final_answer:
+  latex: 185000\ \text{km/s}
+  check_id: chk_build_phy_lgt_w0006_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_w0006_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: c/1000/1.62
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_w0006_ckm:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: c/1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

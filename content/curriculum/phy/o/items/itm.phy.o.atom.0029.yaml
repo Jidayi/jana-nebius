@@ -1,0 +1,93 @@
+id: itm.phy.o.atom.0029
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.atom.isotopes
+stem: Nuclide P has 8 protons and 8 neutrons. Nuclide Q has 8 protons and 10 neutrons.
+parts:
+- id: a
+  prompt: Which describes P and Q?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Two different elements, because their nucleon numbers differ
+      correct: false
+      misconception_id: mc.phy.o.heavier_isotope_different_element
+      feedback: 'Carbon-12 and carbon-14 are both carbon: both have six protons. The proton number alone decides the element.'
+    - id: B
+      text: Isotopes of one element, with Q the heavier
+      correct: true
+    - id: C
+      text: Not isotopes, because their neutron numbers differ
+      correct: false
+      misconception_id: mc.phy.o.isotopes_same_neutrons
+      feedback: Isotopes are the same element, so they share the proton number. Their neutron numbers are what differ.
+    - id: D
+      text: Isotopes, so Q has 10 electrons in a neutral atom
+      correct: false
+      misconception_id: mc.phy.o.isotopes_differ_in_electrons
+      feedback: A neutral atom has one electron for each proton. Isotopes share the proton number, so their neutral atoms have the same electrons.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Decide what makes two nuclides the same element.
+  - rung: 2
+    name: concept
+    text:
+      en: Isotopes have the same proton number but different nucleon numbers.
+  - rung: 3
+    name: first_step
+    text:
+      en: Add protons and neutrons for each nucleon number, then compare the proton numbers.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against that definition.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Isotopes of one element, with Q the heavier.'
+  misconception_ids:
+  - mc.phy.o.heavier_isotope_different_element
+  - mc.phy.o.isotopes_differ_in_electrons
+  - mc.phy.o.isotopes_same_neutrons
+solution:
+  steps:
+  - n: 1
+    latex: \text{Isotopes of one element, with Q the heavier}
+    reason: Compare the proton numbers, then the nucleon numbers
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,98 @@
+id: itm.mth.o.probability.0028
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.probability.expected_frequency
+stem: The probability that a spinner lands on red is 0.4.
+parts:
+- id: a
+  prompt: In 500 trials, how many times would you expect it to happen?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '200'
+      correct: true
+    - id: B
+      text: '300'
+      correct: false
+      misconception_id: mc.mth.o.expected_uses_complement
+      feedback: Expected frequency = number of trials × probability of the event you are counting.
+    - id: C
+      text: '1250'
+      correct: false
+      misconception_id: mc.mth.o.expected_divides
+      feedback: With probability one half in 100 tosses you expect about 50 heads, not 200.
+    - id: D
+      text: '40'
+      correct: false
+      misconception_id: mc.mth.o.percent_scale_wrong
+      feedback: 'Per cent means out of 100: to go from a percentage to a decimal, divide by 100, so 35% = 0.35.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Expected frequency is what you would predict in the long run.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply the probability by the number of trials.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 0.4 × 500.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Check the answer is less than the number of trials.
+  - rung: 5
+    name: full_step
+    text:
+      en: You would expect it 200 times.
+  misconception_ids:
+  - mc.mth.o.expected_divides
+  - mc.mth.o.expected_uses_complement
+  - mc.mth.o.percent_scale_wrong
+solution:
+  steps:
+  - n: 1
+    latex: 0.4 \times 500 = 200
+    reason: Expected frequency = probability × number of trials
+    check_id: chk_build_mth_prb_0028_ans
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_prb_0028_ans:
+    args:
+      expression: 0.4*500
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

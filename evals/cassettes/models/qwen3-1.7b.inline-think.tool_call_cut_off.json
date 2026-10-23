@@ -1,0 +1,238 @@
+{
+ "provenance": "Synthetic prompts recorded against a local llama-server; replies are model output, not student data.",
+ "model": "qwen3-1.7b",
+ "server_build": "b10180-11b068d06",
+ "scenario": "tool_call_cut_off.inline-think",
+ "request": {
+  "model": "qwen3-1.7b",
+  "temperature": 0,
+  "seed": 7,
+  "messages": [
+   {
+    "role": "user",
+    "content": "Use the tool to solve 3x - 4 = 11 and 2y = 9."
+   }
+  ],
+  "tools": [
+   {
+    "type": "function",
+    "function": {
+     "name": "math_solve",
+     "description": "Solves equations exactly.",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "equations": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      },
+      "required": [
+       "equations"
+      ]
+     }
+    }
+   }
+  ],
+  "max_tokens": 14,
+  "chat_template_kwargs": {
+   "enable_thinking": false
+  }
+ },
+ "reply": {
+  "choices": [
+   {
+    "finish_reason": "length",
+    "index": 0,
+    "message": {
+     "role": "assistant",
+     "content": "<think>\n\n</think>\n\n",
+     "tool_calls": [
+      {
+       "type": "function",
+       "function": {
+        "name": "math_solve",
+        "arguments": "{\"equ"
+       },
+       "id": "IMP5FMAQmrppLyduvE10tzjIF4gHdBz5"
+      }
+     ]
+    }
+   }
+  ],
+  "created": 1791537761,
+  "model": "qwen3-1.7b",
+  "system_fingerprint": "b10180-11b068d06",
+  "object": "chat.completion",
+  "usage": {
+   "completion_tokens": 14,
+   "prompt_tokens": 183,
+   "total_tokens": 197,
+   "prompt_tokens_details": {
+    "cached_tokens": 166
+   }
+  },
+  "id": "chatcmpl-3vRQyG3zpkpvbDGsUFvGZ2lVXk71i6hn",
+  "timings": {
+   "cache_n": 166,
+   "prompt_n": 17,
+   "prompt_ms": 17.856,
+   "prompt_per_token_ms": 1.0503529411764707,
+   "prompt_per_second": 952.0609318996414,
+   "predicted_n": 14,
+   "predicted_ms": 54.608,
+   "predicted_per_token_ms": 3.9005714285714284,
+   "predicted_per_second": 256.3726926457662
+  }
+ },
+ "events": [
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "role": "assistant",
+      "content": null
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-gKbZFICelnF51uV7GRZ9C8ydijwqsNLt",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "content": "<think>\n\n</think>\n\n"
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-gKbZFICelnF51uV7GRZ9C8ydijwqsNLt",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "id": "WKOOL5LVYeCyMtpzi1Ko2EVhlCos7Dfk",
+        "type": "function",
+        "function": {
+         "name": "math_solve",
+         "arguments": "{"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-gKbZFICelnF51uV7GRZ9C8ydijwqsNLt",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "\""
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-gKbZFICelnF51uV7GRZ9C8ydijwqsNLt",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "equ"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-gKbZFICelnF51uV7GRZ9C8ydijwqsNLt",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": "length",
+     "index": 0,
+     "delta": {}
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-gKbZFICelnF51uV7GRZ9C8ydijwqsNLt",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [],
+   "created": 1791537761,
+   "id": "chatcmpl-gKbZFICelnF51uV7GRZ9C8ydijwqsNLt",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk",
+   "usage": {
+    "completion_tokens": 14,
+    "prompt_tokens": 183,
+    "total_tokens": 197,
+    "prompt_tokens_details": {
+     "cached_tokens": 182
+    }
+   },
+   "timings": {
+    "cache_n": 182,
+    "prompt_n": 1,
+    "prompt_ms": 4.817,
+    "prompt_per_token_ms": 4.817,
+    "prompt_per_second": 207.5980900975711,
+    "predicted_n": 14,
+    "predicted_ms": 54.722,
+    "predicted_per_token_ms": 3.908714285714286,
+    "predicted_per_second": 255.83860239026353
+   }
+  }
+ ]
+}

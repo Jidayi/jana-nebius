@@ -1,0 +1,114 @@
+id: itm.phy.o.radioactivity.0028
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.decay_equations
+stem: A nucleus of uranium-235 (proton number 92) decays in several steps, giving out 7 alpha particles and 4 beta particles in all, to become lead-207.
+parts:
+- id: a
+  prompt: What is the nucleon number of lead-207?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '207'
+      correct: true
+    - id: B
+      text: '203'
+      correct: false
+      misconception_id: mc.phy.o.beta_changes_nucleon_number
+      feedback: A neutron turns into a proton, so the total of protons and neutrons is the same. The electron was never a nucleon.
+    - id: C
+      text: '221'
+      correct: false
+      misconception_id: mc.phy.o.alpha_numbers_swapped
+      feedback: An alpha particle has nucleon number 4 and proton number 2. The nucleon number falls by 4 and the proton number by 2.
+    - id: D
+      text: '211'
+      correct: false
+      misconception_id: mc.phy.o.beta_adds_to_nucleon_number
+      feedback: 'The new proton was made from a neutron: one more proton, one fewer neutron, the same nucleon number.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Treat each kind of decay separately and add up the changes.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Alpha: nucleon number −4, proton number −2. Beta: nucleon number unchanged, proton number +1.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Each alpha lowers the nucleon number by 4; a beta decay does not change it.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 235 − 4 × 7.
+  - rung: 5
+    name: full_step
+    text:
+      en: The nucleon number of lead-207 is 207.
+  misconception_ids:
+  - mc.phy.o.alpha_numbers_swapped
+  - mc.phy.o.beta_adds_to_nucleon_number
+  - mc.phy.o.beta_changes_nucleon_number
+solution:
+  steps:
+  - n: 1
+    latex: '\text{alpha particle: } 2\ \text{protons} + 2\ \text{neutrons} = 4\ \text{nucleons}'
+    reason: An alpha particle is a helium nucleus
+    check_id: chk_build_phy_rad_0028_alpha_a
+  - n: 2
+    latex: 7 \times 4 = 28\ \text{nucleons lost}
+    reason: Each alpha takes 4 nucleons
+    check_id: chk_build_phy_rad_0028_da
+  - n: 3
+    latex: 235 - 28 = 207
+    reason: Beta decay does not change the nucleon number
+    check_id: chk_build_phy_rad_0028_ans
+difficulty:
+  prior: 0.7
+  band: stretch
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_0028_alpha_a:
+    args:
+      expression: 2 + 2
+    tool: math_evaluate
+  chk_build_phy_rad_0028_ans:
+    args:
+      expression: 235 - 4*7
+    tool: math_evaluate
+  chk_build_phy_rad_0028_da:
+    args:
+      expression: 4*7
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

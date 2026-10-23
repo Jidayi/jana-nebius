@@ -1,0 +1,119 @@
+id: itm.mth.o.number.0015
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.prime_factors
+stem: Write 48 as a product of its prime factors in index form.
+parts:
+- id: a
+  prompt: What is the index of 2?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '16'
+      correct: false
+      misconception_id: mc.mth.o.prime_power_value_for_index
+      feedback: In 2³ the small raised number is the index. It counts how many 2s are multiplied.
+    - id: B
+      text: '2'
+      correct: false
+      misconception_id: mc.mth.o.composite_factor_used
+      feedback: Keep dividing until every factor is prime. 4 is 2 × 2, so it is not allowed in the final answer.
+    - id: C
+      text: '5'
+      correct: false
+      misconception_id: mc.mth.o.index_counts_all_primes
+      feedback: Each prime has its own index. Count only the factors of the prime you are asked about.
+    - id: D
+      text: '4'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Start dividing by the smallest prime as many times as you can.
+  - rung: 2
+    name: concept
+    text:
+      en: Then divide by the next primes in turn until you reach 1. The index of the smallest prime counts how many times it divided.
+  - rung: 3
+    name: first_step
+    text:
+      en: Begin by halving 48, and keep halving.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Count how many times you halved before moving on to the next prime.
+  - rung: 5
+    name: full_step
+    text:
+      en: 48 = 2^4 × 3, so the index of 2 is 4.
+  misconception_ids:
+  - mc.mth.o.composite_factor_used
+  - mc.mth.o.index_counts_all_primes
+  - mc.mth.o.prime_power_value_for_index
+solution:
+  steps:
+  - n: 1
+    latex: 48 = 2^{4} \times 3
+    reason: Divide by the smallest prime repeatedly, then the next primes
+    check_id: chk_build_mth_num_0015_n
+  - n: 2
+    latex: \text{the factors are all prime}
+    reason: None of them can be split further
+    check_id: chk_build_mth_num_0015_pr
+  - n: 3
+    latex: \text{index of } 2 = 4
+    reason: Count the factors of 2
+    check_id: chk_build_mth_num_0015_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0015_ans:
+    args:
+      expression: '4'
+    tool: math_evaluate
+  chk_build_mth_num_0015_n:
+    args:
+      expression: 2^4*3^1
+    tool: math_evaluate
+  chk_build_mth_num_0015_pr:
+    args:
+      equations:
+      - p = 2
+      - q = 3
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

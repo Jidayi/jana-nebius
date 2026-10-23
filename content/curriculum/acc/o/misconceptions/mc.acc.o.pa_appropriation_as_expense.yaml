@@ -1,0 +1,36 @@
+id: mc.acc.o.pa_appropriation_as_expense
+kc_ids:
+- kc.acc.o.partnerships.capital_vs_current
+- kc.acc.o.partnerships.appropriation
+student_name: Appropriations as expenses
+description: Treats partners' salaries or interest on capital as expenses in the income statement.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: expense
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Partners are owners, not employees: their salaries and interest share out profit after it is found.'
+probe_item_ids:
+- itm.acc.o.partnerships.0045
+- itm.acc.o.partnerships.0046
+- itm.acc.o.partnerships.0047
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

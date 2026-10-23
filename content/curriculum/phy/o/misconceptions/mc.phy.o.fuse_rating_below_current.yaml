@@ -1,0 +1,36 @@
+id: mc.phy.o.fuse_rating_below_current
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+student_name: A fuse rated below the working current
+description: Chooses the fuse rating nearest the working current even when it is below it, so the fuse would melt in normal use.
+signatures:
+- kind: answer_transform
+  expression: max(r < I)
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The fuse must carry the normal current without melting, so its rating has to be above that current: pick the next rating up.'
+probe_item_ids:
+- itm.phy.o.practical_electricity.0045
+- itm.phy.o.practical_electricity.0033
+- itm.phy.o.practical_electricity.0036
+- itm.phy.o.practical_electricity.0040
+- itm.phy.o.practical_electricity.0042
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

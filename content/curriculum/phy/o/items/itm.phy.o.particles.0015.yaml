@@ -1,0 +1,93 @@
+id: itm.phy.o.particles.0015
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.states_of_matter
+stem: A block of ice keeps its own shape and its own volume.
+parts:
+- id: a
+  prompt: Which best describes the particles in the ice?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Close together in a regular pattern, completely still
+      correct: false
+      misconception_id: mc.phy.o.solid_particles_motionless
+      feedback: Solid particles are held in place but never stop vibrating; the warmer the solid, the more strongly they vibrate.
+    - id: B
+      text: Close together but sliding past one another
+      correct: false
+      misconception_id: mc.phy.o.state_pictures_swapped
+      feedback: 'Solid: close, regular, vibrating in place. Liquid: close, irregular, sliding past each other. Gas: far apart, fast and random. Match the picture to how the material behaves.'
+    - id: C
+      text: Each particle is frozen hard and cold
+      correct: false
+      misconception_id: mc.phy.o.particles_have_bulk_properties
+      feedback: A single particle does not melt, feel hot or have a colour. Those are properties of huge numbers of particles together, set by how they are arranged and how fast they move.
+    - id: D
+      text: Close together in a regular pattern, vibrating about fixed positions
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Picture the particles: how close together are they, and how do they move?'
+  - rung: 2
+    name: concept
+    text:
+      en: In a solid the forces between particles are strong, but the particles still have some kinetic energy.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Test each option against how the material behaves: does it keep its shape, flow, or spread out?'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options that give single particles the properties of the whole material.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Close together in a regular pattern, vibrating about fixed positions.'
+  misconception_ids:
+  - mc.phy.o.particles_have_bulk_properties
+  - mc.phy.o.solid_particles_motionless
+  - mc.phy.o.state_pictures_swapped
+solution:
+  steps:
+  - n: 1
+    latex: \text{Close together in a regular pattern, vibrating about fixed positions}
+    reason: Match the description to the particle model
+difficulty:
+  prior: -0.8
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

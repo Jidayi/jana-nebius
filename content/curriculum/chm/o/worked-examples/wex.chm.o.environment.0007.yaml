@@ -1,0 +1,77 @@
+id: wex.chm.o.environment.0007
+kc_ids:
+- kc.chm.o.environment.climate
+problem: Natural gas is mainly methane. What mass of the greenhouse gas carbon dioxide forms when 16 g of methane burns completely (CH₄ + 2O₂ → CO₂ + 2H₂O)?
+steps:
+- n: 1
+  latex: n = \frac{16}{16} = 1\ \text{mol}
+  reason: Moles of methane (Mr 16)
+  check_id: chk_build_chm_environment_w0007_c
+- n: 2
+  latex: 1\ \text{mol of } \text{CO}_2
+  reason: One CO₂ per CH₄
+  check_id: chk_build_chm_environment_w0007_c
+- n: 3
+  latex: M_r(\text{CO}_2) = 44
+  reason: Carbon dioxide
+  check_id: chk_build_chm_environment_w0007_k
+final_answer:
+  latex: 44\ \text{g of } \text{CO}_2
+  check_id: chk_build_chm_environment_w0007_c
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_environment_w0007_c:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      equation: CH4 + 2O2 -> CO2 + 2H2O
+      sf: 3
+      steps:
+      - id: n
+        mass: 16 g
+        op: amount_from_mass
+        species: CH4
+      - amount: '@n'
+        from: CH4
+        id: r
+        op: mole_ratio
+        to: CO2
+      - amount: '@r'
+        id: m
+        op: mass_from_amount
+        species: CO2
+    tool: chem_stoichiometry
+  chk_build_chm_environment_w0007_k:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_o
+      formula: CO2
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

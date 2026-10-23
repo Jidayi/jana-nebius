@@ -1,0 +1,88 @@
+id: itm.acc.o.double_entry.0010
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.double_entry.debit_credit_rules
+stem: Here are six changes in a business's accounts.
+parts:
+- id: a
+  prompt: Select every change that is recorded on the debit side of the account that changes.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Inventory increases
+      correct: true
+    - id: B
+      text: Rent paid increases
+      correct: true
+    - id: C
+      text: A loan increases
+      correct: false
+    - id: D
+      text: Drawings increase
+      correct: true
+    - id: E
+      text: Sales increase
+      correct: false
+    - id: F
+      text: Capital increases
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Sort the accounts into classes first.
+  - rung: 2
+    name: concept
+    text:
+      en: Assets, expenses and drawings increase on the debit side.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Loans are liabilities; sales are income; capital is the owner''s stake: these increase on the credit side.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the asset, the expense and the drawings.
+  - rung: 5
+    name: full_step
+    text:
+      en: Inventory, rent paid and drawings increase on the debit side.
+  misconception_ids:
+  - mc.acc.o.de_class_confused
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Debit: inventory, rent paid, drawings}'
+    reason: Assets, expenses and drawings
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

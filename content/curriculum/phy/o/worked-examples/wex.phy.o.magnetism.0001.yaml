@@ -1,0 +1,51 @@
+id: wex.phy.o.magnetism.0001
+kc_ids:
+- kc.phy.o.magnetism.magnets_and_materials
+problem: Yaw puts a soft-iron rod and then a steel rod of the same size inside a coil carrying a current. With the current on, the iron rod holds 20 paper clips and the steel rod holds 15. With the current switched off, the iron rod holds 2 and the steel rod holds 13. The rod that keeps its magnetism would make a permanent magnet. What percentage of its paper clips does it still hold after the current is switched off?
+steps:
+- n: 1
+  latex: '\text{steel: a permanent magnet}'
+  reason: Steel keeps its magnetism
+- n: 2
+  latex: \frac{13}{15} = 0.867
+  reason: Clips after over clips before
+  check_id: chk_build_phy_mag_w0001_frac
+- n: 3
+  latex: 0.867 \rightarrow 86.7\%
+  reason: Multiply by a hundred for a percentage
+  check_id: chk_build_phy_mag_w0001_ans
+final_answer:
+  latex: 86.7\%
+  check_id: chk_build_phy_mag_w0001_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mag_w0001_ans:
+    args:
+      expression: 13/15*100
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_mag_w0001_frac:
+    args:
+      expression: 13/15
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

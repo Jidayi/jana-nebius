@@ -1,0 +1,36 @@
+id: wex.phy.o.energy.0013
+kc_ids:
+- kc.phy.o.energy.efficiency
+problem: An electric motor is supplied with 1000 J. It transfers 600 J to the kinetic store of its load, 380 J by heating and 20 J as sound. Calculate the efficiency of the motor as a decimal fraction.
+steps:
+- n: 1
+  latex: \text{efficiency} = \frac{600}{1000} = 0.6
+  reason: Useful out ÷ total in
+  check_id: chk_build_phy_nrg_w0013_ans
+final_answer:
+  latex: '0.6'
+  check_id: chk_build_phy_nrg_w0013_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_w0013_ans:
+    args:
+      expression: 600/1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

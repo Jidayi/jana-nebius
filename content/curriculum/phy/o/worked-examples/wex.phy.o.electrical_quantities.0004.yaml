@@ -1,0 +1,36 @@
+id: wex.phy.o.electrical_quantities.0004
+kc_ids:
+- kc.phy.o.electrical_quantities.current_and_charge
+problem: A charge of 36 C flows through a small electric motor in 80 s. Calculate the current, in amps.
+steps:
+- n: 1
+  latex: I = \frac{Q}{t} = \frac{36}{80} = 0.45\ \text{A}
+  reason: Rearrange Q = It
+  check_id: chk_build_phy_elq_w0004_ans
+final_answer:
+  latex: 0.45\ \text{A}
+  check_id: chk_build_phy_elq_w0004_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_elq_w0004_ans:
+    args:
+      expression: 36/80
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

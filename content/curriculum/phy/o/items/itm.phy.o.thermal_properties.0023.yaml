@@ -1,0 +1,108 @@
+id: itm.phy.o.thermal_properties.0023
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.thermal_properties.specific_heat_capacity
+stem: 800 g of water is heated from 18 °C to 60 °C. The specific heat capacity of water is 4200 J/(kg °C).
+parts:
+- id: a
+  prompt: How much energy is needed? Give your answer in kJ.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '141.12'
+    unit: kJ
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_thp_0023_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Use E = mcΔθ, with the mass in kilograms and Δθ the temperature rise.
+  - rung: 2
+    name: concept
+    text:
+      en: Specific heat capacity is the energy needed to warm 1 kg by 1 °C.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change 800 g to kilograms and find the temperature rise from 18 °C to 60 °C.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 0.8 × 4200 × 42 to get joules, then change to kilojoules.
+  - rung: 5
+    name: full_step
+    text:
+      en: E = 141.12 kJ.
+  misconception_ids:
+  - mc.phy.o.shc_final_temperature_used
+  - mc.phy.o.kelvin_change_offset_added
+  - mc.phy.o.thermal_grams_as_kg
+solution:
+  steps:
+  - n: 1
+    latex: m = 800\ \text{g} = 0.8\ \text{kg}
+    reason: Specific heat capacity is per kilogram
+    check_id: chk_build_phy_thp_0023_m
+  - n: 2
+    latex: \Delta\theta = 60 - 18 = 42\ ^\circ\text{C}
+    reason: The temperature rise
+    check_id: chk_build_phy_thp_0023_dt
+  - n: 3
+    latex: E = mc\Delta\theta = 0.8 \times 4200 \times 42 = 141120\ \text{J}
+    reason: Energy needed
+    check_id: chk_build_phy_thp_0023_e
+  - n: 4
+    latex: E = 141.12\ \text{kJ}
+    reason: There are a thousand joules in a kilojoule
+    check_id: chk_build_phy_thp_0023_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_thp_0023_ans:
+    args:
+      expression: 800/1000*4200*(60 - 18)/1000
+    tool: math_evaluate
+  chk_build_phy_thp_0023_dt:
+    args:
+      expression: 60 - 18
+    tool: math_evaluate
+  chk_build_phy_thp_0023_e:
+    args:
+      expression: 800/1000*4200*(60 - 18)
+    tool: math_evaluate
+  chk_build_phy_thp_0023_m:
+    args:
+      expression: 800/1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

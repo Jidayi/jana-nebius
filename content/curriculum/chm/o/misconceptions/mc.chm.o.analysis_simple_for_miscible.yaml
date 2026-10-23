@@ -1,0 +1,33 @@
+id: mc.chm.o.analysis_simple_for_miscible
+kc_ids:
+- kc.chm.o.analysis.separation
+student_name: Simple distillation for two liquids
+description: Uses simple distillation to separate liquids that mix and have close boiling points, such as ethanol and water.
+signatures:
+- kind: answer_transform
+  expression: 'choice: simple distillation chosen for two miscible liquids'
+fix:
+  strategy: rule_restatement
+  text:
+    en: Liquids that mix need fractional distillation; the column separates them by their boiling points.
+probe_item_ids:
+- itm.chm.o.analysis.0039
+- itm.chm.o.analysis.0040
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

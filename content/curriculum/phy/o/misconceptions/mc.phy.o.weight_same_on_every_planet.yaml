@@ -1,0 +1,37 @@
+id: mc.phy.o.weight_same_on_every_planet
+kc_ids:
+- kc.phy.o.mass_weight.weight_from_mass
+- kc.phy.o.mass_weight.mass_or_weight
+student_name: Weight is fixed, like mass
+description: Thinks an object's weight stays the same wherever it is, so it gives the Earth weight for another planet or moon.
+signatures:
+- kind: answer_transform
+  expression: W
+fix:
+  strategy: contrast_example
+  text:
+    en: Weight is the pull of a planet on the object, weight = mass × g. A world with a smaller g pulls less on the same mass.
+probe_item_ids:
+- itm.phy.o.mass_weight.0014
+- itm.phy.o.mass_weight.0026
+- itm.phy.o.mass_weight.0027
+- itm.phy.o.mass_weight.0028
+- itm.phy.o.mass_weight.0029
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

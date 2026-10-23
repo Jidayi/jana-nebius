@@ -1,0 +1,132 @@
+id: itm.acc.o.sole_trader_statements.0065
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.sole_trader_statements.closing_capital
+stem: Thabo's capital at the start of the year was $23000. Thabo paid in extra capital of $3200, the business made a profit of $17700 and drawings were $3700.
+parts:
+- id: a
+  prompt: What is the capital at the end of the year?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $22500
+      correct: false
+      misconception_id: mc.acc.o.cc_profit_omitted
+    - id: B
+      text: $47600
+      correct: false
+      misconception_id: mc.acc.o.cc_drawings_added
+    - id: C
+      text: $37000
+      correct: false
+      misconception_id: mc.acc.o.cc_capital_introduced_omitted
+    - id: D
+      text: $40200
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: List what increased the owner's stake and what reduced it.
+  - rung: 2
+    name: concept
+    text:
+      en: Closing capital = opening capital + capital introduced + profit − drawings.
+  - rung: 3
+    name: first_step
+    text:
+      en: Drawings are taken out by the owner, so they are subtracted.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 23000 + 3200 + 17700 − 3700.
+  - rung: 5
+    name: full_step
+    text:
+      en: 23000 + 3200 + 17700 − 3700 = $40200.
+  misconception_ids:
+  - mc.acc.o.cc_drawings_added
+  - mc.acc.o.cc_capital_introduced_omitted
+  - mc.acc.o.cc_profit_omitted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Closing capital} = \text{opening} + \text{introduced} + \text{profit} - \text{drawings}
+    reason: Every change in the owner's stake
+    check_id: chk_build_acc_sole_trader_statements_0065_t
+  - n: 2
+    latex: \text{Closing capital} = 23000 + 3200 + 17700 - 3700 = 40200
+    reason: Substitute
+    check_id: chk_build_acc_sole_trader_statements_0065_a
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_0065_a:
+    args:
+      dp: 2
+      expression: 23000 + 3200 + 17700 - 3700
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0065_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Capital
+        credit: '26200'
+        role: capital
+      - account: Drawings
+        debit: '3700'
+        role: drawings
+      - account: Sales
+        credit: '38400'
+        role: revenue
+      - account: Purchases
+        debit: '20700'
+        role: purchases
+      - account: Equipment
+        debit: '33000'
+        role: non_current_asset
+      - account: Land
+        debit: '7200'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Family loan
+        credit: '1000'
+        role: non_current_liability
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,34 @@
+id: mc.chm.o.neutrons_equal_protons
+kc_ids:
+- kc.chm.o.atoms.subatomic_particles
+student_name: Neutrons always match protons
+description: Assumes an atom always has as many neutrons as protons.
+signatures:
+- kind: answer_transform
+  expression: Z
+fix:
+  strategy: counterexample
+  text:
+    en: Sodium-23 has 11 protons but 12 neutrons. Work the neutrons out each time from the nucleon number.
+probe_item_ids:
+- itm.chm.o.atoms.0013
+- itm.chm.o.atoms.0014
+- itm.chm.o.atoms.0048
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

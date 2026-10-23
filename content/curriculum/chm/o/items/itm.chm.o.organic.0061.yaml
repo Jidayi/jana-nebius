@@ -1,0 +1,100 @@
+id: itm.chm.o.organic.0061
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.alcohols_and_acids
+- kc.chm.o.organic.carboxylic_acids
+stem: Ethanoic acid is warmed with methanol and a few drops of concentrated sulfuric acid.
+parts:
+- id: a
+  prompt: Which are the products?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Carbon dioxide and water
+      correct: false
+      misconception_id: mc.chm.o.organic_oxidation_means_burning
+      feedback: Burning is one kind of oxidation, but a gentle oxidising agent such as acidified potassium manganate(VII), or bacteria in air, turns ethanol into ethanoic acid. That is why wine left open turns sour like vinegar.
+    - id: B
+      text: Ethyl methanoate and hydrogen
+      correct: false
+      misconception_id: mc.chm.o.organic_ester_name_order
+      feedback: The alcohol gives the first word, ending in -yl; the acid gives the second word, ending in -oate. Methanol + ethanoic acid → methyl ethanoate. Ethanol + methanoic acid → ethyl methanoate.
+    - id: C
+      text: Ethyl methanoate and water
+      correct: false
+      misconception_id: mc.chm.o.organic_ester_name_order
+      feedback: The alcohol gives the first word, ending in -yl; the acid gives the second word, ending in -oate. Methanol + ethanoic acid → methyl ethanoate. Ethanol + methanoic acid → ethyl methanoate.
+    - id: D
+      text: Methyl ethanoate and water
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An acid and an alcohol react to make an ester. What else forms?
+  - rung: 2
+    name: concept
+    text:
+      en: 'The ester''s name has two words: the first comes from the alcohol (-yl), the second from the acid (-oate).'
+  - rung: 3
+    name: first_step
+    text:
+      en: The alcohol here is methanol, so the first word is methyl.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The acid is ethanoic acid. Which -oate word does it give? And which small molecule is lost?
+  - rung: 5
+    name: full_step
+    text:
+      en: Methanol + ethanoic acid → methyl ethanoate + water.
+  misconception_ids:
+  - mc.chm.o.organic_ester_name_order
+  - mc.chm.o.organic_oxidation_means_burning
+solution:
+  steps:
+  - n: 1
+    latex: \text{CH}_3\text{COOH} + \text{CH}_3\text{OH} \rightarrow \text{CH}_3\text{COOCH}_3 + \text{H}_2\text{O}
+    reason: Esterification
+    check_id: chk_build_chm_organic_0061_bal
+  - n: 2
+    latex: \text{alcohol }\rightarrow\text{ methyl, acid }\rightarrow\text{ ethanoate}
+    reason: Naming the ester
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_0061_bal:
+    args:
+      equation: CH3COOH + CH3OH -> CH3COOCH3 + H2O
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

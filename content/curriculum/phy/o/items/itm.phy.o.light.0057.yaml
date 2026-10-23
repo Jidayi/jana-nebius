@@ -1,0 +1,93 @@
+id: itm.phy.o.light.0057
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.total_internal_reflection
+stem: A ray of light in air hits the flat surface of a glass block at a large angle of incidence.
+parts:
+- id: a
+  prompt: Can total internal reflection happen at this surface?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Yes, if the angle of incidence is more than the critical angle
+      correct: false
+      misconception_id: mc.phy.o.tir_from_air_into_glass
+      feedback: Going into glass, light bends towards the normal, so there is always a refracted ray. Total internal reflection needs light inside the denser material, heading out.
+    - id: B
+      text: 'No: light going into the denser glass always has a refracted ray'
+      correct: true
+    - id: C
+      text: Yes, if the angle of incidence is less than the critical angle
+      correct: false
+      misconception_id: mc.phy.o.tir_angle_below_critical
+      feedback: As the angle inside the glass grows, the ray in air bends closer to the surface. At the critical angle it runs along the surface; any bigger and no light gets out.
+    - id: D
+      text: Yes, at exactly 42°, the critical angle of every material
+      correct: false
+      misconception_id: mc.phy.o.critical_angle_same_for_all
+      feedback: sin C = 1 ÷ n, so a material with a bigger refractive index has a smaller critical angle. Diamond's is about 24°, water's about 49°.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Total internal reflection needs two conditions.
+  - rung: 2
+    name: concept
+    text:
+      en: The light must be inside the denser material heading out, and its angle of incidence must be bigger than the critical angle.
+  - rung: 3
+    name: first_step
+    text:
+      en: sin C = 1 ÷ n, so a bigger refractive index gives a smaller critical angle.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against both conditions.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: No: light going into the denser glass always has a refracted ray.'
+  misconception_ids:
+  - mc.phy.o.critical_angle_same_for_all
+  - mc.phy.o.tir_angle_below_critical
+  - mc.phy.o.tir_from_air_into_glass
+solution:
+  steps:
+  - n: 1
+    latex: '\text{No: light going into the denser glass always has a refracted ray}'
+    reason: Check both conditions for total internal reflection
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

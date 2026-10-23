@@ -1,0 +1,90 @@
+id: itm.chm.o.organic.0063
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.alcohols_and_acids
+- kc.chm.o.organic.carboxylic_acids
+stem: Ethanol is warmed with acidified potassium manganate(VII) solution. The purple colour fades.
+parts:
+- id: a
+  prompt: What has the ethanol been turned into?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Ethanoic acid
+      correct: true
+    - id: B
+      text: Ethyl ethanoate
+      correct: false
+      misconception_id: mc.chm.o.organic_oxidation_means_burning
+      feedback: Burning is one kind of oxidation, but a gentle oxidising agent such as acidified potassium manganate(VII), or bacteria in air, turns ethanol into ethanoic acid. That is why wine left open turns sour like vinegar.
+    - id: C
+      text: Carbon dioxide and water
+      correct: false
+      misconception_id: mc.chm.o.organic_oxidation_means_burning
+      feedback: Burning is one kind of oxidation, but a gentle oxidising agent such as acidified potassium manganate(VII), or bacteria in air, turns ethanol into ethanoic acid. That is why wine left open turns sour like vinegar.
+    - id: D
+      text: Ethene and water
+      correct: false
+      misconception_id: mc.chm.o.organic_oxidation_means_burning
+      feedback: Burning is one kind of oxidation, but a gentle oxidising agent such as acidified potassium manganate(VII), or bacteria in air, turns ethanol into ethanoic acid. That is why wine left open turns sour like vinegar.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Acidified potassium manganate(VII) is an oxidising agent.
+  - rung: 2
+    name: concept
+    text:
+      en: A gentle oxidising agent oxidises ethanol without burning it.
+  - rung: 3
+    name: first_step
+    text:
+      en: The carbon chain stays the same length; the end carbon gains oxygen and loses hydrogen.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'A compound with two carbon atoms and a –COOH group: what is its name?'
+  - rung: 5
+    name: full_step
+    text:
+      en: Ethanol is oxidised to ethanoic acid, CH₃COOH; the purple manganate(VII) is reduced and fades.
+  misconception_ids:
+  - mc.chm.o.organic_oxidation_means_burning
+solution:
+  steps:
+  - n: 1
+    latex: \text{C}_2\text{H}_5\text{OH }\rightarrow\text{ CH}_3\text{COOH}
+    reason: Oxidation of ethanol
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

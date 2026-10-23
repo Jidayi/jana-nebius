@@ -1,0 +1,106 @@
+id: itm.phy.o.thermal_properties.0044
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.thermal_properties.latent_heat
+stem: The specific latent heat of fusion of ice is 334 kJ/kg, and the specific latent heat of vaporisation of water is 2260 kJ/kg.
+parts:
+- id: a
+  prompt: How much energy is needed to boil away 100 g of water already at 100 °C? Give your answer in kJ.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 226 kJ
+      correct: true
+    - id: B
+      text: 33.4 kJ
+      correct: false
+      misconception_id: mc.phy.o.latent_wrong_kind
+      feedback: Fusion is for melting or freezing; vaporisation is for boiling or condensing. Check which change of state the question describes.
+    - id: C
+      text: 226000 kJ
+      correct: false
+      misconception_id: mc.phy.o.thermal_grams_as_kg
+      feedback: 'Specific heat capacity and specific latent heat are per kilogram. Change grams to kilograms first: 250 g is 0.25 kg.'
+    - id: D
+      text: 22600 kJ
+      correct: false
+      misconception_id: mc.phy.o.latent_divided_by_mass
+      feedback: 'More ice needs more energy to melt, so the energy must grow with the mass: E = mL. Dividing would make a bigger block need less energy.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The temperature does not change, so all the energy goes into changing the state.
+  - rung: 2
+    name: concept
+    text:
+      en: Boiling uses the specific latent heat of vaporisation.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Use E = mL with the mass in kilograms: change 100 g to kg.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply 0.1 kg by 2260 kJ/kg.
+  - rung: 5
+    name: full_step
+    text:
+      en: E = 226 kJ.
+  misconception_ids:
+  - mc.phy.o.latent_divided_by_mass
+  - mc.phy.o.latent_wrong_kind
+  - mc.phy.o.thermal_grams_as_kg
+solution:
+  steps:
+  - n: 1
+    latex: m = 100\ \text{g} = 0.1\ \text{kg}
+    reason: Specific latent heat is per kilogram
+    check_id: chk_build_phy_thp_0044_m
+  - n: 2
+    latex: E = mL = 0.1 \times 2260 = 226\ \text{kJ}
+    reason: Latent heat of vaporisation
+    check_id: chk_build_phy_thp_0044_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_thp_0044_ans:
+    args:
+      expression: 100/1000*2260
+    tool: math_evaluate
+  chk_build_phy_thp_0044_m:
+    args:
+      expression: 100/1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

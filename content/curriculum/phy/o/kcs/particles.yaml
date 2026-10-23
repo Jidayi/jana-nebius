@@ -1,0 +1,134 @@
+- id: kc.phy.o.particles.states_of_matter
+  code: PHY-O-02.01.K01
+  node_id: cur.phy.o.thermal_physics.kinetic_particle_model_of_matter
+  statement: Describe the arrangement and motion of particles in solids, liquids and gases
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.263
+  prerequisites: []
+  misconception_ids:
+  - mc.phy.o.air_between_particles
+  - mc.phy.o.brownian_molecules_seen
+  - mc.phy.o.brownian_not_from_collisions
+  - mc.phy.o.liquid_particles_far_apart
+  - mc.phy.o.particles_grow_when_heated
+  - mc.phy.o.particles_have_bulk_properties
+  - mc.phy.o.solid_particles_motionless
+  - mc.phy.o.state_pictures_swapped
+  skill_ids:
+  - phy-o-particles
+  glossary:
+  - particle
+  - states of matter
+  - molecule
+  - Brownian motion
+  - vapour
+  - density
+  - kinetic particle model
+  difficulty_prior: -1.0
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.particles.temperature_scales
+  code: PHY-O-02.01.K02
+  node_id: cur.phy.o.thermal_physics.kinetic_particle_model_of_matter
+  statement: Convert temperatures between degrees Celsius and kelvin and relate absolute zero to particle motion
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.237
+  prerequisites:
+  - kc_id: kc.phy.o.particles.states_of_matter
+    strength: required
+  misconception_ids:
+  - mc.phy.o.absolute_zero_is_freezing_point
+  - mc.phy.o.absolute_zero_not_lowest
+  - mc.phy.o.celsius_used_for_ratio
+  - mc.phy.o.kelvin_change_offset_added
+  - mc.phy.o.kelvin_offset_wrong_way
+  - mc.phy.o.kelvin_same_as_celsius
+  - mc.phy.o.kelvin_subtraction_reversed
+  - mc.phy.o.temperature_change_read_as_final
+  - mc.phy.o.temperature_is_total_energy
+  skill_ids:
+  - phy-o-particles
+  glossary:
+  - absolute zero
+  - kelvin
+  - Celsius
+  - temperature
+  - kinetic energy
+  - particle
+  - proportional
+  - average kinetic energy
+  - Celsius scale
+  difficulty_prior: -0.6
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.particles.gas_pressure_particles
+  code: PHY-O-02.01.K03
+  node_id: cur.phy.o.thermal_physics.kinetic_particle_model_of_matter
+  statement: Explain gas pressure by particle collisions and predict the effect of changing temperature or volume
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.237
+  prerequisites:
+  - kc_id: kc.phy.o.particles.states_of_matter
+    strength: required
+  - kc_id: kc.phy.o.pressure.pressure_on_surfaces
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.celsius_used_for_ratio
+  - mc.phy.o.compression_speeds_particles
+  - mc.phy.o.gas_pressure_from_weight
+  - mc.phy.o.gas_pressure_unchanged
+  - mc.phy.o.heating_creates_particles
+  - mc.phy.o.particles_grow_when_heated
+  - mc.phy.o.pressure_from_interparticle_collisions
+  skill_ids:
+  - phy-o-particles
+  glossary:
+  - gas pressure
+  - pressure
+  - particle
+  - collision
+  - molecule
+  - temperature
+  - volume
+  - kinetic energy
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.particles.pressure_and_volume
+  code: PHY-O-02.01.K04
+  node_id: cur.phy.o.thermal_physics.kinetic_particle_model_of_matter
+  statement: Use pressure × volume = constant for a fixed mass of gas at constant temperature
+  kind: procedural
+  tools:
+  - math_solve
+  - math_evaluate
+  exam_weight: 0.263
+  prerequisites:
+  - kc_id: kc.phy.o.particles.gas_pressure_particles
+    strength: required
+  misconception_ids:
+  - mc.phy.o.boyle_change_used_as_volume
+  - mc.phy.o.boyle_direct_proportion
+  - mc.phy.o.boyle_ratio_only
+  - mc.phy.o.compression_speeds_particles
+  - mc.phy.o.gas_pressure_unchanged
+  skill_ids:
+  - phy-o-particles
+  glossary:
+  - pressure
+  - volume
+  - Boyle's law
+  - constant temperature
+  - fixed mass
+  - pascal
+  - kilopascal
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active

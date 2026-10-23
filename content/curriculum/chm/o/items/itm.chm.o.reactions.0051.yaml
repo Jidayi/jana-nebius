@@ -1,0 +1,93 @@
+id: itm.chm.o.reactions.0051
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.equilibrium
+stem: The reaction 2SO₂ + O₂ ⇌ 2SO₃ has reached equilibrium in a closed container. The forward reaction is exothermic. The temperature is lowered.
+parts:
+- id: a
+  prompt: What happens to the position of equilibrium?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: The position moves to the right, and more sulfur trioxide forms.
+      correct: true
+    - id: B
+      text: The position does not move.
+      correct: false
+      misconception_id: mc.chm.o.reactions_equilibrium_static
+      feedback: 'Equilibrium is dynamic: the forward and backward reactions both keep going, at the same rate. Change the conditions and one reaction speeds up more than the other, so the amounts change until a new equilibrium is reached.'
+    - id: C
+      text: The position moves to the left, and less sulfur trioxide is present.
+      correct: false
+      misconception_id: mc.chm.o.reactions_shift_reinforces_change
+      feedback: The position of equilibrium moves to oppose a change. Heating favours the direction that takes in heat. Higher pressure favours the side with fewer gas molecules. Adding a substance favours the reaction that uses it up.
+    - id: D
+      text: The forward and backward reactions both stop.
+      correct: false
+      misconception_id: mc.chm.o.reactions_equilibrium_static
+      feedback: 'Equilibrium is dynamic: the forward and backward reactions both keep going, at the same rate. Change the conditions and one reaction speeds up more than the other, so the amounts change until a new equilibrium is reached.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The temperature is lowered, so the mixture 2SO₂ + O₂ ⇌ 2SO₃ is no longer at equilibrium. Which way will it move?
+  - rung: 2
+    name: concept
+    text:
+      en: 'The position moves to oppose a temperature change: heating favours the endothermic direction, cooling favours the exothermic direction.'
+  - rung: 3
+    name: first_step
+    text:
+      en: The forward reaction, which makes sulfur trioxide, is exothermic; so the backward reaction is endothermic.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'For 2SO₂ + O₂ ⇌ 2SO₃: find the direction that gives out heat, because that opposes the fall in temperature.'
+  - rung: 5
+    name: full_step
+    text:
+      en: The position moves to the right, and more sulfur trioxide forms, because the exothermic direction is the forward reaction.
+  misconception_ids:
+  - mc.chm.o.reactions_shift_reinforces_change
+  - mc.chm.o.reactions_equilibrium_static
+solution:
+  steps:
+  - n: 1
+    latex: 2\text{SO}_2 + \text{O}_2 \rightleftharpoons 2\text{SO}_3
+    reason: The equilibrium
+  - n: 2
+    latex: \text{The position moves to the right}
+    reason: The exothermic direction is the forward reaction
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

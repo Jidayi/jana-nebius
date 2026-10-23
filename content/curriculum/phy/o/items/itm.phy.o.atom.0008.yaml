@@ -1,0 +1,111 @@
+id: itm.phy.o.atom.0008
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.atom.atomic_structure
+stem: An atom of magnesium, ²⁴₁₂Mg (nucleon number 24, proton number 12), forms the ion Mg²⁺, which has a charge of +2.
+parts:
+- id: a
+  prompt: How many electrons does the ion have?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '10'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_atm_0008_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Start with the neutral atom, then think about what makes it an ion.
+  - rung: 2
+    name: concept
+    text:
+      en: A neutral atom has one electron for each proton.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Electrons are negative: losing them leaves a positive ion; gaining them makes a negative ion.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: The ion has lost 2 electrons; subtract them from the proton number.
+  - rung: 5
+    name: full_step
+    text:
+      en: The ion has 10 electrons.
+  misconception_ids:
+  - mc.phy.o.ion_charge_sign_reversed
+  - mc.phy.o.ion_charge_ignored
+  - mc.phy.o.electrons_equal_neutrons
+solution:
+  steps:
+  - n: 1
+    latex: '\text{neutral atom: } 12\ \text{electrons}'
+    reason: As many electrons as protons
+  - n: 2
+    latex: 12 - 2 = 10
+    reason: A positive ion has lost electrons
+    check_id: chk_build_phy_atm_0008_ans
+difficulty:
+  prior: -0.2
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  Z: '12'
+  q: '2'
+checks:
+  chk_build_phy_atm_0008_ans:
+    args:
+      expression: 12 - (2)
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:40:46.249Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.atom.0008
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

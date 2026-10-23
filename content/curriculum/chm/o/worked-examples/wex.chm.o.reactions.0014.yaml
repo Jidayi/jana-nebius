@@ -1,0 +1,52 @@
+id: wex.chm.o.reactions.0014
+kc_ids:
+- kc.chm.o.reactions.oxidation_numbers
+problem: Find the oxidation number of nitrogen in the ammonium ion, NH₄⁺. Hydrogen is +1 and the overall charge on the ion is +1.
+steps:
+- n: 1
+  latex: x + 4(+1) = +1
+  reason: 'An ion: the total is its charge'
+  check_id: chk_build_chm_reactions_w0014_s1
+- n: 2
+  latex: x = 1 - 4(+1)
+  reason: Collect the known values
+  check_id: chk_build_chm_reactions_w0014_x
+final_answer:
+  latex: x = -3
+  check_id: chk_build_chm_reactions_w0014_x
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_w0014_s1:
+    args:
+      equations:
+      - x + 4*(1) = 1
+      unknowns:
+      - x
+    tool: math_solve
+  chk_build_chm_reactions_w0014_x:
+    args:
+      expression: 1 - 4*(1)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

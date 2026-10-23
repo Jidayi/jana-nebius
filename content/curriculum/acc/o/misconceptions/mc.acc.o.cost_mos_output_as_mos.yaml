@@ -1,0 +1,34 @@
+id: mc.acc.o.cost_mos_output_as_mos
+kc_ids:
+- kc.acc.o.costing.margin_of_safety
+student_name: Output as the margin of safety
+description: Gives the expected output as the margin of safety.
+signatures:
+- kind: answer_transform
+  expression: output
+fix:
+  strategy: rule_restatement
+  text:
+    en: Subtract the break-even output from the expected output.
+probe_item_ids:
+- itm.acc.o.costing.0037
+- itm.acc.o.costing.0038
+- itm.acc.o.costing.0040
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

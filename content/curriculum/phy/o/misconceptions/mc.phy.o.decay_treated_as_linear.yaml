@@ -1,0 +1,34 @@
+id: mc.phy.o.decay_treated_as_linear
+kc_ids:
+- kc.phy.o.radioactivity.half_life
+student_name: Activity falls by equal amounts
+description: Thinks the activity falls by the same amount in each half-life, as if it dropped in a straight line.
+signatures:
+- kind: answer_transform
+  expression: 2*T*(1 - x1/x0)
+fix:
+  strategy: counterexample
+  text:
+    en: 'In each half-life the activity falls by half of what is left, so the drops get smaller: 80 to 40 is a drop of 40, but 40 to 20 is a drop of only 20.'
+probe_item_ids:
+- itm.phy.o.radioactivity.0045
+- itm.phy.o.radioactivity.0033
+- itm.phy.o.radioactivity.0039
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

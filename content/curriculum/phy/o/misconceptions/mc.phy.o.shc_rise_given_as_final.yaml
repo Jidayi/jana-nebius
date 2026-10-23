@@ -1,0 +1,34 @@
+id: mc.phy.o.shc_rise_given_as_final
+kc_ids:
+- kc.phy.o.thermal_properties.specific_heat_capacity
+student_name: Giving the rise as the final temperature
+description: Gives the temperature rise as the final temperature, forgetting to add the starting temperature.
+signatures:
+- kind: answer_transform
+  expression: dT
+fix:
+  strategy: rule_restatement
+  text:
+    en: E = mcΔθ gives the rise. The final temperature is the starting temperature plus that rise.
+probe_item_ids:
+- itm.phy.o.thermal_properties.0016
+- itm.phy.o.thermal_properties.0020
+- itm.phy.o.thermal_properties.0024
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

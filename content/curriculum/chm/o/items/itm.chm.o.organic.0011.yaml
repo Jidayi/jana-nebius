@@ -1,0 +1,81 @@
+id: itm.chm.o.organic.0011
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.functional_groups
+stem: 'Four organic compounds are listed: C₃H₆, C₂H₅OH, CH₃COOH and CH₃Cl.'
+parts:
+- id: a
+  prompt: Which one is a hydrocarbon?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: C₂H₅OH
+      correct: false
+    - id: B
+      text: CH₃COOH
+      correct: false
+    - id: C
+      text: CH₃Cl
+      correct: false
+    - id: D
+      text: C₃H₆
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The word hydrocarbon tells you which elements are allowed.
+  - rung: 2
+    name: concept
+    text:
+      en: A hydrocarbon contains hydrogen and carbon only.
+  - rung: 3
+    name: first_step
+    text:
+      en: C₂H₅OH and CH₃COOH contain oxygen; CH₃Cl contains chlorine.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Find the formula with no symbol other than C and H.
+  - rung: 5
+    name: full_step
+    text:
+      en: C₃H₆ (propene) contains only carbon and hydrogen, so it is the hydrocarbon.
+solution:
+  steps:
+  - n: 1
+    latex: '\text{C}_3\text{H}_6: \text{only C and H}'
+    reason: Hydrocarbon
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

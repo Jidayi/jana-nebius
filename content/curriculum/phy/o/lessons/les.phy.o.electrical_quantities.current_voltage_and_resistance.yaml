@@ -1,0 +1,69 @@
+id: les.phy.o.electrical_quantities.current_voltage_and_resistance
+node_id: cur.phy.o.electricity_and_magnetism.electrical_quantities
+kc_ids:
+- kc.phy.o.electrical_quantities.current_and_charge
+- kc.phy.o.electrical_quantities.resistance
+title: Current, potential difference and resistance
+estimated_minutes: 10
+blocks:
+- type: step
+  text:
+    en: A current of one amp means one coulomb of charge passes each second. Try this before any formula.
+  item_id: itm.phy.o.electrical_quantities.0016
+  action: try_first
+  why:
+    en: Each second 0.4 coulombs of charge pass, and that goes on for 40 seconds, so you multiply.
+  names:
+    en: 'So charge is current times time: Q = It. Current is the rate at which charge flows.'
+- type: step
+  text:
+    en: 'Now the other way round: you know the charge and the time.'
+  item_id: itm.phy.o.electrical_quantities.0020
+  action: calculate
+  why:
+    en: Current is the charge that passes each second, so divide the charge by the time.
+- type: step
+  text:
+    en: 'Watch the unit: there are 1000 milliamps in one amp.'
+  item_id: itm.phy.o.electrical_quantities.0026
+  action: choose
+  why:
+    en: Change 200 mA to 0.2 A first. Then the time is the charge divided by the current.
+- type: step
+  text:
+    en: 'Resistance says how many volts it takes to push each amp through. Predict: will this wire need more or less than one volt per amp?'
+  item_id: itm.phy.o.electrical_quantities.0057
+  action: predict
+  why:
+    en: Change 100 mA to 0.1 A, then share the 0.8 volts among the amps. Each amp needs 8 volts.
+  names:
+    en: 'Volts per amp is resistance: R = V/I, measured in ohms.'
+- type: step
+  text:
+    en: Use the same rule to find the potential difference.
+  item_id: itm.phy.o.electrical_quantities.0048
+  action: calculate
+  why:
+    en: Turn R = V/I round to V = IR, with the current in amps.
+- type: check
+  item_ids:
+  - itm.phy.o.electrical_quantities.0017
+  - itm.phy.o.electrical_quantities.0046
+  - itm.phy.o.electrical_quantities.0056
+version: 0.2.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

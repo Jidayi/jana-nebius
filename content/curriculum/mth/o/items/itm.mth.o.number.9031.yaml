@@ -1,0 +1,107 @@
+id: itm.mth.o.number.9031
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.reverse_percentage
+stem: A jacket costs $68 after a 15% discount.
+parts:
+- id: a
+  prompt: Find the price before the discount.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '80'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9031
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The sale price is the remaining percentage of the original price.
+  - rung: 2
+    name: concept
+    text:
+      en: Divide the sale price by the remaining fraction, rather than adding fifteen percent to it.
+  - rung: 3
+    name: first_step
+    text:
+      en: Divide the sale price by the remaining fraction, rather than adding fifteen percent to it.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Check by applying the stated discount to your proposed original price.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 80 $.
+solution:
+  steps:
+  - n: 1
+    latex: 100 - 15 = 85
+    reason: The discount leaves eighty-five percent of the original price.
+    check_id: chk_build_mastery_supplement_mth_9031_remaining_percent
+  - n: 2
+    latex: \frac{85}{100} = 0.85
+    reason: Convert the remaining percentage to its decimal multiplier.
+    check_id: chk_build_mastery_supplement_mth_9031_remaining_fraction
+  - n: 3
+    latex: \frac{68}{1 - \frac{15}{100}}
+    reason: Divide the sale price by the remaining fraction, rather than adding fifteen percent to it.
+    check_id: chk_build_mastery_supplement_mth_9031
+  - n: 4
+    latex: '80'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9031
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9031:
+    args:
+      angle_unit: degrees
+      expression: 68/(1-15/100)
+    tool: math_evaluate
+  chk_build_mastery_supplement_mth_9031_remaining_fraction:
+    args:
+      angle_unit: degrees
+      expression: 85/100
+    tool: math_evaluate
+  chk_build_mastery_supplement_mth_9031_remaining_percent:
+    args:
+      angle_unit: degrees
+      expression: 100-15
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

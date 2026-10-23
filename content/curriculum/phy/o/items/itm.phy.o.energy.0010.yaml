@@ -1,0 +1,80 @@
+id: itm.phy.o.energy.0010
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.stores_and_transfers
+stem: A parcel sliding down a chute loses 3600 J from its gravitational potential store. At the bottom it has gained 2160 J in its kinetic store.
+parts:
+- id: a
+  prompt: How much energy has been transferred to thermal stores by friction and air resistance?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '1440'
+    unit: J
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0010_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Energy leaving the gravitational store must go somewhere.
+  - rung: 2
+    name: concept
+    text:
+      en: Only part of it reached the kinetic store.
+  - rung: 3
+    name: first_step
+    text:
+      en: The rest went to thermal stores because of friction and air resistance.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 3600 − 2160.
+  - rung: 5
+    name: full_step
+    text:
+      en: 1440 J was transferred to thermal stores.
+solution:
+  steps:
+  - n: 1
+    latex: 3600 - 2160 = 1440\ \text{J}
+    reason: Energy lost from one store = energy gained by others
+    check_id: chk_build_phy_nrg_0010_ans
+difficulty:
+  prior: -0.7
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0010_ans:
+    args:
+      expression: 3600 - 2160
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,126 @@
+id: itm.acc.o.accruals_prepayments.0017
+version: 0.1.1
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.accruals_prepayments.prepaid_expense
+stem: Adaeze runs a clothing shop. During the year $2500 was paid for wages, of which $450 was for the next year. At the start of the year $150 had already been paid in advance for this year.
+parts:
+- id: a
+  prompt: Calculate the wages expense for the year in the income statement.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '2200.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_accruals_prepayments_0017_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Only the cost that belongs to this year is an expense of this year.
+  - rung: 2
+    name: concept
+    text:
+      en: Expense = amount paid − amount paid in advance for next year + amount paid last year for this year.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'A payment for next year is an asset now: a prepayment.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Expense = 2500 − 450 + 150.
+  - rung: 5
+    name: full_step
+    text:
+      en: The wages expense is $2200.
+  misconception_ids:
+  - mc.acc.o.acc_prepayment_added
+  - mc.acc.o.acc_cash_basis
+solution:
+  steps:
+  - n: 1
+    latex: \text{Expense} = \text{paid} - \text{closing prepayment} + \text{opening prepayment}
+    reason: Match the cost to the year it was used
+    check_id: chk_build_acc_accruals_prepayments_0017_t
+  - n: 2
+    latex: \text{Expense} = 2500 - 450 + 150 = 2200
+    reason: Substitute
+    check_id: chk_build_acc_accruals_prepayments_0017_a
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  paid: '2500'
+checks:
+  chk_build_acc_accruals_prepayments_0017_a:
+    args:
+      dp: 2
+      expression: 2500 - 450 + 150
+    tool: math_evaluate
+  chk_build_acc_accruals_prepayments_0017_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Wages
+        amount: '450'
+        kind: prepaid_expense
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '60000'
+        role: revenue
+      - account: Purchases
+        debit: '30000'
+        role: purchases
+      - account: Wages
+        debit: '2650'
+        role: expense
+      - account: Land
+        debit: '27350'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,89 @@
+id: itm.chm.o.organic.0067
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.alcohols_and_acids
+- kc.chm.o.organic.carboxylic_acids
+stem: Solutions of ethanoic acid and hydrochloric acid of the same concentration are tested with universal indicator.
+parts:
+- id: a
+  prompt: Which statement is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Ethanoic acid has a higher pH, because it is a weak acid and only partly ionised
+      correct: true
+    - id: B
+      text: Ethanoic acid is neutral, because it is an organic compound
+      correct: false
+      misconception_id: mc.chm.o.acids_weak_not_ionised
+      feedback: Ethanoic acid is a weak acid, not a neutral compound. Some of its molecules give off H⁺ ions, so its pH is below 7.
+    - id: C
+      text: Ethanoic acid has a lower pH, because it has more hydrogen atoms
+      correct: false
+    - id: D
+      text: Both have the same pH, because they are both acids
+      correct: false
+      misconception_id: mc.chm.o.acids_strong_means_concentrated
+      feedback: Both are acids, but hydrochloric acid ionises fully and ethanoic acid only partly. At the same concentration the weak acid gives fewer H⁺ ions, so its pH is higher.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: pH depends on the concentration of H⁺ ions in the solution.
+  - rung: 2
+    name: concept
+    text:
+      en: A strong acid ionises fully in water; a weak acid ionises only partly.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ethanoic acid is a weak acid; hydrochloric acid is a strong acid.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Which solution has fewer H⁺ ions, and does that mean a higher or lower pH?
+  - rung: 5
+    name: full_step
+    text:
+      en: Ethanoic acid is only partly ionised, so it has fewer H⁺ ions and a higher pH than hydrochloric acid.
+  misconception_ids:
+  - mc.chm.o.acids_weak_not_ionised
+  - mc.chm.o.acids_strong_means_concentrated
+solution:
+  steps:
+  - n: 1
+    latex: \text{CH}_3\text{COOH }\rightleftharpoons\text{ CH}_3\text{COO}^{-}\text{ + H}^{+}
+    reason: Partly ionised
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.mth.o.largest_factor_not_prime
+kc_ids:
+- kc.mth.o.number.prime_factors
+student_name: The largest factor instead of the largest prime factor
+description: Gives the largest factor of a number, which is not prime, as its largest prime factor.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: contrast_example
+  text:
+    en: A prime factor must be prime. List the primes in the factorisation and choose the largest of those.
+probe_item_ids:
+- itm.mth.o.number.0002
+- itm.mth.o.number.0003
+- itm.mth.o.number.0004
+- itm.mth.o.number.0006
+- itm.mth.o.number.0008
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

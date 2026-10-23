@@ -1,0 +1,32 @@
+id: mc.phy.o.power_same_if_same_work
+kc_ids:
+- kc.phy.o.energy.power
+student_name: Same work, same power
+description: Thinks two people or machines that do the same work have the same power, whatever time they take.
+signatures:
+- kind: answer_transform
+  expression: P1 = P2
+fix:
+  strategy: counterexample
+  text:
+    en: A lift and the stairs take you to the same floor, but the lift does it faster. Same energy in less time means more power.
+probe_item_ids:
+- itm.phy.o.energy.0081
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

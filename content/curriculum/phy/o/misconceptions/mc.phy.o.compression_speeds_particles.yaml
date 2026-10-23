@@ -1,0 +1,36 @@
+id: mc.phy.o.compression_speeds_particles
+kc_ids:
+- kc.phy.o.particles.gas_pressure_particles
+- kc.phy.o.particles.pressure_and_volume
+student_name: Squeezing a gas speeds up its particles
+description: Thinks compressing or expanding a gas at constant temperature changes how fast its particles move, rather than how often they hit the walls.
+signatures:
+- kind: answer_transform
+  expression: speed
+fix:
+  strategy: rule_restatement
+  text:
+    en: At constant temperature the particles keep the same average speed. Squeezed into less space, they reach each wall sooner and hit it more often, so the pressure rises.
+probe_item_ids:
+- itm.phy.o.particles.0041
+- itm.phy.o.particles.0032
+- itm.phy.o.particles.0035
+- itm.phy.o.particles.0038
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

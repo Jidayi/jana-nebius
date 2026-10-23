@@ -1,0 +1,69 @@
+id: wex.chm.o.stoichiometry.0008
+kc_ids:
+- kc.chm.o.stoichiometry.percentage_composition
+problem: Calculate the percentage by mass of N in ammonium nitrate, NH₄NO₃.
+steps:
+- n: 1
+  latex: M_r = 80
+  reason: Relative formula mass
+  check_id: chk_build_chm_stoichiometry_w0008_mr
+- n: 2
+  latex: \text{N}_2 = 28
+  reason: Mass of that element's atoms
+  check_id: chk_build_chm_stoichiometry_w0008_el
+- n: 3
+  latex: \frac{28}{80} \times 100
+  reason: Part over whole, times 100
+  check_id: chk_build_chm_stoichiometry_w0008_pct
+final_answer:
+  latex: 35.0\%
+  check_id: chk_build_chm_stoichiometry_w0008_pct
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_w0008_el:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      formula: N2
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_w0008_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      formula: NH4NO3
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_w0008_pct:
+    args:
+      expression: 100*28/80
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.conversion_two_dropped
+kc_ids:
+- kc.phy.o.energy.energy_conversion
+student_name: Losing the 2 in v² = 2gh
+description: Sets mgh equal to ½mv² but loses the 2 when rearranging, getting v² = gh or h = v² ÷ g.
+signatures:
+- kind: answer_transform
+  expression: sqrt(g*h)
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'From mgh = ½mv², multiply both sides by 2 and cancel m: v² = 2gh, and so h = v² ÷ 2g.'
+probe_item_ids:
+- itm.phy.o.energy.0056
+- itm.phy.o.energy.0057
+- itm.phy.o.energy.0058
+- itm.phy.o.energy.0059
+- itm.phy.o.energy.0046
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

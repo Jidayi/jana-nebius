@@ -1,0 +1,64 @@
+id: wex.phy.o.thermal_properties.0003
+kc_ids:
+- kc.phy.o.thermal_properties.specific_heat_capacity
+problem: A 1.5 kg block of aluminium is heated by a 24 W heater for 4 minutes. Its temperature rises from 18 °C to 22.5 °C. Assume no energy is lost to the surroundings. Find the specific heat capacity of the metal.
+steps:
+- n: 1
+  latex: t = 4\ \text{min} = 240\ \text{s}
+  reason: A watt is a joule per second
+  check_id: chk_build_phy_thp_w0003_ts
+- n: 2
+  latex: E = Pt = 24 \times 240 = 5760\ \text{J}
+  reason: Energy from the heater
+  check_id: chk_build_phy_thp_w0003_e
+- n: 3
+  latex: \Delta\theta = 22.5 - 18 = 4.5\ ^\circ\text{C}
+  reason: The temperature rise
+  check_id: chk_build_phy_thp_w0003_dt
+- n: 4
+  latex: c = \frac{E}{m\Delta\theta} = \frac{5760}{1.5 \times 4.5} = 853\ \text{J/(kg °C)}
+  reason: Rearrange E = mcΔθ
+  check_id: chk_build_phy_thp_w0003_ans
+final_answer:
+  latex: 853\ \text{J/(kg °C)}
+  check_id: chk_build_phy_thp_w0003_ans
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_thp_w0003_ans:
+    args:
+      expression: 24*4*60/(1.5*(22.5 - 18))
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_thp_w0003_dt:
+    args:
+      expression: 22.5 - 18
+    tool: math_evaluate
+  chk_build_phy_thp_w0003_e:
+    args:
+      expression: 24*4*60
+    tool: math_evaluate
+  chk_build_phy_thp_w0003_ts:
+    args:
+      expression: 4*60
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

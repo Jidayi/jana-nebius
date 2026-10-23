@@ -1,0 +1,35 @@
+id: mc.acc.o.br_credit_means_money
+kc_ids:
+- kc.acc.o.bank_reconciliation.overdraft_sides
+student_name: A cash book credit as money in the bank
+description: Reads a credit balance in the bank column of the cash book as money in the bank.
+signatures:
+- kind: structural
+  rule: debit_credit_swapped
+  account_class: asset
+fix:
+  strategy: contrast_example
+  text:
+    en: 'The bank account in your cash book is an asset: money in the bank is a debit. A credit is an overdraft.'
+probe_item_ids:
+- itm.acc.o.bank_reconciliation.0034
+- itm.acc.o.bank_reconciliation.0035
+- itm.acc.o.bank_reconciliation.0036
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

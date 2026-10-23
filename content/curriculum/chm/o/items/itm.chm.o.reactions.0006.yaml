@@ -1,0 +1,90 @@
+id: itm.chm.o.reactions.0006
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.physical_chemical_change
+stem: Four things are seen in a school laboratory.
+parts:
+- id: a
+  prompt: Which observation shows that a chemical change has happened?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Solid wax turns to liquid when it is warmed.
+      correct: false
+      misconception_id: mc.chm.o.reactions_state_change_is_chemical
+      feedback: Ice, liquid water and steam are all the same substance, made of the same water molecules. A change of state only changes how close together the particles are and how they move. No new substance forms, so it is a physical change.
+    - id: B
+      text: A yellow solid appears when two colourless solutions are mixed.
+      correct: true
+    - id: C
+      text: A white solid disappears when it is stirred into water.
+      correct: false
+      misconception_id: mc.chm.o.reactions_dissolving_is_chemical
+      feedback: 'When salt or sugar dissolves, its particles spread out between the water particles. Nothing new forms: evaporate the water and the same solid is left, with the same mass. Dissolving is a physical change.'
+    - id: D
+      text: Bubbles appear when water is heated to 100 °C.
+      correct: false
+      misconception_id: mc.chm.o.reactions_state_change_is_chemical
+      feedback: Ice, liquid water and steam are all the same substance, made of the same water molecules. A change of state only changes how close together the particles are and how they move. No new substance forms, so it is a physical change.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Look for the observation in which something new must have been made.
+  - rung: 2
+    name: concept
+    text:
+      en: Signs of a chemical change include a new solid, a gas, a colour change and a temperature change.
+  - rung: 3
+    name: first_step
+    text:
+      en: Bubbles in boiling water are water vapour; melted wax is still wax; a dissolved solid is still there.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Two colourless liquids cannot make a yellow solid unless their particles have joined in a new way.
+  - rung: 5
+    name: full_step
+    text:
+      en: The yellow solid is a new substance (a precipitate), so mixing the solutions caused a chemical change.
+  misconception_ids:
+  - mc.chm.o.reactions_dissolving_is_chemical
+  - mc.chm.o.reactions_state_change_is_chemical
+solution:
+  steps:
+  - n: 1
+    latex: '\text{new solid formed: a chemical change}'
+    reason: A precipitate is a new substance
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

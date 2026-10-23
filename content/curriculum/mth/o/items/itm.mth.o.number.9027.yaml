@@ -1,0 +1,89 @@
+id: itm.mth.o.number.9027
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.hcf_lcm
+stem: Two bells ring together at noon. One rings every 12 minutes and the other every 18 minutes.
+parts:
+- id: a
+  prompt: After how many minutes will they next ring together?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '36'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9027
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The first shared ringing time is the least positive common multiple of both intervals.
+  - rung: 2
+    name: concept
+    text:
+      en: List positive multiples of each interval or combine their prime factors to find the least shared value.
+  - rung: 3
+    name: first_step
+    text:
+      en: List positive multiples of each interval or combine their prime factors to find the least shared value.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Check that the time is divisible by each interval and that no smaller positive time is.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 36.
+solution:
+  steps:
+  - n: 1
+    latex: \gcd(12,18)=6
+    reason: The common prime factors give the greatest common divisor.
+    check_id: chk_build_mastery_supplement_mth_9027_gcd
+  - n: 2
+    latex: \mathrm{lcm}(12,18)=\frac{12\times 18}{6}=36
+    reason: Divide the product by the greatest common divisor.
+    check_id: chk_build_mastery_supplement_mth_9027
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9027:
+    args:
+      angle_unit: degrees
+      expression: 12*18/6
+    tool: math_evaluate
+  chk_build_mastery_supplement_mth_9027_gcd:
+    args:
+      expression: 2*3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

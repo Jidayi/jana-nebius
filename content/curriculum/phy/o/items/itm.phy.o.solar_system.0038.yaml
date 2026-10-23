@@ -1,0 +1,93 @@
+id: itm.phy.o.solar_system.0038
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.solar_system.planets_and_gravity
+stem: A comet moves round the Sun in a long, stretched orbit.
+parts:
+- id: a
+  prompt: Where in its orbit does the comet move fastest?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Furthest from the Sun
+      correct: false
+      misconception_id: mc.phy.o.outer_planets_orbit_faster
+      feedback: 'Further out the Sun''s pull is weaker and the path is longer: Mercury takes 88 days, Neptune about 165 years.'
+    - id: B
+      text: It moves at the same speed all the way round
+      correct: false
+      misconception_id: mc.phy.o.field_strength_same_everywhere
+      feedback: Field strength depends on the planet's mass and size (1.6 N/kg on the Moon, about 25 N/kg on Jupiter) and gets weaker further from the planet.
+    - id: C
+      text: Closest to the Sun
+      correct: true
+    - id: D
+      text: Wherever the Sun pushes it along its path
+      correct: false
+      misconception_id: mc.phy.o.orbit_needs_forward_force
+      feedback: 'No forward push is needed: a moving body keeps moving. The Sun''s pull, towards the Sun, only bends the path into a curve.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what the Sun's gravity does to each planet.
+  - rung: 2
+    name: concept
+    text:
+      en: Gravity pulls towards the Sun and bends each planet's path into an orbit; nothing pushes it along or outwards.
+  - rung: 3
+    name: first_step
+    text:
+      en: Further from the Sun the pull is weaker, the orbit longer and the planet slower; g depends on the planet.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against these ideas.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Closest to the Sun.'
+  misconception_ids:
+  - mc.phy.o.field_strength_same_everywhere
+  - mc.phy.o.orbit_needs_forward_force
+  - mc.phy.o.outer_planets_orbit_faster
+solution:
+  steps:
+  - n: 1
+    latex: \text{Closest to the Sun}
+    reason: Apply the ideas about gravity and orbits
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

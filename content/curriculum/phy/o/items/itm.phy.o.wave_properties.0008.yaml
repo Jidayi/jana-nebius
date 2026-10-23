@@ -1,0 +1,109 @@
+id: itm.phy.o.wave_properties.0008
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.describing_waves
+stem: A displacement–time graph for a point on a vibrating string shows 3 complete cycles in 0.5 s.
+parts:
+- id: a
+  prompt: Find the period of the oscillation.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '0.167'
+    unit: s
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_wav_0008_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The period is the time for one complete cycle.
+  - rung: 2
+    name: concept
+    text:
+      en: The graph shows 3 cycles, not one.
+  - rung: 3
+    name: first_step
+    text:
+      en: Share the total time equally among the cycles.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 0.5 ÷ 3.
+  - rung: 5
+    name: full_step
+    text:
+      en: T = 0.167 s.
+  misconception_ids:
+  - mc.phy.o.period_frequency_confused
+  - mc.phy.o.whole_time_as_period
+  - mc.phy.o.repeat_multiplied
+solution:
+  steps:
+  - n: 1
+    latex: T = \frac{0.5}{3} = 0.167\ \text{s}
+    reason: Total time shared among the cycles
+    check_id: chk_build_phy_wav_0008_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  n: '3'
+  t: '0.5'
+checks:
+  chk_build_phy_wav_0008_ans:
+    args:
+      expression: 0.5/3
+      sf: 3
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:44:28.361Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.wave_properties.0008
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

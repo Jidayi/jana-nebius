@@ -1,0 +1,90 @@
+id: itm.chm.o.acids.0046
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.oxides
+stem: A student lists some oxides of non-metals.
+parts:
+- id: a
+  prompt: Which list contains only acidic oxides?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: CO₂, SO₂ and NO₂
+      correct: true
+    - id: B
+      text: CaO, SO₂ and CO₂
+      correct: false
+      misconception_id: mc.chm.o.acids_oxide_type_swapped
+      feedback: 'Metal oxides such as CaO and CuO are bases: they react with acids. Non-metal oxides such as CO₂ and SO₂ are acidic: they react with alkalis and give acidic solutions in water.'
+    - id: C
+      text: CO₂, CO and SO₂
+      correct: false
+      misconception_id: mc.chm.o.acids_oxide_by_element_only
+      feedback: 'The metal / non-metal rule has exceptions. Test the oxide: aluminium oxide and zinc oxide also react with alkalis (amphoteric), and carbon monoxide and nitrogen monoxide react with neither acids nor alkalis (neutral).'
+    - id: D
+      text: NO, NO₂ and SO₂
+      correct: false
+      misconception_id: mc.chm.o.acids_oxide_by_element_only
+      feedback: 'The metal / non-metal rule has exceptions. Test the oxide: aluminium oxide and zinc oxide also react with alkalis (amphoteric), and carbon monoxide and nitrogen monoxide react with neither acids nor alkalis (neutral).'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Most non-metal oxides are acidic, but some are not. Which non-metal oxides are neutral?
+  - rung: 2
+    name: concept
+    text:
+      en: Carbon monoxide and nitrogen monoxide are neutral oxides.
+  - rung: 3
+    name: first_step
+    text:
+      en: Calcium oxide is the oxide of a metal.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Remove every list that holds a neutral oxide or a metal oxide.
+  - rung: 5
+    name: full_step
+    text:
+      en: CO₂, SO₂ and NO₂ are all acidic oxides; the other lists include CO, NO or CaO.
+  misconception_ids:
+  - mc.chm.o.acids_oxide_by_element_only
+  - mc.chm.o.acids_oxide_type_swapped
+solution:
+  steps:
+  - n: 1
+    latex: '\text{CO}_2,\ \text{SO}_2,\ \text{NO}_2: \text{acidic}'
+    reason: Non-metal oxides that react with alkalis
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

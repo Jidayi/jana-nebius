@@ -1,0 +1,116 @@
+id: itm.acc.o.costing.0044
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.costing.margin_of_safety
+stem: Zanele expects to sell 1300 jars of honey at $8 each. Variable cost is $6 each and fixed costs are $400.
+parts:
+- id: a
+  prompt: What is the margin of safety in units?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 1500 units
+      correct: false
+      misconception_id: mc.acc.o.cost_mos_added
+    - id: B
+      text: 1100 units
+      correct: true
+    - id: C
+      text: 1300 units
+      correct: false
+      misconception_id: mc.acc.o.cost_mos_output_as_mos
+    - id: D
+      text: 200 units
+      correct: false
+      misconception_id: mc.acc.o.cost_mos_be_as_mos
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: How many units are sold above the break-even point?
+  - rung: 2
+    name: concept
+    text:
+      en: Margin of safety = expected output − break-even output.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Find break-even first: fixed costs ÷ contribution per unit.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 1300 − 400 ÷ (8 − 6).
+  - rung: 5
+    name: full_step
+    text:
+      en: Margin of safety = 1100 units.
+  misconception_ids:
+  - mc.acc.o.cost_mos_be_as_mos
+  - mc.acc.o.cost_mos_output_as_mos
+  - mc.acc.o.cost_mos_added
+solution:
+  steps:
+  - n: 1
+    latex: \text{Margin of safety} = \text{output} - \text{break-even}
+    reason: Room before a loss
+    check_id: chk_build_acc_costing_0044_t
+  - n: 2
+    latex: \text{Break-even} = \frac{400}{8 - 6} = 200
+    reason: Units
+    check_id: chk_build_acc_costing_0044_s2
+  - n: 3
+    latex: 1300 - 200 = 1100
+    reason: Subtract
+    check_id: chk_build_acc_costing_0044_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_costing_0044_a:
+    args:
+      dp: 2
+      expression: 1300 - 400 / (8 - 6)
+    tool: math_evaluate
+  chk_build_acc_costing_0044_s2:
+    args:
+      dp: 4
+      expression: 400 / (8 - 6)
+    tool: math_evaluate
+  chk_build_acc_costing_0044_t:
+    args:
+      dp: 2
+      fixed_costs: '400'
+      output_units: 1300
+      selling_price: '8'
+      variable_cost_per_unit: '6'
+    tool: acc_break_even
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

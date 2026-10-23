@@ -1,0 +1,95 @@
+id: itm.phy.o.mass_weight.0001
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.mass_weight.weight_from_mass
+stem: A mobile phone has a mass of 180 g. Take g = 9.8 N/kg.
+parts:
+- id: a
+  prompt: Calculate its weight.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1.764'
+    unit: N
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_mwt_0001_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Weight is a force, so it is measured in newtons.
+  - rung: 2
+    name: concept
+    text:
+      en: Weight = mass × gravitational field strength, with the mass in kilograms.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change 180 g into kilograms first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 0.18 kg × 9.8 N/kg.
+  - rung: 5
+    name: full_step
+    text:
+      en: The weight is 1.764 N.
+  misconception_ids:
+  - mc.phy.o.weight_grams_not_converted
+  - mc.phy.o.weight_given_as_mass_number
+  - mc.phy.o.weight_mass_divided_by_g
+solution:
+  steps:
+  - n: 1
+    latex: m = 180\ \text{g} = 0.18\ \text{kg}
+    reason: Change grams into kilograms
+    check_id: chk_build_phy_mwt_0001_kg
+  - n: 2
+    latex: W = mg = 0.18 \times 9.8 = 1.764\ \text{N}
+    reason: Weight = mass × g
+    check_id: chk_build_phy_mwt_0001_ans
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mwt_0001_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 180/1000*g
+    tool: math_evaluate
+  chk_build_phy_mwt_0001_kg:
+    args:
+      expression: 180/1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

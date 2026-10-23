@@ -1,0 +1,36 @@
+id: mc.chm.o.reactions_redox_needs_oxygen
+kc_ids:
+- kc.chm.o.reactions.redox
+student_name: Redox needs oxygen
+description: Thinks oxidation and reduction only mean gaining and losing oxygen, so a reaction without oxygen cannot be redox.
+signatures:
+- kind: answer_transform
+  expression: 'choice: a reaction without oxygen said not to be redox'
+fix:
+  strategy: counterexample
+  text:
+    en: 'Oxygen is only one way to see redox. Any transfer of electrons is redox: when magnesium burns in chlorine, magnesium loses electrons (oxidised) and chlorine gains them (reduced), with no oxygen at all.'
+probe_item_ids:
+- itm.chm.o.reactions.0061
+- itm.chm.o.reactions.0062
+- itm.chm.o.reactions.0063
+- itm.chm.o.reactions.0064
+- itm.chm.o.reactions.0065
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

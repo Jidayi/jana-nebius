@@ -1,0 +1,34 @@
+id: mc.phy.o.tracer_long_half_life
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+student_name: A long half-life makes a better tracer
+description: Chooses a source with a long half-life as a medical or leak tracer, thinking a longer-lasting source is better.
+signatures:
+- kind: answer_transform
+  expression: long
+fix:
+  strategy: rule_restatement
+  text:
+    en: A tracer is needed only for hours. A long half-life would leave the patient or the ground radioactive for years.
+probe_item_ids:
+- itm.phy.o.radioactivity.0073
+- itm.phy.o.radioactivity.0074
+- itm.phy.o.radioactivity.0070
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

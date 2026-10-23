@@ -1,0 +1,119 @@
+id: itm.mth.o.trigonometry.0049
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.elevation_depression
+stem: A student stands 40 m from the foot of a tree on level ground. Her eyes are 1.7 m above the ground, and the angle of elevation of the top of the tree from her eyes is 43°.
+parts:
+- id: a
+  prompt: Find the height of the tree, to 3 significant figures.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '39.0'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_trg_0049_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Draw a horizontal line from her eyes to the tree: it makes a right-angled triangle.'
+  - rung: 2
+    name: concept
+    text:
+      en: The horizontal distance 40 m is adjacent to the angle; the part of the tree above eye level is opposite.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Use tan: height above eye level = 40 × tan 43°.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: That gives 37.30 m. Do not forget the 1.7 m below eye level.
+  - rung: 5
+    name: full_step
+    text:
+      en: The tree is 39.0 m tall.
+  misconception_ids:
+  - mc.mth.o.eye_height_ignored
+  - mc.mth.o.trig_ratio_wrong
+  - mc.mth.o.depression_from_vertical
+solution:
+  steps:
+  - n: 1
+    latex: \text{height above eye level} = 40 \tan 43 = 37.30
+    reason: Opposite = adjacent × tan
+    check_id: chk_build_mth_trg_0049_o
+  - n: 2
+    latex: 37.30 + 1.7 = 39.0\ \text{m}
+    reason: Add the eye height
+    check_id: chk_build_mth_trg_0049_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- farming
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  theta: '43'
+checks:
+  chk_build_mth_trg_0049_ans:
+    args:
+      angle_unit: degrees
+      expression: 40*tan(43) + 1.7
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_trg_0049_o:
+    args:
+      angle_unit: degrees
+      expression: 40*tan(43)
+      sf: 4
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:40:36.628Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.trigonometry.0049
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

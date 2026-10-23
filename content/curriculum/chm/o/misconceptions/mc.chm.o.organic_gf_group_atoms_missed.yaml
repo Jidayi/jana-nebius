@@ -1,0 +1,36 @@
+id: mc.chm.o.organic_gf_group_atoms_missed
+kc_ids:
+- kc.chm.o.organic.general_formulae
+student_name: Leaving out the functional group's atoms
+description: Leaves the atoms of –OH or –COOH out of the formula or the Mr, or takes n in CₙH₂ₙ₊₁COOH as the total number of carbon atoms, forgetting the carbon in –COOH.
+signatures:
+- kind: answer_transform
+  expression: 'choice: functional group atoms left out of the count'
+fix:
+  strategy: rule_restatement
+  text:
+    en: Write the full formula first, functional group included, and count every atom. In CₙH₂ₙ₊₁COOH the –COOH group holds one more carbon atom, so the molecule has n + 1 carbon atoms.
+probe_item_ids:
+- itm.chm.o.organic.0026
+- itm.chm.o.organic.0027
+- itm.chm.o.organic.0028
+- itm.chm.o.organic.0031
+- itm.chm.o.organic.0032
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

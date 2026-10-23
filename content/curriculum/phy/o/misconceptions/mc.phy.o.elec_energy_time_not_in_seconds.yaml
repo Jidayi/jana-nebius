@@ -1,0 +1,36 @@
+id: mc.phy.o.elec_energy_time_not_in_seconds
+kc_ids:
+- kc.phy.o.practical_electricity.energy_cost
+student_name: Time in minutes for joules
+description: Multiplies the power in watts by a time in minutes or hours, but gives the answer in joules.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: A joule is one watt for one second. Change the time into seconds before working out E = Pt in joules.
+probe_item_ids:
+- itm.phy.o.practical_electricity.0028
+- itm.phy.o.practical_electricity.0032
+- itm.phy.o.practical_electricity.0016
+- itm.phy.o.practical_electricity.0020
+- itm.phy.o.practical_electricity.0024
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

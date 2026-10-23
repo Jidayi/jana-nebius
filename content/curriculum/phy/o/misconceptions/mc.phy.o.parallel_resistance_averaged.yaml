@@ -1,0 +1,36 @@
+id: mc.phy.o.parallel_resistance_averaged
+kc_ids:
+- kc.phy.o.circuits.parallel_circuits
+student_name: Averaging parallel resistances
+description: Takes the average of two resistances in parallel as the combined resistance.
+signatures:
+- kind: answer_transform
+  expression: (R1 + R2)/2
+fix:
+  strategy: counterexample
+  text:
+    en: Two equal 10 Ω resistors side by side give 5 Ω, not their average of 10 Ω. The combined resistance is less than either one.
+probe_item_ids:
+- itm.phy.o.circuits.0028
+- itm.phy.o.circuits.0029
+- itm.phy.o.circuits.0016
+- itm.phy.o.circuits.0017
+- itm.phy.o.circuits.0023
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

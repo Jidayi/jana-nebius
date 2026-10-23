@@ -1,0 +1,118 @@
+id: itm.acc.o.ratios.0066
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.roce
+stem: Kofi's capital was $47000 at the start of the year and $54700 at the end. Gross profit was $37500 and profit for the year $20100. A long-term loan of $25000 is owed.
+parts:
+- id: a
+  prompt: Using profit for the year ÷ (closing capital + non-current liabilities), what is the return on capital employed?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 25.22%
+      correct: true
+    - id: B
+      text: 47.05%
+      correct: false
+      misconception_id: mc.acc.o.rat_gross_net_confused
+    - id: C
+      text: 27.92%
+      correct: false
+      misconception_id: mc.acc.o.rat_capital_basis_wrong
+    - id: D
+      text: 36.75%
+      correct: false
+      misconception_id: mc.acc.o.rat_capital_employed_wrong
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which profit, and which capital figure, does the stated definition use?
+  - rung: 2
+    name: concept
+    text:
+      en: ROCE = profit for the year ÷ (closing capital + non-current liabilities), as a percentage.
+  - rung: 3
+    name: first_step
+    text:
+      en: The loan is part of the capital employed in the business.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 20100 by (54700 + 25000).
+  - rung: 5
+    name: full_step
+    text:
+      en: ROCE = 25.22%.
+  misconception_ids:
+  - mc.acc.o.rat_capital_employed_wrong
+  - mc.acc.o.rat_capital_basis_wrong
+  - mc.acc.o.rat_gross_net_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{ROCE} = \frac{\text{profit for the year}}{\text{capital} + \text{non-current liabilities}}
+    reason: The stated definition
+    check_id: chk_build_acc_ratios_0066_t
+  - n: 2
+    latex: \frac{20100}{54700 + 25000} \rightarrow 25.22\%
+    reason: Substitute
+    check_id: chk_build_acc_ratios_0066_a
+difficulty:
+  prior: 0.4
+  band: stretch
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_0066_a:
+    args:
+      dp: 2
+      expression: 20100 / (54700 + 25000) * 100
+    tool: math_evaluate
+  chk_build_acc_ratios_0066_t:
+    args:
+      closing_capital: '54700'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      non_current_liabilities: '25000'
+      opening_capital: '47000'
+      profit_for_the_year: '20100'
+      ratios:
+      - roce
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

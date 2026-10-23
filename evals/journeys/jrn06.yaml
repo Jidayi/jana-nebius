@@ -1,0 +1,45 @@
+# JRN-06: the journey as an executable script (JRN-02). Steps and failure branches follow the
+# specification's journey (checked by jrn02_journey_suite_complete); requirement ids only, no wording.
+journey: JRN-06
+title: The first error in typed working
+persona: P1
+stage: S2
+steps:
+- n: 1
+  requirements:
+  - UXS-12
+  - AGT-21
+  - VER-03
+  - UXS-31
+  runs_on: harness
+- n: 2
+  requirements:
+  - VER-06
+  - ASM-09
+  runs_on: harness
+- n: 3
+  requirements:
+  - ASM-09
+  - UXS-15
+  runs_on: harness
+- n: 4
+  requirements:
+  - SKL-08
+  - UXS-15
+  runs_on: harness
+- n: 5
+  requirements:
+  - ASM-09
+  - LRN-06
+  runs_on: harness
+branches:
+- id: F1
+  requirements:
+  - VER-03
+- id: F2
+  requirements:
+  - VER-27
+- id: F3
+  requirements:
+  - VER-22
+  - ASM-07

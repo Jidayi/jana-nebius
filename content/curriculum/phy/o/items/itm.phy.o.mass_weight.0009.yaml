@@ -1,0 +1,98 @@
+id: itm.phy.o.mass_weight.0009
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.mass_weight.weight_from_mass
+stem: Esi has a weight of 588 N on Earth. Take g = 9.8 N/kg.
+parts:
+- id: a
+  prompt: Find Esi's weight on Saturn, where g = 10.4 N/kg.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '624'
+    unit: N
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_mwt_0009_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The mass is the same everywhere; the weight is not.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the mass from the Earth weight, then use the g for the new place.
+  - rung: 3
+    name: first_step
+    text:
+      en: Mass = 588 ÷ 9.8.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The mass is 60 kg; multiply it by 10.4.
+  - rung: 5
+    name: full_step
+    text:
+      en: Esi's weight on Saturn is 624 N.
+  misconception_ids:
+  - mc.phy.o.weight_same_on_every_planet
+  - mc.phy.o.weight_given_as_mass_number
+  - mc.phy.o.planet_g_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: m = \frac{588}{9.8} = 60\ \text{kg}
+    reason: Find the mass from the Earth weight
+    check_id: chk_build_phy_mwt_0009_m
+  - n: 2
+    latex: W = 60 \times 10.4 = 624\ \text{N}
+    reason: The mass is the same on Saturn
+    check_id: chk_build_phy_mwt_0009_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mwt_0009_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 588/g*10.4
+    tool: math_evaluate
+  chk_build_phy_mwt_0009_m:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 588/g
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

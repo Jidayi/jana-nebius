@@ -1,0 +1,93 @@
+id: itm.mth.o.geometry.0007
+version: 0.1.0
+type: mcq
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.shape_properties
+stem: Which quadrilateral has two pairs of equal sides that are next to each other, and is not a rhombus?
+parts:
+- id: a
+  prompt: Choose the correct name.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: rhombus
+      correct: false
+      misconception_id: mc.mth.o.kite_rhombus_confused
+      feedback: A kite has two pairs of equal sides next to each other; a rhombus has all four sides equal.
+    - id: B
+      text: trapezium
+      correct: false
+      misconception_id: mc.mth.o.trapezium_two_pairs
+      feedback: A trapezium has exactly one pair of parallel sides; with two pairs it is a parallelogram.
+    - id: C
+      text: rectangle
+      correct: false
+      misconception_id: mc.mth.o.square_not_rectangle
+      feedback: A rectangle needs four right angles; a square has them, so every square is a rectangle.
+    - id: D
+      text: kite
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'List the properties given: sides, angles and parallel lines.'
+  - rung: 2
+    name: concept
+    text:
+      en: Check each name against every property, not just one of them.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Remember that a shape can belong to more than one family: a square is also a rectangle and a rhombus.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out each name that breaks one of the properties.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: kite.'
+  misconception_ids:
+  - mc.mth.o.kite_rhombus_confused
+  - mc.mth.o.square_not_rectangle
+  - mc.mth.o.trapezium_two_pairs
+solution:
+  steps:
+  - n: 1
+    latex: \text{kite}
+    reason: Check every property in the question
+difficulty:
+  prior: -0.8
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,86 @@
+id: itm.phy.o.atom.0003
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.atom.atomic_structure
+stem: 'A neutral atom is written ¹⁴₇N: the top number is 14 and the bottom number is 7.'
+parts:
+- id: a
+  prompt: How many electrons does the atom have?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '7'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_atm_0003_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Electrons are outside the nucleus, so they are not counted in either number of the symbol.
+  - rung: 2
+    name: concept
+    text:
+      en: A neutral atom has no overall charge.
+  - rung: 3
+    name: first_step
+    text:
+      en: The positive charge comes from the protons only; neutrons carry no charge.
+  - rung: 4
+    name: worked_step
+    text:
+      en: So the negative electrons must balance the protons, one for one.
+  - rung: 5
+    name: full_step
+    text:
+      en: The atom has 7 electrons.
+  misconception_ids:
+  - mc.phy.o.electrons_equal_nucleon_number
+  - mc.phy.o.electrons_equal_neutrons
+solution:
+  steps:
+  - n: 1
+    latex: '{}^{14}_{7}\text{N}:\ Z = 7'
+    reason: The bottom number is the proton number
+  - n: 2
+    latex: \text{electrons} = Z = 7
+    reason: A neutral atom has one electron for each proton
+    check_id: chk_build_phy_atm_0003_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_atm_0003_ans:
+    args:
+      expression: '7'
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

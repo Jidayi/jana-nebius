@@ -1,0 +1,36 @@
+id: mc.chm.o.electrolysis_molten_gives_hydrogen
+kc_ids:
+- kc.chm.o.electrolysis.molten_products
+student_name: Hydrogen or oxygen from a melt
+description: Applies the rules for solutions to a molten compound, predicting hydrogen at the cathode or oxygen at the anode, though a melt contains no water.
+signatures:
+- kind: answer_transform
+  expression: 'choice: hydrogen or oxygen predicted from a molten compound with no hydrogen or oxygen in it'
+fix:
+  strategy: contrast_example
+  text:
+    en: A molten binary compound contains only its own two kinds of ion. There is no water, so there are no hydrogen or hydroxide ions. The metal forms at the cathode and the non-metal at the anode.
+probe_item_ids:
+- itm.chm.o.electrolysis.0001
+- itm.chm.o.electrolysis.0002
+- itm.chm.o.electrolysis.0003
+- itm.chm.o.electrolysis.0004
+- itm.chm.o.electrolysis.0005
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

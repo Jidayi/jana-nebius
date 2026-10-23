@@ -1,0 +1,101 @@
+id: itm.mth.o.number.0383
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.surds
+stem: Rationalise the denominator of $\frac{45}{\sqrt{5}}$ and write it as $k\sqrt{5}$.
+parts:
+- id: a
+  prompt: Find k.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '45'
+      correct: false
+      misconception_id: mc.mth.o.rationalise_numerator_only
+      feedback: 'Multiply top and bottom by √b: the bottom becomes √b × √b = b.'
+    - id: B
+      text: '1.8'
+      correct: false
+      misconception_id: mc.mth.o.square_as_double
+      feedback: 5² means 5 × 5 = 25, not 5 × 2 = 10.
+    - id: C
+      text: '225'
+      correct: false
+      misconception_id: mc.mth.o.fraction_multiply_inverts
+      feedback: To multiply fractions, multiply the tops together and the bottoms together.
+    - id: D
+      text: '9'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Rationalising means making the denominator a whole number.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply the top and the bottom by √5.
+  - rung: 3
+    name: first_step
+    text:
+      en: The bottom becomes √5 × √5 = 5.
+  - rung: 4
+    name: worked_step
+    text:
+      en: You get 45√5 ÷ 5. Simplify.
+  - rung: 5
+    name: full_step
+    text:
+      en: k = 9.
+  misconception_ids:
+  - mc.mth.o.fraction_multiply_inverts
+  - mc.mth.o.rationalise_numerator_only
+  - mc.mth.o.square_as_double
+solution:
+  steps:
+  - n: 1
+    latex: \frac{45}{\sqrt{5}} \times \frac{\sqrt{5}}{\sqrt{5}} = \frac{45\sqrt{5}}{5}
+    reason: Multiply top and bottom by the root
+  - n: 2
+    latex: = 9\sqrt{5}
+    reason: Simplify the fraction
+    check_id: chk_build_mth_num_0383_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0383_ans:
+    args:
+      expression: 45/5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

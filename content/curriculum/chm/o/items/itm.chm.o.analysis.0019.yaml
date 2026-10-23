@@ -1,0 +1,83 @@
+id: itm.chm.o.analysis.0019
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.analysis.titration_technique
+stem: Put these steps for making a pure soluble salt by titration in order.
+parts:
+- id: a
+  prompt: Drag the steps into the correct order.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s3
+      text: Heat the solution to evaporate some of the water.
+    - id: s1
+      text: Titrate the alkali with the acid using an indicator to find the volumes that react.
+    - id: s2
+      text: Mix the same volumes again without the indicator.
+    - id: s4
+      text: Leave the solution to cool so that crystals form, then filter and dry them.
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What has to be ready before anything else can happen?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Each step needs something from the step before it: work out what must already be done.'
+  - rung: 3
+    name: first_step
+    text:
+      en: 'The first step is: titrate the alkali with the acid using an indicator to find the volumes that react.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'The last step is: leave the solution to cool so that crystals form, then filter and dry them.'
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Correct order: Titrate the alkali with the acid using an indicator to find the volumes that react → Mix the same volumes again without the indicator → Heat the solution to evaporate some of the water → Leave the solution to cool so that crystals form, then filter and dry them.'
+  misconception_ids:
+  - mc.chm.o.analysis_rinse_with_water
+solution:
+  steps:
+  - n: 1
+    latex: \text{titrate with indicator} \rightarrow \text{mix without indicator} \rightarrow \text{evaporate some water} \rightarrow \text{cool, crystallise, filter, dry}
+    reason: Find the volumes first, then make the salt solution pure and crystallise it
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

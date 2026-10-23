@@ -1,0 +1,35 @@
+id: mc.phy.o.pressure_area_over_force
+kc_ids:
+- kc.phy.o.pressure.pressure_on_surfaces
+student_name: Area divided by force
+description: Divides the area by the force instead of the force by the area.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Pressure is measured in newtons per square metre, so the force goes on top: pressure = force ÷ area.'
+probe_item_ids:
+- itm.phy.o.pressure.0014
+- itm.phy.o.pressure.0001
+- itm.phy.o.pressure.0002
+- itm.phy.o.pressure.0007
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

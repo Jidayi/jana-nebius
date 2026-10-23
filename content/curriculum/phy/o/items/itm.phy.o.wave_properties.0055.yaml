@@ -1,0 +1,93 @@
+id: itm.phy.o.wave_properties.0055
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.wave_behaviour
+stem: Water waves move from deep water into shallow water.
+parts:
+- id: a
+  prompt: Which describes what happens to the waves?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Speed falls, wavelength falls, frequency falls
+      correct: false
+      misconception_id: mc.phy.o.frequency_changes_on_refraction
+      feedback: The source sets the frequency. As many waves must leave a boundary each second as arrive there, so the frequency cannot change.
+    - id: B
+      text: Speed falls, wavelength stays the same, frequency falls
+      correct: false
+      misconception_id: mc.phy.o.wavelength_unchanged_on_refraction
+      feedback: If the speed changes and the frequency does not, then λ = v/f must change in step with the speed.
+    - id: C
+      text: Speed rises, wavelength rises, frequency stays the same
+      correct: false
+      misconception_id: mc.phy.o.depth_speed_reversed
+      feedback: Water waves slow down as the water gets shallower; that is why their wavefronts crowd together near a beach.
+    - id: D
+      text: Speed falls, wavelength falls, frequency stays the same
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Decide which effect is involved: bouncing back, bending at a change of depth, or spreading through a gap.'
+  - rung: 2
+    name: concept
+    text:
+      en: The source sets the frequency, and nothing at a boundary or a gap can change it.
+  - rung: 3
+    name: first_step
+    text:
+      en: Speed and wavelength change together only when the depth of the water changes.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against these rules.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Speed falls, wavelength falls, frequency stays the same.'
+  misconception_ids:
+  - mc.phy.o.depth_speed_reversed
+  - mc.phy.o.frequency_changes_on_refraction
+  - mc.phy.o.wavelength_unchanged_on_refraction
+solution:
+  steps:
+  - n: 1
+    latex: \text{Speed falls, wavelength falls, frequency stays the same}
+    reason: Match the effect to what changes and what stays the same
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

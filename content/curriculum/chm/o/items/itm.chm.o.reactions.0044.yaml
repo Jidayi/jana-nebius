@@ -1,0 +1,83 @@
+id: itm.chm.o.reactions.0044
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.rate_data
+stem: In the first 45 s of a reaction, hydrogen is given off at a mean rate of 1.40 cm³/s.
+parts:
+- id: a
+  prompt: What volume of hydrogen is collected in the first 45 s?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '63.0'
+    unit: cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_reactions_0044_v
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the rate and the time, and you want the volume.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Rearrange: mean rate = volume ÷ time, so volume = rate × time.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Rate = 1.40 cm³/s; time = 45 s.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply 1.40 by 45; the seconds cancel and leave cm³.
+  - rung: 5
+    name: full_step
+    text:
+      en: 1.40 × 45 = 63.0 cm³.
+  misconception_ids:
+  - mc.chm.o.reactions_rate_inverted
+solution:
+  steps:
+  - n: 1
+    latex: V = 1.40 \times 45 = 63.0\ \text{cm}^3
+    reason: Volume = rate × time
+    check_id: chk_build_chm_reactions_0044_v
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_0044_v:
+    args:
+      expression: 1.40*45
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

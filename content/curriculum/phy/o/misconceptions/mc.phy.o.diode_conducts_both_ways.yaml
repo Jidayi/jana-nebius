@@ -1,0 +1,34 @@
+id: mc.phy.o.diode_conducts_both_ways
+kc_ids:
+- kc.phy.o.electrical_quantities.current_voltage_graphs
+student_name: A diode conducts both ways
+description: Thinks a diode lets current through in either direction; it conducts in one direction only and has a very high resistance the other way.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: diagram
+  text:
+    en: 'A diode''s I-V graph is flat along the p.d. axis for reverse p.d.: almost no current flows the wrong way.'
+probe_item_ids:
+- itm.phy.o.electrical_quantities.0088
+- itm.phy.o.electrical_quantities.0091
+- itm.phy.o.electrical_quantities.0077
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.efficiency_fraction_percent_mixed
+kc_ids:
+- kc.phy.o.energy.efficiency
+student_name: Fraction and percentage mixed up
+description: Gives the decimal fraction when a percentage is asked for (0.8 instead of 80%), or a percentage when a fraction is asked for.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Useful ÷ input gives a fraction such as 0.8. To write it as a percentage, multiply by a hundred: 80%.'
+probe_item_ids:
+- itm.phy.o.energy.0101
+- itm.phy.o.energy.0102
+- itm.phy.o.energy.0091
+- itm.phy.o.energy.0092
+- itm.phy.o.energy.0096
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

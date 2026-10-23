@@ -1,0 +1,33 @@
+id: mc.phy.o.shortest_half_life_best
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+student_name: The shorter the half-life, the better
+description: Thinks a source with the shortest possible half-life is always best and safest, even if it would decay before the job is done.
+signatures:
+- kind: answer_transform
+  expression: short
+fix:
+  strategy: counterexample
+  text:
+    en: A tracer with a half-life of a few seconds would have almost gone before the scan began. The half-life must be long enough for the job.
+probe_item_ids:
+- itm.phy.o.radioactivity.0073
+- itm.phy.o.radioactivity.0074
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

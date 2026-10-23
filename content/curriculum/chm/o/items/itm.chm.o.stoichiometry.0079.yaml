@@ -1,0 +1,126 @@
+id: itm.chm.o.stoichiometry.0079
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.gas_volumes
+- kc.chm.o.stoichiometry.reacting_masses
+stem: Calcium carbonate is heated until it stops losing mass. The equation is CaCO₃ → CaO + CO₂. Take the molar gas volume as 24 dm³ at room conditions.
+parts:
+- id: a
+  prompt: Calculate the volume of CO₂ given off from 5.0 g of CaCO₃.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '1.20'
+    unit: dm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0079_chain
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Mass of CaCO₃ → moles → moles of CO₂ → volume.
+  - rung: 2
+    name: concept
+    text:
+      en: The equation gives the mole ratio; each mole of gas takes up 24 dm³.
+  - rung: 3
+    name: first_step
+    text:
+      en: Moles of CaCO₃ = 5.0 ÷ 100 = 0.0500 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The ratio is one to one, so moles of CO₂ = 0.0500 mol; multiply by 24.
+  - rung: 5
+    name: full_step
+    text:
+      en: 0.0500 × 24 = 1.20 dm³.
+  misconception_ids:
+  - mc.chm.o.ratio_ignored
+  - mc.chm.o.gas_volume_from_mass
+solution:
+  steps:
+  - n: 1
+    latex: n(\text{CaCO}_3) = \frac{5.0}{100} = 0.0500
+    reason: Moles of solid
+    check_id: chk_build_chm_stoichiometry_0079_mr
+  - n: 2
+    latex: n(\text{CO}_2) = 0.0500
+    reason: One to one from the equation
+    check_id: chk_build_chm_stoichiometry_0079_chain
+  - n: 3
+    latex: V = 0.0500 \times 24 = 1.20\ \text{dm}^3
+    reason: Molar gas volume
+    check_id: chk_build_chm_stoichiometry_0079_chain
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0079_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ca
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: vm
+      equation: CaCO3 -> CaO + CO2
+      sf: 3
+      steps:
+      - id: na
+        mass: 5.0 g
+        op: amount_from_mass
+        species: CaCO3
+      - amount: '@na'
+        from: CaCO3
+        id: ng
+        op: mole_ratio
+        to: CO2
+      - amount: '@ng'
+        id: v
+        op: gas_volume_from_amount
+    tool: chem_stoichiometry
+  chk_build_chm_stoichiometry_0079_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ca
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_o
+      formula: CaCO3
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

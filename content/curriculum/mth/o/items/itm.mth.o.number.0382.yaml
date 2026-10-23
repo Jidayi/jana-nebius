@@ -1,0 +1,115 @@
+id: itm.mth.o.number.0382
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.surds
+stem: $\sqrt{252} + \sqrt{175}$ can be written as $k\sqrt{7}$.
+parts:
+- id: a
+  prompt: Find k.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '7.81'
+      correct: false
+      misconception_id: mc.mth.o.surd_add_under_root
+      feedback: √9 + √16 = 3 + 4 = 7, but √25 = 5. Simplify each surd and add like surds.
+    - id: B
+      text: '61'
+      correct: false
+      misconception_id: mc.mth.o.surd_factor_not_rooted
+      feedback: '√72 = √36 × √2 = 6√2: take the square root of the square factor.'
+    - id: C
+      text: '11'
+      correct: true
+    - id: D
+      text: '30'
+      correct: false
+      misconception_id: mc.mth.o.multiply_before_power
+      feedback: The power belongs only to the letter next to it. Square x first, then multiply by the number in front.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You cannot add the numbers under the square roots.
+  - rung: 2
+    name: concept
+    text:
+      en: Write each surd as a multiple of √7, then add.
+  - rung: 3
+    name: first_step
+    text:
+      en: 252 = 36 × 7 and 175 = 25 × 7.
+  - rung: 4
+    name: worked_step
+    text:
+      en: √252 = 6√7 and √175 = 5√7.
+  - rung: 5
+    name: full_step
+    text:
+      en: k = 11.
+  misconception_ids:
+  - mc.mth.o.multiply_before_power
+  - mc.mth.o.surd_add_under_root
+  - mc.mth.o.surd_factor_not_rooted
+solution:
+  steps:
+  - n: 1
+    latex: \sqrt{252} = 6\sqrt{7},\ \sqrt{175} = 5\sqrt{7}
+    reason: Simplify each surd
+    check_id: chk_build_mth_num_0382_t
+  - n: 2
+    latex: k = 6 + 5 = 11
+    reason: Add like surds
+    check_id: chk_build_mth_num_0382_ans
+difficulty:
+  prior: 0.7
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0382_ans:
+    args:
+      expression: (sqrt(252) + sqrt(175))/sqrt(7)
+    tool: math_evaluate
+  chk_build_mth_num_0382_t:
+    args:
+      equations:
+      - p = sqrt(36)
+      - q = sqrt(25)
+      - r = 252/7
+      - s = 175/7
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

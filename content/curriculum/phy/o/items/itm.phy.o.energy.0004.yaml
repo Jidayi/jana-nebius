@@ -1,0 +1,80 @@
+id: itm.phy.o.energy.0004
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.stores_and_transfers
+stem: Each second, a filament lamp transfers 75 J as light and 425 J by heating the surroundings.
+parts:
+- id: a
+  prompt: How much energy is supplied to it electrically each second?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '500'
+    unit: J
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0004_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Energy is conserved: nothing is made or lost inside the device.'
+  - rung: 2
+    name: concept
+    text:
+      en: The energy supplied equals the useful energy plus the wasted energy.
+  - rung: 3
+    name: first_step
+    text:
+      en: Add the two outputs.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 75 + 425.
+  - rung: 5
+    name: full_step
+    text:
+      en: 500 J is supplied each second.
+solution:
+  steps:
+  - n: 1
+    latex: 75 + 425 = 500\ \text{J}
+    reason: Energy in = total energy out
+    check_id: chk_build_phy_nrg_0004_ans
+difficulty:
+  prior: -0.9
+  band: foundation
+estimated_seconds: 35
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0004_ans:
+    args:
+      expression: 75 + 425
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

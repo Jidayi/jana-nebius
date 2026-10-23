@@ -1,0 +1,91 @@
+id: itm.chm.o.atoms.0077
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.atoms.structure_and_properties
+stem: A solution of copper(II) chloride in water conducts electricity.
+parts:
+- id: a
+  prompt: Which particles carry the charge?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Electrons moving through the solution.
+      correct: false
+      misconception_id: mc.chm.o.ionic_conduction_by_electrons
+      feedback: 'In a metal, electrons move. In a molten or dissolved ionic compound, the ions themselves move: positive ions to the cathode and negative ions to the anode.'
+    - id: B
+      text: Copper(II) ions and chloride ions moving through the solution.
+      correct: true
+    - id: C
+      text: Copper(II) chloride molecules moving through the water.
+      correct: false
+      misconception_id: mc.chm.o.ionic_compound_as_molecules
+      feedback: 'An ionic compound is a giant lattice: every ion is surrounded by ions of opposite charge, with no separate molecules.'
+    - id: D
+      text: Copper atoms, because copper is a metal.
+      correct: false
+      misconception_id: mc.chm.o.conducts_means_metallic
+      feedback: Metals conduct as solids and liquids. Ionic compounds conduct only when molten or dissolved.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'A solution of copper(II) chloride in water conducts electricity.: what kind of structure is it, and what particles is it made of?'
+  - rung: 2
+    name: concept
+    text:
+      en: Properties depend on what has to be overcome (forces between molecules, ionic attractions, covalent networks) and on whether charged particles can move.
+  - rung: 3
+    name: first_step
+    text:
+      en: Decide first whether the substance is made of ions, small molecules, a covalent network or metal atoms.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Then ask which forces are overcome, or which charged particles move, in this case.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Copper(II) ions and chloride ions moving through the solution.'
+  misconception_ids:
+  - mc.chm.o.ionic_conduction_by_electrons
+  - mc.chm.o.conducts_means_metallic
+  - mc.chm.o.ionic_compound_as_molecules
+solution:
+  steps:
+  - n: 1
+    latex: \text{structure} \Rightarrow \text{property}
+    reason: Explain from the particles present
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

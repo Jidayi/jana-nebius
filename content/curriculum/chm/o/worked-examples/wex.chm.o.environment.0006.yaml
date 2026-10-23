@@ -1,0 +1,67 @@
+id: wex.chm.o.environment.0006
+kc_ids:
+- kc.chm.o.environment.air_pollution
+problem: In a catalytic converter, 2CO + 2NO → 2CO₂ + N₂. How many moles of nitrogen form when 0.60 mol of nitrogen monoxide is removed?
+steps:
+- n: 1
+  latex: 2\text{CO} + 2\text{NO} \rightarrow 2\text{CO}_2 + \text{N}_2
+  reason: CO and NO react on the catalyst
+  check_id: chk_build_chm_environment_w0006_b
+- n: 2
+  latex: \frac{0.60}{2}
+  reason: Two NO give one N₂
+  check_id: chk_build_chm_environment_w0006_s2
+final_answer:
+  latex: 0.3\ \text{mol of } \text{N}_2
+  check_id: chk_build_chm_environment_w0006_c
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_environment_w0006_b:
+    args:
+      equation: CO + NO -> CO2 + N2
+    tool: chem_balance
+  chk_build_chm_environment_w0006_c:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_c
+      equation: 2CO + 2NO -> 2CO2 + N2
+      sf: 3
+      steps:
+      - amount: '0.60'
+        from: 'NO'
+        id: r
+        op: mole_ratio
+        to: N2
+    tool: chem_stoichiometry
+  chk_build_chm_environment_w0006_s2:
+    args:
+      expression: 0.60/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

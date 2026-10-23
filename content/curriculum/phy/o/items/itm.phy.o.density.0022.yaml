@@ -1,0 +1,116 @@
+id: itm.phy.o.density.0022
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.measuring_density
+stem: An empty beaker has a mass of 104.6 g. Then 40 cm³ of glycerine is poured in from a measuring cylinder, and the beaker and glycerine together have a mass of 155 g.
+parts:
+- id: a
+  prompt: Calculate the density of the glycerine in g/cm³.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1.26'
+    unit: g/cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_den_0022_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The balance reading includes the beaker.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the mass of the glycerine alone first.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 155 − 104.6.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The glycerine has a mass of 50.4 g; divide by its volume.
+  - rung: 5
+    name: full_step
+    text:
+      en: The density of the glycerine is 1.26 g/cm³.
+  misconception_ids:
+  - mc.phy.o.container_mass_not_subtracted
+  - mc.phy.o.density_volume_over_mass
+  - mc.phy.o.density_mass_times_volume
+solution:
+  steps:
+  - n: 1
+    latex: m = 155 - 104.6 = 50.4\ \text{g}
+    reason: Take away the beaker's own mass
+    check_id: chk_build_phy_den_0022_ml
+  - n: 2
+    latex: \rho = \frac{50.4}{40} = 1.26\ \text{g/cm}^3
+    reason: Density = mass ÷ volume
+    check_id: chk_build_phy_den_0022_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  V: '40'
+  m_total: '155'
+checks:
+  chk_build_phy_den_0022_ans:
+    args:
+      expression: (155 - 104.6)/40
+    tool: math_evaluate
+  chk_build_phy_den_0022_ml:
+    args:
+      expression: 155 - 104.6
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:41:13.091Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.density.0022
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

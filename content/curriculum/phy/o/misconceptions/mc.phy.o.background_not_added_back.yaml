@@ -1,0 +1,34 @@
+id: mc.phy.o.background_not_added_back
+kc_ids:
+- kc.phy.o.radioactivity.half_life
+- kc.phy.o.radioactivity.background_radiation
+student_name: Forgetting the counter still picks up background
+description: Gives the corrected count rate when the question asks what the counter will actually read, forgetting that the reading always includes the background.
+signatures:
+- kind: answer_transform
+  expression: (C0 - B)/2^n
+fix:
+  strategy: rule_restatement
+  text:
+    en: A counter cannot tell background from the source. A reading is the source's count rate plus the background.
+probe_item_ids:
+- itm.phy.o.radioactivity.0041
+- itm.phy.o.radioactivity.0035
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,99 @@
+id: itm.phy.o.light.0039
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.speed_in_medium
+stem: Light passes from a vacuum into diamond, which has a refractive index of 2.42.
+parts:
+- id: a
+  prompt: Calculate the speed of light in diamond, in km/s.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '124000'
+    unit: km/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_lgt_0039_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Does light speed up or slow down in a material?
+  - rung: 2
+    name: concept
+    text:
+      en: Refractive index n = c ÷ v, so v = c ÷ n.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Write c in km/s first: there are a thousand metres in a kilometre.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: c = 300000 km/s; divide it by 2.42.
+  - rung: 5
+    name: full_step
+    text:
+      en: The speed of light in diamond is 124000 km/s.
+  misconception_ids:
+  - mc.phy.o.light_speed_times_index
+  - mc.phy.o.light_speed_same_in_material
+  - mc.phy.o.light_speed_units_mixed
+solution:
+  steps:
+  - n: 1
+    latex: c = 3.0 \times 10^{8}\ \text{m/s} = 300000\ \text{km/s}
+    reason: Divide by a thousand for km/s
+    check_id: chk_build_phy_lgt_0039_ckm
+  - n: 2
+    latex: v = \frac{300000}{2.42} = 124000\ \text{km/s}
+    reason: v = c / n
+    check_id: chk_build_phy_lgt_0039_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0039_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: c/1000/2.42
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0039_ckm:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: c/1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

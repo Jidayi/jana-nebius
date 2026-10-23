@@ -1,0 +1,78 @@
+id: les.phy.o.oscilloscope.reading_a_trace
+node_id: cur.phy.o.electricity_and_magnetism.uses_of_an_oscilloscope
+kc_ids:
+- kc.phy.o.oscilloscope.time_base
+- kc.phy.o.oscilloscope.y_gain
+title: Reading an oscilloscope
+estimated_minutes: 10
+blocks:
+- type: step
+  text:
+    en: An oscilloscope draws a signal on a grid of squares called divisions. The time-base says how much time each division across the screen stands for. Try this before any rule.
+  item_id: itm.phy.o.oscilloscope.0001
+  action: try_first
+  why:
+    en: One full wave, crest to crest, covers 4 divisions, and each division is 0.2 milliseconds. Multiply them to get the time for one wave.
+  names:
+    en: The time for one complete wave is called the period.
+- type: step
+  text:
+    en: 'Careful: from a crest to the next trough is only half a wave.'
+  item_id: itm.phy.o.oscilloscope.0013
+  action: choose
+  why:
+    en: Crest to trough is half a wave, so double the divisions first. Then multiply by the time-base.
+- type: step
+  text:
+    en: 'Now read up the screen. The Y-gain says how many volts each division up stands for. Predict: will the peak voltage be more or less than the number of divisions?'
+  item_id: itm.phy.o.oscilloscope.0026
+  action: predict
+  why:
+    en: Multiply the height of the crest above the centre line by the Y-gain. Each division here is worth half a volt, so the voltage is less than the number of divisions.
+  names:
+    en: The height of a crest above the centre line gives the peak voltage.
+- type: step
+  text:
+    en: This trace is measured from the top of a crest to the bottom of a trough.
+  item_id: itm.phy.o.oscilloscope.0023
+  action: calculate
+  why:
+    en: Top to bottom gives the peak-to-peak voltage. The peak voltage is half of that.
+- type: step
+  text:
+    en: Once you have the period, the frequency is one divided by the period. Change milliseconds into seconds first.
+  item_id: itm.phy.o.oscilloscope.0014
+  action: choose
+  why:
+    en: Find the period in milliseconds, turn it into seconds, then divide one by it. A short period means a high frequency.
+  names:
+    en: Frequency is the number of waves each second, measured in hertz.
+- type: step
+  text:
+    en: Now one on your own.
+  item_id: itm.phy.o.oscilloscope.0010
+  action: calculate
+  why:
+    en: Double the crest-to-trough divisions for a full wave and multiply by the time-base to get the period. Change it to seconds, then divide one by it.
+- type: check
+  item_ids:
+  - itm.phy.o.oscilloscope.0006
+  - itm.phy.o.oscilloscope.0011
+  - itm.phy.o.oscilloscope.0029
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

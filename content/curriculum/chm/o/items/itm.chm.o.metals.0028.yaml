@@ -1,0 +1,89 @@
+id: itm.chm.o.metals.0028
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.reactivity_series
+stem: Iron(II) sulfate solution is pale green.
+parts:
+- id: a
+  prompt: Which metal will displace iron from iron(II) sulfate solution?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Gold
+      correct: false
+      misconception_id: mc.chm.o.metals_displacement_reversed
+      feedback: 'A metal can only take the place of a metal BELOW it in the reactivity series. Find both metals in the series: if the free metal is higher, it displaces the other; if it is lower, nothing happens.'
+    - id: B
+      text: Zinc
+      correct: true
+    - id: C
+      text: Silver
+      correct: false
+      misconception_id: mc.chm.o.metals_displacement_reversed
+      feedback: 'A metal can only take the place of a metal BELOW it in the reactivity series. Find both metals in the series: if the free metal is higher, it displaces the other; if it is lower, nothing happens.'
+    - id: D
+      text: Copper
+      correct: false
+      misconception_id: mc.chm.o.metals_displacement_reversed
+      feedback: 'A metal can only take the place of a metal BELOW it in the reactivity series. Find both metals in the series: if the free metal is higher, it displaces the other; if it is lower, nothing happens.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You need a metal that can take the place of iron.
+  - rung: 2
+    name: concept
+    text:
+      en: Only a metal above iron in the reactivity series displaces it.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Find iron in the series: K, Na, Ca, Mg, Al, Zn, Fe, Cu, Ag, Au.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Look for the one option that is higher than iron.
+  - rung: 5
+    name: full_step
+    text:
+      en: Zinc is above iron, so zinc displaces iron and the green colour fades.
+  misconception_ids:
+  - mc.chm.o.metals_displacement_reversed
+solution:
+  steps:
+  - n: 1
+    latex: \text{Zn above Fe}
+    reason: Only a more reactive metal displaces
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,57 @@
+id: wex.phy.o.radioactivity.0006
+kc_ids:
+- kc.phy.o.radioactivity.half_life
+problem: The half-life of strontium-90 is 29 years. A sample has an activity of 960 Bq. How long will it take for the activity to fall to 60 Bq?
+steps:
+- n: 1
+  latex: \frac{960}{60} = 16
+  reason: How many times smaller
+  check_id: chk_build_phy_rad_w0006_ratio
+- n: 2
+  latex: \frac{960}{2^{n}} = 60 \Rightarrow n = 4
+  reason: Count the halvings
+  check_id: chk_build_phy_rad_w0006_n
+- n: 3
+  latex: t = 4 \times 29 = 116\ \text{years}
+  reason: Half-lives × half-life
+  check_id: chk_build_phy_rad_w0006_ans
+final_answer:
+  latex: 116\ \text{years}
+  check_id: chk_build_phy_rad_w0006_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_w0006_ans:
+    args:
+      expression: 4*29
+    tool: math_evaluate
+  chk_build_phy_rad_w0006_n:
+    args:
+      equations:
+      - 960/2^n = 60
+      unknowns:
+      - n
+    tool: math_solve
+  chk_build_phy_rad_w0006_ratio:
+    args:
+      expression: 960/60
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,92 @@
+id: itm.phy.o.electrical_quantities.0032
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.potential_difference
+stem: Tunde finds that a battery transfers 2.4 kJ of energy while it drives 200 C of charge round a circuit.
+parts:
+- id: a
+  prompt: Calculate the e.m.f. of the battery.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '12'
+    unit: V
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_elq_0032_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: E.m.f. is the energy the source gives to each coulomb.
+  - rung: 2
+    name: concept
+    text:
+      en: V = W ÷ Q, with W in joules and Q in coulombs.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change the energy into joules first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 2400 J by 200 C.
+  - rung: 5
+    name: full_step
+    text:
+      en: V = 2400 ÷ 200 = 12 V.
+  misconception_ids:
+  - mc.phy.o.w_qv_upside_down
+  - mc.phy.o.w_qv_multiplied
+  - mc.phy.o.kilo_prefix_ignored
+solution:
+  steps:
+  - n: 1
+    latex: W = 2.4\ \text{kJ} = 2400\ \text{J}
+    reason: A thousand joules in 1 kJ
+    check_id: chk_build_phy_elq_0032_wj
+  - n: 2
+    latex: V = \frac{W}{Q} = \frac{2400}{200} = 12\ \text{V}
+    reason: E.m.f. = energy per unit charge
+    check_id: chk_build_phy_elq_0032_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_elq_0032_ans:
+    args:
+      expression: 2400/200
+    tool: math_evaluate
+  chk_build_phy_elq_0032_wj:
+    args:
+      expression: '2400'
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

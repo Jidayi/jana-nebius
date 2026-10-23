@@ -1,0 +1,34 @@
+id: mc.acc.o.corr_reversal_once
+kc_ids:
+- kc.acc.o.trial_balance.correcting_entries
+student_name: Reversal corrected for the amount once
+description: Corrects a complete reversal with the original amount instead of twice the amount.
+signatures:
+- kind: answer_transform
+  expression: amount
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'The wrong entry must be cancelled and the right one made: that needs twice the amount.'
+probe_item_ids:
+- itm.acc.o.trial_balance.0035
+- itm.acc.o.trial_balance.0039
+- itm.acc.o.trial_balance.0041
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

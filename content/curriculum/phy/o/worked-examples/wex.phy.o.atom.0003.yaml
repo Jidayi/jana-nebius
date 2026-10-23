@@ -1,0 +1,54 @@
+id: wex.phy.o.atom.0003
+kc_ids:
+- kc.phy.o.atom.isotopes
+problem: Uranium-235 and uranium-238 are isotopes of uranium, which has proton number 92. How many more neutrons are there in a nucleus of uranium-238 than in a nucleus of uranium-235?
+steps:
+- n: 1
+  latex: N_1 = 235 - 92 = 143
+  reason: Neutrons in uranium-235
+  check_id: chk_build_phy_atm_w0003_n1
+- n: 2
+  latex: N_2 = 238 - 92 = 146
+  reason: Neutrons in uranium-238
+  check_id: chk_build_phy_atm_w0003_n2
+- n: 3
+  latex: N_2 - N_1 = 146 - 143 = 3
+  reason: Only the neutrons differ between isotopes
+  check_id: chk_build_phy_atm_w0003_ans
+final_answer:
+  latex: '3'
+  check_id: chk_build_phy_atm_w0003_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_atm_w0003_ans:
+    args:
+      expression: (238 - 92) - (235 - 92)
+    tool: math_evaluate
+  chk_build_phy_atm_w0003_n1:
+    args:
+      expression: 235 - 92
+    tool: math_evaluate
+  chk_build_phy_atm_w0003_n2:
+    args:
+      expression: 238 - 92
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

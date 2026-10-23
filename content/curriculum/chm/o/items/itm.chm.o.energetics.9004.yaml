@@ -1,0 +1,85 @@
+id: itm.chm.o.energetics.9004
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.energetics.profiles
+stem: An energy profile has reactants at 40 kJ/mol, products at 10 kJ/mol and its peak at 95 kJ/mol. All levels use the same zero.
+parts:
+- id: a
+  prompt: Find the activation energy for the reverse reaction, in kJ/mol.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '85'
+    unit: kJ/mol
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_chm_9004
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Activation energy is the rise from the starting chemicals to the peak.
+  - rung: 2
+    name: concept
+    text:
+      en: The reverse reaction starts at the products of the forward reaction.
+  - rung: 3
+    name: first_step
+    text:
+      en: Subtract the product energy level from the peak, not from the reactant level.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The starting level for the reverse reaction is the forward product level.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 85 kJ/mol.
+solution:
+  steps:
+  - n: 1
+    latex: 95 - 10
+    reason: Subtract the product energy level from the peak, not from the reactant level.
+    check_id: chk_build_mastery_supplement_chm_9004
+  - n: 2
+    latex: '85'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_chm_9004
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_chm_9004:
+    args:
+      angle_unit: degrees
+      expression: 95-10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

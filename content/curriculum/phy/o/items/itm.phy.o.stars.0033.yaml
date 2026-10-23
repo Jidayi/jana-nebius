@@ -1,0 +1,101 @@
+id: itm.phy.o.stars.0033
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.stars.expanding_universe
+stem: One estimate of the Hubble constant is H0 = 2.1 × 10⁻¹⁸ per second. Take one year as 3.15 × 10⁷ s.
+parts:
+- id: a
+  prompt: Estimate the age of the Universe from 1/H0, in billions of years.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '15.1'
+    unit: billion years
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_str_0033_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: If galaxies have always receded at today's rate, they were all together a time 1/H0 ago.
+  - rung: 2
+    name: concept
+    text:
+      en: Work out 1 ÷ H0 to get the age in seconds.
+  - rung: 3
+    name: first_step
+    text:
+      en: Then divide by the number of seconds in a year.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 1/H0 = 4.76 × 10¹⁷ s, which is 1.51 × 10¹⁰ years.
+  - rung: 5
+    name: full_step
+    text:
+      en: The Universe is about 15.1 billion years old.
+  misconception_ids:
+  - mc.phy.o.hubble_age_not_converted
+solution:
+  steps:
+  - n: 1
+    latex: t = \frac{1}{2.1 \times 10^{-18}} = 4.76 \times 10^{17}\ \text{s}
+    reason: Age estimate 1 / H0
+    check_id: chk_build_phy_str_0033_t_m
+  - n: 2
+    latex: \frac{4.76 \times 10^{17}}{3.15 \times 10^{7}} = 1.51 \times 10^{10}\ \text{years}
+    reason: Seconds to years
+    check_id: chk_build_phy_str_0033_y_m
+  - n: 3
+    latex: = 15.1\ \text{billion years}
+    reason: A billion is a thousand million
+    check_id: chk_build_phy_str_0033_ans
+difficulty:
+  prior: 0.7
+  band: stretch
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_str_0033_ans:
+    args:
+      expression: 1/(2.1e-18*3.15e7)/1e9
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_str_0033_t_m:
+    args:
+      expression: (1/2.1e-18)/10^(17)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_str_0033_y_m:
+    args:
+      expression: (1/(2.1e-18*3.15e7))/10^(10)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

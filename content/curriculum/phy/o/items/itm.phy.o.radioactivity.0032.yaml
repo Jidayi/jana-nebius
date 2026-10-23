@@ -1,0 +1,93 @@
+id: itm.phy.o.radioactivity.0032
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.half_life
+stem: The half-life of phosphorus-32 is 14 days.
+parts:
+- id: a
+  prompt: What fraction of the phosphorus-32 nuclei in a sample are still undecayed after 56 days? Give the fraction as a decimal.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.0625'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_rad_0032_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: In each half-life, half of the undecayed nuclei decay.
+  - rung: 2
+    name: concept
+    text:
+      en: Find how many half-lives have passed.
+  - rung: 3
+    name: first_step
+    text:
+      en: Each half-life multiplies the fraction left by one half.
+  - rung: 4
+    name: worked_step
+    text:
+      en: There are 4 half-lives.
+  - rung: 5
+    name: full_step
+    text:
+      en: The fraction left is 0.0625.
+  misconception_ids:
+  - mc.phy.o.half_life_linear
+  - mc.phy.o.decayed_for_remaining
+  - mc.phy.o.half_lives_counted_wrongly
+  - mc.phy.o.half_life_halved_once
+solution:
+  steps:
+  - n: 1
+    latex: \frac{56}{14} = 4\ \text{half-lives}
+    reason: Time ÷ half-life
+    check_id: chk_build_phy_rad_0032_n
+  - n: 2
+    latex: \frac{1}{2^{4}} = 0.0625
+    reason: Halve once per half-life
+    check_id: chk_build_phy_rad_0032_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_0032_ans:
+    args:
+      expression: 1/2^4
+    tool: math_evaluate
+  chk_build_phy_rad_0032_n:
+    args:
+      expression: 56/14
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,55 @@
+id: wex.phy.o.forces.0006
+kc_ids:
+- kc.phy.o.forces.friction_and_terminal_velocity
+problem: A skydiver of mass 55 kg is falling. At one moment the air resistance on them is 420 N. Take g = 10 N/kg. Find their acceleration at that moment.
+steps:
+- n: 1
+  latex: W = mg = 55 \times 10 = 550\ \text{N}
+  reason: Weight
+  check_id: chk_build_phy_frc_w0006_w
+- n: 2
+  latex: F = 550 - 420 = 130\ \text{N}
+  reason: 'Resultant force downwards: weight − drag'
+  check_id: chk_build_phy_frc_w0006_net
+- n: 3
+  latex: a = \frac{130}{55} = 2.36\ \text{m/s}^2
+  reason: a = F ÷ m
+  check_id: chk_build_phy_frc_w0006_ans
+final_answer:
+  latex: 2.36\ \text{m/s}^2
+  check_id: chk_build_phy_frc_w0006_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_w0006_ans:
+    args:
+      expression: (55*10 - 420)/55
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_frc_w0006_net:
+    args:
+      expression: 55*10 - 420
+    tool: math_evaluate
+  chk_build_phy_frc_w0006_w:
+    args:
+      expression: 55*10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

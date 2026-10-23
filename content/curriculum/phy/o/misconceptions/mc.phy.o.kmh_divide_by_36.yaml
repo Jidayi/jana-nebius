@@ -1,0 +1,33 @@
+id: mc.phy.o.kmh_divide_by_36
+kc_ids:
+- kc.phy.o.motion.speed_unit_conversion
+student_name: Dividing by 36 instead of 3.6
+description: Remembers that the conversion involves 36 and divides a speed in km/h by 36, which makes the answer ten times too small.
+signatures:
+- kind: answer_transform
+  expression: v/36
+  applies_to_part: a
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'Check with 36 km/h: that is 36 000 m in 3600 s, which is 10 m/s, so the factor is 3.6.'
+probe_item_ids:
+- itm.phy.o.motion.0003
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

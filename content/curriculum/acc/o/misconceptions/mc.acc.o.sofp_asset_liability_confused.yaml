@@ -1,0 +1,35 @@
+id: mc.acc.o.sofp_asset_liability_confused
+kc_ids:
+- kc.acc.o.sole_trader_statements.sofp_sections
+student_name: Assets and liabilities swapped
+description: Shows an amount owed by the business as an asset, or an amount owed to it as a liability.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: asset
+fix:
+  strategy: contrast_example
+  text:
+    en: Ask who owes whom. If the business must pay it, it is a liability; if the business will receive it, it is an asset.
+probe_item_ids:
+- itm.acc.o.sole_trader_statements.0034
+- itm.acc.o.sole_trader_statements.0035
+- itm.acc.o.sole_trader_statements.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

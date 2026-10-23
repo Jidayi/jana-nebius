@@ -1,0 +1,103 @@
+id: itm.phy.o.light.0023
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.refraction
+stem: A ray of light travelling inside crown glass (refractive index 1.52) reaches the surface at an angle of 12° to the normal and passes out into air.
+parts:
+- id: a
+  prompt: Calculate the angle between the ray in air and the normal.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '18.4'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_lgt_0023_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Light speeds up as it leaves the material, so it bends away from the normal.
+  - rung: 2
+    name: concept
+    text:
+      en: n = sin(angle in air) ÷ sin(angle in the material), whichever way the light goes.
+  - rung: 3
+    name: first_step
+    text:
+      en: So sin(angle in air) = 1.52 × sin 12°.
+  - rung: 4
+    name: worked_step
+    text:
+      en: sin(angle in air) = 0.316; take the inverse sine.
+  - rung: 5
+    name: full_step
+    text:
+      en: The ray leaves at 18.4° to the normal.
+  misconception_ids:
+  - mc.phy.o.refraction_bends_wrong_way
+  - mc.phy.o.snell_angles_not_sines
+  - mc.phy.o.refraction_angles_from_surface
+solution:
+  steps:
+  - n: 1
+    latex: \sin \theta = 1.52 \times \sin 12^\circ = 0.316
+    reason: The angle in air goes with sin i
+    check_id: chk_build_phy_lgt_0023_se
+  - n: 2
+    latex: \theta = \sin^{-1}(0.316) = 18.4^\circ
+    reason: Inverse sine
+    check_id: chk_build_phy_lgt_0023_ans
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0023_ans:
+    args:
+      angle_unit: degrees
+      expression: asin(1.52*sin(12))
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0023_se:
+    args:
+      angle_unit: degrees
+      expression: 1.52*sin(12)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0023_tool:
+    args:
+      angle1: 12
+      n1: '1.52'
+      n2: 1
+      task: refraction
+    tool: phys_optics
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

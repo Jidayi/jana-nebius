@@ -1,0 +1,85 @@
+id: itm.phy.o.particles.0004
+version: 0.1.0
+type: multi_select
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.states_of_matter
+stem: Think about the particles in a liquid such as cooking oil.
+parts:
+- id: a
+  prompt: Which statements about them are true? Select all that apply.
+  marks: 1
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: They have melted
+      correct: false
+    - id: B
+      text: They are close together
+      correct: true
+    - id: C
+      text: They move around, sliding past each other
+      correct: true
+    - id: D
+      text: They are fixed in a regular pattern
+      correct: false
+    - id: E
+      text: They are far apart
+      correct: false
+    scoring: exact_set
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A liquid takes the shape of its container but keeps its volume.
+  - rung: 2
+    name: concept
+    text:
+      en: Taking the container's shape means the particles can move about.
+  - rung: 3
+    name: first_step
+    text:
+      en: Keeping its volume, and being hard to squash, means there is little space between them.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each statement against both of these facts.
+  - rung: 5
+    name: full_step
+    text:
+      en: Close together, and moving around past each other.
+solution:
+  steps:
+  - n: 1
+    latex: \text{They are close together; They move around, sliding past each other}
+    reason: A liquid flows but hardly compresses
+difficulty:
+  prior: -0.6
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

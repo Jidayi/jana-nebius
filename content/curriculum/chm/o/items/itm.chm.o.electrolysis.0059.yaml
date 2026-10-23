@@ -1,0 +1,139 @@
+id: itm.chm.o.electrolysis.0059
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.quantitative
+stem: 'A small aluminium cell makes aluminium: Al³⁺ + 3e⁻ → Al. A current of 3.0 A flows for 40 minutes (1 minute = 60 s). One mole of electrons carries 96500 C.'
+parts:
+- id: a
+  prompt: What mass of aluminium is deposited, in grams?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: '2.01'
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_electron_ratio_ignored
+      feedback: Look at the half-equation. Cu²⁺ + 2e⁻ → Cu needs two moles of electrons for every mole of copper, so divide the moles of electrons by two.
+    - id: B
+      text: '0.0112'
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_time_not_in_seconds
+      feedback: In Q = I × t the current is in amperes and the time must be in seconds, so that Q comes out in coulombs. Change minutes to seconds first.
+    - id: C
+      text: '0.672'
+      correct: true
+    - id: D
+      text: '6.04'
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_electron_ratio_inverted
+      feedback: More electrons per ion means fewer ions discharged by the same charge. If each ion needs two electrons, the moles of metal are half the moles of electrons, not double.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Convert the 40 minutes to seconds first, then find the charge.
+  - rung: 2
+    name: concept
+    text:
+      en: Q = I × t with t in seconds; moles of electrons = Q ÷ 96500; then use the aluminium half-equation.
+  - rung: 3
+    name: first_step
+    text:
+      en: t = 40 × 60 = 2400 s, so Q = 3.0 × 2400 = 7200 C.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Moles of electrons = 0.0746 mol. Each aluminium ion needs 3 electrons, so moles of aluminium = 0.0249 mol.
+  - rung: 5
+    name: full_step
+    text:
+      en: Mass = moles × 27 = 0.672 g.
+  misconception_ids:
+  - mc.chm.o.electrolysis_time_not_in_seconds
+  - mc.chm.o.electrolysis_electron_ratio_ignored
+  - mc.chm.o.electrolysis_electron_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: t = 40 \times 60 = 2400\ \text{s}
+    reason: Minutes to seconds
+    check_id: chk_build_chm_electrolysis_0059_t
+  - n: 2
+    latex: Q = 3.0 \times 2400 = 7200\ \text{C}
+    reason: Charge = current × time
+    check_id: chk_build_chm_electrolysis_0059_m
+  - n: 3
+    latex: n(e^-) = \frac{7200}{96500} = 0.0746\ \text{mol}
+    reason: Divide by the Faraday constant
+    check_id: chk_build_chm_electrolysis_0059_e
+  - n: 4
+    latex: n(\text{Al}) = \frac{0.0746}{3} = 0.0249\ \text{mol}
+    reason: 3 mol of electrons per mol of aluminium
+    check_id: chk_build_chm_electrolysis_0059_n
+  - n: 5
+    latex: m = n \times 27 = 0.672\ \text{g}
+    reason: Moles to mass
+    check_id: chk_build_chm_electrolysis_0059_m
+difficulty:
+  prior: 0.8
+  band: stretch
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_0059_e:
+    args:
+      expression: 7200/96500
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_electrolysis_0059_m:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_al
+      - source: pack
+        symbol: faraday
+      sf: 3
+      steps:
+      - current: '3.0'
+        electrons: 3
+        id: m
+        op: electrolysis
+        species: Al
+        time: '2400'
+    tool: chem_stoichiometry
+  chk_build_chm_electrolysis_0059_n:
+    args:
+      expression: 7200/(96500*3)
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_electrolysis_0059_t:
+    args:
+      expression: 40*60
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

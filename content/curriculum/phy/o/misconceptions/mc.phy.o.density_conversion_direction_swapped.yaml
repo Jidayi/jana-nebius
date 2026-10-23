@@ -1,0 +1,36 @@
+id: mc.phy.o.density_conversion_direction_swapped
+kc_ids:
+- kc.phy.o.density.density_calculation
+student_name: Converting a density the wrong way
+description: Divides by a thousand when changing g/cm³ into kg/m³, or multiplies when changing kg/m³ into g/cm³.
+signatures:
+- kind: answer_transform
+  expression: x/1000
+fix:
+  strategy: counterexample
+  text:
+    en: Water has a density of 1 g/cm³, and a cubic metre of water has a mass of a tonne, a thousand kilograms. So the number in kg/m³ is always the bigger one.
+probe_item_ids:
+- itm.phy.o.density.0011
+- itm.phy.o.density.0012
+- itm.phy.o.density.0014
+- itm.phy.o.density.0015
+- itm.phy.o.density.0005
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,33 @@
+id: mc.phy.o.half_left_out
+kc_ids:
+- kc.phy.o.motion.solve_with_equation
+- kc.phy.o.motion.free_fall
+student_name: Leaving out the half
+description: Uses s = ut + at², leaving out the half in front of the acceleration term.
+signatures:
+- kind: answer_transform
+  expression: u*t + a*t^2
+fix:
+  strategy: rule_restatement
+  text:
+    en: The acceleration term is half of a times t squared. Under a velocity-time graph it is a triangle, and a triangle's area has a half in it.
+probe_item_ids:
+- itm.phy.o.motion.0333
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

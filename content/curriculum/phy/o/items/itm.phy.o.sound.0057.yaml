@@ -1,0 +1,92 @@
+id: itm.phy.o.sound.0057
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.sound.ultrasound
+stem: An ultrasound scanner makes a picture of organs inside the body.
+parts:
+- id: a
+  prompt: How does it form the picture?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: It records the shadow of what ultrasound cannot pass through
+      correct: false
+      misconception_id: mc.phy.o.ultrasound_shadow_image
+      feedback: The probe sends pulses and listens for echoes from boundaries between tissues. The time of each echo tells how deep the boundary is.
+    - id: B
+      text: It times echoes that reflect from boundaries between tissues
+      correct: true
+    - id: C
+      text: It sends radio waves into the body and detects them
+      correct: false
+      misconception_id: mc.phy.o.ultrasound_is_em
+      feedback: 'Ultrasound is sound: a longitudinal vibration of particles that needs a medium. Only its frequency is beyond our hearing.'
+    - id: D
+      text: It measures how loud the ultrasound is as it leaves the far side
+      correct: false
+      misconception_id: mc.phy.o.ultrasound_shadow_image
+      feedback: The probe sends pulses and listens for echoes from boundaries between tissues. The time of each echo tells how deep the boundary is.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Ultrasound is sound with a frequency above the range of human hearing.
+  - rung: 2
+    name: concept
+    text:
+      en: It travels as compressions and rarefactions through a material, and reflects from boundaries between materials.
+  - rung: 3
+    name: first_step
+    text:
+      en: It does not ionise atoms, and a scanner builds its picture from the timing of echoes.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options that treat ultrasound as something else.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It times echoes that reflect from boundaries between tissues.'
+  misconception_ids:
+  - mc.phy.o.ultrasound_is_em
+  - mc.phy.o.ultrasound_shadow_image
+solution:
+  steps:
+  - n: 1
+    latex: \text{It times echoes that reflect from boundaries between tissues}
+    reason: Ultrasound is high-frequency sound that reflects at boundaries
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

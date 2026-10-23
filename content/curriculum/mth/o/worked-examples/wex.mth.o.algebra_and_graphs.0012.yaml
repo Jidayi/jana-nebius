@@ -1,0 +1,64 @@
+id: wex.mth.o.algebra_and_graphs.0012
+kc_ids:
+- kc.mth.o.algebra_and_graphs.algebraic_fractions
+problem: Write $\frac{3}{x} + \frac{7}{x + 3}$ as a single fraction.
+steps:
+- n: 1
+  latex: \frac{3(x + 3)}{x(x + 3)} + \frac{7x}{x(x + 3)}
+  reason: Use the common denominator x(x + 3)
+  check_id: chk_build_mth_alg_w0012_cd
+- n: 2
+  latex: = \frac{3x + 9 + 7x}{x(x + 3)}
+  reason: Expand the top
+  check_id: chk_build_mth_alg_w0012_t
+- n: 3
+  latex: = \frac{10x + 9}{x(x + 3)}
+  reason: Collect like terms
+  check_id: chk_build_mth_alg_w0012_final
+final_answer:
+  latex: \frac{10x + 9}{x(x + 3)}
+  check_id: chk_build_mth_alg_w0012_final
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0012_cd:
+    args:
+      a: 3*(x + 3)/(x*(x + 3)) + 7*x/(x*(x + 3))
+      b: 3/x + 7/(x + 3)
+    tool: math_check_equivalence
+  chk_build_mth_alg_w0012_final:
+    args:
+      expression: 3*3
+    tool: math_evaluate
+  chk_build_mth_alg_w0012_t:
+    args:
+      equations:
+      - p = 3*3
+      - q = 3 + 7
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

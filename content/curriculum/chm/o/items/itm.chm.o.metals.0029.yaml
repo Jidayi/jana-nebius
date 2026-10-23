@@ -1,0 +1,88 @@
+id: itm.chm.o.metals.0029
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.reactivity_series
+stem: A copper wire is placed in colourless silver nitrate solution and left for an hour.
+parts:
+- id: a
+  prompt: What is observed?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: The wire fizzes as hydrogen is given off.
+      correct: false
+      misconception_id: mc.chm.o.metals_all_metals_react
+      feedback: Copper pipes carry water and gold rings survive washing-up for years. Only metals above hydrogen in the series give hydrogen with dilute acids, and only the most reactive react with cold water.
+    - id: B
+      text: A brown coating forms and the solution stays colourless.
+      correct: false
+    - id: C
+      text: Grey crystals of silver grow on the wire and the solution turns blue.
+      correct: true
+    - id: D
+      text: No change, because copper is less reactive than silver.
+      correct: false
+      misconception_id: mc.chm.o.metals_displacement_reversed
+      feedback: 'A metal can only take the place of a metal BELOW it in the reactivity series. Find both metals in the series: if the free metal is higher, it displaces the other; if it is lower, nothing happens.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Compare the positions of copper and silver in the series.
+  - rung: 2
+    name: concept
+    text:
+      en: A more reactive metal displaces a less reactive one from a solution of its salt.
+  - rung: 3
+    name: first_step
+    text:
+      en: Copper is above silver, so copper atoms become ions in solution.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Think about the colour of solutions that contain copper(II) ions.
+  - rung: 5
+    name: full_step
+    text:
+      en: Silver crystals form on the wire, and the copper(II) ions made turn the solution blue.
+  misconception_ids:
+  - mc.chm.o.metals_displacement_reversed
+  - mc.chm.o.metals_all_metals_react
+solution:
+  steps:
+  - n: 1
+    latex: \text{Cu + 2AgNO}_3 \rightarrow \text{Cu(NO}_3)_2 + \text{2Ag}
+    reason: Copper displaces silver
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

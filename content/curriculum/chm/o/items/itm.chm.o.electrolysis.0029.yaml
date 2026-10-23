@@ -1,0 +1,96 @@
+id: itm.chm.o.electrolysis.0029
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.half_equations
+stem: Aluminium oxide dissolved in molten cryolite is electrolysed.
+parts:
+- id: a
+  prompt: Which half-equation shows the change at the cathode?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Al + 3e⁻ → Al³⁺
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_electrons_wrong_side
+      feedback: 'At the cathode, positive ions gain electrons, so electrons are on the left: M²⁺ + 2e⁻ → M. At the anode, negative ions lose electrons, so electrons are on the right: 2Cl⁻ → Cl₂ + 2e⁻.'
+    - id: B
+      text: Al³⁺ → Al + 3e⁻
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_electrons_wrong_side
+      feedback: 'At the cathode, positive ions gain electrons, so electrons are on the left: M²⁺ + 2e⁻ → M. At the anode, negative ions lose electrons, so electrons are on the right: 2Cl⁻ → Cl₂ + 2e⁻.'
+    - id: C
+      text: Al³⁺ + 3e⁻ → Al
+      correct: true
+    - id: D
+      text: Al³⁺ + e⁻ → Al
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_half_charge_unbalanced
+      feedback: 'After balancing the atoms, add up the charges on each side. Add electrons until both sides have the same total charge: for Al³⁺ you need three electrons to reach a neutral Al atom.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Aluminium ions become aluminium metal at the cathode.
+  - rung: 2
+    name: concept
+    text:
+      en: At the cathode positive ions gain electrons, so electrons are reactants.
+  - rung: 3
+    name: first_step
+    text:
+      en: An aluminium ion has a charge of three plus.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Find the number of electrons that turns that charge into a neutral atom, and write them on the left.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Al³⁺ + 3e⁻ → Al: each aluminium ion gains three electrons.'
+  misconception_ids:
+  - mc.chm.o.electrolysis_electrons_wrong_side
+  - mc.chm.o.electrolysis_half_charge_unbalanced
+solution:
+  steps:
+  - n: 1
+    latex: \text{Al}^{3+} + 3e^{-} \rightarrow \text{Al}
+    reason: Balanced half-equation at the cathode
+    check_id: chk_build_chm_electrolysis_0029_bal
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_0029_bal:
+    args:
+      equation: 1Al^3+ + 3e- -> 1Al
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

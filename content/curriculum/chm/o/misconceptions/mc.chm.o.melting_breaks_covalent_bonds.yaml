@@ -1,0 +1,34 @@
+id: mc.chm.o.melting_breaks_covalent_bonds
+kc_ids:
+- kc.chm.o.atoms.structure_and_properties
+- kc.chm.o.atoms.giant_covalent
+student_name: Melting breaks the covalent bonds
+description: Thinks a simple molecular substance melts or boils when its covalent bonds break, so links low melting points to weak covalent bonds.
+signatures:
+- kind: answer_transform
+  expression: 'choice: melting explained by breaking covalent bonds in molecules'
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Melting a simple molecular substance only separates whole molecules: the weak forces between molecules are overcome, while the strong covalent bonds inside each molecule stay.'
+probe_item_ids:
+- itm.chm.o.atoms.0074
+- itm.chm.o.atoms.0087
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

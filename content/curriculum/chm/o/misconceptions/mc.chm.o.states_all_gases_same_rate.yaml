@@ -1,0 +1,36 @@
+id: mc.chm.o.states_all_gases_same_rate
+kc_ids:
+- kc.chm.o.states.diffusion
+student_name: All gases spread equally fast
+description: Thinks all gases diffuse at the same rate whatever their molecules.
+signatures:
+- kind: answer_transform
+  expression: 'choice: equal rates chosen'
+fix:
+  strategy: counterexample
+  text:
+    en: Ammonia and hydrogen chloride released at opposite ends of a tube meet nearer the hydrogen chloride end, so ammonia must travel faster.
+probe_item_ids:
+- itm.chm.o.states.0025
+- itm.chm.o.states.0026
+- itm.chm.o.states.0027
+- itm.chm.o.states.0028
+- itm.chm.o.states.0029
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

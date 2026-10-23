@@ -1,0 +1,35 @@
+id: mc.phy.o.parallel_more_current_higher_resistance
+kc_ids:
+- kc.phy.o.circuits.parallel_circuits
+student_name: More current through the bigger resistance
+description: Thinks the branch with the larger resistance carries the larger share of the current.
+signatures:
+- kind: answer_transform
+  expression: I*R1/(R1 + R2)
+fix:
+  strategy: rule_restatement
+  text:
+    en: Both branches have the same p.d. across them, so I = V/R is larger where R is smaller. Current prefers the easier path.
+probe_item_ids:
+- itm.phy.o.circuits.0027
+- itm.phy.o.circuits.0030
+- itm.phy.o.circuits.0019
+- itm.phy.o.circuits.0025
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

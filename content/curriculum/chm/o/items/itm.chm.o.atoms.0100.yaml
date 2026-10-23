@@ -1,0 +1,91 @@
+id: itm.chm.o.atoms.0100
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.atoms.metallic_bonding
+stem: Metallic bonding holds the atoms of a metal together.
+parts:
+- id: a
+  prompt: Which description of metallic bonding is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Attraction between a lattice of positive ions and a sea of delocalised electrons.
+      correct: true
+    - id: B
+      text: A pair of electrons shared between each two neighbouring atoms.
+      correct: false
+      misconception_id: mc.chm.o.metallic_as_shared_pairs
+      feedback: In a metal the outer electrons are not held in pairs between two atoms; they are delocalised over the whole lattice.
+    - id: C
+      text: Weak forces between metal molecules.
+      correct: false
+      misconception_id: mc.chm.o.malleable_because_bonds_weak
+      feedback: Iron is malleable yet melts above 1500 °C, so its bonds are strong. Layers of ions slide while the delocalised electrons keep holding them together.
+    - id: D
+      text: Positive and negative metal ions attracting each other.
+      correct: false
+      misconception_id: mc.chm.o.metal_conducts_by_ions
+      feedback: In a solid metal the positive ions stay in their lattice positions; the delocalised electrons move.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Metallic bonding holds the atoms of a metal together. Picture the particles in a metal.
+  - rung: 2
+    name: concept
+    text:
+      en: A metal is a lattice of positive ions in a sea of delocalised electrons that are free to move.
+  - rung: 3
+    name: first_step
+    text:
+      en: The attraction between the ions and the electrons is strong.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Ask which particles can move, and what happens to the layers of ions when a force is applied.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Attraction between a lattice of positive ions and a sea of delocalised electrons.'
+  misconception_ids:
+  - mc.chm.o.metallic_as_shared_pairs
+  - mc.chm.o.malleable_because_bonds_weak
+  - mc.chm.o.metal_conducts_by_ions
+solution:
+  steps:
+  - n: 1
+    latex: \text{positive ions} + \text{delocalised electrons}
+    reason: Metallic bonding model
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

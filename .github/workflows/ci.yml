@@ -1,0 +1,452 @@
+name: ci
+# One pipeline with the required stages of ARC-17, in order. Every stage is a required check;
+# `stages-complete` fails if any stage was skipped or failed, and `release` needs it.
+# Actions are pinned by commit (SEC-22). The private specification is checked out into docs/
+# at the commit in spec.lock with the read-only deploy key JANA_SPEC_DEPLOY_KEY (ARC-16).
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  schedule:
+    - cron: "17 3 * * *" # daily vulnerability scans on the default branch (SEC-23)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  TURBO_TELEMETRY_DISABLED: "1"
+  DO_NOT_TRACK: "1"
+  COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
+
+jobs:
+  lint-and-layer:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false, fetch-depth: 0 }
+      - name: No specification in the monorepo
+        run: sh scripts/git-hooks/check-no-spec.sh tree
+      - uses: ./.github/actions/setup
+        with: { spec-key: "${{ secrets.JANA_SPEC_DEPLOY_KEY }}" }
+      - name: Layout, layers, spec pin and pipeline stages
+        run: uv run --frozen python -m jana_tools
+      - name: One tuning unit per revision; a regression item for every fixed incident (EVL-19, EVL-20)
+        if: github.event_name == 'pull_request' || github.event_name == 'push'
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if git cat-file -e "$BASE^{commit}" 2>/dev/null; then
+            uv run --frozen python -m jana_tools eval commit-checks "$BASE..HEAD"
+          else
+            uv run --frozen python -m jana_tools eval commit-checks "HEAD~1..HEAD"
+          fi
+      - name: Python lint and types
+        run: |
+          uv run --frozen ruff check .
+          uv run --frozen ruff format --check .
+          uv run --frozen mypy
+      - name: TypeScript lint and types
+        run: corepack pnpm lint
+      - name: Rust lint
+        run: |
+          cargo fmt --check
+          cargo clippy --locked --all-targets
+
+  codegen-check:
+    needs: lint-and-layer
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - uses: ./.github/actions/setup
+        with: { spec-key: "${{ secrets.JANA_SPEC_DEPLOY_KEY }}" }
+      - name: Regenerate contract bindings and fail on any difference
+        run: scripts/ci/codegen-check.sh
+
+  unit-and-property-tests:
+    needs: codegen-check
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - uses: ./.github/actions/setup
+        with: { spec-key: "${{ secrets.JANA_SPEC_DEPLOY_KEY }}" }
+      - run: scripts/ci/run-all-tests.sh
+
+  sidecar-builds:
+    # A clean clone builds all three toolchains with one command on each OS.
+    needs: unit-and-property-tests
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15, windows-2025]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - uses: ./.github/actions/setup
+        with: { install: "false" }
+      - name: Bootstrap and build (one command)
+        shell: bash
+        run: corepack pnpm run bootstrap
+      # The desktop shell's own tests on each OS (ARC-23, ARC-24, G16, G115). On Windows the quit path ends the core's
+      # and the runtime's process trees through a kill-on-close job object, which no other job runs under test; the
+      # tests that need a POSIX shell or signals are compiled out there and the rest run as on Linux and macOS.
+      - name: Shell lint for this OS's target
+        shell: bash
+        run: cargo clippy --locked -p jana-shell --all-targets
+      - name: Shell tests on this OS, the quit path among them
+        shell: bash
+        env:
+          CARGO_NET_OFFLINE: "true"
+        run: cargo test --locked -p jana-shell
+      # SEC-06, G16: the workers' Windows sandbox (AppContainer in a kill-on-close job) is exercised only on a Windows
+      # machine; elsewhere these tests skip with that reason. The escape suite runs the real worker under it.
+      - name: Windows worker sandbox and escape suite (SEC-06, G16)
+        if: runner.os == 'Windows'
+        shell: bash
+        run: >-
+          uv run --frozen pytest -q -rs services/agent-core/tests/test_g16_windows_sandbox.py
+          "services/agent-core/tests/test_m2b_sandbox.py::sec06_sandbox_escape_suite"
+
+  security-scans:
+    needs: sidecar-builds
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - uses: ./.github/actions/setup
+      - uses: taiki-e/install-action@f7e5d7c961414b23f5b25b2da9294395d08513ad # v2.87.26
+        with:
+          tool: cargo-audit@0.22.2,cargo-deny@0.20.2
+      - name: Supply chain, vulnerabilities, licences and SBOM
+        run: scripts/ci/security-scans.sh
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: sbom
+          path: ${{ runner.temp }}/security/sbom
+
+  offline:
+    needs: security-scans
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - uses: ./.github/actions/setup
+        with: { spec-key: "${{ secrets.JANA_SPEC_DEPLOY_KEY }}" }
+      - name: Connection monitor
+        run: sudo apt-get install -y --no-install-recommends strace
+      - name: Monitor self-test (egress must be caught)
+        run: sudo -E scripts/ci/offline-selftest.sh
+      - name: Full test suite with all egress dropped except loopback
+        run: sudo -E scripts/ci/offline-run.sh --user "$(id -un)" -- scripts/ci/run-all-tests.sh
+
+  gallery:
+    needs: offline
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - uses: ./.github/actions/setup
+        with: { spec-key: "${{ secrets.JANA_SPEC_DEPLOY_KEY }}" }
+      - name: Gallery states, themes, accessibility and visual renderers
+        run: |
+          corepack pnpm --filter @jana/desktop exec vitest run test/gallery.test.tsx
+          corepack pnpm --filter @jana/renderers test
+      - name: Pinned browser for UI benchmarks
+        run: corepack pnpm exec playwright install --with-deps chromium
+      - name: Production replay, 4x CPU, typing, scrolling and slow-board mutation
+        run: |
+          node --test scripts/ci/performance-evidence.test.mjs
+          corepack pnpm --filter @jana/desktop exec vite build --config benchmark.config.ts
+          args=()
+          # A lab-reviewed baseline is specific to the runner/browser profile. Missing evidence is recorded in the
+          # artifact; it is never silently replaced by the current observation. Absolute budgets always run.
+          if [ -f scripts/governance/ui-performance-baseline.json ]; then
+            args+=(--baseline=scripts/governance/ui-performance-baseline.json)
+          fi
+          if [ -f scripts/governance/ui-performance-calibration.json ]; then
+            args+=(--calibration=scripts/governance/ui-performance-calibration.json)
+          fi
+          node scripts/ci/browser-performance.mjs --self-test --out="$RUNNER_TEMP/ui-performance" "${args[@]}"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: ui-performance
+          path: ${{ runner.temp }}/ui-performance
+      - name: Browser accessibility, 150% text, target sizes and screenshot matrix
+        run: |
+          node --test scripts/ci/visual-diff.test.mjs scripts/ci/colour-vision.test.mjs
+          args=()
+          if [ -d scripts/governance/ui-visual-baseline ]; then
+            args+=(--baseline-dir=scripts/governance/ui-visual-baseline --require-baseline)
+          fi
+          node scripts/ci/browser-accessibility.mjs --self-test --out="$RUNNER_TEMP/gallery-audit" "${args[@]}"
+      - name: Studio production-backend journeys and accessibility
+        run: node scripts/ci/studio-browser.mjs --out="$RUNNER_TEMP/studio-audit"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: studio-audit
+          path: ${{ runner.temp }}/studio-audit
+      - name: Colour-vision acceptance against the pinned design tokens (LOC-19)
+        # Strict: the current canonical palette's collisions must be resolved in the specification, then regenerated.
+        # A passing proposal test or an unreviewed screenshot never waives this check.
+        run: node scripts/ci/colour-vision-report.mjs --out="$RUNNER_TEMP/gallery-audit/colour-vision.json"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: gallery-audit
+          path: ${{ runner.temp }}/gallery-audit
+
+  eval-gate:
+    needs: gallery
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - uses: ./.github/actions/setup
+        with: { spec-key: "${{ secrets.JANA_SPEC_DEPLOY_KEY }}" }
+      - name: Offline development evaluations
+        run: uv run --frozen python -m jana_tools eval run --stage S2 --only scenarios,safety,marking,prompt_regression,memory_recall --out "${{ runner.temp }}/eval-report"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: development-evaluations
+          path: ${{ runner.temp }}/eval-report
+
+  content-ci:
+    needs: eval-gate
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false, fetch-depth: 0 }
+      - uses: ./.github/actions/setup
+        with: { spec-key: "${{ secrets.JANA_SPEC_DEPLOY_KEY }}" }
+      - name: Content CI (AUT-06) - validate, verify, lint, coverage, reproducible build, review records
+        # A development job: it never holds the held-out release key (EVL-18), and the check fails if it does.
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if git cat-file -e "$BASE^{commit}" 2>/dev/null; then
+            uv run --frozen aut --json ci --base "$BASE"
+          else
+            uv run --frozen aut --json ci
+          fi
+
+  packaged-smoke:
+    # M20 (PLT-01, PLT-02, PLT-04, PLT-05, PLT-06, DSN-25): on each OS of TABLE PLT-01a, the installer precheck and the
+    # icon set always; once the owner has pinned the runtime builds and build tools (`release pins`), the sidecars,
+    # the Tauri bundles signed with development keys, the bundle budgets and signature audit, and the packaged smoke
+    # offline. Until then the packaged steps print what is still unpinned and the stage passes on the checks it ran.
+    needs: content-ci
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { runner: windows-2025, target: windows }
+          - { runner: macos-15, target: macos }
+          - { runner: ubuntu-24.04, target: linux }
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - uses: ./.github/actions/setup
+      - name: Installer precheck (PLT-01, PLT-06)
+        shell: bash
+        run: |
+          cargo build --locked --release --bin jana-precheck
+          ./target/release/jana-precheck --needed-bytes 1 --free-bytes 1000000000000
+      - name: Icon set (DSN-25)
+        shell: bash
+        run: uv run --frozen python -m jana_tools release icons
+      - name: Owner pins for a packaged build
+        id: pins
+        shell: bash
+        run: |
+          if uv run --frozen python -m jana_tools release pins; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "packaged build inactive until the owner pins the values listed above"
+          fi
+      - name: Sidecars, pinned runtime builds and resources (PLT-02, PLT-03, PLT-04)
+        if: steps.pins.outputs.ready == 'true'
+        shell: bash
+        run: scripts/packaging/build-sidecars.sh "${{ matrix.target }}"
+      - name: Tauri bundles, development signing
+        if: steps.pins.outputs.ready == 'true'
+        shell: bash
+        run: |
+          corepack pnpm --filter @jana/desktop build
+          cargo install tauri-cli --locked --version "$(tr -d '[:space:]' < scripts/packaging/tauri-cli.version)"
+          cd apps/desktop/src-tauri
+          cargo tauri build --config tauri.release.conf.json --config tauri.devsign.conf.json
+          if [ "${{ matrix.target }}" = windows ]; then
+            cargo tauri build --bundles nsis,msi --config tauri.release.conf.json --config tauri.devsign.conf.json \
+              --config tauri.usbkit.conf.json
+          fi
+      - name: Signature audit with the development code key (PLT-05)
+        if: steps.pins.outputs.ready == 'true'
+        shell: bash
+        run: |
+          bundle="target/release/bundle"
+          uv run --frozen python - "$bundle" "$RUNNER_TEMP/bundle-signatures.json" <<'PY'
+          import json, sys
+          from pathlib import Path
+          from jana_tools.release.packaging import DevSigner
+          root = Path(sys.argv[1])
+          Path(sys.argv[2]).write_text(json.dumps(DevSigner.development().sign_bundle(root)))
+          PY
+          uv run --frozen python -m jana_tools release sign-audit "$bundle" --dev "$RUNNER_TEMP/bundle-signatures.json"
+      - name: Packaged smoke offline and bundle budgets (PLT-01, PLT-02)
+        if: steps.pins.outputs.ready == 'true'
+        shell: bash
+        run: |
+          case "${{ matrix.target }}" in
+            windows) installer="$(ls target/release/bundle/nsis/*-setup.exe | head -1)" ;;
+            macos) installer="$(ls target/release/bundle/dmg/*.dmg | head -1)" ;;
+            linux) installer="$(ls target/release/bundle/appimage/*.AppImage | head -1)" ;;
+          esac
+          smoke=(uv run --frozen python -m jana_tools release smoke --os "${{ matrix.target }}"
+                 --installer "$installer" --out "$RUNNER_TEMP/packaged-results")
+          if [ "${{ matrix.target }}" = linux ]; then
+            sudo apt-get install -y --no-install-recommends strace
+            sudo -E scripts/ci/offline-run.sh --user "$(id -un)" -- "${smoke[@]}"  # every non-loopback packet dropped
+          else
+            "${smoke[@]}"  # all online features off: the core opens no internet socket (ARC-06)
+          fi
+      - name: Acceptance tests on the packaged build
+        if: steps.pins.outputs.ready == 'true'
+        shell: bash
+        env:
+          JANA_PACKAGED_RESULTS: ${{ runner.temp }}/packaged-results
+        run: uv run --frozen pytest -q scripts/tests/test_m20a_packaging.py
+      - if: steps.pins.outputs.ready == 'true'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: packaged-${{ matrix.target }}
+          path: ${{ runner.temp }}/packaged-results
+
+  stages-complete:
+    if: always()
+    needs:
+      - lint-and-layer
+      - codegen-check
+      - unit-and-property-tests
+      - sidecar-builds
+      - security-scans
+      - offline
+      - gallery
+      - eval-gate
+      - content-ci
+      - packaged-smoke
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - name: Every required stage ran and succeeded
+        env:
+          NEEDS: ${{ toJSON(needs) }}
+        run: PYTHONPATH=scripts python3 -m jana_tools stages-needs "$NEEDS"
+
+  release:
+    # M20 (PLT-05, PLT-06, PLT-07, PLT-14, SEC-15, SEC-16, OPS-05): signed installers from the tag, built only after
+    # every stage passed. Refuses to run while any owner pin is a placeholder (`release pins --release`). Signing uses
+    # the owner's certificates by reference: Authenticode through the HSM sign command, Developer ID with notarisation
+    # and stapling. App updates are signed offline (owner ruling 2026-10-17): no updater key is in CI; the job leaves
+    # the update bundles unsigned with a signing request, the ceremony laptop signs them (`signing_service.ceremony
+    # sign-updates`, KEY-CEREMONY.md) and `release publish --kind app_update` takes only what that result signs. The
+    # antivirus record (PLT-07) is added by the release manager before `release publish`, which refuses an artefact
+    # without it.
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: stages-complete
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - { runner: windows-2025, target: windows }
+          - { runner: macos-15, target: macos }
+          - { runner: ubuntu-24.04, target: linux }
+    runs-on: ${{ matrix.runner }}
+    environment: release
+    permissions:
+      contents: read
+      id-token: write # build provenance attestation (SEC-15, OPS-05)
+      attestations: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false, fetch-depth: 0 }
+      - uses: ./.github/actions/setup
+        with: { spec-key: "${{ secrets.JANA_SPEC_DEPLOY_KEY }}" }
+      - name: Every owner pin is set
+        shell: bash
+        run: uv run --frozen python -m jana_tools release pins --release
+      - name: Icons are the signed-off artwork (DSN-25)
+        shell: bash
+        run: uv run --frozen python -m jana_tools release icons --release
+      - name: Sidecars, pinned runtime builds and resources
+        shell: bash
+        run: scripts/packaging/build-sidecars.sh "${{ matrix.target }}"
+      - name: Signed bundles
+        shell: bash
+        env:
+          # macOS Developer ID and notarisation (owner secrets; names as the Tauri bundler reads them).
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_KEY_PATH: ${{ secrets.APPLE_API_KEY_PATH }}
+          # Windows Authenticode by reference to the HSM (the sign command in tauri.release.conf.json uses these).
+          JANA_AUTHENTICODE_KEY_REF: ${{ secrets.JANA_AUTHENTICODE_KEY_REF }}
+          JANA_AUTHENTICODE_CREDENTIALS: ${{ secrets.JANA_AUTHENTICODE_CREDENTIALS }}
+        run: |
+          corepack pnpm --filter @jana/desktop build
+          cargo install tauri-cli --locked --version "$(tr -d '[:space:]' < scripts/packaging/tauri-cli.version)"
+          cd apps/desktop/src-tauri
+          cargo tauri build --config tauri.release.conf.json --config tauri.updater.conf.json
+          # The update bundles, unsigned, with the request the ceremony laptop signs (SEC-12, SEC-15), taken before
+          # the USB-kit pass below replaces the Windows installers with the offline-capable ones.
+          uv run --frozen python -m signing_service.updater request "$GITHUB_WORKSPACE/target/release/bundle" \
+            --os "${{ matrix.target }}" --version "${GITHUB_REF_NAME#v}" \
+            --out "$RUNNER_TEMP/update-request-${{ matrix.target }}"
+          if [ "${{ matrix.target }}" = windows ]; then
+            cargo tauri build --bundles nsis,msi --config tauri.release.conf.json --config tauri.usbkit.conf.json
+          fi
+      - name: Signature audit (PLT-05) and Gatekeeper offline (macOS)
+        shell: bash
+        env:
+          JANA_BUNDLE_DIR: ${{ github.workspace }}/target/release/bundle
+          JANA_PACKAGED_APP: ${{ github.workspace }}/target/release/bundle/macos/Jana.app
+        run: |
+          uv run --frozen python -m jana_tools release sign-audit "$JANA_BUNDLE_DIR" --os "${{ matrix.target }}"
+          uv run --frozen pytest -q scripts/tests/test_m20a_packaging.py -k "plt05"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: update-request-${{ matrix.target }}
+          path: ${{ runner.temp }}/update-request-${{ matrix.target }}
+      - name: Checksums for the release record (SEC-15; the SBOM is the security-scans stage's, provenance is
+          attested at `release publish`, OPS-05)
+        shell: bash
+        run: |
+          uv run --frozen python - target/release/bundle "$RUNNER_TEMP/SHA256SUMS-${{ matrix.target }}" <<'PY'
+          import hashlib, sys
+          from pathlib import Path
+          root, kinds = Path(sys.argv[1]), (".exe", ".msi", ".dmg", ".AppImage", ".deb", ".sig", ".gz")
+          lines = [f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(root).as_posix()}"
+                   for p in sorted(root.rglob("*")) if p.is_file() and p.name.endswith(kinds)]
+          Path(sys.argv[2]).write_text("\n".join(lines) + "\n")
+          PY
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-${{ matrix.target }}
+          path: |
+            target/release/bundle
+            ${{ runner.temp }}/SHA256SUMS-${{ matrix.target }}

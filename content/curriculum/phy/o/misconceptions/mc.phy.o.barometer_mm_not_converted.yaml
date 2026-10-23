@@ -1,0 +1,34 @@
+id: mc.phy.o.barometer_mm_not_converted
+kc_ids:
+- kc.phy.o.pressure.gas_and_atmospheric_pressure
+student_name: A barometer height in millimetres
+description: Uses a barometer reading in millimetres of mercury as metres in pressure = ρgh, so the pressure comes out a thousand times too big.
+signatures:
+- kind: answer_transform
+  expression: rho*g*h_mm
+fix:
+  strategy: rule_restatement
+  text:
+    en: A column of 760 mm is 0.76 m. With the density in kg/m³ and g in N/kg, the height must be in metres.
+probe_item_ids:
+- itm.phy.o.pressure.0042
+- itm.phy.o.pressure.0031
+- itm.phy.o.pressure.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

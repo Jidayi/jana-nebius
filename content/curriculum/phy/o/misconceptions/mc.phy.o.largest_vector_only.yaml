@@ -1,0 +1,44 @@
+id: mc.phy.o.largest_vector_only
+kc_ids:
+- kc.phy.o.measurement.resultant_vectors
+- kc.phy.o.forces.resultant_force
+- kc.phy.o.momentum.momentum_calculation
+student_name: Only the biggest one counts
+description: Gives the largest vector as the resultant, as if the smaller one made no difference.
+signatures:
+- kind: answer_transform
+  expression: max(a, b)
+fix:
+  strategy: counterexample
+  text:
+    en: A small current still slows a boat. Every vector acting changes the resultant, so combine them all.
+probe_item_ids:
+- itm.phy.o.forces.0011
+- itm.phy.o.forces.0012
+- itm.phy.o.forces.0013
+- itm.phy.o.forces.0015
+- itm.phy.o.measurement.0045
+severity: medium
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,94 @@
+id: itm.chm.o.reactions.0062
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.redox
+stem: 'Magnesium burns in chlorine gas to form magnesium chloride: Mg + Cl₂ → MgCl₂.'
+parts:
+- id: a
+  prompt: Which statement about this reaction is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Chlorine is oxidised, because it gains electrons.
+      correct: false
+      misconception_id: mc.chm.o.reactions_oxidation_is_gaining_electrons
+      feedback: Oxidation is loss of electrons; reduction is gain of electrons. A metal atom that becomes a positive ion has lost electrons, so it has been oxidised.
+    - id: B
+      text: Magnesium is oxidised and chlorine is reduced.
+      correct: true
+    - id: C
+      text: It is not a redox reaction, because no oxygen takes part.
+      correct: false
+      misconception_id: mc.chm.o.reactions_redox_needs_oxygen
+      feedback: 'Oxygen is only one way to see redox. Any transfer of electrons is redox: when magnesium burns in chlorine, magnesium loses electrons (oxidised) and chlorine gains them (reduced), with no oxygen at all.'
+    - id: D
+      text: Chlorine is the reducing agent, because it is reduced.
+      correct: false
+      misconception_id: mc.chm.o.reactions_oxidising_agent_is_oxidised
+      feedback: An agent does the job to something else. The oxidising agent oxidises another substance by taking its electrons, so the oxidising agent itself is reduced. The reducing agent gives electrons away and is oxidised.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Magnesium chloride is made of Mg²⁺ and Cl⁻ ions. Where did the charges come from?
+  - rung: 2
+    name: concept
+    text:
+      en: Electron loss is oxidation and electron gain is reduction, whether or not oxygen is involved.
+  - rung: 3
+    name: first_step
+    text:
+      en: Each magnesium atom loses two electrons; each chlorine atom gains one.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Match each change in electrons to oxidation or reduction.
+  - rung: 5
+    name: full_step
+    text:
+      en: Magnesium loses electrons, so it is oxidised; chlorine gains electrons, so it is reduced. It is a redox reaction without any oxygen.
+  misconception_ids:
+  - mc.chm.o.reactions_oxidation_is_gaining_electrons
+  - mc.chm.o.reactions_redox_needs_oxygen
+  - mc.chm.o.reactions_oxidising_agent_is_oxidised
+solution:
+  steps:
+  - n: 1
+    latex: \text{Mg} \rightarrow \text{Mg}^{2+} + 2e^-
+    reason: Oxidation
+  - n: 2
+    latex: \text{Cl}_2 + 2e^- \rightarrow 2\text{Cl}^-
+    reason: Reduction
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

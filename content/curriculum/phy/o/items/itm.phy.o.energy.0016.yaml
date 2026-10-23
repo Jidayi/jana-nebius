@@ -1,0 +1,100 @@
+id: itm.phy.o.energy.0016
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.kinetic_energy
+stem: A motorbike with its rider, of total mass 250 kg, is moving at 12 m/s.
+parts:
+- id: a
+  prompt: Calculate the kinetic energy in kJ.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '18'
+    unit: kJ
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0016_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Kinetic energy depends on the mass and the speed.
+  - rung: 2
+    name: concept
+    text:
+      en: Use Ek = ½mv², with the mass in kg and the speed in m/s.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Square the speed first: 12² = 144.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Then work out ½ × 250 × 144 and change joules to kilojoules.
+  - rung: 5
+    name: full_step
+    text:
+      en: The kinetic energy is 18 kJ.
+  misconception_ids:
+  - mc.phy.o.ke_half_omitted
+  - mc.phy.o.ke_speed_not_squared
+  - mc.phy.o.square_taken_as_double
+solution:
+  steps:
+  - n: 1
+    latex: v^2 = 12^2 = 144
+    reason: Square the speed first
+    check_id: chk_build_phy_nrg_0016_sq
+  - n: 2
+    latex: E_k = \frac{1}{2} \times 250 \times 144 = 18000\ \text{J}
+    reason: E_k = ½mv²
+    check_id: chk_build_phy_nrg_0016_ej
+  - n: 3
+    latex: 18000\ \text{J} = 18\ \text{kJ}
+    reason: A kilojoule is a thousand joules
+    check_id: chk_build_phy_nrg_0016_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0016_ans:
+    args:
+      expression: 0.5*250*12^2/1000
+    tool: math_evaluate
+  chk_build_phy_nrg_0016_ej:
+    args:
+      expression: 0.5*250*12^2
+    tool: math_evaluate
+  chk_build_phy_nrg_0016_sq:
+    args:
+      expression: 12^2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

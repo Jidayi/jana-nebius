@@ -1,0 +1,40 @@
+id: wex.mth.o.mensuration.0003
+kc_ids:
+- kc.mth.o.mensuration.area_perimeter
+problem: A parallelogram has base 15 cm, sloping sides 7 cm and perpendicular height 5 cm. Find its area.
+steps:
+- n: 1
+  latex: A = bh
+  reason: Base times perpendicular height
+- n: 2
+  latex: A = 15 \times 5 = 75\ \text{cm}^2
+  reason: Use the height, not the sloping side
+  check_id: chk_build_mth_mns_w0003_ans
+final_answer:
+  latex: 75\ \text{cm}^2
+  check_id: chk_build_mth_mns_w0003_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_mns_w0003_ans:
+    args:
+      expression: 15*5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

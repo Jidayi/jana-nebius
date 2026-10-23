@@ -1,0 +1,37 @@
+id: wex.phy.o.stars.0002
+kc_ids:
+- kc.phy.o.stars.light_years
+problem: A nebula is 9.0 × 10¹⁶ m from the Earth. One light-year is 9.46 × 10¹⁵ m. How far away is the nebula in light-years?
+steps:
+- n: 1
+  latex: \frac{9.0 \times 10^{16}}{9.46 \times 10^{15}} = 9.51\ \text{ly}
+  reason: Divide by the metres in one light-year
+  check_id: chk_build_phy_str_w0002_ans
+final_answer:
+  latex: 9.51\ \text{light-years}
+  check_id: chk_build_phy_str_w0002_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_str_w0002_ans:
+    args:
+      expression: 9.0e16/9.46e15
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

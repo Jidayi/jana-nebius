@@ -1,0 +1,41 @@
+id: wex.acc.o.concepts.0003
+kc_ids:
+- kc.acc.o.concepts.apply_concept
+problem: Electricity paid in the year was $4400; $400 is owing at the year end. Apply the accruals principle.
+steps:
+- n: 1
+  latex: '\text{Accruals: match the expense to the year}'
+  reason: Include what is owing
+- n: 2
+  latex: \text{Expense} = 4400 + 400 = 4800
+  reason: Paid plus owing
+  check_id: chk_build_acc_concepts_w0003_a
+final_answer:
+  latex: \$\,4800
+  check_id: chk_build_acc_concepts_w0003_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_concepts_w0003_a:
+    args:
+      dp: 2
+      expression: 4400 + 400
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

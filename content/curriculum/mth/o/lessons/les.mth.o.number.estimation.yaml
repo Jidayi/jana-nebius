@@ -1,0 +1,66 @@
+id: les.mth.o.number.estimation
+node_id: cur.mth.o.number.estimation
+kc_ids:
+- kc.mth.o.number.estimation
+title: Estimating answers
+estimated_minutes: 9
+blocks:
+- type: step
+  text:
+    en: Try this before any rules. Round each number so the sum is easy in your head.
+  item_id: itm.mth.o.number.0179
+  action: try_first
+  why:
+    en: Each number rounds to its first digit followed by zeros, so the sum becomes easy to do in your head.
+  names:
+    en: Keeping only the first non-zero digit is rounding to 1 significant figure. A quick answer found this way is an estimate.
+- type: step
+  text:
+    en: Round each number to its first digit that is not zero. Do that before you work anything out.
+  item_id: itm.mth.o.number.0186
+  action: choose
+  why:
+    en: Round first, then work out the easy sum. Working out the exact answer and rounding it, or rounding to a decimal place, misses the point of an estimate.
+- type: step
+  text:
+    en: 'Before you work it out, predict: will dividing by a number less than 1 make the answer bigger or smaller?'
+  item_id: itm.mth.o.number.0181
+  action: predict
+  why:
+    en: There are two halves in every whole, so dividing by 0.5 doubles the top. The answer is bigger than the top.
+- type: step
+  text:
+    en: Round each number first. The divisor is small, so expect a big answer.
+  item_id: itm.mth.o.number.0180
+  action: calculate
+  why:
+    en: The top rounds to 20 times 5, and dividing by 0.2 gives five times as much.
+- type: step
+  text:
+    en: Now one on your own.
+  item_id: itm.mth.o.number.0187
+  action: choose
+  why:
+    en: Round each number first, then divide by the small divisor. Dividing by a number less than 1 makes the answer bigger, not smaller.
+- type: check
+  item_ids:
+  - itm.mth.o.number.0176
+  - itm.mth.o.number.0178
+  - itm.mth.o.number.0189
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

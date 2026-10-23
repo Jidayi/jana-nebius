@@ -1,0 +1,131 @@
+id: itm.acc.o.sole_trader_statements.0014
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.sole_trader_statements.gross_profit
+- kc.acc.o.sole_trader_statements.cost_of_sales
+stem: 'Thabo runs a bakery. Figures for the year: revenue $52200; opening inventory $5600; purchases $38400; carriage inwards $450; closing inventory $8000.'
+parts:
+- id: a
+  prompt: Calculate the gross profit for the year.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '15750.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_sole_trader_statements_0014_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Gross profit compares what the goods sold for with what they cost. What two figures do you need?
+  - rung: 2
+    name: concept
+    text:
+      en: Gross profit = net revenue − cost of sales, where net revenue is revenue less sales returns.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Find the cost of sales first: opening inventory + net purchases + carriage inwards − closing inventory.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Gross profit = (52200) − (5600 + 38400 + 450 − 8000).
+  - rung: 5
+    name: full_step
+    text:
+      en: Net revenue $52200 less cost of sales $36450 gives $15750.
+  misconception_ids:
+  - mc.acc.o.gp_sales_returns_ignored
+  - mc.acc.o.gp_purchases_for_cos
+solution:
+  steps:
+  - n: 1
+    latex: \text{Gross profit} = (\text{revenue} - \text{sales returns}) - \text{cost of sales}
+    reason: Net revenue less the cost of the goods sold
+    check_id: chk_build_acc_sole_trader_statements_0014_t
+  - n: 2
+    latex: \text{Cost of sales} = 5600 + 38400 + 450 - 8000 = 36450
+    reason: Goods available less closing inventory
+    check_id: chk_build_acc_sole_trader_statements_0014_s2
+  - n: 3
+    latex: \text{Net revenue} = 52200 = 52200
+    reason: Sales returns reduce revenue
+    check_id: chk_build_acc_sole_trader_statements_0014_s3
+  - n: 4
+    latex: \text{Gross profit} = 52200 - 36450 = 15750
+    reason: Subtract
+    check_id: chk_build_acc_sole_trader_statements_0014_a
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_0014_a:
+    args:
+      dp: 2
+      expression: (52200) - (5600 + 38400 + 450 - 8000)
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0014_s2:
+    args:
+      dp: 4
+      expression: 5600 + 38400 + 450 - 8000
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0014_s3:
+    args:
+      dp: 4
+      expression: '52200'
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0014_t:
+    args:
+      adjustments:
+      - amount: '8000'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '52200'
+        role: revenue
+      - account: Purchases
+        debit: '38400'
+        role: purchases
+      - account: Inventory
+        debit: '5600'
+        role: opening_inventory
+      - account: Carriage inwards
+        debit: '450'
+        role: carriage_inwards
+      - account: Land
+        debit: '7750'
+        role: non_current_asset
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

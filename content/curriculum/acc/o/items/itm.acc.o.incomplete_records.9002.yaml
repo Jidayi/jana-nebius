@@ -1,0 +1,85 @@
+id: itm.acc.o.incomplete_records.9002
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.incomplete_records.missing_credit_figures
+stem: Credit sales were $36000. Trade receivables opened at $2500 and closed at $3100. Discounts allowed were $200. There were no returns or bad debts.
+parts:
+- id: a
+  prompt: Find the cash collected from credit customers.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '35200'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_acc_9002
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Cash collected is a reduction in the receivables account, not the same as credit sales.
+  - rung: 2
+    name: concept
+    text:
+      en: Start with opening receivables and add credit sales, then deduct discounts and closing receivables.
+  - rung: 3
+    name: first_step
+    text:
+      en: Start with opening receivables and add credit sales, then deduct discounts and closing receivables.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Check your collection figure by putting it back into the receivables account.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 35200 $.
+solution:
+  steps:
+  - n: 1
+    latex: 2500+36000 - 200 - 3100
+    reason: Start with opening receivables and add credit sales, then deduct discounts and closing receivables.
+    check_id: chk_build_mastery_supplement_acc_9002
+  - n: 2
+    latex: '35200'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_acc_9002
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_acc_9002:
+    args:
+      angle_unit: degrees
+      expression: 2500+36000-200-3100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

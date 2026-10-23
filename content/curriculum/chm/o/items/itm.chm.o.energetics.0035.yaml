@@ -1,0 +1,105 @@
+id: itm.chm.o.energetics.0035
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.energetics.bond_energies
+stem: 'For the reaction 2H₂O₂ → 2H₂O + O₂, use these bond energies in kJ/mol: O–H 464, O–O 146, O=O 498.'
+parts:
+- id: a
+  prompt: Calculate the enthalpy change, ΔH, in kJ/mol.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '-206'
+    unit: kJ/mol
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_energetics_0035_dh
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: List the bonds that break and the bonds that form in 2H₂O₂ → 2H₂O + O₂.
+  - rung: 2
+    name: concept
+    text:
+      en: Breaking bonds takes energy in; forming bonds gives energy out. ΔH = broken − formed.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Bonds broken: four O–H and two O–O, a total of 2148 kJ/mol.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Bonds formed: four O–H and one O=O, a total of 2354 kJ/mol. Subtract.'
+  - rung: 5
+    name: full_step
+    text:
+      en: ΔH = 2148 − 2354 = -206 kJ/mol.
+  misconception_ids:
+  - mc.chm.o.energetics_formed_minus_broken
+  - mc.chm.o.energetics_bond_count_ignored
+solution:
+  steps:
+  - n: 1
+    latex: \text{broken} = 2148\ \text{kJ/mol}
+    reason: Energy in
+    check_id: chk_build_chm_energetics_0035_dh
+  - n: 2
+    latex: \text{formed} = 2354\ \text{kJ/mol}
+    reason: Energy out
+    check_id: chk_build_chm_energetics_0035_dh
+  - n: 3
+    latex: \Delta H = 2148 - 2354 = -206\ \text{kJ/mol}
+    reason: In minus out
+    check_id: chk_build_chm_energetics_0035_dh
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_energetics_0035_dh:
+    args:
+      broken:
+      - bond: O-H
+        count: 4
+        energy: 464
+      - bond: O-O
+        count: 2
+        energy: 146
+      formed:
+      - bond: O-H
+        count: 4
+        energy: 464
+      - bond: O=O
+        count: 1
+        energy: 498
+      task: bond_energies
+    tool: chem_energetics
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,115 @@
+id: itm.phy.o.light.0067
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.converging_lens
+stem: An object is placed 17.5 cm from a converging lens of focal length 10 cm.
+parts:
+- id: a
+  prompt: Which describes the image?
+  marks: 2
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Real, inverted and diminished
+      correct: false
+      misconception_id: mc.phy.o.lens_size_rule_reversed
+      feedback: 'A camera photographs a whole building on a small sensor: far objects give small images. A projector puts the slide just beyond F to make a big image.'
+    - id: B
+      text: Real, upright and magnified
+      correct: false
+      misconception_id: mc.phy.o.lens_orientation_rule_swapped
+      feedback: Rays cross over on their way to a real image, so it is upside down. A magnifying glass shows an upright, virtual image because the rays never cross.
+    - id: C
+      text: Virtual, upright and magnified
+      correct: false
+      misconception_id: mc.phy.o.lens_virtual_real_swapped
+      feedback: 'Beyond F the rays from the object meet after the lens: a real image. Inside F they spread out after the lens and only seem to meet behind it: a virtual image.'
+    - id: D
+      text: Real, inverted and magnified
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Compare the object distance with f and with 2f.
+  - rung: 2
+    name: concept
+    text:
+      en: Beyond F a converging lens gives a real, inverted image; inside F a virtual, upright one.
+  - rung: 3
+    name: first_step
+    text:
+      en: Beyond 2F the image is diminished; between F and 2F it is magnified; inside F it is magnified.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The lens formula gives v = 23.3 cm; compare its size with the object distance.
+  - rung: 5
+    name: full_step
+    text:
+      en: The image is real, inverted and magnified, as in a projector.
+  misconception_ids:
+  - mc.phy.o.lens_orientation_rule_swapped
+  - mc.phy.o.lens_size_rule_reversed
+  - mc.phy.o.lens_virtual_real_swapped
+solution:
+  steps:
+  - n: 1
+    latex: \frac{1}{v} = \frac{1}{10} - \frac{1}{17.5} \Rightarrow v = 23.3\ \text{cm}
+    reason: v is positive, so the image is real and inverted
+    check_id: chk_build_phy_lgt_0067_v
+  - n: 2
+    latex: '|v| \text{ compared with } u = 17.5\ \text{cm}'
+    reason: 'The image is further than the object: magnified'
+  - n: 3
+    latex: \text{Real, inverted and magnified}
+    reason: The image checked with the optics tool
+    check_id: chk_build_phy_lgt_0067_tool
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0067_tool:
+    args:
+      focal_length: 10
+      object_distance: '17.5'
+      optic: converging_lens
+      sign_convention: real_is_positive
+      sign_convention_source: pack
+      task: image
+    tool: phys_optics
+  chk_build_phy_lgt_0067_v:
+    args:
+      expression: 17.5*10/(17.5 - 10)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

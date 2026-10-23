@@ -1,0 +1,124 @@
+id: itm.phy.o.electromagnetism.0074
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.power_transmission
+stem: A transformer takes 1.2 A from a 230 V supply. Its secondary coil gives 9.8 A at 24 V.
+parts:
+- id: a
+  prompt: Calculate the efficiency of the transformer.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 117%
+      correct: false
+      misconception_id: mc.phy.o.efficiency_upside_down
+      feedback: 'No transformer gives out more power than it takes in, so its efficiency cannot be over 100%: divide output by input.'
+    - id: B
+      text: 10.4%
+      correct: false
+      misconception_id: mc.phy.o.efficiency_from_voltages
+      feedback: Efficiency compares power out with power in. Each power is p.d. × current, so the currents are needed too.
+    - id: C
+      text: 85.2%
+      correct: true
+    - id: D
+      text: 0.852%
+      correct: false
+      misconception_id: mc.phy.o.efficiency_left_as_fraction
+      feedback: Output over input gives a fraction such as 0.9. Multiply by a hundred to write it as a percentage, 90%.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Efficiency compares the useful power out with the power in.
+  - rung: 2
+    name: concept
+    text:
+      en: Each power is p.d. × current.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the power in and the power out, then divide output by input.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The power in is 276 W and the power out is 235.2 W.
+  - rung: 5
+    name: full_step
+    text:
+      en: Efficiency = 235.2 ÷ 276 = 0.852, which is 85.2%.
+  misconception_ids:
+  - mc.phy.o.efficiency_from_voltages
+  - mc.phy.o.efficiency_left_as_fraction
+  - mc.phy.o.efficiency_upside_down
+solution:
+  steps:
+  - n: 1
+    latex: P_{in} = 230 \times 1.2 = 276\ \text{W}
+    reason: Power in = p.d. × current
+    check_id: chk_build_phy_emg_0074_pin
+  - n: 2
+    latex: P_{out} = 24 \times 9.8 = 235.2\ \text{W}
+    reason: Power out = p.d. × current
+    check_id: chk_build_phy_emg_0074_pout
+  - n: 3
+    latex: \frac{235.2}{276} = 0.852
+    reason: Output power over input power
+    check_id: chk_build_phy_emg_0074_frac
+  - n: 4
+    latex: 0.852 \rightarrow 85.2\%
+    reason: Multiply by a hundred for a percentage
+    check_id: chk_build_phy_emg_0074_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_0074_ans:
+    args:
+      expression: 24*9.8/(230*1.2)*100
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_emg_0074_frac:
+    args:
+      expression: 24*9.8/(230*1.2)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_emg_0074_pin:
+    args:
+      expression: 230*1.2
+    tool: math_evaluate
+  chk_build_phy_emg_0074_pout:
+    args:
+      expression: 24*9.8
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

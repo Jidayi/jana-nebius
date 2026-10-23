@@ -1,0 +1,115 @@
+id: itm.phy.o.density.0023
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.measuring_density
+stem: A measuring cylinder holds water up to the 40 cm³ mark. When 5 identical pebbles are dropped in, the level rises to 52.5 cm³.
+parts:
+- id: a
+  prompt: Find the volume of one of them.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '2.5'
+    unit: cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_den_0023_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The rise in the water level is the total volume of everything dropped in.
+  - rung: 2
+    name: concept
+    text:
+      en: Final reading − starting reading gives the volume of all of them together.
+  - rung: 3
+    name: first_step
+    text:
+      en: Then share that volume among the 5 of them.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Together they have a volume of 12.5 cm³; divide by 5.
+  - rung: 5
+    name: full_step
+    text:
+      en: Each has a volume of 2.5 cm³.
+  misconception_ids:
+  - mc.phy.o.repeat_not_divided
+  - mc.phy.o.displacement_final_reading_as_volume
+  - mc.phy.o.repeat_multiplied
+solution:
+  steps:
+  - n: 1
+    latex: V = 52.5 - 40 = 12.5\ \text{cm}^3
+    reason: The rise in level is their total volume
+    check_id: chk_build_phy_den_0023_v
+  - n: 2
+    latex: \frac{12.5}{5} = 2.5\ \text{cm}^3
+    reason: Share the total equally
+    check_id: chk_build_phy_den_0023_ans
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  V2: '52.5'
+checks:
+  chk_build_phy_den_0023_ans:
+    args:
+      expression: (52.5 - 40)/5
+    tool: math_evaluate
+  chk_build_phy_den_0023_v:
+    args:
+      expression: 52.5 - 40
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:41:16.277Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.density.0023
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

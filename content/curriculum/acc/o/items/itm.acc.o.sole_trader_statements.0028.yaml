@@ -1,0 +1,143 @@
+id: itm.acc.o.sole_trader_statements.0028
+version: 0.1.1
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.sole_trader_statements.profit_for_year
+stem: 'Chipo runs a stationery shop. For the year: gross profit $30200; rent received $350; stationery $3550; carriage outwards $4600; electricity $2350; repairs $2150; drawings $7100.'
+parts:
+- id: a
+  prompt: Find the profit for the year.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '17900.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_sole_trader_statements_0028_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Profit for the year starts from gross profit. What is added, and what is taken away?
+  - rung: 2
+    name: concept
+    text:
+      en: Add other income (such as rent or discount received) and subtract every running expense. Drawings are not an expense.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Add up the expenses: 3550 + 4600 + 2350 + 2150.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Profit for the year = 30200 + 350 − (3550 + 4600 + 2350 + 2150).
+  - rung: 5
+    name: full_step
+    text:
+      en: Profit for the year = $17900.
+  misconception_ids:
+  - mc.acc.o.pfy_drawings_deducted
+  - mc.acc.o.pfy_other_income_omitted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Profit for the year} = \text{gross profit} + \text{other income} - \text{expenses}
+    reason: Drawings are taken from capital, not from profit
+    check_id: chk_build_acc_sole_trader_statements_0028_t
+  - n: 2
+    latex: \text{Expenses} = 3550 + 4600 + 2350 + 2150 = 12650
+    reason: Total the running expenses
+    check_id: chk_build_acc_sole_trader_statements_0028_s2
+  - n: 3
+    latex: \text{Profit for the year} = 30200 + 350 - 12650 = 17900
+    reason: Substitute
+    check_id: chk_build_acc_sole_trader_statements_0028_a
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_0028_a:
+    args:
+      dp: 2
+      expression: 30200 + 350 - (3550 + 4600 + 2350 + 2150)
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0028_s2:
+    args:
+      dp: 4
+      expression: 3550 + 4600 + 2350 + 2150
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0028_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '69900'
+        role: revenue
+      - account: Purchases
+        debit: '39700'
+        role: purchases
+      - account: Stationery
+        debit: '3550'
+        role: expense
+      - account: Carriage outwards
+        debit: '4600'
+        role: expense
+      - account: Electricity
+        debit: '2350'
+        role: expense
+      - account: Repairs
+        debit: '2150'
+        role: expense
+      - account: Rent received
+        credit: '350'
+        role: other_income
+      - account: Drawings
+        debit: '7100'
+        role: drawings
+      - account: Land
+        debit: '10800'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

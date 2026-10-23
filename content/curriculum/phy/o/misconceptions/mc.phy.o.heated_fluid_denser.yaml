@@ -1,0 +1,36 @@
+id: mc.phy.o.heated_fluid_denser
+kc_ids:
+- kc.phy.o.heat_transfer.convection
+student_name: Heated fluid becomes denser
+description: Thinks a fluid becomes denser when heated, so warm fluid sinks and cooled fluid rises.
+signatures:
+- kind: answer_transform
+  expression: denser
+fix:
+  strategy: rule_restatement
+  text:
+    en: Heating makes a fluid expand, so the same mass takes up more space and its density falls. Warm air and water rise; cooled air and water sink.
+probe_item_ids:
+- itm.phy.o.heat_transfer.0026
+- itm.phy.o.heat_transfer.0027
+- itm.phy.o.heat_transfer.0028
+- itm.phy.o.heat_transfer.0017
+- itm.phy.o.heat_transfer.0018
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

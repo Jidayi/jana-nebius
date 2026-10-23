@@ -1,0 +1,34 @@
+id: mc.acc.o.sd_returns_journal_confused
+kc_ids:
+- kc.acc.o.source_documents.select_book_of_prime_entry
+student_name: Returns journals mixed up
+description: Uses the purchases returns journal for returns from customers, or the reverse.
+signatures:
+- kind: structural
+  rule: debit_credit_swapped
+fix:
+  strategy: contrast_example
+  text:
+    en: Sales returns come in from customers; purchases returns go out to suppliers.
+probe_item_ids:
+- itm.acc.o.source_documents.0012
+- itm.acc.o.source_documents.0013
+- itm.acc.o.source_documents.0014
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

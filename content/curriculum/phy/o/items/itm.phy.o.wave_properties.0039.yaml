@@ -1,0 +1,85 @@
+id: itm.phy.o.wave_properties.0039
+version: 0.1.0
+type: multi_select
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.transverse_and_longitudinal
+stem: Several kinds of wave are listed.
+parts:
+- id: a
+  prompt: Select every longitudinal wave.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Ripples on water
+      correct: false
+    - id: B
+      text: Sound in air
+      correct: true
+    - id: C
+      text: Ultrasound in body tissue
+      correct: true
+    - id: D
+      text: A pulse pushed along a slinky spring
+      correct: true
+    - id: E
+      text: Light
+      correct: false
+    scoring: exact_set
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Picture how one particle of the material moves as the wave goes past.
+  - rung: 2
+    name: concept
+    text:
+      en: Compare the direction of that movement with the direction the energy travels.
+  - rung: 3
+    name: first_step
+    text:
+      en: Vibrating at right angles to the travel is one kind of wave; vibrating along the travel is the other.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out any option that does not fit what the particles actually do.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Correct: Sound in air; Ultrasound in body tissue; A pulse pushed along a slinky spring.'
+solution:
+  steps:
+  - n: 1
+    latex: \text{Sound in air; Ultrasound in body tissue; A pulse pushed along a slinky spring}
+    reason: Sound waves and push-pull pulses vibrate along their direction of travel
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

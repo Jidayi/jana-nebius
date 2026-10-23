@@ -1,0 +1,94 @@
+id: itm.phy.o.mass_weight.0016
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.mass_weight.mass_or_weight
+stem: An astronaut, Amara, has a weight of 750 N on Earth. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: What is Amara's mass on Saturn, where g = 10.4 N/kg?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '75'
+    unit: kg
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_mwt_0016_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Mass is the amount of matter in the astronaut.
+  - rung: 2
+    name: concept
+    text:
+      en: Moving to another world changes the weight but not the mass.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the mass from the Earth weight, using the Earth's g.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 750 ÷ 10.
+  - rung: 5
+    name: full_step
+    text:
+      en: The mass is 75 kg, on Earth and on Saturn.
+  misconception_ids:
+  - mc.phy.o.weight_given_as_mass_number
+  - mc.phy.o.mass_changes_with_g
+  - mc.phy.o.planet_g_mismatched
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: m = \frac{W}{g} = \frac{750}{10} = 75\ \text{kg}
+    reason: Use the Earth's g, where the weight was measured
+    check_id: chk_build_phy_mwt_0016_ans
+  - n: 2
+    latex: '\text{The mass is the same on any world: } 75\ \text{kg}'
+    reason: Mass does not depend on place
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mwt_0016_ans:
+    args:
+      expression: 750/10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

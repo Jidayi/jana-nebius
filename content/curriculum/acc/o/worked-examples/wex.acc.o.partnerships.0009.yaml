@@ -1,0 +1,323 @@
+id: wex.acc.o.partnerships.0009
+kc_ids:
+- kc.acc.o.partnerships.capital_vs_current
+problem: With fixed capitals, Ama's capital is $30000, her profit share $9400 and drawings $6200. Which accounts change, and by how much does her current account change?
+steps:
+- n: 1
+  latex: \text{Capital fixed; profit and drawings} \rightarrow \text{current account}
+  reason: Fixed capitals
+  check_id: chk_build_acc_partnerships_w0009_t
+- n: 2
+  latex: \text{Change} = 9400 - 6200 = 3200
+  reason: Credit less debit
+  check_id: chk_build_acc_partnerships_w0009_a
+final_answer:
+  latex: \$\,3200
+  check_id: chk_build_acc_partnerships_w0009_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_partnerships_w0009_a:
+    args:
+      dp: 2
+      expression: 9400 - 6200
+    tool: math_evaluate
+  chk_build_acc_partnerships_w0009_t:
+    args:
+      chart:
+        accounts:
+        - accepted_names:
+          - Cash account
+          - Cash in hand
+          account_id: cash
+          account_name: Cash
+          class: asset
+        - accepted_names:
+          - Bank account
+          - Cash at bank
+          account_id: bank
+          account_name: Bank
+          class: asset
+        - accepted_names:
+          - Capital account
+          - Owner's capital
+          account_id: capital
+          account_name: Capital
+          class: capital
+        - accepted_names:
+          - Drawings account
+          account_id: drawings
+          account_name: Drawings
+          class: drawings
+        - accepted_names:
+          - Revenue
+          - Sales revenue
+          - Turnover
+          account_id: sales
+          account_name: Sales
+          class: income
+        - accepted_names:
+          - Purchases account
+          account_id: purchases
+          account_name: Purchases
+          class: expense
+        - accepted_names:
+          - Returns inwards
+          account_id: sales_returns
+          account_name: Sales returns
+          class: contra
+          normal_side: debit
+        - accepted_names:
+          - Returns outwards
+          account_id: purchases_returns
+          account_name: Purchases returns
+          class: contra
+          normal_side: credit
+        - accepted_names:
+          - Rent expense
+          - Rent payable
+          account_id: rent
+          account_name: Rent
+          class: expense
+        - accepted_names:
+          - Wages and salaries
+          - Salaries
+          account_id: wages
+          account_name: Wages
+          class: expense
+        - accepted_names:
+          - Electricity expense
+          account_id: electricity
+          account_name: Electricity
+          class: expense
+        - accepted_names:
+          - Insurance expense
+          account_id: insurance
+          account_name: Insurance
+          class: expense
+        - accepted_names:
+          - Advertising expense
+          account_id: advertising
+          account_name: Advertising
+          class: expense
+        - accepted_names:
+          - Vehicle expenses
+          account_id: motor_expenses
+          account_name: Motor expenses
+          class: expense
+        - accepted_names:
+          - Office expenses
+          account_id: stationery
+          account_name: Stationery
+          class: expense
+        - accepted_names:
+          - Repairs and maintenance
+          account_id: repairs
+          account_name: Repairs
+          class: expense
+        - account_id: carriage_inwards
+          account_name: Carriage inwards
+          class: expense
+        - account_id: carriage_outwards
+          account_name: Carriage outwards
+          class: expense
+        - account_id: discount_allowed
+          account_name: Discount allowed
+          class: expense
+        - account_id: discount_received
+          account_name: Discount received
+          class: income
+        - accepted_names:
+          - Rent income
+          account_id: rent_received
+          account_name: Rent received
+          class: income
+        - accepted_names:
+          - Commission income
+          account_id: commission_received
+          account_name: Commission received
+          class: income
+        - accepted_names:
+          - Interest paid
+          account_id: interest_paid
+          account_name: Loan interest
+          class: expense
+        - accepted_names:
+          - Office equipment
+          account_id: equipment
+          account_name: Equipment
+          class: asset
+        - accepted_names:
+          - Motor vehicle
+          - Vehicles
+          account_id: motor_vehicles
+          account_name: Motor vehicles
+          class: asset
+        - accepted_names:
+          - Buildings
+          - Land and buildings
+          account_id: premises
+          account_name: Premises
+          class: asset
+        - accepted_names:
+          - Furniture
+          - Fixtures
+          account_id: fixtures
+          account_name: Fixtures and fittings
+          class: asset
+        - accepted_names:
+          - Plant and machinery
+          account_id: machinery
+          account_name: Machinery
+          class: asset
+        - accepted_names:
+          - Stock
+          account_id: inventory
+          account_name: Inventory
+          class: asset
+        - accepted_names:
+          - Bank loan
+          - Loan account
+          account_id: loan
+          account_name: Loan
+          class: liability
+        - accepted_names:
+          - Trade receivables control
+          - Debtors control
+          account_id: sales_ledger_control
+          account_name: Sales ledger control
+          class: asset
+        - accepted_names:
+          - Trade payables control
+          - Creditors control
+          account_id: purchases_ledger_control
+          account_name: Purchases ledger control
+          class: liability
+        - accepted_names:
+          - Debtors
+          account_id: trade_receivables
+          account_name: Trade receivables
+          class: asset
+        - accepted_names:
+          - Creditors
+          account_id: trade_payables
+          account_name: Trade payables
+          class: liability
+        - accepted_names:
+          - Suspense account
+          account_id: suspense
+          account_name: Suspense
+          class: contra
+          normal_side: debit
+        - accepted_names:
+          - Bad debts
+          account_id: irrecoverable_debts
+          account_name: Irrecoverable debts
+          class: expense
+        - accepted_names:
+          - Bad debts recovered
+          account_id: irrecoverable_debts_recovered
+          account_name: Irrecoverable debts recovered
+          class: income
+        - accepted_names:
+          - Provision for doubtful debts
+          account_id: allowance
+          account_name: Allowance for irrecoverable debts
+          class: contra
+          normal_side: credit
+        - accepted_names:
+          - Depreciation expense
+          account_id: depreciation
+          account_name: Depreciation
+          class: expense
+        - accepted_names:
+          - Provision for depreciation
+          account_id: accumulated_depreciation
+          account_name: Accumulated depreciation
+          class: contra
+          normal_side: credit
+        - accepted_names:
+          - Disposal account
+          account_id: disposal
+          account_name: Disposal
+          class: contra
+          normal_side: debit
+        - accepted_names:
+          - Accruals
+          account_id: other_payables
+          account_name: Other payables
+          class: liability
+        - accepted_names:
+          - Prepayments
+          account_id: other_receivables
+          account_name: Other receivables
+          class: asset
+        - accepted_names:
+          - Income statement appropriation
+          account_id: appropriation
+          account_name: Appropriation account
+          class: capital
+        - accepted_names:
+          - Subscriptions income
+          account_id: subscriptions
+          account_name: Subscriptions
+          class: income
+        - account_id: accumulated_fund
+          account_name: Accumulated fund
+          class: capital
+        - account_id: p_current_account_ama
+          account_name: Current account Ama
+          class: capital
+        - account_id: p_current_account_kofi
+          account_name: Current account Kofi
+          class: capital
+        - account_id: p_capital_account_ama
+          account_name: Capital account Ama
+          class: capital
+        - account_id: p_capital_account_kofi
+          account_name: Capital account Kofi
+          class: capital
+        id: coa.acc.o.standard.v1
+      dp: 2
+      entries:
+      - lines:
+        - account: Appropriation account
+          amount: '9400'
+          side: debit
+        - account: Current account Ama
+          amount: '9400'
+          side: credit
+      - lines:
+        - account: Current account Ama
+          amount: '6200'
+          side: debit
+        - account: Bank
+          amount: '6200'
+          side: credit
+      opening_balances:
+      - account: Capital account Ama
+        amount: '30000'
+        side: credit
+      - account: Appropriation account
+        amount: '9400'
+        side: credit
+      task: post
+    tool: acc_double_entry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

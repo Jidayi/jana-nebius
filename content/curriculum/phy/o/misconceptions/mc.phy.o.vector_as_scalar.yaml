@@ -1,0 +1,37 @@
+id: mc.phy.o.vector_as_scalar
+kc_ids:
+- kc.phy.o.measurement.scalars_and_vectors
+- kc.phy.o.measurement.resultant_vectors
+student_name: Ignoring direction
+description: Treats a vector such as displacement, velocity or force as if only its size mattered.
+signatures:
+- kind: answer_transform
+  expression: a + b
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Walking forward and then the same distance back leaves you where you started: the displacement is zero even though the distance is not. Vectors need a direction.'
+probe_item_ids:
+- itm.phy.o.measurement.0026
+- itm.phy.o.measurement.0027
+- itm.phy.o.measurement.0028
+- itm.phy.o.measurement.0030
+- itm.phy.o.measurement.0016
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

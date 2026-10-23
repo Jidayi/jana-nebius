@@ -1,0 +1,103 @@
+id: itm.mth.o.probability.0055
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.probability.dependent_events
+stem: A bag holds 5 red and 5 blue counters. Two counters are taken out, one after the other, without replacement.
+parts:
+- id: a
+  prompt: Find the probability that both are red. Give your answer to 3 significant figures.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '0.222'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_prb_0055_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Draw a tree diagram: the second set of branches depends on the first pick.'
+  - rung: 2
+    name: concept
+    text:
+      en: Without replacement, the second probability has one fewer counter in the total.
+  - rung: 3
+    name: first_step
+    text:
+      en: The first pick is red with probability 5/10; then the bag has one fewer red and one fewer counter.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply along each path, then add the paths you need.
+  - rung: 5
+    name: full_step
+    text:
+      en: The probability is 0.222.
+  misconception_ids:
+  - mc.mth.o.without_replacement_ignored
+  - mc.mth.o.denominator_not_reduced
+  - mc.mth.o.and_as_add
+solution:
+  steps:
+  - n: 1
+    latex: \text{total} = 10,\ \text{then } 9 \text{ after one is taken}
+    reason: Count the counters before and after the first pick
+    check_id: chk_build_mth_prb_0055_tot
+  - n: 2
+    latex: P(\text{red, red}) = \frac{5}{10} \times \frac{5 - 1}{10 - 1}
+    reason: One red is gone for the second pick
+  - n: 3
+    latex: = 0.222
+    reason: Multiply
+    check_id: chk_build_mth_prb_0055_ans
+difficulty:
+  prior: 0.7
+  band: core
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_prb_0055_ans:
+    args:
+      expression: 5/10*(5 - 1)/(10 - 1)
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_prb_0055_tot:
+    args:
+      equations:
+      - p = 5 + 5
+      - q = 5 + 5 - 1
+      - r = 5 - 1
+      unknowns:
+      - p
+      - q
+      - r
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

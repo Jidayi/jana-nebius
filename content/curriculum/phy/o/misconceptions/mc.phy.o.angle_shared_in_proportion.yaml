@@ -1,0 +1,36 @@
+id: mc.phy.o.angle_shared_in_proportion
+kc_ids:
+- kc.phy.o.measurement.resultant_vectors
+student_name: Sharing out the right angle
+description: Shares the right angle between the two vectors in proportion to their sizes instead of using trigonometry.
+signatures:
+- kind: answer_transform
+  expression: 90*b/(a + b)
+fix:
+  strategy: counterexample
+  text:
+    en: Angles in a triangle do not grow in step with the sides. Use the tangent of the angle and then its inverse.
+probe_item_ids:
+- itm.phy.o.measurement.0042
+- itm.phy.o.measurement.0044
+- itm.phy.o.measurement.0033
+- itm.phy.o.measurement.0036
+- itm.phy.o.measurement.0039
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

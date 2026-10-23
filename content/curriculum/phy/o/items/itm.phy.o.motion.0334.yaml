@@ -1,0 +1,107 @@
+id: itm.phy.o.motion.0334
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.solve_with_equation
+stem: A cart moving at 2 m/s accelerates uniformly at 2.5 m/s² for 40 m.
+parts:
+- id: a
+  prompt: Use v² = u² + 2as to find its final speed.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 204 m/s
+      correct: false
+      misconception_id: mc.phy.o.square_not_rooted
+      feedback: If your equation gives the square of the unknown, take the square root as the last step.
+    - id: B
+      text: 14 m/s
+      correct: false
+      misconception_id: mc.phy.o.rearrange_sign_error
+      feedback: 'Undo each step in turn: what was added on one side is subtracted from both.'
+    - id: C
+      text: 14.3 m/s
+      correct: true
+    - id: D
+      text: 202 m/s
+      correct: false
+      misconception_id: mc.phy.o.squares_dropped
+      feedback: 'The equation links the squares of the velocities: square u, add 2as, then take the square root of the total.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'List the known quantities: u, a and s.'
+  - rung: 2
+    name: concept
+    text:
+      en: The equation gives v squared, not v.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out u² + 2as first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: v² = 204.
+  - rung: 5
+    name: full_step
+    text:
+      en: v = √204 = 14.3 m/s.
+  misconception_ids:
+  - mc.phy.o.rearrange_sign_error
+  - mc.phy.o.square_not_rooted
+  - mc.phy.o.squares_dropped
+solution:
+  steps:
+  - n: 1
+    latex: v^2 = 2^2 + 2 \times 2.5 \times 40 = 204
+    reason: Substitute
+    check_id: chk_build_phy_mot_0334_sq
+  - n: 2
+    latex: v = \sqrt{204} = 14.3\ \text{m/s}
+    reason: Square root
+    check_id: chk_build_phy_mot_0334_ans
+difficulty:
+  prior: 0.5
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mot_0334_ans:
+    args:
+      expression: sqrt(2^2 + 2*2.5*40)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_mot_0334_sq:
+    args:
+      expression: 2^2 + 2*2.5*40
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

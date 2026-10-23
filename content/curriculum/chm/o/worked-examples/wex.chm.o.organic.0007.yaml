@@ -1,0 +1,58 @@
+id: wex.chm.o.organic.0007
+kc_ids:
+- kc.chm.o.organic.fuels_and_cracking
+problem: Dodecane, C₁₂H₂₆ (12 carbon and 26 hydrogen atoms), is cracked into octane, C₈H₁₈ (8 carbon and 18 hydrogen atoms), and one alkene molecule. Find the alkene.
+steps:
+- n: 1
+  latex: 12 - 8 = 4
+  reason: Carbon atoms left for the alkene
+  check_id: chk_build_chm_organic_w0007_c
+- n: 2
+  latex: 26 - 18 = 8
+  reason: Hydrogen atoms left for the alkene
+  check_id: chk_build_chm_organic_w0007_h
+- n: 3
+  latex: 8 = 2 \times 4 \Rightarrow \text{C}_n\text{H}_{2n}
+  reason: It is an alkene
+  check_id: chk_build_chm_organic_w0007_s3
+final_answer:
+  latex: '4\ \text{carbon atoms: butene, C}_4\text{H}_8'
+  check_id: chk_build_chm_organic_w0007_c
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_w0007_c:
+    args:
+      expression: 12 - 8
+    tool: math_evaluate
+  chk_build_chm_organic_w0007_h:
+    args:
+      expression: 26 - 18
+    tool: math_evaluate
+  chk_build_chm_organic_w0007_s3:
+    args:
+      expression: 2*4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

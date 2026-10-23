@@ -1,0 +1,156 @@
+id: itm.chm.o.metals.0067
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.extraction_yield
+stem: In a blast furnace, iron(III) oxide is reduced by carbon monoxide. The equation is Fe₂O₃ + 3CO → 2Fe + 3CO₂.
+parts:
+- id: a
+  prompt: What mass of Fe₂O₃ is needed to make 28.0 g of iron?
+  marks: 3
+  answer:
+    kind: numeric
+    value: '40.0'
+    unit: g
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_metals_0067_chain
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: This time you know the mass of the metal and want the mass of the ore.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Use the same steps: grams to moles, the mole ratio, then moles to grams.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Moles of Fe = 28.0 ÷ 56 = 0.500 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'The ratio Fe : Fe₂O₃ is 2 : 1, so moles of Fe₂O₃ = 0.250 mol.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Mass of Fe₂O₃ = 0.250 × 160 = 40.0 g.
+  misconception_ids:
+  - mc.chm.o.metals_yield_ratio_inverted
+  - mc.chm.o.metals_yield_mass_ratio
+solution:
+  steps:
+  - n: 1
+    latex: n(\text{Fe}) = \frac{28.0}{56} = 0.500\ \text{mol}
+    reason: Mass to moles
+    check_id: chk_build_chm_metals_0067_ma
+  - n: 2
+    latex: '\text{Fe} : \text{Fe}_2\text{O}_3 = 2 : 1'
+    reason: Ratio from the equation
+    check_id: chk_build_chm_metals_0067_coef
+  - n: 3
+    latex: n(\text{Fe}_2\text{O}_3) = 0.250\ \text{mol}
+    reason: Mole ratio from the equation
+    check_id: chk_build_chm_metals_0067_chain
+  - n: 4
+    latex: m(\text{Fe}_2\text{O}_3) = 0.250 \times 160 = 40.0\ \text{g}
+    reason: Moles to mass
+    check_id: chk_build_chm_metals_0067_mb
+difficulty:
+  prior: 0.7
+  band: stretch
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_metals_0067_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_c
+      equation: Fe2O3 + 3CO -> 2Fe + 3CO2
+      sf: 3
+      steps:
+      - id: na
+        mass: 28.0 g
+        op: amount_from_mass
+        species: Fe
+      - amount: '@na'
+        from: Fe
+        id: nb
+        op: mole_ratio
+        to: Fe2O3
+      - amount: '@nb'
+        id: mb
+        op: mass_from_amount
+        species: Fe2O3
+    tool: chem_stoichiometry
+  chk_build_chm_metals_0067_coef:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_c
+      equation: Fe2O3 + 3CO -> 2Fe + 3CO2
+      sf: 3
+      steps:
+      - amount: '2'
+        from: Fe
+        id: ca
+        op: mole_ratio
+        to: Fe
+      - amount: '2'
+        from: Fe
+        id: cb
+        op: mole_ratio
+        to: Fe2O3
+    tool: chem_stoichiometry
+  chk_build_chm_metals_0067_ma:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      formula: Fe
+    tool: chem_molar_mass
+  chk_build_chm_metals_0067_mb:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_o
+      formula: Fe2O3
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,86 @@
+id: itm.phy.o.heat_transfer.0004
+version: 0.1.0
+type: ordering
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.conduction
+stem: Some materials conduct energy far better than others.
+parts:
+- id: a
+  prompt: Put these materials in order of how well they conduct thermal energy, best first.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: exact
+    elements:
+    - id: e2
+      text: Iron
+    - id: e3
+      text: Glass
+    - id: e4
+      text: Wood
+    - id: e5
+      text: Air
+    - id: e1
+      text: Copper
+    correct_order:
+    - e1
+    - e2
+    - e3
+    - e4
+    - e5
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Sort the materials into metals, non-metal solids and gases first.
+  - rung: 2
+    name: concept
+    text:
+      en: Metals have free electrons, so they are the best conductors.
+  - rung: 3
+    name: first_step
+    text:
+      en: Among the metals here, copper is the best conductor and iron the poorest.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Gases are the worst conductors, because their particles are so far apart.
+  - rung: 5
+    name: full_step
+    text:
+      en: Copper, Iron, Glass, Wood, Air.
+solution:
+  steps:
+  - n: 1
+    latex: \text{Copper → Iron → Glass → Wood → Air}
+    reason: Metals first, then non-metal solids, then gases
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

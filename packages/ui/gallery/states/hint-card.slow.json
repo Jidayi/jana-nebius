@@ -1,0 +1,28 @@
+{
+  "id": "hint-card.slow",
+  "title": "Hint card, slow",
+  "component": "HintCard",
+  "state": "slow",
+  "payload": {
+    "card_type": "hint",
+    "rung": 2,
+    "of": 5,
+    "body": "At the highest point the ball stops for an instant. What is its speed there?",
+    "actions": [
+      "try_it",
+      "next_hint"
+    ]
+  },
+  "payloadContract": "https://jana.dev/contracts/api/events#/$defs/card",
+  "context": {
+    "theme": "light",
+    "elapsedMs": 5000
+  },
+  "placements": [
+    "conversation"
+  ],
+  "expectText": [
+    "Hint 2 of 5",
+    "Waiting for the tutor (5 s)"
+  ]
+}

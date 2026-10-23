@@ -1,0 +1,105 @@
+id: itm.mth.o.trigonometry.0002
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.pythagoras
+stem: A right-angled triangle has hypotenuse 15 m and one other side 3 m.
+parts:
+- id: a
+  prompt: Find the length of the third side, to 3 significant figures.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '14.7'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_trg_0002_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which side is the hypotenuse? It is the longest side.
+  - rung: 2
+    name: concept
+    text:
+      en: 'To find a shorter side, subtract the squares: b² = c² − a².'
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 15² − 3².
+  - rung: 4
+    name: worked_step
+    text:
+      en: That is 216; take the square root.
+  - rung: 5
+    name: full_step
+    text:
+      en: The third side is 14.7 m.
+  misconception_ids:
+  - mc.mth.o.pythag_add_for_leg
+  - mc.mth.o.pythag_no_root
+  - mc.mth.o.pythag_sides_added
+solution:
+  steps:
+  - n: 1
+    latex: b^2 = c^2 - a^2
+    reason: Pythagoras' theorem, rearranged
+  - n: 2
+    latex: b^2 = 15^2 - 3^2 = 216
+    reason: Square and subtract
+    check_id: chk_build_mth_trg_0002_s
+  - n: 3
+    latex: b = \sqrt{216} = 14.7\ \text{m}
+    reason: Square root
+    check_id: chk_build_mth_trg_0002_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  a: '3'
+  c: '15'
+checks:
+  chk_build_mth_trg_0002_ans:
+    args:
+      expression: sqrt(15^2 - 3^2)
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_trg_0002_s:
+    args:
+      expression: 15^2 - 3^2
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

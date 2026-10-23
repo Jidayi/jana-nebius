@@ -1,0 +1,45 @@
+id: wex.phy.o.radioactivity.0008
+kc_ids:
+- kc.phy.o.radioactivity.background_radiation
+problem: A source near a counter gives 260 counts in 4 minutes. The background count rate is 15 counts/min. Find the corrected count rate from the source.
+steps:
+- n: 1
+  latex: \frac{260}{4} = 65\ \text{counts/min}
+  reason: Measured count rate
+  check_id: chk_build_phy_rad_w0008_c
+- n: 2
+  latex: 65 - 15 = 50\ \text{counts/min}
+  reason: Subtract the background count rate
+  check_id: chk_build_phy_rad_w0008_ans
+final_answer:
+  latex: 50\ \text{counts/min}
+  check_id: chk_build_phy_rad_w0008_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_w0008_ans:
+    args:
+      expression: 260/4 - 15
+    tool: math_evaluate
+  chk_build_phy_rad_w0008_c:
+    args:
+      expression: 260/4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

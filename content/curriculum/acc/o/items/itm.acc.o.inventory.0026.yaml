@@ -1,0 +1,132 @@
+id: itm.acc.o.inventory.0026
+version: 0.1.1
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.inventory.lower_cost_nrv
+stem: At the year end Aisha holds 140 packs of exercise books that cost $17 each. They can be sold for $15 each, but each needs $2 spent on it before it can be sold.
+parts:
+- id: a
+  prompt: Calculate the value of this inventory.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '1820.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_inventory_0026_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Inventory is valued at the lower of two figures. Which two?
+  - rung: 2
+    name: concept
+    text:
+      en: Net realisable value = selling price − costs needed to sell. Use the lower of cost and NRV.
+  - rung: 3
+    name: first_step
+    text:
+      en: NRV per item = 15 − 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Compare 17 with 15 − 2; multiply the lower by 140.
+  - rung: 5
+    name: full_step
+    text:
+      en: Each item is valued at $13, so the inventory is worth $1820.
+  misconception_ids:
+  - mc.acc.o.inv_selling_price_used
+  - mc.acc.o.inv_nrv_ignored
+solution:
+  steps:
+  - n: 1
+    latex: \text{Value} = \text{quantity} \times \text{lower of cost and NRV}
+    reason: Prudence
+    check_id: chk_build_acc_inventory_0026_t
+  - n: 2
+    latex: \text{NRV} = 15 - 2 = 13
+    reason: Selling price less costs to sell
+    check_id: chk_build_acc_inventory_0026_s2
+  - n: 3
+    latex: \text{Value} = 140 \times 13 = 1820
+    reason: The lower figure
+    check_id: chk_build_acc_inventory_0026_a
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  quantity: '140'
+  selling_price: '15'
+checks:
+  chk_build_acc_inventory_0026_a:
+    args:
+      dp: 2
+      expression: 140 * (15 - 2)
+    tool: math_evaluate
+  chk_build_acc_inventory_0026_s2:
+    args:
+      dp: 4
+      expression: 15 - 2
+    tool: math_evaluate
+  chk_build_acc_inventory_0026_t:
+    args:
+      dp: 2
+      method: fifo
+      movements:
+      - kind: receipt
+        quantity: 140
+        unit_cost: '17'
+      nrv:
+        per_unit: '13'
+    tool: acc_inventory
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:32:46.136Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.acc.o.inventory.0026
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

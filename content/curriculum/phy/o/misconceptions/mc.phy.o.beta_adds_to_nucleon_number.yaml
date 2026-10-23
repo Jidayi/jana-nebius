@@ -1,0 +1,33 @@
+id: mc.phy.o.beta_adds_to_nucleon_number
+kc_ids:
+- kc.phy.o.radioactivity.decay_equations
+student_name: The new proton adds to the nucleon number
+description: Adds one to the nucleon number in beta decay for the new proton, forgetting that a neutron was used to make it.
+signatures:
+- kind: answer_transform
+  expression: A + 1
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The new proton was made from a neutron: one more proton, one fewer neutron, the same nucleon number.'
+probe_item_ids:
+- itm.phy.o.radioactivity.0028
+- itm.phy.o.radioactivity.0019
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

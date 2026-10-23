@@ -1,0 +1,36 @@
+id: mc.chm.o.metals_rust_one_condition
+kc_ids:
+- kc.chm.o.metals.corrosion
+student_name: Only water (or only air) is needed for rusting
+description: Thinks iron rusts with water alone or with air alone, not seeing that both water and oxygen are needed.
+signatures:
+- kind: answer_transform
+  expression: 'choice: rusting predicted with water only or with oxygen only'
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Compare the test tubes: a nail in boiled water under oil (no air) and a nail in dry air (no water) both stay shiny. Only the nail with water AND air rusts.'
+probe_item_ids:
+- itm.chm.o.metals.0036
+- itm.chm.o.metals.0037
+- itm.chm.o.metals.0041
+- itm.chm.o.metals.0043
+- itm.chm.o.metals.0045
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

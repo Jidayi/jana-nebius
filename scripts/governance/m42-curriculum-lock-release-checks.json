@@ -1,0 +1,368 @@
+{
+  "checked_at": "2026-10-19T02:43:54.466974+00:00",
+  "status": "Curriculum lock cleared and dedicated content/M42 checks pass; broader-harness, held-out-isolation and production gates remain open",
+  "release_ready": false,
+  "feature_default_enabled": false,
+  "production_modified": false,
+  "source_bundle_sha256": "1297f31090f1b9539fd3e339429b4461b554c117769dfe04ed004cb50606eeb4",
+  "source_inputs": {
+    "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/source-inputs.json",
+    "sha256": "da2fd35555c50a45ef7f826dfeedb7833ead382ee0e8bfd1d92f20ba31d1c1da"
+  },
+  "prior_checks": {
+    "path": "scripts/governance/m42-equilibrium-motion-release-checks.json",
+    "sha256": "b5d1e7f55f8f9e239c19e8dbc00a8c9bb77ae4e0bfff4794ad56a456cd6aa748"
+  },
+  "owner_approval": "scripts/governance/m42-owner-approval.json",
+  "curriculum_lock": {
+    "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/lock-resolution.json",
+    "sha256": "6b691cd93ce71004b6b678c5ba4d827ca075f094c9c31acb2be5954b7d1bb5fb"
+  },
+  "checks": {
+    "m42_core_and_gateway": {
+      "passed": 174,
+      "skipped": 12,
+      "report": {
+        "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/m42-regressions-after-build-window.xml",
+        "sha256": "7671540e76243ca0ba9fb40665e8382a5a675d6f173bad1aac8f0f981eec8349"
+      }
+    },
+    "harness_and_release_preparation": {
+      "passed": 27,
+      "skipped": 0,
+      "report": {
+        "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/build-and-release-checks.xml",
+        "sha256": "ee8a8362fd501f8e0994710339614e4d386ca524071071747d43c30943e2cba2"
+      }
+    },
+    "build_verification": {
+      "passed": 35,
+      "skipped": 0,
+      "report": {
+        "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/build-verification.xml",
+        "sha256": "9a52fdad603ec22e55b9e864d49fa942a0f8c2ba763b99213e229424613cbfad"
+      }
+    },
+    "evaluation_lock": {
+      "passed": true,
+      "suite_versions": {
+        "answer_oracles": "2026-10-19.2",
+        "content_packs": "2026-10-19.2"
+      },
+      "existing_fix_validated": true,
+      "content_oracles_edited_by_this_task": false,
+      "offline_symbolic_window_ms": 3000,
+      "learner_symbolic_window_ms": 800
+    },
+    "answer_oracles": {
+      "passed": 4964,
+      "total": 4964,
+      "report": {
+        "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/content-harness.json",
+        "sha256": "2a02cff0234f6b8104a5d66f3b643a9075df910abf53b49ab516f90307dc2be8"
+      }
+    },
+    "content_packs": {
+      "passed": 4,
+      "total": 4,
+      "report": {
+        "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/content-harness.json",
+        "sha256": "2a02cff0234f6b8104a5d66f3b643a9075df910abf53b49ab516f90307dc2be8"
+      }
+    },
+    "retained_live_qualification": {
+      "new_model_calls": 0,
+      "gateway_bundle_identical": true,
+      "full_corpus_passed": 117,
+      "targeted_passed": 8,
+      "unicode_passed": 12,
+      "upload_formats_passed": 6,
+      "qualified_at": "2026-10-18T23:15:17.537655+00:00",
+      "record": {
+        "path": "scripts/governance/m42-equilibrium-motion-release-checks.json",
+        "sha256": "b5d1e7f55f8f9e239c19e8dbc00a8c9bb77ae4e0bfff4794ad56a456cd6aa748"
+      },
+      "reason": "Curriculum lock changes do not change the reproduced gateway or Study corpus; no fresh live execution is claimed."
+    },
+    "evaluation_harness": {
+      "passed": 11,
+      "failed": [
+        "evl01_full_harness_run",
+        "evl24_no_held_out_leakage"
+      ],
+      "passed_gate": false,
+      "report": {
+        "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/eval-harness-regressions.xml",
+        "sha256": "ccd85b0eac17be2e8fd28a3b0c4fe90dee431026fa079fcf2b941403d4e34c77"
+      }
+    },
+    "heldout_isolation": {
+      "passed": false,
+      "colliding_development_items": 3,
+      "matching_hashes": 4,
+      "encrypted_benchmark_opened": false,
+      "guard_unchanged": true,
+      "report": {
+        "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/heldout-collisions.json",
+        "sha256": "e880a88c83eda6ec8223d9cb6618a911dd96aa0bd2aa1f31b2ceed29e37e637a"
+      }
+    },
+    "broader_harness_oracle": {
+      "passed": false,
+      "case_id": "itm.mth.o.coordinate_geometry.0061",
+      "dedicated_full_content_rerun_passed": true,
+      "needs_owner_input": false,
+      "meaning": "Failed in the broader harness, passed in the dedicated complete content run; the failed observation is retained and needs engineering reproduction."
+    },
+    "static": {
+      "passed": true,
+      "checks": [
+        {
+          "command": [
+            ".venv/bin/ruff",
+            "check",
+            "services/agent-core/agent_core/config/keys.py",
+            "services/pack-builder/pack_builder/verify.py",
+            "services/pack-builder/tests/test_build_timeouts.py"
+          ],
+          "exit_code": 0,
+          "output": "All checks passed!\n"
+        },
+        {
+          "command": [
+            ".venv/bin/ruff",
+            "format",
+            "--check",
+            "services/agent-core/agent_core/config/keys.py",
+            "services/pack-builder/pack_builder/verify.py",
+            "services/pack-builder/tests/test_build_timeouts.py"
+          ],
+          "exit_code": 0,
+          "output": "3 files already formatted\n"
+        },
+        {
+          "command": [
+            ".venv/bin/python",
+            "-m",
+            "jana_tools",
+            "eval",
+            "lock"
+          ],
+          "exit_code": 0,
+          "output": "eval lock: ok\n"
+        }
+      ]
+    },
+    "prompt_snapshots": {
+      "diff_errors": 0,
+      "human_reviews_pending": 60,
+      "report": {
+        "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/prompt-review-status.json",
+        "sha256": "18af5a74af9a03c184ddd3ebb3309c24d1489c3f434de9b186bc1219b873e957"
+      }
+    }
+  },
+  "engineering_change": {
+    "offline_build_symbolic_slice_ms": 3000,
+    "bounded_maximum_ms": 5000,
+    "default_attempts": 3,
+    "learner_symbolic_slice_ms": 800,
+    "source_answer_keys_changed": false,
+    "heldout_guards_changed": false
+  },
+  "budget": {
+    "normal_daily_usd": 2,
+    "last_daily_limit_verified_at": "2026-10-18T23:15:17.537655+00:00",
+    "last_host_verification": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-host-final.json",
+      "sha256": "bdb5282af62de3059f3b861dd3035ae323302b81f31d86c3afd7e77b9420fffb"
+    },
+    "current_staging_vm_status": "TERMINATED",
+    "fresh_host_inspection_claimed": false,
+    "vertex_monthly_cap_usd": 20,
+    "vertex_monthly_cap_state": "CONFIGURED",
+    "provider_cap": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/provider-cap.jsonl",
+      "sha256": "c257c223e416b538d4f5c1b13c067c223c451eefa9b09fc6137abf496c86c921"
+    },
+    "new_model_calls": 0,
+    "limits_changed_this_task": false,
+    "prior_uncertain_receipts_preserved": {
+      "path": "scripts/governance/evidence/m42-equilibrium-motion-2026-10-18/twofail-holds-final.json",
+      "sha256": "153dec9503cae2708fd55d5c8a8067a3ce3e9ab8bc9d13028baad890ceeb9d0b"
+    }
+  },
+  "release_inputs": {
+    "path": "scripts/governance/m42-release-inputs.json",
+    "sha256": "4a7e49c090107f0497b4b1b3efd3a51f8673036bb6a2d3fc47d8e418f9d77751"
+  },
+  "remaining": [
+    "Reproduce/stabilise the broader-harness oracle failure for itm.mth.o.coordinate_geometry.0061; no owner input needed.",
+    "Resolve held-out fingerprint overlaps in three development questions via the corpus custodian; the EVL-24 isolation gate currently fails.",
+    "Confirm production hostname (api.getjana.app proposed), London/EU deployment decision and authorise production provisioning; engineering will create the actual configuration, pins and deployment.",
+    "Actual production-project provider retention/abuse-monitoring confirmation, approved assessment/Safety lead records, public production trust hierarchy and content-HSM signature; owner approval is already recorded.",
+    "Installer signing/notarisation access and final signed Mac Apple Silicon/VoiceOver, Windows x64/NVDA including non-AVX2, and required Ubuntu/Debian device/model-class measurements.",
+    "Independent held-out content/safety review, including the probability expectation amendment and Unicode source-definition amendment, local reference models and OCR/ASR; human prompt snapshot reviews (60 pending).",
+    "Engineering after those inputs: actual production extraction costs, immutable SBOM/licence/source-offer provenance, exact production qualification and strict preflight."
+  ],
+  "engineering_open_now": [
+    "Reproduce and stabilise the remaining broader-harness oracle failure for itm.mth.o.coordinate_geometry.0061; this does not need owner input and a separate full-content pass does not erase the failed observation."
+  ],
+  "engineering_after_inputs": [
+    "Prepare and provision the actual production environment after the deployment decisions, retention evidence and authorisation are available.",
+    "Measure production extraction costs; build immutable runtime/installers and generate image-bound SBOM, licence/source-offer provenance and production pins.",
+    "Verify returned signatures and reviewed records, qualify the exact production project/endpoint, collect signed-device results and rerun strict preflight."
+  ],
+  "release_handoff": "services/cloud-gateway/deploy/M42-RELEASE-HANDOFF.md",
+  "device_handoff": "scripts/packaging/M42-DEVICE-CHECKS.md",
+  "production_preflight": {
+    "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/production-preflight.json",
+    "sha256": "4da2beb1ce88ecd7bdf39f71f3d127ebfcd751553b59f17dadea87ec95787b61"
+  },
+  "evidence": {
+    "build-and-release-checks.xml": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/build-and-release-checks.xml",
+      "sha256": "ee8a8362fd501f8e0994710339614e4d386ca524071071747d43c30943e2cba2"
+    },
+    "build-mypy.txt": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/build-mypy.txt",
+      "sha256": "5d4b6d285b77932e3d08212c3b4974d0a803f98ec60408ac6ccf6a063fa6c19e"
+    },
+    "build-ruff.txt": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/build-ruff.txt",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    "build-timeout-regressions.xml": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/build-timeout-regressions.xml",
+      "sha256": "5cdf14d42bfa8d03dda445ad3bb3466ca55a7a0d657db6932da5618c134946ea"
+    },
+    "build-verification.xml": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/build-verification.xml",
+      "sha256": "9a52fdad603ec22e55b9e864d49fa942a0f8c2ba763b99213e229424613cbfad"
+    },
+    "candidate-before.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/candidate-before.json",
+      "sha256": "cbb06f2d89373d62ee3237ce11fc8bbaa68195ca0b70e7379d92cb1994c8501e"
+    },
+    "check-content-current.py": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/check-content-current.py",
+      "sha256": "8679c59b3d7ef226f7d78b38961e8b8c83f678c77c5aa5b2640ffb9e857f032e"
+    },
+    "check-content.py": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/check-content.py",
+      "sha256": "f6f9c00c4650863811b11a786e62a79f00c195f9e80f4ebf30f104c924aaf9bb"
+    },
+    "content-harness-before-build-window.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/content-harness-before-build-window.json",
+      "sha256": "2f9be5d761379103c1644c776699c17d938de9d4807c9899dcfee5e3b3b0c1a6"
+    },
+    "content-harness.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/content-harness.json",
+      "sha256": "2a02cff0234f6b8104a5d66f3b643a9075df910abf53b49ab516f90307dc2be8"
+    },
+    "eval-harness-regressions.xml": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/eval-harness-regressions.xml",
+      "sha256": "ccd85b0eac17be2e8fd28a3b0c4fe90dee431026fa079fcf2b941403d4e34c77"
+    },
+    "eval-lock-before-latest-update.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/eval-lock-before-latest-update.json",
+      "sha256": "ea892aa653eb5d51eb99eaf9f41f212971741b7942ef7a623e54493f9d1745b9"
+    },
+    "eval-lock.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/eval-lock.json",
+      "sha256": "e85556821376db8cfb411300865e75df03db7b0d530768866692d0f73df7fe9d"
+    },
+    "eval-suites-before-latest-update.toml": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/eval-suites-before-latest-update.toml",
+      "sha256": "a349e24579829ee57581b12bfc4adbe2b679e6e520e3d6838f4dadff1b9a733c"
+    },
+    "eval-suites.toml": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/eval-suites.toml",
+      "sha256": "95ff2657cd33ea6f107ab745d021f314571d6b80c5d5b0ca7c96fb2337b40276"
+    },
+    "finalize.py": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/finalize.py",
+      "sha256": "f2233f15ac75930bdaf6bbc01d9e319e59cb8e0b15127d3ddaaf86a39c565bcd"
+    },
+    "gateway-unchanged.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/gateway-unchanged.json",
+      "sha256": "f43071dcff8e5e76eb276167d4efdb8dda83cb98e625a06738328a9272695e7b"
+    },
+    "handoff-before.md": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/handoff-before.md",
+      "sha256": "cb83845fb6ca7b087e9a58e19437c98abf03487113ffa099736fa3412d7f8413"
+    },
+    "heldout-collisions.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/heldout-collisions.json",
+      "sha256": "e880a88c83eda6ec8223d9cb6618a911dd96aa0bd2aa1f31b2ceed29e37e637a"
+    },
+    "heldout-protection.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/heldout-protection.json",
+      "sha256": "c4dfafe3da49aaad87326e990726ac075df59f7c516b1663831c999f9cf1b4e4"
+    },
+    "lock-resolution-before-build-window.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/lock-resolution-before-build-window.json",
+      "sha256": "2271ae931575a1ec866c11118444da51701945867ff66e12e28b0bf12cb470f8"
+    },
+    "lock-resolution.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/lock-resolution.json",
+      "sha256": "6b691cd93ce71004b6b678c5ba4d827ca075f094c9c31acb2be5954b7d1bb5fb"
+    },
+    "m42-regressions-after-build-window.xml": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/m42-regressions-after-build-window.xml",
+      "sha256": "7671540e76243ca0ba9fb40665e8382a5a675d6f173bad1aac8f0f981eec8349"
+    },
+    "m42-regressions.xml": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/m42-regressions.xml",
+      "sha256": "efaacfa6085d807cd92a32e94ef0f7e26762da9cc5ea8a1ccdaa8c01d1e93a64"
+    },
+    "oracle-probe.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/oracle-probe.json",
+      "sha256": "38064287e5419a68929a203d37783bb922cc10a046bc05c0d928188166117554"
+    },
+    "probe-oracles.py": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/probe-oracles.py",
+      "sha256": "0d8147bdde2e3b194827881bed071d8b064e67e0e03b85783458fa0d00cb044f"
+    },
+    "production-preflight.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/production-preflight.json",
+      "sha256": "4da2beb1ce88ecd7bdf39f71f3d127ebfcd751553b59f17dadea87ec95787b61"
+    },
+    "prompt-review-status.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/prompt-review-status.json",
+      "sha256": "18af5a74af9a03c184ddd3ebb3309c24d1489c3f434de9b186bc1219b873e957"
+    },
+    "provider-cap.jsonl": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/provider-cap.jsonl",
+      "sha256": "c257c223e416b538d4f5c1b13c067c223c451eefa9b09fc6137abf496c86c921"
+    },
+    "readme-before.md": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/readme-before.md",
+      "sha256": "dc84ac4cc7c27e35edccacde19cf41435a340a3b0eecfd6984baaae17e0d5c78"
+    },
+    "release-checks.xml": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/release-checks.xml",
+      "sha256": "cf588640034f570480f0806679d4d0e0f75d2a9a5eb197f00303d94fff4d91f7"
+    },
+    "release-inputs.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/release-inputs.json",
+      "sha256": "4a7e49c090107f0497b4b1b3efd3a51f8673036bb6a2d3fc47d8e418f9d77751"
+    },
+    "signing-identities.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/signing-identities.json",
+      "sha256": "b60f19fb3a2a848550c4dec210e718b671198fdc9e5992d36726cecae9b0b703"
+    },
+    "source-inputs.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/source-inputs.json",
+      "sha256": "da2fd35555c50a45ef7f826dfeedb7833ead382ee0e8bfd1d92f20ba31d1c1da"
+    },
+    "staging-runtime-status.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/staging-runtime-status.json",
+      "sha256": "b0e13e3414cd0e7ee6a95009bf63192567005b6462368c09263e165cf0db64d2"
+    },
+    "static-checks.json": {
+      "path": "scripts/governance/evidence/m42-curriculum-lock-2026-10-19/static-checks.json",
+      "sha256": "c513025c8f46e024fe887800e5f147642af2fd04f58716c74019c7f6233083f5"
+    }
+  }
+}

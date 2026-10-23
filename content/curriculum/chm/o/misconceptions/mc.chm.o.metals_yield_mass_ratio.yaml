@@ -1,0 +1,36 @@
+id: mc.chm.o.metals_yield_mass_ratio
+kc_ids:
+- kc.chm.o.metals.extraction_yield
+student_name: Using the equation's numbers as grams
+description: Scales the mass of ore by the equation's coefficients directly, as if the coefficients were masses.
+signatures:
+- kind: answer_transform
+  expression: m*b/a
+fix:
+  strategy: simpler_numbers
+  text:
+    en: The equation counts particles, not grams. Change the mass of ore into moles first, use the ratio, then change the moles of metal back into grams.
+probe_item_ids:
+- itm.chm.o.metals.0059
+- itm.chm.o.metals.0060
+- itm.chm.o.metals.0061
+- itm.chm.o.metals.0062
+- itm.chm.o.metals.0063
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,99 @@
+id: itm.phy.o.em_spectrum.0025
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.em_spectrum.em_wave_calculations
+stem: A laser gives light of frequency 6 × 10¹⁴ Hz.
+parts:
+- id: a
+  prompt: Calculate the wavelength of the light in nanometres.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '500'
+    unit: nm
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_ems_0025_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Light is an electromagnetic wave.
+  - rung: 2
+    name: concept
+    text:
+      en: It travels at c = 3.0 × 10⁸ m/s, and c = f × λ, so λ = c ÷ f.
+  - rung: 3
+    name: first_step
+    text:
+      en: λ = 3.0 × 10⁸ ÷ (6 × 10¹⁴) gives the wavelength in metres.
+  - rung: 4
+    name: worked_step
+    text:
+      en: λ = 5.00 × 10⁻⁷ m; now change metres into nanometres.
+  - rung: 5
+    name: full_step
+    text:
+      en: λ = 500 nm.
+  misconception_ids:
+  - mc.phy.o.wave_prefix_ignored
+  - mc.phy.o.wave_equation_inverted
+  - mc.phy.o.em_uses_sound_speed
+solution:
+  steps:
+  - n: 1
+    latex: \lambda = \frac{c}{f} = \frac{3.0 \times 10^{8}}{6 \times 10^{14}} = 5.00 \times 10^{-7}\ \text{m}
+    reason: Rearrange c = fλ
+    check_id: chk_build_phy_ems_0025_lmm
+  - n: 2
+    latex: 5.00 \times 10^{-7}\ \text{m} = 500\ \text{nm}
+    reason: A metre is 10⁹ nanometres
+    check_id: chk_build_phy_ems_0025_ans
+difficulty:
+  prior: 0.5
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ems_0025_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: c/(6*10^14)*10^9
+    tool: math_evaluate
+  chk_build_phy_ems_0025_lmm:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: (c/(6*10^14))/10^(-7)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

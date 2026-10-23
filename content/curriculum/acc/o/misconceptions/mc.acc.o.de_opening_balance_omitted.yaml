@@ -1,0 +1,34 @@
+id: mc.acc.o.de_opening_balance_omitted
+kc_ids:
+- kc.acc.o.double_entry.balance_account
+student_name: Leaving out the opening balance
+description: Balances an account from the month's entries only and forgets the balance brought down at the start.
+signatures:
+- kind: answer_transform
+  expression: receipts - payments
+fix:
+  strategy: rule_restatement
+  text:
+    en: The balance brought down is the first entry of the period and is part of the total.
+probe_item_ids:
+- itm.acc.o.double_entry.0045
+- itm.acc.o.double_entry.0046
+- itm.acc.o.double_entry.0047
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

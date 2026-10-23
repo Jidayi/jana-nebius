@@ -1,0 +1,101 @@
+id: itm.mth.o.algebra_and_graphs.0023
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.expand_brackets
+stem: Expand and simplify $(4x - 1)(5x - 4)$. The answer has the form px² + qx + r.
+parts:
+- id: a
+  prompt: Find q, the coefficient of x.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '-21'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0023_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Multiply every term in the first bracket by every term in the second: four products.'
+  - rung: 2
+    name: concept
+    text:
+      en: Only two of the four products contain x to the power one.
+  - rung: 3
+    name: first_step
+    text:
+      en: One x term is 4x × (−4); the other is (−1) × 5x.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The x terms are -16x and -5x.
+  - rung: 5
+    name: full_step
+    text:
+      en: q = -16 + (-5) = -21.
+  misconception_ids:
+  - mc.mth.o.expand_missing_middle
+  - mc.mth.o.expand_sign_slip
+  - mc.mth.o.expand_add_constants
+solution:
+  steps:
+  - n: 1
+    latex: (4x - 1)(5x - 4) = 20x^2 + (-16)x + (-5)x + 4
+    reason: Four products, one for each pair of terms
+    check_id: chk_build_mth_alg_0023_t
+  - n: 2
+    latex: q = (-16) + (-5) = -21
+    reason: Add the two x terms
+    check_id: chk_build_mth_alg_0023_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0023_ans:
+    args:
+      expression: 4*(-4) + (-1)*5
+    tool: math_evaluate
+  chk_build_mth_alg_0023_t:
+    args:
+      equations:
+      - p = 4*5
+      - q = 4*(-4)
+      - r = (-1)*5
+      - s = (-1)*(-4)
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

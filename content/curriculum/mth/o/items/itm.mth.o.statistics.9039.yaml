@@ -1,0 +1,109 @@
+id: itm.mth.o.statistics.9039
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.grouped_mean
+stem: 'A table groups 20 seeds by length: 0 <= length < 10 mm has frequency 6; 10 <= length < 20 mm has frequency 10; 20 <= length < 30 mm has frequency 4.'
+parts:
+- id: a
+  prompt: Estimate the mean length in millimetres using class midpoints.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '14'
+    unit: mm
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9039
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A grouped mean uses each class midpoint as the value for all members of that class.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply each midpoint by its frequency, add those products and divide by the total frequency.
+  - rung: 3
+    name: first_step
+    text:
+      en: Multiply each midpoint by its frequency, add those products and divide by the total frequency.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The answer is an estimate because the exact positions within each class are unknown.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 14 mm.
+solution:
+  steps:
+  - n: 1
+    latex: '5'
+    reason: Intermediate value used in the calculation.
+    check_id: chk_build_mastery_supplement_mth_9039_intermediate_0
+  - n: 2
+    latex: '15'
+    reason: Intermediate value used in the calculation.
+    check_id: chk_build_mastery_supplement_mth_9039_intermediate_1
+  - n: 3
+    latex: '25'
+    reason: Intermediate value used in the calculation.
+    check_id: chk_build_mastery_supplement_mth_9039_intermediate_2
+  - n: 4
+    latex: \frac{5 \cdot 6 + 25 \cdot 4 + 15 \cdot 10}{20}
+    reason: Multiply each midpoint by its frequency, add those products and divide by the total frequency.
+    check_id: chk_build_mastery_supplement_mth_9039
+  - n: 5
+    latex: '14'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9039
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9039:
+    args:
+      angle_unit: degrees
+      expression: (5*6+15*10+25*4)/20
+    tool: math_evaluate
+  chk_build_mastery_supplement_mth_9039_intermediate_0:
+    args:
+      expression: (0+10)/2
+    tool: math_evaluate
+  chk_build_mastery_supplement_mth_9039_intermediate_1:
+    args:
+      expression: (10+20)/2
+    tool: math_evaluate
+  chk_build_mastery_supplement_mth_9039_intermediate_2:
+    args:
+      expression: (20+30)/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

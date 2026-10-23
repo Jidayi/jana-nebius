@@ -1,0 +1,60 @@
+id: wex.chm.o.organic.0014
+kc_ids:
+- kc.chm.o.organic.polymers
+problem: A PVC molecule, poly(chloroethene), has a relative molecular mass of 125000. Name the monomer and find how many monomer molecules joined.
+steps:
+- n: 1
+  latex: '\text{monomer: chloroethene, CH}_2\text{=CHCl}'
+  reason: Name inside poly( )
+- n: 2
+  latex: M_r(\text{C}_2\text{H}_3\text{Cl}) = 62.5
+  reason: Mass of one repeat unit
+  check_id: chk_build_chm_organic_w0014_m
+- n: 3
+  latex: \frac{125000}{62.5}
+  reason: Number of units
+  check_id: chk_build_chm_organic_w0014_n
+final_answer:
+  latex: 2000\ \text{units}
+  check_id: chk_build_chm_organic_w0014_n
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_w0014_m:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_cl
+      formula: C2H3Cl
+    tool: chem_molar_mass
+  chk_build_chm_organic_w0014_n:
+    args:
+      expression: 125000/62.5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

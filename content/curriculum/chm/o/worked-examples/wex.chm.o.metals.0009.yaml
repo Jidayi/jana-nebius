@@ -1,0 +1,53 @@
+id: wex.chm.o.metals.0009
+kc_ids:
+- kc.chm.o.metals.extraction
+problem: Aluminium is above carbon, so it is extracted by electrolysis of molten aluminium oxide. An aluminium atom has 13 electrons and an aluminium ion has 10. How many electrons must each aluminium ion gain at the cathode to become an atom?
+steps:
+- n: 1
+  latex: '\text{Al above C: carbon cannot reduce it, so use electrolysis}'
+  reason: Choice of method
+- n: 2
+  latex: 13 - 10 = 3
+  reason: Electrons the ion is missing
+  check_id: chk_build_chm_metals_w0009_e
+- n: 3
+  latex: \text{Al}^{3+} + 3\text{e}^- \rightarrow \text{Al}
+  reason: Reduction at the cathode
+  check_id: chk_build_chm_metals_w0009_s3
+final_answer:
+  latex: 3\ \text{electrons}
+  check_id: chk_build_chm_metals_w0009_e
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_metals_w0009_e:
+    args:
+      expression: 13 - 10
+    tool: math_evaluate
+  chk_build_chm_metals_w0009_s3:
+    args:
+      equation: Al^3+ + 3e- -> Al
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

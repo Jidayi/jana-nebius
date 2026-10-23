@@ -1,0 +1,116 @@
+id: itm.chm.o.stoichiometry.0052
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.moles_and_mass
+stem: A gas jar contains 0.50 g of hydrogen gas, H₂.
+parts:
+- id: a
+  prompt: What amount of H₂, in moles, is in the jar?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: 0.500 mol
+      correct: false
+      misconception_id: mc.chm.o.diatomic_as_atoms
+      feedback: 'Oxygen, hydrogen, nitrogen and chlorine gases are made of molecules of two atoms: use O₂ = 32, not 16.'
+    - id: B
+      text: 4.00 mol
+      correct: false
+      misconception_id: mc.chm.o.moles_ratio_inverted
+      feedback: 'Amount (mol) = mass (g) ÷ molar mass (g/mol). Check the units: g ÷ g/mol gives mol.'
+    - id: C
+      text: 0.250 mol
+      correct: true
+    - id: D
+      text: 1.00 mol
+      correct: false
+      misconception_id: mc.chm.o.moles_multiply_mass
+      feedback: 'Try easy numbers: 36 g of water (M = 18 g/mol) is 2 mol, so you divide the mass by the molar mass.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the mass of hydrogen and want the amount in moles.
+  - rung: 2
+    name: concept
+    text:
+      en: Amount (mol) = mass (g) ÷ molar mass (g/mol).
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Hydrogen gas is made of H₂ molecules, so use the molar mass of H₂, not of one H atom: it is 2 g/mol.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 0.50 ÷ 2.
+  - rung: 5
+    name: full_step
+    text:
+      en: 0.50 ÷ 2 = 0.250 mol.
+  misconception_ids:
+  - mc.chm.o.moles_ratio_inverted
+  - mc.chm.o.moles_multiply_mass
+  - mc.chm.o.diatomic_as_atoms
+solution:
+  steps:
+  - n: 1
+    latex: M(\text{H}_2) = 2\ \text{g/mol}
+    reason: Molar mass of the molecule
+    check_id: chk_build_chm_stoichiometry_0052_mr
+  - n: 2
+    latex: n = \frac{0.50}{2} = 0.250\ \text{mol}
+    reason: Mass divided by molar mass
+    check_id: chk_build_chm_stoichiometry_0052_n
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0052_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_h
+      formula: H2
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0052_n:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_h
+      sf: 3
+      steps:
+      - id: n
+        mass: 0.50 g
+        op: amount_from_mass
+        species: H2
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

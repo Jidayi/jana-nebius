@@ -1,0 +1,91 @@
+id: itm.phy.o.energy.0021
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.kinetic_energy
+stem: A car speeds up from 4 m/s to 12 m/s.
+parts:
+- id: a
+  prompt: How many times bigger is its kinetic energy at the higher speed?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '9'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0021_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The mass does not change, so only the speed matters.
+  - rung: 2
+    name: concept
+    text:
+      en: Kinetic energy is proportional to the speed squared.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find how many times faster it goes.
+  - rung: 4
+    name: worked_step
+    text:
+      en: It goes 3 times faster; square this number.
+  - rung: 5
+    name: full_step
+    text:
+      en: Its kinetic energy is 9 times bigger.
+  misconception_ids:
+  - mc.phy.o.ke_proportional_to_speed
+  - mc.phy.o.square_taken_as_double
+solution:
+  steps:
+  - n: 1
+    latex: \frac{12}{4} = 3
+    reason: How many times faster
+    check_id: chk_build_phy_nrg_0021_k
+  - n: 2
+    latex: 'E_k \propto v^2: \quad 3^2 = 9'
+    reason: Kinetic energy depends on speed squared
+    check_id: chk_build_phy_nrg_0021_ans
+difficulty:
+  prior: 0.4
+  band: stretch
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0021_ans:
+    args:
+      expression: (12/4)^2
+    tool: math_evaluate
+  chk_build_phy_nrg_0021_k:
+    args:
+      expression: 12/4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

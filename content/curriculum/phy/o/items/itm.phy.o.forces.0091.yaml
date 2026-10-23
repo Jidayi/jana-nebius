@@ -1,0 +1,110 @@
+id: itm.phy.o.forces.0091
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.moments
+stem: A uniform ruler rests on a pivot at its middle. A weight of 2 N hangs 0.35 m to the left of the pivot.
+parts:
+- id: a
+  prompt: Find the weight that must hang 0.3 m to the right of the pivot to keep it balanced.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 2 N
+      correct: false
+      misconception_id: mc.phy.o.balance_equal_forces
+      feedback: A small force far from the pivot can balance a large force close to it. Compare moments, force × distance, not forces.
+    - id: B
+      text: 1.71 N
+      correct: false
+      misconception_id: mc.phy.o.moment_ratio_inverted
+      feedback: 'Write the balance first: F1 × d1 = F2 × d2. Then divide both sides by the quantity next to the unknown.'
+    - id: C
+      text: 0.7 N
+      correct: false
+      misconception_id: mc.phy.o.moment_left_as_answer
+      feedback: The moment is in N m; the force asked for is in N. Divide the moment by the unknown force's distance from the pivot.
+    - id: D
+      text: 2.33 N
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: In balance, the clockwise moment equals the anticlockwise moment.
+  - rung: 2
+    name: concept
+    text:
+      en: The beam is uniform and pivoted at its centre, so its own weight has no moment.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the moment of the known weight, then divide by the other distance.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The anticlockwise moment is 0.7 N m.
+  - rung: 5
+    name: full_step
+    text:
+      en: F = 0.7 ÷ 0.3 = 2.33 N.
+  misconception_ids:
+  - mc.phy.o.balance_equal_forces
+  - mc.phy.o.moment_left_as_answer
+  - mc.phy.o.moment_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: 2 \times 0.35 = 0.7\ \text{N m}
+    reason: Anticlockwise moment
+    check_id: chk_build_phy_frc_0091_m1
+  - n: 2
+    latex: F \times 0.3 = 0.7
+    reason: Principle of moments
+  - n: 3
+    latex: F = \frac{0.7}{0.3} = 2.33\ \text{N}
+    reason: Divide by the distance
+    check_id: chk_build_phy_frc_0091_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0091_ans:
+    args:
+      expression: 2*0.35/0.3
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_frc_0091_m1:
+    args:
+      expression: 2*0.35
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

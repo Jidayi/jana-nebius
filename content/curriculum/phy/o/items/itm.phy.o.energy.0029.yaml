@@ -1,0 +1,115 @@
+id: itm.phy.o.energy.0029
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.kinetic_energy
+stem: A lorry of mass 12000 kg has 1350 kJ of kinetic energy.
+parts:
+- id: a
+  prompt: Calculate the speed.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 225 m/s
+      correct: false
+      misconception_id: mc.phy.o.ke_speed_not_rooted
+      feedback: Rearranging ½mv² gives v², not v. Take the square root as the last step, then check the speed is sensible.
+    - id: B
+      text: 15 m/s
+      correct: true
+    - id: C
+      text: 10.6 m/s
+      correct: false
+      misconception_id: mc.phy.o.ke_half_omitted
+      feedback: Kinetic energy is ½mv². Write the whole formula down before you put in any numbers.
+    - id: D
+      text: 7.5 m/s
+      correct: false
+      misconception_id: mc.phy.o.ke_rearrange_half_wrong
+      feedback: 'To undo a half, multiply by 2: v² = 2Ek ÷ m and m = 2Ek ÷ v².'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the kinetic energy and the mass; the speed is the unknown.
+  - rung: 2
+    name: concept
+    text:
+      en: Rearrange Ek = ½mv² to get v² = 2Ek ÷ m, with Ek in joules.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 2 × 1350000 ÷ 12000 to find v².
+  - rung: 4
+    name: worked_step
+    text:
+      en: v² = 225; now take the square root.
+  - rung: 5
+    name: full_step
+    text:
+      en: The speed is 15 m/s.
+  misconception_ids:
+  - mc.phy.o.ke_half_omitted
+  - mc.phy.o.ke_rearrange_half_wrong
+  - mc.phy.o.ke_speed_not_rooted
+solution:
+  steps:
+  - n: 1
+    latex: E_k = 1350\ \text{kJ} = 1350000\ \text{J}
+    reason: Change kJ to J
+    check_id: chk_build_phy_nrg_0029_e
+  - n: 2
+    latex: v^2 = \frac{2E_k}{m} = \frac{2 \times 1350000}{12000} = 225
+    reason: Rearrange E_k = ½mv²
+    check_id: chk_build_phy_nrg_0029_vsq
+  - n: 3
+    latex: v = \sqrt{225} = 15\ \text{m/s}
+    reason: Take the square root
+    check_id: chk_build_phy_nrg_0029_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0029_ans:
+    args:
+      expression: sqrt(2*1350000/12000)
+    tool: math_evaluate
+  chk_build_phy_nrg_0029_e:
+    args:
+      quantity: 1350 kJ
+      to: J
+    tool: units_convert
+  chk_build_phy_nrg_0029_vsq:
+    args:
+      expression: 2*1350000/12000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

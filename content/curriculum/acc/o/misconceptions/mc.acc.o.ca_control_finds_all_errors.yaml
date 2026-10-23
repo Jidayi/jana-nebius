@@ -1,0 +1,34 @@
+id: mc.acc.o.ca_control_finds_all_errors
+kc_ids:
+- kc.acc.o.control_accounts.control_purpose
+student_name: Agreement proves the ledger correct
+description: Believes that when the control account agrees, every personal account is correct.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+fix:
+  strategy: counterexample
+  text:
+    en: A payment posted to the wrong customer leaves the total unchanged, so the control account still agrees.
+probe_item_ids:
+- itm.acc.o.control_accounts.0001
+- itm.acc.o.control_accounts.0002
+- itm.acc.o.control_accounts.0003
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

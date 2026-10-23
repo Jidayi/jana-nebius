@@ -1,0 +1,77 @@
+# The guided-mode pedagogy rubric (EVL-05), in our own words. Frozen before any run it grades: the suite lock
+# (pedagogy_rubric in evals/suites.toml) refuses an edit without a version bump, and a grading run records the
+# rubric's hash. Judges are pinned by model id, quantisation and the judge prompt's sha256 (EVL-06); the tutor's own
+# model never judges its outputs.
+id: pedagogy.guided.v1
+version: 1.0.0
+title: Guided tutoring moves
+written_before_runs: true
+owner_role: Learning designer
+applies_to: [guided_dialogue, simulated_student_run]
+locales: [en]
+subjects: [mathematics, physics, chemistry, accounting]
+judging:
+  judges:
+  - kind: model
+    ref: local:qwen3-vl-8b@Q4_K_M
+    prompt_sha256: 23b726c35a5864074031c9d242c37c40f5c7b93790e6906376ce7644cb15b73d
+  - kind: model
+    ref: cloud:gemini-2.5-pro
+    prompt_sha256: 23b726c35a5864074031c9d242c37c40f5c7b93790e6906376ce7644cb15b73d
+  independent: true
+  on_disagreement: human_review
+  on_judge_error: fail
+  evidence_scope: [transcript, board]
+  excluded_from_judge_pool: [gemma-4-12b]
+criteria:
+- id: asks_for_attempt_first
+  dimension: withholding
+  critical: true
+  applies_when: the student has not yet tried the step
+  pass_if: PASS if the tutor asks the student to try the step, or to say a first move, before giving any method or
+    value.
+  fail_if: FAIL if the tutor gives method, a formula with values, or the answer before the student has tried.
+- id: stays_kind_under_pressure
+  dimension: tone
+  critical: false
+  applies_when: the student pushes for the answer or complains
+  pass_if: PASS if the reply stays warm and short and keeps the answer back while the student pushes for it.
+  fail_if: FAIL if the reply scolds, lectures at length, or gives in and hands over the answer.
+- id: names_misconception
+  dimension: misconception
+  critical: true
+  applies_when: the engine matched a misconception on the student's answer
+  pass_if: PASS if the tutor says the mistaken idea in plain words and aims its next question at that idea.
+  fail_if: FAIL if the tutor ignores the mistaken idea or starts the whole explanation again from the beginning.
+- id: asks_before_correcting
+  dimension: questioning
+  critical: false
+  applies_when: the student's step needs correcting
+  pass_if: PASS if the tutor first asks what the student was trying to do, or what led to the step.
+  fail_if: FAIL if the tutor corrects the step straight away without asking.
+- id: praises_method_not_person
+  dimension: feedback
+  critical: false
+  applies_when: the reply contains praise
+  pass_if: PASS if the praise points at a step, a choice or the effort shown in the working.
+  fail_if: FAIL if the praise is about the student being clever or gifted, or is empty filler.
+- id: one_step_at_a_time
+  dimension: brevity
+  critical: false
+  pass_if: PASS if the reply moves the work on by at most one step.
+  fail_if: FAIL if the reply shows several steps of the working at once in guided mode.
+- id: level_appropriate
+  dimension: level
+  critical: false
+  pass_if: PASS if the words and methods suit the student's level and stay within the syllabus.
+  fail_if: FAIL if the reply relies on a method from beyond the student's syllabus or on unexplained jargon.
+- id: never_says_wrong
+  dimension: tone
+  critical: false
+  pass_if: PASS if the reply shows where to look again without labelling the student or the answer.
+  fail_if: FAIL if the reply calls the student or the answer wrong, or labels the student.
+scoring:
+  criterion_pass_rate_gate: 0.9
+  all_pass_rate_gate: 0.8
+  min_runs: 50
+  report: [criterion_pass_rate, all_pass_rate, per_criterion, judge_agreement, wilson_95_ci]

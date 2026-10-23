@@ -1,0 +1,35 @@
+id: mc.acc.o.cos_carriage_outwards_included
+kc_ids:
+- kc.acc.o.sole_trader_statements.cost_of_sales
+- kc.acc.o.sole_trader_statements.gross_profit
+student_name: Carriage outwards in cost of sales
+description: Includes the cost of delivering goods to customers in cost of sales.
+signatures:
+- kind: answer_transform
+  expression: cost_of_sales + carriage_outwards
+fix:
+  strategy: contrast_example
+  text:
+    en: Carriage inwards is part of buying goods; carriage outwards is a cost of selling them, so it is an expense below gross profit.
+probe_item_ids:
+- itm.acc.o.sole_trader_statements.0001
+- itm.acc.o.sole_trader_statements.0002
+- itm.acc.o.sole_trader_statements.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

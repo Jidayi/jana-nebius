@@ -1,0 +1,92 @@
+id: itm.phy.o.electromagnetism.0038
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.electromagnetic_induction
+stem: Pushing a magnet into a coil makes a meter swing to the right.
+parts:
+- id: a
+  prompt: What does the meter do when the magnet is pulled back out?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It swings to the right again
+      correct: false
+      misconception_id: mc.phy.o.reverse_motion_same_direction
+      feedback: Push the magnet in and the meter swings one way; pull it out and it swings the other way.
+    - id: B
+      text: It stays at zero, because the magnet is moving away
+      correct: false
+      misconception_id: mc.phy.o.reverse_motion_same_direction
+      feedback: Push the magnet in and the meter swings one way; pull it out and it swings the other way.
+    - id: C
+      text: It swings to the left
+      correct: true
+    - id: D
+      text: It swings to the right and stays there while the magnet is out
+      correct: false
+      misconception_id: mc.phy.o.stationary_magnet_induces
+      feedback: Leave a magnet still inside a coil and the meter reads zero. Only movement, or a changing field, induces an e.m.f.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Ask what is changing in the magnetic field through the coil.
+  - rung: 2
+    name: concept
+    text:
+      en: An e.m.f. is induced while the field through a coil changes; faster change, a stronger magnet and more turns give a bigger e.m.f., and reversing the change reverses it.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Reversing the motion reverses the induced current.
+  - rung: 5
+    name: full_step
+    text:
+      en: It swings to the left. Reversing the motion reverses the induced current.
+  misconception_ids:
+  - mc.phy.o.reverse_motion_same_direction
+  - mc.phy.o.stationary_magnet_induces
+solution:
+  steps:
+  - n: 1
+    latex: \text{It swings to the left}
+    reason: A changing field induces an e.m.f.
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

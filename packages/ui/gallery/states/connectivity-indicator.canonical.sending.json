@@ -1,0 +1,72 @@
+{
+  "id": "connectivity-indicator.canonical.sending",
+  "title": "Connectivity indicator, sending a usage report",
+  "note": "A feature other than the cloud tutor is sending: the warn alias while data leaves.",
+  "component": "ConnectivityIndicator",
+  "state": "canonical",
+  "variant": "sending",
+  "payload": {
+    "status": {
+      "type": "connectivity.status",
+      "network": "online",
+      "checked_ts": 1760000000000,
+      "features": [
+        {
+          "feature": "cloud_tier",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "downloads",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "update_checks",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "telemetry",
+          "enabled": true,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "crash_reports",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        }
+      ]
+    },
+    "channel": "app",
+    "events": [
+      {
+        "type": "egress.notice",
+        "feature": "telemetry",
+        "state": "started",
+        "destination_label": "Usage reports",
+        "data_classes": [
+          "diagnostics"
+        ]
+      }
+    ],
+    "open": true
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light",
+    "connectivity": "sending"
+  },
+  "placements": [
+    "rail"
+  ],
+  "expectText": [
+    "Sending",
+    "Sending a usage report: counts and timings only."
+  ]
+}

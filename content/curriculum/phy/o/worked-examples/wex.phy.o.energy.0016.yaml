@@ -1,0 +1,45 @@
+id: wex.phy.o.energy.0016
+kc_ids:
+- kc.phy.o.energy.energy_resources
+problem: A wind turbine has a maximum power output of 2.5 MW. Because the wind varies, its average output over a year is only 20% of its maximum. Calculate its average power output in MW.
+steps:
+- n: 1
+  latex: 20\% = 0.2
+  reason: Percentage as a fraction
+  check_id: chk_build_phy_nrg_w0016_f
+- n: 2
+  latex: 2.5 \times 0.2 = 0.5\ \text{MW}
+  reason: Average = fraction × maximum
+  check_id: chk_build_phy_nrg_w0016_ans
+final_answer:
+  latex: 0.5\ \text{MW}
+  check_id: chk_build_phy_nrg_w0016_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_w0016_ans:
+    args:
+      expression: 2.5*20/100
+    tool: math_evaluate
+  chk_build_phy_nrg_w0016_f:
+    args:
+      expression: 20/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

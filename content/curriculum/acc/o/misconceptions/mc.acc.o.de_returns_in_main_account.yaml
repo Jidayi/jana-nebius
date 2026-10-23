@@ -1,0 +1,34 @@
+id: mc.acc.o.de_returns_in_main_account
+kc_ids:
+- kc.acc.o.double_entry.record_credit_transactions
+student_name: Returns in the sales or purchases account
+description: Records returns in the sales or purchases account instead of the returns accounts.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: income
+fix:
+  strategy: rule_restatement
+  text:
+    en: Keep returns in their own accounts so the business can see how much was sent back.
+probe_item_ids:
+- itm.acc.o.double_entry.0024
+- itm.acc.o.double_entry.0026
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

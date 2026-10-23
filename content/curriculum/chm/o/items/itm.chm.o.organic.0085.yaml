@@ -1,0 +1,134 @@
+id: itm.chm.o.organic.0085
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.combustion
+stem: Methane, CH₄, burns completely in a plentiful supply of air.
+parts:
+- id: a
+  prompt: Which is the correct balanced equation for the complete combustion of methane?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: 2CH₄ + 4O₂ → 2CO₂ + 4H₂O
+      correct: false
+      misconception_id: mc.chm.o.organic_combustion_not_lowest
+      feedback: 'After balancing, check whether every coefficient divides by the same number. If it does, divide them all: 2, 4, 2, 4 becomes 1, 2, 1, 2.'
+    - id: B
+      text: CH₄ + 2O₂ → CO₂ + 2H₂O
+      correct: true
+    - id: C
+      text: CH₄ + 4O → CO₂ + 2H₂O
+      correct: false
+      misconception_id: mc.chm.o.organic_oxygen_formula_changed
+      feedback: 'Oxygen gas is made of O₂ molecules. Never change a formula, or write O on its own, to make the atoms fit: balance only with the numbers in front of the formulae.'
+    - id: D
+      text: 2CH₄ + 3O₂ → 2CO + 4H₂O
+      correct: false
+      misconception_id: mc.chm.o.organic_incomplete_products_in_complete
+      feedback: 'Complete combustion means plenty of oxygen: all the carbon becomes carbon dioxide and all the hydrogen becomes water. Carbon monoxide and soot form only when the oxygen supply is limited.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Complete combustion of methane gives only carbon dioxide and water: CH₄ + O₂ → CO₂ + H₂O.'
+  - rung: 2
+    name: concept
+    text:
+      en: A correct equation keeps every formula as it is (oxygen is O₂), balances each element and uses the smallest whole numbers; check methane's carbon, then hydrogen, then oxygen.
+  - rung: 3
+    name: first_step
+    text:
+      en: Rule out any option for methane that has carbon monoxide as a product or oxygen written as O.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Of the options left for methane, see whether all the numbers can be divided by the same factor.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'CH₄ + 2O₂ → CO₂ + 2H₂O: every element balances with the smallest whole numbers.'
+  misconception_ids:
+  - mc.chm.o.organic_incomplete_products_in_complete
+  - mc.chm.o.organic_combustion_not_lowest
+  - mc.chm.o.organic_oxygen_formula_changed
+solution:
+  steps:
+  - n: 1
+    latex: \text{CH}_4 + \text{O}_2 \rightarrow \text{CO}_2 + \text{H}_2\text{O}
+    reason: Fuel + oxygen → carbon dioxide + water
+    check_id: chk_build_chm_organic_0085_bal
+  - n: 2
+    latex: \text{CH}_4 + 2\text{O}_2 \rightarrow \text{CO}_2 + 2\text{H}_2\text{O}
+    reason: Every element balances with the lowest numbers
+    check_id: chk_build_chm_organic_0085_ratios
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_0085_bal:
+    args:
+      equation: CH4 + O2 -> CO2 + H2O
+    tool: chem_balance
+  chk_build_chm_organic_0085_ratios:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      equation: CH4 + O2 -> CO2 + H2O
+      sf: 3
+      steps:
+      - amount: '1'
+        from: CH4
+        id: r0
+        op: mole_ratio
+        to: CH4
+      - amount: '1'
+        from: CH4
+        id: r1
+        op: mole_ratio
+        to: O2
+      - amount: '1'
+        from: CH4
+        id: r2
+        op: mole_ratio
+        to: CO2
+      - amount: '1'
+        from: CH4
+        id: r3
+        op: mole_ratio
+        to: H2O
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

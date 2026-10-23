@@ -1,0 +1,100 @@
+id: itm.phy.o.energy.0093
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.efficiency
+stem: A filament lamp has an efficiency of 5%. It is supplied with 800 J of electrical energy.
+parts:
+- id: a
+  prompt: Calculate the energy it wastes.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '760'
+    unit: J
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0093_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The energy wasted is the part of the input that is not useful.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the useful output first (efficiency × input), then subtract it from the input.
+  - rung: 3
+    name: first_step
+    text:
+      en: 5% as a fraction is 0.05, so the useful output is 0.05 × 800 = 40 J.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 800 − 40.
+  - rung: 5
+    name: full_step
+    text:
+      en: It wastes 760 J.
+  misconception_ids:
+  - mc.phy.o.useful_wasted_swapped
+  - mc.phy.o.efficiency_percent_not_converted
+  - mc.phy.o.energy_formula_operation_swapped
+solution:
+  steps:
+  - n: 1
+    latex: 5\% = 0.05
+    reason: Efficiency as a fraction
+    check_id: chk_build_phy_nrg_0093_e
+  - n: 2
+    latex: \text{useful} = 0.05 \times 800 = 40\ \text{J}
+    reason: Useful = efficiency × input
+    check_id: chk_build_phy_nrg_0093_use
+  - n: 3
+    latex: \text{wasted} = 800 - 40 = 760\ \text{J}
+    reason: Wasted = input − useful
+    check_id: chk_build_phy_nrg_0093_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0093_ans:
+    args:
+      expression: 800*(1 - 5/100)
+    tool: math_evaluate
+  chk_build_phy_nrg_0093_e:
+    args:
+      expression: 5/100
+    tool: math_evaluate
+  chk_build_phy_nrg_0093_use:
+    args:
+      expression: 800*5/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

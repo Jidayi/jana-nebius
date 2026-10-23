@@ -1,0 +1,37 @@
+id: mc.phy.o.fma_applied_force_not_resultant
+kc_ids:
+- kc.phy.o.forces.force_mass_acceleration
+- kc.phy.o.forces.friction_and_terminal_velocity
+student_name: Using the applied force in F = ma
+description: Uses the driving or applied force in F = ma as if it were the resultant force, leaving out the friction or drag that acts against it.
+signatures:
+- kind: answer_transform
+  expression: F_applied/m
+fix:
+  strategy: rule_restatement
+  text:
+    en: The F in F = ma is the resultant force. Take the forces acting against the motion away from the driving force first.
+probe_item_ids:
+- itm.phy.o.forces.0026
+- itm.phy.o.forces.0027
+- itm.phy.o.forces.0029
+- itm.phy.o.forces.0030
+- itm.phy.o.forces.0016
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

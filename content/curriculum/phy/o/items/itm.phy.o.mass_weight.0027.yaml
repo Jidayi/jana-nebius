@@ -1,0 +1,93 @@
+id: itm.phy.o.mass_weight.0027
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.mass_weight.mass_or_weight
+stem: A satellite is carried by a rocket from the launch pad into deep space.
+parts:
+- id: a
+  prompt: Which statement about the satellite is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Its mass gets smaller as it moves away from the Earth
+      correct: false
+      misconception_id: mc.phy.o.mass_changes_with_g
+      feedback: Mass is the amount of matter in the object, and a trip to the Moon removes no matter. Only the weight, the pull of gravity on it, changes.
+    - id: B
+      text: Its weight stays the same all the way
+      correct: false
+      misconception_id: mc.phy.o.weight_same_on_every_planet
+      feedback: Weight is the pull of a planet on the object, weight = mass × g. A world with a smaller g pulls less on the same mass.
+    - id: C
+      text: Its mass becomes zero once it leaves the air
+      correct: false
+      misconception_id: mc.phy.o.no_mass_in_space
+      feedback: An astronaut floating in a spacecraft is still hard to push and to stop, because all her mass is still there. Gravity gets weaker far from planets, but mass never disappears.
+    - id: D
+      text: Its weight gets smaller as it moves away from the Earth, but its mass does not change
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Decide whether each option is about mass, weight, or both.
+  - rung: 2
+    name: concept
+    text:
+      en: The Earth's pull gets weaker with distance; the amount of matter does not.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against the difference between the amount of matter and the pull of gravity.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out every option that mixes up the two quantities.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Its weight gets smaller as it moves away from the Earth, but its mass does not change.'
+  misconception_ids:
+  - mc.phy.o.mass_changes_with_g
+  - mc.phy.o.no_mass_in_space
+  - mc.phy.o.weight_same_on_every_planet
+solution:
+  steps:
+  - n: 1
+    latex: \text{Its weight gets smaller as it moves away from the Earth, but its mass does not change}
+    reason: Mass stays the same; weight depends on g
+difficulty:
+  prior: -0.6
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

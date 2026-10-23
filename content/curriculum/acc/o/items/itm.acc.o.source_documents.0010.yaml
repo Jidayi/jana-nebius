@@ -1,0 +1,88 @@
+id: itm.acc.o.source_documents.0010
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.source_documents.identify_source_document
+stem: A trader keeps copies of documents.
+parts:
+- id: a
+  prompt: Select every document that is a source for the cash book.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Receipt
+      correct: true
+    - id: B
+      text: Cheque counterfoil
+      correct: true
+    - id: C
+      text: Paying-in slip
+      correct: true
+    - id: D
+      text: Invoice
+      correct: false
+    - id: E
+      text: Credit note
+      correct: false
+    - id: F
+      text: Debit note
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The cash book records money in and out.
+  - rung: 2
+    name: concept
+    text:
+      en: Receipts, cheque counterfoils and paying-in slips record money.
+  - rung: 3
+    name: first_step
+    text:
+      en: Invoices and credit notes record credit transactions and returns.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the money documents.
+  - rung: 5
+    name: full_step
+    text:
+      en: Receipt, cheque counterfoil and paying-in slip.
+  misconception_ids:
+  - mc.acc.o.sd_counterfoil_vs_paying_in
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Cash book sources: receipts, counterfoils, paying-in slips}'
+    reason: Money documents
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

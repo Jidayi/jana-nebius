@@ -1,0 +1,109 @@
+id: itm.mth.o.number.0329
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.currency_conversion
+stem: The exchange rate is $1 = 3.75 pesos.
+parts:
+- id: a
+  prompt: Change 480 pesos into dollars, to the nearest cent.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '128.00'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_mth_num_0329_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: How many lots of 3.75 pesos are there in 480 pesos?
+  - rung: 2
+    name: concept
+    text:
+      en: Divide by the rate to change into dollars.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 480 ÷ 3.75.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Round to 2 decimal places for cents.
+  - rung: 5
+    name: full_step
+    text:
+      en: 480 pesos = $128.00.
+  misconception_ids:
+  - mc.mth.o.exchange_wrong_operation
+  - mc.mth.o.exchange_added
+  - mc.mth.o.rounded_too_early
+solution:
+  steps:
+  - n: 1
+    latex: 480 \div 3.75 = 128.00
+    reason: Each 3.75 pesos make one dollar
+    check_id: chk_build_mth_num_0329_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  r: '3.75'
+  x: '480'
+checks:
+  chk_build_mth_num_0329_ans:
+    args:
+      dp: 2
+      expression: 480/3.75
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:38:59.707Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.number.0329
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

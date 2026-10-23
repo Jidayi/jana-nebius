@@ -1,0 +1,115 @@
+id: itm.phy.o.forces.0053
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.springs
+stem: A spring of length 15 cm has a spring constant of 80 N/m. A mass of 0.4 kg is hung from it, within the limit of proportionality. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Find the new length of the spring in centimetres.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '20'
+    unit: cm
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_frc_0053_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: F = kx gives the extension, not the length.
+  - rung: 2
+    name: concept
+    text:
+      en: The force on the spring is the weight of the mass.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the weight, then the extension x = F ÷ k in metres, then add it to the original length.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The weight is 4 N, so the extension is 0.05 m, which is 5 cm.
+  - rung: 5
+    name: full_step
+    text:
+      en: New length = 15 + 5 = 20 cm.
+  misconception_ids:
+  - mc.phy.o.spring_extension_given_as_length
+  - mc.phy.o.mass_in_kg_used_as_force
+  - mc.phy.o.spring_cm_not_converted
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: F = mg = 0.4 \times 10 = 4\ \text{N}
+    reason: The load is the weight
+    check_id: chk_build_phy_frc_0053_w
+  - n: 2
+    latex: x = \frac{F}{k} = \frac{4}{80} = 0.05\ \text{m}
+    reason: From F = kx
+    check_id: chk_build_phy_frc_0053_x
+  - n: 3
+    latex: x = 5\ \text{cm}
+    reason: Extension in centimetres
+    check_id: chk_build_phy_frc_0053_xcm
+  - n: 4
+    latex: L = 15 + 5 = 20\ \text{cm}
+    reason: Original length + extension
+    check_id: chk_build_phy_frc_0053_ans
+difficulty:
+  prior: 0.4
+  band: stretch
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0053_ans:
+    args:
+      expression: 15 + 0.4*10/80*100
+    tool: math_evaluate
+  chk_build_phy_frc_0053_w:
+    args:
+      expression: 0.4*10
+    tool: math_evaluate
+  chk_build_phy_frc_0053_x:
+    args:
+      expression: 0.4*10/80
+    tool: math_evaluate
+  chk_build_phy_frc_0053_xcm:
+    args:
+      expression: 0.4*10/80*100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

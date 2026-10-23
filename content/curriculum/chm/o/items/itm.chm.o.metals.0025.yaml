@@ -1,0 +1,93 @@
+id: itm.chm.o.metals.0025
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.reactivity_series
+stem: A piece of copper is placed in iron(II) sulfate solution.
+parts:
+- id: a
+  prompt: What happens?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: No reaction, because copper is less reactive than iron.
+      correct: true
+    - id: B
+      text: Copper displaces iron, because a less reactive metal pushes out a more reactive one.
+      correct: false
+      misconception_id: mc.chm.o.metals_displacement_reversed
+      feedback: 'A metal can only take the place of a metal BELOW it in the reactivity series. Find both metals in the series: if the free metal is higher, it displaces the other; if it is lower, nothing happens.'
+    - id: C
+      text: Bubbles of oxygen form as copper reacts with the water in the solution.
+      correct: false
+      misconception_id: mc.chm.o.metals_gas_is_oxygen
+      feedback: 'The metal takes the oxygen (or the non-metal part) and keeps it, so it is hydrogen that is set free. The gas burns with a squeaky pop: that is the test for hydrogen.'
+    - id: D
+      text: Copper displaces iron, because copper is more reactive than iron.
+      correct: false
+      misconception_id: mc.chm.o.metals_displacement_reversed
+      feedback: 'A metal can only take the place of a metal BELOW it in the reactivity series. Find both metals in the series: if the free metal is higher, it displaces the other; if it is lower, nothing happens.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Find copper and iron in the reactivity series.
+  - rung: 2
+    name: concept
+    text:
+      en: A metal displaces another metal from a solution of its salt only if it is more reactive.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Order: K, Na, Ca, Mg, Al, Zn, Fe, Cu, Ag, Au. Where are copper and iron?'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Copper is lower than iron. Can a lower metal take the place of a higher one?
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Copper is below iron in the series, so it cannot displace iron: there is no reaction.'
+  misconception_ids:
+  - mc.chm.o.metals_displacement_reversed
+  - mc.chm.o.metals_gas_is_oxygen
+solution:
+  steps:
+  - n: 1
+    latex: \text{copper below iron}
+    reason: Position in the reactivity series
+  - n: 2
+    latex: \text{no reaction}
+    reason: Only a higher metal displaces
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,144 @@
+id: itm.phy.o.circuits.0023
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.parallel_circuits
+stem: An 8 Ω resistor and a 24 Ω resistor are connected in parallel across a 6 V battery.
+parts:
+- id: a
+  prompt: Calculate the current supplied by the battery.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1'
+    unit: A
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_cir_0023_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Each resistor is connected straight across the battery.
+  - rung: 2
+    name: concept
+    text:
+      en: So each has the full 6 V across it, and the branch currents add up to the battery current.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the current in each branch with I = V/R, using 6 V each time.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The branch currents are 0.75 A and 0.25 A; add them.
+  - rung: 5
+    name: full_step
+    text:
+      en: The battery supplies 1 A.
+  misconception_ids:
+  - mc.phy.o.parallel_resistances_added
+  - mc.phy.o.parallel_one_branch_only
+  - mc.phy.o.parallel_resistance_averaged
+solution:
+  steps:
+  - n: 1
+    latex: I_1 = \frac{6}{8} = 0.75\ \text{A}
+    reason: Each branch has the full supply p.d.
+    check_id: chk_build_phy_cir_0023_i1
+  - n: 2
+    latex: I_2 = \frac{6}{24} = 0.25\ \text{A}
+    reason: The same for the other branch
+    check_id: chk_build_phy_cir_0023_i2
+  - n: 3
+    latex: I = 0.75 + 0.25 = 1\ \text{A}
+    reason: Branch currents add
+    check_id: chk_build_phy_cir_0023_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  R1: '8'
+  R2: '24'
+  V: '6'
+checks:
+  chk_build_phy_cir_0023_ans:
+    args:
+      expression: 6/8 + 6/24
+    tool: math_evaluate
+  chk_build_phy_cir_0023_i1:
+    args:
+      expression: 6/8
+    tool: math_evaluate
+  chk_build_phy_cir_0023_i2:
+    args:
+      expression: 6/24
+    tool: math_evaluate
+  chk_build_phy_cir_0023_tool:
+    args:
+      components:
+      - emf: '6'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '8'
+      - id: R2
+        kind: resistor
+        resistance: '24'
+      network:
+        series:
+        - B
+        - parallel:
+          - R1
+          - R2
+    tool: phys_circuit
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:40:53.672Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.circuits.0023
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

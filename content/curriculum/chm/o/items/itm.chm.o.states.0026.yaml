@@ -1,0 +1,111 @@
+id: itm.chm.o.states.0026
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.states.diffusion
+stem: Equal amounts of hydrogen, H₂, and oxygen, O₂, are released at the same temperature.
+parts:
+- id: a
+  prompt: Which gas diffuses faster, and why?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Neither, unless the air is stirred
+      correct: false
+      misconception_id: mc.chm.o.states_diffusion_needs_mixing
+      feedback: Particles move randomly all the time. Diffusion happens on its own, even in still air; stirring only speeds it up.
+    - id: B
+      text: Oxygen, because its heavier molecules push harder
+      correct: false
+      misconception_id: mc.chm.o.states_heavier_faster
+      feedback: At the same temperature lighter molecules move faster on average, so the gas with the lower Mr diffuses faster.
+    - id: C
+      text: Hydrogen, because its molecules are lighter and move faster
+      correct: true
+    - id: D
+      text: Both the same, because all gases diffuse at the same rate
+      correct: false
+      misconception_id: mc.chm.o.states_all_gases_same_rate
+      feedback: Ammonia and hydrogen chloride released at opposite ends of a tube meet nearer the hydrogen chloride end, so ammonia must travel faster.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Compare the masses of the molecules of hydrogen and oxygen.
+  - rung: 2
+    name: concept
+    text:
+      en: At the same temperature, lighter molecules move faster on average.
+  - rung: 3
+    name: first_step
+    text:
+      en: Mr of H₂ is 2; Mr of O₂ is 32.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The gas whose molecules move faster spreads out faster.
+  - rung: 5
+    name: full_step
+    text:
+      en: Hydrogen (Mr 2) diffuses faster than oxygen (Mr 32).
+  misconception_ids:
+  - mc.chm.o.states_heavier_faster
+  - mc.chm.o.states_all_gases_same_rate
+  - mc.chm.o.states_diffusion_needs_mixing
+solution:
+  steps:
+  - n: 1
+    latex: 'M_r: 2\ \text{vs}\ 32'
+    reason: Lighter molecules
+    check_id: chk_build_chm_states_0026_m1
+  - n: 2
+    latex: M_r = 32
+    reason: Mr of O₂
+    check_id: chk_build_chm_states_0026_m2
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_states_0026_m1:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_h
+      formula: H2
+    tool: chem_molar_mass
+  chk_build_chm_states_0026_m2:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_o
+      formula: O2
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,63 @@
+id: wex.phy.o.heat_transfer.0003
+kc_ids:
+- kc.phy.o.heat_transfer.convection
+problem: A hot-air balloon's envelope holds 2000 m³ of hot air of density 0.98 kg/m³. The cooler air outside has a density of 1.18 kg/m³. The upward push of the outside air equals the weight of the outside air the envelope displaces. Take g = 10 N/kg. Find the resultant upward force on the hot air, ignoring the balloon's own weight.
+steps:
+- n: 1
+  latex: m_{out} = 1.18 \times 2000 = 2360\ \text{kg}
+  reason: Mass of the displaced air
+  check_id: chk_build_phy_htr_w0003_mo
+- n: 2
+  latex: m_{in} = 0.98 \times 2000 = 1960\ \text{kg}
+  reason: Mass of the hot air
+  check_id: chk_build_phy_htr_w0003_mi
+- n: 3
+  latex: 2360 - 1960 = 400\ \text{kg}
+  reason: The difference in mass
+  check_id: chk_build_phy_htr_w0003_dm
+- n: 4
+  latex: F = 400 \times 10 = 4000\ \text{N}
+  reason: Upward push − weight of the hot air
+  check_id: chk_build_phy_htr_w0003_ans
+final_answer:
+  latex: 4000\ \text{N}
+  check_id: chk_build_phy_htr_w0003_ans
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_htr_w0003_ans:
+    args:
+      expression: (1.18 - 0.98)*2000*10
+    tool: math_evaluate
+  chk_build_phy_htr_w0003_dm:
+    args:
+      expression: (1.18 - 0.98)*2000
+    tool: math_evaluate
+  chk_build_phy_htr_w0003_mi:
+    args:
+      expression: 0.98*2000
+    tool: math_evaluate
+  chk_build_phy_htr_w0003_mo:
+    args:
+      expression: 1.18*2000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

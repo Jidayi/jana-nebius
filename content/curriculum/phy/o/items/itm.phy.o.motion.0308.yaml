@@ -1,0 +1,114 @@
+id: itm.phy.o.motion.0308
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.average_speed
+stem: Neema jogs 1200 m in 300 s, rests for 60 s, then walks 1200 m in 240 s.
+parts:
+- id: a
+  prompt: Find the average speed for the whole journey.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 4 m/s
+      correct: true
+    - id: B
+      text: 4.5 m/s
+      correct: false
+      misconception_id: mc.phy.o.average_of_speeds
+      feedback: If you spend longer at the slow speed, the slow speed counts for more. Divide the total distance by the total time.
+    - id: C
+      text: 0.25 m/s
+      correct: false
+      misconception_id: mc.phy.o.time_over_distance
+      feedback: Speed tells you how many metres you cover each second, so the metres go on top.
+    - id: D
+      text: 4.44 m/s
+      correct: false
+      misconception_id: mc.phy.o.rest_time_left_out
+      feedback: Average speed for a whole journey uses the whole time, from the start to the end, stops included.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Average speed is about the whole journey from start to finish.
+  - rung: 2
+    name: concept
+    text:
+      en: Average speed = total distance ÷ total time.
+  - rung: 3
+    name: first_step
+    text:
+      en: The time spent resting is part of the total time.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The total distance is 2400 m and the total time is 600 s.
+  - rung: 5
+    name: full_step
+    text:
+      en: The average speed is 4 m/s.
+  misconception_ids:
+  - mc.phy.o.average_of_speeds
+  - mc.phy.o.rest_time_left_out
+  - mc.phy.o.time_over_distance
+solution:
+  steps:
+  - n: 1
+    latex: d = 1200 + 1200 = 2400\ \text{m}
+    reason: Total distance
+    check_id: chk_build_phy_mot_0308_d
+  - n: 2
+    latex: t = 300 + 60 + 240 = 600\ \text{s}
+    reason: Total time, including the rest
+    check_id: chk_build_phy_mot_0308_t
+  - n: 3
+    latex: v = \frac{2400}{600} = 4\ \text{m/s}
+    reason: Average speed = total distance ÷ total time
+    check_id: chk_build_phy_mot_0308_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mot_0308_ans:
+    args:
+      expression: 2400/600
+    tool: math_evaluate
+  chk_build_phy_mot_0308_d:
+    args:
+      expression: 1200 + 1200
+    tool: math_evaluate
+  chk_build_phy_mot_0308_t:
+    args:
+      expression: 300 + 60 + 240
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

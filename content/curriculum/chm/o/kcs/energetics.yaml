@@ -1,0 +1,132 @@
+- id: kc.chm.o.energetics.exo_endo
+  code: CHM-O-05.01.K01
+  node_id: cur.chm.o.chemical_energetics.exothermic_and_endothermic_reactions
+  statement: Classify a reaction as exothermic or endothermic from a temperature change or the sign of its enthalpy change
+  kind: conceptual
+  tools: []
+  exam_weight: 0.3
+  prerequisites: []
+  misconception_ids:
+  - mc.chm.o.energetics_temp_rise_endo
+  - mc.chm.o.energetics_dh_sign_reversed
+  - mc.chm.o.energetics_breaking_releases
+  - mc.chm.o.energetics_calorimetry_sign
+  skill_ids:
+  - chm-o-energetics
+  glossary:
+  - exothermic
+  - endothermic
+  - enthalpy change
+  - neutralisation
+  - combustion
+  - photosynthesis
+  - thermal decomposition
+  - decomposition
+  - respiration
+  - carbonate
+  - hydrogencarbonate
+  - sodium hydrogencarbonate
+  - alkali
+  - solution
+  difficulty_prior: -0.6
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.energetics.profiles
+  code: CHM-O-05.01.K02
+  node_id: cur.chm.o.chemical_energetics.exothermic_and_endothermic_reactions
+  statement: Interpret a reaction pathway diagram to find the enthalpy change and the activation energy
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.chm.o.energetics.exo_endo
+    strength: required
+  misconception_ids:
+  - mc.chm.o.energetics_dh_sign_reversed
+  - mc.chm.o.energetics_ea_from_zero
+  - mc.chm.o.energetics_dh_reactants_minus_products
+  - mc.chm.o.energetics_ea_from_products
+  - mc.chm.o.energetics_catalyst_changes_dh
+  skill_ids:
+  - chm-o-energetics
+  glossary:
+  - reaction pathway diagram
+  - energy profile
+  - activation energy
+  - enthalpy change
+  - exothermic
+  - endothermic
+  - catalyst
+  - reactants
+  - products
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.energetics.bond_energies
+  code: CHM-O-05.01.K03
+  node_id: cur.chm.o.chemical_energetics.exothermic_and_endothermic_reactions
+  statement: Calculate the enthalpy change of a reaction from bond energies
+  kind: procedural
+  tools:
+  - chem_energetics
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.chm.o.energetics.exo_endo
+    strength: required
+  confusable_with:
+  - kc.chm.o.energetics.calorimetry
+  misconception_ids:
+  - mc.chm.o.energetics_breaking_releases
+  - mc.chm.o.energetics_formed_minus_broken
+  - mc.chm.o.energetics_bond_count_ignored
+  - mc.chm.o.energetics_only_broken
+  skill_ids:
+  - chm-o-energetics
+  glossary:
+  - bond energy
+  - bond energies
+  - bond breaking
+  - bond making
+  - enthalpy change
+  - exothermic
+  - endothermic
+  - covalent bond
+  difficulty_prior: 0.6
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.energetics.calorimetry
+  code: CHM-O-05.01.K04
+  node_id: cur.chm.o.chemical_energetics.exothermic_and_endothermic_reactions
+  statement: Calculate the energy transferred in a calorimetry experiment and the enthalpy change per mole
+  kind: procedural
+  tools:
+  - chem_energetics
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.chm.o.energetics.exo_endo
+    strength: required
+  - kc_id: kc.chm.o.stoichiometry.moles_and_mass
+    strength: helpful
+  confusable_with:
+  - kc.chm.o.energetics.bond_energies
+  misconception_ids:
+  - mc.chm.o.energetics_mass_of_reactant
+  - mc.chm.o.energetics_q_not_per_mole
+  - mc.chm.o.energetics_calorimetry_sign
+  skill_ids:
+  - chm-o-energetics
+  glossary:
+  - calorimetry
+  - specific heat capacity
+  - enthalpy change
+  - energy transferred
+  - exothermic
+  - endothermic
+  - temperature change
+  - polystyrene cup
+  - hydrogencarbonate
+  - solution
+  difficulty_prior: 0.7
+  version: 0.1.1
+  status: active

@@ -1,0 +1,102 @@
+id: itm.phy.o.oscilloscope.0005
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.oscilloscope.time_base
+stem: An oscilloscope's time-base is set to 10 ms/div. On the trace, the distance from a crest to the next trough is 2 divisions.
+parts:
+- id: a
+  prompt: Calculate the frequency of the signal.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '25'
+    unit: Hz
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_osc_0005_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'First find the period: the time for one complete wave.'
+  - rung: 2
+    name: concept
+    text:
+      en: Period = divisions for one wave × time-base; then f = 1/T with T in seconds.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find how many divisions one complete wave takes and multiply by 10 ms.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The period is 40 ms, which is 0.04 s; now work out 1 ÷ T.
+  - rung: 5
+    name: full_step
+    text:
+      en: The frequency is 25 Hz.
+  misconception_ids:
+  - mc.phy.o.osc_ms_read_as_s
+  - mc.phy.o.osc_half_wave_as_period
+  - mc.phy.o.osc_frequency_period_confused
+  - mc.phy.o.osc_timebase_divided
+solution:
+  steps:
+  - n: 1
+    latex: T = 2 \times 2 \times 10 = 40\ \text{ms}
+    reason: Crest to trough is half a wave, so double it
+    check_id: chk_build_phy_osc_0005_tm
+  - n: 2
+    latex: T = 40\ \text{ms} = 0.04\ \text{s}
+    reason: Period in seconds
+    check_id: chk_build_phy_osc_0005_ts
+  - n: 3
+    latex: f = \frac{1}{T} = \frac{1}{0.04} = 25\ \text{Hz}
+    reason: Frequency is one over the period
+    check_id: chk_build_phy_osc_0005_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_osc_0005_ans:
+    args:
+      expression: 1000/(2*2*10)
+    tool: math_evaluate
+  chk_build_phy_osc_0005_tm:
+    args:
+      expression: 2*2*10
+    tool: math_evaluate
+  chk_build_phy_osc_0005_ts:
+    args:
+      quantity: 40 ms
+      to: s
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

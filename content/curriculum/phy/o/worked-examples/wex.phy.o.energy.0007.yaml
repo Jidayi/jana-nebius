@@ -1,0 +1,56 @@
+id: wex.phy.o.energy.0007
+kc_ids:
+- kc.phy.o.energy.energy_conversion
+problem: An apple of mass 0.15 kg falls from rest through a height of 20 m. Ignore air resistance and take g = 9.8 N/kg. Calculate its speed just before it lands.
+steps:
+- n: 1
+  latex: v^2 = 2 \times 9.8 \times 20 = 392
+  reason: 'Energy lost from the gravitational store = energy gained by the kinetic store: mgΔh = ½mv², so v² = 2gΔh (m cancels)'
+  check_id: chk_build_phy_nrg_w0007_vsq
+- n: 2
+  latex: v = \sqrt{392} = 19.8\ \text{m/s}
+  reason: Square root
+  check_id: chk_build_phy_nrg_w0007_ans
+final_answer:
+  latex: 19.8\ \text{m/s}
+  check_id: chk_build_phy_nrg_w0007_ans
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_w0007_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: sqrt(2*g*20)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_nrg_w0007_vsq:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 2*g*20
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

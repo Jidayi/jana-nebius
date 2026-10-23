@@ -1,0 +1,100 @@
+id: itm.chm.o.reactions.0055
+version: 0.1.1
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.equilibrium
+stem: The reaction N₂ + 3H₂ ⇌ 2NH₃ has reached equilibrium in a closed container. The forward reaction is exothermic. The ammonia is removed as it forms.
+parts:
+- id: a
+  prompt: Why does removing the ammonia help a factory?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: The position moves to the left, so the ammonia is safer to store.
+      correct: false
+      misconception_id: mc.chm.o.reactions_shift_reinforces_change
+      feedback: The position moves to oppose a change. Taking ammonia away favours the reaction that makes it, so the position moves to the right.
+    - id: B
+      text: Both reactions stop, so no ammonia breaks down again.
+      correct: false
+      misconception_id: mc.chm.o.reactions_equilibrium_static
+      feedback: 'Equilibrium is dynamic: the forward and backward reactions both keep going, at the same rate. Take a product away and the forward reaction runs faster than the backward one until a new equilibrium is reached.'
+    - id: C
+      text: The forward reaction keeps replacing it, so more ammonia is made in total.
+      correct: true
+    - id: D
+      text: Nothing changes, because the mixture was already at equilibrium.
+      correct: false
+      misconception_id: mc.chm.o.reactions_equilibrium_static
+      feedback: 'Equilibrium is dynamic: the forward and backward reactions both keep going, at the same rate. Take a product away and the forward reaction runs faster than the backward one until a new equilibrium is reached.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Once ammonia is taken away, the mixture N₂ + 3H₂ ⇌ 2NH₃ is no longer at equilibrium.
+  - rung: 2
+    name: concept
+    text:
+      en: The position moves to replace a substance that was removed.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ammonia is the product, on the right of the equation.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Think about which reaction makes ammonia, and whether it ever has to stop.
+  - rung: 5
+    name: full_step
+    text:
+      en: The forward reaction keeps going to replace the ammonia, so more ammonia is made in total.
+  misconception_ids:
+  - mc.chm.o.reactions_shift_reinforces_change
+  - mc.chm.o.reactions_equilibrium_static
+solution:
+  steps:
+  - n: 1
+    latex: \text{N}_2 + 3\text{H}_2 \rightleftharpoons 2\text{NH}_3
+    reason: The equilibrium
+  - n: 2
+    latex: \text{The position moves to the right}
+    reason: The forward reaction replaces the ammonia that was removed
+  - n: 3
+    latex: \text{more ammonia in total}
+    reason: It never settles back while ammonia is removed
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

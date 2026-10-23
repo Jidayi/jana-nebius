@@ -1,0 +1,117 @@
+id: itm.phy.o.light.0026
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.refraction
+stem: A ray of light enters Perspex (refractive index 1.49) from air. Inside the Perspex the angle of refraction is 15°.
+parts:
+- id: a
+  prompt: Calculate the angle of incidence in air.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 22.4°
+      correct: false
+      misconception_id: mc.phy.o.snell_angles_not_sines
+      feedback: 'Angles do not scale in proportion here: doubling an angle does not double its sine. Take the sine of each angle first, then use the ratio.'
+    - id: B
+      text: 10.0°
+      correct: false
+      misconception_id: mc.phy.o.snell_ratio_inverted
+      feedback: 'Light bends towards the normal in glass, so the angle in air is the larger one: n = sin i ÷ sin r with i in air. A refractive index is always more than one.'
+    - id: C
+      text: 22.7°
+      correct: true
+    - id: D
+      text: 67.3°
+      correct: false
+      misconception_id: mc.phy.o.refraction_angles_from_surface
+      feedback: Draw the normal at right angles to the surface where the ray crosses it. Every angle in the refraction formula is measured from that normal.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The angle in air is the bigger one, because light bends towards the normal in the material.
+  - rung: 2
+    name: concept
+    text:
+      en: n = sin i ÷ sin r, so sin i = n × sin r.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 1.49 × sin 15°.
+  - rung: 4
+    name: worked_step
+    text:
+      en: sin i = 0.386; now take the inverse sine.
+  - rung: 5
+    name: full_step
+    text:
+      en: The angle of incidence is 22.7°.
+  misconception_ids:
+  - mc.phy.o.refraction_angles_from_surface
+  - mc.phy.o.snell_angles_not_sines
+  - mc.phy.o.snell_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \sin i = 1.49 \times \sin 15^\circ = 0.386
+    reason: Rearrange n = sin i / sin r
+    check_id: chk_build_phy_lgt_0026_si
+  - n: 2
+    latex: i = \sin^{-1}(0.386) = 22.7^\circ
+    reason: Inverse sine
+    check_id: chk_build_phy_lgt_0026_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0026_ans:
+    args:
+      angle_unit: degrees
+      expression: asin(1.49*sin(15))
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0026_si:
+    args:
+      angle_unit: degrees
+      expression: 1.49*sin(15)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0026_tool:
+    args:
+      angle2: 15
+      n1: 1
+      n2: '1.49'
+      task: refraction
+    tool: phys_optics
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

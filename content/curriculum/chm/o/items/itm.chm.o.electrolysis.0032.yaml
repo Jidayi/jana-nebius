@@ -1,0 +1,98 @@
+id: itm.chm.o.electrolysis.0032
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.half_equations
+stem: 'In the aluminium cell, oxide ions are discharged at the anode: 2O²⁻ → O₂ + ne⁻.'
+parts:
+- id: a
+  prompt: How many electrons, n, are in the balanced half-equation?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '4'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_electrolysis_0032_n
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The electrons make the charges on the two sides of the half-equation equal.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the total charge on the left, then the charge of the oxygen molecule on the right.
+  - rung: 3
+    name: first_step
+    text:
+      en: There are two oxide ions on the left, each with a charge of two minus.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The oxygen molecule is neutral, so the electrons on the right must carry all of the left-hand charge.
+  - rung: 5
+    name: full_step
+    text:
+      en: '2O²⁻ → O₂ + 4e⁻: n = 4, so the charges balance.'
+  misconception_ids:
+  - mc.chm.o.electrolysis_half_charge_unbalanced
+solution:
+  steps:
+  - n: 1
+    latex: '\text{left: } -4;\ \text{right without electrons: } 0'
+    reason: Charges before electrons
+    check_id: chk_build_chm_electrolysis_0032_l
+  - n: 2
+    latex: n = 0 - (-4) = 4
+    reason: Electrons carry the difference
+    check_id: chk_build_chm_electrolysis_0032_n
+  - n: 3
+    latex: 2\text{O}^{2-} \rightarrow \text{O}_2 + 4e^{-}
+    reason: Balanced half-equation
+    check_id: chk_build_chm_electrolysis_0032_bal
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: structured
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_0032_bal:
+    args:
+      equation: 2O^2- -> 1O2 + 4e-
+    tool: chem_balance
+  chk_build_chm_electrolysis_0032_l:
+    args:
+      expression: 2*(-2)
+    tool: math_evaluate
+  chk_build_chm_electrolysis_0032_n:
+    args:
+      expression: 0 - 2*(-2)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

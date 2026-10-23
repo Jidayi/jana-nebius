@@ -1,0 +1,93 @@
+id: itm.phy.o.sound.0039
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.sound.pitch_and_loudness
+stem: Elephants call to each other with sounds of about 15 Hz that people cannot hear.
+parts:
+- id: a
+  prompt: Why can't people hear these calls?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: They are ultrasound
+      correct: false
+      misconception_id: mc.phy.o.ultrasound_infrasound_swapped
+      feedback: Ultrasound is above 20 kHz; sound below 20 Hz is called infrasound.
+    - id: B
+      text: They are too quiet
+      correct: false
+      misconception_id: mc.phy.o.inaudible_means_too_quiet
+      feedback: A dog whistle can be loud and still be silent to us. The ear cannot respond to frequencies outside about 20 Hz to 20 kHz.
+    - id: C
+      text: Their frequency is above the highest frequency people can hear
+      correct: false
+      misconception_id: mc.phy.o.hearing_limit_wrong
+      feedback: Young people hear from about 20 Hz to about 20 kHz (20 000 Hz). Above that is ultrasound; below it is infrasound.
+    - id: D
+      text: Their frequency is below the lowest frequency people can hear
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Separate the two features of a sound: how high it sounds and how loud it is.'
+  - rung: 2
+    name: concept
+    text:
+      en: Pitch depends on the frequency; loudness depends on the amplitude.
+  - rung: 3
+    name: first_step
+    text:
+      en: A healthy young ear hears from about twenty hertz up to about twenty thousand hertz.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against these rules.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Their frequency is below the lowest frequency people can hear.'
+  misconception_ids:
+  - mc.phy.o.hearing_limit_wrong
+  - mc.phy.o.inaudible_means_too_quiet
+  - mc.phy.o.ultrasound_infrasound_swapped
+solution:
+  steps:
+  - n: 1
+    latex: \text{Their frequency is below the lowest frequency people can hear}
+    reason: Pitch follows frequency; loudness follows amplitude
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

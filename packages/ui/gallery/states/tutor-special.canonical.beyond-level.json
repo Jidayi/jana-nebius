@@ -1,0 +1,78 @@
+{
+  "id": "tutor-special.canonical.beyond-level",
+  "title": "Tutor special state: beyond-level",
+  "component": "TutorScreen",
+  "state": "canonical",
+  "variant": "beyond-level",
+  "payload": {
+    "events": [
+      {
+        "type": "turn.start",
+        "turn_id": "trn_11111111111111111111111111",
+        "user_message_id": "msg_22222222222222222222222222",
+        "client_message_id": null,
+        "intent": "ask",
+        "mode": "guided",
+        "fork": false
+      },
+      {
+        "type": "part.start",
+        "part_id": "prt_44444444444444444444444444",
+        "kind": "text",
+        "index": 0
+      },
+      {
+        "type": "text.delta",
+        "part_id": "prt_44444444444444444444444444",
+        "delta": "That question is beyond what I teach at O level. The nearest topic I can help with is Quadratic equations. Shall we begin there?"
+      },
+      {
+        "type": "part.end",
+        "part_id": "prt_44444444444444444444444444",
+        "status": "complete",
+        "duration_ms": 1
+      },
+      {
+        "type": "notice",
+        "notice_id": "ntc_55555555555555555555555555",
+        "level": "info",
+        "code": "beyond_level",
+        "message_key": "notice.beyond_level_topic",
+        "params": {
+          "title": "Quadratic equations"
+        },
+        "action": {
+          "label_key": "notice.open_topic",
+          "command": "open_topic:cur.mth.o.algebra"
+        }
+      },
+      {
+        "type": "turn.end",
+        "status": "complete",
+        "stop_reason": "completed",
+        "elapsed_ms": 2000,
+        "usage": null,
+        "verification": "not_applicable",
+        "persisted": {
+          "message_id": "msg_33333333333333333333333333",
+          "part_ids": []
+        },
+        "degraded": false,
+        "degraded_reason": null
+      }
+    ]
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light",
+    "elapsedMs": 0
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "beyond what I teach at O level",
+    "Quadratic equations",
+    "Open topic"
+  ]
+}

@@ -1,0 +1,62 @@
+id: wex.phy.o.momentum.0003
+kc_ids:
+- kc.phy.o.momentum.conservation_of_momentum
+problem: A dodgem car of mass 280 kg moving at 1.5 m/s hits a stationary dodgem of mass 180 kg. They couple together and move off as one. Find their velocity just after the collision.
+steps:
+- n: 1
+  latex: p_\text{before} = 280 \times 1.5 + 0 = 420\ \text{kg m/s}
+  reason: The second one is at rest
+  check_id: chk_build_phy_mom_w0003_pb
+- n: 2
+  latex: (280 + 180)v = 460\,v = 420
+  reason: Momentum after = momentum before
+  check_id: chk_build_phy_mom_w0003_mt
+- n: 3
+  latex: v = \frac{420}{460} = 0.913\ \text{m/s}
+  reason: Solve for v
+  check_id: chk_build_phy_mom_w0003_ans
+final_answer:
+  latex: 0.913\ \text{m/s}
+  check_id: chk_build_phy_mom_w0003_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_w0003_ans:
+    args:
+      expression: 280*1.5/(280 + 180)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_mom_w0003_mt:
+    args:
+      expression: 280 + 180
+    tool: math_evaluate
+  chk_build_phy_mom_w0003_pb:
+    args:
+      expression: 280*1.5
+    tool: math_evaluate
+  chk_build_phy_mom_w0003_tool:
+    args:
+      equations:
+      - 280*1.5 + 180*0 = (280 + 180)*v
+      unknowns:
+      - v
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

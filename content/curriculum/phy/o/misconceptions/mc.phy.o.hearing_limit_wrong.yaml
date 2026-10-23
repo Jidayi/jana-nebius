@@ -1,0 +1,37 @@
+id: mc.phy.o.hearing_limit_wrong
+kc_ids:
+- kc.phy.o.sound.pitch_and_loudness
+- kc.phy.o.sound.ultrasound
+student_name: The wrong range of hearing
+description: Gives the range of human hearing wrongly, for example an upper limit of 2 kHz or a range starting at 20 kHz.
+signatures:
+- kind: answer_transform
+  expression: 20 Hz to 2 kHz
+fix:
+  strategy: rule_restatement
+  text:
+    en: Young people hear from about 20 Hz to about 20 kHz (20 000 Hz). Above that is ultrasound; below it is infrasound.
+probe_item_ids:
+- itm.phy.o.sound.0042
+- itm.phy.o.sound.0045
+- itm.phy.o.sound.0034
+- itm.phy.o.sound.0039
+- itm.phy.o.sound.0040
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

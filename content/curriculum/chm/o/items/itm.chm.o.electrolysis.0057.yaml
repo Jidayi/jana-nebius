@@ -1,0 +1,139 @@
+id: itm.chm.o.electrolysis.0057
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.quantitative
+stem: 'A steel bolt is zinc-plated: Zn²⁺ + 2e⁻ → Zn. A current of 2.0 A flows for 20 minutes (1 minute = 60 s). One mole of electrons carries 96500 C.'
+parts:
+- id: a
+  prompt: What mass of zinc is deposited, in grams?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: '0.0135'
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_time_not_in_seconds
+      feedback: In Q = I × t the current is in amperes and the time must be in seconds, so that Q comes out in coulombs. Change minutes to seconds first.
+    - id: B
+      text: '1.62'
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_electron_ratio_ignored
+      feedback: Look at the half-equation. Cu²⁺ + 2e⁻ → Cu needs two moles of electrons for every mole of copper, so divide the moles of electrons by two.
+    - id: C
+      text: '0.808'
+      correct: true
+    - id: D
+      text: '3.23'
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_electron_ratio_inverted
+      feedback: More electrons per ion means fewer ions discharged by the same charge. If each ion needs two electrons, the moles of metal are half the moles of electrons, not double.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Convert the 20 minutes to seconds first, then find the charge.
+  - rung: 2
+    name: concept
+    text:
+      en: Q = I × t with t in seconds; moles of electrons = Q ÷ 96500; then use the zinc half-equation.
+  - rung: 3
+    name: first_step
+    text:
+      en: t = 20 × 60 = 1200 s, so Q = 2.0 × 1200 = 2400 C.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Moles of electrons = 0.0249 mol. Each zinc ion needs 2 electrons, so moles of zinc = 0.0124 mol.
+  - rung: 5
+    name: full_step
+    text:
+      en: Mass = moles × 65 = 0.808 g.
+  misconception_ids:
+  - mc.chm.o.electrolysis_time_not_in_seconds
+  - mc.chm.o.electrolysis_electron_ratio_ignored
+  - mc.chm.o.electrolysis_electron_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: t = 20 \times 60 = 1200\ \text{s}
+    reason: Minutes to seconds
+    check_id: chk_build_chm_electrolysis_0057_t
+  - n: 2
+    latex: Q = 2.0 \times 1200 = 2400\ \text{C}
+    reason: Charge = current × time
+    check_id: chk_build_chm_electrolysis_0057_m
+  - n: 3
+    latex: n(e^-) = \frac{2400}{96500} = 0.0249\ \text{mol}
+    reason: Divide by the Faraday constant
+    check_id: chk_build_chm_electrolysis_0057_e
+  - n: 4
+    latex: n(\text{Zn}) = \frac{0.0249}{2} = 0.0124\ \text{mol}
+    reason: 2 mol of electrons per mol of zinc
+    check_id: chk_build_chm_electrolysis_0057_n
+  - n: 5
+    latex: m = n \times 65 = 0.808\ \text{g}
+    reason: Moles to mass
+    check_id: chk_build_chm_electrolysis_0057_m
+difficulty:
+  prior: 0.8
+  band: stretch
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_0057_e:
+    args:
+      expression: 2400/96500
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_electrolysis_0057_m:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_zn
+      - source: pack
+        symbol: faraday
+      sf: 3
+      steps:
+      - current: '2.0'
+        electrons: 2
+        id: m
+        op: electrolysis
+        species: Zn
+        time: '1200'
+    tool: chem_stoichiometry
+  chk_build_chm_electrolysis_0057_n:
+    args:
+      expression: 2400/(96500*2)
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_electrolysis_0057_t:
+    args:
+      expression: 20*60
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

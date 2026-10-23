@@ -1,0 +1,45 @@
+id: wex.mth.o.calculus.0004
+kc_ids:
+- kc.mth.o.calculus.tangents_normals
+problem: A curve has equation $y = x^2 + 6x - 8$. Find the gradient of the normal to the curve at the point where x = 2.
+steps:
+- n: 1
+  latex: \frac{dy}{dx} = 10 \text{ at } x = 2
+  reason: The tangent's gradient
+  check_id: chk_build_mth_cal_w0004_m
+- n: 2
+  latex: m_{\text{normal}} = -\frac{1}{10} = -0.1
+  reason: Perpendicular to the tangent
+  check_id: chk_build_mth_cal_w0004_ans
+final_answer:
+  latex: '-0.1'
+  check_id: chk_build_mth_cal_w0004_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_cal_w0004_ans:
+    args:
+      expression: -1/(2*1*(2) + (6))
+    tool: math_evaluate
+  chk_build_mth_cal_w0004_m:
+    args:
+      expression: 2*1*(2) + (6)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

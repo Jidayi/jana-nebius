@@ -1,0 +1,34 @@
+id: mc.phy.o.decay_rate_changed_by_conditions
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+- kc.phy.o.radioactivity.half_life
+student_name: Cooling slows radioactive decay
+description: Thinks heating, cooling or other conditions change how fast a radioactive source decays.
+signatures:
+- kind: answer_transform
+  expression: cold
+fix:
+  strategy: rule_restatement
+  text:
+    en: Radioactive decay happens inside the nucleus and is not changed by temperature, pressure or chemical reactions.
+probe_item_ids:
+- itm.phy.o.radioactivity.0074
+- itm.phy.o.radioactivity.0075
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

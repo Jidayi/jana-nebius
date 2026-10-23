@@ -1,0 +1,99 @@
+id: itm.chm.o.organic.0062
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.alcohols_and_acids
+stem: A glucose solution is fermented with yeast. The flask is fitted with an air lock that lets carbon dioxide out but keeps air out.
+parts:
+- id: a
+  prompt: Why is air kept out of the flask?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: With air, the ethanol would burn to carbon dioxide and water
+      correct: false
+      misconception_id: mc.chm.o.organic_oxidation_means_burning
+      feedback: Burning is one kind of oxidation, but a gentle oxidising agent such as acidified potassium manganate(VII), or bacteria in air, turns ethanol into ethanoic acid. That is why wine left open turns sour like vinegar.
+    - id: B
+      text: With air, microbes would oxidise the ethanol to ethanoic acid
+      correct: true
+    - id: C
+      text: Air would cool the flask, and fermentation needs a temperature near boiling
+      correct: false
+      misconception_id: mc.chm.o.organic_fermentation_needs_air_or_heat
+      feedback: 'Yeast is alive. It turns sugar into ethanol when air is kept out, and it works best when warm, not hot: high temperatures destroy its enzymes. With air, microbes would oxidise the ethanol to ethanoic acid.'
+    - id: D
+      text: 'Air is not really kept out: the yeast needs oxygen to make ethanol'
+      correct: false
+      misconception_id: mc.chm.o.organic_fermentation_needs_air_or_heat
+      feedback: 'Yeast is alive. It turns sugar into ethanol when air is kept out, and it works best when warm, not hot: high temperatures destroy its enzymes. With air, microbes would oxidise the ethanol to ethanoic acid.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Fermentation is done by living yeast cells.
+  - rung: 2
+    name: concept
+    text:
+      en: Yeast makes ethanol when it respires without oxygen.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ethanol can be oxidised. Oxygen in air, helped by bacteria, turns it into something sour.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Think of wine left open to the air for a few weeks: what does it turn into?'
+  - rung: 5
+    name: full_step
+    text:
+      en: Air is kept out so that the ethanol is not oxidised to ethanoic acid (vinegar).
+  misconception_ids:
+  - mc.chm.o.organic_oxidation_means_burning
+  - mc.chm.o.organic_fermentation_needs_air_or_heat
+solution:
+  steps:
+  - n: 1
+    latex: \text{C}_6\text{H}_{12}\text{O}_6 \rightarrow 2\text{C}_2\text{H}_5\text{OH} + 2\text{CO}_2
+    reason: Fermentation without air
+    check_id: chk_build_chm_organic_0062_bal
+  - n: 2
+    latex: '\text{with air: ethanol }\rightarrow\text{ ethanoic acid}'
+    reason: Why air is excluded
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_0062_bal:
+    args:
+      equation: C6H12O6 -> C2H5OH + CO2
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

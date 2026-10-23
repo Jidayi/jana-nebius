@@ -1,0 +1,45 @@
+id: wex.phy.o.particles.0006
+kc_ids:
+- kc.phy.o.particles.gas_pressure_particles
+problem: The gas inside a sealed jar is at a pressure of 101 kPa. Its particles strike its lid, which has an area of 0.008 m². Find the total force the particles exert on this surface.
+steps:
+- n: 1
+  latex: p = 101\ \text{kPa} = 101000\ \text{Pa}
+  reason: 1 Pa is 1 N on each square metre
+  check_id: chk_build_phy_ptc_w0006_pa
+- n: 2
+  latex: F = pA = 101000 \times 0.008 = 808\ \text{N}
+  reason: Force = pressure × area
+  check_id: chk_build_phy_ptc_w0006_ans
+final_answer:
+  latex: 808\ \text{N}
+  check_id: chk_build_phy_ptc_w0006_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ptc_w0006_ans:
+    args:
+      expression: 101*1000*0.008
+    tool: math_evaluate
+  chk_build_phy_ptc_w0006_pa:
+    args:
+      expression: 101*1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

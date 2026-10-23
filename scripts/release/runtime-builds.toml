@@ -1,0 +1,74 @@
+# The llama.cpp builds the desktop bundle carries (PLT-04, TABLE PLT-04a; PLT-02 budget: runtime 40 MB per OS).
+#
+# One pinned upstream llama.cpp release (MIT), one archive per OS and runtime variant, each with its sha256. The
+# release job fetches them with `python -m jana_tools release runtime-fetch --os <os> --out <resources>`, which
+# refuses any PLACEHOLDER, checks every archive's sha256 before extracting, extracts only the listed members into
+# `resources/runtime/<variant>/`, and records what it took in `BUILD.json` beside them.
+#
+# OWNER ACTION (platform lead): choose the llama.cpp release, then replace every PLACEHOLDER below with the release
+# tag, its commit and the sha256 of each archive, taken from the upstream release's published checksums and checked
+# against a second download. Upstream publishes one CPU archive per OS that loads its AVX2 or baseline backend at run
+# time; until the variants are built from the pinned commit by our own CI (`build = "source"`), cpu-avx2 and
+# cpu-baseline both come from that archive with the matching backend library listed in `members`.
+
+[llama_cpp]
+release = "PLACEHOLDER-release-tag"
+commit = "PLACEHOLDER-commit-sha"
+licence = "MIT"
+source = "https://github.com/ggml-org/llama.cpp/releases/download/{release}/{asset}"
+
+[[build]]
+os = "windows"
+variant = "vulkan"
+asset = "llama-{release}-bin-win-vulkan-x64.zip"
+sha256 = "PLACEHOLDER"
+members = ["llama-server.exe", "*.dll"]
+
+[[build]]
+os = "windows"
+variant = "cpu-avx2"
+asset = "llama-{release}-bin-win-cpu-x64.zip"
+sha256 = "PLACEHOLDER"
+members = ["llama-server.exe", "ggml.dll", "ggml-base.dll", "ggml-cpu-haswell.dll", "llama.dll", "mtmd.dll"]
+
+[[build]]
+os = "windows"
+variant = "cpu-baseline"
+asset = "llama-{release}-bin-win-cpu-x64.zip"
+sha256 = "PLACEHOLDER"
+members = ["llama-server.exe", "ggml.dll", "ggml-base.dll", "ggml-cpu-x64.dll", "llama.dll", "mtmd.dll"]
+
+[[build]]
+os = "macos"
+variant = "metal"
+asset = "llama-{release}-bin-macos-arm64.zip"
+sha256 = "PLACEHOLDER"
+members = ["build/bin/llama-server", "build/bin/*.dylib"]
+
+[[build]]
+os = "macos"
+variant = "cpu-arm64"
+asset = "llama-{release}-bin-macos-arm64.zip"
+sha256 = "PLACEHOLDER"
+members = ["build/bin/llama-server", "build/bin/*.dylib"]
+
+[[build]]
+os = "linux"
+variant = "vulkan"
+asset = "llama-{release}-bin-ubuntu-vulkan-x64.zip"
+sha256 = "PLACEHOLDER"
+members = ["build/bin/llama-server", "build/bin/*.so"]
+
+[[build]]
+os = "linux"
+variant = "cpu-avx2"
+asset = "llama-{release}-bin-ubuntu-x64.zip"
+sha256 = "PLACEHOLDER"
+members = ["build/bin/llama-server", "build/bin/*.so"]
+
+[[build]]
+os = "linux"
+variant = "cpu-baseline"
+asset = "llama-{release}-bin-ubuntu-x64.zip"
+sha256 = "PLACEHOLDER"
+members = ["build/bin/llama-server", "build/bin/*.so"]

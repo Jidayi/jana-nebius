@@ -1,0 +1,101 @@
+id: itm.phy.o.sound.0021
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.sound.speed_and_echoes
+stem: Esi shouts towards a cliff and hears the echo 0.5 s later. Sound travels at 330 m/s in air.
+parts:
+- id: a
+  prompt: How far away is the cliff?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '82.5'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_snd_0021_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Follow the sound: it goes to the cliff and comes back.'
+  - rung: 2
+    name: concept
+    text:
+      en: In the echo time it covers twice the distance to the cliff.
+  - rung: 3
+    name: first_step
+    text:
+      en: Distance travelled = 330 × 0.5 = 165 m.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Halve it for the distance to the cliff.
+  - rung: 5
+    name: full_step
+    text:
+      en: d = 82.5 m.
+  misconception_ids:
+  - mc.phy.o.echo_not_halved
+  - mc.phy.o.echo_halving_misapplied
+  - mc.phy.o.speed_divided_by_time
+solution:
+  steps:
+  - n: 1
+    latex: v t = 330 \times 0.5 = 165\ \text{m}
+    reason: Distance there and back
+    check_id: chk_build_phy_snd_0021_tot
+  - n: 2
+    latex: d = \frac{165}{2} = 82.5\ \text{m}
+    reason: The cliff is half that distance away
+    check_id: chk_build_phy_snd_0021_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  t: '0.5'
+  v: '330'
+checks:
+  chk_build_phy_snd_0021_ans:
+    args:
+      expression: 330*0.5/2
+    tool: math_evaluate
+  chk_build_phy_snd_0021_tot:
+    args:
+      expression: 330*0.5
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

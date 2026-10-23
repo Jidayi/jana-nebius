@@ -1,0 +1,89 @@
+id: itm.phy.o.em_spectrum.0003
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.em_spectrum.order_and_properties
+stem: A radio message travels from a probe near Mars to the Earth, a distance of 7.8 × 10⁷ km. All electromagnetic waves travel at the same speed in a vacuum.
+parts:
+- id: a
+  prompt: How long does the journey take?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '260'
+    unit: s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_ems_0003_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Radio waves and light are both electromagnetic waves.
+  - rung: 2
+    name: concept
+    text:
+      en: They travel at c = 3.0 × 10⁸ m/s.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Put the distance in metres: 7.8 × 10¹⁰ m.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Time = distance ÷ speed.
+  - rung: 5
+    name: full_step
+    text:
+      en: t = 260 s.
+  misconception_ids:
+  - mc.phy.o.wave_prefix_ignored
+  - mc.phy.o.em_uses_sound_speed
+solution:
+  steps:
+  - n: 1
+    latex: d = 7.8 \times 10^{7}\ \text{km} = 7.8 \times 10^{10}\ \text{m}
+    reason: A kilometre is a thousand metres
+  - n: 2
+    latex: t = \frac{d}{c} = \frac{7.8 \times 10^{10}}{3.0 \times 10^{8}} = 260\ \text{s}
+    reason: Time = distance ÷ speed, at the speed of light
+    check_id: chk_build_phy_ems_0003_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ems_0003_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: 7.8*10^10/c
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

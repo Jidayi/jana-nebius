@@ -1,0 +1,50 @@
+{
+  "id": "first-run-tutor.canonical.content-only",
+  "title": "First run, too slow for the tutor",
+  "component": "FirstRunTutor",
+  "note": "First run's student hand-off (UXS-10 step 2) from a model catalogue with its hardware report (PLT-29). Content-only because the speed test was too slow, not below the minimum.",
+  "state": "canonical",
+  "variant": "content-only",
+  "payload": {
+    "installed": [],
+    "available": [],
+    "assignment": {
+      "fast": null,
+      "strong": null
+    },
+    "recommended": {
+      "fast": null,
+      "strong": null,
+      "reason_key": "hardware_class.content_only.below_minimum_speed"
+    },
+    "hardware": {
+      "hardware_class": "content_only",
+      "basis": "below_minimum_speed",
+      "provisional": true,
+      "shortfalls": [
+        {
+          "check": "speed",
+          "have": 2,
+          "need": 3,
+          "unit": "tokens/s"
+        }
+      ],
+      "benchmark": null,
+      "benchmark_due": false,
+      "class_choice": null,
+      "tutor_path": "none",
+      "runtime": null
+    }
+  },
+  "payloadContract": "https://jana.dev/contracts/api/commands#/$defs/ModelCatalogue",
+  "context": {
+    "theme": "light",
+    "hardwareClass": "content-only"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "without the tutor. You can add the tutor later"
+  ]
+}

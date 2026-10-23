@@ -1,0 +1,121 @@
+provenance: Synthetic items and responses written for the marking suite (CUR-14, CUR-15); expected verdicts follow
+  the marking rules, not the marker. Not real student work.
+items:
+  methane: &methane
+    id: itm.chm.o.reactions.9501
+    type: chemical_equation
+    kc_ids: [kc.chm.o.equations.balancing]
+    parts:
+    - id: a
+      prompt: Write the balanced equation for methane burning completely in oxygen.
+      marks: 2
+      answer: &methane_answer
+        kind: chemical_equation
+        reactants:
+        - {formula: CH4, coefficient: 1, state: g}
+        - {formula: O2, coefficient: 2, state: g}
+        products:
+        - {formula: CO2, coefficient: 1, state: g}
+        - {formula: H2O, coefficient: 2, state: l}
+        state_symbols: ignored
+        non_lowest_multiple: partial
+        check_id: chk_build_golden_methane
+      hints: []
+  methane_strict:
+    <<: *methane
+    id: itm.chm.o.reactions.9502
+    parts:
+    - id: a
+      prompt: Write the balanced equation, in lowest whole numbers, for methane burning completely in oxygen.
+      marks: 2
+      answer: {<<: *methane_answer, non_lowest_multiple: wrong, check_id: chk_build_golden_methane_strict}
+      hints: []
+  methane_states:
+    <<: *methane
+    id: itm.chm.o.reactions.9503
+    parts:
+    - id: a
+      prompt: Write the balanced equation, with state symbols, for methane burning completely in oxygen.
+      marks: 2
+      answer: {<<: *methane_answer, state_symbols: required, check_id: chk_build_golden_methane_states}
+      hints: []
+  methane_states_optional:
+    <<: *methane
+    id: itm.chm.o.reactions.9504
+    parts:
+    - id: a
+      prompt: Write the balanced equation for methane burning completely in oxygen; state symbols are optional.
+      marks: 2
+      answer: {<<: *methane_answer, state_symbols: optional, check_id: chk_build_golden_methane_optional}
+      hints: []
+cases:
+- id: balanced_lowest_terms
+  item: methane
+  response: CH4 + 2O2 -> CO2 + 2H2O
+  rows: [chemical_equations.species, chemical_equations.balance]
+  expect: {outcome: correct, marks_awarded: 2, criteria: {species: pass, balanced: pass, lowest_terms: pass}}
+- id: species_in_another_order
+  item: methane
+  response: 2 O2 + CH4 → 2 H2O + CO2
+  rows: [chemical_equations.species]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: coefficients_in_key_order
+  item: methane
+  response: [1, 2, 1, 2]
+  rows: [chemical_equations.balance]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: wrong_species
+  item: methane
+  response: CH4 + 2O2 -> CO + 2H2O
+  rows: [chemical_equations.species]
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: value, criteria: {species: fail}}
+- id: not_balanced
+  item: methane
+  response: CH4 + O2 -> CO2 + H2O
+  rows: [chemical_equations.balance]
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: unbalanced, criteria: {balanced: fail}}
+- id: balanced_but_not_simplest
+  item: methane
+  response: 2CH4 + 4O2 -> 2CO2 + 4H2O
+  rows: [chemical_equations.non_lowest]
+  expect: {outcome: partial, marks_awarded: 1, error_category: form, criteria: {lowest_terms: fail}}
+- id: multiple_wrong_when_item_says_so
+  item: methane_strict
+  response: 2CH4 + 4O2 -> 2CO2 + 4H2O
+  rows: [chemical_equations.non_lowest]
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: form}
+- id: states_required_and_right
+  item: methane_states
+  response: CH4(g) + 2O2(g) -> CO2(g) + 2H2O(l)
+  rows: [chemical_equations.states_required]
+  expect: {outcome: correct, marks_awarded: 2, criteria: {state_symbols: pass}}
+- id: states_required_and_missing
+  item: methane_states
+  response: CH4 + 2O2 -> CO2 + 2H2O
+  rows: [chemical_equations.states_required]
+  expect: {outcome: partial, marks_awarded: 1, criteria: {state_symbols: fail}}
+- id: states_required_and_wrong
+  item: methane_states
+  response: CH4(g) + 2O2(g) -> CO2(g) + 2H2O(g)
+  rows: [chemical_equations.states_required]
+  expect: {outcome: partial, marks_awarded: 1, criteria: {state_symbols: fail}}
+- id: states_optional_left_out
+  item: methane_states_optional
+  response: CH4 + 2O2 -> CO2 + 2H2O
+  rows: [chemical_equations.states_optional]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: states_optional_given
+  item: methane_states_optional
+  response: CH4(g) + 2O2(g) -> CO2(g) + 2H2O(l)
+  rows: [chemical_equations.states_optional]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: states_ignored_even_when_wrong
+  item: methane
+  response: CH4(aq) + 2O2(s) -> CO2(l) + 2H2O(g)
+  rows: [chemical_equations.states_ignored]
+  expect: {outcome: correct, marks_awarded: 2}
+- id: states_ignored_when_absent
+  item: methane
+  response: CH4 + 2O2 -> CO2 + 2H2O
+  rows: [chemical_equations.states_ignored]
+  expect: {outcome: correct, marks_awarded: 2}

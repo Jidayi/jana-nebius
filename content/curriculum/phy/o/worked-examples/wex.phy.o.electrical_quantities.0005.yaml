@@ -1,0 +1,36 @@
+id: wex.phy.o.electrical_quantities.0005
+kc_ids:
+- kc.phy.o.electrical_quantities.potential_difference
+problem: Thabo finds that a battery transfers 240 J of energy while it drives 80 C of charge round a circuit. Calculate the e.m.f. of the battery.
+steps:
+- n: 1
+  latex: V = \frac{W}{Q} = \frac{240}{80} = 3\ \text{V}
+  reason: E.m.f. = energy per unit charge
+  check_id: chk_build_phy_elq_w0005_ans
+final_answer:
+  latex: 3\ \text{V}
+  check_id: chk_build_phy_elq_w0005_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_elq_w0005_ans:
+    args:
+      expression: 240/80
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

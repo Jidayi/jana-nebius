@@ -1,0 +1,98 @@
+{
+  "id": "photo-capture.error-retriable.quality-advisory",
+  "title": "Photo capture: quality-advisory",
+  "component": "PhotoCapture",
+  "state": "error-retriable",
+  "variant": "quality-advisory",
+  "payload": {
+    "schema_version": 1,
+    "capture_id": "cap_00000000000000000000000000",
+    "session_id": "ses_00000000000000000000000000",
+    "source": "photo_file",
+    "purpose": "question",
+    "locale": "en",
+    "text": "Find x if 2x+5=15.",
+    "regions": [
+      {
+        "region_id": "rgn_0",
+        "kind": "question_stem",
+        "order": 0,
+        "text": "Find x if 2x+5=15.",
+        "bbox": {
+          "image_id": "img_00000000000000000000000000",
+          "x": 0.07,
+          "y": 0.22,
+          "w": 0.7,
+          "h": 0.1
+        },
+        "confidence": 0.8,
+        "needs_confirmation": true,
+        "low_confidence_spans": [
+          {
+            "start": 10,
+            "end": 11
+          }
+        ],
+        "language": "en",
+        "direction": "ltr"
+      }
+    ],
+    "questions": [],
+    "attachments": [
+      {
+        "image_id": "img_00000000000000000000000000",
+        "kind": "photo",
+        "width": 900,
+        "height": 700,
+        "bytes": 100,
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    ],
+    "reader": {
+      "path": "ocr_pipeline",
+      "model_id": "synthetic-reader",
+      "hardware_class": "mid",
+      "duration_ms": 400
+    },
+    "quality": {
+      "checks": [
+        {
+          "check": "blur",
+          "value": 70,
+          "outcome": "advisory"
+        }
+      ],
+      "overridden": false
+    },
+    "confirmation": {
+      "confirmed": false,
+      "method": "pending",
+      "edit_distance": 0,
+      "confirmed_at": null
+    },
+    "injection": {
+      "flagged": false,
+      "spans_removed": 0
+    },
+    "refusal": null,
+    "egress": {
+      "left_device": false,
+      "destination": "none"
+    },
+    "created_at": 0,
+    "updated_at": 0,
+    "status": "quality_failed"
+  },
+  "payloadContract": "https://jana.dev/contracts/input/captured-question",
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "conversation"
+  ],
+  "expectText": [
+    "Hold the camera still and let it focus.",
+    "Retake",
+    "Use this photo anyway"
+  ]
+}

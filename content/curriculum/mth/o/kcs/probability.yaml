@@ -1,0 +1,119 @@
+- id: kc.mth.o.probability.single_event
+  code: MTH-O-08.01.K01
+  node_id: cur.mth.o.probability.introduction_to_probability
+  statement: Calculate the probability of a single event and of the event not happening
+  kind: procedural
+  tools:
+  - stats_compute
+  - math_evaluate
+  exam_weight: 0.293
+  prerequisites:
+  - kc_id: kc.mth.o.number.fdp_conversion
+    strength: required
+  misconception_ids:
+  - mc.mth.o.complement_not_taken
+  - mc.mth.o.probability_as_odds
+  - mc.mth.o.probability_equal_categories
+  skill_ids:
+  - mth-o-probability
+  glossary:
+  - probability
+  - probabilities
+  - outcome
+  - event
+  - equally likely
+  difficulty_prior: -0.8
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.probability.expected_frequency
+  code: MTH-O-08.02.K01
+  node_id: cur.mth.o.probability.relative_and_expected_frequencies
+  statement: Calculate relative frequencies and expected frequencies
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.22
+  prerequisites:
+  - kc_id: kc.mth.o.probability.single_event
+    strength: required
+  misconception_ids:
+  - mc.mth.o.expected_divides
+  - mc.mth.o.expected_uses_complement
+  - mc.mth.o.relative_frequency_inverted
+  - mc.mth.o.complement_not_taken
+  - mc.mth.o.percent_scale_wrong
+  - mc.mth.o.probability_as_odds
+  skill_ids:
+  - mth-o-probability
+  glossary:
+  - relative frequency
+  - expected frequency
+  - frequency
+  - probability
+  - probabilities
+  - trial
+  - outcome
+  difficulty_prior: -0.4
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.probability.independent_events
+  code: MTH-O-08.03.K01
+  node_id: cur.mth.o.probability.probability_of_combined_events
+  statement: Calculate probabilities of combined independent events using tables or tree diagrams
+  kind: procedural
+  tools:
+  - stats_compute
+  - math_evaluate
+  exam_weight: 0.268
+  prerequisites:
+  - kc_id: kc.mth.o.probability.single_event
+    strength: required
+  - kc_id: kc.mth.o.number.fraction_arithmetic
+    strength: required
+  misconception_ids:
+  - mc.mth.o.and_as_add
+  - mc.mth.o.at_least_one_added
+  - mc.mth.o.complement_not_taken
+  - mc.mth.o.complement_of_both
+  skill_ids:
+  - mth-o-probability
+  glossary:
+  - independent
+  - independent event
+  - probability
+  - probabilities
+  - outcome
+  - tree diagram
+  - sample space
+  - event
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.probability.dependent_events
+  code: MTH-O-08.03.K02
+  node_id: cur.mth.o.probability.probability_of_combined_events
+  statement: Calculate probabilities of two events when items are chosen without replacement
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.22
+  prerequisites:
+  - kc_id: kc.mth.o.probability.independent_events
+    strength: required
+  misconception_ids:
+  - mc.mth.o.and_as_add
+  - mc.mth.o.denominator_not_reduced
+  - mc.mth.o.without_replacement_ignored
+  skill_ids:
+  - mth-o-probability
+  glossary:
+  - dependent
+  - without replacement
+  - probability
+  - probabilities
+  - tree diagram
+  - outcome
+  - event
+  difficulty_prior: 0.7
+  version: 0.1.1
+  status: active

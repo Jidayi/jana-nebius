@@ -1,0 +1,155 @@
+id: itm.acc.o.irrecoverable_debts.0037
+version: 0.1.1
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.irrecoverable_debts.net_receivables
+stem: Kojo's trade receivables are $10500 before writing off a debt of $450. The allowance for irrecoverable debts is 5% of trade receivables.
+parts:
+- id: a
+  prompt: Calculate the net trade receivables shown in the statement of financial position.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '9547.50'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_irrecoverable_debts_0037_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The statement of financial position shows what the business expects to collect.
+  - rung: 2
+    name: concept
+    text:
+      en: Net trade receivables = trade receivables − debts written off − allowance.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out the allowance on the receivables that remain after write-off.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Net = (10500 − 450) − 5% of (10500 − 450).
+  - rung: 5
+    name: full_step
+    text:
+      en: Net trade receivables = $9547.50.
+  misconception_ids:
+  - mc.acc.o.id_allowance_not_deducted
+  - mc.acc.o.id_writeoff_not_deducted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Net receivables} = \text{receivables} - \text{written off} - \text{allowance}
+    reason: What is expected to be collected
+    check_id: chk_build_acc_irrecoverable_debts_0037_t
+  - n: 2
+    latex: \text{Allowance} = 5\% \times (10500 - 450) = 502.50
+    reason: On the remaining debts
+    check_id: chk_build_acc_irrecoverable_debts_0037_s2
+  - n: 3
+    latex: \text{Net} = (10500 - 450) - 502.50 = 9547.50
+    reason: Subtract
+    check_id: chk_build_acc_irrecoverable_debts_0037_a
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  receivables: '10500'
+  written_off: '450'
+checks:
+  chk_build_acc_irrecoverable_debts_0037_a:
+    args:
+      dp: 2
+      expression: (10500 - 450) - (10500 - 450) * 5/100
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_0037_s2:
+    args:
+      dp: 4
+      expression: (10500 - 450) * 5/100
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_0037_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - amount: '450'
+        kind: irrecoverable_debt
+      - kind: allowance
+        percent: '5'
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '80000'
+        role: revenue
+      - account: Purchases
+        debit: '40000'
+        role: purchases
+      - account: Trade receivables
+        debit: '10500'
+        role: trade_receivables
+      - account: Allowance for irrecoverable debts
+        credit: '800'
+        role: allowance_for_irrecoverable_debts
+      - account: Land
+        debit: '30300'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:32:56.192Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.acc.o.irrecoverable_debts.0037
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

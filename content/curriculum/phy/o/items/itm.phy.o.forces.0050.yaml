@@ -1,0 +1,90 @@
+id: itm.phy.o.forces.0050
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.springs
+stem: A graph of load against extension for a spring is a straight line through the origin and then curves.
+parts:
+- id: a
+  prompt: What does the point where it starts to curve show?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The original length of the spring
+      correct: false
+      misconception_id: mc.phy.o.spring_length_for_extension
+      feedback: 'Extension means how much longer the spring has become: stretched length minus original length.'
+    - id: B
+      text: The load at which the spring starts to stretch
+      correct: false
+    - id: C
+      text: The limit of proportionality
+      correct: true
+    - id: D
+      text: 'Nothing: the line would stay straight for any load'
+      correct: false
+      misconception_id: mc.phy.o.spring_proportional_beyond_limit
+      feedback: Hang too much on a spring and it stretches far more than expected and may not spring back. Hooke's law only holds up to the limit of proportionality.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Hooke's law links the force on a spring to its extension.
+  - rung: 2
+    name: concept
+    text:
+      en: Extension is the increase in length, and F = kx holds only while the load is not too big.
+  - rung: 3
+    name: first_step
+    text:
+      en: Check each option against the meaning of extension and of the limit.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Up to that point the extension is proportional to the load.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The limit of proportionality. Past this point F = kx no longer holds.'
+  misconception_ids:
+  - mc.phy.o.spring_length_for_extension
+  - mc.phy.o.spring_proportional_beyond_limit
+solution:
+  steps:
+  - n: 1
+    latex: \text{The limit of proportionality}
+    reason: Use the meaning of extension and of k
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

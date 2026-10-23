@@ -1,0 +1,36 @@
+id: mc.mth.o.fraction_digits_as_decimal
+kc_ids:
+- kc.mth.o.number.fdp_conversion
+student_name: Reading a fraction's digits as a decimal
+description: Writes a fraction such as 3/8 as 3.8 by putting its digits either side of a decimal point.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: counterexample
+  text:
+    en: '3/8 is less than 1, but 3.8 is more than 3. A fraction is a division: work out 3 ÷ 8.'
+probe_item_ids:
+- itm.mth.o.number.0096
+- itm.mth.o.number.0097
+- itm.mth.o.number.0098
+- itm.mth.o.number.0099
+- itm.mth.o.number.0085
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

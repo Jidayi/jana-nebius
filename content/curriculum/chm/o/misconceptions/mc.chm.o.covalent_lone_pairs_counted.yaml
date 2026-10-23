@@ -1,0 +1,35 @@
+id: mc.chm.o.covalent_lone_pairs_counted
+kc_ids:
+- kc.chm.o.atoms.covalent_bonding
+student_name: Counting every outer pair as shared
+description: Counts the non-bonding (lone) pairs of electrons as shared pairs.
+signatures:
+- kind: answer_transform
+  expression: 'choice: lone pairs counted as bonds'
+fix:
+  strategy: diagram
+  text:
+    en: Only pairs between two atoms are shared. Pairs that stay on one atom are lone pairs and are not bonds.
+probe_item_ids:
+- itm.chm.o.atoms.0062
+- itm.chm.o.atoms.0063
+- itm.chm.o.atoms.0064
+- itm.chm.o.atoms.0065
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

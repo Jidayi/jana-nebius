@@ -1,0 +1,114 @@
+id: itm.mth.o.mensuration.0101
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.compound_shapes
+stem: An L-shaped floor is a 14 m by 10 m rectangle with a 5 m by 4 m rectangle cut from one corner.
+parts:
+- id: a
+  prompt: Find the area of the floor.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 140 m²
+      correct: false
+      misconception_id: mc.mth.o.compound_part_missing
+      feedback: Split the shape into simple parts, label each one, and add every part.
+    - id: B
+      text: 120 m²
+      correct: true
+    - id: C
+      text: 160 m²
+      correct: false
+      misconception_id: mc.mth.o.compound_overlap_added
+      feedback: Shade the region you want. A part that is cut away must be subtracted.
+    - id: D
+      text: 48 m²
+      correct: false
+      misconception_id: mc.mth.o.perimeter_area_confused
+      feedback: Perimeter is a length around the edge (add the sides); area is the space inside (square units).
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think of the floor as a big rectangle with a piece missing.
+  - rung: 2
+    name: concept
+    text:
+      en: Area of the L = big rectangle − the piece cut out.
+  - rung: 3
+    name: first_step
+    text:
+      en: The big rectangle is 14 × 10.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Subtract the corner, 5 × 4.
+  - rung: 5
+    name: full_step
+    text:
+      en: The floor's area is 120 m².
+  misconception_ids:
+  - mc.mth.o.compound_overlap_added
+  - mc.mth.o.compound_part_missing
+  - mc.mth.o.perimeter_area_confused
+solution:
+  steps:
+  - n: 1
+    latex: 14 \times 10 = 140
+    reason: The whole rectangle
+    check_id: chk_build_mth_mns_0101_big
+  - n: 2
+    latex: 5 \times 4 = 20
+    reason: The part cut out
+    check_id: chk_build_mth_mns_0101_cut
+  - n: 3
+    latex: 140 - 20 = 120\ \text{m}^2
+    reason: Subtract
+    check_id: chk_build_mth_mns_0101_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_mns_0101_ans:
+    args:
+      expression: 14*10 - 5*4
+    tool: math_evaluate
+  chk_build_mth_mns_0101_big:
+    args:
+      expression: 14*10
+    tool: math_evaluate
+  chk_build_mth_mns_0101_cut:
+    args:
+      expression: 5*4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

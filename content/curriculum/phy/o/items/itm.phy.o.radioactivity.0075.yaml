@@ -1,0 +1,93 @@
+id: itm.phy.o.radioactivity.0075
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+stem: A school keeps several radioactive sources.
+parts:
+- id: a
+  prompt: How should they be stored?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: In a cardboard box, since card stops gamma radiation
+      correct: false
+      misconception_id: mc.phy.o.gamma_stopped_completely
+      feedback: Gamma rays pass through paper and aluminium almost unchanged. Thick lead or concrete reduces them a great deal but never to exactly zero.
+    - id: B
+      text: Anywhere, as long as they are switched off
+      correct: false
+      misconception_id: mc.phy.o.source_can_be_switched_off
+      feedback: An X-ray tube stops when the power is cut, but a radioactive source keeps decaying whatever we do. It must be shielded and stored safely.
+    - id: C
+      text: In a freezer, because cold slows down the decay
+      correct: false
+      misconception_id: mc.phy.o.decay_rate_changed_by_conditions
+      feedback: Radioactive decay happens inside the nucleus and is not changed by temperature, pressure or chemical reactions.
+    - id: D
+      text: In a labelled, lead-lined box, locked away from people
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about how radiation can harm people and how the dose can be kept low.
+  - rung: 2
+    name: concept
+    text:
+      en: A source keeps decaying whatever we do; distance, short times and thick shielding cut the dose, and being exposed to radiation does not make anything radioactive.
+  - rung: 3
+    name: first_step
+    text:
+      en: Nothing stops a source decaying, so the radiation must be absorbed.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that would leave people exposed or that rest on a false idea about radiation.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: In a labelled, lead-lined box, locked away from people.'
+  misconception_ids:
+  - mc.phy.o.decay_rate_changed_by_conditions
+  - mc.phy.o.gamma_stopped_completely
+  - mc.phy.o.source_can_be_switched_off
+solution:
+  steps:
+  - n: 1
+    latex: \text{In a labelled, lead-lined box, locked away from people}
+    reason: Match the radiation and half-life to the job
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

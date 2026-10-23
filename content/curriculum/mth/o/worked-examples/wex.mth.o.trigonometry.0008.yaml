@@ -1,0 +1,42 @@
+id: wex.mth.o.trigonometry.0008
+kc_ids:
+- kc.mth.o.trigonometry.elevation_depression
+problem: From the top of a cliff 60 m high, the angle of depression of a boat at sea is 37°. Find how far the boat is from the foot of the cliff, to 3 significant figures.
+steps:
+- n: 1
+  latex: \tan 37 = \frac{60}{d} \Rightarrow d = \frac{60}{\tan 37} = 79.6\ \text{m}
+  reason: The angle at the boat equals the angle of depression; rearrange
+  check_id: chk_build_mth_trg_w0008_ans
+final_answer:
+  latex: 79.6\ \text{m}
+  check_id: chk_build_mth_trg_w0008_ans
+fading_order:
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_trg_w0008_ans:
+    args:
+      angle_unit: degrees
+      expression: 60/tan(37)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

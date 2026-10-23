@@ -1,0 +1,90 @@
+id: itm.phy.o.particles.0049
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.pressure_and_volume
+stem: A bubble of gas has a volume of 4 cm³ near the bottom of a lake, where the pressure is 180 kPa. It rises to the surface, where the pressure is 100 kPa. Its temperature does not change.
+parts:
+- id: a
+  prompt: Find the volume of the bubble at the surface.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '7.2'
+    unit: cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_ptc_0049_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: As the bubble rises, the water pressing on it falls, so it can expand.
+  - rung: 2
+    name: concept
+    text:
+      en: 'The gas in the bubble keeps the same mass and temperature: p₁V₁ = p₂V₂.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 180 × 4 first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 720 by the pressure at the surface, 100 kPa.
+  - rung: 5
+    name: full_step
+    text:
+      en: At the surface the bubble's volume is 7.2 cm³.
+  misconception_ids:
+  - mc.phy.o.boyle_direct_proportion
+solution:
+  steps:
+  - n: 1
+    latex: p_1V_1 = 180 \times 4 = 720
+    reason: pV at the bottom
+    check_id: chk_build_phy_ptc_0049_k
+  - n: 2
+    latex: V_2 = \frac{720}{100} = 7.2\ \text{cm}^3
+    reason: Divide by the surface pressure
+    check_id: chk_build_phy_ptc_0049_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ptc_0049_ans:
+    args:
+      expression: 180*4/100
+    tool: math_evaluate
+  chk_build_phy_ptc_0049_k:
+    args:
+      expression: 180*4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

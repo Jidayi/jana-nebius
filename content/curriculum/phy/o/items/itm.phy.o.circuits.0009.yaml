@@ -1,0 +1,89 @@
+id: itm.phy.o.circuits.0009
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.series_circuits
+stem: Tunde connects three identical lamps in series with a battery. All of them light.
+parts:
+- id: a
+  prompt: How does the brightness of the lamp nearest the battery's positive terminal compare with the others?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It is the brightest, because it gets the current first
+      correct: false
+      misconception_id: mc.phy.o.series_current_used_up
+      feedback: 'Charge is not used up: the same charge flows all the way round. In a series circuit the current is the same at every point; it is energy that the components transfer.'
+    - id: B
+      text: All the lamps are equally bright
+      correct: true
+    - id: C
+      text: It is the dimmest, because the electrons reach it last, after the other lamps have used some
+      correct: false
+      misconception_id: mc.phy.o.series_current_used_up
+      feedback: 'Charge is not used up: the same charge flows all the way round. In a series circuit the current is the same at every point; it is energy that the components transfer.'
+    - id: D
+      text: It is twice as bright as each of the others
+      correct: false
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Brightness depends on the current through a lamp.
+  - rung: 2
+    name: concept
+    text:
+      en: Charge is not used up as it passes through a lamp.
+  - rung: 3
+    name: first_step
+    text:
+      en: In series there is only one path, so the current is the same in each lamp.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Identical lamps with the same current transfer energy at the same rate.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: all the lamps are equally bright.'
+  misconception_ids:
+  - mc.phy.o.series_current_used_up
+solution:
+  steps:
+  - n: 1
+    latex: I_1 = I_2 = I_3
+    reason: 'One path: the same current in every lamp'
+difficulty:
+  prior: -0.6
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

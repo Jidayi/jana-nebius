@@ -1,0 +1,34 @@
+id: mc.phy.o.velocities_added_for_change
+kc_ids:
+- kc.phy.o.motion.acceleration_from_change
+student_name: Adding the two velocities
+description: Adds the starting and final velocities instead of subtracting them to find the change in velocity.
+signatures:
+- kind: answer_transform
+  expression: (v + u)/t
+fix:
+  strategy: counterexample
+  text:
+    en: 'If the velocity does not change at all, the acceleration must be zero, but adding the velocities would not give zero. Subtract: final minus starting velocity.'
+probe_item_ids:
+- itm.phy.o.motion.0301
+- itm.phy.o.motion.0302
+- itm.phy.o.motion.0304
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

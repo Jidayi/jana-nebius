@@ -1,0 +1,36 @@
+id: mc.phy.o.manometer_excess_as_gas_pressure
+kc_ids:
+- kc.phy.o.pressure.gas_and_atmospheric_pressure
+student_name: The difference is the gas pressure
+description: Gives the pressure difference shown by a manometer as the gas pressure itself, forgetting that the open arm has atmospheric pressure acting on it.
+signatures:
+- kind: answer_transform
+  expression: rho*g*dh
+fix:
+  strategy: rule_restatement
+  text:
+    en: A manometer compares the gas with the air pushing on the open arm. Gas pressure = atmospheric pressure ± the pressure of the height difference.
+probe_item_ids:
+- itm.phy.o.pressure.0044
+- itm.phy.o.pressure.0033
+- itm.phy.o.pressure.0034
+- itm.phy.o.pressure.0039
+- itm.phy.o.pressure.0040
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

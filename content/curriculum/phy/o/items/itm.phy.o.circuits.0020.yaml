@@ -1,0 +1,101 @@
+id: itm.phy.o.circuits.0020
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.parallel_circuits
+stem: An 8 Ω resistor and a 24 Ω resistor are connected in parallel with each other, and the pair is connected across a 3 V battery.
+parts:
+- id: a
+  prompt: What is the p.d. across the 24 Ω resistor?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '3'
+    unit: V
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_cir_0020_tool
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Trace each resistor's two ends back to the battery.
+  - rung: 2
+    name: concept
+    text:
+      en: Each branch of a parallel circuit is joined directly to both terminals of the battery.
+  - rung: 3
+    name: first_step
+    text:
+      en: So the p.d. across each branch does not depend on its resistance.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Compare the p.d. across a branch with the p.d. of the battery.
+  - rung: 5
+    name: full_step
+    text:
+      en: The p.d. across the 24 Ω resistor is 3 V.
+  misconception_ids:
+  - mc.phy.o.parallel_pd_shared_out
+solution:
+  steps:
+  - n: 1
+    latex: V_2 = V_{\text{supply}} = 3\ \text{V}
+    reason: Parallel branches each have the supply p.d.
+    check_id: chk_build_phy_cir_0020_ans
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 30
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_0020_ans:
+    args:
+      expression: '3'
+    tool: math_evaluate
+  chk_build_phy_cir_0020_tool:
+    args:
+      components:
+      - emf: '3'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '8'
+      - id: R2
+        kind: resistor
+        resistance: '24'
+      network:
+        series:
+        - B
+        - parallel:
+          - R1
+          - R2
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

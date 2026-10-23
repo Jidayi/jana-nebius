@@ -1,0 +1,36 @@
+id: mc.phy.o.balance_equal_forces
+kc_ids:
+- kc.phy.o.forces.moments
+student_name: Balance means equal forces
+description: Thinks a beam balances only when the forces on each side are equal, ignoring their distances from the pivot.
+signatures:
+- kind: answer_transform
+  expression: F2 = F1
+fix:
+  strategy: counterexample
+  text:
+    en: A small force far from the pivot can balance a large force close to it. Compare moments, force × distance, not forces.
+probe_item_ids:
+- itm.phy.o.forces.0091
+- itm.phy.o.forces.0093
+- itm.phy.o.forces.0095
+- itm.phy.o.forces.0082
+- itm.phy.o.forces.0083
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,107 @@
+id: itm.phy.o.practical_electricity.0025
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.energy_cost
+stem: The motor of a 150 W fridge runs for 30 minutes.
+parts:
+- id: a
+  prompt: Calculate the energy used, in kilowatt-hours.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.075'
+    unit: kWh
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_pel_0025_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A kilowatt-hour is the energy used by a 1 kW appliance in 1 hour.
+  - rung: 2
+    name: concept
+    text:
+      en: E in kWh = power in kW × time in hours.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change the power into kilowatts and the time into hours.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The power is 0.15 kW and the time is 0.5 h; multiply them.
+  - rung: 5
+    name: full_step
+    text:
+      en: The energy used is 0.075 kWh.
+  misconception_ids:
+  - mc.phy.o.kwh_power_left_in_watts
+  - mc.phy.o.kwh_time_left_in_minutes
+  - mc.phy.o.elec_energy_power_over_time
+solution:
+  steps:
+  - n: 1
+    latex: P = 150\ \text{W} = 0.15\ \text{kW}
+    reason: Power in kilowatts
+    check_id: chk_build_phy_pel_0025_pk
+  - n: 2
+    latex: t = 30\ \text{min} = 0.5\ \text{h}
+    reason: Time in hours
+    check_id: chk_build_phy_pel_0025_th
+  - n: 3
+    latex: E = Pt = 0.15 \times 0.5 = 0.075\ \text{kWh}
+    reason: Kilowatts times hours
+    check_id: chk_build_phy_pel_0025_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_pel_0025_ans:
+    args:
+      expression: 0.15*30/60
+    tool: math_evaluate
+  chk_build_phy_pel_0025_pk:
+    args:
+      quantity: 150 W
+      to: kW
+    tool: units_convert
+  chk_build_phy_pel_0025_th:
+    args:
+      quantity: 30 min
+      to: h
+    tool: units_convert
+  chk_build_phy_pel_0025_tool:
+    args:
+      quantity: 4500 W min
+      to: kWh
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

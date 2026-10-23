@@ -1,0 +1,85 @@
+id: itm.chm.o.acids.0059
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.salt_preparation
+stem: A student wants to make insoluble silver chloride.
+parts:
+- id: a
+  prompt: Which pair of solutions should be mixed?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Sodium chloride and potassium nitrate
+      correct: false
+    - id: B
+      text: Silver chloride and water
+      correct: false
+      misconception_id: mc.chm.o.acids_precipitation_confused
+      feedback: 'An insoluble salt comes out of solution as a precipitate as soon as two solutions are mixed: filter it off and wash it. A soluble salt stays dissolved: you get it by evaporating and crystallising the solution.'
+    - id: C
+      text: Silver nitrate and sodium nitrate
+      correct: false
+    - id: D
+      text: Silver nitrate and sodium chloride
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An insoluble salt is made from two soluble salts. Which ions does silver chloride contain?
+  - rung: 2
+    name: concept
+    text:
+      en: One solution must provide the silver ions and the other the chloride ions.
+  - rung: 3
+    name: first_step
+    text:
+      en: Silver nitrate is soluble, so it can provide the silver ions.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Choose a soluble salt that contains chloride ions.
+  - rung: 5
+    name: full_step
+    text:
+      en: Silver nitrate gives Ag⁺ and sodium chloride gives Cl⁻; mixing them precipitates silver chloride.
+  misconception_ids:
+  - mc.chm.o.acids_precipitation_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{Ag}^{+} + \text{Cl}^{-} \rightarrow \text{AgCl(s)}
+    reason: Precipitation
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

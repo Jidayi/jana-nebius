@@ -1,0 +1,92 @@
+id: itm.phy.o.density.0009
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.density_calculation
+stem: A fish tank measuring 0.8 m × 0.4 m × 0.5 m is completely filled with water. The density of water is 1000 kg/m³.
+parts:
+- id: a
+  prompt: Calculate the mass of the water.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '160'
+    unit: kg
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_den_0009_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Density is the mass packed into one cubic metre of the material.
+  - rung: 2
+    name: concept
+    text:
+      en: Mass = density × volume.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Find the volume first: multiply the three measurements.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: The volume is 0.16 m³; multiply it by 1000.
+  - rung: 5
+    name: full_step
+    text:
+      en: The mass is 160 kg.
+  misconception_ids:
+  - mc.phy.o.density_rearranged_wrongly
+  - mc.phy.o.density_volume_over_mass
+  - mc.phy.o.block_volume_two_sides
+solution:
+  steps:
+  - n: 1
+    latex: V = 0.8 \times 0.4 \times 0.5 = 0.16\ \text{m}^3
+    reason: Volume of a box shape
+    check_id: chk_build_phy_den_0009_v
+  - n: 2
+    latex: m = \rho V = 1000 \times 0.16 = 160\ \text{kg}
+    reason: Mass = density × volume
+    check_id: chk_build_phy_den_0009_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_den_0009_ans:
+    args:
+      expression: 1000*0.8*0.4*0.5
+    tool: math_evaluate
+  chk_build_phy_den_0009_v:
+    args:
+      expression: 0.8*0.4*0.5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

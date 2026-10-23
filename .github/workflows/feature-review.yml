@@ -1,0 +1,29 @@
+name: feature-review
+# PRV-01 and PRD-20: every pull request carries the feature review checklist; changes to learner,
+# personal-service or safety paths need a PRV-01a entry, and touching a non-goal needs a decided decision.
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  checklist:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: { persist-credentials: false }
+      - uses: ./.github/actions/setup
+        with: { spec-key: "${{ secrets.JANA_SPEC_DEPLOY_KEY }}", install: "false" }
+      - name: Description and changed files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh pr view "$PR" --repo "$REPO" --json body --jq .body > "$RUNNER_TEMP/body.md"
+          gh pr diff "$PR" --repo "$REPO" --name-only > "$RUNNER_TEMP/changed.txt"
+      - name: Feature review checklist
+        run: uv run python -m jana_tools feature-review "$RUNNER_TEMP/body.md" "$RUNNER_TEMP/changed.txt"

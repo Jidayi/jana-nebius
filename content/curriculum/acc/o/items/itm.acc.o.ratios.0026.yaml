@@ -1,0 +1,106 @@
+id: itm.acc.o.ratios.0026
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.liquidity
+stem: Juma's business has inventory $7600, trade receivables $4400, a bank balance of $3400 and current liabilities of $13900.
+parts:
+- id: a
+  prompt: Calculate the acid-test (quick) ratio, as the first number of a ratio to 1. Give your answer to 2 decimal places.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.56'
+    unit: :1
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_ratios_0026_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The acid-test ratio asks whether the business can pay its current liabilities without selling inventory.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Acid-test ratio = (current assets − inventory) : current liabilities.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Leave the inventory out of the assets.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide (4400 + 3400) by 13900.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Acid-test ratio = 0.56 : 1.'
+  misconception_ids:
+  - mc.acc.o.rat_acid_includes_inventory
+  - mc.acc.o.rat_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Acid-test (quick) ratio} = \frac{\text{current assets - inventory}}{\text{current liabilities}}
+    reason: Expressed as a ratio to 1
+    check_id: chk_build_acc_ratios_0026_t
+  - n: 2
+    latex: \frac{4400 + 3400}{13900} = 0.56
+    reason: Substitute
+    check_id: chk_build_acc_ratios_0026_a
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_0026_a:
+    args:
+      dp: 2
+      expression: (4400 + 3400) / 13900
+    tool: math_evaluate
+  chk_build_acc_ratios_0026_t:
+    args:
+      closing_inventory: '7600'
+      current_assets: '15400'
+      current_liabilities: '13900'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      ratios:
+      - acid_test
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

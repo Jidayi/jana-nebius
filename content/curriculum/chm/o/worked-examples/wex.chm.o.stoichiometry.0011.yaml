@@ -1,0 +1,82 @@
+id: wex.chm.o.stoichiometry.0011
+kc_ids:
+- kc.chm.o.stoichiometry.reacting_masses
+problem: Using 2Mg + O₂ → 2MgO, find the mass of MgO made from 6.0 g of Mg.
+steps:
+- n: 1
+  latex: n(\text{Mg}) = \frac{6.0}{24} = 0.250\ \text{mol}
+  reason: Mass to moles
+  check_id: chk_build_chm_stoichiometry_w0011_ma
+- n: 2
+  latex: n(\text{MgO}) = 0.250\ \text{mol}
+  reason: Mole ratio from the equation
+  check_id: chk_build_chm_stoichiometry_w0011_chain
+- n: 3
+  latex: m = 0.250 \times 40
+  reason: Moles to mass
+  check_id: chk_build_chm_stoichiometry_w0011_mb
+final_answer:
+  latex: 10.0\ \text{g}
+  check_id: chk_build_chm_stoichiometry_w0011_chain
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_w0011_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_mg
+      - source: pack
+        symbol: ar_o
+      equation: 2Mg + O2 -> 2MgO
+      sf: 3
+      steps:
+      - id: na
+        mass: 6.0 g
+        op: amount_from_mass
+        species: Mg
+      - amount: '@na'
+        from: Mg
+        id: nb
+        op: mole_ratio
+        to: MgO
+      - amount: '@nb'
+        id: mb
+        op: mass_from_amount
+        species: MgO
+    tool: chem_stoichiometry
+  chk_build_chm_stoichiometry_w0011_ma:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_mg
+      formula: Mg
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_w0011_mb:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_mg
+      - source: pack
+        symbol: ar_o
+      formula: MgO
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

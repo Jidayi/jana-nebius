@@ -1,0 +1,85 @@
+id: itm.chm.o.reactions.0034
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.collision_theory
+stem: Some collisions between reactant particles lead to a reaction; others do not.
+parts:
+- id: a
+  prompt: Which collision leads to a reaction?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Only a collision on the surface of a catalyst
+      correct: false
+    - id: B
+      text: Any collision between two reactant particles
+      correct: false
+      misconception_id: mc.chm.o.reactions_all_collisions_react
+      feedback: Particles in a gas collide billions of times a second, yet many mixtures hardly react. Only collisions with at least the activation energy lead to a reaction; the rest bounce apart unchanged.
+    - id: C
+      text: Only a collision between two identical particles
+      correct: false
+    - id: D
+      text: One in which the particles have energy equal to or greater than the activation energy
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What decides whether a collision is successful?
+  - rung: 2
+    name: concept
+    text:
+      en: A collision must have enough energy to start breaking bonds.
+  - rung: 3
+    name: first_step
+    text:
+      en: That smallest energy has a name.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Compare the energy of the collision with the activation energy.
+  - rung: 5
+    name: full_step
+    text:
+      en: A collision is successful if the particles have energy equal to or greater than the activation energy.
+  misconception_ids:
+  - mc.chm.o.reactions_all_collisions_react
+solution:
+  steps:
+  - n: 1
+    latex: 'E \geq E_a\text{: successful}'
+    reason: Definition
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

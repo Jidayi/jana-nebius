@@ -1,0 +1,106 @@
+id: wex.acc.o.clubs.0007
+kc_ids:
+- kc.acc.o.clubs.surplus_deficit
+problem: 'A club''s figures: subscriptions for the year $3500; competition fees $1850; rent $1200; groundsman''s wages $650; electricity $950; new equipment bought $4700; depreciation of equipment $250. Find the surplus or deficit.'
+steps:
+- n: 1
+  latex: \text{Surplus} = \text{income} - \text{expenditure}
+  reason: Leave out the equipment cost
+  check_id: chk_build_acc_clubs_w0007_t
+- n: 2
+  latex: \text{Income} = 5350
+  reason: Subscriptions and fees
+  check_id: chk_build_acc_clubs_w0007_s2
+- n: 3
+  latex: \text{Expenditure} = 3050
+  reason: Including depreciation
+  check_id: chk_build_acc_clubs_w0007_s3
+- n: 4
+  latex: \text{Result} = 2300
+  reason: Surplus
+  check_id: chk_build_acc_clubs_w0007_a
+final_answer:
+  latex: \$\,2300
+  check_id: chk_build_acc_clubs_w0007_a
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_clubs_w0007_a:
+    args:
+      dp: 2
+      expression: abs(3500 + 1850 - (1200 + 650 + 950 + 250))
+    tool: math_evaluate
+  chk_build_acc_clubs_w0007_s2:
+    args:
+      dp: 4
+      expression: 3500 + 1850
+    tool: math_evaluate
+  chk_build_acc_clubs_w0007_s3:
+    args:
+      dp: 4
+      expression: 1200 + 650 + 950 + 250
+    tool: math_evaluate
+  chk_build_acc_clubs_w0007_s4:
+    args:
+      dp: 4
+      expression: abs(3500 + 1850 - (1200 + 650 + 950 + 250))
+    tool: math_evaluate
+  chk_build_acc_clubs_w0007_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Equipment
+        amount: '250'
+        kind: depreciation
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Subscriptions
+        credit: '3500'
+        role: other_income
+      - account: Competition fees
+        credit: '1850'
+        role: other_income
+      - account: Rent
+        debit: '1200'
+        role: expense
+      - account: Wages
+        debit: '650'
+        role: expense
+      - account: Electricity
+        debit: '950'
+        role: expense
+      - account: Equipment
+        debit: '4700'
+        role: non_current_asset
+      - account: Capital
+        credit: '2150'
+        role: capital
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Family loan
+        credit: '1000'
+        role: non_current_liability
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

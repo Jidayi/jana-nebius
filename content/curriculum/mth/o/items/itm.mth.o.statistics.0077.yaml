@@ -1,0 +1,131 @@
+id: itm.mth.o.statistics.0077
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.grouped_mean
+stem: 'The times, t minutes, that students took to finish a task are grouped: 40 ≤ t < 50: 14; 50 ≤ t < 60: 6; 60 ≤ t < 70: 9; 70 ≤ t < 80: 6.'
+parts:
+- id: a
+  prompt: Estimate the mean time.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '57'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_sta_0077_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You do not know the exact times, so use one value for each class.
+  - rung: 2
+    name: concept
+    text:
+      en: Use the midpoint of each class, multiply by its frequency, add, and divide by the total frequency.
+  - rung: 3
+    name: first_step
+    text:
+      en: The first class has midpoint (40 + 50) ÷ 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Σfx = 1995 and Σf = 35.
+  - rung: 5
+    name: full_step
+    text:
+      en: The estimated mean is 57 minutes.
+  misconception_ids:
+  - mc.mth.o.grouped_upper_bound
+  - mc.mth.o.frequency_mean_rows
+  - mc.mth.o.class_width_wrong
+solution:
+  steps:
+  - n: 1
+    latex: '\text{midpoints: } 45, 55, 65, 75'
+    reason: Middle of each class
+    check_id: chk_build_mth_sta_0077_mids
+  - n: 2
+    latex: \Sigma fx = 1995,\ \Sigma f = 35
+    reason: Midpoint times frequency, added
+    check_id: chk_build_mth_sta_0077_t
+  - n: 3
+    latex: \text{mean} \approx \frac{1995}{35} = 57
+    reason: Divide by the total frequency
+    check_id: chk_build_mth_sta_0077_sc
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0077_ans:
+    args:
+      expression: 1995.0/35
+    tool: math_evaluate
+  chk_build_mth_sta_0077_mids:
+    args:
+      equations:
+      - p = (40 + 50)/2
+      - q = (50 + 60)/2
+      - r = (60 + 70)/2
+      - s = (70 + 80)/2
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+  chk_build_mth_sta_0077_sc:
+    args:
+      grouped:
+      - frequency: 14
+        lower: 40
+        upper: 50
+      - frequency: 6
+        lower: 50
+        upper: 60
+      - frequency: 9
+        lower: 60
+        upper: 70
+      - frequency: 6
+        lower: 70
+        upper: 80
+      quartile_method: exclusive
+    tool: stats_compute
+  chk_build_mth_sta_0077_t:
+    args:
+      equations:
+      - p = 1995.0
+      - q = 35
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

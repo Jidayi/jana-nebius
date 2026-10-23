@@ -1,0 +1,65 @@
+id: wex.phy.o.momentum.0004
+kc_ids:
+- kc.phy.o.momentum.conservation_of_momentum
+problem: A space probe of mass 1000 kg is at rest. A spring pushes a capsule of mass 40 kg away from it at 8 m/s. Take the direction in which the capsule moves as positive. Find the velocity of the probe just afterwards.
+steps:
+- n: 1
+  latex: p_\text{before} = 1000 \times 0 + 40 \times 0 = 0
+  reason: The probe and the capsule start at rest
+  check_id: chk_build_phy_mom_w0004_p0
+- n: 2
+  latex: 40 \times 8 = 320\ \text{kg m/s}
+  reason: Momentum of the capsule
+  check_id: chk_build_phy_mom_w0004_pf
+- n: 3
+  latex: 0 = 320 + 1000V \Rightarrow V = -0.32\ \text{m/s}
+  reason: Total momentum stays zero
+  check_id: chk_build_phy_mom_w0004_ans
+final_answer:
+  latex: -0.32\ \text{m/s}
+  check_id: chk_build_phy_mom_w0004_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_w0004_ans:
+    args:
+      expression: -40*8/1000
+    tool: math_evaluate
+  chk_build_phy_mom_w0004_p0:
+    args:
+      expression: 1000*0 + 40*0
+    tool: math_evaluate
+  chk_build_phy_mom_w0004_pf:
+    args:
+      expression: 40*8
+    tool: math_evaluate
+  chk_build_phy_mom_w0004_tool:
+    args:
+      equations:
+      - 0 = 40*8 + 1000*V
+      unknowns:
+      - V
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

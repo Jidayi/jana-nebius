@@ -1,0 +1,36 @@
+id: mc.chm.o.environment_water_test_colours_reversed
+kc_ids:
+- kc.chm.o.environment.water
+student_name: Water-test colours the wrong way round
+description: Gets the colour changes of the water tests backwards (copper(II) sulfate blue to white, cobalt(II) chloride pink to blue) or swaps the two tests' colours.
+signatures:
+- kind: answer_transform
+  expression: 'choice: colour change of a water test reversed or swapped'
+fix:
+  strategy: rule_restatement
+  text:
+    en: The dry form is the starting colour and water gives the hydrated colour. Anhydrous copper(II) sulfate is white and turns blue. Dry cobalt(II) chloride paper is blue and turns pink.
+probe_item_ids:
+- itm.chm.o.environment.0001
+- itm.chm.o.environment.0002
+- itm.chm.o.environment.0003
+- itm.chm.o.environment.0004
+- itm.chm.o.environment.0011
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,87 @@
+id: itm.phy.o.electrical_quantities.0010
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.electric_charge
+stem: A plastic comb rubbed with a hair gains 4 × 10¹⁰ electrons. The charge on one electron is −1.6 × 10⁻¹⁹ C.
+parts:
+- id: a
+  prompt: Find the charge on the plastic comb, in nC, with its sign.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '-6.4'
+    unit: nC
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_elq_0010_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Each electron gained adds the same small negative charge.
+  - rung: 2
+    name: concept
+    text:
+      en: Charge = number of electrons × the charge on one electron.
+  - rung: 3
+    name: first_step
+    text:
+      en: Gaining electrons makes the object negative.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply 4 × 10¹⁰ by 1.6 × 10⁻¹⁹ C, then write the result in nanocoulombs.
+  - rung: 5
+    name: full_step
+    text:
+      en: The plastic comb has a charge of -6.4 nC.
+  misconception_ids:
+  - mc.phy.o.electron_gain_sign_reversed
+  - mc.phy.o.electron_count_divided_by_e
+  - mc.phy.o.prefix_multiply_divide_swapped
+solution:
+  steps:
+  - n: 1
+    latex: Q = n \times e = 4 \times 10^{10} \times (-\,1.6 \times 10^{-19})\ \text{C}
+    reason: Charge = number of electrons × charge on one
+  - n: 2
+    latex: Q = -6.4\ \text{nC}
+    reason: 1 nC is 10^{-9} C
+    check_id: chk_build_phy_elq_0010_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_elq_0010_ans:
+    args:
+      expression: -4*10^10*1.6*10^(-19)*10^9
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

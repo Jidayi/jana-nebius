@@ -1,0 +1,93 @@
+id: itm.phy.o.heat_transfer.0026
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.convection
+stem: In many older refrigerators the cooling unit is at the top of the cabinet.
+parts:
+- id: a
+  prompt: Why is it put at the top?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Cold air rises, so the top is where the cold collects
+      correct: false
+      misconception_id: mc.phy.o.heated_fluid_denser
+      feedback: Heating makes a fluid expand, so the same mass takes up more space and its density falls. Warm air and water rise; cooled air and water sink.
+    - id: B
+      text: Cooled air keeps the same density, so the top is as good as anywhere
+      correct: false
+      misconception_id: mc.phy.o.density_unchanged_on_heating
+      feedback: Density is mass divided by volume. Heating keeps the mass the same but increases the volume, so the density falls; that is why warm fluids rise.
+    - id: C
+      text: Air cooled at the top becomes denser and sinks, setting up a current
+      correct: true
+    - id: D
+      text: The metal walls carry the cold down by convection
+      correct: false
+      misconception_id: mc.phy.o.convection_in_solids
+      feedback: Convection needs the material itself to move as a current. Particles in a solid stay in place, so solids pass energy on by conduction, not convection.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Convection is the movement of a warm fluid carrying energy with it.
+  - rung: 2
+    name: concept
+    text:
+      en: Cooling a fluid has the opposite effect on its density to heating it.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ask what happens to the density of a fluid when it is heated or cooled.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options where heat moves by itself or a solid flows.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Air cooled at the top becomes denser and sinks, setting up a current.'
+  misconception_ids:
+  - mc.phy.o.convection_in_solids
+  - mc.phy.o.density_unchanged_on_heating
+  - mc.phy.o.heated_fluid_denser
+solution:
+  steps:
+  - n: 1
+    latex: \text{Air cooled at the top becomes denser and sinks, setting up a current}
+    reason: Explain the current by changes in density
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

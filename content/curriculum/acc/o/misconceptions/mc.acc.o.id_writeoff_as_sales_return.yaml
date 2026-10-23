@@ -1,0 +1,35 @@
+id: mc.acc.o.id_writeoff_as_sales_return
+kc_ids:
+- kc.acc.o.irrecoverable_debts.write_off
+student_name: A bad debt as a sales return
+description: Treats a debt that will not be paid as if the goods had been returned.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: income
+fix:
+  strategy: contrast_example
+  text:
+    en: The customer kept the goods. The sale stands; the loss is an expense.
+probe_item_ids:
+- itm.acc.o.irrecoverable_debts.0001
+- itm.acc.o.irrecoverable_debts.0002
+- itm.acc.o.irrecoverable_debts.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

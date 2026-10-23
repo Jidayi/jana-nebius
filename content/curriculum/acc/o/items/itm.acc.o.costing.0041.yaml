@@ -1,0 +1,116 @@
+id: itm.acc.o.costing.0041
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.costing.margin_of_safety
+stem: Tariq expects to sell 4250 wooden chairs at $40 each. Variable cost is $36 each and fixed costs are $9000.
+parts:
+- id: a
+  prompt: What is the margin of safety in units?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 6500 units
+      correct: false
+      misconception_id: mc.acc.o.cost_mos_added
+    - id: B
+      text: 2000 units
+      correct: true
+    - id: C
+      text: 2250 units
+      correct: false
+      misconception_id: mc.acc.o.cost_mos_be_as_mos
+    - id: D
+      text: 4250 units
+      correct: false
+      misconception_id: mc.acc.o.cost_mos_output_as_mos
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: How many units are sold above the break-even point?
+  - rung: 2
+    name: concept
+    text:
+      en: Margin of safety = expected output − break-even output.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Find break-even first: fixed costs ÷ contribution per unit.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 4250 − 9000 ÷ (40 − 36).
+  - rung: 5
+    name: full_step
+    text:
+      en: Margin of safety = 2000 units.
+  misconception_ids:
+  - mc.acc.o.cost_mos_be_as_mos
+  - mc.acc.o.cost_mos_output_as_mos
+  - mc.acc.o.cost_mos_added
+solution:
+  steps:
+  - n: 1
+    latex: \text{Margin of safety} = \text{output} - \text{break-even}
+    reason: Room before a loss
+    check_id: chk_build_acc_costing_0041_t
+  - n: 2
+    latex: \text{Break-even} = \frac{9000}{40 - 36} = 2250
+    reason: Units
+    check_id: chk_build_acc_costing_0041_s2
+  - n: 3
+    latex: 4250 - 2250 = 2000
+    reason: Subtract
+    check_id: chk_build_acc_costing_0041_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_costing_0041_a:
+    args:
+      dp: 2
+      expression: 4250 - 9000 / (40 - 36)
+    tool: math_evaluate
+  chk_build_acc_costing_0041_s2:
+    args:
+      dp: 4
+      expression: 9000 / (40 - 36)
+    tool: math_evaluate
+  chk_build_acc_costing_0041_t:
+    args:
+      dp: 2
+      fixed_costs: '9000'
+      output_units: 4250
+      selling_price: '40'
+      variable_cost_per_unit: '36'
+    tool: acc_break_even
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

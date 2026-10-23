@@ -1,0 +1,93 @@
+id: itm.phy.o.heat_transfer.0022
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.convection
+stem: At night at the coast, the breeze turns round and blows from the land out to sea.
+parts:
+- id: a
+  prompt: Why does it change direction?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The sea cools faster than the land at night
+      correct: false
+      misconception_id: mc.phy.o.sea_warms_faster_than_land
+      feedback: Water has a high specific heat capacity, so the sea changes temperature slowly. By day the land is warmer and air rises over it; by night the sea is the warmer one.
+    - id: B
+      text: Cold rises from the land and drifts out to sea
+      correct: false
+      misconception_id: mc.phy.o.heat_itself_rises
+      feedback: 'Energy has no up or down. In convection the fluid moves: warmer, less dense fluid is pushed upwards by cooler, denser fluid sinking beneath it.'
+    - id: C
+      text: The land cools faster, so warmer air rises over the sea and air from the land moves out
+      correct: true
+    - id: D
+      text: Warm air over the sea sinks and pushes the land air away
+      correct: false
+      misconception_id: mc.phy.o.heated_fluid_denser
+      feedback: Heating makes a fluid expand, so the same mass takes up more space and its density falls. Warm air and water rise; cooled air and water sink.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Convection is the movement of a warm fluid carrying energy with it.
+  - rung: 2
+    name: concept
+    text:
+      en: The sea changes temperature much more slowly than the land does.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ask what happens to the density of a fluid when it is heated or cooled.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options where heat moves by itself or a solid flows.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The land cools faster, so warmer air rises over the sea and air from the land moves out.'
+  misconception_ids:
+  - mc.phy.o.heat_itself_rises
+  - mc.phy.o.heated_fluid_denser
+  - mc.phy.o.sea_warms_faster_than_land
+solution:
+  steps:
+  - n: 1
+    latex: \text{The land cools faster, so warmer air rises over the sea and air from the land moves out}
+    reason: Explain the current by changes in density
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

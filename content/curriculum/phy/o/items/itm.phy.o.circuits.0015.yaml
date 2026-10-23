@@ -1,0 +1,134 @@
+id: itm.phy.o.circuits.0015
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.series_circuits
+stem: A 15 Ω resistor and a motor coil of resistance 4 Ω are connected in series to a 24 V supply.
+parts:
+- id: a
+  prompt: Calculate the p.d. across the 4 Ω component.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 24 V
+      correct: false
+      misconception_id: mc.phy.o.series_treated_as_parallel
+      feedback: In series there is only one path. The current is the same everywhere, the supply p.d. is shared between the resistors, and the total resistance is the sum.
+    - id: B
+      text: 12 V
+      correct: false
+      misconception_id: mc.phy.o.series_pd_shared_equally
+      feedback: 'The p.d. is shared in proportion to resistance: the resistor with twice the resistance has twice the p.d. Only equal resistors share equally.'
+    - id: C
+      text: 18.9 V
+      correct: false
+      misconception_id: mc.phy.o.series_pd_inverse_to_resistance
+      feedback: The same current flows through both, so V = IR is bigger where R is bigger. The larger resistance always takes the larger share of the p.d.
+    - id: D
+      text: 5.05 V
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: In series the supply p.d. is shared between the two components.
+  - rung: 2
+    name: concept
+    text:
+      en: The bigger resistance takes the bigger share; the shares add up to the supply p.d.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the current from the total resistance, then use V = IR for the one component.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The total resistance is 19 Ω, so its share is 4/19 of 24 V.
+  - rung: 5
+    name: full_step
+    text:
+      en: The p.d. across the 4 Ω component is 5.05 V.
+  misconception_ids:
+  - mc.phy.o.series_pd_inverse_to_resistance
+  - mc.phy.o.series_pd_shared_equally
+  - mc.phy.o.series_treated_as_parallel
+solution:
+  steps:
+  - n: 1
+    latex: R = 15 + 4 = 19\ \Omega
+    reason: Series resistances add
+    check_id: chk_build_phy_cir_0015_rt
+  - n: 2
+    latex: I = \frac{24}{19} = 1.26\ \text{A}
+    reason: The current is the same in both
+    check_id: chk_build_phy_cir_0015_i
+  - n: 3
+    latex: V = IR = \frac{24 \times 4}{19} = 5.05\ \text{V}
+    reason: V = IR for one part
+    check_id: chk_build_phy_cir_0015_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_0015_ans:
+    args:
+      expression: 24*4/(15 + 4)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_cir_0015_i:
+    args:
+      expression: 24/(15 + 4)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_cir_0015_rt:
+    args:
+      expression: 15 + 4
+    tool: math_evaluate
+  chk_build_phy_cir_0015_tool:
+    args:
+      components:
+      - emf: '24'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '15'
+      - id: R2
+        kind: resistor
+        resistance: '4'
+      network:
+        series:
+        - B
+        - R1
+        - R2
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

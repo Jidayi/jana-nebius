@@ -1,0 +1,117 @@
+id: itm.phy.o.density.0007
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.density_calculation
+stem: A rectangular block of cork measures 6 cm × 4 cm × 2.5 cm and has a mass of 14.4 g.
+parts:
+- id: a
+  prompt: Calculate its density in g/cm³.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.24'
+    unit: g/cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_den_0007_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Density is the mass of each cubic centimetre.
+  - rung: 2
+    name: concept
+    text:
+      en: Density = mass ÷ volume.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Find the volume first: length × width × height.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: The volume is 60 cm³; divide the mass by it.
+  - rung: 5
+    name: full_step
+    text:
+      en: The density is 0.24 g/cm³.
+  misconception_ids:
+  - mc.phy.o.density_volume_over_mass
+  - mc.phy.o.density_mass_times_volume
+  - mc.phy.o.block_volume_two_sides
+solution:
+  steps:
+  - n: 1
+    latex: V = 6 \times 4 \times 2.5 = 60\ \text{cm}^3
+    reason: Volume of a block
+    check_id: chk_build_phy_den_0007_v
+  - n: 2
+    latex: \rho = \frac{m}{V} = \frac{14.4}{60} = 0.24\ \text{g/cm}^3
+    reason: Density = mass ÷ volume
+    check_id: chk_build_phy_den_0007_ans
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  l: '6'
+  m: '14.4'
+  w: '4'
+checks:
+  chk_build_phy_den_0007_ans:
+    args:
+      expression: 14.4/(6*4*2.5)
+    tool: math_evaluate
+  chk_build_phy_den_0007_v:
+    args:
+      expression: 6*4*2.5
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:41:10.805Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.density.0007
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

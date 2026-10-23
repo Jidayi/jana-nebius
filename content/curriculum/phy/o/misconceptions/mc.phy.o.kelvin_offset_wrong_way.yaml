@@ -1,0 +1,36 @@
+id: mc.phy.o.kelvin_offset_wrong_way
+kc_ids:
+- kc.phy.o.particles.temperature_scales
+student_name: Subtracting 273 to get kelvin
+description: Subtracts 273 when changing a Celsius temperature into kelvin, or adds 273 when changing kelvin into Celsius.
+signatures:
+- kind: answer_transform
+  expression: x - 273
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Kelvin numbers are always the bigger ones: 0 °C is 273 K. Add 273 to go from °C to K, and subtract 273 to go back.'
+probe_item_ids:
+- itm.phy.o.particles.0026
+- itm.phy.o.particles.0027
+- itm.phy.o.particles.0028
+- itm.phy.o.particles.0029
+- itm.phy.o.particles.0030
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

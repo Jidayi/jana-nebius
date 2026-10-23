@@ -1,0 +1,45 @@
+id: wex.phy.o.stars.0005
+kc_ids:
+- kc.phy.o.stars.expanding_universe
+problem: A galaxy is 8.0 × 10²³ m from the Earth. Take the Hubble constant H0 as 2.2 × 10⁻¹⁸ per second. Calculate the speed at which the galaxy is moving away from us, in km/s.
+steps:
+- n: 1
+  latex: v = H_0 d = 2.2 \times 10^{-18} \times 8.0 \times 10^{23} = 1760000\ \text{m/s}
+  reason: Recession speed = Hubble constant × distance
+  check_id: chk_build_phy_str_w0005_vms
+- n: 2
+  latex: 1760000\ \text{m/s} = 1760\ \text{km/s}
+  reason: Divide by a thousand for km/s
+  check_id: chk_build_phy_str_w0005_ans
+final_answer:
+  latex: 1760\ \text{km/s}
+  check_id: chk_build_phy_str_w0005_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_str_w0005_ans:
+    args:
+      expression: 2.2e-18*8.0e23/1000
+    tool: math_evaluate
+  chk_build_phy_str_w0005_vms:
+    args:
+      expression: 2.2e-18*8.0e23
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,91 @@
+id: itm.chm.o.reactions.0061
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.redox
+stem: 'Zinc powder is added to blue copper(II) sulfate solution. The blue colour fades and a brown solid forms: Zn + Cu²⁺ → Zn²⁺ + Cu.'
+parts:
+- id: a
+  prompt: Which substance is oxidised?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Nothing, because no oxygen is gained or lost.
+      correct: false
+      misconception_id: mc.chm.o.reactions_redox_needs_oxygen
+      feedback: 'Oxygen is only one way to see redox. Any transfer of electrons is redox: when magnesium burns in chlorine, magnesium loses electrons (oxidised) and chlorine gains them (reduced), with no oxygen at all.'
+    - id: B
+      text: Copper(II) ions, because they are the oxidising agent.
+      correct: false
+      misconception_id: mc.chm.o.reactions_oxidising_agent_is_oxidised
+      feedback: An agent does the job to something else. The oxidising agent oxidises another substance by taking its electrons, so the oxidising agent itself is reduced. The reducing agent gives electrons away and is oxidised.
+    - id: C
+      text: Copper(II) ions, because they gain electrons.
+      correct: false
+      misconception_id: mc.chm.o.reactions_oxidation_is_gaining_electrons
+      feedback: Oxidation is loss of electrons; reduction is gain of electrons. A metal atom that becomes a positive ion has lost electrons, so it has been oxidised.
+    - id: D
+      text: Zinc atoms, because they lose electrons.
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Follow the electrons: which particle loses them and which gains them?'
+  - rung: 2
+    name: concept
+    text:
+      en: Oxidation is loss of electrons; reduction is gain of electrons.
+  - rung: 3
+    name: first_step
+    text:
+      en: Zinc atoms become Zn²⁺ ions. Copper(II) ions become copper atoms.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A neutral atom turning into a positive ion must have given electrons away.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Zinc is oxidised: each zinc atom loses two electrons to become Zn²⁺. The copper(II) ions gain them and are reduced.'
+  misconception_ids:
+  - mc.chm.o.reactions_oxidation_is_gaining_electrons
+  - mc.chm.o.reactions_oxidising_agent_is_oxidised
+  - mc.chm.o.reactions_redox_needs_oxygen
+solution:
+  steps:
+  - n: 1
+    latex: \text{Zn} \rightarrow \text{Zn}^{2+} + 2e^-
+    reason: 'Electrons lost: oxidation'
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,92 @@
+id: itm.chm.o.stoichiometry.0078
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.gas_volumes
+stem: Take the molar gas volume at room temperature and pressure as 24 dm³.
+parts:
+- id: a
+  prompt: Calculate the volume of 0.050 mol of H₂ at room temperature and pressure.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1.20'
+    unit: dm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0078_chain
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You have an amount of gas and want its volume.
+  - rung: 2
+    name: concept
+    text:
+      en: At room conditions one mole of any gas occupies 24 dm³.
+  - rung: 3
+    name: first_step
+    text:
+      en: Volume = amount × 24 dm³/mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 0.050 × 24.
+  - rung: 5
+    name: full_step
+    text:
+      en: 0.050 × 24 = 1.20 dm³.
+  misconception_ids:
+  - mc.chm.o.gas_volume_divided
+solution:
+  steps:
+  - n: 1
+    latex: V = 0.050 \times 24
+    reason: Amount times molar gas volume
+  - n: 2
+    latex: V = 1.20\ \text{dm}^3
+    reason: Multiply
+    check_id: chk_build_chm_stoichiometry_0078_chain
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0078_chain:
+    args:
+      constants:
+      - source: pack
+        symbol: vm
+      sf: 3
+      steps:
+      - amount: 0.050 mol
+        id: v
+        op: gas_volume_from_amount
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

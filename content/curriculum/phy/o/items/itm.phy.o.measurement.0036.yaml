@@ -1,0 +1,95 @@
+id: itm.phy.o.measurement.0036
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.measurement.resultant_vectors
+stem: A plane flies north at 120 m/s while a wind blows it east at 50 m/s.
+parts:
+- id: a
+  prompt: Find the angle between the plane's resultant velocity and due north.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '22.6'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_mea_0036_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Draw the north vector, then the east vector from its tip; the resultant joins start to finish.
+  - rung: 2
+    name: concept
+    text:
+      en: The angle at the start is between north and the resultant.
+  - rung: 3
+    name: first_step
+    text:
+      en: The east vector is opposite this angle and the north vector is next to it.
+  - rung: 4
+    name: worked_step
+    text:
+      en: tan θ = 50 ÷ 120.
+  - rung: 5
+    name: full_step
+    text:
+      en: θ = 22.6°.
+  misconception_ids:
+  - mc.phy.o.resultant_angle_inverted
+  - mc.phy.o.angle_uses_wrong_ratio
+  - mc.phy.o.angle_shared_in_proportion
+solution:
+  steps:
+  - n: 1
+    latex: \tan\theta = \frac{50}{120} = 0.417
+    reason: Opposite over adjacent, from north
+    check_id: chk_build_phy_mea_0036_ratio
+  - n: 2
+    latex: \theta = 22.6^\circ
+    reason: Inverse tangent
+    check_id: chk_build_phy_mea_0036_ans
+difficulty:
+  prior: 0.5
+  band: stretch
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mea_0036_ans:
+    args:
+      angle_unit: degrees
+      expression: atan(50/120)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_mea_0036_ratio:
+    args:
+      expression: 50/120
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

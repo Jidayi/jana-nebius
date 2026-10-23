@@ -1,0 +1,110 @@
+id: itm.chm.o.environment.0017
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.fertilisers
+stem: Ammonium chloride, NH₄Cl, is sold as a fertiliser.
+parts:
+- id: a
+  prompt: Calculate the percentage by mass of nitrogen in NH₄Cl.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '26.2'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_environment_0017_pct
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What fraction of the mass of NH₄Cl is nitrogen?
+  - rung: 2
+    name: concept
+    text:
+      en: '% nitrogen in ammonium chloride = mass of the nitrogen atoms ÷ Mr × 100.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Mr of NH₄Cl is 53.5.
+  - rung: 4
+    name: worked_step
+    text:
+      en: NH₄Cl has one nitrogen atom, of total mass 14. Work out 14 ÷ 53.5 × 100.
+  - rung: 5
+    name: full_step
+    text:
+      en: 14 ÷ 53.5 × 100 = 26.2% nitrogen.
+  misconception_ids:
+  - mc.chm.o.environment_n_percent_inverted
+  - mc.chm.o.environment_percent_not_times_100
+solution:
+  steps:
+  - n: 1
+    latex: M_r(\text{NH}_4\text{Cl}) = 53.5
+    reason: Relative formula mass of ammonium chloride
+    check_id: chk_build_chm_environment_0017_mr
+  - n: 2
+    latex: \text{N} = 14
+    reason: Mass of the nitrogen atoms
+    check_id: chk_build_chm_environment_0017_n
+  - n: 3
+    latex: \% N = \frac{14}{53.5} \times 100 = 26.2\%
+    reason: Part over whole, times 100
+    check_id: chk_build_chm_environment_0017_pct
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_environment_0017_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_cl
+      formula: NH4Cl
+    tool: chem_molar_mass
+  chk_build_chm_environment_0017_n:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      formula: N
+    tool: chem_molar_mass
+  chk_build_chm_environment_0017_pct:
+    args:
+      expression: 100*14/53.5
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

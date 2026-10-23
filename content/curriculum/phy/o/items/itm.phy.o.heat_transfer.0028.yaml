@@ -1,0 +1,93 @@
+id: itm.phy.o.heat_transfer.0028
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.convection
+stem: A beaker of water is heated under one side of its base, and a few purple crystals show how the water moves.
+parts:
+- id: a
+  prompt: Why does the water above the heated spot rise?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: It expands and becomes less dense, so cooler, denser water pushes it up
+      correct: true
+    - id: B
+      text: Heat rises, and carries the water with it
+      correct: false
+      misconception_id: mc.phy.o.heat_itself_rises
+      feedback: 'Energy has no up or down. In convection the fluid moves: warmer, less dense fluid is pushed upwards by cooler, denser fluid sinking beneath it.'
+    - id: C
+      text: It becomes denser, and the crystals push it up
+      correct: false
+      misconception_id: mc.phy.o.heated_fluid_denser
+      feedback: Heating makes a fluid expand, so the same mass takes up more space and its density falls. Warm air and water rise; cooled air and water sink.
+    - id: D
+      text: Its particles grow larger and float up
+      correct: false
+      misconception_id: mc.phy.o.particles_grow_when_heated
+      feedback: A water particle is the same size in ice, in water and in steam. Heating makes particles move faster and spread further apart; it does not make them bigger.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Convection is the movement of a warm fluid carrying energy with it.
+  - rung: 2
+    name: concept
+    text:
+      en: Heating makes the same mass of water take up more space.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ask what happens to the density of a fluid when it is heated or cooled.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options where heat moves by itself or a solid flows.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It expands and becomes less dense, so cooler, denser water pushes it up.'
+  misconception_ids:
+  - mc.phy.o.heat_itself_rises
+  - mc.phy.o.heated_fluid_denser
+  - mc.phy.o.particles_grow_when_heated
+solution:
+  steps:
+  - n: 1
+    latex: \text{It expands and becomes less dense, so cooler, denser water pushes it up}
+    reason: Explain the current by changes in density
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

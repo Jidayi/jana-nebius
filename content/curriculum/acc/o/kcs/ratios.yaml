@@ -1,0 +1,374 @@
+- id: kc.acc.o.ratios.margins
+  code: ACC-O-15.K01
+  node_id: cur.acc.o.ratios
+  statement: Calculate the gross margin and the profit margin as percentages
+  kind: procedural
+  tools:
+  - acc_ratios
+  - math_evaluate
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.sole_trader_statements.gross_profit
+    strength: required
+  misconception_ids:
+  - mc.acc.o.rat_gross_net_confused
+  - mc.acc.o.rat_margin_markup_confused
+  - mc.acc.o.rat_ratio_inverted
+  skill_ids:
+  - acc-o-ratios
+  glossary:
+  - ratio
+  - gross margin
+  - profit margin
+  - mark-up
+  - current ratio
+  - acid-test ratio
+  - acid-test
+  - liquidity
+  - inventory turnover
+  - rate of inventory turnover
+  - collection period
+  - trade receivables collection period
+  - trade payables payment period
+  - return on capital employed
+  - capital employed
+  - ROCE
+  - current assets
+  - current liabilities
+  - cost of sales
+  - revenue
+  - gross profit
+  - profit for the year
+  - average inventory
+  - inventory
+  - trade receivables
+  - trade payables
+  - credit sales
+  - credit purchases
+  - non-current liabilities
+  - profitability
+  - efficiency
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.ratios.mark_up
+  code: ACC-O-15.K02
+  node_id: cur.acc.o.ratios
+  statement: Calculate the mark-up percentage and relate it to the margin
+  kind: procedural
+  tools:
+  - acc_ratios
+  - math_evaluate
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.ratios.margins
+    strength: helpful
+  confusable_with:
+  - kc.acc.o.ratios.margins
+  misconception_ids:
+  - mc.acc.o.rat_margin_markup_confused
+  - mc.acc.o.rat_ratio_inverted
+  - mc.acc.o.rat_revenue_for_profit
+  skill_ids:
+  - acc-o-ratios
+  glossary:
+  - ratio
+  - gross margin
+  - profit margin
+  - mark-up
+  - current ratio
+  - acid-test ratio
+  - acid-test
+  - liquidity
+  - inventory turnover
+  - rate of inventory turnover
+  - collection period
+  - trade receivables collection period
+  - trade payables payment period
+  - return on capital employed
+  - capital employed
+  - ROCE
+  - current assets
+  - current liabilities
+  - cost of sales
+  - revenue
+  - gross profit
+  - profit for the year
+  - average inventory
+  - inventory
+  - trade receivables
+  - trade payables
+  - credit sales
+  - credit purchases
+  - non-current liabilities
+  - profitability
+  - efficiency
+  difficulty_prior: 0.1
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.ratios.liquidity
+  code: ACC-O-15.K03
+  node_id: cur.acc.o.ratios
+  statement: Calculate the current ratio and the acid-test ratio
+  kind: procedural
+  tools:
+  - acc_ratios
+  - math_evaluate
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.sole_trader_statements.working_capital
+    strength: required
+  misconception_ids:
+  - mc.acc.o.rat_acid_includes_inventory
+  - mc.acc.o.rat_quick_assets_too_narrow
+  - mc.acc.o.rat_ratio_inverted
+  skill_ids:
+  - acc-o-ratios
+  glossary:
+  - ratio
+  - gross margin
+  - profit margin
+  - mark-up
+  - current ratio
+  - acid-test ratio
+  - acid-test
+  - liquidity
+  - inventory turnover
+  - rate of inventory turnover
+  - collection period
+  - trade receivables collection period
+  - trade payables payment period
+  - return on capital employed
+  - capital employed
+  - ROCE
+  - current assets
+  - current liabilities
+  - cost of sales
+  - revenue
+  - gross profit
+  - profit for the year
+  - average inventory
+  - inventory
+  - trade receivables
+  - trade payables
+  - credit sales
+  - credit purchases
+  - non-current liabilities
+  - profitability
+  - efficiency
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.ratios.inventory_turnover
+  code: ACC-O-15.K04
+  node_id: cur.acc.o.ratios
+  statement: Calculate the rate of inventory turnover in times and in days
+  kind: procedural
+  tools:
+  - acc_ratios
+  - math_evaluate
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.sole_trader_statements.cost_of_sales
+    strength: required
+  misconception_ids:
+  - mc.acc.o.rat_closing_inventory_used
+  - mc.acc.o.rat_ratio_inverted
+  - mc.acc.o.rat_revenue_for_cos
+  skill_ids:
+  - acc-o-ratios
+  glossary:
+  - ratio
+  - gross margin
+  - profit margin
+  - mark-up
+  - current ratio
+  - acid-test ratio
+  - acid-test
+  - liquidity
+  - inventory turnover
+  - rate of inventory turnover
+  - collection period
+  - trade receivables collection period
+  - trade payables payment period
+  - return on capital employed
+  - capital employed
+  - ROCE
+  - current assets
+  - current liabilities
+  - cost of sales
+  - revenue
+  - gross profit
+  - profit for the year
+  - average inventory
+  - inventory
+  - trade receivables
+  - trade payables
+  - credit sales
+  - credit purchases
+  - non-current liabilities
+  - profitability
+  - efficiency
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.ratios.collection_periods
+  code: ACC-O-15.K05
+  node_id: cur.acc.o.ratios
+  statement: Calculate the trade receivables and trade payables collection periods in days
+  kind: procedural
+  tools:
+  - acc_ratios
+  - math_evaluate
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.ratios.margins
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.rat_ratio_inverted
+  - mc.acc.o.rat_receivables_payables_swapped
+  - mc.acc.o.rat_total_sales_used
+  skill_ids:
+  - acc-o-ratios
+  glossary:
+  - ratio
+  - gross margin
+  - profit margin
+  - mark-up
+  - current ratio
+  - acid-test ratio
+  - acid-test
+  - liquidity
+  - inventory turnover
+  - rate of inventory turnover
+  - collection period
+  - trade receivables collection period
+  - trade payables payment period
+  - return on capital employed
+  - capital employed
+  - ROCE
+  - current assets
+  - current liabilities
+  - cost of sales
+  - revenue
+  - gross profit
+  - profit for the year
+  - average inventory
+  - inventory
+  - trade receivables
+  - trade payables
+  - credit sales
+  - credit purchases
+  - non-current liabilities
+  - profitability
+  - efficiency
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.ratios.roce
+  code: ACC-O-15.K06
+  node_id: cur.acc.o.ratios
+  statement: Calculate the return on capital employed
+  kind: procedural
+  tools:
+  - acc_ratios
+  - math_evaluate
+  exam_weight: 0.1
+  prerequisites:
+  - kc_id: kc.acc.o.sole_trader_statements.profit_for_year
+    strength: required
+  misconception_ids:
+  - mc.acc.o.rat_capital_basis_wrong
+  - mc.acc.o.rat_capital_employed_wrong
+  - mc.acc.o.rat_gross_net_confused
+  skill_ids:
+  - acc-o-ratios
+  glossary:
+  - ratio
+  - gross margin
+  - profit margin
+  - mark-up
+  - current ratio
+  - acid-test ratio
+  - acid-test
+  - liquidity
+  - inventory turnover
+  - rate of inventory turnover
+  - collection period
+  - trade receivables collection period
+  - trade payables payment period
+  - return on capital employed
+  - capital employed
+  - ROCE
+  - current assets
+  - current liabilities
+  - cost of sales
+  - revenue
+  - gross profit
+  - profit for the year
+  - average inventory
+  - inventory
+  - trade receivables
+  - trade payables
+  - credit sales
+  - credit purchases
+  - non-current liabilities
+  - profitability
+  - efficiency
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.ratios.interpret_ratios
+  code: ACC-O-15.K07
+  node_id: cur.acc.o.ratios
+  statement: Interpret a change in a ratio and suggest a likely cause
+  kind: conceptual
+  tools: []
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.ratios.margins
+    strength: required
+  - kc_id: kc.acc.o.ratios.liquidity
+    strength: required
+  misconception_ids:
+  - mc.acc.o.rat_gross_net_confused
+  - mc.acc.o.rat_interpret_higher_always_better
+  - mc.acc.o.rat_interpret_liquidity_profit
+  - mc.acc.o.rat_interpret_volume_margin
+  skill_ids:
+  - acc-o-ratios
+  glossary:
+  - ratio
+  - gross margin
+  - profit margin
+  - mark-up
+  - current ratio
+  - acid-test ratio
+  - acid-test
+  - liquidity
+  - inventory turnover
+  - rate of inventory turnover
+  - collection period
+  - trade receivables collection period
+  - trade payables payment period
+  - return on capital employed
+  - capital employed
+  - ROCE
+  - current assets
+  - current liabilities
+  - cost of sales
+  - revenue
+  - gross profit
+  - profit for the year
+  - average inventory
+  - inventory
+  - trade receivables
+  - trade payables
+  - credit sales
+  - credit purchases
+  - non-current liabilities
+  - profitability
+  - efficiency
+  difficulty_prior: 0.6
+  version: 0.1.1
+  status: active

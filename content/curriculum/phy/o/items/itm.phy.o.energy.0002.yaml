@@ -1,0 +1,91 @@
+id: itm.phy.o.energy.0002
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.stores_and_transfers
+stem: Energy can be described by its stores and by the ways it is transferred.
+parts:
+- id: a
+  prompt: Which of these is a way of transferring energy, not a store?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Thermal
+      correct: false
+      misconception_id: mc.phy.o.transfer_named_as_store
+      feedback: 'A store is where energy sits (kinetic, gravitational, elastic, chemical, thermal, nuclear). A transfer is how it moves: by a force, electrically, by heating or by radiation such as light and sound.'
+    - id: B
+      text: Chemical
+      correct: false
+      misconception_id: mc.phy.o.transfer_named_as_store
+      feedback: 'A store is where energy sits (kinetic, gravitational, elastic, chemical, thermal, nuclear). A transfer is how it moves: by a force, electrically, by heating or by radiation such as light and sound.'
+    - id: C
+      text: Heating
+      correct: true
+    - id: D
+      text: Gravitational potential
+      correct: false
+      misconception_id: mc.phy.o.transfer_named_as_store
+      feedback: 'A store is where energy sits (kinetic, gravitational, elastic, chemical, thermal, nuclear). A transfer is how it moves: by a force, electrically, by heating or by radiation such as light and sound.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Decide where the energy is at the start and where it ends up.
+  - rung: 2
+    name: concept
+    text:
+      en: A transfer is a process, something that happens; a store is where energy sits.
+  - rung: 3
+    name: first_step
+    text:
+      en: Energy is never made or destroyed; it only moves from store to store.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out each option that breaks one of these ideas.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Heating.'
+  misconception_ids:
+  - mc.phy.o.transfer_named_as_store
+solution:
+  steps:
+  - n: 1
+    latex: \text{Heating}
+    reason: Follow the energy from store to store
+difficulty:
+  prior: -0.9
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

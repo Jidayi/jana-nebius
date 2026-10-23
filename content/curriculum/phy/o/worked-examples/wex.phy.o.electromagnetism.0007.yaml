@@ -1,0 +1,40 @@
+id: wex.phy.o.electromagnetism.0007
+kc_ids:
+- kc.phy.o.electromagnetism.transformers
+problem: A transformer for a model railway works from the 230 V mains. The primary coil has 2300 turns and the secondary coil 50 turns. Calculate the output voltage.
+steps:
+- n: 1
+  latex: \frac{V_s}{V_p} = \frac{N_s}{N_p}
+  reason: Voltages are in the ratio of the turns
+- n: 2
+  latex: V_s = V_p \times \frac{N_s}{N_p} = 230 \times \frac{50}{2300} = 5\ \text{V}
+  reason: Rearrange for V_s
+  check_id: chk_build_phy_emg_w0007_ans
+final_answer:
+  latex: 5\ \text{V}
+  check_id: chk_build_phy_emg_w0007_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_w0007_ans:
+    args:
+      expression: 230*50/2300
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,69 @@
+id: wex.chm.o.periodic.0004
+kc_ids:
+- kc.chm.o.periodic.group_i
+problem: Sodium reacts with water. Write the equation and find the relative formula mass of the alkali formed.
+steps:
+- n: 1
+  latex: 2\text{Na} + 2\text{H}_2\text{O} \rightarrow 2\text{NaOH} + \text{H}_2
+  reason: Metal + water → hydroxide + hydrogen
+  check_id: chk_build_chm_periodic_w0004_s1
+- n: 2
+  latex: M_r(\text{NaOH}) = 23 + 16 + 1
+  reason: Add the relative atomic masses
+  check_id: chk_build_chm_periodic_w0004_s2
+final_answer:
+  latex: M_r(\text{NaOH}) = 40
+  check_id: chk_build_chm_periodic_w0004_mr
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_periodic_w0004_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_na
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_h
+      formula: NaOH
+    tool: chem_molar_mass
+  chk_build_chm_periodic_w0004_s1:
+    args:
+      equation: 2Na + 2H2O -> 2NaOH + H2
+    tool: chem_balance
+  chk_build_chm_periodic_w0004_s2:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_na
+      - source: pack
+        symbol: ar_o
+      - source: pack
+        symbol: ar_h
+      expression: ar_na + ar_o + ar_h
+      variables:
+      - ar
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

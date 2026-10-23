@@ -1,0 +1,93 @@
+id: itm.phy.o.particles.0010
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.states_of_matter
+stem: A jar of air and a jar of brown bromine gas are placed mouth to mouth and the cover between them removed.
+parts:
+- id: a
+  prompt: Why does the brown colour spread through both jars?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The bromine particles expand until they fill both jars
+      correct: false
+      misconception_id: mc.phy.o.particles_grow_when_heated
+      feedback: A water particle is the same size in ice, in water and in steam. Heating makes particles move faster and spread further apart; it does not make them bigger.
+    - id: B
+      text: Brown bromine particles colour the air particles they touch
+      correct: false
+      misconception_id: mc.phy.o.particles_have_bulk_properties
+      feedback: A single particle does not melt, feel hot or have a colour. Those are properties of huge numbers of particles together, set by how they are arranged and how fast they move.
+    - id: C
+      text: The particles of both gases move randomly and mix
+      correct: true
+    - id: D
+      text: The air between the bromine particles is pushed out
+      correct: false
+      misconception_id: mc.phy.o.air_between_particles
+      feedback: 'Air is itself made of particles. Between the particles of any gas there is nothing at all: empty space.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Picture the particles: how close together are they, and how do they move?'
+  - rung: 2
+    name: concept
+    text:
+      en: Gas particles move quickly in straight lines between collisions, in all directions.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Test each option against how the material behaves: does it keep its shape, flow, or spread out?'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options that give single particles the properties of the whole material.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The particles of both gases move randomly and mix.'
+  misconception_ids:
+  - mc.phy.o.air_between_particles
+  - mc.phy.o.particles_grow_when_heated
+  - mc.phy.o.particles_have_bulk_properties
+solution:
+  steps:
+  - n: 1
+    latex: \text{The particles of both gases move randomly and mix}
+    reason: Match the description to the particle model
+difficulty:
+  prior: -0.8
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

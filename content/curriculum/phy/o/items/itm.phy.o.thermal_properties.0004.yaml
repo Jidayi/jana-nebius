@@ -1,0 +1,85 @@
+id: itm.phy.o.thermal_properties.0004
+version: 0.1.0
+type: multi_select
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.thermal_properties.thermal_expansion
+stem: Thermal expansion can be useful, and it can cause problems.
+parts:
+- id: a
+  prompt: Which of these make use of thermal expansion? Select all that apply.
+  marks: 1
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Expansion gaps in a steel bridge
+      correct: false
+    - id: B
+      text: A bimetallic strip in a fire alarm
+      correct: true
+    - id: C
+      text: Shrink-fitting a metal ring onto a wheel
+      correct: true
+    - id: D
+      text: A liquid-in-glass thermometer
+      correct: true
+    - id: E
+      text: A vacuum flask
+      correct: false
+    scoring: exact_set
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Sort each item into a use of expansion or a way of coping with it.
+  - rung: 2
+    name: concept
+    text:
+      en: A use needs something to expand or contract in order to work.
+  - rung: 3
+    name: first_step
+    text:
+      en: Gaps and slack are left to stop damage, so they deal with a problem.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Something that keeps drinks hot has nothing to do with expansion.
+  - rung: 5
+    name: full_step
+    text:
+      en: The bimetallic strip, the shrink-fitted ring and the thermometer.
+solution:
+  steps:
+  - n: 1
+    latex: \text{A bimetallic strip in a fire alarm; Shrink-fitting a metal ring onto a wheel; A liquid-in-glass thermometer}
+    reason: A use relies on the expansion; a problem has to be designed around
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

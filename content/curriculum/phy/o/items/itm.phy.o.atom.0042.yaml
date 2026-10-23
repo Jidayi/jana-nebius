@@ -1,0 +1,93 @@
+id: itm.phy.o.atom.0042
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.atom.nuclear_model_evidence
+stem: An alpha particle crosses a single gold atom in the foil.
+parts:
+- id: a
+  prompt: Through what is it most likely to pass?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: The nucleus, which fills most of the atom
+      correct: false
+      misconception_id: mc.phy.o.nucleus_fills_atom
+      feedback: If the nucleus were a pea in the centre of a football stadium, the atom would be the whole stadium. That is why almost every alpha particle missed it.
+    - id: B
+      text: An electron, which then turns it back
+      correct: false
+      misconception_id: mc.phy.o.deflection_by_electrons
+      feedback: 'An electron has less than a seven-thousandth of an alpha particle''s mass: like a table-tennis ball in the path of a bowling ball. Only something massive and highly charged could turn an alpha particle back.'
+    - id: C
+      text: Empty space, missing the nucleus by a wide margin
+      correct: true
+    - id: D
+      text: Evenly spread positive charge that slows it down
+      correct: false
+      misconception_id: mc.phy.o.plum_pudding_fits_results
+      feedback: Charge spread thinly through the atom pushes only weakly on an alpha particle, so it could not turn one back. The rebounds needed the charge packed into a tiny centre.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Recall the three things that happened to alpha particles fired at thin gold foil.
+  - rung: 2
+    name: concept
+    text:
+      en: Most went straight through, a few were deflected a little, and a very few were turned back.
+  - rung: 3
+    name: first_step
+    text:
+      en: Think about how much of the atom the nucleus takes up.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that contradict what was seen.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Empty space, missing the nucleus by a wide margin.'
+  misconception_ids:
+  - mc.phy.o.deflection_by_electrons
+  - mc.phy.o.nucleus_fills_atom
+  - mc.phy.o.plum_pudding_fits_results
+solution:
+  steps:
+  - n: 1
+    latex: \text{Empty space, missing the nucleus by a wide margin}
+    reason: Match each observation to what it shows
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

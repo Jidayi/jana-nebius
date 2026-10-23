@@ -1,0 +1,34 @@
+id: mc.phy.o.mirror_image_does_not_move
+kc_ids:
+- kc.phy.o.light.plane_mirrors
+student_name: The image stays put when you move
+description: When a person walks towards or away from a mirror, keeps the image where it was at the start, so only the person's own move changes the distance between them.
+signatures:
+- kind: answer_transform
+  expression: 2*d - x
+fix:
+  strategy: counterexample
+  text:
+    en: Step towards a mirror and your reflection steps towards you too, because the image is always as far behind the mirror as you are in front. Both distances shrink.
+probe_item_ids:
+- itm.phy.o.light.0013
+- itm.phy.o.light.0002
+- itm.phy.o.light.0008
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

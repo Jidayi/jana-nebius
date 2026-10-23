@@ -1,0 +1,98 @@
+id: itm.phy.o.wave_properties.0012
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.describing_waves
+stem: A displacement–time graph for the cone of a loudspeaker driven at a low frequency shows 10 complete cycles in 0.2 s.
+parts:
+- id: a
+  prompt: Find the period of the oscillation.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 0.02 s
+      correct: true
+    - id: B
+      text: 50 s
+      correct: false
+      misconception_id: mc.phy.o.period_frequency_confused
+      feedback: 'Frequency is the number of waves each second; the period is the number of seconds for each wave. One is the reciprocal of the other: T = 1/f.'
+    - id: C
+      text: 0.2 s
+      correct: false
+      misconception_id: mc.phy.o.whole_time_as_period
+      feedback: The period is the time for one cycle. When a graph shows several cycles, divide the time by the number of cycles.
+    - id: D
+      text: 2 s
+      correct: false
+      misconception_id: mc.phy.o.repeat_multiplied
+      feedback: 'One sheet must be thinner than the whole pile, so the answer must be smaller than the total: divide.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The period is the time for one complete cycle.
+  - rung: 2
+    name: concept
+    text:
+      en: The graph shows 10 cycles, not one.
+  - rung: 3
+    name: first_step
+    text:
+      en: Share the total time equally among the cycles.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 0.2 ÷ 10.
+  - rung: 5
+    name: full_step
+    text:
+      en: T = 0.02 s.
+  misconception_ids:
+  - mc.phy.o.period_frequency_confused
+  - mc.phy.o.repeat_multiplied
+  - mc.phy.o.whole_time_as_period
+solution:
+  steps:
+  - n: 1
+    latex: T = \frac{0.2}{10} = 0.02\ \text{s}
+    reason: Total time shared among the cycles
+    check_id: chk_build_phy_wav_0012_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_wav_0012_ans:
+    args:
+      expression: 0.2/10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

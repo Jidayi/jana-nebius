@@ -1,0 +1,111 @@
+id: itm.mth.o.number.0040
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.venn_counting
+stem: In a class of 30 students, 12 own a bicycle, 9 own a phone and 3 do both. Let A be the set of students who own a bicycle and B the set who own a phone.
+parts:
+- id: a
+  prompt: Find n(A ∪ B), the number who do at least one of them.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '18'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0040_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Draw a Venn diagram with two overlapping circles.
+  - rung: 2
+    name: concept
+    text:
+      en: Students who do both are inside both circles, so adding n(A) and n(B) counts them twice.
+  - rung: 3
+    name: first_step
+    text:
+      en: Put 3 in the overlap first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Add 12 and 9, then take away the 3 counted twice.
+  - rung: 5
+    name: full_step
+    text:
+      en: n(A ∪ B) = 12 + 9 − 3 = 18.
+  misconception_ids:
+  - mc.mth.o.venn_double_count
+  - mc.mth.o.venn_only_includes_overlap
+  - mc.mth.o.venn_complement_wrong
+solution:
+  steps:
+  - n: 1
+    latex: n(A \cup B) = n(A) + n(B) - n(A \cap B)
+    reason: The overlap is counted in both sets
+  - n: 2
+    latex: = 12 + 9 - 3 = 18
+    reason: Substitute
+    check_id: chk_build_mth_num_0040_ans
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  a: '12'
+  b: '9'
+checks:
+  chk_build_mth_num_0040_ans:
+    args:
+      expression: 12 + 9 - 3
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:37:59.922Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.number.0040
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

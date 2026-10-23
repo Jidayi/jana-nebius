@@ -1,0 +1,23 @@
+{
+ "$comment": "GENERATED from docs/specification/contracts/visuals/kinds/cycle_diagram.schema.json sha256 481fa2dedf7d0c5f16678bf26e18770880e574639fede813a92b06d620b826b8; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/cycle_diagram",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "cycle_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 100
+  },
+  "start_stage": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 64,
+   "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+  }
+ },
+ "required": [
+  "cycle_id"
+ ]
+}

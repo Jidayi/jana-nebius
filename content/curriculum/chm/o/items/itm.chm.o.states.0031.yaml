@@ -1,0 +1,115 @@
+id: itm.chm.o.states.0031
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.states.diffusion
+stem: Cotton wool soaked in ammonia solution is put at one end of a long glass tube and cotton wool soaked in hydrochloric acid at the other. A white ring of ammonium chloride forms inside the tube.
+parts:
+- id: a
+  prompt: Where does the ring form?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Nearer the ammonia end
+      correct: false
+      misconception_id: mc.chm.o.states_heavier_faster
+      feedback: At the same temperature lighter molecules move faster on average, so the gas with the lower Mr diffuses faster.
+    - id: B
+      text: Nearer the hydrochloric acid end
+      correct: true
+    - id: C
+      text: Outside the tube
+      correct: false
+      misconception_id: mc.chm.o.states_diffusion_needs_mixing
+      feedback: Particles move randomly all the time. Diffusion happens on its own, even in still air; stirring only speeds it up.
+    - id: D
+      text: Exactly in the middle
+      correct: false
+      misconception_id: mc.chm.o.states_all_gases_same_rate
+      feedback: Ammonia and hydrogen chloride released at opposite ends of a tube meet nearer the hydrogen chloride end, so ammonia must travel faster.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Cotton wool soaked in ammonia solution is put at one end of a long glass tube and cotton wool soaked in hydrochloric acid at the other. What are the particles doing?
+  - rung: 2
+    name: concept
+    text:
+      en: Particles move randomly and spread from high to low concentration; lighter and hotter particles move faster.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ammonia molecules (Mr 17) are lighter than hydrogen chloride molecules (Mr 36.5).
+  - rung: 4
+    name: worked_step
+    text:
+      en: Decide which particles travel further in the same time.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Nearer the hydrochloric acid end.'
+  misconception_ids:
+  - mc.chm.o.states_heavier_faster
+  - mc.chm.o.states_all_gases_same_rate
+  - mc.chm.o.states_diffusion_needs_mixing
+solution:
+  steps:
+  - n: 1
+    latex: M_r(\text{NH}_3) = 17 < M_r(\text{HCl}) = 36.5
+    reason: Ammonia is lighter
+    check_id: chk_build_chm_states_0031_a
+  - n: 2
+    latex: M_r(\text{HCl}) = 36.5
+    reason: Hydrogen chloride
+    check_id: chk_build_chm_states_0031_b
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_states_0031_a:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      - source: pack
+        symbol: ar_h
+      formula: NH3
+    tool: chem_molar_mass
+  chk_build_chm_states_0031_b:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_cl
+      formula: HCl
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

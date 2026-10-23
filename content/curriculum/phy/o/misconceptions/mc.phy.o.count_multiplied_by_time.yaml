@@ -1,0 +1,33 @@
+id: mc.phy.o.count_multiplied_by_time
+kc_ids:
+- kc.phy.o.radioactivity.background_radiation
+student_name: Multiplying the count by the time
+description: Multiplies the number of counts by the time instead of dividing to get a count rate.
+signatures:
+- kind: answer_transform
+  expression: N*t
+fix:
+  strategy: counterexample
+  text:
+    en: If a counter records 300 counts in 10 minutes, the count each minute must be smaller than 300, not larger. Divide.
+probe_item_ids:
+- itm.phy.o.radioactivity.0047
+- itm.phy.o.radioactivity.0053
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

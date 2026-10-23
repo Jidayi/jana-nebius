@@ -1,0 +1,33 @@
+id: mc.mth.o.place_holder_zeros_dropped
+kc_ids:
+- kc.mth.o.number.rounding
+student_name: Dropping the place-holder zeros
+description: Rounds a large whole number to significant figures but leaves out the zeros that keep its size, so 45678 becomes 46.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'A rounded number must stay about the same size: 45678 to 2 significant figures is 46000.'
+probe_item_ids:
+- itm.mth.o.number.0299
+- itm.mth.o.number.0303
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

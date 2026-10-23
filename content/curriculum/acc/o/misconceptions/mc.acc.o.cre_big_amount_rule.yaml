@@ -1,0 +1,35 @@
+id: mc.acc.o.cre_big_amount_rule
+kc_ids:
+- kc.acc.o.depreciation.capital_revenue_expenditure
+student_name: Big means capital
+description: Decides capital or revenue by the size of the payment rather than by what it buys.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: expense
+fix:
+  strategy: counterexample
+  text:
+    en: A large repair is still revenue; a small extension is still capital. Ask what the payment buys.
+probe_item_ids:
+- itm.acc.o.depreciation.0001
+- itm.acc.o.depreciation.0002
+- itm.acc.o.depreciation.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

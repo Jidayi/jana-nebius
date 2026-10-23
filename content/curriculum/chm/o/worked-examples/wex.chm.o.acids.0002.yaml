@@ -1,0 +1,49 @@
+id: wex.chm.o.acids.0002
+kc_ids:
+- kc.chm.o.acids.reactions_of_acids
+problem: Calcium carbonate reacts with dilute hydrochloric acid. Name the products, write the equation and find the relative formula mass of the salt.
+steps:
+- n: 1
+  latex: \text{CaCO}_3 + 2\text{HCl} \rightarrow \text{CaCl}_2 + \text{H}_2\text{O} + \text{CO}_2
+  reason: Carbonate + acid → salt + water + carbon dioxide
+  check_id: chk_build_chm_acids_w0002_bal
+- n: 2
+  latex: '\text{salt: } \text{CaCl}_2'
+  reason: Metal from the solid, ending from the acid
+final_answer:
+  latex: M_r(\text{CaCl}_2) = 111
+  check_id: chk_build_chm_acids_w0002_mr
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_acids_w0002_bal:
+    args:
+      equation: CaCO3 + HCl -> CaCl2 + H2O + CO2
+    tool: chem_balance
+  chk_build_chm_acids_w0002_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ca
+      - source: pack
+        symbol: ar_cl
+      formula: CaCl2
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

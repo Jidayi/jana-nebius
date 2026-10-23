@@ -1,0 +1,43 @@
+{
+  "id": "plan-card.error-retriable",
+  "title": "Plan card, error retriable",
+  "component": "PlanCard",
+  "state": "error-retriable",
+  "payload": {
+    "card_type": "plan",
+    "title": "How we'll solve it",
+    "items": [
+      {
+        "id": "1",
+        "text": "List what we know",
+        "status": "done"
+      },
+      {
+        "id": "2",
+        "text": "Pick an equation",
+        "status": "in_progress"
+      },
+      {
+        "id": "3",
+        "text": "Solve for the height",
+        "status": "pending"
+      }
+    ],
+    "actions": [
+      "start",
+      "change"
+    ]
+  },
+  "payloadContract": "https://jana.dev/contracts/api/events#/$defs/card",
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "conversation"
+  ],
+  "expectText": [
+    "Plan",
+    "The tutor is starting. Try again in a moment.",
+    "Try again"
+  ]
+}

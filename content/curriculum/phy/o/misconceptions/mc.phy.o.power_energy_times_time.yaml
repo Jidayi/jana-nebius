@@ -1,0 +1,36 @@
+id: mc.phy.o.power_energy_times_time
+kc_ids:
+- kc.phy.o.energy.power
+student_name: Energy × time for power
+description: Multiplies the energy by the time instead of dividing, or thinks working for longer means more power.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Power is how fast energy is transferred: energy ÷ time. Doing the same job in less time means more power.'
+probe_item_ids:
+- itm.phy.o.energy.0086
+- itm.phy.o.energy.0088
+- itm.phy.o.energy.0089
+- itm.phy.o.energy.0076
+- itm.phy.o.energy.0077
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

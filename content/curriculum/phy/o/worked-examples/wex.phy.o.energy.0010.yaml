@@ -1,0 +1,46 @@
+id: wex.phy.o.energy.0010
+kc_ids:
+- kc.phy.o.energy.work_done
+problem: A cable drags a sledge across the snow. The force does 6 kJ of work while moving it 6 m in the direction of the force. Calculate the size of the force, in newtons.
+steps:
+- n: 1
+  latex: W = 6\ \text{kJ} = 6000\ \text{J}
+  reason: Work in joules
+  check_id: chk_build_phy_nrg_w0010_wj
+- n: 2
+  latex: F = \frac{W}{d} = \frac{6000}{6} = 1000\ \text{N}
+  reason: Rearrange W = Fd
+  check_id: chk_build_phy_nrg_w0010_ans
+final_answer:
+  latex: 1000\ \text{N}
+  check_id: chk_build_phy_nrg_w0010_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_w0010_ans:
+    args:
+      expression: 6*1000/6
+    tool: math_evaluate
+  chk_build_phy_nrg_w0010_wj:
+    args:
+      quantity: 6 kJ
+      to: J
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

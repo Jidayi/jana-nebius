@@ -1,0 +1,35 @@
+id: mc.acc.o.inv_cos_for_closing
+kc_ids:
+- kc.acc.o.inventory.fifo
+- kc.acc.o.inventory.avco
+student_name: Cost of sales instead of closing inventory
+description: Gives the cost of the goods sold instead of the value of the goods left.
+signatures:
+- kind: answer_transform
+  expression: cost_of_sales
+fix:
+  strategy: contrast_example
+  text:
+    en: Closing inventory is what remains on the shelves at the end.
+probe_item_ids:
+- itm.acc.o.inventory.0001
+- itm.acc.o.inventory.0002
+- itm.acc.o.inventory.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

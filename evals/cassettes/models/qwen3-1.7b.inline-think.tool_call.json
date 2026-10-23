@@ -1,0 +1,514 @@
+{
+ "provenance": "Synthetic prompts recorded against a local llama-server; replies are model output, not student data.",
+ "model": "qwen3-1.7b",
+ "server_build": "b10180-11b068d06",
+ "scenario": "tool_call.inline-think",
+ "request": {
+  "model": "qwen3-1.7b",
+  "temperature": 0,
+  "seed": 7,
+  "messages": [
+   {
+    "role": "user",
+    "content": "Use the tool to solve 3x - 4 = 11."
+   }
+  ],
+  "tools": [
+   {
+    "type": "function",
+    "function": {
+     "name": "math_solve",
+     "description": "Solves equations exactly.",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "equations": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      },
+      "required": [
+       "equations"
+      ]
+     }
+    }
+   }
+  ],
+  "max_tokens": 200,
+  "chat_template_kwargs": {
+   "enable_thinking": false
+  }
+ },
+ "reply": {
+  "choices": [
+   {
+    "finish_reason": "tool_calls",
+    "index": 0,
+    "message": {
+     "role": "assistant",
+     "content": "<think>\n\n</think>\n\n",
+     "tool_calls": [
+      {
+       "type": "function",
+       "function": {
+        "name": "math_solve",
+        "arguments": "{\"equations\": [\"3x - 4 = 11\"]}"
+       },
+       "id": "ocdG9DLS6uhsmOI4SjL0ASj7e5eYrrS4"
+      }
+     ]
+    }
+   }
+  ],
+  "created": 1791537760,
+  "model": "qwen3-1.7b",
+  "system_fingerprint": "b10180-11b068d06",
+  "object": "chat.completion",
+  "usage": {
+   "completion_tokens": 30,
+   "prompt_tokens": 176,
+   "total_tokens": 206,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   }
+  },
+  "id": "chatcmpl-iTdIxZL2EjzvvswUZxfsVRsqnsSDl9Uk",
+  "timings": {
+   "cache_n": 0,
+   "prompt_n": 176,
+   "prompt_ms": 117.412,
+   "prompt_per_token_ms": 0.6671136363636364,
+   "prompt_per_second": 1498.994991994004,
+   "predicted_n": 30,
+   "predicted_ms": 123.056,
+   "predicted_per_token_ms": 4.101866666666667,
+   "predicted_per_second": 243.79144454557274
+  }
+ },
+ "events": [
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "role": "assistant",
+      "content": null
+     }
+    }
+   ],
+   "created": 1791537760,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "content": "<think>\n\n</think>\n\n"
+     }
+    }
+   ],
+   "created": 1791537760,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "id": "qe1SPOZiq8ma866eSLUz6MfCkN8jNRrW",
+        "type": "function",
+        "function": {
+         "name": "math_solve",
+         "arguments": "{"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "\""
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "equ"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "ations"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "\":"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": " [\""
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "3"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "x"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": " -"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": " 4"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": " ="
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": " 1"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "1"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "\"]"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": null,
+     "index": 0,
+     "delta": {
+      "tool_calls": [
+       {
+        "index": 0,
+        "function": {
+         "arguments": "}"
+        }
+       }
+      ]
+     }
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [
+    {
+     "finish_reason": "tool_calls",
+     "index": 0,
+     "delta": {}
+    }
+   ],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk"
+  },
+  {
+   "choices": [],
+   "created": 1791537761,
+   "id": "chatcmpl-tcpNOdhzhUjbMx6BQ1yazkHQb0O9Pv3f",
+   "model": "qwen3-1.7b",
+   "system_fingerprint": "b10180-11b068d06",
+   "object": "chat.completion.chunk",
+   "usage": {
+    "completion_tokens": 30,
+    "prompt_tokens": 176,
+    "total_tokens": 206,
+    "prompt_tokens_details": {
+     "cached_tokens": 175
+    }
+   },
+   "timings": {
+    "cache_n": 175,
+    "prompt_n": 1,
+    "prompt_ms": 4.987,
+    "prompt_per_token_ms": 4.987,
+    "prompt_per_second": 200.52135552436334,
+    "predicted_n": 30,
+    "predicted_ms": 122.168,
+    "predicted_per_token_ms": 4.072266666666667,
+    "predicted_per_second": 245.56348634667015
+   }
+  }
+ ]
+}

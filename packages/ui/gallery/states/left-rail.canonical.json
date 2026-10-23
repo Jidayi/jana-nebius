@@ -1,0 +1,88 @@
+{
+  "id": "left-rail.canonical",
+  "title": "Left rail, full sidebar",
+  "component": "LeftRail",
+  "note": "The sidebar at its full 272 px (UXS-01): the lockup at the top (DSN-25's LeftRail placement), New question, the places, recent sessions by day with their subject dots, the student row, which opens the student menu.",
+  "state": "canonical",
+  "payload": {
+    "places": [
+      {
+        "id": "home",
+        "icon": "home",
+        "labelKey": "home.title",
+        "current": true
+      },
+      {
+        "id": "learn",
+        "icon": "learn",
+        "labelKey": "app.learn",
+        "current": false
+      },
+      {
+        "id": "practice",
+        "icon": "practice",
+        "labelKey": "app.practice",
+        "current": false
+      },
+      {
+        "id": "notes",
+        "icon": "notes",
+        "labelKey": "notes.title",
+        "current": false
+      }
+    ],
+    "sessions": [
+      {
+        "group": "today",
+        "items": [
+          {
+            "id": "ses_11111111111111111111111111",
+            "title": "Ball thrown up at 14 m/s",
+            "subject": "physics",
+            "subjectLabel": "Physics",
+            "current": false
+          },
+          {
+            "id": "ses_22222222222222222222222222",
+            "title": "Moles in 4 g of NaOH",
+            "subject": "chemistry",
+            "subjectLabel": "Chemistry",
+            "current": false
+          }
+        ]
+      },
+      {
+        "group": "yesterday",
+        "items": [
+          {
+            "id": "ses_33333333333333333333333333",
+            "title": "Factorise x^2 + 5x + 6",
+            "subject": "mathematics",
+            "subjectLabel": "Mathematics",
+            "current": false
+          }
+        ]
+      }
+    ],
+    "profile": {
+      "name": "Ada",
+      "disc": 1
+    },
+    "variant": "full"
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "New question",
+    "Home",
+    "Learn",
+    "Practice",
+    "Today",
+    "Ball thrown up at 14 m/s"
+  ]
+}

@@ -1,0 +1,90 @@
+id: itm.chm.o.environment.0002
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.water
+stem: A student touches a piece of dry cobalt(II) chloride paper with a drop of a liquid.
+parts:
+- id: a
+  prompt: Which colour change shows that the liquid contains water?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: White to blue
+      correct: false
+      misconception_id: mc.chm.o.environment_water_test_colours_reversed
+      feedback: The dry form is the starting colour and water gives the hydrated colour. Anhydrous copper(II) sulfate is white and turns blue. Dry cobalt(II) chloride paper is blue and turns pink.
+    - id: B
+      text: Blue to pink
+      correct: true
+    - id: C
+      text: Blue to pink, but only if the liquid is pure water
+      correct: false
+      misconception_id: mc.chm.o.environment_water_test_shows_purity
+      feedback: These tests react with any water, even water with salt or other substances dissolved in it. They show that water is present, not that it is pure. To check purity, measure the boiling point or the melting point and compare it with the value for pure water.
+    - id: D
+      text: Pink to blue
+      correct: false
+      misconception_id: mc.chm.o.environment_water_test_colours_reversed
+      feedback: The dry form is the starting colour and water gives the hydrated colour. Anhydrous copper(II) sulfate is white and turns blue. Dry cobalt(II) chloride paper is blue and turns pink.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Dry cobalt(II) chloride paper is a test paper for water.
+  - rung: 2
+    name: concept
+    text:
+      en: The dry (anhydrous) form has one colour; the form with water has another.
+  - rung: 3
+    name: first_step
+    text:
+      en: The paper starts blue when it is dry.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Think about the colour of the hydrated cobalt(II) chloride, and whether dissolved substances stop the test working.
+  - rung: 5
+    name: full_step
+    text:
+      en: Dry cobalt(II) chloride paper turns from blue to pink when water is present, pure or not.
+  misconception_ids:
+  - mc.chm.o.environment_water_test_colours_reversed
+  - mc.chm.o.environment_water_test_shows_purity
+solution:
+  steps:
+  - n: 1
+    latex: '\text{CoCl}_2\text{ paper: blue }\rightarrow\text{ pink}'
+    reason: Test for water
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

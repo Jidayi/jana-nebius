@@ -1,0 +1,66 @@
+id: wex.mth.o.number.0024
+kc_ids:
+- kc.mth.o.number.estimation
+problem: Estimate the value of $\frac{9.87 \times 4.93}{0.0487}$ by rounding each number to 1 significant figure. Give your estimate.
+steps:
+- n: 1
+  latex: 9.87 \approx 10
+  reason: 1 significant figure
+  check_id: chk_build_mth_num_w0024_rx
+- n: 2
+  latex: 4.93 \approx 5
+  reason: 1 significant figure
+  check_id: chk_build_mth_num_w0024_ry
+- n: 3
+  latex: 0.0487 \approx 0.05
+  reason: 1 significant figure
+  check_id: chk_build_mth_num_w0024_rz
+- n: 4
+  latex: \frac{10 \times 5}{0.05} = 1000
+  reason: Work out the easier calculation
+  check_id: chk_build_mth_num_w0024_ans
+final_answer:
+  latex: '1000'
+  check_id: chk_build_mth_num_w0024_ans
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0024_ans:
+    args:
+      expression: 10*5/0.05
+    tool: math_evaluate
+  chk_build_mth_num_w0024_rx:
+    args:
+      expression: '9.87'
+      sf: 1
+    tool: math_evaluate
+  chk_build_mth_num_w0024_ry:
+    args:
+      expression: '4.93'
+      sf: 1
+    tool: math_evaluate
+  chk_build_mth_num_w0024_rz:
+    args:
+      expression: '0.0487'
+      sf: 1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

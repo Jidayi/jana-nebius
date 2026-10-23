@@ -1,0 +1,101 @@
+id: itm.mth.o.statistics.0018
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.data_types
+stem: 'A survey records five kinds of data: students'' favourite fruits; the mass of bags of rice; the time taken to run 100 m; the volume of water in tanks; the number of pages in books.'
+parts:
+- id: a
+  prompt: How many of the five are continuous?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '4'
+      correct: false
+      misconception_id: mc.mth.o.numbers_always_continuous
+      feedback: 'Counted data (people, goals) jumps in whole steps: discrete. Measured data (height, time) can take any value: continuous.'
+    - id: B
+      text: '1'
+      correct: false
+      misconception_id: mc.mth.o.discrete_continuous_swapped
+      feedback: 'Ask: is it counted or measured? Counted is discrete; measured is continuous.'
+    - id: C
+      text: '3'
+      correct: true
+    - id: D
+      text: '2'
+      correct: false
+      misconception_id: mc.mth.o.coded_numbers_quantitative
+      feedback: Adding two shirt numbers means nothing; they are names, so the data is qualitative.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Decide for each one: is it counted, measured, or a description?'
+  - rung: 2
+    name: concept
+    text:
+      en: Measured quantities are continuous; counted ones are discrete; descriptions are qualitative.
+  - rung: 3
+    name: first_step
+    text:
+      en: Lengths, times, masses, volumes and temperatures are measured.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Numbers used as labels are not quantities at all.
+  - rung: 5
+    name: full_step
+    text:
+      en: There are 3 continuous kinds.
+  misconception_ids:
+  - mc.mth.o.coded_numbers_quantitative
+  - mc.mth.o.discrete_continuous_swapped
+  - mc.mth.o.numbers_always_continuous
+solution:
+  steps:
+  - n: 1
+    latex: \text{continuous} = \text{measured, not counted}
+    reason: Sort each kind of data
+  - n: 2
+    latex: '3'
+    reason: Count the measured quantities
+    check_id: chk_build_mth_sta_0018_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0018_ans:
+    args:
+      expression: 1 + 1 + 1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

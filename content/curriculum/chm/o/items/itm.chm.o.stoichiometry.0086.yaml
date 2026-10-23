@@ -1,0 +1,92 @@
+id: itm.chm.o.stoichiometry.0086
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.solution_concentration
+stem: 0.0125 mol of hydrochloric acid, HCl is dissolved in water and made up to 50.0 cm³ of solution.
+parts:
+- id: a
+  prompt: Calculate the concentration of the solution in mol/dm³.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.250'
+    unit: mol/dm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0086_chain
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Concentration tells you how many moles are in each dm³.
+  - rung: 2
+    name: concept
+    text:
+      en: c = n ÷ V, with V in dm³.
+  - rung: 3
+    name: first_step
+    text:
+      en: Convert 50.0 cm³ to dm³ by dividing by 1000.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 0.0125 ÷ (50.0 ÷ 1000).
+  - rung: 5
+    name: full_step
+    text:
+      en: 0.0125 ÷ (50.0 ÷ 1000) = 0.250 mol/dm³.
+  misconception_ids:
+  - mc.chm.o.conc_volume_not_converted
+  - mc.chm.o.conc_inverted
+solution:
+  steps:
+  - n: 1
+    latex: V = \frac{50.0}{1000}\ \text{dm}^3
+    reason: cm³ to dm³
+  - n: 2
+    latex: c = \frac{0.0125}{V} = 0.250\ \text{mol/dm}^3
+    reason: Amount over volume
+    check_id: chk_build_chm_stoichiometry_0086_chain
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0086_chain:
+    args:
+      constants: []
+      sf: 3
+      steps:
+      - amount: 0.0125 mol
+        id: c
+        op: concentration_from_amount
+        volume: 50.0 cm^3
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

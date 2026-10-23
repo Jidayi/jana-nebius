@@ -1,0 +1,34 @@
+id: mc.acc.o.id_allowance_not_deducted
+kc_ids:
+- kc.acc.o.irrecoverable_debts.net_receivables
+student_name: Allowance left out
+description: Shows trade receivables without deducting the allowance.
+signatures:
+- kind: answer_transform
+  expression: receivables - written_off
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The statement shows what is expected to be collected: deduct the allowance.'
+probe_item_ids:
+- itm.acc.o.irrecoverable_debts.0034
+- itm.acc.o.irrecoverable_debts.0035
+- itm.acc.o.irrecoverable_debts.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

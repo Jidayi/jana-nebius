@@ -1,0 +1,36 @@
+id: mc.phy.o.impulse_time_multiplied
+kc_ids:
+- kc.phy.o.momentum.impulse
+student_name: Multiplying by the time
+description: Multiplies the change in momentum by the time instead of dividing by it to find the average force.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: rule_restatement
+  text:
+    en: Impulse is force × time, so force = change in momentum ÷ time. A shorter impact time gives a bigger force.
+probe_item_ids:
+- itm.phy.o.momentum.0041
+- itm.phy.o.momentum.0042
+- itm.phy.o.momentum.0043
+- itm.phy.o.momentum.0044
+- itm.phy.o.momentum.0045
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

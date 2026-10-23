@@ -1,0 +1,35 @@
+id: mc.phy.o.light_time_seconds_as_minutes
+kc_ids:
+- kc.phy.o.solar_system.planets_and_gravity
+- kc.phy.o.stars.light_years
+student_name: Seconds given as minutes
+description: Works out a light travel time in seconds but gives that number when the time is asked for in minutes.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: Distance ÷ speed in metres per second gives seconds. Divide by sixty to change seconds into minutes.
+probe_item_ids:
+- itm.phy.o.solar_system.0041
+- itm.phy.o.solar_system.0044
+- itm.phy.o.solar_system.0033
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

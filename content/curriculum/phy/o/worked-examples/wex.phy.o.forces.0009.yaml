@@ -1,0 +1,47 @@
+id: wex.phy.o.forces.0009
+kc_ids:
+- kc.phy.o.forces.circular_motion
+problem: A child sits 1.5 m from the centre of a roundabout that turns once every 5 s. Find the speed of the child.
+steps:
+- n: 1
+  latex: 2\pi r = 2\pi \times 1.5 = 9.42\ \text{m}
+  reason: 'Distance round once: the circumference'
+  check_id: chk_build_phy_frc_w0009_c
+- n: 2
+  latex: v = \frac{2\pi r}{T} = \frac{9.42}{5} = 1.88\ \text{m/s}
+  reason: Speed = distance ÷ time
+  check_id: chk_build_phy_frc_w0009_ans
+final_answer:
+  latex: 1.88\ \text{m/s}
+  check_id: chk_build_phy_frc_w0009_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_w0009_ans:
+    args:
+      expression: 2*pi*1.5/5
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_frc_w0009_c:
+    args:
+      expression: 2*pi*1.5
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

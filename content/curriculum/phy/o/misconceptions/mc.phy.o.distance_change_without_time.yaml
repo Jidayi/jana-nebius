@@ -1,0 +1,36 @@
+id: mc.phy.o.distance_change_without_time
+kc_ids:
+- kc.phy.o.motion.distance_time_gradient
+student_name: The change in distance alone
+description: Gives the change in distance between two points of a distance-time graph as the speed, without dividing by the change in time.
+signatures:
+- kind: answer_transform
+  expression: d2 - d1
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Speed is distance per unit time: the rise of the line divided by its run.'
+probe_item_ids:
+- itm.phy.o.motion.0321
+- itm.phy.o.motion.0322
+- itm.phy.o.motion.0323
+- itm.phy.o.motion.0324
+- itm.phy.o.motion.0325
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

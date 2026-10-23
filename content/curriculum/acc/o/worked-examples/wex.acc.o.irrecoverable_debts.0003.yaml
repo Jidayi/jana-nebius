@@ -1,0 +1,76 @@
+id: wex.acc.o.irrecoverable_debts.0003
+kc_ids:
+- kc.acc.o.irrecoverable_debts.allowance_amount
+problem: Trade receivables $18400; a debt of $400 to write off; allowance 5%. Find the allowance.
+steps:
+- n: 1
+  latex: \text{Allowance} = \text{rate} \times (\text{receivables} - \text{written off})
+  reason: After known bad debts
+  check_id: chk_build_acc_irrecoverable_debts_w0003_t
+- n: 2
+  latex: \text{Allowance} = 5\% \times (18400 - 400) = 900
+  reason: Substitute
+  check_id: chk_build_acc_irrecoverable_debts_w0003_a
+final_answer:
+  latex: \$\,900
+  check_id: chk_build_acc_irrecoverable_debts_w0003_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_irrecoverable_debts_w0003_a:
+    args:
+      dp: 2
+      expression: (18400 - 400) * 5/100
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_w0003_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - amount: '400'
+        kind: irrecoverable_debt
+      - kind: allowance
+        percent: '5'
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '80000'
+        role: revenue
+      - account: Purchases
+        debit: '40000'
+        role: purchases
+      - account: Trade receivables
+        debit: '18400'
+        role: trade_receivables
+      - account: Allowance for irrecoverable debts
+        credit: '700'
+        role: allowance_for_irrecoverable_debts
+      - account: Land
+        debit: '22300'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

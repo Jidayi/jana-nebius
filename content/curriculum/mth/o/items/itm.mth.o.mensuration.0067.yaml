@@ -1,0 +1,124 @@
+id: itm.mth.o.mensuration.0067
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.prism_volume
+stem: A closed box is a cuboid 6 cm long, 4 cm wide and 2 cm high.
+parts:
+- id: a
+  prompt: Find its total surface area.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '88'
+    unit: cm^2
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_mns_0067_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A cuboid has six rectangular faces.
+  - rung: 2
+    name: concept
+    text:
+      en: The faces come in three matching pairs.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the areas 6 × 4, 6 × 2 and 4 × 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Add the three areas and double.
+  - rung: 5
+    name: full_step
+    text:
+      en: The surface area is 88 cm².
+  misconception_ids:
+  - mc.mth.o.surface_area_half_faces
+  - mc.mth.o.perimeter_area_confused
+  - mc.mth.o.compound_part_missing
+solution:
+  steps:
+  - n: 1
+    latex: 6 \times 4 = 24,\ 6 \times 2 = 12,\ 4 \times 2 = 8
+    reason: The three different faces
+    check_id: chk_build_mth_mns_0067_t
+  - n: 2
+    latex: 2(24 + 12 + 8) = 88\ \text{cm}^2
+    reason: Each face has a matching opposite face
+    check_id: chk_build_mth_mns_0067_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  h: '2'
+  l: '6'
+  w: '4'
+checks:
+  chk_build_mth_mns_0067_ans:
+    args:
+      expression: 2*(6*4 + 6*2 + 4*2)
+    tool: math_evaluate
+  chk_build_mth_mns_0067_t:
+    args:
+      equations:
+      - p = 6*4
+      - q = 6*2
+      - r = 4*2
+      unknowns:
+      - p
+      - q
+      - r
+    tool: math_solve
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:37:48.018Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.mensuration.0067
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

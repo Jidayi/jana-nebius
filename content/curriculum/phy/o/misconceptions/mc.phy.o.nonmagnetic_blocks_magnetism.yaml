@@ -1,0 +1,35 @@
+id: mc.phy.o.nonmagnetic_blocks_magnetism
+kc_ids:
+- kc.phy.o.magnetism.magnets_and_materials
+student_name: Non-magnetic materials block the force
+description: Thinks a sheet of a non-magnetic material such as paper, wood, plastic, air or aluminium stops a magnetic force; the force passes through them.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: counterexample
+  text:
+    en: A fridge magnet still holds a sheet of paper against the door, and a magnet pulls a paper clip through a thin table top.
+probe_item_ids:
+- itm.phy.o.magnetism.0012
+- itm.phy.o.magnetism.0014
+- itm.phy.o.magnetism.0002
+- itm.phy.o.magnetism.0005
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

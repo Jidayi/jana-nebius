@@ -1,0 +1,59 @@
+id: les.phy.o.thermal_properties.heating_and_changing_state
+node_id: cur.phy.o.thermal_physics.thermal_properties_and_temperature
+kc_ids:
+- kc.phy.o.thermal_properties.specific_heat_capacity
+- kc.phy.o.thermal_properties.latent_heat
+title: Heating, temperature rise and changing state
+estimated_minutes: 12
+blocks:
+- type: prior_knowledge
+  item_ids:
+  - itm.phy.o.energy.0001
+  - itm.phy.o.particles.0016
+- type: idea
+  text:
+    en: 'Heating a substance can do two things. It can raise the temperature: the energy needed is the mass times the specific heat capacity times the temperature rise, so water, with its large specific heat capacity, warms slowly. Or it can change the state at a steady temperature: while ice melts or water boils, the energy breaks the bonds between particles instead of speeding them up, and the energy needed is the mass times the specific latent heat.'
+- type: worked_example
+  worked_example_id: wex.phy.o.thermal_properties.0003
+- type: guided_step
+  item_id: itm.phy.o.thermal_properties.0016
+- type: quick_check
+  item_ids:
+  - itm.phy.o.thermal_properties.0026
+  - itm.phy.o.thermal_properties.0041
+- type: common_mistakes
+  text:
+    en: Use the temperature change, not the final temperature. Remember that the temperature does not change while the state changes.
+  misconception_ids:
+  - mc.phy.o.heater_minutes_not_seconds
+  - mc.phy.o.kelvin_change_offset_added
+  - mc.phy.o.latent_divided_by_mass
+  - mc.phy.o.latent_stage_omitted
+- type: exit_check
+  item_ids:
+  - itm.phy.o.thermal_properties.0017
+  - itm.phy.o.thermal_properties.0031
+- type: summary
+  text:
+    en: Energy for a temperature rise is mass times specific heat capacity times the rise. Energy to change state is mass times specific latent heat.
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

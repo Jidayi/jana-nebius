@@ -1,0 +1,91 @@
+id: itm.chm.o.reactions.0025
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.collision_theory
+stem: The rate of a reaction increases when the temperature is raised.
+parts:
+- id: a
+  prompt: Which explanation is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: The particles become more crowded, so each collision is harder.
+      correct: false
+      misconception_id: mc.chm.o.reactions_concentration_harder_collisions
+      feedback: Concentration, pressure and surface area change how often particles collide, not how hard. Only temperature changes the energy of the particles.
+    - id: B
+      text: Particles move faster, so they collide more often and more of the collisions have at least the activation energy.
+      correct: true
+    - id: C
+      text: Heating lowers the activation energy, so more collisions succeed.
+      correct: false
+      misconception_id: mc.chm.o.reactions_catalyst_gives_energy
+      feedback: 'Heating gives particles more energy, so more collisions reach the activation energy. A catalyst does not add energy: it gives a different route with a lower activation energy, so more collisions succeed at the same temperature.'
+    - id: D
+      text: Particles collide more often, and every collision then gives a reaction.
+      correct: false
+      misconception_id: mc.chm.o.reactions_all_collisions_react
+      feedback: Particles in a gas collide billions of times a second, yet many mixtures hardly react. Only collisions with at least the activation energy lead to a reaction; the rest bounce apart unchanged.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Heating changes the particles themselves. How?
+  - rung: 2
+    name: concept
+    text:
+      en: Hot particles have more kinetic energy; a collision must have at least the activation energy to react.
+  - rung: 3
+    name: first_step
+    text:
+      en: Faster particles meet more often, and they also hit with more energy.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The activation energy of the reaction is fixed; ask what fraction of collisions now reaches it.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Higher temperature means faster particles: collisions are more frequent, and a much larger fraction of them have energy at least equal to the activation energy.'
+  misconception_ids:
+  - mc.chm.o.reactions_all_collisions_react
+  - mc.chm.o.reactions_catalyst_gives_energy
+  - mc.chm.o.reactions_concentration_harder_collisions
+solution:
+  steps:
+  - n: 1
+    latex: \text{more frequent and more energetic collisions}
+    reason: Collision theory
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

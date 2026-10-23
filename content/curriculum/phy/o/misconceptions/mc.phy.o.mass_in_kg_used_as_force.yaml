@@ -1,0 +1,38 @@
+id: mc.phy.o.mass_in_kg_used_as_force
+kc_ids:
+- kc.phy.o.forces.friction_and_terminal_velocity
+- kc.phy.o.forces.springs
+- kc.phy.o.forces.moments
+student_name: Mass used as a force
+description: Uses a mass in kilograms as if it were a force in newtons, leaving out g when the weight is needed.
+signatures:
+- kind: structural
+  rule: mass_weight_confused
+fix:
+  strategy: rule_restatement
+  text:
+    en: Mass is measured in kilograms; forces are in newtons. Turn a mass into its weight with weight = mass × g before you use it as a force.
+probe_item_ids:
+- itm.phy.o.forces.0060
+- itm.phy.o.forces.0094
+- itm.phy.o.forces.0035
+- itm.phy.o.forces.0053
+- itm.phy.o.forces.0057
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

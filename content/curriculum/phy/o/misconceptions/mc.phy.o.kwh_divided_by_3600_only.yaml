@@ -1,0 +1,35 @@
+id: mc.phy.o.kwh_divided_by_3600_only
+kc_ids:
+- kc.phy.o.practical_electricity.energy_cost
+student_name: Dividing by 3600 only
+description: Divides joules by 3600, which gives watt-hours, and calls the result kilowatt-hours.
+signatures:
+- kind: answer_transform
+  expression: E/3600
+fix:
+  strategy: rule_restatement
+  text:
+    en: Dividing by 3600 turns joules into watt-hours. A kilowatt-hour is a thousand of those.
+probe_item_ids:
+- itm.phy.o.practical_electricity.0027
+- itm.phy.o.practical_electricity.0031
+- itm.phy.o.practical_electricity.0019
+- itm.phy.o.practical_electricity.0023
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

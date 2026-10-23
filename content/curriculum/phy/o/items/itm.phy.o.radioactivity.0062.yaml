@@ -1,0 +1,92 @@
+id: itm.phy.o.radioactivity.0062
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+stem: Fruit is exposed to gamma rays to kill bacteria so that it keeps for longer.
+parts:
+- id: a
+  prompt: Is the fruit radioactive afterwards?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: 'Yes: anything exposed to gamma rays becomes radioactive'
+      correct: false
+      misconception_id: mc.phy.o.irradiated_becomes_radioactive
+      feedback: Standing in sunlight does not make you glow. Being exposed to gamma rays does not add any radioactive material, so the object does not become a source.
+    - id: B
+      text: No, because gamma rays are stopped by the fruit's skin
+      correct: false
+      misconception_id: mc.phy.o.gamma_stopped_completely
+      feedback: Gamma rays pass through paper and aluminium almost unchanged. Thick lead or concrete reduces them a great deal but never to exactly zero.
+    - id: C
+      text: 'No: it was exposed to radiation, but no radioactive material was added'
+      correct: true
+    - id: D
+      text: Yes, until the gamma rays have decayed for one half-life
+      correct: false
+      misconception_id: mc.phy.o.irradiated_becomes_radioactive
+      feedback: Standing in sunlight does not make you glow. Being exposed to gamma rays does not add any radioactive material, so the object does not become a source.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about how radiation can harm people and how the dose can be kept low.
+  - rung: 2
+    name: concept
+    text:
+      en: A source keeps decaying whatever we do; distance, short times and thick shielding cut the dose, and being exposed to radiation does not make anything radioactive.
+  - rung: 3
+    name: first_step
+    text:
+      en: Does light make an object glow after you switch the lamp off?
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that would leave people exposed or that rest on a false idea about radiation.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: No: it was exposed to radiation, but no radioactive material was added.'
+  misconception_ids:
+  - mc.phy.o.gamma_stopped_completely
+  - mc.phy.o.irradiated_becomes_radioactive
+solution:
+  steps:
+  - n: 1
+    latex: '\text{No: it was exposed to radiation, but no radioactive material was added}'
+    reason: Match the radiation and half-life to the job
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,45 @@
+id: wex.chm.o.analysis.0002
+kc_ids:
+- kc.chm.o.analysis.apparatus
+problem: A burette reads 1.20 cm³ at the start and 23.65 cm³ at the end of a titration. Which apparatus is this, why is it used, and what volume was delivered?
+steps:
+- n: 1
+  latex: '\text{burette: accurate variable volume}'
+  reason: Right instrument
+- n: 2
+  latex: V = 23.65 - 1.20
+  reason: Final minus initial reading
+  check_id: chk_build_chm_analysis_w0002_t
+final_answer:
+  latex: V = 22.45\ \text{cm}^3
+  check_id: chk_build_chm_analysis_w0002_t
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_analysis_w0002_t:
+    args:
+      expression: 23.65 - 1.20
+      sf: 4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

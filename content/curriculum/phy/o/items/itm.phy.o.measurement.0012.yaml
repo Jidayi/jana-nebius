@@ -1,0 +1,102 @@
+id: itm.phy.o.measurement.0012
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.measurement.si_prefixes
+stem: A cross-sectional area is 400 mm².
+parts:
+- id: a
+  prompt: Write it in m².
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 0.0004 m²
+      correct: true
+    - id: B
+      text: 0.4 m²
+      correct: false
+      misconception_id: mc.phy.o.area_volume_factor_not_raised
+      feedback: A cube one metre on each side holds a hundred times a hundred times a hundred cubic centimetres. Raise the length factor to the power of the unit.
+    - id: C
+      text: 400000000 m²
+      correct: false
+      misconception_id: mc.phy.o.prefix_multiply_divide_swapped
+      feedback: A milliamp is much smaller than an amp, so a current in milliamps becomes a smaller number of amps. Ask whether the new unit is bigger or smaller before you multiply or divide.
+    - id: D
+      text: 4 m²
+      correct: false
+      misconception_id: mc.phy.o.prefix_power_wrong
+      feedback: 'Learn the prefixes as powers of ten: kilo is a thousand, mega a million, milli a thousandth, micro a millionth and nano a thousand-millionth.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A m squared is far bigger than a mm squared.
+  - rung: 2
+    name: concept
+    text:
+      en: For square units square the length factor; for cubic units cube it.
+  - rung: 3
+    name: first_step
+    text:
+      en: There are a thousand millimetres in a metre.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'So 1 m² is a thousand squared mm²: divide by a million.'
+  - rung: 5
+    name: full_step
+    text:
+      en: 400 mm² = 0.0004 m².
+  misconception_ids:
+  - mc.phy.o.area_volume_factor_not_raised
+  - mc.phy.o.prefix_multiply_divide_swapped
+  - mc.phy.o.prefix_power_wrong
+solution:
+  steps:
+  - n: 1
+    latex: 1\ \text{m}^2 = 10^6\ \text{mm}^2
+    reason: Raise the length factor to the power
+  - n: 2
+    latex: 400 \div 10^6 = 0.0004
+    reason: Divide by a million
+    check_id: chk_build_phy_mea_0012_ans
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mea_0012_ans:
+    args:
+      quantity: 400 mm^2
+      to: m^2
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,127 @@
+id: itm.mth.o.algebra_and_graphs.0137
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.simultaneous_equations
+stem: Solve the simultaneous equations $4x + y = 9$ and $3x - y = -2$.
+parts:
+- id: a
+  prompt: Find the value of y.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '-35'
+      correct: false
+      misconception_id: mc.mth.o.simultaneous_wrong_operation
+      feedback: 'Same signs: subtract the equations. Different signs: add them. Check that the letter really has gone.'
+    - id: B
+      text: '5'
+      correct: true
+    - id: C
+      text: '1'
+      correct: false
+      misconception_id: mc.mth.o.simultaneous_other_unknown
+      feedback: Before you finish, reread the question and underline which letter or quantity it asks for.
+    - id: D
+      text: '13'
+      correct: false
+      misconception_id: mc.mth.o.back_substitution_slip
+      feedback: Check your pair of values in both original equations; both must be true.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Look at the y terms: they have the same size of coefficient.'
+  - rung: 2
+    name: concept
+    text:
+      en: The y terms have opposite signs, so add the equations to eliminate y.
+  - rung: 3
+    name: first_step
+    text:
+      en: Add the left sides and add the right sides.
+  - rung: 4
+    name: worked_step
+    text:
+      en: You get 7x = 7, so x = 1. Substitute this into the first equation.
+  - rung: 5
+    name: full_step
+    text:
+      en: y = 5.
+  misconception_ids:
+  - mc.mth.o.back_substitution_slip
+  - mc.mth.o.simultaneous_other_unknown
+  - mc.mth.o.simultaneous_wrong_operation
+solution:
+  steps:
+  - n: 1
+    latex: 4x + y = 9,\quad 3x - y = -2
+    reason: The two equations
+  - n: 2
+    latex: 7x = 7
+    reason: Add the equations to eliminate y
+    check_id: chk_build_mth_alg_0137_e
+  - n: 3
+    latex: x = 1
+    reason: Divide
+    check_id: chk_build_mth_alg_0137_sol
+  - n: 4
+    latex: 4(1) + y = 9 \Rightarrow y = 5
+    reason: Substitute x into the first equation
+    check_id: chk_build_mth_alg_0137_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 150
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0137_ans:
+    args:
+      expression: (9 - 4*(1))/1
+    tool: math_evaluate
+  chk_build_mth_alg_0137_e:
+    args:
+      equations:
+      - p = 4 + 3
+      - q = 9 + (-2)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_alg_0137_sol:
+    args:
+      equations:
+      - 4*x + 1*y = 9
+      - 3*x + (-1)*y = -2
+      unknowns:
+      - x
+      - y
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

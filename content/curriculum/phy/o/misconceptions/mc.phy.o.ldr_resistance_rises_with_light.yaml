@@ -1,0 +1,37 @@
+id: mc.phy.o.ldr_resistance_rises_with_light
+kc_ids:
+- kc.phy.o.circuits.potential_dividers
+- kc.phy.o.circuits.circuit_components
+student_name: An LDR's resistance rises in bright light
+description: Thinks a light-dependent resistor has a higher resistance in bright light and a lower one in the dark.
+signatures:
+- kind: answer_transform
+  expression: R up as light up
+fix:
+  strategy: rule_restatement
+  text:
+    en: Light frees charges in an LDR, so more light means lower resistance. In the dark its resistance is very high.
+probe_item_ids:
+- itm.phy.o.circuits.0057
+- itm.phy.o.circuits.0073
+- itm.phy.o.circuits.0075
+- itm.phy.o.circuits.0048
+- itm.phy.o.circuits.0051
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

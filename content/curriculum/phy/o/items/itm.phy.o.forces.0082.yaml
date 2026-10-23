@@ -1,0 +1,95 @@
+id: itm.phy.o.forces.0082
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.moments
+stem: A uniform metre rule is balanced on a pivot at its centre. A weight of 8 N hangs 0.3 m to the left of the pivot.
+parts:
+- id: a
+  prompt: Find the weight that must hang 0.25 m to the right of the pivot to keep it balanced.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '9.6'
+    unit: N
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_frc_0082_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: In balance, the clockwise moment equals the anticlockwise moment.
+  - rung: 2
+    name: concept
+    text:
+      en: The beam is uniform and pivoted at its centre, so its own weight has no moment.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the moment of the known weight, then divide by the other distance.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The anticlockwise moment is 2.4 N m.
+  - rung: 5
+    name: full_step
+    text:
+      en: F = 2.4 ÷ 0.25 = 9.6 N.
+  misconception_ids:
+  - mc.phy.o.balance_equal_forces
+  - mc.phy.o.moment_ratio_inverted
+  - mc.phy.o.moment_left_as_answer
+solution:
+  steps:
+  - n: 1
+    latex: 8 \times 0.3 = 2.4\ \text{N m}
+    reason: Anticlockwise moment
+    check_id: chk_build_phy_frc_0082_m1
+  - n: 2
+    latex: F \times 0.25 = 2.4
+    reason: Principle of moments
+  - n: 3
+    latex: F = \frac{2.4}{0.25} = 9.6\ \text{N}
+    reason: Divide by the distance
+    check_id: chk_build_phy_frc_0082_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0082_ans:
+    args:
+      expression: 8*0.3/0.25
+    tool: math_evaluate
+  chk_build_phy_frc_0082_m1:
+    args:
+      expression: 8*0.3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

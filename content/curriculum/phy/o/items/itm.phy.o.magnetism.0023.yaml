@@ -1,0 +1,93 @@
+id: itm.phy.o.magnetism.0023
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.magnetism.magnetic_fields
+stem: A student draws the field of a bar magnet with arrows on the lines.
+parts:
+- id: a
+  prompt: Where should the arrows on the lines point at the ends of the magnet?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Out of the south pole and into the north pole
+      correct: false
+      misconception_id: mc.phy.o.field_lines_s_to_n
+      feedback: Outside a magnet the field points from the north pole round to the south pole, the way a small compass's north end points.
+    - id: B
+      text: Out of the middle of the magnet towards both ends
+      correct: false
+      misconception_id: mc.phy.o.field_strongest_at_middle
+      feedback: Iron filings pile up at the ends of a bar magnet and hardly at all at its middle. The field is strongest at the poles.
+    - id: C
+      text: In both directions, as the lines cross at the poles
+      correct: false
+      misconception_id: mc.phy.o.field_lines_can_cross
+      feedback: A compass at a point can only point one way. If two lines crossed, it would have to point two ways at once.
+    - id: D
+      text: Out of the north pole and into the south pole
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Picture a small plotting compass placed at that point near the magnet.
+  - rung: 2
+    name: concept
+    text:
+      en: Field lines run from north to south outside a magnet, never cross, and are closest where the field is strongest, at the poles.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Field lines run from north to south outside the magnet.
+  - rung: 5
+    name: full_step
+    text:
+      en: Out of the north pole and into the south pole. Field lines run from north to south outside the magnet.
+  misconception_ids:
+  - mc.phy.o.field_lines_can_cross
+  - mc.phy.o.field_lines_s_to_n
+  - mc.phy.o.field_strongest_at_middle
+solution:
+  steps:
+  - n: 1
+    latex: \text{Out of the north pole and into the south pole}
+    reason: Use the rules for magnetic field lines
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

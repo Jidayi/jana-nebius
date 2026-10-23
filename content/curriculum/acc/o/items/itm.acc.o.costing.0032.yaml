@@ -1,0 +1,106 @@
+id: itm.acc.o.costing.0032
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.costing.break_even
+stem: Nomsa makes wooden chairs that sell for $12 each. Variable cost is $2 each; fixed costs are $25000.
+parts:
+- id: a
+  prompt: What is the break-even point in units?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 12500.00 units
+      correct: false
+      misconception_id: mc.acc.o.cost_be_divides_by_vc
+    - id: B
+      text: 30000 units
+      correct: false
+      misconception_id: mc.acc.o.cost_be_units_revenue_confused
+    - id: C
+      text: 2500 units
+      correct: true
+    - id: D
+      text: 2083.33 units
+      correct: false
+      misconception_id: mc.acc.o.cost_be_divides_by_price
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What must each unit's contribution cover?
+  - rung: 2
+    name: concept
+    text:
+      en: Break-even units = fixed costs ÷ (selling price − variable cost).
+  - rung: 3
+    name: first_step
+    text:
+      en: Dividing by the price or the variable cost alone ignores the other.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 25000 ÷ (12 − 2).
+  - rung: 5
+    name: full_step
+    text:
+      en: Break-even = 2500 units.
+  misconception_ids:
+  - mc.acc.o.cost_be_divides_by_price
+  - mc.acc.o.cost_be_divides_by_vc
+  - mc.acc.o.cost_be_units_revenue_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{Break-even} = \frac{\text{fixed costs}}{\text{price} - \text{variable cost}}
+    reason: Contribution covers fixed costs
+    check_id: chk_build_acc_costing_0032_t
+  - n: 2
+    latex: \frac{25000}{12 - 2} = 2500
+    reason: Substitute
+    check_id: chk_build_acc_costing_0032_a
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_costing_0032_a:
+    args:
+      dp: 2
+      expression: 25000 / (12 - 2)
+    tool: math_evaluate
+  chk_build_acc_costing_0032_t:
+    args:
+      dp: 2
+      fixed_costs: '25000'
+      selling_price: '12'
+      variable_cost_per_unit: '2'
+    tool: acc_break_even
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

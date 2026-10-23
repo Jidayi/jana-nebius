@@ -1,0 +1,93 @@
+id: itm.phy.o.forces.0009
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.resultant_force
+stem: A car moves along a straight, level road at a steady 25 m/s. Its driving force is 1800 N.
+parts:
+- id: a
+  prompt: What is the total resistive force on the car?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: 0 N, because nothing needs to act on a car at a steady speed
+      correct: false
+      misconception_id: mc.phy.o.steady_speed_no_forces
+      feedback: A car cruising at a steady speed still has friction and air resistance on it; the engine's force just matches them. Steady velocity means the forces balance, not that there are none.
+    - id: B
+      text: 1800 N
+      correct: true
+    - id: C
+      text: Less than 1800 N, or the car would slow down
+      correct: false
+      misconception_id: mc.phy.o.moving_needs_resultant_force
+      feedback: On smooth ice a sliding puck keeps going with nothing pushing it. A resultant force changes velocity; it is not needed to keep a velocity the same.
+    - id: D
+      text: 'It cannot be found: only a car at rest has balanced forces'
+      correct: false
+      misconception_id: mc.phy.o.balanced_means_at_rest
+      feedback: Balanced forces mean the velocity does not change. A parked car and a car cruising at a steady speed both have balanced forces.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about whether the forces on the object are balanced or unbalanced.
+  - rung: 2
+    name: concept
+    text:
+      en: Balanced forces give a zero resultant, so the velocity stays the same; unbalanced forces change the speed or the direction.
+  - rung: 3
+    name: first_step
+    text:
+      en: Compare the forces acting in each direction with what the object is doing.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A steady speed in a straight line means the velocity is not changing.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: 1800 N. The velocity is constant, so the resultant force is zero and the resistive force equals the driving force.'
+  misconception_ids:
+  - mc.phy.o.balanced_means_at_rest
+  - mc.phy.o.moving_needs_resultant_force
+  - mc.phy.o.steady_speed_no_forces
+solution:
+  steps:
+  - n: 1
+    latex: \text{1800 N}
+    reason: Use the resultant force to decide how the motion changes
+difficulty:
+  prior: -0.6
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

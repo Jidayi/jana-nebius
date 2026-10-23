@@ -1,0 +1,36 @@
+id: mc.phy.o.q_it_upside_down
+kc_ids:
+- kc.phy.o.electrical_quantities.current_and_charge
+student_name: Rearranging Q = It upside down
+description: Rearranges Q = It the wrong way up, writing I = t/Q or t = I/Q.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: From Q = It, divide both sides by t to get I = Q/t, or by I to get t = Q/I. The charge stays on top.
+probe_item_ids:
+- itm.phy.o.electrical_quantities.0026
+- itm.phy.o.electrical_quantities.0027
+- itm.phy.o.electrical_quantities.0029
+- itm.phy.o.electrical_quantities.0030
+- itm.phy.o.electrical_quantities.0017
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

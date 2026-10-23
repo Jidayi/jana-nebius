@@ -1,0 +1,17 @@
+# The seeded-error set of AGT-21 (development split): synthetic working, written for these tests, each with one
+# deliberate error at a known line (0-based `first_wrong`). Lines after the error follow on from it (error carried
+# forward). `unknown` and `answer` give the checked answer of the question the working is for.
+items:
+  - {unknown: x, answer: "4", first_wrong: 1, lines: ["2*x + 3 = 11", "2*x = 14", "x = 7"]}
+  - {unknown: x, answer: "5", first_wrong: 2, lines: ["3*x - 5 = 10", "3*x = 15", "x = 6"]}
+  - {unknown: x, answer: "4", first_wrong: 1, lines: ["5*x + 2 = 3*x + 10", "8*x = 8", "x = 1"]}
+  - {unknown: x, answer: "5", first_wrong: 1, lines: ["4*(x - 2) = 12", "4*x - 2 = 12", "4*x = 14", "x = 3.5"]}
+  - {unknown: x, answer: "8", first_wrong: 2, lines: ["x/2 + 1 = 5", "x/2 = 4", "x = 2"]}
+  - {unknown: x, answer: "3", first_wrong: 2, lines: ["7 - 2*x = 1", "-2*x = -6", "x = -3"]}
+  - {unknown: x, answer: "5", first_wrong: 2, lines: ["6*x = 2*x + 20", "4*x = 20", "x = 4"]}
+  - {unknown: x, answer: "3", first_wrong: 2, lines: ["3*(x + 4) = 2*x + 15", "3*x + 12 = 2*x + 15", "x = 27"]}
+  - {unknown: x, answer: "7", first_wrong: 2, lines: ["10 = 2*x - 4", "14 = 2*x", "x = 12"]}
+  - {unknown: s, answer: "10", first_wrong: 2, lines: ["0 = 14^2 - 2*9.8*s", "19.6*s = 196", "s = 100"]}
+  - {unknown: x, answer: "3", first_wrong: 1, lines: ["9*x - 4 = 5*x + 8", "4*x = 4", "x = 1"]}
+  - {unknown: x, answer: "3", first_wrong: 1, lines: ["2*(3*x - 1) = 16", "6*x - 1 = 16", "6*x = 17"]}
+  - {unknown: x, answer: "6", first_wrong: 1, lines: ["x + x/2 = 9", "2*x = 9", "x = 4.5"]}

@@ -1,0 +1,37 @@
+id: mc.mth.o.scale_conversion_factor
+kc_ids:
+- kc.mth.o.geometry.map_scales
+- kc.mth.o.mensuration.metric_units
+student_name: Using the wrong conversion factor
+description: Converts centimetres to kilometres by dividing by 1000 instead of 100000.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Go one step at a time: cm to m divide by 100, then m to km divide by 1000.'
+probe_item_ids:
+- itm.mth.o.geometry.0045
+- itm.mth.o.geometry.0046
+- itm.mth.o.geometry.0047
+- itm.mth.o.geometry.0048
+- itm.mth.o.geometry.0049
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

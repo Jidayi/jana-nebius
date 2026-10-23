@@ -1,0 +1,50 @@
+id: wex.mth.o.number.0050
+kc_ids:
+- kc.mth.o.number.surds
+problem: Rationalise the denominator of $\frac{48}{\sqrt{6}}$ and write it as $k\sqrt{6}$. Find k.
+steps:
+- n: 1
+  latex: \frac{48}{\sqrt{6}} \times \frac{\sqrt{6}}{\sqrt{6}} = \frac{48\sqrt{6}}{6}
+  reason: Multiply top and bottom by the root
+  check_id: chk_build_mth_num_w0050_r
+- n: 2
+  latex: = 8\sqrt{6}
+  reason: Simplify the fraction
+  check_id: chk_build_mth_num_w0050_ans
+final_answer:
+  latex: '8'
+  check_id: chk_build_mth_num_w0050_ans
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0050_ans:
+    args:
+      expression: 48/6
+    tool: math_evaluate
+  chk_build_mth_num_w0050_r:
+    args:
+      a: 48/sqrt(6)
+      b: 48*sqrt(6)/6
+    tool: math_check_equivalence
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

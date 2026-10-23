@@ -1,0 +1,261 @@
+- id: kc.mth.o.statistics.data_types
+  code: MTH-O-09.01.K01
+  node_id: cur.mth.o.statistics.classifying_statistical_data
+  statement: Classify data as qualitative or quantitative, and as discrete or continuous
+  kind: conceptual
+  tools: []
+  exam_weight: 0.065
+  prerequisites:
+  - kc_id: kc.mth.o.number.order_of_operations
+    strength: helpful
+  misconception_ids:
+  - mc.mth.o.coded_numbers_quantitative
+  - mc.mth.o.discrete_continuous_swapped
+  - mc.mth.o.numbers_always_continuous
+  skill_ids:
+  - mth-o-statistics
+  glossary:
+  - qualitative
+  - quantitative
+  - discrete
+  - continuous
+  - data
+  - categorical
+  difficulty_prior: -1.0
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.statistics.read_tables
+  code: MTH-O-09.02.K01
+  node_id: cur.mth.o.statistics.interpreting_statistical_data
+  statement: Read values from frequency and two-way tables and find missing entries
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.091
+  prerequisites:
+  - kc_id: kc.mth.o.statistics.data_types
+    strength: required
+  misconception_ids:
+  - mc.mth.o.table_row_column_confused
+  - mc.mth.o.table_total_ignored
+  - mc.mth.o.compound_part_missing
+  - mc.mth.o.table_entry_missed
+  skill_ids:
+  - mth-o-statistics
+  glossary:
+  - frequency
+  - frequency table
+  - two-way table
+  - tally
+  difficulty_prior: -0.8
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.statistics.averages_list
+  code: MTH-O-09.03.K01
+  node_id: cur.mth.o.statistics.averages_and_measures_of_spread
+  statement: Calculate the mean, median, mode and range of a list of data
+  kind: procedural
+  tools:
+  - stats_compute
+  exam_weight: 0.156
+  prerequisites:
+  - kc_id: kc.mth.o.number.order_of_operations
+    strength: required
+  misconception_ids:
+  - mc.mth.o.mean_wrong_count
+  - mc.mth.o.median_not_ordered
+  - mc.mth.o.mode_as_frequency
+  - mc.mth.o.range_as_largest
+  - mc.mth.o.frequency_mean_rows
+  - mc.mth.o.median_position_as_value
+  skill_ids:
+  - mth-o-statistics
+  glossary:
+  - mean
+  - median
+  - mode
+  - range
+  - average
+  - data
+  difficulty_prior: -0.7
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.statistics.averages_frequency
+  code: MTH-O-09.03.K02
+  node_id: cur.mth.o.statistics.averages_and_measures_of_spread
+  statement: Calculate the mean, median and mode from a frequency table
+  kind: procedural
+  tools:
+  - stats_compute
+  exam_weight: 0.143
+  prerequisites:
+  - kc_id: kc.mth.o.statistics.averages_list
+    strength: required
+  misconception_ids:
+  - mc.mth.o.frequency_ignored
+  - mc.mth.o.frequency_mean_rows
+  - mc.mth.o.median_not_ordered
+  - mc.mth.o.mode_as_frequency
+  - mc.mth.o.mean_wrong_count
+  skill_ids:
+  - mth-o-statistics
+  glossary:
+  - mean
+  - median
+  - mode
+  - frequency
+  - frequency table
+  - total frequency
+  - average
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.statistics.grouped_mean
+  code: MTH-O-09.03.K03
+  node_id: cur.mth.o.statistics.averages_and_measures_of_spread
+  statement: Estimate the mean of grouped data using the midpoints of the classes
+  kind: procedural
+  tools:
+  - stats_compute
+  exam_weight: 0.117
+  prerequisites:
+  - kc_id: kc.mth.o.statistics.averages_frequency
+    strength: required
+  misconception_ids:
+  - mc.mth.o.frequency_mean_rows
+  - mc.mth.o.grouped_upper_bound
+  - mc.mth.o.class_width_wrong
+  skill_ids:
+  - mth-o-statistics
+  glossary:
+  - grouped data
+  - class
+  - class interval
+  - midpoint
+  - frequency
+  - estimate
+  - mean
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.statistics.pie_charts
+  code: MTH-O-09.04.K01
+  node_id: cur.mth.o.statistics.statistical_charts_and_diagrams
+  statement: Calculate the sector angles and frequencies of a pie chart
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.104
+  prerequisites:
+  - kc_id: kc.mth.o.number.direct_proportion
+    strength: required
+  - kc_id: kc.mth.o.statistics.read_tables
+    strength: required
+  misconception_ids:
+  - mc.mth.o.pie_angle_inverted
+  - mc.mth.o.pie_frequency_as_angle
+  - mc.mth.o.pie_percent_for_degrees
+  skill_ids:
+  - mth-o-statistics
+  glossary:
+  - pie chart
+  - sector
+  - sector angle
+  - frequency
+  - proportion
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.statistics.scatter_correlation
+  code: MTH-O-09.05.K01
+  node_id: cur.mth.o.statistics.scatter_diagrams
+  statement: Interpret correlation on a scatter diagram and use a line of best fit to estimate values
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.104
+  prerequisites:
+  - kc_id: kc.mth.o.statistics.read_tables
+    strength: required
+  - kc_id: kc.mth.o.coordinate_geometry.line_equation
+    strength: helpful
+  misconception_ids:
+  - mc.mth.o.best_fit_read_wrong_axis
+  - mc.mth.o.correlation_causation
+  - mc.mth.o.correlation_negative_as_none
+  - mc.mth.o.coordinates_swapped
+  - mc.mth.o.gradient_inverted
+  - mc.mth.o.correlation_direction_swapped
+  skill_ids:
+  - mth-o-statistics
+  glossary:
+  - scatter diagram
+  - correlation
+  - positive correlation
+  - negative correlation
+  - line of best fit
+  - outlier
+  - estimate
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.statistics.cumulative_frequency
+  code: MTH-O-09.06.K01
+  node_id: cur.mth.o.statistics.cumulative_frequency_diagrams
+  statement: Use cumulative frequency to estimate the median, quartiles and interquartile range
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.117
+  prerequisites:
+  - kc_id: kc.mth.o.statistics.averages_frequency
+    strength: required
+  misconception_ids:
+  - mc.mth.o.iqr_as_quartile
+  - mc.mth.o.median_class_midpoint
+  - mc.mth.o.median_position_as_value
+  - mc.mth.o.range_as_largest
+  skill_ids:
+  - mth-o-statistics
+  glossary:
+  - cumulative frequency
+  - median
+  - quartile
+  - lower quartile
+  - upper quartile
+  - interquartile range
+  - percentile
+  - estimate
+  difficulty_prior: 0.6
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.statistics.histograms
+  code: MTH-O-09.07.K01
+  node_id: cur.mth.o.statistics.histograms
+  statement: Calculate frequency densities and frequencies for a histogram with unequal class widths
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.104
+  prerequisites:
+  - kc_id: kc.mth.o.statistics.read_tables
+    strength: required
+  - kc_id: kc.mth.o.statistics.grouped_mean
+    strength: helpful
+  misconception_ids:
+  - mc.mth.o.class_width_wrong
+  - mc.mth.o.density_multiplied
+  - mc.mth.o.histogram_height_as_frequency
+  - mc.mth.o.pie_angle_inverted
+  - mc.mth.o.frequency_density_inverted
+  skill_ids:
+  - mth-o-statistics
+  glossary:
+  - histogram
+  - frequency density
+  - frequency
+  - class width
+  - class
+  difficulty_prior: 0.7
+  version: 0.1.1
+  status: active

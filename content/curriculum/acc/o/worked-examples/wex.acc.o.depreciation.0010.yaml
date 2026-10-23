@@ -1,0 +1,72 @@
+id: wex.acc.o.depreciation.0010
+kc_ids:
+- kc.acc.o.depreciation.net_book_value
+problem: An asset cost $15000, residual value $0, life 6 years, straight line. Find its net book value after 4 years.
+steps:
+- n: 1
+  latex: \text{Net book value} = \text{cost} - \text{accumulated depreciation}
+  reason: What is left
+  check_id: chk_build_acc_depreciation_w0010_t
+- n: 2
+  latex: \text{Yearly charge} = \frac{15000 - 0}{6} = 2500
+  reason: Straight line
+  check_id: chk_build_acc_depreciation_w0010_s2
+- n: 3
+  latex: \text{Accumulated} = 2500 \times 4 = 10000
+  reason: Every year so far
+  check_id: chk_build_acc_depreciation_w0010_s3
+- n: 4
+  latex: \text{Net book value} = 15000 - 10000 = 5000
+  reason: Subtract
+  check_id: chk_build_acc_depreciation_w0010_a
+final_answer:
+  latex: \$\,5000
+  check_id: chk_build_acc_depreciation_w0010_a
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_depreciation_w0010_a:
+    args:
+      dp: 2
+      expression: 15000 - (15000 - 0) / 6 * 4
+    tool: math_evaluate
+  chk_build_acc_depreciation_w0010_s2:
+    args:
+      dp: 4
+      expression: (15000 - 0) / 6
+    tool: math_evaluate
+  chk_build_acc_depreciation_w0010_s3:
+    args:
+      dp: 4
+      expression: (15000 - 0) / 6 * 4
+    tool: math_evaluate
+  chk_build_acc_depreciation_w0010_t:
+    args:
+      cost: '15000'
+      dp: 2
+      life_years: 6
+      method: straight_line
+      part_year_policy: full_year
+      residual: '0'
+      years: 4
+    tool: acc_depreciation
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

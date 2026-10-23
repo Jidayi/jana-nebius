@@ -1,0 +1,83 @@
+id: les.phy.o.electromagnetism.currents_motors_and_transformers
+node_id: cur.phy.o.electricity_and_magnetism.electromagnetic_effects
+kc_ids:
+- kc.phy.o.electromagnetism.fields_of_currents
+- kc.phy.o.electromagnetism.motor_effect
+- kc.phy.o.electromagnetism.electromagnetic_induction
+- kc.phy.o.electromagnetism.transformers
+- kc.phy.o.electromagnetism.power_transmission
+title: Currents, motors and transformers
+estimated_minutes: 12
+blocks:
+- type: step
+  text:
+    en: 'A compass sits next to a wire carrying a current. Try this before any rule: what happens to the needle if the current is turned the other way?'
+  item_id: itm.phy.o.electromagnetism.0012
+  action: try_first
+  why:
+    en: The current makes a magnetic field in circles round the wire. Reverse the current and the field reverses, so the needle swings round.
+  names:
+    en: That is the magnetic effect of a current. A coil carrying a current is an electromagnet, made stronger by more current, more turns or an iron core.
+- type: step
+  text:
+    en: 'A wire carrying a current across a magnetic field feels a force. Predict: if the current is reversed, which way will the push go?'
+  item_id: itm.phy.o.electromagnetism.0024
+  action: predict
+  why:
+    en: The force depends on the direction of both the current and the field. Reverse just one of them and the force reverses, so the wire is pushed down.
+  names:
+    en: This is the motor effect. Fleming's left-hand rule gives its direction.
+- type: step
+  text:
+    en: 'Now the other way round: a magnet can make a voltage in a coil. It only works while something is changing.'
+  item_id: itm.phy.o.electromagnetism.0043
+  action: choose
+  why:
+    en: The spinning magnet keeps changing the field through the coil, and a changing field induces an e.m.f. A magnet held still does nothing, however close it is.
+  names:
+    en: This is called electromagnetic induction.
+- type: step
+  text:
+    en: A transformer uses induction to change an a.c. voltage. The two voltages are in the same ratio as the turns on the two coils.
+  item_id: itm.phy.o.electromagnetism.0046
+  action: calculate
+  why:
+    en: The output coil has far fewer turns, so the voltage drops by the same ratio. Multiply the mains voltage by the output turns, then divide by the input turns.
+  names:
+    en: A transformer that lowers the voltage is a step-down transformer.
+- type: step
+  text:
+    en: Same idea, less help this time. An ideal transformer wastes no power, so power in equals power out.
+  item_id: itm.phy.o.electromagnetism.0061
+  action: calculate
+  why:
+    en: Power in is the mains voltage times the primary current. Divide that power by the output voltage to get the secondary current.
+- type: step
+  text:
+    en: Now one on your own.
+  item_id: itm.phy.o.electromagnetism.0072
+  action: choose
+  why:
+    en: Stepping the voltage up lets the same power travel with a small current, and a small current wastes much less energy heating the cables. The cables keep the same resistance.
+- type: check
+  item_ids:
+  - itm.phy.o.electromagnetism.0026
+  - itm.phy.o.electromagnetism.0045
+  - itm.phy.o.electromagnetism.0059
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

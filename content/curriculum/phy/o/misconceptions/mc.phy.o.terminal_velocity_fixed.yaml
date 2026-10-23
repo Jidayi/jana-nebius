@@ -1,0 +1,32 @@
+id: mc.phy.o.terminal_velocity_fixed
+kc_ids:
+- kc.phy.o.forces.friction_and_terminal_velocity
+student_name: Terminal velocity cannot change
+description: Thinks an object's terminal velocity is a fixed top speed that stays the same whatever happens to the drag on it, for example when a parachute opens.
+signatures:
+- kind: answer_transform
+  expression: v_t fixed
+fix:
+  strategy: rule_restatement
+  text:
+    en: Terminal velocity is the speed at which drag balances weight. Change the drag, by opening a parachute or changing shape, and the balance happens at a different speed.
+probe_item_ids:
+- itm.phy.o.forces.0048
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

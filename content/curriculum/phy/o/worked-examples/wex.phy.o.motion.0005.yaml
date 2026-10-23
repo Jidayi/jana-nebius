@@ -1,0 +1,50 @@
+id: wex.phy.o.motion.0005
+kc_ids:
+- kc.phy.o.motion.distance_or_displacement
+problem: A girl walks 500 m north to a bus stop, then 200 m south to a shop. Find her displacement from the start, taking north as positive.
+steps:
+- n: 1
+  latex: s = s_1 - s_2
+  reason: The second part is in the opposite direction
+- n: 2
+  latex: s = 500 - 200
+  reason: Substitute
+  check_id: chk_build_phy_w_0005
+- n: 3
+  latex: s = 300\ \text{m}
+  reason: Subtract
+  check_id: chk_build_phy_w_0005
+final_answer:
+  latex: 300\ \text{m north}
+  check_id: chk_build_phy_w_0005
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_w_0005:
+    args:
+      expression: 500 - 200
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

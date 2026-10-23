@@ -1,0 +1,234 @@
+{
+  "release": {
+    "owner": "release_manager",
+    "requirements": [
+      "OPS-06",
+      "OPS-08",
+      "OPS-09"
+    ],
+    "trigger": "Candidate is ready for a release decision.",
+    "steps": [
+      "Collect report files and their digests for this candidate.",
+      "Run release ops promote with the dossier and a new output path.",
+      "Advance the ring only after its new health evidence has passed."
+    ],
+    "verification": "Check the candidate digest and every named signoff in the saved record.",
+    "rollback": "Halt the ring; prepare a higher-version correction.",
+    "offline": true
+  },
+  "halt": {
+    "owner": "release_manager",
+    "requirements": [
+      "OPS-09"
+    ],
+    "trigger": "A ring health check fails.",
+    "steps": [
+      "Save the failing aggregate measurements.",
+      "Set the ring to halted and publish a zero offer fraction.",
+      "Remove its offer and stop distribution kit jobs."
+    ],
+    "verification": "A test device receives no offer; a kit job refuses this version.",
+    "rollback": "Resume only with a recorded reason and a restarted soak.",
+    "offline": true
+  },
+  "safety_configuration": {
+    "owner": "release_manager",
+    "requirements": [
+      "OPS-10",
+      "OPS-11"
+    ],
+    "trigger": "Containment needs a device restriction.",
+    "steps": [
+      "Prepare a new entry id and incident reference.",
+      "Submit the per-channel file to OperationsPublisher with the service gate runner.",
+      "Carry the returned signed file in the next kit and verify the next-turn effect offline."
+    ],
+    "verification": "The target is denied and an unrelated target remains usable.",
+    "rollback": "Ship the fixed artefact that satisfies the entry lift condition.",
+    "offline": true
+  },
+  "content_correction": {
+    "owner": "curriculum_lead",
+    "requirements": [
+      "OPS-27",
+      "CUR-36"
+    ],
+    "trigger": "A content report has been confirmed.",
+    "steps": [
+      "Open a durable HotfixStore case and record the withdrawal entry.",
+      "Create a replacement item with a new id and a checked patch.",
+      "Use the learner replay execution port and save its evidence digest."
+    ],
+    "verification": "The old id is absent from presented content; replay changes only superseding verdicts.",
+    "rollback": "Keep the withdrawal active while a replacement is checked.",
+    "offline": true
+  },
+  "skill_pin": {
+    "owner": "engine_lead",
+    "requirements": [
+      "OPS-28"
+    ],
+    "trigger": "A shipped skill is teaching incorrectly.",
+    "steps": [
+      "Find a previous signed bundle containing a reviewed version.",
+      "Publish a skill restriction and confirm the selected version and hash in a turn trace.",
+      "Build a corrected bundle for each supported app minor."
+    ],
+    "verification": "The new turn loads the previous skill, or omits it when none verifies.",
+    "rollback": "Disable the skill while its correction is prepared.",
+    "offline": true
+  },
+  "model_withdrawal": {
+    "owner": "engine_lead",
+    "requirements": [
+      "OPS-29"
+    ],
+    "trigger": "A model fails a field safety or correctness gate.",
+    "steps": [
+      "Withdraw the model in the matrix and publish its disable entry.",
+      "Check an installed fallback, then repeat with no allowed model.",
+      "Require a new bake-off and release gates before replacement."
+    ],
+    "verification": "Lessons and practice open while the router skips the model.",
+    "rollback": "Keep content-only learning available.",
+    "offline": true
+  },
+  "signing_compromise": {
+    "owner": "security_lead",
+    "requirements": [
+      "SEC-16",
+      "SEC-26"
+    ],
+    "trigger": "A signing credential may have escaped custody.",
+    "steps": [
+      "Preserve the minimum incident audit and isolate the signer.",
+      "Use the existing root-signed revocation procedure.",
+      "Verify a replacement release and emergency kit on offline reference devices."
+    ],
+    "verification": "A device holding the new revocation list refuses the affected key.",
+    "rollback": "Do not restore a compromised credential; rotate and reissue affected artefacts.",
+    "offline": true
+  },
+  "child_safety": {
+    "owner": "safety_lead",
+    "requirements": [
+      "OPS-31"
+    ],
+    "trigger": "A category report indicates possible harm.",
+    "steps": [
+      "Open SEV1 and record the Safety lead handoff.",
+      "Choose a containment path and registered adult contact.",
+      "Use only authorised evidence and record its deletion at closure."
+    ],
+    "verification": "The tabletop record contains handoff timing and the containment evidence.",
+    "rollback": "Maintain containment and escalate overdue actions to the commander.",
+    "offline": true
+  },
+  "data_breach": {
+    "owner": "safety_lead",
+    "requirements": [
+      "PRV-07",
+      "PRV-21"
+    ],
+    "trigger": "An incident may expose student data.",
+    "steps": [
+      "Open SEV1 with a limited evidence group.",
+      "Contain the access path and preserve category counts.",
+      "Have the Safety lead record the required notification decision."
+    ],
+    "verification": "Test access is denied and the incident has a dated notification decision.",
+    "rollback": "Keep the affected path disabled until verified.",
+    "offline": true
+  },
+  "cloud_failover": {
+    "owner": "cloud_on_call",
+    "requirements": [
+      "OPS-20"
+    ],
+    "trigger": "Provider probes exceed the configured health limit.",
+    "steps": [
+      "Check the qualified fallback configuration and synthetic probe history.",
+      "Fail the primary in staging and inspect the selected provider.",
+      "Recover it and observe the full healthy interval."
+    ],
+    "verification": "Requests use the fallback, then return only after the healthy interval.",
+    "rollback": "Disable the cloud path so the device can continue locally.",
+    "offline": true
+  },
+  "cloud_switch": {
+    "owner": "cloud_on_call",
+    "requirements": [
+      "OPS-12"
+    ],
+    "trigger": "A cloud path needs immediate containment.",
+    "steps": [
+      "Use the authenticated operations switch with actor, reason and incident.",
+      "Send a synthetic new request and check provider_unavailable.",
+      "Check that no provider received that request."
+    ],
+    "verification": "The operations audit contains the change and the request made no upstream call.",
+    "rollback": "Enable only through another audited decision after containment verification.",
+    "offline": true
+  },
+  "cost_spike": {
+    "owner": "cloud_on_call",
+    "requirements": [
+      "OPS-19"
+    ],
+    "trigger": "A grouped daily cost alert fires.",
+    "steps": [
+      "Review provider, model, role and licence aggregates.",
+      "Compare token counts with the registered price table.",
+      "Record a billing-assumption review and choose a quota or switch action."
+    ],
+    "verification": "A synthetic spike produces one same-day alert without prompt content.",
+    "rollback": "Contain optional cloud use while keeping local learning available.",
+    "offline": true
+  },
+  "origin_usb": {
+    "owner": "platform_lead",
+    "requirements": [
+      "OPS-13",
+      "OPS-15"
+    ],
+    "trigger": "The primary origin is unavailable.",
+    "steps": [
+      "Fetch a known artefact through the verified secondary-origin path.",
+      "Build a distribution kit from the stable R3 inventory.",
+      "Record the physical samples before recording school dispatch."
+    ],
+    "verification": "Bytes and signatures match, and the physical sample records pass.",
+    "rollback": "Use the last verified kit; do not distribute a candidate kit.",
+    "offline": true
+  },
+  "school_update": {
+    "owner": "support_lead",
+    "requirements": [
+      "PLT-15"
+    ],
+    "trigger": "An offline installation cannot launch.",
+    "steps": [
+      "Use the offered local rollback on the reference device.",
+      "Save a metadata-only support report.",
+      "Prepare the corrected signed update and record the school kit version."
+    ],
+    "verification": "The previous installation opens the same retained learning data.",
+    "rollback": "Keep the working installation until a verified correction is available.",
+    "offline": true
+  },
+  "checkout": {
+    "owner": "support_lead",
+    "requirements": [
+      "PLT-19"
+    ],
+    "trigger": "Subscription checkout is unavailable.",
+    "steps": [
+      "Check the service metadata and open the incident.",
+      "Verify that the free offline product opens.",
+      "Record registered-contact guidance and the recovery check."
+    ],
+    "verification": "Local lessons remain usable without any activation action.",
+    "rollback": "Disable the affected optional online path until recovered.",
+    "offline": true
+  }
+}

@@ -1,0 +1,92 @@
+id: itm.phy.o.electromagnetism.0008
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.fields_of_currents
+stem: Halima winds a coil on an iron nail and counts the paper clips it lifts, keeping the current the same. With 10 turns it lifts 4 clips, and with 20 turns it lifts 8 clips.
+parts:
+- id: a
+  prompt: Assuming the number of clips is proportional to the number of turns, predict the number lifted with 35 turns.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '14'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_emg_0008_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: More turns make a stronger electromagnet.
+  - rung: 2
+    name: concept
+    text:
+      en: 'The data show the clips going up in step with the turns: twice the turns, twice the clips.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the number of clips for each turn.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 4 ÷ 10, then multiply by 35.
+  - rung: 5
+    name: full_step
+    text:
+      en: 0.4 clips per turn × 35 turns = 14 clips.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{4}{10} = 0.4\ \text{clips per turn}
+    reason: Clips for each turn
+    check_id: chk_build_phy_emg_0008_per
+  - n: 2
+    latex: 0.4 \times 35 = 14\ \text{clips}
+    reason: Scale up to the new number of turns
+    check_id: chk_build_phy_emg_0008_ans
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_0008_ans:
+    args:
+      expression: 4/10*35
+    tool: math_evaluate
+  chk_build_phy_emg_0008_per:
+    args:
+      expression: 4/10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

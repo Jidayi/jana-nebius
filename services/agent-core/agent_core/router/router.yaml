@@ -1,0 +1,191 @@
+# Router configuration shipped with the agent core (validated against agents/router-config at load).
+# Local model ids are the D58 candidates, provisional until the M7 bake-off decides D6: every local model is 7B or
+# larger, and the fast tier leads with the 8B class the minimum laptop runs. In this hackathon fork, an enabled,
+# consented online tier prefers Nemotron through the gateway; offline candidates remain available. Retry and backoff values
+# must equal the configuration keys router_retry_same_model and router_backoff_* (test: router_yaml_matches_keys).
+version: 1
+tiers:
+  fast:
+  - local:qwen3-vl-8b
+  - local:gemma-4-12b
+  - cloud:primary/fast-model
+  strong:
+  - cloud:primary/strong-model
+  - cloud:fallback/strong-model
+  - local:gemma-4-26b-a4b
+  - local:qwen3-vl-30b
+  - local:gemma-4-12b
+  - local:qwen3-vl-8b
+  judge:
+  - cloud:primary/strong-model
+  - local:qwen3-vl-8b
+  - local:gemma-4-12b
+roles:
+  coach:
+    tier: fast
+    prefer: cloud
+    reasoning: none
+    stream: true
+    max_iter: 3
+    temperature: 0.6
+    output: tutor-turn.schema.json
+    output_retries: 1
+    prompt_mode: by_class
+    priority: 9
+    concurrency: 1
+  diagnoser:
+    tier: fast
+    prefer: cloud
+    reasoning: low
+    max_iter: 2
+    temperature: 0.2
+    output: diagnosis.schema.json
+    output_retries: 1
+    prompt_mode: minimal
+    priority: 7
+  solver:
+    tier: strong
+    prefer: cloud
+    reasoning: high
+    max_iter: 12
+    temperature: 0.2
+    output: solution-plan.schema.json
+    output_retries: 1
+    prompt_mode: minimal
+    requires:
+      tools: true
+      min_context: 6144
+    priority: 6
+  checker:
+    tier: judge
+    prefer: cloud
+    reasoning: medium
+    max_iter: 3
+    temperature: 0.0
+    output: verdict.schema.json
+    output_retries: 1
+    prompt_mode: minimal
+    requires:
+      tools: true
+    priority: 7
+    concurrency: 4
+  reflector:
+    tier: strong
+    prefer: local
+    reasoning: medium
+    max_iter: 4
+    temperature: 0.3
+    output: reflection.schema.json
+    output_retries: 1
+    prompt_mode: minimal
+    background: true
+    priority: 1
+    concurrency: 1
+auxiliary:
+  rule_matcher:
+    inherit: true
+    reasoning: none
+    priority: 8
+  input_guard:
+    inherit: true
+    reasoning: none
+    priority: 8
+  title:
+    inherit: true
+    reasoning: none
+    priority: 2
+  compaction:
+    inherit: true
+    reasoning: none
+    priority: 2
+  judge:
+    tier: judge
+    reasoning: low
+    priority: 5
+  reflection:
+    tier: strong
+    reasoning: medium
+    priority: 1
+  vision:
+    inherit: true
+    requires:
+      vision: true
+    priority: 8
+retry:
+  same_model: 2
+  backoff:
+    initial_s: 2
+    factor: 2
+    max_s: 60
+    jitter: 0.25
+  honor_retry_after: true
+fallback:
+  triggers:
+  - rate_limit
+  - overloaded
+  - server_error
+  - timeout
+  - network_unavailable
+  - auth
+  - quota_or_billing
+  - model_not_found
+  - content_filter
+  - format_error
+  - runtime_down
+  - out_of_memory
+  - schema_invalid_twice
+  - empty_twice
+  - unparsed_tool_call_twice
+  - unknown
+  never_after_tool_side_effect: true
+  offline_to_local: true
+local:
+  readiness: real_generation
+  context: auto_by_memory
+  context_shift: false
+  ladder:
+  - 4096
+  - 6144
+  - 8192
+  - 12288
+  - 16384
+  - 24576
+  - 32768
+  min_agent_context: 6144
+  memory_headroom_gb: 2
+  slots:
+    low: 1
+    mid: 1
+    high: 2
+  thinking_budget:
+    low: 0
+    mid: 0
+    high: 0
+  restart:
+    backoff_s:
+    - 1
+    - 2
+    - 4
+    max_restarts: 3
+    window_s: 300
+cloud:
+  enabled: true # Still gated by the online switch, consent, connectivity and budgets at runtime.
+  probe_interval_s: 60
+  send_photos: false
+  redaction_check: true
+  roles_allowed:
+  - coach
+  - diagnoser
+  - solver
+  - checker
+  - title
+  - compaction
+  - judge
+  - vision
+budget:
+  per_session_usd: 0.5
+  per_student_day_usd: 1.0
+  per_school_month_usd: 200
+  reminders_at:
+  - 0.5
+  - 0.85

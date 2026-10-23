@@ -1,0 +1,72 @@
+id: wex.mth.o.number.0041
+kc_ids:
+- kc.mth.o.number.time_intervals
+problem: A bus leaves at 11:47 and arrives at 13:22 on the same day. How long is the journey, in minutes?
+steps:
+- n: 1
+  latex: 11:47 \to 12:00 = 13\ \text{min}
+  reason: Count on to the next hour
+  check_id: chk_build_mth_num_w0041_c
+- n: 2
+  latex: 12:00 \to 13:22 = 1\ \text{h}\ 22\ \text{min}
+  reason: Whole hours, then the minutes left (24-hour clock)
+  check_id: chk_build_mth_num_w0041_h
+- n: 3
+  latex: \text{journey} = 95\ \text{min}
+  reason: 60 minutes to the hour
+  check_id: chk_build_mth_num_w0041_ans
+final_answer:
+  latex: 95\ \text{minutes}
+  check_id: chk_build_mth_num_w0041_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0041_ans:
+    args:
+      expression: (13*60 + 22) - (11*60 + 47)
+    tool: math_evaluate
+  chk_build_mth_num_w0041_c:
+    args:
+      equations:
+      - p = 60 - 47
+      - q = 11 + 1
+      - r = 13 - (11 + 1)
+      - s = 13
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+  chk_build_mth_num_w0041_h:
+    args:
+      equations:
+      - p = 13 - 12
+      - q = (13*60 + 22 - 12*60) - 60*(13 - 12)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

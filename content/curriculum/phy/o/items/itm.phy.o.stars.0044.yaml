@@ -1,0 +1,93 @@
+id: itm.phy.o.stars.0044
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.stars.expanding_universe
+stem: Radio telescopes detect faint microwaves from every direction in the sky.
+parts:
+- id: a
+  prompt: What is this cosmic microwave background radiation?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Radiation left from the hot early Universe, stretched to microwave wavelengths
+      correct: true
+    - id: B
+      text: Microwaves given out by nearby stars
+      correct: false
+      misconception_id: mc.phy.o.cmb_is_starlight
+      feedback: The microwave background is radiation left from the hot early Universe, stretched to microwave wavelengths by the expansion. It comes evenly from every direction.
+    - id: C
+      text: Radiation from the centre point of the Big Bang
+      correct: false
+      misconception_id: mc.phy.o.big_bang_centre_in_space
+      feedback: Space itself is expanding everywhere, like dots on a balloon being blown up. Every galaxy sees the others moving away; there is no centre.
+    - id: D
+      text: Light from galaxies moving towards us
+      correct: false
+      misconception_id: mc.phy.o.redshift_to_shorter_wavelength
+      feedback: 'Red light has the longest visible wavelength. A galaxy moving away stretches its light towards longer wavelengths: towards the red.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what redshift tells us about how galaxies move.
+  - rung: 2
+    name: concept
+    text:
+      en: Redshift is a stretch of light to longer wavelengths, caused by a galaxy moving away from us.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'More distant galaxies show more redshift, so they recede faster: the Universe is expanding from a hot, dense start.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against these ideas.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Radiation left from the hot early Universe, stretched to microwave wavelengths.'
+  misconception_ids:
+  - mc.phy.o.big_bang_centre_in_space
+  - mc.phy.o.cmb_is_starlight
+  - mc.phy.o.redshift_to_shorter_wavelength
+solution:
+  steps:
+  - n: 1
+    latex: \text{Radiation left from the hot early Universe, stretched to microwave wavelengths}
+    reason: Use what redshift tells us about receding galaxies
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

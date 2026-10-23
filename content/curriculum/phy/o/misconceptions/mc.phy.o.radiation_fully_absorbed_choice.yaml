@@ -1,0 +1,34 @@
+id: mc.phy.o.radiation_fully_absorbed_choice
+kc_ids:
+- kc.phy.o.radioactivity.uses_and_safety
+student_name: Choosing a radiation that is all absorbed
+description: Chooses a radiation that the material absorbs completely, so it would never reach the detector or the inside of a package (alpha for card, beta for thick steel).
+signatures:
+- kind: answer_transform
+  expression: absorbed
+fix:
+  strategy: rule_restatement
+  text:
+    en: If none of the radiation gets through, the reading cannot change with thickness and nothing behind the material is reached. Match the radiation to the material.
+probe_item_ids:
+- itm.phy.o.radioactivity.0071
+- itm.phy.o.radioactivity.0066
+- itm.phy.o.radioactivity.0070
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

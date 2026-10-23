@@ -1,0 +1,42 @@
+{
+  "id": "plan-card.reduced-motion",
+  "title": "Plan card, reduced motion",
+  "component": "PlanCard",
+  "state": "reduced-motion",
+  "payload": {
+    "card_type": "plan",
+    "title": "How we'll solve it",
+    "items": [
+      {
+        "id": "1",
+        "text": "List what we know",
+        "status": "done"
+      },
+      {
+        "id": "2",
+        "text": "Pick an equation",
+        "status": "in_progress"
+      },
+      {
+        "id": "3",
+        "text": "Solve for the height",
+        "status": "pending"
+      }
+    ],
+    "actions": [
+      "start",
+      "change"
+    ]
+  },
+  "payloadContract": "https://jana.dev/contracts/api/events#/$defs/card",
+  "context": {
+    "theme": "light",
+    "reducedMotion": true
+  },
+  "placements": [
+    "conversation"
+  ],
+  "expectText": [
+    "Plan"
+  ]
+}

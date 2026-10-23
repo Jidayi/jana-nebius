@@ -1,0 +1,86 @@
+id: itm.mth.o.trigonometry.9044
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.cosine_rule
+stem: Two straight paths of lengths 7 km and 8 km leave the same junction with an angle of 60 degrees between them.
+parts:
+- id: a
+  prompt: Find the distance between their far ends, in kilometres. Give 3 significant figures.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '7.55'
+    unit: km
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mastery_supplement_mth_9044
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The cosine rule finds the side opposite a known included angle when two sides are given.
+  - rung: 2
+    name: concept
+    text:
+      en: Square each path length and subtract twice their product times the cosine of the included angle, then take the square root.
+  - rung: 3
+    name: first_step
+    text:
+      en: Square each path length and subtract twice their product times the cosine of the included angle, then take the square root.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The unknown side is opposite the included angle; keep the subtraction in the cosine rule.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 7.55 km.
+solution:
+  steps:
+  - n: 1
+    latex: \sqrt{7^{2} + 8^{2} - 2 \cdot 7 \cdot 8 \cos 60^\circ}
+    reason: Apply the stated rule to the given quantities.
+    check_id: chk_build_mastery_supplement_mth_9044
+  - n: 2
+    latex: '7.55'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9044
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9044:
+    args:
+      angle_unit: degrees
+      expression: sqrt(7^2+8^2-2*7*8*cos(60))
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

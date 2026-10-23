@@ -1,0 +1,33 @@
+id: mc.phy.o.wind_cools_by_being_cold
+kc_ids:
+- kc.phy.o.thermal_properties.changes_of_state
+student_name: A breeze cools because it is cold
+description: Thinks a breeze cools wet skin or dries washing only because moving air is cold, rather than because it carries vapour away so evaporation is faster.
+signatures:
+- kind: answer_transform
+  expression: wind
+fix:
+  strategy: counterexample
+  text:
+    en: A warm breeze still dries washing quickly. Moving air sweeps away the escaped particles, so fewer return and evaporation, which takes energy, goes faster.
+probe_item_ids:
+- itm.phy.o.thermal_properties.0060
+- itm.phy.o.thermal_properties.0049
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,104 @@
+id: itm.acc.o.costing.0036
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.costing.margin_of_safety
+stem: Bola makes loaves of bread that sell for $8 each, with variable costs of $3 each and fixed costs of $2250. Expected output is 1900 units.
+parts:
+- id: a
+  prompt: Calculate the profit at the expected output.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '7250.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_costing_0036_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Profit is what is left of total contribution after fixed costs.
+  - rung: 2
+    name: concept
+    text:
+      en: Profit = units × contribution per unit − fixed costs.
+  - rung: 3
+    name: first_step
+    text:
+      en: Only the units above break-even make profit.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 1900 × (8 − 3) − 2250.
+  - rung: 5
+    name: full_step
+    text:
+      en: Profit = $7250.
+  misconception_ids:
+  - mc.acc.o.cost_contribution_as_profit
+solution:
+  steps:
+  - n: 1
+    latex: \text{Profit} = \text{total contribution} - \text{fixed costs}
+    reason: After fixed costs
+    check_id: chk_build_acc_costing_0036_t
+  - n: 2
+    latex: \text{Total contribution} = 1900 \times (8 - 3) = 9500
+    reason: Units times contribution
+    check_id: chk_build_acc_costing_0036_s2
+  - n: 3
+    latex: 9500 - 2250 = 7250
+    reason: Less fixed costs
+    check_id: chk_build_acc_costing_0036_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_costing_0036_a:
+    args:
+      dp: 2
+      expression: 1900 * (8 - 3) - 2250
+    tool: math_evaluate
+  chk_build_acc_costing_0036_s2:
+    args:
+      dp: 4
+      expression: 1900 * (8 - 3)
+    tool: math_evaluate
+  chk_build_acc_costing_0036_t:
+    args:
+      dp: 2
+      fixed_costs: '2250'
+      output_units: 1900
+      selling_price: '8'
+      variable_cost_per_unit: '3'
+    tool: acc_break_even
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

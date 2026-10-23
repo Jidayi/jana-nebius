@@ -1,0 +1,58 @@
+id: wex.chm.o.reactions.0009
+kc_ids:
+- kc.chm.o.reactions.equilibrium
+problem: For N₂ + 3H₂ ⇌ 2NH₃, count the molecules of gas on each side and decide how raising the pressure affects the yield of ammonia.
+steps:
+- n: 1
+  latex: \text{N}_2 + 3\text{H}_2 \rightleftharpoons 2\text{NH}_3
+  reason: The equilibrium
+  check_id: chk_build_chm_reactions_w0009_s1
+- n: 2
+  latex: '\text{left: } 1 + 3 = 4'
+  reason: Gas molecules on the left
+  check_id: chk_build_chm_reactions_w0009_l
+- n: 3
+  latex: '\text{right: } 2'
+  reason: Gas molecules on the right
+  check_id: chk_build_chm_reactions_w0009_s1
+- n: 4
+  latex: \text{higher pressure favours the side with fewer gas molecules}
+  reason: The position opposes the change
+final_answer:
+  latex: '4 \rightarrow 2\text{: high pressure moves the position right, more ammonia}'
+  check_id: chk_build_chm_reactions_w0009_l
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_w0009_l:
+    args:
+      expression: 1 + 3
+    tool: math_evaluate
+  chk_build_chm_reactions_w0009_s1:
+    args:
+      equation: N2 + 3H2 <=> 2NH3
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

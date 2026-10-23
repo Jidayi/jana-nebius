@@ -1,0 +1,43 @@
+{
+  "id": "tutor-turn.model-loading",
+  "title": "Tutor turn, model loading",
+  "component": "TutorTurn",
+  "state": "model-loading",
+  "payload": {
+    "student": "A ball is thrown straight up at 14 m/s. How high does it rise?",
+    "events": [
+      {
+        "type": "turn.start",
+        "turn_id": "trn_00000000000000000000000001",
+        "user_message_id": "msg_00000000000000000000000002",
+        "client_message_id": null,
+        "intent": "ask",
+        "mode": "guided",
+        "fork": false
+      },
+      {
+        "type": "status",
+        "phase": "loading_model",
+        "label_key": null,
+        "progress": {
+          "done": 62,
+          "total": 100,
+          "unit": "layers"
+        },
+        "phase_started_ts": 0,
+        "model_tier": "fast"
+      }
+    ]
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light",
+    "elapsedMs": 1000
+  },
+  "placements": [
+    "conversation"
+  ],
+  "expectText": [
+    "Loading the tutor 62%"
+  ]
+}

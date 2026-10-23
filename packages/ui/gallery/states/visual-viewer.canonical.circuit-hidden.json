@@ -1,0 +1,174 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.circuit-hidden",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at ammeter A1 and reading on A1.",
+        "Step 2: look at voltmeter V1 and reading on V1."
+      ],
+      "summary": "A circuit with battery B, ammeter A1, lamp L1, lamp L2 and voltmeter V1; A1 reads 1 A; V1 reads 4 V."
+    },
+    "computed": {
+      "check_ids": [
+        "chk_build_fx_circuit_1"
+      ],
+      "currents": {
+        "A1": 1.0,
+        "B": 1.0,
+        "L1": 1.0,
+        "L2": 1.0,
+        "V1": 0.0
+      },
+      "labels": {
+        "A1.reading": "1 A",
+        "V1.reading": "4 V"
+      },
+      "open_circuit": false
+    },
+    "fallback_reason": null,
+    "labels": "hidden",
+    "numbers_from": [
+      "chk_build_fx_circuit_1",
+      "pack:pack.phy.o/visual_presets/dgm.phy.circuit_series_two_lamps.v1"
+    ],
+    "params": {
+      "components": [
+        {
+          "id": "B",
+          "type": "battery",
+          "value": "6 V"
+        },
+        {
+          "id": "A1",
+          "type": "ammeter"
+        },
+        {
+          "id": "L1",
+          "type": "lamp",
+          "value": "4 Ω"
+        },
+        {
+          "id": "L2",
+          "type": "lamp",
+          "value": "2 Ω"
+        },
+        {
+          "id": "V1",
+          "type": "voltmeter"
+        }
+      ],
+      "connections": [
+        {
+          "from": "B.pos",
+          "to": "A1.a"
+        },
+        {
+          "from": "A1.b",
+          "to": "L1.a"
+        },
+        {
+          "from": "L1.b",
+          "to": "L2.a"
+        },
+        {
+          "from": "L2.b",
+          "to": "B.neg"
+        },
+        {
+          "from": "V1.a",
+          "to": "L1.a"
+        },
+        {
+          "from": "V1.b",
+          "to": "L1.b"
+        }
+      ],
+      "layout_hint": "series",
+      "show": [
+        "meter_readings"
+      ]
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "B",
+        "name": "battery B",
+        "quizzable": true,
+        "role": "component"
+      },
+      {
+        "focusable": true,
+        "id": "A1",
+        "name": "ammeter A1",
+        "quizzable": true,
+        "role": "component"
+      },
+      {
+        "focusable": true,
+        "id": "A1.reading",
+        "name": "reading on A1",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "L1",
+        "name": "lamp L1",
+        "quizzable": true,
+        "role": "component"
+      },
+      {
+        "focusable": true,
+        "id": "L2",
+        "name": "lamp L2",
+        "quizzable": true,
+        "role": "component"
+      },
+      {
+        "focusable": true,
+        "id": "V1",
+        "name": "voltmeter V1",
+        "quizzable": true,
+        "role": "component"
+      },
+      {
+        "focusable": true,
+        "id": "V1.reading",
+        "name": "reading on V1",
+        "role": "label"
+      }
+    ],
+    "ref": "dgm.phy.circuit_series_two_lamps.v1",
+    "repairs": [],
+    "resolution_hash": "sha256:269cb3de03b22aa29adaa83a24fb0d9cd7cadc0ff16e96ca221aa6fc6906615e",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "A1",
+          "A1.reading"
+        ]
+      },
+      {
+        "highlight": [
+          "V1",
+          "V1.reading"
+        ]
+      }
+    ],
+    "type": "circuit",
+    "visual_id": "vis_6WKY3JA2TT8T4VDWQAWFHEPA2T"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: circuit (hidden labels)",
+  "variant": "circuit-hidden"
+}

@@ -1,0 +1,88 @@
+id: itm.acc.o.trial_balance.0011
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.trial_balance.classify_tb_balances
+stem: A trial balance is being drawn up.
+parts:
+- id: a
+  prompt: Select every balance that is listed as a credit.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Capital
+      correct: true
+    - id: B
+      text: Purchases returns
+      correct: true
+    - id: C
+      text: Commission received
+      correct: true
+    - id: D
+      text: Discount allowed
+      correct: false
+    - id: E
+      text: Carriage inwards
+      correct: false
+    - id: F
+      text: Equipment
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Sort each balance into its class.
+  - rung: 2
+    name: concept
+    text:
+      en: Capital, liabilities, income and returns outwards are credit balances.
+  - rung: 3
+    name: first_step
+    text:
+      en: Discount allowed and carriage inwards are expenses; equipment is an asset.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the capital, the returns outwards and the income.
+  - rung: 5
+    name: full_step
+    text:
+      en: Capital, purchases returns and commission received are credits.
+  misconception_ids:
+  - mc.acc.o.tb_discount_confused
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Credit: capital, purchases returns, commission received}'
+    reason: Capital, returns outwards, income
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

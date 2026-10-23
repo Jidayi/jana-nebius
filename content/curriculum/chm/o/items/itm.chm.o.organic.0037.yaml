@@ -1,0 +1,91 @@
+id: itm.chm.o.organic.0037
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.fuels_and_cracking
+stem: Petroleum is separated in a fractionating column. The column is hot at the bottom and cooler at the top.
+parts:
+- id: a
+  prompt: Where is the fraction with the largest molecules (bitumen) collected, and why?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: At the top, because large molecules have the lowest boiling points
+      correct: false
+      misconception_id: mc.chm.o.organic_big_molecules_boil_low
+      feedback: Larger molecules attract each other more strongly, so they need more energy to boil. They stay low in the column, where it is hottest; small molecules rise to the cool top.
+    - id: B
+      text: At the top, after the hot column cracks the large molecules
+      correct: false
+      misconception_id: mc.chm.o.organic_cracking_is_separation
+      feedback: 'Distillation separates molecules without changing them. Cracking is a chemical reaction: heat and a catalyst break C–C bonds, so large alkanes become smaller alkanes and alkenes.'
+    - id: C
+      text: At the bottom, where it is collected as one pure compound
+      correct: false
+      misconception_id: mc.chm.o.organic_fraction_is_one_compound
+      feedback: Fractional distillation sorts molecules into groups by boiling point. Each fraction is still a mixture of many hydrocarbons whose boiling points lie in a similar range.
+    - id: D
+      text: At the bottom, because large molecules have the highest boiling points
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: In the column, a substance condenses where the temperature falls below its boiling point.
+  - rung: 2
+    name: concept
+    text:
+      en: Larger molecules have stronger forces between them, so they boil at higher temperatures.
+  - rung: 3
+    name: first_step
+    text:
+      en: The bottom of the column is the hottest part; the top is the coolest.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Molecules with very high boiling points cannot rise far before they condense or stay liquid.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Bitumen collects at the bottom: its large molecules have the highest boiling points.'
+  misconception_ids:
+  - mc.chm.o.organic_big_molecules_boil_low
+  - mc.chm.o.organic_fraction_is_one_compound
+  - mc.chm.o.organic_cracking_is_separation
+solution:
+  steps:
+  - n: 1
+    latex: \text{larger molecules, higher boiling point, lower in the column}
+    reason: Fractional distillation
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

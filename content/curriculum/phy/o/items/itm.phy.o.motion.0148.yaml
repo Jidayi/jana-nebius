@@ -1,0 +1,90 @@
+id: itm.phy.o.motion.0148
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.free_fall
+stem: A seed pod is thrown straight up at 14 m/s. Take g = 9.8 m/s^2 and ignore air resistance.
+parts:
+- id: a
+  prompt: How long does it take to reach the top?
+  marks: 3
+  answer:
+    kind: numeric
+    value: '1.4'
+    unit: s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_k_0148_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which way is the object moving, what is its speed at the start, and what is its acceleration?
+  - rung: 2
+    name: concept
+    text:
+      en: In free fall the acceleration is g downwards; take care with the sign if you call upwards positive.
+  - rung: 3
+    name: first_step
+    text:
+      en: At the top the speed is zero, so 0 = u − gt.
+  - rung: 4
+    name: worked_step
+    text:
+      en: t = 14 ÷ 9.8.
+  - rung: 5
+    name: full_step
+    text:
+      en: t = 14 ÷ 9.8 = 1.4 s.
+  misconception_ids:
+  - mc.phy.o.gravity_sign_flipped
+  - mc.phy.o.top_speed_not_zero
+solution:
+  steps:
+  - n: 1
+    latex: 0 = u - gt
+    reason: Uniform acceleration g with the right starting speed
+  - n: 2
+    latex: t = \frac{14}{9.8}
+    reason: Substitute
+  - n: 3
+    latex: t = 1.4\ \text{s}
+    reason: Evaluate
+    check_id: chk_build_phy_k_0148_a
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_k_0148_a:
+    args:
+      expression: 14/9.8
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,88 @@
+id: itm.acc.o.concepts.0004
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.concepts.identify_concept
+stem: A stapler costing $6 is treated as an expense, although it will last for years.
+parts:
+- id: a
+  prompt: Which accounting principle is being applied?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Prudence
+      correct: false
+      misconception_id: mc.acc.o.con_prudence_catch_all
+    - id: B
+      text: Business entity
+      correct: false
+      misconception_id: mc.acc.o.con_materiality_vs_entity
+    - id: C
+      text: Materiality
+      correct: true
+    - id: D
+      text: Historic cost
+      correct: false
+      misconception_id: mc.acc.o.con_cost_always
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'What is the accountant deciding here: what to record, at what value, or when?'
+  - rung: 2
+    name: concept
+    text:
+      en: 'Entity: the business is separate from its owner. Money measurement: only items with a money value. Duality: every transaction has two sides. Historic cost: record at cost. Going concern: assume the business carries on. Accruals: match income and expenses to the period. Prudence: do not overstate profit or assets. Consistency: keep to the same methods. Realisation: revenue when goods pass to the customer. Materiality: small items need not follow strict treatment.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Several principles may seem to fit; choose the one the situation is mainly about.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Match the situation to the principle.
+  - rung: 5
+    name: full_step
+    text:
+      en: Materiality.
+  misconception_ids:
+  - mc.acc.o.con_materiality_vs_entity
+  - mc.acc.o.con_prudence_catch_all
+  - mc.acc.o.con_cost_always
+solution:
+  steps:
+  - n: 1
+    latex: \text{Materiality}
+    reason: The principle the situation is about
+difficulty:
+  prior: -0.2
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

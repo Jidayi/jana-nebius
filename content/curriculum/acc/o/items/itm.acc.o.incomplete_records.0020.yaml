@@ -1,0 +1,129 @@
+id: itm.acc.o.incomplete_records.0020
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.incomplete_records.profit_from_capital
+stem: A trader's capital was $18100 at the start of the year and $25800 at the end. During the year the trader took drawings of $7600 and paid in extra capital of $4600.
+parts:
+- id: a
+  prompt: What is the profit for the year?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $7700
+      correct: false
+      misconception_id: mc.acc.o.ir_change_only
+    - id: B
+      text: $-4500
+      correct: false
+      misconception_id: mc.acc.o.ir_drawings_subtracted
+    - id: C
+      text: $10700
+      correct: true
+    - id: D
+      text: $19900
+      correct: false
+      misconception_id: mc.acc.o.ir_capital_introduced_added
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What explains the change in capital over the year?
+  - rung: 2
+    name: concept
+    text:
+      en: Profit = closing capital − opening capital + drawings − capital introduced.
+  - rung: 3
+    name: first_step
+    text:
+      en: Capital paid in is not profit, so take it out of the increase.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 25800 − 18100 + 7600 − 4600.
+  - rung: 5
+    name: full_step
+    text:
+      en: Profit = $10700.
+  misconception_ids:
+  - mc.acc.o.ir_drawings_subtracted
+  - mc.acc.o.ir_capital_introduced_added
+  - mc.acc.o.ir_change_only
+solution:
+  steps:
+  - n: 1
+    latex: \text{Profit} = \text{closing} - \text{opening} + \text{drawings} - \text{introduced}
+    reason: Explain the change
+    check_id: chk_build_acc_incomplete_records_0020_t
+  - n: 2
+    latex: 25800 - 18100 + 7600 - 4600 = 10700
+    reason: Substitute
+    check_id: chk_build_acc_incomplete_records_0020_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_incomplete_records_0020_a:
+    args:
+      dp: 2
+      expression: 25800 - 18100 + 7600 - 4600
+    tool: math_evaluate
+  chk_build_acc_incomplete_records_0020_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Capital
+        credit: '22700'
+        role: capital
+      - account: Drawings
+        debit: '7600'
+        role: drawings
+      - account: Sales
+        credit: '30700'
+        role: revenue
+      - account: Purchases
+        debit: '20000'
+        role: purchases
+      - account: Land
+        debit: '25800'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Family loan
+        credit: '1000'
+        role: non_current_liability
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

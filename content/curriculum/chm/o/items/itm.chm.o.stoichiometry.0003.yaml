@@ -1,0 +1,91 @@
+id: itm.chm.o.stoichiometry.0003
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.ionic_formulae
+stem: Ammonium phosphate is made of NH₄⁺ and PO₄³⁻ ions.
+parts:
+- id: a
+  prompt: Which is the formula of ammonium phosphate?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: (NH₄)₃PO₄
+      correct: true
+    - id: B
+      text: NH₄PO₄
+      correct: false
+      misconception_id: mc.chm.o.formula_one_of_each
+      feedback: The total positive charge must cancel the total negative charge. Count how many of each ion you need before you write the formula.
+    - id: C
+      text: NH₄(PO₄)₃
+      correct: false
+      misconception_id: mc.chm.o.formula_own_charge_as_count
+      feedback: 'Cross the charges over: the size of the cation''s charge becomes the number of anions, and the anion''s charge becomes the number of cations. Then check that the charges add up to zero.'
+    - id: D
+      text: NH₄₃PO₄
+      correct: false
+      misconception_id: mc.chm.o.formula_brackets_missing
+      feedback: 'When you need more than one of an ion made of several atoms, put that ion in brackets and write the number after the bracket: (OH)₂, (NO₃)₂, (SO₄)₃.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Look at the size of the charge on each ion in ammonium phosphate.
+  - rung: 2
+    name: concept
+    text:
+      en: In an ionic compound the positive and negative charges cancel exactly.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out how many NH₄⁺ ions balance how many PO₄³⁻ ions.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Swap the sizes of the charges to get the numbers of each ion, and keep a group ion in brackets if you need more than one of it.
+  - rung: 5
+    name: full_step
+    text:
+      en: The charges cancel in (NH₄)₃PO₄, so that is the formula of ammonium phosphate.
+  misconception_ids:
+  - mc.chm.o.formula_one_of_each
+  - mc.chm.o.formula_own_charge_as_count
+  - mc.chm.o.formula_brackets_missing
+solution:
+  steps:
+  - n: 1
+    latex: \text{(NH}_4\text{)}_3\text{PO}_4
+    reason: Total positive charge equals total negative charge in ammonium phosphate
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

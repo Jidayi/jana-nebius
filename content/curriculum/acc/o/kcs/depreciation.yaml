@@ -1,0 +1,259 @@
+- id: kc.acc.o.depreciation.capital_revenue_expenditure
+  code: ACC-O-07.K01
+  node_id: cur.acc.o.depreciation
+  statement: Distinguish capital expenditure from revenue expenditure
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.accounting_equation.classify_elements
+    strength: required
+  misconception_ids:
+  - mc.acc.o.cre_big_amount_rule
+  - mc.acc.o.cre_installation_as_revenue
+  - mc.acc.o.cre_repairs_as_capital
+  - mc.acc.o.cre_running_costs_capital
+  skill_ids:
+  - acc-o-depreciation
+  glossary:
+  - depreciation
+  - depreciate
+  - depreciated
+  - non-current asset
+  - capital expenditure
+  - revenue expenditure
+  - expenditure
+  - straight-line method
+  - straight-line
+  - reducing-balance method
+  - reducing-balance
+  - reducing balance
+  - residual value
+  - useful life
+  - accumulated depreciation
+  - net book value
+  - disposal
+  - obsolescence
+  - wear and tear
+  - capitalised
+  - installation
+  difficulty_prior: -0.7
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.depreciation.depreciation_purpose
+  code: ACC-O-07.K02
+  node_id: cur.acc.o.depreciation
+  statement: Explain why non-current assets are depreciated and what causes it
+  kind: conceptual
+  tools: []
+  exam_weight: 0.1
+  prerequisites:
+  - kc_id: kc.acc.o.depreciation.capital_revenue_expenditure
+    strength: required
+  misconception_ids:
+  - mc.acc.o.dep_cash_outflow
+  - mc.acc.o.dep_is_market_value
+  - mc.acc.o.dep_land_depreciated
+  - mc.acc.o.dep_saves_cash
+  - mc.acc.o.nbv_accumulated_as_nbv
+  skill_ids:
+  - acc-o-depreciation
+  glossary:
+  - depreciation
+  - depreciate
+  - depreciated
+  - non-current asset
+  - capital expenditure
+  - revenue expenditure
+  - expenditure
+  - straight-line method
+  - straight-line
+  - reducing-balance method
+  - reducing-balance
+  - reducing balance
+  - residual value
+  - useful life
+  - accumulated depreciation
+  - net book value
+  - disposal
+  - obsolescence
+  - wear and tear
+  - capitalised
+  - installation
+  difficulty_prior: -0.5
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.depreciation.straight_line
+  code: ACC-O-07.K03
+  node_id: cur.acc.o.depreciation
+  statement: Calculate the yearly depreciation charge by the straight-line method
+  kind: procedural
+  tools:
+  - acc_depreciation
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.depreciation.depreciation_purpose
+    strength: required
+  misconception_ids:
+  - mc.acc.o.sl_residual_added
+  - mc.acc.o.sl_residual_ignored
+  - mc.acc.o.sl_total_not_annual
+  skill_ids:
+  - acc-o-depreciation
+  glossary:
+  - depreciation
+  - depreciate
+  - depreciated
+  - non-current asset
+  - capital expenditure
+  - revenue expenditure
+  - expenditure
+  - straight-line method
+  - straight-line
+  - reducing-balance method
+  - reducing-balance
+  - reducing balance
+  - residual value
+  - useful life
+  - accumulated depreciation
+  - net book value
+  - disposal
+  - obsolescence
+  - wear and tear
+  - capitalised
+  - installation
+  difficulty_prior: -0.4
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.depreciation.reducing_balance
+  code: ACC-O-07.K04
+  node_id: cur.acc.o.depreciation
+  statement: Calculate the depreciation charge for a year by the reducing-balance method
+  kind: procedural
+  tools:
+  - acc_depreciation
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.depreciation.straight_line
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.rb_nbv_as_charge
+  - mc.acc.o.rb_on_cost
+  - mc.acc.o.rb_wrong_year
+  skill_ids:
+  - acc-o-depreciation
+  glossary:
+  - depreciation
+  - depreciate
+  - depreciated
+  - non-current asset
+  - capital expenditure
+  - revenue expenditure
+  - expenditure
+  - straight-line method
+  - straight-line
+  - reducing-balance method
+  - reducing-balance
+  - reducing balance
+  - residual value
+  - useful life
+  - accumulated depreciation
+  - net book value
+  - disposal
+  - obsolescence
+  - wear and tear
+  - capitalised
+  - installation
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.depreciation.net_book_value
+  code: ACC-O-07.K05
+  node_id: cur.acc.o.depreciation
+  statement: Calculate accumulated depreciation and net book value at a year end
+  kind: procedural
+  tools:
+  - acc_depreciation
+  - math_evaluate
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.depreciation.straight_line
+    strength: required
+  misconception_ids:
+  - mc.acc.o.dep_is_market_value
+  - mc.acc.o.nbv_accumulated_as_nbv
+  - mc.acc.o.nbv_extra_year
+  - mc.acc.o.nbv_one_year_only
+  skill_ids:
+  - acc-o-depreciation
+  glossary:
+  - depreciation
+  - depreciate
+  - depreciated
+  - non-current asset
+  - capital expenditure
+  - revenue expenditure
+  - expenditure
+  - straight-line method
+  - straight-line
+  - reducing-balance method
+  - reducing-balance
+  - reducing balance
+  - residual value
+  - useful life
+  - accumulated depreciation
+  - net book value
+  - disposal
+  - obsolescence
+  - wear and tear
+  - capitalised
+  - installation
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.depreciation.disposal
+  code: ACC-O-07.K06
+  node_id: cur.acc.o.depreciation
+  statement: Calculate the profit or loss on the disposal of a non-current asset
+  kind: procedural
+  tools:
+  - acc_depreciation
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.depreciation.net_book_value
+    strength: required
+  misconception_ids:
+  - mc.acc.o.disp_cost_not_nbv
+  - mc.acc.o.disp_disposal_year_depreciated
+  - mc.acc.o.disp_sign_reversed
+  skill_ids:
+  - acc-o-depreciation
+  glossary:
+  - depreciation
+  - depreciate
+  - depreciated
+  - non-current asset
+  - capital expenditure
+  - revenue expenditure
+  - expenditure
+  - straight-line method
+  - straight-line
+  - reducing-balance method
+  - reducing-balance
+  - reducing balance
+  - residual value
+  - useful life
+  - accumulated depreciation
+  - net book value
+  - disposal
+  - obsolescence
+  - wear and tear
+  - capitalised
+  - installation
+  difficulty_prior: 0.5
+  version: 0.1.1
+  status: active

@@ -1,0 +1,112 @@
+id: itm.mth.o.algebra_and_graphs.0188
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.linear_inequalities
+stem: Solve the inequality $4x - 3 < 9$.
+parts:
+- id: a
+  prompt: Find the largest integer x that satisfies it.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '2'
+      correct: true
+    - id: B
+      text: '3'
+      correct: false
+      misconception_id: mc.mth.o.inequality_boundary
+      feedback: < and > leave the boundary out; ≤ and ≥ include it. Test the boundary value in the original inequality.
+    - id: C
+      text: '0.5'
+      correct: false
+      misconception_id: mc.mth.o.rearrange_inverse_sign
+      feedback: 'Do the same to both sides: to remove + u, subtract u from both sides.'
+    - id: D
+      text: '4'
+      correct: false
+      misconception_id: mc.mth.o.inequality_no_flip
+      feedback: 2 < 3, but after multiplying by −1 we get −2 > −3. Dividing by a negative number reverses the inequality.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Solve it like an equation, keeping the inequality sign.
+  - rung: 2
+    name: concept
+    text:
+      en: Add 3 on both sides, then divide by 4.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the boundary value first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: You should get x < 3. The boundary itself is not included.
+  - rung: 5
+    name: full_step
+    text:
+      en: The largest integer less than 3 is 2.
+  misconception_ids:
+  - mc.mth.o.inequality_boundary
+  - mc.mth.o.inequality_no_flip
+  - mc.mth.o.rearrange_inverse_sign
+solution:
+  steps:
+  - n: 1
+    latex: 4x - 3 < 9
+    reason: The inequality
+  - n: 2
+    latex: x < 3
+    reason: Solve as for an equation
+    check_id: chk_build_mth_alg_0188_bd
+  - n: 3
+    latex: x = 2
+    reason: The largest whole number below the boundary
+    check_id: chk_build_mth_alg_0188_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 75
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0188_ans:
+    args:
+      expression: 3 - 1
+    tool: math_evaluate
+  chk_build_mth_alg_0188_bd:
+    args:
+      equations:
+      - 4*x + (-3) = 9
+      unknowns:
+      - x
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

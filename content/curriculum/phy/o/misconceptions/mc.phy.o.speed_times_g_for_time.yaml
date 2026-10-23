@@ -1,0 +1,34 @@
+id: mc.phy.o.speed_times_g_for_time
+kc_ids:
+- kc.phy.o.motion.free_fall
+student_name: Multiplying by g for the time
+description: Multiplies the launch speed by g instead of dividing by g to find how long it takes to stop rising.
+signatures:
+- kind: answer_transform
+  expression: u*g
+fix:
+  strategy: rule_restatement
+  text:
+    en: Each second gravity takes g off the upward velocity, so the number of seconds is the velocity divided by g.
+probe_item_ids:
+- itm.phy.o.motion.0326
+- itm.phy.o.motion.0328
+- itm.phy.o.motion.0329
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,56 @@
+id: wex.phy.o.light.0003
+kc_ids:
+- kc.phy.o.light.refraction
+problem: A ray of light travelling inside water (refractive index 1.33) reaches the surface at an angle of 10° to the normal and passes out into air. Calculate the angle between the ray in air and the normal.
+steps:
+- n: 1
+  latex: \sin \theta = 1.33 \times \sin 10^\circ = 0.231
+  reason: The angle in air goes with sin i
+  check_id: chk_build_phy_lgt_w0003_se
+- n: 2
+  latex: \theta = \sin^{-1}(0.231) = 13.4^\circ
+  reason: Inverse sine
+  check_id: chk_build_phy_lgt_w0003_ans
+final_answer:
+  latex: 13.4^\circ
+  check_id: chk_build_phy_lgt_w0003_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_w0003_ans:
+    args:
+      angle_unit: degrees
+      expression: asin(1.33*sin(10))
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_w0003_se:
+    args:
+      angle_unit: degrees
+      expression: 1.33*sin(10)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_w0003_tool:
+    args:
+      angle1: 10
+      n1: '1.33'
+      n2: 1
+      task: refraction
+    tool: phys_optics
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

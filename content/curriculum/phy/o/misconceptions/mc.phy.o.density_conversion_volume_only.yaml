@@ -1,0 +1,34 @@
+id: mc.phy.o.density_conversion_volume_only
+kc_ids:
+- kc.phy.o.density.density_calculation
+student_name: Converting only the volume unit
+description: Changes the volume unit between cm³ and m³ when converting a density but forgets to change the mass between grams and kilograms, so the answer is a thousand times too big or too small.
+signatures:
+- kind: answer_transform
+  expression: x*1000000
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Convert both parts of the unit: grams to kilograms divides by a thousand, and per cm³ to per m³ multiplies by a million. Together, g/cm³ to kg/m³ is a single multiplication by a thousand.'
+probe_item_ids:
+- itm.phy.o.density.0011
+- itm.phy.o.density.0014
+- itm.phy.o.density.0005
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

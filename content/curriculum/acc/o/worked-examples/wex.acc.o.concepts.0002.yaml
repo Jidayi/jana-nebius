@@ -1,0 +1,42 @@
+id: wex.acc.o.concepts.0002
+kc_ids:
+- kc.acc.o.concepts.identify_concept
+- kc.acc.o.concepts.apply_concept
+problem: Goods cost $1200 but can now be sold for only $950. Which principle applies, and at what value are they shown?
+steps:
+- n: 1
+  latex: '\text{Prudence: do not overstate assets}'
+  reason: Lower of cost and NRV
+- n: 2
+  latex: \text{Value} = 950
+  reason: The lower figure
+  check_id: chk_build_acc_concepts_w0002_a
+final_answer:
+  latex: \$\,950
+  check_id: chk_build_acc_concepts_w0002_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_concepts_w0002_a:
+    args:
+      dp: 2
+      expression: '950'
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

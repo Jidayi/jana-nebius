@@ -1,0 +1,33 @@
+id: mc.phy.o.neutral_and_earth_same
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+student_name: Neutral and earth do the same job
+description: Thinks the neutral wire and the earth wire are the same thing, so either can make a metal case safe.
+signatures:
+- kind: answer_transform
+  expression: neutral = earth
+fix:
+  strategy: contrast_example
+  text:
+    en: The neutral wire carries the working current back. The earth wire joins a metal case to the ground and carries current only in a fault.
+probe_item_ids:
+- itm.phy.o.practical_electricity.0035
+- itm.phy.o.practical_electricity.0039
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

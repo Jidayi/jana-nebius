@@ -1,0 +1,32 @@
+id: mc.acc.o.de_sale_credits_inventory
+kc_ids:
+- kc.acc.o.double_entry.record_credit_transactions
+student_name: Crediting inventory for a sale
+description: Credits the inventory account instead of sales when goods are sold.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: asset
+fix:
+  strategy: rule_restatement
+  text:
+    en: Goods sold are credited to Sales at their selling price; inventory is not touched during the year.
+probe_item_ids: []
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

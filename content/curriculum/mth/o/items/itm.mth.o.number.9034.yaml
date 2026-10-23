@@ -1,0 +1,85 @@
+id: itm.mth.o.number.9034
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.standard_form_calc
+stem: A satellite sends 6 times 10^8 bits in 2 times 10^3 seconds.
+parts:
+- id: a
+  prompt: Find the transfer rate in bits per second. Give an ordinary number.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '300000'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9034
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Divide the coefficients and subtract the powers when dividing numbers written in standard form.
+  - rung: 2
+    name: concept
+    text:
+      en: Separate the coefficient division from the division of powers of ten.
+  - rung: 3
+    name: first_step
+    text:
+      en: Separate the coefficient division from the division of powers of ten.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The units are bits per second, so divide the bit total by elapsed seconds.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 300000.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{6 \cdot 10^{8}}{2 \cdot 10^{3}}
+    reason: Separate the coefficient division from the division of powers of ten.
+    check_id: chk_build_mastery_supplement_mth_9034
+  - n: 2
+    latex: '300000'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9034
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9034:
+    args:
+      angle_unit: degrees
+      expression: (6*10^8)/(2*10^3)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,85 @@
+id: itm.chm.o.atoms.0034
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.atoms.electron_arrangement
+stem: The proton number of fluorine is 9.
+parts:
+- id: a
+  prompt: How many electrons are in the outer shell of a fluorine atom?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '7'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_atoms_0034_o
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A fluorine atom has 9 electrons. Where do they go?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Shells fill from the inside: the first holds 2, the second 8, the third 8.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Fill the inner shells completely before moving outwards.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Take away the electrons in the full inner shells (2) from 9.
+  - rung: 5
+    name: full_step
+    text:
+      en: 9 − 2 = 7 outer electrons.
+  misconception_ids:
+  - mc.chm.o.first_shell_holds_eight
+solution:
+  steps:
+  - n: 1
+    latex: 9 - 2
+    reason: Electrons left for the outer shell
+  - n: 2
+    latex: = 7
+    reason: Outer-shell electrons
+    check_id: chk_build_chm_atoms_0034_o
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_atoms_0034_o:
+    args:
+      expression: 9 - 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

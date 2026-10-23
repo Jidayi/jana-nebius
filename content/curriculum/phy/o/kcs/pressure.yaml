@@ -1,0 +1,113 @@
+- id: kc.phy.o.pressure.pressure_on_surfaces
+  code: PHY-O-01.08.K01
+  node_id: cur.phy.o.motion_forces_and_energy.pressure
+  statement: Calculate pressure as force per unit area and explain the effect of changing the area
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.387
+  prerequisites:
+  - kc_id: kc.phy.o.mass_weight.weight_from_mass
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.larger_area_larger_pressure
+  - mc.phy.o.pressure_area_changes_force
+  - mc.phy.o.pressure_area_cm2_not_converted
+  - mc.phy.o.pressure_area_factor_not_squared
+  - mc.phy.o.pressure_area_over_force
+  - mc.phy.o.pressure_area_sides_added
+  - mc.phy.o.pressure_depends_on_force_only
+  - mc.phy.o.pressure_force_times_area
+  - mc.phy.o.pressure_kpa_not_converted
+  - mc.phy.o.pressure_mass_used_as_force
+  - mc.phy.o.pressure_rearranged_wrongly
+  skill_ids:
+  - phy-o-pressure
+  glossary:
+  - pressure
+  - force
+  - pascal
+  - newton per square metre
+  - square metre
+  - square centimetre
+  difficulty_prior: -0.4
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.pressure.liquid_pressure
+  code: PHY-O-01.08.K02
+  node_id: cur.phy.o.motion_forces_and_energy.pressure
+  statement: Calculate the change in pressure in a liquid from its depth and density
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.355
+  prerequisites:
+  - kc_id: kc.phy.o.pressure.pressure_on_surfaces
+    strength: required
+  - kc_id: kc.phy.o.density.density_calculation
+    strength: required
+  misconception_ids:
+  - mc.phy.o.liquid_density_ignored
+  - mc.phy.o.liquid_depth_cm_not_converted
+  - mc.phy.o.liquid_depths_added
+  - mc.phy.o.liquid_pressure_atmosphere_left_out
+  - mc.phy.o.liquid_pressure_depends_on_volume
+  - mc.phy.o.liquid_pressure_g_left_out
+  - mc.phy.o.liquid_pressure_only_downwards
+  - mc.phy.o.liquid_pressure_same_at_all_depths
+  - mc.phy.o.liquid_pressure_total_depth_used
+  - mc.phy.o.pressure_kpa_not_converted
+  - mc.phy.o.pressure_rearranged_wrongly
+  skill_ids:
+  - phy-o-pressure
+  glossary:
+  - pressure
+  - liquid pressure
+  - depth
+  - density
+  - gravitational field strength
+  - pascal
+  - kilopascal
+  - atmospheric pressure
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.pressure.gas_and_atmospheric_pressure
+  code: PHY-O-01.08.K03
+  node_id: cur.phy.o.motion_forces_and_energy.pressure
+  statement: Interpret barometer and manometer readings to find atmospheric and gas pressures
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.258
+  prerequisites:
+  - kc_id: kc.phy.o.pressure.liquid_pressure
+    strength: required
+  misconception_ids:
+  - mc.phy.o.air_pressure_increases_with_height
+  - mc.phy.o.barometer_liquid_density_swapped
+  - mc.phy.o.barometer_mm_not_converted
+  - mc.phy.o.barometer_space_holds_air
+  - mc.phy.o.barometer_tube_shape_matters
+  - mc.phy.o.liquid_density_ignored
+  - mc.phy.o.liquid_depth_cm_not_converted
+  - mc.phy.o.liquid_pressure_g_left_out
+  - mc.phy.o.manometer_difference_sign_wrong
+  - mc.phy.o.manometer_excess_as_gas_pressure
+  - mc.phy.o.manometer_one_level_used
+  - mc.phy.o.pressure_kpa_not_converted
+  skill_ids:
+  - phy-o-pressure
+  glossary:
+  - atmospheric pressure
+  - barometer
+  - manometer
+  - pressure
+  - pascal
+  - kilopascal
+  - gas pressure
+  - vacuum
+  difficulty_prior: 0.5
+  version: 0.1.1
+  status: active

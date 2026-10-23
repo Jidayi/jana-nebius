@@ -1,0 +1,104 @@
+id: itm.phy.o.em_spectrum.0026
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.em_spectrum.em_wave_calculations
+stem: A medium-wave radio station transmits at 600 kHz.
+parts:
+- id: a
+  prompt: Calculate the wavelength of its radio waves.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 500000 m
+      correct: false
+      misconception_id: mc.phy.o.wave_prefix_ignored
+      feedback: Put every value into hertz, metres and seconds before using a formula, then change the answer into the unit the question asks for.
+    - id: B
+      text: 0.002 m
+      correct: false
+      misconception_id: mc.phy.o.wave_equation_inverted
+      feedback: 'From v = fλ: λ = v/f and f = v/λ. The speed always goes on top when you divide.'
+    - id: C
+      text: 500 m
+      correct: true
+    - id: D
+      text: 0.000567 m
+      correct: false
+      misconception_id: mc.phy.o.em_uses_sound_speed
+      feedback: Electromagnetic waves travel at about a million times the speed of sound. Use c = 3.0 × 10⁸ m/s for every one of them.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which equation links the speed, frequency and wavelength of a wave?
+  - rung: 2
+    name: concept
+    text:
+      en: Every electromagnetic wave travels at c = 3.0 × 10⁸ m/s, and c = f × λ, so λ = c ÷ f.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Write the frequency in hertz: 600 kHz = 600 × 10³ Hz.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: λ = 3.0 × 10⁸ ÷ (600 × 10³).
+  - rung: 5
+    name: full_step
+    text:
+      en: λ = 500 m.
+  misconception_ids:
+  - mc.phy.o.em_uses_sound_speed
+  - mc.phy.o.wave_equation_inverted
+  - mc.phy.o.wave_prefix_ignored
+solution:
+  steps:
+  - n: 1
+    latex: f = 600\ \text{kHz} = 600 \times 10^{3}\ \text{Hz}
+    reason: Write the prefix as a power of ten
+  - n: 2
+    latex: \lambda = \frac{c}{f} = \frac{3.0 \times 10^{8}}{600 \times 10^{3}} = 500\ \text{m}
+    reason: Rearrange c = fλ
+    check_id: chk_build_phy_ems_0026_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ems_0026_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: c/(600*10^3)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

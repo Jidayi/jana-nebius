@@ -1,0 +1,36 @@
+id: mc.chm.o.electrolysis_electron_ratio_ignored
+kc_ids:
+- kc.chm.o.electrolysis.quantitative
+student_name: Ignoring the electrons per ion
+description: Takes the moles of product to be equal to the moles of electrons, ignoring that each ion needs two or three electrons.
+signatures:
+- kind: answer_transform
+  expression: answer * electrons
+fix:
+  strategy: contrast_example
+  text:
+    en: Look at the half-equation. Cu²⁺ + 2e⁻ → Cu needs two moles of electrons for every mole of copper, so divide the moles of electrons by two.
+probe_item_ids:
+- itm.chm.o.electrolysis.0049
+- itm.chm.o.electrolysis.0051
+- itm.chm.o.electrolysis.0052
+- itm.chm.o.electrolysis.0055
+- itm.chm.o.electrolysis.0057
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

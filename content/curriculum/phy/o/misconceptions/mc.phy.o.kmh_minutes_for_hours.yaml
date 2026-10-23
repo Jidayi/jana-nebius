@@ -1,0 +1,36 @@
+id: mc.phy.o.kmh_minutes_for_hours
+kc_ids:
+- kc.phy.o.motion.speed_unit_conversion
+student_name: Sixty instead of three thousand six hundred
+description: Changes kilometres per hour to metres per second by multiplying by a thousand and dividing by sixty, as if an hour had sixty seconds.
+signatures:
+- kind: answer_transform
+  expression: v*1000/60
+fix:
+  strategy: rule_restatement
+  text:
+    en: An hour has sixty minutes and each minute sixty seconds, so an hour is 3600 seconds. That is why the factor is 3.6.
+probe_item_ids:
+- itm.phy.o.motion.0336
+- itm.phy.o.motion.0337
+- itm.phy.o.motion.0338
+- itm.phy.o.motion.0339
+- itm.phy.o.motion.0340
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

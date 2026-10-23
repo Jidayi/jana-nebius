@@ -1,0 +1,71 @@
+id: les.chm.o.reactions.electrons_lost_and_gained
+node_id: cur.chm.o.chemical_reactions.redox
+kc_ids:
+- kc.chm.o.reactions.redox
+- kc.chm.o.reactions.oxidation_numbers
+title: 'Redox: electrons lost and gained'
+estimated_minutes: 10
+blocks:
+- type: step
+  text:
+    en: 'When magnesium burns, each magnesium atom hands electrons over to oxygen. Try this before any rule: which substance do you think is reduced?'
+  item_id: itm.chm.o.reactions.0069
+  action: try_first
+  why:
+    en: Magnesium loses electrons and oxygen gains them. Gaining electrons is reduction, so oxygen is reduced.
+  names:
+    en: Losing electrons is oxidation and gaining electrons is reduction. The two always happen together, so the reaction is called redox.
+- type: step
+  text:
+    en: There is no oxygen in this reaction, but electrons still move. Look for the particle that loses them.
+  item_id: itm.chm.o.reactions.0061
+  action: choose
+  why:
+    en: 'Each zinc atom loses two electrons to become a zinc ion, so zinc is oxidised. Redox does not need oxygen: it is about electrons.'
+- type: step
+  text:
+    en: 'A reducing agent reduces something else and is oxidised itself. Predict: is the reducing agent the substance that loses oxygen or the one that takes it?'
+  item_id: itm.chm.o.reactions.0063
+  action: predict
+  why:
+    en: Hydrogen takes the oxygen away from copper(II) oxide, so it reduces the oxide and is oxidised itself. The agent is never the substance it acts on.
+  names:
+    en: The oxidising agent is the substance reduced, and the reducing agent is the substance oxidised.
+- type: step
+  text:
+    en: Oxidation numbers keep track of electrons with a simple sum. The numbers for all the atoms add up to the overall charge.
+  item_id: itm.chm.o.reactions.0073
+  action: calculate
+  why:
+    en: The four oxygens and the sulfur must add up to the charge of minus 2, so sulfur must be plus 6.
+  names:
+    en: This is the oxidation number. It goes up when an element is oxidised and down when it is reduced.
+- type: step
+  text:
+    en: Now one on your own. Count every oxygen, and do not forget the charge on the ion.
+  item_id: itm.chm.o.reactions.0082
+  action: choose
+  why:
+    en: Three oxygens and the chlorine must add up to minus 1, so chlorine is plus 5.
+- type: check
+  item_ids:
+  - itm.chm.o.reactions.0065
+  - itm.chm.o.reactions.0064
+  - itm.chm.o.reactions.0084
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

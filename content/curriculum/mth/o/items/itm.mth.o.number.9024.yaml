@@ -1,0 +1,85 @@
+id: itm.mth.o.number.9024
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.compound_growth
+stem: A machine loses 20% of its value each year. After 2 years it is worth $6400.
+parts:
+- id: a
+  prompt: Find its value when new.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '10000'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9024
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Repeated percentage decay multiplies by the remaining fraction each year.
+  - rung: 2
+    name: concept
+    text:
+      en: Work backwards by dividing by both factors.
+  - rung: 3
+    name: first_step
+    text:
+      en: Divide the final value by the square of the annual remaining fraction.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Apply the annual decrease twice to your proposed starting value to recover the stated value.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 10000 $.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{6400}{\left(1 - \frac{20}{100}\right)^{2}}
+    reason: Divide the final value by the square of the annual remaining fraction.
+    check_id: chk_build_mastery_supplement_mth_9024
+  - n: 2
+    latex: '10000'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9024
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9024:
+    args:
+      angle_unit: degrees
+      expression: 6400/(1-20/100)^2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

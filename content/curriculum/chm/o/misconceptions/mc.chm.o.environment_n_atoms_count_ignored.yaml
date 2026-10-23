@@ -1,0 +1,36 @@
+id: mc.chm.o.environment_n_atoms_count_ignored
+kc_ids:
+- kc.chm.o.environment.fertilisers
+student_name: Counting only one nitrogen atom
+description: Uses the mass of one nitrogen atom in the percentage even when the fertiliser's formula has two or more.
+signatures:
+- kind: answer_transform
+  expression: 100*14/Mr
+fix:
+  strategy: simpler_numbers
+  text:
+    en: Count every nitrogen atom in the formula, including those in brackets and in both ions. NH₄NO₃ has two nitrogen atoms, so the nitrogen mass is 2 × 14 = 28.
+probe_item_ids:
+- itm.chm.o.environment.0013
+- itm.chm.o.environment.0014
+- itm.chm.o.environment.0015
+- itm.chm.o.environment.0016
+- itm.chm.o.environment.0019
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

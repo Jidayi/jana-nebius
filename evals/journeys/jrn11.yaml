@@ -1,0 +1,50 @@
+# JRN-11: the journey as an executable script (JRN-02). Steps and failure branches follow the
+# specification's journey (checked by jrn02_journey_suite_complete); requirement ids only, no wording.
+journey: JRN-11
+title: Lab install from the USB kit and a school licence
+persona: P7
+stage: S2
+steps:
+- n: 1
+  requirements:
+  - PLT-05
+  - PLT-06
+  - PLT-12
+  - CUR-09
+  runs_on: device_lab
+- n: 2
+  requirements:
+  - PLT-17
+  - PLT-18
+  - DAT-15
+  runs_on: harness
+- n: 3
+  requirements:
+  - BIZ-04
+  - BIZ-09
+  - PLT-19
+  runs_on: harness
+- n: 4
+  requirements:
+  - PLT-07
+  - PLT-08
+  - PLT-20
+  runs_on: harness
+- n: 5
+  requirements:
+  - PLT-20
+  - PRV-02
+  runs_on: harness
+branches:
+- id: F1
+  requirements:
+  - PLT-07
+  - PLT-23
+- id: F2
+  requirements:
+  - PLT-06
+  - PLT-20
+- id: F3
+  requirements:
+  - PLT-20
+  - BIZ-09

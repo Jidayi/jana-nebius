@@ -1,0 +1,109 @@
+id: itm.phy.o.particles.0058
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.pressure_and_volume
+stem: Air in a sealed syringe has a volume of 75 cm³ at a pressure of 300 kPa. It is slowly compressed to 50 cm³, at constant temperature.
+parts:
+- id: a
+  prompt: Find the new pressure of the gas.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 200 kPa
+      correct: false
+      misconception_id: mc.phy.o.boyle_direct_proportion
+      feedback: Squash a gas into half the space and its pressure doubles, it does not halve. For a fixed mass at constant temperature pV stays the same, so as one goes up the other goes down.
+    - id: B
+      text: 300 kPa
+      correct: false
+      misconception_id: mc.phy.o.gas_pressure_unchanged
+      feedback: 'Push in a sealed syringe and you feel the push back grow: the same gas in a smaller space hits the walls more often. Pressure depends on volume and temperature, not only on the amount of gas.'
+    - id: C
+      text: 450 kPa
+      correct: true
+    - id: D
+      text: 1.5 kPa
+      correct: false
+      misconception_id: mc.phy.o.boyle_ratio_only
+      feedback: The ratio only says how many times bigger the new value is. Multiply the starting value by it, or use p₁V₁ = p₂V₂ in full.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The mass and temperature of the gas stay the same, so pressure × volume stays constant.
+  - rung: 2
+    name: concept
+    text:
+      en: Use p₁V₁ = p₂V₂, where p₂ and V₂ are the values after the change.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out p₁V₁ = 300 × 75 first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 22500 by the new volume.
+  - rung: 5
+    name: full_step
+    text:
+      en: The new pressure is 450 kPa.
+  misconception_ids:
+  - mc.phy.o.boyle_direct_proportion
+  - mc.phy.o.boyle_ratio_only
+  - mc.phy.o.gas_pressure_unchanged
+solution:
+  steps:
+  - n: 1
+    latex: p_1V_1 = p_2V_2
+    reason: 'Boyle''s law: fixed mass at constant temperature'
+  - n: 2
+    latex: p_1V_1 = 300 \times 75 = 22500
+    reason: pV before the change
+    check_id: chk_build_phy_ptc_0058_k
+  - n: 3
+    latex: p_2 = \frac{22500}{50} = 450\ \text{kPa}
+    reason: Divide by the new volume
+    check_id: chk_build_phy_ptc_0058_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ptc_0058_ans:
+    args:
+      expression: 300*75/50
+    tool: math_evaluate
+  chk_build_phy_ptc_0058_k:
+    args:
+      expression: 300*75
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

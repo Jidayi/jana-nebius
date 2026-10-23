@@ -1,0 +1,92 @@
+id: itm.phy.o.energy.0080
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.power
+stem: An electric motor lifts a load of weight 200 N through a height of 3 m in 6 s.
+parts:
+- id: a
+  prompt: Calculate the useful power output of the motor.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '100'
+    unit: W
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0080_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Power is the work done each second.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the work done (weight × height), then divide by the time.
+  - rung: 3
+    name: first_step
+    text:
+      en: The work done is 200 × 3 = 600 J.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 600 ÷ 6.
+  - rung: 5
+    name: full_step
+    text:
+      en: The power is 100 W.
+  misconception_ids:
+  - mc.phy.o.power_is_energy
+  - mc.phy.o.power_energy_times_time
+  - mc.phy.o.energy_formula_inverted
+solution:
+  steps:
+  - n: 1
+    latex: W = Fd = 200 \times 3 = 600\ \text{J}
+    reason: Work done lifting the load
+    check_id: chk_build_phy_nrg_0080_wd
+  - n: 2
+    latex: P = \frac{W}{t} = \frac{600}{6} = 100\ \text{W}
+    reason: Power = work ÷ time
+    check_id: chk_build_phy_nrg_0080_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0080_ans:
+    args:
+      expression: 200*3/6
+    tool: math_evaluate
+  chk_build_phy_nrg_0080_wd:
+    args:
+      expression: 200*3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

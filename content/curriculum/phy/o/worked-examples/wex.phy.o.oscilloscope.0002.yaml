@@ -1,0 +1,36 @@
+id: wex.phy.o.oscilloscope.0002
+kc_ids:
+- kc.phy.o.oscilloscope.time_base
+problem: An oscilloscope's time-base is set to 1 ms/div. On the trace, the distance from a crest to the next trough is 2.5 divisions. Find the period of the signal in milliseconds.
+steps:
+- n: 1
+  latex: T = 2 \times 2.5 \times 1 = 5\ \text{ms}
+  reason: Crest to trough is half a wave, so double it
+  check_id: chk_build_phy_osc_w0002_ans
+final_answer:
+  latex: 5\ \text{ms}
+  check_id: chk_build_phy_osc_w0002_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_osc_w0002_ans:
+    args:
+      expression: 2*2.5*1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

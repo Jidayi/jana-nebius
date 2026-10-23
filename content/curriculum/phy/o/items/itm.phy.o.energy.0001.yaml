@@ -1,0 +1,80 @@
+id: itm.phy.o.energy.0001
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.stores_and_transfers
+stem: A wind turbine is supplied with 1200 J of energy from the kinetic store of the wind. It transfers 360 J electrically, and the rest by heating and as sound.
+parts:
+- id: a
+  prompt: How much energy is transferred by heating and as sound?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '840'
+    unit: J
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0001_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Energy is not created or destroyed in the device.
+  - rung: 2
+    name: concept
+    text:
+      en: All the energy supplied must come out somewhere.
+  - rung: 3
+    name: first_step
+    text:
+      en: The energy out by the other ways is what is left after the useful part.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 1200 − 360.
+  - rung: 5
+    name: full_step
+    text:
+      en: 840 J is transferred by heating and as sound.
+solution:
+  steps:
+  - n: 1
+    latex: 1200 - 360 = 840\ \text{J}
+    reason: Energy in = energy out
+    check_id: chk_build_phy_nrg_0001_ans
+difficulty:
+  prior: -0.9
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0001_ans:
+    args:
+      expression: 1200 - 360
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

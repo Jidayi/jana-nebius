@@ -1,0 +1,33 @@
+id: mc.chm.o.gas_volume_from_mass
+kc_ids:
+- kc.chm.o.stoichiometry.gas_volumes
+student_name: Using the mass for the amount
+description: Multiplies the mass of gas, not its amount in moles, by the molar gas volume.
+signatures:
+- kind: answer_transform
+  expression: m*24
+fix:
+  strategy: rule_restatement
+  text:
+    en: Only moles of gas can be turned into a volume. Convert grams to moles first.
+probe_item_ids:
+- itm.chm.o.stoichiometry.0079
+- itm.chm.o.stoichiometry.0080
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

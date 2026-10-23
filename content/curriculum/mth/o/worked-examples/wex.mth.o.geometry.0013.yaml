@@ -1,0 +1,56 @@
+id: wex.mth.o.geometry.0013
+kc_ids:
+- kc.mth.o.geometry.similar_area_volume
+problem: Two similar photographs have heights 3 cm and 5 cm. The smaller one has an area of 54 cm². Find the area of the larger one.
+steps:
+- n: 1
+  latex: k = \frac{5}{3}
+  reason: Length scale factor
+  check_id: chk_build_mth_geo_w0013_k
+- n: 2
+  latex: \text{area factor} = k^2 = 2.78
+  reason: Areas scale by k^2
+  check_id: chk_build_mth_geo_w0013_f
+- n: 3
+  latex: 54 \times 2.78 = 150
+  reason: Multiply
+  check_id: chk_build_mth_geo_w0013_ans
+final_answer:
+  latex: 150\ \text{cm}^2
+  check_id: chk_build_mth_geo_w0013_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_w0013_ans:
+    args:
+      expression: 54*(5/3)^2
+    tool: math_evaluate
+  chk_build_mth_geo_w0013_f:
+    args:
+      expression: (5/3)^2
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_geo_w0013_k:
+    args:
+      expression: 5/3
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

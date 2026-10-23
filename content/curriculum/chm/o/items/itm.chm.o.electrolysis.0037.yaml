@@ -1,0 +1,91 @@
+id: itm.chm.o.electrolysis.0037
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.applications
+stem: Electrolysis is used in several industries.
+parts:
+- id: a
+  prompt: Which statement is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: In the purification of copper, the impure copper is the cathode.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_impure_copper_as_cathode
+      feedback: 'The impure copper is the anode: its copper atoms lose electrons and go into solution as Cu²⁺. These ions gain electrons at the cathode, a thin sheet of pure copper, which grows. Impurities fall below the anode.'
+    - id: B
+      text: To electroplate a key with nickel, the key is made the anode.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_plated_object_as_anode
+      feedback: 'Metal is deposited where positive metal ions gain electrons: at the cathode. So the object to be plated is the cathode, the plating metal is the anode, and the electrolyte contains ions of the plating metal.'
+    - id: C
+      text: Aluminium is extracted by heating aluminium oxide with carbon.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_aluminium_by_carbon
+      feedback: Carbon can only remove oxygen from oxides of metals less reactive than carbon. Aluminium is more reactive than carbon, so its oxide must be decomposed by electrolysis, even though that uses a lot of electricity.
+    - id: D
+      text: In the purification of copper, the impure copper is the anode.
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Check each statement against what happens at each electrode.
+  - rung: 2
+    name: concept
+    text:
+      en: Metal is deposited at the cathode; metal atoms dissolve as ions at an active anode.
+  - rung: 3
+    name: first_step
+    text:
+      en: In copper purification you want copper to leave the impure lump and build up as pure copper elsewhere.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Also recall where aluminium sits in the reactivity series compared with carbon.
+  - rung: 5
+    name: full_step
+    text:
+      en: The impure copper is the anode, so it dissolves. The key would be the cathode, and aluminium cannot be made with carbon.
+  misconception_ids:
+  - mc.chm.o.electrolysis_plated_object_as_anode
+  - mc.chm.o.electrolysis_impure_copper_as_cathode
+  - mc.chm.o.electrolysis_aluminium_by_carbon
+solution:
+  steps:
+  - n: 1
+    latex: '\text{impure Cu: anode; object to plate: cathode}'
+    reason: Deposit at the cathode
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,90 @@
+id: itm.chm.o.electrolysis.0031
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.half_equations
+stem: 'In the aluminium cell, aluminium ions are discharged at the cathode: Al³⁺ + ne⁻ → Al.'
+parts:
+- id: a
+  prompt: How many electrons, n, are in the balanced half-equation?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '3'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_electrolysis_0031_n
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Electrons balance the charge in a half-equation.
+  - rung: 2
+    name: concept
+    text:
+      en: The total charge on the left must equal the total charge on the right.
+  - rung: 3
+    name: first_step
+    text:
+      en: On the right there is a neutral aluminium atom, with zero charge.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Each electron carries one negative charge. How many cancel the charge on one aluminium ion?
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Al³⁺ + 3e⁻ → Al: n = 3, so the charges balance.'
+  misconception_ids:
+  - mc.chm.o.electrolysis_half_charge_unbalanced
+solution:
+  steps:
+  - n: 1
+    latex: n = 3 - 0 = 3
+    reason: Difference in charge
+    check_id: chk_build_chm_electrolysis_0031_n
+  - n: 2
+    latex: \text{Al}^{3+} + 3e^{-} \rightarrow \text{Al}
+    reason: Balanced half-equation
+    check_id: chk_build_chm_electrolysis_0031_bal
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: structured
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_0031_bal:
+    args:
+      equation: 1Al^3+ + 3e- -> 1Al
+    tool: chem_balance
+  chk_build_chm_electrolysis_0031_n:
+    args:
+      expression: 3 - 0
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

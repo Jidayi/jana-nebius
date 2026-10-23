@@ -1,0 +1,48 @@
+id: wex.phy.o.measurement.0006
+kc_ids:
+- kc.phy.o.measurement.resultant_vectors
+problem: A plane flies north at 60 m/s while a wind blows it east at 25 m/s. Find the angle between the plane's resultant velocity and due north.
+steps:
+- n: 1
+  latex: \tan\theta = \frac{25}{60} = 0.417
+  reason: Opposite over adjacent, from north
+  check_id: chk_build_phy_mea_w0006_ratio
+- n: 2
+  latex: \theta = 22.6^\circ
+  reason: Inverse tangent
+  check_id: chk_build_phy_mea_w0006_ans
+final_answer:
+  latex: 22.6^\circ
+  check_id: chk_build_phy_mea_w0006_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mea_w0006_ans:
+    args:
+      angle_unit: degrees
+      expression: atan(25/60)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_mea_w0006_ratio:
+    args:
+      expression: 25/60
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

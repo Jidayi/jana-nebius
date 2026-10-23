@@ -1,0 +1,105 @@
+id: itm.mth.o.algebra_and_graphs.0253
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.travel_graphs
+stem: A speed-time graph for a motorbike is a straight line from (0 s, 4 m/s) to (10 s, 16 m/s).
+parts:
+- id: a
+  prompt: Find the distance travelled in this time.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 160 m
+      correct: false
+      misconception_id: mc.mth.o.graph_one_point
+      feedback: A line that does not start at the origin gives the wrong value from one point. Use the change between two points.
+    - id: B
+      text: 100 m
+      correct: true
+    - id: C
+      text: 1.2 m
+      correct: false
+      misconception_id: mc.mth.o.gradient_for_area
+      feedback: On a speed-time graph the slope gives the acceleration and the area underneath gives the distance.
+    - id: D
+      text: 200 m
+      correct: false
+      misconception_id: mc.mth.o.formula_half_dropped
+      feedback: Read the formula one symbol at a time and tick each one off as you substitute; the ½ multiplies everything that follows it.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: On a speed-time graph, which feature gives the distance travelled?
+  - rung: 2
+    name: concept
+    text:
+      en: The distance is the area under the graph.
+  - rung: 3
+    name: first_step
+    text:
+      en: The shape under the line is a trapezium (or a triangle if it starts at zero).
+  - rung: 4
+    name: worked_step
+    text:
+      en: Area = ½ × (4 + 16) × 10.
+  - rung: 5
+    name: full_step
+    text:
+      en: Distance = 100 m.
+  misconception_ids:
+  - mc.mth.o.formula_half_dropped
+  - mc.mth.o.gradient_for_area
+  - mc.mth.o.graph_one_point
+solution:
+  steps:
+  - n: 1
+    latex: d = \tfrac{1}{2}(u + v)t
+    reason: The area under the line is a trapezium
+  - n: 2
+    latex: d = \tfrac{1}{2} \times 20 \times 10 = 100\ \text{m}
+    reason: Evaluate
+    check_id: chk_build_mth_alg_0253_s
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0253_ans:
+    args:
+      expression: (4 + 16)*10/2
+    tool: math_evaluate
+  chk_build_mth_alg_0253_s:
+    args:
+      expression: 4 + 16
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

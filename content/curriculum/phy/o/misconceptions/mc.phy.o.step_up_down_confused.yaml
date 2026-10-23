@@ -1,0 +1,33 @@
+id: mc.phy.o.step_up_down_confused
+kc_ids:
+- kc.phy.o.electromagnetism.transformers
+student_name: Step-up and step-down mixed up
+description: Calls a transformer with more turns on the secondary a step-down transformer, or the other way round.
+signatures:
+- kind: step_error
+  error_category: sign
+fix:
+  strategy: rule_restatement
+  text:
+    en: More turns on the secondary than the primary steps the voltage up; fewer turns steps it down.
+probe_item_ids:
+- itm.phy.o.electromagnetism.0057
+- itm.phy.o.electromagnetism.0053
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

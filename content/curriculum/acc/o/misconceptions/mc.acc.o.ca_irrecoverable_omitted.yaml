@@ -1,0 +1,34 @@
+id: mc.acc.o.ca_irrecoverable_omitted
+kc_ids:
+- kc.acc.o.control_accounts.sales_ledger_control
+student_name: Forgetting irrecoverable debts
+description: Leaves irrecoverable debts out of the sales ledger control account.
+signatures:
+- kind: answer_transform
+  expression: closing + irrecoverable
+fix:
+  strategy: rule_restatement
+  text:
+    en: A debt written off is no longer owed, so it is credited to the control account.
+probe_item_ids:
+- itm.acc.o.control_accounts.0030
+- itm.acc.o.control_accounts.0031
+- itm.acc.o.control_accounts.0032
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

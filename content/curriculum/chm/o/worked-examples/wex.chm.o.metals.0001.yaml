@@ -1,0 +1,45 @@
+id: wex.chm.o.metals.0001
+kc_ids:
+- kc.chm.o.metals.properties_and_uses
+problem: Overhead cables could be made of copper (density 8.9 g/cm³) or aluminium (density 2.7 g/cm³). How many times heavier would a copper cable be than an aluminium cable of the same size?
+steps:
+- n: 1
+  latex: \text{same volume, so compare densities}
+  reason: Mass = density × volume
+- n: 2
+  latex: \frac{8.9}{2.7} = 3.3
+  reason: Ratio of the densities
+  check_id: chk_build_chm_metals_w0001_ratio
+- n: 3
+  latex: '\text{aluminium is chosen: light and still a good conductor}'
+  reason: Property matched to the use
+final_answer:
+  latex: 3.3\ \text{times heavier}
+  check_id: chk_build_chm_metals_w0001_ratio
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_metals_w0001_ratio:
+    args:
+      expression: 8.9/2.7
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

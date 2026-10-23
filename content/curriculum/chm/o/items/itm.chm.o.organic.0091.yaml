@@ -1,0 +1,165 @@
+id: itm.chm.o.organic.0091
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.combustion
+stem: Propane, C₃H₈, burns completely in air. The unbalanced equation is C₃H₈ + O₂ → CO₂ + H₂O.
+parts:
+- id: a
+  prompt: Balance the equation using the smallest whole numbers. What number goes in front of O₂?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '5'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_organic_0091_ratios
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'When propane burns completely, the only products are carbon dioxide and water: C₃H₈ + O₂ → CO₂ + H₂O.'
+  - rung: 2
+    name: concept
+    text:
+      en: Balance carbon first, then hydrogen, and leave oxygen until last, because oxygen turns up in both products when propane burns.
+  - rung: 3
+    name: first_step
+    text:
+      en: One C₃H₈ molecule gives 3 CO₂ (from its carbon) and 4 H₂O (from its hydrogen).
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'For one C₃H₈: oxygen atoms on the right = 2 × 3 + 4 = 10. Each O₂ molecule supplies two of them.'
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Balanced: C₃H₈ + 5O₂ → 3CO₂ + 4H₂O. The number in front of O₂ is 5.'
+  misconception_ids:
+  - mc.chm.o.organic_combustion_not_lowest
+  - mc.chm.o.organic_oxygen_formula_changed
+solution:
+  steps:
+  - n: 1
+    latex: '\text{one }\text{C}_3\text{H}_8: 3\text{CO}_2 + 4\text{H}_2\text{O}'
+    reason: Carbon and hydrogen first
+    check_id: chk_build_chm_organic_0091_one
+  - n: 2
+    latex: 2 \times 3 + 4 = 10
+    reason: Oxygen atoms needed on the right
+    check_id: chk_build_chm_organic_0091_oright
+  - n: 3
+    latex: \text{C}_3\text{H}_8 + 5\text{O}_2 \rightarrow 3\text{CO}_2 + 4\text{H}_2\text{O}
+    reason: Smallest whole numbers
+    check_id: chk_build_chm_organic_0091_bal
+  - n: 4
+    latex: '\text{O}_2: 5'
+    reason: Coefficient of O₂
+    check_id: chk_build_chm_organic_0091_ratios
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_0091_bal:
+    args:
+      equation: C3H8 + O2 -> CO2 + H2O
+    tool: chem_balance
+  chk_build_chm_organic_0091_one:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      equation: C3H8 + O2 -> CO2 + H2O
+      sf: 3
+      steps:
+      - amount: '1'
+        from: C3H8
+        id: p0
+        op: mole_ratio
+        to: C3H8
+      - amount: '1'
+        from: C3H8
+        id: p1
+        op: mole_ratio
+        to: O2
+      - amount: '1'
+        from: C3H8
+        id: p2
+        op: mole_ratio
+        to: CO2
+      - amount: '1'
+        from: C3H8
+        id: p3
+        op: mole_ratio
+        to: H2O
+    tool: chem_stoichiometry
+  chk_build_chm_organic_0091_oright:
+    args:
+      expression: 2*3 + 4
+    tool: math_evaluate
+  chk_build_chm_organic_0091_ratios:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      equation: C3H8 + O2 -> CO2 + H2O
+      sf: 3
+      steps:
+      - amount: '1'
+        from: C3H8
+        id: r0
+        op: mole_ratio
+        to: C3H8
+      - amount: '1'
+        from: C3H8
+        id: r1
+        op: mole_ratio
+        to: O2
+      - amount: '1'
+        from: C3H8
+        id: r2
+        op: mole_ratio
+        to: CO2
+      - amount: '1'
+        from: C3H8
+        id: r3
+        op: mole_ratio
+        to: H2O
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,38 @@
+id: mc.phy.o.heater_minutes_not_seconds
+kc_ids:
+- kc.phy.o.thermal_properties.specific_heat_capacity
+- kc.phy.o.thermal_properties.latent_heat
+- kc.phy.o.thermal_properties.changes_of_state
+student_name: Time left in minutes
+description: Uses a time in minutes in E = Pt, so the energy comes out sixty times too small.
+signatures:
+- kind: answer_transform
+  expression: x/60
+fix:
+  strategy: rule_restatement
+  text:
+    en: A watt is a joule per second, so the time must be in seconds. Multiply minutes by 60 before using E = Pt.
+probe_item_ids:
+- itm.phy.o.thermal_properties.0027
+- itm.phy.o.thermal_properties.0029
+- itm.phy.o.thermal_properties.0033
+- itm.phy.o.thermal_properties.0038
+- itm.phy.o.thermal_properties.0046
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

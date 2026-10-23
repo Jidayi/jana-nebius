@@ -1,0 +1,70 @@
+id: les.acc.o.partnerships.sharing_partnership_profit
+node_id: cur.acc.o.partnerships
+kc_ids:
+- kc.acc.o.partnerships.partnership_agreement
+- kc.acc.o.partnerships.interest_and_salary
+- kc.acc.o.partnerships.appropriation
+- kc.acc.o.partnerships.current_accounts
+- kc.acc.o.partnerships.capital_vs_current
+title: Sharing a partnership's profit
+estimated_minutes: 15
+blocks:
+- type: step
+  text:
+    en: 'Try this before any rules: two people run a business together but never agreed how to share its profit.'
+  item_id: itm.acc.o.partnerships.0001
+  action: try_first
+  why:
+    en: With no agreement, profit and losses are shared equally. No interest or salaries are paid.
+  names:
+    en: The partners' rules for sharing profit are called the partnership agreement. Without one, everything is shared equally.
+- type: step
+  text:
+    en: Many agreements reward a partner for the money they put in, as interest on capital.
+  item_id: itm.acc.o.partnerships.0012
+  action: calculate
+  why:
+    en: Interest on capital is the agreed rate times that partner's own capital.
+- type: step
+  text:
+    en: Put together what one partner gets before the ratio is used, and what is charged to them.
+  item_id: itm.acc.o.partnerships.0019
+  action: choose
+  why:
+    en: Add interest on capital and the salary, then take away the interest charged on drawings, which the partner pays to the firm.
+- type: step
+  text:
+    en: 'Predict before you look at the choices: is the ratio used on the whole profit, or on what is left?'
+  item_id: itm.acc.o.partnerships.0030
+  action: predict
+  why:
+    en: Take interest on capital and salaries from the profit and add interest on drawings. Only that remainder is shared in the ratio.
+- type: step
+  text:
+    en: When capital accounts are kept fixed, yearly items need a home of their own.
+  item_id: itm.acc.o.partnerships.0045
+  action: choose
+  why:
+    en: A share of profit is a yearly item, so it goes to the current account. The capital account holds only long-term capital.
+- type: check
+  item_ids:
+  - itm.acc.o.partnerships.0013
+  - itm.acc.o.partnerships.0024
+  - itm.acc.o.partnerships.0034
+version: 0.2.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

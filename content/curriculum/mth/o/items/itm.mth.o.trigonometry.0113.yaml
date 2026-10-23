@@ -1,0 +1,117 @@
+id: itm.mth.o.trigonometry.0113
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.three_d
+stem: A cuboid measures 8 cm by 5 cm by 5 cm.
+parts:
+- id: a
+  prompt: Find the length of a diagonal running from a bottom corner to the opposite top corner, to 3 significant figures.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '10.7'
+    unit: cm
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_trg_0113_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The diagonal goes through the inside of the cuboid.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Use Pythagoras twice: first across the base, then up to the top corner.'
+  - rung: 3
+    name: first_step
+    text:
+      en: The base diagonal squared is 8² + 5².
+  - rung: 4
+    name: worked_step
+    text:
+      en: That is 89. Now add 5² and take the square root.
+  - rung: 5
+    name: full_step
+    text:
+      en: The diagonal is 10.7 cm.
+  misconception_ids:
+  - mc.mth.o.three_d_two_dimensions
+  - mc.mth.o.pythag_sides_added
+  - mc.mth.o.pythag_no_root
+solution:
+  steps:
+  - n: 1
+    latex: \text{base diagonal}^2 = 8^2 + 5^2 = 89
+    reason: Pythagoras in the base
+    check_id: chk_build_mth_trg_0113_bd
+  - n: 2
+    latex: d = \sqrt{89 + 5^2} = 10.7\ \text{cm}
+    reason: Pythagoras again with the height
+    check_id: chk_build_mth_trg_0113_ans
+difficulty:
+  prior: 0.9
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  a: '8'
+  b: '5'
+checks:
+  chk_build_mth_trg_0113_ans:
+    args:
+      expression: sqrt(8^2 + 5^2 + 5^2)
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_trg_0113_bd:
+    args:
+      expression: 8^2 + 5^2
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:40:44.492Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.trigonometry.0113
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

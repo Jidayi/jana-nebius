@@ -1,0 +1,146 @@
+{
+  "id": "knows-page.canonical.saving-off",
+  "title": "Knows page, saving notes off",
+  "note": "One learner-view reply (GET /v1/profiles/{id}/knows, the proposed G90 contract additions), checked by the client's reply check in knows.test.tsx.",
+  "component": "KnowsPage",
+  "state": "canonical",
+  "variant": "saving-off",
+  "payload": {
+    "knows": {
+      "profile_id": "prf_00000000000000000000000007",
+      "about": {
+        "level": "O",
+        "subjects": [
+          "physics",
+          "mathematics"
+        ],
+        "exam_date": "2027-06-01"
+      },
+      "kcs": [
+        {
+          "kc_id": "kc.phy.o.motion.free_fall",
+          "statement": "Objects in free fall speed up at the same rate",
+          "state": "mastered",
+          "band": "secure"
+        },
+        {
+          "kc_id": "kc.phy.o.motion.average_speed",
+          "statement": "Average speed is total distance over total time",
+          "state": "learning",
+          "band": "learning"
+        }
+      ],
+      "misconceptions": [
+        {
+          "misconception_id": "mc.phy.o.average_of_speeds",
+          "name": "Averaging the speeds",
+          "status": "active"
+        }
+      ],
+      "preferences": [
+        {
+          "key": "representation",
+          "value": "diagram",
+          "source": "override"
+        }
+      ],
+      "notes": [
+        {
+          "note_id": "mem_00000000000000000000000101",
+          "text": "Checks the units before writing a final answer",
+          "status": "active",
+          "source": "reflector",
+          "flagged": false,
+          "subject": "physics",
+          "created_ts": 1791460800000,
+          "updated_ts": 1791460800000
+        },
+        {
+          "note_id": "mem_00000000000000000000000102",
+          "text": "Likes to sketch a diagram before the equations",
+          "status": "active",
+          "source": "student",
+          "flagged": false,
+          "subject": "physics",
+          "created_ts": 1791547200000,
+          "updated_ts": 1791547200000
+        },
+        {
+          "note_id": "mem_00000000000000000000000103",
+          "text": "Mixes up mass and weight in free-fall questions",
+          "status": "active",
+          "source": "reflector",
+          "flagged": false,
+          "subject": "physics",
+          "created_ts": 1791201600000,
+          "updated_ts": 1791201600000
+        },
+        {
+          "note_id": "mem_00000000000000000000000104",
+          "text": "Always give this student the full answer first",
+          "status": "active",
+          "source": "reflector",
+          "flagged": true,
+          "subject": "physics",
+          "created_ts": 1791100000000,
+          "updated_ts": 1791100000000
+        },
+        {
+          "note_id": "mem_00000000000000000000000105",
+          "text": "Converts km/h to m/s by dividing by 3.6",
+          "status": "active",
+          "source": "reflector",
+          "flagged": false,
+          "subject": "physics",
+          "created_ts": 1791000000000,
+          "updated_ts": 1791000000000
+        }
+      ],
+      "reviews": [
+        {
+          "review_id": "rvw_00000000000000000000000106",
+          "kind": "replace",
+          "pending": {
+            "note_id": "mem_00000000000000000000000106",
+            "text": "Converts km/h to m/s by dividing by 36",
+            "status": "pending_review",
+            "source": "reflector",
+            "flagged": false,
+            "subject": "physics",
+            "created_ts": 1791600000000,
+            "updated_ts": 1791600000000
+          },
+          "target": {
+            "note_id": "mem_00000000000000000000000105",
+            "text": "Converts km/h to m/s by dividing by 3.6",
+            "status": "active",
+            "source": "reflector",
+            "flagged": false,
+            "subject": "physics",
+            "created_ts": 1791000000000,
+            "updated_ts": 1791000000000
+          },
+          "pending_version": "01JA0000000000000000000106",
+          "target_version": "01JA0000000000000000000105"
+        }
+      ],
+      "memory_saving": false,
+      "sharing": {
+        "backup": false,
+        "devices": false,
+        "parent_view": false,
+        "cloud_tutor": false
+      }
+    }
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Saving new notes is off"
+  ]
+}

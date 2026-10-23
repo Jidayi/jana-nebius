@@ -1,0 +1,81 @@
+id: itm.chm.o.reactions.0023
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.rate_factors
+stem: Magnesium ribbon reacts with dilute hydrochloric acid in a beaker at room temperature.
+parts:
+- id: a
+  prompt: Which change would NOT change the rate of the reaction?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Cutting the ribbon into small pieces
+      correct: false
+    - id: B
+      text: Using a larger volume of acid of the same concentration
+      correct: true
+    - id: C
+      text: Using more concentrated acid
+      correct: false
+    - id: D
+      text: Warming the acid
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Three of these changes alter a rate factor. One does not.
+  - rung: 2
+    name: concept
+    text:
+      en: The factors are concentration, temperature, surface area, pressure (for gases) and a catalyst.
+  - rung: 3
+    name: first_step
+    text:
+      en: More acid of the same concentration still has the same number of acid particles in each cm³.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Check each option against the list of factors.
+  - rung: 5
+    name: full_step
+    text:
+      en: A larger volume of the same acid does not change the rate, because the concentration is unchanged.
+solution:
+  steps:
+  - n: 1
+    latex: '\text{same concentration: same rate}'
+    reason: Volume is not a rate factor
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,48 @@
+id: wex.phy.o.radioactivity.0002
+kc_ids:
+- kc.phy.o.radioactivity.types_of_radiation
+problem: A counter near a source reads 580 counts/min with nothing in between, 400 counts/min with a sheet of paper in between, and 130 counts/min with 5 mm of aluminium in between. The background count rate is 30 counts/min. Find the count rate due to beta radiation alone.
+steps:
+- n: 1
+  latex: C_{\text{paper}} = C_{\beta} + C_{\gamma} + C_{\text{background}}
+  reason: Paper has stopped the alpha
+- n: 2
+  latex: C_{\text{aluminium}} = C_{\gamma} + C_{\text{background}}
+  reason: Aluminium has stopped the beta
+- n: 3
+  latex: 400 - 130 = 270\ \text{counts/min}
+  reason: The difference is the beta
+  check_id: chk_build_phy_rad_w0002_ans
+final_answer:
+  latex: 270\ \text{counts/min}
+  check_id: chk_build_phy_rad_w0002_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_w0002_ans:
+    args:
+      expression: 400 - 130
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

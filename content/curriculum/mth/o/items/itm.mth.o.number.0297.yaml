@@ -1,0 +1,85 @@
+id: itm.mth.o.number.0297
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.rounding
+stem: Round 3.10545 to 1 decimal place.
+parts:
+- id: a
+  prompt: Give the rounded number.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '3.1'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0297_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Find the digit you are rounding to: count from the first non-zero digit for significant figures, from the decimal point for decimal places.'
+  - rung: 2
+    name: concept
+    text:
+      en: 'Look at the next digit: five or more rounds the last kept digit up; less than five leaves it.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Count 1 decimal place in the number, then look at the digit after them.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Keep place-holder zeros so the number keeps its size.
+  - rung: 5
+    name: full_step
+    text:
+      en: 3.10545 rounds to 3.1.
+  misconception_ids:
+  - mc.mth.o.sf_dp_confused
+  - mc.mth.o.truncated_not_rounded
+  - mc.mth.o.rounding_wrong_digit
+solution:
+  steps:
+  - n: 1
+    latex: 3.10545 \approx 3.1
+    reason: Look at the next digit to decide whether to round up
+    check_id: chk_build_mth_num_0297_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0297_ans:
+    args:
+      dp: 1
+      expression: '3.10545'
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

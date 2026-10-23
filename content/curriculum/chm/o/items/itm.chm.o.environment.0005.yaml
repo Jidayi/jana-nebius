@@ -1,0 +1,89 @@
+id: itm.chm.o.environment.0005
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.water
+stem: River water is treated before it is piped to homes.
+parts:
+- id: a
+  prompt: Which stage of treatment kills microbes?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Adding chlorine
+      correct: true
+    - id: B
+      text: Passing it through carbon
+      correct: false
+      misconception_id: mc.chm.o.environment_treatment_stages_mixed
+      feedback: Each stage has one job. Sedimentation lets large particles settle. Filtration removes small insoluble particles. Carbon removes tastes and smells. Chlorine kills microbes. None of these removes dissolved salts, so tap water is not pure.
+    - id: C
+      text: Filtering through beds of sand
+      correct: false
+      misconception_id: mc.chm.o.environment_treatment_stages_mixed
+      feedback: Each stage has one job. Sedimentation lets large particles settle. Filtration removes small insoluble particles. Carbon removes tastes and smells. Chlorine kills microbes. None of these removes dissolved salts, so tap water is not pure.
+    - id: D
+      text: Leaving it to stand in sedimentation tanks
+      correct: false
+      misconception_id: mc.chm.o.environment_treatment_stages_mixed
+      feedback: Each stage has one job. Sedimentation lets large particles settle. Filtration removes small insoluble particles. Carbon removes tastes and smells. Chlorine kills microbes. None of these removes dissolved salts, so tap water is not pure.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Microbes such as bacteria are living things. Which stage uses a chemical that kills them?
+  - rung: 2
+    name: concept
+    text:
+      en: Sedimentation and filtration remove particles; carbon removes tastes and smells.
+  - rung: 3
+    name: first_step
+    text:
+      en: Bacteria are so small that many pass through sand filters.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Which substance, added to swimming pools too, kills germs?
+  - rung: 5
+    name: full_step
+    text:
+      en: Chlorination kills microbes, making the water safe to drink.
+  misconception_ids:
+  - mc.chm.o.environment_treatment_stages_mixed
+solution:
+  steps:
+  - n: 1
+    latex: '\text{chlorine: kills microbes}'
+    reason: Chlorination
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,52 @@
+<div class="my-2 rounded-card border border-line p-3" role="group" aria-label="A titration simulation: NaOH added to 25 cubic centimetres of HCl; the end point is at 25 cubic centimetres." data-kind="titration_sim" data-visual-id="vis_8W088W26GC5PB11F8TKD8R5CJ2">
+<svg viewBox="0 0 480 260" class="w-full" role="img" aria-label="The burette and flask">
+<rect x="220" y="20" width="16" height="150" fill="#121316" stroke="#ECECEE" stroke-width="1.5">
+</rect>
+<rect x="221" y="40" width="14" height="130" fill="#9944cc" fill-opacity="0.3" stroke="none">
+</rect>
+<path d="M228,170 L228,190" stroke="#ECECEE" stroke-width="1.5">
+</path>
+<polygon points="218,200 238,200 238,214 270,250 186,250 218,214" fill="transparent" stroke="#71727B" stroke-width="1.5" stroke-dasharray="4 3" data-content-colour="colourless">
+</polygon>
+<text x="290" y="236" font-size="13" fill="#ECECEE" data-colour-name="colourless">colourless</text>
+</svg>
+<div class="mt-3 grid gap-2">
+<label for="vis_8W088W26GC5PB11F8TKD8R5CJ2-volume" class="grid grid-cols-[10rem_1fr_6rem] items-center gap-2 text-ui">
+<span>Volume added (cm³)</span>
+<input id="vis_8W088W26GC5PB11F8TKD8R5CJ2-volume" type="range" class="min-h-11" min="0" max="50" step="0.1" aria-valuetext="0 cm³" data-part="ctrl.volume" value="0"/>
+<output for="vis_8W088W26GC5PB11F8TKD8R5CJ2-volume" class="tabular-nums">0 cm³</output>
+</label>
+<label for="vis_8W088W26GC5PB11F8TKD8R5CJ2-tap" class="flex min-h-11 items-center gap-2 text-ui">
+<input id="vis_8W088W26GC5PB11F8TKD8R5CJ2-tap" type="checkbox" data-part="ctrl.tap"/>Tap open</label>
+<label for="vis_8W088W26GC5PB11F8TKD8R5CJ2-indicator" class="flex min-h-11 items-center gap-2 text-ui">Indicator<select id="vis_8W088W26GC5PB11F8TKD8R5CJ2-indicator" class="min-h-11 rounded-control border border-line-strong bg-canvas px-2" data-part="ctrl.indicator">
+<option value="phenolphthalein" selected="">Phenolphthalein</option>
+<option value="methyl_orange">Methyl orange</option>
+</select>
+</label>
+</div>
+<dl class="mt-3 grid grid-cols-2 gap-x-4 text-ui">
+<div class="contents">
+<dt class="text-muted">Volume added <span class="text-meta">(3 s.f.)</span>
+</dt>
+<dd class="tabular-nums" data-part="out.volume" tabindex="0">0.00 cm³</dd>
+</div>
+<div class="contents">
+<dt class="text-muted">pH <span class="text-meta">(3 s.f.)</span>
+</dt>
+<dd class="tabular-nums" data-part="out.ph" tabindex="0">1.00</dd>
+</div>
+<div class="contents">
+<dt class="text-muted">End point <span class="text-meta">(3 s.f.)</span>
+</dt>
+<dd class="tabular-nums" data-part="out.end_point" tabindex="0">25.0 cm³</dd>
+</div>
+</dl>
+<p class="sr-only" aria-live="polite" data-sim-live="true">
+</p>
+<div class="mt-3 flex flex-wrap gap-2">
+<button type="button" class="rounded-control border border-line px-3 py-1 text-ui" aria-pressed="false">Play</button>
+<button type="button" class="rounded-control border border-line px-3 py-1 text-ui">Reset</button>
+<button type="button" class="rounded-control border border-line px-3 py-1 text-ui">Record this reading</button>
+<button type="button" class="rounded-control border border-line px-3 py-1 text-ui" aria-pressed="false">Show readings as a table</button>
+</div>
+</div>

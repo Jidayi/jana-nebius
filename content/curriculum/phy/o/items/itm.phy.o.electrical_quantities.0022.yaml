@@ -1,0 +1,91 @@
+id: itm.phy.o.electrical_quantities.0022
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.current_and_charge
+stem: The current in a car's starter motor is 160 A for 2 s.
+parts:
+- id: a
+  prompt: Calculate the charge that flows.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '320'
+    unit: C
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_elq_0022_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A current is the charge that flows each second.
+  - rung: 2
+    name: concept
+    text:
+      en: Q = I × t, with I in amps and t in seconds.
+  - rung: 3
+    name: first_step
+    text:
+      en: The units are already amps and seconds.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply 160 A by 2 s.
+  - rung: 5
+    name: full_step
+    text:
+      en: Q = 160 × 2 = 320 C.
+  misconception_ids:
+  - mc.phy.o.charge_current_divided_by_time
+solution:
+  steps:
+  - n: 1
+    latex: Q = I t = 160 \times 2 = 320\ \text{C}
+    reason: Charge = current × time
+    check_id: chk_build_phy_elq_0022_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  I: '160'
+  t: '2'
+checks:
+  chk_build_phy_elq_0022_ans:
+    args:
+      expression: 160*2
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,172 @@
+- id: kc.acc.o.incomplete_records.statement_of_affairs
+  code: ACC-O-14.K01
+  node_id: cur.acc.o.incomplete_records
+  statement: Calculate a trader's capital from a statement of affairs
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.acc.o.accounting_equation.apply_equation
+    strength: required
+  misconception_ids:
+  - mc.acc.o.ir_soa_assets_only
+  - mc.acc.o.ir_soa_item_misclassified
+  - mc.acc.o.ae_equation_signs_wrong
+  skill_ids:
+  - acc-o-incomplete-records
+  glossary:
+  - incomplete records
+  - statement of affairs
+  - opening capital
+  - closing capital
+  - capital introduced
+  - capital
+  - drawings
+  - profit for the year
+  - credit sales
+  - credit purchases
+  - trade receivables
+  - trade payables
+  - margin
+  - mark-up
+  - gross margin
+  - cost of sales
+  - revenue
+  - asset
+  - liability
+  - liabilities
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.incomplete_records.profit_from_capital
+  code: ACC-O-14.K02
+  node_id: cur.acc.o.incomplete_records
+  statement: Calculate profit for the year from the change in capital, drawings and capital introduced
+  kind: procedural
+  tools:
+  - acc_statements
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.acc.o.incomplete_records.statement_of_affairs
+    strength: required
+  - kc_id: kc.acc.o.sole_trader_statements.closing_capital
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.ir_capital_introduced_added
+  - mc.acc.o.ir_change_only
+  - mc.acc.o.ir_drawings_subtracted
+  skill_ids:
+  - acc-o-incomplete-records
+  glossary:
+  - incomplete records
+  - statement of affairs
+  - opening capital
+  - closing capital
+  - capital introduced
+  - capital
+  - drawings
+  - profit for the year
+  - credit sales
+  - credit purchases
+  - trade receivables
+  - trade payables
+  - margin
+  - mark-up
+  - gross margin
+  - cost of sales
+  - revenue
+  - asset
+  - liability
+  - liabilities
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.incomplete_records.missing_credit_figures
+  code: ACC-O-14.K03
+  node_id: cur.acc.o.incomplete_records
+  statement: Calculate credit sales or credit purchases from receipts, payments and balances
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.acc.o.control_accounts.sales_ledger_control
+    strength: helpful
+  - kc_id: kc.acc.o.double_entry.balance_account
+    strength: required
+  misconception_ids:
+  - mc.acc.o.ir_cash_sales_included
+  - mc.acc.o.ir_opening_closing_swapped
+  - mc.acc.o.ir_receipts_only
+  skill_ids:
+  - acc-o-incomplete-records
+  glossary:
+  - incomplete records
+  - statement of affairs
+  - opening capital
+  - closing capital
+  - capital introduced
+  - capital
+  - drawings
+  - profit for the year
+  - credit sales
+  - credit purchases
+  - trade receivables
+  - trade payables
+  - margin
+  - mark-up
+  - gross margin
+  - cost of sales
+  - revenue
+  - asset
+  - liability
+  - liabilities
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.incomplete_records.margin_markup_use
+  code: ACC-O-14.K04
+  node_id: cur.acc.o.incomplete_records
+  statement: Calculate a missing revenue or cost of sales from a stated margin or mark-up
+  kind: procedural
+  tools:
+  - acc_ratios
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.acc.o.ratios.mark_up
+    strength: required
+  misconception_ids:
+  - mc.acc.o.ir_markup_subtracted
+  - mc.acc.o.ir_percent_of_wrong_base
+  - mc.acc.o.rat_margin_markup_confused
+  skill_ids:
+  - acc-o-incomplete-records
+  glossary:
+  - incomplete records
+  - statement of affairs
+  - opening capital
+  - closing capital
+  - capital introduced
+  - capital
+  - drawings
+  - profit for the year
+  - credit sales
+  - credit purchases
+  - trade receivables
+  - trade payables
+  - margin
+  - mark-up
+  - gross margin
+  - cost of sales
+  - revenue
+  - asset
+  - liability
+  - liabilities
+  difficulty_prior: 0.5
+  version: 0.1.1
+  status: active

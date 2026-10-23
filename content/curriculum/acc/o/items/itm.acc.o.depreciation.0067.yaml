@@ -1,0 +1,138 @@
+id: itm.acc.o.depreciation.0067
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.depreciation.disposal
+stem: 'Sipho''s business bought a grain mill for $8400 in 2021. It is depreciated by the straight-line method over 8 years with a residual value of $1400: a full year''s charge in the year of purchase and none in the year of sale. The grain mill was sold in 2023 for $9450.'
+parts:
+- id: a
+  prompt: What is the result of the disposal?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Profit of $2800
+      correct: true
+    - id: B
+      text: Loss of $2800
+      correct: false
+      misconception_id: mc.acc.o.disp_sign_reversed
+    - id: C
+      text: Profit of $1050
+      correct: false
+      misconception_id: mc.acc.o.disp_cost_not_nbv
+    - id: D
+      text: Profit of $1925
+      correct: false
+      misconception_id: mc.acc.o.disp_disposal_year_depreciated
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What was the asset worth in the books when it was sold?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Result = proceeds − net book value: positive is a profit, negative a loss.'
+  - rung: 3
+    name: first_step
+    text:
+      en: No depreciation is charged in the year of sale under this policy.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Find the net book value after 2023 − 2021 years of charges, then compare it with the proceeds.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Net book value $6650 against proceeds $9450: profit of $2800.'
+  misconception_ids:
+  - mc.acc.o.disp_sign_reversed
+  - mc.acc.o.disp_cost_not_nbv
+  - mc.acc.o.disp_disposal_year_depreciated
+solution:
+  steps:
+  - n: 1
+    latex: \text{Profit or loss} = \text{proceeds} - \text{net book value}
+    reason: Compare with what is left
+    check_id: chk_build_acc_depreciation_0067_t
+  - n: 2
+    latex: \text{Years charged} = 2023 - 2021 = 2
+    reason: None in the year of sale
+    check_id: chk_build_acc_depreciation_0067_s2
+  - n: 3
+    latex: \text{Yearly charge} = \frac{8400 - 1400}{8} = 875
+    reason: Straight line
+    check_id: chk_build_acc_depreciation_0067_s3
+  - n: 4
+    latex: \text{Net book value} = 8400 - 875 \times 2 = 6650
+    reason: Years charged before the sale
+    check_id: chk_build_acc_depreciation_0067_s4
+  - n: 5
+    latex: 9450 - 6650 \rightarrow 2800
+    reason: Proceeds less net book value
+    check_id: chk_build_acc_depreciation_0067_s5
+difficulty:
+  prior: 0.5
+  band: stretch
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_depreciation_0067_s2:
+    args:
+      dp: 4
+      expression: 2023 - 2021
+    tool: math_evaluate
+  chk_build_acc_depreciation_0067_s3:
+    args:
+      dp: 4
+      expression: (8400 - 1400) / 8
+    tool: math_evaluate
+  chk_build_acc_depreciation_0067_s4:
+    args:
+      dp: 4
+      expression: 8400 - (8400 - 1400) / 8 * (2023 - 2021)
+    tool: math_evaluate
+  chk_build_acc_depreciation_0067_s5:
+    args:
+      dp: 4
+      expression: abs(9450 - (8400 - (8400 - 1400) / 8 * (2023 - 2021)))
+    tool: math_evaluate
+  chk_build_acc_depreciation_0067_t:
+    args:
+      cost: '8400'
+      disposal:
+        proceeds: '9450'
+        year: 3
+      dp: 2
+      life_years: 8
+      method: straight_line
+      part_year_policy: full_year
+      residual: '1400'
+    tool: acc_depreciation
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

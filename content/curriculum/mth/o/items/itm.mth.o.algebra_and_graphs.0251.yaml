@@ -1,0 +1,120 @@
+id: itm.mth.o.algebra_and_graphs.0251
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.travel_graphs
+stem: Part of the distance-time graph for a walker is a straight line from (10 s, 80 m) to (70 s, 440 m).
+parts:
+- id: a
+  prompt: Find the speed in m/s for this part.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '6'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0251_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The speed is the gradient of the distance-time graph.
+  - rung: 2
+    name: concept
+    text:
+      en: Gradient = change in distance ÷ change in time, between two points.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change in distance = 440 − 80; change in time = 70 − 10.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The changes are 360 m and 60 s.
+  - rung: 5
+    name: full_step
+    text:
+      en: Speed = 360 ÷ 60 = 6 m/s.
+  misconception_ids:
+  - mc.mth.o.graph_one_point
+  - mc.mth.o.graph_time_over_distance
+solution:
+  steps:
+  - n: 1
+    latex: \Delta d = 360\ \text{m},\ \Delta t = 60\ \text{s}
+    reason: Changes between the points
+    check_id: chk_build_mth_alg_0251_c
+  - n: 2
+    latex: v = \frac{360}{60} = 6\ \text{m/s}
+    reason: Gradient
+    check_id: chk_build_mth_alg_0251_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  d2: '440'
+  t2: '70'
+checks:
+  chk_build_mth_alg_0251_ans:
+    args:
+      expression: (440 - 80)/(70 - 10)
+    tool: math_evaluate
+  chk_build_mth_alg_0251_c:
+    args:
+      equations:
+      - p = 440 - 80
+      - q = 70 - 10
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:35:31.937Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.algebra_and_graphs.0251
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

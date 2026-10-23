@@ -1,0 +1,100 @@
+id: itm.chm.o.atoms.0064
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.atoms.covalent_bonding
+stem: A carbon dioxide molecule, CO₂, is held together by covalent bonding.
+parts:
+- id: a
+  prompt: Which describes the bonding in one CO₂ molecule?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: electrons transferred from one atom to another, forming ions
+      correct: false
+      misconception_id: mc.chm.o.covalent_as_transfer
+      feedback: Between two non-metals, neither atom can easily lose electrons, so they share pairs. Transfer happens between a metal and a non-metal.
+    - id: B
+      text: four shared pairs (two double bonds)
+      correct: true
+    - id: C
+      text: eight shared pairs
+      correct: false
+      misconception_id: mc.chm.o.covalent_lone_pairs_counted
+      feedback: Only pairs between two atoms are shared. Pairs that stay on one atom are lone pairs and are not bonds.
+    - id: D
+      text: two shared pairs (single bonds only)
+      correct: false
+      misconception_id: mc.chm.o.covalent_multiple_bond_missed
+      feedback: 'Draw the dot-and-cross diagram: a double bond is two shared pairs and a triple bond is three.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: How many more electrons does each carbon atom need for a full outer shell?
+  - rung: 2
+    name: concept
+    text:
+      en: Non-metal atoms share pairs of electrons; each shared pair is one covalent bond.
+  - rung: 3
+    name: first_step
+    text:
+      en: Each carbon atom needs 4 more electrons.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Count only the pairs between atoms, not the pairs that stay on one atom.
+  - rung: 5
+    name: full_step
+    text:
+      en: CO₂ has four shared pairs (two double bonds).
+  misconception_ids:
+  - mc.chm.o.covalent_multiple_bond_missed
+  - mc.chm.o.covalent_as_transfer
+  - mc.chm.o.covalent_lone_pairs_counted
+solution:
+  steps:
+  - n: 1
+    latex: 8 - \text{outer electrons} = 4
+    reason: Electrons each atom needs
+    check_id: chk_build_chm_atoms_0064_need
+  - n: 2
+    latex: \text{four shared pairs (two double bonds)}
+    reason: Shared pairs only
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_atoms_0064_need:
+    args:
+      expression: 8 - 4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

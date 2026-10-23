@@ -1,0 +1,101 @@
+id: itm.mth.o.number.0136
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.index_laws_numeric
+stem: Find the value of $8^{0} + 6^{0} + 5^{0}$. Do not use a calculator.
+parts:
+- id: a
+  prompt: Give the exact value as a whole number or a decimal.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '3'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0136_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Look at the indices: all three are zero.'
+  - rung: 2
+    name: concept
+    text:
+      en: A number to the power zero is the number divided by itself.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out each power on its own before you add.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Each zero power is 1, not 0.
+  - rung: 5
+    name: full_step
+    text:
+      en: $8^{0} + 6^{0} + 5^{0}$ = 1 + 1 + 1 = 3.
+  misconception_ids:
+  - mc.mth.o.zero_index_zero
+solution:
+  steps:
+  - n: 1
+    latex: 8^{0} = 1,\ 6^{0} = 1,\ 5^{0} = 1
+    reason: Each base is not zero, so each zero power is 1
+    check_id: chk_build_mth_num_0136_p
+  - n: 2
+    latex: 8^{0} + 6^{0} + 5^{0} = 1 + 1 + 1 = 3
+    reason: Add
+    check_id: chk_build_mth_num_0136_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0136_ans:
+    args:
+      expression: 8^0 + 6^0 + 5^0
+    tool: math_evaluate
+  chk_build_mth_num_0136_p:
+    args:
+      equations:
+      - p = 8^0
+      - q = 6^0
+      - r = 5^0
+      unknowns:
+      - p
+      - q
+      - r
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

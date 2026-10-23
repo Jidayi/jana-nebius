@@ -1,0 +1,102 @@
+id: itm.mth.o.algebra_and_graphs.0264
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.tables_of_values
+stem: Complete the table of values for $y = \frac{12}{x} + 2x$.
+parts:
+- id: a
+  prompt: Find y when x = 3.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '10'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0264_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Substitute the x-value into both terms.
+  - rung: 2
+    name: concept
+    text:
+      en: The first term is 12 divided by x.
+  - rung: 3
+    name: first_step
+    text:
+      en: 12 ÷ (3) keeps the sign of x.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The terms are 4 and 6.
+  - rung: 5
+    name: full_step
+    text:
+      en: y = 10.
+  misconception_ids:
+  - mc.mth.o.sign_lost_substitution
+  - mc.mth.o.multiply_before_power
+  - mc.mth.o.negative_squared_negative
+solution:
+  steps:
+  - n: 1
+    latex: y = \frac{12}{3} + 2 \times (3)
+    reason: Substitute
+  - n: 2
+    latex: y = 4 + 6
+    reason: Work out each term
+    check_id: chk_build_mth_alg_0264_t
+  - n: 3
+    latex: y = 10
+    reason: Add
+    check_id: chk_build_mth_alg_0264_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0264_ans:
+    args:
+      expression: 12/x + (2)*x
+      values:
+        x: 3
+    tool: math_evaluate
+  chk_build_mth_alg_0264_t:
+    args:
+      equations:
+      - p = 12/(3)
+      - q = (2)*(3)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

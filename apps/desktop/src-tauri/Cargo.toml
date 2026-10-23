@@ -1,0 +1,83 @@
+[package]
+name = "jana-shell"
+version = "0.0.0"
+edition = "2024"
+license = "Apache-2.0"
+publish = false
+default-run = "jana-shell"
+description = "Desktop shell: starts and supervises the agent core and the model runtime, hands the webview its launch info, quits cleanly."
+
+[lib]
+name = "jana_shell"
+path = "src/lib.rs"
+
+[[bin]]
+name = "jana-shell"
+path = "src/main.rs"
+
+# The installer's checks before copying (PLT-01, PLT-06): run by the NSIS and MSI hooks from their temporary folder.
+[[bin]]
+name = "jana-precheck"
+path = "src/bin/precheck.rs"
+
+[dependencies]
+getrandom = "0.3"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+sysinfo = { version = "0.37", default-features = false, features = ["system", "disk"] }
+reqwest = { version = "0.13.5", default-features = false, features = ["rustls-no-provider"] }
+rustls = { version = "0.23.40", default-features = false, features = ["std", "tls12", "ring"] }
+rustls-platform-verifier = "0.7.0"
+webpki = { package = "rustls-webpki", version = "0.103.13" }
+tokio = { version = "1", features = ["rt", "time", "macros"] }
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+keyring-core = "1.0.0"
+
+[target.'cfg(unix)'.dependencies]
+nix = { version = "0.30", features = ["signal", "process"] }
+
+[target.'cfg(windows)'.dependencies]
+win32job = "2.0.3"
+windows-native-keyring-store = { version = "1.1.0", default-features = false }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+apple-native-keyring-store = { version = "1.0.1", features = ["keychain"] }
+
+[target.'cfg(all(unix, not(target_os = "macos")))'.dependencies]
+zbus-secret-service-keyring-store = { version = "1.0.0", features = ["crypto-rust"] }
+
+[dev-dependencies]
+# The mock runtime, so `sec11_capabilities_minimal` drives the app's real ACL (build manifest plus capability file).
+tauri = { version = "2", features = ["test"] }
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[package.metadata.jana.modules]
+main = "experience"
+lib = "experience"
+supervisor = "experience"
+control = "experience"
+data_home = "experience"
+orphans = "experience"
+process_tree = "experience"
+runtime = "experience"
+launch = "experience"
+variants = "experience"
+voice = "experience"
+voice_sandbox = "experience"
+generated = "experience"
+keychain = "experience"
+net = "connectivity"
+downloads = "connectivity"
+download_runner = "experience"
+download_http = "connectivity"
+updates = "connectivity"
+update_install = "experience"
+installer = "experience"
+crash = "experience"
+
+[lints]
+workspace = true

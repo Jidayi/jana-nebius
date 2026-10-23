@@ -1,0 +1,106 @@
+id: itm.mth.o.coordinate_geometry.0087
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.coordinate_geometry.midpoint
+stem: A is the point (-6, -2) and B is the point (9, 11).
+parts:
+- id: a
+  prompt: Find the y-coordinate of the midpoint of AB.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '6.5'
+      correct: false
+      misconception_id: mc.mth.o.midpoint_subtracted
+      feedback: 'The midpoint is the average of the two coordinates: add, then halve.'
+    - id: B
+      text: '9'
+      correct: false
+      misconception_id: mc.mth.o.midpoint_not_halved
+      feedback: 'A midpoint is halfway: the average, so divide the sum by 2.'
+    - id: C
+      text: '1.5'
+      correct: false
+      misconception_id: mc.mth.o.coordinates_swapped
+      feedback: 'A point is written (x, y): along first, then up.'
+    - id: D
+      text: '4.5'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The midpoint is halfway between A and B.
+  - rung: 2
+    name: concept
+    text:
+      en: Its y-coordinate is the average of the two y-coordinates.
+  - rung: 3
+    name: first_step
+    text:
+      en: Add -2 and 11.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The sum is 9; halve it.
+  - rung: 5
+    name: full_step
+    text:
+      en: The y-coordinate of the midpoint is 4.5.
+  misconception_ids:
+  - mc.mth.o.coordinates_swapped
+  - mc.mth.o.midpoint_not_halved
+  - mc.mth.o.midpoint_subtracted
+solution:
+  steps:
+  - n: 1
+    latex: \frac{-2 + (11)}{2} = \frac{9}{2} = 4.5
+    reason: The average of the two coordinates
+    check_id: chk_build_mth_crd_0087_ans
+  - n: 2
+    latex: \text{sum} = 9
+    reason: Add first
+    check_id: chk_build_mth_crd_0087_s
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_crd_0087_ans:
+    args:
+      expression: (-2 + (11))/2
+    tool: math_evaluate
+  chk_build_mth_crd_0087_s:
+    args:
+      expression: -2 + (11)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

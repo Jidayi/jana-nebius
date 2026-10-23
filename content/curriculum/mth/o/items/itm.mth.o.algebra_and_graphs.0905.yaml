@@ -1,0 +1,91 @@
+id: itm.mth.o.algebra_and_graphs.0905
+version: 0.1.0
+type: algebraic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.factorise_quadratic
+stem: Factorise $x^2 - 11x + 28$.
+parts:
+- id: a
+  prompt: Type the expression as a product of two brackets.
+  marks: 2
+  answer:
+    kind: algebraic
+    check_id: chk_build_mth_alg_0905_key
+    expression: (x - 7)(x - 4)
+    variables:
+    - x
+    required_form: factorised
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You need two brackets of the form (x + p)(x + q).
+  - rung: 2
+    name: concept
+    text:
+      en: p and q multiply to the number term and add to the coefficient of x.
+  - rung: 3
+    name: first_step
+    text:
+      en: List the factor pairs of 28 and check which pair, with signs, adds to −11.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Put each of the two numbers in its own bracket with x, then expand to check.
+  - rung: 5
+    name: full_step
+    text:
+      en: The factorisation is $(x - 7)(x - 4)$.
+solution:
+  steps:
+  - n: 1
+    latex: '\text{numbers with product } 28 \text{ and sum } -\,11: -\,7, -\,4'
+    reason: Search the factor pairs of the number term
+    check_id: chk_build_mth_alg_0905_m
+  - n: 2
+    latex: x^2 - 11x + 28 = (x - 7)(x - 4)
+    reason: Each number goes in one bracket with x
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0905_key:
+    args:
+      expression: x^2 - 11x + 28
+      form: factorised
+    tool: math_simplify
+  chk_build_mth_alg_0905_m:
+    args:
+      equations:
+      - p = abs(-7)
+      - q = abs(-4)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

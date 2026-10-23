@@ -1,0 +1,92 @@
+id: itm.phy.o.energy.0094
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.efficiency
+stem: A solar cell has an efficiency of 25%. It transfers 300 J electrically.
+parts:
+- id: a
+  prompt: Calculate the energy from sunlight supplied to it.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1200'
+    unit: J
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0094_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The input must be bigger than the useful output.
+  - rung: 2
+    name: concept
+    text:
+      en: Rearrange efficiency = useful ÷ input to get input = useful ÷ efficiency.
+  - rung: 3
+    name: first_step
+    text:
+      en: As a fraction, 25% is 0.25.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 300 ÷ 0.25.
+  - rung: 5
+    name: full_step
+    text:
+      en: The input is 1200 J.
+  misconception_ids:
+  - mc.phy.o.energy_formula_operation_swapped
+  - mc.phy.o.efficiency_percent_not_converted
+  - mc.phy.o.useful_wasted_swapped
+solution:
+  steps:
+  - n: 1
+    latex: 25\% = 0.25
+    reason: Efficiency as a fraction
+    check_id: chk_build_phy_nrg_0094_e
+  - n: 2
+    latex: \text{input} = \frac{\text{useful}}{\text{efficiency}} = \frac{300}{0.25} = 1200\ \text{J}
+    reason: Rearrange efficiency = useful ÷ input
+    check_id: chk_build_phy_nrg_0094_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0094_ans:
+    args:
+      expression: 300/(25/100)
+    tool: math_evaluate
+  chk_build_phy_nrg_0094_e:
+    args:
+      expression: 25/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

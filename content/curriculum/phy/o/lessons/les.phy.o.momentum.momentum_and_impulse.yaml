@@ -1,0 +1,79 @@
+id: les.phy.o.momentum.momentum_and_impulse
+node_id: cur.phy.o.motion_forces_and_energy.momentum
+kc_ids:
+- kc.phy.o.momentum.momentum_calculation
+- kc.phy.o.momentum.conservation_of_momentum
+- kc.phy.o.momentum.impulse
+title: Momentum and impulse
+estimated_minutes: 12
+blocks:
+- type: step
+  text:
+    en: A moving object's momentum depends on its mass and how fast it goes. Each kilogram carries the same share. Try this before any formula.
+  item_id: itm.phy.o.momentum.0004
+  action: try_first
+  why:
+    en: Share the 48 kg m/s between the 4 kilograms. Each kilogram carries 12, so the speed is 12 m/s.
+  names:
+    en: 'Momentum is mass times velocity: p = mv, measured in kg m/s.'
+- type: step
+  text:
+    en: Momentum has a direction, just like velocity. Moving the way that counts as negative gives a negative momentum.
+  item_id: itm.phy.o.momentum.0013
+  action: choose
+  why:
+    en: 75 × 4 gives 300 kg m/s. West is the negative way here, so the momentum is -300 kg m/s.
+- type: step
+  text:
+    en: 'Before the throw everything is at rest, so total momentum starts at zero. Predict: which way does the skater move, and is she faster or slower than the bag?'
+  item_id: itm.phy.o.momentum.0028
+  action: predict
+  why:
+    en: The bag gets 18 kg m/s forwards, so the skater must get 18 kg m/s backwards to keep the total at zero. Her mass is far bigger, so her speed is small.
+  names:
+    en: That is conservation of momentum. When no outside force acts, the total momentum before equals the total after.
+- type: step
+  text:
+    en: Same idea, less help this time. The cars stick, so treat them as one mass afterwards.
+  item_id: itm.phy.o.momentum.0016
+  action: calculate
+  why:
+    en: Find the momentum before, then share it over the two masses added together.
+- type: step
+  text:
+    en: A force acting for a time changes an object's momentum. The ball must lose all its momentum however it is caught.
+  item_id: itm.phy.o.momentum.0044
+  action: choose
+  why:
+    en: The change in momentum is fixed, so taking longer to stop the ball means a smaller force on the hands.
+  names:
+    en: Force times time is called impulse, and it equals the change in momentum.
+- type: step
+  text:
+    en: Now one on your own. Watch the time unit.
+  item_id: itm.phy.o.momentum.0034
+  action: calculate
+  why:
+    en: Change milliseconds to seconds, then divide the change in momentum by the time.
+- type: check
+  item_ids:
+  - itm.phy.o.momentum.0012
+  - itm.phy.o.momentum.0029
+  - itm.phy.o.momentum.0043
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

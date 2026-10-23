@@ -1,0 +1,101 @@
+id: itm.mth.o.number.0377
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.surds
+stem: $\sqrt{50} + \sqrt{18}$ can be written as $k\sqrt{2}$.
+parts:
+- id: a
+  prompt: Find k.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '8'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0377_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You cannot add the numbers under the square roots.
+  - rung: 2
+    name: concept
+    text:
+      en: Write each surd as a multiple of √2, then add.
+  - rung: 3
+    name: first_step
+    text:
+      en: 50 = 25 × 2 and 18 = 9 × 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: √50 = 5√2 and √18 = 3√2.
+  - rung: 5
+    name: full_step
+    text:
+      en: k = 8.
+  misconception_ids:
+  - mc.mth.o.surd_add_under_root
+  - mc.mth.o.surd_factor_not_rooted
+  - mc.mth.o.multiply_before_power
+solution:
+  steps:
+  - n: 1
+    latex: \sqrt{50} = 5\sqrt{2},\ \sqrt{18} = 3\sqrt{2}
+    reason: Simplify each surd
+    check_id: chk_build_mth_num_0377_t
+  - n: 2
+    latex: k = 5 + 3 = 8
+    reason: Add like surds
+    check_id: chk_build_mth_num_0377_ans
+difficulty:
+  prior: 0.7
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0377_ans:
+    args:
+      expression: (sqrt(50) + sqrt(18))/sqrt(2)
+    tool: math_evaluate
+  chk_build_mth_num_0377_t:
+    args:
+      equations:
+      - p = sqrt(25)
+      - q = sqrt(9)
+      - r = 50/2
+      - s = 18/2
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

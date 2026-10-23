@@ -1,0 +1,36 @@
+id: mc.chm.o.ratio_inverted
+kc_ids:
+- kc.chm.o.stoichiometry.reacting_masses
+- kc.chm.o.acids.titration_calculations
+student_name: Ratio upside down
+description: Multiplies by the reactant's coefficient over the product's instead of the product's over the reactant's.
+signatures:
+- kind: answer_transform
+  expression: n_B = n_A * a/b
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Write the ratio as ''wanted : given'' from the equation, then multiply the given amount by wanted ÷ given.'
+probe_item_ids:
+- itm.chm.o.stoichiometry.0061
+- itm.chm.o.stoichiometry.0062
+- itm.chm.o.stoichiometry.0063
+- itm.chm.o.stoichiometry.0064
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

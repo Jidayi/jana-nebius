@@ -1,0 +1,83 @@
+id: itm.chm.o.electrolysis.0048
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.applications
+stem: Aluminium is extracted from purified aluminium oxide.
+parts:
+- id: a
+  prompt: Put the stages in order.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s1
+      text: Purified aluminium oxide is dissolved in molten cryolite.
+    - id: s4
+      text: Molten aluminium collects at the bottom of the cell and is tapped off.
+    - id: s3
+      text: Al³⁺ ions gain electrons at the cathode and form molten aluminium.
+    - id: s2
+      text: A large current passes between the carbon electrodes.
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Begin with how the electrolyte is prepared.
+  - rung: 2
+    name: concept
+    text:
+      en: The ions must be free to move before any current can do its work.
+  - rung: 3
+    name: first_step
+    text:
+      en: The current makes the ions move and be discharged at the electrodes.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Collecting the product is always last.
+  - rung: 5
+    name: full_step
+    text:
+      en: Dissolve the oxide in molten cryolite; pass the current; aluminium ions are reduced at the cathode; tap off the molten aluminium.
+  misconception_ids:
+  - mc.chm.o.electrolysis_aluminium_by_carbon
+solution:
+  steps:
+  - n: 1
+    latex: \text{dissolve, electrolyse, reduce, collect}
+    reason: Order of the process
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

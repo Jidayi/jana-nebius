@@ -1,0 +1,36 @@
+id: mc.phy.o.elec_energy_power_over_time
+kc_ids:
+- kc.phy.o.practical_electricity.energy_cost
+student_name: Energy as power divided by time
+description: Divides the power by the time instead of multiplying them.
+signatures:
+- kind: answer_transform
+  expression: P/t
+fix:
+  strategy: counterexample
+  text:
+    en: 'Leaving a heater on for longer uses more energy, not less, so the energy grows with time: E = P × t.'
+probe_item_ids:
+- itm.phy.o.practical_electricity.0028
+- itm.phy.o.practical_electricity.0030
+- itm.phy.o.practical_electricity.0032
+- itm.phy.o.practical_electricity.0016
+- itm.phy.o.practical_electricity.0017
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

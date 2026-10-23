@@ -1,0 +1,83 @@
+id: itm.chm.o.environment.0009
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.water
+stem: The main stages of treating river water for drinking are listed below.
+parts:
+- id: a
+  prompt: Put the stages in the order they are carried out.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s4
+      text: 'Chlorination: microbes are killed'
+    - id: s3
+      text: 'Carbon: tastes and smells are removed'
+    - id: s2
+      text: 'Filtration: small particles are removed'
+    - id: s1
+      text: 'Sedimentation: large particles settle out'
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Start with the dirtiest water and finish with water that is safe to drink.
+  - rung: 2
+    name: concept
+    text:
+      en: Solids are removed first, the biggest ones before the smallest.
+  - rung: 3
+    name: first_step
+    text:
+      en: Sedimentation comes before filtration, so the sand beds do not clog with mud.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Chlorine is added last, so it keeps the water free of germs in the pipes.
+  - rung: 5
+    name: full_step
+    text:
+      en: Sedimentation, filtration, carbon, chlorination.
+  misconception_ids:
+  - mc.chm.o.environment_treatment_stages_mixed
+solution:
+  steps:
+  - n: 1
+    latex: \text{settle }\rightarrow\text{ filter }\rightarrow\text{ carbon }\rightarrow\text{ chlorine}
+    reason: Order of treatment
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

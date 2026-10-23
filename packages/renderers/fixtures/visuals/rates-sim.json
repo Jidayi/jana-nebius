@@ -1,0 +1,132 @@
+{
+  "claims": [
+    "0",
+    "0.00911",
+    "1",
+    "1520",
+    "298"
+  ],
+  "id": "rates-sim",
+  "kind": "rates_sim",
+  "modes": [
+    "shown"
+  ],
+  "spec": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "A reaction rate simulation at 298 K with a reactant concentration of 1 mol per cubic decimetre: the rate constant is 0.00911 per second and the reaction is all but over after 1520 seconds."
+    },
+    "computed": {
+      "alt": {
+        "concentration": "1",
+        "k": "0.00911",
+        "temperature": "298",
+        "time": "1520"
+      },
+      "check_ids": [
+        "chk_build_fx_rates_sim_1",
+        "chk_build_fx_rates_sim_2",
+        "chk_build_fx_rates_sim_3"
+      ],
+      "labels": {
+        "end.time": "1520",
+        "out.product": "0",
+        "out.rate": "0.00911",
+        "out.rate_constant": "0.00911"
+      },
+      "parts": [
+        {
+          "id": "ctrl.temperature",
+          "label": "temperature",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.concentration",
+          "label": "concentration",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.catalyst",
+          "label": "catalyst",
+          "role": "control"
+        },
+        {
+          "id": "out.rate_constant",
+          "label": "rate constant",
+          "role": "readout"
+        },
+        {
+          "id": "out.rate",
+          "label": "rate",
+          "role": "readout"
+        },
+        {
+          "id": "out.product",
+          "label": "product",
+          "role": "readout"
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_rates_sim_1",
+      "chk_build_fx_rates_sim_2",
+      "chk_build_fx_rates_sim_3"
+    ],
+    "params": {
+      "activation_energy_j_mol": 60000,
+      "catalysed_activation_energy_j_mol": 45000,
+      "concentration_mol_l": 1,
+      "pre_exponential_s": 300000000,
+      "temperature_k": 298
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ctrl.temperature",
+        "name": "temperature",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.concentration",
+        "name": "concentration",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.catalyst",
+        "name": "catalyst",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "out.rate_constant",
+        "name": "rate constant",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.rate",
+        "name": "rate",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.product",
+        "name": "product",
+        "role": "readout"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:7c18ada5b17d41cd050ed685c657880346ca4bec67327053fb6fe4e9e9cfa5d6",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "rates_sim",
+    "visual_id": "vis_WRD5HX1D5EP56Q836ABC7JGKVF"
+  },
+  "subject": "chemistry"
+}

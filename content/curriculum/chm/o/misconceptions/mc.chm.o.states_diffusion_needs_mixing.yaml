@@ -1,0 +1,36 @@
+id: mc.chm.o.states_diffusion_needs_mixing
+kc_ids:
+- kc.chm.o.states.diffusion
+student_name: Diffusion needs stirring or wind
+description: Thinks gases and liquids only mix if they are stirred or blown, not by the random motion of their particles.
+signatures:
+- kind: answer_transform
+  expression: 'choice: stirring or draughts given as necessary'
+fix:
+  strategy: rule_restatement
+  text:
+    en: Particles move randomly all the time. Diffusion happens on its own, even in still air; stirring only speeds it up.
+probe_item_ids:
+- itm.chm.o.states.0025
+- itm.chm.o.states.0026
+- itm.chm.o.states.0027
+- itm.chm.o.states.0028
+- itm.chm.o.states.0031
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

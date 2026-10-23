@@ -1,0 +1,34 @@
+id: mc.phy.o.transformer_works_on_dc
+kc_ids:
+- kc.phy.o.electromagnetism.transformers
+student_name: A transformer works on d.c.
+description: Thinks a transformer changes the voltage of a steady d.c. supply; it needs an alternating current to make a changing field.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: rule_restatement
+  text:
+    en: A steady current makes a steady field, and a steady field induces nothing. A transformer needs a.c.
+probe_item_ids:
+- itm.phy.o.electromagnetism.0057
+- itm.phy.o.electromagnetism.0049
+- itm.phy.o.electromagnetism.0053
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,126 @@
+id: itm.mth.o.number.0187
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.estimation
+stem: Estimate the value of $\frac{48.7 \times 4.93}{0.257}$ by rounding each number to 1 significant figure.
+parts:
+- id: a
+  prompt: Give your estimate.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '817'
+      correct: false
+      misconception_id: mc.mth.o.estimate_not_one_sf
+      feedback: 'For an estimate, round each number to 1 significant figure: its first non-zero digit.'
+    - id: B
+      text: '75'
+      correct: false
+      misconception_id: mc.mth.o.divide_by_decimal_smaller
+      feedback: How many 0.5s are in 10? Twenty. Dividing by a number less than 1 gives a bigger answer.
+    - id: C
+      text: '900'
+      correct: false
+      misconception_id: mc.mth.o.estimate_exact_then_round
+      feedback: 'An estimate is a quick check you can do in your head: round each number to 1 significant figure first, then calculate.'
+    - id: D
+      text: '833'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You are asked for an estimate, so do not use the exact numbers.
+  - rung: 2
+    name: concept
+    text:
+      en: Round each number to 1 significant figure, then calculate.
+  - rung: 3
+    name: first_step
+    text:
+      en: 48.7 rounds to 50 and 4.93 rounds to 5.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 0.257 rounds to 0.3. Dividing by a number less than 1 makes the answer bigger.
+  - rung: 5
+    name: full_step
+    text:
+      en: The estimate is (50 × 5) ÷ 0.3 = 833.
+  misconception_ids:
+  - mc.mth.o.divide_by_decimal_smaller
+  - mc.mth.o.estimate_exact_then_round
+  - mc.mth.o.estimate_not_one_sf
+solution:
+  steps:
+  - n: 1
+    latex: 48.7 \approx 50
+    reason: 1 significant figure
+    check_id: chk_build_mth_num_0187_rx
+  - n: 2
+    latex: 4.93 \approx 5
+    reason: 1 significant figure
+    check_id: chk_build_mth_num_0187_ry
+  - n: 3
+    latex: 0.257 \approx 0.3
+    reason: 1 significant figure
+    check_id: chk_build_mth_num_0187_rz
+  - n: 4
+    latex: \frac{50 \times 5}{0.3} = 833
+    reason: Work out the easier calculation
+    check_id: chk_build_mth_num_0187_ans
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0187_ans:
+    args:
+      expression: 50*5/0.3
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_num_0187_rx:
+    args:
+      expression: '48.7'
+      sf: 1
+    tool: math_evaluate
+  chk_build_mth_num_0187_ry:
+    args:
+      expression: '4.93'
+      sf: 1
+    tool: math_evaluate
+  chk_build_mth_num_0187_rz:
+    args:
+      expression: '0.257'
+      sf: 1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

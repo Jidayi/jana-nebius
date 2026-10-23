@@ -1,0 +1,104 @@
+{
+  "id": "tutor-turn.stopped",
+  "title": "Tutor turn, stopped",
+  "component": "TutorTurn",
+  "state": "stopped",
+  "payload": {
+    "student": "A ball is thrown straight up at 14 m/s. How high does it rise?",
+    "events": [
+      {
+        "type": "turn.start",
+        "turn_id": "trn_00000000000000000000000001",
+        "user_message_id": "msg_00000000000000000000000002",
+        "client_message_id": null,
+        "intent": "ask",
+        "mode": "guided",
+        "fork": false
+      },
+      {
+        "type": "part.start",
+        "part_id": "prt_00000000000000000000000003",
+        "kind": "text",
+        "index": 0
+      },
+      {
+        "type": "text.delta",
+        "part_id": "prt_00000000000000000000000003",
+        "delta": "Let me look at this problem."
+      },
+      {
+        "type": "part.end",
+        "part_id": "prt_00000000000000000000000003",
+        "status": "complete",
+        "duration_ms": 1
+      },
+      {
+        "type": "part.start",
+        "part_id": "prt_00000000000000000000000004",
+        "kind": "tool",
+        "index": 1
+      },
+      {
+        "type": "tool.state",
+        "part_id": "prt_00000000000000000000000004",
+        "call_id": "call_1",
+        "name": "math_solve",
+        "render_class": "ephemeral",
+        "state": {
+          "status": "completed",
+          "title": {
+            "pre": "x"
+          }
+        }
+      },
+      {
+        "type": "part.end",
+        "part_id": "prt_00000000000000000000000004",
+        "status": "complete",
+        "duration_ms": 6
+      },
+      {
+        "type": "part.start",
+        "part_id": "prt_00000000000000000000000005",
+        "kind": "text",
+        "index": 2
+      },
+      {
+        "type": "text.delta",
+        "part_id": "prt_00000000000000000000000005",
+        "delta": "The ball rises until"
+      },
+      {
+        "type": "part.end",
+        "part_id": "prt_00000000000000000000000005",
+        "status": "interrupted",
+        "duration_ms": 1
+      },
+      {
+        "type": "turn.end",
+        "status": "interrupted",
+        "stop_reason": "student_stop",
+        "elapsed_ms": 6000,
+        "usage": null,
+        "verification": "not_applicable",
+        "persisted": {
+          "message_id": "msg_00000000000000000000000009",
+          "part_ids": []
+        },
+        "degraded": false,
+        "degraded_reason": null
+      }
+    ]
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "conversation"
+  ],
+  "expectText": [
+    "Stopped after 6 s",
+    "The ball rises until"
+  ]
+}

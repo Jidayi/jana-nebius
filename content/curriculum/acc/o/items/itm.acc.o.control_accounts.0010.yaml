@@ -1,0 +1,89 @@
+id: itm.acc.o.control_accounts.0010
+version: 0.1.0
+type: multi_select
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.control_accounts.control_purpose
+stem: A student lists uses of control accounts.
+parts:
+- id: a
+  prompt: Select every true use.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: A quick total of receivables or payables
+      correct: true
+    - id: B
+      text: A check on the arithmetic of a ledger
+      correct: true
+    - id: C
+      text: Narrowing down where an error lies
+      correct: true
+    - id: D
+      text: Replacing the personal accounts
+      correct: false
+    - id: E
+      text: Proving no error of commission was made
+      correct: false
+    - id: F
+      text: Recording cash sales
+      correct: false
+    scoring: exact_set
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What does a control account summarise, and what can it not tell you?
+  - rung: 2
+    name: concept
+    text:
+      en: A control account holds the totals of all the entries in a personal ledger, so its balance should equal the total of the personal balances.
+  - rung: 3
+    name: first_step
+    text:
+      en: Agreement checks the arithmetic of the ledger as a whole; an error within one account, such as posting to the wrong customer, can still be there.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Pick the summary and checking uses.
+  - rung: 5
+    name: full_step
+    text:
+      en: Quick totals, arithmetic checks and locating errors.
+  misconception_ids:
+  - mc.acc.o.ca_control_replaces_ledger
+  - mc.acc.o.ca_control_finds_all_errors
+solution:
+  steps:
+  - n: 1
+    latex: \text{Totals, checks, locating errors}
+    reason: What a control account does
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

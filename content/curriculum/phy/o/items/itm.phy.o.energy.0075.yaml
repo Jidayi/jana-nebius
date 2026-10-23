@@ -1,0 +1,98 @@
+id: itm.phy.o.energy.0075
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.work_done
+stem: Chipo pushes a wheelchair up a ramp with a force of 120 N along the ramp. The ramp is 4 m long and rises 0.8 m.
+parts:
+- id: a
+  prompt: Calculate the work done by Chipo's push.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 96 J
+      correct: false
+      misconception_id: mc.phy.o.work_distance_not_along_force
+      feedback: Only movement along the line of the force counts. Lifting a bag works against its weight through the vertical height alone.
+    - id: B
+      text: 576 J
+      correct: false
+      misconception_id: mc.phy.o.work_total_path_used
+      feedback: Draw the force as an arrow. Use the distance moved along that arrow, not the total length of the path.
+    - id: C
+      text: 30 J
+      correct: false
+      misconception_id: mc.phy.o.work_force_over_distance
+      feedback: Work done = force × distance moved along the force. A bigger push over a longer distance means more work.
+    - id: D
+      text: 480 J
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Use the distance moved in the direction of the force.
+  - rung: 2
+    name: concept
+    text:
+      en: The push acts along the ramp, so use the length of the ramp.
+  - rung: 3
+    name: first_step
+    text:
+      en: The height of the ramp is not along the push.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 120 × 4.
+  - rung: 5
+    name: full_step
+    text:
+      en: The work done is 480 J.
+  misconception_ids:
+  - mc.phy.o.work_distance_not_along_force
+  - mc.phy.o.work_force_over_distance
+  - mc.phy.o.work_total_path_used
+solution:
+  steps:
+  - n: 1
+    latex: W = 120 \times 4 = 480\ \text{J}
+    reason: The push and the movement are both along the ramp
+    check_id: chk_build_phy_nrg_0075_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0075_ans:
+    args:
+      expression: 120*4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

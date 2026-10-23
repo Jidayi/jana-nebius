@@ -1,0 +1,34 @@
+id: mc.acc.o.pa_iod_omitted
+kc_ids:
+- kc.acc.o.partnerships.current_accounts
+student_name: Forgetting interest on drawings
+description: Leaves interest on drawings out of the current account.
+signatures:
+- kind: answer_transform
+  expression: closing + iod
+fix:
+  strategy: rule_restatement
+  text:
+    en: Interest on drawings is debited to the partner's current account.
+probe_item_ids:
+- itm.acc.o.partnerships.0041
+- itm.acc.o.partnerships.0042
+- itm.acc.o.partnerships.0043
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

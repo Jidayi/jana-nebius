@@ -1,0 +1,127 @@
+id: itm.acc.o.depreciation.0053
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.depreciation.net_book_value
+stem: Bola's sewing machine cost $26300 and is depreciated by the straight line over 5 years with a residual value of $600.
+parts:
+- id: a
+  prompt: What is its net book value at the end of 4 years?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $600
+      correct: false
+      misconception_id: mc.acc.o.nbv_extra_year
+    - id: B
+      text: $20560
+      correct: false
+      misconception_id: mc.acc.o.nbv_accumulated_as_nbv
+    - id: C
+      text: $5740
+      correct: true
+    - id: D
+      text: $21160
+      correct: false
+      misconception_id: mc.acc.o.nbv_one_year_only
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: How many years of depreciation have been charged?
+  - rung: 2
+    name: concept
+    text:
+      en: Net book value = cost − accumulated depreciation, which is every year's charge so far.
+  - rung: 3
+    name: first_step
+    text:
+      en: Each year's straight-line charge is the same; multiply by the 4 years.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 26300 − 4 × the yearly charge.
+  - rung: 5
+    name: full_step
+    text:
+      en: Net book value = $5740.
+  misconception_ids:
+  - mc.acc.o.nbv_one_year_only
+  - mc.acc.o.nbv_accumulated_as_nbv
+  - mc.acc.o.nbv_extra_year
+solution:
+  steps:
+  - n: 1
+    latex: \text{Net book value} = \text{cost} - \text{accumulated depreciation}
+    reason: What is left
+    check_id: chk_build_acc_depreciation_0053_t
+  - n: 2
+    latex: \text{Yearly charge} = 5140
+    reason: 'Straight line: the same every year'
+    check_id: chk_build_acc_depreciation_0053_s2
+  - n: 3
+    latex: \text{Accumulated depreciation} = 5140 \times 4 = 20560
+    reason: Every year so far
+    check_id: chk_build_acc_depreciation_0053_s3
+  - n: 4
+    latex: \text{Net book value} = 26300 - 20560 = 5740
+    reason: Subtract
+    check_id: chk_build_acc_depreciation_0053_a
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_depreciation_0053_a:
+    args:
+      dp: 2
+      expression: 26300 - ((26300 - 600) / 5 * 4)
+    tool: math_evaluate
+  chk_build_acc_depreciation_0053_s2:
+    args:
+      dp: 4
+      expression: ((26300 - 600) / 5 * 4) / 4
+    tool: math_evaluate
+  chk_build_acc_depreciation_0053_s3:
+    args:
+      dp: 4
+      expression: (26300 - 600) / 5 * 4
+    tool: math_evaluate
+  chk_build_acc_depreciation_0053_t:
+    args:
+      cost: '26300'
+      dp: 2
+      life_years: 5
+      method: straight_line
+      part_year_policy: full_year
+      residual: '600'
+      years: 4
+    tool: acc_depreciation
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

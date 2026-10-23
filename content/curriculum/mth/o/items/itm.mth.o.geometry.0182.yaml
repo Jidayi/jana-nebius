@@ -1,0 +1,101 @@
+id: itm.mth.o.geometry.0182
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.circle_theorems_basic
+stem: A tangent touches a circle with centre O at point T. A point P on the tangent is joined to O, and angle OPT = 47°.
+parts:
+- id: a
+  prompt: Find angle TOP.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 133°
+      correct: false
+      misconception_id: mc.mth.o.tangent_radius_not_right
+      feedback: A tangent touches the circle at one point and is at 90° to the radius there.
+    - id: B
+      text: 47°
+      correct: false
+      misconception_id: mc.mth.o.centre_angle_halved
+      feedback: The angle at the centre is twice the angle at the circumference standing on the same arc.
+    - id: C
+      text: 43°
+      correct: true
+    - id: D
+      text: 137°
+      correct: false
+      misconception_id: mc.mth.o.semicircle_not_right
+      feedback: An angle drawn from the two ends of a diameter to the circle is always 90°.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: OT is a radius and PT lies along the tangent.
+  - rung: 2
+    name: concept
+    text:
+      en: The tangent meets the radius at 90°.
+  - rung: 3
+    name: first_step
+    text:
+      en: So triangle OTP has a right angle at T.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'The other two angles add to 90°: subtract 47.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Angle TOP = 43°.
+  misconception_ids:
+  - mc.mth.o.centre_angle_halved
+  - mc.mth.o.semicircle_not_right
+  - mc.mth.o.tangent_radius_not_right
+solution:
+  steps:
+  - n: 1
+    latex: \angle OTP = 90
+    reason: A tangent is perpendicular to the radius
+  - n: 2
+    latex: \angle TOP = 180 - 90 - 47 = 43
+    reason: Angles in triangle OTP add to 180°
+    check_id: chk_build_mth_geo_0182_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0182_ans:
+    args:
+      expression: 90 - 47
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

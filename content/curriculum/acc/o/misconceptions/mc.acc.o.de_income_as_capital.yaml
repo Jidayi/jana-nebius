@@ -1,0 +1,35 @@
+id: mc.acc.o.de_income_as_capital
+kc_ids:
+- kc.acc.o.double_entry.record_cash_transactions
+- kc.acc.o.double_entry.record_owner_transactions
+student_name: Income credited to capital
+description: Credits capital with money that the business earns, such as sales or rent received, or credits a loan to capital.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: income
+fix:
+  strategy: rule_restatement
+  text:
+    en: Capital records only what the owner puts in. Money earned is income and has its own account.
+probe_item_ids:
+- itm.acc.o.double_entry.0012
+- itm.acc.o.double_entry.0014
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,82 @@
+id: itm.phy.o.wave_properties.0001
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.describing_waves
+stem: Musa shakes the end of a long rope at a frequency of 40 Hz.
+parts:
+- id: a
+  prompt: Find the period of the waves.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '0.025'
+    unit: s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_wav_0001_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What does the period of a wave measure?
+  - rung: 2
+    name: concept
+    text:
+      en: The period is the time for one complete wave; the frequency is the number of waves each second.
+  - rung: 3
+    name: first_step
+    text:
+      en: So the period is 1 divided by the frequency.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 1 ÷ 40.
+  - rung: 5
+    name: full_step
+    text:
+      en: T = 0.025 s.
+  misconception_ids:
+  - mc.phy.o.period_frequency_confused
+solution:
+  steps:
+  - n: 1
+    latex: T = \frac{1}{f} = \frac{1}{40} = 0.025\ \text{s}
+    reason: Period = 1 ÷ frequency
+    check_id: chk_build_phy_wav_0001_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_wav_0001_ans:
+    args:
+      expression: 1/40
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

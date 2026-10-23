@@ -1,0 +1,92 @@
+provenance: Synthetic items and responses written for the marking suite (CUR-14, VSL-28); expected verdicts follow
+  the label rules, not the marker. Not real student work.
+items:
+  distillation:
+    id: itm.chm.o.separation.9301
+    type: diagram_label
+    kc_ids: [kc.chm.o.separation.distillation]
+    diagram_ids: [dgm.chm.distillation_apparatus.v1]
+    parts:
+    - id: a
+      prompt: Label the four parts of the distillation apparatus.
+      marks: 4
+      answer:
+        kind: diagram_label
+        diagram_id: dgm.chm.distillation_apparatus.v1
+        mode: type
+        targets:
+        - {part_id: condenser, accepted_labels: [Condenser, Liebig condenser]}
+        - {part_id: thermometer, accepted_labels: [Thermometer]}
+        - {part_id: flask, accepted_labels: [Round-bottomed flask, Flask, Distillation flask]}
+        - {part_id: heat, accepted_labels: [Heat, Bunsen burner]}
+      hints: []
+  lens:
+    id: itm.phy.o.light.9302
+    type: diagram_label
+    kc_ids: [kc.phy.o.light.lenses]
+    diagram_ids: [dgm.phy.converging_lens.v1]
+    parts:
+    - id: a
+      prompt: Label the lens, its principal focus and its optical centre.
+      marks: 3
+      answer:
+        kind: diagram_label
+        diagram_id: dgm.phy.converging_lens.v1
+        mode: drag
+        targets:
+        - {part_id: lens, accepted_labels: [Lens, Converging lens]}
+        - {part_id: principal_focus, accepted_labels: [Principal focus, Focal point, F]}
+        - {part_id: optical_centre, accepted_labels: [Optical centre, Optical center]}
+      hints: []
+cases:
+- id: all_labels_exact
+  item: distillation
+  response: {condenser: Condenser, thermometer: Thermometer, flask: Round-bottomed flask, heat: Heat}
+  expect: {outcome: correct, marks_awarded: 4, criteria: {condenser: pass, thermometer: pass, flask: pass, heat: pass}}
+- id: case_and_spacing_ignored
+  item: distillation
+  response: {condenser: '  LIEBIG   condenser ', thermometer: thermometer, flask: FLASK, heat: bunsen burner}
+  expect: {outcome: correct, marks_awarded: 4}
+- id: one_letter_changed_in_a_long_name
+  item: distillation
+  response: {condenser: Condensor, thermometer: Thermometer, flask: Flask, heat: Heat}
+  expect: {outcome: correct, marks_awarded: 4}
+- id: two_letters_swapped_in_a_long_name
+  item: distillation
+  response: {condenser: Condenser, thermometer: Thermoemter, flask: Flask, heat: Heat}
+  expect: {outcome: correct, marks_awarded: 4}
+- id: no_tolerance_below_five_letters
+  item: distillation
+  response: {condenser: Condenser, thermometer: Thermometer, flask: Flask, heat: Haet}
+  expect: {outcome: partial, marks_awarded: 3, error_category: value, criteria: {heat: fail, condenser: pass}}
+- id: two_edits_rejected
+  item: distillation
+  response: {condenser: Condnsr, thermometer: Thermometer, flask: Flask, heat: Heat}
+  expect: {outcome: partial, marks_awarded: 3, criteria: {condenser: fail}}
+- id: labels_on_the_wrong_parts
+  item: distillation
+  response: {condenser: Thermometer, thermometer: Condenser, flask: Heat, heat: Flask}
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: value}
+- id: missing_label_fails_its_part
+  item: distillation
+  response: {condenser: Condenser, thermometer: Thermometer, flask: Flask}
+  expect: {outcome: partial, marks_awarded: 3, criteria: {heat: fail}}
+- id: dragged_labels_as_a_list
+  item: lens
+  response:
+  - {part_id: lens, label: Converging lens}
+  - {part_id: principal_focus, label: F}
+  - {part_id: optical_centre, label: Optical center}
+  expect: {outcome: correct, marks_awarded: 3}
+- id: part_name_with_underscores
+  item: lens
+  response: {lens: lens, principal_focus: principal_focus, optical_centre: optical_centre}
+  expect: {outcome: correct, marks_awarded: 3}
+- id: a_shorter_name_is_not_the_name
+  item: lens
+  response: {lens: Lens, principal_focus: Focus, optical_centre: Centre}
+  expect: {outcome: partial, marks_awarded: 1, criteria: {lens: pass, principal_focus: fail, optical_centre: fail}}
+- id: unreadable_response
+  item: lens
+  response: Lens, focus, centre
+  expect: {outcome: incorrect, marks_awarded: 0, error_category: unreadable}

@@ -1,0 +1,90 @@
+id: itm.chm.o.acids.0047
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.oxides
+stem: Oxide X does not react with dilute hydrochloric acid, but it reacts with hot sodium hydroxide solution to form a salt and water.
+parts:
+- id: a
+  prompt: What type of oxide is X?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Basic
+      correct: false
+      misconception_id: mc.chm.o.acids_oxide_type_swapped
+      feedback: 'Metal oxides such as CaO and CuO are bases: they react with acids. Non-metal oxides such as CO₂ and SO₂ are acidic: they react with alkalis and give acidic solutions in water.'
+    - id: B
+      text: Amphoteric
+      correct: false
+      misconception_id: mc.chm.o.acids_amphoteric_neutral_confused
+      feedback: 'Amphoteric means ''both'': aluminium oxide and zinc oxide react with acids and with alkalis. Neutral means ''neither'': carbon monoxide, nitrogen monoxide and water react with neither.'
+    - id: C
+      text: Neutral
+      correct: false
+      misconception_id: mc.chm.o.acids_amphoteric_neutral_confused
+      feedback: 'Amphoteric means ''both'': aluminium oxide and zinc oxide react with acids and with alkalis. Neutral means ''neither'': carbon monoxide, nitrogen monoxide and water react with neither.'
+    - id: D
+      text: Acidic
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: X reacts with only one of the two test solutions. Which one?
+  - rung: 2
+    name: concept
+    text:
+      en: Acidic oxides react with alkalis; basic oxides react with acids.
+  - rung: 3
+    name: first_step
+    text:
+      en: Sodium hydroxide is an alkali.
+  - rung: 4
+    name: worked_step
+    text:
+      en: An amphoteric oxide would react with the acid too, and a neutral oxide would react with neither.
+  - rung: 5
+    name: full_step
+    text:
+      en: X reacts with the alkali only, so it is an acidic oxide.
+  misconception_ids:
+  - mc.chm.o.acids_oxide_type_swapped
+  - mc.chm.o.acids_amphoteric_neutral_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{reacts with alkali only} \Rightarrow \text{acidic}
+    reason: Definition
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

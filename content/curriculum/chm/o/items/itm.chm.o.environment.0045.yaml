@@ -1,0 +1,91 @@
+id: itm.chm.o.environment.0045
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.climate
+stem: Methane is released in much smaller amounts than carbon dioxide, but it still matters for climate change.
+parts:
+- id: a
+  prompt: Why does methane matter?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Each methane molecule traps much more heat than each carbon dioxide molecule
+      correct: true
+    - id: B
+      text: Methane destroys the ozone layer
+      correct: false
+      misconception_id: mc.chm.o.environment_greenhouse_ozone_confused
+      feedback: These are two different problems. The ozone layer stops harmful ultraviolet light; damage to it raises the risk of skin cancer. Global warming is caused by greenhouse gases trapping heat (infrared) given off by the Earth.
+    - id: C
+      text: Methane causes acid rain
+      correct: false
+      misconception_id: mc.chm.o.environment_climate_wrong_gas
+      feedback: The main greenhouse gases to know are carbon dioxide and methane. Nitrogen and oxygen are not greenhouse gases. Catalytic converters and desulfurisation fight other pollutants, not climate change.
+    - id: D
+      text: Methane reflects sunlight back to space
+      correct: false
+      misconception_id: mc.chm.o.environment_greenhouse_blocks_sunlight
+      feedback: Most sunlight passes through the air and warms the ground. The warm ground gives off infrared radiation. Greenhouse gases absorb this infrared and send some of it back towards the surface, so the lower air stays warmer.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Compare how well each gas absorbs infrared radiation.
+  - rung: 2
+    name: concept
+    text:
+      en: A small amount of a strong greenhouse gas can still have a big effect.
+  - rung: 3
+    name: first_step
+    text:
+      en: Molecule for molecule, methane absorbs far more infrared than carbon dioxide.
+  - rung: 4
+    name: worked_step
+    text:
+      en: So even a small amount of methane adds noticeably to warming.
+  - rung: 5
+    name: full_step
+    text:
+      en: Each methane molecule traps much more heat than a carbon dioxide molecule, so methane matters.
+  misconception_ids:
+  - mc.chm.o.environment_greenhouse_ozone_confused
+  - mc.chm.o.environment_climate_wrong_gas
+  - mc.chm.o.environment_greenhouse_blocks_sunlight
+solution:
+  steps:
+  - n: 1
+    latex: '\text{CH}_4\text{: stronger absorber of infrared per molecule}'
+    reason: Why methane matters
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

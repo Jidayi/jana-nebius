@@ -1,0 +1,120 @@
+id: itm.mth.o.statistics.0126
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.cumulative_frequency
+stem: 'The masses (kg) of 61 parcels are summarised in a cumulative frequency table: none under 20; up to 30: 8; up to 40: 20; up to 50: 32; up to 60: 49; up to 70: 61.'
+parts:
+- id: a
+  prompt: Estimate the median mass, to 3 significant figures, by interpolating within the class.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 45 kg
+      correct: false
+      misconception_id: mc.mth.o.median_class_midpoint
+      feedback: Read across from half the total frequency on the cumulative frequency curve, or interpolate within the class.
+    - id: B
+      text: 30.5 kg
+      correct: false
+      misconception_id: mc.mth.o.median_position_as_value
+      feedback: n/2 tells you where to read across from; the median is the value on the other axis.
+    - id: C
+      text: 48.8 kg
+      correct: true
+    - id: D
+      text: 58.1 kg
+      correct: false
+      misconception_id: mc.mth.o.iqr_as_quartile
+      feedback: Interquartile range = upper quartile − lower quartile.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The median is the value halfway through the data.
+  - rung: 2
+    name: concept
+    text:
+      en: Find half the total frequency, then the class where the cumulative frequency passes it.
+  - rung: 3
+    name: first_step
+    text:
+      en: Half of 61 is 30.5.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The median lies in the class 40 to 50; work out how far into it.
+  - rung: 5
+    name: full_step
+    text:
+      en: The median is about 48.8 kg.
+  misconception_ids:
+  - mc.mth.o.iqr_as_quartile
+  - mc.mth.o.median_class_midpoint
+  - mc.mth.o.median_position_as_value
+solution:
+  steps:
+  - n: 1
+    latex: \frac{61}{2} = 30.5
+    reason: Position of the median
+    check_id: chk_build_mth_sta_0126_h
+  - n: 2
+    latex: \text{class frequency} = 32 - 20 = 12
+    reason: Parcels in the median class
+    check_id: chk_build_mth_sta_0126_f
+  - n: 3
+    latex: \text{median} \approx 40 + \frac{30.5 - 20}{12} \times 10 = 48.8
+    reason: Interpolate in the median class
+    check_id: chk_build_mth_sta_0126_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0126_ans:
+    args:
+      expression: '48.75'
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_sta_0126_f:
+    args:
+      equations:
+      - p = 32 - 20
+      - q = 10
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_sta_0126_h:
+    args:
+      expression: 61/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

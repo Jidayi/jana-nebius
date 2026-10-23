@@ -1,0 +1,85 @@
+id: itm.mth.o.mensuration.9022
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.arcs_sectors
+stem: A sector has radius 6 cm and area 12 pi cm^2.
+parts:
+- id: a
+  prompt: Find its central angle in degrees.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '120'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9022
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The sector area is the same fraction of the full circle area as its angle is of a full turn.
+  - rung: 2
+    name: concept
+    text:
+      en: Cancel pi in the area ratio, then multiply that fraction by a full turn.
+  - rung: 3
+    name: first_step
+    text:
+      en: Cancel pi in the area ratio, then multiply that fraction by a full turn.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The sector occupies the same fraction of the circle as its angle occupies of a full turn.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 120.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{12}{6^2}\times 360
+    reason: Cancel pi in the area ratio, then multiply that fraction by a full turn.
+    check_id: chk_build_mastery_supplement_mth_9022
+  - n: 2
+    latex: '120'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9022
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9022:
+    args:
+      angle_unit: degrees
+      expression: 12/(6^2)*360
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

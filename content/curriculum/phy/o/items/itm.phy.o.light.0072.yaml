@@ -1,0 +1,116 @@
+id: itm.phy.o.light.0072
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.converging_lens
+stem: An arrow-shaped card stands 30 cm from a thin converging lens of focal length 10 cm.
+parts:
+- id: a
+  prompt: How far from the lens is the image formed?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 15 cm
+      correct: true
+    - id: B
+      text: 7.5 cm
+      correct: false
+      misconception_id: mc.phy.o.lens_reciprocals_added
+      feedback: 'Take 1/u away from both sides: 1/v = 1/f − 1/u. A real image is always further from the lens than the focal point.'
+    - id: C
+      text: 0.0667 cm
+      correct: false
+      misconception_id: mc.phy.o.lens_reciprocal_not_inverted
+      feedback: 1/f − 1/u gives 1/v, a small number per centimetre. Turn it upside down (one divided by it) to get v.
+    - id: D
+      text: 20 cm
+      correct: false
+      misconception_id: mc.phy.o.lens_distances_subtracted
+      feedback: With the object at 2F the image is at 2F too, not at F. The lens formula works with 1/u, 1/v and 1/f, not with the distances themselves.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Use the lens formula with real distances positive.
+  - rung: 2
+    name: concept
+    text:
+      en: 1/u + 1/v = 1/f, so 1/v = 1/f − 1/u.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 1/10 − 1/30.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 1/v = 0.0667; now find one divided by this.
+  - rung: 5
+    name: full_step
+    text:
+      en: The image is 15 cm from the lens.
+  misconception_ids:
+  - mc.phy.o.lens_distances_subtracted
+  - mc.phy.o.lens_reciprocal_not_inverted
+  - mc.phy.o.lens_reciprocals_added
+solution:
+  steps:
+  - n: 1
+    latex: \frac{1}{v} = \frac{1}{10} - \frac{1}{30} = 0.0667
+    reason: 1/u + 1/v = 1/f
+    check_id: chk_build_phy_lgt_0072_inv
+  - n: 2
+    latex: v = 15\ \text{cm}
+    reason: Take the reciprocal
+    check_id: chk_build_phy_lgt_0072_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0072_ans:
+    args:
+      expression: 30*10/(30 - 10)
+    tool: math_evaluate
+  chk_build_phy_lgt_0072_inv:
+    args:
+      expression: 1/10 - 1/30
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0072_tool:
+    args:
+      focal_length: 10
+      object_distance: 30
+      optic: converging_lens
+      sign_convention: real_is_positive
+      sign_convention_source: pack
+      task: image
+    tool: phys_optics
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

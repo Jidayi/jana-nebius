@@ -1,0 +1,95 @@
+id: itm.phy.o.pressure.0020
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.liquid_pressure
+stem: A pressure sensor on the bed of a freshwater lake reads 19.6 kPa more than at the surface. Water has a density of 1000 kg/m³. Take g = 9.8 N/kg.
+parts:
+- id: a
+  prompt: How deep is the lake at that point?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '2'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_prs_0020_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The extra pressure comes from the depth of water above the sensor.
+  - rung: 2
+    name: concept
+    text:
+      en: Δp = ρgh, so h = Δp ÷ (ρg).
+  - rung: 3
+    name: first_step
+    text:
+      en: Change 19.6 kPa into pascals first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 19600 Pa by 1000 × 9.8.
+  - rung: 5
+    name: full_step
+    text:
+      en: The lake is 2 m deep there.
+  misconception_ids:
+  - mc.phy.o.pressure_kpa_not_converted
+  - mc.phy.o.liquid_pressure_g_left_out
+  - mc.phy.o.pressure_rearranged_wrongly
+solution:
+  steps:
+  - n: 1
+    latex: \Delta p = 19.6\ \text{kPa} = 19600\ \text{Pa}
+    reason: Kilopascals into pascals
+    check_id: chk_build_phy_prs_0020_pa
+  - n: 2
+    latex: h = \frac{\Delta p}{\rho g} = \frac{19600}{1000 \times 9.8} = 2\ \text{m}
+    reason: Rearrange Δp = ρgh
+    check_id: chk_build_phy_prs_0020_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_0020_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 19.6*1000/(1000*g)
+    tool: math_evaluate
+  chk_build_phy_prs_0020_pa:
+    args:
+      expression: 19.6*1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

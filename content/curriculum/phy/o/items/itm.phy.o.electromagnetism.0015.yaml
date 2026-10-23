@@ -1,0 +1,103 @@
+id: itm.phy.o.electromagnetism.0015
+version: 0.1.1
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.fields_of_currents
+stem: A long straight wire passes at right angles through the page, carrying a current into the page. Point P is just to the right of the wire, on the page.
+parts:
+- id: a
+  prompt: Which way does the magnetic field point at P?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Up the page
+      correct: false
+      misconception_id: mc.phy.o.grip_rule_reversed
+      feedback: 'Grip the wire with your right hand, thumb along the current: your fingers curl the way the field goes. For a coil, curl the fingers with the current and the thumb points to the north pole.'
+    - id: B
+      text: To the right, straight away from the wire
+      correct: false
+      misconception_id: mc.phy.o.wire_field_radial
+      feedback: A compass beside a wire points round the wire, at right angles to the line joining it to the wire.
+    - id: C
+      text: Into the page, along the wire
+      correct: false
+      misconception_id: mc.phy.o.wire_field_along_wire
+      feedback: 'Push a straight wire through a card and sprinkle iron filings: they form circles round the wire, not lines along it.'
+    - id: D
+      text: Down the page
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Picture the field lines round the wire: what shape are they?'
+  - rung: 2
+    name: concept
+    text:
+      en: 'Use the right-hand grip rule: thumb along the current, fingers curl the way the field goes.'
+  - rung: 3
+    name: first_step
+    text:
+      en: With the current into the page, the circles go clockwise as you look at the page.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Follow the clockwise circle through P: which way is it heading there?'
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Down the page: the field goes clockwise round the wire.'
+  misconception_ids:
+  - mc.phy.o.grip_rule_reversed
+  - mc.phy.o.wire_field_along_wire
+  - mc.phy.o.wire_field_radial
+solution:
+  steps:
+  - n: 1
+    latex: '\text{field lines: circles round the wire}'
+    reason: The field of a straight wire
+  - n: 2
+    latex: '\text{current into the page: field clockwise}'
+    reason: Right-hand grip rule
+  - n: 3
+    latex: '\text{at P: down the page}'
+    reason: The direction of the circle at P
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

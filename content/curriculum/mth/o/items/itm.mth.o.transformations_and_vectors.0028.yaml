@@ -1,0 +1,106 @@
+id: itm.mth.o.transformations_and_vectors.0028
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.transformations_and_vectors.enlargement
+stem: A shape with area 12 cm² is enlarged by scale factor 2.
+parts:
+- id: a
+  prompt: Find the area of the image.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 48 cm²
+      correct: true
+    - id: B
+      text: 24 cm²
+      correct: false
+      misconception_id: mc.mth.o.similar_length_factor_for_area
+      feedback: 'Doubling every length of a square makes four copies of it: the area factor is the square.'
+    - id: C
+      text: 16 cm²
+      correct: false
+      misconception_id: mc.mth.o.enlargement_added
+      feedback: A scale factor of 2 doubles every length; adding 2 would change a 1 cm side and a 10 cm side by the same amount.
+    - id: D
+      text: 96 cm²
+      correct: false
+      misconception_id: mc.mth.o.similar_area_factor_for_volume
+      feedback: Volume has three dimensions, so the volume factor is the length factor cubed.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Lengths change by the scale factor; what happens to areas?
+  - rung: 2
+    name: concept
+    text:
+      en: An area is made from two lengths, so it changes by the scale factor squared.
+  - rung: 3
+    name: first_step
+    text:
+      en: The area factor is 2².
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply 12 by 4.
+  - rung: 5
+    name: full_step
+    text:
+      en: The area is 48 cm².
+  misconception_ids:
+  - mc.mth.o.enlargement_added
+  - mc.mth.o.similar_area_factor_for_volume
+  - mc.mth.o.similar_length_factor_for_area
+solution:
+  steps:
+  - n: 1
+    latex: \text{area factor} = 2^2 = 4
+    reason: Areas scale by the square of the scale factor
+    check_id: chk_build_mth_vec_0028_f
+  - n: 2
+    latex: 12 \times 4 = 48
+    reason: Multiply
+    check_id: chk_build_mth_vec_0028_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_vec_0028_ans:
+    args:
+      expression: 12*2^2
+    tool: math_evaluate
+  chk_build_mth_vec_0028_f:
+    args:
+      expression: 2^2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

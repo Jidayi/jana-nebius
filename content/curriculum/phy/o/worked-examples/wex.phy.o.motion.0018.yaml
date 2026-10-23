@@ -1,0 +1,54 @@
+id: wex.phy.o.motion.0018
+kc_ids:
+- kc.phy.o.motion.solve_with_equation
+problem: A runner speeds up from 3.0 m/s to 9.0 m/s with an acceleration of 1.5 m/s^2. How long does this take?
+steps:
+- n: 1
+  latex: v = u + at
+  reason: The equation with u, v, a and t
+- n: 2
+  latex: t = \frac{v - u}{a}
+  reason: Make t the subject
+- n: 3
+  latex: t = \frac{9.0 - 3.0}{1.5}
+  reason: Substitute
+  check_id: chk_build_phy_w_0018
+- n: 4
+  latex: t = 4.0\ \text{s}
+  reason: Evaluate
+  check_id: chk_build_phy_w_0018
+final_answer:
+  latex: 4.0\ \text{s}
+  check_id: chk_build_phy_w_0018
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_w_0018:
+    args:
+      expression: (9.0 - 3.0)/1.5
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

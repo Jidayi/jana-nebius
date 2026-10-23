@@ -1,0 +1,40 @@
+id: mc.phy.o.conservation_masses_swapped
+kc_ids:
+- kc.phy.o.momentum.conservation_of_momentum
+student_name: Masses the wrong way up
+description: Puts the masses the wrong way up when solving for the velocity after a collision or explosion, so the heavier object seems to move faster.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'Check with sense: when a heavy launcher pushes out a light ball, the launcher moves off much more slowly than the ball.'
+probe_item_ids:
+- itm.phy.o.momentum.0027
+- itm.phy.o.momentum.0028
+- itm.phy.o.momentum.0029
+- itm.phy.o.momentum.0030
+- itm.phy.o.momentum.0016
+severity: medium
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

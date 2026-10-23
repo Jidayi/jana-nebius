@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Candidate-bound EVL-15 bake-off record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_version",
+    "run_id",
+    "candidate",
+    "created_at",
+    "eval_lock_sha256",
+    "prompt_files",
+    "inputs_sha256",
+    "report",
+    "inputs"
+  ],
+  "properties": {
+    "record_version": {
+      "const": 1
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{8,128}$"
+    },
+    "candidate": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "eval_lock_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "inputs_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "prompt_files": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sha256",
+          "version"
+        ],
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "report": {
+      "type": "object",
+      "required": [
+        "bakeoff_version",
+        "run_id",
+        "weights",
+        "weights_fixed_at",
+        "candidates",
+        "ranking",
+        "held_out_confirmation",
+        "decision"
+      ]
+    },
+    "inputs": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
+  }
+}

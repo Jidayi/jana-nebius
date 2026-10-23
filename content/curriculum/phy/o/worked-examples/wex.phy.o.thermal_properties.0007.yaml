@@ -1,0 +1,63 @@
+id: wex.phy.o.thermal_properties.0007
+kc_ids:
+- kc.phy.o.thermal_properties.changes_of_state
+problem: During hard exercise in hot weather, a runner loses 0.3 kg of sweat each hour by evaporation. Evaporating sweat at skin temperature takes about 2400 kJ/kg. Find the average rate at which evaporation removes energy from the runner, in watts.
+steps:
+- n: 1
+  latex: E = mL = 0.3 \times 2400 = 720\ \text{kJ}
+  reason: Energy taken by the sweat
+  check_id: chk_build_phy_thp_w0007_e
+- n: 2
+  latex: E = 720000\ \text{J}
+  reason: Joules, to give watts
+  check_id: chk_build_phy_thp_w0007_ej
+- n: 3
+  latex: t = 1\ \text{h} = 3600\ \text{s}
+  reason: One hour in seconds
+  check_id: chk_build_phy_thp_w0007_ts
+- n: 4
+  latex: P = \frac{E}{t} = \frac{720000}{3600} = 200\ \text{W}
+  reason: Power = energy ÷ time
+  check_id: chk_build_phy_thp_w0007_ans
+final_answer:
+  latex: 200\ \text{W}
+  check_id: chk_build_phy_thp_w0007_ans
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_thp_w0007_ans:
+    args:
+      expression: 0.3*2400*1000/3600
+    tool: math_evaluate
+  chk_build_phy_thp_w0007_e:
+    args:
+      expression: 0.3*2400
+    tool: math_evaluate
+  chk_build_phy_thp_w0007_ej:
+    args:
+      expression: 0.3*2400*1000
+    tool: math_evaluate
+  chk_build_phy_thp_w0007_ts:
+    args:
+      expression: 60*60
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,116 @@
+id: itm.acc.o.ratios.0011
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.margins
+stem: Thabo's revenue was $59000, cost of sales $43000 and expenses $11100.
+parts:
+- id: a
+  prompt: What is the gross margin?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 368.75%
+      correct: false
+      misconception_id: mc.acc.o.rat_ratio_inverted
+    - id: B
+      text: 27.12%
+      correct: true
+    - id: C
+      text: 8.31%
+      correct: false
+      misconception_id: mc.acc.o.rat_gross_net_confused
+    - id: D
+      text: 37.21%
+      correct: false
+      misconception_id: mc.acc.o.rat_margin_markup_confused
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which profit does the gross margin use, and what is it compared with?
+  - rung: 2
+    name: concept
+    text:
+      en: Gross margin = gross profit ÷ revenue, as a percentage.
+  - rung: 3
+    name: first_step
+    text:
+      en: Gross profit is before expenses; compare it with revenue, not with cost of sales.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out (59000 − 43000) ÷ 59000 as a percentage.
+  - rung: 5
+    name: full_step
+    text:
+      en: Gross margin = 27.12%.
+  misconception_ids:
+  - mc.acc.o.rat_margin_markup_confused
+  - mc.acc.o.rat_ratio_inverted
+  - mc.acc.o.rat_gross_net_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{Gross margin} = \frac{\text{gross profit}}{\text{revenue}}
+    reason: As a percentage
+    check_id: chk_build_acc_ratios_0011_t
+  - n: 2
+    latex: \frac{59000 - 43000}{59000} \rightarrow 27.12\%
+    reason: Substitute
+    check_id: chk_build_acc_ratios_0011_a
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_0011_a:
+    args:
+      dp: 2
+      expression: (59000 - 43000) / 59000 * 100
+    tool: math_evaluate
+  chk_build_acc_ratios_0011_t:
+    args:
+      cost_of_sales: '43000'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      ratios:
+      - gross_margin
+      revenue: '59000'
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

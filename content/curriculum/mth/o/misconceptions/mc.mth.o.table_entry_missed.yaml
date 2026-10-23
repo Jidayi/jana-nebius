@@ -1,0 +1,36 @@
+id: mc.mth.o.table_entry_missed
+kc_ids:
+- kc.mth.o.statistics.read_tables
+student_name: Take away one entry only
+description: Subtracts only one of the known entries from the row or column total when finding a missing entry in a two-way table.
+signatures:
+- kind: answer_transform
+  expression: 'choice: total minus one known entry'
+fix:
+  strategy: rule_restatement
+  text:
+    en: The missing entry is the total minus every other entry in that row. Check by adding the row back up to its total.
+probe_item_ids:
+- itm.mth.o.statistics.0033
+- itm.mth.o.statistics.0034
+- itm.mth.o.statistics.0035
+- itm.mth.o.statistics.0036
+- itm.mth.o.statistics.0037
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

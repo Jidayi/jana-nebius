@@ -1,0 +1,34 @@
+id: mc.acc.o.sl_residual_ignored
+kc_ids:
+- kc.acc.o.depreciation.straight_line
+student_name: Forgetting the residual value
+description: Divides the whole cost by the life instead of the cost less residual value.
+signatures:
+- kind: answer_transform
+  expression: cost / life
+fix:
+  strategy: rule_restatement
+  text:
+    en: The residual value is expected back, so it is not used up. Take it off first.
+probe_item_ids:
+- itm.acc.o.depreciation.0024
+- itm.acc.o.depreciation.0025
+- itm.acc.o.depreciation.0026
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,494 @@
+# Colocated skill evals (SKL-21). Synthetic student replies written for this repository, on the pack's
+# own items. Every case is reviewed with its skill (SKL-18).
+suite: skill.chm-o-atoms
+version: 2026-10-13.1
+description: 'Colocated evals for chm-o-atoms (SKL-21, EVL-07): one case per misconception. The student answers
+  as the wrong idea leads (and in the first three cases asks for a hint); the tutor must not give the key away,
+  and the marker must name the wrong idea where an item probes it.'
+scenarios:
+- id: chm_o_atoms_01
+  title: Holds 'Two joined atoms make a compound'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.diatomic_as_compound
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.atoms.0001
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 1
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.atoms.element_compound_mixture
+        misconception: mc.chm.o.diatomic_as_compound
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: chm_o_atoms_02
+  title: Holds 'Nucleon number as neutrons'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.neutrons_nucleon_number
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.atoms.0013
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 2
+    repeats: 1
+  turns:
+  - student: C
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.atoms.subatomic_particles
+        misconception: mc.chm.o.neutrons_nucleon_number
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: chm_o_atoms_03
+  title: Holds 'An ion has the atom's electrons'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.ion_electrons_unchanged
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.atoms.0015
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 3
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.atoms.subatomic_particles
+        misconception: mc.chm.o.ion_electrons_unchanged
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+  - action:
+      kind: hint_request
+    expect:
+    - hint_rung:
+        eq: 1
+    - no_answer_leak: true
+    - reply:
+        max_words: 60
+- id: chm_o_atoms_04
+  title: Holds 'Nine or ten in the third shell'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.third_shell_overfilled
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.atoms.0026
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 4
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.atoms.electron_arrangement
+        misconception: mc.chm.o.third_shell_overfilled
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_atoms_05
+  title: Holds 'Plain average of the isotope masses'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.isotope_simple_average
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.atoms.0038
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 5
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.atoms.isotopes
+        misconception: mc.chm.o.isotope_simple_average
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_atoms_06
+  title: Holds 'Moving electrons the long way'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.ion_wrong_direction
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.atoms.0050
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 6
+    repeats: 1
+  turns:
+  - student: D
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.atoms.ion_formation
+        misconception: mc.chm.o.ion_wrong_direction
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_atoms_07
+  title: Holds 'A double bond counted as one pair'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.covalent_multiple_bond_missed
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.atoms.0062
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 7
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.atoms.covalent_bonding
+        misconception: mc.chm.o.covalent_multiple_bond_missed
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_atoms_08
+  title: Holds 'Melting breaks the covalent bonds'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.melting_breaks_covalent_bonds
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.atoms.0074
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 8
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.atoms.structure_and_properties
+        misconception: mc.chm.o.melting_breaks_covalent_bonds
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_atoms_09
+  title: Holds 'Electrons carry the current in a melt'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.ionic_conduction_by_electrons
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.atoms.0075
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 9
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.atoms.structure_and_properties
+        misconception: mc.chm.o.ionic_conduction_by_electrons
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_atoms_10
+  title: Holds 'Soft because its covalent bonds are weak'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.graphite_soft_bonds_weak
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.atoms.0086
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 10
+    repeats: 1
+  turns:
+  - student: A
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.atoms.giant_covalent
+        misconception: mc.chm.o.graphite_soft_bonds_weak
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60
+- id: chm_o_atoms_11
+  title: Holds 'Moving ions in a metal wire'
+  split: development
+  critical: true
+  stage: S2
+  requirements:
+  - SKL-21
+  - EVL-07
+  tags:
+  - skill_eval
+  - misconception
+  synthetic: true
+  setup:
+    profile:
+      level: O
+      subjects:
+      - chemistry
+      age_band: '13_15'
+      misconceptions:
+      - mc.chm.o.metal_conducts_by_ions
+    mode: guided
+    question:
+      item_ref: chm.o:itm.chm.o.atoms.0098
+    model:
+      hardware_class: mid
+      network: disabled
+    seed: 11
+    repeats: 1
+  turns:
+  - student: B
+    note: the option this wrong idea leads to
+    expect:
+    - board_step:
+        owner: student
+        status: incorrect
+    - learner:
+        kc_id: kc.chm.o.atoms.metallic_bonding
+        misconception: mc.chm.o.metal_conducts_by_ions
+    - no_answer_leak: true
+    - turn_status: complete
+    - reply:
+        max_words: 60

@@ -1,0 +1,85 @@
+id: itm.phy.o.sound.0002
+version: 0.1.0
+type: multi_select
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.sound.sound_waves
+stem: Sound is made by a vibrating object.
+parts:
+- id: a
+  prompt: Select every material that sound can travel through.
+  marks: 2
+  answer:
+    kind: multi_select
+    options:
+    - id: A
+      text: Steel
+      correct: true
+    - id: B
+      text: A vacuum
+      correct: false
+    - id: C
+      text: Empty space between the planets
+      correct: false
+    - id: D
+      text: Air
+      correct: true
+    - id: E
+      text: Water
+      correct: true
+    scoring: exact_set
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Picture what happens between a vibrating object and your ear.
+  - rung: 2
+    name: concept
+    text:
+      en: The particles of the material vibrate back and forth along the direction the sound travels, passing the energy on.
+  - rung: 3
+    name: first_step
+    text:
+      en: Squashed regions and stretched regions travel outwards; the particles themselves stay where they were on average.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Sound needs particles to pass the vibrations along.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Correct: Air; Water; Steel.'
+solution:
+  steps:
+  - n: 1
+    latex: \text{Air; Water; Steel}
+    reason: Sound travels through solids, liquids and gases, but not a vacuum
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

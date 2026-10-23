@@ -1,0 +1,87 @@
+id: itm.chm.o.electrolysis.0010
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.molten_products
+stem: In the electrolysis of a molten compound, one electrode gains mass as metal forms on it.
+parts:
+- id: a
+  prompt: At which electrode is the metal formed, and what kind of change happens there?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: At the cathode; the metal ions are oxidised.
+      correct: false
+    - id: B
+      text: At the cathode; the metal ions are reduced.
+      correct: true
+    - id: C
+      text: At the anode; the metal ions are reduced.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_metal_at_anode
+      feedback: Opposite charges attract. Positive metal ions (cations) move to the negative electrode, the cathode, and become metal there. Negative non-metal ions (anions) move to the positive electrode, the anode.
+    - id: D
+      text: At the anode; the metal ions are oxidised.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_metal_at_anode
+      feedback: Opposite charges attract. Positive metal ions (cations) move to the negative electrode, the cathode, and become metal there. Negative non-metal ions (anions) move to the positive electrode, the anode.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Metal ions are positive. Which electrode attracts them?
+  - rung: 2
+    name: concept
+    text:
+      en: At the cathode, ions gain electrons; gaining electrons is reduction.
+  - rung: 3
+    name: first_step
+    text:
+      en: Positive ions move to the negative cathode.
+  - rung: 4
+    name: worked_step
+    text:
+      en: There each metal ion picks up electrons and becomes a neutral atom.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Metal forms at the cathode, where the positive metal ions gain electrons: they are reduced.'
+  misconception_ids:
+  - mc.chm.o.electrolysis_metal_at_anode
+solution:
+  steps:
+  - n: 1
+    latex: '\text{cathode: gain of electrons, reduction}'
+    reason: Cations reduced
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

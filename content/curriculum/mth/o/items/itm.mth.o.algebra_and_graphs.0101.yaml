@@ -1,0 +1,110 @@
+id: itm.mth.o.algebra_and_graphs.0101
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.index_laws_algebra
+stem: Simplify $(p^{4})^{4}$ and write the answer as $p^n$.
+parts:
+- id: a
+  prompt: Find n.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '16'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0101_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The bracket is raised to a power.
+  - rung: 2
+    name: concept
+    text:
+      en: A power of a power multiplies the indices.
+  - rung: 3
+    name: first_step
+    text:
+      en: (p^4)^4 means p^4 written 4 times and multiplied.
+  - rung: 4
+    name: worked_step
+    text:
+      en: n = 4 × 4.
+  - rung: 5
+    name: full_step
+    text:
+      en: n = 4 × 4 = 16.
+  misconception_ids:
+  - mc.mth.o.index_add_for_power
+  - mc.mth.o.index_multiply_for_product
+solution:
+  steps:
+  - n: 1
+    latex: (p^m)^k = p^{mk}
+    reason: 'A power of a power: multiply the indices'
+  - n: 2
+    latex: n = 4 \times 4 = 16
+    reason: Multiply
+    check_id: chk_build_mth_alg_0101_ans
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  a: '4'
+  b: '4'
+checks:
+  chk_build_mth_alg_0101_ans:
+    args:
+      expression: 4*4
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:35:02.697Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.algebra_and_graphs.0101
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

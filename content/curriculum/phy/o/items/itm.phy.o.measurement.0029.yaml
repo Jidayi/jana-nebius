@@ -1,0 +1,93 @@
+id: itm.phy.o.measurement.0029
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.measurement.scalars_and_vectors
+stem: A satellite circles the Earth at a constant speed.
+parts:
+- id: a
+  prompt: Which statement is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Its velocity stays the same because its speed does
+      correct: false
+      misconception_id: mc.phy.o.speed_as_vector
+      feedback: A car going round a bend at a steady speed has the same speed but a changing velocity. Speed is the size only; velocity adds the direction.
+    - id: B
+      text: Its velocity changes all the time
+      correct: true
+    - id: C
+      text: Its mass changes direction as it goes round
+      correct: false
+      misconception_id: mc.phy.o.mass_as_vector
+      feedback: Weight is a force and pulls towards the planet, so it has a direction. Mass is the amount of matter and has no direction.
+    - id: D
+      text: Its kinetic energy points along its path
+      correct: false
+      misconception_id: mc.phy.o.energy_as_vector
+      feedback: 'Energy is a scalar: an amount with no direction. Being moved from one store to another does not give it a direction.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Ask whether the quantity needs a direction to describe it fully.
+  - rung: 2
+    name: concept
+    text:
+      en: A vector has a size and a direction; a scalar has a size only.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Test each option in turn: does it make sense to say which way it points?'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that do not fit what the question asks for.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Its velocity changes all the time.'
+  misconception_ids:
+  - mc.phy.o.energy_as_vector
+  - mc.phy.o.mass_as_vector
+  - mc.phy.o.speed_as_vector
+solution:
+  steps:
+  - n: 1
+    latex: \text{Its velocity changes all the time}
+    reason: Check whether each quantity needs a direction
+difficulty:
+  prior: -1.0
+  band: core
+estimated_seconds: 35
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

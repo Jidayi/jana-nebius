@@ -1,0 +1,109 @@
+id: itm.chm.o.energetics.0036
+version: 0.1.1
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.energetics.bond_energies
+stem: 'For the reaction C₂H₄ + Cl₂ → C₂H₄Cl₂, use these bond energies in kJ/mol: C=C 612, Cl–Cl 242, C–C 348, C–Cl 346.'
+parts:
+- id: a
+  prompt: Calculate the enthalpy change, ΔH, in kJ/mol.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '-186'
+    unit: kJ/mol
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_energetics_0036_dh
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: List the bonds that break and the bonds that form in C₂H₄ + Cl₂ → C₂H₄Cl₂.
+  - rung: 2
+    name: concept
+    text:
+      en: Breaking bonds takes energy in; forming bonds gives energy out. ΔH = broken − formed.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Bonds broken: one C=C and one Cl–Cl, a total of 854 kJ/mol.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Bonds formed: one C–C and two C–Cl, a total of 1040 kJ/mol. Subtract.'
+  - rung: 5
+    name: full_step
+    text:
+      en: ΔH = 854 − 1040 = -186 kJ/mol.
+  misconception_ids:
+  - mc.chm.o.energetics_formed_minus_broken
+  - mc.chm.o.energetics_bond_count_ignored
+solution:
+  steps:
+  - n: 1
+    latex: \text{broken} = 854\ \text{kJ/mol}
+    reason: Energy in
+    check_id: chk_build_chm_energetics_0036_dh
+  - n: 2
+    latex: \text{formed} = 1040\ \text{kJ/mol}
+    reason: Energy out
+    check_id: chk_build_chm_energetics_0036_dh
+  - n: 3
+    latex: \Delta H = 854 - 1040 = -186\ \text{kJ/mol}
+    reason: In minus out
+    check_id: chk_build_chm_energetics_0036_dh
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_energetics_0036_dh:
+    args:
+      broken:
+      - bond: C=C
+        count: 1
+        energy: 612
+      - bond: Cl-Cl
+        count: 1
+        energy: 242
+      formed:
+      - bond: C-C
+        count: 1
+        energy: 348
+      - bond: C-Cl
+        count: 2
+        energy: 346
+      task: bond_energies
+    tool: chem_energetics
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

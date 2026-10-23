@@ -1,0 +1,35 @@
+id: mc.phy.o.half_life_half_of_time
+kc_ids:
+- kc.phy.o.radioactivity.half_life
+student_name: Half-life is half the time
+description: Thinks the half-life is half of the total time over which the activity was measured.
+signatures:
+- kind: answer_transform
+  expression: t/2
+fix:
+  strategy: rule_restatement
+  text:
+    en: Half-life is the time for the activity to halve, not half of the time taken. Find when the activity has fallen to half its starting value.
+probe_item_ids:
+- itm.phy.o.radioactivity.0042
+- itm.phy.o.radioactivity.0034
+- itm.phy.o.radioactivity.0036
+- itm.phy.o.radioactivity.0040
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

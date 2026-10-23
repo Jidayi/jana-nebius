@@ -1,0 +1,85 @@
+id: itm.mth.o.transformations_and_vectors.9043
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.transformations_and_vectors.vector_magnitude
+stem: A vector is (k, 12) and has magnitude 13. The value k is positive.
+parts:
+- id: a
+  prompt: Find k.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '5'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9043
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The square of a vector magnitude is the sum of the squares of its perpendicular components.
+  - rung: 2
+    name: concept
+    text:
+      en: Subtract the square of the known component from the square of the magnitude and use the positive root.
+  - rung: 3
+    name: first_step
+    text:
+      en: Subtract the square of the known component from the square of the magnitude and use the positive root.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Take the positive square root as requested, then check the magnitude.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 5.
+solution:
+  steps:
+  - n: 1
+    latex: \sqrt{- 12^{2} + 13^{2}}
+    reason: Subtract the square of the known component from the square of the magnitude and use the positive root.
+    check_id: chk_build_mastery_supplement_mth_9043
+  - n: 2
+    latex: '5'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9043
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9043:
+    args:
+      angle_unit: degrees
+      expression: sqrt(13^2-12^2)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,114 @@
+id: itm.mth.o.geometry.0094
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.similar_area_volume
+stem: Two similar jugs have heights 2 cm and 3 cm. The smaller one has a volume of 24 cm³.
+parts:
+- id: a
+  prompt: Find the volume of the larger one.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 36 cm³
+      correct: false
+      misconception_id: mc.mth.o.similar_length_factor_for_area
+      feedback: 'Doubling every length of a square makes four copies of it: the area factor is the square.'
+    - id: B
+      text: 54 cm³
+      correct: false
+      misconception_id: mc.mth.o.similar_area_factor_for_volume
+      feedback: Volume has three dimensions, so the volume factor is the length factor cubed.
+    - id: C
+      text: 81 cm³
+      correct: true
+    - id: D
+      text: 7.11 cm³
+      correct: false
+      misconception_id: mc.mth.o.similar_factor_inverted
+      feedback: Scale factor = new length ÷ old length. Going to the larger shape, lengths get bigger.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Find the length scale factor first.
+  - rung: 2
+    name: concept
+    text:
+      en: For similar shapes, volumes change by the cube of the length scale factor.
+  - rung: 3
+    name: first_step
+    text:
+      en: The length scale factor is 3 ÷ 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The volume factor is 3.375.
+  - rung: 5
+    name: full_step
+    text:
+      en: The larger volume is 24 × 3.375 = 81.
+  misconception_ids:
+  - mc.mth.o.similar_area_factor_for_volume
+  - mc.mth.o.similar_factor_inverted
+  - mc.mth.o.similar_length_factor_for_area
+solution:
+  steps:
+  - n: 1
+    latex: k = \frac{3}{2}
+    reason: Length scale factor
+    check_id: chk_build_mth_geo_0094_k
+  - n: 2
+    latex: \text{volume factor} = k^3 = 3.375
+    reason: Volumes scale by k^3
+    check_id: chk_build_mth_geo_0094_f
+  - n: 3
+    latex: 24 \times 3.375 = 81
+    reason: Multiply
+    check_id: chk_build_mth_geo_0094_ans
+difficulty:
+  prior: 0.7
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0094_ans:
+    args:
+      expression: 24*(3/2)^3
+    tool: math_evaluate
+  chk_build_mth_geo_0094_f:
+    args:
+      expression: (3/2)^3
+    tool: math_evaluate
+  chk_build_mth_geo_0094_k:
+    args:
+      expression: 3/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

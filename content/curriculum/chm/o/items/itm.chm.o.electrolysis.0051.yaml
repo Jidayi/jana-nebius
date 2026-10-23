@@ -1,0 +1,116 @@
+id: itm.chm.o.electrolysis.0051
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.quantitative
+stem: 'Aluminium forms at the cathode of an aluminium cell: Al³⁺ + 3e⁻ → Al. A current of 5.0 A flows for 5790 s. (Faraday constant: 96500 C per mole of electrons.)'
+parts:
+- id: a
+  prompt: Calculate the mass of aluminium deposited.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '2.70'
+    unit: g
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_electrolysis_0051_m
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Plan: charge → moles of electrons → moles of aluminium → mass of aluminium.'
+  - rung: 2
+    name: concept
+    text:
+      en: Q = I × t; moles of electrons = Q ÷ 96500; the half-equation gives the electrons per aluminium atom.
+  - rung: 3
+    name: first_step
+    text:
+      en: Q = 5.0 × 5790 = 28950 C, so moles of electrons = 28950 ÷ 96500 = 0.300 mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Each aluminium ion needs 3 electrons, so moles of aluminium = 0.300 ÷ 3 = 0.100 mol. Multiply by 27.
+  - rung: 5
+    name: full_step
+    text:
+      en: Mass = 0.100 × 27 = 2.70 g.
+  misconception_ids:
+  - mc.chm.o.electrolysis_electron_ratio_ignored
+solution:
+  steps:
+  - n: 1
+    latex: Q = 5.0 \times 5790 = 28950\ \text{C}
+    reason: Charge = current × time
+    check_id: chk_build_chm_electrolysis_0051_m
+  - n: 2
+    latex: n(e^-) = \frac{28950}{96500} = 0.300\ \text{mol}
+    reason: Divide by the Faraday constant
+    check_id: chk_build_chm_electrolysis_0051_e
+  - n: 3
+    latex: n(\text{Al}) = \frac{0.300}{3} = 0.100\ \text{mol}
+    reason: 3 mol of electrons per mol of aluminium
+    check_id: chk_build_chm_electrolysis_0051_n
+  - n: 4
+    latex: m = n \times 27 = 2.70\ \text{g}
+    reason: Moles to mass
+    check_id: chk_build_chm_electrolysis_0051_m
+difficulty:
+  prior: 0.8
+  band: stretch
+estimated_seconds: 150
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_electrolysis_0051_e:
+    args:
+      expression: 28950/96500
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_electrolysis_0051_m:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_al
+      - source: pack
+        symbol: faraday
+      sf: 3
+      steps:
+      - current: '5.0'
+        electrons: 3
+        id: m
+        op: electrolysis
+        species: Al
+        time: '5790'
+    tool: chem_stoichiometry
+  chk_build_chm_electrolysis_0051_n:
+    args:
+      expression: 28950/(96500*3)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

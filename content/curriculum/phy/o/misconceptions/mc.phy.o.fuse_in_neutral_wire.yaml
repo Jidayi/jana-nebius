@@ -1,0 +1,32 @@
+id: mc.phy.o.fuse_in_neutral_wire
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+student_name: The fuse or switch can go in the neutral wire
+description: Thinks a fuse or a switch works just as well in the neutral wire, not seeing that the appliance would still be connected to the live wire after it opens.
+signatures:
+- kind: answer_transform
+  expression: neutral
+fix:
+  strategy: rule_restatement
+  text:
+    en: Fuses and switches go in the live wire, so when they open the appliance is cut off from the high voltage.
+probe_item_ids:
+- itm.phy.o.practical_electricity.0041
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

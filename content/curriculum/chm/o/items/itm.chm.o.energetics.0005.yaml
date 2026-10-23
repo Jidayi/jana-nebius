@@ -1,0 +1,87 @@
+id: itm.chm.o.energetics.0005
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.energetics.exo_endo
+stem: Zinc powder is added to copper(II) sulfate solution. The temperature changes from 19 °C to 31 °C.
+parts:
+- id: a
+  prompt: Is the change exothermic or endothermic?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: endothermic
+      correct: false
+      misconception_id: mc.chm.o.energetics_temp_rise_endo
+    - id: B
+      text: exothermic
+      correct: true
+    - id: C
+      text: 'neither: no energy is transferred'
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Compare 19 °C with 31 °C.
+  - rung: 2
+    name: concept
+    text:
+      en: A temperature rise in the surroundings means energy was given out by the reaction.
+  - rung: 3
+    name: first_step
+    text:
+      en: Decide whether the surroundings gained or lost energy.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Gained energy: exothermic. Lost energy: endothermic.'
+  - rung: 5
+    name: full_step
+    text:
+      en: The temperature rose, so it is exothermic.
+  misconception_ids:
+  - mc.chm.o.energetics_temp_rise_endo
+solution:
+  steps:
+  - n: 1
+    latex: \Delta T = 12
+    reason: Change in temperature
+    check_id: chk_build_chm_energetics_0005_d
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_energetics_0005_d:
+    args:
+      expression: 31 - 19
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

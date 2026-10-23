@@ -1,0 +1,100 @@
+id: itm.chm.o.periodic.0005
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.periodic.arrangement
+stem: An atom of element X has the electron arrangement 2,7.
+parts:
+- id: a
+  prompt: Where is X in the Periodic Table?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Group VII, second period
+      correct: true
+    - id: B
+      text: Group II, second period
+      correct: false
+      misconception_id: mc.chm.o.periodic_group_from_full_shell
+      feedback: Only the last number in the arrangement, the outer shell, gives the group.
+    - id: C
+      text: Group II, seventh period
+      correct: false
+      misconception_id: mc.chm.o.periodic_group_period_swapped
+      feedback: Group = number of outer-shell electrons (down the columns). Period = number of occupied shells (along the rows).
+    - id: D
+      text: Group VII, first period
+      correct: false
+      misconception_id: mc.chm.o.periodic_period_full_shells_only
+      feedback: Count every shell that has electrons in it, including the outer one, even if it is not full.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Two things come from 2,7: how many shells there are, and how many electrons are in the outer one.'
+  - rung: 2
+    name: concept
+    text:
+      en: The group is the number of outer-shell electrons; the period is the number of occupied shells.
+  - rung: 3
+    name: first_step
+    text:
+      en: The outer shell is the last number in 2,7.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Now count how many numbers there are in the arrangement.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'X has 7 outer electrons and 2 shells: Group VII, second period (it is fluorine).'
+  misconception_ids:
+  - mc.chm.o.periodic_group_period_swapped
+  - mc.chm.o.periodic_group_from_full_shell
+  - mc.chm.o.periodic_period_full_shells_only
+solution:
+  steps:
+  - n: 1
+    latex: \text{outer electrons} = 7
+    reason: Gives the group
+    check_id: chk_build_chm_periodic_0005_o
+  - n: 2
+    latex: \text{Group VII, second period}
+    reason: Shells give the period
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_periodic_0005_o:
+    args:
+      expression: 9 - 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

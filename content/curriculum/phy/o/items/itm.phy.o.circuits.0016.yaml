@@ -1,0 +1,135 @@
+id: itm.phy.o.circuits.0016
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.parallel_circuits
+stem: In a circuit, two resistors of resistance 6 Ω and 12 Ω are connected in parallel with each other.
+parts:
+- id: a
+  prompt: Calculate their combined resistance.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '4'
+    unit: Ω
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_cir_0016_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Side-by-side paths make it easier for current to flow, so expect less than the smaller resistance.
+  - rung: 2
+    name: concept
+    text:
+      en: For resistors in parallel, 1/R = 1/R1 + 1/R2.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 1/6 + 1/12, then take the reciprocal of the sum.
+  - rung: 4
+    name: worked_step
+    text:
+      en: For two resistors this is the same as (6 × 12) ÷ (6 + 12).
+  - rung: 5
+    name: full_step
+    text:
+      en: The combined resistance is 4 Ω.
+  misconception_ids:
+  - mc.phy.o.parallel_resistances_added
+  - mc.phy.o.parallel_reciprocal_not_inverted
+  - mc.phy.o.parallel_resistance_averaged
+solution:
+  steps:
+  - n: 1
+    latex: \frac{1}{R} = \frac{1}{6} + \frac{1}{12} = 0.25
+    reason: Add the reciprocals
+    check_id: chk_build_phy_cir_0016_inv
+  - n: 2
+    latex: R = \frac{6 \times 12}{6 + 12} = 4\ \Omega
+    reason: Product over sum for two
+    check_id: chk_build_phy_cir_0016_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  R1: '6'
+  R2: '12'
+checks:
+  chk_build_phy_cir_0016_ans:
+    args:
+      expression: 6*12/(6 + 12)
+    tool: math_evaluate
+  chk_build_phy_cir_0016_inv:
+    args:
+      expression: 1/6 + 1/12
+    tool: math_evaluate
+  chk_build_phy_cir_0016_tool:
+    args:
+      components:
+      - emf: '24'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '6'
+      - id: R2
+        kind: resistor
+        resistance: '12'
+      network:
+        series:
+        - B
+        - parallel:
+          - R1
+          - R2
+    tool: phys_circuit
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:40:50.314Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.circuits.0016
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,32 @@
+id: mc.phy.o.gravity_sign_flipped
+kc_ids:
+- kc.phy.o.motion.free_fall
+student_name: Mixing up the direction of g
+description: Takes upwards as positive for the motion but still uses g as positive, so an object thrown up seems to speed up as it rises.
+signatures:
+- kind: structural
+  rule: sign_of_g_flipped
+fix:
+  strategy: rule_restatement
+  text:
+    en: Choose one direction as positive and keep it. If up is positive, the acceleration of a falling object is negative.
+probe_item_ids:
+- itm.phy.o.motion.0004
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

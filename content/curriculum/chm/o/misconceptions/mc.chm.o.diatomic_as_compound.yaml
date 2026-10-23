@@ -1,0 +1,34 @@
+id: mc.chm.o.diatomic_as_compound
+kc_ids:
+- kc.chm.o.atoms.element_compound_mixture
+student_name: Two joined atoms make a compound
+description: Classifies an element made of two-atom molecules, such as O₂ or N₂, as a compound because its atoms are joined.
+signatures:
+- kind: answer_transform
+  expression: 'choice: a diatomic element chosen as a compound'
+fix:
+  strategy: contrast_example
+  text:
+    en: A compound has atoms of two or more different elements bonded together. O₂ has two atoms, but both are oxygen, so it is still an element.
+probe_item_ids:
+- itm.chm.o.atoms.0001
+- itm.chm.o.atoms.0002
+- itm.chm.o.atoms.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

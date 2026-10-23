@@ -1,0 +1,91 @@
+id: itm.chm.o.metals.0016
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.alloys
+stem: A diagram shows pure copper as neat rows of identical circles. A second diagram shows the same rows with some larger circles (tin atoms) among them. This is bronze.
+parts:
+- id: a
+  prompt: What does the second diagram show?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: The tin atoms pull the copper atoms closer with stronger bonds.
+      correct: false
+      misconception_id: mc.chm.o.metals_alloy_stronger_bonds
+      feedback: Draw the layers. In a pure metal the atoms are all one size, so the layers slide easily. Atoms of a different size break up the neat layers, so the layers cannot slide as easily. The bonding is still metallic.
+    - id: B
+      text: The larger tin atoms distort the rows, so the layers can no longer slide past each other easily.
+      correct: true
+    - id: C
+      text: The tin atoms bond to copper atoms to form molecules of a new compound.
+      correct: false
+      misconception_id: mc.chm.o.metals_alloy_is_compound
+      feedback: An alloy is a mixture. Its make-up can vary (brass can be more or less copper), and no new compound with a fixed formula forms. The metal atoms are still held by metallic bonding.
+    - id: D
+      text: The tin atoms make gaps, so bronze is softer than copper.
+      correct: false
+      misconception_id: mc.chm.o.metals_alloy_impure_weaker
+      feedback: Pure iron is soft and bends easily; steel, iron with a little carbon, is much harder. Alloys are made on purpose because they are usually harder and stronger than the pure metal.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Look at what has happened to the neat rows in the second diagram.
+  - rung: 2
+    name: concept
+    text:
+      en: Hardness depends on how easily the layers of atoms can slide.
+  - rung: 3
+    name: first_step
+    text:
+      en: Compare the sizes of the tin and copper atoms in the picture.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Ask whether bumps in a layer make sliding easier or harder.
+  - rung: 5
+    name: full_step
+    text:
+      en: The larger tin atoms disrupt the layers, so bronze is harder than pure copper.
+  misconception_ids:
+  - mc.chm.o.metals_alloy_is_compound
+  - mc.chm.o.metals_alloy_impure_weaker
+  - mc.chm.o.metals_alloy_stronger_bonds
+solution:
+  steps:
+  - n: 1
+    latex: '\text{bronze: Cu + Sn, layers distorted}'
+    reason: Harder than copper
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

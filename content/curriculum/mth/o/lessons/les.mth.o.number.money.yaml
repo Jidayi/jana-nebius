@@ -1,0 +1,69 @@
+id: les.mth.o.number.money
+node_id: cur.mth.o.number.money
+kc_ids:
+- kc.mth.o.number.currency_conversion
+- kc.mth.o.number.simple_interest
+title: Money, exchange rates and simple interest
+estimated_minutes: 12
+blocks:
+- type: step
+  text:
+    en: Try this before any rules. Each dollar is worth the same number of cedis.
+  item_id: itm.mth.o.number.0326
+  action: try_first
+  why:
+    en: 'Each of the 75 dollars is worth 12.5 cedis, so multiply: 75 × 12.5 = 937.50 cedis.'
+  names:
+    en: 'The 12.5 has a name: the exchange rate. It says how many cedis match one dollar.'
+- type: step
+  text:
+    en: Now go the other way, from euros back into dollars. Should you end with more units or fewer?
+  item_id: itm.mth.o.number.0337
+  action: choose
+  why:
+    en: 'One dollar buys several euros, so you get fewer dollars than euros: divide 1000 by 3.75. Multiplying by the rate is the usual slip when you convert back.'
+- type: step
+  text:
+    en: 'A new idea: interest. Take the rate as a percentage of the amount, once for each year.'
+  item_id: itm.mth.o.number.0342
+  action: calculate
+  why:
+    en: 'Each year earns 2.5% of $800, and that happens 3 times: 800 × 2.5 × 3 ÷ 100 = 60.'
+  names:
+    en: 'This is simple interest: the same interest every year, worked out on the amount first invested.'
+- type: step
+  text:
+    en: 'Before you work it out, predict: will the total be just over $800 or many times more?'
+  item_id: itm.mth.o.number.0353
+  action: predict
+  why:
+    en: The interest is $128, and the total adds it to the $800 invested, giving $928. Giving only the interest, or adding interest on interest, are the usual slips.
+- type: step
+  text:
+    en: Now one on your own.
+  item_id: itm.mth.o.number.0341
+  action: calculate
+  why:
+    en: The interest is 1200 × 6 × 4 ÷ 100 = 288, and the total is 1200 + 288 = 1488.
+- type: check
+  item_ids:
+  - itm.mth.o.number.0339
+  - itm.mth.o.number.0343
+  - itm.mth.o.number.0328
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

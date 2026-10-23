@@ -1,0 +1,85 @@
+id: itm.chm.o.organic.0012
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.functional_groups
+stem: Ethanol and propanol have similar chemical reactions.
+parts:
+- id: a
+  prompt: What is the reason for this?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: They have the same functional group, –OH
+      correct: true
+    - id: B
+      text: They have the same boiling point
+      correct: false
+    - id: C
+      text: They have the same relative molecular mass
+      correct: false
+    - id: D
+      text: They have the same number of carbon atoms
+      correct: false
+      misconception_id: mc.chm.o.organic_series_by_carbon_count
+      feedback: A homologous series shares a functional group and a general formula. Ethane, ethene and ethanol all have two carbon atoms, but they belong to three different series and react in different ways. Neighbouring members of one series differ by CH₂.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Ethanol is C₂H₅OH and propanol is C₃H₇OH.
+  - rung: 2
+    name: concept
+    text:
+      en: Reactions happen at the functional group, so compounds with the same group react alike.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ethanol and propanol differ by one CH₂ unit, so they do not have the same number of carbon atoms.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Find the group of atoms that both formulae share.
+  - rung: 5
+    name: full_step
+    text:
+      en: Both contain the –OH group, so they are alcohols and react in similar ways.
+  misconception_ids:
+  - mc.chm.o.organic_series_by_carbon_count
+solution:
+  steps:
+  - n: 1
+    latex: '\text{C}_2\text{H}_5\text{OH, C}_3\text{H}_7\text{OH: both –OH}'
+    reason: Same functional group
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

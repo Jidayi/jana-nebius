@@ -1,0 +1,92 @@
+id: itm.phy.o.electrical_quantities.0077
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.current_voltage_graphs
+stem: A diode's current-voltage graph is drawn for both positive and negative p.d.
+parts:
+- id: a
+  prompt: What does the graph look like for negative p.d.?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: A copy of the positive part, turned upside down
+      correct: false
+      misconception_id: mc.phy.o.diode_conducts_both_ways
+      feedback: 'A diode''s I-V graph is flat along the p.d. axis for reverse p.d.: almost no current flows the wrong way.'
+    - id: B
+      text: A flat line along the p.d. axis, showing almost no current
+      correct: true
+    - id: C
+      text: A straight line through the origin
+      correct: false
+      misconception_id: mc.phy.o.diode_conducts_both_ways
+      feedback: 'A diode''s I-V graph is flat along the p.d. axis for reverse p.d.: almost no current flows the wrong way.'
+    - id: D
+      text: A curve that bends over like a lamp's
+      correct: false
+      misconception_id: mc.phy.o.lamp_resistance_constant
+      feedback: 'A lamp''s I-V graph bends over: each extra volt gives less extra current, because the hotter filament has more resistance.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Look at how the current changes as the p.d. changes, and what that says about R = V/I.
+  - rung: 2
+    name: concept
+    text:
+      en: A fixed resistor gives a straight line through the origin; a line that bends shows a resistance that changes; some components conduct in one direction only.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: In reverse, a diode's resistance is very high.
+  - rung: 5
+    name: full_step
+    text:
+      en: A flat line along the p.d. axis, showing almost no current. In reverse, a diode's resistance is very high.
+  misconception_ids:
+  - mc.phy.o.diode_conducts_both_ways
+  - mc.phy.o.lamp_resistance_constant
+solution:
+  steps:
+  - n: 1
+    latex: \text{A flat line along the p.d. axis, showing almost no current}
+    reason: Read the shape of the graph as a resistance
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

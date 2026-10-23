@@ -1,0 +1,36 @@
+id: mc.phy.o.pressure_force_times_area
+kc_ids:
+- kc.phy.o.pressure.pressure_on_surfaces
+student_name: Multiplying force by area
+description: Multiplies the force by the area to find the pressure instead of dividing the force by the area.
+signatures:
+- kind: answer_transform
+  expression: F*A
+fix:
+  strategy: counterexample
+  text:
+    en: 'Pressure is the force on each square metre: force ÷ area. Spreading a force over a bigger area must give a smaller pressure, which multiplying by the area cannot do.'
+probe_item_ids:
+- itm.phy.o.pressure.0012
+- itm.phy.o.pressure.0014
+- itm.phy.o.pressure.0001
+- itm.phy.o.pressure.0002
+- itm.phy.o.pressure.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

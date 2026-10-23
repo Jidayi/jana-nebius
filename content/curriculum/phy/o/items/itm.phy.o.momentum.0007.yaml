@@ -1,0 +1,100 @@
+id: itm.phy.o.momentum.0007
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.momentum_calculation
+stem: Trolley A (1.5 kg) moves right at 4 m/s. Trolley B (1 kg) moves left at 3 m/s, towards A. Take right as positive.
+parts:
+- id: a
+  prompt: Find the total momentum of the two trolleys.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '3'
+    unit: kg m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_mom_0007_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Momentum has a direction: give each trolley''s momentum a sign.'
+  - rung: 2
+    name: concept
+    text:
+      en: Find each momentum as mass × velocity, then add them with their signs.
+  - rung: 3
+    name: first_step
+    text:
+      en: B moves left, so its velocity and momentum are negative.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The momenta are 6 kg m/s and -3 kg m/s.
+  - rung: 5
+    name: full_step
+    text:
+      en: Total momentum = 3 kg m/s.
+  misconception_ids:
+  - mc.phy.o.momentum_sign_ignored
+  - mc.phy.o.momentum_totals_multiplied
+  - mc.phy.o.largest_vector_only
+solution:
+  steps:
+  - n: 1
+    latex: p_A = 1.5 \times 4 = 6\ \text{kg m/s}
+    reason: 'A moves right: positive'
+    check_id: chk_build_phy_mom_0007_p1
+  - n: 2
+    latex: p_B = 1 \times (-3) = -3\ \text{kg m/s}
+    reason: 'B moves left: negative'
+    check_id: chk_build_phy_mom_0007_p2
+  - n: 3
+    latex: p = 6 + (-3) = 3\ \text{kg m/s}
+    reason: Add the momenta with their signs
+    check_id: chk_build_phy_mom_0007_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_0007_ans:
+    args:
+      expression: 1.5*4 - 1*3
+    tool: math_evaluate
+  chk_build_phy_mom_0007_p1:
+    args:
+      expression: 1.5*4
+    tool: math_evaluate
+  chk_build_phy_mom_0007_p2:
+    args:
+      expression: 1*(-3)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

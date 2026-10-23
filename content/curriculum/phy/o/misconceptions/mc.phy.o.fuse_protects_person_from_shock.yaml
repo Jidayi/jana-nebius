@@ -1,0 +1,33 @@
+id: mc.phy.o.fuse_protects_person_from_shock
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+student_name: A fuse stops electric shocks
+description: Thinks the fuse is there to stop a person getting a shock, rather than to stop the wiring overheating.
+signatures:
+- kind: answer_transform
+  expression: fuse = shock protection
+fix:
+  strategy: rule_restatement
+  text:
+    en: A fuse melts when the current is too large for the cable. A current big enough to kill is far smaller than most fuse ratings, so the earth wire and insulation protect people.
+probe_item_ids:
+- itm.phy.o.practical_electricity.0037
+- itm.phy.o.practical_electricity.0039
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

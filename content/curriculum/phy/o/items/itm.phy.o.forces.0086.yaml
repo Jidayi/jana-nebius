@@ -1,0 +1,95 @@
+id: itm.phy.o.forces.0086
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.moments
+stem: A uniform rod is balanced on a knife edge at its centre. A weight of 2 N hangs 0.1 m to the left of the pivot.
+parts:
+- id: a
+  prompt: Find the weight that must hang 0.4 m to the right of the pivot to keep it balanced.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.5'
+    unit: N
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_frc_0086_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: In balance, the clockwise moment equals the anticlockwise moment.
+  - rung: 2
+    name: concept
+    text:
+      en: The beam is uniform and pivoted at its centre, so its own weight has no moment.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the moment of the known weight, then divide by the other distance.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The anticlockwise moment is 0.2 N m.
+  - rung: 5
+    name: full_step
+    text:
+      en: F = 0.2 ÷ 0.4 = 0.5 N.
+  misconception_ids:
+  - mc.phy.o.balance_equal_forces
+  - mc.phy.o.moment_ratio_inverted
+  - mc.phy.o.moment_left_as_answer
+solution:
+  steps:
+  - n: 1
+    latex: 2 \times 0.1 = 0.2\ \text{N m}
+    reason: Anticlockwise moment
+    check_id: chk_build_phy_frc_0086_m1
+  - n: 2
+    latex: F \times 0.4 = 0.2
+    reason: Principle of moments
+  - n: 3
+    latex: F = \frac{0.2}{0.4} = 0.5\ \text{N}
+    reason: Divide by the distance
+    check_id: chk_build_phy_frc_0086_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0086_ans:
+    args:
+      expression: 2*0.1/0.4
+    tool: math_evaluate
+  chk_build_phy_frc_0086_m1:
+    args:
+      expression: 2*0.1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

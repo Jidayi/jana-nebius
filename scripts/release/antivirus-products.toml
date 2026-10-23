@@ -1,0 +1,23 @@
+# The antivirus products of the release checklist (PLT-07): Microsoft Defender plus the three products most common on
+# pilot machines. Before each release the installer and the installed app are scanned by each, for the exact release
+# hashes, and submitted to Microsoft for analysis; `python -m jana_tools release antivirus <record.json> <SHA256SUMS>`
+# blocks the release on any missing scan, open detection or hash that is not the release's.
+#
+# OWNER ACTION (platform lead): replace the three PLACEHOLDER rows with the products the pilot device survey
+# (PLT-29, JANA_DEVICE_SURVEY) finds most common, before the first pilot release.
+
+[[product]]
+name = "Microsoft Defender"
+how = "Windows Security full scan of the installer and the installed folder on the Windows runner, signatures updated first"
+
+[[product]]
+name = "PLACEHOLDER-pilot-product-1"
+how = "Named from the pilot device survey"
+
+[[product]]
+name = "PLACEHOLDER-pilot-product-2"
+how = "Named from the pilot device survey"
+
+[[product]]
+name = "PLACEHOLDER-pilot-product-3"
+how = "Named from the pilot device survey"

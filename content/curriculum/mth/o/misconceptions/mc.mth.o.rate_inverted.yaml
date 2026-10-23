@@ -1,0 +1,36 @@
+id: mc.mth.o.rate_inverted
+kc_ids:
+- kc.mth.o.number.rates
+student_name: Dividing the wrong way for a rate
+description: Divides the second quantity by the first, for example volume by mass for a density.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Read the unit: g/cm³ means grams divided by cubic centimetres.'
+probe_item_ids:
+- itm.mth.o.number.0260
+- itm.mth.o.number.0261
+- itm.mth.o.number.0262
+- itm.mth.o.number.0264
+- itm.mth.o.number.0265
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,83 @@
+id: itm.phy.o.circuits.0068
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.circuit_components
+stem: A variable resistor is in series with a lamp and a battery. Its slider is moved to increase its resistance.
+parts:
+- id: a
+  prompt: What happens to the lamp?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It gets dimmer
+      correct: true
+    - id: B
+      text: It gets brighter
+      correct: false
+    - id: C
+      text: It stays the same, because the battery is unchanged
+      correct: false
+    - id: D
+      text: It flashes on and off
+      correct: false
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The variable resistor and the lamp are in series, so they carry the same current.
+  - rung: 2
+    name: concept
+    text:
+      en: More resistance in series means less current for the same battery.
+  - rung: 3
+    name: first_step
+    text:
+      en: A lamp's brightness depends on the current through it.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Decide whether the current rises or falls, then what that does to the lamp.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: it gets dimmer.'
+solution:
+  steps:
+  - n: 1
+    latex: \text{It gets dimmer}
+    reason: Match the component to what it does
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

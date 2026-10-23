@@ -1,0 +1,97 @@
+{
+  "id": "report-schema.canonical",
+  "title": "What a usage report holds",
+  "component": "ReportSchema",
+  "note": "Settings → What leaves this device (OBS-20, PRV-09): the fields of a usage report with their fixed values, its measurements and breakdowns, read from the published schema.",
+  "state": "canonical",
+  "payload": {
+    "summary": {
+      "fields": [
+        {
+          "name": "report_id",
+          "values": null
+        },
+        {
+          "name": "app_version",
+          "values": null
+        },
+        {
+          "name": "channel",
+          "values": [
+            "dev",
+            "pilot",
+            "stable"
+          ]
+        },
+        {
+          "name": "hardware_class",
+          "values": [
+            "low",
+            "mid",
+            "high",
+            "content_only"
+          ]
+        },
+        {
+          "name": "os_family",
+          "values": [
+            "windows",
+            "macos",
+            "linux"
+          ]
+        },
+        {
+          "name": "router_tier",
+          "values": [
+            "local",
+            "cloud",
+            "lan"
+          ]
+        },
+        {
+          "name": "days",
+          "values": null
+        }
+      ],
+      "metrics": [
+        "core_ready_ms",
+        "ttft_ms",
+        "turn_duration_ms",
+        "tool_calls",
+        "tool_failures",
+        "sessions",
+        "crashed_sessions",
+        "peak_memory_mb"
+      ],
+      "breakdowns": [
+        {
+          "name": "role",
+          "values": [
+            "coach",
+            "solver",
+            "checker"
+          ]
+        },
+        {
+          "name": "tool",
+          "values": [
+            "chem_balance",
+            "phys_kinematics"
+          ]
+        }
+      ],
+      "maxDays": 14
+    }
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Operating system",
+    "No questions, answers, names, photos or anything typed are in a report."
+  ]
+}

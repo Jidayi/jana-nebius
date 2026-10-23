@@ -1,0 +1,98 @@
+id: itm.phy.o.motion.0345
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.velocity_time_area
+stem: The velocity-time graph of a rowing boat is a straight line from 6 m/s at 0 s to 16 m/s at 8 s.
+parts:
+- id: a
+  prompt: How far does it travel in this time?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 128 m
+      correct: false
+      misconception_id: mc.phy.o.triangle_area_without_half
+      feedback: 'Sketch the area: a triangle is half of the rectangle around it.'
+    - id: B
+      text: 88 m
+      correct: true
+    - id: C
+      text: 64 m
+      correct: false
+      misconception_id: mc.phy.o.starting_velocity_ignored_in_area
+      feedback: 'When the line starts above zero the shape is a trapezium: a rectangle under the starting velocity plus a triangle on top.'
+    - id: D
+      text: 40 m
+      correct: false
+      misconception_id: mc.phy.o.velocity_change_used_for_area
+      feedback: The change in velocity gives only the triangle on top. The rectangle underneath, from the starting velocity, is distance travelled too.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The distance travelled is the area under a velocity-time graph.
+  - rung: 2
+    name: concept
+    text:
+      en: The shape under this line is a trapezium, not a triangle, because it starts above zero.
+  - rung: 3
+    name: first_step
+    text:
+      en: Area of a trapezium = average of the two parallel sides × the width.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Average the velocities 6 and 16, then multiply by 8.
+  - rung: 5
+    name: full_step
+    text:
+      en: The distance is 88 m.
+  misconception_ids:
+  - mc.phy.o.starting_velocity_ignored_in_area
+  - mc.phy.o.triangle_area_without_half
+  - mc.phy.o.velocity_change_used_for_area
+solution:
+  steps:
+  - n: 1
+    latex: s = \frac{6 + 16}{2} \times 8 = 88\ \text{m}
+    reason: Area of the trapezium under the line
+    check_id: chk_build_phy_mot_0345_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mot_0345_ans:
+    args:
+      expression: (6 + 16)/2*8
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

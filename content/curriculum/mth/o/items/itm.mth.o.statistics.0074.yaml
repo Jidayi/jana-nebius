@@ -1,0 +1,132 @@
+id: itm.mth.o.statistics.0074
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.grouped_mean
+stem: 'The times, t minutes, that students took to finish a task are grouped: 10 ≤ t < 20: 11; 20 ≤ t < 30: 3; 30 ≤ t < 40: 5; 40 ≤ t < 50: 2.'
+parts:
+- id: a
+  prompt: Estimate the mean time. Give your answer to 3 significant figures.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '24.0'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_sta_0074_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You do not know the exact times, so use one value for each class.
+  - rung: 2
+    name: concept
+    text:
+      en: Use the midpoint of each class, multiply by its frequency, add, and divide by the total frequency.
+  - rung: 3
+    name: first_step
+    text:
+      en: The first class has midpoint (10 + 20) ÷ 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Σfx = 505 and Σf = 21.
+  - rung: 5
+    name: full_step
+    text:
+      en: The estimated mean is 24.0 minutes.
+  misconception_ids:
+  - mc.mth.o.grouped_upper_bound
+  - mc.mth.o.frequency_mean_rows
+  - mc.mth.o.class_width_wrong
+solution:
+  steps:
+  - n: 1
+    latex: '\text{midpoints: } 15, 25, 35, 45'
+    reason: Middle of each class
+    check_id: chk_build_mth_sta_0074_mids
+  - n: 2
+    latex: \Sigma fx = 505,\ \Sigma f = 21
+    reason: Midpoint times frequency, added
+    check_id: chk_build_mth_sta_0074_t
+  - n: 3
+    latex: \text{mean} \approx \frac{505}{21} = 24.0
+    reason: Divide by the total frequency
+    check_id: chk_build_mth_sta_0074_sc
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0074_ans:
+    args:
+      expression: 505.0/21
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_sta_0074_mids:
+    args:
+      equations:
+      - p = (10 + 20)/2
+      - q = (20 + 30)/2
+      - r = (30 + 40)/2
+      - s = (40 + 50)/2
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+  chk_build_mth_sta_0074_sc:
+    args:
+      grouped:
+      - frequency: 11
+        lower: 10
+        upper: 20
+      - frequency: 3
+        lower: 20
+        upper: 30
+      - frequency: 5
+        lower: 30
+        upper: 40
+      - frequency: 2
+        lower: 40
+        upper: 50
+      quartile_method: exclusive
+    tool: stats_compute
+  chk_build_mth_sta_0074_t:
+    args:
+      equations:
+      - p = 505.0
+      - q = 21
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

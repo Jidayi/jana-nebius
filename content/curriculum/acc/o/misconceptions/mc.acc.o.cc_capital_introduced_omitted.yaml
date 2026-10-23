@@ -1,0 +1,34 @@
+id: mc.acc.o.cc_capital_introduced_omitted
+kc_ids:
+- kc.acc.o.sole_trader_statements.closing_capital
+student_name: Forgetting capital introduced
+description: Leaves out extra capital the owner paid in during the year.
+signatures:
+- kind: answer_transform
+  expression: opening + profit - drawings
+fix:
+  strategy: rule_restatement
+  text:
+    en: Money the owner adds during the year increases capital as well as the profit.
+probe_item_ids:
+- itm.acc.o.sole_trader_statements.0056
+- itm.acc.o.sole_trader_statements.0058
+- itm.acc.o.sole_trader_statements.0059
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

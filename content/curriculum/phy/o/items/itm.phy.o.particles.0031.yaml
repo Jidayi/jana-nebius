@@ -1,0 +1,88 @@
+id: itm.phy.o.particles.0031
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.gas_pressure_particles
+stem: The gas inside a sealed box is at a pressure of 250 kPa. Its particles strike one face of the box, which has an area of 0.012 m².
+parts:
+- id: a
+  prompt: Find the total force the particles exert on this surface.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '3000'
+    unit: N
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_ptc_0031_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The pressure is the total force of the particle collisions on each square metre.
+  - rung: 2
+    name: concept
+    text:
+      en: So the force on a surface is pressure × area.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change 250 kPa to pascals first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply 250000 Pa by 0.012 m².
+  - rung: 5
+    name: full_step
+    text:
+      en: The force is 3000 N.
+solution:
+  steps:
+  - n: 1
+    latex: p = 250\ \text{kPa} = 250000\ \text{Pa}
+    reason: 1 Pa is 1 N on each square metre
+    check_id: chk_build_phy_ptc_0031_pa
+  - n: 2
+    latex: F = pA = 250000 \times 0.012 = 3000\ \text{N}
+    reason: Force = pressure × area
+    check_id: chk_build_phy_ptc_0031_ans
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ptc_0031_ans:
+    args:
+      expression: 250*1000*0.012
+    tool: math_evaluate
+  chk_build_phy_ptc_0031_pa:
+    args:
+      expression: 250*1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

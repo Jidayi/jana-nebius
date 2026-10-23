@@ -1,0 +1,33 @@
+id: mc.phy.o.parallel_reciprocal_not_inverted
+kc_ids:
+- kc.phy.o.circuits.parallel_circuits
+student_name: Forgetting to turn 1/R back into R
+description: Works out 1/R1 + 1/R2 correctly but gives that sum as the resistance, without taking its reciprocal.
+signatures:
+- kind: answer_transform
+  expression: 1/R1 + 1/R2
+fix:
+  strategy: rule_restatement
+  text:
+    en: The sum 1/R1 + 1/R2 is 1/R, not R. Finish by taking one divided by the sum.
+probe_item_ids:
+- itm.phy.o.circuits.0028
+- itm.phy.o.circuits.0016
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

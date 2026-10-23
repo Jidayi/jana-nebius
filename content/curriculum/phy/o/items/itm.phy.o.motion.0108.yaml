@@ -1,0 +1,98 @@
+id: itm.phy.o.motion.0108
+version: 0.1.2
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.choose_equation
+stem: A cyclist speeds up steadily from 2 m/s to 8 m/s in 4 s.
+parts:
+- id: a
+  prompt: Find the distance travelled in this time.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '20.0'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_k_0108_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'List u, v, a, s and t: which do you know, which is asked for, and which is not involved?'
+  - rung: 2
+    name: concept
+    text:
+      en: Choose the equation of uniform acceleration that has the quantities you know and the one you want, and leaves out the one that is not involved.
+  - rung: 3
+    name: first_step
+    text:
+      en: Use s = ½(u + v)t.
+  - rung: 4
+    name: worked_step
+    text:
+      en: s = ½ × (2 + 8) × 4.
+  - rung: 5
+    name: full_step
+    text:
+      en: s = ½ × (2 + 8) × 4 gives 20.0 m.
+  misconception_ids:
+  - mc.phy.o.equation_with_unknown_time
+solution:
+  steps:
+  - n: 1
+    latex: s = \tfrac{1}{2}(u + v)t
+    reason: The equation with the known and wanted quantities only
+  - n: 2
+    latex: s = \tfrac{1}{2}(2 + 8) \times 4
+    reason: Substitute
+    check_id: chk_build_phy_k_0108_a
+  - n: 3
+    latex: s = 20.0\ \text{m}
+    reason: Evaluate
+    check_id: chk_build_phy_k_0108_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- transport
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_k_0108_a:
+    args:
+      expression: (2 + 8)/2*4
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

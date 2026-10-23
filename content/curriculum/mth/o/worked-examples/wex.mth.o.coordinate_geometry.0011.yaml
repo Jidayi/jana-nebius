@@ -1,0 +1,49 @@
+id: wex.mth.o.coordinate_geometry.0011
+kc_ids:
+- kc.mth.o.coordinate_geometry.line_equation
+problem: A straight line passes through (1, 5) and (3, 11). Its equation is y = mx + c. Find c.
+steps:
+- n: 1
+  latex: m = \frac{11 - (5)}{3 - (1)} = 3
+  reason: Gradient first
+  check_id: chk_build_mth_crd_w0011_m
+- n: 2
+  latex: 5 = 3 \times (1) + c \Rightarrow c = 2
+  reason: Substitute the point (1, 5), then solve for c
+  check_id: chk_build_mth_crd_w0011_ans
+final_answer:
+  latex: '2'
+  check_id: chk_build_mth_crd_w0011_ans
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_crd_w0011_ans:
+    args:
+      expression: 5 - (11 - (5))/(3 - (1))*(1)
+    tool: math_evaluate
+  chk_build_mth_crd_w0011_m:
+    args:
+      expression: (11 - (5))/(3 - (1))
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,116 @@
+id: itm.phy.o.forces.0057
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.springs
+stem: A spring of length 12 cm has a spring constant of 80 N/m. A mass of 0.3 kg is hung from it, within the limit of proportionality. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Find the new length of the spring in centimetres.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '15.8'
+    unit: cm
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_frc_0057_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: F = kx gives the extension, not the length.
+  - rung: 2
+    name: concept
+    text:
+      en: The force on the spring is the weight of the mass.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the weight, then the extension x = F ÷ k in metres, then add it to the original length.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The weight is 3 N, so the extension is 0.0375 m, which is 3.75 cm.
+  - rung: 5
+    name: full_step
+    text:
+      en: New length = 12 + 3.75 = 15.8 cm.
+  misconception_ids:
+  - mc.phy.o.spring_extension_given_as_length
+  - mc.phy.o.mass_in_kg_used_as_force
+  - mc.phy.o.spring_cm_not_converted
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: F = mg = 0.3 \times 10 = 3\ \text{N}
+    reason: The load is the weight
+    check_id: chk_build_phy_frc_0057_w
+  - n: 2
+    latex: x = \frac{F}{k} = \frac{3}{80} = 0.0375\ \text{m}
+    reason: From F = kx
+    check_id: chk_build_phy_frc_0057_x
+  - n: 3
+    latex: x = 3.75\ \text{cm}
+    reason: Extension in centimetres
+    check_id: chk_build_phy_frc_0057_xcm
+  - n: 4
+    latex: L = 12 + 3.75 = 15.8\ \text{cm}
+    reason: Original length + extension
+    check_id: chk_build_phy_frc_0057_ans
+difficulty:
+  prior: 0.4
+  band: stretch
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0057_ans:
+    args:
+      expression: 12 + 0.3*10/80*100
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_frc_0057_w:
+    args:
+      expression: 0.3*10
+    tool: math_evaluate
+  chk_build_phy_frc_0057_x:
+    args:
+      expression: 0.3*10/80
+    tool: math_evaluate
+  chk_build_phy_frc_0057_xcm:
+    args:
+      expression: 0.3*10/80*100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

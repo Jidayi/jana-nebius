@@ -1,0 +1,51 @@
+id: wex.acc.o.depreciation.0001
+kc_ids:
+- kc.acc.o.depreciation.capital_revenue_expenditure
+problem: A machine costs $14500; delivery $350; installation $600; first month's running costs $220. Find the amount capitalised.
+steps:
+- n: 1
+  latex: \text{Cost} = \text{price} + \text{costs of getting it ready}
+  reason: Capital expenditure
+  check_id: chk_build_acc_depreciation_w0001_t
+- n: 2
+  latex: \text{Cost} = 14500 + 350 + 600 = 15450
+  reason: Running costs are revenue expenditure
+  check_id: chk_build_acc_depreciation_w0001_a
+final_answer:
+  latex: \$\,15450
+  check_id: chk_build_acc_depreciation_w0001_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_depreciation_w0001_a:
+    args:
+      dp: 2
+      expression: 14500 + 350 + 600
+    tool: math_evaluate
+  chk_build_acc_depreciation_w0001_t:
+    args:
+      cost: '15450'
+      dp: 2
+      life_years: 5
+      method: straight_line
+      part_year_policy: full_year
+      years: 1
+    tool: acc_depreciation
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

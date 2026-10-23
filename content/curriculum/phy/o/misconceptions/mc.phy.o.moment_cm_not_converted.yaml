@@ -1,0 +1,35 @@
+id: mc.phy.o.moment_cm_not_converted
+kc_ids:
+- kc.phy.o.forces.moments
+student_name: Moment with the distance in centimetres
+description: Multiplies the force by a distance in centimetres and gives the result in N m.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: A moment in N m needs the distance in metres. Change centimetres into metres before you multiply.
+probe_item_ids:
+- itm.phy.o.forces.0094
+- itm.phy.o.forces.0081
+- itm.phy.o.forces.0085
+- itm.phy.o.forces.0089
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

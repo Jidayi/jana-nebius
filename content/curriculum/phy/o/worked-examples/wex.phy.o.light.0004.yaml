@@ -1,0 +1,67 @@
+id: wex.phy.o.light.0004
+kc_ids:
+- kc.phy.o.light.refraction
+problem: A ray of light passes from air into a plastic block. The angle of incidence is 30° and the angle of refraction is 20°. Calculate the refractive index of the material.
+steps:
+- n: 1
+  latex: \sin 30^\circ = 0.500
+  reason: Sine of the angle in air
+  check_id: chk_build_phy_lgt_w0004_si
+- n: 2
+  latex: \sin 20^\circ = 0.342
+  reason: Sine of the angle in the material
+  check_id: chk_build_phy_lgt_w0004_sr
+- n: 3
+  latex: n = \frac{\sin 30^\circ}{\sin 20^\circ} = 1.46
+  reason: n = sin i / sin r
+  check_id: chk_build_phy_lgt_w0004_ans
+final_answer:
+  latex: '1.46'
+  check_id: chk_build_phy_lgt_w0004_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_w0004_ans:
+    args:
+      angle_unit: degrees
+      expression: sin(30)/sin(20)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_w0004_si:
+    args:
+      angle_unit: degrees
+      expression: sin(30)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_w0004_sr:
+    args:
+      angle_unit: degrees
+      expression: sin(20)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_w0004_tool:
+    args:
+      angle1: 30
+      angle2: 20
+      n1: 1
+      task: refraction
+    tool: phys_optics
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,35 @@
+id: mc.acc.o.cost_fixed_not_cost
+kc_ids:
+- kc.acc.o.costing.cost_classification
+student_name: Overheads are not costs
+description: Thinks fixed or indirect costs are not costs of the business because they do not change with output.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: expense
+fix:
+  strategy: rule_restatement
+  text:
+    en: Every cost must be covered for a profit to be made.
+probe_item_ids:
+- itm.acc.o.costing.0001
+- itm.acc.o.costing.0002
+- itm.acc.o.costing.0003
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

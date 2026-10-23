@@ -1,0 +1,49 @@
+id: wex.mth.o.transformations_and_vectors.0008
+kc_ids:
+- kc.mth.o.transformations_and_vectors.vector_magnitude
+problem: The vector $\mathbf{v} = \begin{pmatrix} -8 \\ -15 \end{pmatrix}$. Find its magnitude |v|.
+steps:
+- n: 1
+  latex: '|\mathbf{v}| = \sqrt{x^2 + y^2}'
+  reason: Pythagoras on the components
+- n: 2
+  latex: (-8)^2 + (-15)^2 = 289
+  reason: Square and add
+  check_id: chk_build_mth_vec_w0008_s
+- n: 3
+  latex: '|\mathbf{v}| = \sqrt{289} = 17'
+  reason: Square root
+  check_id: chk_build_mth_vec_w0008_ans
+final_answer:
+  latex: '17'
+  check_id: chk_build_mth_vec_w0008_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_vec_w0008_ans:
+    args:
+      expression: sqrt((-8)^2 + (-15)^2)
+    tool: math_evaluate
+  chk_build_mth_vec_w0008_s:
+    args:
+      expression: (-8)^2 + (-15)^2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

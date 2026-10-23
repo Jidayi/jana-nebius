@@ -1,0 +1,92 @@
+id: itm.phy.o.circuits.0005
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.circuits.series_circuits
+stem: Ade connects three identical lamps in series with a battery. An ammeter between the battery and the first lamp reads 0.15 A.
+parts:
+- id: a
+  prompt: What does an ammeter placed after the last lamp read?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: A smaller reading, because each lamp uses up some current
+      correct: false
+      misconception_id: mc.phy.o.series_current_used_up
+      feedback: 'Charge is not used up: the same charge flows all the way round. In a series circuit the current is the same at every point; it is energy that the components transfer.'
+    - id: B
+      text: The same reading as the first ammeter
+      correct: true
+    - id: C
+      text: Zero, because all the current has been used by the lamps
+      correct: false
+      misconception_id: mc.phy.o.series_current_used_up
+      feedback: 'Charge is not used up: the same charge flows all the way round. In a series circuit the current is the same at every point; it is energy that the components transfer.'
+    - id: D
+      text: A bigger reading, because the currents through the lamps add up
+      correct: false
+      misconception_id: mc.phy.o.series_treated_as_parallel
+      feedback: In series there is only one path. The current is the same everywhere, the supply p.d. is shared between the resistors, and the total resistance is the sum.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what flows round the circuit and whether any of it can be lost.
+  - rung: 2
+    name: concept
+    text:
+      en: Charge is not used up by a lamp; the lamps transfer energy, not charge.
+  - rung: 3
+    name: first_step
+    text:
+      en: In a series circuit there is only one path, so every coulomb passes both ammeters.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Compare the rate at which charge passes each ammeter.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: the same reading as the first ammeter.'
+  misconception_ids:
+  - mc.phy.o.series_current_used_up
+  - mc.phy.o.series_treated_as_parallel
+solution:
+  steps:
+  - n: 1
+    latex: I_{\text{after}} = I_{\text{before}}
+    reason: 'One path: the current is the same at every point'
+difficulty:
+  prior: -0.8
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

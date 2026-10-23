@@ -1,0 +1,40 @@
+id: wex.mth.o.number.0005
+kc_ids:
+- kc.mth.o.number.venn_counting
+problem: In a class of 32 students, 18 own a bicycle, 10 own a phone and 5 do both. Let A be the set of students who own a bicycle and B the set who own a phone. How many students own a bicycle only (and do not own a phone)?
+steps:
+- n: 1
+  latex: n(A \cap B') = n(A) - n(A \cap B)
+  reason: Remove the overlap from A
+- n: 2
+  latex: = 18 - 5 = 13
+  reason: Subtract
+  check_id: chk_build_mth_num_w0005_ans
+final_answer:
+  latex: '13'
+  check_id: chk_build_mth_num_w0005_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0005_ans:
+    args:
+      expression: 18 - 5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

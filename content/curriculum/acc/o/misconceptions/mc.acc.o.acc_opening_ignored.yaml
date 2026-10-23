@@ -1,0 +1,34 @@
+id: mc.acc.o.acc_opening_ignored
+kc_ids:
+- kc.acc.o.accruals_prepayments.prepaid_expense
+student_name: Forgetting last year's prepayment
+description: Leaves out the amount paid last year for this year's use.
+signatures:
+- kind: answer_transform
+  expression: paid - closing_prepayment
+fix:
+  strategy: rule_restatement
+  text:
+    en: What was paid in advance last year is used up this year, so it is added.
+probe_item_ids:
+- itm.acc.o.accruals_prepayments.0019
+- itm.acc.o.accruals_prepayments.0020
+- itm.acc.o.accruals_prepayments.0021
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

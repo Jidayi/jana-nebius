@@ -1,0 +1,93 @@
+id: itm.phy.o.particles.0008
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.states_of_matter
+stem: When a solid is heated it melts at a fixed temperature.
+parts:
+- id: a
+  prompt: What happens to the particles as the solid melts?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: They break free of their fixed positions but stay close together
+      correct: true
+    - id: B
+      text: They melt and become liquid particles
+      correct: false
+      misconception_id: mc.phy.o.particles_have_bulk_properties
+      feedback: A single particle does not melt, feel hot or have a colour. Those are properties of huge numbers of particles together, set by how they are arranged and how fast they move.
+    - id: C
+      text: They move far apart, as in a gas
+      correct: false
+      misconception_id: mc.phy.o.liquid_particles_far_apart
+      feedback: Liquids are hard to squash because their particles are nearly touching. A liquid differs from a solid in that its particles can move past one another, not in their spacing.
+    - id: D
+      text: They become larger, so the substance takes up more room
+      correct: false
+      misconception_id: mc.phy.o.particles_grow_when_heated
+      feedback: A water particle is the same size in ice, in water and in steam. Heating makes particles move faster and spread further apart; it does not make them bigger.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Picture the particles: how close together are they, and how do they move?'
+  - rung: 2
+    name: concept
+    text:
+      en: Melting turns a solid into a liquid; compare the particle pictures of those two states.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Test each option against how the material behaves: does it keep its shape, flow, or spread out?'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options that give single particles the properties of the whole material.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: They break free of their fixed positions but stay close together.'
+  misconception_ids:
+  - mc.phy.o.liquid_particles_far_apart
+  - mc.phy.o.particles_grow_when_heated
+  - mc.phy.o.particles_have_bulk_properties
+solution:
+  steps:
+  - n: 1
+    latex: \text{They break free of their fixed positions but stay close together}
+    reason: Match the description to the particle model
+difficulty:
+  prior: -0.8
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

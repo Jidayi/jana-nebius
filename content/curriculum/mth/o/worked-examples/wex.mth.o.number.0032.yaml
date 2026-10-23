@@ -1,0 +1,46 @@
+id: wex.mth.o.number.0032
+kc_ids:
+- kc.mth.o.number.direct_proportion
+problem: 8 bread rolls cost $9.6. Find the cost of 7 bread rolls.
+steps:
+- n: 1
+  latex: \text{one costs } 9.6 \div 8 = 1.2
+  reason: Find the cost of one
+  check_id: chk_build_mth_num_w0032_one
+- n: 2
+  latex: 1.2 \times 7 = 8.40
+  reason: Multiply by 7
+  check_id: chk_build_mth_num_w0032_ans
+final_answer:
+  latex: '8.40'
+  check_id: chk_build_mth_num_w0032_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0032_ans:
+    args:
+      dp: 2
+      expression: 9.6/8*7
+    tool: math_evaluate
+  chk_build_mth_num_w0032_one:
+    args:
+      expression: 9.6/8
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

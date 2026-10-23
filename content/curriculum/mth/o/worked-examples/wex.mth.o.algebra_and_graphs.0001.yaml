@@ -1,0 +1,67 @@
+id: wex.mth.o.algebra_and_graphs.0001
+kc_ids:
+- kc.mth.o.algebra_and_graphs.substitution
+problem: The distance travelled is $s = ut + \tfrac{1}{2}at^2$. Take u = 2, a = 2 and t = 9. Find s.
+steps:
+- n: 1
+  latex: s = 2 \times 9 + \tfrac{1}{2} \times 2 \times 9^2
+  reason: Substitute
+  check_id: chk_build_mth_alg_w0001_sub
+- n: 2
+  latex: s = 18 + 81
+  reason: Work out each term
+  check_id: chk_build_mth_alg_w0001_p
+- n: 3
+  latex: s = 99
+  reason: Add
+  check_id: chk_build_mth_alg_w0001_ans
+final_answer:
+  latex: '99'
+  check_id: chk_build_mth_alg_w0001_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0001_ans:
+    args:
+      expression: u*t + a*t^2/2
+      values:
+        a: 2
+        t: 9
+        u: 2
+    tool: math_evaluate
+  chk_build_mth_alg_w0001_p:
+    args:
+      equations:
+      - p = 2*9
+      - q = 2*9^2/2
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_alg_w0001_sub:
+    args:
+      expression: 2*9 + (1/2)*2*9^2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

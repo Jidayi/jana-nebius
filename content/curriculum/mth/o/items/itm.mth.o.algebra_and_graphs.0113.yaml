@@ -1,0 +1,98 @@
+id: itm.mth.o.algebra_and_graphs.0113
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.linear_equations
+stem: Solve the equation $6x - 3 = 21$.
+parts:
+- id: a
+  prompt: Find x.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '4'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_alg_0113_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You want x on its own. What has been done to x?
+  - rung: 2
+    name: concept
+    text:
+      en: x has been multiplied by 6, then 3 has been subtracted. Undo these in reverse order.
+  - rung: 3
+    name: first_step
+    text:
+      en: First add 3 on both sides.
+  - rung: 4
+    name: worked_step
+    text:
+      en: That gives 6x = 24. Now divide both sides by 6.
+  - rung: 5
+    name: full_step
+    text:
+      en: x = 4.
+  misconception_ids:
+  - mc.mth.o.rearrange_inverse_sign
+  - mc.mth.o.equation_divide_first
+  - mc.mth.o.rearrange_wrong_inverse
+solution:
+  steps:
+  - n: 1
+    latex: 6x - 3 = 21
+    reason: The equation
+  - n: 2
+    latex: 6x = 24
+    reason: Add 3 on both sides
+    check_id: chk_build_mth_alg_0113_s1
+  - n: 3
+    latex: x = 4
+    reason: Divide both sides by 6
+    check_id: chk_build_mth_alg_0113_ans
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0113_ans:
+    args:
+      equations:
+      - 6*x + (-3) = 21
+      unknowns:
+      - x
+    tool: math_solve
+  chk_build_mth_alg_0113_s1:
+    args:
+      expression: 21 - (-3)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

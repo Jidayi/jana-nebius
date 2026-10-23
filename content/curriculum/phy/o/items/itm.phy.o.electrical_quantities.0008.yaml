@@ -1,0 +1,93 @@
+id: itm.phy.o.electrical_quantities.0008
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.electric_charge
+stem: Ball X is positive and ball Y is negative. Ball Z repels X.
+parts:
+- id: a
+  prompt: What does Z do to Y?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It attracts Y
+      correct: true
+    - id: B
+      text: It repels Y
+      correct: false
+      misconception_id: mc.phy.o.like_charges_attract
+      feedback: Like charges repel and unlike charges attract, just as with magnetic poles.
+    - id: C
+      text: Nothing, as Z must be uncharged
+      correct: false
+      misconception_id: mc.phy.o.charge_created_by_rubbing
+      feedback: Rubbing makes no new charge. Electrons move from one object to the other, so one becomes negative and the other positive.
+    - id: D
+      text: It repels Y, because Z and Y have the same charge
+      correct: false
+      misconception_id: mc.phy.o.rubbed_pair_same_charge
+      feedback: 'If the rod gains some electrons, the cloth has lost exactly those electrons: the rod is negative and the cloth is positive by the same amount.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about which particles can move and what charge they carry.
+  - rung: 2
+    name: concept
+    text:
+      en: Rubbing moves tiny negative particles from one object to the other. Like charges repel and unlike charges attract.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Z repels X, so Z is positive like X; positive and negative attract.
+  - rung: 5
+    name: full_step
+    text:
+      en: It attracts Y. Z repels X, so Z is positive like X; positive and negative attract.
+  misconception_ids:
+  - mc.phy.o.charge_created_by_rubbing
+  - mc.phy.o.like_charges_attract
+  - mc.phy.o.rubbed_pair_same_charge
+solution:
+  steps:
+  - n: 1
+    latex: \text{It attracts Y}
+    reason: Electrons move; like charges repel
+difficulty:
+  prior: -0.6
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

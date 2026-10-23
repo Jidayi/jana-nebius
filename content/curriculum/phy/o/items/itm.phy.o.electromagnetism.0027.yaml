@@ -1,0 +1,96 @@
+id: itm.phy.o.electromagnetism.0027
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.motor_effect
+stem: A magnetic north pole is at the bottom of the page and a south pole at the top. A wire between the poles carries a current into the page.
+parts:
+- id: a
+  prompt: Which way is the force on the wire?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: To the left
+      correct: false
+      misconception_id: mc.phy.o.fleming_right_hand_used
+      feedback: 'For motors use the left hand: first finger for the field, second finger for the current, thumb for the motion.'
+    - id: B
+      text: Up the page, along the field
+      correct: false
+      misconception_id: mc.phy.o.force_along_field
+      feedback: The force on the wire is at right angles to the field and to the current. Use the left hand to find which way.
+    - id: C
+      text: Into the page, along the current
+      correct: false
+      misconception_id: mc.phy.o.force_along_current
+      feedback: The wire is pushed sideways, at right angles to itself and to the field, never along its own length.
+    - id: D
+      text: To the right
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The force on the wire is at right angles to both the field and the current.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Use Fleming''s left-hand rule: first finger for the field, second finger for the current, thumb for the force.'
+  - rung: 3
+    name: first_step
+    text:
+      en: The field goes from the north pole towards the south pole.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Point your first finger up the page and your second finger into the page; your thumb gives the force.
+  - rung: 5
+    name: full_step
+    text:
+      en: To the right, by Fleming's left-hand rule.
+  misconception_ids:
+  - mc.phy.o.fleming_right_hand_used
+  - mc.phy.o.force_along_current
+  - mc.phy.o.force_along_field
+solution:
+  steps:
+  - n: 1
+    latex: \text{field up the page, current into the page}
+    reason: The two directions given
+  - n: 2
+    latex: \text{force to the right}
+    reason: Fleming's left-hand rule
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,72 @@
+id: les.acc.o.costing.contribution_and_break_even
+node_id: cur.acc.o.costing
+kc_ids:
+- kc.acc.o.costing.cost_classification
+- kc.acc.o.costing.contribution
+- kc.acc.o.costing.break_even
+- kc.acc.o.costing.margin_of_safety
+- kc.acc.o.costing.target_profit
+title: Contribution and break-even
+estimated_minutes: 12
+blocks:
+- type: step
+  text:
+    en: Some costs grow when a business makes more, and some do not. Try this one before any rules.
+  item_id: itm.acc.o.costing.0001
+  action: try_first
+  why:
+    en: The workshop rent is paid in full whether few or many chairs are made. It does not change with output.
+  names:
+    en: A cost that stays the same whatever the output is a fixed cost. A cost that rises in total with output is a variable cost.
+- type: step
+  text:
+    en: Each item sold brings in its price and uses up its own variable cost. What is left over helps to pay the fixed costs.
+  item_id: itm.acc.o.costing.0019
+  action: choose
+  why:
+    en: Contribution is units times price less variable cost. Leave fixed costs out at this stage; subtract them afterwards to reach profit.
+  names:
+    en: Price less variable cost is the contribution of one unit.
+- type: step
+  text:
+    en: 'Predict before you look at the choices: how many items must be sold before the fixed costs are covered?'
+  item_id: itm.acc.o.costing.0030
+  action: predict
+  why:
+    en: Each item adds its contribution, so divide the fixed costs by the contribution per unit. Dividing by the price ignores the variable cost.
+- type: step
+  text:
+    en: Find the break-even point first. Then see how far the planned output is above it.
+  item_id: itm.acc.o.costing.0037
+  action: calculate
+  why:
+    en: Margin of safety is the expected output less the break-even output. It is how far sales could fall before a loss is made.
+- type: step
+  text:
+    en: To make a profit, contribution has to cover more than the fixed costs.
+  item_id: itm.acc.o.costing.0052
+  action: choose
+  why:
+    en: Contribution must pay the fixed costs and the profit wanted, so add them before dividing by the contribution per unit.
+- type: check
+  item_ids:
+  - itm.acc.o.costing.0024
+  - itm.acc.o.costing.0034
+  - itm.acc.o.costing.0045
+version: 0.2.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

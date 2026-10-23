@@ -1,0 +1,93 @@
+id: itm.phy.o.electromagnetism.0012
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.fields_of_currents
+stem: A compass sits beside a straight wire. The current in the wire is reversed.
+parts:
+- id: a
+  prompt: What happens to the compass needle?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: It swings round to point the opposite way
+      correct: true
+    - id: B
+      text: Nothing, because the field does not depend on the current's direction
+      correct: false
+      misconception_id: mc.phy.o.reversing_current_same_field
+      feedback: Reverse the current in a wire and a compass beside it swings round to point the other way.
+    - id: C
+      text: It turns to point straight at the wire
+      correct: false
+      misconception_id: mc.phy.o.wire_field_radial
+      feedback: A compass beside a wire points round the wire, at right angles to the line joining it to the wire.
+    - id: D
+      text: It turns to point along the wire
+      correct: false
+      misconception_id: mc.phy.o.wire_field_along_wire
+      feedback: 'Push a straight wire through a card and sprinkle iron filings: they form circles round the wire, not lines along it.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Picture the field lines round the wire or coil.
+  - rung: 2
+    name: concept
+    text:
+      en: A wire's field lines are circles round it, set by the right-hand grip rule; a coil's field is like a bar magnet's, and grows with the current, the number of turns and an iron core.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Reversing the current reverses the field round the wire.
+  - rung: 5
+    name: full_step
+    text:
+      en: It swings round to point the opposite way. Reversing the current reverses the field round the wire.
+  misconception_ids:
+  - mc.phy.o.reversing_current_same_field
+  - mc.phy.o.wire_field_along_wire
+  - mc.phy.o.wire_field_radial
+solution:
+  steps:
+  - n: 1
+    latex: \text{It swings round to point the opposite way}
+    reason: Use the shape and direction of the field
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

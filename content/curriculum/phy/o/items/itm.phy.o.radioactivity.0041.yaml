@@ -1,0 +1,122 @@
+id: itm.phy.o.radioactivity.0041
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.half_life
+stem: A counter near a sample of strontium-90 (half-life 29 years) reads 172 counts/min. The background count rate is 12 counts/min.
+parts:
+- id: a
+  prompt: What will the counter read 58 years later?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 43 counts/min
+      correct: false
+      misconception_id: mc.phy.o.background_halved_too
+      feedback: Background radiation comes from the surroundings and stays about the same. Take it off first, halve what is left, and add it back for a reading.
+    - id: B
+      text: 52 counts/min
+      correct: true
+    - id: C
+      text: 40 counts/min
+      correct: false
+      misconception_id: mc.phy.o.background_not_added_back
+      feedback: A counter cannot tell background from the source. A reading is the source's count rate plus the background.
+    - id: D
+      text: 92 counts/min
+      correct: false
+      misconception_id: mc.phy.o.half_life_halved_once
+      feedback: Work out how many half-lives fit into the time first. Halve once for every one of them.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The background does not come from the sample, so it does not halve.
+  - rung: 2
+    name: concept
+    text:
+      en: Take the background off first, then use the half-life.
+  - rung: 3
+    name: first_step
+    text:
+      en: Halve the corrected count rate once for each half-life, then add the background back.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The source alone gives 160 counts/min now, and 2 half-lives pass.
+  - rung: 5
+    name: full_step
+    text:
+      en: The counter will read 52 counts/min.
+  misconception_ids:
+  - mc.phy.o.background_halved_too
+  - mc.phy.o.background_not_added_back
+  - mc.phy.o.half_life_halved_once
+solution:
+  steps:
+  - n: 1
+    latex: 172 - 12 = 160
+    reason: Count rate from the source alone
+    check_id: chk_build_phy_rad_0041_c
+  - n: 2
+    latex: \frac{58}{29} = 2\ \text{half-lives}
+    reason: Time ÷ half-life
+    check_id: chk_build_phy_rad_0041_n
+  - n: 3
+    latex: \frac{160}{2^{2}} = 40
+    reason: Only the source's count rate halves
+    check_id: chk_build_phy_rad_0041_c1
+  - n: 4
+    latex: 40 + 12 = 52\ \text{counts/min}
+    reason: The counter still picks up background
+    check_id: chk_build_phy_rad_0041_ans
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 100
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_0041_ans:
+    args:
+      expression: (172 - 12)/2^2 + 12
+    tool: math_evaluate
+  chk_build_phy_rad_0041_c:
+    args:
+      expression: 172 - 12
+    tool: math_evaluate
+  chk_build_phy_rad_0041_c1:
+    args:
+      expression: (172 - 12)/2^2
+    tool: math_evaluate
+  chk_build_phy_rad_0041_n:
+    args:
+      expression: 58/29
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

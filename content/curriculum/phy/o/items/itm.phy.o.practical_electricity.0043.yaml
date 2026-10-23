@@ -1,0 +1,93 @@
+id: itm.phy.o.practical_electricity.0043
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+stem: The 3 A fuse in a table lamp's plug blows, and someone replaces it with a 13 A fuse.
+parts:
+- id: a
+  prompt: Why is this dangerous?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 'It is not dangerous: a bigger fuse is safer'
+      correct: false
+      misconception_id: mc.phy.o.fuse_largest_always_safest
+      feedback: A fuse rated far above the working current would let a fault current overheat the cable before it melted. Choose the smallest rating just above the normal current.
+    - id: B
+      text: A 13 A current would now flow through the lamp all the time
+      correct: false
+      misconception_id: mc.phy.o.fuse_rating_sets_current
+      feedback: The appliance and the supply p.d. decide the current. The rating is only the current at which the fuse melts.
+    - id: C
+      text: The earth wire would start carrying the lamp's current
+      correct: false
+      misconception_id: mc.phy.o.earth_wire_carries_working_current
+      feedback: 'In normal use the earth wire carries no current: live and neutral carry it. The earth wire carries current only when a fault makes the case live.'
+    - id: D
+      text: A fault current could overheat the thin cable before the fuse melts
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what each wire or device is for.
+  - rung: 2
+    name: concept
+    text:
+      en: Live is at a high voltage, neutral stays near 0 V, and earth carries current only in a fault.
+  - rung: 3
+    name: first_step
+    text:
+      en: A fuse or switch must cut the appliance off from the high voltage when it opens.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that mix up the jobs of the different wires and devices.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: a fault current could overheat the thin cable before the fuse melts.'
+  misconception_ids:
+  - mc.phy.o.earth_wire_carries_working_current
+  - mc.phy.o.fuse_largest_always_safest
+  - mc.phy.o.fuse_rating_sets_current
+solution:
+  steps:
+  - n: 1
+    latex: \text{A fault current could overheat the thin cable before the fuse melts}
+    reason: Match each wire and device to its job
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

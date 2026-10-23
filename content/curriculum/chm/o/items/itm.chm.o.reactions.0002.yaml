@@ -1,0 +1,90 @@
+id: itm.chm.o.reactions.0002
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.physical_chemical_change
+stem: 'Two changes are observed. P: salt is stirred into a pan of water and disappears. Q: an egg is boiled until its white sets solid.'
+parts:
+- id: a
+  prompt: Which row classifies both changes correctly?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: P physical, Q chemical
+      correct: true
+    - id: B
+      text: P physical, Q physical
+      correct: false
+      misconception_id: mc.chm.o.reactions_new_substance_missed
+      feedback: 'Ask one question: has a new substance formed? Signs are a gas given off, a new solid, a new colour, or heat given out or taken in. Burning, rusting, cooking and breaking down by heat all make new substances, so they are chemical changes even when heat started them.'
+    - id: C
+      text: P chemical, Q chemical
+      correct: false
+      misconception_id: mc.chm.o.reactions_dissolving_is_chemical
+      feedback: 'When salt or sugar dissolves, its particles spread out between the water particles. Nothing new forms: evaporate the water and the same solid is left, with the same mass. Dissolving is a physical change.'
+    - id: D
+      text: P chemical, Q physical
+      correct: false
+      misconception_id: mc.chm.o.reactions_dissolving_is_chemical
+      feedback: 'When salt or sugar dissolves, its particles spread out between the water particles. Nothing new forms: evaporate the water and the same solid is left, with the same mass. Dissolving is a physical change.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Ask for the salt and for the egg whether something new has been made.
+  - rung: 2
+    name: concept
+    text:
+      en: Dissolving spreads particles out; cooking changes the substances in food for good.
+  - rung: 3
+    name: first_step
+    text:
+      en: Boil the salty water away and the same salt is left in the pan.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A cooked egg white cannot be turned back into a runny one by cooling it. What does that suggest has formed?
+  - rung: 5
+    name: full_step
+    text:
+      en: P is physical, because the salt is still salt, spread among the water particles. Q is chemical, because heating changes the proteins in the egg into new substances.
+  misconception_ids:
+  - mc.chm.o.reactions_dissolving_is_chemical
+  - mc.chm.o.reactions_new_substance_missed
+solution:
+  steps:
+  - n: 1
+    latex: '\text{P: physical; Q: chemical}'
+    reason: A new substance means a chemical change
+difficulty:
+  prior: -1.0
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

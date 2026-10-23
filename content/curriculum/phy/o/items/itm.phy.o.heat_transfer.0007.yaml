@@ -1,0 +1,93 @@
+id: itm.phy.o.heat_transfer.0007
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.conduction
+stem: Ice cubes are wrapped in a thick cloth to keep them frozen for longer.
+parts:
+- id: a
+  prompt: Why does this work?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The cloth keeps the cold in
+      correct: false
+      misconception_id: mc.phy.o.cold_transferred_as_substance
+      feedback: Only energy moves, always from hotter to colder. An ice pack does not send cold into you; energy flows out of you into the ice.
+    - id: B
+      text: The cloth is colder than the room, so it cools the ice
+      correct: false
+      misconception_id: mc.phy.o.metal_feels_colder_because_colder
+      feedback: Objects left in the same room reach the same temperature. Metal feels colder because it conducts energy away from your hand much faster.
+    - id: C
+      text: 'It does not work: cloth makes heat, so the ice melts faster'
+      correct: false
+      misconception_id: mc.phy.o.insulator_produces_heat
+      feedback: Wrap a blanket round a block of ice and the ice stays frozen longer. Insulators produce no energy; they only slow down how fast energy moves through them.
+    - id: D
+      text: The cloth is a poor conductor, so energy from the room reaches the ice more slowly
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Conduction passes energy through a material without the material itself moving.
+  - rung: 2
+    name: concept
+    text:
+      en: The ice melts when energy reaches it from the warmer room.
+  - rung: 3
+    name: first_step
+    text:
+      en: Remember that energy always flows from hotter to colder, and that nothing called 'cold' flows.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options where an insulator makes heat or where particles travel through a solid.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The cloth is a poor conductor, so energy from the room reaches the ice more slowly.'
+  misconception_ids:
+  - mc.phy.o.cold_transferred_as_substance
+  - mc.phy.o.insulator_produces_heat
+  - mc.phy.o.metal_feels_colder_because_colder
+solution:
+  steps:
+  - n: 1
+    latex: \text{The cloth is a poor conductor, so energy from the room reaches the ice more slowly}
+    reason: Apply the model of conduction
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

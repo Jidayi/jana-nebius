@@ -1,0 +1,203 @@
+provenance: Synthetic items and responses written for the marking suite (CUR-14, CUR-15, ASM-06); a follow-through
+  expectation is worked out by hand from the student's earlier value, not by the marker. Not real student work.
+items:
+  ke_then_speed: &ke_then_speed
+    id: itm.phy.o.energy.9701
+    type: structured
+    kc_ids: [kc.phy.o.energy.kinetic]
+    quantities: {m: '2', v: '3', n: '0.5'}
+    parts:
+    - id: a
+      prompt: A trolley of mass 2 kg moves at 3 m/s. Calculate its kinetic energy.
+      marks: 2
+      answer: {kind: numeric, value: '9', unit: J, unit_policy: equivalent, tolerance: {mode: relative, value: 0.01},
+               check_id: chk_build_golden_ke}
+      mark_points:
+      - {id: M1, type: M, marks: 1, criterion: Uses kinetic energy equals half the mass times the speed squared}
+      - {id: A1, type: A, marks: 1, criterion: Kinetic energy of 9 J, depends_on: M1}
+      show_working: true
+      hints: []
+    - id: b
+      prompt: A ball of mass 0.5 kg has the same kinetic energy as the trolley. Calculate the speed of the ball.
+      marks: 2
+      answer: {kind: numeric, value: '6', unit: m/s, unit_policy: equivalent, tolerance: {mode: relative, value: 0.01},
+               check_id: chk_build_golden_ball_speed}
+      mark_points:
+      - {id: M1, type: M, marks: 1, criterion: Rearranges for the speed using the energy from part (a)}
+      - {id: A1, type: A, marks: 1, criterion: Speed of the ball, follow through from part (a), depends_on: M1}
+      ecf: true
+      uses_parts: [a]
+      follow_through: {expression: sqrt(2*E/n), symbols: {E: a}}
+      show_working: true
+      hints: []
+  ke_then_speed_no_ecf:
+    <<: *ke_then_speed
+    id: itm.phy.o.energy.9702
+    parts:
+    - id: a
+      prompt: A trolley of mass 2 kg moves at 3 m/s. Calculate its kinetic energy.
+      marks: 2
+      answer: {kind: numeric, value: '9', unit: J, unit_policy: equivalent, tolerance: {mode: relative, value: 0.01},
+               check_id: chk_build_golden_ke}
+      hints: []
+    - id: b
+      prompt: A ball of mass 0.5 kg has the same kinetic energy as the trolley. Calculate the speed of the ball.
+      marks: 2
+      answer: {kind: numeric, value: '6', unit: m/s, unit_policy: equivalent, tolerance: {mode: relative, value: 0.01},
+               check_id: chk_build_golden_ball_speed}
+      ecf: false
+      uses_parts: [a]
+      hints: []
+  circuit:
+    id: itm.phy.o.electricity.9703
+    type: structured
+    kc_ids: [kc.phy.o.electricity.power]
+    quantities: {V: '12', R: '4'}
+    parts:
+    - id: a
+      prompt: A 12 V supply is connected across a 4 ohm resistor. Calculate the current.
+      marks: 1
+      answer: {kind: numeric, value: '3', unit: A, unit_policy: equivalent, tolerance: {mode: relative, value: 0.01},
+               check_id: chk_build_golden_current}
+      mark_points:
+      - {id: B1, type: B, marks: 1, criterion: Current of 3 A}
+      hints: []
+    - id: b
+      prompt: Calculate the power transferred in the resistor.
+      marks: 2
+      answer: {kind: numeric, value: '36', unit: W, unit_policy: equivalent, tolerance: {mode: relative, value: 0.01},
+               check_id: chk_build_golden_power}
+      mark_points:
+      - {id: M1, type: M, marks: 1, criterion: Uses power equals voltage times current}
+      - {id: A1, type: A, marks: 1, criterion: Power, follow through from part (a), depends_on: M1}
+      ecf: true
+      uses_parts: [a]
+      follow_through: {expression: V*I, symbols: {I: a}}
+      hints: []
+    - id: c
+      prompt: Which meter measures the current in the resistor?
+      marks: 1
+      answer:
+        kind: mcq
+        diagnostic: false
+        options:
+        - {id: A, text: An ammeter in series, correct: true}
+        - {id: B, text: A voltmeter in series, correct: false}
+        - {id: C, text: An ammeter in parallel, correct: false}
+      mark_points:
+      - {id: B1, type: B, marks: 1, criterion: Chooses an ammeter in series}
+      hints: []
+cases:
+- id: first_part_right
+  item: ke_then_speed
+  part: a
+  response: {a: 9 J, b: 6 m/s}
+  rows: [structured_parts.mark_points]
+  expect: {outcome: correct, marks_awarded: 2, criteria: {M1: pass, A1: pass}, follow_through: false}
+- id: second_part_right
+  item: ke_then_speed
+  part: b
+  response: {a: 9 J, b: 6 m/s}
+  rows: [structured_parts.mark_points]
+  expect: {outcome: correct, marks_awarded: 2, criteria: {M1: pass, A1: pass}, follow_through: false}
+- id: first_part_wrong
+  item: ke_then_speed
+  part: a
+  response: {a: 18 J, b: 8.49 m/s}
+  rows: [structured_parts.mark_points]
+  expect: {outcome: incorrect, marks_awarded: 0, criteria: {M1: fail, A1: fail}}
+- id: error_carried_forward
+  # by hand: from 18 J, v = sqrt(2 x 18 / 0.5) = sqrt(72) = 8.485 m/s
+  item: ke_then_speed
+  part: b
+  response: {a: 18 J, b: 8.49 m/s}
+  rows: [structured_parts.ecf]
+  expect: {outcome: correct, marks_awarded: 2, criteria: {M1: pass, A1: pass}, follow_through: true}
+- id: error_carried_forward_across_units
+  # by hand: 0.018 kJ is 18 J, so the speed carried forward is 8.485 m/s, here written in km/h (30.5)
+  item: ke_then_speed
+  part: b
+  response: {a: 0.018 kJ, b: 30.5 km/h}
+  rows: [structured_parts.ecf, units.equivalent]
+  expect: {outcome: correct, marks_awarded: 2, follow_through: true}
+- id: error_carried_forward_from_a_small_slip
+  # by hand: from 8 J, v = sqrt(2 x 8 / 0.5) = sqrt(32) = 5.657 m/s
+  item: ke_then_speed
+  part: b
+  response: {a: 8 J, b: 5.66 m/s}
+  rows: [structured_parts.ecf]
+  expect: {outcome: correct, marks_awarded: 2, follow_through: true}
+- id: inconsistent_with_the_earlier_value
+  item: ke_then_speed
+  part: b
+  response: {a: 18 J, b: 7 m/s}
+  rows: [structured_parts.ecf]
+  expect: {outcome: incorrect, marks_awarded: 0, criteria: {M1: fail, A1: fail}}
+- id: right_despite_the_earlier_slip
+  item: ke_then_speed
+  part: b
+  response: {a: 18 J, b: 6 m/s}
+  rows: [structured_parts.ecf]
+  expect: {outcome: correct, marks_awarded: 2, follow_through: false}
+- id: no_carry_forward_without_ecf
+  item: ke_then_speed_no_ecf
+  part: b
+  response: {a: 18 J, b: 8.49 m/s}
+  rows: [structured_parts.no_ecf]
+  expect: {outcome: incorrect, marks_awarded: 0, follow_through: false}
+- id: earlier_part_unanswered
+  item: ke_then_speed
+  part: b
+  response: {b: 8.49 m/s}
+  rows: [structured_parts.ecf]
+  expect: {outcome: incorrect, marks_awarded: 0}
+- id: missing_unit_loses_the_accuracy_point
+  item: ke_then_speed
+  part: b
+  response: {a: 9 J, b: '6'}
+  rows: [structured_parts.mark_points, units.missing]
+  expect: {outcome: partial, marks_awarded: 1, error_category: units_missing, criteria: {M1: pass, A1: fail}}
+- id: carried_forward_answer_missing_its_unit
+  item: ke_then_speed
+  part: b
+  response: {a: 18 J, b: '8.49'}
+  rows: [structured_parts.ecf, units.missing]
+  expect: {outcome: partial, marks_awarded: 1, criteria: {M1: pass, A1: fail}, follow_through: true}
+- id: independent_mark_wrong
+  item: circuit
+  part: a
+  response: {a: 4 A, b: 48 W, c: A}
+  rows: [structured_parts.b_independent]
+  expect: {outcome: incorrect, marks_awarded: 0, criteria: {B1: fail}}
+- id: power_carried_forward
+  # by hand: 12 V x 4 A = 48 W
+  item: circuit
+  part: b
+  response: {a: 4 A, b: 48 W, c: A}
+  rows: [structured_parts.ecf]
+  expect: {outcome: correct, marks_awarded: 2, criteria: {M1: pass, A1: pass}, follow_through: true}
+- id: independent_mark_stands_alone
+  item: circuit
+  part: c
+  response: {a: 4 A, b: 40 W, c: A}
+  rows: [structured_parts.b_independent]
+  expect: {outcome: correct, marks_awarded: 1, criteria: {B1: pass}}
+- id: wrong_power_not_carried_forward
+  item: circuit
+  part: b
+  response: {a: 4 A, b: 40 W, c: A}
+  rows: [structured_parts.ecf]
+  expect: {outcome: incorrect, marks_awarded: 0, criteria: {M1: fail, A1: fail}}
+- id: part_answer_alone
+  item: circuit
+  part: a
+  response: 3 A
+  rows: [structured_parts.b_independent]
+  expect: {outcome: correct, marks_awarded: 1, criteria: {B1: pass}}
+- id: structured_bottom_out_not_mastered
+  item: ke_then_speed
+  part: b
+  response: {a: 9 J, b: 6 m/s}
+  rows: [hints.bottom_out]
+  hints: {max_rung: 5, mastered: false}
+  expect: {outcome: correct, marks_awarded: 2}

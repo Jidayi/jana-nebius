@@ -1,0 +1,72 @@
+id: wex.acc.o.clubs.0004
+kc_ids:
+- kc.acc.o.clubs.subscriptions
+problem: 'A club: During the year the club received $6450 in subscriptions, including $540 owing from last year. At the start of the year members had already paid $470 for this year. At the end of the year $530 is owing for this year and $400 has been paid in advance for next year. Find the subscriptions income.'
+steps:
+- n: 1
+  latex: \text{Income} = \text{received} - \text{old arrears} + \text{old advance} + \text{new arrears} - \text{new advance}
+  reason: Earned this year
+  check_id: chk_build_acc_clubs_w0004_t
+- n: 2
+  latex: 6450 - 540 + 470 + 530 - 400 = 6510
+  reason: Substitute
+  check_id: chk_build_acc_clubs_w0004_a
+final_answer:
+  latex: \$\,6510
+  check_id: chk_build_acc_clubs_w0004_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_clubs_w0004_a:
+    args:
+      dp: 2
+      expression: 6450 - 540 + 470 + 530 - 400
+    tool: math_evaluate
+  chk_build_acc_clubs_w0004_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Subscriptions
+        amount: '530'
+        kind: accrued_income
+      - account: Subscriptions
+        amount: '400'
+        kind: income_in_advance
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Subscriptions
+        credit: '6380'
+        role: other_income
+      - account: Rent
+        debit: '500'
+        role: expense
+      - account: Land
+        debit: '5880'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,3027 @@
+{
+ "$comment": "GENERATED from docs/specification/contracts/study/workspace.schema.json sha256 d88356c524cea55f01b236e5635b049dac1cb08d0efc38c4f4a5a5d73fef24b5; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/study/workspace",
+ "$defs": {
+  "SourceId": {
+   "type": "string",
+   "pattern": "^src_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "ChunkId": {
+   "type": "string",
+   "pattern": "^sck_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "JobId": {
+   "type": "string",
+   "pattern": "^stj_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "AidId": {
+   "type": "string",
+   "pattern": "^aid_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "DeckId": {
+   "type": "string",
+   "pattern": "^dek_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "CardId": {
+   "type": "string",
+   "pattern": "^fcd_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "QuizId": {
+   "type": "string",
+   "pattern": "^sqz_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "AttemptId": {
+   "type": "string",
+   "pattern": "^sqa_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "ReviewId": {
+   "type": "string",
+   "pattern": "^srv_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "Revision": {
+   "type": "integer",
+   "minimum": 1,
+   "maximum": 2147483647
+  },
+  "Digest": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "Time": {
+   "type": "string",
+   "format": "date-time",
+   "pattern": "Z$"
+  },
+  "Locator": {
+   "oneOf": [
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "kind": {
+       "const": "page"
+      },
+      "page": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 300
+      }
+     },
+     "required": [
+      "kind",
+      "page"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "kind": {
+       "const": "slide"
+      },
+      "slide": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 300
+      }
+     },
+     "required": [
+      "kind",
+      "slide"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "kind": {
+       "const": "time"
+      },
+      "start_ms": {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 7200000
+      },
+      "end_ms": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 7200000
+      }
+     },
+     "required": [
+      "kind",
+      "start_ms",
+      "end_ms"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "kind": {
+       "const": "note"
+      },
+      "note_id": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 80
+      },
+      "paragraph": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 10000
+      }
+     },
+     "required": [
+      "kind",
+      "note_id",
+      "paragraph"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "kind": {
+       "const": "text"
+      },
+      "paragraph": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 10000
+      }
+     },
+     "required": [
+      "kind",
+      "paragraph"
+     ]
+    }
+   ]
+  },
+  "Citation": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "source_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceId"
+    },
+    "revision": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+    },
+    "chunk_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/ChunkId"
+    },
+    "start": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 16000
+    },
+    "end": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 16000
+    },
+    "quote": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 500
+    }
+   },
+   "required": [
+    "source_id",
+    "revision",
+    "chunk_id",
+    "start",
+    "end",
+    "quote"
+   ]
+  },
+  "Claim": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "text": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 3000
+    },
+    "citations": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Citation"
+     },
+     "minItems": 1,
+     "maxItems": 12
+    }
+   },
+   "required": [
+    "text",
+    "citations"
+   ]
+  },
+  "SourceKind": {
+   "enum": [
+    "pdf",
+    "slides",
+    "document",
+    "text",
+    "photo",
+    "recording",
+    "session_note",
+    "dictated_note",
+    "board_note"
+   ]
+  },
+  "SourceState": {
+   "enum": [
+    "uploading",
+    "queued",
+    "extracting",
+    "ready",
+    "partial",
+    "unreadable",
+    "failed"
+   ]
+  },
+  "Source": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "source_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceId"
+    },
+    "revision": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+    },
+    "kind": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceKind"
+    },
+    "title": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 200
+    },
+    "state": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceState"
+    },
+    "created_at": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Time"
+    },
+    "updated_at": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Time"
+    },
+    "private": {
+     "type": "boolean"
+    },
+    "readable_units": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 10000
+    },
+    "unreadable_units": {
+     "type": "array",
+     "items": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10000
+     },
+     "minItems": 0,
+     "maxItems": 10000
+    },
+    "sha256": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Digest"
+    },
+    "duration_ms": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 7200000
+    }
+   },
+   "required": [
+    "source_id",
+    "revision",
+    "kind",
+    "title",
+    "state",
+    "created_at",
+    "updated_at",
+    "private",
+    "readable_units",
+    "unreadable_units",
+    "sha256"
+   ]
+  },
+  "PrivateSource": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "source_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceId"
+    },
+    "revision": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+    },
+    "kind": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceKind"
+    },
+    "private": {
+     "const": true
+    },
+    "created_at": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Time"
+    },
+    "updated_at": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Time"
+    }
+   },
+   "required": [
+    "source_id",
+    "revision",
+    "kind",
+    "private",
+    "created_at",
+    "updated_at"
+   ]
+  },
+  "SourceList": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "oneOf": [
+       {
+        "$ref": "https://jana.dev/contracts/study/workspace#/$defs/PublicSource"
+       },
+       {
+        "$ref": "https://jana.dev/contracts/study/workspace#/$defs/PrivateSource"
+       }
+      ]
+     },
+     "minItems": 0,
+     "maxItems": 100
+    },
+    "next_cursor": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "maxLength": 256
+    }
+   },
+   "required": [
+    "items",
+    "next_cursor"
+   ]
+  },
+  "SourceCreate": {
+   "oneOf": [
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "kind": {
+       "enum": [
+        "pdf",
+        "slides",
+        "document",
+        "photo",
+        "recording"
+       ]
+      },
+      "file_name": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 200,
+       "pattern": "^[^/\\\\\\x00-\\x1f]+$"
+      },
+      "mime_type": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 100
+      },
+      "byte_length": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 104857600
+      },
+      "sha256": {
+       "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Digest"
+      }
+     },
+     "required": [
+      "kind",
+      "file_name",
+      "mime_type",
+      "byte_length",
+      "sha256"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "kind": {
+       "const": "text"
+      },
+      "title": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 200
+      },
+      "text": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 200000
+      }
+     },
+     "required": [
+      "kind",
+      "title",
+      "text"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "kind": {
+       "enum": [
+        "session_note",
+        "dictated_note",
+        "board_note"
+       ]
+      },
+      "note_id": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 80
+      },
+      "confirm_private": {
+       "const": true
+      }
+     },
+     "required": [
+      "kind",
+      "note_id"
+     ]
+    }
+   ]
+  },
+  "SourceRevision": {
+   "oneOf": [
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "file_name": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 200,
+       "pattern": "^[^/\\\\\\x00-\\x1f]+$"
+      },
+      "mime_type": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 100
+      },
+      "byte_length": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 104857600
+      },
+      "sha256": {
+       "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Digest"
+      },
+      "expected_revision": {
+       "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+      }
+     },
+     "required": [
+      "file_name",
+      "mime_type",
+      "byte_length",
+      "sha256",
+      "expected_revision"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "required": [
+      "expected_revision",
+      "text"
+     ],
+     "properties": {
+      "expected_revision": {
+       "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+      },
+      "text": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 200000
+      }
+     }
+    }
+   ]
+  },
+  "UploadChunk": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "offset": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 104857599
+    },
+    "sha256": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Digest"
+    },
+    "data_base64": {
+     "type": "string",
+     "minLength": 4,
+     "maxLength": 1398104,
+     "pattern": "^[A-Za-z0-9+/]+={0,2}$"
+    }
+   },
+   "required": [
+    "offset",
+    "sha256",
+    "data_base64"
+   ]
+  },
+  "UploadReceipt": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "received_bytes": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 104857600
+    },
+    "complete": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "received_bytes",
+    "complete"
+   ]
+  },
+  "SourceOpen": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "confirm": {
+     "const": true
+    },
+    "revision": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+    }
+   },
+   "required": [
+    "confirm"
+   ]
+  },
+  "SourcePatch": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "private": {
+     "type": "boolean"
+    },
+    "title": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 200
+    }
+   },
+   "required": [],
+   "minProperties": 1
+  },
+  "Chunk": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "chunk_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/ChunkId"
+    },
+    "source_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceId"
+    },
+    "revision": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+    },
+    "ordinal": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 10000
+    },
+    "locator": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Locator"
+    },
+    "text": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 16000
+    },
+    "sha256": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Digest"
+    }
+   },
+   "required": [
+    "chunk_id",
+    "source_id",
+    "revision",
+    "ordinal",
+    "locator",
+    "text",
+    "sha256"
+   ]
+  },
+  "ChunkList": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Chunk"
+     },
+     "minItems": 0,
+     "maxItems": 100
+    },
+    "next_cursor": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "maxLength": 256
+    }
+   },
+   "required": [
+    "items",
+    "next_cursor"
+   ]
+  },
+  "SourceSelection": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "source_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceId"
+    },
+    "revision": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+    }
+   },
+   "required": [
+    "source_id",
+    "revision"
+   ]
+  },
+  "AidKind": {
+   "enum": [
+    "notes",
+    "summary",
+    "chat",
+    "flashcards",
+    "quiz",
+    "audio_overview",
+    "lesson_plan",
+    "chapters"
+   ]
+  },
+  "JobKind": {
+   "enum": [
+    "extract",
+    "notes",
+    "summary",
+    "chat",
+    "flashcards",
+    "quiz",
+    "audio_overview",
+    "lesson_plan",
+    "chapters"
+   ]
+  },
+  "JobState": {
+   "enum": [
+    "queued",
+    "waiting_online",
+    "running",
+    "paused",
+    "completed",
+    "failed",
+    "cancelled"
+   ]
+  },
+  "StudyError": {
+   "enum": [
+    "unsupported_format",
+    "source_too_large",
+    "encrypted_source",
+    "corrupt_source",
+    "unreadable_source",
+    "source_stale",
+    "source_deleted",
+    "consent_required",
+    "allowance_exhausted",
+    "model_unavailable",
+    "insufficient_evidence",
+    "safety_blocked",
+    "storage_full",
+    "processing_failed",
+    "confirm_needed",
+    "grant_expired",
+    "queue_full",
+    "graded_work"
+   ]
+  },
+  "JobCreate": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "kind": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/JobKind"
+    },
+    "sources": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceSelection"
+     },
+     "minItems": 1,
+     "maxItems": 8
+    },
+    "prompt": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 2000
+    },
+    "count": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 40
+    },
+    "execution": {
+     "enum": [
+      "local",
+      "prefer_cloud"
+     ]
+    },
+    "confirm_readable_only": {
+     "const": true
+    },
+    "settings": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/GenerateSettings"
+    }
+   },
+   "required": [
+    "kind",
+    "sources",
+    "execution"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "chat"
+       }
+      },
+      "required": [
+       "kind"
+      ]
+     },
+     "then": {
+      "required": [
+       "prompt"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "count"
+         ]
+        }
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "enum": [
+         "extract",
+         "flashcards",
+         "quiz",
+         "audio_overview",
+         "chapters"
+        ]
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "sources": {
+        "maxItems": 1
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "enum": [
+         "extract",
+         "notes",
+         "summary",
+         "audio_overview",
+         "lesson_plan",
+         "chapters"
+        ]
+       }
+      }
+     },
+     "then": {
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "prompt"
+         ]
+        },
+        {
+         "required": [
+          "count"
+         ]
+        }
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "enum": [
+         "flashcards",
+         "quiz"
+        ]
+       }
+      }
+     },
+     "then": {
+      "not": {
+       "required": [
+        "prompt"
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "extract"
+       }
+      }
+     },
+     "then": {
+      "not": {
+       "required": [
+        "confirm_readable_only"
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "enum": [
+         "extract",
+         "chat",
+         "chapters"
+        ]
+       }
+      }
+     },
+     "then": {
+      "not": {
+       "required": [
+        "settings"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  "Job": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "job_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/JobId"
+    },
+    "kind": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/JobKind"
+    },
+    "sources": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceSelection"
+     },
+     "minItems": 1,
+     "maxItems": 8
+    },
+    "state": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/JobState"
+    },
+    "completed_units": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 2147483647
+    },
+    "total_units": {
+     "oneOf": [
+      {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 2147483647
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "result_ids": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidId"
+     },
+     "minItems": 0,
+     "maxItems": 100
+    },
+    "error": {
+     "oneOf": [
+      {
+       "$ref": "https://jana.dev/contracts/study/workspace#/$defs/StudyError"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "created_at": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Time"
+    },
+    "updated_at": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Time"
+    },
+    "notice": {
+     "enum": [
+      "allowance_exhausted"
+     ]
+    }
+   },
+   "required": [
+    "job_id",
+    "kind",
+    "sources",
+    "state",
+    "completed_units",
+    "total_units",
+    "result_ids",
+    "error",
+    "created_at",
+    "updated_at"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "state": {
+        "const": "failed"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "error": {
+        "$ref": "https://jana.dev/contracts/study/workspace#/$defs/StudyError"
+       }
+      }
+     },
+     "else": {
+      "properties": {
+       "error": {
+        "type": "null"
+       }
+      }
+     }
+    }
+   ]
+  },
+  "JobAction": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "action": {
+     "enum": [
+      "cancel",
+      "resume",
+      "retry"
+     ]
+    }
+   },
+   "required": [
+    "action"
+   ]
+  },
+  "CheckId": {
+   "type": "string",
+   "pattern": "^chk_[0-9A-HJKMNP-TV-Z]{26}$"
+  },
+  "Aid": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "aid_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidId"
+    },
+    "job_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/JobId"
+    },
+    "kind": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidKind"
+    },
+    "sources": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceSelection"
+     },
+     "minItems": 1,
+     "maxItems": 8
+    },
+    "title": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 200
+    },
+    "claims": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Claim"
+     },
+     "minItems": 1,
+     "maxItems": 200
+    },
+    "status": {
+     "enum": [
+      "ready",
+      "stale"
+     ]
+    },
+    "created_at": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Time"
+    },
+    "deck_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/DeckId"
+    },
+    "quiz_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/QuizId"
+    },
+    "prompt": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 4000
+    },
+    "chapters": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Chapter"
+     },
+     "minItems": 1,
+     "maxItems": 60
+    },
+    "settings": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/GenerateSettings"
+    }
+   },
+   "required": [
+    "aid_id",
+    "job_id",
+    "kind",
+    "sources",
+    "title",
+    "claims",
+    "status",
+    "created_at"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "flashcards"
+       }
+      },
+      "required": [
+       "kind"
+      ]
+     },
+     "then": {
+      "required": [
+       "deck_id"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "quiz_id"
+         ]
+        },
+        {
+         "required": [
+          "chapters"
+         ]
+        }
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "quiz"
+       }
+      },
+      "required": [
+       "kind"
+      ]
+     },
+     "then": {
+      "required": [
+       "quiz_id"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "deck_id"
+         ]
+        },
+        {
+         "required": [
+          "chapters"
+         ]
+        }
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "enum": [
+         "notes",
+         "summary",
+         "chat",
+         "audio_overview",
+         "lesson_plan"
+        ]
+       }
+      }
+     },
+     "then": {
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "deck_id"
+         ]
+        },
+        {
+         "required": [
+          "quiz_id"
+         ]
+        },
+        {
+         "required": [
+          "chapters"
+         ]
+        }
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "chapters"
+       }
+      },
+      "required": [
+       "kind"
+      ]
+     },
+     "then": {
+      "required": [
+       "chapters"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "deck_id"
+         ]
+        },
+        {
+         "required": [
+          "quiz_id"
+         ]
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  "AidList": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Aid"
+     },
+     "minItems": 0,
+     "maxItems": 100
+    },
+    "next_cursor": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "maxLength": 256
+    }
+   },
+   "required": [
+    "items",
+    "next_cursor"
+   ]
+  },
+  "Flashcard": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "card_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/CardId"
+    },
+    "front": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Claim"
+    },
+    "back": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Claim"
+    },
+    "revision": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+    },
+    "suspended": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "card_id",
+    "front",
+    "back",
+    "revision",
+    "suspended"
+   ]
+  },
+  "Deck": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "deck_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/DeckId"
+    },
+    "aid_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidId"
+    },
+    "source_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceId"
+    },
+    "revision": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+    },
+    "scheduler": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 64
+    },
+    "cards": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Flashcard"
+     },
+     "minItems": 1,
+     "maxItems": 40
+    }
+   },
+   "required": [
+    "deck_id",
+    "aid_id",
+    "source_id",
+    "revision",
+    "scheduler",
+    "cards"
+   ]
+  },
+  "ReviewSubmit": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "client_review_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/ReviewId"
+    },
+    "card_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/CardId"
+    },
+    "card_revision": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+    },
+    "rating": {
+     "enum": [
+      "again",
+      "hard",
+      "good",
+      "easy"
+     ]
+    },
+    "revealed": {
+     "const": true
+    }
+   },
+   "required": [
+    "client_review_id",
+    "card_id",
+    "card_revision",
+    "rating",
+    "revealed"
+   ]
+  },
+  "ReviewResult": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "client_review_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/ReviewId"
+    },
+    "due_at": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Time"
+    },
+    "scheduler": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 64
+    },
+    "stability": {
+     "type": "number",
+     "minimum": 0
+    },
+    "difficulty": {
+     "type": "number",
+     "minimum": 0
+    },
+    "reps": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 2147483647
+    },
+    "lapses": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 2147483647
+    }
+   },
+   "required": [
+    "client_review_id",
+    "due_at",
+    "scheduler",
+    "stability",
+    "difficulty",
+    "reps",
+    "lapses"
+   ]
+  },
+  "QuizType": {
+   "enum": [
+    "choice",
+    "numeric",
+    "expression",
+    "free_response",
+    "multi_select",
+    "fill_blank",
+    "true_false"
+   ]
+  },
+  "QuizItem": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "item_id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 64
+    },
+    "type": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/QuizType"
+    },
+    "stem": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Claim"
+    },
+    "options": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "option_id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 20
+       },
+       "text": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+       }
+      },
+      "required": [
+       "option_id",
+       "text"
+      ]
+     },
+     "minItems": 2,
+     "maxItems": 8
+    },
+    "unit_prompt": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 80
+    }
+   },
+   "required": [
+    "item_id",
+    "type",
+    "stem"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "enum": [
+         "choice",
+         "multi_select"
+        ]
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "options"
+      ]
+     },
+     "else": {
+      "not": {
+       "required": [
+        "options"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  "QuizView": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "quiz_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/QuizId"
+    },
+    "aid_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidId"
+    },
+    "revision": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+    },
+    "status": {
+     "enum": [
+      "ready",
+      "stale"
+     ]
+    },
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/QuizItem"
+     },
+     "minItems": 1,
+     "maxItems": 40
+    },
+    "draft": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/QuizDraft"
+    }
+   },
+   "required": [
+    "quiz_id",
+    "aid_id",
+    "revision",
+    "status",
+    "items"
+   ]
+  },
+  "QuizKey": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "item_id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 64
+    },
+    "answer": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 2000
+    },
+    "explanation": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Claim"
+    },
+    "marking": {
+     "enum": [
+      "checked",
+      "judged"
+     ]
+    },
+    "tool": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 80
+    },
+    "check_ids": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/CheckId"
+     },
+     "minItems": 1,
+     "maxItems": 16
+    },
+    "calculation": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 512
+    }
+   },
+   "required": [
+    "item_id",
+    "answer",
+    "explanation",
+    "marking"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "marking": {
+        "const": "checked"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "tool",
+       "check_ids"
+      ]
+     },
+     "else": {
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "tool"
+         ]
+        },
+        {
+         "required": [
+          "check_ids"
+         ]
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  "QuizStored": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "view": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/QuizView"
+    },
+    "keys": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/QuizKey"
+     },
+     "minItems": 1,
+     "maxItems": 40
+    }
+   },
+   "required": [
+    "view",
+    "keys"
+   ]
+  },
+  "QuizSubmit": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "attempt_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AttemptId"
+    },
+    "quiz_revision": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+    },
+    "answers": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "item_id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64
+       },
+       "answer": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+       }
+      },
+      "required": [
+       "item_id",
+       "answer"
+      ]
+     },
+     "minItems": 0,
+     "maxItems": 40
+    }
+   },
+   "required": [
+    "attempt_id",
+    "quiz_revision",
+    "answers"
+   ]
+  },
+  "QuizVerdict": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "item_id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 64
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "incorrect",
+      "partial",
+      "unverifiable"
+     ]
+    },
+    "marking": {
+     "enum": [
+      "checked",
+      "judged"
+     ]
+    },
+    "label": {
+     "enum": [
+      "Checked",
+      "Judged, not checked"
+     ]
+    },
+    "explanation": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Claim"
+    },
+    "check_ids": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/CheckId"
+     },
+     "minItems": 1,
+     "maxItems": 16
+    }
+   },
+   "required": [
+    "item_id",
+    "verdict",
+    "marking",
+    "label",
+    "explanation"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "marking": {
+        "const": "checked"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "label": {
+        "const": "Checked"
+       }
+      },
+      "required": [
+       "check_ids"
+      ]
+     },
+     "else": {
+      "properties": {
+       "label": {
+        "const": "Judged, not checked"
+       }
+      },
+      "not": {
+       "required": [
+        "check_ids"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  "QuizResult": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "attempt_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AttemptId"
+    },
+    "results": {
+     "type": "array",
+     "items": {
+      "oneOf": [
+       {
+        "$ref": "https://jana.dev/contracts/study/workspace#/$defs/QuizVerdict"
+       },
+       {
+        "$ref": "https://jana.dev/contracts/study/workspace#/$defs/QuizSkipped"
+       }
+      ]
+     },
+     "minItems": 1,
+     "maxItems": 40
+    }
+   },
+   "required": [
+    "attempt_id",
+    "results"
+   ]
+  },
+  "SearchRequest": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "query": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 200
+    },
+    "cursor": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 256
+    }
+   },
+   "required": [
+    "query"
+   ]
+  },
+  "SearchResult": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "source_id": {
+        "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceId"
+       },
+       "revision": {
+        "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+       },
+       "chunk_id": {
+        "$ref": "https://jana.dev/contracts/study/workspace#/$defs/ChunkId"
+       },
+       "snippet": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+       },
+       "locator": {
+        "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Locator"
+       }
+      },
+      "required": [
+       "source_id",
+       "revision",
+       "chunk_id",
+       "snippet",
+       "locator"
+      ]
+     },
+     "minItems": 0,
+     "maxItems": 50
+    },
+    "next_cursor": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "maxLength": 256
+    }
+   },
+   "required": [
+    "items",
+    "next_cursor"
+   ]
+  },
+  "StudySnapshot": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "sources": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceList"
+    },
+    "jobs": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Job"
+     },
+     "minItems": 0,
+     "maxItems": 100
+    },
+    "cleanup_pending": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "sources",
+    "jobs"
+   ]
+  },
+  "ProcessingRequest": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "request_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/JobId"
+    },
+    "kind": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidKind"
+    },
+    "chunks": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Chunk"
+     },
+     "minItems": 1,
+     "maxItems": 64
+    },
+    "prompt": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 2000
+    },
+    "count": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 40
+    },
+    "output_locale": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 20
+    },
+    "settings": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/GenerateSettings"
+    },
+    "syllabus_outline": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 8000
+    }
+   },
+   "required": [
+    "request_id",
+    "kind",
+    "chunks",
+    "output_locale"
+   ]
+  },
+  "ProcessingResponse": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "request_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/JobId"
+    },
+    "claims": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Claim"
+     },
+     "minItems": 1,
+     "maxItems": 200
+    },
+    "flashcards": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/DraftCard"
+     },
+     "minItems": 1,
+     "maxItems": 40
+    },
+    "quiz": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/DraftQuiz"
+    },
+    "kind": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidKind"
+    },
+    "usage": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/UsageReceipt"
+    },
+    "chapters": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Chapter"
+     },
+     "minItems": 1,
+     "maxItems": 60
+    }
+   },
+   "required": [
+    "request_id",
+    "claims",
+    "kind"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "flashcards"
+       }
+      },
+      "required": [
+       "kind"
+      ]
+     },
+     "then": {
+      "required": [
+       "flashcards"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "quiz"
+         ]
+        },
+        {
+         "required": [
+          "chapters"
+         ]
+        }
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "quiz"
+       }
+      },
+      "required": [
+       "kind"
+      ]
+     },
+     "then": {
+      "required": [
+       "quiz"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "flashcards"
+         ]
+        },
+        {
+         "required": [
+          "chapters"
+         ]
+        }
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "enum": [
+         "notes",
+         "summary",
+         "chat",
+         "audio_overview",
+         "lesson_plan"
+        ]
+       }
+      }
+     },
+     "then": {
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "quiz"
+         ]
+        },
+        {
+         "required": [
+          "flashcards"
+         ]
+        },
+        {
+         "required": [
+          "chapters"
+         ]
+        }
+       ]
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "kind": {
+        "const": "chapters"
+       }
+      },
+      "required": [
+       "kind"
+      ]
+     },
+     "then": {
+      "required": [
+       "chapters"
+      ],
+      "not": {
+       "anyOf": [
+        {
+         "required": [
+          "quiz"
+         ]
+        },
+        {
+         "required": [
+          "flashcards"
+         ]
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  "DeleteReceipt": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "source_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceId"
+    },
+    "state": {
+     "const": "deleted"
+    },
+    "cloud_cleanup": {
+     "enum": [
+      "not_sent",
+      "confirmed",
+      "pending"
+     ]
+    }
+   },
+   "required": [
+    "source_id",
+    "state",
+    "cloud_cleanup"
+   ]
+  },
+  "PublicSource": {
+   "allOf": [
+    {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Source"
+    },
+    {
+     "properties": {
+      "private": {
+       "const": false
+      }
+     }
+    }
+   ]
+  },
+  "OpenedSource": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "source",
+    "open_token",
+    "expires_at"
+   ],
+   "properties": {
+    "source": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Source"
+    },
+    "open_token": {
+     "type": "string",
+     "minLength": 32,
+     "maxLength": 128,
+     "pattern": "^[A-Za-z0-9_-]+$"
+    },
+    "expires_at": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Time"
+    },
+    "available_revisions": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+     },
+     "minItems": 1,
+     "maxItems": 10000,
+     "uniqueItems": true
+    }
+   }
+  },
+  "Checkpoint": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "completed_chunk_ids",
+    "extractor_version",
+    "model_version",
+    "prompt_digest",
+    "reservation_id",
+    "attempt",
+    "request"
+   ],
+   "properties": {
+    "completed_chunk_ids": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/ChunkId"
+     },
+     "uniqueItems": true,
+     "maxItems": 10000
+    },
+    "extractor_version": {
+     "type": "string",
+     "maxLength": 80
+    },
+    "model_version": {
+     "type": "string",
+     "maxLength": 160
+    },
+    "prompt_digest": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Digest"
+    },
+    "reservation_id": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "maxLength": 80
+    },
+    "attempt": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "request": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/JobCreate"
+    },
+    "batches": {
+     "type": "array",
+     "maxItems": 128,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "input_digest",
+       "output"
+      ],
+      "properties": {
+       "input_digest": {
+        "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Digest"
+       },
+       "output": {
+        "$ref": "https://jana.dev/contracts/study/workspace#/$defs/ProcessingResponse"
+       }
+      }
+     }
+    }
+   }
+  },
+  "CardSchedule": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "state",
+    "stability",
+    "difficulty",
+    "reps",
+    "lapses",
+    "due_at",
+    "last_review_at"
+   ],
+   "properties": {
+    "state": {
+     "enum": [
+      "new",
+      "learning",
+      "review",
+      "relearning"
+     ]
+    },
+    "stability": {
+     "type": "number",
+     "minimum": 0
+    },
+    "difficulty": {
+     "type": "number",
+     "minimum": 0
+    },
+    "reps": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "lapses": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "due_at": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Time"
+    },
+    "last_review_at": {
+     "oneOf": [
+      {
+       "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Time"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   }
+  },
+  "DraftCard": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "front",
+    "back"
+   ],
+   "properties": {
+    "front": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Claim"
+    },
+    "back": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Claim"
+    }
+   }
+  },
+  "DraftQuiz": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "items",
+    "keys"
+   ],
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/QuizItem"
+     },
+     "minItems": 1,
+     "maxItems": 40
+    },
+    "keys": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/QuizKey"
+     },
+     "minItems": 1,
+     "maxItems": 40
+    }
+   }
+  },
+  "CardEdit": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "expected_revision",
+    "front",
+    "back",
+    "reset_schedule"
+   ],
+   "properties": {
+    "expected_revision": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+    },
+    "front": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Claim"
+    },
+    "back": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Claim"
+    },
+    "reset_schedule": {
+     "const": true
+    }
+   }
+  },
+  "QuizSkipped": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "item_id",
+    "verdict"
+   ],
+   "properties": {
+    "item_id": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 64
+    },
+    "verdict": {
+     "const": "skipped"
+    }
+   }
+  },
+  "CloudUploadCreate": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "request_id",
+    "kind",
+    "mime_type",
+    "byte_length",
+    "sha256"
+   ],
+   "properties": {
+    "request_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/JobId"
+    },
+    "kind": {
+     "enum": [
+      "pdf",
+      "slides",
+      "document",
+      "photo",
+      "recording"
+     ]
+    },
+    "mime_type": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 100
+    },
+    "byte_length": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 104857600
+    },
+    "sha256": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Digest"
+    }
+   }
+  },
+  "CloudUploadGrant": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "upload_id",
+    "expires_at",
+    "max_chunk_bytes"
+   ],
+   "properties": {
+    "upload_id": {
+     "type": "string",
+     "pattern": "^sup_[A-Za-z0-9_-]{24,64}$"
+    },
+    "expires_at": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Time"
+    },
+    "max_chunk_bytes": {
+     "const": 1048576
+    }
+   }
+  },
+  "ExtractionRequest": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "request_id",
+    "upload_id",
+    "source_id",
+    "revision",
+    "locale"
+   ],
+   "properties": {
+    "request_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/JobId"
+    },
+    "upload_id": {
+     "type": "string",
+     "pattern": "^sup_[A-Za-z0-9_-]{24,64}$"
+    },
+    "source_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceId"
+    },
+    "revision": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+    },
+    "locale": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 20
+    }
+   }
+  },
+  "ExtractionResponse": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "request_id",
+    "sha256",
+    "chunks",
+    "unreadable_units",
+    "extractor_version",
+    "next_cursor"
+   ],
+   "properties": {
+    "request_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/JobId"
+    },
+    "sha256": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Digest"
+    },
+    "chunks": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Chunk"
+     },
+     "minItems": 0,
+     "maxItems": 64
+    },
+    "unreadable_units": {
+     "type": "array",
+     "items": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10000
+     },
+     "maxItems": 10000
+    },
+    "extractor_version": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 80
+    },
+    "next_cursor": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "maxLength": 256
+    },
+    "duration_ms": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 7200000
+    },
+    "usage": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/UsageReceipt"
+    }
+   }
+  },
+  "RetryIdentity": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "client_key",
+    "expires_at"
+   ],
+   "properties": {
+    "client_key": {
+     "type": "string",
+     "pattern": "^cli_[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "expires_at": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Time"
+    }
+   }
+  },
+  "SpeechPassage": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "aid_id",
+    "claim_index",
+    "text",
+    "next_offset",
+    "last_claim"
+   ],
+   "properties": {
+    "aid_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidId"
+    },
+    "claim_index": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 199
+    },
+    "text": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 4000
+    },
+    "next_offset": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "minimum": 1,
+     "maximum": 100000
+    },
+    "last_claim": {
+     "type": "boolean"
+    }
+   }
+  },
+  "Grading": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "verdict",
+    "reason"
+   ],
+   "properties": {
+    "verdict": {
+     "enum": [
+      "correct",
+      "incorrect",
+      "partial",
+      "unverifiable"
+     ]
+    },
+    "reason": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Claim"
+    }
+   }
+  },
+  "UsageReceipt": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "receipt_id",
+    "cost_usd",
+    "input_tokens",
+    "output_tokens"
+   ],
+   "properties": {
+    "receipt_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Digest"
+    },
+    "cost_usd": {
+     "type": "number",
+     "minimum": 0
+    },
+    "input_tokens": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "output_tokens": {
+     "type": "integer",
+     "minimum": 0
+    }
+   }
+  },
+  "TopicLinks": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "items"
+   ],
+   "properties": {
+    "items": {
+     "type": "array",
+     "maxItems": 10,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "node_id",
+       "title",
+       "subject",
+       "kc_ids",
+       "lesson_ids"
+      ],
+      "properties": {
+       "node_id": {
+        "type": "string",
+        "pattern": "^cur\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9._]+$"
+       },
+       "title": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+       },
+       "subject": {
+        "type": "string",
+        "pattern": "^cur\\.(mth|phy|chm|bio|acc)\\.(o|a)$"
+       },
+       "kc_ids": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 100,
+        "items": {
+         "type": "string",
+         "pattern": "^kc\\.[a-z0-9._]+$"
+        }
+       },
+       "lesson_ids": {
+        "type": "array",
+        "maxItems": 20,
+        "items": {
+         "type": "string",
+         "pattern": "^les\\.[a-z0-9._]+$"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "GenerateSettings": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "question_types": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/QuizType"
+     },
+     "minItems": 1,
+     "maxItems": 7,
+     "uniqueItems": true
+    },
+    "difficulty": {
+     "enum": [
+      "easy",
+      "medium",
+      "hard"
+     ]
+    },
+    "topics": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+     },
+     "minItems": 1,
+     "maxItems": 20,
+     "uniqueItems": true
+    },
+    "focus": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 500
+    },
+    "syllabus": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceSelection"
+     },
+     "minItems": 1,
+     "maxItems": 3
+    },
+    "podcast_length": {
+     "enum": [
+      "short",
+      "standard"
+     ]
+    },
+    "voices": {
+     "enum": [
+      1,
+      2
+     ]
+    },
+    "minutes_available": {
+     "type": "integer",
+     "minimum": 10,
+     "maximum": 600
+    },
+    "ready_by": {
+     "type": "string",
+     "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    }
+   }
+  },
+  "Chapter": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "start_ms": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 7200000
+    },
+    "end_ms": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 7200000
+    },
+    "title": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 120
+    },
+    "summary": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Claim"
+     },
+     "minItems": 1,
+     "maxItems": 3
+    }
+   },
+   "required": [
+    "start_ms",
+    "end_ms",
+    "title",
+    "summary"
+   ]
+  },
+  "QuizDraft": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "quiz_revision": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Revision"
+    },
+    "answers": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "item_id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64
+       },
+       "answer": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+       }
+      },
+      "required": [
+       "item_id",
+       "answer"
+      ]
+     },
+     "minItems": 0,
+     "maxItems": 40
+    },
+    "position": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 39
+    }
+   },
+   "required": [
+    "quiz_revision",
+    "answers",
+    "position"
+   ]
+  },
+  "SetProgress": {
+   "oneOf": [
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "questions_total": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 40
+      },
+      "questions_left": {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 40
+      }
+     },
+     "required": [
+      "questions_total",
+      "questions_left"
+     ]
+    },
+    {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "cards_total": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 40
+      },
+      "cards_due_today": {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 40
+      }
+     },
+     "required": [
+      "cards_total",
+      "cards_due_today"
+     ]
+    }
+   ]
+  },
+  "StudySet": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "aid_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidId"
+    },
+    "kind": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidKind"
+    },
+    "sources": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceSelection"
+     },
+     "minItems": 1,
+     "maxItems": 8
+    },
+    "status": {
+     "enum": [
+      "ready",
+      "stale"
+     ]
+    },
+    "created_at": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/Time"
+    },
+    "private": {
+     "type": "boolean"
+    },
+    "title": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 200
+    },
+    "progress": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SetProgress"
+    }
+   },
+   "required": [
+    "aid_id",
+    "kind",
+    "sources",
+    "status",
+    "created_at",
+    "private"
+   ],
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "private": {
+        "const": false
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "title"
+      ]
+     }
+    }
+   ]
+  },
+  "StudySetList": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/StudySet"
+     },
+     "minItems": 0,
+     "maxItems": 100
+    },
+    "next_cursor": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "maxLength": 256
+    }
+   },
+   "required": [
+    "items",
+    "next_cursor"
+   ]
+  },
+  "MaterialTopics": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "items": {
+     "type": "array",
+     "maxItems": 20,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "title": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+       },
+       "chunk_ids": {
+        "type": "array",
+        "items": {
+         "$ref": "https://jana.dev/contracts/study/workspace#/$defs/ChunkId"
+        },
+        "minItems": 1,
+        "maxItems": 10000
+       }
+      },
+      "required": [
+       "title",
+       "chunk_ids"
+      ]
+     }
+    }
+   },
+   "required": [
+    "items"
+   ]
+  }
+ }
+}

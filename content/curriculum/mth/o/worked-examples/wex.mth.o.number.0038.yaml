@@ -1,0 +1,45 @@
+id: wex.mth.o.number.0038
+kc_ids:
+- kc.mth.o.number.reverse_percentage
+problem: After a pay rise of 25%, a monthly salary is $100. Find the salary before the change.
+steps:
+- n: 1
+  latex: \text{multiplier} = 1 + \frac{25}{100} = 1.25
+  reason: The original was multiplied by this
+  check_id: chk_build_mth_num_w0038_m
+- n: 2
+  latex: 100 \div 1.25 = 80
+  reason: Divide to undo the change
+  check_id: chk_build_mth_num_w0038_ans
+final_answer:
+  latex: '80'
+  check_id: chk_build_mth_num_w0038_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0038_ans:
+    args:
+      expression: 100/(1 + 25/100)
+    tool: math_evaluate
+  chk_build_mth_num_w0038_m:
+    args:
+      expression: 1 + 25/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

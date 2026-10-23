@@ -1,0 +1,74 @@
+id: wex.phy.o.thermal_properties.0005
+kc_ids:
+- kc.phy.o.thermal_properties.latent_heat
+problem: To measure the specific latent heat of fusion of ice, a 50 W heater in a funnel of crushed ice at 0 °C is switched on for 400 s, and 68 g of water drips out. An identical funnel with no heater, used as a control, gives 8 g of water in the same time. Find the specific latent heat of fusion of ice, in kJ/kg.
+steps:
+- n: 1
+  latex: E = Pt = 50 \times 400 = 20000\ \text{J}
+  reason: Energy from the heater
+  check_id: chk_build_phy_thp_w0005_e
+- n: 2
+  latex: m = 68 - 8 = 60\ \text{g}
+  reason: Ice melted by the heater alone
+  check_id: chk_build_phy_thp_w0005_dm
+- n: 3
+  latex: m = 0.06\ \text{kg}
+  reason: Kilograms, since L is per kilogram
+  check_id: chk_build_phy_thp_w0005_dmkg
+- n: 4
+  latex: L = \frac{E}{m} = \frac{20000}{0.06} = 333000\ \text{J/kg}
+  reason: Rearrange E = mL
+  check_id: chk_build_phy_thp_w0005_lj
+- n: 5
+  latex: L = 333\ \text{kJ/kg}
+  reason: There are a thousand joules in a kilojoule
+  check_id: chk_build_phy_thp_w0005_ans
+final_answer:
+  latex: 333\ \text{kJ/kg}
+  check_id: chk_build_phy_thp_w0005_ans
+fading_order:
+- 5
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_thp_w0005_ans:
+    args:
+      expression: 50*400/(68 - 8)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_thp_w0005_dm:
+    args:
+      expression: 68 - 8
+    tool: math_evaluate
+  chk_build_phy_thp_w0005_dmkg:
+    args:
+      expression: (68 - 8)/1000
+    tool: math_evaluate
+  chk_build_phy_thp_w0005_e:
+    args:
+      expression: 50*400
+    tool: math_evaluate
+  chk_build_phy_thp_w0005_lj:
+    args:
+      expression: 50*400/((68 - 8)/1000)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

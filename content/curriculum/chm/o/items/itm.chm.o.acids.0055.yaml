@@ -1,0 +1,95 @@
+id: itm.chm.o.acids.0055
+version: 0.1.0
+type: ordering
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.salt_preparation
+stem: A student makes potassium nitrate crystals from potassium hydroxide solution and dilute nitric acid.
+parts:
+- id: a
+  prompt: Put the steps in the correct order.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: adjacent_pairs
+    elements:
+    - id: s2
+      text: Add a few drops of indicator
+    - id: s3
+      text: Add nitric acid from a burette until the indicator just changes colour, and note the volume
+    - id: s4
+      text: Repeat with the same volumes of alkali and acid but no indicator
+    - id: s1
+      text: Measure a known volume of potassium hydroxide solution into a flask with a pipette
+    - id: s5
+      text: Evaporate some water from the solution and leave it to crystallise
+    correct_order:
+    - s1
+    - s2
+    - s3
+    - s4
+    - s5
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Potassium hydroxide is soluble. Which method is used for salts of potassium?
+  - rung: 2
+    name: concept
+    text:
+      en: A titration finds the exact volume of acid needed to neutralise the alkali.
+  - rung: 3
+    name: first_step
+    text:
+      en: The first run uses an indicator to show the end point.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The indicator would stay in the salt, so the final mixture is made again without it.
+  - rung: 5
+    name: full_step
+    text:
+      en: Pipette alkali, add indicator, titrate with acid, repeat without indicator, crystallise.
+  misconception_ids:
+  - mc.chm.o.acids_method_mismatch_base
+solution:
+  steps:
+  - n: 1
+    latex: \text{KOH} + \text{HNO}_3 \rightarrow \text{KNO}_3 + \text{H}_2\text{O}
+    reason: Soluble alkali + acid
+    check_id: chk_build_chm_acids_0055_bal
+  - n: 2
+    latex: \text{titrate} \rightarrow \text{repeat without indicator} \rightarrow \text{crystallise}
+    reason: Order of the method
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_acids_0055_bal:
+    args:
+      equation: KOH + HNO3 -> KNO3 + H2O
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

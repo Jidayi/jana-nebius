@@ -1,0 +1,94 @@
+id: itm.chm.o.metals.0047
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.extraction
+stem: Aluminium is above carbon in the reactivity series. Its main ore contains aluminium oxide.
+parts:
+- id: a
+  prompt: How is aluminium extracted?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: By electrolysis of molten aluminium oxide
+      correct: true
+    - id: B
+      text: By heating aluminium oxide in air so that it gains oxygen
+      correct: false
+      misconception_id: mc.chm.o.metals_reduction_gains_oxygen
+      feedback: Reduction is LOSS of oxygen. In extraction the metal oxide loses its oxygen and becomes the metal; the carbon or carbon monoxide gains that oxygen and is oxidised.
+    - id: C
+      text: By heating aluminium oxide with carbon, as for iron
+      correct: false
+      misconception_id: mc.chm.o.metals_carbon_reduces_all
+      feedback: Carbon can only take oxygen from metals BELOW it in the reactivity series (zinc, iron, lead, copper). Metals above carbon hold their oxygen more strongly, so electrolysis is needed.
+    - id: D
+      text: By digging it up as the free metal, since reactive metals are easy to free
+      correct: false
+      misconception_id: mc.chm.o.metals_extraction_reversed
+      feedback: A reactive metal clings to the elements in its compounds, so it is HARD to extract. The higher a metal is in the series, the more energy its extraction needs; gold is so unreactive it is found as the metal.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The position of a metal compared with carbon decides the method.
+  - rung: 2
+    name: concept
+    text:
+      en: Carbon can remove oxygen only from oxides of metals below carbon.
+  - rung: 3
+    name: first_step
+    text:
+      en: Aluminium is above carbon.
+  - rung: 4
+    name: worked_step
+    text:
+      en: So carbon cannot take its oxygen; a method using electricity is needed.
+  - rung: 5
+    name: full_step
+    text:
+      en: Aluminium is extracted by electrolysis of molten aluminium oxide (dissolved in cryolite).
+  misconception_ids:
+  - mc.chm.o.metals_carbon_reduces_all
+  - mc.chm.o.metals_reduction_gains_oxygen
+  - mc.chm.o.metals_extraction_reversed
+solution:
+  steps:
+  - n: 1
+    latex: \text{Al above C}
+    reason: Carbon cannot reduce its oxide
+  - n: 2
+    latex: \text{electrolysis of molten }\text{Al}_2\text{O}_3
+    reason: Electrolysis needed
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

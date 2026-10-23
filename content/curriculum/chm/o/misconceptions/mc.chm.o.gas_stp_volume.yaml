@@ -1,0 +1,35 @@
+id: mc.chm.o.gas_stp_volume
+kc_ids:
+- kc.chm.o.stoichiometry.gas_volumes
+student_name: Using 22.4 dm³ at room conditions
+description: Uses 22.4 dm³ per mole, the volume at 0 °C, for a gas measured at room temperature and pressure.
+signatures:
+- kind: answer_transform
+  expression: n*22.4
+fix:
+  strategy: rule_restatement
+  text:
+    en: At room temperature and pressure one mole of gas occupies 24 dm³; use the value the question gives.
+probe_item_ids:
+- itm.chm.o.stoichiometry.0081
+- itm.chm.o.stoichiometry.0082
+- itm.chm.o.stoichiometry.0083
+- itm.chm.o.stoichiometry.0084
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

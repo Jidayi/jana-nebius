@@ -1,0 +1,73 @@
+{
+  "id": "connectivity-indicator.canonical.cloud-tutor",
+  "title": "Connectivity indicator, the cloud tutor answering",
+  "note": "A cloud request is in flight for this turn.",
+  "component": "ConnectivityIndicator",
+  "state": "canonical",
+  "variant": "cloud-tutor",
+  "payload": {
+    "status": {
+      "type": "connectivity.status",
+      "network": "online",
+      "checked_ts": 1760000000000,
+      "features": [
+        {
+          "feature": "cloud_tier",
+          "enabled": true,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "downloads",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "update_checks",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "telemetry",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "crash_reports",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        }
+      ]
+    },
+    "events": [
+      {
+        "type": "egress.notice",
+        "feature": "cloud_tier",
+        "state": "started",
+        "destination_label": "Cloud tutor",
+        "data_classes": [
+          "question_text",
+          "board"
+        ]
+      }
+    ],
+    "open": true
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light",
+    "connectivity": "cloud-tutor",
+    "cloudTier": true
+  },
+  "placements": [
+    "rail"
+  ],
+  "expectText": [
+    "Cloud tutor",
+    "This question is being answered by the cloud tutor."
+  ]
+}

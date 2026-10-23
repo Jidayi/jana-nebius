@@ -1,0 +1,96 @@
+id: itm.phy.o.pressure.0038
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.gas_and_atmospheric_pressure
+stem: On a day when atmospheric pressure is 100 kPa, a student imagines a barometer filled with water (density 1000 kg/m³) instead of mercury. Take g = 9.8 N/kg.
+parts:
+- id: a
+  prompt: How tall would the water column be?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '10.2'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_prs_0038_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The water column would be tall enough for its pressure to equal the air pressure.
+  - rung: 2
+    name: concept
+    text:
+      en: p = ρgh, so h = p ÷ (ρg).
+  - rung: 3
+    name: first_step
+    text:
+      en: Change 100 kPa into pascals first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 100000 Pa by 1000 × 9.8.
+  - rung: 5
+    name: full_step
+    text:
+      en: The water column would be 10.2 m tall.
+  misconception_ids:
+  - mc.phy.o.pressure_kpa_not_converted
+  - mc.phy.o.liquid_pressure_g_left_out
+  - mc.phy.o.barometer_liquid_density_swapped
+solution:
+  steps:
+  - n: 1
+    latex: p = 100\ \text{kPa} = 100000\ \text{Pa}
+    reason: Kilopascals into pascals
+    check_id: chk_build_phy_prs_0038_pa
+  - n: 2
+    latex: h = \frac{p}{\rho g} = \frac{100000}{1000 \times 9.8} = 10.2\ \text{m}
+    reason: Rearrange p = ρgh
+    check_id: chk_build_phy_prs_0038_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_0038_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 100*1000/(1000*g)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_prs_0038_pa:
+    args:
+      expression: 100*1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

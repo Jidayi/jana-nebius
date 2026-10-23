@@ -1,0 +1,87 @@
+id: itm.mth.o.number.0058
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.powers_and_roots
+stem: Work out $(-3)^3$.
+parts:
+- id: a
+  prompt: Give the value.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '-27'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0058_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Cubing means using the number three times in a product.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Keep track of the sign: each negative factor changes the sign.'
+  - rung: 3
+    name: first_step
+    text:
+      en: First work out (−3) × (−3).
+  - rung: 4
+    name: worked_step
+    text:
+      en: (−3) × (−3) is positive; multiply by (−3) once more.
+  - rung: 5
+    name: full_step
+    text:
+      en: (−3)³ = -27.
+  misconception_ids:
+  - mc.mth.o.cube_of_negative_positive
+  - mc.mth.o.square_as_double
+  - mc.mth.o.power_dropped
+solution:
+  steps:
+  - n: 1
+    latex: (-3)^3 = (-3) \times (-3) \times (-3)
+    reason: Three equal factors
+  - n: 2
+    latex: = -27
+    reason: Two negatives make a positive; the third makes it negative again
+    check_id: chk_build_mth_num_0058_ans
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0058_ans:
+    args:
+      expression: (-3)^3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

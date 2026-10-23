@@ -1,0 +1,133 @@
+{
+  "id": "subject-map.canonical.topic-sheet",
+  "title": "Subject map with the topic sheet open",
+  "note": "One subject-map reply (GET /v1/curriculum/{subject_id}/map, the proposed M13.g contract additions), built from the repository's own curriculum sources and checked by the client's reply check in learn.test.tsx. The sheet lists each KC with its own label; Check my mastery shows on a nearly secure KC.",
+  "component": "SubjectMap",
+  "state": "canonical",
+  "variant": "topic-sheet",
+  "payload": {
+    "map": {
+      "subject_id": "cur.phy.o",
+      "subject": "physics",
+      "level": "O",
+      "title": "Physics",
+      "status": "ready",
+      "pack": {
+        "pack_id": "pack.phy.o",
+        "version": "0.1.0"
+      },
+      "sections": [
+        {
+          "node_id": "cur.phy.o.motion_forces_and_energy",
+          "code": "PHY-O-01",
+          "title": "Mechanics: how things move and why",
+          "topics": [
+            {
+              "node_id": "cur.phy.o.motion_forces_and_energy.motion",
+              "code": "PHY-O-01.02",
+              "title": "Motion in a straight line",
+              "kcs": [
+                {
+                  "kc_id": "kc.phy.o.motion.distance_or_displacement",
+                  "code": "PHY-O-01.02.K01",
+                  "statement": "Distinguish distance from displacement, and speed from velocity",
+                  "state": "not_started",
+                  "band": "not_started"
+                },
+                {
+                  "kc_id": "kc.phy.o.motion.average_speed",
+                  "code": "PHY-O-01.02.K02",
+                  "statement": "Calculate average speed from the total distance and the total time",
+                  "state": "mastered",
+                  "band": "secure"
+                },
+                {
+                  "kc_id": "kc.phy.o.motion.speed_unit_conversion",
+                  "code": "PHY-O-01.02.K03",
+                  "statement": "Convert a speed between kilometres per hour and metres per second",
+                  "state": "not_started",
+                  "band": "not_started"
+                },
+                {
+                  "kc_id": "kc.phy.o.motion.acceleration_from_change",
+                  "code": "PHY-O-01.02.K04",
+                  "statement": "Calculate acceleration from a change in velocity and the time it takes",
+                  "state": "ready_to_check",
+                  "band": "learning"
+                },
+                {
+                  "kc_id": "kc.phy.o.motion.distance_time_gradient",
+                  "code": "PHY-O-01.02.K05",
+                  "statement": "Interpret the gradient of a distance-time graph as the speed",
+                  "state": "not_started",
+                  "band": "not_started"
+                },
+                {
+                  "kc_id": "kc.phy.o.motion.velocity_time_gradient",
+                  "code": "PHY-O-01.02.K06",
+                  "statement": "Find acceleration from the gradient of a velocity-time graph",
+                  "state": "not_started",
+                  "band": "not_started"
+                },
+                {
+                  "kc_id": "kc.phy.o.motion.velocity_time_area",
+                  "code": "PHY-O-01.02.K07",
+                  "statement": "Find the distance travelled from the area under a velocity-time graph",
+                  "state": "not_started",
+                  "band": "not_started"
+                },
+                {
+                  "kc_id": "kc.phy.o.motion.choose_equation",
+                  "code": "PHY-O-01.02.K08",
+                  "statement": "Select the equation of uniform acceleration that links the known and unknown quantities",
+                  "state": "not_started",
+                  "band": "not_started"
+                },
+                {
+                  "kc_id": "kc.phy.o.motion.solve_with_equation",
+                  "code": "PHY-O-01.02.K09",
+                  "statement": "Solve for an unknown quantity with an equation of uniform acceleration",
+                  "state": "not_started",
+                  "band": "not_started"
+                },
+                {
+                  "kc_id": "kc.phy.o.motion.free_fall",
+                  "code": "PHY-O-01.02.K10",
+                  "statement": "Apply the equations of uniform acceleration to motion under gravity",
+                  "state": "needs_review",
+                  "band": "secure"
+                }
+              ],
+              "lessons": [
+                {
+                  "lesson_id": "les.phy.o.motion.speed_and_acceleration",
+                  "title": "Speed and acceleration",
+                  "estimated_minutes": 12,
+                  "kc_ids": [
+                    "kc.phy.o.motion.average_speed",
+                    "kc.phy.o.motion.acceleration_from_change"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "open": "cur.phy.o.motion_forces_and_energy.motion"
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Refresh due",
+    "Nearly secure",
+    "Check my mastery",
+    "I already know this",
+    "Start the lesson"
+  ]
+}

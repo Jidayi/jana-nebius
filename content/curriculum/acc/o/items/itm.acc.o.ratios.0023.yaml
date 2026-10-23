@@ -1,0 +1,106 @@
+id: itm.acc.o.ratios.0023
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.liquidity
+stem: Bola's business has inventory $3000, trade receivables $1300, a bank balance of $900 and current liabilities of $14100.
+parts:
+- id: a
+  prompt: Calculate the acid-test (quick) ratio, as the first number of a ratio to 1. Give your answer to 2 decimal places.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.16'
+    unit: :1
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_ratios_0023_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The acid-test ratio asks whether the business can pay its current liabilities without selling inventory.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Acid-test ratio = (current assets − inventory) : current liabilities.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Leave the inventory out of the assets.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide (1300 + 900) by 14100.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Acid-test ratio = 0.16 : 1.'
+  misconception_ids:
+  - mc.acc.o.rat_acid_includes_inventory
+  - mc.acc.o.rat_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Acid-test (quick) ratio} = \frac{\text{current assets - inventory}}{\text{current liabilities}}
+    reason: Expressed as a ratio to 1
+    check_id: chk_build_acc_ratios_0023_t
+  - n: 2
+    latex: \frac{1300 + 900}{14100} = 0.16
+    reason: Substitute
+    check_id: chk_build_acc_ratios_0023_a
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_0023_a:
+    args:
+      dp: 2
+      expression: (1300 + 900) / 14100
+    tool: math_evaluate
+  chk_build_acc_ratios_0023_t:
+    args:
+      closing_inventory: '3000'
+      current_assets: '5200'
+      current_liabilities: '14100'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      ratios:
+      - acid_test
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

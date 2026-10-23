@@ -1,0 +1,38 @@
+id: mc.phy.o.gpe_half_from_ke
+kc_ids:
+- kc.phy.o.energy.potential_energy
+- kc.phy.o.energy.energy_conversion
+- kc.phy.o.energy.energy_resources
+student_name: A half in mgh
+description: Puts a ½ into the gravitational potential energy formula, mixing it up with ½mv².
+signatures:
+- kind: answer_transform
+  expression: m*g*h/2
+fix:
+  strategy: contrast_example
+  text:
+    en: The half belongs to kinetic energy only. The change in gravitational potential energy is simply mgh.
+probe_item_ids:
+- itm.phy.o.energy.0041
+- itm.phy.o.energy.0042
+- itm.phy.o.energy.0044
+- itm.phy.o.energy.0045
+- itm.phy.o.energy.0032
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

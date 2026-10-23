@@ -1,0 +1,33 @@
+id: mc.phy.o.every_later_leg_subtracted
+kc_ids:
+- kc.phy.o.motion.distance_or_displacement
+student_name: Subtracting every later part
+description: Subtracts every part after the first for a displacement, even a part that goes forwards again.
+signatures:
+- kind: answer_transform
+  expression: d1 - d2 - d3
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Give each part a sign from its direction: forwards parts are positive and backwards parts are negative. Then add them.'
+probe_item_ids:
+- itm.phy.o.motion.0317
+- itm.phy.o.motion.0319
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

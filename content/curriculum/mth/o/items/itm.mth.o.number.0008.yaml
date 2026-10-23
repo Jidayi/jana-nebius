@@ -1,0 +1,108 @@
+id: itm.mth.o.number.0008
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.prime_factors
+stem: Write 2520 as a product of prime factors.
+parts:
+- id: a
+  prompt: What is its largest prime factor?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '7'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0008_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You need the prime factorisation first.
+  - rung: 2
+    name: concept
+    text:
+      en: Divide by primes, smallest first, until you reach 1.
+  - rung: 3
+    name: first_step
+    text:
+      en: Start with 2520 ÷ 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: List the different primes in your answer.
+  - rung: 5
+    name: full_step
+    text:
+      en: 2520 = 2^3 × 3^2 × 5 × 7; the largest prime is 7.
+  misconception_ids:
+  - mc.mth.o.largest_factor_not_prime
+  - mc.mth.o.composite_factor_used
+solution:
+  steps:
+  - n: 1
+    latex: 2520 = 2^{3} \times 3^{2} \times 5 \times 7
+    reason: Repeated division by primes
+    check_id: chk_build_mth_num_0008_n
+  - n: 2
+    latex: \text{the factors are all prime}
+    reason: None of them can be split further
+    check_id: chk_build_mth_num_0008_pr
+  - n: 3
+    latex: \text{largest prime factor} = 7
+    reason: The largest prime in the product
+    check_id: chk_build_mth_num_0008_ans
+difficulty:
+  prior: -0.7
+  band: foundation
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0008_ans:
+    args:
+      expression: '7'
+    tool: math_evaluate
+  chk_build_mth_num_0008_n:
+    args:
+      expression: 2^3*3^2*5^1*7^1
+    tool: math_evaluate
+  chk_build_mth_num_0008_pr:
+    args:
+      equations:
+      - p = 2
+      - q = 3
+      - r = 5
+      - s = 7
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

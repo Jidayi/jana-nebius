@@ -1,0 +1,93 @@
+id: itm.phy.o.electromagnetism.0057
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.transformers
+stem: A step-up transformer is supplied with 12 V a.c.
+parts:
+- id: a
+  prompt: Which statement about its output is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: The output voltage is less than 12 V
+      correct: false
+      misconception_id: mc.phy.o.step_up_down_confused
+      feedback: More turns on the secondary than the primary steps the voltage up; fewer turns steps it down.
+    - id: B
+      text: The output voltage is more than 12 V
+      correct: true
+    - id: C
+      text: The output is a steady d.c. voltage
+      correct: false
+      misconception_id: mc.phy.o.transformer_works_on_dc
+      feedback: A steady current makes a steady field, and a steady field induces nothing. A transformer needs a.c.
+    - id: D
+      text: The output voltage is less than 12 V, as the secondary has more turns
+      correct: false
+      misconception_id: mc.phy.o.turns_ratio_inverted
+      feedback: 'The voltages are in the same ratio as the turns: Vs/Vp = Ns/Np. The coil with more turns has the larger voltage.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Compare the numbers of turns on the two coils, and remember what drives the output.
+  - rung: 2
+    name: concept
+    text:
+      en: The voltages are in the same ratio as the turns, Vs/Vp = Ns/Np, and only a changing current induces an output.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A step-up transformer has more secondary turns, so a larger output voltage.
+  - rung: 5
+    name: full_step
+    text:
+      en: The output voltage is more than 12 V. A step-up transformer has more secondary turns, so a larger output voltage.
+  misconception_ids:
+  - mc.phy.o.step_up_down_confused
+  - mc.phy.o.transformer_works_on_dc
+  - mc.phy.o.turns_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \text{The output voltage is more than 12 V}
+    reason: Use the turns ratio and the need for a.c.
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

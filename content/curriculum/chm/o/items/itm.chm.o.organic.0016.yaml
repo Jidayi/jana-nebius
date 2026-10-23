@@ -1,0 +1,94 @@
+id: itm.chm.o.organic.0016
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.naming
+stem: A hydrocarbon has the formula C₂H₄. It contains a C=C double bond.
+parts:
+- id: a
+  prompt: What is its name?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Ethene
+      correct: true
+    - id: B
+      text: Butene
+      correct: false
+      misconception_id: mc.chm.o.organic_prefix_wrong_atoms
+      feedback: The prefix counts every carbon atom in the molecule, including the carbon inside –COOH. CH₃COOH has two carbon atoms, so it is ethanoic acid. Hydrogen atoms never set the prefix.
+    - id: C
+      text: Ethane
+      correct: false
+      misconception_id: mc.chm.o.organic_ending_wrong_series
+      feedback: 'The ending names the family: -ane for alkanes, -ene for alkenes, -ol for alcohols and -oic acid for carboxylic acids. Find the functional group first, then choose the ending.'
+    - id: D
+      text: Propene
+      correct: false
+      misconception_id: mc.chm.o.organic_prefix_order_mixed
+      feedback: 'Learn the order: meth- means one carbon atom, eth- two, prop- three and but- four. A memory aid: Monkeys Eat Peeled Bananas.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Use the carbon atoms for the prefix and the functional group for the ending.
+  - rung: 2
+    name: concept
+    text:
+      en: Hydrocarbons with a C=C bond are alkenes and end in -ene; alkanes end in -ane.
+  - rung: 3
+    name: first_step
+    text:
+      en: C₂H₄ has two carbon atoms. The four hydrogen atoms do not set the prefix.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Which prefix means two carbon atoms?
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Two carbon atoms (eth-) and a C=C double bond (-ene): ethene.'
+  misconception_ids:
+  - mc.chm.o.organic_ending_wrong_series
+  - mc.chm.o.organic_prefix_wrong_atoms
+  - mc.chm.o.organic_prefix_order_mixed
+solution:
+  steps:
+  - n: 1
+    latex: \text{2 C, C=C}
+    reason: Prefix and family
+  - n: 2
+    latex: \text{eth- + -ene}
+    reason: Name
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

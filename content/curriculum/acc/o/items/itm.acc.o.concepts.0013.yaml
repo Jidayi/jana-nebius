@@ -1,0 +1,88 @@
+id: itm.acc.o.concepts.0013
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.concepts.apply_concept
+stem: Kojo is preparing the year's accounts.
+parts:
+- id: a
+  prompt: Following prudence, how is a customer's claim that the business may have to pay $2000 damages treated?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: It is recorded as income
+      correct: false
+      misconception_id: mc.acc.o.con_names_confused
+    - id: B
+      text: The likely loss is provided for now
+      correct: true
+    - id: C
+      text: It is ignored until it is paid
+      correct: false
+      misconception_id: mc.acc.o.con_prudence_realisation_confused
+    - id: D
+      text: It is recorded only if it is a small amount
+      correct: false
+      misconception_id: mc.acc.o.con_materiality_vs_entity
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'What is the accountant deciding here: what to record, at what value, or when?'
+  - rung: 2
+    name: concept
+    text:
+      en: 'Entity: the business is separate from its owner. Money measurement: only items with a money value. Duality: every transaction has two sides. Historic cost: record at cost. Going concern: assume the business carries on. Accruals: match income and expenses to the period. Prudence: do not overstate profit or assets. Consistency: keep to the same methods. Realisation: revenue when goods pass to the customer. Materiality: small items need not follow strict treatment.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Several principles may seem to fit; choose the one the situation is mainly about.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Apply the named principle.
+  - rung: 5
+    name: full_step
+    text:
+      en: The likely loss is provided for now.
+  misconception_ids:
+  - mc.acc.o.con_prudence_realisation_confused
+  - mc.acc.o.con_materiality_vs_entity
+  - mc.acc.o.con_names_confused
+solution:
+  steps:
+  - n: 1
+    latex: \text{The likely loss is provided for now}
+    reason: What the principle requires
+difficulty:
+  prior: 0.2
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_names
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

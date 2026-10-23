@@ -1,0 +1,104 @@
+id: itm.phy.o.stars.0018
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.stars.life_cycle_of_stars
+stem: A star has a mass of 6.0 × 10³¹ kg. The Sun's mass is 2.0 × 10³⁰ kg. Stars more than about 8 times as massive as the Sun end their lives in a supernova.
+parts:
+- id: a
+  prompt: How will this star's life end?
+  marks: 2
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It becomes a red giant and ends as a white dwarf
+      correct: false
+      misconception_id: mc.phy.o.every_star_ends_white_dwarf
+      feedback: A very massive star becomes a red supergiant and explodes as a supernova, leaving a neutron star or a black hole.
+    - id: B
+      text: It stays on the main sequence for ever
+      correct: false
+      misconception_id: mc.phy.o.stars_never_change
+      feedback: A star's fuel runs out in the end. Its life is so long, millions to billions of years, that we never see one star change much.
+    - id: C
+      text: It becomes a red supergiant, explodes as a supernova and leaves a neutron star or black hole
+      correct: true
+    - id: D
+      text: It lives much longer than the Sun and then fades slowly
+      correct: false
+      misconception_id: mc.phy.o.massive_stars_live_longer
+      feedback: A massive star has more fuel but uses it far faster, because its core is hotter. The biggest stars last only a few million years; the Sun lasts about ten billion.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The way a star ends depends on its mass.
+  - rung: 2
+    name: concept
+    text:
+      en: Find how many times more massive than the Sun it is.
+  - rung: 3
+    name: first_step
+    text:
+      en: Divide 6.0 × 10³¹ kg by 2.0 × 10³⁰ kg.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The star has 30 times the Sun's mass; compare this with 8.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'So: it becomes a red supergiant, explodes as a supernova and leaves a neutron star or black hole.'
+  misconception_ids:
+  - mc.phy.o.every_star_ends_white_dwarf
+  - mc.phy.o.massive_stars_live_longer
+  - mc.phy.o.stars_never_change
+solution:
+  steps:
+  - n: 1
+    latex: \frac{6.0 \times 10^{31}}{2.0 \times 10^{30}} = 30
+    reason: Mass compared with the Sun
+    check_id: chk_build_phy_str_0018_ratio
+  - n: 2
+    latex: 30 > 8
+    reason: Compare with the limit for a supernova
+  - n: 3
+    latex: \text{It becomes a red supergiant, explodes as a supernova and leaves a neutron star or black hole}
+    reason: The end that goes with this mass
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_str_0018_ratio:
+    args:
+      expression: 6.0e31/2.0e30
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

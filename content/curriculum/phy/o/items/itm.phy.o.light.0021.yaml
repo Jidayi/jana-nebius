@@ -1,0 +1,103 @@
+id: itm.phy.o.light.0021
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.refraction
+stem: Light in air strikes the surface of quartz at an angle of incidence of 30°. The refractive index of quartz is 1.46.
+parts:
+- id: a
+  prompt: Calculate the angle of refraction.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '20.0'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_lgt_0021_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'The light slows down in the material, so it bends towards the normal: r will be less than i.'
+  - rung: 2
+    name: concept
+    text:
+      en: n = sin i ÷ sin r, so sin r = sin i ÷ n.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out sin 30° ÷ 1.46.
+  - rung: 4
+    name: worked_step
+    text:
+      en: sin r = 0.342; now take the inverse sine.
+  - rung: 5
+    name: full_step
+    text:
+      en: The angle of refraction is 20.0°.
+  misconception_ids:
+  - mc.phy.o.snell_angles_not_sines
+  - mc.phy.o.refraction_angles_from_surface
+  - mc.phy.o.snell_inverse_sine_missed
+solution:
+  steps:
+  - n: 1
+    latex: \sin r = \frac{\sin 30^\circ}{1.46} = 0.342
+    reason: Rearrange n = sin i / sin r
+    check_id: chk_build_phy_lgt_0021_sr
+  - n: 2
+    latex: r = \sin^{-1}(0.342) = 20.0^\circ
+    reason: Inverse sine
+    check_id: chk_build_phy_lgt_0021_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0021_ans:
+    args:
+      angle_unit: degrees
+      expression: asin(sin(30)/1.46)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0021_sr:
+    args:
+      angle_unit: degrees
+      expression: sin(30)/1.46
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0021_tool:
+    args:
+      angle1: 30
+      n1: 1
+      n2: '1.46'
+      task: refraction
+    tool: phys_optics
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

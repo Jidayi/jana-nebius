@@ -1,0 +1,93 @@
+id: itm.phy.o.em_spectrum.0014
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.em_spectrum.order_and_properties
+stem: In a vacuum, an X-ray has a much shorter wavelength than a microwave.
+parts:
+- id: a
+  prompt: Which statement is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: The X-ray travels faster
+      correct: false
+      misconception_id: mc.phy.o.em_speed_differs
+      feedback: Every electromagnetic wave travels at the same speed in a vacuum, 3.0 × 10⁸ m/s. They differ in frequency and wavelength, not speed.
+    - id: B
+      text: The X-ray has a lower frequency
+      correct: false
+      misconception_id: mc.phy.o.frequency_wavelength_rise_together
+      feedback: 'At a fixed speed, v = fλ: double the frequency and the wavelength halves.'
+    - id: C
+      text: The X-ray has a higher frequency
+      correct: true
+    - id: D
+      text: They have the same frequency
+      correct: false
+      misconception_id: mc.phy.o.em_same_wavelength
+      feedback: 'They share the speed, so a higher frequency must go with a shorter wavelength: c = fλ stays the same.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Start from the region with the longest wavelength and work towards the shortest.
+  - rung: 2
+    name: concept
+    text:
+      en: Frequency rises as wavelength falls, because every region has the same speed in a vacuum.
+  - rung: 3
+    name: first_step
+    text:
+      en: Every region is a transverse wave and can cross empty space.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that break the order or these shared properties.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The X-ray has a higher frequency.'
+  misconception_ids:
+  - mc.phy.o.em_same_wavelength
+  - mc.phy.o.em_speed_differs
+  - mc.phy.o.frequency_wavelength_rise_together
+solution:
+  steps:
+  - n: 1
+    latex: \text{The X-ray has a higher frequency}
+    reason: Recall the order and the shared properties of the spectrum
+difficulty:
+  prior: -0.5
+  band: core
+estimated_seconds: 35
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,89 @@
+id: itm.phy.o.motion.0020
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.average_speed
+stem: A cyclist rides 660 m along a straight road in 120 s.
+parts:
+- id: a
+  prompt: Calculate the cyclist's average speed.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '5.5'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_k_0020_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know how far it went and how long it took. Which quantity are you asked for?
+  - rung: 2
+    name: concept
+    text:
+      en: Average speed is the total distance divided by the total time.
+  - rung: 3
+    name: first_step
+    text:
+      en: Write speed = distance ÷ time, with the distance on top.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 660 ÷ 120 and give the unit.
+  - rung: 5
+    name: full_step
+    text:
+      en: 660 ÷ 120 = 5.5 m/s.
+  misconception_ids:
+  - mc.phy.o.time_over_distance
+solution:
+  steps:
+  - n: 1
+    latex: v = \frac{d}{t}
+    reason: Average speed is distance over time
+  - n: 2
+    latex: v = \frac{660\ \text{m}}{120\ \text{s}}
+    reason: Substitute the distance and the time
+  - n: 3
+    latex: v = 5.5\ \text{m/s}
+    reason: Divide
+    check_id: chk_build_phy_k_0020_a
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- transport
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_k_0020_a:
+    args:
+      expression: 660/120
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

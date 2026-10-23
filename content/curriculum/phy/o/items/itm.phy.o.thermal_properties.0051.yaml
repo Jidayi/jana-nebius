@@ -1,0 +1,80 @@
+id: itm.phy.o.thermal_properties.0051
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.thermal_properties.changes_of_state
+stem: 'Liquid stearic acid is left to cool and its temperature is read every minute. The readings in °C are: 93, 84, 77, 72, 69, 69, 69, 64, 60.'
+parts:
+- id: a
+  prompt: What is the freezing point of the substance?
+  marks: 1
+  answer:
+    kind: numeric
+    value: '69'
+    unit: °C
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_thp_0051_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A pure substance freezes at a single temperature.
+  - rung: 2
+    name: concept
+    text:
+      en: While it freezes, energy given out by the forming solid makes up for the energy lost to the room.
+  - rung: 3
+    name: first_step
+    text:
+      en: So look for the part of the data where the temperature stops falling for several readings.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The value repeated in the middle of the list is the one you want.
+  - rung: 5
+    name: full_step
+    text:
+      en: The freezing point is 69 °C.
+solution:
+  steps:
+  - n: 1
+    latex: \theta = 69\ ^\circ\text{C}
+    reason: The readings stay constant while the liquid freezes
+    check_id: chk_build_phy_thp_0051_ans
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_thp_0051_ans:
+    args:
+      expression: '69'
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

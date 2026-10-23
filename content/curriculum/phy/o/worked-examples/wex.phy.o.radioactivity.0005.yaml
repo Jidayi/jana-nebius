@@ -1,0 +1,63 @@
+id: wex.phy.o.radioactivity.0005
+kc_ids:
+- kc.phy.o.radioactivity.half_life
+problem: A counter near a sample of technetium-99m (half-life 6 hours) reads 510 counts/min. The background count rate is 30 counts/min. What will the counter read 18 hours later?
+steps:
+- n: 1
+  latex: 510 - 30 = 480
+  reason: Count rate from the source alone
+  check_id: chk_build_phy_rad_w0005_c
+- n: 2
+  latex: \frac{18}{6} = 3\ \text{half-lives}
+  reason: Time ÷ half-life
+  check_id: chk_build_phy_rad_w0005_n
+- n: 3
+  latex: \frac{480}{2^{3}} = 60
+  reason: Only the source's count rate halves
+  check_id: chk_build_phy_rad_w0005_c1
+- n: 4
+  latex: 60 + 30 = 90\ \text{counts/min}
+  reason: The counter still picks up background
+  check_id: chk_build_phy_rad_w0005_ans
+final_answer:
+  latex: 90\ \text{counts/min}
+  check_id: chk_build_phy_rad_w0005_ans
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_w0005_ans:
+    args:
+      expression: (510 - 30)/2^3 + 30
+    tool: math_evaluate
+  chk_build_phy_rad_w0005_c:
+    args:
+      expression: 510 - 30
+    tool: math_evaluate
+  chk_build_phy_rad_w0005_c1:
+    args:
+      expression: (510 - 30)/2^3
+    tool: math_evaluate
+  chk_build_phy_rad_w0005_n:
+    args:
+      expression: 18/6
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

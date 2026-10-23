@@ -1,0 +1,108 @@
+id: itm.acc.o.inventory.0029
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.inventory.lower_cost_nrv
+stem: At the year end Halima holds 115 crates of soda that cost $69 each. They can be sold for $77 each, but each needs $3 spent on it before it can be sold.
+parts:
+- id: a
+  prompt: Calculate the value of this inventory.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '7935.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_inventory_0029_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Inventory is valued at the lower of two figures. Which two?
+  - rung: 2
+    name: concept
+    text:
+      en: Net realisable value = selling price − costs needed to sell. Use the lower of cost and NRV.
+  - rung: 3
+    name: first_step
+    text:
+      en: NRV per item = 77 − 3.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Compare 69 with 77 − 3; multiply the lower by 115.
+  - rung: 5
+    name: full_step
+    text:
+      en: Each item is valued at $69, so the inventory is worth $7935.
+  misconception_ids:
+  - mc.acc.o.inv_selling_price_used
+  - mc.acc.o.inv_nrv_ignored
+solution:
+  steps:
+  - n: 1
+    latex: \text{Value} = \text{quantity} \times \text{lower of cost and NRV}
+    reason: Prudence
+    check_id: chk_build_acc_inventory_0029_t
+  - n: 2
+    latex: \text{NRV} = 77 - 3 = 74
+    reason: Selling price less costs to sell
+    check_id: chk_build_acc_inventory_0029_s2
+  - n: 3
+    latex: \text{Value} = 115 \times 69 = 7935
+    reason: The lower figure
+    check_id: chk_build_acc_inventory_0029_a
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_inventory_0029_a:
+    args:
+      dp: 2
+      expression: 115 * 69
+    tool: math_evaluate
+  chk_build_acc_inventory_0029_s2:
+    args:
+      dp: 4
+      expression: 77 - 3
+    tool: math_evaluate
+  chk_build_acc_inventory_0029_t:
+    args:
+      dp: 2
+      method: fifo
+      movements:
+      - kind: receipt
+        quantity: 115
+        unit_cost: '69'
+      nrv:
+        per_unit: '74'
+    tool: acc_inventory
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

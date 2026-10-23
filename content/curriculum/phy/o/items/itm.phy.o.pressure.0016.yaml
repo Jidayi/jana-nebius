@@ -1,0 +1,97 @@
+id: itm.phy.o.pressure.0016
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.liquid_pressure
+stem: The base of a water tower tank is 3 m below the surface of the fresh water (density 1000 kg/m³). Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate the pressure due to the water there, in kPa.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '30'
+    unit: kPa
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_prs_0016_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The pressure comes from the weight of the water above.
+  - rung: 2
+    name: concept
+    text:
+      en: Pressure due to a liquid = density × g × depth.
+  - rung: 3
+    name: first_step
+    text:
+      en: The depth is already in metres and the density in kg/m³.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 1000 × 10 × 3.
+  - rung: 5
+    name: full_step
+    text:
+      en: The pressure due to the water is 30 kPa.
+  misconception_ids:
+  - mc.phy.o.liquid_pressure_g_left_out
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: p = \rho g h = 1000 \times 10 \times 3 = 30000\ \text{Pa}
+    reason: Pressure = ρgh
+    check_id: chk_build_phy_prs_0016_pa
+  - n: 2
+    latex: 30000\ \text{Pa} = 30\ \text{kPa}
+    reason: Pascals into kilopascals
+    check_id: chk_build_phy_prs_0016_ans
+difficulty:
+  prior: -0.2
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_0016_ans:
+    args:
+      expression: 1000*10*3/1000
+    tool: math_evaluate
+  chk_build_phy_prs_0016_pa:
+    args:
+      expression: 1000*10*3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,81 @@
+id: itm.acc.o.source_documents.0005
+version: 0.1.0
+type: mcq
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.source_documents.identify_source_document
+stem: A customer pays cash for goods and asks for proof of payment.
+parts:
+- id: a
+  prompt: Which document is given?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Credit note
+      correct: false
+    - id: B
+      text: Receipt
+      correct: true
+    - id: C
+      text: Invoice
+      correct: false
+    - id: D
+      text: Cheque counterfoil
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which document passes between the two parties when this happens?
+  - rung: 2
+    name: concept
+    text:
+      en: An invoice records a credit sale or purchase; a credit note records goods returned; a receipt confirms cash paid; a cheque counterfoil is kept by the payer; a paying-in slip records money paid into the bank.
+  - rung: 3
+    name: first_step
+    text:
+      en: Think about who writes the document and who keeps a copy.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Match the situation to the rule.
+  - rung: 5
+    name: full_step
+    text:
+      en: Receipt.
+solution:
+  steps:
+  - n: 1
+    latex: \text{Receipt}
+    reason: The rule for this situation
+difficulty:
+  prior: -0.9
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

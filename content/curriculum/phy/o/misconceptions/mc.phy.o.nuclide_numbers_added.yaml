@@ -1,0 +1,36 @@
+id: mc.phy.o.nuclide_numbers_added
+kc_ids:
+- kc.phy.o.atom.atomic_structure
+student_name: Adding the two numbers of a nuclide
+description: Adds the nucleon number and the proton number (or the neutron number) when one should be taken from the other.
+signatures:
+- kind: answer_transform
+  expression: A + Z
+fix:
+  strategy: rule_restatement
+  text:
+    en: The nucleon number already includes the protons. To find the part that is neutrons (or protons), subtract.
+probe_item_ids:
+- itm.phy.o.atom.0012
+- itm.phy.o.atom.0013
+- itm.phy.o.atom.0014
+- itm.phy.o.atom.0001
+- itm.phy.o.atom.0002
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

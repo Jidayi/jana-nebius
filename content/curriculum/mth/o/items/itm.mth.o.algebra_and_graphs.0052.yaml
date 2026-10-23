@@ -1,0 +1,127 @@
+id: itm.mth.o.algebra_and_graphs.0052
+version: 0.1.0
+type: mcq
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.factorise_quadratic
+stem: Factorise $x^2 - 15x + 54$.
+parts:
+- id: a
+  prompt: Choose the correct factorisation.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: $(x - 9)(x - 6)$
+      correct: true
+    - id: B
+      text: $(x + 9)(x + 6)$
+      correct: false
+      misconception_id: mc.mth.o.factor_signs_swapped
+      feedback: Expand your brackets to check the middle term. If its sign is wrong, swap the signs in the brackets.
+    - id: C
+      text: $(x - 2)(x - 27)$
+      correct: false
+      misconception_id: mc.mth.o.factor_pair_product_only
+      feedback: You need two numbers that multiply to give the last term and also add to give the middle coefficient. List the factor pairs and test both conditions.
+    - id: D
+      text: $(x - 9)(x + 6)$
+      correct: false
+      misconception_id: mc.mth.o.expand_sign_slip
+      feedback: 'Multiply the signs as well as the numbers: negative times positive is negative, negative times negative is positive.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You need two brackets of the form (x + m)(x + n).
+  - rung: 2
+    name: concept
+    text:
+      en: Find two numbers that multiply to give the number term and add to give the coefficient of x.
+  - rung: 3
+    name: first_step
+    text:
+      en: List the factor pairs of 54 and check which pair adds to −15.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Watch the signs: a negative product means one number is negative; a negative sum means the larger one is negative.'
+  - rung: 5
+    name: full_step
+    text:
+      en: The numbers are −9 and −6, so the answer is $(x - 9)(x - 6)$.
+  misconception_ids:
+  - mc.mth.o.expand_sign_slip
+  - mc.mth.o.factor_pair_product_only
+  - mc.mth.o.factor_signs_swapped
+solution:
+  steps:
+  - n: 1
+    latex: -\,9 \times (-\,6) = 54,\ -\,9 + (-\,6) = (-\,15)
+    reason: Two numbers that multiply to the last term and add to the middle coefficient
+    check_id: chk_build_mth_alg_0052_m
+  - n: 2
+    latex: x^2 - 15x + 54 = (x - 9)(x - 6)
+    reason: Put the two numbers in the brackets
+    check_id: chk_build_mth_alg_0052_final
+  - n: 3
+    latex: '\text{Check: the solutions of } x^2 - 15x + 54 = 0 \text{ are } x = 6, 9'
+    reason: Each bracket equal to zero
+    check_id: chk_build_mth_alg_0052_roots
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0052_final:
+    args:
+      equations:
+      - p = abs(-9)
+      - q = abs(-6)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_alg_0052_m:
+    args:
+      equations:
+      - p = abs((-9)*(-6))
+      - q = abs((-9) + (-6))
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_alg_0052_roots:
+    args:
+      equations:
+      - x^2 + (-15)*x + (54) = 0
+      unknowns:
+      - x
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

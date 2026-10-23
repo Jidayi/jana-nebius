@@ -1,0 +1,41 @@
+id: wex.acc.o.inventory.0007
+kc_ids:
+- kc.acc.o.inventory.inventory_profit_effect
+problem: Gross profit was calculated as $18500, but closing inventory had been overstated by $600. Find the correct gross profit.
+steps:
+- n: 1
+  latex: \text{Closing inventory too high} \rightarrow \text{cost of sales too low}
+  reason: Profit was overstated
+- n: 2
+  latex: \text{Correct gross profit} = 18500 - 600 = 17900
+  reason: Remove the overstatement
+  check_id: chk_build_acc_inventory_w0007_a
+final_answer:
+  latex: \$\,17900
+  check_id: chk_build_acc_inventory_w0007_a
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_inventory_w0007_a:
+    args:
+      dp: 2
+      expression: 18500 - 600
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

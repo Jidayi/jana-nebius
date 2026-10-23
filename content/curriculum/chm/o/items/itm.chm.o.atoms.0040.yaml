@@ -1,0 +1,106 @@
+id: itm.chm.o.atoms.0040
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.atoms.isotopes
+stem: Natural boron is 20% boron-10 and 80% boron-11.
+parts:
+- id: a
+  prompt: What is the relative atomic mass of boron?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: '1080'
+      correct: false
+      misconception_id: mc.chm.o.isotope_no_divide_100
+      feedback: Percentages add up to 100, so after multiplying and adding, divide by 100 to get the average mass of one atom.
+    - id: B
+      text: '10.2'
+      correct: false
+      misconception_id: mc.chm.o.isotope_abundance_swapped
+      feedback: 'Keep each mass with its own percentage: the more common isotope pulls the average towards its own mass.'
+    - id: C
+      text: '10.5'
+      correct: false
+      misconception_id: mc.chm.o.isotope_simple_average
+      feedback: If almost all atoms are the lighter isotope, the average must be close to the lighter mass. Weight each mass by its percentage.
+    - id: D
+      text: '10.8'
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Relative atomic mass is the average mass of a boron atom, taking account of how common each isotope is.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply each isotope's mass by its percentage, add the results, then divide by 100.
+  - rung: 3
+    name: first_step
+    text:
+      en: Pair 10 with 20% and 11 with 80%.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 10 × 20 + 11 × 80 = 1080.
+  - rung: 5
+    name: full_step
+    text:
+      en: 1080 ÷ 100 = 10.8.
+  misconception_ids:
+  - mc.chm.o.isotope_simple_average
+  - mc.chm.o.isotope_no_divide_100
+  - mc.chm.o.isotope_abundance_swapped
+solution:
+  steps:
+  - n: 1
+    latex: 10 \times 20 + 11 \times 80 = 1080
+    reason: Weight each mass by its abundance
+    check_id: chk_build_chm_atoms_0040_prod
+  - n: 2
+    latex: A_r = \frac{1080}{100} = 10.8
+    reason: Divide by the total percentage
+    check_id: chk_build_chm_atoms_0040_ar
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_atoms_0040_ar:
+    args:
+      expression: (10*20 + 11*80)/100
+      sf: 3
+    tool: math_evaluate
+  chk_build_chm_atoms_0040_prod:
+    args:
+      expression: 10*20 + 11*80
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

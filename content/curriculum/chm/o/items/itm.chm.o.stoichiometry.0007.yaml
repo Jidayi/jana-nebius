@@ -1,0 +1,127 @@
+id: itm.chm.o.stoichiometry.0007
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.ionic_formulae
+- kc.chm.o.stoichiometry.relative_formula_mass
+stem: Iron(III) nitrate contains Fe³⁺ and NO₃⁻ ions.
+parts:
+- id: a
+  prompt: Write the formula of iron(III) nitrate and use it to calculate its relative formula mass.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '242'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0007_mr
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: First you need the formula of iron(III) nitrate; then add up the relative atomic masses in it.
+  - rung: 2
+    name: concept
+    text:
+      en: The charges on the ions must cancel; the relative formula mass is the sum of the relative atomic masses of every atom in the formula.
+  - rung: 3
+    name: first_step
+    text:
+      en: The formula is Fe(NO₃)₃. Now count the atoms of each element in it.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'In Fe(NO₃)₃: one Fe atom gives 56, three N atoms give 42 and nine O atoms give 144.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Mr of Fe(NO₃)₃ = 242.
+  misconception_ids:
+  - mc.chm.o.formula_one_of_each
+  - mc.chm.o.formula_own_charge_as_count
+solution:
+  steps:
+  - n: 1
+    latex: \text{Fe(NO}_3\text{)}_3
+    reason: Charges cancel in iron(III) nitrate
+  - n: 2
+    latex: \text{Fe} = 56
+    reason: One Fe atom times Ar
+    check_id: chk_build_chm_stoichiometry_0007_g_fe
+  - n: 3
+    latex: \text{N}_3 = 42
+    reason: Three N atoms times Ar
+    check_id: chk_build_chm_stoichiometry_0007_g_n
+  - n: 4
+    latex: \text{O}_9 = 144
+    reason: Nine O atoms times Ar
+    check_id: chk_build_chm_stoichiometry_0007_g_o
+  - n: 5
+    latex: M_r = 242
+    reason: Add the shares
+    check_id: chk_build_chm_stoichiometry_0007_mr
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0007_g_fe:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      formula: Fe
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0007_g_n:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      formula: N3
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0007_g_o:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_o
+      formula: O9
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0007_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_fe
+      - source: pack
+        symbol: ar_n
+      - source: pack
+        symbol: ar_o
+      formula: Fe(NO3)3
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

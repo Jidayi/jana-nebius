@@ -1,0 +1,93 @@
+id: itm.chm.o.reactions.0015
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.rate_factors
+stem: 'Experiment A: 0.10 g of magnesium ribbon reacts with excess hydrochloric acid of concentration 1.0 mol/dm³. Experiment B is the same, but the acid concentration is 2.0 mol/dm³.'
+parts:
+- id: a
+  prompt: How does experiment B compare with A?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: B is faster, and more hydrogen forms because the acid is stronger.
+      correct: false
+      misconception_id: mc.chm.o.reactions_rate_changes_amount
+      feedback: The rate is how fast product forms; the total amount depends on how much of the limiting reactant there is. With the same amount of that reactant, a faster reaction reaches the same final amount, only sooner.
+    - id: B
+      text: B is faster because the extra acid acts as a catalyst and is not used up.
+      correct: false
+      misconception_id: mc.chm.o.reactions_catalyst_used_up
+      feedback: 'A catalyst speeds up a reaction but is not used up. Weigh it before and after: the mass is the same, and it can be used again. That is why a small amount of catalyst works for a long time.'
+    - id: C
+      text: B is faster, and the final volume of hydrogen is the same.
+      correct: true
+    - id: D
+      text: B is no faster; only the final volume of hydrogen is larger.
+      correct: false
+      misconception_id: mc.chm.o.reactions_rate_changes_amount
+      feedback: The rate is how fast product forms; the total amount depends on how much of the limiting reactant there is. With the same amount of that reactant, a faster reaction reaches the same final amount, only sooner.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What is the same in A and B, and what is different?
+  - rung: 2
+    name: concept
+    text:
+      en: More concentrated acid speeds up a reaction. The total product is set by the reactant that runs out.
+  - rung: 3
+    name: first_step
+    text:
+      en: The acid is in excess in both, so the magnesium is the reactant that runs out.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Both experiments use the same 0.10 g of magnesium. Think about what that means for the final volume.
+  - rung: 5
+    name: full_step
+    text:
+      en: B is faster because its acid is more concentrated, but the final volume of hydrogen is the same, because the same 0.10 g of magnesium reacts in each.
+  misconception_ids:
+  - mc.chm.o.reactions_rate_changes_amount
+  - mc.chm.o.reactions_catalyst_used_up
+solution:
+  steps:
+  - n: 1
+    latex: '\text{B: higher concentration, faster}'
+    reason: Rate
+  - n: 2
+    latex: '\text{same magnesium: same final volume}'
+    reason: Amount
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

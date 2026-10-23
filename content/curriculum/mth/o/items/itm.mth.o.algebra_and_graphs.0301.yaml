@@ -1,0 +1,112 @@
+id: itm.mth.o.algebra_and_graphs.0301
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.quadratic_features
+stem: The graph of $y = x^2 - x - 12$ crosses the x-axis twice.
+parts:
+- id: a
+  prompt: Find the positive x-intercept.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '-4'
+      correct: false
+      misconception_id: mc.mth.o.root_sign_from_factor
+      feedback: 'Set each bracket equal to zero and solve it: x + 3 = 0 gives x = −3.'
+    - id: B
+      text: '4'
+      correct: true
+    - id: C
+      text: '-12'
+      correct: false
+      misconception_id: mc.mth.o.turning_value_as_intercept
+      feedback: The y-intercept is where x = 0. The turning point is usually somewhere else, so substitute its x-value.
+    - id: D
+      text: '0.5'
+      correct: false
+      misconception_id: mc.mth.o.turning_point_sign
+      feedback: 'Complete the square: x² + bx = (x + b/2)² − (b/2)², so the turning point is at x = −b/2.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What is the value of y everywhere on the x-axis?
+  - rung: 2
+    name: concept
+    text:
+      en: Set y = 0 and solve the quadratic.
+  - rung: 3
+    name: first_step
+    text:
+      en: Factorise x² - x - 12.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Set each bracket equal to zero.
+  - rung: 5
+    name: full_step
+    text:
+      en: The positive intercept is x = 4.
+  misconception_ids:
+  - mc.mth.o.root_sign_from_factor
+  - mc.mth.o.turning_point_sign
+  - mc.mth.o.turning_value_as_intercept
+solution:
+  steps:
+  - n: 1
+    latex: x^2 - x - 12 = 0
+    reason: On the x-axis, y = 0
+  - n: 2
+    latex: x = -3 \text{ or } x = 4
+    reason: Factorise and solve
+    check_id: chk_build_mth_alg_0301_sol
+  - n: 3
+    latex: x = 4
+    reason: The positive one
+    check_id: chk_build_mth_alg_0301_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0301_ans:
+    args:
+      expression: '4'
+    tool: math_evaluate
+  chk_build_mth_alg_0301_sol:
+    args:
+      equations:
+      - x^2 + (-1)*x + (-12) = 0
+      unknowns:
+      - x
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

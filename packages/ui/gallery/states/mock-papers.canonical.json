@@ -1,0 +1,101 @@
+{
+  "id": "mock-papers.canonical",
+  "title": "Mock exam place",
+  "component": "MockPapers",
+  "note": "The Mock exam place (UXS-25): the student's mocks, then the papers on this computer by subject with kind, time, marks, questions, the calculator note and the time with extra time.",
+  "state": "canonical",
+  "payload": {
+    "view": {
+      "status": "ready",
+      "papers": [
+        {
+          "paper_id": "mck.mth.o.0006",
+          "subject": "mathematics",
+          "level": "O",
+          "title": "Mathematics section mock, set 1",
+          "paper_kind": "section_mock",
+          "duration_minutes": 30,
+          "total_marks": 24,
+          "questions": 24,
+          "calculator": false
+        },
+        {
+          "paper_id": "mck.phy.o.0001",
+          "subject": "physics",
+          "level": "O",
+          "title": "Physics mock, objective paper, set 1",
+          "paper_kind": "paper_1_objective",
+          "duration_minutes": 60,
+          "total_marks": 5,
+          "questions": 4,
+          "calculator": true
+        },
+        {
+          "paper_id": "mck.phy.o.0003",
+          "subject": "physics",
+          "level": "O",
+          "title": "Physics mock, structured paper, set 1",
+          "paper_kind": "paper_2_structured",
+          "duration_minutes": 120,
+          "total_marks": 60,
+          "questions": 12,
+          "calculator": true
+        }
+      ],
+      "sittings": [
+        {
+          "exam_id": "exm_01JABCDEFGHJKMNPQRSTVWXYZ2",
+          "paper_id": "mck.phy.o.0001",
+          "state": "marked",
+          "remaining_ms": 0,
+          "score": 31,
+          "max_score": 40
+        },
+        {
+          "exam_id": "exm_01JABCDEFGHJKMNPQRSTVWXYZ3",
+          "paper_id": "mck.mth.o.0006",
+          "state": "abandoned",
+          "remaining_ms": 900000,
+          "score": null,
+          "max_score": null
+        }
+      ]
+    },
+    "subjects": [
+      {
+        "subject": "mathematics",
+        "label": "Mathematics"
+      },
+      {
+        "subject": "physics",
+        "label": "Physics"
+      }
+    ],
+    "names": {
+      "topics": {
+        "cur.phy.o.motion_forces_and_energy": "Motion, forces and energy",
+        "cur.phy.o.waves": "Waves"
+      },
+      "kcs": {
+        "kc.phy.o.motion.distance_or_displacement": "Tell distance from displacement",
+        "kc.phy.o.motion.acceleration_from_change": "Find acceleration from a change in velocity",
+        "kc.phy.o.motion.average_speed": "Work out average speed"
+      }
+    },
+    "extraPercent": 25
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Choose a paper",
+    "Your mocks",
+    "31 out of 40",
+    "With your extra time: 75 minutes",
+    "No calculator"
+  ]
+}

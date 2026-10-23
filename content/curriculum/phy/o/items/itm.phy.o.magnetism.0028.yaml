@@ -1,0 +1,93 @@
+id: itm.phy.o.magnetism.0028
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.magnetism.magnetic_fields
+stem: A plotting compass is moved round a magnet to plot one field line.
+parts:
+- id: a
+  prompt: Which statement about plotting the field line is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Each new dot is marked where the needle's north end pointed
+      correct: true
+    - id: B
+      text: The line is plotted from the south pole towards the north pole
+      correct: false
+      misconception_id: mc.phy.o.field_lines_s_to_n
+      feedback: Outside a magnet the field points from the north pole round to the south pole, the way a small compass's north end points.
+    - id: C
+      text: The needle's north end always points at the magnet's north pole
+      correct: false
+      misconception_id: mc.phy.o.compass_points_at_like_pole
+      feedback: 'The compass needle is a small magnet: its north end is pushed away from a north pole and pulled towards a south pole.'
+    - id: D
+      text: The line may cross a line plotted earlier
+      correct: false
+      misconception_id: mc.phy.o.field_lines_can_cross
+      feedback: A compass at a point can only point one way. If two lines crossed, it would have to point two ways at once.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Picture a small plotting compass placed at that point near the magnet.
+  - rung: 2
+    name: concept
+    text:
+      en: Field lines run from north to south outside a magnet, never cross, and are closest where the field is strongest, at the poles.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Move the compass so its tail sits on the last dot, then mark where its north end points.
+  - rung: 5
+    name: full_step
+    text:
+      en: Each new dot is marked where the needle's north end pointed. Move the compass so its tail sits on the last dot, then mark where its north end points.
+  misconception_ids:
+  - mc.phy.o.compass_points_at_like_pole
+  - mc.phy.o.field_lines_can_cross
+  - mc.phy.o.field_lines_s_to_n
+solution:
+  steps:
+  - n: 1
+    latex: \text{Each new dot is marked where the needle's north end pointed}
+    reason: Use the rules for magnetic field lines
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

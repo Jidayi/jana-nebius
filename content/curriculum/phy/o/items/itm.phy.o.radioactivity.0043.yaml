@@ -1,0 +1,106 @@
+id: itm.phy.o.radioactivity.0043
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.radioactivity.half_life
+stem: A sample of polonium-210 has a half-life of 138 days. At the start the activity is 48 MBq.
+parts:
+- id: a
+  prompt: Find the activity after 276 days.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 24 MBq
+      correct: false
+      misconception_id: mc.phy.o.half_life_halved_once
+      feedback: Work out how many half-lives fit into the time first. Halve once for every one of them.
+    - id: B
+      text: 36 MBq
+      correct: false
+      misconception_id: mc.phy.o.decayed_for_remaining
+      feedback: 'Read the question again: the amount left is what halving gives; the amount decayed is the start minus that.'
+    - id: C
+      text: 6 MBq
+      correct: false
+      misconception_id: mc.phy.o.half_lives_counted_wrongly
+      feedback: 'Count the halvings, not the values: going from 80 to 40 to 20 is two half-lives, even though three numbers are written.'
+    - id: D
+      text: 12 MBq
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Half-life is the time for the amount of a radioactive isotope to halve.
+  - rung: 2
+    name: concept
+    text:
+      en: First find how many half-lives fit into the time.
+  - rung: 3
+    name: first_step
+    text:
+      en: Then halve the starting value once for each half-life.
+  - rung: 4
+    name: worked_step
+    text:
+      en: There are 2 half-lives, so halve 48 once for each of them.
+  - rung: 5
+    name: full_step
+    text:
+      en: The activity is 12 MBq.
+  misconception_ids:
+  - mc.phy.o.decayed_for_remaining
+  - mc.phy.o.half_life_halved_once
+  - mc.phy.o.half_lives_counted_wrongly
+solution:
+  steps:
+  - n: 1
+    latex: \frac{276}{138} = 2\ \text{half-lives}
+    reason: Time ÷ half-life
+    check_id: chk_build_phy_rad_0043_n
+  - n: 2
+    latex: \frac{48}{2^{2}} = 12\ \text{MBq}
+    reason: Halve once per half-life
+    check_id: chk_build_phy_rad_0043_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_rad_0043_ans:
+    args:
+      expression: 48/2^2
+    tool: math_evaluate
+  chk_build_phy_rad_0043_n:
+    args:
+      expression: 276/138
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

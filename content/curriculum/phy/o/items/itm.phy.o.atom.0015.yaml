@@ -1,0 +1,98 @@
+id: itm.phy.o.atom.0015
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.atom.atomic_structure
+stem: A nucleus of gold contains 79 protons and 118 neutrons.
+parts:
+- id: a
+  prompt: What is its nucleon number?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '118'
+      correct: false
+      misconception_id: mc.phy.o.nucleon_number_counts_neutrons_only
+      feedback: Protons and neutrons are both nucleons. The nucleon number counts them together.
+    - id: B
+      text: '79'
+      correct: false
+      misconception_id: mc.phy.o.nucleon_proton_numbers_swapped
+      feedback: The top number is the nucleon number (protons plus neutrons) and is always the bigger one; the bottom number is the proton number.
+    - id: C
+      text: '276'
+      correct: false
+      misconception_id: mc.phy.o.nucleon_number_counts_electrons
+      feedback: Nucleons are the particles in the nucleus. Electrons are outside it and are not counted.
+    - id: D
+      text: '197'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Nucleons are the particles found in the nucleus.
+  - rung: 2
+    name: concept
+    text:
+      en: Both protons and neutrons are nucleons; electrons are not.
+  - rung: 3
+    name: first_step
+    text:
+      en: Add the protons and the neutrons.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 79 + 118.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The nucleon number is 197: the nuclide is gold-197.'
+  misconception_ids:
+  - mc.phy.o.nucleon_number_counts_electrons
+  - mc.phy.o.nucleon_number_counts_neutrons_only
+  - mc.phy.o.nucleon_proton_numbers_swapped
+solution:
+  steps:
+  - n: 1
+    latex: A = Z + N = 79 + 118 = 197
+    reason: Nucleons are the protons and neutrons together
+    check_id: chk_build_phy_atm_0015_ans
+difficulty:
+  prior: -0.7
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_atm_0015_ans:
+    args:
+      expression: 79 + 118
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

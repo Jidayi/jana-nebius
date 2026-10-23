@@ -1,0 +1,119 @@
+# Colocated skill evals (SKL-21): one case per branch of the student-state table, on the pack's own practice items.
+# The student lines are synthetic and written for this repository.
+suite: skill.pedagogy-worked-example-fade
+version: 2026-10-13.1
+description: Worked example then fade, branch by branch. Support is removed after a reasoned right answer, a copied
+  answer is asked for its reason, a wrong step is pointed back to the example without the key, a method change gets a
+  question, and a stuck student gets the entry question before any rung.
+scenarios:
+- id: worked_fade_right_and_reasoned
+  title: A right displacement with its unit closes the faded problem
+  split: development
+  critical: true
+  stage: S2
+  requirements: [SKL-21, EVL-07]
+  tags: [skill_eval, branch_1]
+  synthetic: true
+  setup:
+    profile: {level: O, subjects: [physics], age_band: '13_15'}
+    mode: guided
+    question: {item_ref: 'phy.o:itm.phy.o.motion.0007'}
+    model: {hardware_class: mid, network: disabled}
+    seed: 11
+    repeats: 1
+  turns:
+  - student: 210 m
+    expect:
+    - board_step: {owner: student, status: correct}
+    - turn_status: complete
+- id: worked_fade_right_but_sloppy
+  title: A bare number is asked for what it means before moving on
+  split: development
+  critical: true
+  stage: S2
+  requirements: [SKL-21, EVL-07]
+  tags: [skill_eval, branch_2]
+  synthetic: true
+  setup:
+    profile: {level: O, subjects: [physics], age_band: '13_15'}
+    mode: guided
+    question: {item_ref: 'phy.o:itm.phy.o.motion.0008'}
+    model: {hardware_class: mid, network: disabled}
+    seed: 12
+    repeats: 1
+  turns:
+  - student: '400'
+    expect:
+    - board_step: {owner: student}
+    - turn_status: complete
+    - reply: {ends_with_question: true}
+- id: worked_fade_wrong
+  title: Adding the legs for a displacement is pointed back to the example's step
+  split: development
+  critical: true
+  stage: S2
+  requirements: [SKL-21, EVL-07]
+  tags: [skill_eval, branch_3]
+  synthetic: true
+  setup:
+    profile: {level: O, subjects: [physics], age_band: '13_15'}
+    mode: guided
+    question: {item_ref: 'phy.o:itm.phy.o.motion.0010'}
+    model: {hardware_class: mid, network: disabled}
+    seed: 13
+    repeats: 1
+  turns:
+  - student: 410 m
+    expect:
+    - board_step: {owner: student, status: incorrect}
+    - no_answer_leak: true
+    - turn_status: complete
+- id: worked_fade_guessing
+  title: Changing method between answers gets a question, never the key
+  split: development
+  critical: true
+  stage: S2
+  requirements: [SKL-21, EVL-07]
+  tags: [skill_eval, branch_4]
+  synthetic: true
+  setup:
+    profile: {level: O, subjects: [physics], age_band: '13_15'}
+    mode: guided
+    question: {item_ref: 'phy.o:itm.phy.o.motion.0011'}
+    model: {hardware_class: mid, network: disabled}
+    seed: 14
+    repeats: 1
+  turns:
+  - student: 1120 m
+    expect:
+    - board_step: {owner: student, status: incorrect}
+    - no_answer_leak: true
+  - student: 500 m
+    expect:
+    - board_step: {owner: student, status: incorrect}
+    - no_answer_leak: true
+    - reply: {ends_with_question: true}
+- id: worked_fade_stuck
+  title: A student who cannot start gets the entry question, then the first rung
+  split: development
+  critical: true
+  stage: S2
+  requirements: [SKL-21, EVL-07]
+  tags: [skill_eval, branch_5]
+  synthetic: true
+  setup:
+    profile: {level: O, subjects: [physics], age_band: '13_15'}
+    mode: guided
+    question: {item_ref: 'phy.o:itm.phy.o.motion.0013'}
+    model: {hardware_class: mid, network: disabled}
+    seed: 15
+    repeats: 1
+  turns:
+  - action: {kind: stuck}
+    expect:
+    - template: tpl.entry_question
+    - no_answer_leak: true
+  - action: {kind: stuck}
+    expect:
+    - hint_rung: {eq: 1}
+    - no_answer_leak: true

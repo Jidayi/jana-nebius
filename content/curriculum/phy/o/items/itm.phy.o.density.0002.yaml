@@ -1,0 +1,92 @@
+id: itm.phy.o.density.0002
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.density_calculation
+stem: A steel beam has a volume of 0.02 m³ and a mass of 156 kg.
+parts:
+- id: a
+  prompt: Calculate the density in kg/m³.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '7800'
+    unit: kg/m^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_den_0002_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Density is the mass of each cubic metre.
+  - rung: 2
+    name: concept
+    text:
+      en: Density = mass ÷ volume.
+  - rung: 3
+    name: first_step
+    text:
+      en: Both quantities are already in kilograms and cubic metres.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 156 ÷ 0.02.
+  - rung: 5
+    name: full_step
+    text:
+      en: The density is 7800 kg/m³.
+  misconception_ids:
+  - mc.phy.o.density_volume_over_mass
+  - mc.phy.o.density_mass_times_volume
+solution:
+  steps:
+  - n: 1
+    latex: \rho = \frac{m}{V} = \frac{156}{0.02} = 7800\ \text{kg/m}^3
+    reason: Density = mass ÷ volume
+    check_id: chk_build_phy_den_0002_ans
+difficulty:
+  prior: -0.7
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  V: '0.02'
+  m: '156'
+checks:
+  chk_build_phy_den_0002_ans:
+    args:
+      expression: 156/0.02
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

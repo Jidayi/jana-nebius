@@ -1,0 +1,37 @@
+id: mc.phy.o.echo_not_halved
+kc_ids:
+- kc.phy.o.sound.speed_and_echoes
+- kc.phy.o.sound.ultrasound
+student_name: Forgetting the journey back
+description: Uses the there-and-back time of an echo as if it were the one-way time, so the distance comes out twice too big or the speed half too small.
+signatures:
+- kind: answer_transform
+  expression: v*t
+fix:
+  strategy: diagram
+  text:
+    en: 'Draw the path: the sound goes to the reflector and comes back. The echo time covers twice the distance to the reflector.'
+probe_item_ids:
+- itm.phy.o.sound.0026
+- itm.phy.o.sound.0027
+- itm.phy.o.sound.0029
+- itm.phy.o.sound.0030
+- itm.phy.o.sound.0056
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

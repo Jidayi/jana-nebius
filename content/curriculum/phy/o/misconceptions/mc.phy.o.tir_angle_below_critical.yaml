@@ -1,0 +1,39 @@
+id: mc.phy.o.tir_angle_below_critical
+kc_ids:
+- kc.phy.o.light.total_internal_reflection
+student_name: Total internal reflection below the critical angle
+description: Thinks total internal reflection happens when the angle of incidence inside the glass is smaller than the critical angle, and refraction when it is larger.
+signatures:
+- kind: answer_transform
+  expression: i < C
+fix:
+  strategy: diagram
+  text:
+    en: As the angle inside the glass grows, the ray in air bends closer to the surface. At the critical angle it runs along the surface; any bigger and no light gets out.
+probe_item_ids:
+- itm.phy.o.light.0057
+- itm.phy.o.light.0059
+- itm.phy.o.light.0047
+- itm.phy.o.light.0049
+severity: medium
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

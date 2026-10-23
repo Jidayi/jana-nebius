@@ -1,0 +1,99 @@
+id: itm.phy.o.thermal_properties.0019
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.thermal_properties.specific_heat_capacity
+stem: A 2.5 kg block of iron is heated from 20 °C to 50 °C. The specific heat capacity of iron is 450 J/(kg °C).
+parts:
+- id: a
+  prompt: How much energy is needed? Give your answer in kJ.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '33.75'
+    unit: kJ
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_thp_0019_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Use E = mcΔθ, with the mass in kilograms and Δθ the temperature rise.
+  - rung: 2
+    name: concept
+    text:
+      en: Specific heat capacity is the energy needed to warm 1 kg by 1 °C.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the temperature rise from 20 °C to 50 °C.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 2.5 × 450 × 30 to get joules, then change to kilojoules.
+  - rung: 5
+    name: full_step
+    text:
+      en: E = 33.75 kJ.
+  misconception_ids:
+  - mc.phy.o.shc_final_temperature_used
+  - mc.phy.o.kelvin_change_offset_added
+solution:
+  steps:
+  - n: 1
+    latex: \Delta\theta = 50 - 20 = 30\ ^\circ\text{C}
+    reason: The temperature rise
+    check_id: chk_build_phy_thp_0019_dt
+  - n: 2
+    latex: E = mc\Delta\theta = 2.5 \times 450 \times 30 = 33750\ \text{J}
+    reason: Energy needed
+    check_id: chk_build_phy_thp_0019_e
+  - n: 3
+    latex: E = 33.75\ \text{kJ}
+    reason: There are a thousand joules in a kilojoule
+    check_id: chk_build_phy_thp_0019_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_thp_0019_ans:
+    args:
+      expression: 2.5*450*(50 - 20)/1000
+    tool: math_evaluate
+  chk_build_phy_thp_0019_dt:
+    args:
+      expression: 50 - 20
+    tool: math_evaluate
+  chk_build_phy_thp_0019_e:
+    args:
+      expression: 2.5*450*(50 - 20)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

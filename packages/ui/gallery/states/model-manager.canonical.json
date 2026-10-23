@@ -1,0 +1,53 @@
+{
+  "id": "model-manager.canonical",
+  "title": "Tutor models",
+  "component": "ModelManager",
+  "state": "canonical",
+  "note": "UXS-11 canonical: one installed pack, one recommended pack to download.",
+  "payload": {
+    "installed": [
+      {
+        "model_pack_id": "mp.synth.8b.q4_k_m.low",
+        "model_id": "mp.synth.8b.q4_k_m.low",
+        "state": "installed",
+        "error_code": null,
+        "hardware_class": "low",
+        "size_bytes": 5476083302,
+        "licence": "Apache-2.0",
+        "attribution": "Synthetic model, made up for the gallery."
+      }
+    ],
+    "available": [
+      {
+        "model_pack_id": "mp.synth.14b.q4_k_m.mid",
+        "hardware_class": "mid",
+        "size_bytes": 10093173145,
+        "licence": "Apache-2.0"
+      }
+    ],
+    "assignment": {
+      "fast": "mp.synth.8b.q4_k_m.low",
+      "strong": "mp.synth.8b.q4_k_m.low"
+    },
+    "recommended": {
+      "fast": "mp.synth.14b.q4_k_m.mid",
+      "strong": "mp.synth.14b.q4_k_m.mid",
+      "reason_key": "hardware_class.mid.measured"
+    }
+  },
+  "payloadContract": "https://jana.dev/contracts/api/commands#/$defs/ModelCatalogue",
+  "context": {
+    "theme": "light",
+    "connectivity": "online-idle"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Tutor models",
+    "Ready to use",
+    "Recommended for this computer",
+    "Download",
+    "Add from a USB stick or folder"
+  ]
+}

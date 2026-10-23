@@ -1,0 +1,113 @@
+id: itm.mth.o.statistics.0068
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.averages_frequency
+stem: 'A frequency table shows the goals scored in a season: 0 goals: 3 matches, 2 goals: 9 matches, 3 goals: 5 matches, 4 goals: 10 matches, 5 goals: 11 matches.'
+parts:
+- id: a
+  prompt: Find the modal number of goals.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '5'
+      correct: true
+    - id: B
+      text: '11'
+      correct: false
+      misconception_id: mc.mth.o.mode_as_frequency
+      feedback: The mode is the value that appears most often, not the number of times it appears.
+    - id: C
+      text: '4'
+      correct: false
+      misconception_id: mc.mth.o.median_not_ordered
+      feedback: Write the data from smallest to largest, then find the middle.
+    - id: D
+      text: '3'
+      correct: false
+      misconception_id: mc.mth.o.frequency_ignored
+      feedback: A value that occurs 10 times counts 10 times in the total.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The mode is the most common value.
+  - rung: 2
+    name: concept
+    text:
+      en: Look for the highest frequency.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find which number of goals has the most matches.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Give the number of goals, not the frequency.
+  - rung: 5
+    name: full_step
+    text:
+      en: The mode is 5 goals.
+  misconception_ids:
+  - mc.mth.o.frequency_ignored
+  - mc.mth.o.median_not_ordered
+  - mc.mth.o.mode_as_frequency
+solution:
+  steps:
+  - n: 1
+    latex: \text{mode} = 5
+    reason: The value with the highest frequency
+    check_id: chk_build_mth_sta_0068_sc
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0068_ans:
+    args:
+      expression: '5'
+    tool: math_evaluate
+  chk_build_mth_sta_0068_sc:
+    args:
+      frequencies:
+      - frequency: 3
+        value: 0
+      - frequency: 9
+        value: 2
+      - frequency: 5
+        value: 3
+      - frequency: 10
+        value: 4
+      - frequency: 11
+        value: 5
+      quartile_method: exclusive
+    tool: stats_compute
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

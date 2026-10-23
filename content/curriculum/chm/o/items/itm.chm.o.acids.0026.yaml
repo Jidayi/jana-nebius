@@ -1,0 +1,94 @@
+id: itm.chm.o.acids.0026
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.strong_and_weak
+stem: Two flasks hold equal volumes of hydrochloric acid and ethanoic acid of the same concentration. The same mass of magnesium ribbon (an excess) is added to each.
+parts:
+- id: a
+  prompt: Which statement is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Hydrochloric acid fizzes faster, but both give the same volume of hydrogen in the end
+      correct: true
+    - id: B
+      text: Both fizz at the same rate, because their concentrations are equal
+      correct: false
+      misconception_id: mc.chm.o.acids_strong_means_concentrated
+      feedback: Strength is about how fully an acid ionises in water. Concentration is about how much acid is in each dm³. A dilute solution of hydrochloric acid is still a strong acid; a concentrated solution of ethanoic acid is still a weak acid.
+    - id: C
+      text: Ethanoic acid gives no hydrogen, because it has no ions
+      correct: false
+      misconception_id: mc.chm.o.acids_weak_not_ionised
+      feedback: 'A weak acid is partly ionised: most molecules stay whole, but some give H⁺ ions. That is why ethanoic acid still turns indicators red or orange, conducts a little and reacts slowly with metals.'
+    - id: D
+      text: Hydrochloric acid fizzes faster and gives more hydrogen in the end
+      correct: false
+      misconception_id: mc.chm.o.acids_weak_gives_less_gas
+      feedback: A weak acid reacts more slowly, but as H⁺ ions are used up more molecules ionise. In the end the same amount of acid gives the same amount of gas; it just takes longer.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The acids have the same concentration and volume. What is different about them?
+  - rung: 2
+    name: concept
+    text:
+      en: Hydrochloric acid is strong and ethanoic acid is weak, so they hold different numbers of H⁺ ions at any moment.
+  - rung: 3
+    name: first_step
+    text:
+      en: More H⁺ ions per dm³ means more collisions with the magnesium each second.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Think about what happens in ethanoic acid as its H⁺ ions are used up: more molecules ionise.'
+  - rung: 5
+    name: full_step
+    text:
+      en: Hydrochloric acid reacts faster, but both flasks hold the same amount of acid, so both give the same volume of hydrogen in the end.
+  misconception_ids:
+  - mc.chm.o.acids_weak_gives_less_gas
+  - mc.chm.o.acids_weak_not_ionised
+  - mc.chm.o.acids_strong_means_concentrated
+solution:
+  steps:
+  - n: 1
+    latex: \text{same amount of acid} \Rightarrow \text{same amount of H}_2
+    reason: Total gas depends on amount
+  - n: 2
+    latex: \text{more H}^{+}\ \text{in HCl} \Rightarrow \text{faster}
+    reason: Rate depends on H⁺ concentration
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

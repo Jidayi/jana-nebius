@@ -1,0 +1,106 @@
+id: itm.mth.o.number.0351
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.simple_interest
+stem: $800 is invested at 3% per year simple interest for 5 years.
+parts:
+- id: a
+  prompt: Find the total amount at the end.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '927.42'
+      correct: false
+      misconception_id: mc.mth.o.simple_as_compound
+      feedback: Simple interest is worked out on the original amount every year, so it is the same each year.
+    - id: B
+      text: '120'
+      correct: false
+      misconception_id: mc.mth.o.interest_not_added
+      feedback: The total amount is the money you started with plus the interest.
+    - id: C
+      text: '12800'
+      correct: false
+      misconception_id: mc.mth.o.percent_not_divided
+      feedback: 'A percentage rate must be divided by 100: 4% is 0.04.'
+    - id: D
+      text: '920'
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Simple interest is worked out on the original amount every year.
+  - rung: 2
+    name: concept
+    text:
+      en: Interest = amount × rate × years ÷ 100.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 800 × 3 × 5 ÷ 100.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The interest is $120. Now add it to the amount invested.
+  - rung: 5
+    name: full_step
+    text:
+      en: The total is $920.
+  misconception_ids:
+  - mc.mth.o.interest_not_added
+  - mc.mth.o.percent_not_divided
+  - mc.mth.o.simple_as_compound
+solution:
+  steps:
+  - n: 1
+    latex: I = \frac{800 \times 3 \times 5}{100} = 120
+    reason: Simple interest is the same each year
+    check_id: chk_build_mth_num_0351_si
+  - n: 2
+    latex: 800 + 120 = 920
+    reason: Add the interest to the amount invested
+    check_id: chk_build_mth_num_0351_ans
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0351_ans:
+    args:
+      expression: 800 + 800*3*5/100
+    tool: math_evaluate
+  chk_build_mth_num_0351_si:
+    args:
+      expression: 800*3*5/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

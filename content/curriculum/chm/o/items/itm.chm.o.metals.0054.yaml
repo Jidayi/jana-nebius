@@ -1,0 +1,81 @@
+id: itm.chm.o.metals.0054
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.extraction
+stem: A company wants to obtain gold.
+parts:
+- id: a
+  prompt: Which method is used to obtain gold?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: It is found as the metal, so it is simply separated from rock
+      correct: true
+    - id: B
+      text: Heating its oxide with carbon
+      correct: false
+    - id: C
+      text: Electrolysis of the molten chloride
+      correct: false
+    - id: D
+      text: Heating its oxide with carbon monoxide in a blast furnace
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Find gold in the reactivity series.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Above carbon: electrolysis. Below carbon: reduction with carbon. Very unreactive: found as the metal.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Is gold above carbon, below carbon, or right at the bottom?
+  - rung: 4
+    name: worked_step
+    text:
+      en: Gold is at the very bottom of the series.
+  - rung: 5
+    name: full_step
+    text:
+      en: It is found as the metal, so it is simply separated from rock, because it hardly forms compounds at all.
+solution:
+  steps:
+  - n: 1
+    latex: '\text{gold: very unreactive}'
+    reason: Position decides method
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

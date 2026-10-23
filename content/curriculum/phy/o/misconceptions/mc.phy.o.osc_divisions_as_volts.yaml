@@ -1,0 +1,36 @@
+id: mc.phy.o.osc_divisions_as_volts
+kc_ids:
+- kc.phy.o.oscilloscope.y_gain
+student_name: Divisions read as volts
+description: Gives the number of divisions as the voltage, leaving out the Y-gain setting.
+signatures:
+- kind: answer_transform
+  expression: h
+fix:
+  strategy: rule_restatement
+  text:
+    en: Each division stands for the Y-gain voltage. Multiply the number of divisions by the volts per division.
+probe_item_ids:
+- itm.phy.o.oscilloscope.0027
+- itm.phy.o.oscilloscope.0032
+- itm.phy.o.oscilloscope.0016
+- itm.phy.o.oscilloscope.0017
+- itm.phy.o.oscilloscope.0020
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

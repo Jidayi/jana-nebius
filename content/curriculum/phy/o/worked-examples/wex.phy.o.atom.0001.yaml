@@ -1,0 +1,44 @@
+id: wex.phy.o.atom.0001
+kc_ids:
+- kc.phy.o.atom.atomic_structure
+problem: An atom of copper-63 has proton number 29. How many neutrons are in the nucleus?
+steps:
+- n: 1
+  latex: '{}^{A}_{Z}\text{X}:\ A = \text{nucleon number},\ Z = \text{proton number}'
+  reason: In nuclide notation the nucleon number is on top and the proton number below
+- n: 2
+  latex: N = A - Z = 63 - 29 = 34
+  reason: The nucleons that are not protons are neutrons
+  check_id: chk_build_phy_atm_w0001_ans
+final_answer:
+  latex: '34'
+  check_id: chk_build_phy_atm_w0001_ans
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_atm_w0001_ans:
+    args:
+      expression: 63 - 29
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

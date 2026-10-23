@@ -1,0 +1,36 @@
+id: wex.phy.o.oscilloscope.0001
+kc_ids:
+- kc.phy.o.oscilloscope.time_base
+problem: An oscilloscope's time-base is set to 10 ms/div. On the trace, the distance from one crest to the next is 6 divisions. Find the period of the signal in milliseconds.
+steps:
+- n: 1
+  latex: T = 6 \times 10 = 60\ \text{ms}
+  reason: Divisions for one wave times the time-base
+  check_id: chk_build_phy_osc_w0001_ans
+final_answer:
+  latex: 60\ \text{ms}
+  check_id: chk_build_phy_osc_w0001_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_osc_w0001_ans:
+    args:
+      expression: 6*10
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

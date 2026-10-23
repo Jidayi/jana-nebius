@@ -1,0 +1,35 @@
+id: mc.chm.o.energetics_only_broken
+kc_ids:
+- kc.chm.o.energetics.bond_energies
+student_name: Only the bonds broken
+description: Gives the total energy of the bonds broken as ΔH, ignoring the energy given out by bonds formed.
+signatures:
+- kind: answer_transform
+  expression: broken
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Both halves matter: energy goes in to break bonds and comes out when new bonds form. ΔH is the difference.'
+probe_item_ids:
+- itm.chm.o.energetics.0025
+- itm.chm.o.energetics.0026
+- itm.chm.o.energetics.0027
+- itm.chm.o.energetics.0028
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

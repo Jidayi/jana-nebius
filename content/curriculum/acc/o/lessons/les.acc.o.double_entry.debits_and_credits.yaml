@@ -1,0 +1,74 @@
+id: les.acc.o.double_entry.debits_and_credits
+node_id: cur.acc.o.double_entry
+kc_ids:
+- kc.acc.o.double_entry.debit_credit_rules
+- kc.acc.o.double_entry.record_cash_transactions
+- kc.acc.o.double_entry.record_credit_transactions
+- kc.acc.o.double_entry.record_owner_transactions
+- kc.acc.o.double_entry.balance_account
+title: Debits, credits and balancing the ledger
+estimated_minutes: 15
+blocks:
+- type: step
+  text:
+    en: Every account has a left side and a right side. Try to guess which kind of change goes on the left before you learn the rule.
+  item_id: itm.acc.o.double_entry.0002
+  action: try_first
+  why:
+    en: More equipment means an asset has grown, and assets grow on the debit side. A payment out of the bank lowers an asset, so it is a credit.
+  names:
+    en: The left side is the debit and the right side is the credit. Assets, expenses and drawings increase on the debit side; liabilities, capital and income increase on the credit side.
+- type: step
+  text:
+    en: Every transaction changes two accounts by the same amount. The account that receives value is debited.
+  item_id: itm.acc.o.double_entry.0012
+  action: choose
+  why:
+    en: Cash comes in, so Cash gains value and is debited. Sales is the income that gave it, so Sales is credited.
+- type: step
+  text:
+    en: 'Predict before you look at the choices: when the owner takes money out for personal use, is that a cost of running the business?'
+  item_id: itm.acc.o.double_entry.0034
+  action: predict
+  why:
+    en: Money the owner takes out is drawings, not an expense, so Drawings is debited. Cash gives the value, so Cash is credited.
+- type: step
+  text:
+    en: When goods are bought on credit, no money moves yet. The supplier's own account shows what is owed.
+  item_id: itm.acc.o.double_entry.0023
+  action: choose
+  why:
+    en: Goods bought to sell go to Purchases, which is debited. The supplier gave the value and is now owed, so the supplier's account is credited.
+- type: step
+  text:
+    en: At the end of a period each account is balanced. Add up both sides and find the gap between them.
+  item_id: itm.acc.o.double_entry.0046
+  action: calculate
+  why:
+    en: The balance carried down is the larger side less the smaller side. Money in is on the debit side, so the larger side here is the debit.
+- type: check
+  item_ids:
+  - itm.acc.o.double_entry.0024
+  - itm.acc.o.double_entry.0035
+  - itm.acc.o.double_entry.0045
+version: 0.2.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

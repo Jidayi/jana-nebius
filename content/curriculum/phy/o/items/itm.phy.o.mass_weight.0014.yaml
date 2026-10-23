@@ -1,0 +1,112 @@
+id: itm.phy.o.mass_weight.0014
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.mass_weight.weight_from_mass
+stem: Sipho has a weight of 686 N on Earth. Take g = 9.8 N/kg.
+parts:
+- id: a
+  prompt: Find Sipho's weight on Venus, where g = 8.9 N/kg.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 686 N
+      correct: false
+      misconception_id: mc.phy.o.weight_same_on_every_planet
+      feedback: Weight is the pull of a planet on the object, weight = mass × g. A world with a smaller g pulls less on the same mass.
+    - id: B
+      text: 70 N
+      correct: false
+      misconception_id: mc.phy.o.weight_given_as_mass_number
+      feedback: 'A bag of sugar pulls on your hand much less on the Moon than on Earth, yet it holds the same sugar. Weight is a force: multiply the mass by g to get it, and divide a weight by g to get the mass.'
+    - id: C
+      text: 623 N
+      correct: true
+    - id: D
+      text: 755 N
+      correct: false
+      misconception_id: mc.phy.o.planet_g_ratio_inverted
+      feedback: Weight is proportional to g. Moving to a place with a weaker field must give a smaller weight, so check that your answer moves the right way.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The mass is the same everywhere; the weight is not.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the mass from the Earth weight, then use the g for the new place.
+  - rung: 3
+    name: first_step
+    text:
+      en: Mass = 686 ÷ 9.8.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The mass is 70 kg; multiply it by 8.9.
+  - rung: 5
+    name: full_step
+    text:
+      en: Sipho's weight on Venus is 623 N.
+  misconception_ids:
+  - mc.phy.o.planet_g_ratio_inverted
+  - mc.phy.o.weight_given_as_mass_number
+  - mc.phy.o.weight_same_on_every_planet
+solution:
+  steps:
+  - n: 1
+    latex: m = \frac{686}{9.8} = 70\ \text{kg}
+    reason: Find the mass from the Earth weight
+    check_id: chk_build_phy_mwt_0014_m
+  - n: 2
+    latex: W = 70 \times 8.9 = 623\ \text{N}
+    reason: The mass is the same on Venus
+    check_id: chk_build_phy_mwt_0014_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mwt_0014_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 686/g*8.9
+    tool: math_evaluate
+  chk_build_phy_mwt_0014_m:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 686/g
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

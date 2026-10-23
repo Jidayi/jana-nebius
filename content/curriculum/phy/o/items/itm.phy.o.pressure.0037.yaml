@@ -1,0 +1,93 @@
+id: itm.phy.o.pressure.0037
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.gas_and_atmospheric_pressure
+stem: A barometer filled with water instead of mercury would need a tube more than 10 m tall.
+parts:
+- id: a
+  prompt: Why is mercury used?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Water would give a shorter column than mercury
+      correct: false
+      misconception_id: mc.phy.o.barometer_liquid_density_swapped
+      feedback: 'Use the density of the liquid that is actually in the column: about 13 600 kg/m³ for mercury and 1000 kg/m³ for water.'
+    - id: B
+      text: Mercury is far denser, so a much shorter column balances the air pressure
+      correct: true
+    - id: C
+      text: Every liquid gives the same column height, so the choice does not matter
+      correct: false
+      misconception_id: mc.phy.o.liquid_density_ignored
+      feedback: 'At the same depth a denser liquid has more mass above each square metre, so it presses harder: Δp = ρgΔh. Mercury is far denser than water, so a far shorter column of it balances the air.'
+    - id: D
+      text: The space above mercury holds air, which helps support it
+      correct: false
+      misconception_id: mc.phy.o.barometer_space_holds_air
+      feedback: The tube was filled with mercury and turned upside down, so no air could get in at the top. The space left is almost empty, which is why the air outside can hold the column up.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A barometer and a manometer both balance a pressure against a column of liquid.
+  - rung: 2
+    name: concept
+    text:
+      en: The air pressure must equal ρgh for the column.
+  - rung: 3
+    name: first_step
+    text:
+      en: Only the vertical height of a column and the liquid's density matter.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that change the wrong quantity.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Mercury is far denser, so a much shorter column balances the air pressure.'
+  misconception_ids:
+  - mc.phy.o.barometer_liquid_density_swapped
+  - mc.phy.o.barometer_space_holds_air
+  - mc.phy.o.liquid_density_ignored
+solution:
+  steps:
+  - n: 1
+    latex: \text{Mercury is far denser, so a much shorter column balances the air pressure}
+    reason: Balance the pressure against a column of liquid
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

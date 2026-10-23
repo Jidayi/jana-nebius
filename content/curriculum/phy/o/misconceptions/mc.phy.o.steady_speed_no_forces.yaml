@@ -1,0 +1,43 @@
+id: mc.phy.o.steady_speed_no_forces
+kc_ids:
+- kc.phy.o.forces.resultant_force
+- kc.phy.o.forces.friction_and_terminal_velocity
+student_name: No forces at a steady speed
+description: Thinks an object moving at a steady speed in a straight line has no forces on it at all, rather than forces that balance.
+signatures:
+- kind: answer_transform
+  expression: F = 0
+fix:
+  strategy: counterexample
+  text:
+    en: A car cruising at a steady speed still has friction and air resistance on it; the engine's force just matches them. Steady velocity means the forces balance, not that there are none.
+probe_item_ids:
+- itm.phy.o.forces.0012
+- itm.phy.o.forces.0015
+- itm.phy.o.forces.0046
+- itm.phy.o.forces.0002
+- itm.phy.o.forces.0003
+severity: medium
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,93 @@
+id: itm.phy.o.measurement.0021
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.measurement.scalars_and_vectors
+stem: A pump lifts water, transferring energy to the water's gravitational store.
+parts:
+- id: a
+  prompt: Why is the energy transferred a scalar?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It is a vector because it moves upwards with the water
+      correct: false
+      misconception_id: mc.phy.o.energy_as_vector
+      feedback: 'Energy is a scalar: an amount with no direction. Being moved from one store to another does not give it a direction.'
+    - id: B
+      text: It has a size but no direction
+      correct: true
+    - id: C
+      text: It is a vector because it is measured with a meter
+      correct: false
+      misconception_id: mc.phy.o.speed_as_vector
+      feedback: A car going round a bend at a steady speed has the same speed but a changing velocity. Speed is the size only; velocity adds the direction.
+    - id: D
+      text: It is a scalar because all large quantities are scalars
+      correct: false
+      misconception_id: mc.phy.o.vector_as_scalar
+      feedback: 'Walking forward and then the same distance back leaves you where you started: the displacement is zero even though the distance is not. Vectors need a direction.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Ask whether the quantity needs a direction to describe it fully.
+  - rung: 2
+    name: concept
+    text:
+      en: A vector has a size and a direction; a scalar has a size only.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Test each option in turn: does it make sense to say which way it points?'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that do not fit what the question asks for.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It has a size but no direction.'
+  misconception_ids:
+  - mc.phy.o.energy_as_vector
+  - mc.phy.o.speed_as_vector
+  - mc.phy.o.vector_as_scalar
+solution:
+  steps:
+  - n: 1
+    latex: \text{It has a size but no direction}
+    reason: Check whether each quantity needs a direction
+difficulty:
+  prior: -1.0
+  band: core
+estimated_seconds: 35
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

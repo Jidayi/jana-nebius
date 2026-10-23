@@ -1,0 +1,51 @@
+# JRN-08: the journey as an executable script (JRN-02). Steps and failure branches follow the
+# specification's journey (checked by jrn02_journey_suite_complete); requirement ids only, no wording.
+journey: JRN-08
+title: A timed mock and its review
+persona: P4
+stage: S2
+steps:
+- n: 1
+  requirements:
+  - ASM-15
+  - ASM-16
+  - AGT-24
+  runs_on: harness
+- n: 2
+  requirements:
+  - UXS-25
+  - ASM-16
+  runs_on: harness
+- n: 3
+  requirements:
+  - ASM-17
+  - ASM-03
+  runs_on: harness
+- n: 4
+  requirements:
+  - UXS-26
+  - ASM-20
+  runs_on: harness
+- n: 5
+  requirements:
+  - AGT-24
+  - AGT-19
+  - PED-09
+  runs_on: harness
+- n: 6
+  requirements:
+  - ASM-20
+  - LRN-28
+  runs_on: harness
+branches:
+- id: F1
+  requirements:
+  - ASM-16
+  - ARC-25
+- id: F2
+  requirements:
+  - AGT-24
+  - ASM-18
+- id: F3
+  requirements:
+  - ASM-19

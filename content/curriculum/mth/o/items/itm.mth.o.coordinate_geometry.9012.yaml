@@ -1,0 +1,85 @@
+id: itm.mth.o.coordinate_geometry.9012
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.coordinate_geometry.parallel_lines
+stem: The line 2y - 6x = 8 is parallel to y = kx - 5.
+parts:
+- id: a
+  prompt: Find k.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '3'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9012
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Parallel non-vertical lines have equal gradients.
+  - rung: 2
+    name: concept
+    text:
+      en: Read the gradient only after making y the subject.
+  - rung: 3
+    name: first_step
+    text:
+      en: Divide the first equation by the coefficient of y and compare the coefficients of x.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The constant term changes the intercept, but does not change the parallel gradient.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 3.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{6}{2}
+    reason: Divide the first equation by the coefficient of y and compare the coefficients of x.
+    check_id: chk_build_mastery_supplement_mth_9012
+  - n: 2
+    latex: '3'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9012
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9012:
+    args:
+      angle_unit: degrees
+      expression: 6/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

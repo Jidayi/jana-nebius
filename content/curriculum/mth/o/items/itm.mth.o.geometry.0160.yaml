@@ -1,0 +1,83 @@
+id: itm.mth.o.geometry.0160
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.polygon_angles
+stem: Each exterior angle of a regular polygon is 15°.
+parts:
+- id: a
+  prompt: How many sides does the polygon have?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '24'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_geo_0160_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: All the exterior angles of a polygon add up to 360°.
+  - rung: 2
+    name: concept
+    text:
+      en: In a regular polygon they are all equal, so the number of sides is 360 divided by one of them.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 360 ÷ 15.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Check: the answer must be a whole number.'
+  - rung: 5
+    name: full_step
+    text:
+      en: The polygon has 24 sides.
+  misconception_ids:
+  - mc.mth.o.polygon_sum_n_180
+  - mc.mth.o.exterior_for_interior
+solution:
+  steps:
+  - n: 1
+    latex: n = \frac{360}{15} = 24
+    reason: The exterior angles add to 360°
+    check_id: chk_build_mth_geo_0160_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0160_ans:
+    args:
+      expression: 360/15
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

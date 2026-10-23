@@ -1,0 +1,109 @@
+id: itm.mth.o.geometry.0108
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.symmetry
+stem: Think about a regular nonagon.
+parts:
+- id: a
+  prompt: What is the order of rotational symmetry?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '9'
+      correct: true
+    - id: B
+      text: '4.5'
+      correct: false
+      misconception_id: mc.mth.o.regular_symmetry_half
+      feedback: 'A regular polygon with n sides has n lines of symmetry: through vertices and through the middles of sides.'
+    - id: C
+      text: '18'
+      correct: false
+      misconception_id: mc.mth.o.symmetry_lines_double_counted
+      feedback: A line of symmetry passes right across the shape; count each line once.
+    - id: D
+      text: '0'
+      correct: false
+      misconception_id: mc.mth.o.rotation_order_zero
+      feedback: Every shape fits onto itself once in a full turn, so the lowest order is 1.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about folding the shape, or turning it about its centre.
+  - rung: 2
+    name: concept
+    text:
+      en: A regular polygon looks the same from every vertex.
+  - rung: 3
+    name: first_step
+    text:
+      en: Count how many times it fits onto itself in one full turn.
+  - rung: 4
+    name: worked_step
+    text:
+      en: It fits once for each vertex it can be turned to.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 9.
+  misconception_ids:
+  - mc.mth.o.regular_symmetry_half
+  - mc.mth.o.rotation_order_zero
+  - mc.mth.o.symmetry_lines_double_counted
+solution:
+  steps:
+  - n: 1
+    latex: \text{a regular polygon with } 9 \text{ sides}
+    reason: Every side and angle is the same
+    check_id: chk_build_mth_geo_0108_n
+  - n: 2
+    latex: '9'
+    reason: One line (or position) for each side
+    check_id: chk_build_mth_geo_0108_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0108_ans:
+    args:
+      expression: '9'
+    tool: math_evaluate
+  chk_build_mth_geo_0108_n:
+    args:
+      equations:
+      - p = 9
+      unknowns:
+      - p
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,51 @@
+# A long guided session on uniform acceleration (EVL-08, MEM-23). Synthetic; no real student data (EVL-24).
+# The dialogue is played `rounds` times ({n} is the round number) so the transcript passes the compaction threshold;
+# its numbers are distractors that live only in the dropped middle. Questions ask about the working state the
+# compaction record must keep: checked values, the student's errors and the current step.
+id: car_acceleration
+synthetic: true
+persona: p_o_physics
+subject: physics
+session_date: "2026-10-09"
+problem:
+  id: prb_mem_car
+  statement: "A car speeds up from 4 m/s to 22 m/s in 6 s. Find its acceleration and the distance it covers."
+plan:
+  steps:
+    - {index: 1, latex: "a = \\frac{v - u}{t}", value: null, unit: null, check_id: null}
+    - {index: 2, latex: "a = \\frac{22 - 4}{6}", value: "3", unit: "m/s^2", check_id: chk_mem_car_a}
+    - {index: 3, latex: "s = ut + \\frac{1}{2}at^2", value: null, unit: null, check_id: null}
+    - {index: 4, latex: "s = 4(6) + \\frac{1}{2}(3)(6^2)", value: "78", unit: "m", check_id: chk_mem_car_s}
+  final: {value: "78", unit: "m", check_id: chk_mem_car_s}
+board:
+  - {latex: "a = \\frac{v - u}{t}", owner: student, status: correct, check_id: null}
+  - {latex: "a = 22/6", owner: student, status: incorrect, check_id: null}
+  - {latex: "a = 3", owner: tutor, status: final, check_id: chk_mem_car_a}
+  - {latex: "s = 4 \\times 6 + 3 \\times 36", owner: student, status: incorrect, check_id: null}
+step: 4
+rung: 1
+rounds: 18
+dialogue:
+  - {kind: chat, student: "Round {n}: before we go on, can you remind me what a stands for in these equations?",
+     tutor: "It is the acceleration: how much the velocity changes each second. Which two velocities does the question give you?"}
+  - {kind: attempt, student: "Round {n}: is the acceleration 3.7 because 22 divided by 6 is about that?",
+     tutor: "Dividing the final speed by the time leaves out the starting speed. What should you take away first?"}
+  - {kind: chat, student: "Round {n}: I always mix up u and v, which one is the starting speed again?",
+     tutor: "u is the speed at the start and v is the speed at the end. Which of 4 and 22 is u here?"}
+  - {kind: attempt, student: "Round {n}: so is the change in speed 26 m/s if I add them?",
+     tutor: "The change is the end speed minus the start speed. Try subtracting instead of adding."}
+  - {kind: chat, student: "Round {n}: my friend got 5 for this, could that be right?",
+     tutor: "Let's check it from the equation rather than guess. What do you get for v minus u?"}
+  - {kind: attempt, student: "Round {n}: for the distance, is it 4 times 6 plus 3 times 36, so 132?",
+     tutor: "Look at the second term of the equation again: there is a half in front of a t squared."}
+  - {kind: chat, student: "Round {n}: why is there a half in the distance equation anyway?",
+     tutor: "It comes from the average speed over the time while the speed rises steadily. Shall we use it now?"}
+  - {kind: attempt, student: "Round {n}: would 102 m be the distance if I use 22 times 6 minus something?",
+     tutor: "That route can work too, but let's finish the one we started. What is a half of 3 times 36?"}
+questions:
+  - {id: car_q1, asks: value, index: 1, text: "Which checked line gave the acceleration?", answers: ["a = 3", "a = 3 m/s^2"]}
+  - {id: car_q2, asks: error, index: 1, text: "What was the first line the student wrote that was marked incorrect?",
+     answers: ["a = 22/6"]}
+  - {id: car_q3, asks: error, index: 2, text: "What was the second line the student wrote that was marked incorrect?",
+     answers: ["s = 4 \\times 6 + 3 \\times 36"]}
+  - {id: car_q4, asks: step, index: 1, text: "Which step of the plan is the student working on now?", answers: ["step 4"]}

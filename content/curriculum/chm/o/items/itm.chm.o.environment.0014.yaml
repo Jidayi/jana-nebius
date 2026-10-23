@@ -1,0 +1,126 @@
+id: itm.chm.o.environment.0014
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.fertilisers
+stem: A farmer compares fertilisers. One of them is ammonium sulfate, (NH₄)₂SO₄.
+parts:
+- id: a
+  prompt: What is the percentage by mass of nitrogen in ammonium sulfate?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: 21.2%
+      correct: true
+    - id: B
+      text: 471%
+      correct: false
+      misconception_id: mc.chm.o.environment_n_percent_inverted
+      feedback: 'The nitrogen is part of the whole compound, so its percentage must be below 100. Put the nitrogen mass on top: % N = mass of N ÷ Mr × 100.'
+    - id: C
+      text: '0.212'
+      correct: false
+      misconception_id: mc.chm.o.environment_percent_not_times_100
+      feedback: 'A fraction becomes a percentage when you multiply by 100: a fraction of 0.35 is 35%.'
+    - id: D
+      text: 10.6%
+      correct: false
+      misconception_id: mc.chm.o.environment_n_atoms_count_ignored
+      feedback: Count every nitrogen atom in the formula, including those in brackets and in both ions. NH₄NO₃ has two nitrogen atoms, so the nitrogen mass is 2 × 14 = 28.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You need the share of the mass of (NH₄)₂SO₄ that is nitrogen.
+  - rung: 2
+    name: concept
+    text:
+      en: '% nitrogen in ammonium sulfate = (number of N atoms × 14) ÷ Mr × 100.'
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Mr of (NH₄)₂SO₄ is 132. Count the nitrogen atoms: one in each of the two ammonium ions.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: The two nitrogen atoms have a mass of 28; divide this by 132, then multiply by 100.
+  - rung: 5
+    name: full_step
+    text:
+      en: 28 ÷ 132 × 100 = 21.2% nitrogen in ammonium sulfate.
+  misconception_ids:
+  - mc.chm.o.environment_n_atoms_count_ignored
+  - mc.chm.o.environment_n_percent_inverted
+  - mc.chm.o.environment_percent_not_times_100
+solution:
+  steps:
+  - n: 1
+    latex: M_r(\text{(NH}_4\text{)}_2\text{SO}_4) = 132
+    reason: Relative formula mass of ammonium sulfate
+    check_id: chk_build_chm_environment_0014_mr
+  - n: 2
+    latex: 2 \times 14 = 28
+    reason: Mass of the nitrogen atoms
+    check_id: chk_build_chm_environment_0014_n
+  - n: 3
+    latex: \% N = \frac{28}{132} \times 100 = 21.2\%
+    reason: Part over whole, times 100
+    check_id: chk_build_chm_environment_0014_pct
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_environment_0014_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      formula: (NH4)2SO4
+    tool: chem_molar_mass
+  chk_build_chm_environment_0014_n:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      formula: N2
+    tool: chem_molar_mass
+  chk_build_chm_environment_0014_pct:
+    args:
+      expression: 100*28/132
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

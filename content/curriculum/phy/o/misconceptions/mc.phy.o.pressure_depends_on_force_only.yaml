@@ -1,0 +1,34 @@
+id: mc.phy.o.pressure_depends_on_force_only
+kc_ids:
+- kc.phy.o.pressure.pressure_on_surfaces
+student_name: Only the force matters
+description: Thinks pressure depends only on the size of the force and ignores the area it acts on.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: counterexample
+  text:
+    en: 'Push a drawing pin into a board: the force on the point and on the head is the same, yet the point goes into the wood and the head does not hurt your thumb. Different areas give different pressures.'
+probe_item_ids:
+- itm.phy.o.pressure.0011
+- itm.phy.o.pressure.0013
+- itm.phy.o.pressure.0015
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,84 @@
+id: itm.chm.o.states.0035
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.states.diffusion
+stem: Diffusion is the net movement of particles.
+parts:
+- id: a
+  prompt: In which direction do particles diffuse overall?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Towards the warmest place only
+      correct: false
+    - id: B
+      text: From low to high concentration
+      correct: false
+    - id: C
+      text: From where they are more concentrated to where they are less concentrated
+      correct: true
+    - id: D
+      text: Always upwards
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Diffusion is the net movement of particles. What are the particles doing?
+  - rung: 2
+    name: concept
+    text:
+      en: Particles move randomly and spread from high to low concentration; lighter and hotter particles move faster.
+  - rung: 3
+    name: first_step
+    text:
+      en: Think about the speed of the particles involved.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Decide which particles travel further in the same time.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: From where they are more concentrated to where they are less concentrated.'
+solution:
+  steps:
+  - n: 1
+    latex: \text{random particle motion}
+    reason: Diffusion
+  - n: 2
+    latex: \text{faster particles diffuse faster}
+    reason: Speed of particles
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

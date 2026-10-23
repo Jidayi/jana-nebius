@@ -1,0 +1,91 @@
+id: itm.mth.o.algebra_and_graphs.0909
+version: 0.1.0
+type: algebraic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.algebraic_fractions
+stem: Simplify $\frac{x^2 + 6x + 8}{x^2 - 4}$ fully.
+parts:
+- id: a
+  prompt: Type the fraction in its simplest form.
+  marks: 2
+  answer:
+    kind: algebraic
+    check_id: chk_build_mth_alg_0909_key
+    expression: \frac{x + 4}{x - 2}
+    variables:
+    - x
+    required_form: simplest
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'A fraction simplifies only by cancelling factors, not terms: factorise first.'
+  - rung: 2
+    name: concept
+    text:
+      en: The denominator is a difference of two squares; the numerator is a quadratic with number term 8.
+  - rung: 3
+    name: first_step
+    text:
+      en: x² − 4 = (x − 2)(x + 2).
+  - rung: 4
+    name: worked_step
+    text:
+      en: Look for a bracket that appears in both the numerator and the denominator.
+  - rung: 5
+    name: full_step
+    text:
+      en: After cancelling, the fraction is $\frac{x + 4}{x - 2}$.
+solution:
+  steps:
+  - n: 1
+    latex: \frac{x^2 + 6x + 8}{x^2 - 4} = \frac{(x + 4)(x + 2)}{(x - 2)(x + 2)}
+    reason: Factorise the numerator and the denominator
+    check_id: chk_build_mth_alg_0909_m
+  - n: 2
+    latex: = \frac{x + 4}{x - 2}
+    reason: Cancel the common factor (x + 2)
+difficulty:
+  prior: 0.8
+  band: stretch
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0909_key:
+    args:
+      expression: \frac{x^2 + 6x + 8}{x^2 - 4}
+      form: simplest
+    tool: math_simplify
+  chk_build_mth_alg_0909_m:
+    args:
+      equations:
+      - p = abs(4)
+      - q = abs(2)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

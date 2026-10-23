@@ -1,0 +1,31 @@
+id: mc.phy.o.loss_falls_with_voltage_not_square
+kc_ids:
+- kc.phy.o.electromagnetism.power_transmission
+student_name: The loss falls in step with the voltage
+description: Thinks raising the transmission voltage by some factor reduces the power wasted by that same factor; the current falls by that factor, and the loss by its square.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: simpler_numbers
+  text:
+    en: Doubling the voltage halves the current. The loss depends on current squared, so it falls to a quarter.
+probe_item_ids: []
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

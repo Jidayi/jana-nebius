@@ -1,0 +1,106 @@
+id: itm.mth.o.number.0125
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.order_of_operations
+stem: Work out $40 - 5^2 + 6$.
+parts:
+- id: a
+  prompt: Give the value.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '1231'
+      correct: false
+      misconception_id: mc.mth.o.multiply_before_power
+      feedback: The power belongs only to the letter next to it. Square x first, then multiply by the number in front.
+    - id: B
+      text: '21'
+      correct: true
+    - id: C
+      text: '36'
+      correct: false
+      misconception_id: mc.mth.o.square_as_double
+      feedback: 5² means 5 × 5 = 25, not 5 × 2 = 10.
+    - id: D
+      text: '9'
+      correct: false
+      misconception_id: mc.mth.o.left_to_right
+      feedback: Brackets first, then powers, then multiply and divide, then add and subtract.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Look for any powers before anything else.
+  - rung: 2
+    name: concept
+    text:
+      en: Powers come before addition and subtraction; then add and subtract from left to right.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 5² first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 5² = 25. Now work out 40 − 25 + 6 from left to right.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 21.
+  misconception_ids:
+  - mc.mth.o.left_to_right
+  - mc.mth.o.multiply_before_power
+  - mc.mth.o.square_as_double
+solution:
+  steps:
+  - n: 1
+    latex: 5^2 = 25
+    reason: Powers first
+    check_id: chk_build_mth_num_0125_t
+  - n: 2
+    latex: 40 - 25 + 6 = 21
+    reason: Then add and subtract from left to right
+    check_id: chk_build_mth_num_0125_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0125_ans:
+    args:
+      expression: 40 - 5^2 + 6
+    tool: math_evaluate
+  chk_build_mth_num_0125_t:
+    args:
+      expression: 5^2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

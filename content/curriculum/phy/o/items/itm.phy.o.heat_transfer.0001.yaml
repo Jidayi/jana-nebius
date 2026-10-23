@@ -1,0 +1,84 @@
+id: itm.phy.o.heat_transfer.0001
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.conduction
+stem: Wax beads are stuck to the ends of equal rods of copper and brass, and the other ends are heated equally. The bead falls off the copper rod after 45 s and off the brass rod after 130 s.
+parts:
+- id: a
+  prompt: Taking the rate of conduction as inversely proportional to the time taken, how many times greater is the rate of conduction along the copper than along the brass?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '2.89'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_htr_0001_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The better conductor carries energy to the wax faster, so its bead falls off sooner.
+  - rung: 2
+    name: concept
+    text:
+      en: If the rate is inversely proportional to the time, the ratio of rates is the times the other way up.
+  - rung: 3
+    name: first_step
+    text:
+      en: The rod that took less time, the copper, has the greater rate.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 130 ÷ 45.
+  - rung: 5
+    name: full_step
+    text:
+      en: Conduction along the copper is 2.89 times as fast.
+solution:
+  steps:
+  - n: 1
+    latex: \text{rate} \propto \frac{1}{t}
+    reason: A faster rate melts the wax sooner
+  - n: 2
+    latex: \frac{\text{rate}_{copper}}{\text{rate}_{brass}} = \frac{130}{45} = 2.89
+    reason: Invert the ratio of the times
+    check_id: chk_build_phy_htr_0001_ans
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_htr_0001_ans:
+    args:
+      expression: 130/45
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

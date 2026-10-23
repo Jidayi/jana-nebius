@@ -1,0 +1,36 @@
+id: mc.mth.o.line_sign_slip
+kc_ids:
+- kc.mth.o.coordinate_geometry.points_on_lines
+- kc.mth.o.coordinate_geometry.axis_intercepts
+- kc.mth.o.coordinate_geometry.line_equation
+student_name: Sign slip with a negative coordinate
+description: Loses the minus sign of a negative coordinate when substituting it into the equation of a line.
+signatures:
+- kind: step_error
+  error_category: sign
+fix:
+  strategy: rule_restatement
+  text:
+    en: Put each coordinate in a bracket with its sign before you multiply.
+probe_item_ids:
+- itm.mth.o.coordinate_geometry.0012
+- itm.mth.o.coordinate_geometry.0002
+- itm.mth.o.coordinate_geometry.0008
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

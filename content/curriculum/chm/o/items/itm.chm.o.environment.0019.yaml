@@ -1,0 +1,110 @@
+id: itm.chm.o.environment.0019
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.fertilisers
+stem: Calcium nitrate, Ca(NO₃)₂, is sold as a fertiliser.
+parts:
+- id: a
+  prompt: Calculate the percentage by mass of nitrogen in Ca(NO₃)₂.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '17.1'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_environment_0019_pct
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What fraction of the mass of Ca(NO₃)₂ is nitrogen?
+  - rung: 2
+    name: concept
+    text:
+      en: '% nitrogen in calcium nitrate = mass of the nitrogen atoms ÷ Mr × 100.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Mr of Ca(NO₃)₂ is 164.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Ca(NO₃)₂ has two nitrogen atoms, of total mass 28. Work out 28 ÷ 164 × 100.
+  - rung: 5
+    name: full_step
+    text:
+      en: 28 ÷ 164 × 100 = 17.1% nitrogen.
+  misconception_ids:
+  - mc.chm.o.environment_n_atoms_count_ignored
+  - mc.chm.o.environment_n_percent_inverted
+solution:
+  steps:
+  - n: 1
+    latex: M_r(\text{Ca(NO}_3\text{)}_2) = 164
+    reason: Relative formula mass of calcium nitrate
+    check_id: chk_build_chm_environment_0019_mr
+  - n: 2
+    latex: 2 \times 14 = 28
+    reason: Mass of the nitrogen atoms
+    check_id: chk_build_chm_environment_0019_n
+  - n: 3
+    latex: \% N = \frac{28}{164} \times 100 = 17.1\%
+    reason: Part over whole, times 100
+    check_id: chk_build_chm_environment_0019_pct
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_environment_0019_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ca
+      - source: pack
+        symbol: ar_n
+      - source: pack
+        symbol: ar_o
+      formula: Ca(NO3)2
+    tool: chem_molar_mass
+  chk_build_chm_environment_0019_n:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      formula: N2
+    tool: chem_molar_mass
+  chk_build_chm_environment_0019_pct:
+    args:
+      expression: 100*28/164
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

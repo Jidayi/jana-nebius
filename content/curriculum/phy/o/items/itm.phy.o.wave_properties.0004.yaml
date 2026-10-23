@@ -1,0 +1,83 @@
+id: itm.phy.o.wave_properties.0004
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.describing_waves
+stem: A labelled drawing of a wave on a rope shows 2 complete waves along a length of 45 cm. The vertical distance from the top of a crest to the bottom of a trough is 5 cm.
+parts:
+- id: a
+  prompt: Find the amplitude of the wave.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '2.5'
+    unit: cm
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_wav_0004_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Amplitude is a height, not a length along the wave.
+  - rung: 2
+    name: concept
+    text:
+      en: It is measured from the rest position (the middle line) to the top of a crest.
+  - rung: 3
+    name: first_step
+    text:
+      en: The crest-to-trough height covers the amplitude twice.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Halve 5 cm.
+  - rung: 5
+    name: full_step
+    text:
+      en: A = 2.5 cm.
+  misconception_ids:
+  - mc.phy.o.amplitude_peak_to_trough
+  - mc.phy.o.amplitude_wavelength_swapped
+solution:
+  steps:
+  - n: 1
+    latex: A = \frac{5}{2} = 2.5\ \text{cm}
+    reason: From the rest line to a crest is half
+    check_id: chk_build_phy_wav_0004_ans
+difficulty:
+  prior: -0.7
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_wav_0004_ans:
+    args:
+      expression: 5/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

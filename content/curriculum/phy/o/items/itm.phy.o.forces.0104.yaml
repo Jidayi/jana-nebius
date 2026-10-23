@@ -1,0 +1,87 @@
+id: itm.phy.o.forces.0104
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.centre_of_gravity
+stem: A hammer has a heavy steel head and a long wooden handle.
+parts:
+- id: a
+  prompt: Where is its centre of gravity?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Near the head
+      correct: true
+    - id: B
+      text: Halfway along the handle
+      correct: false
+      misconception_id: mc.phy.o.cog_always_at_middle
+      feedback: A hammer balances near its heavy head, not halfway along the handle. The centre of gravity moves towards where more of the mass is.
+    - id: C
+      text: At the very end of the handle
+      correct: false
+    - id: D
+      text: It has no single centre of gravity
+      correct: false
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about where the weight of the object acts and where its base is.
+  - rung: 2
+    name: concept
+    text:
+      en: An object topples when the vertical line through its centre of gravity falls outside its base.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ask how far the object could tilt before the line of its weight passes outside the base.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The centre of gravity is nearer to where most of the mass is.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Near the head. Most of the mass is in the steel head, so the centre of gravity is close to it.'
+  misconception_ids:
+  - mc.phy.o.cog_always_at_middle
+solution:
+  steps:
+  - n: 1
+    latex: \text{Near the head}
+    reason: Find where the weight acts relative to the base
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

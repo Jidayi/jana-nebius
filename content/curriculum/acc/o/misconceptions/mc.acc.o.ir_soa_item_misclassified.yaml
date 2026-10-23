@@ -1,0 +1,35 @@
+id: mc.acc.o.ir_soa_item_misclassified
+kc_ids:
+- kc.acc.o.incomplete_records.statement_of_affairs
+student_name: A liability counted as an asset
+description: Lists a liability such as a loan among the assets in a statement of affairs.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: liability
+fix:
+  strategy: contrast_example
+  text:
+    en: Anything the business must pay is a liability and reduces capital.
+probe_item_ids:
+- itm.acc.o.incomplete_records.0001
+- itm.acc.o.incomplete_records.0002
+- itm.acc.o.incomplete_records.0003
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

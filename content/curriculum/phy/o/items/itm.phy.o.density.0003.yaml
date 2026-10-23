@@ -1,0 +1,92 @@
+id: itm.phy.o.density.0003
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.density_calculation
+stem: A classroom measuring 12 m × 8 m × 3 m is completely filled with air. The density of air is 1.2 kg/m³.
+parts:
+- id: a
+  prompt: Calculate the mass of the air.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '345.6'
+    unit: kg
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_den_0003_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Density is the mass packed into one cubic metre of the material.
+  - rung: 2
+    name: concept
+    text:
+      en: Mass = density × volume.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Find the volume first: multiply the three measurements.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: The volume is 288 m³; multiply it by 1.2.
+  - rung: 5
+    name: full_step
+    text:
+      en: The mass is 345.6 kg.
+  misconception_ids:
+  - mc.phy.o.density_rearranged_wrongly
+  - mc.phy.o.density_volume_over_mass
+  - mc.phy.o.block_volume_two_sides
+solution:
+  steps:
+  - n: 1
+    latex: V = 12 \times 8 \times 3 = 288\ \text{m}^3
+    reason: Volume of a box shape
+    check_id: chk_build_phy_den_0003_v
+  - n: 2
+    latex: m = \rho V = 1.2 \times 288 = 345.6\ \text{kg}
+    reason: Mass = density × volume
+    check_id: chk_build_phy_den_0003_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_den_0003_ans:
+    args:
+      expression: 1.2*12*8*3
+    tool: math_evaluate
+  chk_build_phy_den_0003_v:
+    args:
+      expression: 12*8*3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

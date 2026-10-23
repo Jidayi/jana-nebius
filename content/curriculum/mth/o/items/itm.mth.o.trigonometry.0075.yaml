@@ -1,0 +1,106 @@
+id: itm.mth.o.trigonometry.0075
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.sine_rule
+stem: In triangle ABC, angle A = 71°, side a = BC = 12 cm and side b = AC = 8.0 cm. Angle B is acute.
+parts:
+- id: a
+  prompt: Find angle B, to 1 decimal place.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 47.3°
+      correct: false
+      misconception_id: mc.mth.o.sine_rule_inverted
+      feedback: 'In the sine rule each side is paired with the angle opposite it: a with A, b with B.'
+    - id: B
+      text: 50.9°
+      correct: false
+      misconception_id: mc.mth.o.trig_ratio_wrong
+      feedback: 'Label the sides from the angle you are using: opposite faces it, adjacent is next to it, hypotenuse is opposite the right angle.'
+    - id: C
+      text: 0.69°
+      correct: false
+      misconception_id: mc.mth.o.calculator_radians
+      feedback: 'Check the calculator shows D (degrees): sin 30 should give 0.5.'
+    - id: D
+      text: 39.1°
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know two sides and an angle opposite one of them.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Use the sine rule with the angles on top: sin B / b = sin A / a.'
+  - rung: 3
+    name: first_step
+    text:
+      en: sin B = 8.0 × sin 71° ÷ 12.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Then use the inverse sine.
+  - rung: 5
+    name: full_step
+    text:
+      en: B = 39.1°.
+  misconception_ids:
+  - mc.mth.o.calculator_radians
+  - mc.mth.o.sine_rule_inverted
+  - mc.mth.o.trig_ratio_wrong
+solution:
+  steps:
+  - n: 1
+    latex: \frac{\sin B}{b} = \frac{\sin A}{a}
+    reason: The sine rule, angles on top
+  - n: 2
+    latex: \sin B = \frac{8.0 \sin 71}{12}
+    reason: Rearrange
+  - n: 3
+    latex: B = 39.1
+    reason: Inverse sine, in degrees
+    check_id: chk_build_mth_trg_0075_ans
+difficulty:
+  prior: 0.8
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_trg_0075_ans:
+    args:
+      angle_unit: degrees
+      dp: 1
+      expression: asin(8.0*sin(71)/12)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

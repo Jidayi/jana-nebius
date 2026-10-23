@@ -1,0 +1,96 @@
+id: itm.mth.o.mensuration.0081
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.pyramid_cone_sphere
+stem: A ball is a sphere of radius 5 cm.
+parts:
+- id: a
+  prompt: Find its volume, to 3 significant figures.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '524'
+    unit: cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_mns_0081_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Use the formula for the volume of a sphere.
+  - rung: 2
+    name: concept
+    text:
+      en: V = (4/3) × π × r³.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Cube the radius: 5 × 5 × 5.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply by π, then by 4 and divide by 3.
+  - rung: 5
+    name: full_step
+    text:
+      en: The volume is 524 cm³.
+  misconception_ids:
+  - mc.mth.o.sphere_power_wrong
+  - mc.mth.o.cone_third_dropped
+  - mc.mth.o.diameter_for_radius
+solution:
+  steps:
+  - n: 1
+    latex: V = \tfrac{4}{3}\pi r^3
+    reason: Volume of a sphere
+  - n: 2
+    latex: V = \tfrac{4}{3} \times \pi \times 5^3 = 524\ \text{cm}^3
+    reason: Substitute and round
+    check_id: chk_build_mth_mns_0081_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  r: '5'
+checks:
+  chk_build_mth_mns_0081_ans:
+    args:
+      expression: 4/3*pi*5^3
+      sf: 3
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

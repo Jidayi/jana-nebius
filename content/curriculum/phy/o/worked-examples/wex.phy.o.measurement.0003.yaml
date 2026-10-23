@@ -1,0 +1,36 @@
+id: wex.phy.o.measurement.0003
+kc_ids:
+- kc.phy.o.measurement.scalars_and_vectors
+problem: Musa walks 400 m east and then 130 m west. Find the distance travelled.
+steps:
+- n: 1
+  latex: 400 + 130 = 530\ \text{m}
+  reason: Distance adds every part; displacement counts direction
+  check_id: chk_build_phy_mea_w0003_ans
+final_answer:
+  latex: 530\ \text{m}
+  check_id: chk_build_phy_mea_w0003_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mea_w0003_ans:
+    args:
+      expression: 400 + 130
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,34 @@
+id: mc.acc.o.cos_closing_added
+kc_ids:
+- kc.acc.o.sole_trader_statements.cost_of_sales
+student_name: Adding the closing inventory
+description: Adds closing inventory to the goods available instead of subtracting it, as if unsold goods were a cost of the year.
+signatures:
+- kind: answer_transform
+  expression: opening_inventory + net_purchases + carriage_inwards + closing_inventory
+fix:
+  strategy: contrast_example
+  text:
+    en: Goods still on the shelves at the end were not sold, so their cost comes off.
+probe_item_ids:
+- itm.acc.o.sole_trader_statements.0001
+- itm.acc.o.sole_trader_statements.0002
+- itm.acc.o.sole_trader_statements.0003
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

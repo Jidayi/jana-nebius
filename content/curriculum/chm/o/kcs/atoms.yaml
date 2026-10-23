@@ -1,0 +1,298 @@
+- id: kc.chm.o.atoms.element_compound_mixture
+  code: CHM-O-02.01.K01
+  node_id: cur.chm.o.atoms_elements_and_compounds.elements_compounds_and_mixtures
+  statement: Classify a substance as an element, a compound or a mixture
+  kind: conceptual
+  tools: []
+  exam_weight: 0.1
+  prerequisites:
+  - kc_id: kc.chm.o.states.particle_model
+    strength: helpful
+  misconception_ids:
+  - mc.chm.o.diatomic_as_compound
+  - mc.chm.o.mixture_as_compound
+  - mc.chm.o.compound_as_element
+  - mc.chm.o.compound_as_mixture
+  skill_ids:
+  - chm-o-atoms
+  glossary:
+  - element
+  - compound
+  - mixture
+  - molecule
+  - relative formula mass
+  - relative molecular mass
+  - chemical formula
+  - formula
+  difficulty_prior: -1.0
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.atoms.subatomic_particles
+  code: CHM-O-02.02.K01
+  node_id: cur.chm.o.atoms_elements_and_compounds.atomic_structure_and_the_periodic_table
+  statement: Determine the numbers of protons, neutrons and electrons in an atom or ion from its proton and nucleon numbers
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.12
+  prerequisites: []
+  misconception_ids:
+  - mc.chm.o.neutrons_nucleon_number
+  - mc.chm.o.neutrons_added
+  - mc.chm.o.neutrons_equal_protons
+  - mc.chm.o.ion_electrons_unchanged
+  - mc.chm.o.ion_electrons_equal_charge
+  - mc.chm.o.ion_charge_sign_reversed
+  skill_ids:
+  - chm-o-atoms
+  glossary:
+  - proton
+  - neutron
+  - electron
+  - nucleus
+  - proton number
+  - nucleon number
+  - atomic number
+  - mass number
+  - ion
+  difficulty_prior: -0.8
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.atoms.electron_arrangement
+  code: CHM-O-02.02.K02
+  node_id: cur.chm.o.atoms_elements_and_compounds.atomic_structure_and_the_periodic_table
+  statement: Determine the electron arrangement and outer-shell electrons of the first twenty elements
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.14
+  prerequisites:
+  - kc_id: kc.chm.o.atoms.subatomic_particles
+    strength: required
+  misconception_ids:
+  - mc.chm.o.first_shell_holds_eight
+  - mc.chm.o.third_shell_overfilled
+  - mc.chm.o.arrangement_from_nucleon_number
+  - mc.chm.o.shells_filled_outside_in
+  skill_ids:
+  - chm-o-atoms
+  glossary:
+  - electron arrangement
+  - electron
+  - shell
+  - outer shell
+  - outer-shell
+  - proton number
+  - aluminium
+  - potassium
+  difficulty_prior: -0.5
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.atoms.isotopes
+  code: CHM-O-02.03.K01
+  node_id: cur.chm.o.atoms_elements_and_compounds.isotopes
+  statement: Calculate a relative atomic mass from the masses and percentage abundances of isotopes
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.1
+  prerequisites:
+  - kc_id: kc.chm.o.atoms.subatomic_particles
+    strength: required
+  confusable_with:
+  - kc.chm.o.atoms.subatomic_particles
+  misconception_ids:
+  - mc.chm.o.isotope_simple_average
+  - mc.chm.o.isotope_no_divide_100
+  - mc.chm.o.isotope_abundance_swapped
+  - mc.chm.o.isotopes_differ_chemically
+  skill_ids:
+  - chm-o-atoms
+  glossary:
+  - isotope
+  - relative atomic mass
+  - abundance
+  - percentage abundance
+  - nucleon number
+  - rubidium
+  - iridium
+  - antimony
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.atoms.ion_formation
+  code: CHM-O-02.04.K01
+  node_id: cur.chm.o.atoms_elements_and_compounds.ion_and_ionic_bonds
+  statement: Predict the charge on the ion an element forms from its electron arrangement
+  kind: conceptual
+  tools: []
+  exam_weight: 0.14
+  prerequisites:
+  - kc_id: kc.chm.o.atoms.electron_arrangement
+    strength: required
+  misconception_ids:
+  - mc.chm.o.ion_electrons_unchanged
+  - mc.chm.o.ion_charge_sign_reversed
+  - mc.chm.o.ion_sign_reversed
+  - mc.chm.o.ion_wrong_direction
+  - mc.chm.o.ion_charge_from_period
+  skill_ids:
+  - chm-o-atoms
+  glossary:
+  - ion
+  - positive ion
+  - negative ion
+  - cation
+  - anion
+  - electron arrangement
+  - outer shell
+  - magnesium
+  - oxygen
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.atoms.covalent_bonding
+  code: CHM-O-02.05.K01
+  node_id: cur.chm.o.atoms_elements_and_compounds.simple_molecules_and_covalent_bonds
+  statement: Identify the number of shared electron pairs in simple covalent molecules
+  kind: conceptual
+  tools: []
+  exam_weight: 0.12
+  prerequisites:
+  - kc_id: kc.chm.o.atoms.electron_arrangement
+    strength: required
+  confusable_with:
+  - kc.chm.o.atoms.ion_formation
+  misconception_ids:
+  - mc.chm.o.covalent_as_transfer
+  - mc.chm.o.covalent_multiple_bond_missed
+  - mc.chm.o.covalent_lone_pairs_counted
+  - mc.chm.o.covalent_pairs_equal_atoms
+  skill_ids:
+  - chm-o-atoms
+  glossary:
+  - covalent bond
+  - covalent
+  - shared pair
+  - electron pair
+  - lone pair
+  - non-bonding pair
+  - molecule
+  - dot-and-cross diagram
+  - outer shell
+  - electron
+  - ammonia
+  - nitrogen
+  - hydrogen
+  - oxygen
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.atoms.structure_and_properties
+  code: CHM-O-02.05.K02
+  node_id: cur.chm.o.atoms_elements_and_compounds.simple_molecules_and_covalent_bonds
+  statement: Relate melting point and electrical conductivity to ionic, simple molecular or giant structure
+  kind: conceptual
+  tools: []
+  exam_weight: 0.12
+  prerequisites:
+  - kc_id: kc.chm.o.atoms.ion_formation
+    strength: required
+  - kc_id: kc.chm.o.atoms.covalent_bonding
+    strength: required
+  misconception_ids:
+  - mc.chm.o.melting_breaks_covalent_bonds
+  - mc.chm.o.ionic_conduction_by_electrons
+  - mc.chm.o.ionic_compound_as_molecules
+  - mc.chm.o.ionic_as_covalent
+  - mc.chm.o.structure_type_misidentified
+  - mc.chm.o.conducts_means_metallic
+  skill_ids:
+  - chm-o-atoms
+  glossary:
+  - ionic
+  - ionic lattice
+  - simple molecular
+  - giant structure
+  - giant covalent
+  - metallic
+  - melting point
+  - electrical conductivity
+  - conductivity
+  - conduct electricity
+  - molten
+  - molecular
+  - particle
+  - relative formula mass
+  - solution
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.atoms.giant_covalent
+  code: CHM-O-02.06.K01
+  node_id: cur.chm.o.atoms_elements_and_compounds.giant_covalent_structures
+  statement: Compare the structures and properties of diamond, graphite and silicon(IV) oxide
+  kind: conceptual
+  tools: []
+  exam_weight: 0.08
+  prerequisites:
+  - kc_id: kc.chm.o.atoms.covalent_bonding
+    strength: required
+  confusable_with:
+  - kc.chm.o.atoms.structure_and_properties
+  misconception_ids:
+  - mc.chm.o.melting_breaks_covalent_bonds
+  - mc.chm.o.structure_type_misidentified
+  - mc.chm.o.graphite_conducts_by_ions
+  - mc.chm.o.giant_covalent_as_molecules
+  - mc.chm.o.graphite_soft_bonds_weak
+  skill_ids:
+  - chm-o-atoms
+  glossary:
+  - giant covalent
+  - covalent
+  - covalent bond
+  - diamond
+  - graphite
+  - silicon(IV) oxide
+  - silicon dioxide
+  - silicon
+  - lattice
+  - delocalised electron
+  - relative formula mass
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.chm.o.atoms.metallic_bonding
+  code: CHM-O-02.07.K01
+  node_id: cur.chm.o.atoms_elements_and_compounds.metallic_bonding
+  statement: Explain the conductivity and malleability of metals using positive ions and delocalised electrons
+  kind: conceptual
+  tools: []
+  exam_weight: 0.08
+  prerequisites:
+  - kc_id: kc.chm.o.atoms.electron_arrangement
+    strength: helpful
+  confusable_with:
+  - kc.chm.o.atoms.giant_covalent
+  misconception_ids:
+  - mc.chm.o.metal_conducts_by_ions
+  - mc.chm.o.metallic_as_shared_pairs
+  - mc.chm.o.malleable_because_bonds_weak
+  skill_ids:
+  - chm-o-atoms
+  glossary:
+  - metallic bonding
+  - metallic bond
+  - metallic
+  - delocalised electrons
+  - delocalised
+  - positive ion
+  - lattice
+  - malleable
+  - malleability
+  - electron
+  - magnesium
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active

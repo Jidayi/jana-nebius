@@ -1,0 +1,45 @@
+id: wex.phy.o.light.0001
+kc_ids:
+- kc.phy.o.light.plane_mirrors
+problem: In a small clinic an eye-test chart hangs on the wall 1 m behind a patient's head. The patient looks at the chart's image in a plane mirror 2.2 m in front of them. How far is the patient from the image of the chart?
+steps:
+- n: 1
+  latex: 1 + 2.2 = 3.2\ \text{m}
+  reason: Distance from the chart to the mirror
+  check_id: chk_build_phy_lgt_w0001_chart
+- n: 2
+  latex: 2.2 + 3.2 = 5.4\ \text{m}
+  reason: Patient to mirror, then mirror to the image
+  check_id: chk_build_phy_lgt_w0001_ans
+final_answer:
+  latex: 5.4\ \text{m}
+  check_id: chk_build_phy_lgt_w0001_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_w0001_ans:
+    args:
+      expression: 2.2 + 1 + 2.2
+    tool: math_evaluate
+  chk_build_phy_lgt_w0001_chart:
+    args:
+      expression: 1 + 2.2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

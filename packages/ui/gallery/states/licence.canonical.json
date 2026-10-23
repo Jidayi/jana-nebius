@@ -1,0 +1,46 @@
+{
+  "id": "licence.canonical",
+  "title": "Settings, Licence",
+  "component": "Licence",
+  "note": "A family computer with no licence file: the free offline product, nothing to type (PLT-19, D84).",
+  "state": "canonical",
+  "payload": {
+    "state": "none",
+    "offer": "free",
+    "licence_id": null,
+    "seats": null,
+    "expires_at": null,
+    "channel": "stable",
+    "install_kind": "family",
+    "clock_behind": false,
+    "entitlements": {
+      "lessons": true,
+      "practice": true,
+      "tool_checks": true,
+      "progress": true,
+      "local_tutor": true,
+      "mock_exams": true,
+      "offline_study_area": true,
+      "content_updates": "all",
+      "student_profiles": "all",
+      "parent_summary": false,
+      "cloud_tier": "available",
+      "study_materials": "available",
+      "cloud_backup": "available",
+      "multi_device": "available",
+      "parent_remote_view": "available",
+      "web_client": "available"
+    }
+  },
+  "payloadContract": "https://jana.dev/contracts/api/commands#/$defs/LicenceStatus",
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "No school licence is installed.",
+    "A family computer"
+  ]
+}

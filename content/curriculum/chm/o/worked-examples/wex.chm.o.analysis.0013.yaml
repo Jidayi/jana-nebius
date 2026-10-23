@@ -1,0 +1,40 @@
+id: wex.chm.o.analysis.0013
+kc_ids:
+- kc.chm.o.analysis.anion_tests
+problem: Acidified silver nitrate gives a white precipitate. Identify the anion and the relative formula mass of the precipitate.
+steps:
+- n: 1
+  latex: \text{AgCl}
+  reason: The insoluble salt formed
+final_answer:
+  latex: M_r = 143.5
+  check_id: chk_build_chm_analysis_w0013_mr
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_analysis_w0013_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ag
+      - source: pack
+        symbol: ar_cl
+      formula: AgCl
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

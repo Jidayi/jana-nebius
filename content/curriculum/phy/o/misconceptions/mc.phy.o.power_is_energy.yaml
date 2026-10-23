@@ -1,0 +1,36 @@
+id: mc.phy.o.power_is_energy
+kc_ids:
+- kc.phy.o.energy.power
+student_name: Power and energy are the same
+description: Gives the energy transferred (or the work done) as the power, leaving out the time.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: contrast_example
+  text:
+    en: 'Two runners do the same work climbing the same stairs, but the faster one has more power. Power needs the time: divide the energy by it.'
+probe_item_ids:
+- itm.phy.o.energy.0086
+- itm.phy.o.energy.0087
+- itm.phy.o.energy.0088
+- itm.phy.o.energy.0076
+- itm.phy.o.energy.0080
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,114 @@
+id: itm.phy.o.electrical_quantities.0028
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.current_and_charge
+stem: The current in a small electric motor is 450 mA for 4 minutes.
+parts:
+- id: a
+  prompt: Calculate the charge that flows.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 108 C
+      correct: true
+    - id: B
+      text: 1.8 C
+      correct: false
+      misconception_id: mc.phy.o.minutes_used_as_seconds
+      feedback: 'An amp is a coulomb per second, so the time must be in seconds: multiply minutes by sixty first.'
+    - id: C
+      text: 108000 C
+      correct: false
+      misconception_id: mc.phy.o.milliamps_used_as_amps
+      feedback: A milliamp is a thousandth of an amp. Change milliamps to amps before using the formula.
+    - id: D
+      text: 0.00188 C
+      correct: false
+      misconception_id: mc.phy.o.charge_current_divided_by_time
+      feedback: 'A current of 1 A carries 1 C every second, so in 10 s it carries 10 C: charge = current × time.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A current is the charge that flows each second.
+  - rung: 2
+    name: concept
+    text:
+      en: Q = I × t, with I in amps and t in seconds.
+  - rung: 3
+    name: first_step
+    text:
+      en: First change the time into seconds and the current into amps.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply 0.45 A by 240 s.
+  - rung: 5
+    name: full_step
+    text:
+      en: Q = 0.45 × 240 = 108 C.
+  misconception_ids:
+  - mc.phy.o.charge_current_divided_by_time
+  - mc.phy.o.milliamps_used_as_amps
+  - mc.phy.o.minutes_used_as_seconds
+solution:
+  steps:
+  - n: 1
+    latex: t = 4\ \text{min} = 240\ \text{s}
+    reason: Sixty seconds in each minute
+    check_id: chk_build_phy_elq_0028_ts
+  - n: 2
+    latex: I = 450\ \text{mA} = 0.45\ \text{A}
+    reason: A thousand mA in 1 A
+    check_id: chk_build_phy_elq_0028_ia
+  - n: 3
+    latex: Q = I t = 0.45 \times 240 = 108\ \text{C}
+    reason: Charge = current × time
+    check_id: chk_build_phy_elq_0028_ans
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_elq_0028_ans:
+    args:
+      expression: 0.45*(4*60)
+    tool: math_evaluate
+  chk_build_phy_elq_0028_ia:
+    args:
+      expression: '0.45'
+    tool: math_evaluate
+  chk_build_phy_elq_0028_ts:
+    args:
+      expression: (4*60)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

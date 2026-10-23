@@ -1,0 +1,32 @@
+id: mc.phy.o.transformer_current_squared
+kc_ids:
+- kc.phy.o.electromagnetism.power_transmission
+student_name: The current changes by the square
+description: Thinks a transformer changes the current by the square of the voltage factor, mixing it up with the power wasted in a cable, which depends on the current squared.
+signatures:
+- kind: answer_transform
+  expression: 'choice: current factor squared'
+fix:
+  strategy: rule_restatement
+  text:
+    en: An ideal transformer keeps the power the same and power is p.d. × current, so the current changes by the same factor as the voltage, the other way.
+probe_item_ids:
+- itm.phy.o.electromagnetism.0075
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

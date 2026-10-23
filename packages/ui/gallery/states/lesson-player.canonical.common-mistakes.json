@@ -1,0 +1,261 @@
+{
+  "id": "lesson-player.canonical.common-mistakes",
+  "title": "Lesson player, common mistakes",
+  "component": "LessonPlayer",
+  "note": "One lesson reply (GET /v1/lessons/{lesson_id}, the proposed M13.g contract additions) built from the repository's own curriculum sources; check items are PracticeItem student views with no keys.",
+  "state": "canonical",
+  "variant": "common-mistakes",
+  "payload": {
+    "lesson": {
+      "lesson_id": "les.phy.o.motion.speed_and_acceleration",
+      "node_id": "cur.phy.o.motion_forces_and_energy.motion",
+      "title": "Speed and acceleration",
+      "estimated_minutes": 12,
+      "kc_ids": [
+        "kc.phy.o.motion.average_speed",
+        "kc.phy.o.motion.acceleration_from_change"
+      ],
+      "version": "0.1.0",
+      "pack": {
+        "pack_id": "pack.phy.o",
+        "version": "0.1.0"
+      },
+      "blocks": [
+        {
+          "type": "prior_knowledge",
+          "items": [
+            {
+              "item_id": "itm.phy.o.motion.0005",
+              "pack_id": "pack.phy.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.phy.o.motion.distance_or_displacement"
+              ],
+              "kind": "numeric",
+              "stem": "A student walks 560 m east to a shop, then 160 m west to a friend's house.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Find the size of the displacement from the start, taking east as positive.",
+                  "marks": 2,
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "numeric",
+                    "unit_prompt": null
+                  }
+                }
+              ],
+              "visual": null,
+              "marks": 2
+            }
+          ]
+        },
+        {
+          "type": "idea",
+          "text": "Speed tells you how far something goes each second: divide the total distance by the total time. Acceleration tells you how quickly the velocity changes: divide the change in velocity by the time the change takes. A car that goes from slow to fast in a short time has a large acceleration. Something slowing down has a negative acceleration when its motion is in the positive direction.",
+          "visual": null
+        },
+        {
+          "type": "worked_example",
+          "worked_example": {
+            "worked_example_id": "wex.phy.o.motion.0001",
+            "problem": "A runner completes one lap of 400 m in 80 s. Find the runner's average speed.",
+            "steps": [
+              {
+                "n": 1,
+                "latex": "v = \\frac{d}{t}",
+                "reason": "Average speed is distance over time",
+                "check_id": null
+              },
+              {
+                "n": 2,
+                "latex": "v = \\frac{400\\ \\text{m}}{80\\ \\text{s}}",
+                "reason": "Substitute the distance and the time",
+                "check_id": null
+              },
+              {
+                "n": 3,
+                "latex": "v = 5.0\\ \\text{m/s}",
+                "reason": "Divide",
+                "check_id": "chk_build_phy_w_0001"
+              }
+            ],
+            "final_answer": {
+              "latex": "5.0\\ \\text{m/s}",
+              "check_id": "chk_build_phy_w_0001"
+            },
+            "faded_steps": []
+          }
+        },
+        {
+          "type": "guided_step",
+          "items": [
+            {
+              "item_id": "itm.phy.o.motion.0020",
+              "pack_id": "pack.phy.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.phy.o.motion.average_speed"
+              ],
+              "kind": "numeric",
+              "stem": "A cyclist rides 660 m along a straight road in 120 s.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Calculate the cyclist's average speed.",
+                  "marks": 2,
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "numeric",
+                    "unit_prompt": null
+                  }
+                }
+              ],
+              "visual": null,
+              "marks": 2
+            }
+          ]
+        },
+        {
+          "type": "quick_check",
+          "items": [
+            {
+              "item_id": "itm.phy.o.motion.0022",
+              "pack_id": "pack.phy.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.phy.o.motion.average_speed"
+              ],
+              "kind": "numeric",
+              "stem": "A swimmer swims 240 m in 200 s.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Calculate the swimmer's average speed.",
+                  "marks": 2,
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "numeric",
+                    "unit_prompt": null
+                  }
+                }
+              ],
+              "visual": null,
+              "marks": 2
+            },
+            {
+              "item_id": "itm.phy.o.motion.0002",
+              "pack_id": "pack.phy.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.phy.o.motion.acceleration_from_change"
+              ],
+              "kind": "numeric",
+              "stem": "A minibus on a straight road speeds up steadily from 5.0 m/s to 17.0 m/s in 6.0 s.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Calculate the acceleration of the minibus.",
+                  "marks": 3,
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "numeric",
+                    "unit_prompt": null
+                  }
+                }
+              ],
+              "visual": null,
+              "marks": 3
+            }
+          ]
+        },
+        {
+          "type": "common_mistakes",
+          "text": "Keep the distance on top when you find a speed, and use the change in velocity, not the final velocity, when you find an acceleration.",
+          "mistakes": [
+            {
+              "misconception_id": "mc.phy.o.time_over_distance",
+              "name": "Dividing time by distance",
+              "fix": "Speed tells you how many metres you cover each second, so the metres go on top."
+            },
+            {
+              "misconception_id": "mc.phy.o.final_velocity_over_time",
+              "name": "Dividing the final velocity by the time",
+              "fix": "Compare two cars that both end at 20 m/s after 4 s, one starting at rest and one starting at 16 m/s. Only the first gains 20 m/s of velocity."
+            }
+          ]
+        },
+        {
+          "type": "exit_check",
+          "items": [
+            {
+              "item_id": "itm.phy.o.motion.0048",
+              "pack_id": "pack.phy.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.phy.o.motion.acceleration_from_change"
+              ],
+              "kind": "numeric",
+              "stem": "A car speeds up steadily from 0.0 m/s to 15.0 m/s in 5.0 s.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Calculate the acceleration.",
+                  "marks": 3,
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "numeric",
+                    "unit_prompt": null
+                  }
+                }
+              ],
+              "visual": null,
+              "marks": 3
+            },
+            {
+              "item_id": "itm.phy.o.motion.0049",
+              "pack_id": "pack.phy.o",
+              "pack_version": "0.1.0",
+              "kc_ids": [
+                "kc.phy.o.motion.acceleration_from_change"
+              ],
+              "kind": "numeric",
+              "stem": "A cyclist speeds up steadily from 1.0 m/s to 7.0 m/s in 8.0 s.",
+              "parts": [
+                {
+                  "part_id": "a",
+                  "prompt": "Calculate the acceleration.",
+                  "marks": 3,
+                  "uses_parts": [],
+                  "input": {
+                    "kind": "numeric",
+                    "unit_prompt": null
+                  }
+                }
+              ],
+              "visual": null,
+              "marks": 3
+            }
+          ]
+        },
+        {
+          "type": "summary",
+          "text": "Speed is distance over time; acceleration is the change in velocity over time. Write the knowns with units before you calculate."
+        }
+      ],
+      "position": null
+    },
+    "index": 5
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Common mistakes",
+    "Dividing time by distance"
+  ]
+}

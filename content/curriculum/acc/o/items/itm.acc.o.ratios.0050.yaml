@@ -1,0 +1,106 @@
+id: itm.acc.o.ratios.0050
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.collection_periods
+stem: Amina runs a hardware shop. Credit sales $94000; cash sales $28500; trade receivables at the year end $6200.
+parts:
+- id: a
+  prompt: Calculate the trade receivables collection period in days (365-day year). Give your answer to 2 decimal places.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '24.07'
+    unit: days
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_ratios_0050_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: How many days, on average, does it take to collect or pay a credit debt?
+  - rung: 2
+    name: concept
+    text:
+      en: Period = year-end balance ÷ credit sales (or credit purchases) × 365.
+  - rung: 3
+    name: first_step
+    text:
+      en: Only credit transactions create receivables or payables, so leave out the cash ones.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide 6200 by 94000 and multiply by 365.
+  - rung: 5
+    name: full_step
+    text:
+      en: The period is 24.07 days.
+  misconception_ids:
+  - mc.acc.o.rat_total_sales_used
+  - mc.acc.o.rat_ratio_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \text{Period} = \frac{\text{balance}}{\text{credit transactions}} \times 365
+    reason: 'The pack''s definition: credit figures, 365 days'
+    check_id: chk_build_acc_ratios_0050_t
+  - n: 2
+    latex: \frac{6200}{94000} \times 365 = 24.07
+    reason: Substitute
+    check_id: chk_build_acc_ratios_0050_a
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_0050_a:
+    args:
+      dp: 2
+      expression: 6200 / 94000 * 365
+    tool: math_evaluate
+  chk_build_acc_ratios_0050_t:
+    args:
+      credit_sales: '94000'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      ratios:
+      - receivable_days
+      revenue: '122500'
+      trade_receivables: '6200'
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

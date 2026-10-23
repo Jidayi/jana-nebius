@@ -1,0 +1,34 @@
+id: mc.phy.o.return_leg_left_out
+kc_ids:
+- kc.phy.o.motion.distance_or_displacement
+student_name: Leaving out the part that goes back
+description: Leaves out the part of the journey in the opposite direction when adding up the total distance travelled.
+signatures:
+- kind: answer_transform
+  expression: d1 + d3
+fix:
+  strategy: contrast_example
+  text:
+    en: Distance is how much ground you cover, whichever way you go. Walking back still adds to the distance.
+probe_item_ids:
+- itm.phy.o.motion.0316
+- itm.phy.o.motion.0318
+- itm.phy.o.motion.0320
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

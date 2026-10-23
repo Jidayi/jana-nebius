@@ -1,0 +1,109 @@
+{
+  "id": "practice.canonical.second-try",
+  "title": "Practice, a second try after a first miss",
+  "component": "Practice",
+  "note": "Help before the answer (ASM-28, D120): a first miss says Not quite with the look-here note and offers a second try; no answer is shown. Check again, Don't know and the three help chips stay.",
+  "state": "canonical",
+  "variant": "second-try",
+  "payload": {
+    "subjectLabel": "Physics",
+    "setId": "set_0123456789ABCDEFGHJKMNPQRS",
+    "subject": "physics",
+    "number": 1,
+    "total": 3,
+    "item": {
+      "item_id": "itm.phy.o.motion.0022",
+      "pack_id": "pack.phy.o",
+      "pack_version": "0.1.0",
+      "kc_ids": [
+        "kc.phy.o.motion.average_speed"
+      ],
+      "kind": "numeric",
+      "stem": "A swimmer swims 240 m in 200 s.",
+      "parts": [
+        {
+          "part_id": "a",
+          "prompt": "Calculate the swimmer's average speed.",
+          "marks": 2,
+          "uses_parts": [],
+          "input": {
+            "kind": "numeric",
+            "unit_prompt": null
+          }
+        }
+      ],
+      "visual": null,
+      "marks": 2
+    },
+    "next": null,
+    "tries": [
+      {
+        "answers": [
+          {
+            "part_id": "a",
+            "kind": "numeric",
+            "value": "1.2",
+            "unit": "m"
+          }
+        ],
+        "marked": {
+          "attempt_id": "att_0123456789ABCDEFGHJKMNPQRS",
+          "verdict": "incorrect",
+          "marks_awarded": 0,
+          "marks_total": 2,
+          "feedback_key": "practice.feedback.incorrect",
+          "first_error": {
+            "category": "units",
+            "message_key": "board.error.units"
+          },
+          "mastery_change": {
+            "kc_id": "kc.phy.o.motion.average_speed",
+            "band_before": "learning",
+            "band_after": "learning"
+          },
+          "next_item": {
+            "item_id": "itm.phy.o.motion.0022",
+            "pack_id": "pack.phy.o",
+            "pack_version": "0.1.0",
+            "kc_ids": [
+              "kc.phy.o.motion.average_speed"
+            ],
+            "kind": "numeric",
+            "stem": "A swimmer swims 240 m in 200 s.",
+            "parts": [
+              {
+                "part_id": "a",
+                "prompt": "Calculate the swimmer's average speed.",
+                "marks": 2,
+                "uses_parts": [],
+                "input": {
+                  "kind": "numeric",
+                  "unit_prompt": null
+                }
+              }
+            ],
+            "visual": null,
+            "marks": 2
+          }
+        }
+      }
+    ]
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "Not quite",
+    "Look at the units",
+    "Have another go",
+    "Check again",
+    "Don't know",
+    "Give me a hint",
+    "Walk me through it",
+    "Explain simply"
+  ]
+}

@@ -1,0 +1,35 @@
+id: mc.phy.o.oscillation_counted_wrongly
+kc_ids:
+- kc.phy.o.measurement.measuring_techniques
+student_name: Counting half swings
+description: Counts a swing from one side to the other as a whole oscillation, so the period comes out half or twice the true value.
+signatures:
+- kind: answer_transform
+  expression: 2*t/n
+fix:
+  strategy: rule_restatement
+  text:
+    en: One oscillation is a swing out and all the way back to where it started. Count from the same point, moving the same way, each time.
+probe_item_ids:
+- itm.phy.o.measurement.0058
+- itm.phy.o.measurement.0046
+- itm.phy.o.measurement.0049
+- itm.phy.o.measurement.0053
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

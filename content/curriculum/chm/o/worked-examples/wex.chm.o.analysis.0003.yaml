@@ -1,0 +1,45 @@
+id: wex.chm.o.analysis.0003
+kc_ids:
+- kc.chm.o.analysis.titration_technique
+problem: 'Titres (cm³): rough 25.20, then 24.75, 24.70, 24.80. Find the mean titre.'
+steps:
+- n: 1
+  latex: \text{ignore the rough titre}
+  reason: It is only a guide
+- n: 2
+  latex: \text{mean} = \frac{24.75 + 24.70 + 24.80}{3}
+  reason: The three accurate titres agree within 0.10 cm³, so average them
+  check_id: chk_build_chm_analysis_w0003_m
+final_answer:
+  latex: \text{mean} = 24.75\ \text{cm}^3
+  check_id: chk_build_chm_analysis_w0003_m
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_analysis_w0003_m:
+    args:
+      expression: (24.75 + 24.70 + 24.80)/3
+      sf: 4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,87 @@
+id: itm.chm.o.organic.0081
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.polymers
+stem: 'Four compounds are listed: C₂H₄, C₂H₆, CH₄ and C₂H₅OH.'
+parts:
+- id: a
+  prompt: Which one can be the monomer of an addition polymer?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: CH₄
+      correct: false
+      misconception_id: mc.chm.o.organic_monomer_is_alkane
+      feedback: A monomer for addition polymerisation must have a C=C double bond. Alkanes are saturated and cannot add to one another. Poly(ethene) is made from ethene, not ethane.
+    - id: B
+      text: C₂H₆
+      correct: false
+      misconception_id: mc.chm.o.organic_monomer_is_alkane
+      feedback: A monomer for addition polymerisation must have a C=C double bond. Alkanes are saturated and cannot add to one another. Poly(ethene) is made from ethene, not ethane.
+    - id: C
+      text: C₂H₅OH
+      correct: false
+    - id: D
+      text: C₂H₄
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: An addition polymer forms from monomers that can add to each other.
+  - rung: 2
+    name: concept
+    text:
+      en: The monomer needs a C=C double bond.
+  - rung: 3
+    name: first_step
+    text:
+      en: Which of the four is an alkene?
+  - rung: 4
+    name: worked_step
+    text:
+      en: Alkenes fit CₙH₂ₙ.
+  - rung: 5
+    name: full_step
+    text:
+      en: C₂H₄, ethene, has a C=C bond and forms poly(ethene).
+  misconception_ids:
+  - mc.chm.o.organic_monomer_is_alkane
+solution:
+  steps:
+  - n: 1
+    latex: '\text{C}_2\text{H}_4\text{: C=C}'
+    reason: Alkene monomer
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

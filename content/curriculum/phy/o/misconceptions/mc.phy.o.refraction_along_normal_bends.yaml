@@ -1,0 +1,39 @@
+id: mc.phy.o.refraction_along_normal_bends
+kc_ids:
+- kc.phy.o.light.refraction
+- kc.phy.o.light.total_internal_reflection
+student_name: A ray along the normal still bends
+description: Thinks a ray that meets a boundary along the normal (at 0° to it) changes direction when it enters glass.
+signatures:
+- kind: answer_transform
+  expression: bends
+fix:
+  strategy: counterexample
+  text:
+    en: A ray along the normal slows down but both sides of the beam reach the glass together, so it carries straight on without bending.
+probe_item_ids:
+- itm.phy.o.light.0024
+severity: medium
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

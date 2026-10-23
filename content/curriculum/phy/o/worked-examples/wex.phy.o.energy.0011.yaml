@@ -1,0 +1,51 @@
+id: wex.phy.o.energy.0011
+kc_ids:
+- kc.phy.o.energy.power
+problem: Wanjiru, of mass 50 kg, runs up a flight of stairs 3.5 m high in 4 s. Take g = 9.8 N/kg. Calculate Wanjiru's useful power output.
+steps:
+- n: 1
+  latex: W = mgh = 50 \times 9.8 \times 3.5 = 1715\ \text{J}
+  reason: Work done against gravity
+  check_id: chk_build_phy_nrg_w0011_ep
+- n: 2
+  latex: P = \frac{W}{t} = \frac{1715}{4} = 428.75\ \text{W}
+  reason: Power = work ÷ time
+  check_id: chk_build_phy_nrg_w0011_ans
+final_answer:
+  latex: 428.75\ \text{W}
+  check_id: chk_build_phy_nrg_w0011_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_w0011_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 50*g*3.5/4
+    tool: math_evaluate
+  chk_build_phy_nrg_w0011_ep:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 50*g*3.5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

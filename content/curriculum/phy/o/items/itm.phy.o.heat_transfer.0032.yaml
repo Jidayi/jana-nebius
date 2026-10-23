@@ -1,0 +1,93 @@
+id: itm.phy.o.heat_transfer.0032
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.radiation
+stem: The walls of a vacuum flask facing the vacuum are silvered.
+parts:
+- id: a
+  prompt: What does the silvering do?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It reflects infrared and makes the walls poor emitters, reducing radiation
+      correct: true
+    - id: B
+      text: It makes the walls good emitters, so the heat stays inside
+      correct: false
+      misconception_id: mc.phy.o.shiny_surfaces_better_radiators
+      feedback: Dull black surfaces are the best absorbers and the best emitters of infrared. Shiny, light surfaces reflect most of it and emit little.
+    - id: C
+      text: It helps the vacuum to block radiation as well as conduction
+      correct: false
+      misconception_id: mc.phy.o.vacuum_stops_radiation
+      feedback: Radiation crosses a vacuum easily. The vacuum stops conduction and convection, which need particles; the shiny silvering reflects infrared to cut radiation.
+    - id: D
+      text: It absorbs the infrared so the walls store the heat
+      correct: false
+      misconception_id: mc.phy.o.good_absorber_poor_emitter
+      feedback: A good absorber is also a good emitter. A dull black kettle warms quickly in sunshine and also cools quickly in the shade.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Infrared is an electromagnetic wave given out by every object; hotter objects give out more.
+  - rung: 2
+    name: concept
+    text:
+      en: The vacuum does not stop radiation, so something else must.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Compare the surfaces: dull black is the best absorber and emitter, shiny silver or white the worst.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options that need a material for radiation to travel through, or treat cold as something that flows.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It reflects infrared and makes the walls poor emitters, reducing radiation.'
+  misconception_ids:
+  - mc.phy.o.good_absorber_poor_emitter
+  - mc.phy.o.shiny_surfaces_better_radiators
+  - mc.phy.o.vacuum_stops_radiation
+solution:
+  steps:
+  - n: 1
+    latex: \text{It reflects infrared and makes the walls poor emitters, reducing radiation}
+    reason: Apply what affects emission and absorption
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

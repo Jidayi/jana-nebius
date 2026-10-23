@@ -1,0 +1,36 @@
+id: mc.chm.o.organic_gf_wrong_series
+kc_ids:
+- kc.chm.o.organic.general_formulae
+student_name: Using another series' general formula
+description: Uses the general formula of a different homologous series, for example CₙH₂ₙ₊₂ for an alkene or the alkane formula for an alcohol.
+signatures:
+- kind: answer_transform
+  expression: 'choice: formula built from another series'' general formula'
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Match the formula to the family: alkanes CₙH₂ₙ₊₂, alkenes CₙH₂ₙ, alcohols CₙH₂ₙ₊₁OH, carboxylic acids CₙH₂ₙ₊₁COOH. Check: an alkene has exactly twice as many hydrogen atoms as carbon atoms.'
+probe_item_ids:
+- itm.chm.o.organic.0025
+- itm.chm.o.organic.0026
+- itm.chm.o.organic.0027
+- itm.chm.o.organic.0028
+- itm.chm.o.organic.0029
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,92 @@
+id: itm.mth.o.number.0194
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.bounds
+stem: A value is 0.9 kg, correct to 1 decimal place.
+parts:
+- id: a
+  prompt: Write down its upper bound.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '0.95'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0194_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about which values would round to this number.
+  - rung: 2
+    name: concept
+    text:
+      en: The bounds are half of the rounding unit below and above the value.
+  - rung: 3
+    name: first_step
+    text:
+      en: The value is rounded to 1 decimal place, so half the unit is 0.05.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Add 0.05.
+  - rung: 5
+    name: full_step
+    text:
+      en: The upper bound is 0.95 kg.
+  misconception_ids:
+  - mc.mth.o.upper_bound_below
+  - mc.mth.o.bound_full_unit
+  - mc.mth.o.bound_wrong_place
+solution:
+  steps:
+  - n: 1
+    latex: \text{half of the unit} = 0.05
+    reason: Bounds are half a unit either side
+    check_id: chk_build_mth_num_0194_h
+  - n: 2
+    latex: 0.9 + 0.05 = 0.95
+    reason: The upper bound
+    check_id: chk_build_mth_num_0194_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0194_ans:
+    args:
+      expression: 0.9 + 0.05
+    tool: math_evaluate
+  chk_build_mth_num_0194_h:
+    args:
+      expression: 0.1/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

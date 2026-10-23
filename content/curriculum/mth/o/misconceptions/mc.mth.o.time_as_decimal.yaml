@@ -1,0 +1,36 @@
+id: mc.mth.o.time_as_decimal
+kc_ids:
+- kc.mth.o.number.time_intervals
+student_name: Treating clock times as decimals
+description: Subtracts times as if they were decimal numbers, as though an hour had 100 minutes.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: Count on to the next hour, then whole hours, then the minutes left. An hour has 60 minutes.
+probe_item_ids:
+- itm.mth.o.number.0321
+- itm.mth.o.number.0322
+- itm.mth.o.number.0323
+- itm.mth.o.number.0324
+- itm.mth.o.number.0325
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

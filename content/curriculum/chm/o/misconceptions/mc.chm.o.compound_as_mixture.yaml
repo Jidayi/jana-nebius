@@ -1,0 +1,33 @@
+id: mc.chm.o.compound_as_mixture
+kc_ids:
+- kc.chm.o.atoms.element_compound_mixture
+student_name: A compound is a mixture of its elements
+description: Thinks a compound such as water is a mixture of its elements that keeps their properties and can be separated by physical means.
+signatures:
+- kind: answer_transform
+  expression: 'choice: a compound described as a mixture of its elements'
+fix:
+  strategy: counterexample
+  text:
+    en: 'Water is not a mixture of hydrogen and oxygen: it does not burn or help things burn, and filtering or distilling it never gives the two gases.'
+probe_item_ids:
+- itm.chm.o.atoms.0004
+- itm.chm.o.atoms.0005
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

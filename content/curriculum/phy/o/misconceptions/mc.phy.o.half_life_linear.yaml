@@ -1,0 +1,37 @@
+id: mc.phy.o.half_life_linear
+kc_ids:
+- kc.phy.o.radioactivity.half_life
+- kc.phy.o.radioactivity.uses_and_safety
+student_name: Dividing by two for each half-life
+description: Divides by two times the number of half-lives instead of halving once for each half-life, so after three half-lives divides by 6 rather than 8.
+signatures:
+- kind: answer_transform
+  expression: x/(2*n)
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'Each half-life halves what is left at its start: 80, then 40, then 20, then 10. After three half-lives that is an eighth, not a sixth.'
+probe_item_ids:
+- itm.phy.o.radioactivity.0044
+- itm.phy.o.radioactivity.0031
+- itm.phy.o.radioactivity.0032
+- itm.phy.o.radioactivity.0037
+- itm.phy.o.radioactivity.0038
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

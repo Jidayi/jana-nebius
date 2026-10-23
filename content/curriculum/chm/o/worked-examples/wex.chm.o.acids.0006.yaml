@@ -1,0 +1,76 @@
+id: wex.chm.o.acids.0006
+kc_ids:
+- kc.chm.o.acids.strong_and_weak
+problem: Excess magnesium is added to 50.0 cm³ of 0.200 mol/dm³ hydrochloric acid, a strong acid. How many moles of hydrogen form in the end?
+steps:
+- n: 1
+  latex: n(\text{acid}) = 0.200 \times \frac{50.0}{1000} = 0.0100
+  reason: Moles of acid
+  check_id: chk_build_chm_acids_w0006_c
+- n: 2
+  latex: \text{Mg} + 2\text{HCl} \rightarrow \text{MgCl}_2 + \text{H}_2
+  reason: Two moles of acid give one mole of hydrogen
+  check_id: chk_build_chm_acids_w0006_s2
+- n: 3
+  latex: n(\text{H}_2) = \frac{0.0100}{2}
+  reason: The total depends on the amount of acid, not its strength
+  check_id: chk_build_chm_acids_w0006_s3
+final_answer:
+  latex: 0.00500\ \text{mol}
+  check_id: chk_build_chm_acids_w0006_c
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_acids_w0006_c:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_cl
+      - source: pack
+        symbol: ar_mg
+      equation: Mg + 2HCl -> MgCl2 + H2
+      sf: 3
+      steps:
+      - concentration: 0.200 mol/dm^3
+        id: n
+        op: amount_from_concentration
+        volume: 50.0 cm^3
+      - amount: '@n'
+        from: HCl
+        id: h
+        op: mole_ratio
+        to: H2
+    tool: chem_stoichiometry
+  chk_build_chm_acids_w0006_s2:
+    args:
+      equation: Mg + 2HCl -> MgCl2 + H2
+    tool: chem_balance
+  chk_build_chm_acids_w0006_s3:
+    args:
+      expression: 0.0100/2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

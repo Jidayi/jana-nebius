@@ -1,0 +1,173 @@
+id: itm.chm.o.organic.0094
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.combustion
+stem: Methanol, CH₃OH, burns completely in air. The unbalanced equation is CH₃OH + O₂ → CO₂ + H₂O.
+parts:
+- id: a
+  prompt: Balance the equation using the smallest whole numbers. What number goes in front of O₂?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '3'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_organic_0094_ratios
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'When methanol burns completely, the only products are carbon dioxide and water: CH₃OH + O₂ → CO₂ + H₂O.'
+  - rung: 2
+    name: concept
+    text:
+      en: Balance carbon first, then hydrogen, and leave oxygen until last, because oxygen turns up in both products when methanol burns.
+  - rung: 3
+    name: first_step
+    text:
+      en: One CH₃OH molecule gives 1 CO₂ (from its carbon) and 2 H₂O (from its hydrogen).
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'For one CH₃OH: oxygen atoms on the right = 2 × 1 + 2, and the methanol molecule supplies one of them. What is left for O₂ is an odd number, so double every coefficient.'
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Balanced: 2CH₃OH + 3O₂ → 2CO₂ + 4H₂O. The number in front of O₂ is 3.'
+  misconception_ids:
+  - mc.chm.o.organic_combustion_not_lowest
+  - mc.chm.o.organic_oxygen_formula_changed
+solution:
+  steps:
+  - n: 1
+    latex: '\text{one }\text{CH}_3\text{OH}: 1\text{CO}_2 + 2\text{H}_2\text{O}'
+    reason: Carbon and hydrogen first
+    check_id: chk_build_chm_organic_0094_one
+  - n: 2
+    latex: 2 \times 1 + 2 = 4
+    reason: Oxygen atoms needed on the right
+    check_id: chk_build_chm_organic_0094_oright
+  - n: 3
+    latex: 4 - 1 = 3
+    reason: The fuel supplies one oxygen atom
+    check_id: chk_build_chm_organic_0094_oneed
+  - n: 4
+    latex: 2\text{CH}_3\text{OH} + 3\text{O}_2 \rightarrow 2\text{CO}_2 + 4\text{H}_2\text{O}
+    reason: Smallest whole numbers
+    check_id: chk_build_chm_organic_0094_bal
+  - n: 5
+    latex: '\text{O}_2: 3'
+    reason: Coefficient of O₂
+    check_id: chk_build_chm_organic_0094_ratios
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 100
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_0094_bal:
+    args:
+      equation: CH3OH + O2 -> CO2 + H2O
+    tool: chem_balance
+  chk_build_chm_organic_0094_one:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      equation: CH3OH + O2 -> CO2 + H2O
+      sf: 3
+      steps:
+      - amount: '1'
+        from: CH3OH
+        id: p0
+        op: mole_ratio
+        to: CH3OH
+      - amount: '1'
+        from: CH3OH
+        id: p1
+        op: mole_ratio
+        to: O2
+      - amount: '1'
+        from: CH3OH
+        id: p2
+        op: mole_ratio
+        to: CO2
+      - amount: '1'
+        from: CH3OH
+        id: p3
+        op: mole_ratio
+        to: H2O
+    tool: chem_stoichiometry
+  chk_build_chm_organic_0094_oneed:
+    args:
+      expression: 2*1 + 2 - 1
+    tool: math_evaluate
+  chk_build_chm_organic_0094_oright:
+    args:
+      expression: 2*1 + 2
+    tool: math_evaluate
+  chk_build_chm_organic_0094_ratios:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_o
+      equation: CH3OH + O2 -> CO2 + H2O
+      sf: 3
+      steps:
+      - amount: '2'
+        from: CH3OH
+        id: r0
+        op: mole_ratio
+        to: CH3OH
+      - amount: '2'
+        from: CH3OH
+        id: r1
+        op: mole_ratio
+        to: O2
+      - amount: '2'
+        from: CH3OH
+        id: r2
+        op: mole_ratio
+        to: CO2
+      - amount: '2'
+        from: CH3OH
+        id: r3
+        op: mole_ratio
+        to: H2O
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

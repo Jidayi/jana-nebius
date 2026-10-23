@@ -1,0 +1,45 @@
+id: wex.phy.o.forces.0007
+kc_ids:
+- kc.phy.o.forces.springs
+problem: A spring is 8 cm long. When a force of 2 N is hung from it, it stretches to 16 cm. It stays within its limit of proportionality. Find the spring constant in N/m.
+steps:
+- n: 1
+  latex: x = 16 - 8 = 8\ \text{cm} = 0.08\ \text{m}
+  reason: Extension in metres
+  check_id: chk_build_phy_frc_w0007_ext_m
+- n: 2
+  latex: k = \frac{F}{x} = \frac{2}{0.08} = 25\ \text{N/m}
+  reason: From F = kx
+  check_id: chk_build_phy_frc_w0007_ans
+final_answer:
+  latex: 25\ \text{N/m}
+  check_id: chk_build_phy_frc_w0007_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_w0007_ans:
+    args:
+      expression: 2/((16 - 8)/100)
+    tool: math_evaluate
+  chk_build_phy_frc_w0007_ext_m:
+    args:
+      expression: (16 - 8)/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

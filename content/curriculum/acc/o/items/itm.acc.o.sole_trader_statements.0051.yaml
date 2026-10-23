@@ -1,0 +1,130 @@
+id: itm.acc.o.sole_trader_statements.0051
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.sole_trader_statements.working_capital
+stem: 'At the year end Obi''s business has: inventory $4500; trade receivables $4900; prepaid expenses $450; bank overdraft $2900; cash in hand $200; trade payables $8800; accrued expenses $100; equipment $12500; loan repayable in six years $9200.'
+parts:
+- id: a
+  prompt: Calculate the total current assets.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '10050.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_sole_trader_statements_0051_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Current assets are owned now and turn into cash within a year. Which items qualify?
+  - rung: 2
+    name: concept
+    text:
+      en: Inventory, trade receivables, prepayments, a bank balance in credit and cash are current assets. Equipment is non-current and an overdraft is a liability.
+  - rung: 3
+    name: first_step
+    text:
+      en: Start with inventory $4500 and trade receivables $4900.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Total current assets = 4500 + 4900 + 450 + 200.
+  - rung: 5
+    name: full_step
+    text:
+      en: Total current assets = $10050.
+  misconception_ids:
+  - mc.acc.o.sofp_overdraft_as_asset
+  - mc.acc.o.wc_non_current_included
+solution:
+  steps:
+  - n: 1
+    latex: \text{Current assets} = \text{inventory} + \text{receivables} + \text{prepayments} + \text{bank} + \text{cash}
+    reason: Only items turned into cash within a year
+    check_id: chk_build_acc_sole_trader_statements_0051_t
+  - n: 2
+    latex: \text{Current assets} = 4500 + 4900 + 450 + 200 = 10050
+    reason: Add
+    check_id: chk_build_acc_sole_trader_statements_0051_a
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_0051_a:
+    args:
+      dp: 2
+      expression: 4500 + 4900 + 450 + 200
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0051_t:
+    args:
+      adjustments:
+      - amount: '4500'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Trade receivables
+        debit: '4900'
+        role: trade_receivables
+      - account: Prepayments
+        debit: '450'
+        role: other_receivables
+      - account: Cash
+        debit: '200'
+        role: cash
+      - account: Trade payables
+        credit: '8800'
+        role: trade_payables
+      - account: Accruals
+        credit: '100'
+        role: other_payables
+      - account: Equipment
+        debit: '12500'
+        role: non_current_asset
+      - account: Loan
+        credit: '9200'
+        role: non_current_liability
+      - account: Bank overdraft
+        credit: '2900'
+        role: bank_overdraft
+      - account: Sales
+        credit: '50000'
+        role: revenue
+      - account: Purchases
+        debit: '30000'
+        role: purchases
+      - account: Land
+        debit: '22950'
+        role: non_current_asset
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

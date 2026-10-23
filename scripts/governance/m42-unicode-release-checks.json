@@ -1,0 +1,446 @@
+{
+  "checked_at": "2026-10-18T16:54:16.392824+00:00",
+  "checked_at_user_timezone": "2026-10-18T17:54:16.392824+01:00",
+  "status": "Unicode and quiz implementation verified; one quality case and external release gates remain open",
+  "release_ready": false,
+  "feature_default_enabled": false,
+  "production_modified": false,
+  "environment": "jana-staging-512005",
+  "gateway_origin": "https://staging-api.getjana.app",
+  "source_bundle_sha256": "c5812762e836a1310d40d6f9e40d1b99428121fee30581b0dbe37e09b204f40d",
+  "owner_approval": "scripts/governance/m42-owner-approval.json",
+  "source_inputs": {
+    "path": "scripts/governance/evidence/m42-unicode-2026-10-18/source-inputs.json",
+    "sha256": "1e7faf6113c7d94f93cb69b4bdf60eca86afad13b0051921ee4db6dce0238270"
+  },
+  "changes": [
+    "Request-local passage references materialise exact frozen Unicode source quotes and offsets; no quote normalisation or fuzzy matching.",
+    "Literal Unicode reaches both provider passes; choice/non-choice quiz generation shapes exclude irrelevant option/unit fields.",
+    "Generation preserves source scope, units and negation; the verifier checks supported deductions without missing premises and keeps reasons in memory only.",
+    "Known refusals record fixed validation-stage labels and their actual HTTP status; provider uncertainty remains held.",
+    "Desktop test suites use at most two workers; assertions and timeouts are unchanged.",
+    "Vertex production preflight binds provider retention and quality to the exact endpoint, project and location; EU introductory prices expire at year-end.",
+    "Solver mandatory-tool and engine-handoff guards restored within the existing prompt budget; 12 Solver snapshots regenerated, suite version/lock updated, reviewer approvals untouched."
+  ],
+  "checks": {
+    "gateway": {
+      "passed": 90,
+      "skipped": 3,
+      "report": "gateway-final-qualified.xml"
+    },
+    "m42_core": {
+      "passed": 60,
+      "report": "core-final-isolated.xml"
+    },
+    "client": {
+      "passed": 269,
+      "report": "client-unicode-fix.json"
+    },
+    "desktop": {
+      "passed": 247,
+      "report": "desktop-final-bounded.json",
+      "max_workers": 2
+    },
+    "release_preflight_and_vertex_regressions": {
+      "passed": 23,
+      "report": "release-preflight-final.xml"
+    },
+    "prompt_regressions": {
+      "passed": 30,
+      "report": "prompt-regressions-qualified.xml"
+    },
+    "deployed_upload_formats": {
+      "passed": 6,
+      "report": "uploads-final-qualified.json"
+    },
+    "public_quality": {
+      "observed": 110,
+      "passed": 109,
+      "failed": [
+        "mth-probability-chat"
+      ],
+      "report": "quality-public-qualified.json",
+      "complete": true,
+      "passed_gate": false,
+      "corpus_unchanged": true,
+      "unicode_passed": 6,
+      "negative_expected_refusals_passed": 10,
+      "independent_held_out_review": false
+    },
+    "static": {
+      "ruff": "passed",
+      "gateway_mypy": "30 source files passed",
+      "desktop_typecheck": "passed",
+      "codegen": "passed",
+      "layers": "passed",
+      "schema_lint": "passed",
+      "data_inventory": "passed",
+      "prompt_lint": "passed",
+      "prompt_snapshots": "passed",
+      "eval_lock": "passed",
+      "snapshot_review_approvals_pending": 60
+    }
+  },
+  "quality_case_review": {
+    "path": "scripts/governance/evidence/m42-unicode-2026-10-18/probability-content-review.json",
+    "sha256": "f3d81349de192e3c03797c0dcf7e20bb9e6bbce7d5150b87e90795fe4f9194f6"
+  },
+  "remaining": [
+    "Independently adjudicate the probability-chat source/question expectation and rerun the entire reviewed corpus; retain the current 109/110 failure.",
+    "Actual production hostname/deployment, exact-project provider retention/abuse-monitoring confirmation, measured extraction costs and deployment/native distribution provenance.",
+    "Approved assessment/Safety lead record, production public hierarchy and content-HSM signature, plus platform installer signing/notarisation. Owner approval is already recorded.",
+    "Final signed packaged Windows x64, Apple Silicon macOS and Linux x64 checks, including required OS/CPU/model classes and native NVDA/VoiceOver.",
+    "Independent held-out content/safety, local-model and OCR/ASR review; human prompt-snapshot review (60 pending)."
+  ],
+  "signing_inventory": {
+    "valid_local_codesigning_identities": 0,
+    "scope": "security find-identity -v -p codesigning in this session; no private key exported"
+  },
+  "budget": {
+    "normal_daily_usd": 2,
+    "temporary_qualification_ceilings_usd": [
+      4,
+      5
+    ],
+    "normal_restored": true,
+    "vertex_monthly_cap_usd": 10,
+    "known_and_held_receipts": [
+      [
+        "completed",
+        609,
+        2.563630575,
+        0.0
+      ],
+      [
+        "failed",
+        99,
+        0.4827801,
+        0.0
+      ],
+      [
+        "reconciled",
+        7,
+        0.0,
+        0.0
+      ],
+      [
+        "reserved",
+        2,
+        0.0,
+        0.43170435000000007
+      ]
+    ],
+    "known_usd": 3.0464106749999997,
+    "held_usd": 0.43170435000000007,
+    "genuine_unknown_holds_preserved": true,
+    "pre_send_diagnostic_settlement": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/diagnostic-no-send-settlement.json",
+      "sha256": "40398a39ed3d060087812f527fbd79fa7474ef6920405ebe2cde91fff53f2dd4"
+    },
+    "notes": "Seven observer failures occurred before provider invocation and were audited at zero cost using saved script/stack evidence. The two genuine prior uncertain provider holds remain unchanged. Normal generation is allowance-exhausted today; reset is 00:00 UTC / 01:00 Africa/Lagos."
+  },
+  "host_checks": {
+    "source_digests_match": true,
+    "no_swap": true,
+    "scratch_tmpfs": true,
+    "credential_mount_read_only": true,
+    "privacy": {
+      "synthetic_source_strings_checked": 38,
+      "persistent_files_checked": 4,
+      "source_body_found": false,
+      "scope": "Gateway persistent metadata only; raw and actual frozen/redacted source variants, including NFC and NFD."
+    },
+    "public_boundaries": {
+      "hostname": "staging-api.getjana.app",
+      "system_ca_verified": true,
+      "spki_sha256": "anjl0qoSsJRc6RBeee5IjYBdBKt704Z0bhvqAiWEtZk=",
+      "not_after": "2027-01-16T14:15:03+00:00",
+      "ping": 204,
+      "unauthenticated_study": 401,
+      "unqualified_tutor_route": 404,
+      "wrong_audience": 401,
+      "normal_spend_guard": 429,
+      "guard_code": "allowance_exhausted"
+    }
+  },
+  "prior_runs": [
+    {
+      "bundle": "555cf11bba7eae5dda7a9d696b2fb332da87d2f5bfed4d333f3c9bab82788ef0",
+      "report": "quality-public-unicode-fixed.json",
+      "meaning": "Incomplete; includes safe refusals and diagnostic-induced budget interruption."
+    },
+    {
+      "bundle": "f4d4d42e651255d08c3cca8dd6ddd402deb4e403169bb72f6907913c1615ed34",
+      "report": "quality-public-final-v2.json",
+      "passed": 106,
+      "total": 110
+    }
+  ],
+  "device_handoff": "scripts/packaging/M42-DEVICE-CHECKS.md",
+  "production_preflight": {
+    "path": "scripts/governance/evidence/m42-unicode-2026-10-18/production-preflight-final.json",
+    "sha256": "3dd6430dc7cf9b09a7fb58dc883c01930bd3d174e82c9d64059000ee4e0976b2"
+  },
+  "evidence": {
+    "aid-support-trace.jsonl": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/aid-support-trace.jsonl",
+      "sha256": "520f7c207014025e28cb00a9b88f10c548352c2f6754c0fde29e0817ac8632a6"
+    },
+    "aid-support-trace.py": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/aid-support-trace.py",
+      "sha256": "18834442da0af25a1147ffc273f61f26c10316af84e0684c2eee13c5dbf5db56"
+    },
+    "aid-support-trace.stderr": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/aid-support-trace.stderr",
+      "sha256": "e65744c26ed25bcb48ef8be5beed4cc09e5fa5a39a3ee8e3f63370c5ca56ddfc"
+    },
+    "bundle-manifest.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/bundle-manifest.json",
+      "sha256": "0bed0df3dfab9378349f57a784fb3bbca239b5d275ac7289045312b0dc10336c"
+    },
+    "bundle-reproducibility.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/bundle-reproducibility.json",
+      "sha256": "09997477ffdd4b36bcd983b11ab27fb705e671515ec8d89b321ff1997672d991"
+    },
+    "client-unicode-fix.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/client-unicode-fix.json",
+      "sha256": "e57250dad44bde7946612149ddae6c21c2effa8fa838d555d27da33ff9b3106b"
+    },
+    "core-final-isolated.xml": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/core-final-isolated.xml",
+      "sha256": "49d986fe04607999c13842f94828d5ef7038dbed69fc2268aea77919bb228307"
+    },
+    "core-unicode-fix.xml": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/core-unicode-fix.xml",
+      "sha256": "6dbe2179fe5fe6a40f7bf01066ad7200b8565c52d707233aa6c328098e479d54"
+    },
+    "desktop-diagnostic-serial.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/desktop-diagnostic-serial.json",
+      "sha256": "34b0ea1ff0c8acb5d0f9ea18eb6e612484900cf7b64aebe3003cb400ae54007c"
+    },
+    "desktop-final-bounded.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/desktop-final-bounded.json",
+      "sha256": "ddbbaa602127fbf2d6d9c5fce164f3b8c73bdaba57da067d2759c23ad04bfbcd"
+    },
+    "desktop-unicode-fix.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/desktop-unicode-fix.json",
+      "sha256": "b319e0e4a1f28cc55f91231f13389b7dcdcf8f9e5934a07b9a0b58063e1a56fd"
+    },
+    "diagnostic-no-send-evidence.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/diagnostic-no-send-evidence.json",
+      "sha256": "12d481606b230c972e674beb727cc179ebfdfe6fb383225760fefedf2f8336d1"
+    },
+    "diagnostic-no-send-receipts.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/diagnostic-no-send-receipts.json",
+      "sha256": "b85dc26a39a745e477ee7775855ec718bb4758f7f015ccd1a7d797e7c141e1ba"
+    },
+    "diagnostic-no-send-settlement.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/diagnostic-no-send-settlement.json",
+      "sha256": "40398a39ed3d060087812f527fbd79fa7474ef6920405ebe2cde91fff53f2dd4"
+    },
+    "final-boundaries.py": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/final-boundaries.py",
+      "sha256": "6b2f4c7f57a34ff9b3618764b7290a7df782b016c53c963e7d268816db2d81dd"
+    },
+    "gateway-final-qualified.xml": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/gateway-final-qualified.xml",
+      "sha256": "c21c52be503c7726d79a8558f16fec53ccd7d475fd0e7c8674fa33158a608d30"
+    },
+    "gateway.toml": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/gateway.toml",
+      "sha256": "1af898c081921727e93b1331a47f70266ff045897a7dd0b6dc37fffdf6282086"
+    },
+    "host-after-final-guard.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/host-after-final-guard.json",
+      "sha256": "f3ac9f9ff1d1031b08827aed643fabfd18e0a7793463cf66d476fb5958dc7913"
+    },
+    "host-final-qualified.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/host-final-qualified.json",
+      "sha256": "f3ac9f9ff1d1031b08827aed643fabfd18e0a7793463cf66d476fb5958dc7913"
+    },
+    "m42-release-verification-before.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/m42-release-verification-before.json",
+      "sha256": "907d2db287935388667f4f015c40e74a4941f6b7761a81a9e4521db0c1f217e8"
+    },
+    "m42-staging-deployment-before.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/m42-staging-deployment-before.json",
+      "sha256": "ae74223fd022bee452aafdb8c2493d8527de8aff85a0ad6da7928fb90c859bcc"
+    },
+    "material-privacy-final.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/material-privacy-final.json",
+      "sha256": "6d901397340ee7e8773069d3bd7cca16fb347d71ac178832b4ab26e8be223471"
+    },
+    "normal-budget-restored.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/normal-budget-restored.json",
+      "sha256": "37fcc49de7ca669b649d0fbc8e216d84f358b8e5136f5bfe0a9d2ff2d7d93a37"
+    },
+    "normal-budget-restored.raw.txt": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/normal-budget-restored.raw.txt",
+      "sha256": "88324bc3f66959b31eb5d23ee3c9157d4986b73996077e95996fd58d2872bb71"
+    },
+    "ocr-diagnostic.xml": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/ocr-diagnostic.xml",
+      "sha256": "fc1c442b472079b833a8fb886b11b9b1c760353ae65ccafa0013bc44f8f133f8"
+    },
+    "probability-content-review.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/probability-content-review.json",
+      "sha256": "f3d81349de192e3c03797c0dcf7e20bb9e6bbce7d5150b87e90795fe4f9194f6"
+    },
+    "probability-trace.jsonl": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/probability-trace.jsonl",
+      "sha256": "f617d01cbdff89f7e90461b159c616683369bd97493adad40e820304f3e82539"
+    },
+    "probability-trace.py": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/probability-trace.py",
+      "sha256": "f3900cdee975bab0057833992775d85b701c9ce83a4aa3aa55be4208773f7033"
+    },
+    "probability-trace.stderr": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/probability-trace.stderr",
+      "sha256": "c579577a72f8b08fd8b336b61772053aa283b1e906f881a226849159d93c2ba2"
+    },
+    "production-preflight-final.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/production-preflight-final.json",
+      "sha256": "3dd6430dc7cf9b09a7fb58dc883c01930bd3d174e82c9d64059000ee4e0976b2"
+    },
+    "prompt-regressions-final.xml": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/prompt-regressions-final.xml",
+      "sha256": "602245e2a68bfa12a43315c4f45f806ee4f4f2d10103cd42b92e10f98b84858c"
+    },
+    "prompt-regressions-qualified.xml": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/prompt-regressions-qualified.xml",
+      "sha256": "edade85c43f824de9ece6dbbc8cedece443930317dc71df5b4350de6db0f0163"
+    },
+    "public-boundaries-final.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/public-boundaries-final.json",
+      "sha256": "ad9724266669ac97ecad7fed5899c67f0e342e117c844bc38f24aa9ab2e710bf"
+    },
+    "quality-public-final-v2.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quality-public-final-v2.json",
+      "sha256": "4737b642e231f198738c512c5d7bef68ea99bb1b1af3785f52d4898605f0bb7e"
+    },
+    "quality-public-final-v2.xml": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quality-public-final-v2.xml",
+      "sha256": "e0a3f7a2affef4f9f0705a8bfc4ae98de38cb2149a46e8bc713760d3d1ca92e2"
+    },
+    "quality-public-qualified.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quality-public-qualified.json",
+      "sha256": "379f87dd85efc04ca3bd44c2b70afc7e755b5663d443edea044bca544eee924d"
+    },
+    "quality-public-qualified.xml": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quality-public-qualified.xml",
+      "sha256": "1ede0635b040715592735103f3966eba03c3b4b09f9be42f88b12ff365077741"
+    },
+    "quality-public-unicode-fixed.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quality-public-unicode-fixed.json",
+      "sha256": "27dbefc00b314d30fdfaf5d3252b9a2d7b9e8af17a25ddc2ecc40466d0dcb2cc"
+    },
+    "quality-public-unicode-fixed.xml": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quality-public-unicode-fixed.xml",
+      "sha256": "abf3ef015ee4c4e0dd4482f4aa69a887ccb8d996383b8238368604c939df2966"
+    },
+    "quality-unicode-fixed.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quality-unicode-fixed.json",
+      "sha256": "e82ec144c53e7cbcbe384e6401dec7bd5a3d127efe57fb54c04e9eb9964c916d"
+    },
+    "quality-unicode-fixed.xml": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quality-unicode-fixed.xml",
+      "sha256": "b90c893ec31bc3e7637524844f2818e1f5cfeb840620720d055992f5ea0185c3"
+    },
+    "quiz-final-trace.jsonl": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quiz-final-trace.jsonl",
+      "sha256": "6982319b44e3b4698dbec9aa3ac72e3693301adc3a05a868ffea671cf70b8ea5"
+    },
+    "quiz-final-trace.py": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quiz-final-trace.py",
+      "sha256": "155952a031d66404d51b1621c131649da4d571eeabf22c6780b9414885da2519"
+    },
+    "quiz-final-trace.stderr": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quiz-final-trace.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "quiz-reference-trace.jsonl": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quiz-reference-trace.jsonl",
+      "sha256": "83ef174a070d942c26f7fd08dcee46753d197b84dfe9c6fccbcb60e7d04b8032"
+    },
+    "quiz-reference-trace.py": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quiz-reference-trace.py",
+      "sha256": "c9373999a9e681e36297364d2acc218692f8d85e752def2af344a13270a443f2"
+    },
+    "quiz-reference-trace.stderr": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quiz-reference-trace.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "quiz-verifier-trace-v2.jsonl": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quiz-verifier-trace-v2.jsonl",
+      "sha256": "1c492dcdb107398bc5bb097815a52b22358b73d75b70a83e0112773272f20c7c"
+    },
+    "quiz-verifier-trace-v2.py": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quiz-verifier-trace-v2.py",
+      "sha256": "af491cb01ad5b19c42df9c6815beddef05b0d931e105c5becc54eae57345cc42"
+    },
+    "quiz-verifier-trace-v2.stderr": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quiz-verifier-trace-v2.stderr",
+      "sha256": "fdb740f08b7d50564bcef93bed326b25578cf7783b196cefeeef4759705d25ae"
+    },
+    "quiz-verifier-trace.jsonl": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quiz-verifier-trace.jsonl",
+      "sha256": "1a2cb9a7ac83c16d29368b1c19d50083dd70cd0908465308bfe8e94869208eca"
+    },
+    "quiz-verifier-trace.py": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quiz-verifier-trace.py",
+      "sha256": "60c230c2a42942e67cceb03c86f68ecb9fdd8466440a3f3bf5a3e568f5ab88d7"
+    },
+    "quiz-verifier-trace.stderr": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/quiz-verifier-trace.stderr",
+      "sha256": "111af53d150610132e66a6ec00be8ea35f333f0a57d4a10996b478389ed85c9f"
+    },
+    "release-preflight-final.xml": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/release-preflight-final.xml",
+      "sha256": "aa1dfff9b4b4584265b851a2e00ef3a68442dca13824f3d77b56e723fce11777"
+    },
+    "requirements.txt": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/requirements.txt",
+      "sha256": "ac1f1b69cd2583a4e4e6cbf6d0e8c37ea7de45d8c2cd5859c2360a7a8e2defec"
+    },
+    "source-inputs.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/source-inputs.json",
+      "sha256": "1e7faf6113c7d94f93cb69b4bdf60eca86afad13b0051921ee4db6dce0238270"
+    },
+    "spend-guard-proof.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/spend-guard-proof.json",
+      "sha256": "667e0012cc767fe37075ecc10ac1b996574888e19e221294ceac1ab2482c661b"
+    },
+    "unicode-repeat.jsonl": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/unicode-repeat.jsonl",
+      "sha256": "29efed642b07b0b5f9366174704d3b95ed7a7d7520c885c3df329f79ac3ffba1"
+    },
+    "unicode-repeat.py": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/unicode-repeat.py",
+      "sha256": "4e1d29637051c9c5bdf3797e8ccaadc9c81a46cdbc1f58495a2b8fc505a12062"
+    },
+    "unicode-repeat.stderr": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/unicode-repeat.stderr",
+      "sha256": "8e31d8f09caea1b96b8306d7bd06920f2a328dababbb6837f4dff6ac856fc1ea"
+    },
+    "unicode-trace.jsonl": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/unicode-trace.jsonl",
+      "sha256": "cc1b3dc40607582f006def6ede02a2790a22506faeb77d25d8d1771d9b22360e"
+    },
+    "unicode-trace.py": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/unicode-trace.py",
+      "sha256": "1d7b4dc7ccfee8dd6c1401e3b781795fb0d47aea8584625f9d04fb13b2a38a26"
+    },
+    "uploads-final-qualified.json": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/uploads-final-qualified.json",
+      "sha256": "6ce37bd4cfc7cf7f363ee864d291e23c89dd1316e80f5400fe13dfb192b3bd15"
+    },
+    "uploads-final-qualified.xml": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/uploads-final-qualified.xml",
+      "sha256": "541d6033108b740e353b45e97f3b965b182d618b38b3dc19e31f3fbd4153991c"
+    },
+    "verify-material-privacy-final.py": {
+      "path": "scripts/governance/evidence/m42-unicode-2026-10-18/verify-material-privacy-final.py",
+      "sha256": "53c816446df90a3be97458f5e03a9273026726d4462308c0c7a8ddf85c237774"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+id: mc.chm.o.energetics_dh_reactants_minus_products
+kc_ids:
+- kc.chm.o.energetics.profiles
+student_name: Reactants minus products
+description: Works out ΔH as reactants − products, so the sign comes out reversed.
+signatures:
+- kind: answer_transform
+  expression: R - P
+fix:
+  strategy: rule_restatement
+  text:
+    en: ΔH = energy of products − energy of reactants. Going downhill gives a negative value.
+probe_item_ids:
+- itm.chm.o.energetics.0013
+- itm.chm.o.energetics.0014
+- itm.chm.o.energetics.0015
+- itm.chm.o.energetics.0016
+- itm.chm.o.energetics.0017
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

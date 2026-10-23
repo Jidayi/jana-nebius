@@ -1,0 +1,84 @@
+id: itm.phy.o.forces.0018
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.force_mass_acceleration
+stem: A resultant force of 90 N gives a sledge pulled over ice an acceleration of 0.5 m/s².
+parts:
+- id: a
+  prompt: Find the mass that is accelerated.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '180'
+    unit: kg
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_frc_0018_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Start from F = ma.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Make m the subject: divide both sides by a.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Mass = resultant force ÷ acceleration.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 90 ÷ 0.5.
+  - rung: 5
+    name: full_step
+    text:
+      en: m = 180 kg.
+  misconception_ids:
+  - mc.phy.o.fma_multiplied_not_divided
+  - mc.phy.o.fma_ratio_inverted
+  - mc.phy.o.fma_mixed_with_weight
+solution:
+  steps:
+  - n: 1
+    latex: m = \frac{F}{a} = \frac{90}{0.5} = 180\ \text{kg}
+    reason: Rearrange F = ma
+    check_id: chk_build_phy_frc_0018_ans
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0018_ans:
+    args:
+      expression: 90/0.5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

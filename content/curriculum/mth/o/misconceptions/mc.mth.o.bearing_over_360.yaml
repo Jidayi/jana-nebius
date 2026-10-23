@@ -1,0 +1,36 @@
+id: mc.mth.o.bearing_over_360
+kc_ids:
+- kc.mth.o.geometry.bearings
+student_name: A bearing of more than 360°
+description: Adds 180° to a bearing that is already over 180°, giving a bearing of more than 360°.
+signatures:
+- kind: answer_transform
+  expression: theta + 180
+fix:
+  strategy: rule_restatement
+  text:
+    en: Bearings run from 000° to 360°. If the bearing is over 180°, subtract 180° instead.
+probe_item_ids:
+- itm.mth.o.geometry.0061
+- itm.mth.o.geometry.0064
+- itm.mth.o.geometry.0050
+- itm.mth.o.geometry.0051
+- itm.mth.o.geometry.0053
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

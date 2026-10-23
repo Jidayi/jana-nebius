@@ -1,0 +1,36 @@
+id: mc.chm.o.reactions_rate_reading_not_change
+kc_ids:
+- kc.chm.o.reactions.rate_data
+student_name: Using a reading instead of the change
+description: For an interval that does not start at zero, divides the reading at the end of the interval by the time taken, instead of the change between the two readings.
+signatures:
+- kind: answer_transform
+  expression: reading_end / (t_end - t_start)
+fix:
+  strategy: simpler_numbers
+  text:
+    en: Gas collected before the interval began was not made during it. Subtract the earlier reading from the later one first, then divide that change by the time taken.
+probe_item_ids:
+- itm.chm.o.reactions.0039
+- itm.chm.o.reactions.0040
+- itm.chm.o.reactions.0045
+- itm.chm.o.reactions.0046
+- itm.chm.o.reactions.0047
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

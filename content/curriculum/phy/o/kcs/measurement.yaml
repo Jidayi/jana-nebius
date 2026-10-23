@@ -1,0 +1,126 @@
+- id: kc.phy.o.measurement.si_prefixes
+  code: PHY-O-01.01.K01
+  node_id: cur.phy.o.motion_forces_and_energy.measurement
+  statement: Convert quantities between units with prefixes such as milli, micro, kilo and mega
+  kind: procedural
+  tools:
+  - math_evaluate
+  - units_convert
+  exam_weight: 0.3
+  prerequisites: []
+  misconception_ids:
+  - mc.phy.o.area_volume_factor_not_raised
+  - mc.phy.o.prefix_confused_with_neighbour
+  - mc.phy.o.prefix_multiply_divide_swapped
+  - mc.phy.o.prefix_power_wrong
+  skill_ids:
+  - phy-o-measurement
+  glossary:
+  - prefix
+  - milli
+  - micro
+  - kilo
+  - mega
+  - giga
+  - nano
+  - SI unit
+  difficulty_prior: -0.8
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.measurement.scalars_and_vectors
+  code: PHY-O-01.01.K02
+  node_id: cur.phy.o.motion_forces_and_energy.measurement
+  statement: Distinguish scalar quantities from vector quantities and classify common examples
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites: []
+  misconception_ids:
+  - mc.phy.o.energy_as_vector
+  - mc.phy.o.mass_as_vector
+  - mc.phy.o.speed_as_vector
+  - mc.phy.o.vector_as_scalar
+  skill_ids:
+  - phy-o-measurement
+  glossary:
+  - scalar
+  - vector
+  - magnitude
+  - displacement
+  - velocity
+  - acceleration
+  - momentum
+  - density
+  - force
+  - gravitational store
+  difficulty_prior: -1.0
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.measurement.resultant_vectors
+  code: PHY-O-01.01.K03
+  node_id: cur.phy.o.motion_forces_and_energy.measurement
+  statement: Calculate the resultant of two vectors that act along the same line or at right angles
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.phy.o.measurement.scalars_and_vectors
+    strength: required
+  misconception_ids:
+  - mc.phy.o.angle_shared_in_proportion
+  - mc.phy.o.angle_uses_wrong_ratio
+  - mc.phy.o.largest_vector_only
+  - mc.phy.o.opposite_vectors_added
+  - mc.phy.o.perpendicular_subtracted
+  - mc.phy.o.pythagoras_for_a_line
+  - mc.phy.o.pythagoras_subtracted
+  - mc.phy.o.resultant_adds_sizes
+  - mc.phy.o.resultant_angle_inverted
+  - mc.phy.o.vector_as_scalar
+  skill_ids:
+  - phy-o-measurement
+  glossary:
+  - resultant
+  - vector
+  - magnitude
+  - right angles
+  - Pythagoras
+  - scale drawing
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.measurement.measuring_techniques
+  code: PHY-O-01.01.K04
+  node_id: cur.phy.o.motion_forces_and_energy.measurement
+  statement: Use rulers, micrometers and repeated timing to measure small lengths and short time intervals
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.phy.o.measurement.si_prefixes
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.main_scale_only
+  - mc.phy.o.mm_cm_confused
+  - mc.phy.o.oscillation_counted_wrongly
+  - mc.phy.o.repeat_multiplied
+  - mc.phy.o.repeat_not_divided
+  - mc.phy.o.thimble_read_as_fiftieths
+  - mc.phy.o.thimble_read_as_tenths
+  - mc.phy.o.zero_error_ignored
+  - mc.phy.o.zero_error_wrong_way
+  skill_ids:
+  - phy-o-measurement
+  glossary:
+  - micrometer
+  - vernier calipers
+  - oscillation
+  - pendulum
+  - period
+  - reaction time
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active

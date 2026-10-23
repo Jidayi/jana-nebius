@@ -1,0 +1,90 @@
+id: itm.chm.o.electrolysis.0002
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.molten_products
+stem: Molten sodium chloride is electrolysed using inert graphite electrodes.
+parts:
+- id: a
+  prompt: Which products form at the cathode and at the anode?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Sodium at the cathode and chlorine at the anode
+      correct: true
+    - id: B
+      text: Chlorine at the cathode and sodium at the anode
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_metal_at_anode
+      feedback: Opposite charges attract. Positive metal ions (cations) move to the negative electrode, the cathode, and become metal there. Negative non-metal ions (anions) move to the positive electrode, the anode.
+    - id: C
+      text: Hydrogen at the cathode and chlorine at the anode
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_molten_gives_hydrogen
+      feedback: A molten binary compound contains only its own two kinds of ion. There is no water, so there are no hydrogen or hydroxide ions. The metal forms at the cathode and the non-metal at the anode.
+    - id: D
+      text: Sodium at the cathode and oxygen at the anode
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_molten_gives_hydrogen
+      feedback: A molten binary compound contains only its own two kinds of ion. There is no water, so there are no hydrogen or hydroxide ions. The metal forms at the cathode and the non-metal at the anode.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which ions are in molten sodium chloride? There is no water present.
+  - rung: 2
+    name: concept
+    text:
+      en: The cathode is negative and attracts positive ions; the anode is positive and attracts negative ions.
+  - rung: 3
+    name: first_step
+    text:
+      en: Molten sodium chloride contains only Na⁺ and Cl⁻ ions.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Send each ion to the electrode of opposite charge, then name the element that each ion forms.
+  - rung: 5
+    name: full_step
+    text:
+      en: Na⁺ ions go to the cathode and form sodium (molten sodium); Cl⁻ ions go to the anode and form chlorine (pale green chlorine gas).
+  misconception_ids:
+  - mc.chm.o.electrolysis_metal_at_anode
+  - mc.chm.o.electrolysis_molten_gives_hydrogen
+solution:
+  steps:
+  - n: 1
+    latex: '\text{cathode: sodium; anode: chlorine}'
+    reason: Cations to the cathode, anions to the anode
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

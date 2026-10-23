@@ -1,0 +1,94 @@
+id: itm.chm.o.acids.0008
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.reactions_of_acids
+stem: A student adds zinc granules to dilute hydrochloric acid and collects the gas in a test tube.
+parts:
+- id: a
+  prompt: Which test shows that the gas is hydrogen?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: It turns limewater milky
+      correct: false
+      misconception_id: mc.chm.o.acids_wrong_gas
+      feedback: Look at what the acid reacts with. A metal gives hydrogen. A carbonate gives carbon dioxide, because the carbonate contains carbon and oxygen. An oxide or hydroxide gives only a salt and water, with no gas.
+    - id: B
+      text: It bleaches damp litmus paper
+      correct: false
+    - id: C
+      text: It relights a glowing splint
+      correct: false
+    - id: D
+      text: A lighted splint gives a squeaky pop
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which gas do you expect when zinc, a metal, reacts with an acid?
+  - rung: 2
+    name: concept
+    text:
+      en: Each common gas has its own test. Hydrogen burns quickly with a small explosion.
+  - rung: 3
+    name: first_step
+    text:
+      en: Limewater is the test for carbon dioxide; a glowing splint is the test for oxygen.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Hold a flame at the mouth of the tube of gas and listen.
+  - rung: 5
+    name: full_step
+    text:
+      en: Zinc + hydrochloric acid gives hydrogen, and hydrogen burns with a squeaky pop when a lighted splint is held at the mouth of the tube.
+  misconception_ids:
+  - mc.chm.o.acids_wrong_gas
+solution:
+  steps:
+  - n: 1
+    latex: \text{Zn} + 2\text{HCl} \rightarrow \text{ZnCl}_2 + \text{H}_2
+    reason: Metal + acid gives hydrogen
+    check_id: chk_build_chm_acids_0008_bal
+  - n: 2
+    latex: '\text{lighted splint: squeaky pop}'
+    reason: Test for hydrogen
+difficulty:
+  prior: -0.7
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_acids_0008_bal:
+    args:
+      equation: Zn + HCl -> ZnCl2 + H2
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

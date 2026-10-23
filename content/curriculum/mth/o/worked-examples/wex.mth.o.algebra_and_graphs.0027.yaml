@@ -1,0 +1,70 @@
+id: wex.mth.o.algebra_and_graphs.0027
+kc_ids:
+- kc.mth.o.algebra_and_graphs.quadratic_sequences
+problem: A quadratic sequence begins 6, 11, 20, 33, … Find the coefficient of n² in its nth term.
+steps:
+- n: 1
+  latex: '\text{first differences: } 5, 9, \ldots'
+  reason: Subtract consecutive terms
+  check_id: chk_build_mth_alg_w0027_fd
+- n: 2
+  latex: \text{second difference} = 4
+  reason: Subtract consecutive first differences
+  check_id: chk_build_mth_alg_w0027_d
+- n: 3
+  latex: \text{coefficient of } n^2 = \frac{4}{2} = 2
+  reason: Halve the second difference
+  check_id: chk_build_mth_alg_w0027_ans
+final_answer:
+  latex: '2'
+  check_id: chk_build_mth_alg_w0027_ans
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0027_ans:
+    args:
+      expression: ((20 - 11) - (11 - 6))/2
+    tool: math_evaluate
+  chk_build_mth_alg_w0027_d:
+    args:
+      equations:
+      - p = 11 - 6
+      - q = 20 - 11
+      - r = (20 - 11) - (11 - 6)
+      unknowns:
+      - p
+      - q
+      - r
+    tool: math_solve
+  chk_build_mth_alg_w0027_fd:
+    args:
+      equations:
+      - p = 11 - 6
+      - q = 20 - 11
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,35 @@
+id: mc.phy.o.efficiency_upside_down
+kc_ids:
+- kc.phy.o.electromagnetism.power_transmission
+student_name: Efficiency upside down
+description: Divides the input power by the output power, giving an efficiency of more than 100%.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: counterexample
+  text:
+    en: 'No transformer gives out more power than it takes in, so its efficiency cannot be over 100%: divide output by input.'
+probe_item_ids:
+- itm.phy.o.electromagnetism.0074
+- itm.phy.o.electromagnetism.0062
+- itm.phy.o.electromagnetism.0066
+- itm.phy.o.electromagnetism.0070
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

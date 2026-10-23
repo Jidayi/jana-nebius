@@ -1,0 +1,34 @@
+id: mc.phy.o.evaporation_only_at_boiling_point
+kc_ids:
+- kc.phy.o.thermal_properties.changes_of_state
+student_name: Evaporation needs the boiling point
+description: Thinks a liquid can turn into a gas only when it reaches its boiling point.
+signatures:
+- kind: answer_transform
+  expression: boiling
+fix:
+  strategy: counterexample
+  text:
+    en: 'Puddles dry up on cool days. At any temperature some surface particles are fast enough to escape: that is evaporation. Boiling happens at one temperature, throughout the liquid.'
+probe_item_ids:
+- itm.phy.o.thermal_properties.0060
+- itm.phy.o.thermal_properties.0047
+- itm.phy.o.thermal_properties.0049
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

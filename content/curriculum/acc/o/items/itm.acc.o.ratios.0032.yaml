@@ -1,0 +1,117 @@
+id: itm.acc.o.ratios.0032
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.ratios.liquidity
+stem: Kofi's business has inventory $2100, trade receivables $9500, bank $3000 and current liabilities $3500.
+parts:
+- id: a
+  prompt: What is the acid-test ratio?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '3.57 : 1'
+      correct: true
+    - id: B
+      text: '4.17 : 1'
+      correct: false
+      misconception_id: mc.acc.o.rat_acid_includes_inventory
+    - id: C
+      text: '2.71 : 1'
+      correct: false
+      misconception_id: mc.acc.o.rat_quick_assets_too_narrow
+    - id: D
+      text: '0.28 : 1'
+      correct: false
+      misconception_id: mc.acc.o.rat_ratio_inverted
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which current assets can be turned into cash quickly?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Acid-test ratio = (current assets − inventory) : current liabilities.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Receivables and money in the bank both count; inventory does not.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide (9500 + 3000) by 3500.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The acid-test ratio is 3.57 : 1.'
+  misconception_ids:
+  - mc.acc.o.rat_acid_includes_inventory
+  - mc.acc.o.rat_ratio_inverted
+  - mc.acc.o.rat_quick_assets_too_narrow
+solution:
+  steps:
+  - n: 1
+    latex: \text{Acid test} = \frac{\text{current assets} - \text{inventory}}{\text{current liabilities}}
+    reason: The pack's definition
+    check_id: chk_build_acc_ratios_0032_t
+  - n: 2
+    latex: \frac{9500 + 3000}{3500} = 3.57
+    reason: Substitute
+    check_id: chk_build_acc_ratios_0032_a
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_ratios_0032_a:
+    args:
+      dp: 2
+      expression: (9500 + 3000) / 3500
+    tool: math_evaluate
+  chk_build_acc_ratios_0032_t:
+    args:
+      closing_inventory: '2100'
+      current_assets: '14600'
+      current_liabilities: '3500'
+      definitions:
+        capital_basis: closing
+        capital_employed: capital_and_non_current_liabilities
+        inventory_basis: average
+        payables_purchases: credit_purchases
+        quick_assets: less_inventory
+        receivables_sales: credit_sales
+        roce_profit: profit_for_the_year
+        year_days: 365
+      dp: 2
+      ratios:
+      - acid_test
+    tool: acc_ratios
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

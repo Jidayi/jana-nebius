@@ -1,0 +1,110 @@
+id: itm.phy.o.energy.0028
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.kinetic_energy
+stem: A football of mass 0.45 kg is moving at 18 m/s.
+parts:
+- id: a
+  prompt: Calculate the kinetic energy in J.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 72.9 J
+      correct: true
+    - id: B
+      text: 145.8 J
+      correct: false
+      misconception_id: mc.phy.o.ke_half_omitted
+      feedback: Kinetic energy is ½mv². Write the whole formula down before you put in any numbers.
+    - id: C
+      text: 4.05 J
+      correct: false
+      misconception_id: mc.phy.o.ke_speed_not_squared
+      feedback: 'Try a speed of 2 m/s and then 4 m/s: the kinetic energy goes up four times, not twice. The speed is squared.'
+    - id: D
+      text: 8.1 J
+      correct: false
+      misconception_id: mc.phy.o.square_taken_as_double
+      feedback: 'Squaring means multiplying a number by itself: 5² is 5 × 5 = 25, not 5 × 2 = 10.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Kinetic energy depends on the mass and the speed.
+  - rung: 2
+    name: concept
+    text:
+      en: Use Ek = ½mv², with the mass in kg and the speed in m/s.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Square the speed first: 18² = 324.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Then work out ½ × 0.45 × 324.
+  - rung: 5
+    name: full_step
+    text:
+      en: The kinetic energy is 72.9 J.
+  misconception_ids:
+  - mc.phy.o.ke_half_omitted
+  - mc.phy.o.ke_speed_not_squared
+  - mc.phy.o.square_taken_as_double
+solution:
+  steps:
+  - n: 1
+    latex: v^2 = 18^2 = 324
+    reason: Square the speed first
+    check_id: chk_build_phy_nrg_0028_sq
+  - n: 2
+    latex: E_k = \frac{1}{2} \times 0.45 \times 324 = 72.9\ \text{J}
+    reason: E_k = ½mv²
+    check_id: chk_build_phy_nrg_0028_ej
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0028_ans:
+    args:
+      expression: 0.5*0.45*18^2
+    tool: math_evaluate
+  chk_build_phy_nrg_0028_ej:
+    args:
+      expression: 0.5*0.45*18^2
+    tool: math_evaluate
+  chk_build_phy_nrg_0028_sq:
+    args:
+      expression: 18^2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

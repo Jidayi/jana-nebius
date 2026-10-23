@@ -1,0 +1,34 @@
+id: mc.acc.o.disp_sign_reversed
+kc_ids:
+- kc.acc.o.depreciation.disposal
+student_name: Profit and loss swapped
+description: Calls a loss on disposal a profit, or a profit a loss.
+signatures:
+- kind: step_error
+  error_category: sign
+fix:
+  strategy: rule_restatement
+  text:
+    en: Selling for more than book value is a profit; for less is a loss.
+probe_item_ids:
+- itm.acc.o.depreciation.0064
+- itm.acc.o.depreciation.0065
+- itm.acc.o.depreciation.0066
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

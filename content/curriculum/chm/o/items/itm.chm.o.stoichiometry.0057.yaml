@@ -1,0 +1,109 @@
+id: itm.chm.o.stoichiometry.0057
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.moles_and_mass
+stem: A student weighs out 7.3 g of aluminium oxide, Al₂O₃.
+parts:
+- id: a
+  prompt: Calculate the amount of Al₂O₃ in moles.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.0716'
+    unit: mol
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0057_n
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You have a mass of Al₂O₃; you want an amount in moles.
+  - rung: 2
+    name: concept
+    text:
+      en: Amount (mol) = mass (g) ÷ molar mass (g/mol); the molar mass is Mr in g/mol.
+  - rung: 3
+    name: first_step
+    text:
+      en: The molar mass of Al₂O₃ is 102 g/mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 7.3 ÷ 102.
+  - rung: 5
+    name: full_step
+    text:
+      en: 7.3 ÷ 102 = 0.0716 mol.
+  misconception_ids:
+  - mc.chm.o.moles_ratio_inverted
+  - mc.chm.o.moles_multiply_mass
+solution:
+  steps:
+  - n: 1
+    latex: M(\text{Al}_2\text{O}_3) = 102\ \text{g/mol}
+    reason: Molar mass from Mr
+    check_id: chk_build_chm_stoichiometry_0057_mr
+  - n: 2
+    latex: n = \frac{7.3}{102}
+    reason: Amount is mass over molar mass
+  - n: 3
+    latex: n = 0.0716\ \text{mol}
+    reason: Divide
+    check_id: chk_build_chm_stoichiometry_0057_n
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 70
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0057_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_al
+      - source: pack
+        symbol: ar_o
+      formula: Al2O3
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0057_n:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_al
+      - source: pack
+        symbol: ar_o
+      sf: 3
+      steps:
+      - id: n
+        mass: 7.3 g
+        op: amount_from_mass
+        species: Al2O3
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

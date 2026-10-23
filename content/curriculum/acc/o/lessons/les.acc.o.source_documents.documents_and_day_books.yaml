@@ -1,0 +1,70 @@
+id: les.acc.o.source_documents.documents_and_day_books
+node_id: cur.acc.o.source_documents
+kc_ids:
+- kc.acc.o.source_documents.identify_source_document
+- kc.acc.o.source_documents.select_book_of_prime_entry
+- kc.acc.o.source_documents.trade_discount
+- kc.acc.o.source_documents.cash_discount
+- kc.acc.o.source_documents.post_day_book_totals
+title: From source documents to the ledger
+estimated_minutes: 12
+blocks:
+- type: step
+  text:
+    en: 'Try this before any rules: the customer takes the goods now and pays later. What paper tells them how much they owe?'
+  item_id: itm.acc.o.source_documents.0001
+  action: try_first
+  why:
+    en: The seller sends an invoice to show what was sold and the amount owed. A credit note is only for goods sent back.
+  names:
+    en: Papers like this are source documents. Every entry in the books starts from one.
+- type: step
+  text:
+    en: Each kind of deal is first listed in its own book, called a book of prime entry. Money in or out has a book of its own.
+  item_id: itm.acc.o.source_documents.0012
+  action: choose
+  why:
+    en: Cash changes hands at once, so the sale goes straight into the cash book. The sales journal is only for credit sales.
+- type: step
+  text:
+    en: Traders often give other traders a discount off the list price. Only the price after that discount goes in the books.
+  item_id: itm.acc.o.source_documents.0023
+  action: calculate
+  why:
+    en: Work out the list price of all the items, then take off the trade discount. The net amount is what is recorded.
+- type: step
+  text:
+    en: 'Predict before you look at the choices: is trade discount ever written in the sales journal?'
+  item_id: itm.acc.o.source_documents.0030
+  action: predict
+  why:
+    en: Trade discount is never recorded, so only the price after the discount is entered. That is the list price less the discount.
+- type: step
+  text:
+    en: A second discount can be given for paying quickly. It comes after the trade discount, not before.
+  item_id: itm.acc.o.source_documents.0034
+  action: calculate
+  why:
+    en: Take the trade discount off first to get the invoice amount. Then work out the cash discount on that amount and subtract it.
+- type: check
+  item_ids:
+  - itm.acc.o.source_documents.0035
+  - itm.acc.o.source_documents.0045
+  - itm.acc.o.source_documents.0050
+version: 0.2.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

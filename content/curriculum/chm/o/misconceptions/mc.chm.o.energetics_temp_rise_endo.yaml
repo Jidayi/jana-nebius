@@ -1,0 +1,36 @@
+id: mc.chm.o.energetics_temp_rise_endo
+kc_ids:
+- kc.chm.o.energetics.exo_endo
+student_name: A warmer mixture took energy in
+description: Reads a rise in temperature as the reaction taking in energy, because the mixture 'gains heat'.
+signatures:
+- kind: answer_transform
+  expression: 'choice: temperature rise classed as endothermic'
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The thermometer measures the surroundings. If they get warmer, the reaction gave energy out: exothermic.'
+probe_item_ids:
+- itm.chm.o.energetics.0001
+- itm.chm.o.energetics.0002
+- itm.chm.o.energetics.0003
+- itm.chm.o.energetics.0004
+- itm.chm.o.energetics.0005
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

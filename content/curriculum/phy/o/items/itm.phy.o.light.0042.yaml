@@ -1,0 +1,93 @@
+id: itm.phy.o.light.0042
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.speed_in_medium
+stem: Light travels at 225 000 km/s in a liquid. A student writes n = (3.0 × 10⁸) ÷ 225 000 and gets 1333.
+parts:
+- id: a
+  prompt: What has gone wrong?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 'Nothing: the refractive index of a liquid can be that large'
+      correct: false
+      misconception_id: mc.phy.o.light_speed_units_mixed
+      feedback: 'Put both speeds in the same unit before dividing: 3.0 × 10⁸ m/s is 300 000 km/s.'
+    - id: B
+      text: The division should be 225 000 ÷ (3.0 × 10⁸)
+      correct: false
+      misconception_id: mc.phy.o.light_index_ratio_inverted
+      feedback: Refractive index = speed in a vacuum ÷ speed in the material. Light is fastest in a vacuum, so the answer is always more than one.
+    - id: C
+      text: The two speeds are in different units
+      correct: true
+    - id: D
+      text: The student should have multiplied the two speeds
+      correct: false
+      misconception_id: mc.phy.o.light_speed_times_index
+      feedback: 'Nothing travels faster than light in a vacuum. A material slows light down, so divide c by the refractive index: the bigger n is, the slower the light.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Compare the speed of light in a vacuum with its speed in the material.
+  - rung: 2
+    name: concept
+    text:
+      en: Refractive index n = c ÷ v, so a bigger refractive index means slower light.
+  - rung: 3
+    name: first_step
+    text:
+      en: Light is never faster in a material than in a vacuum.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Test each option against n = c ÷ v.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: The two speeds are in different units.'
+  misconception_ids:
+  - mc.phy.o.light_index_ratio_inverted
+  - mc.phy.o.light_speed_times_index
+  - mc.phy.o.light_speed_units_mixed
+solution:
+  steps:
+  - n: 1
+    latex: \text{The two speeds are in different units}
+    reason: Use n = c / v
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

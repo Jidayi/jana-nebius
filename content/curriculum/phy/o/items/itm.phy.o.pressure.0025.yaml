@@ -1,0 +1,100 @@
+id: itm.phy.o.pressure.0025
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.liquid_pressure
+stem: Atmospheric pressure at the surface of the sea is 101 kPa. Sea water has a density of 1030 kg/m³. Take g = 9.8 N/kg.
+parts:
+- id: a
+  prompt: Calculate the total pressure on a diver 25 m below the surface, in kPa.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '353'
+    unit: kPa
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_prs_0025_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Two things press on the diver: the water above and the air above the water.'
+  - rung: 2
+    name: concept
+    text:
+      en: Total pressure = atmospheric pressure + ρgh.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find ρgh in pascals, change it to kPa, then add the atmospheric pressure.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The water adds 252 kPa.
+  - rung: 5
+    name: full_step
+    text:
+      en: The total pressure is 353 kPa.
+  misconception_ids:
+  - mc.phy.o.liquid_pressure_atmosphere_left_out
+  - mc.phy.o.liquid_pressure_g_left_out
+  - mc.phy.o.liquid_density_ignored
+solution:
+  steps:
+  - n: 1
+    latex: \rho g h = 1030 \times 9.8 \times 25 = 252\ \text{kPa}
+    reason: The pressure due to the water, in kPa
+    check_id: chk_build_phy_prs_0025_dp
+  - n: 2
+    latex: p = 101 + 252 = 353\ \text{kPa}
+    reason: Add the air pressure on the surface
+    check_id: chk_build_phy_prs_0025_ans
+difficulty:
+  prior: 0.5
+  band: stretch
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_0025_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 101 + 1030*g*25/1000
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_prs_0025_dp:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 1030*g*25/1000
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

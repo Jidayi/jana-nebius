@@ -1,0 +1,60 @@
+{
+  "id": "connectivity-indicator.canonical.online-idle",
+  "title": "Connectivity indicator, online and idle",
+  "note": "Online features on, nothing being sent.",
+  "component": "ConnectivityIndicator",
+  "state": "canonical",
+  "variant": "online-idle",
+  "payload": {
+    "status": {
+      "type": "connectivity.status",
+      "network": "online",
+      "checked_ts": 1760000000000,
+      "features": [
+        {
+          "feature": "cloud_tier",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "downloads",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "update_checks",
+          "enabled": true,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "telemetry",
+          "enabled": true,
+          "state": "idle",
+          "queued_items": 0
+        },
+        {
+          "feature": "crash_reports",
+          "enabled": false,
+          "state": "idle",
+          "queued_items": 0
+        }
+      ]
+    },
+    "open": true
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light",
+    "connectivity": "online-idle"
+  },
+  "placements": [
+    "rail"
+  ],
+  "expectText": [
+    "Online",
+    "Online features on: updates, usage reports. Nothing is being sent now."
+  ]
+}

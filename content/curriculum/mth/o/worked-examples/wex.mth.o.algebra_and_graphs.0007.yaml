@@ -1,0 +1,67 @@
+id: wex.mth.o.algebra_and_graphs.0007
+kc_ids:
+- kc.mth.o.algebra_and_graphs.factorise_quadratic
+problem: Factorise $x^2 - 3x - 40$.
+steps:
+- n: 1
+  latex: 5 \times (-\,8) = (-\,40),\ 5 + (-\,8) = (-\,3)
+  reason: Two numbers that multiply to the last term and add to the middle coefficient
+  check_id: chk_build_mth_alg_w0007_m
+- n: 2
+  latex: x^2 - 3x - 40 = (x + 5)(x - 8)
+  reason: Put the two numbers in the brackets
+  check_id: chk_build_mth_alg_w0007_final
+- n: 3
+  latex: '\text{Check: the solutions of } x^2 - 3x - 40 = 0 \text{ are } x = -5, 8'
+  reason: Each bracket equal to zero
+  check_id: chk_build_mth_alg_w0007_roots
+final_answer:
+  latex: (x + 5)(x - 8)
+  check_id: chk_build_mth_alg_w0007_final
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_w0007_final:
+    args:
+      equations:
+      - p = abs(5)
+      - q = abs(-8)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_alg_w0007_m:
+    args:
+      equations:
+      - p = abs((5)*(-8))
+      - q = abs((5) + (-8))
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+  chk_build_mth_alg_w0007_roots:
+    args:
+      equations:
+      - x^2 + (-3)*x + (-40) = 0
+      unknowns:
+      - x
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

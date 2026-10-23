@@ -1,0 +1,35 @@
+id: mc.chm.o.analysis_carbonate_gas_hydrogen
+kc_ids:
+- kc.chm.o.analysis.anion_tests
+- kc.chm.o.analysis.gas_tests
+student_name: Hydrogen from a carbonate
+description: Thinks the gas given off when acid is added to a carbonate is hydrogen.
+signatures:
+- kind: answer_transform
+  expression: 'choice: hydrogen named for a carbonate'
+fix:
+  strategy: rule_restatement
+  text:
+    en: Acid + carbonate gives carbon dioxide, which turns limewater milky. Hydrogen comes from acid + metal.
+probe_item_ids:
+- itm.chm.o.analysis.0073
+- itm.chm.o.analysis.0074
+- itm.chm.o.analysis.0087
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

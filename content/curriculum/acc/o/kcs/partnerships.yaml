@@ -1,0 +1,189 @@
+- id: kc.acc.o.partnerships.partnership_agreement
+  code: ACC-O-12.K01
+  node_id: cur.acc.o.partnerships
+  statement: Recall what a partnership agreement covers and the rules that apply without one
+  kind: factual
+  tools: []
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.double_entry.record_owner_transactions
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.pa_agreement_scope
+  - mc.acc.o.pa_capital_ratio_default
+  - mc.acc.o.pa_interest_default
+  - mc.acc.o.pa_salary_default
+  skill_ids:
+  - acc-o-partnerships
+  glossary:
+  - partnership
+  - partnership agreement
+  - interest on capital
+  - interest on drawings
+  - partner's salary
+  - partners' salaries
+  - appropriation account
+  - appropriation
+  - residual profit
+  - profit-sharing ratio
+  - current account
+  - capital account
+  - fixed capital
+  - drawings
+  - capital
+  difficulty_prior: -0.6
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.partnerships.interest_and_salary
+  code: ACC-O-12.K02
+  node_id: cur.acc.o.partnerships
+  statement: Calculate interest on capital, interest on drawings and partners' salaries
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.acc.o.partnerships.partnership_agreement
+    strength: required
+  misconception_ids:
+  - mc.acc.o.pa_iod_added
+  - mc.acc.o.pa_rate_on_wrong_base
+  - mc.acc.o.pa_salary_omitted
+  skill_ids:
+  - acc-o-partnerships
+  glossary:
+  - partnership
+  - partnership agreement
+  - interest on capital
+  - interest on drawings
+  - partner's salary
+  - partners' salaries
+  - appropriation account
+  - appropriation
+  - residual profit
+  - profit-sharing ratio
+  - current account
+  - capital account
+  - fixed capital
+  - drawings
+  - capital
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.partnerships.appropriation
+  code: ACC-O-12.K03
+  node_id: cur.acc.o.partnerships
+  statement: Calculate each partner's share of the residual profit in the appropriation account
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.25
+  prerequisites:
+  - kc_id: kc.acc.o.partnerships.interest_and_salary
+    strength: required
+  - kc_id: kc.acc.o.sole_trader_statements.profit_for_year
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.pa_appropriation_as_expense
+  - mc.acc.o.pa_iod_subtracted
+  - mc.acc.o.pa_ratio_reversed
+  - mc.acc.o.pa_share_before_appropriations
+  skill_ids:
+  - acc-o-partnerships
+  glossary:
+  - partnership
+  - partnership agreement
+  - interest on capital
+  - interest on drawings
+  - partner's salary
+  - partners' salaries
+  - appropriation account
+  - appropriation
+  - residual profit
+  - profit-sharing ratio
+  - current account
+  - capital account
+  - fixed capital
+  - drawings
+  - capital
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.partnerships.current_accounts
+  code: ACC-O-12.K04
+  node_id: cur.acc.o.partnerships
+  statement: Calculate the closing balance of a partner's current account
+  kind: procedural
+  tools:
+  - acc_double_entry
+  - math_evaluate
+  exam_weight: 0.2
+  prerequisites:
+  - kc_id: kc.acc.o.partnerships.appropriation
+    strength: required
+  - kc_id: kc.acc.o.double_entry.balance_account
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.pa_drawings_added_current
+  - mc.acc.o.pa_iod_omitted
+  - mc.acc.o.pa_opening_side_reversed
+  skill_ids:
+  - acc-o-partnerships
+  glossary:
+  - partnership
+  - partnership agreement
+  - interest on capital
+  - interest on drawings
+  - partner's salary
+  - partners' salaries
+  - appropriation account
+  - appropriation
+  - residual profit
+  - profit-sharing ratio
+  - current account
+  - capital account
+  - fixed capital
+  - drawings
+  - capital
+  difficulty_prior: 0.5
+  version: 0.1.1
+  status: active
+- id: kc.acc.o.partnerships.capital_vs_current
+  code: ACC-O-12.K05
+  node_id: cur.acc.o.partnerships
+  statement: Distinguish what is recorded in a partner's capital account and current account
+  kind: conceptual
+  tools: []
+  exam_weight: 0.15
+  prerequisites:
+  - kc_id: kc.acc.o.partnerships.partnership_agreement
+    strength: helpful
+  misconception_ids:
+  - mc.acc.o.pa_appropriation_as_expense
+  - mc.acc.o.pa_capital_current_same
+  - mc.acc.o.pa_capital_introduced_to_current
+  - mc.acc.o.pa_drawings_to_capital
+  - mc.acc.o.pa_profit_to_capital
+  skill_ids:
+  - acc-o-partnerships
+  glossary:
+  - partnership
+  - partnership agreement
+  - interest on capital
+  - interest on drawings
+  - partner's salary
+  - partners' salaries
+  - appropriation account
+  - appropriation
+  - residual profit
+  - profit-sharing ratio
+  - current account
+  - capital account
+  - fixed capital
+  - drawings
+  - capital
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active

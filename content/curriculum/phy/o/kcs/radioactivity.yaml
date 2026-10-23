@@ -1,0 +1,231 @@
+- id: kc.phy.o.radioactivity.types_of_radiation
+  code: PHY-O-05.02.K01
+  node_id: cur.phy.o.nuclear_physics.radioactivity
+  statement: Compare alpha, beta and gamma radiation by their nature, penetration, ionising effect and deflection
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.226
+  prerequisites:
+  - kc_id: kc.phy.o.atom.atomic_structure
+    strength: required
+  misconception_ids:
+  - mc.phy.o.alpha_deflected_more
+  - mc.phy.o.alpha_is_helium_atom
+  - mc.phy.o.background_added
+  - mc.phy.o.background_ignored
+  - mc.phy.o.beta_from_electron_shell
+  - mc.phy.o.beta_positive
+  - mc.phy.o.beta_stopped_by_paper
+  - mc.phy.o.gamma_deflected
+  - mc.phy.o.gamma_is_particle
+  - mc.phy.o.gamma_stopped_completely
+  - mc.phy.o.ionising_follows_penetration
+  - mc.phy.o.penetration_order_wrong
+  - mc.phy.o.radiation_natures_swapped
+  skill_ids:
+  - phy-o-radioactivity
+  glossary:
+  - alpha
+  - beta
+  - gamma
+  - alpha particle
+  - beta particle
+  - gamma ray
+  - gamma radiation
+  - radiation
+  - ionise
+  - ionising
+  - ionisation
+  - penetrate
+  - penetrating
+  - penetration
+  - deflection
+  - deflected
+  - nucleus
+  - electromagnetic
+  - helium nucleus
+  - radioactive
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.radioactivity.decay_equations
+  code: PHY-O-05.02.K02
+  node_id: cur.phy.o.nuclear_physics.radioactivity
+  statement: Find the new proton and nucleon numbers after alpha or beta decay
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.208
+  prerequisites:
+  - kc_id: kc.phy.o.radioactivity.types_of_radiation
+    strength: required
+  - kc_id: kc.phy.o.atom.isotopes
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.alpha_numbers_swapped
+  - mc.phy.o.alpha_removes_four_neutrons
+  - mc.phy.o.beta_adds_to_nucleon_number
+  - mc.phy.o.beta_changes_nothing
+  - mc.phy.o.beta_changes_nucleon_number
+  - mc.phy.o.beta_lowers_proton_number
+  - mc.phy.o.beta_treated_as_alpha
+  - mc.phy.o.decay_changes_one_number_only
+  - mc.phy.o.decay_numbers_added
+  - mc.phy.o.gamma_changes_numbers
+  - mc.phy.o.neutrons_equal_nucleon_number
+  - mc.phy.o.protons_neutrons_assumed_equal
+  skill_ids:
+  - phy-o-radioactivity
+  glossary:
+  - decay
+  - alpha
+  - beta
+  - alpha particle
+  - beta particle
+  - nucleus
+  - nuclei
+  - proton number
+  - nucleon number
+  - neutron
+  - proton
+  - emit
+  - emitting
+  - nuclide
+  - decay equation
+  - radioactive
+  - uranium
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.radioactivity.half_life
+  code: PHY-O-05.02.K03
+  node_id: cur.phy.o.nuclear_physics.radioactivity
+  statement: Use half-life to find the activity left, the fraction remaining or the time taken
+  kind: procedural
+  tools:
+  - math_solve
+  - math_evaluate
+  exam_weight: 0.245
+  prerequisites:
+  - kc_id: kc.phy.o.radioactivity.types_of_radiation
+    strength: required
+  misconception_ids:
+  - mc.phy.o.background_halved_too
+  - mc.phy.o.background_not_added_back
+  - mc.phy.o.decay_not_random
+  - mc.phy.o.decay_rate_changed_by_conditions
+  - mc.phy.o.decay_treated_as_linear
+  - mc.phy.o.decayed_for_remaining
+  - mc.phy.o.half_life_half_of_time
+  - mc.phy.o.half_life_halved_once
+  - mc.phy.o.half_life_linear
+  - mc.phy.o.half_lives_counted_wrongly
+  - mc.phy.o.half_lives_equal_ratio
+  skill_ids:
+  - phy-o-radioactivity
+  glossary:
+  - half-life
+  - activity
+  - decay
+  - count rate
+  - becquerel
+  - radioactive
+  - nuclei
+  - undecayed
+  - isotope
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.radioactivity.background_radiation
+  code: PHY-O-05.02.K04
+  node_id: cur.phy.o.nuclear_physics.radioactivity
+  statement: Calculate a count rate corrected for background radiation and recall the main background sources
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.151
+  prerequisites:
+  - kc_id: kc.phy.o.radioactivity.types_of_radiation
+    strength: required
+  misconception_ids:
+  - mc.phy.o.background_added
+  - mc.phy.o.background_count_not_per_minute
+  - mc.phy.o.background_from_non_ionising
+  - mc.phy.o.background_halved_too
+  - mc.phy.o.background_ignored
+  - mc.phy.o.background_mostly_artificial
+  - mc.phy.o.background_not_added_back
+  - mc.phy.o.background_rate_from_count
+  - mc.phy.o.background_readings_summed
+  - mc.phy.o.background_zero_without_source
+  - mc.phy.o.count_multiplied_by_time
+  - mc.phy.o.count_rate_inverted
+  - mc.phy.o.decay_not_random
+  skill_ids:
+  - phy-o-radioactivity
+  glossary:
+  - background radiation
+  - count rate
+  - background count
+  - radiation
+  - radon
+  - cosmic ray
+  - radioactive
+  - Geiger-Muller tube
+  - Geiger counter
+  - corrected count rate
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.radioactivity.uses_and_safety
+  code: PHY-O-05.02.K05
+  node_id: cur.phy.o.nuclear_physics.radioactivity
+  statement: Select a radioactive source for a use from its radiation and half-life, and describe safe handling
+  kind: conceptual
+  tools:
+  - math_evaluate
+  exam_weight: 0.17
+  prerequisites:
+  - kc_id: kc.phy.o.radioactivity.half_life
+    strength: required
+  - kc_id: kc.phy.o.radioactivity.types_of_radiation
+    strength: required
+  misconception_ids:
+  - mc.phy.o.alpha_always_harmless
+  - mc.phy.o.decay_rate_changed_by_conditions
+  - mc.phy.o.distance_does_not_matter
+  - mc.phy.o.gamma_stopped_completely
+  - mc.phy.o.gloves_stop_radiation
+  - mc.phy.o.half_life_halved_once
+  - mc.phy.o.half_life_linear
+  - mc.phy.o.half_lives_counted_wrongly
+  - mc.phy.o.ionising_follows_penetration
+  - mc.phy.o.irradiated_becomes_radioactive
+  - mc.phy.o.penetration_order_wrong
+  - mc.phy.o.radiation_fully_absorbed_choice
+  - mc.phy.o.radiation_passes_unchanged_choice
+  - mc.phy.o.short_half_life_for_long_use
+  - mc.phy.o.shortest_half_life_best
+  - mc.phy.o.source_can_be_switched_off
+  - mc.phy.o.tracer_alpha_emitter
+  - mc.phy.o.tracer_long_half_life
+  skill_ids:
+  - phy-o-radioactivity
+  glossary:
+  - radioactive
+  - radioactive source
+  - half-life
+  - alpha
+  - beta
+  - gamma
+  - tracer
+  - sterilise
+  - irradiate
+  - radiation
+  - ionising
+  - penetrate
+  - contamination
+  difficulty_prior: 0.2
+  version: 0.1.1
+  status: active

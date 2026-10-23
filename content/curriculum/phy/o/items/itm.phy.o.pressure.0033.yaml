@@ -1,0 +1,116 @@
+id: itm.phy.o.pressure.0033
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.pressure.gas_and_atmospheric_pressure
+stem: A mercury manometer is joined to a gas supply. On its scale, the mercury level is at 225 mm in the open arm and at 180 mm in the arm joined to the gas. Atmospheric pressure is 101 kPa and mercury has a density of 13600 kg/m³. Take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate the pressure of the gas, in kPa.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '107'
+    unit: kPa
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_prs_0033_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The side that pushes harder pushes its mercury level down.
+  - rung: 2
+    name: concept
+    text:
+      en: The mercury stands higher in the open arm, so the gas pressure is above atmospheric pressure.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the difference between the levels in metres and work out ρgΔh.
+  - rung: 4
+    name: worked_step
+    text:
+      en: ρgΔh = 6.12 kPa; add it to 101 kPa.
+  - rung: 5
+    name: full_step
+    text:
+      en: The gas pressure is 107 kPa.
+  misconception_ids:
+  - mc.phy.o.manometer_excess_as_gas_pressure
+  - mc.phy.o.manometer_difference_sign_wrong
+  - mc.phy.o.manometer_one_level_used
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: \Delta h = 225 - 180 = 45\ \text{mm}
+    reason: The difference between the levels
+    check_id: chk_build_phy_prs_0033_dh
+  - n: 2
+    latex: 45\ \text{mm} = 0.045\ \text{m}
+    reason: Millimetres into metres
+    check_id: chk_build_phy_prs_0033_dhm
+  - n: 3
+    latex: \rho g \Delta h = 13600 \times 10 \times 0.045 = 6.12\ \text{kPa}
+    reason: The pressure of the height difference, in kPa
+    check_id: chk_build_phy_prs_0033_dp
+  - n: 4
+    latex: p = 101 + 6.12 = 107\ \text{kPa}
+    reason: The gas pushes harder
+    check_id: chk_build_phy_prs_0033_ans
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_0033_ans:
+    args:
+      expression: 101 + 13600*10*45/1000000
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_prs_0033_dh:
+    args:
+      expression: 225 - 180
+    tool: math_evaluate
+  chk_build_phy_prs_0033_dhm:
+    args:
+      expression: 45/1000
+    tool: math_evaluate
+  chk_build_phy_prs_0033_dp:
+    args:
+      expression: 13600*10*45/1000000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

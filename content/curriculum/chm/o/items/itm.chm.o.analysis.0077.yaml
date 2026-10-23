@@ -1,0 +1,81 @@
+id: itm.chm.o.analysis.0077
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.analysis.anion_tests
+stem: A solution is tested with acidified silver nitrate. The result is a cream precipitate.
+parts:
+- id: a
+  prompt: Which anion is present?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: SO₄²⁻
+      correct: false
+    - id: B
+      text: Br⁻
+      correct: true
+    - id: C
+      text: I⁻
+      correct: false
+    - id: D
+      text: Cl⁻
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which anion is this reagent used to detect?
+  - rung: 2
+    name: concept
+    text:
+      en: 'Halides: silver nitrate. Sulfate: barium nitrate. Carbonate: acid. Nitrate: NaOH with aluminium, warmed.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Then use the observation to choose between similar ions.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Match reagent and observation.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Br⁻.'
+solution:
+  steps:
+  - n: 1
+    latex: \text{reagent + observation} \Rightarrow \text{ion}
+    reason: Reason
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

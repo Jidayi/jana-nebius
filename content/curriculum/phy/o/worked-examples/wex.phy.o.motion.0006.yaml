@@ -1,0 +1,50 @@
+id: wex.phy.o.motion.0006
+kc_ids:
+- kc.phy.o.motion.distance_or_displacement
+problem: A girl walks 500 m north to a bus stop, then 200 m south to a shop. Find the total distance she walks.
+steps:
+- n: 1
+  latex: d = d_1 + d_2
+  reason: Distance adds every part of the path
+- n: 2
+  latex: d = 500 + 200
+  reason: Substitute
+  check_id: chk_build_phy_w_0006
+- n: 3
+  latex: d = 700\ \text{m}
+  reason: Add
+  check_id: chk_build_phy_w_0006
+final_answer:
+  latex: 700\ \text{m}
+  check_id: chk_build_phy_w_0006
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_w_0006:
+    args:
+      expression: 500 + 200
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

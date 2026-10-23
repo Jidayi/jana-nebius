@@ -1,0 +1,117 @@
+id: itm.phy.o.density.0018
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.measuring_density
+stem: An empty beaker has a mass of 98.2 g. Then 60 cm³ of ethanol is poured in from a measuring cylinder, and the beaker and ethanol together have a mass of 145.6 g.
+parts:
+- id: a
+  prompt: Calculate the density of the ethanol in g/cm³.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.79'
+    unit: g/cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_den_0018_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The balance reading includes the beaker.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the mass of the ethanol alone first.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 145.6 − 98.2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The ethanol has a mass of 47.4 g; divide by its volume.
+  - rung: 5
+    name: full_step
+    text:
+      en: The density of the ethanol is 0.79 g/cm³.
+  misconception_ids:
+  - mc.phy.o.container_mass_not_subtracted
+  - mc.phy.o.density_volume_over_mass
+  - mc.phy.o.density_mass_times_volume
+solution:
+  steps:
+  - n: 1
+    latex: m = 145.6 - 98.2 = 47.4\ \text{g}
+    reason: Take away the beaker's own mass
+    check_id: chk_build_phy_den_0018_ml
+  - n: 2
+    latex: \rho = \frac{47.4}{60} = 0.79\ \text{g/cm}^3
+    reason: Density = mass ÷ volume
+    check_id: chk_build_phy_den_0018_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  V: '60'
+  m: '98.2'
+  m_total: '145.6'
+checks:
+  chk_build_phy_den_0018_ans:
+    args:
+      expression: (145.6 - 98.2)/60
+    tool: math_evaluate
+  chk_build_phy_den_0018_ml:
+    args:
+      expression: 145.6 - 98.2
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:41:13.041Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.phy.o.density.0018
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

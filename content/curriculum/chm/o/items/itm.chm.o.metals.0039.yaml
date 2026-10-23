@@ -1,0 +1,89 @@
+id: itm.chm.o.metals.0039
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.corrosion
+stem: Four objects are left outside in the rain for a year.
+parts:
+- id: a
+  prompt: Which object rusts?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: An aluminium window frame
+      correct: false
+      misconception_id: mc.chm.o.metals_all_metals_rust
+      feedback: Rust is hydrated iron(III) oxide, so only iron and steel rust. Other metals may corrode, but their corrosion is not called rusting.
+    - id: B
+      text: A steel bicycle chain
+      correct: true
+    - id: C
+      text: A copper water pipe
+      correct: false
+      misconception_id: mc.chm.o.metals_all_metals_rust
+      feedback: Rust is hydrated iron(III) oxide, so only iron and steel rust. Other metals may corrode, but their corrosion is not called rusting.
+    - id: D
+      text: A gold ring
+      correct: false
+      misconception_id: mc.chm.o.metals_all_metals_rust
+      feedback: Rust is hydrated iron(III) oxide, so only iron and steel rust. Other metals may corrode, but their corrosion is not called rusting.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Rust is a particular substance, not any kind of corrosion.
+  - rung: 2
+    name: concept
+    text:
+      en: Rust is hydrated iron(III) oxide.
+  - rung: 3
+    name: first_step
+    text:
+      en: So only objects made of iron or steel can rust.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Steel is mostly iron.
+  - rung: 5
+    name: full_step
+    text:
+      en: The steel chain rusts; the other metals do not rust, though some may corrode a little.
+  misconception_ids:
+  - mc.chm.o.metals_all_metals_rust
+solution:
+  steps:
+  - n: 1
+    latex: \text{rust = hydrated iron(III) oxide}
+    reason: Only iron and steel rust
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

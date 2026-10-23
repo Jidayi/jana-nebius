@@ -1,0 +1,34 @@
+id: mc.acc.o.cc_profit_omitted
+kc_ids:
+- kc.acc.o.sole_trader_statements.closing_capital
+student_name: Leaving the profit out of capital
+description: Updates capital for drawings and capital introduced but forgets that the year's profit belongs to the owner.
+signatures:
+- kind: answer_transform
+  expression: opening + introduced - drawings
+fix:
+  strategy: rule_restatement
+  text:
+    en: Profit is the owner's reward, so it is added to capital before drawings are taken off.
+probe_item_ids:
+- itm.acc.o.sole_trader_statements.0063
+- itm.acc.o.sole_trader_statements.0064
+- itm.acc.o.sole_trader_statements.0065
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

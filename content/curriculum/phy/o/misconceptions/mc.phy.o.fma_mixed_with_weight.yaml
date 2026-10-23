@@ -1,0 +1,36 @@
+id: mc.phy.o.fma_mixed_with_weight
+kc_ids:
+- kc.phy.o.forces.force_mass_acceleration
+student_name: Bringing g into F = ma
+description: Multiplies or divides by g in a question about F = ma, as if every force were a weight.
+signatures:
+- kind: structural
+  rule: mass_weight_confused
+fix:
+  strategy: contrast_example
+  text:
+    en: g belongs in weight = mg, the pull of gravity. When a horizontal push accelerates a trolley, use F = ma with the trolley's acceleration and leave g out.
+probe_item_ids:
+- itm.phy.o.forces.0026
+- itm.phy.o.forces.0028
+- itm.phy.o.forces.0029
+- itm.phy.o.forces.0017
+- itm.phy.o.forces.0018
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,98 @@
+id: itm.phy.o.wave_properties.0014
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.describing_waves
+stem: A displacement–time graph for a point on a stretched rubber cord shows 6 complete cycles in 0.5 s.
+parts:
+- id: a
+  prompt: Find the frequency of the oscillation.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 0.0833 Hz
+      correct: false
+      misconception_id: mc.phy.o.period_frequency_confused
+      feedback: 'Frequency is the number of waves each second; the period is the number of seconds for each wave. One is the reciprocal of the other: T = 1/f.'
+    - id: B
+      text: 6 Hz
+      correct: false
+      misconception_id: mc.phy.o.cycle_count_as_frequency
+      feedback: Frequency is cycles per second. Divide the number of cycles by the time they took.
+    - id: C
+      text: 12 Hz
+      correct: true
+    - id: D
+      text: 2 Hz
+      correct: false
+      misconception_id: mc.phy.o.whole_time_as_period
+      feedback: The period is the time for one cycle. When a graph shows several cycles, divide the time by the number of cycles.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Frequency is the number of complete cycles each second.
+  - rung: 2
+    name: concept
+    text:
+      en: The graph shows 6 cycles, but they take 0.5 s, not one second.
+  - rung: 3
+    name: first_step
+    text:
+      en: Divide the number of cycles by the time.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 6 ÷ 0.5.
+  - rung: 5
+    name: full_step
+    text:
+      en: f = 12 Hz.
+  misconception_ids:
+  - mc.phy.o.cycle_count_as_frequency
+  - mc.phy.o.period_frequency_confused
+  - mc.phy.o.whole_time_as_period
+solution:
+  steps:
+  - n: 1
+    latex: f = \frac{6}{0.5} = 12\ \text{Hz}
+    reason: Cycles divided by the time they took
+    check_id: chk_build_phy_wav_0014_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_wav_0014_ans:
+    args:
+      expression: 6/0.5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

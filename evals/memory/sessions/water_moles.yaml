@@ -1,0 +1,49 @@
+# A long guided session on amount of substance (EVL-08, MEM-23). Synthetic; no real student data (EVL-24).
+# The dialogue is played `rounds` times; its numbers are distractors that live only in the dropped middle.
+id: water_moles
+synthetic: true
+persona: p_o_chemistry
+subject: chemistry
+session_date: "2026-10-11"
+problem:
+  id: prb_mem_moles
+  statement: "How many moles are in 9 g of water (M = 18 g/mol), and how many molecules is that?"
+plan:
+  steps:
+    - {index: 1, latex: "n = \\frac{m}{M}", value: null, unit: null, check_id: null}
+    - {index: 2, latex: "n = \\frac{9}{18}", value: "0.5", unit: "mol", check_id: chk_mem_mol_n}
+    - {index: 3, latex: "N = n N_A", value: null, unit: null, check_id: null}
+    - {index: 4, latex: "N = 0.5 \\times 6.02 \\times 10^{23}", value: "3.01e23", unit: null, check_id: chk_mem_mol_N}
+  final: {value: "3.01e23", unit: null, check_id: chk_mem_mol_N}
+board:
+  - {latex: "n = 18/9", owner: student, status: incorrect, check_id: null}
+  - {latex: "n = \\frac{m}{M}", owner: student, status: correct, check_id: null}
+  - {latex: "n = 0.5", owner: tutor, status: final, check_id: chk_mem_mol_n}
+  - {latex: "N = 0.5 + 6.02 \\times 10^{23}", owner: student, status: incorrect, check_id: null}
+step: 4
+rung: 2
+rounds: 18
+dialogue:
+  - {kind: chat, student: "Round {n}: what is a mole, is it just a very big number of things?",
+     tutor: "Yes: one mole is about six hundred thousand billion billion particles. Which equation links mass and moles?"}
+  - {kind: attempt, student: "Round {n}: is it 2 moles because 18 divided by 9 is 2?",
+     tutor: "That divides the molar mass by the mass. Which one goes on top in n = m over M?"}
+  - {kind: chat, student: "Round {n}: why is the molar mass of water 18 and not 10?",
+     tutor: "Two hydrogens at about 1 each and one oxygen at about 16 make 18. Shall we use it now?"}
+  - {kind: attempt, student: "Round {n}: so is it 162 if I multiply 9 by 18?",
+     tutor: "Multiplying gives grams times grams per mole, which is not an amount. Try dividing the mass by M."}
+  - {kind: chat, student: "Round {n}: does the Avogadro number change for different substances?",
+     tutor: "No, it is the same for every substance. What do you multiply it by to get the number of molecules?"}
+  - {kind: attempt, student: "Round {n}: is the number of molecules 6.52 times ten to the 23?",
+     tutor: "Adding 0.5 to the Avogadro number mixes an amount with a count. What operation links them?"}
+  - {kind: chat, student: "Round {n}: how do I type ten to the power 23 on my calculator?",
+     tutor: "Use the times-ten-to-the button, usually marked EXP or x10. Then try the multiplication."}
+  - {kind: attempt, student: "Round {n}: is it 1.2 times ten to the 24 molecules?",
+     tutor: "That would be two moles' worth. How many moles did the first part give?"}
+questions:
+  - {id: mol_q1, asks: value, index: 1, text: "Which checked line gave the amount of water in moles?", answers: ["n = 0.5", "n = 0.5 mol"]}
+  - {id: mol_q2, asks: error, index: 1, text: "What was the first line the student wrote that was marked incorrect?",
+     answers: ["n = 18/9"]}
+  - {id: mol_q3, asks: error, index: 2, text: "What was the second line the student wrote that was marked incorrect?",
+     answers: ["N = 0.5 + 6.02 \\times 10^{23}"]}
+  - {id: mol_q4, asks: step, index: 1, text: "Which step of the plan is the student working on now?", answers: ["step 4"]}

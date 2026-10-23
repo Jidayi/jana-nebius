@@ -1,0 +1,106 @@
+id: itm.mth.o.geometry.0079
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.similar_lengths
+stem: Triangles P and Q are similar. Side AB = 4 cm in P corresponds to side DE = 10 cm in Q. Side BC = 9 cm in P corresponds to side EF in Q.
+parts:
+- id: a
+  prompt: Find the length of EF.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 15 cm
+      correct: false
+      misconception_id: mc.mth.o.similar_additive
+      feedback: Enlarging doubles every side; adding the same amount to every side changes the shape.
+    - id: B
+      text: 3.6 cm
+      correct: false
+      misconception_id: mc.mth.o.similar_factor_inverted
+      feedback: Scale factor = new length ÷ old length. Going to the larger shape, lengths get bigger.
+    - id: C
+      text: 56.25 cm
+      correct: false
+      misconception_id: mc.mth.o.similar_area_factor_for_length
+      feedback: Lengths use the scale factor itself; only areas use its square.
+    - id: D
+      text: 22.5 cm
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: In similar shapes every length is multiplied by the same scale factor.
+  - rung: 2
+    name: concept
+    text:
+      en: Find the scale factor from a pair of corresponding sides you know both of.
+  - rung: 3
+    name: first_step
+    text:
+      en: Scale factor = 10 ÷ 4.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The scale factor is 2.5. Multiply BC by it.
+  - rung: 5
+    name: full_step
+    text:
+      en: EF = 22.5 cm.
+  misconception_ids:
+  - mc.mth.o.similar_additive
+  - mc.mth.o.similar_area_factor_for_length
+  - mc.mth.o.similar_factor_inverted
+solution:
+  steps:
+  - n: 1
+    latex: k = \frac{10}{4} = 2.5
+    reason: Scale factor from P to Q
+    check_id: chk_build_mth_geo_0079_k
+  - n: 2
+    latex: EF = 9 \times 2.5 = 22.5\ \text{cm}
+    reason: Multiply the corresponding side
+    check_id: chk_build_mth_geo_0079_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0079_ans:
+    args:
+      expression: 9*10/4
+    tool: math_evaluate
+  chk_build_mth_geo_0079_k:
+    args:
+      expression: 10/4
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

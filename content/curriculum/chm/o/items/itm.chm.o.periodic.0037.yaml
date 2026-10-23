@@ -1,0 +1,91 @@
+id: itm.chm.o.periodic.0037
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.periodic.transition_elements
+stem: Iron is a transition element and sodium is in Group I.
+parts:
+- id: a
+  prompt: Which statement compares them correctly?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Iron is softer than sodium and melts at a lower temperature.
+      correct: false
+      misconception_id: mc.chm.o.periodic_transition_like_group1
+      feedback: Iron and copper are hard, dense and melt at high temperatures, and they react slowly. Sodium is soft, light and melts below 100 °C.
+    - id: B
+      text: Both form white compounds only.
+      correct: false
+      misconception_id: mc.chm.o.periodic_transition_white_compounds
+      feedback: 'Copper(II) sulfate solution is blue and iron(III) compounds are orange-brown: transition metal compounds are usually coloured.'
+    - id: C
+      text: Both form ions with only one charge.
+      correct: false
+      misconception_id: mc.chm.o.periodic_transition_one_charge
+      feedback: Transition elements can form ions with different charges; the Roman numeral in the name gives the charge.
+    - id: D
+      text: Iron is denser and has a much higher melting point than sodium.
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Iron is a transition element and sodium is in Group I. Think about the typical properties of transition elements.
+  - rung: 2
+    name: concept
+    text:
+      en: Transition elements are hard, dense metals with high melting points; they form coloured compounds, ions with different charges, and act as catalysts.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Group I metals are the opposite in most physical properties: soft, light, low melting.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Check each statement against these typical properties.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Iron is denser and has a much higher melting point than sodium.'
+  misconception_ids:
+  - mc.chm.o.periodic_transition_like_group1
+  - mc.chm.o.periodic_transition_white_compounds
+  - mc.chm.o.periodic_transition_one_charge
+solution:
+  steps:
+  - n: 1
+    latex: '\text{transition: hard, dense, coloured, variable charge, catalysts}'
+    reason: Typical properties
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

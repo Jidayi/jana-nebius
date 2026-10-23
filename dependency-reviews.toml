@@ -1,0 +1,714 @@
+# Review record for every direct dependency (SEC-22): purpose, licence, maintainer health and size.
+# `shipped = true` marks dependencies bundled into a release artefact (their licences gate SEC-23).
+# LGPL dependencies need an `lgpl_review` entry before they may ship.
+# The lint stage fails when a direct dependency has no complete entry here.
+
+[npm."@eslint/js"]
+purpose = "ESLint recommended rules for the TypeScript lint stage"
+licence = "MIT"
+maintainer_health = "ESLint project (OpenJS Foundation); frequent releases"
+size = "36 KB"
+shipped = false
+
+[npm.dependency-cruiser]
+purpose = "ARC-18 and ARC-19 dependency rules for the TypeScript packages"
+licence = "MIT"
+maintainer_health = "Single long-standing maintainer; active, monthly releases"
+size = "1.6 MB"
+shipped = false
+
+[npm.eslint]
+purpose = "TypeScript and JavaScript linting (lint stage)"
+licence = "MIT"
+maintainer_health = "OpenJS Foundation project; active"
+size = "3.7 MB"
+shipped = false
+
+[npm.globals]
+purpose = "Global variable sets for ESLint configuration"
+licence = "MIT"
+maintainer_health = "sindresorhus; widely used, stable"
+size = "268 KB"
+shipped = false
+
+[npm.turbo]
+purpose = "Turborepo task runner for the pnpm workspaces (D17)"
+licence = "MIT"
+maintainer_health = "Vercel; active"
+size = "1.0 MB (plus a platform binary)"
+shipped = false
+
+[npm.typescript]
+purpose = "TypeScript compiler for strict type checking (D18); pinned to 6.x until typescript-eslint supports 7"
+licence = "Apache-2.0"
+maintainer_health = "Microsoft; active"
+size = "24 MB"
+shipped = false
+
+[npm.typescript-eslint]
+purpose = "TypeScript rules and parser for ESLint"
+licence = "MIT"
+maintainer_health = "typescript-eslint team; active"
+size = "88 KB (plus scoped packages)"
+shipped = false
+
+[npm.vitest]
+purpose = "Unit and property tests for the TypeScript packages"
+licence = "MIT"
+maintainer_health = "Vitest team (VoidZero); active"
+size = "2.9 MB"
+shipped = false
+
+[pypi.pytest]
+purpose = "Python test runner; collects tests by their acceptance names"
+licence = "MIT"
+maintainer_health = "pytest-dev; active"
+size = "about 1 MB with dependencies"
+shipped = false
+
+[pypi.hypothesis]
+purpose = "Property-based tests (plan section 7.3)"
+licence = "MPL-2.0"
+maintainer_health = "HypothesisWorks; active"
+size = "about 2 MB"
+shipped = false
+
+[pypi.ruff]
+purpose = "Python lint and format"
+licence = "MIT"
+maintainer_health = "Astral; active"
+size = "about 12 MB (native binary)"
+shipped = false
+
+[pypi.mypy]
+purpose = "Strict type checking of agent_core and tool_worker"
+licence = "MIT"
+maintainer_health = "python/mypy team; active"
+size = "about 15 MB"
+shipped = false
+
+[pypi.import-linter]
+purpose = "ARC-18 dependency rules for the Python packages"
+licence = "BSD-2-Clause"
+maintainer_health = "seddonym; active, regular releases"
+size = "about 1 MB with grimp"
+shipped = false
+
+[pypi.jsonschema]
+purpose = "Contract validation against the canonical schemas (agent_core, tool_worker) and repository tooling"
+licence = "MIT"
+maintainer_health = "python-jsonschema; active"
+size = "about 1 MB with dependencies"
+shipped = true
+
+[pypi.pyyaml]
+purpose = "YAML parsing in repository tooling, verify_spec.py and the agent core's router configuration"
+licence = "MIT"
+maintainer_health = "yaml project; stable, maintained"
+size = "about 1 MB"
+shipped = true
+
+[npm.ajv]
+purpose = "Precompiled JSON Schema 2020-12 validators for contracts-ts (standalone code, no eval at run time)"
+licence = "MIT"
+maintainer_health = "ajv-validator; widely used, maintained"
+size = "2.3 MB installed; only runtime helpers ship with the validators"
+shipped = true
+
+[npm.ajv-formats]
+purpose = "date, date-time and uri format checks in the generated validators"
+licence = "MIT"
+maintainer_health = "ajv-validator; maintained"
+size = "88 KB"
+shipped = true
+
+[npm.json-schema-to-typescript]
+purpose = "TypeScript types from the contract schemas (codegen only)"
+licence = "MIT"
+maintainer_health = "bcherny; active, regular releases"
+size = "460 KB (plus prettier)"
+shipped = false
+
+[pypi.pydantic]
+purpose = "Generated contract models in agent_core and tool_worker (D19, D39)"
+licence = "MIT"
+maintainer_health = "Pydantic team; active"
+size = "about 2 MB with pydantic-core"
+shipped = true
+
+[pypi.fsrs]
+purpose = "TEST-ONLY reference scheduler: the review cards are checked against py-fsrs 6.3.2 (LRN-13 lrn13_matches_py_fsrs); owner-approved 2026-10-17; never imported by shipped code (import layers)"
+licence = "MIT"
+maintainer_health = "Open Spaced Repetition project; active, the reference FSRS implementation in Python"
+size = "about 23 KB wheel (pure Python; depends only on typing-extensions)"
+shipped = false
+
+[pypi.pybkt]
+purpose = "TEST-ONLY reference BKT: the BKT path's predictions are checked against pyBKT 1.4.3 (LRN-11 lrn11_bkt_matches_pybkt); owner-approved 2026-10-17; never imported by shipped code (import layers)"
+licence = "MIT"
+maintainer_health = "CAHLR group, UC Berkeley; low release cadence, stable API (1.4.3)"
+size = "about 37 KB wheel (pure Python); pulls numpy, pandas, scikit-learn and requests into the test environment only"
+shipped = false
+
+[pypi.scikit-learn]
+purpose = "TEST-ONLY, a dependency of pyBKT, bounded below 1.8 because pyBKT 1.4.3 fails at import on later releases' private metric helpers"
+licence = "BSD-3-Clause"
+maintainer_health = "scikit-learn community (NumFOCUS); active"
+size = "about 9 MB wheel plus scipy in the test environment"
+shipped = false
+
+[pypi.datamodel-code-generator]
+purpose = "Pydantic v2 models from the contract schemas (codegen only)"
+licence = "MIT"
+maintainer_health = "koxudaxi; active, frequent releases"
+size = "about 2 MB"
+shipped = false
+
+[pypi.types-jsonschema]
+purpose = "Type stubs for jsonschema (mypy strict)"
+licence = "Apache-2.0"
+maintainer_health = "typeshed; active"
+size = "about 100 KB"
+shipped = false
+
+[npm."@types/node"]
+purpose = "Node.js type definitions for tests and code generation scripts"
+licence = "MIT"
+maintainer_health = "DefinitelyTyped; active"
+size = "about 2 MB"
+shipped = false
+
+[pypi.httpx]
+purpose = "Loopback HTTP client for the local model runtime (agent_core.net only; MDL-01, ARC-18)"
+licence = "BSD-3-Clause"
+maintainer_health = "Encode OSS; widely used, regular releases"
+size = "about 0.5 MB with httpcore, h11, anyio and idna"
+shipped = true
+
+[pypi.sympy]
+purpose = "Symbolic mathematics in the tool worker's checkers (D36, VER-01)"
+licence = "BSD-3-Clause"
+maintainer_health = "SymPy project (NumFOCUS); active, regular releases"
+size = "about 30 MB with mpmath"
+shipped = true
+
+[pypi.pint]
+purpose = "Units and dimensions in the tool worker's checkers (D36, VER-11)"
+licence = "BSD-3-Clause"
+maintainer_health = "hgrecco and contributors; active"
+size = "about 2 MB with flexcache and flexparser"
+shipped = true
+
+[pypi.fastapi]
+purpose = "Local HTTP API of the agent core: commands, snapshots and the SSE event streams (D19, API-01)"
+licence = "MIT"
+maintainer_health = "Sebastián Ramírez and contributors; very widely used, frequent releases"
+size = "about 3 MB with starlette, annotated-doc and opentelemetry-api"
+shipped = true
+
+[pypi.pillow]
+purpose = "Decode photos with size caps, reject decompression bombs, strip EXIF and re-encode a downscaled JPEG (SEC-05)"
+licence = "MIT-CMU"
+maintainer_health = "Python Imaging Library (Pillow) team; decades old, quarterly releases, security policy and advisories"
+size = "about 4-5 MB wheel with bundled JPEG, PNG and zlib codecs"
+shipped = true
+
+[pypi.cryptography]
+purpose = "Ed25519 signatures: verify content packs before load (CUR-08) and sign them in the pack builder"
+licence = "Apache-2.0 OR BSD-3-Clause"
+maintainer_health = "Python Cryptographic Authority; very widely used, frequent releases, security process"
+size = "about 4 MB wheel with cffi (Rust-backed OpenSSL bindings)"
+shipped = true
+
+[pypi.uvicorn]
+purpose = "ASGI server for the agent core's loopback API, pure-Python h11 transport (API-01, API-02)"
+licence = "BSD-3-Clause"
+maintainer_health = "Encode OSS; widely used, regular releases"
+size = "about 0.4 MB with h11 and click"
+shipped = true
+
+[npm.intl-messageformat]
+purpose = "ICU MessageFormat for the UI's keyed strings: arguments, plural and select (LOC-01, LOC-03)"
+licence = "BSD-3-Clause"
+maintainer_health = "FormatJS project; widely used, regular releases"
+size = "about 0.5 MB with @formatjs/fast-memoize and the ICU parsers"
+shipped = true
+
+[npm."@formatjs/icu-messageformat-parser"]
+purpose = "Parses catalogue messages for placeholder parity, plural checks and the pseudo-locale (LOC-02, LOC-04)"
+licence = "MIT"
+maintainer_health = "FormatJS project; widely used, regular releases"
+size = "about 0.3 MB with @formatjs/icu-skeleton-parser"
+shipped = true
+
+[npm.react]
+purpose = "UI framework of the desktop client (D18)"
+licence = "MIT"
+maintainer_health = "Meta and the React team; very widely used, regular releases"
+size = "about 0.3 MB"
+shipped = true
+
+[npm.react-dom]
+purpose = "DOM renderer for React in the system webview (D18)"
+licence = "MIT"
+maintainer_health = "Meta and the React team; very widely used, regular releases"
+size = "about 8 MB on disk, under 0.2 MB in the bundle"
+shipped = true
+
+[npm.katex]
+purpose = "Maths typesetting for messages and the board, memoised, trust restricted (UIA-15)"
+licence = "MIT"
+maintainer_health = "KaTeX organisation; widely used, active"
+size = "about 4 MB with fonts; fonts load lazily"
+shipped = true
+
+[npm.marked]
+purpose = "Markdown tokenizer for streamed tutor text, with maths extensions and no raw HTML (UIA-13, UIA-14)"
+licence = "MIT"
+maintainer_health = "markedjs organisation; widely used, frequent releases"
+size = "about 0.5 MB"
+shipped = true
+
+[npm.lucide-react]
+purpose = "The one icon pack, imported per icon through the semantic name map (DSN-11)"
+licence = "ISC"
+maintainer_health = "Lucide community; very active"
+size = "about 45 MB on disk; only the mapped icons enter the bundle"
+shipped = true
+
+[npm."@fontsource/noto-sans"]
+purpose = "Bundled fallback face after Funnel Sans for the symbols it lacks, never fetched (DSN-06, D89)"
+licence = "OFL-1.1"
+maintainer_health = "Fontsource project; active; font by Google (Noto)"
+size = "about 8 MB on disk; subset per shipped locale in the bundle"
+shipped = true
+
+[npm."@types/react"]
+purpose = "Type definitions for React"
+licence = "MIT"
+maintainer_health = "DefinitelyTyped; active"
+size = "about 0.4 MB"
+shipped = false
+
+[npm."@types/react-dom"]
+purpose = "Type definitions for react-dom"
+licence = "MIT"
+maintainer_health = "DefinitelyTyped; active"
+size = "about 0.1 MB"
+shipped = false
+
+[npm.vite]
+purpose = "Development server and bundler for the client and the gallery"
+licence = "MIT"
+maintainer_health = "Vite team (VoidZero); very widely used, frequent releases"
+size = "about 2.4 MB with its bundled toolchain packages"
+shipped = false
+
+[npm."@vitejs/plugin-react"]
+purpose = "React support for Vite (JSX transform, fast refresh in development)"
+licence = "MIT"
+maintainer_health = "Vite team; active"
+size = "about 0.1 MB"
+shipped = false
+
+[npm.tailwindcss]
+purpose = "Utility CSS generated from the role tokens (DSN-01)"
+licence = "MIT"
+maintainer_health = "Tailwind Labs; very widely used, frequent releases"
+size = "about 0.9 MB"
+shipped = false
+
+[npm."@tailwindcss/vite"]
+purpose = "Tailwind 4 integration for the Vite build"
+licence = "MIT"
+maintainer_health = "Tailwind Labs; active"
+size = "under 0.1 MB plus the Tailwind engine"
+shipped = false
+
+[npm.happy-dom]
+purpose = "DOM implementation for component tests in Vitest"
+licence = "MIT"
+maintainer_health = "capricorn86 and contributors; active"
+size = "about 18 MB"
+shipped = false
+
+[npm."@testing-library/react"]
+purpose = "Component test helpers for React"
+licence = "MIT"
+maintainer_health = "Testing Library organisation; very widely used"
+size = "about 0.4 MB"
+shipped = false
+
+[npm."@testing-library/dom"]
+purpose = "DOM queries for component tests (peer of @testing-library/react)"
+licence = "MIT"
+maintainer_health = "Testing Library organisation; very widely used"
+size = "about 2.5 MB"
+shipped = false
+
+[npm.axe-core]
+purpose = "Accessibility audit of rendered visuals and simulations in tests (LOC-15, VSL-32); never bundled"
+licence = "MPL-2.0"
+maintainer_health = "Deque Systems; active, the de facto accessibility rules engine"
+size = "about 3 MB"
+shipped = false
+
+[npm."@tiptap/core"]
+purpose = "The composer's rich-text editor model with inline maths nodes (INP-03)"
+licence = "MIT"
+maintainer_health = "Tiptap GmbH and community; widely used, frequent releases"
+size = "about 1 MB"
+shipped = true
+
+[npm."@tiptap/react"]
+purpose = "React bindings for the composer editor (INP-03)"
+licence = "MIT"
+maintainer_health = "Tiptap GmbH and community; widely used"
+size = "about 0.3 MB"
+shipped = true
+
+[npm."@tiptap/pm"]
+purpose = "ProseMirror packages the editor is built on (INP-03)"
+licence = "MIT"
+maintainer_health = "Tiptap re-export of ProseMirror (Marijn Haverbeke); widely used"
+size = "about 1.5 MB with ProseMirror"
+shipped = true
+
+[npm."@tiptap/extension-document"]
+purpose = "The editor's document node (INP-03)"
+licence = "MIT"
+maintainer_health = "Tiptap GmbH and community"
+size = "under 0.1 MB"
+shipped = true
+
+[npm."@tiptap/extension-paragraph"]
+purpose = "Paragraphs of text runs in the composer (INP-03)"
+licence = "MIT"
+maintainer_health = "Tiptap GmbH and community"
+size = "under 0.1 MB"
+shipped = true
+
+[npm."@tiptap/extension-text"]
+purpose = "Text nodes in the composer (INP-03)"
+licence = "MIT"
+maintainer_health = "Tiptap GmbH and community"
+size = "under 0.1 MB"
+shipped = true
+
+[npm."@tiptap/extension-hard-break"]
+purpose = "Line breaks in the composer (INP-03)"
+licence = "MIT"
+maintainer_health = "Tiptap GmbH and community"
+size = "under 0.1 MB"
+shipped = true
+
+[npm."@tiptap/extensions"]
+purpose = "Undo history and placeholder for the composer (INP-03)"
+licence = "MIT"
+maintainer_health = "Tiptap GmbH and community"
+size = "about 0.2 MB"
+shipped = true
+
+[cargo.tauri]
+purpose = "Desktop shell: window, webview, commands and capabilities (D18, ARC-02, SEC-11)"
+licence = "Apache-2.0 OR MIT"
+maintainer_health = "Tauri Programme (Commons Conservancy); widely used, frequent releases"
+size = "about 300 crates in the closure; the shell binary is a few MB"
+shipped = true
+
+[cargo.tauri-build]
+purpose = "Build-time configuration of the Tauri app and its capability manifest"
+licence = "Apache-2.0 OR MIT"
+maintainer_health = "Tauri Programme"
+size = "build only"
+shipped = false
+
+[cargo.serde]
+purpose = "Serialising the shell's control-channel messages (ARC-04)"
+licence = "MIT OR Apache-2.0"
+maintainer_health = "serde-rs (David Tolnay); foundational, very widely used"
+size = "under 0.5 MB"
+shipped = true
+
+[cargo.serde_json]
+purpose = "JSON lines on the core's stdin and stdout (ARC-04)"
+licence = "MIT OR Apache-2.0"
+maintainer_health = "serde-rs; foundational, very widely used"
+size = "under 0.5 MB"
+shipped = true
+
+[cargo.getrandom]
+purpose = "The operating system's random source for the 256-bit launch token (API-02)"
+licence = "MIT OR Apache-2.0"
+maintainer_health = "rust-random; foundational, very widely used"
+size = "under 0.1 MB"
+shipped = true
+
+[cargo.sysinfo]
+purpose = "Process identity (PID, executable, start time) for orphan recovery and supervision (ARC-24)"
+licence = "MIT"
+maintainer_health = "GuillaumeGomez and contributors; widely used, regular releases"
+size = "about 1 MB"
+shipped = true
+
+[cargo.nix]
+purpose = "Ending the core's process group on quit, safely (ARC-23; Unix only)"
+licence = "MIT"
+maintainer_health = "nix-rust; widely used, regular releases"
+size = "about 1 MB"
+shipped = true
+
+[cargo.win32job]
+purpose = "Kill-on-close job objects holding the core and the runtime, so a quit or a shell crash ends them (ARC-23; Windows only)"
+licence = "MIT OR Apache-2.0"
+maintainer_health = "Single maintainer (ohadravid); small, stable safe wrapper over the windows crate already in the tree"
+size = "under 0.1 MB (plus windows 0.61, already a Tauri dependency)"
+shipped = true
+
+[cargo.sha2]
+purpose = "SHA-256 of a peer's SubjectPublicKeyInfo for certificate pinning in the shell's net module (SEC-31, ARC-06)"
+licence = "MIT OR Apache-2.0"
+maintainer_health = "RustCrypto; widely used, regular releases; already in the closure through tauri"
+size = "under 0.1 MB; no new crates in the closure"
+shipped = true
+
+[cargo.reqwest]
+purpose = "Anonymous ranged HTTPS model downloads and authenticated loopback policy reads (PLT-11, ARC-06)"
+licence = "MIT OR Apache-2.0"
+maintainer_health = "seanmonstar/reqwest upstream; installed version and closure pinned in Cargo.lock"
+size = "HTTP client plus Hyper; default features disabled, no proxy, cookies or automatic redirects"
+shipped = true
+
+[cargo.rustls]
+purpose = "TLS handshake with operating-system certificate validation and current service SPKI pins (SEC-31)"
+licence = "MIT OR Apache-2.0 OR ISC"
+maintainer_health = "rustls/rustls upstream; installed version and closure pinned in Cargo.lock"
+size = "Ring provider only; default provider and default features disabled"
+shipped = true
+
+[cargo.rustls-platform-verifier]
+purpose = "Operating-system certificate trust and hostname validation before service pin checks (SEC-31)"
+licence = "MIT OR Apache-2.0"
+maintainer_health = "rustls/rustls-platform-verifier upstream; version pinned in Cargo.lock"
+size = "Platform trust adapter; included in desktop shell dependency and licence inventories"
+shipped = true
+
+[cargo.webpki]
+purpose = "Parse certificate SPKI and verify the path to the pinned certificate, rejecting unrelated appended CAs"
+licence = "ISC"
+maintainer_health = "rustls/webpki upstream; same verifier implementation used by Rustls"
+size = "Reuses the rustls-webpki dependency already in the TLS closure"
+shipped = true
+
+[cargo.tokio]
+purpose = "Cancelable HTTPS requests on the download worker's runtime, off the UI and learning threads (PLT-11)"
+licence = "MIT"
+maintainer_health = "tokio-rs/tokio upstream; installed version and closure pinned in Cargo.lock"
+size = "Single-thread runtime, timing and select macros; no multithread runtime feature"
+shipped = true
+
+[cargo.tauri-plugin-dialog]
+purpose = "Native file and folder selection for verified offline model, content and app-update installation"
+licence = "Apache-2.0 OR MIT"
+maintainer_health = "Official Tauri plugin maintained in the Tauri plugins workspace"
+size = "About 90 KB source plus the native dialog dependency"
+shipped = true
+
+[cargo.keyring-core]
+purpose = "Common credential-store API for the shell's keychain bridge holding the core's device secrets (SEC-17, D97)"
+licence = "MIT OR Apache-2.0"
+maintainer_health = "Open Source Cooperative keyring-rs project (successor of the keyring crate); 1.0 stable API"
+size = "About 37 KB source; default features only (log)"
+shipped = true
+
+[cargo.apple-native-keyring-store]
+purpose = "macOS Keychain backend of the keychain bridge (SEC-17; macOS only)"
+licence = "MIT OR Apache-2.0"
+maintainer_health = "Open Source Cooperative keyring-rs project; small, same maintainers as keyring-core"
+size = "About 26 KB source; security-framework is already in the closure"
+shipped = true
+
+[cargo.windows-native-keyring-store]
+purpose = "Windows Credential Manager backend of the keychain bridge (SEC-17; Windows only)"
+licence = "MIT OR Apache-2.0"
+maintainer_health = "Open Source Cooperative keyring-rs project; small, same maintainers as keyring-core"
+size = "About 20 KB source; search feature off, windows-sys already in the closure"
+shipped = true
+
+[cargo.zbus-secret-service-keyring-store]
+purpose = "Linux Secret Service backend of the keychain bridge; without the service the shell uses the SEC-17 file fallback (Linux only)"
+licence = "MIT OR Apache-2.0"
+maintainer_health = "Open Source Cooperative keyring-rs project; builds on secret-service and zbus (dbus2 project), both widely used"
+size = "About 28 KB source plus zbus and secret-service (pure Rust crypto); about 50 crates on Linux only"
+shipped = true
+
+[pypi.opencv-python-headless]
+purpose = "Sandboxed photo perspective correction, quality checks and pinned face/person detector cascades (INP-17/20)"
+licence = "MIT AND Apache-2.0 AND BSD-3-Clause AND LGPL-2.1-or-later AND LGPL-3.0-or-later"
+maintainer_health = "OpenCV/opencv-python maintainers; current 4.14 wheel pinned and detector hashes verified"
+size = "About 48 MB platform wheel plus NumPy; no Qt GUI dependency"
+shipped = true
+lgpl_review = "Wheel includes dynamically linked FFmpeg and platform libraries under LGPL 2.1/3. Preserve complete wheel third-party licences, permit library replacement and accompany each platform release with corresponding library sources/build information. Native source compliance remains a release gate; no GPL/AGPL application dependency accepted. See services/perception-worker/README.md."
+
+[pypi.numpy]
+purpose = "Bounded pixel arrays in the sandboxed perception worker"
+licence = "BSD-3-Clause"
+maintainer_health = "NumPy community/NumFOCUS; current maintained 2.x release"
+size = "About 5 MB wheel plus bundled numerical libraries, platform-dependent"
+shipped = true
+
+[pypi.tesserocr]
+purpose = "Fixed native Tesseract binding for the sandbox OCR pass without ctypes or child processes"
+licence = "MIT"
+maintainer_health = "sirfz/tesserocr maintainers; maintained 2.11 release with platform wheels"
+size = "About 3.5 MB macOS wheel, with Tesseract/Leptonica and codecs; English traineddata separate"
+shipped = true
+
+[pypi.cysignals]
+purpose = "Native signal handling required by tesserocr; transitive LGPL library, never an application runtime API"
+licence = "LGPL-3.0-or-later"
+maintainer_health = "SageMath maintainers; mature maintained 1.12 series"
+size = "About 200 KB platform wheel"
+shipped = true
+lgpl_review = "Unmodified dynamically loaded extension. Preserve LGPLv3 and GPLv3 texts, permit extension replacement, and distribute corresponding source/build information with release bundles. No static proprietary relinking restriction is imposed. Native source compliance remains a platform release gate."
+
+[pypi.websockets]
+purpose = "Authenticated loopback speech WebSocket transport and bounded voice-sidecar connection (M31/M32)"
+licence = "BSD-3-Clause"
+maintainer_health = "Aymeric Augustin; installed distribution declares Production/Stable; version 15.0.1 pinned in uv.lock and exercised by protocol tests"
+size = "662 KB installed; no speech model or remote-service SDK bundled"
+shipped = true
+
+[pypi.google-cloud-speech]
+purpose = "Server-only cloud voice speech to text: Cloud Speech-to-Text v2 streaming recognition (Chirp) over gRPC (VOC-28, D124); gateway `google-voice` extra, never bundled into desktop"
+licence = "Apache-2.0"
+maintainer_health = "Google Cloud client libraries team (googleapis/google-cloud-python); frequent releases; 2.41.0 pinned in uv.lock 2026-10-21"
+size = "About 1 MB wheel plus grpcio (about 10 MB platform wheel), protobuf and google-api-core"
+shipped = false
+
+[pypi.google-cloud-texttospeech]
+purpose = "Server-only cloud voice verbatim voice: Cloud Text-to-Speech streaming synthesis (Chirp 3 HD) over gRPC (VOC-28, D124); gateway `google-voice` extra, never bundled into desktop"
+licence = "Apache-2.0"
+maintainer_health = "Google Cloud client libraries team (googleapis/google-cloud-python); frequent releases; 2.38.0 pinned in uv.lock 2026-10-21"
+size = "About 300 KB wheel; shares grpcio, protobuf and google-api-core with google-cloud-speech"
+shipped = false
+
+[pypi.pyinstaller]
+purpose = "Build the internal Studio and native sidecar executables"
+licence = "GPL-2.0-or-later WITH Bootloader-exception"
+maintainer_health = "PyInstaller project; upstream release 6.22.3 and licence exception checked against official documentation."
+size = "2703 KiB installed in isolated build environment"
+shipped = false
+
+[pypi.pyinstaller-hooks-contrib]
+purpose = "Package discovery and runtime hooks for frozen executables"
+licence = "GPL-2.0-or-later AND Apache-2.0"
+maintainer_health = "PyInstaller community hooks project; upstream release 2026.8 and dual hook licences checked."
+size = "722 KiB installed in isolated build environment"
+shipped = false
+
+[pypi.altgraph]
+purpose = "Dependency graph for the build-only PyInstaller analysis"
+licence = "MIT"
+maintainer_health = "Long-standing altgraph project; selected release 0.17.5 verified through the PyPI resolver."
+size = "62 KiB installed in isolated build environment"
+shipped = false
+
+[pypi.macholib]
+purpose = "macOS executable dependency analysis during packaging"
+licence = "MIT"
+maintainer_health = "Long-standing macholib project; selected release 1.16.4 verified through the PyPI resolver."
+size = "123 KiB installed in isolated build environment"
+shipped = false
+
+[pypi.pefile]
+purpose = "Windows PE dependency analysis during packaging"
+licence = "MIT"
+maintainer_health = "Ero Carrera and contributors; mature PE parser, selected release 2024.8.26."
+size = "Platform-specific build-only dependency; exact distribution hashes in requirements-build.txt"
+shipped = false
+
+[pypi.pywin32-ctypes]
+purpose = "Windows API bindings used by the build-only packager"
+licence = "BSD-3-Clause"
+maintainer_health = "PyWin32-ctypes project; selected release 0.2.3 verified through the PyPI resolver."
+size = "Platform-specific build-only dependency; exact distribution hashes in requirements-build.txt"
+shipped = false
+
+[pypi.packaging]
+purpose = "Version and dependency metadata in the build-only packaging environment"
+licence = "Apache-2.0 OR BSD-2-Clause"
+maintainer_health = "Python Packaging Authority project; selected release 26.3."
+size = "488 KiB installed in isolated build environment"
+shipped = false
+
+[pypi.setuptools]
+purpose = "Build-only dependency metadata required by PyInstaller"
+licence = "MIT"
+maintainer_health = "Python Packaging Authority project; selected release 84.0.0."
+size = "2709 KiB installed in isolated build environment"
+shipped = false
+
+[npm."@axe-core/playwright"]
+purpose = "WCAG audits of disposable UI and Studio fixtures in CI"
+licence = "MPL-2.0"
+maintainer_health = "Deque axe-core-npm; installed metadata inspected, lockfile pinned and regression checks exercised"
+size = "47 KiB local package source; platform browser/runtime assets separate"
+shipped = false
+
+[npm."playwright"]
+purpose = "Pinned Chromium browser automation for accessibility, screenshots and performance checks"
+licence = "Apache-2.0"
+maintainer_health = "Microsoft playwright; installed metadata inspected, lockfile pinned and regression checks exercised"
+size = "4917 KiB local package source; platform browser/runtime assets separate"
+shipped = false
+
+[npm."colorjs.io"]
+purpose = "CIEDE2000 and simulated colour-vision comparisons against canonical tokens"
+licence = "MIT"
+maintainer_health = "color-js/color.js; installed metadata inspected, lockfile pinned and regression checks exercised"
+size = "15411 KiB local package source; platform browser/runtime assets separate"
+shipped = false
+
+[npm."pixelmatch"]
+purpose = "Pixel comparison and visual regression mutation checks"
+licence = "ISC"
+maintainer_health = "mapbox/pixelmatch; installed metadata inspected, lockfile pinned and regression checks exercised"
+size = "35 KiB local package source; platform browser/runtime assets separate"
+shipped = false
+
+[npm."pngjs"]
+purpose = "PNG decoding for screenshot comparisons and bounds checks"
+licence = "MIT"
+maintainer_health = "pngjs/pngjs; installed metadata inspected, lockfile pinned and regression checks exercised"
+size = "634 KiB local package source; platform browser/runtime assets separate"
+shipped = false
+
+[pypi."jana-tools"]
+purpose = "Selected local skill/simulation evaluation modules in the internal Studio backend"
+licence = "Apache-2.0"
+maintainer_health = "This repository; same revision as the authoring backend; installed metadata inspected, lockfile pinned and regression checks exercised"
+size = "1319 KiB local package source; platform browser/runtime assets separate"
+shipped = true
+
+[pypi.pypdf]
+purpose = "M42 text extraction from learner-selected PDFs in a disposable, network-denied, resource-limited process; no JavaScript, actions or links are executed"
+licence = "BSD-3-Clause"
+maintainer_health = "py-pdf project; actively released; upstream https://github.com/py-pdf/pypdf, reviewed 2026-10-18"
+size = "About 350 KB pure Python wheel; pinned 6.21.1 in uv.lock"
+shipped = true
+
+[pypi.pypdfium2]
+purpose = "M42 scanned-PDF rasterization in a disposable OS sandbox, without forms, JavaScript, annotations or outbound resource access"
+licence = "Apache-2.0 AND BSD-3-Clause"
+maintainer_health = "pypdfium2-team; pinned 5.13.0; upstream API and installed wheel licences reviewed 2026-10-18; PDFium rendering is process-isolated because it is not thread-safe"
+size = "3.3 MiB macOS arm64 wheel; platform sizes and installer budget remain release qualification checks"
+shipped = true
+
+[pypi.av]
+purpose = "Server-only M42 owned-recording decode to bounded mono PCM in a disposable network-denied worker; never bundled into desktop"
+licence = "BSD-3-Clause"
+maintainer_health = "PyAV-Org maintainers; pinned maintained 19.0.1 release, installed metadata and real sandbox decode checked 2026-10-18"
+size = "17.6 MiB macOS arm64 wheel with native FFmpeg; deployment-platform wheel audited separately"
+shipped = false
+lgpl_review = "Server runtime uses unmodified dynamically linked FFmpeg from the pinned wheel. Preserve upstream PyAV/FFmpeg licences and corresponding library source/build provenance when distributing a gateway image. No desktop media binary is shipped. Platform-specific image provenance is required before gateway distribution; the macOS synthetic test is not a Linux image licence audit. Owner approval recorded in scripts/governance/m42-owner-approval.json."

@@ -1,0 +1,90 @@
+id: itm.chm.o.reactions.0017
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.rate_factors
+stem: Fine flour dust in the air of a flour mill can explode if there is a spark. A bag of flour only burns slowly.
+parts:
+- id: a
+  prompt: Why does the dust burn so much faster?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: The dust has a much larger surface area, so far more flour is in contact with oxygen.
+      correct: true
+    - id: B
+      text: Each dust grain holds more flour, so it releases more energy at once.
+      correct: false
+      misconception_id: mc.chm.o.reactions_bigger_pieces_faster
+      feedback: Only the particles on the surface of a solid can be hit by the other reactant. Cutting a lump into small pieces, or grinding it to powder, exposes much more surface for the same mass, so the reaction is faster.
+    - id: C
+      text: The dust makes more product in total than the same mass of flour in a bag.
+      correct: false
+      misconception_id: mc.chm.o.reactions_rate_changes_amount
+      feedback: The rate is how fast product forms; the total amount depends on how much of the limiting reactant there is. With the same amount of that reactant, a faster reaction reaches the same final amount, only sooner.
+    - id: D
+      text: The bag burns slowly because its large lump of flour has more surface for the flame.
+      correct: false
+      misconception_id: mc.chm.o.reactions_bigger_pieces_faster
+      feedback: Only the particles on the surface of a solid can be hit by the other reactant. Cutting a lump into small pieces, or grinding it to powder, exposes much more surface for the same mass, so the reaction is faster.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Compare tiny grains spread through the air with a packed bag of flour.
+  - rung: 2
+    name: concept
+    text:
+      en: Burning happens where flour meets oxygen, which is at the surface.
+  - rung: 3
+    name: first_step
+    text:
+      en: Splitting flour into tiny grains exposes a huge surface area for the same mass.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The total energy from a given mass of flour is the same; what differs is how fast it is released.
+  - rung: 5
+    name: full_step
+    text:
+      en: The dust burns faster because its surface area is enormous, so oxygen reaches far more flour at once. The energy is released so quickly that it explodes.
+  misconception_ids:
+  - mc.chm.o.reactions_bigger_pieces_faster
+  - mc.chm.o.reactions_rate_changes_amount
+solution:
+  steps:
+  - n: 1
+    latex: '\text{dust: very large surface area}'
+    reason: Faster burning
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

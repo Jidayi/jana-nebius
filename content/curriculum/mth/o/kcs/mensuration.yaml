@@ -1,0 +1,228 @@
+- id: kc.mth.o.mensuration.metric_units
+  code: MTH-O-05.01.K01
+  node_id: cur.mth.o.mensuration.units_of_measure
+  statement: Convert between metric units of length, area, volume and capacity
+  kind: procedural
+  tools:
+  - units_convert
+  - math_evaluate
+  exam_weight: 0.123
+  prerequisites:
+  - kc_id: kc.mth.o.number.order_of_operations
+    strength: required
+  - kc_id: kc.mth.o.number.standard_form_convert
+    strength: helpful
+  misconception_ids:
+  - mc.mth.o.area_units_linear
+  - mc.mth.o.scale_conversion_factor
+  - mc.mth.o.unit_conversion_direction
+  - mc.mth.o.volume_units_linear
+  skill_ids:
+  - mth-o-mensuration
+  glossary:
+  - metric unit
+  - capacity
+  - volume
+  - litre
+  - millilitre
+  - centimetre
+  - millimetre
+  - kilometre
+  - cubic centimetre
+  - square metre
+  - hectare
+  - tonne
+  difficulty_prior: -0.4
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.mensuration.area_perimeter
+  code: MTH-O-05.02.K01
+  node_id: cur.mth.o.mensuration.area_and_perimeter
+  statement: Calculate the perimeter and area of rectangles, triangles, parallelograms and trapezia
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.164
+  prerequisites:
+  - kc_id: kc.mth.o.algebra_and_graphs.substitution
+    strength: required
+  misconception_ids:
+  - mc.mth.o.formula_half_dropped
+  - mc.mth.o.perimeter_area_confused
+  - mc.mth.o.perimeter_half
+  - mc.mth.o.slant_height_used
+  - mc.mth.o.compound_part_missing
+  - mc.mth.o.sum_as_product
+  skill_ids:
+  - mth-o-mensuration
+  glossary:
+  - perimeter
+  - area
+  - rectangle
+  - triangle
+  - parallelogram
+  - trapezium
+  - trapezia
+  - perpendicular height
+  - parallel
+  difficulty_prior: -0.6
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.mensuration.circle_measures
+  code: MTH-O-05.03.K01
+  node_id: cur.mth.o.mensuration.circles_arcs_and_sectors
+  statement: Calculate the circumference and area of a circle from its radius or diameter
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.151
+  prerequisites:
+  - kc_id: kc.mth.o.mensuration.area_perimeter
+    strength: required
+  misconception_ids:
+  - mc.mth.o.circumference_area_confused
+  - mc.mth.o.diameter_for_radius
+  - mc.mth.o.radius_not_squared
+  skill_ids:
+  - mth-o-mensuration
+  glossary:
+  - circumference
+  - diameter
+  - radius
+  - radii
+  - semicircle
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.mensuration.arcs_sectors
+  code: MTH-O-05.03.K02
+  node_id: cur.mth.o.mensuration.circles_arcs_and_sectors
+  statement: Calculate arc lengths and sector areas from the radius and the angle at the centre
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.137
+  prerequisites:
+  - kc_id: kc.mth.o.mensuration.circle_measures
+    strength: required
+  misconception_ids:
+  - mc.mth.o.circumference_area_confused
+  - mc.mth.o.diameter_for_radius
+  - mc.mth.o.sector_fraction_180
+  - mc.mth.o.sector_fraction_dropped
+  skill_ids:
+  - mth-o-mensuration
+  glossary:
+  - arc
+  - arc length
+  - sector
+  - radius
+  - circumference
+  - angle at the centre
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.mensuration.prism_volume
+  code: MTH-O-05.04.K01
+  node_id: cur.mth.o.mensuration.surface_area_and_volume
+  statement: Calculate the volume and surface area of cuboids, prisms and cylinders
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.164
+  prerequisites:
+  - kc_id: kc.mth.o.mensuration.area_perimeter
+    strength: required
+  - kc_id: kc.mth.o.mensuration.circle_measures
+    strength: helpful
+  misconception_ids:
+  - mc.mth.o.diameter_for_radius
+  - mc.mth.o.prism_triangle_half_dropped
+  - mc.mth.o.radius_not_squared
+  - mc.mth.o.slant_height_used
+  - mc.mth.o.surface_area_half_faces
+  - mc.mth.o.circumference_area_confused
+  - mc.mth.o.compound_part_missing
+  - mc.mth.o.perimeter_area_confused
+  skill_ids:
+  - mth-o-mensuration
+  glossary:
+  - volume
+  - surface area
+  - prism
+  - cuboid
+  - cylinder
+  - cross-section
+  - cross-sectional area
+  - capacity
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.mensuration.pyramid_cone_sphere
+  code: MTH-O-05.04.K02
+  node_id: cur.mth.o.mensuration.surface_area_and_volume
+  statement: Calculate the volume and surface area of pyramids, cones and spheres
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.137
+  prerequisites:
+  - kc_id: kc.mth.o.mensuration.prism_volume
+    strength: required
+  misconception_ids:
+  - mc.mth.o.cone_third_dropped
+  - mc.mth.o.diameter_for_radius
+  - mc.mth.o.sphere_power_wrong
+  - mc.mth.o.circumference_area_confused
+  - mc.mth.o.formula_half_dropped
+  - mc.mth.o.radius_not_squared
+  skill_ids:
+  - mth-o-mensuration
+  glossary:
+  - pyramid
+  - cone
+  - sphere
+  - hemisphere
+  - slant height
+  - perpendicular height
+  - volume
+  - surface area
+  - curved surface area
+  difficulty_prior: 0.5
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.mensuration.compound_shapes
+  code: MTH-O-05.05.K01
+  node_id: cur.mth.o.mensuration.compound_shapes_and_parts_of_shapes
+  statement: Calculate the area or volume of a shape made from simpler shapes, or of part of a shape
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.123
+  prerequisites:
+  - kc_id: kc.mth.o.mensuration.circle_measures
+    strength: required
+  - kc_id: kc.mth.o.mensuration.prism_volume
+    strength: required
+  misconception_ids:
+  - mc.mth.o.annulus_difference_squared
+  - mc.mth.o.compound_overlap_added
+  - mc.mth.o.compound_part_missing
+  - mc.mth.o.semicircle_full_circle
+  - mc.mth.o.circumference_area_confused
+  - mc.mth.o.diameter_for_radius
+  - mc.mth.o.perimeter_area_confused
+  skill_ids:
+  - mth-o-mensuration
+  glossary:
+  - compound shape
+  - area
+  - volume
+  - semicircle
+  - sector
+  - cylinder
+  - cuboid
+  - perimeter
+  difficulty_prior: 0.5
+  version: 0.1.1
+  status: active

@@ -1,0 +1,75 @@
+# JRN-04: the journey as an executable script (JRN-02). Steps and failure branches follow the
+# specification's journey (checked by jrn02_journey_suite_complete); requirement ids only, no wording.
+journey: JRN-04
+title: A printed question photographed and solved with guidance
+persona: P1
+stage: S2
+steps:
+- n: 1
+  requirements:
+  - UXS-13
+  - UXS-45
+  - SEC-05
+  - PRV-16
+  - MDL-23
+  runs_on: harness
+- n: 2
+  requirements:
+  - UXS-13
+  runs_on: harness
+- n: 3
+  requirements:
+  - AGT-01
+  - AGT-19
+  runs_on: harness
+- n: 4
+  requirements:
+  - UXS-14
+  - UXS-15
+  - API-12
+  - VSL-13
+  runs_on: harness
+- n: 5
+  requirements:
+  - AGT-19
+  - AGT-10
+  - PED-08
+  runs_on: harness
+- n: 6
+  requirements:
+  - VER-06
+  - UXS-16
+  runs_on: harness
+- n: 7
+  requirements:
+  - PED-05
+  - PED-06
+  - UXS-17
+  runs_on: harness
+- n: 8
+  requirements:
+  - VER-10
+  - LRN-06
+  - LRN-07
+  runs_on: harness
+branches:
+- id: F1
+  requirements:
+  - UXS-13
+  - SEC-05
+- id: F2
+  requirements:
+  - PRV-13
+  - PRD-05
+- id: F3
+  requirements:
+  - AGT-10
+  - PRD-05
+- id: F4
+  requirements:
+  - UXS-03
+  - MDL-05
+- id: F5
+  requirements:
+  - MDL-23
+  - UXS-13

@@ -1,0 +1,117 @@
+id: itm.acc.o.depreciation.0042
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.depreciation.reducing_balance
+stem: Thabo bought a grain mill for $10600. It is depreciated at 25% a year by the reducing-balance method.
+parts:
+- id: a
+  prompt: What is the depreciation charge for the second year?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $5962.50
+      correct: false
+      misconception_id: mc.acc.o.rb_nbv_as_charge
+    - id: B
+      text: $1987.50
+      correct: true
+    - id: C
+      text: $2650
+      correct: false
+      misconception_id: mc.acc.o.rb_on_cost
+    - id: D
+      text: $1490.63
+      correct: false
+      misconception_id: mc.acc.o.rb_wrong_year
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What is the percentage taken of each year?
+  - rung: 2
+    name: concept
+    text:
+      en: Each year's charge is the rate times the net book value at the start of that year, not the cost.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Count the years carefully: the charge for a year uses the value left after all earlier years.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Find the net book value at the start of the second year, then take 25% of it.
+  - rung: 5
+    name: full_step
+    text:
+      en: 25% of $7950 = $1987.50.
+  misconception_ids:
+  - mc.acc.o.rb_on_cost
+  - mc.acc.o.rb_nbv_as_charge
+  - mc.acc.o.rb_wrong_year
+solution:
+  steps:
+  - n: 1
+    latex: \text{Charge} = \text{rate} \times \text{opening net book value}
+    reason: Reducing balance
+    check_id: chk_build_acc_depreciation_0042_t
+  - n: 2
+    latex: \text{Opening net book value} = 7950
+    reason: Cost less the earlier charges
+    check_id: chk_build_acc_depreciation_0042_s2
+  - n: 3
+    latex: \text{Charge} = 25\% \times 7950 = 1987.50
+    reason: Substitute
+    check_id: chk_build_acc_depreciation_0042_a
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_depreciation_0042_a:
+    args:
+      dp: 2
+      expression: 10600 * (1 - 25/100)^1 * 25/100
+    tool: math_evaluate
+  chk_build_acc_depreciation_0042_s2:
+    args:
+      dp: 4
+      expression: 10600 * (1 - 25/100)^1
+    tool: math_evaluate
+  chk_build_acc_depreciation_0042_t:
+    args:
+      cost: '10600'
+      dp: 2
+      method: reducing_balance
+      part_year_policy: full_year
+      rate_percent: '25'
+      years: 2
+    tool: acc_depreciation
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

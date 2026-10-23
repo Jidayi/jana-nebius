@@ -1,0 +1,91 @@
+id: itm.chm.o.environment.0046
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.climate
+stem: Methane gas from a landfill site can be collected through pipes.
+parts:
+- id: a
+  prompt: What is the best thing to do with it to help reduce climate change?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Store it in a catalytic converter
+      correct: false
+      misconception_id: mc.chm.o.environment_converter_removes_co2
+      feedback: A catalytic converter changes carbon monoxide and oxides of nitrogen into carbon dioxide and nitrogen. It makes carbon dioxide; it does not remove it, and it does nothing to sulfur dioxide.
+    - id: B
+      text: Pump it into a lake to dissolve
+      correct: false
+    - id: C
+      text: Burn it as a fuel to generate electricity
+      correct: true
+    - id: D
+      text: Release it into the air through a tall chimney
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Methane is a much stronger greenhouse gas than carbon dioxide.
+  - rung: 2
+    name: concept
+    text:
+      en: Burning methane turns it into carbon dioxide and water.
+  - rung: 3
+    name: first_step
+    text:
+      en: The energy released can replace energy from coal.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Which choice both destroys the methane and makes use of it?
+  - rung: 5
+    name: full_step
+    text:
+      en: Burning the methane for electricity swaps a strong greenhouse gas for carbon dioxide and saves other fuel.
+  misconception_ids:
+  - mc.chm.o.environment_converter_removes_co2
+solution:
+  steps:
+  - n: 1
+    latex: \text{CH}_4 + 2\text{O}_2 \rightarrow \text{CO}_2 + 2\text{H}_2\text{O}
+    reason: Methane burned as a fuel
+    check_id: chk_build_chm_environment_0046_bal
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_environment_0046_bal:
+    args:
+      equation: CH4 + O2 -> CO2 + H2O
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,106 @@
+id: itm.acc.o.depreciation.0049
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.depreciation.net_book_value
+stem: Juma's delivery van cost $5900 and is depreciated by the reducing balance at 10% a year.
+parts:
+- id: a
+  prompt: Calculate the net book value at the end of 3 years.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '4301.10'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_depreciation_0049_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Net book value is what is left of the cost after depreciation so far.
+  - rung: 2
+    name: concept
+    text:
+      en: Net book value = cost − accumulated depreciation.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the accumulated depreciation for all the years first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Net book value = 5900 − accumulated depreciation for 3 years.
+  - rung: 5
+    name: full_step
+    text:
+      en: Net book value = $5900 − $1598.90 = $4301.10.
+  misconception_ids:
+  - mc.acc.o.nbv_one_year_only
+  - mc.acc.o.nbv_accumulated_as_nbv
+solution:
+  steps:
+  - n: 1
+    latex: \text{Net book value} = \text{cost} - \text{accumulated depreciation}
+    reason: What is left
+    check_id: chk_build_acc_depreciation_0049_t
+  - n: 2
+    latex: \text{Accumulated depreciation} = 1598.90
+    reason: All the charges so far
+    check_id: chk_build_acc_depreciation_0049_s2
+  - n: 3
+    latex: \text{Net book value} = 5900 - 1598.90 = 4301.10
+    reason: Subtract
+    check_id: chk_build_acc_depreciation_0049_a
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_depreciation_0049_a:
+    args:
+      dp: 2
+      expression: 5900 - (5900 - 5900 * (1 - 10/100)^3)
+    tool: math_evaluate
+  chk_build_acc_depreciation_0049_s2:
+    args:
+      dp: 4
+      expression: 5900 - 5900 * (1 - 10/100)^3
+    tool: math_evaluate
+  chk_build_acc_depreciation_0049_t:
+    args:
+      cost: '5900'
+      dp: 2
+      method: reducing_balance
+      part_year_policy: full_year
+      rate_percent: '10'
+      years: 3
+    tool: acc_depreciation
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

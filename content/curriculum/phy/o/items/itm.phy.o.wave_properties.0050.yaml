@@ -1,0 +1,84 @@
+id: itm.phy.o.wave_properties.0050
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.wave_properties.wave_behaviour
+stem: Ripples travel at 18 cm/s with a wavelength of 3 cm in deep water. They pass into shallow water, where they slow to 9 cm/s.
+parts:
+- id: a
+  prompt: What is the frequency of the ripples in the shallow water?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '6'
+    unit: Hz
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_wav_0050_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Does the frequency change when waves cross into water of a different depth?
+  - rung: 2
+    name: concept
+    text:
+      en: 'No: the source sets the frequency, so it is the same in the shallow water.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Find it from the speed and wavelength you know together, in the deep water.
+  - rung: 4
+    name: worked_step
+    text:
+      en: f = v ÷ λ = 18 ÷ 3.
+  - rung: 5
+    name: full_step
+    text:
+      en: f = 6 Hz.
+  misconception_ids:
+  - mc.phy.o.frequency_changes_on_refraction
+  - mc.phy.o.wave_equation_inverted
+  - mc.phy.o.wave_equation_multiplied
+solution:
+  steps:
+  - n: 1
+    latex: f = \frac{18}{3} = 6\ \text{Hz}
+    reason: The frequency is the same in both depths
+    check_id: chk_build_phy_wav_0050_ans
+difficulty:
+  prior: 0.3
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_wav_0050_ans:
+    args:
+      expression: 18/3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

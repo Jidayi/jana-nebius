@@ -1,0 +1,36 @@
+id: mc.phy.o.topples_whenever_tilted
+kc_ids:
+- kc.phy.o.forces.centre_of_gravity
+student_name: Any tilt makes it fall
+description: Thinks an object topples as soon as it is tilted, rather than when the vertical line through its centre of gravity passes outside its base.
+signatures:
+- kind: answer_transform
+  expression: topples at any angle
+fix:
+  strategy: diagram
+  text:
+    en: 'Tilt a box slightly and let go: it falls back. Its weight still acts inside the base and turns it back. It topples only once the weight acts outside the base.'
+probe_item_ids:
+- itm.phy.o.forces.0111
+- itm.phy.o.forces.0112
+- itm.phy.o.forces.0099
+- itm.phy.o.forces.0102
+- itm.phy.o.forces.0105
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

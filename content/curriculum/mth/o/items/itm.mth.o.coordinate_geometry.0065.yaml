@@ -1,0 +1,106 @@
+id: itm.mth.o.coordinate_geometry.0065
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.coordinate_geometry.segment_length
+stem: P is the point (-2, -3) and Q is the point (4, 5).
+parts:
+- id: a
+  prompt: Find the length of PQ.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '10'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_crd_0065_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Sketch the two points: the segment is the hypotenuse of a right-angled triangle.'
+  - rung: 2
+    name: concept
+    text:
+      en: The other two sides are the change in x and the change in y.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change in x = 4 − (-2); change in y = 5 − (-3).
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Square both changes and add: 100. Then take the square root.'
+  - rung: 5
+    name: full_step
+    text:
+      en: PQ = 10.
+  misconception_ids:
+  - mc.mth.o.length_changes_added
+  - mc.mth.o.pythag_no_root
+  - mc.mth.o.coordinates_added_not_subtracted
+solution:
+  steps:
+  - n: 1
+    latex: PQ^2 = (x_2 - x_1)^2 + (y_2 - y_1)^2
+    reason: Pythagoras on the changes
+  - n: 2
+    latex: PQ^2 = (6)^2 + (8)^2 = 100
+    reason: Square and add
+    check_id: chk_build_mth_crd_0065_s
+  - n: 3
+    latex: PQ = \sqrt{100} = 10
+    reason: Square root
+    check_id: chk_build_mth_crd_0065_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_crd_0065_ans:
+    args:
+      expression: sqrt((4 - (-2))^2 + (5 - (-3))^2)
+    tool: math_evaluate
+  chk_build_mth_crd_0065_s:
+    args:
+      equations:
+      - p = 4 - (-2)
+      - q = 5 - (-3)
+      - r = (4 - (-2))^2 + (5 - (-3))^2
+      unknowns:
+      - p
+      - q
+      - r
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

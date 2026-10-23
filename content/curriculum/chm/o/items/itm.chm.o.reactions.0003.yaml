@@ -1,0 +1,90 @@
+id: itm.chm.o.reactions.0003
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.physical_chemical_change
+stem: 'Two changes are observed. P: an iron nail left outside turns orange-brown. Q: water vapour forms droplets on a cold window.'
+parts:
+- id: a
+  prompt: Which row classifies both changes correctly?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: P physical, Q chemical
+      correct: false
+      misconception_id: mc.chm.o.reactions_state_change_is_chemical
+      feedback: Ice, liquid water and steam are all the same substance, made of the same water molecules. A change of state only changes how close together the particles are and how they move. No new substance forms, so it is a physical change.
+    - id: B
+      text: P chemical, Q physical
+      correct: true
+    - id: C
+      text: P physical, Q physical
+      correct: false
+      misconception_id: mc.chm.o.reactions_new_substance_missed
+      feedback: 'Ask one question: has a new substance formed? Signs are a gas given off, a new solid, a new colour, or heat given out or taken in. Burning, rusting, cooking and breaking down by heat all make new substances, so they are chemical changes even when heat started them.'
+    - id: D
+      text: P chemical, Q chemical
+      correct: false
+      misconception_id: mc.chm.o.reactions_state_change_is_chemical
+      feedback: Ice, liquid water and steam are all the same substance, made of the same water molecules. A change of state only changes how close together the particles are and how they move. No new substance forms, so it is a physical change.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: For each change, is the substance at the end the same as the one at the start?
+  - rung: 2
+    name: concept
+    text:
+      en: A chemical change makes a new substance with new properties; a change of state does not.
+  - rung: 3
+    name: first_step
+    text:
+      en: Rust is a flaky orange-brown solid, quite unlike shiny grey iron.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The droplets on the window are made of the same particles as the vapour in the air. Which change is only a change of state?
+  - rung: 5
+    name: full_step
+    text:
+      en: P is chemical, because iron reacts with oxygen and water to make rust, a new substance. Q is physical, because water vapour only condenses to liquid water.
+  misconception_ids:
+  - mc.chm.o.reactions_state_change_is_chemical
+  - mc.chm.o.reactions_new_substance_missed
+solution:
+  steps:
+  - n: 1
+    latex: '\text{P: chemical; Q: physical}'
+    reason: A new substance means a chemical change
+difficulty:
+  prior: -1.0
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

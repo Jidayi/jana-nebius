@@ -1,0 +1,92 @@
+id: itm.mth.o.geometry.0037
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.map_scales
+stem: 'A map has a scale of 1 : 20000. Two villages are 12 cm apart on the map.'
+parts:
+- id: a
+  prompt: Find the real distance between them in kilometres.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '2.4'
+    unit: km
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_geo_0037_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The scale means 1 cm on the map is 20000 cm on the ground.
+  - rung: 2
+    name: concept
+    text:
+      en: Multiply the map distance by the scale, then change the units.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 12 × 20000 to get centimetres.
+  - rung: 4
+    name: worked_step
+    text:
+      en: That is 240000 cm. Divide by 100 to get metres, then by 1000 to get kilometres.
+  - rung: 5
+    name: full_step
+    text:
+      en: The real distance is 2.4 km.
+  misconception_ids:
+  - mc.mth.o.scale_units_not_converted
+  - mc.mth.o.scale_wrong_direction
+  - mc.mth.o.scale_conversion_factor
+solution:
+  steps:
+  - n: 1
+    latex: 12 \times 20000 = 240000\ \text{cm}
+    reason: Every map centimetre is 20000 real centimetres
+    check_id: chk_build_mth_geo_0037_real
+  - n: 2
+    latex: 240000\ \text{cm} = 2.4\ \text{km}
+    reason: Divide by 100 for metres, then by 1000 for kilometres
+    check_id: chk_build_mth_geo_0037_ans
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- local_places
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0037_ans:
+    args:
+      expression: 12*20000/100000
+    tool: math_evaluate
+  chk_build_mth_geo_0037_real:
+    args:
+      expression: 12*20000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,96 @@
+id: itm.mth.o.mensuration.0068
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.prism_volume
+stem: A cylinder has radius 6 cm and height 7 cm.
+parts:
+- id: a
+  prompt: Find the area of its curved surface, to 3 significant figures.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '264'
+    unit: cm^2
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_mns_0068_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Imagine peeling the label off a tin: it opens into a rectangle.'
+  - rung: 2
+    name: concept
+    text:
+      en: The rectangle is as long as the circumference and as wide as the height.
+  - rung: 3
+    name: first_step
+    text:
+      en: The circumference is 2 × π × 6.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiply the circumference by 7.
+  - rung: 5
+    name: full_step
+    text:
+      en: The curved surface area is 264 cm².
+  misconception_ids:
+  - mc.mth.o.radius_not_squared
+  - mc.mth.o.circumference_area_confused
+  - mc.mth.o.diameter_for_radius
+solution:
+  steps:
+  - n: 1
+    latex: A = 2\pi rh
+    reason: The curved surface unrolls into a rectangle
+  - n: 2
+    latex: A = 2 \times \pi \times 6 \times 7 = 264\ \text{cm}^2
+    reason: Substitute and round
+    check_id: chk_build_mth_mns_0068_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  r: '6'
+checks:
+  chk_build_mth_mns_0068_ans:
+    args:
+      expression: 2*pi*6*7
+      sf: 3
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

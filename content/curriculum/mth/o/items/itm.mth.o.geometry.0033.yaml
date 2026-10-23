@@ -1,0 +1,105 @@
+id: itm.mth.o.geometry.0033
+version: 0.1.1
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.constructions
+stem: A pupil sets out to construct a triangle with sides of 4 cm, 5 cm and 9 cm. Will it work?
+parts:
+- id: a
+  prompt: Choose the correct answer.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Yes, any three lengths make a triangle
+      correct: false
+      misconception_id: mc.mth.o.triangle_inequality_ignored
+      feedback: 'Try 3 cm, 4 cm and 10 cm: the two short sides cannot reach each other across 10 cm.'
+    - id: B
+      text: 'No'
+      correct: true
+    - id: C
+      text: Only if one angle is measured as a right angle
+      correct: false
+      misconception_id: mc.mth.o.construction_measures_with_protractor
+      feedback: A construction uses only a straight edge and compasses; measuring is not constructing.
+    - id: D
+      text: Yes, if the longest side is drawn last
+      correct: false
+      misconception_id: mc.mth.o.construction_wrong_order
+      feedback: Arcs first to find the points, then join the points with a straight edge.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Imagine drawing the longest side, then swinging the other two from its ends.
+  - rung: 2
+    name: concept
+    text:
+      en: The two shorter sides must reach each other, so together they must be longer than the longest side.
+  - rung: 3
+    name: first_step
+    text:
+      en: Add 4 and 5.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Compare 9 with 9.
+  - rung: 5
+    name: full_step
+    text:
+      en: The two shorter sides add to 9, which is not more than 9, so the answer is No.
+  misconception_ids:
+  - mc.mth.o.construction_measures_with_protractor
+  - mc.mth.o.construction_wrong_order
+  - mc.mth.o.triangle_inequality_ignored
+solution:
+  steps:
+  - n: 1
+    latex: 4 + 5 = 9
+    reason: Add the two shorter sides
+    check_id: chk_build_mth_geo_0033_s
+  - n: 2
+    latex: 9 = 9
+    reason: Compare with the longest side
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_0033_s:
+    args:
+      expression: 4 + 5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

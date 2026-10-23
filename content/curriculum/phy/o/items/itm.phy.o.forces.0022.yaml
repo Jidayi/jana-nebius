@@ -1,0 +1,92 @@
+id: itm.phy.o.forces.0022
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.force_mass_acceleration
+stem: An ice-hockey puck of mass 160 g accelerates at 12 m/s².
+parts:
+- id: a
+  prompt: Find the resultant force on it.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '1.92'
+    unit: N
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_frc_0022_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which equation links resultant force, mass and acceleration?
+  - rung: 2
+    name: concept
+    text:
+      en: F = ma, with the mass in kilograms and the acceleration in m/s².
+  - rung: 3
+    name: first_step
+    text:
+      en: Change 160 g into kilograms first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The mass is 0.16 kg; multiply it by 12.
+  - rung: 5
+    name: full_step
+    text:
+      en: F = 1.92 N.
+  misconception_ids:
+  - mc.phy.o.fma_grams_not_converted
+  - mc.phy.o.fma_ratio_inverted
+  - mc.phy.o.fma_mixed_with_weight
+solution:
+  steps:
+  - n: 1
+    latex: m = 160\ \text{g} = 0.16\ \text{kg}
+    reason: Mass in kilograms
+    check_id: chk_build_phy_frc_0022_kg
+  - n: 2
+    latex: F = ma = 0.16 \times 12 = 1.92\ \text{N}
+    reason: Resultant force = mass × acceleration
+    check_id: chk_build_phy_frc_0022_ans
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_0022_ans:
+    args:
+      expression: 160/1000*12
+    tool: math_evaluate
+  chk_build_phy_frc_0022_kg:
+    args:
+      expression: 160/1000
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

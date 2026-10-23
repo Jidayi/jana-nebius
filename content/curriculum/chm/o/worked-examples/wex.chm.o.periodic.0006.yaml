@@ -1,0 +1,53 @@
+id: wex.chm.o.periodic.0006
+kc_ids:
+- kc.chm.o.periodic.group_vii
+problem: Predict whether bromine reacts with potassium iodide solution; if so, give the equation and the relative formula mass of the potassium salt formed.
+steps:
+- n: 1
+  latex: \text{Br above I in Group VII}
+  reason: Higher halogen is more reactive
+- n: 2
+  latex: \text{Br}_2 + 2\text{KI} \rightarrow 2\text{KBr} + \text{I}_2
+  reason: It displaces the lower halogen
+  check_id: chk_build_chm_periodic_w0006_s2
+final_answer:
+  latex: M_r(\text{KBr}) = 119
+  check_id: chk_build_chm_periodic_w0006_mr
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_periodic_w0006_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_k
+      - source: pack
+        symbol: ar_br
+      formula: KBr
+    tool: chem_molar_mass
+  chk_build_chm_periodic_w0006_s2:
+    args:
+      equation: Br2 + 2KI -> 2KBr + I2
+    tool: chem_balance
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

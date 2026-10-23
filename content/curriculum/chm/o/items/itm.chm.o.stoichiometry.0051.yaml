@@ -1,0 +1,116 @@
+id: itm.chm.o.stoichiometry.0051
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.moles_and_mass
+stem: A gas jar contains 7.0 g of nitrogen gas, N₂.
+parts:
+- id: a
+  prompt: What amount of N₂, in moles, is in the jar?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: 4.00 mol
+      correct: false
+      misconception_id: mc.chm.o.moles_ratio_inverted
+      feedback: 'Amount (mol) = mass (g) ÷ molar mass (g/mol). Check the units: g ÷ g/mol gives mol.'
+    - id: B
+      text: 196 mol
+      correct: false
+      misconception_id: mc.chm.o.moles_multiply_mass
+      feedback: 'Try easy numbers: 36 g of water (M = 18 g/mol) is 2 mol, so you divide the mass by the molar mass.'
+    - id: C
+      text: 0.500 mol
+      correct: false
+      misconception_id: mc.chm.o.diatomic_as_atoms
+      feedback: 'Oxygen, hydrogen, nitrogen and chlorine gases are made of molecules of two atoms: use O₂ = 32, not 16.'
+    - id: D
+      text: 0.250 mol
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know the mass of nitrogen and want the amount in moles.
+  - rung: 2
+    name: concept
+    text:
+      en: Amount (mol) = mass (g) ÷ molar mass (g/mol).
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Nitrogen gas is made of N₂ molecules, so use the molar mass of N₂, not of one N atom: it is 28 g/mol.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 7.0 ÷ 28.
+  - rung: 5
+    name: full_step
+    text:
+      en: 7.0 ÷ 28 = 0.250 mol.
+  misconception_ids:
+  - mc.chm.o.moles_ratio_inverted
+  - mc.chm.o.moles_multiply_mass
+  - mc.chm.o.diatomic_as_atoms
+solution:
+  steps:
+  - n: 1
+    latex: M(\text{N}_2) = 28\ \text{g/mol}
+    reason: Molar mass of the molecule
+    check_id: chk_build_chm_stoichiometry_0051_mr
+  - n: 2
+    latex: n = \frac{7.0}{28} = 0.250\ \text{mol}
+    reason: Mass divided by molar mass
+    check_id: chk_build_chm_stoichiometry_0051_n
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0051_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      formula: N2
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_0051_n:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      sf: 3
+      steps:
+      - id: n
+        mass: 7.0 g
+        op: amount_from_mass
+        species: N2
+    tool: chem_stoichiometry
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,96 @@
+id: itm.mth.o.algebra_and_graphs.0062
+version: 0.1.0
+type: mcq
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.change_subject
+stem: Make t the subject of the formula $v = u + at$.
+parts:
+- id: a
+  prompt: Choose the correct rearrangement.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: $t = \frac{v + u}{a}$
+      correct: false
+      misconception_id: mc.mth.o.rearrange_inverse_sign
+      feedback: 'Do the same to both sides: to remove + u, subtract u from both sides.'
+    - id: B
+      text: $t = \frac{v}{a} - u$
+      correct: false
+      misconception_id: mc.mth.o.rearrange_wrong_order
+      feedback: 'Undo the operations in the reverse order they were done to the letter: the last thing done is undone first.'
+    - id: C
+      text: $t = \frac{v - u}{a}$
+      correct: true
+    - id: D
+      text: $t = a(v - u)$
+      correct: false
+      misconception_id: mc.mth.o.rearrange_wrong_inverse
+      feedback: The opposite of multiplying by a is dividing by a. Check by putting numbers back into your answer.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which operations have been done to t, and in what order?
+  - rung: 2
+    name: concept
+    text:
+      en: Undo them in reverse order, doing the same to both sides each time, until t is alone.
+  - rung: 3
+    name: first_step
+    text:
+      en: Start with the operation that was done last.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Each step uses the inverse operation: subtract to undo adding, divide to undo multiplying, take the square root to undo squaring.'
+  - rung: 5
+    name: full_step
+    text:
+      en: The rearranged formula is $t = \frac{v - u}{a}$.
+  misconception_ids:
+  - mc.mth.o.rearrange_inverse_sign
+  - mc.mth.o.rearrange_wrong_inverse
+  - mc.mth.o.rearrange_wrong_order
+solution:
+  steps:
+  - n: 1
+    latex: v = u + at
+    reason: Start from the formula
+  - n: 2
+    latex: t = \frac{v - u}{a}
+    reason: Undo each operation on t in reverse order, doing the same to both sides
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 80
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

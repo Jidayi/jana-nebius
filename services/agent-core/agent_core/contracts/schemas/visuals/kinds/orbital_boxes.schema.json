@@ -1,0 +1,24 @@
+{
+ "$comment": "GENERATED from docs/specification/contracts/visuals/kinds/orbital_boxes.schema.json sha256 8853e766590e3e6747712bfc3579231365e92297599d125e1e5442ee4a177039; do not edit",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/orbital_boxes",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "element": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 3,
+   "pattern": "^[A-Z][a-z]?$"
+  },
+  "charge": {
+   "type": "integer",
+   "minimum": -8,
+   "maximum": 8
+  }
+ },
+ "required": [
+  "element",
+  "charge"
+ ]
+}

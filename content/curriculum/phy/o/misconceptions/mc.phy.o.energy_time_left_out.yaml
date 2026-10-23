@@ -1,0 +1,36 @@
+id: mc.phy.o.energy_time_left_out
+kc_ids:
+- kc.phy.o.electrical_quantities.potential_difference
+student_name: Leaving out the time
+description: Multiplies the p.d. by the current and stops, giving the energy per second (the power) instead of the energy transferred in the time given.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: rule_restatement
+  text:
+    en: The charge that flows is current × time, so the energy is p.d. × current × time. Without the time you have the energy per second.
+probe_item_ids:
+- itm.phy.o.electrical_quantities.0043
+- itm.phy.o.electrical_quantities.0045
+- itm.phy.o.electrical_quantities.0031
+- itm.phy.o.electrical_quantities.0035
+- itm.phy.o.electrical_quantities.0039
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

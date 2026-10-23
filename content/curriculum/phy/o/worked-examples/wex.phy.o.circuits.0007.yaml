@@ -1,0 +1,64 @@
+id: wex.phy.o.circuits.0007
+kc_ids:
+- kc.phy.o.circuits.potential_dividers
+problem: A thermistor and a 1500 Ω fixed resistor are connected in series across a 5 V supply. At 80 °C the thermistor's resistance is 400 Ω. The output p.d. is taken across the thermistor. Calculate the output p.d. across the thermistor.
+steps:
+- n: 1
+  latex: R = 1500 + 400 = 1900\ \Omega
+  reason: Total resistance of the divider
+  check_id: chk_build_phy_cir_w0007_rt
+- n: 2
+  latex: V_{\text{out}} = 5 \times \frac{400}{1900} = 1.05\ \text{V}
+  reason: The output's share is its fraction of the total resistance
+  check_id: chk_build_phy_cir_w0007_ans
+final_answer:
+  latex: 1.05\ \text{V}
+  check_id: chk_build_phy_cir_w0007_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_cir_w0007_ans:
+    args:
+      expression: 5*400/(1500 + 400)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_cir_w0007_rt:
+    args:
+      expression: 1500 + 400
+    tool: math_evaluate
+  chk_build_phy_cir_w0007_tool:
+    args:
+      components:
+      - emf: '5'
+        id: B
+        kind: battery
+      - id: R1
+        kind: resistor
+        resistance: '1500'
+      - id: R2
+        kind: resistor
+        resistance: '400'
+      network:
+        series:
+        - B
+        - R1
+        - R2
+    tool: phys_circuit
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,103 @@
+id: itm.mth.o.trigonometry.0076
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.trigonometry.sine_rule
+stem: In triangle ABC, angle A = 58°, angle B = 54° and side a = BC = 7 cm.
+parts:
+- id: a
+  prompt: Find side b = AC, to 3 significant figures.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 6.68 cm
+      correct: true
+    - id: B
+      text: 7.34 cm
+      correct: false
+      misconception_id: mc.mth.o.sine_rule_inverted
+      feedback: 'In the sine rule each side is paired with the angle opposite it: a with A, b with B.'
+    - id: C
+      text: 7.76 cm
+      correct: false
+      misconception_id: mc.mth.o.trig_ratio_wrong
+      feedback: 'Label the sides from the angle you are using: opposite faces it, adjacent is next to it, hypotenuse is opposite the right angle.'
+    - id: D
+      text: -3.94 cm
+      correct: false
+      misconception_id: mc.mth.o.calculator_radians
+      feedback: 'Check the calculator shows D (degrees): sin 30 should give 0.5.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know two angles and the side opposite one of them.
+  - rung: 2
+    name: concept
+    text:
+      en: The sine rule pairs each side with the sine of the angle opposite it.
+  - rung: 3
+    name: first_step
+    text:
+      en: b is opposite B = 54° and a is opposite A = 58°.
+  - rung: 4
+    name: worked_step
+    text:
+      en: b = 7 × sin 54° ÷ sin 58°.
+  - rung: 5
+    name: full_step
+    text:
+      en: b = 6.68 cm.
+  misconception_ids:
+  - mc.mth.o.calculator_radians
+  - mc.mth.o.sine_rule_inverted
+  - mc.mth.o.trig_ratio_wrong
+solution:
+  steps:
+  - n: 1
+    latex: \frac{b}{\sin B} = \frac{a}{\sin A}
+    reason: The sine rule
+  - n: 2
+    latex: b = \frac{7 \sin 54}{\sin 58} = 6.68\ \text{cm}
+    reason: Rearrange and evaluate
+    check_id: chk_build_mth_trg_0076_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 110
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_trg_0076_ans:
+    args:
+      angle_unit: degrees
+      expression: 7*sin(54)/sin(58)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

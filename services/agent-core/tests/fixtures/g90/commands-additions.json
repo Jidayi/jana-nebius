@@ -1,0 +1,217 @@
+{
+  "$comment": "G90 (D72): proposed additions to docs/specification/contracts/api/commands.schema.json for the learner view and memory review (MEM-09, MEM-14, LRN-36, LRN-37, UXS-28, PRV-10). Merge `x-endpoints` into the file's x-endpoints list and `$defs` into its $defs. Also proposed: a TABLE API-32a row 409 `review_changed`, and an API-07 prefix row `rvw_` (memory review item, minted by the core). Every command answers with the profile's KnowsView as it is after the command, so the page never shows a stale state. `x-authorization: profile_or_adult` means: the X-Profile-Token of {profile_id} (the student, actor_role student), or a valid X-Adult-Token for any profile on this device, including a locked one (the PIN-protected view of LRN-36 and UXS-28; actor_role adult). With both, the actor is the adult. Any other profile id answers 404 not_found (API-04). These are not TCH-13a adult controls: a student reaches every one of them with the profile token alone.",
+  "x-endpoints": [
+    {
+      "method": "GET",
+      "path": "/v1/profiles/{profile_id}/knows",
+      "request": null,
+      "response": "#/$defs/KnowsView",
+      "auth": ["launch", "profile"],
+      "x-authorization": "profile_or_adult",
+      "errors": ["not_found"],
+      "stage": "S2",
+      "owner": "API-23",
+      "description": "The \"What your tutor knows\" view (LRN-36, MEM-14, UXS-28, PRV-10): the learner model as states, bands and labels (never probabilities), active notes (each marked when it fails the render check, MEM-27), open review items pinned to the versions shown (MEM-09), preferences, whether saving notes is on (MEM-06) and the sharing flags the page's sentence follows."
+    },
+    {
+      "method": "POST",
+      "path": "/v1/profiles/{profile_id}/memory/reviews/{review_id}",
+      "request": "#/$defs/ReviewResolution",
+      "response": "#/$defs/KnowsView",
+      "auth": ["launch", "profile"],
+      "x-authorization": "profile_or_adult",
+      "errors": ["not_found", "review_changed", "validation_failed"],
+      "stage": "S2",
+      "owner": "API-23",
+      "description": "Accept or reject one review item (MEM-09) for exactly the versions shown: pending_version and target_version must equal the item's current ones, else 409 review_changed with details.review holding the item as it is now (shown again). An item that no longer exists answers 404. Accepting a replacement makes the pending note active and deletes the note it replaces; rejecting deletes the pending note; accepting a drop deletes the note; rejecting a drop keeps it. Every deletion erases the note's text (LRN-37) and open sessions drop it (MEM-11)."
+    },
+    {
+      "method": "POST",
+      "path": "/v1/profiles/{profile_id}/memory/{note_id}/dispute",
+      "request": null,
+      "response": "#/$defs/KnowsView",
+      "auth": ["launch", "profile"],
+      "x-authorization": "profile_or_adult",
+      "errors": ["not_found"],
+      "stage": "S2",
+      "owner": "API-23",
+      "description": "\"This isn't right\" on a note (UXS-28, LRN-37): one batch of a correction event (target note, action dispute) and the note's deletion with erasure of its text, as DELETE /v1/memory/{note_id} does. A pending note is answered through its review item instead (404 here)."
+    },
+    {
+      "method": "POST",
+      "path": "/v1/profiles/{profile_id}/misconceptions/{misconception_id}/correction",
+      "request": "#/$defs/MisconceptionCorrection",
+      "response": "#/$defs/KnowsView",
+      "auth": ["launch", "profile"],
+      "x-authorization": "profile_or_adult",
+      "errors": ["not_found", "validation_failed"],
+      "stage": "S2",
+      "owner": "API-23",
+      "description": "\"This isn't right\" on a misconception (LRN-37): a correction event that sets it disputed, so it leaves the page's watch list and the prompt until misconception_dispute_reactivate new matches; undispute withdraws the dispute. Only a misconception the profile has (active or resolving to dispute, disputed to undispute); any other id is 404."
+    },
+    {
+      "method": "PATCH",
+      "path": "/v1/profiles/{profile_id}/preferences/{key}",
+      "request": "#/$defs/PreferenceCorrection",
+      "response": "#/$defs/KnowsView",
+      "auth": ["launch", "profile"],
+      "x-authorization": "profile_or_adult",
+      "errors": ["not_found", "validation_failed"],
+      "stage": "S2",
+      "owner": "API-23",
+      "description": "Edit how the student likes to learn (LRN-37, PRV-10): a correction event (target preference) that overrides the inferred value, or with value null clears the override. A value the preference cannot take is 422; an unknown key is 404."
+    }
+  ],
+  "$defs": {
+    "KnowsView": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "GET /v1/profiles/{profile_id}/knows and every memory review or correction command (LRN-36, MEM-14, UXS-28). Plain codes, never probabilities: the client turns states, bands, statuses and preference values into localised words.",
+      "properties": {
+        "profile_id": {"type": "string", "pattern": "^prf_[0-9A-HJKMNP-TV-Z]{26}$"},
+        "viewer": {"enum": ["student", "adult"], "description": "Who the request acts as: the student with their profile token, or the device adult with X-Adult-Token."},
+        "about": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "level": {"enum": ["O", "A"]},
+                "subjects": {"type": "array", "maxItems": 5, "items": {"type": "string", "maxLength": 32}},
+                "exam_date": {"anyOf": [{"type": "string", "format": "date"}, {"type": "null"}]}
+              },
+              "required": ["level", "subjects", "exam_date"]
+            },
+            {"type": "null"}
+          ]
+        },
+        "kcs": {
+          "type": "array",
+          "maxItems": 2000,
+          "description": "Every KC with evidence, in id order. band secure is \"Going well\", learning is \"Working on\".",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kc_id": {"type": "string", "pattern": "^kc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[a-z0-9_]+$"},
+              "statement": {"type": "string", "maxLength": 400},
+              "state": {"enum": ["not_started", "learning", "ready_to_check", "mastered", "needs_review", "moved_on"], "description": "TABLE LRN-09a state."},
+              "band": {"enum": ["not_started", "learning", "secure"]}
+            },
+            "required": ["kc_id", "statement", "state", "band"]
+          }
+        },
+        "misconceptions": {
+          "type": "array",
+          "maxItems": 200,
+          "description": "\"Mistakes we're watching\": active and resolving misconceptions, active first.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "misconception_id": {"type": "string", "pattern": "^mc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+$"},
+              "name": {"type": "string", "maxLength": 200, "description": "The pack's student-facing name (the id when no installed pack names it)."},
+              "status": {"enum": ["active", "resolving"]}
+            },
+            "required": ["misconception_id", "name", "status"]
+          }
+        },
+        "preferences": {
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "key": {"$ref": "#/$defs/preference_key"},
+              "value": {"$ref": "#/$defs/preference_value"},
+              "source": {"enum": ["override", "inferred"]}
+            },
+            "required": ["key", "value", "source"]
+          }
+        },
+        "notes": {"type": "array", "maxItems": 200, "description": "Active notes, newest first.", "items": {"$ref": "#/$defs/KnowsNote"}},
+        "reviews": {"type": "array", "maxItems": 200, "description": "Open review items, oldest first (MEM-09).", "items": {"$ref": "#/$defs/ReviewItem"}},
+        "memory_saving": {"type": "boolean", "description": "The student's \"Save notes about me\" preference (MEM-06). Off stops new notes; the notes here stay readable."},
+        "sharing": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "Inputs of the page's sharing sentence (LRN-36): each flag is true only while that consent is effective (ConsentState.effective).",
+              "properties": {
+                "backup": {"type": "boolean"},
+                "devices": {"type": "boolean"},
+                "parent_view": {"type": "boolean"},
+                "cloud_tutor": {"type": "boolean"}
+              },
+              "required": ["backup", "devices", "parent_view", "cloud_tutor"]
+            },
+            {"type": "null"}
+          ]
+        }
+      },
+      "required": ["profile_id", "viewer", "about", "kcs", "misconceptions", "preferences", "notes", "reviews", "memory_saving", "sharing"]
+    },
+    "KnowsNote": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "note_id": {"type": "string", "pattern": "^mem_[0-9A-HJKMNP-TV-Z]{26}$"},
+        "text": {"type": "string", "maxLength": 400, "description": "The stored text, to be rendered as text, never as markup (MEM-27)."},
+        "status": {"enum": ["active", "pending_review"]},
+        "source": {"enum": ["reflector", "student", "corrected"], "description": "Who the note came from: the Reflector, the student's own request (MEM-11), or a note the student or the adult has corrected (MEM-09: theirs)."},
+        "flagged": {"type": "boolean", "description": "Fails the render check (MEM-27): never in a prompt, shown so it can be deleted."},
+        "subject": {"anyOf": [{"type": "string", "maxLength": 32}, {"type": "null"}]},
+        "created_ts": {"type": "integer", "minimum": 0, "description": "ms since Unix epoch, server clock"},
+        "updated_ts": {"type": "integer", "minimum": 0, "description": "ms since Unix epoch: the last write of its text (G95)"}
+      },
+      "required": ["note_id", "text", "status", "source", "flagged", "subject", "created_ts", "updated_ts"]
+    },
+    "ReviewItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "A change the Reflector may not make on its own (MEM-09). replace: pending would supersede target (a contradiction, or an update of a note the student owns); target is null when the note it contradicted is gone. drop: a proposal to remove target, a note the student owns; pending is null.",
+      "properties": {
+        "review_id": {"type": "string", "pattern": "^rvw_[0-9A-HJKMNP-TV-Z]{26}$"},
+        "kind": {"enum": ["replace", "drop"]},
+        "pending": {"anyOf": [{"$ref": "#/$defs/KnowsNote"}, {"type": "null"}]},
+        "target": {"anyOf": [{"$ref": "#/$defs/KnowsNote"}, {"type": "null"}]},
+        "pending_version": {"$ref": "#/$defs/memory_version"},
+        "target_version": {"anyOf": [{"$ref": "#/$defs/memory_version"}, {"type": "null"}]}
+      },
+      "required": ["review_id", "kind", "pending", "target", "pending_version", "target_version"]
+    },
+    "ReviewResolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "POST /v1/profiles/{profile_id}/memory/reviews/{review_id} (MEM-09): the answer and the two versions it was given for, copied from the ReviewItem shown.",
+      "properties": {
+        "accept": {"type": "boolean"},
+        "pending_version": {"$ref": "#/$defs/memory_version"},
+        "target_version": {"anyOf": [{"$ref": "#/$defs/memory_version"}, {"type": "null"}]}
+      },
+      "required": ["accept", "pending_version", "target_version"]
+    },
+    "MisconceptionCorrection": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "POST /v1/profiles/{profile_id}/misconceptions/{misconception_id}/correction (LRN-37).",
+      "properties": {"action": {"enum": ["dispute", "undispute"]}},
+      "required": ["action"]
+    },
+    "PreferenceCorrection": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "PATCH /v1/profiles/{profile_id}/preferences/{key} (LRN-37): the student's value, or null to clear the override and return to the inferred one.",
+      "properties": {"value": {"anyOf": [{"$ref": "#/$defs/preference_value"}, {"type": "null"}]}},
+      "required": ["value"]
+    },
+    "preference_key": {"enum": ["start_style", "representation", "pace", "unprompted_help", "self_explanation_prompts"], "description": "The keys of learner-model preferences (student_overrides)."},
+    "preference_value": {
+      "description": "start_style: worked_example | hint; representation: diagram | simpler_numbers | analogy | worked_example; pace: short | normal; unprompted_help and self_explanation_prompts: boolean. A value outside its key's set is 422.",
+      "anyOf": [{"enum": ["worked_example", "hint", "diagram", "simpler_numbers", "analogy", "short", "normal"]}, {"type": "boolean"}]
+    },
+    "memory_version": {"type": "string", "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$", "description": "The id of the newest event touching a note or proposal (opaque to the client): the version a review answer is pinned to (MEM-09)."}
+  }
+}

@@ -1,0 +1,120 @@
+id: itm.acc.o.accruals_prepayments.0034
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.accruals_prepayments.accrual_presentation
+stem: Wanjiru's year-end adjustments include rent owing by the business at the year end.
+parts:
+- id: a
+  prompt: Where does it appear in the statement of financial position?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Current liabilities
+      correct: true
+    - id: B
+      text: Non-current assets
+      correct: false
+      misconception_id: mc.acc.o.acc_prepayment_as_non_current
+    - id: C
+      text: 'Nowhere: it only changes the income statement'
+      correct: false
+      misconception_id: mc.acc.o.acc_adjustment_in_is_only
+    - id: D
+      text: Current assets
+      correct: false
+      misconception_id: mc.acc.o.acc_accrual_as_asset
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: After the year-end adjustment, does the business owe something or is something owed to it?
+  - rung: 2
+    name: concept
+    text:
+      en: An amount the business owes is a liability; an amount owed to it, or paid for in advance, is an asset.
+  - rung: 3
+    name: first_step
+    text:
+      en: These amounts are settled within a year, so they are current.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Every year-end adjustment has two sides: the income statement and the statement of financial position.'
+  - rung: 5
+    name: full_step
+    text:
+      en: It appears under current liabilities.
+  misconception_ids:
+  - mc.acc.o.acc_accrual_as_asset
+  - mc.acc.o.acc_adjustment_in_is_only
+  - mc.acc.o.acc_prepayment_as_non_current
+solution:
+  steps:
+  - n: 1
+    latex: \text{Rent owing by the business at the year end} \rightarrow \text{Current liabilities}
+    reason: Owed by or to the business
+    check_id: chk_build_acc_accruals_prepayments_0034_t
+difficulty:
+  prior: -0.2
+  band: foundation
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_names
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_accruals_prepayments_0034_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Rent
+        amount: '300'
+        kind: accrued_expense
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '60000'
+        role: revenue
+      - account: Purchases
+        debit: '30000'
+        role: purchases
+      - account: Rent
+        debit: '2400'
+        role: expense
+      - account: Land
+        debit: '27600'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

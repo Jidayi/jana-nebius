@@ -1,0 +1,114 @@
+id: itm.phy.o.energy.0102
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.efficiency
+stem: Each second, a kettle transfers 160 J to the thermal store of the water and wastes 40 J by heating the surroundings.
+parts:
+- id: a
+  prompt: Calculate its efficiency as a percentage.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 400%
+      correct: false
+      misconception_id: mc.phy.o.efficiency_useful_over_wasted
+      feedback: 'Efficiency compares the useful output with everything that went in: useful ÷ (useful + wasted).'
+    - id: B
+      text: 20%
+      correct: false
+      misconception_id: mc.phy.o.useful_wasted_swapped
+      feedback: 'Sort the outputs first: what was the device for? That output is useful; everything else is wasted.'
+    - id: C
+      text: 80%
+      correct: true
+    - id: D
+      text: 0.8%
+      correct: false
+      misconception_id: mc.phy.o.efficiency_fraction_percent_mixed
+      feedback: 'Useful ÷ input gives a fraction such as 0.8. To write it as a percentage, multiply by a hundred: 80%.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The total input is not given directly.
+  - rung: 2
+    name: concept
+    text:
+      en: Energy in = useful out + wasted, and efficiency = useful ÷ total in.
+  - rung: 3
+    name: first_step
+    text:
+      en: The total input each second is 160 + 40 = 200 J.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 160 ÷ 200 and write it as a percentage.
+  - rung: 5
+    name: full_step
+    text:
+      en: The efficiency is 80%.
+  misconception_ids:
+  - mc.phy.o.efficiency_fraction_percent_mixed
+  - mc.phy.o.efficiency_useful_over_wasted
+  - mc.phy.o.useful_wasted_swapped
+solution:
+  steps:
+  - n: 1
+    latex: \text{total in} = 160 + 40 = 200\ \text{J}
+    reason: Input = useful + wasted
+    check_id: chk_build_phy_nrg_0102_tot
+  - n: 2
+    latex: \frac{160}{200} = 0.8
+    reason: Efficiency as a fraction
+    check_id: chk_build_phy_nrg_0102_frac
+  - n: 3
+    latex: 0.8 = 80\%
+    reason: As a percentage
+    check_id: chk_build_phy_nrg_0102_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0102_ans:
+    args:
+      expression: 160/(160 + 40)*100
+    tool: math_evaluate
+  chk_build_phy_nrg_0102_frac:
+    args:
+      expression: 160/(160 + 40)
+    tool: math_evaluate
+  chk_build_phy_nrg_0102_tot:
+    args:
+      expression: 160 + 40
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

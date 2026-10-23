@@ -1,0 +1,93 @@
+id: itm.phy.o.oscilloscope.0025
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.oscilloscope.y_gain
+stem: A microphone is connected to an oscilloscope with its Y-gain set to 5 mV/div. A crest of the trace is 3 divisions above the centre line.
+parts:
+- id: a
+  prompt: Find the peak voltage of the signal in volts.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.015'
+    unit: V
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_osc_0025_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The peak voltage is the height of a crest above the centre line.
+  - rung: 2
+    name: concept
+    text:
+      en: Here each vertical division stands for a number of millivolts, not volts.
+  - rung: 3
+    name: first_step
+    text:
+      en: Multiply 3 divisions by 5 mV/div to get millivolts.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The peak voltage is 15 mV; change it into volts.
+  - rung: 5
+    name: full_step
+    text:
+      en: The peak voltage is 0.015 V.
+  misconception_ids:
+  - mc.phy.o.osc_ygain_mv_as_v
+  - mc.phy.o.osc_peak_and_peak_to_peak_confused
+  - mc.phy.o.osc_peak_height_halved
+solution:
+  steps:
+  - n: 1
+    latex: V_0 = 3 \times 5 = 15\ \text{mV}
+    reason: Divisions times millivolts per division
+    check_id: chk_build_phy_osc_0025_mv
+  - n: 2
+    latex: V_0 = 15\ \text{mV} = 0.015\ \text{V}
+    reason: Millivolts into volts
+    check_id: chk_build_phy_osc_0025_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_osc_0025_ans:
+    args:
+      quantity: 15 mV
+      to: V
+    tool: units_convert
+  chk_build_phy_osc_0025_mv:
+    args:
+      expression: 3*5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

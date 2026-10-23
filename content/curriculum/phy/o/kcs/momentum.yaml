@@ -1,0 +1,96 @@
+- id: kc.phy.o.momentum.momentum_calculation
+  code: PHY-O-01.06.K01
+  node_id: cur.phy.o.motion_forces_and_energy.momentum
+  statement: Calculate momentum as mass × velocity, giving its direction with a sign
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.303
+  prerequisites:
+  - kc_id: kc.phy.o.measurement.scalars_and_vectors
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.fma_multiplied_not_divided
+  - mc.phy.o.momentum_as_kinetic_energy
+  - mc.phy.o.momentum_grams_not_converted
+  - mc.phy.o.momentum_ratio_inverted
+  - mc.phy.o.momentum_sign_ignored
+  - mc.phy.o.momentum_totals_multiplied
+  - mc.phy.o.largest_vector_only
+  skill_ids:
+  - phy-o-momentum
+  glossary:
+  - momentum
+  - velocity
+  - mass
+  - kilogram metre per second
+  difficulty_prior: -0.4
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.momentum.conservation_of_momentum
+  code: PHY-O-01.06.K02
+  node_id: cur.phy.o.motion_forces_and_energy.momentum
+  statement: Apply conservation of momentum to collisions and explosions along a straight line
+  kind: procedural
+  tools:
+  - math_solve
+  - math_evaluate
+  exam_weight: 0.394
+  prerequisites:
+  - kc_id: kc.phy.o.momentum.momentum_calculation
+    strength: required
+  misconception_ids:
+  - mc.phy.o.collision_velocities_averaged
+  - mc.phy.o.conservation_masses_swapped
+  - mc.phy.o.explosion_creates_momentum
+  - mc.phy.o.momentum_sign_ignored
+  - mc.phy.o.recoil_equal_speeds
+  - mc.phy.o.recoil_sign_dropped
+  - mc.phy.o.stuck_mass_one_object
+  skill_ids:
+  - phy-o-momentum
+  glossary:
+  - momentum
+  - conservation of momentum
+  - collision
+  - explosion
+  - velocity
+  - recoil
+  - total momentum
+  difficulty_prior: 0.5
+  version: 0.1.1
+  status: active
+- id: kc.phy.o.momentum.impulse
+  code: PHY-O-01.06.K03
+  node_id: cur.phy.o.motion_forces_and_energy.momentum
+  statement: Relate impulse, force × time, to the change in momentum and find the average force
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.303
+  prerequisites:
+  - kc_id: kc.phy.o.momentum.momentum_calculation
+    strength: required
+  - kc_id: kc.phy.o.forces.force_mass_acceleration
+    strength: helpful
+  misconception_ids:
+  - mc.phy.o.cushioning_reduces_momentum_change
+  - mc.phy.o.impulse_change_as_force
+  - mc.phy.o.impulse_initial_momentum_only
+  - mc.phy.o.impulse_ms_not_converted
+  - mc.phy.o.impulse_time_multiplied
+  - mc.phy.o.rebound_change_subtracted
+  skill_ids:
+  - phy-o-momentum
+  glossary:
+  - impulse
+  - momentum
+  - change in momentum
+  - average force
+  - force
+  - velocity
+  - crumple zone
+  - collision
+  difficulty_prior: 0.4
+  version: 0.1.1
+  status: active

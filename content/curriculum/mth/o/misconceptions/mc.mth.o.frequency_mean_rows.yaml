@@ -1,0 +1,44 @@
+id: mc.mth.o.frequency_mean_rows
+kc_ids:
+- kc.mth.o.statistics.averages_frequency
+- kc.mth.o.statistics.grouped_mean
+- kc.mth.o.statistics.averages_list
+student_name: Dividing by the number of rows
+description: Divides Σfx by the number of rows in the table instead of the total frequency.
+signatures:
+- kind: answer_transform
+  expression: sum(fx)/rows
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The mean shares the total among all the items: divide by Σf.'
+probe_item_ids:
+- itm.mth.o.statistics.0048
+- itm.mth.o.statistics.0066
+- itm.mth.o.statistics.0067
+- itm.mth.o.statistics.0079
+- itm.mth.o.statistics.0080
+severity: high
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

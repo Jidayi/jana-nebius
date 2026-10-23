@@ -1,0 +1,91 @@
+id: itm.chm.o.organic.0074
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.polymers
+stem: PVC, poly(chloroethene), is used for water pipes.
+parts:
+- id: a
+  prompt: Which is the monomer of PVC, and why?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Ethene and hydrogen chloride, which join and give off water
+      correct: false
+      misconception_id: mc.chm.o.organic_addition_condensation_mixed
+      feedback: In addition polymerisation, monomers with a C=C bond simply join and nothing else forms. In condensation polymerisation, groups on two monomers react as they join and a small molecule, such as water, is given off each time.
+    - id: B
+      text: Chloroethane, CH₃CH₂Cl, because it is saturated and stable
+      correct: false
+      misconception_id: mc.chm.o.organic_monomer_is_alkane
+      feedback: A monomer for addition polymerisation must have a C=C double bond. Alkanes are saturated and cannot add to one another. Poly(ethene) is made from ethene, not ethane.
+    - id: C
+      text: Chloroethene, CH₂=CHCl, which keeps its double bond in the chain
+      correct: false
+      misconception_id: mc.chm.o.organic_polymer_keeps_double_bond
+      feedback: When an alkene polymerises, each C=C double bond opens into a single bond, and the freed bonds link to the next monomer. The polymer chain has only single C–C bonds.
+    - id: D
+      text: Chloroethene, CH₂=CHCl, because its double bond can open and join to others
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The polymer's name is the monomer's name inside poly( ).
+  - rung: 2
+    name: concept
+    text:
+      en: Only a molecule with a C=C double bond can take part in addition polymerisation.
+  - rung: 3
+    name: first_step
+    text:
+      en: Chloroethene is ethene with one hydrogen atom replaced by chlorine.
+  - rung: 4
+    name: worked_step
+    text:
+      en: In the chain, what has happened to each monomer's double bond?
+  - rung: 5
+    name: full_step
+    text:
+      en: The monomer is chloroethene, CH₂=CHCl; its C=C opens so the molecules can join.
+  misconception_ids:
+  - mc.chm.o.organic_monomer_is_alkane
+  - mc.chm.o.organic_polymer_keeps_double_bond
+  - mc.chm.o.organic_addition_condensation_mixed
+solution:
+  steps:
+  - n: 1
+    latex: \text{CH}_2\text{=CHCl }\rightarrow\text{ –(CH}_2\text{–CHCl)}_n\text{–}
+    reason: Monomer to polymer
+difficulty:
+  prior: 0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

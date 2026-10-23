@@ -1,0 +1,86 @@
+id: itm.phy.o.forces.0034
+version: 0.1.0
+type: ordering
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.friction_and_terminal_velocity
+stem: A skydiver jumps from a plane, falls, and later opens her parachute.
+parts:
+- id: a
+  prompt: Put the stages of her fall in order.
+  marks: 2
+  answer:
+    kind: ordering
+    scoring: exact
+    elements:
+    - id: e4
+      text: The parachute opens; air resistance is now bigger than her weight and she slows down
+    - id: e5
+      text: Air resistance falls with her speed until it equals her weight at a lower terminal velocity
+    - id: e1
+      text: Weight is much bigger than air resistance, so she accelerates downwards
+    - id: e2
+      text: Air resistance grows as her speed grows, so her acceleration falls
+    - id: e3
+      text: Air resistance equals her weight and she falls at terminal velocity
+    correct_order:
+    - e1
+    - e2
+    - e3
+    - e4
+    - e5
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Start at the moment she leaves the plane, when she is barely moving.
+  - rung: 2
+    name: concept
+    text:
+      en: Air resistance depends on speed, and the parachute makes it much larger.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'She reaches a steady speed twice: once before and once after the parachute opens.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Opening the parachute comes after the first steady speed.
+  - rung: 5
+    name: full_step
+    text:
+      en: Accelerate, accelerate less, first terminal velocity, slow down, lower terminal velocity.
+solution:
+  steps:
+  - n: 1
+    latex: \text{weight > drag, then drag grows, balance, parachute, new balance}
+    reason: Follow how the drag changes with speed
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

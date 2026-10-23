@@ -1,0 +1,36 @@
+id: wex.phy.o.measurement.0008
+kc_ids:
+- kc.phy.o.measurement.measuring_techniques
+problem: A pile of 250 sheets of paper is 12.5 mm thick, measured with a ruler. Find the thickness of one, in millimetres.
+steps:
+- n: 1
+  latex: \frac{12.5}{250} = 0.05\ \text{mm}
+  reason: Total thickness over the number
+  check_id: chk_build_phy_mea_w0008_ans
+final_answer:
+  latex: 0.05\ \text{mm}
+  check_id: chk_build_phy_mea_w0008_ans
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mea_w0008_ans:
+    args:
+      expression: 12.5/250
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

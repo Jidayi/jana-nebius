@@ -1,0 +1,129 @@
+id: itm.acc.o.clubs.0020
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.clubs.subscriptions
+stem: 'A youth choir: During the year the club received $7050 in subscriptions, including $100 owing from last year. At the start of the year members had already paid $60 for this year. At the end of the year $290 is owing for this year and $390 has been paid in advance for next year.'
+parts:
+- id: a
+  prompt: What is the subscriptions income for the year?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $7050
+      correct: false
+      misconception_id: mc.acc.o.club_receipts_only
+    - id: B
+      text: $6950
+      correct: false
+      misconception_id: mc.acc.o.club_opening_items_ignored
+    - id: C
+      text: $6910
+      correct: true
+    - id: D
+      text: $7110
+      correct: false
+      misconception_id: mc.acc.o.club_arrears_reversed
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Some money received is not this year's, and some of this year's has not been received.
+  - rung: 2
+    name: concept
+    text:
+      en: Take out last year's arrears, add last year's advance, add this year's arrears and take out next year's advance.
+  - rung: 3
+    name: first_step
+    text:
+      en: The income statement of a club matches income to the year, like any business.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 7050 − 100 + 60 + 290 − 390.
+  - rung: 5
+    name: full_step
+    text:
+      en: Subscriptions income = $6910.
+  misconception_ids:
+  - mc.acc.o.club_receipts_only
+  - mc.acc.o.club_arrears_reversed
+  - mc.acc.o.club_opening_items_ignored
+solution:
+  steps:
+  - n: 1
+    latex: \text{Income} = \text{received} - \text{old arrears} + \text{old advance} + \text{new arrears} - \text{new advance}
+    reason: Earned this year
+    check_id: chk_build_acc_clubs_0020_t
+  - n: 2
+    latex: 7050 - 100 + 60 + 290 - 390 = 6910
+    reason: Substitute
+    check_id: chk_build_acc_clubs_0020_a
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_clubs_0020_a:
+    args:
+      dp: 2
+      expression: 7050 - 100 + 60 + 290 - 390
+    tool: math_evaluate
+  chk_build_acc_clubs_0020_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - account: Subscriptions
+        amount: '290'
+        kind: accrued_income
+      - account: Subscriptions
+        amount: '390'
+        kind: income_in_advance
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Subscriptions
+        credit: '7010'
+        role: other_income
+      - account: Rent
+        debit: '500'
+        role: expense
+      - account: Land
+        debit: '6510'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

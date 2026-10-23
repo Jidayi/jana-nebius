@@ -1,0 +1,36 @@
+id: mc.mth.o.scale_wrong_direction
+kc_ids:
+- kc.mth.o.geometry.map_scales
+student_name: Dividing by the scale when you should multiply
+description: Divides a map distance by the scale (or multiplies a real distance by it).
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Real distances are bigger than map distances: from map to real, multiply.'
+probe_item_ids:
+- itm.mth.o.geometry.0045
+- itm.mth.o.geometry.0046
+- itm.mth.o.geometry.0047
+- itm.mth.o.geometry.0048
+- itm.mth.o.geometry.0049
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

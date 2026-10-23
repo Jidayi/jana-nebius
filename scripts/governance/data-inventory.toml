@@ -1,0 +1,630 @@
+# PRV-03 data inventory: every column of the storage contract (agent_core.store.generated.schema), with
+# its purpose, its retention row of TABLE DAT-08a and the TABLE DAT-18a data classes it may leave the device
+# as ("none": it never leaves). Rows are named by their first cell without backticks or asides.
+# Checked both ways by `python -m jana_tools data-inventory` (test: prv03_inventory_covers_schema).
+# Owner: Privacy lead. A new column needs an entry here in the same change.
+
+[learner.meta]
+singleton = { purpose = "Fixed key that keeps this table to a single row", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+profile_id = { purpose = "Which profile this database file belongs to", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+schema_version = { purpose = "Storage schema version, so migrations know where to start", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+created_at = { purpose = "When this profile database was created", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+created_app_ver = { purpose = "App version that created the database, for migration support", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+last_opened_at = { purpose = "When the database was last opened, for durability checks", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+last_app_ver = { purpose = "App version that last opened the database, to refuse a downgrade", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+
+[learner.profile]
+profile_id = { purpose = "Random identifier of the student profile", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+display_name = { purpose = "Nickname of up to 40 characters shown on the profile card; no legal name is asked for", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+avatar = { purpose = "Chosen picture token for the profile card", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+age_band = { purpose = "Age band (not a birth date) that selects age-appropriate rules and consent routes", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+level = { purpose = "Exam level (O or A) that selects the syllabus", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Model prompts and replies"] }
+subjects = { purpose = "Subjects studied, each with its level and exam month, to pick content", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Model prompts and replies"] }
+exam_date = { purpose = "Earliest exam month or day, used to pace the study plan", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+reading_level = { purpose = "Reading support level the tutor writes for", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+locale = { purpose = "Interface and tutoring language code", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+support_level = { purpose = "Whether the student asked for extra learning support", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+goals = { purpose = "Learning goals the student set for themselves", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+student_settings = { purpose = "Cached copy of the student's own preferences for the learner-model snapshot", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+created_at = { purpose = "When the profile was created", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+updated_at = { purpose = "When the profile was last changed", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+
+[learner.settings]
+key = { purpose = "Name of a preference or of the adult answer policy", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+value = { purpose = "Effective value of that setting", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+source = { purpose = "Who set the value (default, student, adult or an adult student), for precedence", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+set_by_event_id = { purpose = "Event that recorded the winning change", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+hlc = { purpose = "Logical clock stamp of the winning write, to resolve conflicts between devices", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+updated_at = { purpose = "When the effective value last changed", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+
+[learner.consents]
+paused_at = { purpose = "When a consent was paused; null while enabled", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+consent_id = { purpose = "Identifier of one consent grant", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+scope = { purpose = "Which feature or use the consent covers", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+granted_by_role = { purpose = "Whether a guardian or the adult student granted it", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+granted_by_label = { purpose = "Short relationship label of the grantor (for example 'Mother'), never a school", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+basis_ref = { purpose = "Reference to the adult PIN attestation or account check behind the grant", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+notice_version = { purpose = "Privacy notice version shown when consent was given", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+dpia_ref = { purpose = "Impact assessment that covers this scope", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+method = { purpose = "How the grantor was verified", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+granted_at = { purpose = "When consent was given", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+expires_at = { purpose = "When the consent lapses, if it does", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+withdrawn_at = { purpose = "When consent was withdrawn, so processing stops", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+withdrawn_by_role = { purpose = "Who withdrew the consent", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+
+[learner.events]
+seq = { purpose = "Local position of the event in this file's log", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments"] }
+event_id = { purpose = "Unique id of the learning event, to de-duplicate on merge", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments"] }
+profile_id = { purpose = "Profile that the event belongs to", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments"] }
+device_id = { purpose = "Random installation id of the device that recorded the event, for merge order", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments"] }
+origin_seq = { purpose = "Position of the event on the device that recorded it", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments"] }
+hlc = { purpose = "Logical clock stamp that orders events across the student's devices", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments"] }
+type = { purpose = "Kind of learning event (attempt, hint, setting change and so on)", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments", "De-identified research data"] }
+schema_version = { purpose = "Version of the event's payload shape", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments", "De-identified research data"] }
+source = { purpose = "Which component recorded the event", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments", "De-identified research data"] }
+sync_class = { purpose = "Whether the event may be shared with the student's other devices or stays local", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments"] }
+occurred_at = { purpose = "When the event happened on the device clock", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments", "De-identified research data"] }
+recorded_at = { purpose = "When the event was written", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments"] }
+session_id = { purpose = "Tutoring session the event belongs to, if any", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments"] }
+turn_id = { purpose = "Conversation turn the event belongs to, if any", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments"] }
+kc_ids = { purpose = "Knowledge components the event is evidence about", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments", "De-identified research data"] }
+payload = { purpose = "Structured details of the event; no free text", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments", "De-identified research data"] }
+erased_at = { purpose = "When the payload was erased on request", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "Event-log segments"] }
+
+[learner.projection_state]
+name = { purpose = "Which derived table this bookkeeping row describes", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot"] }
+code_version = { purpose = "Version of the code that builds the derived table", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot"] }
+params_hash = { purpose = "Hash of the signed mastery parameters used, to detect a needed rebuild", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot"] }
+last_seq = { purpose = "Last event folded into the derived table", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot"] }
+last_hlc = { purpose = "Clock stamp of the last event folded in", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot"] }
+last_device_id = { purpose = "Recording device of the last event folded in", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot"] }
+last_origin_seq = { purpose = "Origin position of the last event folded in", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot"] }
+rebuilt_at = { purpose = "When the derived table was last rebuilt", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot"] }
+checksum = { purpose = "Hash over the derived rows, to prove a rebuild gives the same result", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot"] }
+
+[learner.assessment_runs]
+assessment_id = { purpose = "Identifier of a diagnostic or mastery check run", retention = "assessment_runs", egress = ["Whole-profile snapshot"] }
+kind = { purpose = "Whether the run is a diagnostic or a mastery check", retention = "assessment_runs", egress = ["Whole-profile snapshot"] }
+state = { purpose = "Where the run is in its lifecycle, so it can resume", retention = "assessment_runs", egress = ["Whole-profile snapshot"] }
+body = { purpose = "Run state: questions chosen and references to answers", retention = "assessment_runs", egress = ["Whole-profile snapshot"] }
+updated_at = { purpose = "Last activity, used for expiry", retention = "assessment_runs", egress = ["Whole-profile snapshot"] }
+
+[learner.saved_questions]
+question_id = { purpose = "Identifier of a question the student kept for later", retention = "saved_questions, problem_reports", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+session_id = { purpose = "Session the question came from", retention = "saved_questions, problem_reports", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+content = { purpose = "The kept question as the student saved it", retention = "saved_questions, problem_reports", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+status = { purpose = "Whether the question is still kept or has been sorted", retention = "saved_questions, problem_reports", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+created_at = { purpose = "When the question was saved", retention = "saved_questions, problem_reports", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+expires_at = { purpose = "When the saved question is deleted", retention = "saved_questions, problem_reports", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+
+[learner.problem_reports]
+report_id = { purpose = "Identifier of a problem the student reported with a tutor reply", retention = "saved_questions, problem_reports", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+session_id = { purpose = "Session the report is about", retention = "saved_questions, problem_reports", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+content = { purpose = "Report category, turn reference and optional note", retention = "saved_questions, problem_reports", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+created_at = { purpose = "When the report was made", retention = "saved_questions, problem_reports", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+expires_at = { purpose = "When the report is deleted", retention = "saved_questions, problem_reports", egress = ["Whole-profile snapshot", "Profile archive and support file"] }
+
+[learner.archive_authorizations]
+authorization_id = { purpose = "Single-use student approval for including conversations in an archive", retention = "archive_authorizations", egress = "none" }
+session_ids = { purpose = "Exactly which sessions the student approved", retention = "archive_authorizations", egress = "none" }
+include_attachments = { purpose = "Whether the student also approved their photos", retention = "archive_authorizations", egress = "none" }
+profile_auth_epoch = { purpose = "Profile sign-in generation, so a lock or PIN reset cancels the approval", retention = "archive_authorizations", egress = "none" }
+expires_at = { purpose = "When the approval lapses", retention = "archive_authorizations", egress = "none" }
+consumed_at = { purpose = "When the approval was used, so it cannot be replayed", retention = "archive_authorizations", egress = "none" }
+
+[learner.sessions]
+session_id = { purpose = "Identifier of a tutoring session", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+mode = { purpose = "Tutoring mode used (guided, practice, mock and so on)", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+subject = { purpose = "Subject of the session", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+topic_id = { purpose = "Syllabus topic of the session", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+kc_ids = { purpose = "Knowledge components practised", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+item_ref = { purpose = "Content item the session started from", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+model_tier = { purpose = "Which model tier answered, for quality review", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+hardware_class = { purpose = "Device capability class, for performance review", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+title = { purpose = "Short session title shown in history", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+summary = { purpose = "Short summary kept after the transcript is purged", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+started_at = { purpose = "When the session started", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+ended_at = { purpose = "When the session ended", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+end_reason = { purpose = "Why the session ended", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+last_checkpoint_id = { purpose = "Latest resume point of the session", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+transcript_purged_at = { purpose = "When the transcript was removed by retention", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+
+[learner.turns]
+turn_id = { purpose = "Identifier of one conversation turn", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+session_id = { purpose = "Session the turn belongs to", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+idx = { purpose = "Order of the turn in the session", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+speaker = { purpose = "Whether the student, tutor or system spoke", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+status = { purpose = "Whether the turn finished, failed or was cut short", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+student_text = { purpose = "What the student wrote or said, after personal details are redacted", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session", "Model prompts and replies", "Student audio and voice transcripts"] }
+input_kind = { purpose = "How the student answered (typed, photo, voice and so on)", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+spoken_text = { purpose = "Tutor reply as sent to speech in voice sessions", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session", "Model prompts and replies"] }
+heard_text = { purpose = "Part of a spoken reply actually played before the student interrupted", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+heard_ms = { purpose = "How long the spoken reply played before it stopped", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+trace_id = { purpose = "Link to the local diagnostic trace of the turn", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Traces and logs"] }
+usage = { purpose = "Model token and timing counts for the turn", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+started_at = { purpose = "When the turn started", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+ended_at = { purpose = "When the turn ended", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+
+[learner.parts]
+part_id = { purpose = "Identifier of one piece of a tutor reply", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+turn_id = { purpose = "Turn the piece belongs to", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+idx = { purpose = "Order of the piece in the turn", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+kind = { purpose = "Kind of piece (text, board, visual, card and so on)", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+status = { purpose = "Whether the piece completed or was retracted", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+card_type = { purpose = "Which interactive card the piece shows, for card pieces", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+content = { purpose = "The piece's content as shown to the student", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session", "Model prompts and replies"] }
+created_at = { purpose = "When the piece started", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+updated_at = { purpose = "When the piece last changed", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+
+[learner.board_steps]
+step_id = { purpose = "Identifier of a worked step on the board", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+session_id = { purpose = "Session the step belongs to", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+board_id = { purpose = "Board the step is written on", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+part_id = { purpose = "Reply piece that wrote the step", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+idx = { purpose = "Order of the step on the board", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+latex = { purpose = "The step's mathematics", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session", "Model prompts and replies"] }
+reason = { purpose = "Short justification of the step", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session", "Model prompts and replies"] }
+owner = { purpose = "Whether the tutor or the student wrote the step", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+status = { purpose = "Check result or drafting state of the step", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+check_id = { purpose = "Verification result for the step", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+error_category = { purpose = "Kind of mistake found in the step", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+superseded_at = { purpose = "When a board reset replaced the step", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+created_at = { purpose = "When the step was written", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+
+[learner.checks]
+check_id = { purpose = "Identifier of a verification tool result", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+session_id = { purpose = "Session the check ran in", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+tool = { purpose = "Verification tool that ran", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+tool_version = { purpose = "Version of that tool", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+args_sha256 = { purpose = "Hash of the tool inputs, to reuse identical checks", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+status = { purpose = "Whether the check succeeded, failed or timed out", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+result = { purpose = "The tool's result", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+spill_ref = { purpose = "Where a large result was written instead of inline", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+created_at = { purpose = "When the check ran", retention = "Transcript: turns, parts, board_steps, checks", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+
+[learner.attachments]
+attachment_id = { purpose = "Identifier of a photo, crop, handwriting or page image", retention = "Attachments", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+session_id = { purpose = "Session the image was captured in", retention = "Attachments", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+kind = { purpose = "What sort of image it is", retention = "Attachments", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+file_path = { purpose = "Where the image file is kept inside the profile folder", retention = "Attachments", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+sha256 = { purpose = "Hash of the file, to detect damage", retention = "Attachments", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+bytes = { purpose = "File size, to enforce the size cap", retention = "Attachments", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+width = { purpose = "Image width in pixels", retention = "Attachments", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+height = { purpose = "Image height in pixels", retention = "Attachments", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+transcription_part_id = { purpose = "Reply piece holding the reading of the image", retention = "Attachments", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+created_at = { purpose = "When the image was captured", retention = "Attachments", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+delete_after = { purpose = "When the image and its row are deleted", retention = "Attachments", egress = ["Whole-profile snapshot", "Profile archive and support file", "LAN student session"] }
+
+[learner.checkpoints]
+checkpoint_id = { purpose = "Identifier of a resume point", retention = "checkpoints", egress = ["Whole-profile snapshot"] }
+session_id = { purpose = "Session the resume point belongs to", retention = "checkpoints", egress = ["Whole-profile snapshot"] }
+turn_id = { purpose = "Turn in progress at the resume point", retention = "checkpoints", egress = ["Whole-profile snapshot"] }
+last_event_seq = { purpose = "Last event written before the resume point", retention = "checkpoints", egress = ["Whole-profile snapshot"] }
+phase = { purpose = "Engine step the session was in", retention = "checkpoints", egress = ["Whole-profile snapshot"] }
+state = { purpose = "Engine state needed to resume after a crash or power cut", retention = "checkpoints", egress = ["Whole-profile snapshot"] }
+state_version = { purpose = "Version of the state shape", retention = "checkpoints", egress = ["Whole-profile snapshot"] }
+created_at = { purpose = "When the resume point was taken", retention = "checkpoints", egress = ["Whole-profile snapshot"] }
+
+[learner.kc_mastery]
+kc_id = { purpose = "Knowledge component the row describes", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data", "Model prompts and replies"] }
+status = { purpose = "Learning status of the component (learning, mastered and so on)", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data", "Model prompts and replies"] }
+p_mastery = { purpose = "Estimated chance the skill is mastered", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data", "Model prompts and replies"] }
+n_eff = { purpose = "Weight of evidence behind the estimate", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+succ_w = { purpose = "Weighted successes counted", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+fail_w = { purpose = "Weighted failures counted", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+implied_w = { purpose = "Evidence implied by related components", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+attempts = { purpose = "Number of attempts", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+correct = { purpose = "Number of correct attempts", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+hints_used = { purpose = "Number of hints taken", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+bottom_outs = { purpose = "Times the student needed the full worked answer", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+median_time_ms = { purpose = "Typical time per attempt", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+fading_stage = { purpose = "How far worked-example support has been withdrawn", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+stuck_count = { purpose = "Consecutive stuck attempts, to move the student on", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+target_offset = { purpose = "Small personal adjustment to the mastery target", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+mastery_check_state = { purpose = "Progress of the mastery check for the component", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+mastery_check = { purpose = "Mastery check progress details (items done, retry time)", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+moved_on_at = { purpose = "Last time the student was moved on after being stuck", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+last_seen_at = { purpose = "Last time the component was practised", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+last_event_seq = { purpose = "Last event folded into the row", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+
+[learner.review_cards]
+kc_id = { purpose = "Knowledge component scheduled for review", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+state = { purpose = "Review stage of the component", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+stability = { purpose = "How long the memory is expected to last", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+difficulty = { purpose = "How hard the component is for this student", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+due_at = { purpose = "When the next review is due", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+reps = { purpose = "Number of reviews done", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+lapses = { purpose = "Number of times the component was forgotten", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+last_review_at = { purpose = "When the component was last reviewed", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+scheduler = { purpose = "Version of the review scheduler", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+last_event_seq = { purpose = "Last event folded into the row", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+
+[learner.learner_misconceptions]
+misconception_id = { purpose = "Content-pack misconception the student shows", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data", "Model prompts and replies"] }
+kc_id = { purpose = "Knowledge component the misconception affects", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+status = { purpose = "Whether the misconception is suspected, active or resolved", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data", "Model prompts and replies"] }
+evidence_count = { purpose = "How many attempts showed it", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+fixes_tried = { purpose = "How many remedies were tried", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+resolving_correct = { purpose = "Correct answers since remediation began", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+first_seen_at = { purpose = "When it was first seen", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+last_seen_at = { purpose = "When it was last seen", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+last_event_seq = { purpose = "Last event folded into the row", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+
+[learner.attempts]
+attempt_id = { purpose = "Identifier of an answer attempt", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+session_id = { purpose = "Session of the attempt", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+item_ref = { purpose = "Question that was attempted", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+step_id = { purpose = "Board step that was attempted, if any", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+kc_ids = { purpose = "Knowledge components the attempt is evidence about, with weights", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+mode = { purpose = "Tutoring mode of the attempt", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+outcome = { purpose = "Whether the answer was right, wrong, partial or uncheckable", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+hints_used = { purpose = "Hints taken before answering", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+max_rung = { purpose = "Strongest hint level reached", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+time_ms = { purpose = "Time spent on the attempt", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+error_category = { purpose = "Kind of mistake made", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+misconception_id = { purpose = "Misconception the mistake points to", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+occurred_at = { purpose = "When the attempt was made", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+
+[learner.engagement_daily]
+day = { purpose = "Local calendar day the row counts", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+minutes_active = { purpose = "Minutes of active study that day", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+sessions = { purpose = "Sessions that day", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+attempts = { purpose = "Attempts that day", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+solutions_viewed = { purpose = "Full solutions viewed that day", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+streak_length = { purpose = "Study streak length on that day", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+freeze_used = { purpose = "Whether a streak freeze was used that day", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+frustration_signals = { purpose = "Count of frustration signals that day", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+gaming_flags = { purpose = "Count of hint-gaming flags that day", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+
+[learner.engagement_state]
+id = { purpose = "Fixed key that keeps this table to a single row", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+streak_days = { purpose = "Current study streak in days", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+freezes_left = { purpose = "Streak freezes still available", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+last_active_date = { purpose = "Last local day with study", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+frustration = { purpose = "Current estimate of frustration, to adapt support", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+confidence_bias = { purpose = "Gap between the student's confidence and results", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+last_event_seq = { purpose = "Last event folded into the row", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+
+[learner.subject_ability]
+subject = { purpose = "Subject the ability estimate is for", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+theta = { purpose = "Overall ability estimate in the subject, to choose question difficulty", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+n = { purpose = "Amount of evidence behind the estimate", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+last_event_seq = { purpose = "Last event folded into the row", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot", "De-identified research data"] }
+
+[learner.preferences]
+key = { purpose = "Which learning preference (start style, pace and so on)", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Notes and preferences", "Whole-profile snapshot"] }
+value = { purpose = "The preference value", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Notes and preferences", "Whole-profile snapshot"] }
+confidence = { purpose = "How sure the tutor is about the inferred preference", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Notes and preferences", "Whole-profile snapshot"] }
+last_event_seq = { purpose = "Last event folded into the row", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Notes and preferences", "Whole-profile snapshot"] }
+
+[learner.notes]
+note_id = { purpose = "Identifier of a short learning note", retention = "notes written by the Reflector", egress = ["Notes and preferences", "Whole-profile snapshot", "Profile archive and support file"] }
+subject = { purpose = "Subject the note is about", retention = "notes written by the Reflector", egress = ["Notes and preferences", "Whole-profile snapshot", "Profile archive and support file"] }
+kc_ids = { purpose = "Knowledge components the note is about", retention = "notes written by the Reflector", egress = ["Notes and preferences", "Whole-profile snapshot", "Profile archive and support file"] }
+text = { purpose = "Short learning fact about how the student learns (at most 140 characters)", retention = "notes written by the Reflector", egress = ["Notes and preferences", "Whole-profile snapshot", "Profile archive and support file"] }
+status = { purpose = "Whether the note is active, awaiting review or deleted", retention = "notes written by the Reflector", egress = ["Notes and preferences", "Whole-profile snapshot", "Profile archive and support file"] }
+source_event_ids = { purpose = "Events the note was drawn from, so it can be traced", retention = "notes written by the Reflector", egress = ["Notes and preferences", "Whole-profile snapshot", "Profile archive and support file"] }
+source_session_id = { purpose = "Session the note was drawn from", retention = "notes written by the Reflector", egress = ["Notes and preferences", "Whole-profile snapshot", "Profile archive and support file"] }
+created_at = { purpose = "When the note was written", retention = "notes written by the Reflector", egress = ["Notes and preferences", "Whole-profile snapshot", "Profile archive and support file"] }
+updated_at = { purpose = "When the note last changed", retention = "notes written by the Reflector", egress = ["Notes and preferences", "Whole-profile snapshot", "Profile archive and support file"] }
+expires_at = { purpose = "When the note is removed", retention = "notes written by the Reflector", egress = ["Notes and preferences", "Whole-profile snapshot", "Profile archive and support file"] }
+
+[learner.notes_fts]
+text = { purpose = "Word index of note text so the student can search their notes", retention = "notes written by the Reflector", egress = ["Whole-profile snapshot"] }
+
+[learner.study_plans]
+plan_id = { purpose = "Identifier of a proposed study plan", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot"] }
+day = { purpose = "Day the plan is for", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot"] }
+items = { purpose = "Study blocks in the plan", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot"] }
+status = { purpose = "What the student did with the plan", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot"] }
+created_at = { purpose = "When the plan was proposed", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot"] }
+updated_at = { purpose = "When the plan last changed", retention = "events, projections, consents, meta, profile, settings, projection_state, sessions", egress = ["Whole-profile snapshot"] }
+
+[learner.lesson_positions]
+lesson_id = { purpose = "Lesson the student was reading", retention = "lesson_positions", egress = ["Whole-profile snapshot"] }
+block_index = { purpose = "Lesson part to reopen at", retention = "lesson_positions", egress = ["Whole-profile snapshot"] }
+lesson_version = { purpose = "Lesson version the part index belongs to", retention = "lesson_positions", egress = ["Whole-profile snapshot"] }
+updated_at = { purpose = "When the position was last saved", retention = "lesson_positions", egress = ["Whole-profile snapshot"] }
+
+[learner.past_papers]
+paper_id = { purpose = "Identifier of an imported past paper", retention = "past_papers", egress = ["Whole-profile snapshot"] }
+subject = { purpose = "Subject the paper is for", retention = "past_papers", egress = ["Whole-profile snapshot"] }
+title = { purpose = "Paper title the student gave", retention = "past_papers", egress = ["Whole-profile snapshot"] }
+body = { purpose = "Questions as written, private mark-scheme keys and syllabus links", retention = "past_papers", egress = ["Whole-profile snapshot"] }
+created_at = { purpose = "When the paper was imported", retention = "past_papers", egress = ["Whole-profile snapshot"] }
+
+[learner.exam_dates]
+exam_id = { purpose = "Identifier of an exam date", retention = "exam_dates", egress = ["Whole-profile snapshot"] }
+subject = { purpose = "Subject the exam is in", retention = "exam_dates", egress = ["Whole-profile snapshot"] }
+name = { purpose = "Exam or paper name the student gave", retention = "exam_dates", egress = ["Whole-profile snapshot"] }
+date = { purpose = "Local date of the exam, for the countdown and the plan", retention = "exam_dates", egress = ["Whole-profile snapshot"] }
+time = { purpose = "Local start time of the exam", retention = "exam_dates", egress = ["Whole-profile snapshot"] }
+reminders = { purpose = "Whether device-local reminders are on", retention = "exam_dates", egress = ["Whole-profile snapshot"] }
+dismissed = { purpose = "Reminders the student has put away", retention = "exam_dates", egress = ["Whole-profile snapshot"] }
+created_at = { purpose = "When the date was set", retention = "exam_dates", egress = ["Whole-profile snapshot"] }
+updated_at = { purpose = "When the date was last changed", retention = "exam_dates", egress = ["Whole-profile snapshot"] }
+
+[learner.exams]
+exam_id = { purpose = "Identifier of a mock exam sitting", retention = "exams", egress = ["Whole-profile snapshot"] }
+paper_ref = { purpose = "Paper being sat", retention = "exams", egress = ["Whole-profile snapshot"] }
+status = { purpose = "Where the sitting is in its lifecycle", retention = "exams", egress = ["Whole-profile snapshot"] }
+opens_at = { purpose = "When the sitting may start", retention = "exams", egress = ["Whole-profile snapshot"] }
+closes_at = { purpose = "When the sitting must end", retention = "exams", egress = ["Whole-profile snapshot"] }
+duration_ms = { purpose = "Paper length before extra time", retention = "exams", egress = ["Whole-profile snapshot"] }
+extra_time_percent = { purpose = "Extra time the student is allowed", retention = "exams", egress = ["Whole-profile snapshot"] }
+started_at = { purpose = "When the sitting started", retention = "exams", egress = ["Whole-profile snapshot"] }
+elapsed_ms = { purpose = "Active time used, kept across restarts", retention = "exams", egress = ["Whole-profile snapshot"] }
+pauses = { purpose = "Rest breaks that stopped the clock", retention = "exams", egress = ["Whole-profile snapshot"] }
+interruptions = { purpose = "Crashes, power cuts or locks during the sitting", retention = "exams", egress = ["Whole-profile snapshot"] }
+submitted_at = { purpose = "When the paper was handed in", retention = "exams", egress = ["Whole-profile snapshot"] }
+score_by_topic = { purpose = "Marks per topic after marking", retention = "exams", egress = ["Whole-profile snapshot"] }
+
+[learner.exam_answers]
+exam_id = { purpose = "Sitting the answer belongs to", retention = "exam_answers", egress = ["Whole-profile snapshot"] }
+item_ref = { purpose = "Question answered", retention = "exam_answers", egress = ["Whole-profile snapshot"] }
+answer = { purpose = "The student's answer, cleared when the transcript expires", retention = "exam_answers", egress = ["Whole-profile snapshot"] }
+flagged = { purpose = "Whether the student flagged the question to revisit", retention = "exam_answers", egress = ["Whole-profile snapshot"] }
+marks_awarded = { purpose = "Marks given", retention = "exam_answers", egress = ["Whole-profile snapshot"] }
+marks_available = { purpose = "Marks possible", retention = "exam_answers", egress = ["Whole-profile snapshot"] }
+updated_at = { purpose = "When the answer last changed", retention = "exam_answers", egress = ["Whole-profile snapshot"] }
+
+[learner.alerts]
+alert_id = { purpose = "Identifier of a notice for the parent", retention = "alerts", egress = ["Weekly digest and alerts", "Whole-profile snapshot"] }
+kind = { purpose = "Which kind of event raised the alert", retention = "alerts", egress = ["Weekly digest and alerts", "Whole-profile snapshot"] }
+severity = { purpose = "How urgent the alert is", retention = "alerts", egress = ["Weekly digest and alerts", "Whole-profile snapshot"] }
+audience = { purpose = "Who the alert is for", retention = "alerts", egress = ["Weekly digest and alerts", "Whole-profile snapshot"] }
+payload = { purpose = "Details shown in the alert", retention = "alerts", egress = ["Weekly digest and alerts", "Whole-profile snapshot"] }
+created_at = { purpose = "When the alert was raised", retention = "alerts", egress = ["Weekly digest and alerts", "Whole-profile snapshot"] }
+seen_at = { purpose = "When the parent saw it", retention = "alerts", egress = ["Weekly digest and alerts", "Whole-profile snapshot"] }
+dismissed_at = { purpose = "When the parent dismissed it", retention = "alerts", egress = ["Weekly digest and alerts", "Whole-profile snapshot"] }
+
+[learner.digests]
+digest_id = { purpose = "Identifier of a weekly progress summary", retention = "digests", egress = ["Weekly digest and alerts", "Whole-profile snapshot", "Profile archive and support file"] }
+week_start = { purpose = "First day of the week summarised", retention = "digests", egress = ["Weekly digest and alerts", "Whole-profile snapshot", "Profile archive and support file"] }
+content = { purpose = "The summary shown to the parent; no transcripts or notes", retention = "digests", egress = ["Weekly digest and alerts", "Whole-profile snapshot", "Profile archive and support file"] }
+generated_at = { purpose = "When the summary was produced", retention = "digests", egress = ["Weekly digest and alerts", "Whole-profile snapshot", "Profile archive and support file"] }
+viewed_at = { purpose = "When it was viewed", retention = "digests", egress = ["Weekly digest and alerts", "Whole-profile snapshot", "Profile archive and support file"] }
+
+[learner.sync_cursors]
+peer_id = { purpose = "The student's own other device or backup destination", retention = "sync_cursors", egress = ["Event-log segments", "Whole-profile snapshot"] }
+direction = { purpose = "Whether the cursor tracks sending or receiving", retention = "sync_cursors", egress = ["Event-log segments", "Whole-profile snapshot"] }
+last_seq = { purpose = "Last event position acknowledged or applied", retention = "sync_cursors", egress = ["Event-log segments", "Whole-profile snapshot"] }
+last_sync_at = { purpose = "When the last exchange happened", retention = "sync_cursors", egress = ["Event-log segments", "Whole-profile snapshot"] }
+
+[learner.audit_log]
+audit_id = { purpose = "Identifier of an audit record", retention = "audit_log, exports", egress = ["Whole-profile snapshot"] }
+actor_role = { purpose = "Whether the student, an adult or the system acted", retention = "audit_log, exports", egress = ["Whole-profile snapshot"] }
+action = { purpose = "What was done (setting change, export and so on)", retention = "audit_log, exports", egress = ["Whole-profile snapshot"] }
+target = { purpose = "What the action applied to", retention = "audit_log, exports", egress = ["Whole-profile snapshot"] }
+detail = { purpose = "Ids and values needed to explain the action", retention = "audit_log, exports", egress = ["Whole-profile snapshot"] }
+at = { purpose = "When it happened", retention = "audit_log, exports", egress = ["Whole-profile snapshot"] }
+
+[learner.idempotency_responses]
+idempotency_key = { purpose = "Client key of a profile command, so a retry is not applied twice", retention = "idempotency_responses", egress = ["Whole-profile snapshot"] }
+request_sha256 = { purpose = "Hash of the request, to detect a reused key", retention = "idempotency_responses", egress = ["Whole-profile snapshot"] }
+status = { purpose = "Status code of the stored reply", retention = "idempotency_responses", egress = ["Whole-profile snapshot"] }
+response = { purpose = "Stored reply returned on a retry", retention = "idempotency_responses", egress = ["Whole-profile snapshot"] }
+created_at = { purpose = "When the reply was stored", retention = "idempotency_responses", egress = ["Whole-profile snapshot"] }
+
+[learner.exports]
+export_id = { purpose = "Identifier of an export file made from the profile", retention = "audit_log, exports", egress = ["Whole-profile snapshot"] }
+kind = { purpose = "Which kind of export was made", retention = "audit_log, exports", egress = ["Whole-profile snapshot"] }
+destination = { purpose = "Whether it went to a file or a USB drive", retention = "audit_log, exports", egress = ["Whole-profile snapshot"] }
+recipient = { purpose = "Who the export is for (self, study team or support)", retention = "audit_log, exports", egress = ["Whole-profile snapshot"] }
+event_seq_from = { purpose = "First event position included", retention = "audit_log, exports", egress = ["Whole-profile snapshot"] }
+event_seq_to = { purpose = "Last event position included", retention = "audit_log, exports", egress = ["Whole-profile snapshot"] }
+sha256 = { purpose = "Hash of the export file", retention = "audit_log, exports", egress = ["Whole-profile snapshot"] }
+created_at = { purpose = "When the export was made", retention = "audit_log, exports", egress = ["Whole-profile snapshot"] }
+
+[device.device]
+singleton = { purpose = "Fixed key that keeps this table to a single row", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+device_id = { purpose = "Random installation id stamped on events for merge order", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+credential_public_key = { purpose = "Public key registered with our service when an online feature is first enabled", retention = "Device: device, app_settings, migrations, online_features", egress = ["Model prompts and replies", "Whole-profile snapshot", "Event-log segments", "Weekly digest and alerts", "Student audio and voice transcripts"] }
+credential_registered_at = { purpose = "When that key was registered", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+hardware_binding = { purpose = "Salted hash of hardware ids, to detect a cloned installation", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+hardware_class = { purpose = "Device capability class, to pick models that fit", retention = "Device: device, app_settings, migrations, online_features", egress = ["Telemetry aggregates"] }
+install_kind = { purpose = "Whether this is a family, school lab or school server installation", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+created_at = { purpose = "When the installation was set up", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+schema_version = { purpose = "Storage schema version of the device database", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+
+[device.profiles_index]
+profile_id = { purpose = "Profile listed in the profile picker", retention = "Device: profiles_index", egress = "none" }
+kind = { purpose = "Kind of profile (student)", retention = "Device: profiles_index", egress = "none" }
+display_name = { purpose = "Nickname shown in the profile picker", retention = "Device: profiles_index", egress = "none" }
+avatar = { purpose = "Picture token shown in the profile picker", retention = "Device: profiles_index", egress = "none" }
+db_file = { purpose = "Where the profile's database file is", retention = "Device: profiles_index", egress = "none" }
+keystore_ref = { purpose = "Name of the profile's key in the system keystore", retention = "Device: profiles_index", egress = "none" }
+profile_auth_epoch = { purpose = "Sign-in generation, raised to end older approvals", retention = "Device: profiles_index", egress = "none" }
+created_at = { purpose = "When the profile was added", retention = "Device: profiles_index", egress = "none" }
+last_used_at = { purpose = "When the profile was last opened, to order the picker", retention = "Device: profiles_index", egress = "none" }
+
+[device.online_features]
+feature = { purpose = "Which online feature the switch controls", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+enabled = { purpose = "Whether the feature is switched on (off by default)", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+enabled_by_role = { purpose = "Who switched it on", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+enabled_at = { purpose = "When it was switched on", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+disabled_at = { purpose = "When it was switched off", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+
+[device.outbox]
+outbox_id = { purpose = "Identifier of queued outgoing work", retention = "Device: outbox items", egress = "none" }
+idempotency_key = { purpose = "Key sent with every delivery so the receiver drops duplicates", retention = "Device: outbox items", egress = ["Whole-profile snapshot", "Event-log segments", "Weekly digest and alerts", "Telemetry aggregates", "Traces and logs"] }
+kind = { purpose = "What sort of work is queued (backup, telemetry, deletion notice and so on)", retention = "Device: outbox items", egress = "none" }
+feature = { purpose = "Online feature that owns the queued work", retention = "Device: outbox items", egress = "none" }
+profile_id = { purpose = "Profile the work concerns, kept for deletion notices", retention = "Device: outbox items", egress = "none" }
+destination = { purpose = "Service or personal account the work goes to", retention = "Device: outbox items", egress = "none" }
+payload = { purpose = "The queued data, encrypted to the destination where applicable", retention = "Device: outbox items", egress = ["Whole-profile snapshot", "Event-log segments", "Weekly digest and alerts", "Telemetry aggregates", "Traces and logs"] }
+bytes = { purpose = "Size of the queued data, for queue caps", retention = "Device: outbox items", egress = "none" }
+created_at = { purpose = "When the work was queued", retention = "Device: outbox items", egress = "none" }
+attempts = { purpose = "Delivery attempts so far", retention = "Device: outbox items", egress = "none" }
+next_attempt_at = { purpose = "When delivery is next tried", retention = "Device: outbox items", egress = "none" }
+delivered_at = { purpose = "When delivery succeeded", retention = "Device: outbox items", egress = "none" }
+expires_at = { purpose = "When undelivered work is dropped", retention = "Device: outbox items", egress = "none" }
+
+[device.egress_ledger]
+ledger_id = { purpose = "Identifier of a record of something that left the device", retention = "egress_ledger", egress = "none" }
+at = { purpose = "When it left", retention = "egress_ledger", egress = "none" }
+feature = { purpose = "Online feature or transport that sent it", retention = "egress_ledger", egress = "none" }
+destination = { purpose = "Host or USB it went to", retention = "egress_ledger", egress = "none" }
+bytes = { purpose = "How much was sent", retention = "egress_ledger", egress = "none" }
+payload_class = { purpose = "Which data class was sent; never the content", retention = "egress_ledger", egress = "none" }
+profile_id = { purpose = "Profile the data came from, if any", retention = "egress_ledger", egress = "none" }
+
+[device.device_audit]
+audit_id = { purpose = "Identifier of a device-level audit record", retention = "Device: device_audit", egress = "none" }
+actor_role = { purpose = "Whether an adult or the system acted", retention = "Device: device_audit", egress = "none" }
+action = { purpose = "What was done (profile created, feature enabled and so on)", retention = "Device: device_audit", egress = "none" }
+profile_id = { purpose = "Profile affected, by id only", retention = "Device: device_audit", egress = "none" }
+detail = { purpose = "Ids and counts that explain the action; never names or learner content", retention = "Device: device_audit", egress = "none" }
+at = { purpose = "When it happened", retention = "Device: device_audit", egress = "none" }
+
+[device.idempotency_responses]
+idempotency_key = { purpose = "Client key of a device command, so a retry is not applied twice", retention = "idempotency_responses", egress = "none" }
+request_sha256 = { purpose = "Hash of the request, to detect a reused key", retention = "idempotency_responses", egress = "none" }
+status = { purpose = "Status code of the stored reply", retention = "idempotency_responses", egress = "none" }
+response = { purpose = "Stored reply returned on a retry", retention = "idempotency_responses", egress = "none" }
+created_at = { purpose = "When the reply was stored", retention = "idempotency_responses", egress = "none" }
+
+[device.device_consents]
+consent_id = { purpose = "Identifier of a device-wide consent grant", retention = "Device: device_consents", egress = "none" }
+scope = { purpose = "Whether it covers telemetry or crash reports", retention = "Device: device_consents", egress = "none" }
+granted_by_role = { purpose = "Who granted it (the device adult)", retention = "Device: device_consents", egress = "none" }
+notice_version = { purpose = "Privacy notice version shown when consent was given", retention = "Device: device_consents", egress = "none" }
+dpia_ref = { purpose = "Impact assessment that covers this scope", retention = "Device: device_consents", egress = "none" }
+method = { purpose = "How the adult was verified", retention = "Device: device_consents", egress = "none" }
+granted_at = { purpose = "When consent was given", retention = "Device: device_consents", egress = "none" }
+withdrawn_at = { purpose = "When consent was withdrawn", retention = "Device: device_consents", egress = "none" }
+
+[device.app_settings]
+key = { purpose = "Name of a device-wide setting", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+value = { purpose = "Value of the device-wide setting", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+updated_at = { purpose = "When the setting last changed", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+
+[device.migrations]
+db_kind = { purpose = "Whether the migration applied to a learner or the device database", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+db_file = { purpose = "Database file migrated", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+version = { purpose = "Schema version reached", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+applied_at = { purpose = "When the migration ran", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+app_version = { purpose = "App version that ran it", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+backup_file = { purpose = "Copy taken before migrating, kept until the next good open", retention = "Device: device, app_settings, migrations, online_features", egress = "none" }
+
+[learner.support_shares]
+session_id = { purpose = "Session whose conversation the student approved for support", retention = "support_shares", egress = "none" }
+confirmed_at = { purpose = "When the student confirmed the support share", retention = "support_shares", egress = "none" }
+included_at = { purpose = "When the approved conversation was included in a support bundle", retention = "support_shares", egress = "none" }
+
+[learner.captures]
+capture_id = { purpose = "Identify a confirmed or pending input capture", retention = "captures", egress = "none" }
+session_id = { purpose = "Own capture inside the profile session", retention = "captures", egress = "none" }
+record = { purpose = "Editable reading, masked attachment metadata and explicit confirmation", retention = "captures", egress = "none" }
+expires_at = { purpose = "Expire capture alongside photo retention", retention = "captures", egress = "none" }
+
+[learner.editor_drafts]
+session_id = { purpose = "Own rich editor draft inside the profile session", retention = "editor_drafts", egress = "none" }
+slot = { purpose = "Distinguish Ask, working and edited board line drafts", retention = "editor_drafts", egress = "none" }
+document = { purpose = "Restore unsubmitted rich editor contents", retention = "editor_drafts", egress = "none" }
+revision = { purpose = "Reject stale asynchronous saves", retention = "editor_drafts", egress = "none" }
+updated_at = { purpose = "Date the saved editor revision", retention = "editor_drafts", egress = "none" }
+
+[learner.study_notes]
+note_id = { purpose = "Identify a student-authored study note", retention = "study_notes", egress = ["Profile archive and support file"] }
+text = { purpose = "Student-confirmed study text, never recorded audio", retention = "study_notes", egress = ["Profile archive and support file"] }
+source = { purpose = "Distinguish typed text from explicitly saved dictation", retention = "study_notes", egress = ["Profile archive and support file"] }
+created_at = { purpose = "Date the student explicitly saved the note", retention = "study_notes", egress = ["Profile archive and support file"] }
+updated_at = { purpose = "Order and display saved study notes", retention = "study_notes", egress = ["Profile archive and support file"] }
+private = { purpose = "The student's own mark that a note is listed without its text on a shared computer", retention = "study_notes", egress = ["Profile archive and support file"] }
+
+ # DAT-22: source workspace data. Archive egress below means the explicitly selected encrypted profile archive only.
+
+[learner.study_sources]
+source_id = { purpose = "Opaque identity of a learner-selected source; never a profile or account identity", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file", "Study material"] }
+current_revision = { purpose = "Last committed source revision; a staged replacement cannot hide it", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file", "Study material"] }
+private = { purpose = "Courtesy private-source visibility mark; never a password or cloud consent", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+body = { purpose = "Validated source-owned content; erased with its dependencies, excluded from telemetry, research and support bundles", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+created_at = { purpose = "Local creation time of the source-owned record", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+updated_at = { purpose = "Last local update for recovery and ordering", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+
+[learner.study_revisions]
+source_id = { purpose = "Opaque identity of a learner-selected source; never a profile or account identity", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file", "Study material"] }
+revision = { purpose = "Immutable source or card revision bound to citations and review submissions", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file", "Study material"] }
+digest = { purpose = "SHA-256 integrity binding for the immutable original", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file", "Study material"] }
+blob_ref = { purpose = "Opaque relative original-file digest; never an arbitrary filesystem path", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+byte_length = { purpose = "Bound staging allocation and verify complete uploads", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file", "Study material"] }
+extracted_at = { purpose = "Distinguish committed extraction from an unfinished revision", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+
+[learner.study_pending_revisions]
+source_id = { purpose = "Opaque identity of a learner-selected source; never a profile or account identity", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = "none" }
+revision = { purpose = "Immutable source or card revision bound to citations and review submissions", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = "none" }
+body = { purpose = "Validated source-owned content; erased with its dependencies, excluded from telemetry, research and support bundles", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = "none" }
+
+[learner.study_cloud_cleanup]
+request_id = { purpose = "Opaque remote job identity needed only to acknowledge destruction of ephemeral buffers", retention = "study_cloud_cleanup", egress = ["Study material"] }
+source_id = { purpose = "Opaque identity of a learner-selected source; never a profile or account identity", retention = "study_cloud_cleanup", egress = ["Study material"] }
+expires_at = { purpose = "Time the evidenced remote idle-retention limit permits dropping an opaque cleanup receipt", retention = "study_cloud_cleanup", egress = "none" }
+
+[learner.study_chunks]
+chunk_id = { purpose = "Random identity of one immutable extracted passage", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file", "Study material"] }
+source_id = { purpose = "Opaque identity of a learner-selected source; never a profile or account identity", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file", "Study material"] }
+revision = { purpose = "Immutable source or card revision bound to citations and review submissions", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file", "Study material"] }
+ordinal = { purpose = "Keep extraction and source passage order stable", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file", "Study material"] }
+body = { purpose = "Validated source-owned content; erased with its dependencies, excluded from telemetry, research and support bundles", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file", "Study material"] }
+
+[learner.study_jobs]
+job_id = { purpose = "Opaque durable job identity for retries and derived-aid ownership", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Study material"] }
+state = { purpose = "Durable coordinator state; late output cannot publish after cancellation", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = "none" }
+attempt = { purpose = "Attempt number for once-only gateway settlement", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Study material"] }
+input_digest = { purpose = "Bind the frozen job input to an idempotent attempt", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Study material"] }
+body = { purpose = "Validated source-owned content; erased with its dependencies, excluded from telemetry, research and support bundles", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Study material"] }
+checkpoint = { purpose = "Source-owned validated batch drafts and progress; removed on cancellation/source erasure and excluded from exports", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = "none" }
+updated_at = { purpose = "Last local update for recovery and ordering", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = "none" }
+
+[learner.study_job_sources]
+job_id = { purpose = "Opaque durable job identity for retries and derived-aid ownership", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Study material"] }
+source_id = { purpose = "Opaque identity of a learner-selected source; never a profile or account identity", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Study material"] }
+revision = { purpose = "Immutable source or card revision bound to citations and review submissions", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Study material"] }
+
+[learner.study_aids]
+aid_id = { purpose = "Random identity of a cited generated aid", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+body = { purpose = "Validated source-owned content; erased with its dependencies, excluded from telemetry, research and support bundles", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+created_at = { purpose = "Local creation time of the source-owned record", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+
+[learner.study_aid_sources]
+aid_id = { purpose = "Random identity of a cited generated aid", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+source_id = { purpose = "Opaque identity of a learner-selected source; never a profile or account identity", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+revision = { purpose = "Immutable source or card revision bound to citations and review submissions", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+
+[learner.study_decks]
+deck_id = { purpose = "Source-revision deck identity independent of syllabus mastery", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+aid_id = { purpose = "Random identity of a cited generated aid", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+source_id = { purpose = "Opaque identity of a learner-selected source; never a profile or account identity", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+revision = { purpose = "Immutable source or card revision bound to citations and review submissions", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+scheduler = { purpose = "Pinned independent source-card scheduling algorithm version", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+
+[learner.study_flashcards]
+card_id = { purpose = "Independent source-card identity, never a knowledge-component id", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+deck_id = { purpose = "Source-revision deck identity independent of syllabus mastery", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+revision = { purpose = "Immutable source or card revision bound to citations and review submissions", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+body = { purpose = "Validated source-owned content; erased with its dependencies, excluded from telemetry, research and support bundles", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+schedule = { purpose = "Source-card FSRS state; explicit encrypted archive only", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+due_at = { purpose = "Sort source cards by their next local review time", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+
+[learner.study_reviews]
+review_id = { purpose = "Exactly-once source-card review identity", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+card_id = { purpose = "Independent source-card identity, never a knowledge-component id", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+body = { purpose = "Validated source-owned content; erased with its dependencies, excluded from telemetry, research and support bundles", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+reviewed_at = { purpose = "Server-clock time used for a source-card review", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+
+[learner.study_quizzes]
+quiz_id = { purpose = "Source-revision quiz identity; keys remain private until submission", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+aid_id = { purpose = "Random identity of a cited generated aid", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+revision = { purpose = "Immutable source or card revision bound to citations and review submissions", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+body = { purpose = "Validated source-owned content; erased with its dependencies, excluded from telemetry, research and support bundles", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+
+[learner.study_attempts]
+attempt_id = { purpose = "Exactly-once generated quiz submission identity", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+quiz_id = { purpose = "Source-revision quiz identity; keys remain private until submission", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+body = { purpose = "Validated source-owned content; erased with its dependencies, excluded from telemetry, research and support bundles", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+submitted_at = { purpose = "Server-clock time of a frozen generated-quiz attempt", retention = "Source workspace: study_sources, study_revisions, study_pending_revisions, study_chunks, study_jobs, study_job_sources, study_aids, study_aid_sources, study_decks, study_flashcards, study_reviews, study_quizzes, study_attempts; profile-local original blobs and upload staging files", egress = ["Profile archive and support file"] }
+
+[learner.study_tombstones]
+source_id = { purpose = "Opaque identity of a learner-selected source; never a profile or account identity", retention = "study_tombstones", egress = ["Profile archive and support file"] }
+deleted_at = { purpose = "Content-free erasure timestamp; apply before restoring source payloads", retention = "study_tombstones", egress = ["Profile archive and support file"] }

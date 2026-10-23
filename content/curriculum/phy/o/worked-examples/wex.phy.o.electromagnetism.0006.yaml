@@ -1,0 +1,45 @@
+id: wex.phy.o.electromagnetism.0006
+kc_ids:
+- kc.phy.o.electromagnetism.electromagnetic_induction
+problem: Lerato drops a magnet through a coil of 250 turns and records a peak e.m.f. of 0.2 V. She repeats it from the same height with a coil of 1000 turns. Assuming the peak e.m.f. is proportional to the number of turns, predict the new peak e.m.f.
+steps:
+- n: 1
+  latex: \frac{1000}{250} = 4
+  reason: How many times as many turns
+  check_id: chk_build_phy_emg_w0006_ratio
+- n: 2
+  latex: E = 0.2 \times 4 = 0.8\ \text{V}
+  reason: The e.m.f. grows in the same ratio
+  check_id: chk_build_phy_emg_w0006_ans
+final_answer:
+  latex: 0.8\ \text{V}
+  check_id: chk_build_phy_emg_w0006_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_w0006_ans:
+    args:
+      expression: 0.2*1000/250
+    tool: math_evaluate
+  chk_build_phy_emg_w0006_ratio:
+    args:
+      expression: 1000/250
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

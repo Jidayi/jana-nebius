@@ -1,0 +1,89 @@
+id: itm.chm.o.electrolysis.0039
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.applications
+stem: Iron is extracted by heating its oxide with carbon, but aluminium is extracted by electrolysis of its molten oxide.
+parts:
+- id: a
+  prompt: Why is aluminium not extracted with carbon?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Aluminium is more reactive than carbon, so carbon cannot remove the oxygen from aluminium oxide.
+      correct: true
+    - id: B
+      text: Carbon would work, but electrolysis is cheaper.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_aluminium_by_carbon
+      feedback: Carbon can only remove oxygen from oxides of metals less reactive than carbon. Aluminium is more reactive than carbon, so its oxide must be decomposed by electrolysis, even though that uses a lot of electricity.
+    - id: C
+      text: Carbon works only for aluminium ore that has been purified first.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_aluminium_by_carbon
+      feedback: Carbon can only remove oxygen from oxides of metals less reactive than carbon. Aluminium is more reactive than carbon, so its oxide must be decomposed by electrolysis, even though that uses a lot of electricity.
+    - id: D
+      text: Aluminium is less reactive than carbon, so it needs electricity.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_aluminium_by_carbon
+      feedback: Carbon can only remove oxygen from oxides of metals less reactive than carbon. Aluminium is more reactive than carbon, so its oxide must be decomposed by electrolysis, even though that uses a lot of electricity.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Carbon can remove oxygen only from some metal oxides. Which ones?
+  - rung: 2
+    name: concept
+    text:
+      en: Carbon reduces the oxides of metals below it in the reactivity series.
+  - rung: 3
+    name: first_step
+    text:
+      en: Iron is below carbon in the reactivity series.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Find aluminium in the series and compare it with carbon.
+  - rung: 5
+    name: full_step
+    text:
+      en: Aluminium is above carbon, so carbon cannot reduce aluminium oxide; electrolysis is needed, and it uses a lot of electricity.
+  misconception_ids:
+  - mc.chm.o.electrolysis_aluminium_by_carbon
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Al above C: carbon cannot reduce it}'
+    reason: Reactivity series
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

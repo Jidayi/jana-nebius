@@ -1,0 +1,103 @@
+id: itm.mth.o.algebra_and_graphs.0911
+version: 0.1.0
+type: equation_solutions
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.linear_equations
+stem: Solve the equation $4(x + 7) = 3x + 25$.
+parts:
+- id: a
+  prompt: Type the solution.
+  marks: 2
+  answer:
+    kind: equation_solutions
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_alg_0911_key
+    variable: x
+    values:
+    - '-3'
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Remove the bracket first, then get all the x terms on one side.
+  - rung: 2
+    name: concept
+    text:
+      en: Whatever you do to one side of the equation, do the same to the other.
+  - rung: 3
+    name: first_step
+    text:
+      en: Expanding gives 4 × x and 4 × 7 on the left.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Collect the x terms on the left and the numbers on the right, then divide.
+  - rung: 5
+    name: full_step
+    text:
+      en: x = -3.
+solution:
+  steps:
+  - n: 1
+    latex: 4x + 28 = 3x + 25
+    reason: Expand the bracket
+    check_id: chk_build_mth_alg_0911_ab
+  - n: 2
+    latex: 1x = -3
+    reason: Collect the x terms on the left and the numbers on the right
+    check_id: chk_build_mth_alg_0911_co
+  - n: 3
+    latex: x = -3
+    reason: Divide both sides by the coefficient of x
+    check_id: chk_build_mth_alg_0911_key
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0911_ab:
+    args:
+      expression: 4*(7)
+    tool: math_evaluate
+  chk_build_mth_alg_0911_co:
+    args:
+      expression: 4 - 3
+    tool: math_evaluate
+  chk_build_mth_alg_0911_key:
+    args:
+      equations:
+      - 4(x + 7) = 3x + 25
+      unknowns:
+      - x
+    tool: math_solve
+  chk_build_mth_alg_0911_rh:
+    args:
+      expression: 25 - 4*(7)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

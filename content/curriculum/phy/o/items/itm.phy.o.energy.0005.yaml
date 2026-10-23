@@ -1,0 +1,93 @@
+id: itm.phy.o.energy.0005
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.stores_and_transfers
+stem: In a closed system, energy is transferred between stores.
+parts:
+- id: a
+  prompt: Which statement about the total energy of the system is correct?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It goes down as energy is used up
+      correct: false
+      misconception_id: mc.phy.o.energy_used_up
+      feedback: 'When a car brakes, its kinetic energy does not vanish: the brakes and the air get warmer. Energy only moves between stores; the total stays the same.'
+    - id: B
+      text: It stays the same
+      correct: true
+    - id: C
+      text: It goes up when a device is switched on
+      correct: false
+      misconception_id: mc.phy.o.energy_created
+      feedback: A generator only turns when something drives it, and a battery goes flat. Every joule that comes out was taken from a store somewhere else.
+    - id: D
+      text: It is zero when everything is at rest
+      correct: false
+      misconception_id: mc.phy.o.stationary_has_no_energy
+      feedback: A book on a high shelf is still, but if it falls it speeds up. The energy was already there, in its gravitational store.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Decide where the energy is at the start and where it ends up.
+  - rung: 2
+    name: concept
+    text:
+      en: This is the principle of conservation of energy.
+  - rung: 3
+    name: first_step
+    text:
+      en: Energy is never made or destroyed; it only moves from store to store.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out each option that breaks one of these ideas.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It stays the same.'
+  misconception_ids:
+  - mc.phy.o.energy_created
+  - mc.phy.o.energy_used_up
+  - mc.phy.o.stationary_has_no_energy
+solution:
+  steps:
+  - n: 1
+    latex: \text{It stays the same}
+    reason: Follow the energy from store to store
+difficulty:
+  prior: -0.9
+  band: core
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

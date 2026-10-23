@@ -1,0 +1,35 @@
+id: mc.chm.o.analysis_wrong_reagent_for_anion
+kc_ids:
+- kc.chm.o.analysis.anion_tests
+student_name: The wrong reagent for the ion
+description: Uses silver nitrate to test for sulfate, or barium nitrate to test for a halide.
+signatures:
+- kind: answer_transform
+  expression: 'choice: reagent for another anion chosen'
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Halides: acidified silver nitrate. Sulfate: acidified barium nitrate (or chloride). Carbonate: dilute acid.'
+probe_item_ids:
+- itm.chm.o.analysis.0072
+- itm.chm.o.analysis.0073
+- itm.chm.o.analysis.0074
+- itm.chm.o.analysis.0075
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

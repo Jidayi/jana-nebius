@@ -1,0 +1,93 @@
+id: itm.phy.o.heat_transfer.0038
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.radiation
+stem: Marathon runners are wrapped in shiny foil blankets after a race.
+parts:
+- id: a
+  prompt: How does the blanket help to keep them warm?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Foil absorbs infrared well and so warms the runner
+      correct: false
+      misconception_id: mc.phy.o.shiny_surfaces_better_radiators
+      feedback: Dull black surfaces are the best absorbers and the best emitters of infrared. Shiny, light surfaces reflect most of it and emit little.
+    - id: B
+      text: Foil gives off heat of its own
+      correct: false
+      misconception_id: mc.phy.o.insulator_produces_heat
+      feedback: Wrap a blanket round a block of ice and the ice stays frozen longer. Insulators produce no energy; they only slow down how fast energy moves through them.
+    - id: C
+      text: Its shiny surface is a poor emitter and reflects infrared back towards the body
+      correct: true
+    - id: D
+      text: Foil keeps the cold outside the blanket
+      correct: false
+      misconception_id: mc.phy.o.cold_transferred_as_substance
+      feedback: Only energy moves, always from hotter to colder. An ice pack does not send cold into you; energy flows out of you into the ice.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Infrared is an electromagnetic wave given out by every object; hotter objects give out more.
+  - rung: 2
+    name: concept
+    text:
+      en: The runner's body is the warm object losing energy.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Compare the surfaces: dull black is the best absorber and emitter, shiny silver or white the worst.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options that need a material for radiation to travel through, or treat cold as something that flows.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Its shiny surface is a poor emitter and reflects infrared back towards the body.'
+  misconception_ids:
+  - mc.phy.o.cold_transferred_as_substance
+  - mc.phy.o.insulator_produces_heat
+  - mc.phy.o.shiny_surfaces_better_radiators
+solution:
+  steps:
+  - n: 1
+    latex: \text{Its shiny surface is a poor emitter and reflects infrared back towards the body}
+    reason: Apply what affects emission and absorption
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

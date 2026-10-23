@@ -1,0 +1,107 @@
+id: itm.phy.o.momentum.0023
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.momentum.conservation_of_momentum
+stem: Trolley A (3 kg) moves right at 2 m/s and trolley B (2 kg) moves left at 2 m/s. They collide and stick together. Take right as positive.
+parts:
+- id: a
+  prompt: Find their velocity after the collision.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '0.4'
+    unit: m/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_mom_0023_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Total momentum before the collision equals total momentum after.
+  - rung: 2
+    name: concept
+    text:
+      en: B moves left, so its velocity is negative.
+  - rung: 3
+    name: first_step
+    text:
+      en: Add the two momenta with their signs, then divide by the total mass.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The momentum before is 2 kg m/s and the total mass is 5 kg.
+  - rung: 5
+    name: full_step
+    text:
+      en: v = 0.4 m/s, to the right.
+  misconception_ids:
+  - mc.phy.o.momentum_sign_ignored
+  - mc.phy.o.collision_velocities_averaged
+  - mc.phy.o.stuck_mass_one_object
+solution:
+  steps:
+  - n: 1
+    latex: p_\text{before} = 3 \times 2 + 2 \times (-\,2) = 2\ \text{kg m/s}
+    reason: B moves left, so its momentum is negative
+    check_id: chk_build_phy_mom_0023_pb
+  - n: 2
+    latex: (3 + 2)v = 5\,v = 2
+    reason: Momentum is conserved
+    check_id: chk_build_phy_mom_0023_mt
+  - n: 3
+    latex: v = \frac{2}{5} = 0.4\ \text{m/s}
+    reason: Positive, so they move right
+    check_id: chk_build_phy_mom_0023_ans
+difficulty:
+  prior: 0.6
+  band: stretch
+estimated_seconds: 110
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mom_0023_ans:
+    args:
+      expression: (3*2 - 2*2)/(3 + 2)
+    tool: math_evaluate
+  chk_build_phy_mom_0023_mt:
+    args:
+      expression: 3 + 2
+    tool: math_evaluate
+  chk_build_phy_mom_0023_pb:
+    args:
+      expression: 3*2 - 2*2
+    tool: math_evaluate
+  chk_build_phy_mom_0023_tool:
+    args:
+      equations:
+      - 3*2 + 2*(-2) = (3 + 2)*v
+      unknowns:
+      - v
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

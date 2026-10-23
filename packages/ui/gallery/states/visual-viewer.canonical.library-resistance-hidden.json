@@ -1,0 +1,219 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.library-resistance-hidden",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: Close the switch so the cell drives a current round the circuit.",
+        "Step 2: The ammeter is in series, so it reads the same current that passes through the resistor.",
+        "Step 3: The voltmeter is connected across the resistor to read the potential difference.",
+        "Step 4: Divide the potential difference by the current to find the resistance."
+      ],
+      "summary": "A circuit with a cell, a switch, an ammeter in series with a resistor, and a voltmeter connected in parallel across the resistor."
+    },
+    "computed": {
+      "entry": {
+        "alt_text": "A circuit with a cell, a switch, an ammeter in series with a resistor, and a voltmeter connected in parallel across the resistor.",
+        "attribution": "Our own drawing, made for Jana with AI assistance.",
+        "id": "dgm.phy.measuring_resistance.v1",
+        "licence": "LicenseRef-Own",
+        "parts": [
+          {
+            "function": "Connect the components into the series circuit and the parallel voltmeter branch.",
+            "id": "connecting_wires",
+            "label_anchor": [
+              410,
+              140
+            ],
+            "name": "Connecting wires",
+            "quizzable": false,
+            "tab_order": 0
+          },
+          {
+            "essential": true,
+            "function": "Pushes charge round the circuit; the longer line is the positive terminal.",
+            "id": "cell",
+            "label_anchor": [
+              222,
+              35
+            ],
+            "name": "Cell",
+            "tab_order": 1
+          },
+          {
+            "function": "Opens or closes the circuit; current flows only when it is closed.",
+            "id": "switch",
+            "label_anchor": [
+              20,
+              135
+            ],
+            "name": "Switch",
+            "tab_order": 2
+          },
+          {
+            "essential": true,
+            "function": "Measures the current; it is connected in series.",
+            "id": "ammeter",
+            "label_anchor": [
+              122,
+              255
+            ],
+            "name": "Ammeter",
+            "tab_order": 3
+          },
+          {
+            "essential": true,
+            "function": "The component whose resistance is being measured.",
+            "id": "resistor",
+            "label_anchor": [
+              272,
+              204
+            ],
+            "name": "Resistor",
+            "tab_order": 4
+          },
+          {
+            "essential": true,
+            "function": "Measures the potential difference across the resistor; it is connected in parallel with it.",
+            "id": "voltmeter",
+            "label_anchor": [
+              322,
+              296
+            ],
+            "name": "Voltmeter",
+            "tab_order": 5
+          }
+        ],
+        "sequences": [
+          {
+            "id": "set_up",
+            "steps": [
+              {
+                "arrows": [
+                  "arrow_current"
+                ],
+                "caption": "Close the switch so the cell drives a current round the circuit.",
+                "highlight": [
+                  "cell",
+                  "switch"
+                ]
+              },
+              {
+                "caption": "The ammeter is in series, so it reads the same current that passes through the resistor.",
+                "highlight": [
+                  "ammeter"
+                ]
+              },
+              {
+                "caption": "The voltmeter is connected across the resistor to read the potential difference.",
+                "highlight": [
+                  "voltmeter"
+                ]
+              },
+              {
+                "caption": "Divide the potential difference by the current to find the resistance.",
+                "highlight": [
+                  "resistor"
+                ]
+              }
+            ],
+            "title": "Setting up the measurement"
+          }
+        ],
+        "title": "Measuring resistance with an ammeter and a voltmeter",
+        "version": "1.0.1"
+      },
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 300\"><title>Measuring resistance with an ammeter and a voltmeter</title><defs><marker id=\"head\" viewBox=\"0 0 8 8\" refX=\"4\" refY=\"4\" markerWidth=\"8\" markerHeight=\"8\" orient=\"auto\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"var(--color-diagram-stroke)\"/></marker></defs><path data-part=\"connecting_wires\" d=\"M80,110 L80,60 L230,60 M242,60 L400,60 L400,220 L330,220 M270,220 L164,220 M136,220 L80,220 L80,150 M250,220 L250,270 L286,270 M314,270 L350,270 L350,220\" fill=\"none\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><g data-part=\"cell\"><line x1=\"230\" y1=\"45\" x2=\"230\" y2=\"75\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><line x1=\"242\" y1=\"52\" x2=\"242\" y2=\"68\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"3\"/><text x=\"222\" y=\"35\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"cell\">cell</text></g><g data-part=\"switch\"><circle cx=\"80\" cy=\"110\" r=\"3\" fill=\"var(--color-paper)\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><circle cx=\"80\" cy=\"150\" r=\"3\" fill=\"var(--color-paper)\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><line x1=\"80\" y1=\"147\" x2=\"100\" y2=\"116\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"20\" y=\"135\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"switch\">switch</text></g><g data-part=\"ammeter\"><circle cx=\"150\" cy=\"220\" r=\"14\" fill=\"var(--color-paper)\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"150\" y=\"225\" font-size=\"13\" text-anchor=\"middle\" fill=\"var(--color-ink)\">A</text><text x=\"122\" y=\"255\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"ammeter\">ammeter</text></g><g data-part=\"resistor\"><rect x=\"270\" y=\"212\" width=\"60\" height=\"16\" fill=\"var(--color-paper)\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"272\" y=\"204\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"resistor\">resistor</text></g><g data-part=\"voltmeter\"><circle cx=\"300\" cy=\"270\" r=\"14\" fill=\"var(--color-paper)\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"300\" y=\"275\" font-size=\"13\" text-anchor=\"middle\" fill=\"var(--color-ink)\">V</text><text x=\"322\" y=\"296\" font-size=\"13\" fill=\"var(--color-ink)\" data-label-for=\"voltmeter\">voltmeter</text></g><g data-arrow=\"arrow_current\"><line x1=\"300\" y1=\"60\" x2=\"330\" y2=\"60\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\" marker-end=\"url(#head)\"/></g></svg>\n"
+    },
+    "fallback_reason": null,
+    "labels": "hidden",
+    "numbers_from": [],
+    "params": {
+      "sequence": "set_up"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "connecting_wires",
+        "name": "Connecting wires",
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "cell",
+        "name": "Cell",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "switch",
+        "name": "Switch",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "ammeter",
+        "name": "Ammeter",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "resistor",
+        "name": "Resistor",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "voltmeter",
+        "name": "Voltmeter",
+        "quizzable": true,
+        "role": "part"
+      }
+    ],
+    "ref": "dgm.phy.measuring_resistance.v1",
+    "repairs": [],
+    "resolution_hash": "sha256:d875f55bd5529f1f76504f156114385929dcb955adb6c99fa939f2c724df1a4e",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "cell",
+          "switch"
+        ]
+      },
+      {
+        "highlight": [
+          "ammeter"
+        ]
+      },
+      {
+        "highlight": [
+          "voltmeter"
+        ]
+      },
+      {
+        "highlight": [
+          "resistor"
+        ]
+      }
+    ],
+    "type": "library_diagram",
+    "visual_id": "vis_RNNVNJZZPGFN1MRS9WSNDP9Z9S"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: library resistance (hidden labels)",
+  "variant": "library-resistance-hidden"
+}

@@ -1,0 +1,36 @@
+id: mc.chm.o.yield_inverted
+kc_ids:
+- kc.chm.o.stoichiometry.yield_and_purity
+student_name: Theoretical over actual
+description: Divides the theoretical yield by the actual yield, giving a percentage over 100.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'You never get more product than the equation allows, so the percentage yield is at most 100%: actual ÷ theoretical × 100.'
+probe_item_ids:
+- itm.chm.o.stoichiometry.0109
+- itm.chm.o.stoichiometry.0110
+- itm.chm.o.stoichiometry.0111
+- itm.chm.o.stoichiometry.0112
+- itm.chm.o.stoichiometry.0113
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,76 @@
+id: wex.acc.o.sole_trader_statements.0002
+kc_ids:
+- kc.acc.o.sole_trader_statements.cost_of_sales
+problem: 'A trader''s figures for the year: opening inventory $3600; purchases $28400; carriage inwards $450; closing inventory $4100. Find the cost of sales.'
+steps:
+- n: 1
+  latex: \text{Cost of sales} = \text{opening inventory} + \text{net purchases} + \text{carriage inwards} - \text{closing inventory}
+  reason: Carriage outwards is an expense
+  check_id: chk_build_acc_sole_trader_statements_w0002_t
+- n: 2
+  latex: \text{Goods available} = 3600 + 28400 + 450 = 32450
+  reason: Everything that could have been sold
+  check_id: chk_build_acc_sole_trader_statements_w0002_s2
+- n: 3
+  latex: \text{Cost of sales} = 32450 - 4100 = 28350
+  reason: Less what is left
+  check_id: chk_build_acc_sole_trader_statements_w0002_a
+final_answer:
+  latex: \$\,28350
+  check_id: chk_build_acc_sole_trader_statements_w0002_a
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_sole_trader_statements_w0002_a:
+    args:
+      dp: 2
+      expression: 3600 + 28400 + 450 - 4100
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_w0002_s2:
+    args:
+      dp: 4
+      expression: 3600 + 28400 + 450
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_w0002_t:
+    args:
+      adjustments:
+      - amount: '4100'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '42500'
+        role: revenue
+      - account: Purchases
+        debit: '28400'
+        role: purchases
+      - account: Inventory
+        debit: '3600'
+        role: opening_inventory
+      - account: Carriage inwards
+        debit: '450'
+        role: carriage_inwards
+      - account: Land
+        debit: '10050'
+        role: non_current_asset
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

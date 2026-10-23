@@ -1,0 +1,92 @@
+id: itm.phy.o.magnetism.0027
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.magnetism.magnetic_fields
+stem: Two field lines come close together near a pole of a magnet.
+parts:
+- id: a
+  prompt: Can two magnetic field lines ever cross?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Yes, near the poles where they crowd together
+      correct: false
+      misconception_id: mc.phy.o.field_lines_can_cross
+      feedback: A compass at a point can only point one way. If two lines crossed, it would have to point two ways at once.
+    - id: B
+      text: Yes, wherever two lines are drawn close
+      correct: false
+      misconception_id: mc.phy.o.field_lines_can_cross
+      feedback: A compass at a point can only point one way. If two lines crossed, it would have to point two ways at once.
+    - id: C
+      text: It does not matter, because there is no field between the lines
+      correct: false
+      misconception_id: mc.phy.o.field_only_on_drawn_lines
+      feedback: A compass placed between two drawn lines still turns. The lines show the field's direction and strength; the field is everywhere near the magnet.
+    - id: D
+      text: No, because the field has only one direction at each point
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Picture a small plotting compass placed at that point near the magnet.
+  - rung: 2
+    name: concept
+    text:
+      en: Field lines run from north to south outside a magnet, never cross, and are closest where the field is strongest, at the poles.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A compass at any point can point only one way, so the lines cannot cross.
+  - rung: 5
+    name: full_step
+    text:
+      en: No, because the field has only one direction at each point. A compass at any point can point only one way, so the lines cannot cross.
+  misconception_ids:
+  - mc.phy.o.field_lines_can_cross
+  - mc.phy.o.field_only_on_drawn_lines
+solution:
+  steps:
+  - n: 1
+    latex: \text{No, because the field has only one direction at each point}
+    reason: Use the rules for magnetic field lines
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

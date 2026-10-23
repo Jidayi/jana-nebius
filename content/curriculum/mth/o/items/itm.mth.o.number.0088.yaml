@@ -1,0 +1,84 @@
+id: itm.mth.o.number.0088
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.fdp_conversion
+stem: Write 0.35 as a percentage.
+parts:
+- id: a
+  prompt: Give the percentage.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '35'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0088_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A percentage is a number out of 100.
+  - rung: 2
+    name: concept
+    text:
+      en: To change a decimal to a percentage, multiply by 100.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 0.35 × 100.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Multiplying by 100 moves every digit two places to the left.
+  - rung: 5
+    name: full_step
+    text:
+      en: 0.35 = 35%.
+  misconception_ids:
+  - mc.mth.o.percent_scale_wrong
+  - mc.mth.o.percent_one_place
+  - mc.mth.o.fraction_digits_as_decimal
+solution:
+  steps:
+  - n: 1
+    latex: 0.35 \times 100 = 35\%
+    reason: Multiply by 100 for a percentage
+    check_id: chk_build_mth_num_0088_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 30
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0088_ans:
+    args:
+      expression: 0.35*100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

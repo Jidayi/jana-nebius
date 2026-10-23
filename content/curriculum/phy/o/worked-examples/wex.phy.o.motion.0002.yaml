@@ -1,0 +1,50 @@
+id: wex.phy.o.motion.0002
+kc_ids:
+- kc.phy.o.motion.acceleration_from_change
+problem: A car speeds up steadily from 10 m/s to 25 m/s in 5.0 s. Find its acceleration.
+steps:
+- n: 1
+  latex: a = \frac{v - u}{t}
+  reason: Acceleration is change in velocity over time
+- n: 2
+  latex: a = \frac{25 - 10}{5.0}
+  reason: Substitute final velocity, initial velocity and time
+  check_id: chk_build_phy_w_0002
+- n: 3
+  latex: a = 3.0\ \text{m/s}^2
+  reason: Evaluate
+  check_id: chk_build_phy_w_0002
+final_answer:
+  latex: 3.0\ \text{m/s}^2
+  check_id: chk_build_phy_w_0002
+fading_order:
+- 3
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_w_0002:
+    args:
+      expression: (25 - 10)/5.0
+      sf: 2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

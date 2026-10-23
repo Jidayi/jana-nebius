@@ -1,0 +1,89 @@
+id: itm.chm.o.energetics.0019
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.energetics.profiles
+stem: A reaction pathway diagram shows the reactants at 30 kJ/mol, the products at 70 kJ/mol and the highest point of the pathway at 120 kJ/mol.
+parts:
+- id: a
+  prompt: Calculate the enthalpy change, ΔH.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '40'
+    unit: kJ/mol
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_energetics_0019_dh
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Where does the reaction start and where does it finish on the diagram?
+  - rung: 2
+    name: concept
+    text:
+      en: ΔH = products − reactants; a negative answer means exothermic.
+  - rung: 3
+    name: first_step
+    text:
+      en: The reactants are at 30 kJ/mol.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The products are at 70 kJ/mol; subtract the reactants' value.
+  - rung: 5
+    name: full_step
+    text:
+      en: ΔH = 70 − 30 = 40 kJ/mol.
+  misconception_ids:
+  - mc.chm.o.energetics_dh_reactants_minus_products
+solution:
+  steps:
+  - n: 1
+    latex: \Delta H = 70 - 30
+    reason: Products minus reactants
+  - n: 2
+    latex: \Delta H = 40\ \text{kJ/mol}
+    reason: Subtract
+    check_id: chk_build_chm_energetics_0019_dh
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_energetics_0019_dh:
+    args:
+      expression: 70 - 30
+    tool: math_evaluate
+  chk_build_chm_energetics_0019_ea:
+    args:
+      expression: 120 - 30
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

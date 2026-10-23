@@ -1,0 +1,18 @@
+# Local integration configuration. No key belongs in this file.
+# Supply NEBIUS_API_KEY to the gateway process, or use the dev OS Keychain item
+# service jana.cloud-gateway, account nebius_api_key.
+environment = "dev"
+audience_host = "localhost"
+storage_dir = "/tmp/jana-nebius-gateway"
+voice_enabled = false
+
+# Owner approved USD 25 total over ten days on 2026-10-23. Allocate USD 15 to inference and hold USD 10 for hosting.
+# The shared inference ledger reserves in-flight calls across all devices and persists totals across restarts.
+# Daily limits reset at UTC midnight. Hosting purchases still require the owner's approval.
+[quotas]
+device_daily_spend_usd = 1.50
+study_daily_spend_usd = 1.50
+deployment_daily_spend_usd = 1.50
+deployment_total_spend_usd = 15.00
+deployment_budget_expires_at = "2026-11-02T00:46:01Z"
+deployment_max_output_tokens = 8192

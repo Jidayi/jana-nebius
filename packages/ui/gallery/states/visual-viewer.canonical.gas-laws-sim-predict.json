@@ -1,0 +1,119 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.gas-laws-sim-predict",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "A gas laws simulation: a gas in a flask at 293 K and 100 cubic centimetres, with the temperature as the control. It runs after you predict, so the result is not given here."
+    },
+    "computed": {
+      "alt": {
+        "container": "flask",
+        "control": "temperature",
+        "pressure": "100",
+        "temperature": "293",
+        "volume": "100"
+      },
+      "check_ids": [
+        "chk_build_fx_gas_laws_sim_predict_1"
+      ],
+      "container": "flask",
+      "kelvin_offset": 273.0,
+      "labels": {
+        "out.celsius": "20",
+        "out.pressure": "100",
+        "out.temperature": "293"
+      },
+      "parts": [
+        {
+          "id": "ctrl.temperature",
+          "label": "temperature",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.volume",
+          "label": "volume",
+          "role": "control"
+        },
+        {
+          "id": "out.pressure",
+          "label": "pressure",
+          "role": "readout"
+        },
+        {
+          "id": "out.temperature",
+          "label": "temperature",
+          "role": "readout"
+        },
+        {
+          "id": "out.celsius",
+          "label": "celsius",
+          "role": "readout"
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_gas_laws_sim_predict_1"
+    ],
+    "params": {
+      "amount_mol": 0.00411,
+      "control": "temperature",
+      "predict": "poe.phy.gas_heated_flask.v1",
+      "preset_id": "sim.phy.gas_sealed_flask.v1",
+      "temperature_k": 293,
+      "volume_m3": 0.0001
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ctrl.temperature",
+        "name": "temperature",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.volume",
+        "name": "volume",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "out.pressure",
+        "name": "pressure",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.temperature",
+        "name": "temperature",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.celsius",
+        "name": "celsius",
+        "role": "readout"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:d6094e6a5ae610e3d1369859edc517c5a07c10ad1229d57815b2bf2e8ec17fee",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "gas_laws_sim",
+    "visual_id": "vis_P9EAT6G3HPRSD5Q50WGDJ9NRNJ"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: gas laws sim predict (shown labels)",
+  "variant": "gas-laws-sim-predict"
+}

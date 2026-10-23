@@ -1,0 +1,93 @@
+id: itm.phy.o.density.0037
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.density.floating_and_sinking
+stem: A sealed, empty plastic bottle floats in water. It is filled with sand, which raises its average density to 1.6 g/cm³, and sealed again.
+parts:
+- id: a
+  prompt: What happens now?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: It still floats, because plastic floats
+      correct: false
+      misconception_id: mc.phy.o.hollow_object_density_of_material
+      feedback: 'Use the average density: the total mass divided by the total volume, air included. A steel ship floats because most of its volume is air.'
+    - id: B
+      text: It sinks, because its average density is now greater than the water's
+      correct: true
+    - id: C
+      text: It still floats, because its volume has not changed
+      correct: false
+      misconception_id: mc.phy.o.volume_decides_floating
+      feedback: 'Cut a piece of wood in half and both halves still float. Size does not decide it: compare the densities.'
+    - id: D
+      text: It floats higher, because denser objects float better
+      correct: false
+      misconception_id: mc.phy.o.density_float_rule_reversed
+      feedback: A stone is denser than water and sinks; a cork is less dense and floats. An object floats when its density is less than the liquid's.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Floating depends on densities, not on mass or size alone.
+  - rung: 2
+    name: concept
+    text:
+      en: Water has a density of 1.0 g/cm³.
+  - rung: 3
+    name: first_step
+    text:
+      en: Compare the density of the object with the density of the liquid.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that look only at how heavy or how big something is.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It sinks, because its average density is now greater than the water''s.'
+  misconception_ids:
+  - mc.phy.o.density_float_rule_reversed
+  - mc.phy.o.hollow_object_density_of_material
+  - mc.phy.o.volume_decides_floating
+solution:
+  steps:
+  - n: 1
+    latex: \text{It sinks, because its average density is now greater than the water's}
+    reason: Compare the object's density with the liquid's
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

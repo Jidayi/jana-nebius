@@ -1,0 +1,34 @@
+id: mc.phy.o.pressure_area_factor_not_squared
+kc_ids:
+- kc.phy.o.pressure.pressure_on_surfaces
+student_name: Dividing cm² by a hundred
+description: Changes an area from cm² into m² by dividing by a hundred, the factor for a length, instead of by ten thousand.
+signatures:
+- kind: answer_transform
+  expression: F/(A_cm2/100)
+fix:
+  strategy: contrast_example
+  text:
+    en: A square metre is a hundred centimetres long and a hundred centimetres wide, so it holds a hundred times a hundred square centimetres.
+probe_item_ids:
+- itm.phy.o.pressure.0012
+- itm.phy.o.pressure.0003
+- itm.phy.o.pressure.0008
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

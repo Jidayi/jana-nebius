@@ -1,0 +1,106 @@
+id: itm.acc.o.depreciation.0037
+version: 0.1.0
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.depreciation.reducing_balance
+stem: Kofi bought a delivery van for $12700. It is depreciated at 20% a year by the reducing-balance method.
+parts:
+- id: a
+  prompt: Calculate the depreciation charge for the second year.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '2032.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_depreciation_0037_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The reducing-balance method takes the same percentage each year, but of a smaller amount.
+  - rung: 2
+    name: concept
+    text:
+      en: Each year's charge = rate × net book value at the start of that year.
+  - rung: 3
+    name: first_step
+    text:
+      en: Year 1 charge = 20% of $12700. Take it off the cost to get the net book value for year 2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Keep going until you reach the start of the second year, then take 20% of that value.
+  - rung: 5
+    name: full_step
+    text:
+      en: The second year's charge is 20% of $10160 = $2032.
+  misconception_ids:
+  - mc.acc.o.rb_on_cost
+  - mc.acc.o.rb_nbv_as_charge
+solution:
+  steps:
+  - n: 1
+    latex: \text{Charge} = \text{rate} \times \text{net book value at the start of the year}
+    reason: The charge falls each year
+    check_id: chk_build_acc_depreciation_0037_t
+  - n: 2
+    latex: \text{Net book value after year 1} = 10160
+    reason: Cost less depreciation so far
+    check_id: chk_build_acc_depreciation_0037_s2
+  - n: 3
+    latex: \text{This year's charge} = 20\% \times 10160 = 2032
+    reason: Rate on the reduced balance
+    check_id: chk_build_acc_depreciation_0037_a
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_depreciation_0037_a:
+    args:
+      dp: 2
+      expression: 12700 * (1 - 20/100)^1 * 20/100
+    tool: math_evaluate
+  chk_build_acc_depreciation_0037_s2:
+    args:
+      dp: 4
+      expression: 12700 * (1 - 20/100)^1
+    tool: math_evaluate
+  chk_build_acc_depreciation_0037_t:
+    args:
+      cost: '12700'
+      dp: 2
+      method: reducing_balance
+      part_year_policy: full_year
+      rate_percent: '20'
+      years: 2
+    tool: acc_depreciation
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

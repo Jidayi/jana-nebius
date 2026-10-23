@@ -1,0 +1,73 @@
+id: les.acc.o.irrecoverable_debts.bad_and_doubtful_debts
+node_id: cur.acc.o.irrecoverable_debts
+kc_ids:
+- kc.acc.o.irrecoverable_debts.write_off
+- kc.acc.o.irrecoverable_debts.allowance_amount
+- kc.acc.o.irrecoverable_debts.allowance_change
+- kc.acc.o.irrecoverable_debts.net_receivables
+title: Irrecoverable debts and the allowance for doubtful ones
+estimated_minutes: 12
+blocks:
+- type: step
+  text:
+    en: 'Try this before any rules: a customer has paid part of what they owe and will never pay the rest.'
+  item_id: itm.acc.o.irrecoverable_debts.0008
+  action: try_first
+  why:
+    en: The amount written off is what was owed less what was actually received.
+  names:
+    en: A debt that will never be paid is an irrecoverable debt. It is written off as an expense of the business.
+- type: step
+  text:
+    en: Now pick the double entry that removes a lost debt from the books.
+  item_id: itm.acc.o.irrecoverable_debts.0001
+  action: choose
+  why:
+    en: Debit the irrecoverable debts expense account and credit the customer. The allowance is only for debts that might not be paid.
+- type: step
+  text:
+    en: Some debts might not be paid, so the business keeps an allowance. Write off the known bad debt first.
+  item_id: itm.acc.o.irrecoverable_debts.0012
+  action: calculate
+  why:
+    en: Take the debt written off away from trade receivables, then apply the percentage to what is left.
+- type: step
+  text:
+    en: 'Predict before you look at the choices: does the whole new allowance go to the income statement, or only part of it?'
+  item_id: itm.acc.o.irrecoverable_debts.0030
+  action: predict
+  why:
+    en: Only the change from last year's allowance is charged. Here the allowance went up, so the increase is an expense.
+- type: step
+  text:
+    en: The statement of financial position shows what the business expects to collect from customers.
+  item_id: itm.acc.o.irrecoverable_debts.0041
+  action: choose
+  why:
+    en: Take the written-off debt from trade receivables, then take off this year's allowance. Leaving the allowance in shows too much.
+- type: check
+  item_ids:
+  - itm.acc.o.irrecoverable_debts.0024
+  - itm.acc.o.irrecoverable_debts.0034
+  - itm.acc.o.irrecoverable_debts.0035
+version: 0.2.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

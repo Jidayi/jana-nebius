@@ -1,0 +1,162 @@
+id: itm.acc.o.sole_trader_statements.0012
+version: 0.1.1
+type: numeric
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.sole_trader_statements.gross_profit
+- kc.acc.o.sole_trader_statements.cost_of_sales
+stem: 'Nia runs a market stall. Figures for the year: revenue $70200; sales returns $400; opening inventory $3300; purchases $44300; purchases returns $1300; carriage inwards $900; closing inventory $3800.'
+parts:
+- id: a
+  prompt: Calculate the gross profit for the year.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '26400.00'
+    unit: $
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 0.005
+    check_id: chk_build_acc_sole_trader_statements_0012_a
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Gross profit compares what the goods sold for with what they cost. What two figures do you need?
+  - rung: 2
+    name: concept
+    text:
+      en: Gross profit = net revenue − cost of sales, where net revenue is revenue less sales returns.
+  - rung: 3
+    name: first_step
+    text:
+      en: 'Find the cost of sales first: opening inventory + net purchases + carriage inwards − closing inventory.'
+  - rung: 4
+    name: worked_step
+    text:
+      en: Gross profit = (70200 − 400) − (3300 + 44300 − 1300 + 900 − 3800).
+  - rung: 5
+    name: full_step
+    text:
+      en: Net revenue $69800 less cost of sales $43400 gives $26400.
+  misconception_ids:
+  - mc.acc.o.gp_sales_returns_ignored
+  - mc.acc.o.gp_purchases_for_cos
+solution:
+  steps:
+  - n: 1
+    latex: \text{Gross profit} = (\text{revenue} - \text{sales returns}) - \text{cost of sales}
+    reason: Net revenue less the cost of the goods sold
+    check_id: chk_build_acc_sole_trader_statements_0012_t
+  - n: 2
+    latex: \text{Cost of sales} = 3300 + 44300 - 1300 + 900 - 3800 = 43400
+    reason: Goods available less closing inventory
+    check_id: chk_build_acc_sole_trader_statements_0012_s2
+  - n: 3
+    latex: \text{Net revenue} = 70200 - 400 = 69800
+    reason: Sales returns reduce revenue
+    check_id: chk_build_acc_sole_trader_statements_0012_s3
+  - n: 4
+    latex: \text{Gross profit} = 69800 - 43400 = 26400
+    reason: Subtract
+    check_id: chk_build_acc_sole_trader_statements_0012_a
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  purchases: '44300'
+  revenue: '70200'
+  sales_returns: '400'
+checks:
+  chk_build_acc_sole_trader_statements_0012_a:
+    args:
+      dp: 2
+      expression: (70200 - 400) - (3300 + 44300 - 1300 + 900 - 3800)
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0012_s2:
+    args:
+      dp: 4
+      expression: 3300 + 44300 - 1300 + 900 - 3800
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0012_s3:
+    args:
+      dp: 4
+      expression: 70200 - 400
+    tool: math_evaluate
+  chk_build_acc_sole_trader_statements_0012_t:
+    args:
+      adjustments:
+      - amount: '3800'
+        kind: closing_inventory
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '70200'
+        role: revenue
+      - account: Purchases
+        debit: '44300'
+        role: purchases
+      - account: Inventory
+        debit: '3300'
+        role: opening_inventory
+      - account: Sales returns
+        debit: '400'
+        role: sales_returns
+      - account: Purchases returns
+        credit: '1300'
+        role: purchases_returns
+      - account: Carriage inwards
+        debit: '900'
+        role: carriage_inwards
+      - account: Land
+        debit: '22600'
+        role: non_current_asset
+    tool: acc_statements
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:33:27.453Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.acc.o.sole_trader_statements.0012
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,40 @@
+id: wex.mth.o.coordinate_geometry.0006
+kc_ids:
+- kc.mth.o.coordinate_geometry.gradient
+problem: A straight line passes through A(4, 6) and B(2, 10). Find its gradient.
+steps:
+- n: 1
+  latex: m = \frac{y_2 - y_1}{x_2 - x_1}
+  reason: Change in y over change in x
+- n: 2
+  latex: m = \frac{10 - (6)}{2 - (4)} = \frac{4}{-2} = -2
+  reason: Same order on top and bottom
+  check_id: chk_build_mth_crd_w0006_ans
+final_answer:
+  latex: '-2'
+  check_id: chk_build_mth_crd_w0006_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_crd_w0006_ans:
+    args:
+      expression: (10 - (6))/(2 - (4))
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,56 @@
+name: setup
+description: Pinned toolchains (Node + pnpm via Corepack, Python via uv, Rust via rust-toolchain.toml) and frozen installs.
+inputs:
+  spec-key:
+    description: Read-only deploy key for the private specification repository (JANA_SPEC_DEPLOY_KEY).
+    required: false
+    default: ""
+  install:
+    description: Install dependencies from the frozen lockfiles.
+    required: false
+    default: "true"
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      with:
+        node-version-file: .nvmrc
+    - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+      with:
+        version: "0.10.9"
+    - name: Pinned Rust toolchain
+      shell: bash
+      run: rustup show active-toolchain || rustup toolchain install
+    - name: Worker sandbox (bubblewrap; SEC-06)
+      if: runner.os == 'Linux'
+      shell: bash
+      run: |
+        sudo apt-get install -y --no-install-recommends bubblewrap
+        # Ubuntu 24.04 restricts unprivileged user namespaces, which bubblewrap needs.
+        sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true
+    - name: Corepack
+      shell: bash
+      run: corepack enable && corepack pnpm --version
+    - name: Read spec.lock
+      if: inputs.spec-key != ''
+      id: spec
+      shell: bash
+      run: echo "sha=$(tr -d '[:space:]' < spec.lock)" >> "$GITHUB_OUTPUT"
+    - name: Check out the pinned specification into docs/
+      if: inputs.spec-key != ''
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        repository: Jidayi/jana-spec
+        ref: ${{ steps.spec.outputs.sha }}
+        ssh-key: ${{ inputs.spec-key }}
+        path: docs
+        persist-credentials: false
+    - name: Frozen installs
+      if: inputs.install == 'true'
+      shell: bash
+      env:
+        TURBO_TELEMETRY_DISABLED: "1"
+      run: |
+        corepack pnpm install --frozen-lockfile
+        uv sync --locked --all-packages
+        cargo fetch --locked

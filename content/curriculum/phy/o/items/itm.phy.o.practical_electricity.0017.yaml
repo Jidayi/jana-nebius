@@ -1,0 +1,107 @@
+id: itm.phy.o.practical_electricity.0017
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.energy_cost
+stem: Yaw uses a 2500 W electric cooker ring for 15 minutes.
+parts:
+- id: a
+  prompt: Calculate the energy used, in kilowatt-hours.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.625'
+    unit: kWh
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_pel_0017_tool
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: A kilowatt-hour is the energy used by a 1 kW appliance in 1 hour.
+  - rung: 2
+    name: concept
+    text:
+      en: E in kWh = power in kW × time in hours.
+  - rung: 3
+    name: first_step
+    text:
+      en: Change the power into kilowatts and the time into hours.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The power is 2.5 kW and the time is 0.25 h; multiply them.
+  - rung: 5
+    name: full_step
+    text:
+      en: The energy used is 0.625 kWh.
+  misconception_ids:
+  - mc.phy.o.kwh_power_left_in_watts
+  - mc.phy.o.kwh_time_left_in_minutes
+  - mc.phy.o.elec_energy_power_over_time
+solution:
+  steps:
+  - n: 1
+    latex: P = 2500\ \text{W} = 2.5\ \text{kW}
+    reason: Power in kilowatts
+    check_id: chk_build_phy_pel_0017_pk
+  - n: 2
+    latex: t = 15\ \text{min} = 0.25\ \text{h}
+    reason: Time in hours
+    check_id: chk_build_phy_pel_0017_th
+  - n: 3
+    latex: E = Pt = 2.5 \times 0.25 = 0.625\ \text{kWh}
+    reason: Kilowatts times hours
+    check_id: chk_build_phy_pel_0017_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_pel_0017_ans:
+    args:
+      expression: 2.5*15/60
+    tool: math_evaluate
+  chk_build_phy_pel_0017_pk:
+    args:
+      quantity: 2500 W
+      to: kW
+    tool: units_convert
+  chk_build_phy_pel_0017_th:
+    args:
+      quantity: 15 min
+      to: h
+    tool: units_convert
+  chk_build_phy_pel_0017_tool:
+    args:
+      quantity: 37500 W min
+      to: kWh
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.mth.o.sphere_power_wrong
+kc_ids:
+- kc.mth.o.mensuration.pyramid_cone_sphere
+student_name: Squaring instead of cubing for a sphere
+description: Uses r² instead of r³ in the volume of a sphere.
+signatures:
+- kind: answer_transform
+  expression: 4/3*pi*r^2
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Volume needs three lengths multiplied: the sphere volume uses r³.'
+probe_item_ids:
+- itm.mth.o.mensuration.0086
+- itm.mth.o.mensuration.0077
+- itm.mth.o.mensuration.0078
+- itm.mth.o.mensuration.0081
+- itm.mth.o.mensuration.0082
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

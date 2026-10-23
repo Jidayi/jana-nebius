@@ -1,0 +1,102 @@
+id: itm.phy.o.energy.0052
+version: 0.1.1
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.energy_conversion
+stem: A bean bag is thrown straight up at 8 m/s. Ignore air resistance and take g = 10 N/kg.
+parts:
+- id: a
+  prompt: Calculate the greatest height it rises above the point where it was thrown.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '3.2'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_nrg_0052_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: At the highest point the speed is zero, so all the kinetic energy has gone to the gravitational store.
+  - rung: 2
+    name: concept
+    text:
+      en: Set ½mv² = mgh; the mass cancels, so h = v² ÷ 2g.
+  - rung: 3
+    name: first_step
+    text:
+      en: v² = 8² = 64.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 64 ÷ (2 × 10).
+  - rung: 5
+    name: full_step
+    text:
+      en: The greatest height is 3.2 m.
+  misconception_ids:
+  - mc.phy.o.conversion_two_dropped
+  - mc.phy.o.ke_speed_not_squared
+  - mc.phy.o.energy_mass_for_weight
+conventions_override:
+- key: phy.g
+  value: '10'
+solution:
+  steps:
+  - n: 1
+    latex: \frac{1}{2}mv^2 = mgh \Rightarrow h = \frac{v^2}{2g}
+    reason: Kinetic energy becomes gravitational potential energy; m cancels
+  - n: 2
+    latex: v^2 = 8^2 = 64
+    reason: The speed squared
+    check_id: chk_build_phy_nrg_0052_vsq
+  - n: 3
+    latex: h = \frac{64}{2 \times 10} = 3.2\ \text{m}
+    reason: Substitute
+    check_id: chk_build_phy_nrg_0052_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0052_ans:
+    args:
+      expression: 8^2/(2*10)
+    tool: math_evaluate
+  chk_build_phy_nrg_0052_vsq:
+    args:
+      expression: 8^2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

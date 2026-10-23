@@ -1,0 +1,87 @@
+id: itm.mth.o.mensuration.0018
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.mensuration.area_perimeter
+stem: A rectangular garden is 24 m long and 4 m wide.
+parts:
+- id: a
+  prompt: Find its perimeter.
+  marks: 1
+  answer:
+    kind: numeric
+    value: '56'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_mns_0018_ans
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The perimeter is the distance all the way round.
+  - rung: 2
+    name: concept
+    text:
+      en: A rectangle has two lengths and two widths.
+  - rung: 3
+    name: first_step
+    text:
+      en: Add 24 and 4, then double.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Do not multiply the length by the width: that is the area.'
+  - rung: 5
+    name: full_step
+    text:
+      en: The perimeter is 56 m.
+  misconception_ids:
+  - mc.mth.o.perimeter_area_confused
+  - mc.mth.o.perimeter_half
+  - mc.mth.o.compound_part_missing
+solution:
+  steps:
+  - n: 1
+    latex: P = 2(l + w)
+    reason: Two lengths and two widths
+  - n: 2
+    latex: P = 2 \times (24 + 4) = 56\ \text{m}
+    reason: Substitute
+    check_id: chk_build_mth_mns_0018_ans
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 40
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_mns_0018_ans:
+    args:
+      expression: 2*(24 + 4)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

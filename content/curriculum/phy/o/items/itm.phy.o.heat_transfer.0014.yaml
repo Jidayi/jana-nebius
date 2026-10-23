@@ -1,0 +1,93 @@
+id: itm.phy.o.heat_transfer.0014
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.heat_transfer.conduction
+stem: Metals and non-metals both conduct energy by atomic vibrations.
+parts:
+- id: a
+  prompt: Why are metals much better thermal conductors?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Metal atoms vibrate much more strongly than other atoms
+      correct: false
+      misconception_id: mc.phy.o.metal_conduction_vibration_only
+      feedback: All solids pass energy on by vibrations, but this is slow. Metals also have free electrons that move quickly through the metal and carry energy fast.
+    - id: B
+      text: Metal atoms can move freely from the hot end to the cold end
+      correct: false
+      misconception_id: mc.phy.o.conduction_particles_travel
+      feedback: In a solid the atoms stay in place and pass vibrations to their neighbours; in a metal, free electrons also carry energy. The material itself does not flow along.
+    - id: C
+      text: Metals also have free electrons that carry energy quickly
+      correct: true
+    - id: D
+      text: Metals are naturally colder, so energy flows into them
+      correct: false
+      misconception_id: mc.phy.o.metal_feels_colder_because_colder
+      feedback: Objects left in the same room reach the same temperature. Metal feels colder because it conducts energy away from your hand much faster.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Conduction passes energy through a material without the material itself moving.
+  - rung: 2
+    name: concept
+    text:
+      en: Something in a metal can move through it much faster than vibrations spread.
+  - rung: 3
+    name: first_step
+    text:
+      en: Remember that energy always flows from hotter to colder, and that nothing called 'cold' flows.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options where an insulator makes heat or where particles travel through a solid.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Metals also have free electrons that carry energy quickly.'
+  misconception_ids:
+  - mc.phy.o.conduction_particles_travel
+  - mc.phy.o.metal_conduction_vibration_only
+  - mc.phy.o.metal_feels_colder_because_colder
+solution:
+  steps:
+  - n: 1
+    latex: \text{Metals also have free electrons that carry energy quickly}
+    reason: Apply the model of conduction
+difficulty:
+  prior: -0.4
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.chm.o.acids_method_mismatch_base
+kc_ids:
+- kc.chm.o.acids.salt_preparation
+student_name: Wrong method for the starting base
+description: Chooses titration with an insoluble base or metal, or the excess-solid-and-filter method with a soluble alkali or carbonate.
+signatures:
+- kind: answer_transform
+  expression: 'choice: titration with an insoluble base, or excess and filter with an alkali'
+fix:
+  strategy: rule_restatement
+  text:
+    en: Ask whether the starting base, metal or carbonate dissolves in water. If it is insoluble, add an excess and filter off what is left. If it is soluble (sodium, potassium or ammonium), an excess cannot be filtered off, so use a titration to find the exact amounts.
+probe_item_ids:
+- itm.chm.o.acids.0049
+- itm.chm.o.acids.0050
+- itm.chm.o.acids.0051
+- itm.chm.o.acids.0052
+- itm.chm.o.acids.0055
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

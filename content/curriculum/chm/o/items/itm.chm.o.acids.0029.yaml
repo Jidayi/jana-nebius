@@ -1,0 +1,81 @@
+id: itm.chm.o.acids.0029
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.strong_and_weak
+stem: Acids can be sorted into strong acids and weak acids.
+parts:
+- id: a
+  prompt: Which of these is a weak acid?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Ethanoic acid
+      correct: true
+    - id: B
+      text: Sulfuric acid
+      correct: false
+    - id: C
+      text: Hydrochloric acid
+      correct: false
+    - id: D
+      text: Nitric acid
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Which acid is found in vinegar?
+  - rung: 2
+    name: concept
+    text:
+      en: The three common laboratory mineral acids are all strong.
+  - rung: 3
+    name: first_step
+    text:
+      en: Hydrochloric, nitric and sulfuric acids are fully ionised in water.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The weak acid is the one that only partly ionises; it is a carboxylic acid.
+  - rung: 5
+    name: full_step
+    text:
+      en: Ethanoic acid only partly ionises in water, so it is a weak acid.
+solution:
+  steps:
+  - n: 1
+    latex: \text{CH}_3\text{COOH} \rightleftharpoons \text{CH}_3\text{COO}^{-} + \text{H}^{+}
+    reason: Partial ionisation
+difficulty:
+  prior: -0.5
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

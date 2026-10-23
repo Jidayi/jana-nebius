@@ -1,0 +1,107 @@
+solver:
+- tool_calls:
+  - name: math_solve
+    args:
+      equations:
+      - 0 = 14^2 - 2*9.8*s
+      unknowns:
+      - s
+- json:
+    status: complete
+    method_summary: Use v^2 = u^2 + 2as with v = 0 at the top.
+    steps:
+    - index: 1
+      latex: v^2 = u^2 + 2as
+      reason: links u, v, a and s
+      check_id: null
+      kc_ref: null
+      value: null
+      unit: null
+    - index: 2
+      latex: 0 = 14^2 - 2(9.8)s
+      reason: substitute, up positive
+      check_id: '{{last_check_id}}'
+      kc_ref: null
+      value: '10'
+      unit: m
+    final_answer:
+      latex: s = 10 m
+      value: '10'
+      unit: m
+      check_id: '{{last_check_id}}'
+      plausible: true
+    blocked_step: null
+    blocked_reason: null
+checker:
+- json:
+    subject_of_check: solver_plan
+    verdict: correct
+    first_wrong_step: null
+    error_category: none
+    why: each step re-derived
+    counterexample: null
+    misconception_ref: null
+    method: re_derive
+    step_marks: []
+    check_ids: '{{task_check_ids}}'
+coach:
+- json:
+    say_spoken: null
+    say: We want the greatest height. What do you know about the ball's speed at the very top?
+    board: []
+    visual: []
+    card: null
+    hint_rung: 0
+    expects: student_answer
+    numbers_from: []
+    cites: []
+    reveals: none
+    confidence: medium
+- json:
+    say_spoken: null
+    say: It rises 10 m. Which equation did you use?
+    board: []
+    visual: []
+    card: null
+    hint_rung: 1
+    expects: student_answer
+    numbers_from: []
+    cites: []
+    reveals: none
+    confidence: medium
+- json:
+    say_spoken: null
+    say: Which quantities does the question give you, and which one does it ask for?
+    board: []
+    visual: []
+    card: null
+    hint_rung: 1
+    expects: student_answer
+    numbers_from: []
+    cites: []
+    reveals: none
+    confidence: medium
+- json:
+    say_spoken: null
+    say: With zero speed at the top, substituting into the checked equation gives a greatest height of 10 m.
+    board: []
+    visual: []
+    card: null
+    hint_rung: 0
+    expects: student_answer
+    numbers_from: []
+    cites: []
+    reveals: solution
+    confidence: medium
+- json:
+    say_spoken: null
+    say: 'That''s right (checked): it rises 10 m. Why is the speed zero at the top?'
+    board: []
+    visual: []
+    card: null
+    hint_rung: 0
+    expects: student_answer
+    numbers_from: []
+    cites: []
+    reveals: none
+    confidence: medium

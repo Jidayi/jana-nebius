@@ -1,0 +1,81 @@
+id: itm.chm.o.reactions.0019
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.rate_factors
+stem: Milk left on a warm kitchen table goes sour in a day; in a refrigerator it lasts for several days.
+parts:
+- id: a
+  prompt: Why does the milk last longer in the refrigerator?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: The cold kills the milk, so no reactions can happen.
+      correct: false
+    - id: B
+      text: The low temperature slows down the reactions that make milk go sour.
+      correct: true
+    - id: C
+      text: Cold milk has a larger surface area.
+      correct: false
+    - id: D
+      text: The refrigerator removes the oxygen from the milk.
+      correct: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Souring is caused by chemical reactions in the milk.
+  - rung: 2
+    name: concept
+    text:
+      en: Lowering the temperature lowers the rate of a reaction.
+  - rung: 3
+    name: first_step
+    text:
+      en: A refrigerator keeps food at a low temperature.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The reactions still happen in the cold, but think about how fast.
+  - rung: 5
+    name: full_step
+    text:
+      en: The milk lasts longer because the reactions that make it sour are much slower at the low temperature.
+solution:
+  steps:
+  - n: 1
+    latex: '\text{lower temperature: slower reaction}'
+    reason: A rate factor
+difficulty:
+  prior: -0.8
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

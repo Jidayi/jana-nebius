@@ -1,0 +1,36 @@
+id: mc.phy.o.kelvin_subtraction_reversed
+kc_ids:
+- kc.phy.o.particles.temperature_scales
+student_name: Subtracting the wrong way round
+description: Takes the temperature away from 273 instead of 273 from the temperature, or loses a minus sign, so the answer has the wrong sign or size.
+signatures:
+- kind: answer_transform
+  expression: 273 - x
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Use T = θ + 273 and θ = T − 273 exactly as written, and keep the sign of a Celsius temperature below zero: −40 °C is −40 + 273 = 233 K.'
+probe_item_ids:
+- itm.phy.o.particles.0026
+- itm.phy.o.particles.0027
+- itm.phy.o.particles.0028
+- itm.phy.o.particles.0029
+- itm.phy.o.particles.0030
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

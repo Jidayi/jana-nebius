@@ -1,0 +1,44 @@
+id: wex.chm.o.states.0001
+kc_ids:
+- kc.chm.o.states.particle_model
+problem: Air is warmed from 20 °C to 60 °C in a sealed balloon. By how many degrees did it warm, and what happens to the particles?
+steps:
+- n: 1
+  latex: \Delta T = 60 - 20
+  reason: Temperature rise
+  check_id: chk_build_chm_states_w0001_c
+- n: 2
+  latex: \text{particles move faster and further apart}
+  reason: More energy, faster motion
+final_answer:
+  latex: \Delta T = 40\ ^{\circ}\text{C}
+  check_id: chk_build_chm_states_w0001_c
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_states_w0001_c:
+    args:
+      expression: 60 - 20
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

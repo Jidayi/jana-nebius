@@ -1,0 +1,89 @@
+id: itm.chm.o.electrolysis.0038
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.applications
+stem: A steel spoon is to be plated with silver.
+parts:
+- id: a
+  prompt: Which arrangement plates the spoon?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: Spoon as the anode, a silver cathode, and silver nitrate solution
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_plated_object_as_anode
+      feedback: 'Metal is deposited where positive metal ions gain electrons: at the cathode. So the object to be plated is the cathode, the plating metal is the anode, and the electrolyte contains ions of the plating metal.'
+    - id: B
+      text: Spoon as the anode, a silver cathode, and copper(II) sulfate solution
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_plated_object_as_anode
+      feedback: 'Metal is deposited where positive metal ions gain electrons: at the cathode. So the object to be plated is the cathode, the plating metal is the anode, and the electrolyte contains ions of the plating metal.'
+    - id: C
+      text: Spoon as the cathode, a silver anode, and silver nitrate solution
+      correct: true
+    - id: D
+      text: Spoon as the cathode, a copper anode, and copper(II) sulfate solution
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_plated_object_as_anode
+      feedback: 'Metal is deposited where positive metal ions gain electrons: at the cathode. So the object to be plated is the cathode, the plating metal is the anode, and the electrolyte contains ions of the plating metal.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Silver must end up on the spoon. Which electrode gains metal?
+  - rung: 2
+    name: concept
+    text:
+      en: Positive metal ions gain electrons and are deposited at the cathode.
+  - rung: 3
+    name: first_step
+    text:
+      en: The electrolyte must contain the ions of the metal you want on the spoon.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A silver anode dissolves and keeps the supply of silver ions in the solution topped up.
+  - rung: 5
+    name: full_step
+    text:
+      en: Make the spoon the cathode, use a silver anode, and use a solution of a silver salt such as silver nitrate. Silver ions are reduced onto the spoon.
+  misconception_ids:
+  - mc.chm.o.electrolysis_plated_object_as_anode
+solution:
+  steps:
+  - n: 1
+    latex: \text{Ag}^{+} + e^- \rightarrow \text{Ag (on the spoon)}
+    reason: Reduction at the cathode
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

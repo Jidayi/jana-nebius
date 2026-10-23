@@ -1,0 +1,45 @@
+id: wex.phy.o.forces.0003
+kc_ids:
+- kc.phy.o.forces.force_mass_acceleration
+problem: The friction on a loaded trolley of total mass 20 kg is 10 N. Find the driving force needed to give it an acceleration of 0.5 m/s².
+steps:
+- n: 1
+  latex: F = ma = 20 \times 0.5 = 10\ \text{N}
+  reason: The resultant force needed
+  check_id: chk_build_phy_frc_w0003_ma
+- n: 2
+  latex: \text{driving force} = 10 + 10 = 20\ \text{N}
+  reason: It must also overcome the friction
+  check_id: chk_build_phy_frc_w0003_ans
+final_answer:
+  latex: 20\ \text{N}
+  check_id: chk_build_phy_frc_w0003_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_frc_w0003_ans:
+    args:
+      expression: 20*0.5 + 10
+    tool: math_evaluate
+  chk_build_phy_frc_w0003_ma:
+    args:
+      expression: 20*0.5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

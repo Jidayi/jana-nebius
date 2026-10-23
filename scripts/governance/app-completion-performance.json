@@ -1,0 +1,46 @@
+{
+  "recorded_at": "2026-10-17T18:28:22.000046+00:00",
+  "environment": "Codex in-app browser against local Vite development server; test runners idle",
+  "candidate_acceptance": false,
+  "method": "37 typed key events to next animation frame; 20-second production queue/reducer replay while scrolling; whole-page DOM sampled each frame",
+  "reference_hardware": false,
+  "cpu_throttling_calibrated": false,
+  "source_sha256": {
+    "apps/desktop/gallery/TranscriptBenchmark.tsx": "3b2ca9bb087a460f79d9288486b626f989a8c0a98c91127f1c35f04e7e786a8d",
+    "apps/desktop/gallery/performance-budget.ts": "a27310fc4a5806f7ec038519c90e462ff1370bc7a0a68bd066bbe807e1664acd",
+    "packages/ui/src/transcript/window.tsx": "bebf8b74f3fa08a53069600a20d4d61af948837c222d2c7c87f495e22fb0fb2d",
+    "packages/ui/src/transcript/Transcript.tsx": "830a904378aba0450bdd8acaf0c40e0b5bb23128d6a5163ddf8de9dda7958920",
+    "packages/ui/src/transcript/Turn.tsx": "0ddf7531b349c68c4df8c74294ff47c6635fd34452a046be2d5ef8e8a264e8f4",
+    "packages/ui/src/composer/Composer.tsx": "14447edacf9121f98d4b14374855f2f197e67657b165c28ac1558d58eeb6b945"
+  },
+  "observed": {
+    "qualification": "Development browser only; unthrottled and not reference-hardware acceptance",
+    "turns": 500,
+    "board_steps": 30,
+    "deltas": 5000,
+    "max_transcript_nodes": 845,
+    "max_dom_nodes": 2491,
+    "frame_p50_ms": 8.3,
+    "frame_p95_ms": 16.6,
+    "input_p50_ms": 3.9,
+    "input_p95_ms": 12.8,
+    "input_samples": 37,
+    "long_tasks_supported": true,
+    "max_long_task_ms": 50,
+    "task_timeline": [
+      {
+        "after_start_ms": 18,
+        "duration_ms": 50
+      }
+    ],
+    "budget_failures": []
+  },
+  "additional_manual_checks": [
+    "Search mounted synthetic turn 17 and its text bounds fell inside the conversation viewport.",
+    "Earlier messages moved focus into a visible older conversation row."
+  ],
+  "limitations": [
+    "No reference-machine, model-at-maximum-rate, calibrated 4x CI, startup or RSS acceptance.",
+    "Development task measurements include the harness and browser automation."
+  ]
+}

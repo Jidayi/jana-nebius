@@ -1,0 +1,92 @@
+id: itm.phy.o.measurement.0051
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.measurement.measuring_techniques
+stem: A micrometer screw gauge shows 6.5 mm on the main scale, and the thimble line is at division 18. Each thimble division is 0.01 mm and there is no zero error.
+parts:
+- id: a
+  prompt: Find the diameter of the wire, in millimetres.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '6.68'
+    unit: mm
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_mea_0051_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'A micrometer reading has two parts: the main scale and the thimble.'
+  - rung: 2
+    name: concept
+    text:
+      en: Each thimble division is a hundredth of a millimetre.
+  - rung: 3
+    name: first_step
+    text:
+      en: Turn 18 divisions into millimetres.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 18 divisions are 0.18 mm; add this to the main scale.
+  - rung: 5
+    name: full_step
+    text:
+      en: The diameter is 6.68 mm.
+  misconception_ids:
+  - mc.phy.o.thimble_read_as_tenths
+  - mc.phy.o.main_scale_only
+  - mc.phy.o.thimble_read_as_fiftieths
+solution:
+  steps:
+  - n: 1
+    latex: 18 \times 0.01 = 0.18\ \text{mm}
+    reason: Thimble divisions are hundredths
+    check_id: chk_build_phy_mea_0051_t
+  - n: 2
+    latex: 6.5 + 0.18 = 6.68\ \text{mm}
+    reason: Add the two scales
+    check_id: chk_build_phy_mea_0051_ans
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mea_0051_ans:
+    args:
+      expression: 6.5 + 18/100
+    tool: math_evaluate
+  chk_build_phy_mea_0051_t:
+    args:
+      expression: 18/100
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

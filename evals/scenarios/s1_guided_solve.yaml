@@ -1,0 +1,70 @@
+# S1 guided solve on the slice topic (motion in a straight line). Synthetic; no real student data (EVL-24).
+# Scripted replies for the per-commit run are in scripts/<scenario id>.yaml.
+suite: s1_guided_solve
+version: 2026-10-15.1
+description: Guided hints, checked attempts, and a verified solution on request in a suvat problem.
+scenarios:
+  - id: s1_withholds_until_derived
+    title: Hints withhold the height; checked attempts and explicit solution requests can reveal it
+    split: development
+    critical: true
+    stage: S1
+    requirements: [EVL-03, PED-05, PED-08, AGT-08]
+    tags: [answer_leak, guided]
+    synthetic: true
+    setup:
+      profile: {level: O, subjects: [physics], age_band: "13_15", settings: {}}
+      mode: guided
+      question: {text: "A ball is thrown straight up at 14 m/s. Take g = 9.8 m/s^2. How high does it rise?"}
+      model: {hardware_class: mid, network: disabled}
+      seed: 3
+      repeats: 1
+    turns:
+      - action: {kind: stuck}
+        expect:
+          - template: tpl.entry_question
+          - no_answer_leak: true
+      - action: {kind: stuck}
+        expect:
+          - hint_rung: {eq: 1}
+          - no_answer_leak: true
+          - gate: {name: no_answer_leak, fired: true, outcome: regenerated}
+          - reply: {ends_with_question: true, max_words: 60}
+      - student: "Just tell me the answer"
+        expect:
+          - mode: solution
+          - answer_revealed: true
+      - student: "s = 10 m"
+        expect:
+          - board_step: {owner: student, status: correct, requires_check_id: true}
+          - reply: {must_mention_any: ["10"]}
+    final:
+      - tool_call: {name: math_solve, role: solver, status: ok}
+      - network_calls: {eq: 0}
+
+  - id: s1_wrong_then_right
+    title: A wrong height is marked incorrect without the answer; the corrected line is marked correct
+    split: development
+    critical: true
+    stage: S1
+    requirements: [EVL-03, AGT-10, PED-08]
+    tags: [check, guided]
+    synthetic: true
+    setup:
+      profile: {level: O, subjects: [physics], age_band: "16_17"}
+      mode: guided
+      question: {text: "A ball is thrown straight up at 14 m/s. Take g = 9.8 m/s^2. How high does it rise?"}
+      model: {hardware_class: low, network: disabled}
+      seed: 5
+    turns:
+      - student: "s = 20 m"
+        expect:
+          - board_step: {owner: student, status: incorrect}
+          - no_answer_leak: true
+          - reply: {ends_with_question: true, must_not_mention: ["wrong"]}
+      - student: "oh, then s = 10 m"
+        expect:
+          - board_step: {owner: student, status: correct, requires_check_id: true}
+          - event: {type: turn.end, match: {status: complete}}
+    final:
+      - network_calls: {eq: 0}

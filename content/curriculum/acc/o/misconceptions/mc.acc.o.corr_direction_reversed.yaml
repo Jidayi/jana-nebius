@@ -1,0 +1,34 @@
+id: mc.acc.o.corr_direction_reversed
+kc_ids:
+- kc.acc.o.trial_balance.correcting_entries
+student_name: Correction in the wrong direction
+description: Writes the correcting entry with debit and credit the wrong way round, doubling the error.
+signatures:
+- kind: structural
+  rule: debit_credit_swapped
+fix:
+  strategy: simpler_numbers
+  text:
+    en: Debit the account that is too low on its debit side; credit the one that is too low on its credit side.
+probe_item_ids:
+- itm.acc.o.trial_balance.0034
+- itm.acc.o.trial_balance.0035
+- itm.acc.o.trial_balance.0036
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

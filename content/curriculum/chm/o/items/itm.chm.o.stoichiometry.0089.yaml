@@ -1,0 +1,86 @@
+id: itm.chm.o.stoichiometry.0089
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.stoichiometry.solution_concentration
+stem: A student needs 0.0200 mol of sodium hydroxide, NaOH from a solution of concentration 0.500 mol/dm³.
+parts:
+- id: a
+  prompt: Calculate the volume of solution needed, in cm³.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '40.0'
+    unit: cm^3
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_stoichiometry_0089_chain
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know an amount and a concentration and want a volume.
+  - rung: 2
+    name: concept
+    text:
+      en: V = n ÷ c gives dm³; multiply by 1000 for cm³.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out 0.0200 ÷ 0.500 first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Then multiply (0.0200 ÷ 0.500) by 1000.
+  - rung: 5
+    name: full_step
+    text:
+      en: (0.0200 ÷ 0.500) × 1000 = 40.0 cm³.
+  misconception_ids:
+  - mc.chm.o.conc_inverted
+solution:
+  steps:
+  - n: 1
+    latex: V = \frac{0.0200}{0.500}\ \text{dm}^3
+    reason: Amount over concentration
+  - n: 2
+    latex: V = 40.0\ \text{cm}^3
+    reason: dm³ to cm³
+    check_id: chk_build_chm_stoichiometry_0089_chain
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_0089_chain:
+    args:
+      expression: 0.0200/0.500*1000
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

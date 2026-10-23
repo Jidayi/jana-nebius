@@ -1,0 +1,81 @@
+id: itm.chm.o.environment.0023
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.environment.fertilisers
+stem: A farmer needs a fertiliser that supplies both nitrogen and potassium.
+parts:
+- id: a
+  prompt: Which one should the farmer use?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Urea, CO(NH₂)₂
+      correct: false
+    - id: B
+      text: Ammonium phosphate, (NH₄)₃PO₄
+      correct: false
+    - id: C
+      text: Ammonium nitrate, NH₄NO₃
+      correct: false
+    - id: D
+      text: Potassium nitrate, KNO₃
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Look at the symbols in each formula.
+  - rung: 2
+    name: concept
+    text:
+      en: A fertiliser can supply only the elements that are in its formula.
+  - rung: 3
+    name: first_step
+    text:
+      en: Potassium has the symbol K; nitrogen has the symbol N.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Find the formula that contains both K and N.
+  - rung: 5
+    name: full_step
+    text:
+      en: Potassium nitrate, KNO₃, contains both potassium and nitrogen.
+solution:
+  steps:
+  - n: 1
+    latex: '\text{KNO}_3\text{: K and N}'
+    reason: Elements in the formula
+difficulty:
+  prior: -0.4
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,107 @@
+id: itm.phy.o.oscilloscope.0029
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.oscilloscope.y_gain
+stem: A microphone is connected to an oscilloscope with its Y-gain set to 5 mV/div. A crest of the trace is 3.5 divisions above the centre line.
+parts:
+- id: a
+  prompt: Find the peak voltage of the signal in volts.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 17.5 V
+      correct: false
+      misconception_id: mc.phy.o.osc_ygain_mv_as_v
+      feedback: 'Check the unit on the Y-gain: mV/div gives an answer in millivolts. Change to volts at the end if asked.'
+    - id: B
+      text: 0.0175 V
+      correct: true
+    - id: C
+      text: 0.035 V
+      correct: false
+      misconception_id: mc.phy.o.osc_peak_and_peak_to_peak_confused
+      feedback: The peak voltage is measured from the centre line to a crest; peak-to-peak is crest to trough, twice as big.
+    - id: D
+      text: 0.00875 V
+      correct: false
+      misconception_id: mc.phy.o.osc_peak_height_halved
+      feedback: Check where the height is measured from. From the centre line it is already the peak; only crest-to-trough needs halving.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The peak voltage is the height of a crest above the centre line.
+  - rung: 2
+    name: concept
+    text:
+      en: Here each vertical division stands for a number of millivolts, not volts.
+  - rung: 3
+    name: first_step
+    text:
+      en: Multiply 3.5 divisions by 5 mV/div to get millivolts.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The peak voltage is 17.5 mV; change it into volts.
+  - rung: 5
+    name: full_step
+    text:
+      en: The peak voltage is 0.0175 V.
+  misconception_ids:
+  - mc.phy.o.osc_peak_and_peak_to_peak_confused
+  - mc.phy.o.osc_peak_height_halved
+  - mc.phy.o.osc_ygain_mv_as_v
+solution:
+  steps:
+  - n: 1
+    latex: V_0 = 3.5 \times 5 = 17.5\ \text{mV}
+    reason: Divisions times millivolts per division
+    check_id: chk_build_phy_osc_0029_mv
+  - n: 2
+    latex: V_0 = 17.5\ \text{mV} = 0.0175\ \text{V}
+    reason: Millivolts into volts
+    check_id: chk_build_phy_osc_0029_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_osc_0029_ans:
+    args:
+      quantity: 17.5 mV
+      to: V
+    tool: units_convert
+  chk_build_phy_osc_0029_mv:
+    args:
+      expression: 3.5*5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

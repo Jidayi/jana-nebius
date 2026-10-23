@@ -1,0 +1,96 @@
+id: itm.chm.o.organic.0033
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.organic.general_formulae
+stem: A compound is an alkene with general formula CₙH₂ₙ. Its relative molecular mass is 56.
+parts:
+- id: a
+  prompt: How many carbon atoms, n, does one molecule contain?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '4'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_organic_0033_n
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Write the Mr of CₙH₂ₙ in terms of n, then set it equal to 56.
+  - rung: 2
+    name: concept
+    text:
+      en: Each CH₂ unit has a mass of 12 + 1 + 1.
+  - rung: 3
+    name: first_step
+    text:
+      en: Mr = 14n for every alkene.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Set 14n = 56 and divide by 14.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'n = 56 ÷ 14 = 4: the molecule is C₄H₈.'
+  misconception_ids:
+  - mc.chm.o.organic_gf_hydrogen_mass_ignored
+  - mc.chm.o.organic_gf_wrong_series
+solution:
+  steps:
+  - n: 1
+    latex: \text{CH}_2 = 14
+    reason: One CH₂ unit
+    check_id: chk_build_chm_organic_0033_ch2
+  - n: 2
+    latex: n = \frac{56}{14} = 4
+    reason: Solve 14n = Mr
+    check_id: chk_build_chm_organic_0033_n
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_0033_ch2:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      formula: CH2
+    tool: chem_molar_mass
+  chk_build_chm_organic_0033_n:
+    args:
+      expression: 56/14
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.ultrasound_air_speed_used
+kc_ids:
+- kc.phy.o.sound.ultrasound
+student_name: The speed in air for water
+description: Uses the speed of sound in air for ultrasound travelling through water or body tissue.
+signatures:
+- kind: answer_transform
+  expression: '340'
+fix:
+  strategy: contrast_example
+  text:
+    en: Sound travels about four times faster in water than in air. Use the speed for the material the pulse actually crosses.
+probe_item_ids:
+- itm.phy.o.sound.0058
+- itm.phy.o.sound.0059
+- itm.phy.o.sound.0046
+- itm.phy.o.sound.0049
+- itm.phy.o.sound.0050
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

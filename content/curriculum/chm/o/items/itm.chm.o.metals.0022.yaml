@@ -1,0 +1,88 @@
+id: itm.chm.o.metals.0022
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.alloys
+stem: Aircraft bodies are made from an alloy of aluminium rather than pure aluminium.
+parts:
+- id: a
+  prompt: Why is the alloy used?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: It is much stronger than pure aluminium and is still light.
+      correct: true
+    - id: B
+      text: It is a compound, so it does not corrode.
+      correct: false
+      misconception_id: mc.chm.o.metals_alloy_is_compound
+      feedback: An alloy is a mixture. Its make-up can vary (brass can be more or less copper), and no new compound with a fixed formula forms. The metal atoms are still held by metallic bonding.
+    - id: C
+      text: It is heavier, which keeps the plane steady.
+      correct: false
+    - id: D
+      text: It is softer, so the body can bend in the wind.
+      correct: false
+      misconception_id: mc.chm.o.metals_alloy_impure_weaker
+      feedback: Pure iron is soft and bends easily; steel, iron with a little carbon, is much harder. Alloys are made on purpose because they are usually harder and stronger than the pure metal.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Pure aluminium is light but rather soft.
+  - rung: 2
+    name: concept
+    text:
+      en: An aircraft body must be light and strong.
+  - rung: 3
+    name: first_step
+    text:
+      en: Adding other metals to aluminium changes how easily its layers slide.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Ask whether the added atoms make the metal harder or softer.
+  - rung: 5
+    name: full_step
+    text:
+      en: The alloy is used because it is far stronger than pure aluminium while keeping its low density.
+  misconception_ids:
+  - mc.chm.o.metals_alloy_is_compound
+  - mc.chm.o.metals_alloy_impure_weaker
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Al alloy: strong and light}'
+    reason: Disrupted layers make it stronger
+difficulty:
+  prior: -0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

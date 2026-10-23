@@ -1,0 +1,91 @@
+id: itm.chm.o.acids.0025
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.acids.strong_and_weak
+stem: Hydrochloric acid is described as a strong acid.
+parts:
+- id: a
+  prompt: What does 'strong' mean here?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: It forms ions in water, but a weak acid forms none
+      correct: false
+      misconception_id: mc.chm.o.acids_weak_not_ionised
+      feedback: 'A weak acid is partly ionised: most molecules stay whole, but some give H⁺ ions. That is why ethanoic acid still turns indicators red or orange, conducts a little and reacts slowly with metals.'
+    - id: B
+      text: It is very concentrated
+      correct: false
+      misconception_id: mc.chm.o.acids_strong_means_concentrated
+      feedback: Strength is about how fully an acid ionises in water. Concentration is about how much acid is in each dm³. A dilute solution of hydrochloric acid is still a strong acid; a concentrated solution of ethanoic acid is still a weak acid.
+    - id: C
+      text: It is fully ionised in water
+      correct: true
+    - id: D
+      text: It gives more hydrogen in total with a metal than a weak acid would
+      correct: false
+      misconception_id: mc.chm.o.acids_weak_gives_less_gas
+      feedback: A weak acid reacts more slowly, but as H⁺ ions are used up more molecules ionise. In the end the same amount of acid gives the same amount of gas; it just takes longer.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Strength and concentration are different ideas. Which one is about ions?
+  - rung: 2
+    name: concept
+    text:
+      en: When an acid dissolves, its molecules can split into ions. Strength describes how many do this.
+  - rung: 3
+    name: first_step
+    text:
+      en: In a strong acid, every molecule splits into ions. In a weak acid, only some do.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The word 'strong' says nothing about how much acid is in each dm³.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'A strong acid such as hydrochloric acid is fully ionised in water: HCl → H⁺ + Cl⁻.'
+  misconception_ids:
+  - mc.chm.o.acids_strong_means_concentrated
+  - mc.chm.o.acids_weak_not_ionised
+  - mc.chm.o.acids_weak_gives_less_gas
+solution:
+  steps:
+  - n: 1
+    latex: \text{HCl} \rightarrow \text{H}^{+} + \text{Cl}^{-}
+    reason: Complete ionisation
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.decayed_for_remaining
+kc_ids:
+- kc.phy.o.radioactivity.half_life
+student_name: Giving the amount decayed instead of the amount left
+description: Works out how much has decayed when the question asks how much is left (or the other way round).
+signatures:
+- kind: answer_transform
+  expression: x - x/2^n
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Read the question again: the amount left is what halving gives; the amount decayed is the start minus that.'
+probe_item_ids:
+- itm.phy.o.radioactivity.0043
+- itm.phy.o.radioactivity.0044
+- itm.phy.o.radioactivity.0031
+- itm.phy.o.radioactivity.0032
+- itm.phy.o.radioactivity.0037
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

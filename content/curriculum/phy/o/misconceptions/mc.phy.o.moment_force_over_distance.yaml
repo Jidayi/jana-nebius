@@ -1,0 +1,36 @@
+id: mc.phy.o.moment_force_over_distance
+kc_ids:
+- kc.phy.o.forces.moments
+student_name: Dividing force by distance
+description: Divides the force by the distance instead of multiplying them to find a moment.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: counterexample
+  text:
+    en: 'A longer spanner makes a nut easier to turn, so the turning effect grows with the distance: multiply.'
+probe_item_ids:
+- itm.phy.o.forces.0093
+- itm.phy.o.forces.0094
+- itm.phy.o.forces.0081
+- itm.phy.o.forces.0083
+- itm.phy.o.forces.0085
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

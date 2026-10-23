@@ -1,0 +1,34 @@
+id: mc.acc.o.inv_opening_closing_confused
+kc_ids:
+- kc.acc.o.inventory.inventory_profit_effect
+student_name: Opening and closing inventory effects mixed up
+description: Gives an error in opening inventory the same effect on profit as one in closing inventory.
+signatures:
+- kind: step_error
+  error_category: sign
+fix:
+  strategy: contrast_example
+  text:
+    en: Opening inventory is added in cost of sales; closing inventory is subtracted.
+probe_item_ids:
+- itm.acc.o.inventory.0034
+- itm.acc.o.inventory.0036
+- itm.acc.o.inventory.0037
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

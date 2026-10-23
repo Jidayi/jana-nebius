@@ -1,0 +1,93 @@
+id: itm.phy.o.forces.0046
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.forces.friction_and_terminal_velocity
+stem: A shoe has a deep pattern on its sole.
+parts:
+- id: a
+  prompt: Why does this help someone walking on a wet path?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: It reduces friction, so walking needs less effort
+      correct: false
+      misconception_id: mc.phy.o.friction_always_unwanted
+      feedback: 'Try walking on very smooth ice: without friction between your shoes and the ground you cannot push off. Tyres, brakes and shoes all need friction.'
+    - id: B
+      text: It keeps the walker's speed steady without any force
+      correct: false
+      misconception_id: mc.phy.o.steady_speed_no_forces
+      feedback: A car cruising at a steady speed still has friction and air resistance on it; the engine's force just matches them. Steady velocity means the forces balance, not that there are none.
+    - id: C
+      text: It increases friction, so the foot can push back without slipping
+      correct: true
+    - id: D
+      text: It stores the force of each step for the next one
+      correct: false
+      misconception_id: mc.phy.o.force_of_motion_used_up
+      feedback: Once a ball leaves your hand nothing from your push travels with it. It slows down only if a force such as friction acts against it.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about which forces act and how big each one is at this moment.
+  - rung: 2
+    name: concept
+    text:
+      en: Friction and air resistance act against the motion, and air resistance grows as the speed grows.
+  - rung: 3
+    name: first_step
+    text:
+      en: Work out whether the forces are balanced and what that does to the speed.
+  - rung: 4
+    name: worked_step
+    text:
+      en: To walk forward you push backwards on the ground.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It increases friction, so the foot can push back without slipping. Friction from the ground pushes you forward; more grip means less slipping.'
+  misconception_ids:
+  - mc.phy.o.force_of_motion_used_up
+  - mc.phy.o.friction_always_unwanted
+  - mc.phy.o.steady_speed_no_forces
+solution:
+  steps:
+  - n: 1
+    latex: \text{It increases friction, so the foot can push back without slipping}
+    reason: Compare the forces and how they change
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

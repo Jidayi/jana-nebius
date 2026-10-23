@@ -1,0 +1,91 @@
+id: itm.chm.o.electrolysis.0017
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.aqueous_products
+stem: Aqueous copper(II) sulfate gives copper at the cathode, but aqueous sodium sulfate gives hydrogen, when each is electrolysed with inert electrodes.
+parts:
+- id: a
+  prompt: Why do the cathode products differ?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: The copper(II) sulfate is more concentrated, and concentration decides the cathode product.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_halide_concentration_ignored
+      feedback: At the anode, a concentrated chloride, bromide or iodide solution gives the halogen. A dilute halide solution, or a solution with no halide (a sulfate or nitrate), gives oxygen from the water.
+    - id: B
+      text: Copper is less reactive than hydrogen, so its ions are discharged; sodium is more reactive, so hydrogen forms instead.
+      correct: true
+    - id: C
+      text: Hydrogen should form in both; the copper comes from the electrodes.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_hydrogen_always_at_cathode
+      feedback: Hydrogen forms at the cathode only when the metal is more reactive than hydrogen. Copper and silver are less reactive, so their ions are discharged first and the metal coats the cathode.
+    - id: D
+      text: Sodium forms at the cathode too, but it is hidden under the hydrogen.
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_reactive_metal_from_solution
+      feedback: In a solution, water also provides H⁺ ions. At the cathode, hydrogen forms unless the metal is less reactive than hydrogen (such as copper or silver). Sodium and potassium are far more reactive, so hydrogen forms instead.
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Both solutions contain H⁺ ions from water as well as the metal ions.
+  - rung: 2
+    name: concept
+    text:
+      en: At the cathode, the less reactive of hydrogen and the metal is discharged.
+  - rung: 3
+    name: first_step
+    text:
+      en: Place copper and sodium on either side of hydrogen in the reactivity series.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Inert electrodes do not dissolve, so the copper must come from the solution.
+  - rung: 5
+    name: full_step
+    text:
+      en: Copper is below hydrogen in reactivity, so Cu²⁺ ions are discharged as copper. Sodium is above hydrogen, so H⁺ ions are discharged as hydrogen and Na⁺ ions stay in solution.
+  misconception_ids:
+  - mc.chm.o.electrolysis_hydrogen_always_at_cathode
+  - mc.chm.o.electrolysis_reactive_metal_from_solution
+  - mc.chm.o.electrolysis_halide_concentration_ignored
+solution:
+  steps:
+  - n: 1
+    latex: '\text{Cu below H: copper; Na above H: hydrogen}'
+    reason: Reactivity decides the cathode product
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

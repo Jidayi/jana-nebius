@@ -1,0 +1,110 @@
+id: itm.phy.o.electromagnetism.0066
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.power_transmission
+stem: A transformer takes 0.5 A from a 230 V supply. Its secondary coil gives 18.2 A at 6 V.
+parts:
+- id: a
+  prompt: Calculate the efficiency of the transformer.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '95.0'
+    unit: '%'
+    unit_policy: equivalent
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_phy_emg_0066_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Efficiency compares the useful power out with the power in.
+  - rung: 2
+    name: concept
+    text:
+      en: Each power is p.d. × current.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find the power in and the power out, then divide output by input.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The power in is 115 W and the power out is 109.2 W.
+  - rung: 5
+    name: full_step
+    text:
+      en: Efficiency = 109.2 ÷ 115 = 0.950, which is 95.0%.
+  misconception_ids:
+  - mc.phy.o.efficiency_upside_down
+  - mc.phy.o.efficiency_from_voltages
+  - mc.phy.o.efficiency_left_as_fraction
+solution:
+  steps:
+  - n: 1
+    latex: P_{in} = 230 \times 0.5 = 115\ \text{W}
+    reason: Power in = p.d. × current
+    check_id: chk_build_phy_emg_0066_pin
+  - n: 2
+    latex: P_{out} = 6 \times 18.2 = 109.2\ \text{W}
+    reason: Power out = p.d. × current
+    check_id: chk_build_phy_emg_0066_pout
+  - n: 3
+    latex: \frac{109.2}{115} = 0.950
+    reason: Output power over input power
+    check_id: chk_build_phy_emg_0066_frac
+  - n: 4
+    latex: 0.950 \rightarrow 95.0\%
+    reason: Multiply by a hundred for a percentage
+    check_id: chk_build_phy_emg_0066_ans
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_0066_ans:
+    args:
+      expression: 6*18.2/(230*0.5)*100
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_emg_0066_frac:
+    args:
+      expression: 6*18.2/(230*0.5)
+      sf: 3
+    tool: math_evaluate
+  chk_build_phy_emg_0066_pin:
+    args:
+      expression: 230*0.5
+    tool: math_evaluate
+  chk_build_phy_emg_0066_pout:
+    args:
+      expression: 6*18.2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

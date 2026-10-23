@@ -1,0 +1,44 @@
+id: wex.phy.o.density.0003
+kc_ids:
+- kc.phy.o.density.measuring_density
+problem: A seashell of mass 21.6 g is lowered into a full displacement can. The overflowing water is caught in a measuring cylinder, which then reads 8 cm³. Calculate the density of the seashell in g/cm³.
+steps:
+- n: 1
+  latex: V_{\text{shell}} = V_{\text{overflow}}
+  reason: The overflow equals the object's volume
+- n: 2
+  latex: \rho = \frac{21.6}{8} = 2.7\ \text{g/cm}^3
+  reason: Density = mass ÷ volume
+  check_id: chk_build_phy_den_w0003_ans
+final_answer:
+  latex: 2.7\ \text{g/cm}^3
+  check_id: chk_build_phy_den_w0003_ans
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_den_w0003_ans:
+    args:
+      expression: 21.6/8
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

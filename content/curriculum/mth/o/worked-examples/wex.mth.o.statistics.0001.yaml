@@ -1,0 +1,40 @@
+id: wex.mth.o.statistics.0001
+kc_ids:
+- kc.mth.o.statistics.data_types
+problem: 'A survey records five kinds of data: the heights of students in cm; the volume of water in tanks; the number of goals in a match; the shirt numbers of a football team; the mass of bags of rice. How many of the five are continuous?'
+steps:
+- n: 1
+  latex: \text{continuous} = \text{measured, not counted}
+  reason: Sort each kind of data
+- n: 2
+  latex: '3'
+  reason: Count the measured quantities
+  check_id: chk_build_mth_sta_w0001_ans
+final_answer:
+  latex: '3'
+  check_id: chk_build_mth_sta_w0001_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_w0001_ans:
+    args:
+      expression: 1 + 1 + 1
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

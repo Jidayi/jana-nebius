@@ -1,0 +1,103 @@
+id: itm.phy.o.electromagnetism.0014
+version: 0.1.1
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electromagnetism.fields_of_currents
+stem: A long straight wire passes at right angles through the page. A small compass at point P, just below the wire, shows that the magnetic field there points to the left.
+parts:
+- id: a
+  prompt: Which way is the current in the wire?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Out of the page
+      correct: false
+      misconception_id: mc.phy.o.grip_rule_reversed
+      feedback: 'Grip the wire with your right hand, thumb along the current: your fingers curl the way the field goes. For a coil, curl the fingers with the current and the thumb points to the north pole.'
+    - id: B
+      text: To the left, the same way as the field
+      correct: false
+      misconception_id: mc.phy.o.wire_field_along_wire
+      feedback: 'Push a straight wire through a card and sprinkle iron filings: they form circles round the wire, not lines along it.'
+    - id: C
+      text: Into the page
+      correct: true
+    - id: D
+      text: 'It cannot be found: the field of a wire points straight away from it'
+      correct: false
+      misconception_id: mc.phy.o.wire_field_radial
+      feedback: A compass beside a wire points round the wire, at right angles to the line joining it to the wire.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Picture the field lines round the wire: what shape are they?'
+  - rung: 2
+    name: concept
+    text:
+      en: 'Use the right-hand grip rule: thumb along the current, fingers curl the way the field goes.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Below the wire, a field pointing to the left means the circles go clockwise as you look at the page.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Which way must your thumb point for your fingers to curl clockwise as you look at the page?
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Into the page: a current into the page gives a clockwise field.'
+  misconception_ids:
+  - mc.phy.o.grip_rule_reversed
+  - mc.phy.o.wire_field_along_wire
+  - mc.phy.o.wire_field_radial
+solution:
+  steps:
+  - n: 1
+    latex: '\text{field lines: circles round the wire}'
+    reason: The field of a straight wire
+  - n: 2
+    latex: '\text{to the left below the wire: field clockwise}'
+    reason: Follow the circle through P
+  - n: 3
+    latex: '\text{clockwise field: current into the page}'
+    reason: Right-hand grip rule
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

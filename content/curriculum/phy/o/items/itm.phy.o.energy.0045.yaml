@@ -1,0 +1,98 @@
+id: itm.phy.o.energy.0045
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.potential_energy
+stem: A bundle of bricks of weight 120 N is raised 1.2 m by a builder.
+parts:
+- id: a
+  prompt: Calculate the increase in its gravitational potential energy.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 1440 J
+      correct: false
+      misconception_id: mc.phy.o.gpe_weight_times_g
+      feedback: A weight in newtons is already mg. Multiply it straight by the height; only a mass in kilograms needs g.
+    - id: B
+      text: 144 J
+      correct: true
+    - id: C
+      text: 14.4 J
+      correct: false
+      misconception_id: mc.phy.o.energy_mass_for_weight
+      feedback: Lifting works against the weight, mg, in newtons. Multiply the mass by g before you multiply by the height.
+    - id: D
+      text: 72 J
+      correct: false
+      misconception_id: mc.phy.o.gpe_half_from_ke
+      feedback: The half belongs to kinetic energy only. The change in gravitational potential energy is simply mgh.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The weight is given, not the mass.
+  - rung: 2
+    name: concept
+    text:
+      en: Weight is already mg, so ΔEp = weight × change in height.
+  - rung: 3
+    name: first_step
+    text:
+      en: Do not multiply by g again.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out 120 × 1.2.
+  - rung: 5
+    name: full_step
+    text:
+      en: The increase is 144 J.
+  misconception_ids:
+  - mc.phy.o.energy_mass_for_weight
+  - mc.phy.o.gpe_half_from_ke
+  - mc.phy.o.gpe_weight_times_g
+solution:
+  steps:
+  - n: 1
+    latex: \Delta E_p = W \Delta h = 120 \times 1.2 = 144\ \text{J}
+    reason: Weight = mg, so mgΔh = WΔh
+    check_id: chk_build_phy_nrg_0045_ans
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 50
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_nrg_0045_ans:
+    args:
+      expression: 120*1.2
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

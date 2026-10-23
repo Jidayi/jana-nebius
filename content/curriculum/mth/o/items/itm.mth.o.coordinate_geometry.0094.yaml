@@ -1,0 +1,118 @@
+id: itm.mth.o.coordinate_geometry.0094
+version: 0.1.1
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.coordinate_geometry.line_equation
+stem: A line has gradient 3 and passes through the point (1, 8). Its equation is y = mx + c.
+parts:
+- id: a
+  prompt: Find c.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '5'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_crd_0094_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: You know m, and one point on the line.
+  - rung: 2
+    name: concept
+    text:
+      en: Substitute m and the point's coordinates into y = mx + c, then solve for c.
+  - rung: 3
+    name: first_step
+    text:
+      en: 8 = 3 × (1) + c.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 3 × (1) = 3.
+  - rung: 5
+    name: full_step
+    text:
+      en: c = 5.
+  misconception_ids:
+  - mc.mth.o.intercept_sign
+  - mc.mth.o.c_as_y_coordinate
+  - mc.mth.o.gradient_inverted
+solution:
+  steps:
+  - n: 1
+    latex: 8 = 3 \times (1) + c
+    reason: Substitute the point and the gradient
+  - n: 2
+    latex: 8 = 3 + c
+    reason: Multiply
+    check_id: chk_build_mth_crd_0094_t
+  - n: 3
+    latex: c = 5
+    reason: Rearrange
+    check_id: chk_build_mth_crd_0094_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+quantities:
+  y1: '8'
+checks:
+  chk_build_mth_crd_0094_ans:
+    args:
+      expression: 8 - 3*(1)
+    tool: math_evaluate
+  chk_build_mth_crd_0094_t:
+    args:
+      expression: 3*(1)
+    tool: math_evaluate
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  fields:
+    quantities:
+      accepted: true
+      accepted_by: rev_6574283c3f5f
+      at: '2026-10-16T04:36:27.220Z'
+      detail: a model proposed the symbol mapping; the tools proved every quantity (CUR-18)
+      inputs:
+      - itm.mth.o.coordinate_geometry.0094
+      model: gemini-3.8-flash
+      origin: ai_accepted
+      prompt_id: drafting.quantity_mapping
+      prompt_sha256: 4dafcc87af9683305d25ac7efbea12ee4d6c0a16c87a8c1468b5f2db97cd5f7f
+      provider: gemini
+      status: passed
+      tier: fast-model
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

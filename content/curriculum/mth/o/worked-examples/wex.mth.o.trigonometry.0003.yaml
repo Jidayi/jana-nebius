@@ -1,0 +1,42 @@
+id: wex.mth.o.trigonometry.0003
+kc_ids:
+- kc.mth.o.trigonometry.trig_side
+problem: In a right-angled triangle, one angle is 23° and the hypotenuse is 18 cm. Find the side adjacent to the angle, to 3 significant figures.
+steps:
+- n: 1
+  latex: \cos \theta = \frac{\text{adj}}{\text{hyp}}
+  reason: The ratio linking the known side and the wanted side is cos
+- n: 2
+  latex: x = 18 \cos 23 = 16.6\ \text{cm}
+  reason: Rearrange and evaluate in degrees
+  check_id: chk_build_mth_trg_w0003_ans
+final_answer:
+  latex: 16.6\ \text{cm}
+  check_id: chk_build_mth_trg_w0003_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_trg_w0003_ans:
+    args:
+      angle_unit: degrees
+      expression: 18*cos(23)
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

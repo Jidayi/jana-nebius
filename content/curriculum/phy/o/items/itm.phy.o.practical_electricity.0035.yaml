@@ -1,0 +1,93 @@
+id: itm.phy.o.practical_electricity.0035
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.practical_electricity.fuses_and_safety
+stem: An electrician tests the three wires of a socket with the appliance switched on and working normally.
+parts:
+- id: a
+  prompt: Which wire is at a high voltage?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: The neutral wire
+      correct: false
+      misconception_id: mc.phy.o.neutral_wire_is_live
+      feedback: The live wire is at a high, changing voltage; the neutral wire stays close to 0 V and completes the circuit.
+    - id: B
+      text: The earth wire
+      correct: false
+      misconception_id: mc.phy.o.earth_wire_carries_working_current
+      feedback: 'In normal use the earth wire carries no current: live and neutral carry it. The earth wire carries current only when a fault makes the case live.'
+    - id: C
+      text: The neutral and earth wires together, since they are the same
+      correct: false
+      misconception_id: mc.phy.o.neutral_and_earth_same
+      feedback: The neutral wire carries the working current back. The earth wire joins a metal case to the ground and carries current only in a fault.
+    - id: D
+      text: The live wire
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what each wire or device is for.
+  - rung: 2
+    name: concept
+    text:
+      en: Live is at a high voltage, neutral stays near 0 V, and earth carries current only in a fault.
+  - rung: 3
+    name: first_step
+    text:
+      en: A fuse or switch must cut the appliance off from the high voltage when it opens.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out the options that mix up the jobs of the different wires and devices.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: the live wire.'
+  misconception_ids:
+  - mc.phy.o.earth_wire_carries_working_current
+  - mc.phy.o.neutral_and_earth_same
+  - mc.phy.o.neutral_wire_is_live
+solution:
+  steps:
+  - n: 1
+    latex: \text{The live wire}
+    reason: Match each wire and device to its job
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

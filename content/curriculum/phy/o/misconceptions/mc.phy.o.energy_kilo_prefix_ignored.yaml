@@ -1,0 +1,38 @@
+id: mc.phy.o.energy_kilo_prefix_ignored
+kc_ids:
+- kc.phy.o.energy.potential_energy
+- kc.phy.o.energy.work_done
+- kc.phy.o.energy.power
+student_name: Ignoring the kilo
+description: Treats kN, kJ or kW as N, J or W, or gives an answer in joules where kilojoules are asked for, so the answer is a thousand times too big or too small.
+signatures:
+- kind: step_error
+  error_category: units
+fix:
+  strategy: rule_restatement
+  text:
+    en: Kilo means a thousand. Change every kilo value to the base unit first, then change the answer to the unit the question asks for.
+probe_item_ids:
+- itm.phy.o.energy.0042
+- itm.phy.o.energy.0071
+- itm.phy.o.energy.0089
+- itm.phy.o.energy.0090
+- itm.phy.o.energy.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

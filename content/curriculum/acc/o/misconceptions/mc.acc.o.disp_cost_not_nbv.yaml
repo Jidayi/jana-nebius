@@ -1,0 +1,34 @@
+id: mc.acc.o.disp_cost_not_nbv
+kc_ids:
+- kc.acc.o.depreciation.disposal
+student_name: Comparing proceeds with cost
+description: Compares the proceeds with the original cost instead of the net book value.
+signatures:
+- kind: answer_transform
+  expression: proceeds - cost
+fix:
+  strategy: rule_restatement
+  text:
+    en: Depreciation has already been charged, so compare with what is left of the cost.
+probe_item_ids:
+- itm.acc.o.depreciation.0057
+- itm.acc.o.depreciation.0058
+- itm.acc.o.depreciation.0059
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

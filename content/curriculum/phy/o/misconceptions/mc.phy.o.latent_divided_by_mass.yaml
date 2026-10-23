@@ -1,0 +1,36 @@
+id: mc.phy.o.latent_divided_by_mass
+kc_ids:
+- kc.phy.o.thermal_properties.latent_heat
+student_name: Dividing the latent heat by the mass
+description: Divides the specific latent heat by the mass instead of multiplying, using E = L ÷ m.
+signatures:
+- kind: answer_transform
+  expression: L/m
+fix:
+  strategy: counterexample
+  text:
+    en: 'More ice needs more energy to melt, so the energy must grow with the mass: E = mL. Dividing would make a bigger block need less energy.'
+probe_item_ids:
+- itm.phy.o.thermal_properties.0041
+- itm.phy.o.thermal_properties.0042
+- itm.phy.o.thermal_properties.0043
+- itm.phy.o.thermal_properties.0044
+- itm.phy.o.thermal_properties.0045
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

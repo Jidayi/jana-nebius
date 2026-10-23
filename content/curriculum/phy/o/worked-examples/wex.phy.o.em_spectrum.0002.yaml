@@ -1,0 +1,53 @@
+id: wex.phy.o.em_spectrum.0002
+kc_ids:
+- kc.phy.o.em_spectrum.order_and_properties
+problem: Light from a flash on the Moon travels to a telescope on the Earth, a distance of 3.84 × 10⁵ km. All electromagnetic waves travel at the same speed in a vacuum. How long does the journey take?
+steps:
+- n: 1
+  latex: d = 3.84 \times 10^{5}\ \text{km} = 3.84 \times 10^{8}\ \text{m}
+  reason: A kilometre is a thousand metres
+  check_id: chk_build_phy_ems_w0002_conv
+- n: 2
+  latex: t = \frac{d}{c} = \frac{3.84 \times 10^{8}}{3.0 \times 10^{8}} = 1.28\ \text{s}
+  reason: Time = distance ÷ speed, at the speed of light
+  check_id: chk_build_phy_ems_w0002_ans
+final_answer:
+  latex: 1.28\ \text{s}
+  check_id: chk_build_phy_ems_w0002_ans
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_ems_w0002_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: c
+      expression: 3.84*10^8/c
+    tool: math_evaluate
+  chk_build_phy_ems_w0002_conv:
+    args:
+      quantity: 3.84e5 km
+      to: m
+    tool: units_convert
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,36 @@
+id: mc.phy.o.half_lives_equal_ratio
+kc_ids:
+- kc.phy.o.radioactivity.half_life
+student_name: Using the ratio as the number of half-lives
+description: Takes the ratio of the start and end amounts (such as 8) as the number of half-lives, instead of the number of halvings (3).
+signatures:
+- kind: answer_transform
+  expression: T*r
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'Falling to an eighth takes three halvings: a half, a quarter, an eighth. Count how many times you halve.'
+probe_item_ids:
+- itm.phy.o.radioactivity.0042
+- itm.phy.o.radioactivity.0045
+- itm.phy.o.radioactivity.0033
+- itm.phy.o.radioactivity.0034
+- itm.phy.o.radioactivity.0036
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

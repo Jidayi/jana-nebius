@@ -1,0 +1,88 @@
+id: itm.phy.o.light.0006
+version: 0.1.0
+type: numeric
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.light.plane_mirrors
+stem: In a small clinic an eye-test chart hangs on the wall 0.5 m behind a patient's head. The patient looks at the chart's image in a plane mirror 3 m in front of them.
+parts:
+- id: a
+  prompt: How far is the patient from the image of the chart?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '6.5'
+    unit: m
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_phy_lgt_0006_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The image of the chart is behind the mirror.
+  - rung: 2
+    name: concept
+    text:
+      en: It is as far behind the mirror as the chart is in front of it.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find how far the chart is from the mirror first.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The chart is 3.5 m from the mirror, so its image is 3.5 m behind the mirror.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'Add the 3 m from the patient to the mirror: 6.5 m.'
+solution:
+  steps:
+  - n: 1
+    latex: 0.5 + 3 = 3.5\ \text{m}
+    reason: Distance from the chart to the mirror
+    check_id: chk_build_phy_lgt_0006_chart
+  - n: 2
+    latex: 3 + 3.5 = 6.5\ \text{m}
+    reason: Patient to mirror, then mirror to the image
+    check_id: chk_build_phy_lgt_0006_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_lgt_0006_ans:
+    args:
+      expression: 3 + 0.5 + 3
+    tool: math_evaluate
+  chk_build_phy_lgt_0006_chart:
+    args:
+      expression: 0.5 + 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

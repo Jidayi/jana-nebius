@@ -1,0 +1,100 @@
+id: itm.mth.o.algebra_and_graphs.0915
+version: 0.1.0
+type: equation_solutions
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.algebra_and_graphs.quadratic_equations
+stem: Solve $x^2 + 8x + 15 = 0$.
+parts:
+- id: a
+  prompt: Give every solution.
+  marks: 2
+  answer:
+    kind: equation_solutions
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_alg_0915_key
+    variable: x
+    values:
+    - '-5'
+    - '-3'
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Factorise the left side into two brackets.
+  - rung: 2
+    name: concept
+    text:
+      en: If two brackets multiply to give zero, one of them must be zero.
+  - rung: 3
+    name: first_step
+    text:
+      en: Find two numbers that multiply to 15 and add to 8.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Set each bracket equal to zero and solve it: there are two answers.'
+  - rung: 5
+    name: full_step
+    text:
+      en: x = -5 or x = -3.
+solution:
+  steps:
+  - n: 1
+    latex: (x + 5)(x + 3) = 0
+    reason: Factorise
+    check_id: chk_build_mth_alg_0915_m
+  - n: 2
+    latex: x + 5 = 0 \text{ or } x + 3 = 0
+    reason: One of the brackets must be zero
+  - n: 3
+    latex: x = -5 \text{ or } x = -3
+    reason: Solve each one
+    check_id: chk_build_mth_alg_0915_key
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_alg_0915_key:
+    args:
+      equations:
+      - x^2 + 8x + 15 = 0
+      unknowns:
+      - x
+    tool: math_solve
+  chk_build_mth_alg_0915_m:
+    args:
+      equations:
+      - p = abs(-5)
+      - q = abs(-3)
+      unknowns:
+      - p
+      - q
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,35 @@
+id: mc.acc.o.de_balance_side_reversed
+kc_ids:
+- kc.acc.o.double_entry.balance_account
+student_name: Balance brought down on the wrong side
+description: Brings the balance down on the same side it was carried down on.
+signatures:
+- kind: structural
+  rule: debit_credit_swapped
+  account_class: asset
+fix:
+  strategy: diagram
+  text:
+    en: The balance c/d is written on the smaller side; the balance b/d is on the larger side, ready for next period.
+probe_item_ids:
+- itm.acc.o.double_entry.0052
+- itm.acc.o.double_entry.0053
+- itm.acc.o.double_entry.0054
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

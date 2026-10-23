@@ -1,0 +1,45 @@
+id: wex.mth.o.geometry.0017
+kc_ids:
+- kc.mth.o.geometry.angle_facts
+problem: Four angles meet at a point. Three of them are 120°, 48° and 55°. Find the fourth angle.
+steps:
+- n: 1
+  latex: 120 + 48 + 55 = 223
+  reason: Add the angles you know
+  check_id: chk_build_mth_geo_w0017_s
+- n: 2
+  latex: 360 - 223 = 137
+  reason: Angles at a point add to 360°
+  check_id: chk_build_mth_geo_w0017_ans
+final_answer:
+  latex: 137^\circ
+  check_id: chk_build_mth_geo_w0017_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_geo_w0017_ans:
+    args:
+      expression: 360 - 120 - 48 - 55
+    tool: math_evaluate
+  chk_build_mth_geo_w0017_s:
+    args:
+      expression: 120 + 48 + 55
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

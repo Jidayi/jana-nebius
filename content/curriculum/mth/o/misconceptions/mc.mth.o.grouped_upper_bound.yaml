@@ -1,0 +1,36 @@
+id: mc.mth.o.grouped_upper_bound
+kc_ids:
+- kc.mth.o.statistics.grouped_mean
+student_name: Using the class boundaries instead of midpoints
+description: Uses the upper (or lower) end of each class instead of its midpoint to estimate the mean.
+signatures:
+- kind: step_error
+  error_category: illegal_operation
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The midpoint is the best single value for a class: add the ends and halve.'
+probe_item_ids:
+- itm.mth.o.statistics.0079
+- itm.mth.o.statistics.0080
+- itm.mth.o.statistics.0081
+- itm.mth.o.statistics.0082
+- itm.mth.o.statistics.0083
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

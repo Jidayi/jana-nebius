@@ -1,0 +1,35 @@
+id: mc.phy.o.moment_left_as_answer
+kc_ids:
+- kc.phy.o.forces.moments
+student_name: Stopping at the moment
+description: Works out the moment of the known force and gives it as the unknown force, forgetting to divide by the distance.
+signatures:
+- kind: step_error
+  error_category: dropped_term
+fix:
+  strategy: rule_restatement
+  text:
+    en: The moment is in N m; the force asked for is in N. Divide the moment by the unknown force's distance from the pivot.
+probe_item_ids:
+- itm.phy.o.forces.0091
+- itm.phy.o.forces.0095
+- itm.phy.o.forces.0082
+- itm.phy.o.forces.0086
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

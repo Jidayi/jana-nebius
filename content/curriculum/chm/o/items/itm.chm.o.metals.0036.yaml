@@ -1,0 +1,92 @@
+id: itm.chm.o.metals.0036
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.metals.corrosion
+stem: 'Three iron nails are left for a week. Tube A: nail in tap water, open to the air. Tube B: nail in boiled water with a layer of oil on top. Tube C: nail in dry air with a drying agent.'
+parts:
+- id: a
+  prompt: In which tube or tubes does the nail rust?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: A only
+      correct: true
+    - id: B
+      text: A and B
+      correct: false
+      misconception_id: mc.chm.o.metals_rust_one_condition
+      feedback: 'Compare the test tubes: a nail in boiled water under oil (no air) and a nail in dry air (no water) both stay shiny. Only the nail with water AND air rusts.'
+    - id: C
+      text: A and C
+      correct: false
+      misconception_id: mc.chm.o.metals_rust_one_condition
+      feedback: 'Compare the test tubes: a nail in boiled water under oil (no air) and a nail in dry air (no water) both stay shiny. Only the nail with water AND air rusts.'
+    - id: D
+      text: A, B and C
+      correct: false
+      misconception_id: mc.chm.o.metals_rust_one_condition
+      feedback: 'Compare the test tubes: a nail in boiled water under oil (no air) and a nail in dry air (no water) both stay shiny. Only the nail with water AND air rusts.'
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: 'Work out what each nail can reach: water, air, or both.'
+  - rung: 2
+    name: concept
+    text:
+      en: Iron rusts only when water and oxygen are both present.
+  - rung: 3
+    name: first_step
+    text:
+      en: Boiling removes dissolved air, and the oil stops air getting back in to tube B.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The drying agent in tube C removes water vapour from the air.
+  - rung: 5
+    name: full_step
+    text:
+      en: Only the nail in tube A has both water and air, so only A rusts.
+  misconception_ids:
+  - mc.chm.o.metals_rust_one_condition
+solution:
+  steps:
+  - n: 1
+    latex: '\text{A: water + air; B: no air; C: no water}'
+    reason: Conditions in each tube
+  - n: 2
+    latex: '\text{rust needs both: A only}'
+    reason: Both conditions needed
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

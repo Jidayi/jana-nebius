@@ -1,0 +1,54 @@
+id: wex.mth.o.number.0049
+kc_ids:
+- kc.mth.o.number.surds
+problem: $\sqrt{448} + \sqrt{63}$ can be written as $k\sqrt{7}$. Find k.
+steps:
+- n: 1
+  latex: \sqrt{448} = 8\sqrt{7},\ \sqrt{63} = 3\sqrt{7}
+  reason: Simplify each surd
+  check_id: chk_build_mth_num_w0049_t
+- n: 2
+  latex: k = 8 + 3 = 11
+  reason: Add like surds
+  check_id: chk_build_mth_num_w0049_ans
+final_answer:
+  latex: '11'
+  check_id: chk_build_mth_num_w0049_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_w0049_ans:
+    args:
+      expression: (sqrt(448) + sqrt(63))/sqrt(7)
+    tool: math_evaluate
+  chk_build_mth_num_w0049_t:
+    args:
+      equations:
+      - p = sqrt(64)
+      - q = sqrt(9)
+      - r = 448/7
+      - s = 63/7
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

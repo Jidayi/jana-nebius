@@ -1,0 +1,44 @@
+id: mc.mth.o.radius_not_squared
+kc_ids:
+- kc.mth.o.mensuration.circle_measures
+- kc.mth.o.mensuration.prism_volume
+- kc.mth.o.mensuration.pyramid_cone_sphere
+student_name: Forgetting to square the radius
+description: Works out πr instead of πr² for the area of a circle.
+signatures:
+- kind: answer_transform
+  expression: pi*r
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'Area needs two lengths multiplied: π × r × r.'
+probe_item_ids:
+- itm.mth.o.mensuration.0041
+- itm.mth.o.mensuration.0042
+- itm.mth.o.mensuration.0043
+- itm.mth.o.mensuration.0044
+- itm.mth.o.mensuration.0045
+severity: medium
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  authors:
+  - rev_6574283c3f5f
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

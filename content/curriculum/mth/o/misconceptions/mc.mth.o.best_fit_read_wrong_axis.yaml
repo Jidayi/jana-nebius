@@ -1,0 +1,35 @@
+id: mc.mth.o.best_fit_read_wrong_axis
+kc_ids:
+- kc.mth.o.statistics.scatter_correlation
+student_name: Reading the line from the wrong axis
+description: Puts the given value into the line of best fit as if it were the other variable.
+signatures:
+- kind: step_error
+  error_category: copy
+fix:
+  strategy: rule_restatement
+  text:
+    en: Check which axis the given value belongs to before you use the line.
+probe_item_ids:
+- itm.mth.o.statistics.0111
+- itm.mth.o.statistics.0112
+- itm.mth.o.statistics.0113
+- itm.mth.o.statistics.0114
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,93 @@
+id: itm.phy.o.energy.0087
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.energy.power
+stem: A lamp is labelled 60 W.
+parts:
+- id: a
+  prompt: What does this rating mean?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: It transfers 60 joules in total
+      correct: false
+      misconception_id: mc.phy.o.power_is_energy
+      feedback: 'Two runners do the same work climbing the same stairs, but the faster one has more power. Power needs the time: divide the energy by it.'
+    - id: B
+      text: It transfers 60 joules every minute
+      correct: false
+      misconception_id: mc.phy.o.power_minutes_not_converted
+      feedback: A watt is a joule per second. Change minutes to seconds (sixty seconds in each minute) before you divide or multiply.
+    - id: C
+      text: It pushes the current with a force of 60 newtons
+      correct: false
+      misconception_id: mc.phy.o.energy_force_confused
+      feedback: A force is a push or a pull in newtons. Energy is measured in joules, and a force only transfers energy when it moves something along its direction.
+    - id: D
+      text: It transfers 60 joules of energy every second
+      correct: true
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Power tells you how fast energy is transferred.
+  - rung: 2
+    name: concept
+    text:
+      en: 'A watt is a rate: energy per unit time.'
+  - rung: 3
+    name: first_step
+    text:
+      en: Check each option against P = E ÷ t.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out options that leave out the time or use it the wrong way.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: It transfers 60 joules of energy every second.'
+  misconception_ids:
+  - mc.phy.o.energy_force_confused
+  - mc.phy.o.power_is_energy
+  - mc.phy.o.power_minutes_not_converted
+solution:
+  steps:
+  - n: 1
+    latex: \text{It transfers 60 joules of energy every second}
+    reason: Power is energy transferred per second
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

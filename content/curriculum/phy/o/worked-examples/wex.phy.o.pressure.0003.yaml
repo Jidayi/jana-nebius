@@ -1,0 +1,51 @@
+id: wex.phy.o.pressure.0003
+kc_ids:
+- kc.phy.o.pressure.liquid_pressure
+problem: The bottom of a swimming pool is 1.5 m below the surface of the fresh water (density 1000 kg/m³). Take g = 9.8 N/kg. Calculate the pressure due to the water there, in kPa.
+steps:
+- n: 1
+  latex: p = \rho g h = 1000 \times 9.8 \times 1.5 = 14700\ \text{Pa}
+  reason: Pressure = ρgh
+  check_id: chk_build_phy_prs_w0003_pa
+- n: 2
+  latex: 14700\ \text{Pa} = 14.7\ \text{kPa}
+  reason: Pascals into kilopascals
+  check_id: chk_build_phy_prs_w0003_ans
+final_answer:
+  latex: 14.7\ \text{kPa}
+  check_id: chk_build_phy_prs_w0003_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_prs_w0003_ans:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 1000*g*1.5/1000
+    tool: math_evaluate
+  chk_build_phy_prs_w0003_pa:
+    args:
+      constants:
+      - source: pack
+        symbol: g
+      expression: 1000*g*1.5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

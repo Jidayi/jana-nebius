@@ -1,0 +1,101 @@
+id: itm.mth.o.statistics.0046
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.statistics.averages_list
+stem: 'Here are some marks: 2, 22, 21, 13, 7, 28, 14.'
+parts:
+- id: a
+  prompt: Find the mean. Give your answer to 3 significant figures.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '15.3'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: sig_figs
+      value: 3
+    check_id: chk_build_mth_sta_0046_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The mean shares the total equally between the values.
+  - rung: 2
+    name: concept
+    text:
+      en: Mean = total ÷ number of values.
+  - rung: 3
+    name: first_step
+    text:
+      en: Add all the marks.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Divide the total by 7, the number of marks.
+  - rung: 5
+    name: full_step
+    text:
+      en: The mean is 15.3.
+  misconception_ids:
+  - mc.mth.o.mean_wrong_count
+  - mc.mth.o.frequency_mean_rows
+  - mc.mth.o.median_not_ordered
+solution:
+  steps:
+  - n: 1
+    latex: \text{total} = 2 + 22 + 21 + 13 + 7 + 28 + 14
+    reason: Add every value
+    check_id: chk_build_mth_sta_0046_sc
+  - n: 2
+    latex: \text{mean} = \frac{\text{total}}{7} = 15.3
+    reason: There are 7 values
+    check_id: chk_build_mth_sta_0046_ans
+difficulty:
+  prior: -0.7
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_sta_0046_ans:
+    args:
+      expression: (2 + 22 + 21 + 13 + 7 + 28 + 14)/7
+      sf: 3
+    tool: math_evaluate
+  chk_build_mth_sta_0046_sc:
+    args:
+      data:
+      - 2
+      - 22
+      - 21
+      - 13
+      - 7
+      - 28
+      - 14
+      quartile_method: exclusive
+    tool: stats_compute
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,34 @@
+id: mc.acc.o.ae_effect_signs
+kc_ids:
+- kc.acc.o.accounting_equation.effect_of_transactions
+student_name: Direction of a change reversed
+description: Says an item rises when it falls, or the reverse.
+signatures:
+- kind: structural
+  rule: debit_credit_swapped
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'Follow the money: paying out lowers an asset; owing more raises a liability.'
+probe_item_ids:
+- itm.acc.o.accounting_equation.0041
+- itm.acc.o.accounting_equation.0042
+- itm.acc.o.accounting_equation.0043
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

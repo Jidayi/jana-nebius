@@ -1,0 +1,82 @@
+id: wex.chm.o.organic.0008
+kc_ids:
+- kc.chm.o.organic.fuels_and_cracking
+problem: Decane, C₁₀H₂₂, is cracked into octane, C₈H₁₈, and ethene. Write the equation and show that the relative masses balance.
+steps:
+- n: 1
+  latex: \text{C}_{10}\text{H}_{22} \rightarrow \text{C}_8\text{H}_{18} + \text{C}_2\text{H}_4
+  reason: Cracking gives an alkane and an alkene
+  check_id: chk_build_chm_organic_w0008_bal
+- n: 2
+  latex: M_r(\text{C}_{10}\text{H}_{22}) = 142
+  reason: Decane
+  check_id: chk_build_chm_organic_w0008_a
+- n: 3
+  latex: 114 + 28
+  reason: Octane + ethene
+  check_id: chk_build_chm_organic_w0008_b
+- n: 4
+  latex: M_r(\text{C}_2\text{H}_4) = 28
+  reason: Ethene
+  check_id: chk_build_chm_organic_w0008_e
+final_answer:
+  latex: 142 = 142
+  check_id: chk_build_chm_organic_w0008_s
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_organic_w0008_a:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      formula: C10H22
+    tool: chem_molar_mass
+  chk_build_chm_organic_w0008_b:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      formula: C8H18
+    tool: chem_molar_mass
+  chk_build_chm_organic_w0008_bal:
+    args:
+      equation: C10H22 -> C8H18 + C2H4
+    tool: chem_balance
+  chk_build_chm_organic_w0008_e:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_h
+      formula: C2H4
+    tool: chem_molar_mass
+  chk_build_chm_organic_w0008_s:
+    args:
+      expression: 114 + 28
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

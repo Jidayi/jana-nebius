@@ -1,0 +1,155 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.free-body-hidden",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at weight 49 N.",
+        "Step 2: look at weight 49 N. Step 2: components of W added.",
+        "Step 3: look at W along the slope and friction 24.5 N."
+      ],
+      "summary": "A free-body diagram of a block with forces: weight 49 N, normal reaction 42.4 N and friction 24.5 N."
+    },
+    "computed": {
+      "check_ids": [
+        "chk_build_fx_free_body_1",
+        "chk_build_fx_free_body_2"
+      ],
+      "components": {
+        "W.parallel": "24.5 N",
+        "W.perpendicular": "42.4 N"
+      },
+      "labels": {
+        "W.parallel": "24.5 N",
+        "W.perpendicular": "42.4 N"
+      }
+    },
+    "fallback_reason": null,
+    "labels": "hidden",
+    "numbers_from": [
+      "kn_fw",
+      "kn_fr",
+      "kn_ff",
+      "chk_build_fx_free_body_1",
+      "chk_build_fx_free_body_2"
+    ],
+    "params": {
+      "forces": [
+        {
+          "direction_deg": 270,
+          "id": "W",
+          "magnitude": "49 N",
+          "name": "weight"
+        },
+        {
+          "direction_deg": 120,
+          "id": "R",
+          "magnitude": "42.4 N",
+          "name": "normal reaction"
+        },
+        {
+          "direction_deg": 30,
+          "id": "F",
+          "magnitude": "24.5 N",
+          "name": "friction"
+        }
+      ],
+      "object": "block",
+      "surface": {
+        "incline_deg": 30,
+        "kind": "incline"
+      }
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "object",
+        "name": "block",
+        "role": "object"
+      },
+      {
+        "focusable": true,
+        "id": "surface",
+        "name": "surface",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "W",
+        "name": "weight 49 N",
+        "quizzable": true,
+        "role": "force"
+      },
+      {
+        "focusable": true,
+        "id": "R",
+        "name": "normal reaction 42.4 N",
+        "quizzable": true,
+        "role": "force"
+      },
+      {
+        "focusable": true,
+        "id": "F",
+        "name": "friction 24.5 N",
+        "quizzable": true,
+        "role": "force"
+      },
+      {
+        "focusable": true,
+        "id": "W.parallel",
+        "name": "W along the slope",
+        "role": "component"
+      },
+      {
+        "focusable": true,
+        "id": "W.perpendicular",
+        "name": "W across the slope",
+        "role": "component"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:7a4e9384a4eb69317c6a73b3d6aef36541bf1b443018730a2f59b82ccb61c31c",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "board_step": "stp_01",
+        "highlight": [
+          "W"
+        ]
+      },
+      {
+        "add": [
+          {
+            "element": "components_of",
+            "of": "W"
+          }
+        ],
+        "board_step": "stp_02",
+        "highlight": [
+          "W"
+        ]
+      },
+      {
+        "board_step": "stp_03",
+        "highlight": [
+          "W.parallel",
+          "F"
+        ]
+      }
+    ],
+    "type": "free_body",
+    "visual_id": "vis_TEK44B9HWAKKPEK51ZV4GRKAFS"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: free body (hidden labels)",
+  "variant": "free-body-hidden"
+}

@@ -1,0 +1,85 @@
+id: itm.chm.o.electrolysis.0019
+version: 0.1.0
+type: mcq
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.electrolysis.aqueous_products
+stem: Dilute sulfuric acid is electrolysed using inert electrodes.
+parts:
+- id: a
+  prompt: Which gases form, and where?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: true
+    options:
+    - id: A
+      text: Hydrogen at the cathode and sulfur dioxide at the anode
+      correct: false
+    - id: B
+      text: Hydrogen at both electrodes
+      correct: false
+      misconception_id: mc.chm.o.electrolysis_hydrogen_always_at_cathode
+      feedback: Hydrogen forms at the cathode only when the metal is more reactive than hydrogen. Copper and silver are less reactive, so their ions are discharged first and the metal coats the cathode.
+    - id: C
+      text: Oxygen at the cathode and hydrogen at the anode
+      correct: false
+    - id: D
+      text: Hydrogen at the cathode and oxygen at the anode, with twice as much hydrogen as oxygen
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The solution contains H⁺, OH⁻ and SO₄²⁻ ions.
+  - rung: 2
+    name: concept
+    text:
+      en: H⁺ ions are discharged at the cathode; with no halide present, OH⁻ ions are discharged at the anode.
+  - rung: 3
+    name: first_step
+    text:
+      en: Sulfate ions are not discharged at O level; oxygen forms from the hydroxide ions.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Water is decomposed, and water contains twice as many hydrogen atoms as oxygen atoms.
+  - rung: 5
+    name: full_step
+    text:
+      en: Hydrogen forms at the cathode and oxygen at the anode; the volume of hydrogen is twice that of oxygen.
+  misconception_ids:
+  - mc.chm.o.electrolysis_hydrogen_always_at_cathode
+solution:
+  steps:
+  - n: 1
+    latex: '\text{cathode: }\text{H}_2\text{; anode: }\text{O}_2'
+    reason: Water is decomposed
+difficulty:
+  prior: 0.0
+  band: core
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

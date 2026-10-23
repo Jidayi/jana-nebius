@@ -1,0 +1,142 @@
+id: itm.acc.o.irrecoverable_debts.0043
+version: 0.1.0
+type: mcq_diagnostic
+subject: acc
+level: o
+kc_ids:
+- kc.acc.o.irrecoverable_debts.net_receivables
+stem: Thabo's trade receivables are $10000 before writing off a debt of $750. Last year's allowance was $900; this year it is to be 4% of trade receivables.
+parts:
+- id: a
+  prompt: What net trade receivables are shown in the statement of financial position?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: $8350
+      correct: false
+      misconception_id: mc.acc.o.id_old_allowance_used
+    - id: B
+      text: $8880
+      correct: true
+    - id: C
+      text: $9630
+      correct: false
+      misconception_id: mc.acc.o.id_writeoff_not_deducted
+    - id: D
+      text: $9250
+      correct: false
+      misconception_id: mc.acc.o.id_allowance_not_deducted
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: What does the business expect to collect?
+  - rung: 2
+    name: concept
+    text:
+      en: Net = receivables − debts written off − this year's allowance.
+  - rung: 3
+    name: first_step
+    text:
+      en: Use the new allowance, not last year's.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Work out (10000 − 750) less 4% of (10000 − 750).
+  - rung: 5
+    name: full_step
+    text:
+      en: Net trade receivables = $8880.
+  misconception_ids:
+  - mc.acc.o.id_allowance_not_deducted
+  - mc.acc.o.id_writeoff_not_deducted
+  - mc.acc.o.id_old_allowance_used
+solution:
+  steps:
+  - n: 1
+    latex: \text{Net receivables} = \text{receivables} - \text{written off} - \text{allowance}
+    reason: Expected to be collected
+    check_id: chk_build_acc_irrecoverable_debts_0043_t
+  - n: 2
+    latex: \text{Allowance} = 4\% \times (10000 - 750) = 370
+    reason: This year's
+    check_id: chk_build_acc_irrecoverable_debts_0043_s2
+  - n: 3
+    latex: \text{Net} = (10000 - 750) - 370 = 8880
+    reason: Subtract
+    check_id: chk_build_acc_irrecoverable_debts_0043_a
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- local_currency
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_acc_irrecoverable_debts_0043_a:
+    args:
+      dp: 2
+      expression: (10000 - 750) - (10000 - 750) * 4/100
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_0043_s2:
+    args:
+      dp: 4
+      expression: (10000 - 750) * 4/100
+    tool: math_evaluate
+  chk_build_acc_irrecoverable_debts_0043_t:
+    args:
+      adjustments:
+      - amount: '1000'
+        kind: closing_inventory
+      - amount: '750'
+        kind: irrecoverable_debt
+      - kind: allowance
+        percent: '4'
+      dp: 2
+      layout: capital_and_liabilities
+      trial_balance:
+      - account: Sales
+        credit: '80000'
+        role: revenue
+      - account: Purchases
+        debit: '40000'
+        role: purchases
+      - account: Trade receivables
+        debit: '10000'
+        role: trade_receivables
+      - account: Allowance for irrecoverable debts
+        credit: '900'
+        role: allowance_for_irrecoverable_debts
+      - account: Land
+        debit: '30900'
+        role: non_current_asset
+      - account: Inventory
+        debit: '1000'
+        role: opening_inventory
+      - account: Capital
+        credit: '1000'
+        role: capital
+    tool: acc_statements
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

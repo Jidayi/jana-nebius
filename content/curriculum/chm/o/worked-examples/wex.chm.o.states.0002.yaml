@@ -1,0 +1,44 @@
+id: wex.chm.o.states.0002
+kc_ids:
+- kc.chm.o.states.particle_model
+problem: Ice at -10 °C is warmed to 0 °C. By how many degrees did it warm before melting, and what did its particles do?
+steps:
+- n: 1
+  latex: \Delta T = 0 - (-10)
+  reason: Temperature rise
+  check_id: chk_build_chm_states_w0002_c
+- n: 2
+  latex: \text{particles vibrate more strongly}
+  reason: More energy, faster motion
+final_answer:
+  latex: \Delta T = 10\ ^{\circ}\text{C}
+  check_id: chk_build_chm_states_w0002_c
+fading_order:
+- 2
+- 1
+version: 0.1.1
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_states_w0002_c:
+    args:
+      expression: 0 - (-10)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

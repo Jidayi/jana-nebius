@@ -1,0 +1,36 @@
+id: mc.mth.o.regular_sum_not_divided
+kc_ids:
+- kc.mth.o.geometry.polygon_angles
+student_name: Not sharing the angle sum
+description: Gives the whole interior angle sum as the size of one angle of a regular polygon.
+signatures:
+- kind: answer_transform
+  expression: (n - 2)*180
+fix:
+  strategy: rule_restatement
+  text:
+    en: A regular polygon has n equal angles, so divide the sum by n.
+probe_item_ids:
+- itm.mth.o.geometry.0165
+- itm.mth.o.geometry.0166
+- itm.mth.o.geometry.0167
+- itm.mth.o.geometry.0168
+- itm.mth.o.geometry.0169
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

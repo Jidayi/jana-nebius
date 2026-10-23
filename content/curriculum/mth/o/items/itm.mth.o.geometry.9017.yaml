@@ -1,0 +1,85 @@
+id: itm.mth.o.geometry.9017
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.geometry.circle_theorems_cyclic
+stem: ABCD is a cyclic quadrilateral, named in order around a circle. Angle ABC is 110 degrees. Side AD is extended beyond D to E.
+parts:
+- id: a
+  prompt: Find angle CDE in degrees.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '110'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mastery_supplement_mth_9017
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Opposite angles in a cyclic quadrilateral sum to a straight angle.
+  - rung: 2
+    name: concept
+    text:
+      en: The exterior angle and its adjacent interior angle also sum to a straight angle.
+  - rung: 3
+    name: first_step
+    text:
+      en: First relate angle ADC to angle ABC, then use the straight line ADE.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The exterior angle equals the opposite interior angle of a cyclic quadrilateral.
+  - rung: 5
+    name: full_step
+    text:
+      en: The answer is 110.
+solution:
+  steps:
+  - n: 1
+    latex: 180 - \left(180 - 110\right)
+    reason: First relate angle ADC to angle ABC, then use the straight line ADE.
+    check_id: chk_build_mastery_supplement_mth_9017
+  - n: 2
+    latex: '110'
+    reason: Evaluate in degree mode where needed; state the requested unit.
+    check_id: chk_build_mastery_supplement_mth_9017
+difficulty:
+  prior: 0.4
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: GPT-6 (Codex)
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mastery_supplement_mth_9017:
+    args:
+      angle_unit: degrees
+      expression: 180-(180-110)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

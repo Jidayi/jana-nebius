@@ -1,0 +1,88 @@
+id: wex.chm.o.stoichiometry.0006
+kc_ids:
+- kc.chm.o.stoichiometry.relative_formula_mass
+problem: Calculate the relative formula mass of ammonium sulfate, (NH₄)₂SO₄.
+steps:
+- n: 1
+  latex: \text{N}_2 = 28
+  reason: Two N atoms times Ar
+  check_id: chk_build_chm_stoichiometry_w0006_g_n
+- n: 2
+  latex: \text{H}_8 = 8
+  reason: Eight H atoms times Ar
+  check_id: chk_build_chm_stoichiometry_w0006_g_h
+- n: 3
+  latex: \text{S} = 32
+  reason: One S atom times Ar
+  check_id: chk_build_chm_stoichiometry_w0006_g_s
+- n: 4
+  latex: \text{O}_4 = 64
+  reason: Four O atoms times Ar
+  check_id: chk_build_chm_stoichiometry_w0006_g_o
+final_answer:
+  latex: M_r = 132
+  check_id: chk_build_chm_stoichiometry_w0006_mr
+fading_order:
+- 4
+- 3
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_stoichiometry_w0006_g_h:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_h
+      formula: H8
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_w0006_g_n:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      formula: N2
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_w0006_g_o:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_o
+      formula: O4
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_w0006_g_s:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_s
+      formula: S
+    tool: chem_molar_mass
+  chk_build_chm_stoichiometry_w0006_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_n
+      - source: pack
+        symbol: ar_h
+      - source: pack
+        symbol: ar_s
+      - source: pack
+        symbol: ar_o
+      formula: (NH4)2SO4
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

@@ -1,0 +1,37 @@
+id: mc.phy.o.series_current_from_one_resistor
+kc_ids:
+- kc.phy.o.circuits.series_circuits
+- kc.phy.o.circuits.mixed_circuits
+student_name: Using one resistor for the current
+description: Works out the circuit current from the supply p.d. and just one of the resistances, leaving out the rest of the circuit.
+signatures:
+- kind: answer_transform
+  expression: V/R1
+fix:
+  strategy: rule_restatement
+  text:
+    en: 'The supply pushes the current through the whole circuit. Use the total resistance: I = V ÷ (R1 + R2 + ...).'
+probe_item_ids:
+- itm.phy.o.circuits.0012
+- itm.phy.o.circuits.0014
+- itm.phy.o.circuits.0043
+- itm.phy.o.circuits.0002
+- itm.phy.o.circuits.0007
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

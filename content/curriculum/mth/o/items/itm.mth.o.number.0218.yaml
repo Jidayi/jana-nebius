@@ -1,0 +1,116 @@
+id: itm.mth.o.number.0218
+version: 0.1.0
+type: mcq_diagnostic
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.bounds_calc
+stem: a = 15.3 and b = 2.8, each correct to 1 decimal place.
+parts:
+- id: a
+  prompt: Find the upper bound of a ÷ b. Give your answer to 4 significant figures.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: '5.386'
+      correct: false
+      misconception_id: mc.mth.o.bounds_same_ends
+      feedback: To make a difference as big as possible, take the biggest first value and the smallest second value.
+    - id: B
+      text: '5.464'
+      correct: false
+      misconception_id: mc.mth.o.bounds_not_used
+      feedback: Write the bounds of each value first, then choose which bound goes into the calculation.
+    - id: C
+      text: '5.582'
+      correct: true
+    - id: D
+      text: '5.351'
+      correct: false
+      misconception_id: mc.mth.o.bound_wrong_place
+      feedback: 'Halve the unit of rounding: to 1 decimal place the unit is 0.1, so the bounds are 0.05 either side.'
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Write down the lower and upper bounds of a and b first.
+  - rung: 2
+    name: concept
+    text:
+      en: To make the result as large as possible, think about which bound of each value to use.
+  - rung: 3
+    name: first_step
+    text:
+      en: a lies between 15.25 and 15.35; b lies between 2.75 and 2.85.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Use the upper bound of a and the lower bound of b.
+  - rung: 5
+    name: full_step
+    text:
+      en: The upper bound of a ÷ b is 5.582.
+  misconception_ids:
+  - mc.mth.o.bound_wrong_place
+  - mc.mth.o.bounds_not_used
+  - mc.mth.o.bounds_same_ends
+solution:
+  steps:
+  - n: 1
+    latex: 'a: 15.25 \text{ to } 15.35,\ b: 2.75 \text{ to } 2.85'
+    reason: Bounds are 0.05 either side
+    check_id: chk_build_mth_num_0218_bd
+  - n: 2
+    latex: 15.35 \div 2.75 = 5.582
+    reason: Use the upper bound of a and the lower bound of b
+    check_id: chk_build_mth_num_0218_ans
+difficulty:
+  prior: 0.6
+  band: core
+estimated_seconds: 120
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0218_ans:
+    args:
+      expression: (15.3 + 0.05)/(2.8 - 0.05)
+      sf: 4
+    tool: math_evaluate
+  chk_build_mth_num_0218_bd:
+    args:
+      equations:
+      - p = 15.3 + 0.05
+      - q = 2.8 - 0.05
+      - r = 2.8 + 0.05
+      - s = 15.3 - 0.05
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

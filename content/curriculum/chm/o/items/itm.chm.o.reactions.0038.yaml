@@ -1,0 +1,83 @@
+id: itm.chm.o.reactions.0038
+version: 0.1.0
+type: numeric
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.rate_data
+stem: Marble chips react with dilute hydrochloric acid in a flask on a balance. Carbon dioxide escapes, and the mass falls by 0.88 g in the first 40 s.
+parts:
+- id: a
+  prompt: Calculate the mean rate of reaction over the first 40 s, in g/s.
+  marks: 2
+  answer:
+    kind: numeric
+    value: '0.0220'
+    unit: g/s
+    unit_policy: equivalent
+    tolerance:
+      mode: relative
+      value: 0.005
+    check_id: chk_build_chm_reactions_0038_r
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: The mean rate compares how much product formed with the time it took.
+  - rung: 2
+    name: concept
+    text:
+      en: Mean rate = mass lost ÷ time taken.
+  - rung: 3
+    name: first_step
+    text:
+      en: Mass of carbon dioxide lost = 0.88; time taken = 40 s.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Put the amount on top: divide 0.88 by 40.'
+  - rung: 5
+    name: full_step
+    text:
+      en: 0.88 ÷ 40 = 0.0220 g/s.
+  misconception_ids:
+  - mc.chm.o.reactions_rate_inverted
+solution:
+  steps:
+  - n: 1
+    latex: \text{rate} = \frac{0.88}{40} = 0.0220
+    reason: Amount ÷ time
+    check_id: chk_build_chm_reactions_0038_r
+difficulty:
+  prior: -0.3
+  band: foundation
+estimated_seconds: 90
+exam_style:
+  paper_style: structured
+  total_marks: 2
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_reactions_0038_r:
+    args:
+      expression: 0.88/40
+      sf: 3
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

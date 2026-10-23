@@ -1,0 +1,103 @@
+id: itm.mth.o.coordinate_geometry.0127
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.coordinate_geometry.perpendicular_lines
+stem: Line L has gradient -5. Line P is perpendicular to L and passes through (-2, -3).
+parts:
+- id: a
+  prompt: The equation of P is y = mx + c. Find c.
+  marks: 3
+  answer:
+    kind: numeric
+    value: '-2.6'
+    unit: null
+    unit_policy: none
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_crd_0127_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: First find the gradient of P.
+  - rung: 2
+    name: concept
+    text:
+      en: Perpendicular gradients multiply to −1.
+  - rung: 3
+    name: first_step
+    text:
+      en: The gradient of P is 0.2.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Substitute (-2, -3) into y = 0.2x + c.
+  - rung: 5
+    name: full_step
+    text:
+      en: c = -2.6.
+  misconception_ids:
+  - mc.mth.o.perpendicular_negative_only
+  - mc.mth.o.perpendicular_reciprocal_only
+  - mc.mth.o.parallel_perpendicular_confused
+solution:
+  steps:
+  - n: 1
+    latex: m = -\frac{1}{-5} = 0.2
+    reason: Negative reciprocal
+    check_id: chk_build_mth_crd_0127_m2
+  - n: 2
+    latex: -3 = 0.2 \times (-2) + c
+    reason: Substitute the point
+  - n: 3
+    latex: 0.2 \times (-2) = -0.4
+    reason: Multiply
+    check_id: chk_build_mth_crd_0127_t
+  - n: 4
+    latex: c = -3 - (-0.4) = -2.6
+    reason: Solve for c
+    check_id: chk_build_mth_crd_0127_ans
+difficulty:
+  prior: 0.7
+  band: core
+estimated_seconds: 100
+exam_style:
+  paper_style: structured
+  total_marks: 3
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_crd_0127_ans:
+    args:
+      expression: -3 - (-1/(-5))*(-2)
+    tool: math_evaluate
+  chk_build_mth_crd_0127_m2:
+    args:
+      expression: -1/(-5)
+    tool: math_evaluate
+  chk_build_mth_crd_0127_t:
+    args:
+      expression: (-1/(-5))*(-2)
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

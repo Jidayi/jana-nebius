@@ -1,0 +1,42 @@
+id: wex.chm.o.analysis.0015
+kc_ids:
+- kc.chm.o.analysis.gas_tests
+problem: A gas turns limewater milky. Name the gas and give the relative formula mass of the white solid that makes limewater milky.
+steps:
+- n: 1
+  latex: \text{carbon dioxide}
+  reason: From the test result
+final_answer:
+  latex: M_r = 100
+  check_id: chk_build_chm_analysis_w0015_mr
+fading_order:
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_chm_analysis_w0015_mr:
+    args:
+      constants:
+      - source: pack
+        symbol: ar_ca
+      - source: pack
+        symbol: ar_c
+      - source: pack
+        symbol: ar_o
+      formula: CaCO3
+    tool: chem_molar_mass
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

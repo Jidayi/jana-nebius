@@ -1,0 +1,114 @@
+{
+  "proposal": "Contract pieces ASM-28 and LRN-45 imply (D120; D72 standing approval to add spec-implied pieces and report after), proposed by M45.d. Each entry is a JSON Pointer into a contract under docs/specification/contracts and the value to add there. Until the specification adopts them the core sends and accepts them as written here (agent_core/api/assessment.py checks the reveal body itself; practice replies add `worked` only after a second miss), and client-core's practice controller checks `worked` against the adopted WorkedExampleView before accepting it. Once adopted, codegen picks them up and these allowances never apply.",
+  "additions": [
+    {
+      "target": "api/commands.schema.json",
+      "pointer": "/$defs/PracticeMarked/properties/worked",
+      "requirements": [
+        "ASM-28"
+      ],
+      "why": "ASM-28: the worked answer, with its check or source, appears after the second attempt. A first miss keeps the question (next_item is the same item) and carries no worked answer; a second miss carries it and moves on. It is the adopted worked-example view: each step with its check and the final answer from the verified key with the key's check.",
+      "value": {
+        "$ref": "#/$defs/WorkedExampleView",
+        "description": "Present only when a second try on the question missed (ASM-28); never on a first miss."
+      }
+    },
+    {
+      "target": "api/commands.schema.json",
+      "pointer": "/$defs/PracticeReveal",
+      "requirements": [
+        "ASM-28",
+        "PED-09"
+      ],
+      "why": "ASM-28: the worked answer also appears on Don't know or when the student asks to see it. Nothing is marked; the set moves on.",
+      "value": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item_id": {
+            "type": "string",
+            "maxLength": 96
+          }
+        },
+        "required": [
+          "item_id"
+        ],
+        "description": "POST /v1/practice/sets/{set_id}/reveal: Don't know on the question shown."
+      }
+    },
+    {
+      "target": "api/commands.schema.json",
+      "pointer": "/$defs/PracticeRevealed",
+      "requirements": [
+        "ASM-28"
+      ],
+      "why": "The reply to Don't know: the shown question's worked answer, its idea's band (unchanged: nothing was marked) and the next question.",
+      "value": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item_id": {
+            "type": "string",
+            "maxLength": 96
+          },
+          "worked": {
+            "$ref": "#/$defs/WorkedExampleView"
+          },
+          "mastery_change": {
+            "$ref": "#/$defs/PracticeMarked/properties/mastery_change"
+          },
+          "next_item": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/PracticeItem"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "item_id",
+          "worked",
+          "mastery_change",
+          "next_item"
+        ]
+      }
+    },
+    {
+      "target": "api/endpoints (TABLE API-27a)",
+      "pointer": "POST /v1/practice/sets/{set_id}/reveal",
+      "requirements": [
+        "ASM-28"
+      ],
+      "why": "The route for Don't know; auth launch + profile like the other practice routes; no student text (screened as ids only).",
+      "value": {
+        "method": "POST",
+        "path": "/v1/practice/sets/{set_id}/reveal",
+        "auth": [
+          "launch",
+          "profile"
+        ],
+        "request": "PracticeReveal",
+        "response": "PracticeRevealed",
+        "idempotent": true
+      }
+    },
+    {
+      "target": "api/commands.schema.json",
+      "pointer": "/$defs/Settings/properties/daily_goal",
+      "requirements": [
+        "LRN-45"
+      ],
+      "why": "LRN-45: the learner can change the daily goal or hide the chip. NOT implemented in the core yet: it needs the same key in SettingsPatch, payload_setting_change.setting and the settings table's CHECK (data/schema.sql), an owner-visible storage change. Until then the client keeps the change for the open profile only (cleared on lock, SEC-19) and reads this key whenever a core sends it.",
+      "value": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 4,
+        "default": 2,
+        "description": "Study actions a day for the daily goal chip (LRN-45); 0 hides the chip."
+      }
+    }
+  ]
+}

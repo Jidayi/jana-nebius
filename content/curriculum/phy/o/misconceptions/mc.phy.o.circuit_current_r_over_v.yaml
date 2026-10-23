@@ -1,0 +1,37 @@
+id: mc.phy.o.circuit_current_r_over_v
+kc_ids:
+- kc.phy.o.circuits.series_circuits
+- kc.phy.o.circuits.circuit_components
+student_name: Current as resistance over voltage
+description: Divides the resistance by the p.d. to find a current, turning I = V/R upside down.
+signatures:
+- kind: structural
+  rule: ratio_inverted
+fix:
+  strategy: simpler_numbers
+  text:
+    en: 'A bigger p.d. pushes a bigger current, so p.d. goes on top: I = V ÷ R. Check with easy numbers: 6 V across 2 Ω gives 3 A.'
+probe_item_ids:
+- itm.phy.o.circuits.0012
+- itm.phy.o.circuits.0014
+- itm.phy.o.circuits.0002
+- itm.phy.o.circuits.0007
+- itm.phy.o.circuits.0061
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

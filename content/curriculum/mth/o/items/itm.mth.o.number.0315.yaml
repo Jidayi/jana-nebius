@@ -1,0 +1,103 @@
+id: itm.mth.o.number.0315
+version: 0.1.0
+type: numeric
+subject: mth
+level: o
+kc_ids:
+- kc.mth.o.number.time_intervals
+stem: A bus leaves at 09:55 and arrives at 13:20 on the same day.
+parts:
+- id: a
+  prompt: How long is the journey, in minutes?
+  marks: 2
+  answer:
+    kind: numeric
+    value: '205'
+    unit: min
+    unit_policy: equivalent
+    tolerance:
+      mode: absolute
+      value: 1.0e-06
+    check_id: chk_build_mth_num_0315_ans
+  show_working: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Write both times on the 24-hour clock.
+  - rung: 2
+    name: concept
+    text:
+      en: 'Count on from the start time: first to the next whole hour, then whole hours, then the minutes left.'
+  - rung: 3
+    name: first_step
+    text:
+      en: From 9:55 to 10:00 is 5 minutes.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Then count the whole hours and the minutes left; remember an hour has 60 minutes, not 100.
+  - rung: 5
+    name: full_step
+    text:
+      en: The journey takes 205 minutes.
+  misconception_ids:
+  - mc.mth.o.time_as_decimal
+  - mc.mth.o.minutes_as_hours
+solution:
+  steps:
+  - n: 1
+    latex: 9:55 \to 10:00 = 5\ \text{min}
+    reason: Count on to the next hour
+    check_id: chk_build_mth_num_0315_c
+  - n: 2
+    latex: 10:00 \to 13:20 = 3\ \text{h}\ 20\ \text{min}
+    reason: Whole hours, then the minutes left (24-hour clock)
+  - n: 3
+    latex: \text{journey} = 205\ \text{min}
+    reason: 60 minutes to the hour
+    check_id: chk_build_mth_num_0315_ans
+difficulty:
+  prior: -0.6
+  band: foundation
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 2
+  calculator: true
+context_tags:
+- transport
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_mth_num_0315_ans:
+    args:
+      expression: (13*60 + 20) - (9*60 + 55)
+    tool: math_evaluate
+  chk_build_mth_num_0315_c:
+    args:
+      equations:
+      - p = 60 - 55
+      - q = 9 + 1
+      - r = 13 - (9 + 1)
+      - s = 13
+      unknowns:
+      - p
+      - q
+      - r
+      - s
+    tool: math_solve
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

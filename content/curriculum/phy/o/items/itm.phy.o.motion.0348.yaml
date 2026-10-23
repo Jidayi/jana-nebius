@@ -1,0 +1,106 @@
+id: itm.phy.o.motion.0348
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.motion.velocity_time_gradient
+stem: A straight velocity-time graph for a scooter passes through (4 s, 6 m/s) and (14 s, 30 m/s).
+parts:
+- id: a
+  prompt: Find the scooter's acceleration.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: 2.4 m/s²
+      correct: true
+    - id: B
+      text: 2.14 m/s²
+      correct: false
+      misconception_id: mc.phy.o.vt_gradient_from_one_point
+      feedback: Use the change in velocity over the change in time between two points.
+    - id: C
+      text: 30 m/s²
+      correct: false
+      misconception_id: mc.phy.o.vt_gradient_read_as_velocity
+      feedback: On a velocity-time graph the height is the velocity; the slope is the acceleration.
+    - id: D
+      text: 0.417 m/s²
+      correct: false
+      misconception_id: mc.phy.o.gradient_axes_swapped
+      feedback: The gradient is the change up the graph (distance) divided by the change along it (time).
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: On a velocity-time graph the gradient is the acceleration.
+  - rung: 2
+    name: concept
+    text:
+      en: Gradient = change in velocity ÷ change in time.
+  - rung: 3
+    name: first_step
+    text:
+      en: Use two points on the line, not one.
+  - rung: 4
+    name: worked_step
+    text:
+      en: The velocity changes by 24 m/s in 10 s.
+  - rung: 5
+    name: full_step
+    text:
+      en: The acceleration is 2.4 m/s².
+  misconception_ids:
+  - mc.phy.o.gradient_axes_swapped
+  - mc.phy.o.vt_gradient_from_one_point
+  - mc.phy.o.vt_gradient_read_as_velocity
+solution:
+  steps:
+  - n: 1
+    latex: \Delta v = 30 - 6 = 24,\ \Delta t = 14 - 4 = 10
+    reason: Changes between two points
+    check_id: chk_build_phy_mot_0348_dv
+  - n: 2
+    latex: a = \frac{24}{10} = 2.4\ \text{m/s}^2
+    reason: Gradient of a velocity-time graph
+    check_id: chk_build_phy_mot_0348_ans
+difficulty:
+  prior: 0.2
+  band: core
+estimated_seconds: 70
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: true
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_mot_0348_ans:
+    args:
+      expression: (30 - 6)/(14 - 4)
+    tool: math_evaluate
+  chk_build_phy_mot_0348_dv:
+    args:
+      expression: 30 - 6
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

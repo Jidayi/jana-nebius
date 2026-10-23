@@ -1,0 +1,36 @@
+id: mc.phy.o.series_treated_as_parallel
+kc_ids:
+- kc.phy.o.circuits.series_circuits
+student_name: Using parallel rules in a series circuit
+description: 'Uses parallel-circuit rules on resistors in series: gives each resistor the full supply p.d., adds the currents each would take on its own, or combines the resistances with the reciprocal rule.'
+signatures:
+- kind: answer_transform
+  expression: V/R1 + V/R2
+fix:
+  strategy: contrast_example
+  text:
+    en: In series there is only one path. The current is the same everywhere, the supply p.d. is shared between the resistors, and the total resistance is the sum.
+probe_item_ids:
+- itm.phy.o.circuits.0012
+- itm.phy.o.circuits.0014
+- itm.phy.o.circuits.0015
+- itm.phy.o.circuits.0001
+- itm.phy.o.circuits.0002
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

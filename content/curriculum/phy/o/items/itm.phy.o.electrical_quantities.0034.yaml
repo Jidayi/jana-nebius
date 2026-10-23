@@ -1,0 +1,93 @@
+id: itm.phy.o.electrical_quantities.0034
+version: 0.1.0
+type: mcq
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.electrical_quantities.potential_difference
+stem: Which unit is the same as the volt?
+parts:
+- id: a
+  prompt: Choose the equivalent unit.
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: false
+    shuffle: false
+    options:
+    - id: A
+      text: Newton
+      correct: false
+      misconception_id: mc.phy.o.emf_is_a_force
+      feedback: Despite its name, e.m.f. is not a force. It is the energy the cell transfers to each coulomb, so its unit is the volt (a joule per coulomb).
+    - id: B
+      text: Coulomb per second
+      correct: false
+      misconception_id: mc.phy.o.pd_flows_through_component
+      feedback: Current flows through a lamp; p.d. is across it. That is why a voltmeter is connected across, in parallel.
+    - id: C
+      text: Joule per coulomb
+      correct: true
+    - id: D
+      text: Coulomb
+      correct: false
+      misconception_id: mc.phy.o.charge_used_up_in_lamp
+      feedback: Ammeters before and after a lamp read the same. The charges keep flowing; what they lose in the lamp is energy.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Think about what a volt measures.
+  - rung: 2
+    name: concept
+    text:
+      en: P.d. and e.m.f. both measure the energy transferred per unit charge, and charge is never used up.
+  - rung: 3
+    name: first_step
+    text:
+      en: Test each option against that idea.
+  - rung: 4
+    name: worked_step
+    text:
+      en: A p.d. or an e.m.f. is energy per unit charge.
+  - rung: 5
+    name: full_step
+    text:
+      en: Joule per coulomb. A p.d. or an e.m.f. is energy per unit charge.
+  misconception_ids:
+  - mc.phy.o.charge_used_up_in_lamp
+  - mc.phy.o.emf_is_a_force
+  - mc.phy.o.pd_flows_through_component
+solution:
+  steps:
+  - n: 1
+    latex: \text{Joule per coulomb}
+    reason: A volt is a joule per coulomb
+difficulty:
+  prior: -0.3
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

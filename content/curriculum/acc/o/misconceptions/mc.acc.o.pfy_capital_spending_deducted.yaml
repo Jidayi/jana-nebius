@@ -1,0 +1,34 @@
+id: mc.acc.o.pfy_capital_spending_deducted
+kc_ids:
+- kc.acc.o.sole_trader_statements.profit_for_year
+student_name: Charging an asset purchase as an expense
+description: Subtracts the full cost of a new non-current asset from profit for the year.
+signatures:
+- kind: answer_transform
+  expression: profit_for_the_year - asset_cost
+fix:
+  strategy: contrast_example
+  text:
+    en: Equipment is used for years, so it is an asset; only its depreciation is an expense of the year.
+probe_item_ids:
+- itm.acc.o.sole_trader_statements.0030
+- itm.acc.o.sole_trader_statements.0031
+- itm.acc.o.sole_trader_statements.0032
+severity: medium
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

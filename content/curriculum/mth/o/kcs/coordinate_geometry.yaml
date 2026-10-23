@@ -1,0 +1,217 @@
+- id: kc.mth.o.coordinate_geometry.points_on_lines
+  code: MTH-O-03.01.K01
+  node_id: cur.mth.o.coordinate_geometry.coordinates
+  statement: Determine whether a point lies on a line, or find a missing coordinate, by substituting into its equation
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.103
+  prerequisites:
+  - kc_id: kc.mth.o.algebra_and_graphs.substitution
+    strength: required
+  misconception_ids:
+  - mc.mth.o.coordinates_swapped
+  - mc.mth.o.line_sign_slip
+  - mc.mth.o.equation_divide_first
+  - mc.mth.o.multiply_before_power
+  - mc.mth.o.rearrange_inverse_sign
+  skill_ids:
+  - mth-o-coordinate-geometry
+  glossary:
+  - coordinate
+  - x-coordinate
+  - y-coordinate
+  - substitute
+  - equation
+  difficulty_prior: -0.6
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.coordinate_geometry.axis_intercepts
+  code: MTH-O-03.02.K01
+  node_id: cur.mth.o.coordinate_geometry.drawing_linear_graphs
+  statement: Find where a straight line crosses the x-axis and the y-axis
+  kind: procedural
+  tools:
+  - math_solve
+  - math_evaluate
+  exam_weight: 0.103
+  prerequisites:
+  - kc_id: kc.mth.o.coordinate_geometry.points_on_lines
+    strength: required
+  - kc_id: kc.mth.o.algebra_and_graphs.linear_equations
+    strength: required
+  misconception_ids:
+  - mc.mth.o.c_as_x_intercept
+  - mc.mth.o.intercept_sign
+  - mc.mth.o.intercepts_swapped
+  - mc.mth.o.line_sign_slip
+  - mc.mth.o.gradient_inverted
+  skill_ids:
+  - mth-o-coordinate-geometry
+  glossary:
+  - intercept
+  - x-axis
+  - y-axis
+  - x-intercept
+  - y-intercept
+  - coordinate
+  difficulty_prior: -0.3
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.coordinate_geometry.gradient
+  code: MTH-O-03.03.K01
+  node_id: cur.mth.o.coordinate_geometry.gradient_of_linear_graphs
+  statement: Calculate the gradient of a straight line from two points on it
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.154
+  prerequisites:
+  - kc_id: kc.mth.o.coordinate_geometry.points_on_lines
+    strength: required
+  misconception_ids:
+  - mc.mth.o.coordinates_added_not_subtracted
+  - mc.mth.o.gradient_inverted
+  - mc.mth.o.gradient_order_mixed
+  - mc.mth.o.graph_one_point
+  skill_ids:
+  - mth-o-coordinate-geometry
+  glossary:
+  - gradient
+  - coordinate
+  - horizontal
+  - vertical
+  difficulty_prior: -0.2
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.coordinate_geometry.segment_length
+  code: MTH-O-03.04.K01
+  node_id: cur.mth.o.coordinate_geometry.length_and_midpoint
+  statement: Calculate the length of a line segment from the coordinates of its ends
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.128
+  prerequisites:
+  - kc_id: kc.mth.o.trigonometry.pythagoras
+    strength: required
+  misconception_ids:
+  - mc.mth.o.coordinates_added_not_subtracted
+  - mc.mth.o.length_changes_added
+  - mc.mth.o.pythag_add_for_leg
+  - mc.mth.o.pythag_no_root
+  - mc.mth.o.pythag_sides_added
+  skill_ids:
+  - mth-o-coordinate-geometry
+  glossary:
+  - line segment
+  - Pythagoras' theorem
+  - coordinate
+  - square root
+  difficulty_prior: 0.0
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.coordinate_geometry.midpoint
+  code: MTH-O-03.04.K02
+  node_id: cur.mth.o.coordinate_geometry.length_and_midpoint
+  statement: Find the midpoint of a line segment from the coordinates of its ends
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.115
+  prerequisites:
+  - kc_id: kc.mth.o.coordinate_geometry.points_on_lines
+    strength: required
+  misconception_ids:
+  - mc.mth.o.coordinates_swapped
+  - mc.mth.o.midpoint_not_halved
+  - mc.mth.o.midpoint_subtracted
+  skill_ids:
+  - mth-o-coordinate-geometry
+  glossary:
+  - midpoint
+  - line segment
+  - coordinate
+  difficulty_prior: -0.6
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.coordinate_geometry.line_equation
+  code: MTH-O-03.05.K01
+  node_id: cur.mth.o.coordinate_geometry.equations_of_linear_graphs
+  statement: Find the equation y = mx + c of a line from its gradient and a point, or from two points
+  kind: procedural
+  tools:
+  - math_evaluate
+  - math_solve
+  exam_weight: 0.167
+  prerequisites:
+  - kc_id: kc.mth.o.coordinate_geometry.gradient
+    strength: required
+  misconception_ids:
+  - mc.mth.o.c_as_y_coordinate
+  - mc.mth.o.gradient_inverted
+  - mc.mth.o.intercept_sign
+  - mc.mth.o.line_sign_slip
+  skill_ids:
+  - mth-o-coordinate-geometry
+  glossary:
+  - gradient
+  - y-intercept
+  - intercept
+  - equation
+  - coordinate
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.coordinate_geometry.parallel_lines
+  code: MTH-O-03.06.K01
+  node_id: cur.mth.o.coordinate_geometry.parallel_lines
+  statement: Use equal gradients to find the equation of a line parallel to a given line
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.115
+  prerequisites:
+  - kc_id: kc.mth.o.coordinate_geometry.line_equation
+    strength: required
+  misconception_ids:
+  - mc.mth.o.c_as_y_coordinate
+  - mc.mth.o.parallel_perpendicular_confused
+  - mc.mth.o.parallel_same_intercept
+  - mc.mth.o.intercept_sign
+  skill_ids:
+  - mth-o-coordinate-geometry
+  glossary:
+  - parallel
+  - gradient
+  - y-intercept
+  - equation
+  difficulty_prior: 0.3
+  version: 0.1.1
+  status: active
+- id: kc.mth.o.coordinate_geometry.perpendicular_lines
+  code: MTH-O-03.07.K01
+  node_id: cur.mth.o.coordinate_geometry.perpendicular_lines
+  statement: Find the gradient and equation of a line perpendicular to a given line
+  kind: procedural
+  tools:
+  - math_evaluate
+  exam_weight: 0.115
+  prerequisites:
+  - kc_id: kc.mth.o.coordinate_geometry.line_equation
+    strength: required
+  misconception_ids:
+  - mc.mth.o.parallel_perpendicular_confused
+  - mc.mth.o.perpendicular_negative_only
+  - mc.mth.o.perpendicular_reciprocal_only
+  skill_ids:
+  - mth-o-coordinate-geometry
+  glossary:
+  - perpendicular
+  - gradient
+  - negative reciprocal
+  - reciprocal
+  - equation
+  difficulty_prior: 0.6
+  version: 0.1.1
+  status: active

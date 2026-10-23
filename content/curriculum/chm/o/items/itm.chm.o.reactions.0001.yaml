@@ -1,0 +1,90 @@
+id: itm.chm.o.reactions.0001
+version: 0.1.0
+type: mcq_diagnostic
+subject: chm
+level: o
+kc_ids:
+- kc.chm.o.reactions.physical_chemical_change
+stem: 'Two changes are observed. P: ice cubes melt in a glass of juice. Q: a sheet of paper burns to ash and smoke.'
+parts:
+- id: a
+  prompt: Which row classifies both changes correctly?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: true
+    options:
+    - id: A
+      text: P chemical, Q physical
+      correct: false
+      misconception_id: mc.chm.o.reactions_state_change_is_chemical
+      feedback: Ice, liquid water and steam are all the same substance, made of the same water molecules. A change of state only changes how close together the particles are and how they move. No new substance forms, so it is a physical change.
+    - id: B
+      text: P chemical, Q chemical
+      correct: false
+      misconception_id: mc.chm.o.reactions_state_change_is_chemical
+      feedback: Ice, liquid water and steam are all the same substance, made of the same water molecules. A change of state only changes how close together the particles are and how they move. No new substance forms, so it is a physical change.
+    - id: C
+      text: P physical, Q physical
+      correct: false
+      misconception_id: mc.chm.o.reactions_new_substance_missed
+      feedback: 'Ask one question: has a new substance formed? Signs are a gas given off, a new solid, a new colour, or heat given out or taken in. Burning, rusting, cooking and breaking down by heat all make new substances, so they are chemical changes even when heat started them.'
+    - id: D
+      text: P physical, Q chemical
+      correct: true
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Decide for each change whether a new substance forms.
+  - rung: 2
+    name: concept
+    text:
+      en: A physical change makes no new substance and is usually easy to undo; a chemical change makes new substances.
+  - rung: 3
+    name: first_step
+    text:
+      en: Melted ice is still water, made of the same molecules as the ice cubes.
+  - rung: 4
+    name: worked_step
+    text:
+      en: 'Look at what is left after the paper burns: ash, smoke and gases. Could you turn these back into paper?'
+  - rung: 5
+    name: full_step
+    text:
+      en: P is physical, because the water only changes state. Q is chemical, because burning makes new substances such as carbon dioxide, water vapour and ash.
+  misconception_ids:
+  - mc.chm.o.reactions_state_change_is_chemical
+  - mc.chm.o.reactions_new_substance_missed
+solution:
+  steps:
+  - n: 1
+    latex: '\text{P: physical; Q: chemical}'
+    reason: A new substance means a chemical change
+difficulty:
+  prior: -1.0
+  band: foundation
+estimated_seconds: 60
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

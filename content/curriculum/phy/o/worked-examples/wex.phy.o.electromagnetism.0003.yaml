@@ -1,0 +1,45 @@
+id: wex.phy.o.electromagnetism.0003
+kc_ids:
+- kc.phy.o.electromagnetism.motor_effect
+problem: Thabo measures the force on a wire at right angles to a magnetic field. With a current of 0.5 A the force is 0.02 N. The force is proportional to the current. Find the force when the current is 5 A.
+steps:
+- n: 1
+  latex: \frac{5}{0.5} = 10
+  reason: How many times bigger the current is
+  check_id: chk_build_phy_emg_w0003_ratio
+- n: 2
+  latex: F = 0.02 \times 10 = 0.2\ \text{N}
+  reason: The force grows in the same ratio
+  check_id: chk_build_phy_emg_w0003_ans
+final_answer:
+  latex: 0.2\ \text{N}
+  check_id: chk_build_phy_emg_w0003_ans
+fading_order:
+- 2
+- 1
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks:
+  chk_build_phy_emg_w0003_ans:
+    args:
+      expression: 0.02*5/0.5
+    tool: math_evaluate
+  chk_build_phy_emg_w0003_ratio:
+    args:
+      expression: 5/0.5
+    tool: math_evaluate
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

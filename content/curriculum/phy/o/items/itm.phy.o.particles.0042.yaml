@@ -1,0 +1,93 @@
+id: itm.phy.o.particles.0042
+version: 0.1.0
+type: mcq_diagnostic
+subject: phy
+level: o
+kc_ids:
+- kc.phy.o.particles.gas_pressure_particles
+stem: 'An aerosol can carries the warning: do not heat or put on a fire.'
+parts:
+- id: a
+  prompt: Why could heating the can be dangerous?
+  marks: 1
+  answer:
+    kind: mcq
+    diagnostic: true
+    shuffle: false
+    options:
+    - id: A
+      text: Heat makes the gas particles swell until they split the can
+      correct: false
+      misconception_id: mc.phy.o.particles_grow_when_heated
+      feedback: A water particle is the same size in ice, in water and in steam. Heating makes particles move faster and spread further apart; it does not make them bigger.
+    - id: B
+      text: Heating makes more gas particles inside the can
+      correct: false
+      misconception_id: mc.phy.o.heating_creates_particles
+      feedback: 'Weigh a sealed flask before and after heating: its mass does not change. No particles are made; the same particles move faster and, in most materials, spread further apart.'
+    - id: C
+      text: Faster particles raise the pressure until the can may burst
+      correct: true
+    - id: D
+      text: Heating makes the gas heavier, so it pushes hard on the base
+      correct: false
+      misconception_id: mc.phy.o.gas_pressure_from_weight
+      feedback: A balloon is pushed out evenly on every side, not only at the bottom. Gas pressure comes from particles striking every wall in random directions.
+  show_working: false
+  hints:
+  - rung: 1
+    name: orient
+    text:
+      en: Pressure is a force on each square metre of a surface. What exerts force on the walls of a container of gas?
+  - rung: 2
+    name: concept
+    text:
+      en: The can is sealed and rigid, so its volume cannot change.
+  - rung: 3
+    name: first_step
+    text:
+      en: Ask whether the change alters how fast the particles move, how often they hit the walls, or both.
+  - rung: 4
+    name: worked_step
+    text:
+      en: Rule out explanations that rely on the weight of the gas or on particles changing size.
+  - rung: 5
+    name: full_step
+    text:
+      en: 'The answer is: Faster particles raise the pressure until the can may burst.'
+  misconception_ids:
+  - mc.phy.o.gas_pressure_from_weight
+  - mc.phy.o.heating_creates_particles
+  - mc.phy.o.particles_grow_when_heated
+solution:
+  steps:
+  - n: 1
+    latex: \text{Faster particles raise the pressure until the can may burst}
+    reason: Explain the pressure by collisions with the walls
+difficulty:
+  prior: -0.1
+  band: core
+estimated_seconds: 45
+exam_style:
+  paper_style: objective
+  total_marks: 1
+  calculator: false
+context_tags:
+- none
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+checks: {}
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

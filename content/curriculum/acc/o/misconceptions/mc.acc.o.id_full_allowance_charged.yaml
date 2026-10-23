@@ -1,0 +1,34 @@
+id: mc.acc.o.id_full_allowance_charged
+kc_ids:
+- kc.acc.o.irrecoverable_debts.allowance_change
+student_name: Charging the whole allowance
+description: Charges the whole new allowance to the income statement instead of only the change.
+signatures:
+- kind: answer_transform
+  expression: new_allowance
+fix:
+  strategy: rule_restatement
+  text:
+    en: Last year's allowance was already charged then. This year only the change is charged or credited.
+probe_item_ids:
+- itm.acc.o.irrecoverable_debts.0023
+- itm.acc.o.irrecoverable_debts.0024
+- itm.acc.o.irrecoverable_debts.0025
+severity: high
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published

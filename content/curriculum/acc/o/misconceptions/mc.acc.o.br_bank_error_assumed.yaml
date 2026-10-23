@@ -1,0 +1,36 @@
+id: mc.acc.o.br_bank_error_assumed
+kc_ids:
+- kc.acc.o.bank_reconciliation.timing_differences
+- kc.acc.o.bank_reconciliation.overdraft_sides
+student_name: Assuming the bank is wrong
+description: Treats every difference between the cash book and the statement as a bank error.
+signatures:
+- kind: structural
+  rule: wrong_account_class
+  account_class: asset
+fix:
+  strategy: counterexample
+  text:
+    en: Most differences are timing or items the business has not recorded yet. Bank errors are rare.
+probe_item_ids:
+- itm.acc.o.bank_reconciliation.0001
+- itm.acc.o.bank_reconciliation.0002
+- itm.acc.o.bank_reconciliation.0003
+severity: low
+version: 0.1.0
+provenance:
+  origin: original
+  licence: LicenseRef-Own
+  drafted_with_ai: true
+  ai_model: claude-opus-5-5
+  sources: []
+review:
+  status: published
+  reviewers: []
+authoring:
+  drafted_by: rev_author_agent
+  history:
+  - drafted
+  - verified
+  - in_eval_bank
+  - published
