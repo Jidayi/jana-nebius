@@ -22,7 +22,7 @@ from agent_core.trace.store import TraceStore
 from learner_harness import PROFILE, START_MS, Clock, learner_db, make_learner, random_log
 
 REPO = Path(__file__).resolve().parents[3]
-STORAGE_CONTRACT = REPO / "docs/specification/contracts/data/schema.sql"
+STORAGE_CONTRACT = REPO / "contracts/data/schema.sql"
 B = START_MS
 MINUTE_MS = 60_000
 FAR = B + 5000 * DAY_MS

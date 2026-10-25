@@ -168,6 +168,34 @@ def wrong_answer(item: dict[str, Any]) -> dict[str, Any]:
 STEP_LESSON = "les.mth.o.number.percentage_change"
 
 
+def test_teaching_entry_keeps_step_positions_and_assessment_records(tmp_path: Path) -> None:
+    async def scenario() -> None:
+        install(tmp_path, "mth")
+        r = await start_core(tmp_path, settings=SETTINGS, worker=False)
+        try:
+            c = Client(r)
+            ordinary = await c.ok("GET", f"/v1/lessons/{STEP_LESSON}", definition="LessonView")
+            await c.ok("PUT", f"/v1/lessons/{STEP_LESSON}/position", {
+                "block_index": 2, "lesson_version": ordinary["version"],
+            })
+            conn = r.runtime.learner.conn
+            before = (list(conn.execute("SELECT * FROM attempts")), list(conn.execute("SELECT * FROM kc_mastery")))
+            with offline_run() as egress:
+                teaching = await c.ok("GET", f"/v1/lessons/{STEP_LESSON}?teaching=true", definition="LessonView")
+            assert egress.attempts == []
+            assert teaching["position"]["block_index"] == 2
+            assert teaching["blocks"][:len(ordinary["blocks"])] == ordinary["blocks"]
+            assert teaching["blocks"][-1]["type"] == "worked_example"
+            assert teaching["blocks"][-1]["worked_example"]["faded_steps"] == []
+            after = (list(conn.execute("SELECT * FROM attempts")), list(conn.execute("SELECT * FROM kc_mastery")))
+            assert after == before
+            again = await c.ok("GET", f"/v1/lessons/{STEP_LESSON}", definition="LessonView")
+            assert again["blocks"] == ordinary["blocks"]
+        finally:
+            await stop_core(r)
+    run(scenario())
+
+
 def uxs23_step_retry_then_shown(tmp_path: Path) -> None:
     """A step-shape lesson (TABLE CUR-11b, D110) with no model and no network: a first miss gets feedback and no why
     or working, the second miss shows the step with its checked working, a correct answer carries the why; nothing

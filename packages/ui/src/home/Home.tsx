@@ -2,7 +2,7 @@
 // display type leads to the one input (UXS-67, D117): four ways to add material above it (Upload, Link, Paste,
 // Record, each opening the study area) and one box that takes a problem, a question or a request. What happens next is
 // chosen by the content: a problem in an installed subject opens the tutor, material the study area, any other
-// question Ask anything, whose answer shows here under the box. The subjects sit beside it as chips; then the study
+// question Ask anything, whose answer shows here above the box. The subjects sit beside it as chips; then the study
 // plan, "Next up" (LRN-28 to LRN-33): the next activity first with Start, Change and Not today; then two cards, "Pick
 // up where you left off" (the newest sessions, each reopening where it was left, UXS-19) and today's practice, the
 // ideas the learner model says are due, each with its mastery word (DSN-23). Where no tutor answers here, the box
@@ -124,13 +124,13 @@ export function Home({ name, ask, materials, answer, notice, plan, countdown, go
             <div className="flex flex-col gap-1 px-1">
               <h1 id="home-greeting" ref={greeting} tabIndex={-1} className="text-display">{t("home.ready", { name })}</h1>
             </div>
-            {/* One input leads (UXS-67): the ways to add material above the box, then the box itself. */}
+            {answer}
+            {/* The current answer stays above the input; material actions remain attached to the input. */}
             {ask !== null && materials != null && <Materials materials={materials} />}
             {ask !== null && <>
               <h2 className="sr-only">{t("home.ask")}</h2>
               {ask}
             </>}
-            {answer}
             {notice}
             {countdown}
             {plan}

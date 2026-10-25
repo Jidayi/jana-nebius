@@ -21,7 +21,6 @@ const server = await fixtureServer(), browser = await chromium.launch();
 const results = [], consoleErrors = [], missingBaselines = [];
 let mutation = null, mutationStarted = false, axeMutation = null, layoutMutation = null;
 try {
-  const context = await browser.newContext({ reducedMotion: "reduce" });
   async function check(page, state, theme, scale, width) {
     const name = `${state.id}--${theme}--${scale}--${width}`;
     await page.setViewportSize({ width, height: 768 });
@@ -82,16 +81,27 @@ try {
   const cases = [];
   for (const state of selected) for (const theme of (args.themes ?? "light,dark").split(",")) for (const scale of (args.scales ?? "1,1.5").split(",")) for (const width of (args.widths ?? "1366,800").split(",").map(Number)) cases.push({ state, theme, scale, width });
   let next = 0;
-  await context.route("**/*", (route) => new URL(route.request().url()).hostname === "127.0.0.1" ? route.continue() : route.abort());
-  const worker = async () => {
+  const openPage = async () => {
+    const context = await browser.newContext({ reducedMotion: "reduce" });
+    await context.route("**/*", (route) => new URL(route.request().url()).hostname === "127.0.0.1" ? route.continue() : route.abort());
     const page = await context.newPage();
     page.on("pageerror", (e) => consoleErrors.push({ url: page.url(), message: e.message }));
     page.on("console", (m) => { if (["error", "warning"].includes(m.type())) consoleErrors.push({ url: page.url(), message: m.text() }); });
-    while (next < cases.length) {
-      const current = cases[next++];
-      await check(page, current.state, current.theme, current.scale, current.width);
+    return { context, page };
+  };
+  const worker = async () => {
+    let active = await openPage(), checked = 0;
+    try {
+      while (next < cases.length) {
+        const current = cases[next++];
+        await check(active.page, current.state, current.theme, current.scale, current.width);
+        // Bound retained navigation/font state across the full matrix without
+        // skipping any case. Axe needs an explicit context for its internal pages.
+        if (++checked % 50 === 0 && next < cases.length) { await active.context.close(); active = await openPage(); }
+      }
+    } finally {
+      await active.context.close();
     }
-    await page.close();
   };
   await Promise.all(Array.from({ length: Math.min(4, cases.length) }, worker));
   results.sort((a, b) => a.name.localeCompare(b.name));

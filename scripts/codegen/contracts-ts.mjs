@@ -105,7 +105,7 @@ write(
 // Keep authoring, deployment and server contracts out of their initial module graph. The full index above
 // remains available to Studio and the contract corpus. Both surfaces use the exact same Ajv functions.
 const learnerKeys = keys.map(([short, ref], i) => ({ short, ref, i })).filter(({ short }) =>
-  /^(api\/(commands|events)(#|$)|learning\/student-records(#|$)|study\/workspace(#|$)|visuals\/)/.test(short));
+  /^(api\/(commands|events)(#|$)|learning\/(student-records|journey)(#|$)|study\/workspace(#|$)|visuals\/)/.test(short));
 const learnerRefs = Object.fromEntries(learnerKeys.map(({ ref, i }) => [`v${i}`, ref]));
 let learnerCode = standaloneCode(ajv, learnerRefs);
 const learnerImports = new Map();

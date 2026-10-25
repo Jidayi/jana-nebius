@@ -1,0 +1,59 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/gel_electrophoresis",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "ladder_bp": {
+   "type": "array",
+   "items": {
+    "type": "integer",
+    "minimum": 1
+   },
+   "minItems": 2,
+   "maxItems": 50
+  },
+  "lanes": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,63}$"
+     },
+     "label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+     },
+     "fragments_bp": {
+      "type": "array",
+      "items": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "minItems": 1,
+      "maxItems": 100
+     }
+    },
+    "required": [
+     "id",
+     "label",
+     "fragments_bp"
+    ]
+   },
+   "minItems": 1,
+   "maxItems": 20
+  },
+  "migration": {
+   "const": "log_size"
+  }
+ },
+ "required": [
+  "ladder_bp",
+  "lanes",
+  "migration"
+ ]
+}

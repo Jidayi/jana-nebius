@@ -64,7 +64,7 @@ class ProfileScope:
             bool(
                 re.fullmatch(
                     r"/v1/(?:search/items|practice/sets/[^/]+(?:/reveal)?|lessons/[^/]+/probe|mocks|mocks/[^/]+/(?:integrity|navigate)|probes(?:/.*)?"
-                    r"|plans(?:/.*)?|progress|interview(?:/.*)?|session-notes(?:/.*)?|sessions/[^/]+/end|ask(?:/route)?)",
+                    r"|plans(?:/.*)?|progress|interview(?:/.*)?|session-notes(?:/.*)?|sessions/[^/]+/end|ask(?:/route)?|study/web)",
                     str(scope.get("path", "")),
                 )
             )
@@ -371,6 +371,13 @@ def add_consent_routes(app: FastAPI, core: CoreService, mutating: Mutating) -> N
                             )
                         )
                     store.resume(conn, scope)
+                    if scope == "study_materials":
+                        # The Study agreement names the material and destination.
+                        # Record that explicit notice with the validated profile
+                        # consent; Study has no separate tutor-session notice card.
+                        online = getattr(core, "online", None)
+                        if online is not None:
+                            online.record_notice(profile_id, scope, True)
                 elif action == "pause":
                     store.pause(conn, scope, core.clock_ms())
                 elif store.withdraw(conn, scope, role, core.clock_ms()):

@@ -6,6 +6,7 @@ from pathlib import Path
 
 import jsonschema
 import yaml
+from fixture_sources import GOVERNANCE_DOCS as DOCS
 from jana_tools import REPO_ROOT
 from jana_tools.product import (
     capabilities,
@@ -18,10 +19,9 @@ from jana_tools.product import (
     review_template_errors,
     scope_trace_errors,
 )
-from jana_tools.spec import DOCS
 
 PR_TEMPLATE = (REPO_ROOT / ".github" / "pull_request_template.md").read_text()
-DECIDED = decided_decisions()
+DECIDED = decided_decisions(DOCS)
 PATHS = feature_review_paths()
 
 
@@ -32,8 +32,8 @@ def _body(prv01: str = "none", non_goals: str = "none") -> str:
 
 
 def prd01_capability_traces_to_problem(tmp_path: Path):
-    assert len(capabilities()) >= 30
-    assert scope_trace_errors() == []
+    assert len(capabilities(docs=DOCS)) >= 30
+    assert scope_trace_errors(docs=DOCS) == []
 
     mapping = tmp_path / "scope-trace.toml"
     text = (REPO_ROOT / "scripts/governance/scope-trace.toml").read_text()
@@ -43,24 +43,26 @@ def prd01_capability_traces_to_problem(tmp_path: Path):
         .replace('"Lessons" = ["P1"]', '"Lessons" = ["P9"]')
         + '"Retired capability" = ["P1"]\n'
     )
-    assert scope_trace_errors(mapping_path=mapping) == [
-        "capability 'Tool worker' traces to no problem of PRD-01",
-        "capability 'Ask' traces to no problem of PRD-01",
-        "capability 'Lessons' traces to no problem of PRD-01",
-        "scope-trace.toml lists 'Retired capability', which is not a capability row",
-    ]
+    assert sorted(scope_trace_errors(mapping_path=mapping, docs=DOCS)) == sorted(
+        [
+            "capability 'Tool worker' traces to no problem of PRD-01",
+            "capability 'Ask' traces to no problem of PRD-01",
+            "capability 'Lessons' traces to no problem of PRD-01",
+            "scope-trace.toml lists 'Retired capability', which is not a capability row",
+        ]
+    )
 
 
 def prd02_principle_trace_complete():
-    trace = principle_trace()
+    trace = principle_trace(docs=DOCS)
     assert len(trace) == 10
     for name, enforcing in trace:
         print(f"{name}: {', '.join(enforcing) or 'NONE'}")  # the traceability report (pytest -s)
-    assert principle_trace_errors() == []
+    assert principle_trace_errors(docs=DOCS) == []
 
 
 def prd02_review_template_has_precedence(tmp_path: Path):
-    assert review_template_errors() == []
+    assert review_template_errors(docs=DOCS) == []
 
     docs = tmp_path / "docs"
     for rel in ("product/vision-and-scope.md", "review/design-review-template.md"):
@@ -78,13 +80,13 @@ def prd02_review_template_has_precedence(tmp_path: Path):
 
 def prd10_epics_within_scope():
     plan = (DOCS / "implementation" / "plan.md").read_text()
-    assert epic_scope_errors(plan_text=plan) == []
+    assert epic_scope_errors(plan_text=plan, docs=DOCS) == []
 
     seeded = plan.replace(
         "## M41 — ",
         "## M90 — iOS client and smart TV app\n\nStage: S5\n\n## M91 — Further Mathematics pack (D17)\n\n## M41 — ",
     )
-    errors = epic_scope_errors(plan_text=seeded)
+    errors = epic_scope_errors(plan_text=seeded, docs=DOCS)
     assert (
         "epic 'M90 — iOS client and smart TV app' is outside the scope boundary (iOS) until a decision is decided "
         "or listed by its milestone to settle before start" in errors
@@ -94,7 +96,9 @@ def prd10_epics_within_scope():
 
 def test_prd20_non_goal_cases_seeded():
     """The safety and scope suite carries refusal cases for non-goals 1 and 2 (run from M7; gaps.md G8)."""
-    schema = json.loads((DOCS / "specification/contracts/evals/scenario.schema.json").read_text())
+    schema = json.loads(
+        (REPO_ROOT / "services/agent-core/agent_core/contracts/schemas/evals/scenario.schema.json").read_text()
+    )
     suite = yaml.safe_load((REPO_ROOT / "evals/safety/scope-non-goals.yaml").read_text())
     jsonschema.Draft202012Validator(schema).validate(suite)
     ids = {s["id"] for s in suite["scenarios"]}

@@ -5,7 +5,7 @@ import { sidecarPlugin } from "./dev/sidecar.js";
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), sidecarPlugin()],
-  server: { host: "localhost", port: Number(process.env.PORT ?? 5180), strictPort: true },
+  server: { host: process.env.JANA_DEV_HOST ?? "localhost", port: Number(process.env.PORT ?? 5180), strictPort: true },
   build: {
     rolldownOptions: {
       output: {

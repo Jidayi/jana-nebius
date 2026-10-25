@@ -17,7 +17,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-import yaml
 from jsonschema import Draft202012Validator, FormatChecker
 from referencing import Registry, Resource
 from referencing.jsonschema import DRAFT202012
@@ -352,11 +351,17 @@ def targets(contracts: list[Contract]) -> list[str]:
             names.append(c.stem)
         else:
             names += [f"{c.stem}#/$defs/{d}" for d in c.definitions]
-    commands = json.loads((CONTRACTS / "api" / "commands.schema.json").read_text())
-    for endpoint in commands.get("x-endpoints", []):
+    commands = json.loads((CONTRACTS / "api/commands.schema.json").read_text())
+    for endpoint in commands["x-endpoints"]:
         for ref in (endpoint["request"], endpoint["response"]):
-            if ref and ref.startswith(NAMESPACE):
-                name = ref.removeprefix(NAMESPACE)
+            if ref:
+                name = (
+                    ref.removeprefix(NAMESPACE)
+                    if ref.startswith(NAMESPACE)
+                    else "api/commands" + ref
+                    if ref.startswith("#")
+                    else ref
+                )
                 if name not in names:
                     names.append(name)
     return names
@@ -382,12 +387,9 @@ def build(contracts: list[Contract] | None = None) -> tuple[dict[str, Any], list
         files[rel] = instance
         index.append({"file": rel, "contract": name, "expect": kind, "origin": origin})
 
-    for c in contracts:
-        for i, example in enumerate(json.loads((CONTRACTS / c.rel).read_text()).get("examples", [])):
-            add(c.stem, "valid", f"example_{i + 1}", example, "contract example")
-    for rel, name in YAML_EXAMPLES.items():
-        data = yaml.safe_load((CONTRACTS / rel).read_text())
-        add(name, "valid", Path(rel).stem.replace(".", "_"), data, "contract example")
+    # Public source examples and generated corpus are separate, so an edited corpus is still detected.
+    for example in json.loads((CONTRACTS / "examples.json").read_text()):
+        add(example["contract"], "valid", example["label"], example["value"], "contract example")
 
     for name in targets(contracts):
         node, base = _node_for(name, s)

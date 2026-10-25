@@ -41,6 +41,7 @@ import secrets
 import shutil
 import socket
 import sys
+from collections.abc import Awaitable, Callable
 from pathlib import Path
 from typing import Any
 
@@ -55,6 +56,7 @@ from agent_core.api.updates import UpdateDesk
 from agent_core.api.voice_adapter import attach as attach_voice
 from agent_core.api.voice_adapter import follow_read_aloud
 from agent_core.api.voice_adapter import reply as voice_reply
+from agent_core.config import Settings
 from agent_core.config.environments import Environment
 from agent_core.config.operations import DevicePolicy
 from agent_core.config.resolve import app_settings
@@ -109,7 +111,12 @@ def bind_loopback() -> socket.socket:
     return sock
 
 
-async def main() -> int:
+async def main(
+    *,
+    runtime_factory: Callable[..., AppRuntime] = AppRuntime,
+    settings_transform: Callable[[Settings], Settings] | None = None,
+    before_ready: Callable[[AppRuntime, CoreService], Awaitable[None]] | None = None,
+) -> int:
     diagnostic_logging()  # stderr carries diagnostics only: no request body, prompt or answer (OBS-19, PRV-09)
     reader = await _lines()
     secret = LaunchSecret()
@@ -133,10 +140,12 @@ async def main() -> int:
         from agent_core.config.pilot import deployment_settings
 
         settings = deployment_settings(app_settings("release" if release else "development"), cfg)
+        if settings_transform is not None:
+            settings = settings_transform(settings)
         data_dir = Path(cfg["data_dir"])
         # SEC-14: a signed agent bundle is verified at start; an edited one falls back to the previous verified bundle.
         content_root, skills_root = agent_roots(Path(cfg["content_root"]), Path(cfg["skills_root"]), release)
-        runtime = AppRuntime(settings, content_root, skills_root, data_dir, release=release)
+        runtime = runtime_factory(settings, content_root, skills_root, data_dir, release=release)
         # SEC-17, D97: the device secrets come only from the shell's keychain bridge; a release core never runs
         # without them (`AppRuntime.key_store` refuses).
         runtime.keys = ShellKeyStore.from_control(keys, _say) if keys is not None else None
@@ -280,6 +289,8 @@ async def main() -> int:
         core.pack_desk.before_speech_remove = link.release
         core.closers.insert(1, link.close)
         follow_read_aloud(core, link.want_warm)  # D96: the sidecar starts early only with read-aloud on (VOC-23)
+        if before_ready is not None:
+            await before_ready(runtime, core)
         app = create_app(core, secret, lambda: port, origins, voice=voice)
         # log_config=None: uvicorn adds no handler of its own, so its records go through the diagnostic formatter.
         server = uvicorn.Server(uvicorn.Config(app, log_level="warning", access_log=False, lifespan="off",

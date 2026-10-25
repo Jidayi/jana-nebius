@@ -1,0 +1,22 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/cycle_diagram",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "cycle_id": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 100
+  },
+  "start_stage": {
+   "type": "string",
+   "minLength": 1,
+   "maxLength": 64,
+   "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+  }
+ },
+ "required": [
+  "cycle_id"
+ ]
+}

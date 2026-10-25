@@ -1,0 +1,26 @@
+{
+  "format": "jana.ops.probe.1",
+  "test_name": "ops15_physical_kit_verified",
+  "candidate_commit": "FILL-IN: the 40-character commit id of the candidate tested",
+  "spec_revision": "FILL-IN: the specification revision in spec.lock",
+  "source": "device_lab",
+  "started_at": "FILL-IN: date-time with zone when the test or drill started",
+  "completed_at": "FILL-IN: date-time with zone when it finished",
+  "data": {
+    "batch_size": "FILL-IN: a whole number: Number of USB sticks in the batch",
+    "kit_sha256": "FILL-IN: 64 lowercase hex: SHA-256 of the kit image written to the batch (64 hex)",
+    "checks": [
+      {
+        "media_id": "FILL-IN: text: Label on this stick",
+        "sha256": "FILL-IN: 64 lowercase hex: SHA-256 the verifier printed for this stick",
+        "hardware": "FILL-IN: one of low, mid, high: Hardware class of the laptop used",
+        "offline_install": "FILL-IN: true or false: Did it install with networking off?",
+        "hash_verified": "FILL-IN: true or false: Did the verifier report the hash as verified?",
+        "operator": "FILL-IN: text: Who did the check (name or role)",
+        "at": "FILL-IN: date-time with zone: Time of the check",
+        "evidence_sha256": "FILL-IN: the SHA-256 of this raw proof file, which is also listed in the index: the photo or verifier output"
+      }
+    ],
+    "device": "FILL-IN: Device or environment used: hardware class, model and asset label, OS version (or the staging environment name)"
+  }
+}

@@ -134,6 +134,8 @@ export interface FramePlace {
   label: string;
   /** A shorter name for the narrow window's tab bar, where a long one wraps ("Notes" for "Notes and saved"). */
   short?: string;
+  /** Localised section name. Consecutive places share a section in the sidebar and drawer. */
+  group?: string;
   current: boolean;
   onSelect: () => void;
 }
@@ -252,6 +254,13 @@ export function Sidebar({ variant, onToggle, onDone, content }: { variant: Sideb
   };
   const width = rail ? "w-(--layout-railWidth-collapsed) items-center px-2" : "w-(--layout-railWidth-expanded) px-3";
   const toggle = variant === "drawer" ? t("frame.close_menu") : rail ? t("frame.expand") : t("frame.collapse");
+  const groups: { label: string | undefined; places: FramePlace[] }[] = [];
+  for (const place of content.places) {
+    const previous = groups.at(-1);
+    if (previous && previous.label === place.group) previous.places.push(place);
+    else groups.push({ label: place.group, places: [place] });
+  }
+  const placeItem = (place: FramePlace) => <li key={place.id}><Item rail={rail} icon={place.icon} label={place.label} current={place.current} onClick={done(place.onSelect)} /></li>;
   return (
     <nav aria-label={t("app.nav")} data-region="sidebar" data-variant={variant} tabIndex={-1} className={`flex h-full min-h-0 shrink-0 flex-col gap-2 bg-panel pt-3 pb-2 text-ink ${width}`}>
       <div className={`flex shrink-0 items-center ${rail ? "flex-col gap-2" : "min-h-11 justify-between ps-2"}`}>
@@ -263,8 +272,13 @@ export function Sidebar({ variant, onToggle, onDone, content }: { variant: Sideb
         {content.onNewQuestion !== undefined && (
           <li className="[&_button]:font-semibold [&_button]:text-ink"><Item rail={rail} icon="new-question" label={t("composer.new_question")} onClick={done(content.onNewQuestion)} /></li>
         )}
-        {content.places.map((place) => (
-          <li key={place.id}><Item rail={rail} icon={place.icon} label={place.label} current={place.current} onClick={done(place.onSelect)} /></li>
+        {groups.map(({ label, places }, index) => label === undefined ? places.map(placeItem) : (
+          <li key={`${index}-${label}`}>
+            <div role="group" aria-label={label} className={rail ? "mt-2 border-t border-line pt-2" : "pt-3"}>
+              <p className={rail ? "sr-only" : "px-3 pb-1 text-label text-faint"}>{label}</p>
+              <ul className="flex flex-col gap-0.5">{places.map(placeItem)}</ul>
+            </div>
+          </li>
         ))}
       </ul>
       {rail ? <span className="flex-1" /> : (

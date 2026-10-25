@@ -426,8 +426,20 @@ def lrn09_mastered_requires_check() -> None:
     assert seen_mastered > 0  # the corpus exercises the path
 
 
-STANDARD_FORM = ["3.2e-4", "3.2E-4", "3.2x10^-4", "3.2X10^-4", "3.2 x 10^-4", "3.2*10^-4", "3.2*10**-4",
-                 "3.2×10^-4", "3.2 × 10⁻⁴", "3.2x10^(-4)", "3.2·10^-4", "3.2x10^{-4}"]
+STANDARD_FORM = [
+    "3.2e-4",
+    "3.2E-4",
+    "3.2x10^-4",
+    "3.2X10^-4",
+    "3.2 x 10^-4",
+    "3.2*10^-4",
+    "3.2*10**-4",
+    "3.2×10^-4",
+    "3.2 × 10⁻⁴",
+    "3.2x10^(-4)",
+    "3.2·10^-4",
+    "3.2x10^{-4}",
+]
 
 
 @pytest.mark.parametrize("typed", STANDARD_FORM)
@@ -438,8 +450,13 @@ def test_every_way_of_typing_standard_form_reads_the_same(typed: str) -> None:
     assert parsed.unit is None and parsed.sig_figs == 2
 
 
-SPELLINGS = [("9.8 m/s²", "9.8", "m/s^2"), ("0.5 mol dm⁻³", "0.5", "mol dm^-3"), ("−4.5", "-4.5", None),
-             ("12 345.6 kg", "12345.6", "kg"), ("v = 3.0 × 10⁸ m/s", "3.0E+8", "m/s")]
+SPELLINGS = [
+    ("9.8 m/s²", "9.8", "m/s^2"),
+    ("0.5 mol dm⁻³", "0.5", "mol dm^-3"),
+    ("−4.5", "-4.5", None),
+    ("12 345.6 kg", "12345.6", "kg"),
+    ("v = 3.0 × 10⁸ m/s", "3.0E+8", "m/s"),
+]
 
 
 @pytest.mark.parametrize(("typed", "value", "unit"), SPELLINGS)

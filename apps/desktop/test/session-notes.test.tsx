@@ -1,11 +1,29 @@
 import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { afterEach, beforeEach, expect, test, vi } from "vitest";
+import type { SubjectMap } from "@jana/client-core";
+import { STATES } from "@jana/ui/gallery";
 import { NOTE, notesCore } from "../../../packages/client-core/test/notescore.js";
 import { PROFILES } from "../../../packages/client-core/test/profilecore.js";
 import { App, createRuntime } from "../src/App.js";
 import { menuItem } from "./student-menu.js";
 beforeEach(() => vi.stubGlobal("matchMedia", (query: string) => ({ matches: !query.includes("prefers-color-scheme"), media: query, addEventListener() {}, removeEventListener() {} })));
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
+test("a note opens the curriculum's actual nested topic with its existing learning actions", async () => {
+  const fake = notesCore();
+  const map = (STATES.find((s) => s.id === "subject-map.canonical.topic-sheet")!.payload as unknown as { map: SubjectMap }).map;
+  const topic = map.sections.flatMap((s) => s.topics).find((topic) => topic.kcs.some((kc) => NOTE.kc_ids.includes(kc.kc_id)))!;
+  fake.core.maps.set(map.subject_id, map);
+  fake.core.packs.push({ pack_id: "pack.phy.o", subject: "phy", level: "O", version: "0.1.0", signature_ok: true, size_bytes: 1 });
+  vi.stubGlobal("fetch", fake.fetch);
+  render(<App runtime={createRuntime(fake.core.launch, fake.fetch)} />);
+  fireEvent.click(await screen.findByRole("button", { name: /^Ada/ }));
+  fireEvent.click(within(await screen.findByRole("navigation", { name: "Main" })).getByRole("button", { name: "Notes and saved" }));
+  fireEvent.click(await screen.findByRole("button", { name: "Speed" }));
+  fireEvent.click(await screen.findByRole("button", { name: `Review ${topic.title} in Learn` }));
+  const sheet = await screen.findByRole("dialog", { name: topic.title });
+  expect(within(sheet).getByRole("button", { name: "Practise this" })).toBeTruthy();
+  expect(within(sheet).getByRole("button", { name: /Start the lesson/ })).toBeTruthy();
+});
 test("a note reference opens the accepted turn in history with no model, and another profile sees no note", async () => {
   const fake = notesCore();
   vi.stubGlobal("fetch", fake.fetch);
@@ -15,7 +33,7 @@ test("a note reference opens the accepted turn in history with no model, and ano
   fireEvent.click(await screen.findByRole("button", { name: /^Ada/ }));
   const nav = await screen.findByRole("navigation", { name: "Main" }); fireEvent.click(within(nav).getByRole("button", { name: "Notes and saved" }));
   fireEvent.click(await screen.findByRole("button", { name: "Speed" }));
-  fireEvent.click(await screen.findByRole("button", { name: "Open source turn" }));
+  fireEvent.click(await screen.findByRole("button", { name: "View in conversation" }));
   await screen.findByRole("log", { name: "Conversation" });
   await waitFor(() => expect((document.activeElement as HTMLElement)?.dataset.turnId).toBe(NOTE.statements[0]!.reference.turn_id));
   expect(screen.queryByRole("textbox", { name: /Ask/ })).toBeNull();

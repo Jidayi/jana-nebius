@@ -17,7 +17,7 @@ const seed = (p: string, text: string): Source[] => [{ path: p, text }];
 
 describe("DSN-01", () => {
   test("dsn01_generated_tokens_fresh", () => {
-    const contract = fs.readFileSync(path.join(ROOT, "docs/specification/contracts/design/tokens.json"));
+    const contract = fs.readFileSync(path.join(ROOT, "packages/ui/tokens.json"));
     const digest = crypto.createHash("sha256").update(contract).digest("hex");
     for (const name of ["tokens.css", "theme.css", "tokens.ts"]) {
       expect(fs.readFileSync(path.join(import.meta.dirname, "../src/generated", name), "utf8")).toContain(`source sha256: ${digest}`);
@@ -174,6 +174,9 @@ describe("DSN-07 to DSN-13", () => {
     expect(iconErrors(seed("packages/ui/src/x.tsx", 'import { Check } from "lucide-react";'))).not.toEqual([]);
     expect(iconErrors(seed("packages/ui/src/icons.tsx", "a: { glyph: Check }, b: { glyph: Check }"))).not.toEqual([]);
     expect(monopolyErrors(seed("packages/ui/src/x.tsx", '<button title="Send" />'))).not.toEqual([]);
+    expect(monopolyErrors(seed("packages/ui/src/x.tsx", '<Button title="Send" />'))).not.toEqual([]);
+    expect(monopolyErrors(seed("packages/ui/src/x.tsx", '<StudyCitations title={() => sourceTitle} />'))).toEqual([]);
+    expect(monopolyErrors(seed("packages/ui/src/x.tsx", '<><svg><title>Chart</title></svg><button title={label} /></>'))).not.toEqual([]);
     expect(monopolyErrors(seed("packages/ui/src/x.tsx", '<div role="alertdialog" />'))).not.toEqual([]);
     expect(dangerErrors(seed("packages/ui/src/board/x.tsx", '<p className="text-danger" />'))).not.toEqual([]);
     expect(literalStringErrors(seed("packages/ui/src/x.tsx", "const a = <p>Hello there</p>;"))).not.toEqual([]);
@@ -186,7 +189,13 @@ describe("LOC-01", () => {
   test("loc01_no_literal_strings", () => expect(literalStringErrors(files)).toEqual([]));
 
   test("loc01_keys_resolve", () => {
-    expect(keyErrors(files, BASE)).toEqual([]);
+    expect(keyErrors([...files, ...sources(["packages/client-core/src"])], BASE)).toEqual([]);
+  });
+
+  test("client helpers may return translated text keys while unrelated keys remain checked", () => {
+    const keys = { "help.ask.hint": "Hint", "help.ask.walk_through": "Walk through" };
+    expect(keyErrors(seed("packages/client-core/src/chips.ts", 'return { textKey: `help.ask.${kind}` };'), keys)).toEqual([]);
+    expect(keyErrors(seed("packages/client-core/src/chips.ts", 'return { debug: `help.ask.${kind}` };'), keys)).toHaveLength(2);
   });
 });
 

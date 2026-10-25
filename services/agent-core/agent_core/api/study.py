@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import contextlib
+import hashlib
 import json
+import re
 import sqlite3
 from collections.abc import Awaitable, Callable
 from typing import Any
@@ -13,8 +15,10 @@ from fastapi.responses import JSONResponse
 
 from agent_core.api.core import CURRENT_PROFILE, CoreService
 from agent_core.api.errors import ApiError
+from agent_core.config.personal_data import Redactor
 from agent_core.engine.events import new_id
 from agent_core.engine.study import StudyDesk, StudyError, atomic, checked
+from agent_core.engine.study_journey import StudyJourney
 from agent_core.engine.study_topics import matching_topics
 from agent_core.engine.verbaliser import verbalise
 from agent_core.store.events import iso_ms
@@ -73,10 +77,12 @@ def add_routes(app: FastAPI, core: CoreService) -> None:
     ) -> Response:
         try:
             d = desk()
-            access_sources = []
-            if access:
+
+            def resolve_access() -> list[dict[str, Any]]:
+                if not access:
+                    return []
                 try:
-                    access_sources = refs(request, *access)
+                    return refs(request, *access)
                 except StudyError as error:
                     if not (
                         request.method == "DELETE"
@@ -84,6 +90,8 @@ def add_routes(app: FastAPI, core: CoreService) -> None:
                         and d.conn.execute("SELECT 1 FROM study_tombstones WHERE source_id=?", (access[1],)).fetchone()
                     ):
                         raise
+                    return []
+
             if schema in ("SourceCreate", "SourceRevision", "UploadChunk") and core.storage_low and core.storage_low():
                 raise ApiError("storage_full")
             raw = await request.body()
@@ -109,6 +117,7 @@ def add_routes(app: FastAPI, core: CoreService) -> None:
             if cached:
                 if cached[0] != sha:
                     raise ApiError("request_conflict")
+                resolve_access()
                 stored = json.loads(cached[2])
                 authorise(request, stored["sources"])
                 return response(stored["body"], cached[1])
@@ -116,6 +125,7 @@ def add_routes(app: FastAPI, core: CoreService) -> None:
             from agent_core.api.app import route_key
 
             screening.screen(core, route_key(request), request.path_params, body)
+            access_sources = resolve_access()
             # Fixed commands do not await external work: their writes and cached response are one transaction.
             # Card editing performs its model check first and commits inside its own guarded apply step.
             with atomic(d.conn) if atomic_command else contextlib.nullcontext():
@@ -171,12 +181,38 @@ def add_routes(app: FastAPI, core: CoreService) -> None:
                 "StudySnapshot",
                 {
                     "sources": d.sources(cursor),
+                    "journey": StudyJourney(d).current(lambda selections: authorise(request, selections)),
                     "jobs": jobs,
-                    "cleanup_pending": bool(d.conn.execute("SELECT 1 FROM study_cloud_cleanup LIMIT 1").fetchone()),
+                    # The UI's deletion notice applies only to erased sources. Active
+                    # jobs also hold temporary cleanup receipts, without deleting files.
+                    "cleanup_pending": bool(
+                        d.conn.execute(
+                            "SELECT 1 FROM study_cloud_cleanup c JOIN study_tombstones t "
+                            "ON t.source_id=c.source_id LIMIT 1"
+                        ).fetchone()
+                    ),
                 },
             )
 
         return read(request, get)
+
+    @app.get("/v1/study/library")
+    async def library(request: Request) -> Response:
+        return read(request, lambda d: d.library())
+
+    @app.post("/v1/study/sources/{source_id}/archive")
+    async def archive_source(source_id: str, request: Request) -> Response:
+        async def run(d: StudyDesk, _body: Any) -> Any:
+            return d.archive_source(source_id, True)
+
+        return await command(request, None, run)
+
+    @app.delete("/v1/study/sources/{source_id}/archive")
+    async def restore_source(source_id: str, request: Request) -> Response:
+        async def run(d: StudyDesk, _body: Any) -> Any:
+            return d.archive_source(source_id, False)
+
+        return await command(request, None, run)
 
     @app.post("/v1/study/sources")
     async def create_source(request: Request) -> Response:
@@ -189,9 +225,7 @@ def add_routes(app: FastAPI, core: CoreService) -> None:
     async def topics(source_id: str, request: Request) -> Response:
         def get(d: StudyDesk) -> Any:
             source = d.source(source_id)
-            text = "\n".join(
-                chunk["text"] for chunk in d.selected([{"source_id": source_id, "revision": source["revision"]}])
-            )
+            text = d.curriculum_text({"source_id": source_id, "revision": source["revision"]})
             content = core.study.content() if core.study.content else None
             return checked("TopicLinks", matching_topics(content, text) if content else {"items": []})
 
@@ -283,16 +317,27 @@ def add_routes(app: FastAPI, core: CoreService) -> None:
             raise fail(error) from None
 
     @app.get("/v1/study/aids/{aid_id}/speech")
-    async def speech(aid_id: str, request: Request, claim: str = "0", offset: str = "0") -> Response:
+    async def speech(
+        aid_id: str, request: Request, claim: str = "0", offset: str = "0", limit: str = "3500", neural: bool = False
+    ) -> Response:
         def get(d: StudyDesk) -> Any:
             aid = d.aid(aid_id)
             if aid["kind"] != "audio_overview" or aid["status"] != "ready":
                 raise StudyError("source_stale")
+            if neural:
+                if not core.settings.study_neural_speech_enabled or core.study.cloud is None:
+                    raise StudyError("neural_speech_not_configured")
+                try:
+                    core.study.cloud.guard(d.conn)
+                except ValueError as error:
+                    raise StudyError(getattr(error, "reason", "consent_required")) from None
+                if any(d.source(source["source_id"])["private"] for source in aid["sources"]):
+                    raise StudyError("neural_speech_private_material")
             index, start = number(claim, 0, len(aid["claims"]) - 1), number(offset, 0, 100000)
             text = verbalise(aid["claims"][index]["text"]).text
             if start >= len(text):
                 raise StudyError("invalid_study_request")
-            end = min(len(text), start + 3500)
+            end = min(len(text), start + number(limit, 100, 3500))
             if end < len(text):
                 end = max(start + 1, text.rfind(" ", start, end))
             return checked(
@@ -307,6 +352,68 @@ def add_routes(app: FastAPI, core: CoreService) -> None:
             )
 
         return read(request, get, ("aid", aid_id))
+
+    @app.get("/v1/study/podcast-voice")
+    async def podcast_voice(request: Request) -> Response:
+        d = desk()
+        enabled = core.settings.study_neural_speech_enabled
+        status = {"enabled": enabled, "configured": False, "provider": "nvidia_magpie"}
+        if enabled and core.study.cloud is not None:
+            try:
+                remote = await core.study.cloud.send(d.conn, "GET", "/v1/podcast/voice")
+                if isinstance(remote, dict) and remote.get("provider") == "nvidia_magpie":
+                    status["configured"] = remote.get("enabled") is True and remote.get("configured") is True
+            except ValueError:
+                pass  # Status never grants consent or silently selects the system voice.
+        return response(status)
+
+    @app.post("/v1/study/aids/{aid_id}/neural-speech")
+    async def neural_speech(aid_id: str, request: Request) -> Response:
+        try:
+            d = desk()
+            if not core.settings.study_neural_speech_enabled or core.study.cloud is None:
+                raise StudyError("neural_speech_not_configured")
+            refs(request, "aid", aid_id)
+            core.limit_command(request.url.path)
+            body = await request.json()
+            if (
+                not isinstance(body, dict)
+                or set(body) != {"claim", "offset", "text_sha256", "nvidia_consent"}
+                or body.get("nvidia_consent") is not True
+                or type(body.get("claim")) is not int
+                or type(body.get("offset")) is not int
+                or not isinstance(body.get("text_sha256"), str)
+                or not re.fullmatch(r"[0-9a-f]{64}", body["text_sha256"])
+            ):
+                raise StudyError("invalid_study_request")
+            key = request.headers.get("idempotency-key", "")
+            if not re.fullmatch(r"cli_[0-9A-HJKMNP-TV-Z]{26}", key):
+                raise StudyError("invalid_study_request")
+            aid = d.aid(aid_id)
+            if aid["kind"] != "audio_overview" or aid["status"] != "ready":
+                raise StudyError("source_stale")
+            if any(d.source(source["source_id"])["private"] for source in aid["sources"]):
+                raise StudyError("neural_speech_private_material")
+            # Reuse the exact passage preparation read by the browser, without accepting arbitrary client text.
+            passage_response = await speech(aid_id, request, str(body["claim"]), str(body["offset"]), "600")
+            passage = json.loads(bytes(passage_response.body))
+            text = passage["text"]
+            if hashlib.sha256(text.encode()).hexdigest() != body["text_sha256"]:
+                raise StudyError("source_stale")
+            voice_index = body["claim"] % 2 if aid.get("settings", {}).get("voices") == 2 else 0
+            audio = await core.study.cloud.podcast_audio(d.conn, text, key, voice_index)
+            # Consent/profile changes, private-grant expiry and deletion during synthesis must withhold playback.
+            core.study.cloud.guard(d.conn)
+            refs(request, "aid", aid_id)
+            if d.aid(aid_id)["status"] != "ready" or any(
+                d.source(source["source_id"])["private"] for source in aid["sources"]
+            ):
+                raise StudyError("source_stale")
+            return Response(audio, media_type="audio/wav", headers={"Cache-Control": "no-store"})
+        except (ValueError, TypeError) as error:
+            if isinstance(error, StudyError):
+                raise fail(error) from None
+            raise fail(StudyError(getattr(error, "reason", "invalid_study_request"))) from None
 
     @app.get("/v1/study/sources/{source_id}")
     async def source(source_id: str, request: Request) -> Response:
@@ -468,6 +575,105 @@ def add_routes(app: FastAPI, core: CoreService) -> None:
 
         return await command(request, "JobCreate", run, status=202)
 
+    @app.post("/v1/study/quizzes/{quiz_id}/items/{item_id}/help")
+    async def quiz_help(quiz_id: str, item_id: str, request: Request) -> Response:
+        async def run(d: StudyDesk, body: Any) -> Any:
+            authorise(request, body["sources"])
+            if body["execution"] == "prefer_cloud":
+                if core.study.cloud is None:
+                    raise StudyError("consent_required")
+                try:
+                    core.study.cloud.guard(d.conn)
+                except ValueError as error:
+                    raise StudyError(getattr(error, "reason", "consent_required")) from None
+            return d.create_quiz_help_job(quiz_id, item_id, body)
+
+        return await command(request, "JobCreate", run, ("quiz", quiz_id), status=202)
+
+    @app.post("/v1/study/web")
+    async def import_web(request: Request) -> Response:
+        """Explicitly import a public web page; no uploaded file is ever sent to Tavily."""
+        from urllib.parse import urlsplit
+
+        from agent_core.api import screening
+
+        try:
+            d = desk()
+            raw = await request.body()
+            if len(raw) > 4096:
+                raise ApiError("payload_too_large")
+            body = json.loads(raw)
+            if (
+                not isinstance(body, dict)
+                or set(body) != {"url", "tavily_consent"}
+                or body["tavily_consent"] is not True
+                or not isinstance(body["url"], str)
+                or not 1 <= len(body["url"]) <= 2048
+            ):
+                raise StudyError("invalid_public_url")
+            key = request.headers.get("idempotency-key", "")
+            import re
+
+            if not re.fullmatch(r"cli_[0-9A-HJKMNP-TV-Z]{26}", key):
+                raise ApiError("invalid_request")
+            core.limit_command(request.url.path)
+            screening.screen(core, "POST /v1/study/web", {}, body)
+            identifying = d.conn.execute("SELECT display_name,profile_id FROM profile").fetchone()
+            if Redactor(identifying or ()).blocks(body):
+                raise StudyError("safety_blocked")
+            cloud = core.study.cloud
+            if cloud is None:
+                raise StudyError("consent_required")
+            cloud.guard(d.conn)
+            sha = core.idempotency.digest(request.method, request.url.path, body)
+            cache_key = "study:" + key
+            cached = d.conn.execute(
+                "SELECT request_sha256,response FROM idempotency_responses WHERE idempotency_key=?", (cache_key,)
+            ).fetchone()
+            if cached:
+                if cached[0] != sha:
+                    raise ApiError("request_conflict")
+                stored = json.loads(cached[1])
+                authorise(request, stored["sources"])
+                return response(stored["body"])
+            page = await cloud.send(
+                d.conn, "POST", "/v1/web/extract", {**body, "request_id": key.replace("cli_", "ask_", 1)}
+            )
+            if core.study.connection() is not d.conn or CURRENT_PROFILE.get() != core.records_profile:
+                raise ApiError("profile_token_expired")
+            if (
+                not isinstance(page, dict)
+                or set(page) != {"url", "title", "text"}
+                or not all(isinstance(v, str) for v in page.values())
+                or not 1 <= len(page["text"]) <= 180000
+                or not 1 <= len(page["title"]) <= 160
+            ):
+                raise StudyError("web_page_unreadable")
+            if (
+                urlsplit(page["url"]).scheme != "https"
+                or urlsplit(page["url"]).hostname != urlsplit(body["url"]).hostname
+            ):
+                raise StudyError("web_page_unreadable")
+            with atomic(d.conn):
+                source = d.create(
+                    {
+                        "kind": "text",
+                        "title": page["title"],
+                        "text": "Source URL: " + page["url"] + "\n\n" + page["text"],
+                    }
+                )
+                cached_body = {
+                    "body": source,
+                    "sources": [{"source_id": source["source_id"], "revision": source["revision"]}],
+                }
+                d.conn.execute(
+                    "INSERT INTO idempotency_responses VALUES (?,?,200,?,?)",
+                    (cache_key, sha, json.dumps(cached_body), core.clock_ms()),
+                )
+            return response(source)
+        except (ValueError, StudyError) as error:
+            raise fail(StudyError(getattr(error, "reason", "invalid_public_url"))) from None
+
     @app.get("/v1/study/jobs/{job_id}")
     async def job(job_id: str, request: Request) -> Response:
         return read(request, lambda d: d.job(job_id), ("job", job_id))
@@ -520,6 +726,36 @@ def add_routes(app: FastAPI, core: CoreService) -> None:
     @app.get("/v1/study/aids/{aid_id}")
     async def aid(aid_id: str, request: Request) -> Response:
         return read(request, lambda d: d.aid(aid_id), ("aid", aid_id))
+
+    @app.post("/v1/study/aids/{aid_id}/journey")
+    async def saved_journey(aid_id: str, request: Request) -> Response:
+        async def run(d: StudyDesk, body: Any) -> Any:
+            journey = StudyJourney(d)
+            if body["action"] == "start":
+                journey.start(aid_id)
+            elif body["action"] == "lesson_reviewed":
+                if journey.root(aid_id) != aid_id:
+                    raise StudyError("invalid_study_request")
+                journey.resume(aid_id, reviewed=True)
+            else:
+                journey.resume(aid_id)
+            return checked("StudyJourneyReply", {"journey": journey.current(lambda s: authorise(request, s))})
+
+        return await command(request, "StudyJourneyAction", run, ("aid", aid_id))
+
+    @app.get("/v1/study/quizzes/{quiz_id}/saved-result")
+    async def saved_quiz_result(quiz_id: str, request: Request) -> Response:
+        def get(d: StudyDesk) -> Any:
+            result = StudyJourney(d).saved_result(quiz_id)
+            submission = d.quiz(quiz_id).get("submission")
+            answers = (
+                {"answers": submission["answers"]}
+                if result and submission and submission["attempt_id"] == result[0]["attempt_id"]
+                else {}
+            )
+            return checked("QuizSavedResult", {"result": result[0] if result else None, **answers})
+
+        return read(request, get, ("quiz", quiz_id))
 
     @app.get("/v1/study/decks/{deck_id}")
     async def deck(deck_id: str, request: Request) -> Response:

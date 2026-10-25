@@ -14,6 +14,7 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
+from . import REPO_ROOT
 from .spec import DOCS, table_rows
 
 INVENTORY = Path(__file__).resolve().parents[1] / "governance" / "data-inventory.toml"
@@ -55,6 +56,11 @@ def row_name(cell: str) -> str:
 
 def spec_rows(docs: Path = DOCS) -> tuple[set[str], set[str]]:
     """The row names of TABLE DAT-08a (retention) and TABLE DAT-18a (egress data classes)."""
+    if docs == DOCS:
+        import json
+
+        policy = json.loads((REPO_ROOT / "contracts/policies/privacy.json").read_text())
+        return set(policy["retention_classes"]), set(policy["egress_classes"])
     text = (docs / DATA_MODEL).read_text()
     return ({row_name(r[0]) for r in table_rows(text, RETENTION_TABLE)},
             {row_name(r[0]) for r in table_rows(text, EGRESS_TABLE)})  # fmt: skip

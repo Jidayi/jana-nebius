@@ -159,7 +159,7 @@ describe("UXS-12", () => {
     expect(card.querySelector("[data-block-status='done']")?.textContent).toContain("Done");
     // Finished: Keep learning proposes a fresh plan and starts it, once, even though Home re-reads the plan.
     core.finishPlan();
-    fireEvent.click(within(nav).getByRole("button", { name: "Learn" }));
+    fireEvent.click(within(nav).getByRole("button", { name: "Lessons" }));
     fireEvent.click(within(nav).getByRole("button", { name: "Home" }));
     card = await planCard();
     fireEvent.click(await within(card).findByRole("button", { name: "Keep learning" }));
@@ -294,7 +294,7 @@ describe("UXS-51", () => {
     fireEvent.click(screen.getByRole("button", { name: "Search" }));
     await screen.findByText("No worked solution matches. Try fewer words, or open the topic's lesson.");
     fireEvent.click(screen.getByRole("button", { name: "Browse topics" }));
-    await waitFor(() => expect(within(nav).getByRole("button", { name: "Learn" }).getAttribute("aria-current")).toBe("page"));
+    await waitFor(() => expect(within(nav).getByRole("button", { name: "Lessons" }).getAttribute("aria-current")).toBe("page"));
   });
 });
 
@@ -303,7 +303,7 @@ describe("PRM-03", () => {
     const core = fakeCore((c) => {
       for (const s of c.settings.values()) Object.assign(s, { tutor_name: "Jana", tutor_avatar: "avatar.jana" });
     });
-    const nav = await launch(core);
+    await launch(core);
     fireEvent.click(menuItem("Settings"));
     const section = await waitFor(() => {
       const found = document.querySelector<HTMLElement>("[data-settings-section='tutor']");

@@ -255,15 +255,19 @@ def nearest_lesson(engine: Any) -> dict[str, str] | None:
     if subject is None:
         return None
     # Common question/instruction words and bare quantities are not evidence that a lesson covers the topic.
-    ignored = set("a an and are as at be by can could do does for from give given guide has have how i in is it "
-                  "me my of on one or please question says show step take that the then this through to us use "
-                  "was we what when where which with would you your".split())
-    query = " ".join(word for word in terms(problem.statement)
-                     if len(word) > 1 and not word.isnumeric() and word not in ignored)
+    ignored = set(
+        "a an and are as at be by can could do does for from give given guide has have how i in is it "
+        "me my of on one or please question says show step take that the then this through to us use "
+        "was we what when where which with would you your".split()
+    )
+    query = " ".join(
+        word for word in terms(problem.statement) if len(word) > 1 and not word.isnumeric() and word not in ignored
+    )
     if not query:
         return None
-    hits = knowledge.index.search(query, subjects=[subject], kinds=("lesson",),
-                                  levels=[engine.state.level.lower()], limit=1)
+    hits = knowledge.index.search(
+        query, subjects=[subject], kinds=("lesson",), levels=[engine.state.level.lower()], limit=1
+    )
     if not hits:
         return None
     passage = hits[0].passage

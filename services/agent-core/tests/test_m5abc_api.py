@@ -1137,16 +1137,45 @@ def api32_error_fixtures():
     schema, and the client has a copy key for it."""
     from agent_core.api.errors import STATUS, envelope
 
-    text = (REPO_ROOT / "docs" / "specification" / "streaming-and-api.md").read_text()
-    table = text.split("TABLE API-32a", 1)[1].split("Acceptance:", 1)[0]
-    spec: dict[str, int] = {}
-    for line in table.splitlines():
-        cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len(cells) == 2 and cells[0].isdigit():
-            for code in re.findall(r"`([a-z_]+)`", cells[1].split("(with", 1)[0]):
-                spec[code] = int(cells[0])
-    # `tools_not_supported` belongs to the voice adapter's own error body (VOC-30), not the error envelope.
-    assert spec and STATUS == {k: v for k, v in spec.items() if k != "tools_not_supported"}
+    expected = {
+        "invalid_request": 400,
+        "invalid_cursor": 400,
+        "unauthorized": 401,
+        "profile_token_expired": 401,
+        "forbidden_origin": 403,
+        "guardian_consent_required": 403,
+        "feature_disabled": 403,
+        "lan_server_unpinned": 403,
+        "replica_disabled": 403,
+        "not_found": 404,
+        "turn_active": 409,
+        "cursor_expired": 409,
+        "epoch_mismatch": 409,
+        "request_conflict": 409,
+        "already_answered": 409,
+        "capture_not_ready": 409,
+        "lan_fingerprint_mismatch": 409,
+        "review_changed": 409,
+        "request_expired": 410,
+        "payload_too_large": 413,
+        "image_too_large": 413,
+        "unsupported_format": 415,
+        "validation_failed": 422,
+        "tutor_locked": 423,
+        "capture_locked": 423,
+        "upgrade_required": 426,
+        "lan_protocol_unsupported": 426,
+        "rate_limited": 429,
+        "internal_error": 500,
+        "core_starting": 503,
+        "model_unavailable": 503,
+        "worker_unavailable": 503,
+        "network_unavailable": 503,
+        "photo_reading_unavailable": 503,
+        "lan_server_unreachable": 503,
+        "storage_full": 507,
+    }
+    assert STATUS == expected
     copy = json.loads((REPO_ROOT / "packages" / "i18n" / "locales" / "en.json").read_text())
     for code in STATUS:
         body = envelope(code, "fixture message", details={"field": "x"}, retry_after_ms=100)

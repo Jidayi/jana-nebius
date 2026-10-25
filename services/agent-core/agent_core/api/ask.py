@@ -35,7 +35,19 @@ from agent_core.engine.ask_route import route_input
 from agent_core.engine.events import new_id
 
 TEXT_MAX = 20000
-WAITING = ("offline", "needs_online_plan", "consent_required", "notice_required", "allowance_exhausted")
+WAITING = (
+    "offline",
+    "needs_online_plan",
+    "consent_required",
+    "notice_required",
+    "allowance_exhausted",
+    "web_permission_required",
+    "search_not_configured",
+    "search_prepaid_only",
+    "search_credits_exhausted",
+    "search_unavailable",
+    "search_attempt_already_sent",
+)
 
 
 def _index(core: CoreService) -> Any:
@@ -57,7 +69,7 @@ def unavailable(core: CoreService) -> str | None:
 
 
 async def answer_question(core: CoreService, question: str, mode: str | None = None,
-                          reach: str | None = None) -> dict[str, Any]:  # fmt: skip
+                          reach: str | None = None, web_confirmed: bool = False) -> dict[str, Any]:  # fmt: skip
     """The reply of `POST /v1/ask` for a question the input guard has passed, typed or spoken (VOC-53): routed again
     here, so homework is handed to the tutor with no answer; otherwise Ask anything under the profile's policy."""
     conn = getattr(core.store, "conn", None)
@@ -82,6 +94,8 @@ async def answer_question(core: CoreService, question: str, mode: str | None = N
     )
     ask_id = new_id("ask")
     payload = request_body(ask_id, question, policy, own, share, config)
+    if web_confirmed:
+        payload["web_confirmed"] = True
     try:
         reply = await core.ask_cloud.ask(payload, tuple(str(v) for v in (row[1:] if row else ()) if v))
         answer = compose(ask_id, question, policy, own, reply, config)
@@ -123,15 +137,18 @@ def add_routes(app: FastAPI, core: CoreService, mutating: Mutating) -> None:
         async def run(body: Any) -> tuple[int, Any]:
             if (
                 not isinstance(body, dict)
-                or not set(body) <= {"question", "mode", "reach"}
+                or not set(body) <= {"question", "mode", "reach", "web_confirmed"}
                 or not isinstance(body.get("question"), str)
                 or not body["question"].strip()
                 or len(body["question"]) > QUESTION_MAX
                 or body.get("mode", "teach") not in ("teach", "explain")
                 or body.get("reach", "allow_list") not in ("allow_list", "wider_web")
+                or type(body.get("web_confirmed", False)) is not bool
             ):
                 raise ApiError("validation_failed")
             learner()
-            return 200, await answer_question(core, body["question"].strip(), body.get("mode"), body.get("reach"))
+            return 200, await answer_question(
+                core, body["question"].strip(), body.get("mode"), body.get("reach"), body.get("web_confirmed", False)
+            )
 
         return await mutating(request, run)

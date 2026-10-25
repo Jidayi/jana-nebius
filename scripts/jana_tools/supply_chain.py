@@ -516,9 +516,12 @@ def render_notices(per_artefact: dict[str, list[Component]]) -> str:
     for c in components:
         lines.append(f"{c.name} {c.version} ({c.ecosystem}): {c.licence}")
     if any(c.name == "pypdfium2" for c in components):
-        lines += ["", "This software is based in part on the work of the Independent JPEG Group.",
-                  "This software is based in part on the work of the FreeType Team (https://freetype.org/).",
-                  "Complete PDFium and bundled library licence texts accompany the application in legal/pypdfium2."]
+        lines += [
+            "",
+            "This software is based in part on the work of the Independent JPEG Group.",
+            "This software is based in part on the work of the FreeType Team (https://freetype.org/).",
+            "Complete PDFium and bundled library licence texts accompany the application in legal/pypdfium2.",
+        ]
     return "\n".join(lines) + "\n"
 
 

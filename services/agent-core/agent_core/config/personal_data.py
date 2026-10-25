@@ -8,8 +8,12 @@ past a check by being spelled with lookalike or hidden characters. Patterns neve
 
 from __future__ import annotations
 
+import json
 import re
 import unicodedata
+from collections.abc import Iterable
+from dataclasses import dataclass
+from typing import Any
 
 # Cyrillic and Greek letters drawn like Latin ones (a small, fixed confusables table), by code point.
 _LOOKALIKES = str.maketrans({
@@ -67,3 +71,30 @@ def term_pattern(terms: list[str]) -> re.Pattern[str] | None:
         return None
     parts.sort(key=len, reverse=True)
     return re.compile(r"(?<![^\W_])(?:" + "|".join(parts) + r")(?![^\W_])", re.I)
+
+
+PATTERNS: dict[str, re.Pattern[str]] = {
+    "profile_id": re.compile(r"(?<![^\W_])prf_?[0-9A-HJKMNP-TV-Z]{26}(?![^\W_])", re.I),
+    **CONTACT,
+}
+
+
+@dataclass(frozen=True)
+class Finding:
+    kind: str  # "term" or a pattern name; never the matched text
+
+
+class Redactor:
+    """The same identifying-term and contact checks for API inputs and outgoing cloud requests."""
+
+    def __init__(self, terms: Iterable[str] = ()) -> None:
+        self._terms = term_pattern([t for t in terms if t])
+
+    def findings(self, body: Any) -> list[Finding]:
+        text = normalise(body if isinstance(body, str) else json.dumps(body, ensure_ascii=False))
+        found = [Finding("term")] if self._terms is not None and self._terms.search(text) else []
+        found += [Finding(name) for name, pattern in PATTERNS.items() if pattern.search(text)]
+        return found
+
+    def blocks(self, body: Any) -> bool:
+        return bool(self.findings(body))

@@ -47,6 +47,22 @@ describe("LOC-04", () => {
 });
 
 describe("UXS-05", () => {
+  test("standard uppercase terms do not exempt the rest of a message from copy rules", () => {
+    expect(copyLintErrors({
+      "study.web_url": "Public web page URL",
+      "study.web_help": "Use a public HTTPS page link.",
+      "study.audio_help": "Check NVIDIA’s API access.",
+    })).toEqual([]);
+    expect(copyLintErrors({
+      "study.audio_status": "NVIDIA AUDIO READY",
+      "study.audio_help": "Check NVIDIA API access!",
+      "study.feedback": "NVIDIA says your answer is wrong.",
+    })).toEqual([
+      "study.audio_status: all-caps word",
+      "study.audio_help: exclamation mark in interface copy",
+      "study.feedback: says \"wrong\" to a student",
+    ]);
+  });
   test("uxs05_copy_lint", () => {
     expect(copyLintErrors(BASE)).toEqual([]);
     expect(copyLintErrors({ "file.help": "Choose a PDF, JPEG or PNG file." })).toEqual([]);

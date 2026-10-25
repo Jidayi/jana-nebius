@@ -144,12 +144,12 @@ def bank_item() -> dict[str, Any]:
 
 
 def agt01_roles_register_matches_manifests() -> None:
-    register = json.loads((SPEC / "registers" / "roles.json").read_text())["roles"]
-    toolsets = json.loads((SPEC / "registers" / "toolsets.json").read_text())
+    register = json.loads((CONTENT / "roles.json").read_text())["roles"]
+    toolsets = REGISTER
     specialists = [r for r in register if r["kind"] == "specialist"]
     assert {r["id"] for r in specialists} == {"coach", "diagnoser", "solver", "checker", "reflector"}
     for row in specialists:
-        for path in (SPEC / "contracts" / "agents" / row["manifest"], CONTENT / "roles" / f"{row['id']}.md"):
+        for path in (CONTENT / "roles" / f"{row['id']}.md",):
             meta = load_manifest(path).meta
             assert (meta["audience"], meta["model_role"], meta["toolsets"], meta["output_schema"]) == (
                 row["audience"],
@@ -184,8 +184,9 @@ def agt01_roles_register_matches_manifests() -> None:
         # The register names the role's output contract and its reference manifest in the specification.
         assert meta["output_mode"] == "structured"
         assert meta["output_schema"] == row["output_schema"] == SCHEMAS[meta["id"]].split("/")[1] + ".schema.json"
-        reference = load_manifest(SPEC / "contracts" / "agents" / row["manifest"]).meta
-        assert (reference["id"], reference["output_schema"]) == (meta["id"], row["output_schema"]), path
+        from agent_core.contracts import document
+
+        assert document(SCHEMAS[meta["id"]])["$id"].endswith(SCHEMAS[meta["id"]])
         assert meta["permissions"] == {
             "address_student": False,
             "delegate": False,

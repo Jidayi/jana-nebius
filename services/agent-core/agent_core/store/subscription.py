@@ -152,8 +152,12 @@ def allowance_period(stored: Mapping[str, Any], now_ms: int) -> str:
 
 
 def covers(stored: Mapping[str, Any], profile_id: str, now_ms: int) -> bool:
-    """The subscription is active and names this profile."""
-    return state(stored, now_ms) == "active" and profile_id in stored.get("profiles", [])
+    """A current subscription covers this approved profile; another profile may still await consent."""
+    return (
+        state(stored, now_ms) in ("active", "pending_consent")
+        and profile_id in stored.get("profiles", [])
+        and profile_id not in stored.get("consent_needed", [])
+    )
 
 
 def granted(stored: Mapping[str, Any], profile_id: str, now_ms: int) -> dict[str, Any] | None:

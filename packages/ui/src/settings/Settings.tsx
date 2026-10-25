@@ -283,7 +283,7 @@ export function Settings({ profiles, onClose, onOpenKnows, chooseSource, voiceSe
           </Card>
         );
       case "accessibility_language":
-        return preferences("accessibility");
+        return <>{preferences("accessibility")}{voiceSettings !== undefined && !sections.includes("voice") && <Card><div className="py-3">{voiceSettings}</div></Card>}</>;
       case "study":
         return preferences("study");
       case "tutor":

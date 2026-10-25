@@ -19,6 +19,8 @@ def test_stu21_settings_respected_question_types_narrow_the_schema():
     options = [{"option_id": "a", "text": "One"}, {"option_id": "b", "text": "Two"}]
     assert not validate.is_valid({"item_id": "q3", "type": "choice", "stem": STEM, "options": options})
     assert not validate.is_valid({"item_id": "q4", "type": "numeric", "stem": STEM})
+    assert not validate.is_valid({"item_id": "q2", "type": "true_false", "stem": STEM, "unit_prompt": ""})
+    assert "calculation" not in schema["properties"]["quiz"]["properties"]["keys"]["items"]["properties"]
     both = generation_schema("quiz", JID, 4, passage_ids=["p0"], question_types=["multi_select"])
     check = Draft202012Validator(both["properties"]["quiz"]["properties"]["items"]["items"])
     assert check.is_valid({"item_id": "q5", "type": "multi_select", "stem": STEM, "options": options})

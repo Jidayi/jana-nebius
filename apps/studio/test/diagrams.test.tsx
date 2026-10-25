@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, expect, test, vi } from "vitest";
 import { DiagramEditor } from "../src/DiagramEditor.js";
 import { command } from "../src/transport.js";
@@ -40,4 +40,30 @@ test("keyboard element selection uses the same tagging operation as the drawing"
   fireEvent.click(screen.getByRole("button", { name: "Tag selected element" }));
   await screen.findByText("Part tag updated");
   expect(command).toHaveBeenCalledWith(expect.objectContaining({ op: "diagram_tag", element: 1, part: "ball" }));
+});
+
+test("sanitisation reads the latest draft when edits and the action share a render batch", async () => {
+  await open();
+  const unsafe = svg.replace("</svg>", "<script>alert(1)</script></svg>");
+  act(() => {
+    fireEvent.change(screen.getByLabelText("SVG source"), { target: { value: unsafe } });
+    fireEvent.click(screen.getByRole("button", { name: "Sanitise drawing and show removals" }));
+  });
+  await screen.findByText("Removed: element script");
+  expect(command).toHaveBeenCalledWith(expect.objectContaining({ op: "diagram_sanitise", svg: unsafe }));
+  expect((screen.getByLabelText("SVG source") as HTMLTextAreaElement).value).toBe(svg);
+  expect(document.querySelector("script")).toBeNull();
+});
+
+test("a sanitisation result never overwrites SVG edited while the action is pending", async () => {
+  await open();
+  let finish: ((value: { svg: string; removed: string[] }) => void) | undefined;
+  vi.mocked(command).mockImplementationOnce(() => new Promise((resolve) => { finish = resolve; }));
+  fireEvent.click(screen.getByRole("button", { name: "Sanitise drawing and show removals" }));
+  const newer = svg.replace('r="10"', 'r="12"');
+  fireEvent.change(screen.getByLabelText("SVG source"), { target: { value: newer } });
+  await act(async () => { finish?.({ svg, removed: [] }); });
+  await screen.findByText("The drawing changed during this action; run it again.");
+  expect((screen.getByLabelText("SVG source") as HTMLTextAreaElement).value).toBe(newer);
+  expect(screen.queryByText("Removed: nothing unsafe")).toBeNull();
 });

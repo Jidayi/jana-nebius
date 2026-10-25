@@ -52,6 +52,27 @@ class AskSearch(_Strict):
     secret: str  # the API key's name in the secret source, never the key itself (SEC-20)
 
 
+class TavilySettings(_Strict):
+    """Prepaid search credits have their own persistent cap; they are not inference dollars."""
+
+    enabled: bool = False
+    daily_credits: int = Field(default=50, ge=1, le=1000)
+    total_credits: int = Field(default=500, ge=1, le=10000)
+    expires_at: AwareDatetime | None = None
+
+
+class NvidiaPodcastSpeech(_Strict):
+    """NVIDIA's free API-catalog prototype endpoint only; no GPU rental or paid speech billing path."""
+
+    enabled: bool = False
+    access: Literal["free_prototyping"] = "free_prototyping"
+    daily_characters: int = Field(default=20000, ge=1, le=100000)
+    total_characters: int = Field(default=100000, ge=1, le=1000000)
+    daily_requests: int = Field(default=100, ge=1, le=500)
+    total_requests: int = Field(default=500, ge=1, le=2000)
+    expires_at: AwareDatetime | None = None
+
+
 class ModelSpec(_Strict):
     id: str
     thinking: Thinking | None = None
@@ -330,6 +351,8 @@ class GatewayConfig(_Strict):
     # Ask anything (STU-20, D117): the model that writes the cited answer and the search backend it reads from.
     ask_model: str = Field(default="primary/fast-model", pattern=r"^[a-z][a-z0-9_-]*/[a-z][a-z0-9_-]*$")
     ask_search: AskSearch | None = None
+    tavily: TavilySettings = Field(default_factory=TavilySettings)
+    podcast_speech: NvidiaPodcastSpeech = Field(default_factory=NvidiaPodcastSpeech)
     ask_search_results: int = key(6, serves="STU-20", unit="sources", ge=1, le=10)
     ask_max_tokens: int = key(4096, serves="STU-20", unit="tokens", ge=512, le=16384)
     objectives: Objectives = Field(default_factory=Objectives)
@@ -347,11 +370,17 @@ class GatewayConfig(_Strict):
         for alias in self.tier.calls_per_turn:
             if primary is not None and alias not in primary.models:
                 raise ValueError(f"the tier's usage mix names {alias!r}, not a model of the primary provider (BIZ-08)")
+        if self.podcast_speech.enabled and self.podcast_speech.expires_at is None:
+            raise ValueError("NVIDIA prototype Podcast speech requires an expiry")
         if self.open_registration and self.environment != "dev":
             raise ValueError("open registration is for the dev environment only")
-        if (self.quotas.deployment_daily_spend_usd is not None
-                or self.quotas.deployment_total_spend_usd is not None
-                or self.quotas.deployment_budget_expires_at is not None):
+        if self.tavily.enabled and (self.tavily.expires_at is None or self.ask_search is not None):
+            raise ValueError("Tavily requires an expiry and must be the only configured search backend")
+        if (
+            self.quotas.deployment_daily_spend_usd is not None
+            or self.quotas.deployment_total_spend_usd is not None
+            or self.quotas.deployment_budget_expires_at is not None
+        ):
             for amount in (self.quotas.deployment_daily_spend_usd, self.quotas.deployment_total_spend_usd):
                 if amount is not None and not math.isfinite(amount):
                     raise ValueError("deployment spend limits must be finite")

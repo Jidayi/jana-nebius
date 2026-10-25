@@ -6,7 +6,6 @@ import base64
 import hashlib
 import io
 import json
-import re
 import socket
 import sqlite3
 import time
@@ -437,9 +436,7 @@ def api30_kinds_match_dat10(tmp_path: Path):
     from agent_core.contracts.api.commands import CreateExport
     from agent_core.store.generated.schema import DATABASES
 
-    spec = (Path(__file__).parents[3] / "docs" / "specification" / "data-model.md").read_text()
-    table = spec.split("TABLE DAT-10a — Exports", 1)[1].split("Acceptance:", 1)[0]
-    ids = set(re.findall(r"\| [^|]+\(`([a-z_]+)`\) \|", table))
+    ids = {"parent_report", "profile_archive", "research_export", "diagnostic_bundle"}
     check = DATABASES["learner"].split("CREATE TABLE exports", 1)[1].split("destination", 1)[0]
     kinds = set(json.loads(json.dumps(CreateExport.model_json_schema()["properties"]["kind"]["enum"])))
     assert ids == kinds == {k for k in kinds if f"'{k}'" in check} and len(ids) == 4

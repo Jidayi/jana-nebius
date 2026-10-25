@@ -13,7 +13,7 @@ from typing import Any
 NAMESPACE = "https://jana.dev/contracts/"
 # Prose stays in the private specification; generated code carries names, types and constraints only.
 PROSE = frozenset({"description", "$comment", "examples"})
-SOURCE_PREFIX = "docs/specification/contracts/"
+SOURCE_PREFIX = "contracts/"
 
 
 @dataclass(frozen=True)

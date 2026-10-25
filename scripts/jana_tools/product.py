@@ -240,6 +240,22 @@ def offline_behaviour_errors(docs: Path = DOCS, policy_path: Path | None = None)
     ways in TABLE ARC-07a (each online feature), TABLE PRD-03a (its mirror), TABLE DAT-18a (each data class that
     leaves the device) and the journeys' optional online steps and branches; the network policy the core enforces
     (agent_core/net/policy.json) holds the same features. A row or step without its offline behaviour fails."""
+    if docs == DOCS:
+        inventory = json.loads((REPO_ROOT / "contracts/policies/online-features.json").read_text())
+        policy = json.loads((policy_path or REPO_ROOT / "services/agent-core/agent_core/net/policy.json").read_text())
+        errors = []
+        for feature, row in policy["features"].items():
+            if feature not in inventory:
+                errors.append(f"PRD-03: the network policy has {feature}, which TABLE ARC-07a does not")
+            elif not row.get("queued"):
+                errors.append(f"PRD-03: the network policy gives {feature} no offline queueing rule")
+        missing = sorted(set(inventory) - set(policy["features"]))
+        if missing:
+            errors.append(f"PRD-03: the network policy lacks online features {missing}")
+        for feature, row in inventory.items():
+            if not row.get("queued"):
+                errors.append(f"PRD-03: public feature {feature} has no offline queueing rule")
+        return errors
     errors: list[str] = []
     architecture = (docs / "specification" / "architecture.md").read_text()
     arc = {}

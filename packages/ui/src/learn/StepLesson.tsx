@@ -144,7 +144,7 @@ function WhyPanel({ explanation }: { explanation: CheckExplanation }) {
 }
 
 /** The lesson in the step shape, from the player's view. */
-export function StepLessonContent({ view, lesson, actions }: { view: LessonPlayerView; lesson: LessonView; actions: LessonActions }) {
+export function StepLessonContent({ view, lesson, actions, supported = false }: { view: LessonPlayerView; lesson: LessonView; actions: LessonActions; supported?: boolean }) {
   const t = useT();
   const questions = questionsOf(lesson);
   const steps = questions.filter((q) => q.step !== null).length;
@@ -217,7 +217,7 @@ export function StepLessonContent({ view, lesson, actions }: { view: LessonPlaye
 
   const next = questions[at + 1];
   const action = question.step?.action;
-  const eyebrow = question.step !== null && action !== undefined ? t(`lesson.action.${action}`) : t("lesson.check_question", { index: (question.inCheck ?? 0) + 1, total: question.checkSize });
+  const eyebrow = question.step !== null && action !== undefined ? t(supported && action === "try_first" ? "journey.try_supported" : `lesson.action.${action}`) : t("lesson.check_question", { index: (question.inCheck ?? 0) + 1, total: question.checkSize });
   const read = question.step !== null
     ? { kind: "lesson_block" as const, lesson_id: lesson.lesson_id, version: lesson.version, block_index: question.block }
     : { kind: "lesson_question" as const, lesson_id: lesson.lesson_id, version: lesson.version, block_index: question.block, item_id: item.item_id };
@@ -253,7 +253,7 @@ export function StepLessonContent({ view, lesson, actions }: { view: LessonPlaye
         ) : (
           <section aria-labelledby="lesson-question" className="flex flex-col gap-5" data-block-type={question.step !== null ? "step" : "check"} data-item-id={item.item_id} data-phase={phase}>
             <p className="text-meta font-medium text-muted">{lesson.title} · {eyebrow}</p>
-            {question.step?.text != null && <div className="text-muted"><PackText text={question.step.text} /></div>}
+            {question.step?.text != null && <div className="text-muted"><PackText text={supported && action === "try_first" ? t("journey.apply_example") : question.step.text} /></div>}
             {question.step?.visual != null && "visual_type" in question.step.visual && typeof question.step.visual.visual_type === "string" && (
               <div className="rounded-card border border-line bg-canvas p-4">
                 <Rendered keys={[`visual:${question.step.visual.visual_type}`, "visual:*"]} data={question.step.visual.params} lifecycle="complete" partId={`lesson-visual-${question.block}`} />

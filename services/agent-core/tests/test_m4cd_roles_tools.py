@@ -140,8 +140,11 @@ def agt13_deterministic_plan_skips_checker(tmp_path: Path):
                                                            "checker": checker_steps(), "coach": []}))  # fmt: skip
     result = run(engine.start_problem(STATEMENT))
     run(close(engine))
-    solver_tasks = [next(m["content"] for m in r["messages"] if m["role"] == "user") for r in provider.requests
-                    if r["_role"] == "solver" and not any(m["role"] in ("tool", "assistant") for m in r["messages"])]
+    solver_tasks = [
+        next(m["content"] for m in r["messages"] if m["role"] == "user")
+        for r in provider.requests
+        if r["_role"] == "solver" and not any(m["role"] in ("tool", "assistant") for m in r["messages"])
+    ]
     # The first request of a delegation has no assistant or tool turn yet (its phase message follows the task, D123).
     assert len(solver_tasks) == 2, "one delegation and exactly one retry"
     assert "12" in solver_tasks[1] and "could not be verified" in solver_tasks[1]
@@ -194,7 +197,7 @@ def prm05_manifest_lint():
     assert {p.stem for p in manifests} == {"coach", "diagnoser", "solver", "checker", "reflector"}
     for path in manifests:
         assert manifest_errors(path) == [], path
-    register = {r["id"]: r for r in json.loads((SPEC / "registers" / "roles.json").read_text())["roles"]}
+    register = {r["id"]: r for r in json.loads((CONTENT / "roles.json").read_text())["roles"]}
     from agent_core.assets.agent import load_manifest
 
     for path in manifests:
@@ -467,7 +470,7 @@ def tol09_transcript_well_formed(tmp_path: Path):
 
 
 def _toolsets():
-    return json.loads((SPEC / "registers" / "toolsets.json").read_text())
+    return REGISTER
 
 
 def tol16_manifest_cannot_widen_grant():
@@ -500,7 +503,7 @@ def tol16_coach_has_no_compute():
 def tol16_grants_match_roles_register():
     data = _toolsets()
     by_tool = {t["name"]: name for name, ts in data["toolsets"].items() for t in ts["tools"]}
-    roles = {r["id"]: r for r in json.loads((SPEC / "registers" / "roles.json").read_text())["roles"]}
+    roles = {r["id"]: r for r in json.loads((CONTENT / "roles.json").read_text())["roles"]}
     for role, rules in data["roleGrants"].items():
         if role in ("engine", "auxiliary", "item_drafter"):
             continue
@@ -564,8 +567,12 @@ def tol18_untraced_number_rejected():
 def tol18_ops_match_contracts():
     from agent_core.engine.ui import OPS
 
-    tutor_turn = json.loads((SPEC / "contracts" / "agents" / "tutor-turn.schema.json").read_text())
-    events = json.loads((SPEC / "contracts" / "api" / "events.schema.json").read_text())["$defs"]
+    tutor_turn = json.loads(
+        (REPO_ROOT / "services/agent-core/agent_core/contracts/schemas/agents/tutor-turn.schema.json").read_text()
+    )
+    events = json.loads(
+        (REPO_ROOT / "services/agent-core/agent_core/contracts/schemas/api/events.schema.json").read_text()
+    )["$defs"]
     item = tutor_turn["properties"]["board"]["items"]["properties"]
     assert list(OPS) == item["op"]["enum"]
     assert set(s for s in item["status"]["enum"] if s) == set(events["board_step_status"]["enum"])

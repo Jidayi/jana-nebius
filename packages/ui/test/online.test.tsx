@@ -174,3 +174,58 @@ describe("BIZ-18", () => {
     }
   });
 });
+
+describe("Online Study profile consent", () => {
+  test("an adult's Study review approves only their own pending subscription access", async () => {
+    const { core } = await adultControls((c) => {
+      c.adults.add(BEN.profile_id);
+      c.features.study_materials = true;
+      c.subscription = { state: "pending_consent", subscription_id: "sub_fixture", period_end: null,
+        allowance_used_up: false, profiles: [ADA, BEN].map((p) => ({ profile_id: p.profile_id, consent: "needed" as const })) };
+    });
+    fireEvent.click(await screen.findByRole("button", { name: "Review Study consent" }));
+    expect(dialog()!.textContent).toContain(BASE["settings.online.self_attestation"]!);
+    fireEvent.click(within(dialog()!).getByRole("button", { name: "Turn on" }));
+    await waitFor(() => expect(core.consentSwitches).toHaveLength(2));
+    const applied = core.log.find((r) => r.method === "POST" && r.path === "/v1/subscription")!;
+    expect(applied.body).toEqual({ entitlement: {}, consents: [{ profile_id: BEN.profile_id, notice_version: "2026-10.d1" }] });
+    expect(core.subscription.profiles.find((p) => p.profile_id === ADA.profile_id)?.consent).toBe("needed");
+  });
+
+  test("an adult grants consent only after the existing confirmation", async () => {
+    const { core } = await adultControls((c) => {
+      c.adults.add(BEN.profile_id);
+      c.features.study_materials = false;
+    });
+    await waitFor(() => expect(core.log.some((r) => r.method === "GET" && r.path === `/v1/profiles/${BEN.profile_id}`)).toBe(true));
+    fireEvent.click(within(row("study_materials")).getByRole("checkbox"));
+    await waitFor(() => expect(dialog()!.textContent).toContain(BASE["settings.online.self_attestation"]!));
+    expect(core.consentSwitches).toEqual([]);
+    fireEvent.click(within(dialog()!).getByRole("button", { name: "Cancel" }));
+    expect(core.consentSwitches).toEqual([]);
+    fireEvent.click(within(row("study_materials")).getByRole("checkbox"));
+    fireEvent.click(within(dialog()!).getByRole("button", { name: "Turn on" }));
+    await waitFor(() => expect(core.features.study_materials).toBe(true));
+    expect(core.consentSwitches).toEqual([{ scope: "study_materials", action: "on" }, { scope: "cloud_tier", action: "on" }]);
+    expect(core.consents.get(BEN.profile_id)?.find((c) => c.scope === "study_materials")?.granted_by_role).toBe("student_18_plus");
+  });
+
+  test("a device switch never fabricates guardian checkout consent", async () => {
+    const { core } = await adultControls((c) => { c.features.study_materials = false; });
+    fireEvent.click(within(row("study_materials")).getByRole("checkbox"));
+    expect(dialog()!.textContent).toContain(BASE["settings.online.attestation"]!);
+    fireEvent.click(within(dialog()!).getByRole("button", { name: "Turn on" }));
+    await waitFor(() => expect(core.features.study_materials).toBe(true));
+    expect(core.consentSwitches).toEqual([]);
+  });
+  test("an adult can review missing profile consent when Study is already enabled on the device", async () => {
+    const { core } = await adultControls((c) => { c.features.study_materials = true; c.adults.add(BEN.profile_id); });
+    const review = await screen.findByRole("button", { name: "Review Study consent" });
+    fireEvent.click(review);
+    expect(core.consentSwitches).toEqual([]);
+    expect(dialog()!.textContent).toContain(BASE["settings.online.consent.cloud_tier"]!);
+    fireEvent.click(within(dialog()!).getByRole("button", { name: "Turn on" }));
+    await waitFor(() => expect(core.consentSwitches).toEqual([{ scope: "study_materials", action: "on" }, { scope: "cloud_tier", action: "on" }]));
+    await waitFor(() => expect(screen.queryByRole("button", { name: "Review Study consent" })).toBeNull());
+  });
+});

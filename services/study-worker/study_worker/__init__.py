@@ -61,8 +61,10 @@ def decode(data: bytes, kind: str, name: str, max_units: int = 30) -> list[dict[
         if len(reader.pages) > max_units:
             raise DocumentError("source_too_large")
         units = []
+        from study_worker.pdf_text import normalize_pdf_text
+
         for i, page in enumerate(reader.pages):
-            text = page.extract_text() or ""
+            text = normalize_pdf_text(page.extract_text() or "")
             if len(text) > 100_000:
                 raise DocumentError("source_too_large")
             units.append({"locator": {"kind": "page", "page": i + 1}, "text": text, "ocr": not bool(text.strip())})

@@ -160,6 +160,50 @@ describe("UXS-23", () => {
     expect(sent.headers["idempotency-key"]).toMatch(/^cli_/);
   });
 
+  test("a slower ordinary load cannot replace the requested teaching entry for the same lesson", async () => {
+    const core = new FakeProfileCore();
+    core.lessons.set(LESSON.lesson_id, LESSON);
+    const fetch = core.fetch;
+    let release!: () => void, entered!: () => void;
+    const held = new Promise<void>((resolve) => { release = resolve; });
+    const started = new Promise<void>((resolve) => { entered = resolve; });
+    let first = true;
+    core.fetch = async (input, init) => {
+      const response = await fetch(input, init);
+      if (String(input).includes(`/v1/lessons/${LESSON.lesson_id}`)) {
+        if (first) { first = false; entered(); await held; }
+        else return Response.json({ ...await response.json(), title: "Teaching entry" });
+      }
+      return response;
+    };
+    const { profiles } = await unlocked(core);
+    const player = new LessonController(profiles);
+    const ordinary = player.load(LESSON.lesson_id);
+    await started;
+    await player.load(LESSON.lesson_id, true);
+    release();
+    await ordinary;
+    expect(player.getView().lesson?.title).toBe("Teaching entry");
+  });
+
+  test("returning from tutor help retains the teaching position, scoped to the profile and lesson version", async () => {
+    const { core, profiles } = await unlocked();
+    core.lessons.set(LESSON.lesson_id, LESSON);
+    const player = new LessonController(profiles);
+    await player.load(LESSON.lesson_id, true);
+    player.goTeaching(1);
+    await player.load(LESSON.lesson_id, true);
+    expect(player.getView().teachingIndex).toBe(1);
+    core.lessons.set(LESSON.lesson_id, { ...LESSON, version: "0.2.0" });
+    await player.load(LESSON.lesson_id, true);
+    expect(player.getView().teachingIndex).toBe(0);
+    player.goTeaching(1);
+    await profiles.lock();
+    await profiles.unlock(BEN.profile_id);
+    await player.load(LESSON.lesson_id, true);
+    expect(player.getView().teachingIndex).toBe(0);
+  });
+
   test("step_lessons_send_the_try_and_read_the_explanation", async () => {
     const { core, profiles } = await unlocked();
     const steps = {

@@ -471,7 +471,10 @@ def math_evaluate(args: dict[str, Any], context: CallContext) -> tuple[Any, Extr
         raise WorkerError(Code.DOMAIN_ERROR, f"no value given for {', '.join(missing)}")
     try:
         with time_slice(slice_seconds(context)):
-            result = sp.nsimplify(sp.simplify(tree.subs(values)), rational=False)
+            # Parsed numbers and supplied constants are already exact. Searching
+            # numerically for another closed form adds no evidence and can spend
+            # the whole slice on ordinary non-special-angle trigonometry.
+            result = sp.simplify(tree.subs(values))
     except SliceExpired:
         return {"status": "unknown", "reason": "timeout"}, {"method": "heuristic", "confidence": "undecided"}
     if result.has(sp.zoo, sp.nan) or result.is_real is False:

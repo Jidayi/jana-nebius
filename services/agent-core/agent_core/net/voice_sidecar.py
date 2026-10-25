@@ -17,9 +17,10 @@ import re
 import secrets
 import socket
 import sys
+from collections.abc import Callable
 from pathlib import Path
 from threading import Event, Thread
-from typing import Any
+from typing import Any, cast
 from urllib.parse import urlsplit
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -317,8 +318,8 @@ def prompt_sentences() -> None:
     """Upstream speaks a sentence only once the next one starts arriving (the tokenizer cannot tell the last sentence is
     complete), so the keyed filler and every accepted turn's first sentence wait for more text. A sentence that ends
     in . ! or ? followed by a space is complete: an empty last piece flushes it to text-to-speech at once (VOC-12)."""
-    module = importlib.import_module("speech_to_speech.LLM.base_openai_compatible_language_model")
-    tokenize = module.sent_tokenize
+    module: Any = importlib.import_module("speech_to_speech.LLM.base_openai_compatible_language_model")
+    tokenize = cast(Callable[..., list[str]], module.sent_tokenize)
 
     def sent_tokenize(text: str, *args: Any, **kwargs: Any) -> list[str]:
         sentences = tokenize(text, *args, **kwargs)

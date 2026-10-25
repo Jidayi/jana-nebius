@@ -781,11 +781,14 @@ class AssessmentDesk(MockCommands, PastPaperCommands, VariantCommands, ProbeComm
         text = mc["fix"]["text"]
         return {"misconception_id": mc["id"], "fix": text.get("en", "") if isinstance(text, dict) else str(text)}
 
-    def create_practice(self, subject: str, kc_ids: Sequence[str], size: int) -> dict[str, Any]:
+    def create_practice(
+        self, subject: str, kc_ids: Sequence[str], size: int, *, exclude_item_ids: Sequence[str] = ()
+    ) -> dict[str, Any]:
         self.guard_tutor()
         # LRN-16, LRN-26: each next item nearest the target success, none on a parked KC; decisions kept for the trace.
         bank, self.policy_decisions = practice_selection(
-            self.learner.conn, self.learner.projector.ctx.params, self.eligible("practice", kc_ids, subject), size,
+            self.learner.conn, self.learner.projector.ctx.params,
+            [i for i in self.eligible("practice", kc_ids, subject) if i["id"] not in exclude_item_ids], size,
             self.settings, self.clock_ms(), difficulty=self.content.item_difficulty,
         )  # fmt: skip
         if not bank:
@@ -951,6 +954,10 @@ class AssessmentDesk(MockCommands, PastPaperCommands, VariantCommands, ProbeComm
         item = next((i for i in state["items"] if i["id"] == item_id), None)
         if item is None:
             raise Refused("not_found")
+        # Resuming after tutor assistance must never look like a fresh independent journey check.
+        if item_id not in state.setdefault("helped", []):
+            state["helped"].append(item_id)
+            self._commit(state)
         attempts, outcomes, misconception_id = self.item_verdicts(state["id"], item_id)
         submitted = None
         if attempts:

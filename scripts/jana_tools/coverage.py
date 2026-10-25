@@ -57,6 +57,13 @@ def primary_requirements(milestone: str, docs: Path = DOCS) -> list[tuple[str, s
 
 
 def acceptance_tests(rid: str, docs: Path = DOCS) -> list[str]:
+    if docs == DOCS:
+        import json
+
+        index = json.loads((REPO_ROOT / "contracts/policies/acceptance.json").read_text())
+        if rid not in index:
+            raise KeyError(f"requirement {rid} has no public acceptance entry")
+        return list(index[rid])
     req = requirements(docs)[rid]
     text = req.file.read_text()
     block = text.split(f"### {rid} — ", 1)[1].split("\n### ", 1)[0]

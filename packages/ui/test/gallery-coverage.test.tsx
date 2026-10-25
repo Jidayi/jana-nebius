@@ -50,7 +50,7 @@ describe("UXS-36", () => {
 });
 
 test("uxs16_status_table_complete", () => {
-  const contract = JSON.parse(readFileSync(path.resolve(import.meta.dirname, "../../../docs/specification/contracts/api/events.schema.json"), "utf8")).$defs.board_step_status.enum as string[];
+  const contract = JSON.parse(readFileSync(path.resolve(import.meta.dirname, "../../../services/agent-core/agent_core/contracts/schemas/api/events.schema.json"), "utf8")).$defs.board_step_status.enum as string[];
   const expected: Record<string, { owners: string[]; text: string }> = {
     draft: { owners: ["tutor"], text: "Draft" }, final: { owners: ["tutor"], text: "Shown by the tutor" },
     awaiting: { owners: ["student"], text: "Your turn" }, checking: { owners: ["student", "tutor"], text: "Checking" },

@@ -319,7 +319,19 @@ def test_cur18_proposal_needs_the_developer_key(tmp_path: Path, monkeypatch: pyt
     env.write_text(f"OTHER=1\n{proposals.KEY_ENV}=test-key-not-real\n")
     assert proposals.api_key(env) == "test-key-not-real"
     model = proposals.gateway_model()
-    assert model.provider == "gemini" and "flash" in model.model_id and model.input_per_m > 0
+    import tomllib
+
+    configured = tomllib.loads(proposals.GATEWAY_DEFAULTS.read_text())
+    primary = configured["slots"]["primary"]
+    concrete = configured["providers"][primary]["models"][proposals.TIER]["id"]
+    assert model.provider == primary and model.model_id == concrete
+    assert model.input_per_m == configured["prices"][concrete]["input"] > 0
+
+
+def test_quantity_proposals_refuse_a_non_gemini_transport() -> None:
+    model = proposals.Model("nebius", "test-model", "https://provider.invalid/v1", None, 1, 3)
+    with pytest.raises(ValueError, match="require a Gemini provider"):
+        proposals.gemini_transport(model, "test-key-not-real", 5)
 
 
 def test_aut19_model_quantities_record_their_provenance(authoring_repo: Repo, tmp_path: Path) -> None:  # noqa: F811

@@ -38,13 +38,26 @@ def prepare_body(body: dict[str, Any]) -> dict[str, Any]:
         "required property. Do not invent identifiers or properties. JSON Schema:\n"
         + json.dumps(schema, ensure_ascii=False, separators=(",", ":"))
     )
-    return {**body, "messages": [{"role": "system", "content": instruction}, *messages]}
+    # Keep the output contract, source-grounding rules and retry instructions together in one system turn.
+    application_rules = [str(m.get("content", "")) for m in messages if m.get("role") == "system"]
+    if application_rules:
+        instruction += "\n\nApplication instructions:\n" + "\n\n".join(application_rules)
+    return {
+        **body,
+        "messages": [{"role": "system", "content": instruction}, *[m for m in messages if m.get("role") != "system"]],
+    }
 
 
 class NebiusAdapter(OpenAICompatAdapter):
     def _body(self, request: ProviderRequest, stream: bool) -> dict[str, Any]:
         body = super()._body(request, stream)
         body["store"] = False
+        if request.model.id.lower().startswith("nvidia/nemotron-3-") and body.get("reasoning_effort") == "none":
+            # NVIDIA's Nemotron chat template controls thinking explicitly;
+            # generic reasoning_effort alone did not constrain Ultra in live Study checks.
+            # https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16
+            body.pop("reasoning_effort")
+            body["chat_template_kwargs"] = {**body.get("chat_template_kwargs", {}), "enable_thinking": False}
         # Token Factory's generic JSON-schema parameter alone did not constrain Nemotron's nested diagnosis
         # schema in live testing (2026-10-23). Supply the same contract in the prompt, as its JSON guide recommends;
         # the engine still validates the full output and withholds malformed results.

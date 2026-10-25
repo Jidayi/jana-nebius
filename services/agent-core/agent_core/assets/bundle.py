@@ -35,8 +35,7 @@ BUNDLE_FILE = "bundle.json"
 AGENT = "agent"
 SKILLS = "skills"
 # The agent content the device runs from; authoring-only prompts (`drafting/`) stay off the device.
-AGENT_DIRS = ("soul", "roles", "guidance", "families", "templates", "memory", "notices", "rules", "safety",
-              "glossary")
+AGENT_DIRS = ("soul", "roles", "guidance", "families", "templates", "memory", "notices", "rules", "safety", "glossary")
 REVIEWED = "reviewed"
 READ_ONLY = 0o444
 

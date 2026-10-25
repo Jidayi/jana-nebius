@@ -66,9 +66,15 @@ def grammar_friendly(schema: Any) -> Any:
     schema on every call (TOL-08), so nothing is lost but grammar size. A list of types becomes the equivalent `anyOf`:
     the Jinja engine in llama-server cannot render a list-valued `type` through some models' chat templates."""
     if isinstance(schema, dict):
-        friendly = {k: ({name: grammar_friendly(child) for name, child in v.items()}
-                        if k in ("properties", "patternProperties") and isinstance(v, dict)
-                        else grammar_friendly(v)) for k, v in schema.items() if k not in GRAMMAR_HEAVY}
+        friendly = {
+            k: (
+                {name: grammar_friendly(child) for name, child in v.items()}
+                if k in ("properties", "patternProperties") and isinstance(v, dict)
+                else grammar_friendly(v)
+            )
+            for k, v in schema.items()
+            if k not in GRAMMAR_HEAVY
+        }
         if isinstance(friendly.get("type"), list) and "anyOf" not in friendly:
             friendly["anyOf"] = [{"type": t} for t in friendly.pop("type")]
         return friendly

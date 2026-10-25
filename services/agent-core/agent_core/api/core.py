@@ -729,11 +729,17 @@ class CoreService:
                                     topic_id=body.get("topic_id"))  # fmt: skip
         if body["origin"]["kind"] == "lesson" and self.assessments is not None:
             from agent_core.engine.assessment.errors import Refused
+            from agent_core.engine.learning_journey import LearningJourney
 
             opened = self.assessments()
             if opened is not None:
                 try:
-                    probe = opened.lesson_probe(body["origin"]["ref"])
+                    # Journey reviews have already exposed the explanation and example.
+                    # Their tutor help is assistance, not a new entry diagnostic.
+                    lesson_id = body["origin"]["ref"]
+                    probe = (
+                        None if LearningJourney(opened).reviewing_lesson(lesson_id) else opened.lesson_probe(lesson_id)
+                    )
                 except Refused as error:
                     raise ApiError("validation_failed", error.reason) from None
                 if probe is not None:

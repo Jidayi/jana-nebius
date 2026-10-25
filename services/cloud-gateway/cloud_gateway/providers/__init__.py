@@ -36,8 +36,12 @@ class Providers:
     """The configured adapters by provider name, and slot/alias resolution for device model ids."""
 
     def __init__(
-        self, config: GatewayConfig, secrets: SecretSource, client_factory: ClientFactory = default_client,
-        *, budget: InferenceBudget | None = None,
+        self,
+        config: GatewayConfig,
+        secrets: SecretSource,
+        client_factory: ClientFactory = default_client,
+        *,
+        budget: InferenceBudget | None = None,
     ) -> None:
         self.config = config
         self.adapters: dict[str, ProviderAdapter] = {

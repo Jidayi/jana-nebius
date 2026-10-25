@@ -9,7 +9,7 @@
 import { useEffect, useState } from "react";
 import {
   CONSENT_FEATURES, CONSENT_NOTICE_VERSIONS, ONLINE_FEATURES, type FamilySettings, type CloudSubscription, type ConnectivityReply,
-  type ProfileController,
+  agreesForItself, readProfile, readConsents, switchConsent, type ConsentState, type ProfileController,
 } from "@jana/client-core";
 import type { OnlineFeature } from "@jana/contracts-ts";
 import { useT } from "../i18n.js";
@@ -19,7 +19,7 @@ import { useProfiles } from "../profiles/ProfilePicker.js";
 type Run = (work: () => Promise<unknown>) => void;
 type Sub = CloudSubscription | "loading" | "failed";
 
-function Cloud({ subscription, names, onConsent, onEnd }: { subscription: Sub; names: string[]; onConsent: () => void; onEnd: () => void }) {
+function Cloud({ subscription, names, selfConsent, onConsent, onEnd }: { subscription: Sub; names: string[]; selfConsent: boolean; onConsent: () => void; onEnd: () => void }) {
   const t = useT();
   if (subscription === "loading") return <Skeleton lines={1} />;
   if (subscription === "failed") return <p className="text-ui text-ink">{t("settings.online.cloud.unavailable")}</p>;
@@ -38,7 +38,7 @@ function Cloud({ subscription, names, onConsent, onEnd }: { subscription: Sub; n
   if (subscription.state === "pending_consent") {
     return (
       <div className="flex flex-col gap-1">
-        <p className="text-ui text-ink">{t("settings.online.cloud.pending", { names: names.join(", ") })}</p>
+        <p className="text-ui text-ink">{t(selfConsent ? "settings.online.cloud.pending_self" : "settings.online.cloud.pending", { names: names.join(", ") })}</p>
         <div>
           <Button tone="primary" onClick={onConsent}>{t("settings.online.cloud.give_consent")}</Button>
         </div>
@@ -51,7 +51,11 @@ function Cloud({ subscription, names, onConsent, onEnd }: { subscription: Sub; n
 export function OnlineFeatures({ profiles, run }: { profiles: ProfileController; run: Run }) {
   const t = useT();
   const family: FamilySettings = profiles.family;
-  const known = useProfiles(profiles).profiles;
+  const view = useProfiles(profiles);
+  const known = view.profiles;
+  const [adult, setAdult] = useState(false);
+  const [studyConsent, setStudyConsent] = useState<ConsentState | null>(null);
+  const [cloudConsent, setCloudConsent] = useState<ConsentState | null>(null);
   const [state, setState] = useState<ConnectivityReply | null>(null);
   const [subscription, setSubscription] = useState<Sub>("loading");
   const [asking, setAsking] = useState<OnlineFeature | null>(null);
@@ -60,6 +64,24 @@ export function OnlineFeatures({ profiles, run }: { profiles: ProfileController;
     family.connectivity().then(setState, () => setState(null));
     family.subscription().then(setSubscription, () => setSubscription("failed"));
   }, [family]);
+  useEffect(() => {
+    let live = true;
+    setAdult(false);
+    setStudyConsent(null);
+    setCloudConsent(null);
+    if (view.active !== null) {
+      readConsents(profiles.commands, view.active).then(
+        (consents) => { if (live) {
+          setStudyConsent(consents.find((c) => c.scope === "study_materials") ?? null);
+          setCloudConsent(consents.find((c) => c.scope === "cloud_tier") ?? null);
+        } }, () => undefined,
+      );
+      readProfile(profiles.commands, view.active).then(
+        (profile) => live && setAdult(agreesForItself(profile)), () => undefined,
+      );
+    }
+    return () => { live = false; };
+  }, [profiles, view.active]);
   if (state === null) return <Skeleton lines={2} />;
 
   const listed = ONLINE_FEATURES.filter((f) => state.features[f] !== undefined);
@@ -67,6 +89,8 @@ export function OnlineFeatures({ profiles, run }: { profiles: ProfileController;
   const active = subscription !== "loading" && subscription !== "failed" && subscription.state === "active";
   const needed = subscription !== "loading" && subscription !== "failed" ? subscription.profiles.filter((p) => p.consent === "needed").map((p) => p.profile_id) : [];
   const names = needed.map((id) => known.find((p) => p.profile_id === id)?.display_name ?? "").filter((n) => n !== "");
+  const selfConsent = adult && needed.length > 0 && needed.every((id) => id === view.active);
+  const studyNeedsCloud = adult && (!cloudConsent?.effective || cloudConsent.paused || (view.active !== null && needed.includes(view.active)));
   const set = (change: Partial<Record<OnlineFeature, boolean>>) => run(async () => setState(await family.setOnlineFeatures(change)));
   const refresh = async () => setState(await family.connectivity());
   const end = () => run(async () => {
@@ -99,7 +123,11 @@ export function OnlineFeatures({ profiles, run }: { profiles: ProfileController;
           )}
           <p className="text-meta text-muted">{t("settings.online.leaves_label")} {t(`settings.online.leaves.${feature}`)}</p>
           <p className="text-meta text-muted">{t("settings.online.offline_label")} {t(`settings.online.offline.${feature}`)}</p>
-          {feature === "cloud_tier" && <Cloud subscription={subscription} names={names} onConsent={() => setDialog("consent")} onEnd={() => setDialog("end")} />}
+          {feature === "study_materials" && (!studyConsent?.effective || studyConsent.paused || studyNeedsCloud || (!adult && studyConsent.method !== "checkout_guardian")) && <div className="flex flex-col items-start gap-2">
+            <p className="text-ui text-ink">{t(adult ? "study.access.settings_self" : "study.access.settings_guardian")}</p>
+            {adult && <Button onClick={() => setAsking("study_materials")}>{t("study.access.review_consent")}</Button>}
+          </div>}
+          {feature === "cloud_tier" && <Cloud subscription={subscription} names={names} selfConsent={selfConsent} onConsent={() => setDialog("consent")} onEnd={() => setDialog("end")} />}
         </div>
       ))}
       <div className="border-t border-line pt-2">
@@ -110,7 +138,8 @@ export function OnlineFeatures({ profiles, run }: { profiles: ProfileController;
         message={asking === null ? "" : t("settings.online.confirm", { feature: t(`connectivity.short.${asking}`) })}
         details={asking === null ? [] : [
           t(`settings.online.leaves.${asking}`),
-          ...(CONSENT_FEATURES.has(asking) ? [t(`settings.online.consent.${asking}`), t("settings.online.attestation")] : []),
+          ...(asking === "study_materials" && studyNeedsCloud ? [t("settings.online.consent.cloud_tier")] : []),
+          ...(CONSENT_FEATURES.has(asking) ? [t(`settings.online.consent.${asking}`), t(adult ? "settings.online.self_attestation" : "settings.online.attestation")] : []),
         ]}
         confirm={t("settings.online.turn_on")}
         cancel={t("action.cancel")}
@@ -118,13 +147,27 @@ export function OnlineFeatures({ profiles, run }: { profiles: ProfileController;
         onConfirm={() => {
           const feature = asking;
           setAsking(null);
-          if (feature !== null) set({ [feature]: true });
+          if (feature !== null) run(async () => {
+            // The device switch alone is not profile consent. Adults can grant
+            // their own through the existing consent API; minors keep the
+            // signed guardian-checkout requirement enforced by the core.
+            if (feature === "study_materials" && adult && view.active !== null) {
+              if (needed.includes(view.active)) {
+                setSubscription(await family.applySubscription({ entitlement: {}, consents: [
+                  { profile_id: view.active, notice_version: CONSENT_NOTICE_VERSIONS.cloud_tier },
+                ] }));
+              }
+              setStudyConsent(await switchConsent(profiles.commands, view.active, feature, "on"));
+              if (studyNeedsCloud) setCloudConsent(await switchConsent(profiles.commands, view.active, "cloud_tier", "on"));
+            }
+            setState(await family.setOnlineFeatures({ [feature]: true }));
+          });
         }}
       />
       <ConfirmDialog
         open={dialog === "consent"}
         message={t("settings.online.cloud.confirm")}
-        details={[t("settings.online.consent.cloud_tier"), t("settings.online.attestation")]}
+        details={[t("settings.online.consent.cloud_tier"), t(selfConsent ? "settings.online.self_attestation" : "settings.online.attestation")]}
         confirm={t("settings.online.turn_on")}
         cancel={t("action.cancel")}
         onCancel={() => setDialog(null)}

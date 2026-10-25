@@ -426,6 +426,9 @@ def register_gates(docs: Path = DOCS) -> list[str]:
 
 def undecided_for_gate(gate: str, docs: Path = DOCS) -> list[str]:
     """Decisions blocking `gate` that are not decided; a gate the register does not name is itself a failure."""
+    path = docs / "specification/registers/decisions.json"
+    if not path.is_file():
+        return ["missing owner decisions register; no release decision is inferred for this public fork"]
     data = json.loads((docs / "specification" / "registers" / "decisions.json").read_text())
     if gate not in data["gates"]:
         return [f"{gate}: not a gate of the decisions register"]

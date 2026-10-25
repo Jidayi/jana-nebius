@@ -116,11 +116,16 @@ class Gateway:
         self.alerts = alerts
         self.store = GatewayStore(config.storage_dir)
         self.auth = Authenticator(config, self.store, clock)
-        bounded = (config.quotas.deployment_daily_spend_usd is not None
-                   or config.quotas.deployment_total_spend_usd is not None
-                   or config.quotas.deployment_budget_expires_at is not None)
+        bounded = (
+            config.quotas.deployment_daily_spend_usd is not None
+            or config.quotas.deployment_total_spend_usd is not None
+            or config.quotas.deployment_budget_expires_at is not None
+        )
         self.inference_budget = InferenceBudget(config, self.store, clock) if bounded else None
         self.providers = Providers(config, secrets, client_factory, budget=self.inference_budget)
+        from cloud_gateway.tavily import Tavily
+
+        self.tavily = Tavily(self) if config.tavily.enabled else None
         self.quotas = Quotas(config, self.store, alerts)
         self.operations = GatewayOperations(config.storage_dir, config.operations, alerts=alerts)
         self.health = UpstreamHealth(config.objectives)
@@ -332,7 +337,8 @@ class _VersionHeader:
         async def with_header(message: Message) -> None:
             if message["type"] == "http.response.start":
                 message["headers"] = [
-                    *message.get("headers", []), (b"jana-gateway-version", VERSION.encode()),
+                    *message.get("headers", []),
+                    (b"jana-gateway-version", VERSION.encode()),
                     (b"x-jana-inference-budget", b"enabled" if self.budget_enabled else b"disabled"),
                 ]
             await send(message)
@@ -423,14 +429,23 @@ def create_app(
             for connection in list(app.state.voice.live.values()):
                 await connection.close()
             await app.state.voice.stack.aclose()
+            await app.state.podcast_speech.client.aclose()
             await gw.providers.aclose()
+            if gw.tavily is not None:
+                await gw.tavily.client.aclose()
             gw.store.close()
 
     app = FastAPI(title="Jana cloud gateway", docs_url=None, redoc_url=None, openapi_url=None, lifespan=lifespan)
     app.state.gateway = gw
+    from cloud_gateway.tavily import add_routes as web_routes
+
+    web_routes(app, gw)
     from cloud_gateway.study import add_routes as study_routes
 
     app.state.study = study_routes(app, gw)
+    from cloud_gateway.podcast_speech import add_routes as podcast_routes
+
+    app.state.podcast_speech = podcast_routes(app, gw)
     from cloud_gateway.voice import add_routes as voice_routes
 
     app.state.voice = voice_routes(app, gw, speech)

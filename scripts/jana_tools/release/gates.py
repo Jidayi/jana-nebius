@@ -67,6 +67,8 @@ def gate_errors(
     settings = settings or Settings()
     today = today or date.today()
     errors = [f"decision {d}" for d in undecided_for_gate(gate, docs)]
+    if not (docs / "specification/registers/decisions.json").is_file():
+        return ["decision missing owner decisions register: release refused"]
     if gate not in register_gates(docs):
         return errors
     if gate in STAGE_GATES:

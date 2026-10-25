@@ -85,8 +85,12 @@ def build_all() -> dict[str, tuple[str, list[str]]]:
         for family in FAMILIES:
             for mode in MODES:
                 for fixture, data in _fixtures().items():
-                    session = PromptSession(session_date="2026-10-09", session_tools=frozenset(reg.specs),
-                                            computation=role == "solver" and fixture == "opening", **data)
+                    session = PromptSession(
+                        session_date="2026-10-09",
+                        session_tools=frozenset(reg.specs),
+                        computation=role == "solver" and fixture == "opening",
+                        **data,
+                    )
                     build = build_prompt(
                         role,
                         family,

@@ -24,8 +24,11 @@ def config(**quotas):
 
 def request(**body) -> ProviderRequest:
     model = load_config().providers["nebius"].models["fast-model"]
-    return ProviderRequest(model, {"messages": [{"role": "user", "content": "Help me with algebra."}],
-                                   "max_tokens": 64, **body}, "fake-session-pseudonym")
+    return ProviderRequest(
+        model,
+        {"messages": [{"role": "user", "content": "Help me with algebra."}], "max_tokens": 64, **body},
+        "fake-session-pseudonym",
+    )
 
 
 @dataclass
@@ -173,8 +176,11 @@ def test_completed_stream_releases_unused_reservation(tmp_path: Path) -> None:
 def test_approval_expiry_and_output_bound_are_enforced(tmp_path: Path) -> None:
     store = GatewayStore(tmp_path)
     clock = [NOW]
-    budget = InferenceBudget(config(deployment_budget_expires_at="2026-11-02T00:46:01Z",
-                                    deployment_max_output_tokens=128), store, lambda: clock[0])
+    budget = InferenceBudget(
+        config(deployment_budget_expires_at="2026-11-02T00:46:01Z", deployment_max_output_tokens=128),
+        store,
+        lambda: clock[0],
+    )
     _, bounded = budget.reserve(request(max_tokens=64000, max_completion_tokens=8000))
     assert bounded.body["max_completion_tokens"] == 128
     clock[0] += 10 * 86400
@@ -185,12 +191,12 @@ def test_approval_expiry_and_output_bound_are_enforced(tmp_path: Path) -> None:
 
 def test_all_gateway_provider_paths_share_budget(tmp_path: Path) -> None:
     async def run() -> None:
-        h = harness(gateway_config(tmp_path, slots={"primary": "nebius"},
-                                   quotas={"deployment_total_spend_usd": 0}))
+        h = harness(gateway_config(tmp_path, slots={"primary": "nebius"}, quotas={"deployment_total_spend_usd": 0}))
         device = Device()
         await device.login(h.client)
-        response = await device.chat(h.client, {"model": "primary/fast-model",
-                                               "messages": [{"role": "user", "content": "Help."}]})
+        response = await device.chat(
+            h.client, {"model": "primary/fast-model", "messages": [{"role": "user", "content": "Help."}]}
+        )
         assert response.status_code == 429
         assert h.stubs["nebius"].seen == []
         gw = h.client._transport.app.state.gateway
@@ -205,13 +211,20 @@ def test_all_gateway_provider_paths_share_budget(tmp_path: Path) -> None:
 
 def test_gateway_counts_real_stream_usage_and_caps_output(tmp_path: Path) -> None:
     async def run() -> None:
-        h = harness(gateway_config(tmp_path, slots={"primary": "nebius"},
-                                   quotas={"deployment_total_spend_usd": 1, "deployment_max_output_tokens": 128}))
+        h = harness(
+            gateway_config(
+                tmp_path,
+                slots={"primary": "nebius"},
+                quotas={"deployment_total_spend_usd": 1, "deployment_max_output_tokens": 128},
+            )
+        )
         device = Device()
         await device.login(h.client)
         h.stubs["nebius"].say(Output(text="A hint."))
-        response = await device.chat(h.client, {"model": "primary/fast-model", "stream": True,
-                                               "messages": [{"role": "user", "content": "Help."}]})
+        response = await device.chat(
+            h.client,
+            {"model": "primary/fast-model", "stream": True, "messages": [{"role": "user", "content": "Help."}]},
+        )
         assert response.status_code == 200
         assert h.stubs["nebius"].seen[-1].body["max_completion_tokens"] == 128
         gw = h.client._transport.app.state.gateway
@@ -222,8 +235,10 @@ def test_gateway_counts_real_stream_usage_and_caps_output(tmp_path: Path) -> Non
     asyncio.run(run())
 
 
-@pytest.mark.parametrize("overrides", [{"voice_enabled": True}, {"ask_search": {
-    "url": "https://search.example.invalid", "secret": "fake-search-key"}}])
+@pytest.mark.parametrize(
+    "overrides",
+    [{"voice_enabled": True}, {"ask_search": {"url": "https://search.example.invalid", "secret": "fake-search-key"}}],
+)
 def test_unbudgeted_paid_services_cannot_be_enabled(overrides) -> None:
     with pytest.raises(ValueError, match="does not cover voice or search"):
         load_config(quotas={"deployment_total_spend_usd": 1}, **overrides)
@@ -235,8 +250,15 @@ def test_invalid_budget_limits_are_refused(amount: float) -> None:
         config(deployment_total_spend_usd=amount)
 
 
-@pytest.mark.parametrize("body", [{"max_tokens": -1}, {"max_tokens": "100"}, {"max_tokens": 1.5}, {
-    "messages": [{"role": "user", "content": [{"type": "image_url", "image_url": {"url": "fake-image"}}]}]}])
+@pytest.mark.parametrize(
+    "body",
+    [
+        {"max_tokens": -1},
+        {"max_tokens": "100"},
+        {"max_tokens": 1.5},
+        {"messages": [{"role": "user", "content": [{"type": "image_url", "image_url": {"url": "fake-image"}}]}]},
+    ],
+)
 def test_unbounded_inputs_are_refused_before_sending(tmp_path: Path, body: dict) -> None:
     store = GatewayStore(tmp_path)
     adapter = Adapter()

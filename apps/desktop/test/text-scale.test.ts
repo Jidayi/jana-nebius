@@ -13,7 +13,7 @@ test("loc17_text_scale_150", async () => {
   let failure: unknown;
   try { await run(process.execPath, ["scripts/ci/browser-accessibility.mjs", `--out=${output}`, "--scales=1.5", "--widths=1366,800", "--screenshots=none", "--layout-self-test"], { cwd: root, timeout: 1200000 }); }
   catch (error) { failure = error; }
-  const report = JSON.parse(await readFile(path.join(output, "audit.json"), "utf8"));
+  const report = JSON.parse(await readFile(path.join(output, "audit.json"), "utf8").catch((error) => { throw failure ?? error; }));
   expect(report.cases).toBe(STATES.length * 4);
   expect(new Set(report.results.map((r: { name: string }) => r.name))).toEqual(new Set(STATES.flatMap((s) => ["light", "dark"].flatMap((theme) => [1366, 800].map((width) => `${s.id}--${theme}--1.5--${width}`)))));
   expect(report.results.filter((r: { layout: { clipped: unknown[]; overlaps: unknown[]; horizontal_overflow: boolean; scale_applied: boolean } }) => r.layout.clipped.length || r.layout.overlaps.length || r.layout.horizontal_overflow || !r.layout.scale_applied), `Report: ${output}/audit.json`).toEqual([]);

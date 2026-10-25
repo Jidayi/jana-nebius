@@ -3180,7 +3180,7 @@ class Engine(Coordination, Offers):
     ) -> Any:
         prepare = self._prepare_for_candidate if role == "coach" else None
         self._call_cloud, self._call_tools = False, [] if tools_off else list(tools)  # first local: not prepared
-        extra = {"tools_off": True} if tools_off else {}
+        extra: dict[str, Any] = {"tools_off": True} if tools_off else {}
         call = asyncio.ensure_future(
             self.deps.router.complete(
                 role, messages, tools, output=output, prepare=prepare, require_tool=require_tool,
@@ -3192,6 +3192,11 @@ class Engine(Coordination, Offers):
         cancel = asyncio.ensure_future(self._stop_call(call)) if cancellable else None
         try:
             result = await call
+        except RouterError as error:
+            if error.record is not None:
+                # Failed cloud attempts still belong in the local, content-free trace.
+                turn.trace.model_calls.extend(error.record.model_calls())
+            raise
         except asyncio.CancelledError:
             call.cancel()
             await asyncio.gather(call, return_exceptions=True)

@@ -176,6 +176,23 @@ def test_keychain_lookup_commands() -> None:
     assert ChainedSecrets((missing,)).get("gemini_api_key") is None
 
 
+@pytest.mark.parametrize("name", ["nebius_api_key", "tavily_api_key"])
+def test_hackathon_keychain_uses_dedicated_service_without_environment(name: str) -> None:
+    config = load_config(REPO / "services/cloud-gateway/deploy/nebius-dev.toml")
+    calls = []
+
+    def run(argv: list[str]) -> subprocess.CompletedProcess[str]:
+        calls.append(argv)
+        return subprocess.CompletedProcess(argv, 0, "synthetic-key-not-real\n", "")
+
+    keychain = KeychainSecrets(service=config.keychain_service, system="Darwin", run=run)
+    source = secret_source(config, environ={}, keychain=keychain)
+    found = source.get(name)
+    assert found is not None and found.reveal() == "synthetic-key-not-real"
+    assert calls == [["security", "find-generic-password", "-s", "jana-nebius.cloud-gateway", "-a", name, "-w"]]
+    assert "synthetic-key-not-real" not in repr(found)
+
+
 def test_keys_stay_out_of_logs_errors_and_storage(tmp_path: Path) -> None:
     storage, log = tmp_path / "storage", tmp_path / "logs" / "gateway.log"
 

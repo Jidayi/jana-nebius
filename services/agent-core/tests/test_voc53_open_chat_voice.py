@@ -7,8 +7,8 @@ import asyncio
 from typing import Any
 
 from agent_core.contracts import errors
-from agent_core.engine.voice_place import OFFLINE, REST_ON_SCREEN, aid_spoken, parse_place, spoken_answer
 from agent_core.engine.voice_bridge import VoiceProtocolError
+from agent_core.engine.voice_place import OFFLINE, REST_ON_SCREEN, aid_spoken, parse_place, spoken_answer
 from test_m31_voice_bridge import audio, event
 from test_m32_adapter import body, contents, setup_adapter
 from test_m32_provisional import SAFE
@@ -29,8 +29,14 @@ class FakeAskCloud:
     async def ask(self, payload: dict[str, Any], _names: tuple[str, ...]) -> dict[str, Any]:
         self.asked.append(payload["question"])
         return {
-            "sources": [{"ref": "w1", "url": "https://en.wikipedia.org/wiki/Photosynthesis", "title": "Photosynthesis",
-                         "snippet": "Plants make sugar from light."}],  # fmt: skip
+            "sources": [
+                {
+                    "ref": "w1",
+                    "url": "https://en.wikipedia.org/wiki/Photosynthesis",
+                    "title": "Photosynthesis",
+                    "snippet": "Plants make sugar from light.",
+                }
+            ],
             "statements": [{"text": "Plants make their food from light, water and carbon dioxide.", "refs": ["w1"]}],
             "check_question": "What gas do plants take in?",
         }
@@ -239,7 +245,7 @@ def voc53_spoken_question_guarded(tmp_path):
 
 def test_voc53_distress_spoken_in_ask_shows_the_calm_screen_and_rests_voice(tmp_path):
     async def scenario():
-        core, sid, runtime, socket, endpoint, client, instructions = await setup_adapter(tmp_path)
+        core, sid, runtime, socket, _endpoint, client, instructions = await setup_adapter(tmp_path)
         runtime.adapter.route = lambda _text: "ask"
         core.ask_cloud = cloud = FakeAskCloud()
         try:

@@ -107,6 +107,8 @@ class Settings(BaseModel):
     # D133: study tools are made online only (the paid online plan); local generation was too slow and thin on student
     # laptops. On, short documents may also be processed on the device, as before D133.
     study_offline_enabled: bool = key(False, serves="STU-17", layers=ENGINEERING)
+    # Optional prototype narration uses Study consent, without microphone capture or the conversational voice path.
+    study_neural_speech_enabled: bool = key(False, serves="STU-01", layers=ENGINEERING)
     # Cloud voice (VOC-28, S4) built ahead of its stage: the `cloud_voice` switch and consent scope exist only with
     # this capability on; using it still needs the switch, the profile's consent, the subscription and the notice.
     cloud_voice_enabled: bool = key(False, serves="VOC-28", layers=ENGINEERING)

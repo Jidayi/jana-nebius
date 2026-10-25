@@ -345,15 +345,15 @@ def test_mastery_selection_does_not_validate_excluded_diagnostic_probes(desk, mo
 def test_all_new_mastery_questions_and_corrected_physics_keep_every_checked_board_line(tmp_path):
     """Deterministic board preflight; actual model exchanges are separate integration evidence."""
     import asyncio
-    import json
 
     import yaml
     from agent_core.store.pack_index import PackIndex
     from engine_harness import close, make_engine, tutor
     from jana_tools import REPO_ROOT
 
-    review = REPO_ROOT / "scripts/governance/evidence/mastery-bank-completion-2026-10-18/question-review.json"
-    sources = [REPO_ROOT / q["source"] for q in json.loads(review.read_text())["questions"]]
+    sources = sorted((REPO_ROOT / "content/curriculum").glob("*/*/items/itm.*.9*.yaml"))
+    sources = [p for p in sources if 9001 <= int(p.stem.split(".")[-1]) <= 9053]
+    assert len(sources) == 53
     sources += [
         REPO_ROOT / f"content/curriculum/phy/o/items/itm.phy.o.motion.{n:04d}.yaml"
         for n in (108, 109, 113, 114, 118, 119)

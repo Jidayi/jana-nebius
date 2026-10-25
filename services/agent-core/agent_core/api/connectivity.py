@@ -191,6 +191,9 @@ def add_routes(app: FastAPI, core: CoreService, mutating: Mutating) -> None:
                             now,
                             include_study=True,
                         )
+                    online = getattr(core, "online", None)
+                    if online is not None:
+                        online.record_notice(evidence["profile_id"], "study_materials", True)
                 await _switched(True)
             return 200, current_view()
 

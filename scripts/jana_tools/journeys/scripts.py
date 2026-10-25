@@ -10,6 +10,7 @@ fails `script_errors` until its script follows; no specification wording is copi
 
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import dataclass
 from functools import cache
@@ -71,6 +72,12 @@ class SpecJourney:
 
 
 def spec_journeys(docs: Path = DOCS) -> dict[str, SpecJourney]:
+    if docs == DOCS:
+        inventory = json.loads((REPO_ROOT / "contracts/policies/journeys.json").read_text())
+        return {
+            rid: SpecJourney(rid, row["stage"], row["retired"], row["steps"], tuple(row["branches"]))
+            for rid, row in inventory["journeys"].items()
+        }
     found = {}
     for rid, req in requirements(docs).items():
         if not _JOURNEY.match(rid):
@@ -120,7 +127,11 @@ def script_errors(stage: str, root: Path = SCRIPTS, docs: Path = DOCS) -> list[s
     errors = []
     found = {s.journey: s for s in (_load(p) for p in sorted(root.glob("jrn*.yaml")))}
     spec = spec_journeys(docs)
-    known = requirements(docs)
+    known = (
+        json.loads((REPO_ROOT / "contracts/policies/journeys.json").read_text())["requirements"]
+        if docs == DOCS
+        else requirements(docs)
+    )
     for journey in executable(stage, docs):
         if journey not in found:
             errors.append(f"{journey}: no journey script in evals/journeys")

@@ -1342,9 +1342,10 @@ class AppRuntime:
 
 
 def _pin(data: dict[str, Any], model: str) -> None:
-    """Every tier on the one local model the runtime serves."""
+    """Pin each tier's local candidate while preserving its consented cloud routes."""
     for tier in data["tiers"]:
-        data["tiers"][tier] = [f"local:{model}"]
+        cloud = [candidate for candidate in data["tiers"][tier] if candidate.startswith("cloud:")]
+        data["tiers"][tier] = [f"local:{model}", *cloud]
 
 
 async def start_worker_pool(settings: Settings, scratch_root: Path, *, release: bool = False) -> WorkerSupervisor:

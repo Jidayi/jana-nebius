@@ -63,7 +63,7 @@ the network is usable. Otherwise the local sidecar serves the start, exactly as 
     spoken text live only while their utterance or reply runs; the ledger records feature `cloud_voice`, model,
     seconds or characters as cost, latency and status. Ids, locales, voices and prices are `voice_google` in
     `defaults.toml`, with their sources (checked 2026-10-21). The gRPC clients are the gateway's `google-voice` extra.
-- **Tests.** `services/cloud-gateway/tests/test_voc28_cloud_voice.py` runs the real gateway against fakes of the
+- **Tests.** `services/cloud-gateway/tests/test_gateway_voc28_cloud_voice.py` runs the real gateway against fakes of the
   three services (`cloud_gateway/speech_fakes.py`): `voc28_live_reads_only_accepted_text`, departure cut and
   Text-to-Speech finish, two departures, barge-in and truncation, prewarm, buffered first words, idle release and
   resume, hold-to-think, `voc28_endpoint_zero_retention`, recognition failure, wire subset, auth and the checker.

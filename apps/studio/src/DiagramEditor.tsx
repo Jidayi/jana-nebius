@@ -38,12 +38,19 @@ export function DiagramEditor({ pack, diagrams, author, registerGuard, onClose }
   useEffect(() => { const before = (e: BeforeUnloadEvent) => { if (draft?.getState().dirty) e.preventDefault(); }; window.addEventListener("beforeunload", before); return () => window.removeEventListener("beforeunload", before); }, [draft]);
   const install = (value: DiagramOpened) => { setDraft(new Draft(opened(pack, value), transportFor(pack, value.svg_revision), author)); setSchema(null); setNotice(""); setError(""); };
   const open = async (id: string) => { try { if (!id || draft && !await draft.flush()) return; install(await command<DiagramOpened>({ op: "diagram_open", pack, id })); } catch (e) { setError(String(e)); } };
-  const change = (fields: Data) => draft?.change(JSON.stringify({ ...record, ...fields }));
+  const change = (fields: Data) => {
+    if (!draft) return;
+    const current = object(JSON.parse(draft.getState().text) as Json);
+    draft.change(JSON.stringify({ ...current, ...fields }));
+  };
   const close = async () => { if (!draft || await draft.flush()) onClose(); };
-  const editSvg = async (op: string) => { try { const result = await command<{ svg: string; removed?: string[] }>({ op, pack, svg, element, part });
-    const current = object(JSON.parse(draft?.getState().text ?? "{}") as Json);
-    if (current.svg !== svg) { setError("The drawing changed during this action; run it again."); return; }
-    draft?.change(JSON.stringify({ ...current, svg: result.svg })); setNotice(result.removed ? `Removed: ${result.removed.join(", ") || "nothing unsafe"}` : "Part tag updated");
+  const editSvg = async (op: string) => { try {
+    if (!draft) return;
+    const submitted = String(object(JSON.parse(draft.getState().text) as Json).svg ?? "");
+    const result = await command<{ svg: string; removed?: string[] }>({ op, pack, svg: submitted, element, part });
+    const current = object(JSON.parse(draft.getState().text) as Json);
+    if (current.svg !== submitted) { setError("The drawing changed during this action; run it again."); return; }
+    draft.change(JSON.stringify({ ...current, svg: result.svg })); setNotice(result.removed ? `Removed: ${result.removed.join(", ") || "nothing unsafe"}` : "Part tag updated");
   } catch (e) { setError(String(e)); } };
   const duplicate = async () => { try { const saved = await command<DiagramOpened>({ op: "diagram_duplicate", pack, id: record.id, new_id: newId, entry, svg, author });
     setExtra([...extra, { id: String(saved.entry.id), title: String(saved.entry.title) }]); install(saved);

@@ -222,13 +222,26 @@ def mdl19_restart_limit(tmp_path: Path) -> None:
     assert link.state == "gave_up"
 
     # Open sessions follow the runtime's model: after the switch to the smaller model they ask the runtime for it.
-    async def switch() -> list[str]:
+    async def switch() -> tuple[dict[str, list[str]], dict[str, list[str]]]:
         runtime = AppRuntime(SETTINGS, REPO_ROOT / "content" / "agent", REPO_ROOT / "skills", tmp_path / "switch")
         runtime.link = RuntimeLink(SETTINGS, plan)
         engine = runtime.engine(SessionState("ses_switch"))  # opened before any runtime attached
+        cloud_before = {
+            tier: [str(c) for c in candidates if c.locality == "cloud"]
+            for tier, candidates in engine.deps.router.config.tiers.items()
+        }
         async with FakeLlamaServer(["synthetic-small"], api_key=KEYS[0], script=_answers(COACH)) as fake:
             assert await runtime.connect_runtime(fake.url, KEYS[0], "synthetic-small")
         await runtime.close()
-        return [str(c) for tier in engine.deps.router.config.tiers.values() for c in tier]
+        return (
+            {tier: [str(c) for c in candidates] for tier, candidates in engine.deps.router.config.tiers.items()},
+            cloud_before,
+        )
 
-    assert set(asyncio.run(switch())) == {"local:synthetic-small"}
+    tiers, cloud_before = asyncio.run(switch())
+    assert all(
+        [c for c in candidates if c.startswith("local:")] == ["local:synthetic-small"] for candidates in tiers.values()
+    )
+    assert {
+        tier: [c for c in candidates if c.startswith("cloud:")] for tier, candidates in tiers.items()
+    } == cloud_before

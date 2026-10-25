@@ -19,7 +19,9 @@ from agent_core.net.redaction import Redactor
 PATH = "/v1/ask"
 # Why Ask anything cannot run now, as the app shows it: offline, no online plan, or the profile's consent missing.
 REASONS = ("offline", "needs_online_plan", "consent_required", "notice_required", "allowance_exhausted",
-           "model_unavailable", "safety_blocked", "insufficient_evidence", "processing_failed")  # fmt: skip
+           "model_unavailable", "safety_blocked", "insufficient_evidence", "processing_failed",
+           "web_permission_required", "search_not_configured", "search_prepaid_only", "search_credits_exhausted",
+           "search_attempt_already_sent", "search_unavailable")  # fmt: skip
 
 
 class AskCloudError(ValueError):

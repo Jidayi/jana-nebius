@@ -712,3 +712,10 @@ maintainer_health = "PyAV-Org maintainers; pinned maintained 19.0.1 release, ins
 size = "17.6 MiB macOS arm64 wheel with native FFmpeg; deployment-platform wheel audited separately"
 shipped = false
 lgpl_review = "Server runtime uses unmodified dynamically linked FFmpeg from the pinned wheel. Preserve upstream PyAV/FFmpeg licences and corresponding library source/build provenance when distributing a gateway image. No desktop media binary is shipped. Platform-specific image provenance is required before gateway distribution; the macOS synthetic test is not a Linux image licence audit. Owner approval recorded in scripts/governance/m42-owner-approval.json."
+
+[pypi.youtube-transcript-api]
+purpose = "Transcript retrieval library declared by the cloud gateway; server dependency only, with no desktop bundling or runtime integration claimed"
+licence = "MIT"
+maintainer_health = "Jonas Depoix; upstream https://github.com/jdepoix/youtube-transcript-api; installed 1.2.4 metadata and bundled MIT licence inspected 2026-10-24; exact distribution hashes pinned in uv.lock"
+size = "About 2.1 MiB installed package and metadata, excluding requests and defusedxml dependencies"
+shipped = false

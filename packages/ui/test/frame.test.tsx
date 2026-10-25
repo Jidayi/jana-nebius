@@ -63,6 +63,35 @@ function frame(sidebar: SidebarContent = content(), main = <p>Screen</p>) {
 }
 
 describe("UXS-01 and DSN-17", () => {
+  test("grouped navigation keeps personal learning before curriculum with every action available on the rail and drawer", () => {
+    const opened: string[] = [];
+    const grouped: FramePlace[] = [
+      ...places((id) => opened.push(id)).filter((p) => p.id === "home"),
+      { id: "study", icon: "study-area", label: "My materials", group: "Your learning", current: false, onSelect: () => opened.push("study") },
+      { id: "progress", icon: "progress", label: "Progress", group: "Your learning", current: false, onSelect: () => opened.push("progress") },
+      { id: "learn", icon: "learn", label: "Lessons", group: "O-level curriculum", current: true, onSelect: () => opened.push("learn") },
+      { id: "practice", icon: "practice", label: "Practice", group: "O-level curriculum", current: false, onSelect: () => opened.push("practice") },
+    ];
+    frame(content({ places: grouped }));
+    const nav = screen.getByRole("navigation", { name: "Main" });
+    const groups = within(nav).getAllByRole("group");
+    expect(groups.map((g) => g.getAttribute("aria-label"))).toEqual(["Your learning", "O-level curriculum"]);
+    fireEvent.click(within(groups[0]!).getByRole("button", { name: "My materials" }));
+    fireEvent.click(within(groups[1]!).getByRole("button", { name: "Lessons" }));
+    expect(opened).toEqual(["study", "learn"]);
+    fireEvent.click(within(nav).getByRole("button", { name: "Collapse the sidebar" }));
+    expect(screen.getByRole("button", { name: "Lessons" }).getAttribute("aria-current")).toBe("page");
+    expect(screen.getByRole("button", { name: "My materials" })).toBeTruthy();
+    cleanup();
+    atWidth(800);
+    frame(content({ places: grouped }), <HeaderOnly />);
+    fireEvent.click(screen.getByRole("button", { name: "Open the menu" }));
+    expect(screen.getAllByRole("group").map((g) => g.getAttribute("aria-label"))).toContain("Your learning");
+    fireEvent.click(screen.getByRole("button", { name: "Practice" }));
+    expect(opened.at(-1)).toBe("practice");
+    expect(screen.queryByRole("navigation", { name: "Main" })).toBeNull();
+  });
+
   test("test_uxs01_layout_classes_from_tokens", () => {
     const { medium, expanded, wide } = TOKENS.layout.breakpoints;
     expect([layoutOf(medium - 1), layoutOf(medium), layoutOf(expanded - 1), layoutOf(expanded), layoutOf(wide - 1), layoutOf(wide)])

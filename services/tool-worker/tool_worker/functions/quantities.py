@@ -139,9 +139,12 @@ def apply(trees: list[sp.Basic], args: dict[str, Any]) -> tuple[list[sp.Basic], 
         ("a quantity and a unit to solve for", set(given) & set(wanted)),
     ):
         if clash:
-            raise WorkerError(Code.DOMAIN_ERROR, f"{', '.join(sorted(clash))} is given as {label}; quantities must "
-                              "contain only known numeric values with units, such as u: '12 m/s'; put unknown "
-                              "symbols only in unknowns and their requested units in units, such as s: 'm'")
+            raise WorkerError(
+                Code.DOMAIN_ERROR,
+                f"{', '.join(sorted(clash))} is given as {label}; quantities must "
+                "contain only known numeric values with units, such as u: '12 m/s'; put unknown "
+                "symbols only in unknowns and their requested units in units, such as s: 'm'",
+            )
     known: dict[str, Dims] = {}
     values: dict[str, sp.Basic] = {}
     scales: dict[str, sp.Rational] = {}

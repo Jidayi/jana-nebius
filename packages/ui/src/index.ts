@@ -99,3 +99,5 @@ export * from "./learn/Assessment.js";
 export * from "./learn/SavedQuestions.js";
 export * from "./learn/SessionNotes.js";
 export { StudyWorkspace, type StudyTab } from "./learn/StudyWorkspace.js";
+export { StudyJourney } from "./learn/StudyJourney.js";
+export { LearningJourney } from "./learn/LearningJourney.js";

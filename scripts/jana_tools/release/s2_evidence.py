@@ -14,6 +14,7 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
+from .. import REPO_ROOT
 from ..spec import DOCS
 
 CLASSES = ("low", "mid", "high")
@@ -128,7 +129,11 @@ def claim_errors(register: Any, *, candidate: str, results: dict[str, str], metr
     errors = format_errors("claims_register", register)
     if errors:
         return [f"PRD-09: {e}" for e in errors]
-    permitted = len(_list_items(_vision(docs), "LIST PRD-09b"))
+    permitted = (
+        len(json.loads((REPO_ROOT / "contracts/policies/claims.json").read_text())["claims"])
+        if docs == DOCS
+        else len(_list_items(_vision(docs), "LIST PRD-09b"))
+    )
     if permitted != len(CLAIM_REQUIREMENTS):
         errors.append(f"PRD-09: LIST PRD-09b has {permitted} claims; the check knows {len(CLAIM_REQUIREMENTS)}")
     if register["candidate"] != candidate:

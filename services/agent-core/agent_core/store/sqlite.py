@@ -26,6 +26,10 @@ from agent_core.store.migration_v9 import LEARNER as V9_LEARNER
 from agent_core.store.migration_v10 import LEARNER as V10_LEARNER
 from agent_core.store.migration_v11 import LEARNER as V11_LEARNER
 from agent_core.store.migration_v12 import LEARNER as V12_LEARNER
+from agent_core.store.migration_v13 import LEARNER as V13_LEARNER
+from agent_core.store.migration_v14 import LEARNER as V14_LEARNER
+from agent_core.store.migration_v15 import LEARNER as V15_LEARNER
+from agent_core.store.migration_v16 import LEARNER as V16_LEARNER
 from agent_core.store.schema_v1 import DATABASES as V1_DATABASES
 
 # The contract's pragmas (DAT-03). Recursive triggers make a REPLACE conflict fire the delete triggers, so
@@ -80,6 +84,10 @@ MIGRATIONS["learner"] = (
     Migration(10, V10_LEARNER),
     Migration(11, V11_LEARNER),
     Migration(12, V12_LEARNER),
+    Migration(13, V13_LEARNER),
+    Migration(14, V14_LEARNER),
+    Migration(15, V15_LEARNER),
+    Migration(16, V16_LEARNER),
 )
 
 

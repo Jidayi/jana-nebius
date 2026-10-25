@@ -16,7 +16,7 @@ test("loc11_axe_gallery", async () => {
   let failure: unknown;
   try { await run(process.execPath, ["scripts/ci/browser-accessibility.mjs", `--out=${output}`, "--scales=1", "--widths=1366", "--screenshots=none", "--axe-self-test"], { cwd: root, timeout: 1200000 }); }
   catch (error) { failure = error; }
-  const report = JSON.parse(await readFile(path.join(output, "audit.json"), "utf8"));
+  const report = JSON.parse(await readFile(path.join(output, "audit.json"), "utf8").catch((error) => { throw failure ?? error; }));
   expect(report.selected_fixtures).toBe(STATES.length);
   expect(report.cases).toBe(STATES.length * 2);
   expect(new Set(report.results.map((r: { name: string }) => r.name))).toEqual(new Set(STATES.flatMap((s) => ["light", "dark"].map((theme) => `${s.id}--${theme}--1--1366`))));

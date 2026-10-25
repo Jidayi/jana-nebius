@@ -240,6 +240,11 @@ function galleryProfiles(): ProfileController {
 
 /** Data-only study fixtures use the same view; no provider or profile endpoint is involved. */
 function StudyFixture({ state }: { state: GalleryState }) {
+  const t = useT(), root = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (state.variant === "sets") Array.from(root.current?.querySelectorAll("button") ?? [])
+      .find((button) => button.textContent?.trim() === t("study.all_sets"))?.click();
+  }, [state.variant, t]);
   const controller = useMemo(() => {
     const view = { ...EMPTY_STUDY, ...(state.payload.view as Partial<StudyWorkspaceView>) } as StudyWorkspaceView;
     const noop = async () => undefined;
@@ -251,7 +256,7 @@ function StudyFixture({ state }: { state: GalleryState }) {
       hideAid: () => undefined, clearResult: () => undefined, loadMedia: async () => null, seek: () => undefined,
       readCitation: async () => true } as unknown as StudyWorkspaceController;
   }, [state]);
-  return <StudyWorkspace controller={controller} />;
+  return <div ref={root} className="contents"><StudyWorkspace controller={controller} /></div>;
 }
 
 /** The label a tutor turn carries: the still character and the tutor's name (D105). */
@@ -384,6 +389,7 @@ function Component({ state }: { state: GalleryState }): ReactNode {
       const noop = () => undefined;
       if (state.state === "locked") return <ExamLockNotice lock={state.payload.lock as unknown as ExamLock} now={0} place="notes" onOpen={noop} />;
       return <SessionNotesContent view={state.payload.view as unknown as SessionNotesView} subject={(s) => t(`settings.profiles.subject.${s}`)} kc={() => "Average speed"}
+        topicForKc={(id) => id === "kc.phy.o.motion.average_speed" ? { id: "cur.phy.o.motion", title: "Motion" } : null}
         actions={{ onSearch: noop, onOpen: noop, onClose: noop, onRetry: noop, onPrivate: noop, onDelete: noop, onReference: async () => true, onExport: noop }} />;
     }
     case "ProfilePicker": {

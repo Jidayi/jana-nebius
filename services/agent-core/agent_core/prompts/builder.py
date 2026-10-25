@@ -202,8 +202,11 @@ def output_contract(schema: dict[str, Any] | None, output_mode: str, limit: int 
         if "object" in kinds:
             if not spec.get("properties"):
                 raise ValueError("the object has no fixed shape")
-            sample = {name: shape(child, depth + 1) for name, child in spec["properties"].items()
-                      if name in spec.get("required", [])}
+            sample = {
+                name: shape(child, depth + 1)
+                for name, child in spec["properties"].items()
+                if name in spec.get("required", [])
+            }
             # A complete plan requires a non-null final answer even though a blocked plan permits null.
             # Honour conditional type refinements instead of teaching an invalid minimal example.
             for branch in spec.get("allOf", []):
@@ -335,9 +338,11 @@ def build_prompt(
     guidance = _join([t for _, t in parts] + spoken + [index_text, overlay_text])
     # Tier 4: output contract.
     if role == "solver" and tools and session.computation:
-        contract = ("Current phase: computation. Call an available calculation tool now. Do not return a JSON "
-                    "solution plan yet. Substitute supplied numeric knowns, leaving only the requested unknowns. "
-                    "Wait for the tool results; the plan's JSON contract applies afterwards.")
+        contract = (
+            "Current phase: computation. Call an available calculation tool now. Do not return a JSON "
+            "solution plan yet. Substitute supplied numeric knowns, leaving only the requested unknowns. "
+            "Wait for the tool results; the plan's JSON contract applies afterwards."
+        )
     else:
         contract = output_contract(output_schema, str(manifest.meta["output_mode"]), limits[3])
     # Tier 5: topic context (pushed teaching skill, glossary, ranked passages).

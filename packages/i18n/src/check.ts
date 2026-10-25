@@ -82,16 +82,16 @@ export function pluralErrors(locale: string, catalogue: Record<string, string>):
   return errors;
 }
 
-/** Acronyms that are written in capitals, not shouted: the USB stick of the offline install paths (UXS-07a) and the photo
- * file types a student may choose (JPEG, PNG). */
-const ACRONYMS = new Set(["USB", "JPEG", "PNG", "PDF"]);
+/** Conventional uppercase terms and brand names, not shouted copy. Keep these exact so other all-caps words in the
+ * same message still fail the sentence-case check. */
+const UPPERCASE_TERMS = new Set(["USB", "JPEG", "PNG", "PDF", "URL", "HTTPS", "API", "NVIDIA"]);
 
 /** UXS-05: sentence case (no all-caps), never "wrong", no exclamation marks in interface copy. */
 export function copyLintErrors(catalogue: Record<string, string>): string[] {
   const errors: string[] = [];
   for (const [key, message] of Object.entries(catalogue)) {
     const words = message.replace(/\{[^}]*\}/g, " ").match(/[A-Za-z]{2,}/g) ?? [];
-    if (words.some((w) => w.length > 2 && w === w.toUpperCase() && !ACRONYMS.has(w))) errors.push(`${key}: all-caps word`);
+    if (words.some((w) => w.length > 2 && w === w.toUpperCase() && !UPPERCASE_TERMS.has(w))) errors.push(`${key}: all-caps word`);
     if (/\bwrong\b/i.test(message) && !key.startsWith("error.")) errors.push(`${key}: says "wrong" to a student`);
     if (/\bwrong\b/i.test(message) && key.startsWith("error.") && /student|answer|step/i.test(message)) errors.push(`${key}: says "wrong" about the student's work`);
     if (message.includes("!")) errors.push(`${key}: exclamation mark in interface copy`);

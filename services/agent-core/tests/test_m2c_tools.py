@@ -62,9 +62,10 @@ def _test_spec(name: str, timeout_ms: int | None = 5000, **meta) -> ToolSpec:
 
 
 def tol01_spec_contract_roundtrip():
-    tool_spec_ts = (SPEC_DOCS / "contracts" / "tools" / "tool-spec.ts").read_text()
-    meta_fields = re.search(r"export interface ToolMeta \{(.*?)\n\}", tool_spec_ts, re.DOTALL).group(1)
-    declared = set(re.findall(r"^\s+(\w+)\??:", meta_fields, re.MULTILINE))
+    # The public register is the source of ToolMeta names; the runtime may not invent wire metadata.
+    entries = [tool for toolset in REGISTER["toolsets"].values() for tool in toolset["tools"]]
+    declared = set().union(*(entry.keys() for entry in entries))
+    assert {"risk", "executor", "parallelSafe", "timeoutMs", "sideEffects"} <= declared
     for spec in specs():
         data = spec.data()
         again = ToolSpec.from_data(json.loads(json.dumps(data)))
@@ -311,17 +312,12 @@ def tol10_no_internal_detail_leaks():
 
 
 def tol10_error_codes_consistent():
-    table = (SPEC_DOCS / "tools.md").read_text().split("TABLE TOL-10a —", 1)[1].split("Acceptance:", 1)[0]
-    in_table = set(re.findall(r"^\| `([a-z_]+)` \|", table, re.MULTILINE))
-    schema = json.loads((SPEC_DOCS / "contracts" / "tools" / "tool-result.schema.json").read_text())
+    schema = json.loads((REPO_ROOT / "contracts/tools/tool-result.schema.json").read_text())
     in_schema = set(schema["$defs"]["ToolErrorCode"]["enum"])
-    union = re.search(
-        r"export type ToolErrorCode =(.*?);",
-        (SPEC_DOCS / "contracts" / "tools" / "tool-spec.ts").read_text(),
-        re.DOTALL,
-    ).group(1)
+    typescript = (REPO_ROOT / "packages/contracts-ts/src/generated/tools/tool_result.ts").read_text()
+    union = re.search(r"export type ToolErrorCode =(.*?);", typescript, re.DOTALL).group(1)
     in_ts = set(re.findall(r'"([a-z_]+)"', union))
-    assert in_table == in_schema == in_ts == set(ERROR_RULES)
+    assert in_schema == in_ts == set(ERROR_RULES)
 
 
 # --- TOL-11 -----------------------------------------------------------------------------------------------

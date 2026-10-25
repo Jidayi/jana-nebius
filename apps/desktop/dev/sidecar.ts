@@ -27,7 +27,8 @@ export function startSidecar(devOrigin: string): Promise<{ launch: Launch; child
   const control = /\[interfaces\.control\][\s\S]*?^version\s*=\s*"(\d+)\.(\d+)"/m.exec(versions);
   if (control === null) throw new Error("control protocol version is missing");
   const token = randomBytes(32).toString("base64url");
-  const child = spawn("uv", ["run", "--quiet", "python", "-m", "agent_core.api"], { cwd: REPO, stdio: ["pipe", "pipe", "inherit"] });
+  const nebius = process.env.JANA_NEBIUS_GATEWAY_CONFIG !== undefined;
+  const child = spawn("uv", ["run", "--offline", "--quiet", "python", "-m", nebius ? "jana_tools.hackathon_app" : "agent_core.api"], { cwd: REPO, stdio: ["pipe", "pipe", "inherit"] });
   const send = (message: unknown) => child.stdin?.write(`${JSON.stringify(message)}\n`);
   const voice = new DevVoice(send);
   child.on("exit", () => voice.stop());
@@ -45,7 +46,7 @@ export function startSidecar(devOrigin: string): Promise<{ launch: Launch; child
     skills_root: path.join(REPO, "skills"),
     release: false,
     dev_origins: [...new Set([devOrigin, devOrigin.replace("localhost", "127.0.0.1")])],
-    scripted: runtime === undefined,
+    scripted: !nebius && runtime === undefined,
   });
   send({ type: "control.secret", name: "launch_token", value: token });
   return new Promise((resolve, reject) => {
@@ -141,7 +142,7 @@ class DevVoice {
 /** Build (or take from the cache) and install the O level packs into the dev data folder; the core reads the packs
  * folder as it changes, so the subjects appear once this finishes (refocus the window to refresh the notices). */
 function seedPacks(dataDir: string): void {
-  const seeder = spawn("uv", ["run", "--quiet", "python", path.join("apps", "desktop", "dev", "seed_packs.py"), dataDir], { cwd: REPO, stdio: ["ignore", "inherit", "inherit"] });
+  const seeder = spawn("uv", ["run", "--offline", "--quiet", "python", path.join("apps", "desktop", "dev", "seed_packs.py"), dataDir], { cwd: REPO, stdio: ["ignore", "inherit", "inherit"] });
   seeder.on("exit", (code) => {
     if (code !== 0) process.stderr.write(`dev packs: seeding exited ${code}; the app starts with no subjects\n`);
   });

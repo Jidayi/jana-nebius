@@ -1,0 +1,76 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/ops/revocation-list",
+ "title": "RevocationList",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "kind",
+  "version",
+  "created_at",
+  "revoked",
+  "signature"
+ ],
+ "properties": {
+  "kind": {
+   "const": "revocation_list"
+  },
+  "version": {
+   "type": "integer",
+   "minimum": 1
+  },
+  "created_at": {
+   "type": "string",
+   "format": "date-time"
+  },
+  "revoked": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "key_id",
+     "revoked_at",
+     "reason"
+    ],
+    "properties": {
+     "key_id": {
+      "type": "string",
+      "maxLength": 80
+     },
+     "revoked_at": {
+      "type": "string",
+      "format": "date-time"
+     },
+     "reason": {
+      "enum": [
+       "key_compromise",
+       "superseded",
+       "purpose_retired"
+      ]
+     }
+    }
+   }
+  },
+  "signature": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "alg",
+    "key_id",
+    "value"
+   ],
+   "properties": {
+    "alg": {
+     "const": "ed25519"
+    },
+    "key_id": {
+     "type": "string"
+    },
+    "value": {
+     "type": "string"
+    }
+   }
+  }
+ }
+}

@@ -80,6 +80,15 @@ describe("UXS-29", () => {
 });
 
 describe("UXS-46", () => {
+  test.each(["S2", "S3"] as const)("installed voice controls are reachable once with a %s core", async (stage) => {
+    const { profiles, view } = await unlocked((core) => { core.sectionsStage = stage; });
+    view.rerender(<LocaleProvider locale="en"><Settings profiles={profiles} voiceSettings={<p>Installed voice choices</p>} /></LocaleProvider>);
+    await screen.findByText("Installed voice choices");
+    await waitFor(() => expect(screen.getAllByText("Installed voice choices")).toHaveLength(1));
+    expect(screen.getByText("Installed voice choices").closest("[data-settings-section]")?.getAttribute("data-settings-section"))
+      .toBe(stage === "S2" ? "accessibility_language" : "voice");
+  });
+
   test("test_uxs46_settings_page_sections", async () => {
     const { core } = await unlocked();
     // Exactly the sections the core names for this build's stage, in its order, each on the page with its heading.

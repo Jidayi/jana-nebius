@@ -6,7 +6,6 @@ worked steps, hints, rendering, references and licences with the tool-worker imp
 
 from __future__ import annotations
 
-import json
 import math
 from pathlib import Path
 
@@ -14,8 +13,12 @@ import pytest
 import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
-MANIFEST = ROOT / "scripts/governance/evidence/mastery-bank-completion-2026-10-18/question-review.json"
-QUESTIONS = json.loads(MANIFEST.read_text())["questions"]
+SOURCES = sorted((ROOT / "content/curriculum").glob("*/*/items/itm.*.9*.yaml"))
+QUESTIONS = [
+    {"item_id": item["id"], "kc_id": item["kc_ids"][0], "source": str(path.relative_to(ROOT))}
+    for path in SOURCES
+    if 9001 <= int((item := yaml.safe_load(path.read_text()))["id"].split(".")[-1]) <= 9053
+]
 
 # Standard-library arithmetic is separate from the SymPy-backed build and runtime checker.
 REFERENCE = {
@@ -79,7 +82,6 @@ def test_supplement_key_against_reference(record: dict) -> None:
     assert item["id"] == record["item_id"]
     assert item["kc_ids"] == [record["kc_id"]]
     assert item["review"]["reviewers"] == []
-    assert record["independent_curriculum_review"] == "awaiting_approval"
     if key["kind"] == "numeric":
         expected = REFERENCE[number]
         actual = float(key["value"])
@@ -98,19 +100,11 @@ def test_supplement_key_against_reference(record: dict) -> None:
         assert len({o["text"] for o in key["options"]}) == 4
 
 
-def test_supplement_fills_every_reported_slot_without_human_approval_claim() -> None:
-    baseline = json.loads(
-        (
-            ROOT / "scripts/governance/evidence/mastery-all-subjects-2026-10-18/content-bank-requirements.json"
-        ).read_text()
-    )
-    from collections import Counter
-
+def test_supplement_covers_all_public_reference_cases_without_human_approval_claim() -> None:
     assert len(QUESTIONS) == 53
-    assert len({r["item_id"] for r in QUESTIONS}) == 53
-    assert Counter(r["kc_id"] for r in QUESTIONS) == {
-        b["kc_id"]: b["minimum_additional_unreserved_surfaces"] for b in baseline["banks"]
-    }
-    manifest = json.loads(MANIFEST.read_text())
-    assert manifest["independent_curriculum_review"] == "awaiting_approval"
-    assert manifest["release_approval"] == "not_granted"
+    assert {int(r["item_id"].split(".")[-1]) for r in QUESTIONS} == set(range(9001, 9054))
+    assert set(REFERENCE) | {9028, 9051, 9052, 9053} == set(range(9001, 9054))
+    for record in QUESTIONS:
+        item = yaml.safe_load((ROOT / record["source"]).read_text())
+        assert item["review"]["reviewers"] == []
+        assert item["review"]["status"] != "approved"

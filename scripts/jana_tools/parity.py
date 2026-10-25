@@ -8,6 +8,7 @@ import re
 from pathlib import Path
 from typing import Any
 
+from . import REPO_ROOT
 from .codegen import CONTRACTS
 
 _UNION = re.compile(r"^export type (\w+)\s*=\s*([^;]+);", re.MULTILINE)
@@ -88,8 +89,11 @@ def parity_errors(ts_path: Path, schema_path: Path) -> list[str]:
 
 
 TWINS = (
-    (CONTRACTS / "api" / "events.ts", CONTRACTS / "api" / "events.schema.json"),
-    (CONTRACTS / "tools" / "tool-spec.ts", CONTRACTS / "tools" / "tool-result.schema.json"),
+    (REPO_ROOT / "packages/contracts-ts/src/generated/api/events.ts", CONTRACTS / "api/events.schema.json"),
+    (
+        REPO_ROOT / "packages/contracts-ts/src/generated/tools/tool_result.ts",
+        CONTRACTS / "tools/tool-result.schema.json",
+    ),
 )
 
 

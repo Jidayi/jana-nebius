@@ -3,8 +3,8 @@
 export const S2_ROUTES = [
   { screen: "home", keys: [] },
   { screen: "tutor", keys: ["composer.new_question"] },
-  { screen: "learn", keys: ["app.learn"] },
-  { screen: "lesson", keys: ["app.learn", "map.open_lesson"] },
+  { screen: "learn", keys: ["nav.lessons"] },
+  { screen: "lesson", keys: ["nav.lessons", "map.open_lesson"] },
   { screen: "practice", keys: ["app.practice"] },
   { screen: "mock", keys: ["app.mock"] },
   { screen: "progress", keys: ["app.progress"] },

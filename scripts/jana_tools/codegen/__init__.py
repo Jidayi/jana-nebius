@@ -1,6 +1,6 @@
 """Contract code generation (ARC-30, API-34; D39, D45).
 
-One entry point generates every binding from the JSON Schemas in docs/specification/contracts/:
+One entry point generates every binding from the public JSON Schemas in contracts/:
 
 - Pydantic v2 models (`extra="forbid"`) into `agent_core.contracts` (every contract),
   `tool_worker.contracts` (the tool contracts), `ingest.contracts` (the bodies the ingest receives) and
@@ -24,7 +24,6 @@ import tempfile
 from pathlib import Path
 
 from .. import REPO_ROOT
-from ..spec import DOCS
 from .availability import generate_availability
 from .event_registry import generate_event_registry
 from .item_types import generate_item_types
@@ -44,9 +43,10 @@ from .tooldata import (
 )
 from .typescript import generate_typescript
 
-CONTRACTS = DOCS / "specification" / "contracts"
-REGISTERS = DOCS / "specification" / "registers"
-SPEC = DOCS / "specification"
+# Public generation inputs: schemas, runtime registers, and policy identifiers.
+CONTRACTS = REPO_ROOT / "contracts"
+REGISTERS = CONTRACTS / "registers"
+SPEC = CONTRACTS / "policies"
 
 # Output roots, relative to the repository root.
 AGENT_CORE = Path("services/agent-core/agent_core/contracts")
@@ -93,8 +93,8 @@ def generate_into(out_root: Path, contracts_dir: Path = CONTRACTS, registers_dir
     generate_tool_data(out_root / TOOL_DATA, registers_dir)
     generate_visual_data(out_root / VISUAL_DATA, registers_dir)
     generate_client_keys(out_root / CLIENT_KEYS)
-    generate_renderer_data(contracts_dir / "design" / "tokens.json", out_root / RENDERER_DATA)
-    generate_tokens(contracts_dir / "design" / "tokens.json", out_root / UI_TOKENS)
+    generate_renderer_data(REPO_ROOT / "packages/ui/tokens.json", out_root / RENDERER_DATA)
+    generate_tokens(REPO_ROOT / "packages/ui/tokens.json", out_root / UI_TOKENS)
     generate_ui_tools(registers_dir, out_root / UI_TOKENS)
     generate_shell_keys(out_root / SHELL_KEYS)
     generate_rust_control(contracts, out_root / SHELL_KEYS)  # control.rs, and mod.rs naming both modules

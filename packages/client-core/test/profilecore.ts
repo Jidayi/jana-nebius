@@ -13,6 +13,8 @@ import type { CoreSnapshot } from "../src/hydrate.js";
 import type { KnowsKc, KnowsMisconception, KnowsNote, KnowsPreference, KnowsReply, KnowsReview } from "../src/memory.js";
 import { PREFERENCE_VALUES } from "../src/memory.js";
 import type { Launch } from "../src/session.js";
+import type { LearningJourneyView } from "../src/learning-journey.js";
+import type { SubjectMap } from "../src/learn.js";
 
 /** A note as a test gives it: the MemoryList fields, and any learner-view field it wants to set. */
 export type FakeNote = Pick<KnowsNote, "note_id" | "text" | "created_ts" | "source"> & Partial<KnowsNote>;
@@ -205,6 +207,7 @@ export class FakeProfileCore {
   readonly maps = new Map<string, unknown>();
   mapFor: ((profileId: string, subjectId: string) => unknown) | null = null;
   readonly lessons = new Map<string, Record<string, unknown>>();
+  readonly journeys = new Map<string, LearningJourneyView>();
   /** Saved lesson positions per profile and lesson. */
   readonly positions = new Map<string, { block_index: number; lesson_version: string; updated_ts: number }>();
   /** Answers a position save with this error code instead, when set. */
@@ -500,6 +503,37 @@ export class FakeProfileCore {
       return new Response(null, { status: 204 });
     }
     if (path === "/v1/mocks" || path.startsWith("/v1/mocks/")) return this.mocks(method, path, body, profile);
+    if (path === "/v1/learning-journey" || path === "/v1/learning-journey/step") {
+      if (profile === null) return error(401, "profile_token_expired");
+      if (method === "POST" && this.mockLocked(profile)) return error(423, "tutor_locked");
+      let journey = this.journeys.get(profile) ?? null;
+      if (method === "POST" && path === "/v1/learning-journey") {
+        const asked = body as { node_id: string; kc_id: string; lesson_id?: string; source?: LearningJourneyView["source"] };
+        const map = ([...this.maps.values()] as SubjectMap[]).find((m) => m.sections.some((s) => s.topics.some((t) => t.node_id === asked.node_id)));
+        const topic = map?.sections.flatMap((s) => s.topics).find((t) => t.node_id === asked.node_id);
+        const kc = topic?.kcs.find((k) => k.kc_id === asked.kc_id);
+        if (!topic || !kc) return error(422, "invalid_learning_objective");
+        if (!journey || journey.goal.kc_id !== kc.kc_id) {
+          journey = {
+            goal: { node_id: topic.node_id, kc_id: kc.kc_id, title: topic.title, objective: kc.statement, subject: map!.subject },
+            source: asked.source ?? null, source_changed: false, phase: "ready", evidence: "none", prior_attempts: 0,
+            practice_set_id: null, lesson_id: asked.lesson_id ?? topic.lessons.find((l) => l.kc_ids.includes(kc.kc_id))?.lesson_id ?? null, lesson_opened: false, stage: "starting",
+          };
+        } else if (asked.lesson_id) journey.lesson_id = asked.lesson_id;
+      }
+      if (method === "POST" && path.endsWith("/step") && journey) {
+        const action = (body as { action: string }).action;
+        if (action === "review") journey.lesson_opened = true;
+        else if (action === "check" || !journey.practice_set_id) {
+          journey.practice_set_id = `set_${ulid(9000 + this.practiceAttempts)}`;
+          journey.phase = "question";
+          if (action === "check") journey.stage = "check";
+          this.practiceTotal = 1;
+        }
+      }
+      if (journey) this.journeys.set(profile, journey);
+      return json(200, { journey });
+    }
     // Practice sets (API-27): served only when `practiceServed`; marked with `mark`, the next item with every mark.
     if (path.startsWith("/v1/practice/sets")) {
       if (profile === null) return error(401, "profile_token_expired");
@@ -508,7 +542,7 @@ export class FakeProfileCore {
       if (method === "GET" && (m = /^\/v1\/practice\/sets\/([^/]+)$/.exec(path))) {
         this.practiceAt = 0;
         this.practiceMisses = 0;
-        this.practiceTotal = this.practiceItems.length;
+        this.practiceTotal = this.journeys.get(profile)?.practice_set_id === m[1] ? 1 : this.practiceItems.length;
         return json(200, { set_id: m[1], items_total: this.practiceTotal, current_item: this.practiceItems[0] ?? null });
       }
       if (method === "POST" && path === "/v1/practice/sets") {
@@ -531,6 +565,12 @@ export class FakeProfileCore {
         else { this.practiceAt += 1; this.practiceMisses = 0; }
         const next = firstMiss ? (this.practiceItems[this.practiceAt] ?? null) : this.practiceAt < this.practiceTotal ? this.practiceItems[this.practiceAt] ?? null : null;
         this.practiceAttempts += 1;
+        const journey = this.journeys.get(profile);
+        if (journey && journey.practice_set_id === m[1]) {
+          journey.prior_attempts++;
+          journey.evidence = right ? "independent_correct" : "incorrect";
+          journey.phase = right ? journey.stage === "check" ? "complete" : "ready_check" : "repair";
+        }
         return json(200, {
           ...(missed && !firstMiss ? { worked: this.worked } : {}),
           attempt_id: `att_${ulid(80 + this.practiceAttempts)}`, verdict: marked.verdict, marks_awarded: right ? 1 : 0, marks_total: 1, feedback_key: `practice.feedback.${marked.verdict}`,

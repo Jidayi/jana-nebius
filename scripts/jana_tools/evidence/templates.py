@@ -15,7 +15,7 @@ from ..release.field_evidence import SOURCES
 from .drills import DEVICE, DRILLS, Answers, Ask, Drill, Repeat
 from .placeholders import FILL_IN
 
-TEMPLATES = REPO_ROOT / "scripts" / "governance" / "evidence" / "templates"
+TEMPLATES = Path(__file__).parent / "templates"
 M24_TEMPLATES = TEMPLATES / "m24"
 
 # M23 governance records: template file -> (record kind, requirement ids, what the record is)

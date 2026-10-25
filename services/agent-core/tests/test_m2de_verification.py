@@ -23,7 +23,7 @@ from tool_worker.server import Limits, Server
 
 CHECK = "chk_01JZ0000000000000000000001"
 WORKER = REPO_ROOT / "services" / "tool-worker" / "tool_worker"
-REGISTER = REPO_ROOT / "docs" / "specification" / "registers" / "toolsets.json"
+REGISTER = REPO_ROOT / "contracts/registers/toolsets.json"
 
 
 def call_in_process(name: str, args: dict, settings: dict | None = None) -> dict:

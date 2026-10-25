@@ -92,9 +92,11 @@ def decode_schema(schema: Any, base: str | None = None, depth: int = 0, root: An
             merged = {**target, **rest} if isinstance(target, dict) else target
             return decode_schema(merged, target_base, depth + 1, target_root)
         kept = {
-            k: ({name: decode_schema(child, base, depth + 1, root) for name, child in v.items()}
+            k: (
+                {name: decode_schema(child, base, depth + 1, root) for name, child in v.items()}
                 if k in ("properties", "patternProperties") and isinstance(v, dict)
-                else decode_schema(v, base, depth + 1, root))
+                else decode_schema(v, base, depth + 1, root)
+            )
             for k, v in schema.items()
             if k not in GRAMMAR_UNSUPPORTED and k not in GRAMMAR_SIZE and k not in ("$defs", "$id", "$schema")
         }

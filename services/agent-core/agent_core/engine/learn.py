@@ -106,6 +106,18 @@ def _english(text: Any) -> str:
     return str(text or "")
 
 
+def teaching_example(content: Any, lesson: Mapping[str, Any]) -> Mapping[str, Any] | None:
+    """Reuse an installed worked example for the lesson's first objective, in a stable order."""
+    kcs = lesson.get("kc_ids") or []
+    if not kcs:
+        return None
+    return next(iter(sorted(
+        (example for example in content.table("worked_examples")
+         if _active(example) and kcs[0] in example.get("kc_ids", [])),
+        key=lambda example: str(example["id"]),
+    )), None)
+
+
 def syllabus_points(record: Mapping[str, Any]) -> list[dict[str, str]]:
     """A record's own board mappings as syllabus points (CUR-06)."""
     return [{"scheme": str(m["scheme"]), "code": str(m["code"]), "coverage": str(m["coverage"])}
@@ -391,7 +403,7 @@ class LearnDesk:
             return {"type": kind, "items": self._items(block["item_ids"])}
         return None
 
-    def lesson(self, lesson_id: str) -> dict[str, Any] | None:
+    def lesson(self, lesson_id: str, *, teaching: bool = False) -> dict[str, Any] | None:
         """The `LessonView` reply, or None when no installed pack has the lesson."""
         record = self.content.record("lessons", lesson_id) if LESSON_ID.match(lesson_id) else None
         if record is None:
@@ -400,10 +412,23 @@ class LearnDesk:
         stages = Fading.read(self.conn)
         blocks = [b for b in (self._block(b, stages) for b in record["blocks"]) if b is not None]
         version = str(record["version"])
+        position = self._position(lesson_id, version, len(blocks))
+        if teaching and any(block["type"] == "step" for block in blocks):
+            example = teaching_example(self.content, record)
+            if example is not None:
+                resolved = self._worked_example(str(example["id"]), stages)
+                if resolved is not None:
+                    resolved["faded_steps"] = []  # Teaching explicitly requests the complete worked example.
+                    idea = next((_english(block.get("names")) for block in record["blocks"]
+                                 if _english(block.get("names"))), "")
+                    # Append presentation blocks: saved step indices and all check items keep their identity.
+                    if idea:
+                        blocks.append({"type": "idea", "text": idea, "visual": None})
+                    blocks.append({"type": "worked_example", "worked_example": resolved})
         return {"lesson_id": lesson_id, "node_id": str(record["node_id"]), "title": str(record["title"]),
                 "estimated_minutes": int(record["estimated_minutes"]), "kc_ids": list(record["kc_ids"]),
                 "version": version, "pack": {"pack_id": pack.pack_id, "version": pack.version} if pack else None,
-                "blocks": blocks, "position": self._position(lesson_id, version, len(blocks))}  # fmt: skip
+                "blocks": blocks, "position": position}  # fmt: skip
 
     # --- the position ------------------------------------------------------------------------------------------------
 

@@ -6,7 +6,7 @@ import {
   Users, Circle, CircleDashed, CircleDot, CircleCheckBig, RotateCcw, Hourglass, BookOpen, GraduationCap, ArrowLeft, ArrowRight, MoveUp,
   MoveDown, MessageSquare, ImagePlus, Mic, LayoutDashboard, PanelLeft, PanelRight, Menu, SquarePen, Ellipsis, Volume2, Flag, Keyboard, Target,
   ScrollText, LifeBuoy, Bug, Share2, Wind, UserPlus, ClipboardList, Timer, Bookmark, SquareCheckBig, EyeOff, Calculator, Pause, Play, FlaskConical,
-  TrendingUp, ChartColumn, Table, Search, Clock3, LibraryBig, Languages, Archive, ChevronsUpDown,
+  TrendingUp, ChartColumn, Table, Search, Clock3, LibraryBig, Languages, Archive, ChevronsUpDown, GalleryVerticalEnd,
   type LucideIcon,
 } from "lucide-react";
 import { TOKENS } from "./generated/tokens.js";
@@ -68,6 +68,7 @@ export const ICONS = {
   // Practice (UXS-24), the keyboard help (LOC-12), Settings → Licence and About → Licences (PLT-19, PLT-10), crash
   // review (OBS-07), the support share (OBS-18) and the calm screen (UXS-43).
   practice: { glyph: Target, mirrorInRtl: false },
+  flashcards: { glyph: GalleryVerticalEnd, mirrorInRtl: false },
   keyboard: { glyph: Keyboard, mirrorInRtl: false },
   licence: { glyph: ScrollText, mirrorInRtl: false },
   support: { glyph: LifeBuoy, mirrorInRtl: false },

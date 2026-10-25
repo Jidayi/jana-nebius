@@ -34,8 +34,17 @@ SETTINGS = Settings(
 )
 MODELS = ["qwen3-vl-8b", "gemma-4-12b"]
 # What the app's start wires on the core that `start_core` leaves out, and this core adds (see the module docstring).
-WIRED = ("assessments", "planner", "mock_active", "retention", "start_benchmark", "online", "release", "knowledge",
-         "ask_cloud")
+WIRED = (
+    "assessments",
+    "planner",
+    "mock_active",
+    "retention",
+    "start_benchmark",
+    "online",
+    "release",
+    "knowledge",
+    "ask_cloud",
+)
 
 
 def scripted(script_: dict[str, list[Any]] | list[Any]) -> ScriptedProvider:

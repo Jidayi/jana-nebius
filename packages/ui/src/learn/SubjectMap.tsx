@@ -20,6 +20,7 @@ import { Button, EmptyState, ErrorState, IconButton, ProgressBar, SegmentedContr
 import { MasteryMark, MasteryRing, SegmentedBar, useCountsText } from "./Mastery.js";
 
 export interface MapActions {
+  onJourney?: (topic: MapTopic, kc: MapKc) => void;
   onStartLesson?: (lessonId: string) => void;
   onPractise?: (topic: MapTopic) => void;
   onAsk?: (topic: MapTopic) => void;
@@ -156,6 +157,7 @@ function TopicSheet({ topic, actions, onClose, syllabuses }: { topic: MapTopic; 
               <span className="text-ui text-ink">{kc.statement}</span>
               <span className="flex flex-wrap items-center gap-2">
                 <MasteryMark state={kc.state} />
+                {actions.onJourney && <Button size="sm" onClick={() => actions.onJourney?.(topic, kc)}>{t("journey.begin")}</Button>}
                 {kc.state === "ready_to_check" && actions.onMasteryCheck !== undefined && (
                   <Button size="sm" onClick={() => actions.onMasteryCheck?.(kc, false)}>{t("sheet.check_mastery")}</Button>
                 )}
@@ -304,7 +306,7 @@ export function SubjectMapContent({ view, subjects = [], onSubject, onSyllabus, 
   return (
     <div className="flex min-h-full flex-col" data-map-status={view.status} data-map-subject={view.subjectId ?? undefined}>
       <ScreenHeader end={<SubjectSwitch subjects={subjects} value={view.subjectId} onSubject={onSubject} />}>
-        <span className="text-ui font-semibold text-ink">{t("app.learn")}</span>
+        <span className="text-ui font-semibold text-ink">{t("nav.lessons")}</span>
       </ScreenHeader>
       <div className="flex-1 px-6 pt-6 pb-12 lg:px-10">
         <div className={`mx-auto grid w-full grid-cols-1 items-start gap-8 ${topic !== null ? "max-w-300 lg:grid-cols-[minmax(0,1fr)_22rem]" : "max-w-240"}`}>

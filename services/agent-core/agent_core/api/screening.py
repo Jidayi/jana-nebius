@@ -127,10 +127,19 @@ ROUTES: dict[str, Rule] = {
     "PUT /v1/study/sources/{source_id}/chunks/{chunk_index}": Exempt("bounded hashed file bytes; sandbox decoder only"),
     "PATCH /v1/study/sources/{source_id}": _NAMES,
     "POST /v1/study/sources/{source_id}/open": _IDS,
+    "POST /v1/study/sources/{source_id}/archive": _IDS,
+    "DELETE /v1/study/sources/{source_id}/archive": _IDS,
     "POST /v1/study/search": Exempt("read-only bounded local search, never persisted or sent to a model"),
     # A Generate focus and the kept topics reach the model with the request, so they are screened with it (STU-21).
+    "POST /v1/study/quizzes/{quiz_id}/items/{item_id}/help": Screened(
+        "study_request", _study_request, NOTE | {"off_topic", "personal_data"}
+    ),
     "POST /v1/study/jobs": Screened("study_request", _study_request, NOTE | {"off_topic", "personal_data"}),
+    "POST /v1/study/web": Screened("study_web", field_text("url"), NOTE | {"off_topic", "personal_data"}),
     "POST /v1/study/jobs/{job_id}/actions": _IDS,
+    # The server prepares the saved passage; the body contains only its index,
+    # offset, digest and explicit consent, never client-supplied narration text.
+    "POST /v1/study/aids/{aid_id}/neural-speech": _IDS,
     "POST /v1/study/retries/{digest}": _IDS,
     "POST /v1/study/decks/{deck_id}/reviews": _IDS,
     "POST /v1/study/quizzes/{quiz_id}/attempts": Exempt("answers compared with private keys; never sent to a model"),
@@ -190,11 +199,15 @@ ROUTES: dict[str, Rule] = {
     "POST /v1/assessments/{identity}/stop": _IDS,
     "POST /v1/assessments/{identity}/resume": _IDS,
     "POST /v1/practice/sets": _IDS,
+    "POST /v1/learning-journey": _IDS,
+    "POST /v1/learning-journey/step": _IDS,
     "POST /v1/practice/sets/{identity}/help": _IDS,
     "POST /v1/practice/sets/{identity}/reveal": _IDS,
     "POST /v1/mocks": _IDS,
-    "POST /v1/past-papers": Exempt("source ids, a subject, minutes and the paper's title; the paper's own words are "
-                                   "source data the study area already holds, never instructions (ASM-27)"),
+    "POST /v1/past-papers": Exempt(
+        "source ids, a subject, minutes and the paper's title; the paper's own words are "
+        "source data the study area already holds, never instructions (ASM-27)"
+    ),
     "DELETE /v1/past-papers/{paper_id}": _IDS,
     "POST /v1/exam-dates": _NAMES,
     "PATCH /v1/exam-dates/{exam_id}": _NAMES,

@@ -136,8 +136,11 @@ def canonical_number_text(text: str) -> str:
     out = out.replace("**", "^")
     out = re.sub(r"(?<=\d)\s*X\s*(?=10\s*\^)", "x", out)
     out = re.sub(r"\^\s*\(\s*([-+]?\d+)\s*\)", r"^\1", out)
-    out = re.sub(r"(?<![\d.])(\d{1,3})((?:[ \u2009\u202f]\d{3})+)(?![\d/])",
-                 lambda m: m.group(1) + re.sub(r"\s", "", m.group(2)), out)
+    out = re.sub(
+        r"(?<![\d.])(\d{1,3})((?:[ \u2009\u202f]\d{3})+)(?![\d/])",
+        lambda m: m.group(1) + re.sub(r"\s", "", m.group(2)),
+        out,
+    )
     return out
 
 

@@ -7,6 +7,7 @@ import { Tex } from "../maths/Tex.js";
 import { Button, ConfirmDialog, EmptyState, ErrorState, FIELD_LOOK, Loader, Notice } from "../primitives/index.js";
 import { useSelect } from "../store.js";
 import { PackText } from "./PackText.js";
+import { useOpenTopic } from "./link.js";
 
 const SavedContext = createContext<{ controller: SavedQuestionsController; onOpen: () => void } | null>(null);
 export function SavedQuestionsProvider({ controller, onOpen, children }: { controller: SavedQuestionsController; onOpen: () => void; children: ReactNode }) {
@@ -41,6 +42,9 @@ export function SavedQuestionsContent({ view, actions, subject, topic, header }:
 }) {
   const t = useT(), [query, setQuery] = useState(""), [removing, setRemoving] = useState<string | null>(null);
   const opened = view.questions.find((q) => q.question_id === view.selected);
+  const openTopic = useOpenTopic();
+  const topicId = opened?.snapshot.topic_id ?? null;
+  const topicTitle = topicId === null ? null : topic(topicId);
   const filtered = view.questions.filter((q) => [q.snapshot.problem, subject(q.snapshot.subject), q.snapshot.topic_id === null ? "" : topic(q.snapshot.topic_id)].join(" ").toLocaleLowerCase().includes(query.toLocaleLowerCase()));
   const disabled = view.busy || view.uncertain;
   return <div className="flex min-h-full flex-col">
@@ -64,7 +68,9 @@ export function SavedQuestionsContent({ view, actions, subject, topic, header }:
         <Button disabled={disabled} onClick={() => actions.onSelect(null)}>{t("saved_questions.back")}</Button>
         <article data-print-question="" className="flex flex-col gap-5 rounded-card border border-line bg-canvas p-6">
           <p className="text-meta text-muted">{subject(opened.snapshot.subject)} · {formatDate(opened.snapshot.created_at)}</p>
-          {opened.snapshot.topic_id !== null && <p className="text-ui text-muted">{topic(opened.snapshot.topic_id)}</p>}
+          {topicId !== null && (openTopic !== null && topicTitle !== null && topicTitle !== topicId
+            ? <div><Button size="sm" tone="ghost" disabled={disabled} aria-label={t("notes.review_topic", { topic: topicTitle })} onClick={() => openTopic(topicId)}>{topicTitle}</Button></div>
+            : <p className="text-ui text-muted">{topicTitle}</p>)}
           <h2 className="text-heading text-ink">{t("saved_questions.problem")}</h2><PackText text={opened.snapshot.problem} />
           <p className="text-ui text-muted">{t(`saved_questions.reason.${opened.snapshot.reason}`)}</p>
           <h3 className="text-label text-faint">{t("saved_questions.working")}</h3>

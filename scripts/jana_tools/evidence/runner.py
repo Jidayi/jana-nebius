@@ -420,12 +420,12 @@ def run(
         written.append(str(probe))
     validate("ops/field-evidence", index)
     _write_json(index_file, index)
-    verdict = {name: check(index_file, name, now=now, cfg=cfg) for name in drill.tests}
+    verdict = {name: check(index_file, name, now=now, cfg=cfg, spec_revision=spec_revision) for name in drill.tests}
     return {"index": str(index_file), "written": written, "verdict": verdict}
 
 
 def check(index_file: Path, name: str, *, candidate: str | None = None, now: Callable[[], datetime] | None = None,
-          cfg: Settings | None = None) -> list[str]:  # fmt: skip
+          cfg: Settings | None = None, spec_revision: str | None = None) -> list[str]:  # fmt: skip
     """What the JANA_M24_EVIDENCE acceptance check would say about one record ([] means it would pass)."""
     from ..release.field_evidence import field_errors, read_evidence
 
@@ -433,7 +433,7 @@ def check(index_file: Path, name: str, *, candidate: str | None = None, now: Cal
     try:
         index = json.loads(index_file.read_text())
         evidence = read_evidence(
-            index_file, name, candidate or index.get("candidate_commit", ""), current_spec(), moment
+            index_file, name, candidate or index.get("candidate_commit", ""), spec_revision or current_spec(), moment
         )
     except (OSError, ValueError, KeyError, TypeError) as error:
         return [str(error)]

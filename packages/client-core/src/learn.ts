@@ -432,27 +432,40 @@ export interface LessonPlayerView {
   checks: Record<string, CheckState>;
   /** Whether saving the position failed: the lesson goes on; the next move tries again. */
   positionFailed: boolean;
+  /** Position in the explanation/example shown before a step lesson, retained across tutor help. */
+  teachingIndex?: number;
 }
 
 export const EMPTY_LESSON: LessonPlayerView = { status: "idle", lessonId: null, lesson: null, index: 0, checks: {}, positionFailed: false };
 
 export class LessonController extends Holder<LessonPlayerView> {
+  private loadRequest = 0;
+  private teachingPositions = new Map<string, number>();
   constructor(private readonly profiles: ProfileController) {
     super(EMPTY_LESSON);
-    profiles.onClear(() => this.set(EMPTY_LESSON));
+    profiles.onClear(() => { this.teachingPositions.clear(); this.set(EMPTY_LESSON); });
   }
 
   /** Open a lesson at its saved position (or its first block). */
-  async load(lessonId: string): Promise<void> {
+  async load(lessonId: string, teaching = false): Promise<void> {
     const generation = this.profiles.generation;
+    const request = ++this.loadRequest;
     this.set({ ...EMPTY_LESSON, status: "loading", lessonId });
     try {
-      const lesson = readLesson(await this.profiles.commands.get<unknown>(`/v1/lessons/${encodeURIComponent(lessonId)}`));
-      if (generation !== this.profiles.generation || this.view.lessonId !== lessonId) return;
-      this.set({ ...EMPTY_LESSON, status: "ready", lessonId, lesson, index: lesson.position?.block_index ?? 0 });
+      const lesson = readLesson(await this.profiles.commands.get<unknown>(`/v1/lessons/${encodeURIComponent(lessonId)}${teaching ? "?teaching=true" : ""}`));
+      if (generation !== this.profiles.generation || this.view.lessonId !== lessonId || request !== this.loadRequest) return;
+      this.set({ ...EMPTY_LESSON, status: "ready", lessonId, lesson, index: lesson.position?.block_index ?? 0,
+        teachingIndex: this.teachingPositions.get(`${lessonId}@${lesson.version}`) ?? 0 });
     } catch {
-      if (generation === this.profiles.generation && this.view.lessonId === lessonId) this.set({ ...this.view, status: "failed" });
+      if (generation === this.profiles.generation && this.view.lessonId === lessonId && request === this.loadRequest) this.set({ ...this.view, status: "failed" });
     }
+  }
+
+  goTeaching(index: number): void {
+    const lesson = this.view.lesson;
+    if (!lesson || index < 0 || index > lesson.blocks.filter((block) => block.type === "idea" || block.type === "worked_example").length) return;
+    this.teachingPositions.set(`${lesson.lesson_id}@${lesson.version}`, index);
+    this.set({ ...this.view, teachingIndex: index });
   }
 
   /** Move to a block (Next, Back) and save the position; a failed save never stops the lesson. */

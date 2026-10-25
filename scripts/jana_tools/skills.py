@@ -8,7 +8,6 @@ bundle manifest (pedagogy and agent skills; teaching skills ship in content pack
 
 from __future__ import annotations
 
-import json
 import re
 import tomllib
 from dataclasses import dataclass, field
@@ -20,7 +19,7 @@ from . import REPO_ROOT
 SKILLS = REPO_ROOT / "skills"
 COUNT_PIN = SKILLS / "counts.toml"
 SPEC = REPO_ROOT / "docs" / "specification"
-EXAMPLES = SPEC / "contracts" / "skills" / "examples"
+EXAMPLES = REPO_ROOT / "evals/skills/examples"
 CURRICULUM = REPO_ROOT / "content" / "curriculum"
 COVERAGE_STAGE = "S2"  # the stage whose launched subject-levels SKL-25 covers (TABLE SKL-25a)
 
@@ -152,9 +151,11 @@ class Catalogue:
 
     @classmethod
     def from_registers(cls, skill_names: set[str]) -> Catalogue:
-        toolsets = json.loads((SPEC / "registers" / "toolsets.json").read_text())
-        tools = {t["name"] for name, ts in toolsets["toolsets"].items() if name != "ui" for t in ts["tools"]}
-        visuals = {k["kind"] for k in json.loads((SPEC / "registers" / "visual-catalogue.json").read_text())["kinds"]}
+        from agent_core.assets.generated.visual_catalogue import VISUAL_CATALOGUE
+        from agent_core.tools.generated.register import REGISTER
+
+        tools = {t["name"] for name, ts in REGISTER["toolsets"].items() if name != "ui" for t in ts["tools"]}
+        visuals = {k["kind"] for k in VISUAL_CATALOGUE["kinds"]}
         return cls(skill_names, tools, visuals)
 
     def with_packs(self, curriculum: Path = CURRICULUM) -> Catalogue:

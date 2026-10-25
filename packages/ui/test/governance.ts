@@ -173,7 +173,17 @@ export function monopolyErrors(files: Source[]): string[] {
   const errors: string[] = [];
   for (const f of files) {
     if (!f.path.endsWith(".tsx")) continue;
-    if (/\stitle=\{|\stitle="/.test(f.text) && !/<svg|<title/.test(f.text)) errors.push(`${f.path}: native title tooltip`);
+    const source = ts.createSourceFile(f.path, f.text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+    let nativeTitle = false;
+    const visit = (node: ts.Node): void => {
+      if ((ts.isJsxOpeningElement(node) || ts.isJsxSelfClosingElement(node))
+        // Button forwards HTML attributes; a citation component's title callback is source data.
+        && ts.isIdentifier(node.tagName) && (/^[a-z]/.test(node.tagName.text) || node.tagName.text === "Button")
+        && node.attributes.properties.some((attr) => ts.isJsxAttribute(attr) && attr.name.getText(source) === "title")) nativeTitle = true;
+      ts.forEachChild(node, visit);
+    };
+    visit(source);
+    if (nativeTitle) errors.push(`${f.path}: native title tooltip`);
     if (f.path.includes("primitives/")) continue;
     if (/role="alertdialog"|window\.confirm\(/.test(f.text)) errors.push(`${f.path}: confirm pattern outside ConfirmDialog`);
     if (/role="alert"/.test(f.text)) errors.push(`${f.path}: error pattern outside ErrorState`);
@@ -224,6 +234,7 @@ export function keyErrors(files: Source[], base: Record<string, string>): string
     };
     const visit = (node: ts.Node) => {
       if (ts.isCallExpression(node) && node.arguments[0] && ((ts.isIdentifier(node.expression) && node.expression.text === "t") || (ts.isPropertyAccessExpression(node.expression) && node.expression.name.text === "t"))) argument(node.arguments[0]);
+      if (ts.isPropertyAssignment(node) && node.name.getText(source) === "textKey") argument(node.initializer);
       ts.forEachChild(node, visit);
     };
     visit(source);

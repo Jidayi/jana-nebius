@@ -9,6 +9,7 @@ from typing import Any
 
 from agent_core.providers.base import Message, ToolCall, ToolSchema
 from agent_core.providers.llama import LlamaServerProvider
+from agent_core.providers.model_json import loads as loads_model_json
 from agent_core.providers.scripted import ScriptedProvider
 from agent_core.router.core import (
     Hooks,
@@ -77,6 +78,7 @@ __all__ = [
     "ToolSchema",
     "complete",
     "install",
+    "loads_model_json",
     "stream",
     "tool_profile",
 ]

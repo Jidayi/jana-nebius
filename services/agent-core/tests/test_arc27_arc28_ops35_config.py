@@ -105,9 +105,10 @@ def arc28_unknown_or_out_of_range_key_rejected(tmp_path: Path):
         resolve([profile], build="release")
 
     # Every key is declared once with its type, default, allowed layers and the requirement it serves.
-    documents = [*SPEC.glob("*.md"), *(REPO / "docs" / "product").glob("*.md")]
-    text = "\n".join(p.read_text() for p in documents)
-    requirement_ids = set(re.findall(r"^### ([A-Z0-9]{3}-\d{2}) ", text, re.MULTILINE))
+    registry = json.loads((REPO / "contracts/policies/requirements.json").read_text())
+    requirement_ids = set(registry["requirements"])
+    assert len(requirement_ids) > 300
+    assert all(re.fullmatch(r"[A-Z0-9]{3}-\d{2}", rid) for rid in requirement_ids)
     for name, field in Settings.model_fields.items():
         decl = declaration(name)
         assert set(str(decl["serves"]).split(", ")) <= requirement_ids, name

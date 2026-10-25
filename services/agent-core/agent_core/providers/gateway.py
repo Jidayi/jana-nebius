@@ -10,6 +10,7 @@ the network. Network failures are reported to the connectivity layer (MDL-24) an
 
 from __future__ import annotations
 
+import logging
 import secrets
 import time
 from collections.abc import AsyncIterator, Awaitable, Callable, Mapping
@@ -35,6 +36,7 @@ from agent_core.providers.openai_compat import assemble_stream, parse_reply, req
 FEATURE = "cloud_tier"
 PAYLOAD = "cloud_prompt"
 CHAT = "/v1/chat/completions"
+log = logging.getLogger(__name__)
 
 
 def cloud_capabilities(context: int, max_output: int, vision: bool = True) -> ModelCapabilities:
@@ -91,7 +93,11 @@ class GatewayProvider:
     async def _prepare(self, model: str, messages: list[Message], tools: list[ToolSchema], settings: dict[str, Any],
                        stream: bool) -> tuple[dict[str, Any], dict[str, str], EffortRecord]:  # fmt: skip
         body = request_body(f"{self.slot}/{model}", messages, tools, self.kind, settings, stream)
-        if self.redactor.blocks(body):
+        findings = self.redactor.findings(body)
+        if findings:
+            kinds = sorted({finding.kind for finding in findings})
+            fields = [str(key) for key, value in body.items() if self.redactor.blocks(value)]
+            log.warning(f"gateway_redaction_blocked role={settings.get('role')} kinds={kinds} fields={fields}")
             raise ProviderError("content_filter", "the redaction check blocked the request before it left (MDL-25)")
         headers = {"x-session-pseudonym": self.pseudonym}
         role = settings.get("role")

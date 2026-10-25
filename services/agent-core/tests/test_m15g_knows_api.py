@@ -130,7 +130,7 @@ def prv11_knows_page_complete(tmp_path: Path) -> None:
             r.runtime.planner()._generate(
                 Plan("normal", (Block("main", (SPEED,), 10, "prerequisite"),), 0, ("physics",)), int(time.time() * 1000)
             )
-            schema = (REPO_ROOT / "docs/specification/contracts/data/schema.sql").read_text()
+            schema = (REPO_ROOT / "contracts/data/schema.sql").read_text()
             projections = set(re.findall(r"-- PROJECTION:.*?CREATE TABLE (\w+)", schema, re.S))
             assert set(RECORD_CATEGORIES) == projections, "new learner-model tables must be disclosed"
             expected = {

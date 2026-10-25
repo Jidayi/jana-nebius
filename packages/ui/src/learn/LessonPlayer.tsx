@@ -35,6 +35,7 @@ export interface AskContext {
 
 export interface LessonActions {
   onGo: (index: number) => void;
+  onTeachingGo?: (index: number) => void;
   onAnswer: (itemId: string, parts: PartAnswer[], timeMs: number) => void;
   onClose?: () => void;
   onPractise?: () => void;
@@ -211,6 +212,9 @@ export function LessonPlayerContent({ view, actions }: { view: LessonPlayerView;
   const heading = useRef<HTMLHeadingElement>(null);
   const shownIndex = useRef<number | null>(null);
   const [finished, setFinished] = useState(false);
+  const [localTeachingPart, setTeachingPart] = useState(0);
+  const teachingPart = view.teachingIndex ?? localTeachingPart;
+  const goTeaching = (index: number) => { if (actions.onTeachingGo) actions.onTeachingGo(index); else setTeachingPart(index); };
   const done = useRef<HTMLParagraphElement>(null);
   const wasFinished = useRef(false);
   const lesson = view.lesson;
@@ -239,7 +243,24 @@ export function LessonPlayerContent({ view, actions }: { view: LessonPlayerView;
   if (lesson === null || block === undefined) {
     return <div className="flex min-h-full flex-col" data-lesson-status={view.status}><ScreenHeader>{back}</ScreenHeader><Loading /></div>;
   }
-  if (isStepLesson(lesson)) return <StepLessonContent key={`${lesson.lesson_id}@${lesson.version}`} view={view} lesson={lesson} actions={actions} />;
+  if (isStepLesson(lesson)) {
+    const teaching = lesson.blocks.filter((part) => part.type === "idea" || part.type === "worked_example");
+    const part = teaching[teachingPart];
+    if (part) return <div className="flex min-h-full flex-col" data-lesson-status="ready" data-lesson-id={lesson.lesson_id} data-teaching-part={teachingPart}>
+      <ScreenHeader end={actions.onAsk && <Button size="sm" tone="ghost" onClick={() => actions.onAsk?.({ lessonId: lesson.lesson_id, blockIndex: lesson.blocks.indexOf(part), blockType: part.type })}>{t("lesson.ask")}</Button>}>{back}</ScreenHeader>
+      <main className="mx-auto flex w-full max-w-192 flex-1 flex-col gap-6 px-6 py-8">
+        <p className="text-meta text-muted">{lesson.title}</p>
+        <h1 className="text-title text-ink">{t(part.type === "idea" ? "journey.understand" : "journey.see_example")}</h1>
+        {part.type === "idea" ? <PackText text={part.text} /> : <ExampleBoard example={part.worked_example} />}
+        <p className="text-meta text-muted">{t("journey.teaching_note")}</p>
+        <div className="flex flex-wrap gap-3">
+          {teachingPart > 0 && <Button onClick={() => goTeaching(teachingPart - 1)}>{t("lesson.back")}</Button>}
+          <Button tone="primary" onClick={() => goTeaching(teachingPart + 1)}>{t(teachingPart === teaching.length - 1 ? "journey.try_supported" : "lesson.continue")}</Button>
+        </div>
+      </main>
+    </div>;
+    return <StepLessonContent key={`${lesson.lesson_id}@${lesson.version}`} view={view} lesson={lesson} actions={actions} supported={teaching.length > 0} />;
+  }
   const last = view.index >= lesson.blocks.length - 1;
   const total = lesson.blocks.length;
   return (
@@ -318,18 +339,19 @@ export function LessonPlayerContent({ view, actions }: { view: LessonPlayerView;
 }
 
 /** The player for the unlocked profile: opens the lesson at its saved position. */
-export function LessonPlayer({ controller, lessonId, onClose, onAsk, onPractise }: { controller: LessonController; lessonId: string; onClose?: () => void; onAsk?: (context: AskContext) => void; onPractise?: () => void }) {
+export function LessonPlayer({ controller, lessonId, onClose, onAsk, onPractise, teaching = false }: { controller: LessonController; lessonId: string; onClose?: () => void; onAsk?: (context: AskContext) => void; onPractise?: () => void; teaching?: boolean }) {
   const view = useSyncExternalStore(controller.subscribe, controller.getView, controller.getView);
   useEffect(() => {
-    void controller.load(lessonId);
-  }, [controller, lessonId]);
+    void controller.load(lessonId, teaching);
+  }, [controller, lessonId, teaching]);
   const actions: LessonActions = {
     onGo: (index) => void controller.go(index),
+    onTeachingGo: (index) => controller.goTeaching(index),
     onAnswer: (itemId, parts, timeMs) => void controller.answer(itemId, parts, timeMs),
-    onRetry: () => void controller.load(lessonId),
+    onRetry: () => void controller.load(lessonId, teaching),
     ...(onClose !== undefined ? { onClose } : {}),
     ...(onPractise !== undefined ? { onPractise } : {}),
     ...(onAsk !== undefined ? { onAsk } : {}),
   };
-  return <LessonPlayerContent view={view} actions={actions} />;
+  return <LessonPlayerContent key={`${lessonId}:${teaching}`} view={view} actions={actions} />;
 }

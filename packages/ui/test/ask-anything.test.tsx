@@ -30,12 +30,20 @@ function view(v: AskView, calls: string[] = []) {
   return render(
     <LocaleProvider locale="en">
       <AskAnswer view={v} actions={{ onTutor: () => calls.push("tutor"), onStudy: () => calls.push("study"), onExplain: () => calls.push("explain"),
-        onAgain: (o) => calls.push(`again:${o.mode}:${o.reach}`) }} />
+        onAgain: (o) => calls.push(`again:${o.mode}:${o.reach}`), onSearchWeb: () => calls.push("search-web") }} />
     </LocaleProvider>,
   );
 }
 
 describe("STU-20", () => {
+  test("web search explains Tavily's data use and waits for the explicit action", () => {
+    const calls: string[] = [];
+    view({ ...EMPTY_ASK, status: "unavailable", question: "Where is Paris?", reason: "web_permission_required" }, calls);
+    expect(screen.getByText(/send this question to Tavily/)).toBeTruthy();
+    expect(calls).toEqual([]);
+    fireEvent.click(screen.getByRole("button", { name: "Search the web with Tavily" }));
+    expect(calls).toEqual(["search-web"]);
+  });
   test("the search shows before the answer, citations and the label are on each statement, nothing is checked", () => {
     const calls: string[] = [];
     const { container } = view(answered(ANSWER), calls);
@@ -72,7 +80,7 @@ describe("STU-20", () => {
     cleanup();
     const offline: string[] = [];
     view({ ...EMPTY_ASK, status: "unavailable", question: "Why?", reason: "offline" }, offline);
-    expect(document.body.textContent).toContain("General questions need the online plan. You can still ask the tutor about your subjects or study your own material.");
+    expect(document.body.textContent).toContain("General questions and making study tools need the online plan. You can still use installed lessons, practice and your saved study tools.");
     fireEvent.click(screen.getByRole("button", { name: "Ask the tutor" }));
     fireEvent.click(screen.getByRole("button", { name: "Study your material" }));
     expect(offline).toEqual(["tutor", "study"]);
@@ -109,9 +117,9 @@ describe("UXS-67", () => {
     const group = screen.getByRole("group", { name: "Add material" });
     expect(within(group).getAllByRole("button").map((b) => b.textContent)).toEqual(["Upload", "Link", "Paste", "Record"]);
     const box = screen.getByRole("textbox", { name: "Ask anything, or paste a question" });
-    // The material row sits above the box, the answer under it, and the plan after both (the input leads).
+    // Results precede the input; material controls remain directly above it, and the plan follows both.
     expect(group.compareDocumentPosition(box) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(box.compareDocumentPosition(screen.getByText("the answer")) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(screen.getByText("the answer").compareDocumentPosition(group) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(screen.getByText("the answer").compareDocumentPosition(document.querySelector("[data-plan]")!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     fireEvent.click(within(group).getByRole("button", { name: "Link" }));
     fireEvent.click(within(group).getByRole("button", { name: "Paste" }));

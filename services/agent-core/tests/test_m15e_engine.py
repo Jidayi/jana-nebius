@@ -757,13 +757,18 @@ def lrn43_private_by_default(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) ->
             _, saved = await _saved_by_request(r)
             await r.client.delete(f"{r.base}/v1/memory/{saved['event']['note_id']}", headers=r.headers(True))
             router = r.runtime._router()
-            return sorted(r.runtime.providers), router.config.cloud, router._cloud_allowed("reflector")
+            return (
+                sorted(r.runtime.providers),
+                r.runtime.cloud_tier_on(),
+                router._cloud_allowed("coach"),
+                router._cloud_allowed("reflector"),
+            )
         finally:
             await stop_core(r)
 
-    providers, cloud, reflector_cloud = run(scenario())
+    providers, tier_on, coach_cloud, reflector_cloud = run(scenario())
     assert reached == [], reached
-    assert providers == ["local"] and not cloud.get("enabled") and reflector_cloud is False
+    assert providers == ["local"] and tier_on is False and coach_cloud is False and reflector_cloud is False
     assert Settings().memory_saving is True, "notes stay on the device even with saving on"
 
     # With the cloud tier switched on for the Coach, a call a cloud candidate serves carries no note and is offered

@@ -19,7 +19,7 @@ from agent_core.engine.verbaliser import verbalise
 HARD_RULES = ("H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10")
 RUNG_INTENT = {
     1: "orient: restate the goal, name the topic, point to the given that matters first and ask about it; "
-       "no formula, no new numbers",
+    "no formula, no new numbers",
     2: "concept: name the rule or formula that links the givens to the unknown, without numbers",
     3: "first step: write the current step's setup with symbols and ask the student to put in the values",
     4: "worked step: show the current step, verified; ask for the next",
@@ -245,10 +245,18 @@ def asks_method(text: str) -> bool:
 
     Proposed equations remain attempts, even when followed by a question about their correctness.
     """
-    return len(text) <= 600 and "=" not in text and bool(re.search(
-        r"(?:^|[.!?]\s+)(?:(?:which|what)\s+(?:equation|formula|method)\b[^?]*|"
-        r"how\s+(?:do|can|should)\s+I\s+(?:start|proceed|continue|choose)\b[^?]*)\?\s*$", text, re.I
-    ))
+    return (
+        len(text) <= 600
+        and "=" not in text
+        and bool(
+            re.search(
+                r"(?:^|[.!?]\s+)(?:(?:which|what)\s+(?:equation|formula|method)\b[^?]*|"
+                r"how\s+(?:do|can|should)\s+I\s+(?:start|proceed|continue|choose)\b[^?]*)\?\s*$",
+                text,
+                re.I,
+            )
+        )
+    )
 
 
 def policy_template(state: SessionState, text: str) -> str | None:

@@ -9,8 +9,8 @@ import { CommandError } from "./stream/commands.js";
 
 export type InputRoute = "tutor" | "study" | "ask";
 /** Why Ask anything cannot answer now: the offline message offers the tutor and the study area instead (STU-20). */
-export type AskUnavailable = "offline" | "needs_online_plan" | "consent_required" | "notice_required" | "allowance_exhausted";
-export const ASK_UNAVAILABLE: readonly AskUnavailable[] = ["offline", "needs_online_plan", "consent_required", "notice_required", "allowance_exhausted"];
+export type AskUnavailable = "offline" | "needs_online_plan" | "consent_required" | "notice_required" | "allowance_exhausted" | "web_permission_required" | "search_not_configured" | "search_prepaid_only" | "search_credits_exhausted" | "search_unavailable" | "search_attempt_already_sent";
+export const ASK_UNAVAILABLE: readonly AskUnavailable[] = ["offline", "needs_online_plan", "consent_required", "notice_required", "allowance_exhausted", "web_permission_required", "search_not_configured", "search_prepaid_only", "search_credits_exhausted", "search_unavailable", "search_attempt_already_sent"];
 export type AskMode = "teach" | "explain";
 export type AskReach = "allow_list" | "wider_web";
 
@@ -151,6 +151,7 @@ export function readAskReply(value: unknown): AskReply {
 
 /** Where a typed text goes and, for Ask anything, the answer. One controller per app, cleared with the profile. */
 export class AskController {
+  private lastOptions: { mode?: AskMode; reach?: AskReach; web_confirmed?: boolean } = {};
   private view = EMPTY_ASK;
   private listeners = new Set<() => void>();
   private revision = 0;
@@ -172,10 +173,15 @@ export class AskController {
   }
 
   /** Ask anything. A reply that routes elsewhere comes back for the app to follow; the view keeps no answer then. */
-  async ask(question: string, options: { mode?: AskMode; reach?: AskReach } = {}): Promise<AskReply | null> {
+  async confirmWeb(): Promise<AskReply | null> {
+    if (this.view.status !== "unavailable" || this.view.reason !== "web_permission_required") return null;
+    return this.ask(this.view.question, { ...this.lastOptions, web_confirmed: true });
+  }
+  async ask(question: string, options: { mode?: AskMode; reach?: AskReach; web_confirmed?: boolean } = {}): Promise<AskReply | null> {
     const generation = this.profiles.generation, revision = ++this.revision;
     const words = question.trim().slice(0, 2000);
     if (words === "") return null;
+    this.lastOptions = { ...options };
     this.set({ ...EMPTY_ASK, status: "asking", question: words });
     const live = () => generation === this.profiles.generation && revision === this.revision;
     try {

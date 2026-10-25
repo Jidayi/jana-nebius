@@ -19,8 +19,15 @@ from typing import Any
 import numpy as np
 
 # D103: the six tutor characters (D125: avatar.ray is shown as Remy). The pronunciation of "Jana" is JAH-nuh.
-NAMES = {"jana": "ʤˈɑnə", "orbit": "ˈɔɹbət", "prism": "pɹˈɪzəm", "kite": "kˈIt", "pebble": "pˈɛbəl", "ray": "ɹˈA",
-         "remy": "ɹˈɛmi"}
+NAMES = {
+    "jana": "ʤˈɑnə",
+    "orbit": "ˈɔɹbət",
+    "prism": "pɹˈɪzəm",
+    "kite": "kˈIt",
+    "pebble": "pˈɛbəl",
+    "ray": "ɹˈA",
+    "remy": "ɹˈɛmi",
+}
 
 GRAPHEMES = ["<pad>", "<unk>", "</s>", *"abcdefghijklmnopqrstuvwxyz"]
 # The checkpoint's output vocabulary, in its training order.

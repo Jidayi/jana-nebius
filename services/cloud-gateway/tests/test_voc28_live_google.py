@@ -40,8 +40,10 @@ def test_live_reads_a_sentence_exactly() -> None:
     else:
         key = _owner_secrets().get("gemini_api_key")
         if key is None:
-            pytest.fail("JANA_LIVE_GEMINI=1 needs JANA_VOICE_PROJECT or a gemini_api_key (keychain, secrets mount or "
-                        "JANA_DEV_GEMINI_API_KEY)")
+            pytest.fail(
+                "JANA_LIVE_GEMINI=1 needs JANA_VOICE_PROJECT or a gemini_api_key (keychain, secrets mount or "
+                "JANA_DEV_GEMINI_API_KEY)"
+            )
         live = GeminiLive(api="gemini", model=voice.live_model, voice=voice.live_voice, key=key)
 
     async def scenario() -> tuple[bytes, Reading, float | None]:

@@ -296,8 +296,11 @@ def _nearest_lesson_cited(tmp_path: Path) -> None:
         seen = [e for e in row["events"] if e["_turn_id"] == row["turn_id"] and PACK_RECORD.search(json.dumps(e))]
         if row["lesson"] is None:
             assert "nearest installed lesson to offer:" not in row["coach"][-1]
-            assert not [e for e in row["events"] if e["_turn_id"] == row["turn_id"]
-                        and e.get("notice", {}).get("code") == "tutor_unsure"]
+            assert not [
+                e
+                for e in row["events"]
+                if e["_turn_id"] == row["turn_id"] and e.get("notice", {}).get("code") == "tutor_unsure"
+            ]
         else:
             assert PACK_RECORD.search(row["coach"][-1]), "the Coach is given the relevant installed lesson"
             assert seen, "what the student sees cites that pack record"

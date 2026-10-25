@@ -1,0 +1,49 @@
+{
+  "format": "jana.ops.probe.1",
+  "test_name": "ops32_schools_notified",
+  "candidate_commit": "FILL-IN: the 40-character commit id of the candidate tested",
+  "spec_revision": "FILL-IN: the specification revision in spec.lock",
+  "source": "staff_drill",
+  "started_at": "FILL-IN: date-time with zone when the test or drill started",
+  "completed_at": "FILL-IN: date-time with zone when it finished",
+  "data": {
+    "incident": {
+      "incident_id": "FILL-IN: text: Drill incident id",
+      "severity": "FILL-IN: one of SEV1, SEV2, SEV3: Severity declared",
+      "commander": "FILL-IN: text: Incident commander (name or role)",
+      "communications_lead": "FILL-IN: text: Communications lead (name or role)",
+      "declared_at": "FILL-IN: date-time with zone: Time declared",
+      "category": "FILL-IN: text: Category (e.g. wrong_content)",
+      "state": "contained",
+      "acknowledged_at": "FILL-IN: date-time with zone: Time acknowledged",
+      "contained_at": "FILL-IN: date-time with zone: Time contained",
+      "timeline": [
+        [
+          "FILL-IN: date-time with zone: Time acknowledged",
+          "FILL-IN: text: Incident commander (name or role)",
+          "acknowledged"
+        ],
+        [
+          "FILL-IN: date-time with zone: Time contained",
+          "FILL-IN: text: Incident commander (name or role)",
+          "contained"
+        ]
+      ]
+    },
+    "affected_licences": "FILL-IN: a list of strings: Affected licence ids (comma list)",
+    "offline_licences": "FILL-IN: a list of strings: Which of those are offline (comma list)",
+    "receipts": [
+      {
+        "licence_id": "FILL-IN: one affected licence",
+        "recipient_kind": "FILL-IN: one of registered_contact, other: Who was contacted",
+        "route": "FILL-IN: one of phone, sms, email, other: First contact route",
+        "first_contact_at": "FILL-IN: date-time with zone: Time of the first contact",
+        "email_at": "FILL-IN: date-time with zone: Time the email was sent",
+        "kit_id": "FILL-IN: text: USB kit id named as bringing the fix",
+        "instructions": "FILL-IN: text: What they were told to do (short)",
+        "evidence_sha256": "FILL-IN: the SHA-256 of this raw proof file, which is also listed in the index: the call log, SMS receipt or sent email"
+      }
+    ],
+    "device": "FILL-IN: Device or environment used: hardware class, model and asset label, OS version (or the staging environment name)"
+  }
+}

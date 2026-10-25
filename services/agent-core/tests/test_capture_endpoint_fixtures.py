@@ -27,9 +27,7 @@ def inp30_capture_endpoint_fixtures(tmp_path: Path) -> None:
         desk = core.capture_desk
         endpoints = {
             (e["method"], e["path"]): e
-            for e in json.loads((REPO_ROOT / "docs/specification/contracts/api/commands.schema.json").read_text())[
-                "x-endpoints"
-            ]
+            for e in json.loads((REPO_ROOT / "contracts/api/commands.schema.json").read_text())["x-endpoints"]
             if e["path"].startswith("/v1/captures")
         }
         seen: set[tuple[str, str]] = set()

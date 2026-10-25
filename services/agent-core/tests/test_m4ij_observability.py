@@ -302,7 +302,7 @@ def evl03_example_scenarios():
     assert any(c.passed is False and "no_answer_leak" in c.expectation for c in disabled.checks)
     # The contract's examples validate; each runs on a build of its stage: the S1 example passes on this build and
     # fails with the leak gate off, and the S2 examples are skipped.
-    contract = yaml.safe_load((REPO_ROOT / "docs/specification/contracts/evals/scenario.example.yaml").read_text())
+    contract = json.loads((REPO_ROOT / "evals/contracts/evals/scenario/valid/scenario_example.json").read_text())
     assert runner.suite_errors(contract) == []
     outcomes = {s["id"]: run(runner.run_scenario(s, runner.SUITES)).status for s in contract["scenarios"]}
     assert outcomes == {s["id"]: "passed" if s["stage"] == "S1" else "skipped" for s in contract["scenarios"]}

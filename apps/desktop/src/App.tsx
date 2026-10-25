@@ -1,5 +1,9 @@
+import { LearningJourneyController, nextJourneyAction, type JourneyAction, type LearningJourneyView } from "@jana/client-core";
+import { LearningJourney, StudyJourney } from "@jana/ui";
 import type { S2Screen } from "./routes.js";
+import { BrowserPodcastAudio } from "./podcast-audio.js";
 import { BrowserLocalSpeech } from "./local-speech.js";
+import { objectiveForKc, objectiveForLesson, objectiveForTopic, type LearningObjective } from "./learning-navigation.js";
 // The desktop client (M5, M10): first run on a computer with no students yet ("Who's learning?", then the hand-off,
 // UXS-10, PLT-17), the profile picker (UXS-09), then the open profile's Home (where a profile lands: Home is the hub,
 // UXS-01), tutor, notes and Learn, and Settings
@@ -109,7 +113,7 @@ export function createRuntime(launch: Launch, fetchImpl?: typeof fetch): AppRunt
   const knows = new KnowsController(profiles);
   const runtime: AppRuntime = {
     holder, profiles, knows, map: new SubjectMapController(profiles), lessons: new LessonController(profiles), practice: new PracticeController(profiles), mocks: new MockController(profiles), pastPapers: new PastPaperController(profiles), examDates: new ExamDateController(profiles),
-    studyWorkspace: new StudyWorkspaceController(profiles, new BrowserLocalSpeech()), sessionNotes: new SessionNotesController(profiles), savedQuestions: new SavedQuestionsController(profiles), assessments: new AssessmentController(profiles), plans: new PlanController(profiles), progress: new ProgressController(profiles), search: new SearchController(profiles), goal: new DailyGoal(profiles), ask: new AskController(profiles), launch,
+    studyWorkspace: new StudyWorkspaceController(profiles, new BrowserLocalSpeech(), new BrowserPodcastAudio()), sessionNotes: new SessionNotesController(profiles), savedQuestions: new SavedQuestionsController(profiles), assessments: new AssessmentController(profiles), plans: new PlanController(profiles), progress: new ProgressController(profiles), search: new SearchController(profiles), goal: new DailyGoal(profiles), ask: new AskController(profiles), launch,
   };
   return fetchImpl === undefined ? runtime : { ...runtime, fetch: fetchImpl };
 }
@@ -339,8 +343,13 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   const { profiles } = runtime;
   const view = useProfiles(profiles);
   const [screen, setScreen] = useState<Screen>("home");
+  const [studyAdd, setStudyAdd] = useState<"link" | "paste" | null>(null);
+  const [studyResume, setStudyResume] = useState<"next" | "lesson" | "quiz" | null>(null);
+  const [studySource, setStudySource] = useState<{ source_id: string; revision: number } | null>(null);
   // The student menu (D115): Settings at a section, the keyboard help, and what it says about the student.
   const [settingsAt, setSettingsAt] = useState<{ id: string; at: number } | null>(null);
+  const studySettingsReturn = useRef<{ profile: string | null; source: string | null } | null>(null);
+  useEffect(() => { if (screen !== "settings" && screen !== "knows-from-settings") studySettingsReturn.current = null; }, [screen]);
   const [keysHelp, setKeysHelp] = useState(false);
   const [record, setRecord] = useState<{ subjects: string[]; level: "O" | "A" } | null>(null);
   const [online, setOnline] = useState(false);
@@ -352,9 +361,12 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   const [chosenSession, setChosenSession] = useState<string | null>(null);
   // The tutor opened from a practice question ("Help me", UXS-24): its header offers the way back to that question.
   const [fromPractice, setFromPractice] = useState(false);
+  const [fromLesson, setFromLesson] = useState<string | null>(null);
+  const [planExpanded, setPlanExpanded] = useState(false);
   // The tutor opened from a mock report's "Show me why" (UXS-26): its header leads back to the report.
   const [fromReport, setFromReport] = useState(false);
   const [studyAvailable, setStudyAvailable] = useState(false);
+  const savedStudy = useSyncExternalStore(runtime.studyWorkspace.subscribe, runtime.studyWorkspace.getView, runtime.studyWorkspace.getView);
   // What the installed speech pack offers (VOC-14): read-aloud in its voice, dictation, and voice turns (`/v1/meta`).
   const [voiceOffer, setVoiceOffer] = useState<VoiceOffer>(NO_VOICE);
   // Mock exams (UXS-25): the papers and sittings, and the exam lock while a sitting is open (AGT-24).
@@ -403,6 +415,11 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   // The tutor's subject once a profile is open: the one the student last worked on, if it is installed, otherwise the
   // first installed subject (every subject at O level when no pack is installed yet).
   const active = view.active;
+  useEffect(() => { setStudyResume(null); setStudySource(null); }, [active]);
+  useEffect(() => { if (screen !== "study") { setStudyResume(null); setStudySource(null); } }, [screen]);
+  useEffect(() => { if (active && studyAvailable && screen === "home") void runtime.studyWorkspace.load(); }, [active, studyAvailable, screen, runtime.studyWorkspace]);
+  const journey = useMemo(() => new LearningJourneyController(profiles), [profiles]);
+  const journeyView = useSyncExternalStore(journey.subscribe, journey.getView, journey.getView);
   const assessmentView = useSyncExternalStore(runtime.assessments.subscribe, runtime.assessments.getView, runtime.assessments.getView);
   const protectedCheck = assessmentView.assessments.find((a) => a.kind === "mastery_check" && (a.state === "in_progress" || a.state === "stopped") && a.current_item !== null);
   useEffect(() => { if (active !== null) void runtime.assessments.load(); }, [active, runtime.assessments]);
@@ -432,6 +449,9 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
     setMaps({});
     setMapSubject(null);
     setLessonId(null);
+    setFromLesson(null);
+    setPlanExpanded(false);
+    setFromPractice(false);
     setScreen("home");
     setMapTopic(null);
   }), [profiles]);
@@ -493,6 +513,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
         pendingQuestions.current.set(sessionId, { content, intent: "ask" });
         setTutorTarget(fresh);
         setChosenSession(sessionId);
+        setFromLesson(null);
         setFromPractice(false);
         setFromReport(false);
         setScreen("tutor");
@@ -522,6 +543,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   }, [noteReference, screen, session, runtime.holder]);
   const lessonView = useSyncExternalStore(runtime.lessons.subscribe, runtime.lessons.getView, runtime.lessons.getView);
   const practiceView = useSyncExternalStore(runtime.practice.subscribe, runtime.practice.getView, runtime.practice.getView);
+  useEffect(() => { if (active !== null) void journey.load(); }, [active, journey, screen, practiceView.tries.length, practiceView.worked, practiceView.item?.item_id]);
   const openId = session === null || session === "failed" ? null : session.sessionId;
   // The subject the open session is in now: the engine moves a new asked session to its question's subject (D94).
   const shownTarget = followSubject(tutorTarget, useOpenSubject(runtime.holder, openId), installed);
@@ -586,6 +608,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   }, [profiles, active, installedKey, maps]);
   const known = useMemo(() => {
     const topics = new Map<string, string>();
+    const topicLinks = new Map<string, { id: string; title: string }>();
     const statements = new Map<string, string>();
     const lessons = new Map<string, string>();
     const states = new Map<string, string>();
@@ -595,6 +618,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
           for (const kc of topic.kcs) {
             statements.set(kc.kc_id, kc.statement);
             topics.set(kc.kc_id, topic.title);
+            topicLinks.set(kc.kc_id, { id: topic.node_id, title: topic.title });
           }
           for (const lesson of topic.lessons) for (const kc of lesson.kc_ids) if (!lessons.has(kc)) lessons.set(kc, lesson.lesson_id);
         }
@@ -608,7 +632,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
         }
       }
     }
-    return { topics, statements, lessons, states };
+    return { topics, topicLinks, statements, lessons, states };
   }, [maps, progressView.progress]);
   const kcSubject = (kcId: string) => subjectName(kcSubjectCode(kcId) ?? "");
   // A question asked while the tutor model was still loading (UXS-12): sent as soon as the tutor is ready.
@@ -624,12 +648,13 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   useEffect(() => {
     let live = true;
     setVoiceOffer(NO_VOICE);
-    if (session === null || session === "failed") return;
+    // Saved Study tools remain available while the independent tutor session opens.
+    if (active === null) return;
     void profiles.commands.get<{ capabilities: string[] }>("/v1/meta").then((meta) => {
       if (live) { setVoiceOffer(voiceOfferFrom(meta.capabilities)); setStudyAvailable(meta.capabilities.includes("study_workspace")); }
     }).catch(() => undefined);
     return () => { live = false; };
-  }, [profiles, session]);
+  }, [profiles, active]);
 
   if (firstRun === null && empty) return <Starting failed={false} />;
   if (firstRun?.step === "restore") return <Centred><ProfileRecovery mode="restore" profiles={profiles} chooseArchive={runtime.chooseArchive}
@@ -711,15 +736,23 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   const askTopic = answers === true && protectedCheck === undefined ? (topic: MapTopic) => {
     const target = topicTarget(topic.node_id, { kind: "ask", ref: topic.node_id });
     if (target === null) return;
-    setTutorTarget(target);
-    setChosenSession(null);
-    setScreen("tutor");
+    const objective = objectiveForTopic(topic, journey.getView().journey);
+    void (async () => {
+      if (objective && !await startObjective(objective)) return;
+      setFromLesson(null); setFromPractice(false); setFromReport(false);
+      setTutorTarget(target);
+      setChosenSession(null);
+      setScreen("tutor");
+    })();
   } : undefined;
   const askLesson = answers === true && protectedCheck === undefined ? (context: AskContext) => {
     const lesson = runtime.lessons.getView().lesson;
     if (lesson === null || lesson.lesson_id !== context.lessonId) return;
     const target = topicTarget(lesson.node_id, { kind: "lesson", ref: context.lessonId });
     if (target === null) return;
+    setFromLesson(context.lessonId);
+    setFromPractice(false);
+    setFromReport(false);
     setTutorTarget(target);
     setChosenSession(null);
     setScreen("tutor");
@@ -728,6 +761,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   const chooseSubject = (subjectId: string) => {
     const pick = installed.find((s) => s.subjectId === subjectId);
     if (pick === undefined) return;
+    setFromLesson(null); setFromPractice(false); setFromReport(false);
     setTutorTarget(askTarget(pick.subject, pick.level));
     setChosenSession(null);
   };
@@ -783,6 +817,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
       setTutorTarget((current) => current?.subject === subject && current.topic_id === undefined ? current : askTarget(subject, level));
     }
     setChosenSession(sessionId);
+    setFromLesson(null);
     setFromPractice(false);
     setFromReport(false);
     setScreen("tutor");
@@ -792,6 +827,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
     const target = shownTarget ?? (installed[0] !== undefined ? askTarget(installed[0].subject, installed[0].level) : null);
     if (target === null) return;
     const fresh = askTarget(target.subject, target.level ?? "O");
+    setFromLesson(null); setFromPractice(false); setFromReport(false);
     setScreen("tutor");
     void SessionController.create(profiles.launch, fresh, runtime.fetch === undefined ? {} : { fetch: runtime.fetch }).then((sessionId) => {
       setTutorTarget(fresh);
@@ -820,6 +856,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
       const pick = installed.find((s) => s.subject === subject);
       if (pick !== undefined) setTutorTarget(askTarget(pick.subject, pick.level));
       setChosenSession(sessionId);
+      setFromLesson(null);
       setFromPractice(true);
       setFromReport(false);
       setScreen("tutor");
@@ -836,7 +873,10 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
     onChoose: (kind, { sessionId }) => {
       if (kind !== "practise") return;
       const subject = subjectName(runtime.holder.getState().sessions[sessionId]?.subject ?? "");
-      if (subject !== null) openPractice(subject);
+      const current = journey.getView().journey;
+      if (current && (fromLesson === current.lesson_id || (fromPractice && practiceView.setId === current.practice_set_id)
+        || shownTarget?.topic_id === current.goal.node_id)) void journeyStep(current.phase === "ready" ? "practice" : nextJourneyAction(current));
+      else if (subject !== null) openPractice(subject);
     },
   };
   /** The Progress place (UXS-27, Ctrl+5). */
@@ -844,6 +884,50 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   const openAssessment = (start?: AssessmentStart) => {
     if (lock === null && start !== undefined) void runtime.assessments.start(start);
     setScreen("assessment");
+  };
+  const openJourneyStep = async (next: LearningJourneyView, action: JourneyAction) => {
+    const generation = profiles.generation;
+    if (action === "review" && next.lesson_id) { setLessonId(next.lesson_id); setScreen("lesson"); }
+    else if (next.practice_set_id && (action === "practice" || next.phase === "question")) {
+      // Returning from tutor help must retain the current answer draft and feedback.
+      if (runtime.practice.getView().setId !== next.practice_set_id) await runtime.practice.open(next.practice_set_id, next.goal.subject);
+      if (generation !== profiles.generation) return;
+      setScreen("practice");
+    }
+  };
+  const journeyStep = async (action: JourneyAction) => {
+    const next = await journey.step(action);
+    if (!next) return;
+    await openJourneyStep(next, action);
+  };
+  const startObjective = (objective: LearningObjective) => journey.start(objective.node_id, objective.kc_id, objective.lesson_id);
+  const enterObjective = async (objective: LearningObjective, action?: JourneyAction) => {
+    const next = await startObjective(objective);
+    if (!next) return;
+    await journeyStep(action === "practice" && next.phase !== "ready" && next.phase !== "question" ? nextJourneyAction(next) : action ?? nextJourneyAction(next));
+  };
+  const openLearningLesson = (id: string) => {
+    const objective = objectiveForLesson(Object.values(maps), id, journey.getView().journey);
+    if (objective) void (async () => {
+      if (screen === "study" && !await runtime.studyWorkspace.beginJourney(objective.node_id, objective.kc_id)) return;
+      await enterObjective(objective, "review");
+    })();
+    else { setLessonId(id); setScreen("lesson"); }
+  };
+  const journeyTopic = () => { const goal = journey.getView().journey?.goal; if (goal) { setMapSubject(goal.node_id.split(".").slice(0, 3).join(".")); setMapTopic(goal.node_id); setScreen("learn"); } };
+  const journeySource = () => {
+    const source = journey.getView().journey?.source;
+    if (source) { setStudyResume(null); setStudySource(source); setScreen("study"); }
+  };
+  const practiseAfterLesson = () => {
+    const lesson = runtime.lessons.getView().lesson;
+    const current = journey.getView().journey;
+    if (lesson && current?.lesson_id === lesson.lesson_id) {
+      if (current.phase === "ready_check") { void journeyStep("check"); return; }
+      if (current.phase === "ready" && current.lesson_opened) { void journeyStep("practice"); return; }
+      if (current.phase === "question") { void journeyStep("practice"); return; }
+    }
+    if (lesson) openPractice(kcSubject(lesson.kc_ids[0] ?? "") ?? undefined, lesson.kc_ids);
   };
   /** A plan activity (UXS-12, LRN-28): reviews and practice open a practice set on its ideas, the main activity a lesson
    * when its idea is not started yet (then practice), a timed paper the mock place, and the look back Progress. */
@@ -858,6 +942,14 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
       return;
     }
     const lesson = kc === undefined ? undefined : known.lessons.get(kc);
+    if (block.kind === "main" && kc !== undefined) {
+      const objective = objectiveForKc(Object.values(maps), kc);
+      if (objective) {
+        const action = block.reason_code !== "mock_follow_up" && (known.states.get(kc) ?? "not_started") === "not_started" && lesson !== undefined ? "review" : undefined;
+        void enterObjective(objective, action);
+        return;
+      }
+    }
     if (block.kind === "main" && block.reason_code !== "mock_follow_up" && kc !== undefined && (known.states.get(kc) ?? "not_started") === "not_started" && lesson !== undefined) {
       setLessonId(lesson);
       setScreen("lesson");
@@ -879,6 +971,22 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
         onRetry: () => void runtime.plans.load(),
       }} />
   );
+  const journeyCard = active && lock === null && protectedCheck === undefined && (["home", "learn", "progress"].includes(screen)
+          || (screen === "lesson" && lessonId === journeyView.journey?.lesson_id)
+          || (screen === "practice" && practiceView.setId === journeyView.journey?.practice_set_id)
+          || (screen === "study" && savedStudy.source?.source_id === journeyView.journey?.source?.source_id)
+          || (screen === "tutor" && !fromReport && (fromLesson === journeyView.journey?.lesson_id || (fromPractice && practiceView.setId === journeyView.journey?.practice_set_id) || shownTarget?.topic_id === journeyView.journey?.goal.node_id))) && <LearningJourney view={journeyView.journey} busy={journeyView.busy} error={journeyView.error}
+          place={screen === "lesson" && lessonId === journeyView.journey?.lesson_id ? "lesson" : screen === "practice" && practiceView.setId === journeyView.journey?.practice_set_id ? "practice" : screen === "tutor" ? "tutor" : "overview"}
+          {...(screen !== "home" && planView.plan?.status === "started" && planView.plan.blocks.some((b) => b.kc_ids.includes(journeyView.journey?.goal.kc_id ?? "")) ? { onPlan: () => { setPlanExpanded(true); setScreen("home"); } } : {})}
+          {...(helpMe && journeyView.journey?.practice_set_id ? { onHelp: () => {
+            const current = journey.getView().journey;
+            const setId = current?.practice_set_id;
+            if (current && setId) void (async () => {
+              if (runtime.practice.getView().setId !== setId) await runtime.practice.open(setId, current.goal.subject);
+              helpMe();
+            })();
+          } } : {})}
+          onStep={(action) => { void journeyStep(action); }} onSource={journeySource} onTopic={journeyTopic} onRetry={() => { void journey.load(); }} />;
   // Read-aloud and dictation everywhere; the voice conversation only where `place` names an open chat: Ask anything on
   // Home or a study set's Chat tab (VOC-53, D130). The tutor, lessons and notes have no voice bar.
   const withSpeech = (children: React.ReactNode, target = session, place: VoicePlace | null = null, onAnswer?: (answer: VoiceAnswer) => void) => target === null || target === "failed" ? <Opening failed={target === "failed"} /> :
@@ -923,23 +1031,24 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
     };
     const ask = lock !== null || protectedCheck !== undefined ? null : answers === false ? <SearchBox onSearch={(query) => { void runtime.search.search(query); setScreen("search"); }} />
       : session === null || session === "failed" ? waiting
-      : withSpeech(<Composer sessionId={session.sessionId} asking placement="inline" onSent={() => setScreen("tutor")} route={routeHome} {...warmingProps} />,
+      : withSpeech(<Composer sessionId={session.sessionId} asking placement="inline" onSent={() => { setFromLesson(null); setFromPractice(false); setFromReport(false); setScreen("tutor"); }} route={routeHome} {...warmingProps} />,
         session, ASK_PLACE, (answer) => runtime.ask.voiced(answer));
-    const openStudy = () => { runtime.ask.clear(); setScreen("study"); };
+    const openStudy = (add: "link" | "paste" | null = null) => { runtime.ask.clear(); setStudyAdd(add); setScreen("study"); };
     const materials = studyAvailable && lock === null ? {
-      onUpload: (file: File) => { void runtime.studyWorkspace.upload(file); openStudy(); },
-      onLink: openStudy,
-      onPaste: openStudy,
+      onUpload: (file: File) => { void runtime.studyWorkspace.upload(file, undefined, true); openStudy(); },
+      onLink: () => openStudy("link"),
+      onPaste: () => openStudy("paste"),
       onRecord: (file: File) => { void runtime.studyWorkspace.upload(file, undefined, true); openStudy(); },
     } : null;
-    // Ask anything's answer under the box; "Ask the tutor" sends the same question there (held until it is ready).
+    // Ask anything's answer above the box; "Ask the tutor" sends the same question there (held until it is ready).
     const answer = lock !== null ? undefined : <AskAnswer view={askView} actions={{
       // A question spoken here that the tutor answered by voice is already in its session: "Continue in the tutor"
       // opens it on the board (D130); otherwise the question is sent there (held until the tutor is ready).
       onTutor: () => { const text = askView.status === "spoken" ? "" : askView.question; runtime.ask.clear(); if (text !== "") setHeld({ text, generation: profiles.generation }); else setScreen("tutor"); },
-      onStudy: openStudy,
+      onStudy: () => openStudy(),
       onExplain: () => runtime.ask.explain(),
       onAgain: (options) => void runtime.ask.ask(askView.question, options),
+      onSearchWeb: () => void runtime.ask.confirmWeb(),
     }} />;
     const heldNote = held === null ? null : <p role="status" data-held-question="" className="px-1 text-meta text-muted">{t("home.question_held")}</p>;
     const newest = mockView.sittings[0];
@@ -957,7 +1066,11 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
             <SuggestionChip icon="mastery-nearly" onClick={() => openAssessment()}>{t(assessmentView.assessments.some((a) => ["in_progress", "waiting", "stopped"].includes(a.state)) ? "assessment.finish" : "assessment.find_start")}</SuggestionChip>
           </div>
         </>}
-        {...(planCard !== undefined ? { plan: planCard } : {})}
+        plan={<div className="flex flex-col gap-4">
+          {journeyCard && <div className="[&>section]:mx-0 [&>section]:my-0">{journeyCard}</div>}
+          {savedStudy.journey && <details open={!journeyView.journey}><summary className="cursor-pointer text-meta text-muted">{t("study.journey.title")}</summary><div className="mt-3"><StudyJourney journey={savedStudy.journey} busy={savedStudy.busy} onReviewDue={() => { void runtime.studyWorkspace.load(); }} onContinue={() => { setStudyResume("next"); setScreen("study"); }} onLesson={() => { setStudyResume("lesson"); setScreen("study"); }} onResults={() => { setStudyResume("quiz"); setScreen("study"); }} /></div></details>}
+          {journeyView.journey || savedStudy.journey ? <details open={planExpanded} onToggle={(event) => setPlanExpanded(event.currentTarget.open)}><summary className="cursor-pointer text-meta text-muted">{t("study.journey.curriculum_plan")}</summary><div className="mt-3">{planCard}</div></details> : planCard}
+        </div>}
         {...(goalTarget > 0 && planView.plan !== null ? { goal: <DailyGoalChip progress={goalProgress(planView.plan, goalTarget)} onChange={(target) => void runtime.goal.set(target)} /> } : {})}
         countdown={<ExamCountdownCard countdown={examDatesView.countdown} reminders={examDatesView.reminders} onDismiss={(r) => void runtime.examDates.dismiss(r)} onOpen={openMock} />}
         {...(newest?.state === "abandoned" ? { mock: <AbandonedMockCard onNew={openMock} /> } : {})}
@@ -1023,20 +1136,37 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
           actions={{ onBrowse: () => setScreen("learn"), onPractise: (kcIds, subject) => openPractice(subject, kcIds) }} />
       );
     }
-    if (screen === "settings") return <Settings section={settingsAt} voiceSettings={<VoiceSettings profiles={profiles} />} profiles={profiles} chooseSource={runtime.chooseSource} notices={NOTICES} assets={ASSETS} onClose={() => setScreen(tutorOffered ? "tutor" : "learn")} onOpenKnows={() => setScreen("knows-from-settings")} />;
+    if (screen === "settings") return <Settings section={settingsAt} voiceSettings={<VoiceSettings profiles={profiles} />} profiles={profiles} chooseSource={runtime.chooseSource} notices={NOTICES} assets={ASSETS} onClose={() => {
+      const back = studySettingsReturn.current;
+      studySettingsReturn.current = null;
+      if (back && back.profile === active) {
+        void runtime.studyWorkspace.loadAccess().then(async () => {
+          if (back.source && profiles.getView().active === back.profile) await runtime.studyWorkspace.open(back.source);
+        });
+        setScreen("study");
+      } else setScreen(tutorOffered ? "tutor" : "learn");
+    }} onOpenKnows={() => setScreen("knows-from-settings")} />;
     if (screen === "knows" || screen === "knows-from-settings" || screen === "knows-from-progress") {
       const back = screen === "knows" ? "tutor" : screen === "knows-from-progress" ? "progress" : "settings";
       return <KnowsPage knows={runtime.knows} onClose={() => setScreen(back)} onOpenSettings={() => setScreen("settings")} />;
     }
     if (screen === "study") {
-      const workspace = <StudyWorkspace controller={runtime.studyWorkspace} onTab={setStudyTab} onPractice={(subject, kcIds) => openPractice(subject, kcIds)} />;
+      const workspace = <StudyWorkspace controller={runtime.studyWorkspace} initialAdd={studyAdd} initialJourney={studyResume} onJourneyOpened={() => setStudyResume(null)} initialSource={studySource} onSourceOpened={() => setStudySource(null)} onJourneyStarted={() => {
+        void journey.load().then((next) => { if (next) void journeyStep(nextJourneyAction(next)); });
+      }} onTab={setStudyTab} onPractice={(subject, kcIds) => {
+        const objective = kcIds[0] ? objectiveForKc(Object.values(maps), kcIds[0]) : null;
+        if (objective) void runtime.studyWorkspace.beginJourney(objective.node_id, objective.kc_id).then((ok) => { if (ok) void enterObjective(objective, "practice"); }); else openPractice(subject, kcIds);
+      }} onReviewAccess={() => {
+        studySettingsReturn.current = { profile: active, source: runtime.studyWorkspace.getView().source?.source_id ?? null };
+        openSettingsAt("online_features");
+      }} />;
       if (session === null || session === "failed") return workspace;
       // The Chat tab holds the voice conversation about the open source (VOC-53, D130).
       return <StudyPlace controller={runtime.studyWorkspace} chat={studyTab === "chat"}>{(place) =>
         withSpeech(workspace, session, place, (answer) => void runtime.studyWorkspace.voiced(answer))}</StudyPlace>;
     }
     if (screen === "notes") return withSpeech(<>{notesSwitch}<div className="mx-auto w-full max-w-240">
-      <SessionNotes controller={runtime.sessionNotes} subject={subjectLabel} kc={(id) => known.statements.get(id) ?? id} onReference={async (reference) => {
+      <SessionNotes controller={runtime.sessionNotes} subject={subjectLabel} kc={(id) => known.statements.get(id) ?? id} topicForKc={(id) => known.topicLinks.get(id) ?? null} onReference={async (reference) => {
         if (lock !== null || protectedCheck !== undefined) return false;
         const generation = profiles.generation;
         try {
@@ -1071,16 +1201,11 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
           subjects={subjects}
           onSubject={setMapSubject}
           inProgress={inProgress(shownSubject)}
-          onContinue={(id) => {
-            setLessonId(id);
-            setScreen("lesson");
-          }}
+          onContinue={openLearningLesson}
           actions={{
-            onStartLesson: (id) => {
-              setLessonId(id);
-              setScreen("lesson");
-            },
-            onPractise: (topic) => openPractice(topicTarget(topic.node_id, { kind: "ask", ref: null })?.subject, topic.kcs.map((k) => k.kc_id)),
+            onJourney: (topic, kc) => { void enterObjective({ node_id: topic.node_id, kc_id: kc.kc_id }); },
+            onStartLesson: openLearningLesson,
+            onPractise: (topic) => { const objective = objectiveForTopic(topic, journey.getView().journey); if (objective) void enterObjective(objective, "practice"); },
             onMasteryCheck: (kc) => { const subject = kcSubject(kc.kc_id); if (subject !== null) openAssessment({ kind: "mastery_check", subject, kc_id: kc.kc_id }); },
             ...(askTopic !== undefined ? { onAsk: askTopic } : {}),
           }}
@@ -1091,12 +1216,13 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
       return <Practice controller={runtime.practice} subjectLabel={subjectLabel} onEnd={() => setScreen("home")} onLearn={() => setScreen("learn")} {...(helpMe !== undefined ? { onHelp: helpMe } : {})} />;
     }
     if (screen === "lesson" && lessonId !== null) {
-      return withSpeech(<LessonPlayer controller={runtime.lessons} lessonId={lessonId} onClose={() => setScreen("learn")} onPractise={() => { const lesson = runtime.lessons.getView().lesson; if (lesson) openPractice(kcSubject(lesson.kc_ids[0] ?? "") ?? undefined, lesson.kc_ids); }} {...(askLesson !== undefined ? { onAsk: askLesson } : {})} />);
+      return withSpeech(<LessonPlayer controller={runtime.lessons} lessonId={lessonId} teaching={journeyView.journey?.lesson_id === lessonId && journeyView.journey.lesson_opened} onClose={() => setScreen("learn")} onPractise={practiseAfterLesson} {...(askLesson !== undefined ? { onAsk: askLesson } : {})} />);
     }
     return session === null || session === "failed" ? <Opening failed={session === "failed"} /> : withSpeech(
       <FollowUpProvider value={followUpHandlers}><TutorScreen sessionId={session.sessionId} subjectControl={chooser}
         onEnd={async () => { const ok = await runtime.sessionNotes.end(session.sessionId); if (ok) setScreen("notes"); return ok; }}
         {...(fromReport ? { back: { label: t("tutor.back_to_report"), onClick: () => setScreen("mock") }, note: t("mock.review_note") }
+          : fromLesson ? { back: { label: t("journey.back_lesson"), onClick: () => { setLessonId(fromLesson); setScreen("lesson"); } } }
           : fromPractice && practiceView.status === "ready" ? { back: { label: t("tutor.back_to_practice", { number: practiceView.number }), onClick: () => setScreen("practice") } } : {})} /></FollowUpProvider>, session);
   };
   // The place's one header, as every other place has: its name, then the switch between its two lists (and, in a
@@ -1115,13 +1241,13 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   );
   const places: FramePlace[] = [
     { id: "home", icon: "home", label: t("home.title"), current: screen === "home", onSelect: () => setScreen("home") },
-    { id: "learn", icon: "learn", label: t("app.learn"), current: screen === "learn" || screen === "lesson" || (screen === "tutor" && !tutorOffered), onSelect: () => setScreen("learn") },
-    { id: "practice", icon: "practice", label: t("app.practice"), current: screen === "practice", onSelect: () => openPractice() },
-    { id: "mock", icon: "mock", label: t("app.mock"), current: screen === "mock", onSelect: openMock },
-    { id: "progress", icon: "progress", label: t("app.progress"), current: screen === "progress" || screen === "knows-from-progress", onSelect: openProgress },
-    ...(studyAvailable ? [{ id: "study", icon: "study-area", label: t("study.title"), current: screen === "study", onSelect: () => setScreen("study") } satisfies FramePlace] : []),
+    ...(studyAvailable ? [{ id: "study", icon: "study-area", label: t("nav.materials"), short: t("nav.materials_short"), group: t("nav.your_learning"), current: screen === "study", onSelect: () => setScreen("study") } satisfies FramePlace] : []),
+    { id: "progress", icon: "progress", label: t("app.progress"), group: t("nav.your_learning"), current: screen === "progress" || screen === "knows-from-progress", onSelect: openProgress },
     // Study notes and saved questions are one place with a switch (owner, 2026-10-19).
-    { id: "notes", icon: "notes", label: t("nav.notes_saved"), short: t("nav.notes_short"), current: screen === "notes" || screen === "saved-questions" || screen === "history", onSelect: () => setScreen("notes") },
+    { id: "notes", icon: "notes", label: t("nav.notes_saved"), short: t("nav.notes_short"), group: t("nav.your_learning"), current: screen === "notes" || screen === "saved-questions" || screen === "history", onSelect: () => setScreen("notes") },
+    { id: "learn", icon: "learn", label: t("nav.lessons"), group: t(installed.every((s) => s.level === "O") ? "nav.o_level" : "nav.curriculum"), current: screen === "learn" || screen === "lesson" || (screen === "tutor" && !tutorOffered), onSelect: () => setScreen("learn") },
+    { id: "practice", icon: "practice", label: t("app.practice"), group: t(installed.every((s) => s.level === "O") ? "nav.o_level" : "nav.curriculum"), current: screen === "practice", onSelect: () => openPractice() },
+    { id: "mock", icon: "mock", label: t("app.mock"), group: t(installed.every((s) => s.level === "O") ? "nav.o_level" : "nav.curriculum"), current: screen === "mock", onSelect: openMock },
   ];
   const sidebar: SidebarContent = {
     places,
@@ -1164,6 +1290,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
       >
         {!ownHeader && <MenuBar />}
         <DegradedNotices onOpenLessons={() => setScreen("learn")} onOnlineFeatures={() => setScreen("settings")} health={degraded.health} packs={degraded.packs} models={degraded.models} subject={shownTarget?.subject ?? ""} />
+        {screen !== "home" && journeyCard}
         <div data-app-screen={screen} className={scrolls ? "min-h-0 flex-1 overflow-y-auto" : "flex min-h-0 flex-1 flex-col"}>{main()}</div>
       </StudioFrame>
     </StoreProvider>
@@ -1171,10 +1298,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   // The memory-use line and a saved note's announcement link to the knows page (MEM-28, MEM-11).
   // The tutor's picture the student chose marks the tutor's turns (Settings → Tutor, PRM-03).
   // The not-sure reply's "Open lesson" opens that lesson in the player (UXS-20, PRD-05).
-  const openLesson = (id: string) => {
-    setLessonId(id);
-    setScreen("lesson");
-  };
+  const openLesson = openLearningLesson;
   // "Use the faster tutor" (UXS-03, MDL-05): offered where the profile's settings carry the choice (`faster_tutor`, API
   // 1.9; an older core leaves it out) and it is not made yet; choosing it remembers it for this profile (D103).
   const fasterTutor = typeof view.settings?.faster_tutor === "boolean" && !view.settings.faster_tutor

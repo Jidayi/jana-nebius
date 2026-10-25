@@ -20,7 +20,7 @@ from agent_core.tools.specs import registry
 from engine_harness import STATEMENT, checker_steps, close, make_engine, reply, solver_steps, tutor
 from jana_tools import REPO_ROOT
 
-CONTRACTS = REPO_ROOT / "docs" / "specification" / "contracts"
+CONTRACTS = REPO_ROOT / "contracts"
 SAFE = "Which quantities does the question give you, and which one does it ask for?"
 
 
@@ -705,6 +705,7 @@ def agt04_state_machine_transitions(tmp_path: Path):
         engine.traces.clear()
         engine.turn_log.clear()
         engine.events.frames.clear()
+        provider.requests.clear()  # this stress test checks transitions, not retained request bodies
     run(close(engine))
     unexercised = set(ALLOWED) - seen - {("call", "break"), ("tool_round", "break")}
     assert unexercised == set(), unexercised

@@ -329,9 +329,18 @@ def biz08_cost_model_uses_measured_inputs() -> None:
     assert roles["coach"].calls_per_turn == 1.0 and roles["coach"].cache_hit == 0.6
     assert roles["checker"].calls_per_turn == 0.5
     usage = Usage(cloud_share=1.0, turns_per_month=200)
+    prices = {
+        "release": "2026-10",
+        "models": {
+            "strong-model": {
+                "price_in_per_mtok": 1.25,
+                "price_out_per_mtok": 10.0,
+            }
+        },
+    }
     # At a stated price (Jana Online's US$6 a month): this checks the cost inputs, not TABLE BIZ-18a, whose lowest
     # per-student month is below this synthetic strong-model floor (that review error is the next test's case).
-    book = workbook(traces, model="strong-model", usage=usage, cached_multiplier=0.25,
+    book = workbook(traces, model="strong-model", usage=usage, cached_multiplier=0.25, prices=prices,
                     measured_release="2026-10", price_usd=6.0)  # fmt: skip
     p_in, p_out = 1.25e-6, 10e-6
     coach = 1.0 * ((3000 * 0.4 + 3000 * 0.6 * 0.25) * p_in + 250 * p_out)
@@ -339,10 +348,10 @@ def biz08_cost_model_uses_measured_inputs() -> None:
     assert abs(book["c_cloud_usd_per_student_month"] - 200 * (coach + checker)) < 1e-12
     assert abs(c_cloud(roles, usage, p_in, p_out, 0.25) - book["c_cloud_usd_per_student_month"]) < 1e-12
     assert book["errors"] == [] and book["price_floor_usd"] > book["c_cloud_usd_per_student_month"]
-    stale = workbook(traces, model="strong-model", usage=usage, cached_multiplier=0.25,
+    stale = workbook(traces, model="strong-model", usage=usage, cached_multiplier=0.25, prices=prices,
                      measured_release="2026-04")  # fmt: skip
     assert stale["errors"] and "older than the current model release" in stale["errors"][0]
-    assert workbook([], model="strong-model", usage=usage, cached_multiplier=0.25,
+    assert workbook([], model="strong-model", usage=usage, cached_multiplier=0.25, prices=prices,
                     measured_release="2026-10")["errors"]  # fmt: skip
 
 
@@ -363,7 +372,8 @@ def test_biz08_cost_model_reads_the_decided_price_and_margin() -> None:
     price = cost_model.decided_price()
     assert price == 180_000 / 1500 / 12 / 4  # Jana Family in Nigeria for a year, per student month
     assert (book["price_usd_per_student_month"], book["gross_margin"]) == (price, decided.gross_margin)
-    p_in, p_out = 1.25e-6, 10e-6
+    rates = cost_model.load_prices()["models"]["strong-model"]
+    p_in, p_out = rates["price_in_per_mtok"] / 1e6, rates["price_out_per_mtok"] / 1e6
     blended = (3000 * p_in + 250 * p_out) / 3250
     assert book["allowance_tokens"] == pytest.approx(price * (1 - decided.gross_margin) / blended)
     at_floor = cost_model.allowance_tokens(book["price_floor_usd"], decided.gross_margin, blended)

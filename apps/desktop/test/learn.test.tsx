@@ -49,7 +49,7 @@ describe("UXS-22 and UXS-23", () => {
       core.packs.push({ pack_id: "pack.chm.o", subject: "chm", level: "O", version: "0.1.0", signature_ok: true, size_bytes: 1 });
     });
     const nav = await screen.findByRole("navigation", { name: "Main" });
-    fireEvent.click(within(nav).getByRole("button", { name: "Learn" }));
+    fireEvent.click(within(nav).getByRole("button", { name: "Lessons" }));
     fireEvent.click(await screen.findByRole("radio", { name: "Chemistry" })); // the subject switch in Learn's header
     const topic = chemistry.sections[0]!.topics[0]!;
     const tile = await waitFor(() => {
@@ -68,7 +68,7 @@ describe("UXS-22 and UXS-23", () => {
   test("ask_from_a_lesson_carries_its_origin_and_topic", async () => {
     const { sessions } = await open();
     const nav = await screen.findByRole("navigation", { name: "Main" });
-    fireEvent.click(within(nav).getByRole("button", { name: "Learn" }));
+    fireEvent.click(within(nav).getByRole("button", { name: "Lessons" }));
     const tile = await waitFor(() => {
       const found = document.querySelector<HTMLButtonElement>(`[data-topic-id="${TOPIC.node_id}"]`);
       expect(found).not.toBeNull();
@@ -86,13 +86,13 @@ describe("UXS-22 and UXS-23", () => {
   test("learn_opens_the_map_and_its_lessons", async () => {
     const { runtime } = await open();
     const nav = await screen.findByRole("navigation", { name: "Main" });
-    fireEvent.click(within(nav).getByRole("button", { name: "Learn" }));
+    fireEvent.click(within(nav).getByRole("button", { name: "Lessons" }));
     const tile = await waitFor(() => {
       const found = document.querySelector<HTMLButtonElement>(`[data-topic-id="${TOPIC.node_id}"]`);
       expect(found).not.toBeNull();
       return found!;
     });
-    expect(within(nav).getByRole("button", { name: "Learn" }).getAttribute("aria-current")).toBe("page");
+    expect(within(nav).getByRole("button", { name: "Lessons" }).getAttribute("aria-current")).toBe("page");
     fireEvent.click(tile);
     const sheet = await screen.findByRole("dialog", { name: TOPIC.title });
     // A tutor answers on this computer: the sheet offers to ask it.

@@ -524,8 +524,13 @@ def _release(args: list[str]) -> int:
         results = merge(*[junit_results(Path(p)) for p in options("--junit")],
                         *[cargo_results(Path(p)) for p in options("--cargo")])  # fmt: skip
         report = load("--report")
-        decisions = {d["id"]: d["status"] for d in json.loads((DOCS / "specification" / "registers" /
-                     "decisions.json").read_text())["decisions"]}  # fmt: skip
+        decision_path = DOCS / "specification/registers/decisions.json"
+        # No approvals are inferred. release_rule_failures separately refuses a missing owner register.
+        decisions = (
+            {d["id"]: d["status"] for d in json.loads(decision_path.read_text())["decisions"]}
+            if decision_path.is_file()
+            else {}
+        )
         gates = s1_gates(report or {}, gallery=load("--gallery"), model_oracles=load("--oracles"),
                          bakeoff=load("--bakeoff"), step_pairs=load("--steps"), decisions=decisions)  # fmt: skip
         if stage != "S1":

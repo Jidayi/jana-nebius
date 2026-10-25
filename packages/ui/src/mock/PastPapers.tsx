@@ -153,10 +153,11 @@ export function PastPaperShelf({ view, subjects, actions, locked }: { view: Past
   else if (view.status === "unavailable") body = <p className="text-ui text-muted">{t("past_paper.unavailable")}</p>;
   else if (view.status === "failed") body = <ErrorState message={t("past_paper.failed")} {...(actions.onRetry !== undefined ? { action: { label: t("action.try_again"), onClick: actions.onRetry } } : {})} />;
   else {
+    const imported = view.imported;
     body = (
       <>
         {view.refused !== null && <Callout tone="hint" icon="info" heading={t(`past_paper.refused.${REFUSALS[view.refused] ?? "other"}`)} />}
-        {view.imported !== null && <Imported paper={view.imported} onSit={() => actions.onSit(view.imported!.paper_id)} onDismiss={actions.onDismiss} />}
+        {imported !== null && <Imported paper={imported} onSit={() => actions.onSit(imported.paper_id)} onDismiss={actions.onDismiss} />}
         {importing ? <ImportForm view={view} subjects={subjects} onCancel={() => setImporting(false)} onImport={(draft) => { actions.onImport(draft); setImporting(false); }} />
           : <div><Button disabled={locked || view.importing} onClick={() => setImporting(true)}><Icon name="study-area" size={16} />{t(view.importing ? "past_paper.importing" : "past_paper.import")}</Button></div>}
         {view.papers.length === 0 ? <EmptyState message={t("past_paper.empty")} /> : (

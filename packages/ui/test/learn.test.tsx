@@ -277,6 +277,25 @@ describe("UXS-23 step-shape lessons (D110)", () => {
   }
   const checks = (core: { log: { path: string; body: unknown }[] }) => core.log.filter((l) => l.path.endsWith("/checks")).map((l) => l.body as { item_id: string; attempt?: number });
 
+  test("teaching shows an idea and existing worked example before resuming supported steps without overwriting position", async () => {
+    const { core, profiles } = await unlocked();
+    const example = LESSON.blocks.find((b) => b.type === "worked_example")!;
+    core.lessons.set(STEPS.lesson_id, { ...STEPS, blocks: [...STEPS.blocks, { type: "idea", text: "Find one part before scaling the amount.", visual: null }, example] });
+    core.positions.set(`${BEN.profile_id}:${STEPS.lesson_id}`, { block_index: 1, lesson_version: STEPS.version, updated_ts: 100 });
+    const controller = new LessonController(profiles);
+    render(wrap(<LessonPlayer controller={controller} lessonId={STEPS.lesson_id} teaching />));
+    await screen.findByRole("heading", { name: "Understand the idea" });
+    expect(screen.queryByRole("button", { name: "Check" })).toBeNull();
+    expect(screen.queryByLabelText("Your answer")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Continue" }));
+    expect(screen.getByRole("heading", { name: "See a worked example" })).toBeTruthy();
+    expect(screen.getByRole("list", { name: "Worked example" })).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "Try with support" }));
+    await screen.findByRole("heading", { level: 1, name: /A price of \$360 is increased by 12%/ });
+    expect(controller.getView().index).toBe(1);
+    expect(core.log.filter((r) => r.method === "PUT" || r.path.endsWith("/checks"))).toEqual([]);
+  });
+
   test("test_uxs23_step_retry_then_shown_in_the_player", async () => {
     const { core } = await stepPlayer();
     expect(screen.getByText(/Try it first/)).toBeTruthy();

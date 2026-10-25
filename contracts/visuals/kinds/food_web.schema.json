@@ -1,0 +1,71 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://jana.dev/contracts/visuals/kinds/food_web",
+ "type": "object",
+ "additionalProperties": false,
+ "properties": {
+  "organisms": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+     },
+     "label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+     },
+     "trophic_level": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10
+     }
+    },
+    "required": [
+     "id",
+     "label",
+     "trophic_level"
+    ]
+   },
+   "minItems": 2,
+   "maxItems": 30
+  },
+  "links": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+     "from": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+     },
+     "to": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$"
+     }
+    },
+    "required": [
+     "from",
+     "to"
+    ]
+   },
+   "minItems": 1,
+   "maxItems": 100
+  }
+ },
+ "required": [
+  "organisms",
+  "links"
+ ]
+}

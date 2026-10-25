@@ -18,10 +18,15 @@ try {
   const cases = [];
   for (const state of selected) for (const theme of (args.themes ?? "light,dark").split(",")) for (const scale of (args.scales ?? "1,1.5").split(",")) for (const width of (args.widths ?? "1366,800").split(",").map(Number)) cases.push({ state, theme, scale, width });
   let index = 0;
-  await Promise.all(Array.from({ length: Math.min(4, cases.length) }, async () => {
+  const openPage = async () => {
     const page = await browser.newPage({ reducedMotion: "reduce" }); page.setDefaultTimeout(15000);
     page.on("pageerror", (e) => errors.push(e.message));
     await page.route("**/*", (route) => new URL(route.request().url()).hostname === "127.0.0.1" ? route.continue() : route.abort());
+    return page;
+  };
+  await Promise.all(Array.from({ length: Math.min(4, cases.length) }, async () => {
+    let page = await openPage(), checked = 0;
+    try {
     while (index < cases.length) {
       const { state, theme, scale, width } = cases[index++];
       await page.setViewportSize({ width, height: 768 });
@@ -39,8 +44,10 @@ try {
         if (!mutation) throw new Error("Small-target self-test was not detected");
       }
       if (results.length % 100 === 0) console.log(`${results.length}/${cases.length} target cases`);
+      // Release the owned context periodically instead of retaining thousands of navigations.
+      if (++checked % 50 === 0 && index < cases.length) { await page.close(); page = await openPage(); }
     }
-    await page.close();
+    } finally { await page.close(); }
   }));
   const probe = await browser.newPage(); probe.setDefaultTimeout(15000);
   for (const width of [800, 1366]) {

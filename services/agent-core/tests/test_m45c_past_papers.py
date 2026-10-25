@@ -129,8 +129,15 @@ def desk(tmp_path: Path):
 
 
 def imported(d: AssessmentDesk, scheme: str | None = MARK_SCHEME) -> dict[str, Any]:
-    body = {"client_import_id": "cli_" + "0" * 26, "title": "Physics paper 2 (practice)", "subject": "physics",
-            "duration_minutes": 60, "paper": SOURCE, "mark_scheme": SCHEME if scheme else None, "syllabus": None}
+    body = {
+        "client_import_id": "cli_" + "0" * 26,
+        "title": "Physics paper 2 (practice)",
+        "subject": "physics",
+        "duration_minutes": 60,
+        "paper": SOURCE,
+        "mark_scheme": SCHEME if scheme else None,
+        "syllabus": None,
+    }
     return d.import_past_paper(body, chunks(PAPER), chunks(scheme) if scheme else None)
 
 
@@ -179,8 +186,17 @@ def test_asm27_past_paper_marked_honestly(desk) -> None:
 
     d.save_mock_answer(eid, "q1", {"parts": [number("15", "m/s")]}, False)
     d.save_mock_answer(eid, "q2", {"parts": [{"part_id": "p1", "kind": "mcq", "option_id": "B"}]}, False)
-    d.save_mock_answer(eid, "q3", {"parts": [{"part_id": "p1", "kind": "short_text", "text": "The mass per unit "
-                                              "volume of a substance"}, number("4", "g/cm3", "p2")]}, False)  # fmt: skip
+    d.save_mock_answer(
+        eid,
+        "q3",
+        {
+            "parts": [
+                {"part_id": "p1", "kind": "short_text", "text": "The mass per unit volume of a substance"},
+                number("4", "g/cm3", "p2"),
+            ]
+        },
+        False,
+    )
     report = asyncio.run(d.submit_mock(eid))
     valid("api/commands#/$defs/MockResult", report)
 
@@ -222,8 +238,15 @@ def test_asm27_without_a_scheme_everything_is_judged(desk) -> None:
 
 def test_asm27_import_refuses_what_is_not_a_paper(desk) -> None:
     d, _ = desk
-    body = {"client_import_id": "cli_" + "0" * 26, "title": "Notes", "subject": "physics", "duration_minutes": 30,
-            "paper": SOURCE, "mark_scheme": None, "syllabus": None}
+    body = {
+        "client_import_id": "cli_" + "0" * 26,
+        "title": "Notes",
+        "subject": "physics",
+        "duration_minutes": 30,
+        "paper": SOURCE,
+        "mark_scheme": None,
+        "syllabus": None,
+    }
     with pytest.raises(Refused, match="no_questions_found"):
         d.import_past_paper(body, chunks("Some notes about forces with no numbered questions."), None)
     with pytest.raises(Refused, match="syllabus_subject_mismatch"):
@@ -274,8 +297,12 @@ MTH_DIR = REPO / "content" / "curriculum" / "mth" / "o"
 def two_subjects() -> tuple[Learner, Practice, PlanDesk, Any]:
     from learner_harness import Clock as HarnessClock
 
-    index = PackIndex.from_tables([({"pack_id": "pack.phy.o", "version": "0.1.0"}, load_source(PACK_DIR).tables),
-                                   ({"pack_id": "pack.mth.o", "version": "0.1.0"}, load_source(MTH_DIR).tables)])
+    index = PackIndex.from_tables(
+        [
+            ({"pack_id": "pack.phy.o", "version": "0.1.0"}, load_source(PACK_DIR).tables),
+            ({"pack_id": "pack.mth.o", "version": "0.1.0"}, load_source(MTH_DIR).tables),
+        ]
+    )
     clock = HarnessClock(at_ms("2026-10-09"))  # noon
     learner = Learner.open(learner_db(), profile_id="0" * 26, device_id="d" * 32, wall_ms=clock,
                            max_skew_ms=86_400_000, params=MasteryParams(), content=index)  # fmt: skip
@@ -292,8 +319,10 @@ def two_subjects() -> tuple[Learner, Practice, PlanDesk, Any]:
 
 def test_lrn44_countdown_shapes_plan() -> None:
     learner, practice, desk, clock = two_subjects()
-    maths = max((k for k in sorted(desk.content.kcs) if k.startswith("kc.mth.o.")),
-                key=lambda k: desk.content.exam_weight(k) or 0)  # the maths idea worth most marks
+    maths = max(
+        (k for k in sorted(desk.content.kcs) if k.startswith("kc.mth.o.")),
+        key=lambda k: desk.content.exam_weight(k) or 0,
+    )  # the maths idea worth most marks
     weak_physics = SPEED
     for _ in range(2):  # a weak maths idea and a weak (but less weak) physics one, both with recent errors
         practice.opportunity(maths, ("incorrect", "incorrect", "incorrect"))

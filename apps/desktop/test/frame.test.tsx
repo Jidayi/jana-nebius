@@ -34,6 +34,49 @@ async function open(fake: FakeProfileCore) {
 const posts = (fake: FakeProfileCore) => fake.log.filter((r) => r.method === "POST" && r.path === "/v1/sessions");
 
 describe("UXS-01", () => {
+  test("saved materials stay reachable while the tutor session is still opening", async () => {
+    const fake = new FakeProfileCore();
+    fake.packs.push(pack("phy"));
+    const fetch = fake.fetch;
+    fake.fetch = async (input, init) => {
+      if (/\/v1\/sessions\/[^/]+\/snapshot$/.test(String(input))) return new Promise<Response>(() => undefined);
+      const response = await fetch(input, init);
+      if (String(input).endsWith("/v1/meta")) return Response.json({ ...await response.json(), capabilities: ["study_workspace"] });
+      return response;
+    };
+    const nav = await open(fake);
+    const materials = await within(nav).findByRole("button", { name: "My materials" });
+    fireEvent.click(materials);
+    await screen.findByRole("heading", { name: "Study", level: 1 });
+    expect(fake.log.filter((r) => r.method === "DELETE")).toEqual([]);
+  });
+
+  test("personal learning comes before the grouped curriculum and preserves every existing destination", async () => {
+    const fake = new FakeProfileCore();
+    fake.packs.push(pack("phy"));
+    const fetch = fake.fetch;
+    fake.fetch = async (input, init) => {
+      if (String(input).endsWith("/v1/meta")) {
+        const response = await fetch(input, init);
+        return Response.json({ ...await response.json(), capabilities: ["study_workspace"] });
+      }
+      return fetch(input, init);
+    };
+    const nav = await open(fake);
+    await within(nav).findByRole("button", { name: "My materials" });
+    const groups = within(nav).getAllByRole("group");
+    expect(groups.map((g) => g.getAttribute("aria-label"))).toEqual(["Your learning", "O-level curriculum"]);
+    expect(within(groups[0]!).getAllByRole("button").map((b) => b.textContent)).toEqual(["My materials", "Progress", "Notes and saved"]);
+    expect(within(groups[1]!).getAllByRole("button").map((b) => b.textContent)).toEqual(["Lessons", "Practice", "Mock exam"]);
+    expect(within(nav).getByRole("button", { name: "New question" })).toBeTruthy();
+    expect(within(nav).getByRole("region", { name: "Recent sessions" })).toBeTruthy();
+    fireEvent.click(within(nav).getByRole("button", { name: "Progress" }));
+    await waitFor(() => expect(document.querySelector("[data-app-screen]")?.getAttribute("data-app-screen")).toBe("progress"));
+    fireEvent.click(within(nav).getByRole("button", { name: "Lessons" }));
+    await waitFor(() => expect(document.querySelector("[data-app-screen]")?.getAttribute("data-app-screen")).toBe("learn"));
+    expect(fake.log.filter((r) => r.method === "DELETE")).toEqual([]);
+  });
+
   test("test_uxs01_recent_sessions_and_new_question", async () => {
     const fake = new FakeProfileCore();
     fake.packs.push(pack("phy"));

@@ -14,11 +14,11 @@ const HELP_ICONS: Record<HelpKind, IconName> = { hint: "hint", walk_through: "go
 const FOLLOW_UP_ICONS: Record<FollowUpKind, IconName> = { practise: "practice", flashcards: "study", explain_step: "question" };
 
 /** Give me a hint · Walk me through it · Explain simply (ASM-28). */
-export function HelpChips({ onHelp, disabled = false, hintKeys }: { onHelp: (kind: HelpKind) => void; disabled?: boolean; /** The hint chip's shortcut, e.g. "Alt+H". */ hintKeys?: string }) {
+export function HelpChips({ onHelp, disabled = false, hintKeys, kinds = HELP_KINDS }: { kinds?: readonly HelpKind[]; onHelp: (kind: HelpKind) => void; disabled?: boolean; /** The hint chip's shortcut, e.g. "Alt+H". */ hintKeys?: string }) {
   const t = useT();
   return (
     <div role="group" aria-label={t("help.chips_label")} data-help-chips="" className="flex flex-wrap gap-2">
-      {HELP_KINDS.map((kind) => (
+      {kinds.map((kind) => (
         <SuggestionChip key={kind} icon={HELP_ICONS[kind]} tone={kind === "hint" ? "hint" : "neutral"} data-help-chip={kind} disabled={disabled} {...(kind === "hint" && hintKeys !== undefined ? { "aria-keyshortcuts": hintKeys } : {})} onClick={() => onHelp(kind)}>
           {t(`help.chip.${kind}`)}
         </SuggestionChip>

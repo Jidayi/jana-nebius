@@ -10,14 +10,15 @@ Sources, by environment:
   the Secret Service (`secret-tool lookup service jana.cloud-gateway account gemini_api_key`).
 - `dev` only: a developer's own key from the environment, `JANA_DEV_<NAME>` (for example `JANA_DEV_GEMINI_API_KEY`).
   Staging, pilot and production ignore environment keys.
-- The hackathon's Nebius provider accepts `NEBIUS_API_KEY` in the gateway process environment in every environment.
-  This exception resolves only `nebius_api_key`; it never exposes other secrets or loads a dotenv file.
+- The hackathon's server integrations accept `NEBIUS_API_KEY` and `TAVILY_API_KEY` in the gateway process
+  environment. Each source resolves only its own provider secret; neither loads a dotenv file.
 
 A `Secret` never shows its value in `repr`, `str`, formatting or pickling; code asks for it with `reveal()` at the
 one place it is sent (a provider request header) and nowhere else."""
 
 from __future__ import annotations
 
+import logging
 import os
 import platform
 import subprocess
@@ -90,7 +91,7 @@ class MountedSecretFiles:
 
 
 def _run(argv: list[str]) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(argv, capture_output=True, text=True, timeout=10, check=False)
+    return subprocess.run(argv, capture_output=True, text=True, timeout=30, check=False)
 
 
 @dataclass(frozen=True)
@@ -110,8 +111,12 @@ class KeychainSecrets:
             return None
         try:
             result = self.run(argv)
-        except (OSError, subprocess.SubprocessError):
+        except (OSError, subprocess.SubprocessError) as error:
+            if name == "nvidia_api_key":
+                logging.getLogger(__name__).warning("NVIDIA Keychain lookup failed: %s", type(error).__name__)
             return None
+        if name == "nvidia_api_key" and result.returncode != 0:
+            logging.getLogger(__name__).warning("NVIDIA Keychain lookup failed with exit status %d", result.returncode)
         value = result.stdout.strip() if result.returncode == 0 else ""
         return Secret(value) if value else None
 
@@ -152,12 +157,42 @@ class ChainedSecrets:
         return None
 
 
+@dataclass(frozen=True)
+class TavilyEnvironmentSecrets:
+    """Only the gateway process may receive the owner's Tavily credential."""
+
+    environ: Mapping[str, str] = field(repr=False)
+
+    def get(self, name: str) -> Secret | None:
+        if name != "tavily_api_key":
+            return None
+        value = self.environ.get("TAVILY_API_KEY", "").strip()
+        return Secret(value) if value else None
+
+
+@dataclass(frozen=True)
+class NvidiaEnvironmentSecrets:
+    """A server-only NVIDIA API-catalog key; never read by the browser or native learner core."""
+
+    environ: Mapping[str, str] = field(repr=False)
+
+    def get(self, name: str) -> Secret | None:
+        if name != "nvidia_api_key":
+            return None
+        value = self.environ.get("NVIDIA_API_KEY", "").strip()
+        return Secret(value) if value else None
+
+
 def secret_source(
     config: GatewayConfig, environ: Mapping[str, str] | None = None, keychain: SecretSource | None = None
 ) -> SecretSource:
     """The sources an environment may read, most specific first."""
     runtime_environ = os.environ if environ is None else environ
-    sources: list[SecretSource] = [NebiusEnvironmentSecrets(runtime_environ)]
+    sources: list[SecretSource] = [
+        NebiusEnvironmentSecrets(runtime_environ),
+        TavilyEnvironmentSecrets(runtime_environ),
+        NvidiaEnvironmentSecrets(runtime_environ),
+    ]
     if config.environment == "dev":
         sources.append(DevEnvironmentSecrets(runtime_environ))
         sources.append(keychain if keychain is not None else KeychainSecrets(config.keychain_service))

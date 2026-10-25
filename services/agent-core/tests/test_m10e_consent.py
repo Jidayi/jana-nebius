@@ -286,17 +286,12 @@ def prv12_notice_versions_resolve(tmp_path: Path):
 def dat18_matches_arc07_features():
     from agent_core.store.generated.schema import DATABASES
 
-    spec = (REPO_ROOT / "docs" / "specification" / "architecture.md").read_text()
-    table = spec.split("\nTABLE ARC-07a", 1)[1].split("\n\n", 2)[1]
-    arc07 = {m[0]: m[1] for m in re.findall(r"^\| `([a-z_]+)`[^|]*\| (S\d)", table, re.M)}
-    data_model = (REPO_ROOT / "docs" / "specification" / "data-model.md").read_text()
-    dat18 = set(re.findall(r"\| `([a-z_]+)`(?:, `[a-z_]+`)? \|", data_model.split("TABLE DAT-18a", 1)[1]
-                           .split("Acceptance:", 1)[0]))  # fmt: skip
+    features = json.loads((REPO_ROOT / "contracts/policies/online-features.json").read_text())
+    arc07 = {name: row["stage"] for name, row in features.items()}
     check = DATABASES["device"].split("CREATE TABLE online_features", 1)[1].split(")),", 1)[0]
     stored = set(re.findall(r"'([a-z_]+)'", check))
     assert arc07 == store.FEATURES and stored == set(arc07)
-    assert {f for f in dat18 if f in stored} == {f for f in arc07 if f not in ("downloads", "update_checks")} | (
-        {"downloads"} & dat18)  # fmt: skip
+    assert {name for name, row in features.items() if row["data_classes"]} == stored - {"downloads", "update_checks"}
 
 
 def dat18_zero_egress_by_default(tmp_path: Path):

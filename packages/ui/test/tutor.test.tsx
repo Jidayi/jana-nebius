@@ -66,7 +66,7 @@ const COLOURS = TOKENS.color as unknown as Record<string, Token>;
 
 describe("DSN-26", () => {
   test("dsn26_character_set_matches_contract", () => {
-    const commands = JSON.parse(read("docs/specification/contracts/api/commands.schema.json")) as { $defs: Record<string, { properties: Record<string, { enum?: string[] }> }> };
+    const commands = JSON.parse(read("services/agent-core/agent_core/contracts/schemas/api/commands.schema.json")) as { $defs: Record<string, { properties: Record<string, { enum?: string[] }> }> };
     for (const def of ["Settings", "SettingsPatch"]) expect([...CHARACTER_IDS], def).toEqual(commands.$defs[def]!.properties.tutor_avatar!.enum);
     expect(CHARACTER_IDS).toEqual(["avatar.jana", "avatar.orbit", "avatar.prism", "avatar.kite", "avatar.pebble", "avatar.ray"]);
     expect(DEFAULT_CHARACTER).toBe("avatar.jana");

@@ -1,18 +1,45 @@
 # Local integration configuration. No key belongs in this file.
-# Supply NEBIUS_API_KEY to the gateway process, or use the dev OS Keychain item
-# service jana.cloud-gateway, account nebius_api_key.
+# Prefer dev OS Keychain items with service jana-nebius.cloud-gateway and
+# accounts nebius_api_key and tavily_api_key. Gateway-only environment keys remain supported.
 environment = "dev"
 audience_host = "localhost"
 storage_dir = "/tmp/jana-nebius-gateway"
+keychain_service = "jana-nebius.cloud-gateway"
 voice_enabled = false
+
+# Use the owner's existing Tavily credits only. Paid overage must be disabled in Tavily.
+# One conservative credit is held per basic search or extraction batch, including uncertain failures.
+[tavily]
+enabled = true
+daily_credits = 50
+total_credits = 500
+expires_at = "2026-11-02T00:46:01Z"
 
 # Owner approved USD 25 total over ten days on 2026-10-23. Allocate USD 15 to inference and hold USD 10 for hosting.
 # The shared inference ledger reserves in-flight calls across all devices and persists totals across restarts.
 # Daily limits reset at UTC midnight. Hosting purchases still require the owner's approval.
 [quotas]
-device_daily_spend_usd = 1.50
-study_daily_spend_usd = 1.50
-deployment_daily_spend_usd = 1.50
+# Allow live qualification and conservative unresolved holds within the same approved USD 15 total.
+# Later days share the remaining total; this is not a new daily spending commitment.
+device_daily_spend_usd = 6.00
+study_daily_spend_usd = 6.00
+deployment_daily_spend_usd = 6.00
 deployment_total_spend_usd = 15.00
 deployment_budget_expires_at = "2026-11-02T00:46:01Z"
 deployment_max_output_tokens = 8192
+
+# Sponsored hackathon access shares the deployment's approved inference allocation.
+# The persistent daily/total/expiry ledger above remains the hard spending limit.
+[tier]
+allowance_usd_per_student_month = 15.00
+
+# NVIDIA API catalog is free for this hackathon prototype. No paid endpoint or GPU is provisioned.
+# Only a validated Podcast script is sent; trial input/output retention is disclosed beside Play.
+[podcast_speech]
+enabled = true
+access = "free_prototyping"
+daily_characters = 20000
+total_characters = 100000
+daily_requests = 100
+total_requests = 500
+expires_at = "2026-11-02T00:46:01Z"

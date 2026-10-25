@@ -5,15 +5,17 @@ from __future__ import annotations
 import asyncio
 from pathlib import Path
 
+import httpx
 import pytest
 from agent_core.config import Settings
 from agent_core.providers.scripted import ScriptedProvider
 from agent_core.router.config import load
 from agent_core.router.core import Router
 from agent_core.router.online import cloud_models
-from cloud_gateway.config import load_config
+from cloud_gateway.config import ModelSpec, load_config
 from cloud_gateway.custody import KeychainSecrets, secret_source
-from cloud_gateway.providers.nebius import SCHEMA_NOTICE, prepare_body
+from cloud_gateway.providers.base import ProviderRequest
+from cloud_gateway.providers.nebius import SCHEMA_NOTICE, NebiusAdapter, prepare_body
 from gateway_stubs import FAKE_KEYS, Device, Output, gateway_config, harness
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -21,8 +23,10 @@ ROOT = Path(__file__).resolve().parents[3]
 
 def test_nebius_contract_prompt_is_exact_and_idempotent() -> None:
     schema = {"type": "object", "required": ["answer"], "properties": {"answer": {"type": "string"}}}
-    body = {"messages": [{"role": "user", "content": "Synthetic question"}],
-            "response_format": {"type": "json_schema", "json_schema": {"schema": schema}}}
+    body = {
+        "messages": [{"role": "user", "content": "Synthetic question"}],
+        "response_format": {"type": "json_schema", "json_schema": {"schema": schema}},
+    }
     result = prepare_body(body)
     assert len(body["messages"]) == 1
     assert result["response_format"] == body["response_format"]
@@ -39,6 +43,24 @@ def test_nebius_required_tool_phase_uses_supported_auto_without_mutation() -> No
     assert prepare_body(named) == named
 
 
+def test_nebius_contract_and_application_rules_share_one_system_turn() -> None:
+    body = {
+        "messages": [
+            {"role": "system", "content": "Only source-supported facts."},
+            {"role": "system", "content": "Use typed math parts."},
+            {"role": "user", "content": "Selected source passages"},
+        ],
+        "response_format": {"type": "json_schema", "json_schema": {"schema": {"type": "object"}}},
+    }
+    result = prepare_body(body)
+    assert len([m for m in result["messages"] if m["role"] == "system"]) == 1
+    assert "Only source-supported facts." in result["messages"][0]["content"]
+    assert "Use typed math parts." in result["messages"][0]["content"]
+    assert result["messages"][1] == body["messages"][2]
+    assert len(body["messages"]) == 3
+    assert prepare_body(result) == result
+
+
 @pytest.mark.parametrize("environment", ["dev", "staging", "pilot", "production"])
 def test_nebius_key_is_server_environment_only(environment: str) -> None:
     source = secret_source(
@@ -52,6 +74,22 @@ def test_nebius_key_is_server_environment_only(environment: str) -> None:
     assert "fake-nebius-key" not in repr(source) and "fake-gemini-key" not in repr(source)
     assert source.get("admin_token") is None
     assert (source.get("gemini_api_key") is not None) == (environment == "dev")
+
+
+@pytest.mark.parametrize("effort", ["none", "low"])
+def test_nemotron_explicit_non_thinking_request_keeps_caller_body(effort: str) -> None:
+    body = {"messages": [], "reasoning_effort": effort, "max_tokens": 8192}
+    client = httpx.AsyncClient()
+    adapter = NebiusAdapter(load_config().providers["nebius"], None, client)
+    request = ProviderRequest(ModelSpec(id="nvidia/Nemotron-3-Ultra-550b-a55b"), body, "synthetic")
+    sent = adapter._body(request, False)
+    if effort == "none":
+        assert sent["chat_template_kwargs"] == {"enable_thinking": False}
+        assert "reasoning_effort" not in sent
+    else:
+        assert sent["reasoning_effort"] == "low" and "chat_template_kwargs" not in sent
+    assert body == {"messages": [], "reasoning_effort": effort, "max_tokens": 8192}
+    asyncio.run(client.aclose())
 
 
 def test_nebius_models_prices_and_capabilities_agree() -> None:
@@ -73,12 +111,14 @@ def test_nebius_models_prices_and_capabilities_agree() -> None:
 def test_nebius_request_uses_real_routing_key_and_header_only_secret(tmp_path: Path) -> None:
     async def run() -> None:
         defaults = load_config()
-        h = harness(gateway_config(
-            tmp_path,
-            slots=dict(defaults.slots),
-            providers={"nebius": defaults.providers["nebius"].model_dump()},
-            prices={key: value.model_dump() for key, value in defaults.prices.items()},
-        ))
+        h = harness(
+            gateway_config(
+                tmp_path,
+                slots=dict(defaults.slots),
+                providers={"nebius": defaults.providers["nebius"].model_dump()},
+                prices={key: value.model_dump() for key, value in defaults.prices.items()},
+            )
+        )
         device = Device()
         await device.login(h.client)
         h.stubs["nebius"].say(Output(text="What can you subtract from both sides?"))
@@ -110,10 +150,19 @@ def test_nebius_router_prefers_super_and_ultra_but_respects_online_switch() -> N
     async def run() -> None:
         config = load(ROOT / "services/agent-core/agent_core/router/router.yaml")
         local = ScriptedProvider([], installed_models=["qwen3-vl-8b"])
-        router = Router(config, Settings(), {"primary": ScriptedProvider([], kind="cloud"), "local": local},
-                        hardware_class="mid", cloud_on=lambda role: True)
-        for role, alias in (("coach", "fast-model"), ("diagnoser", "fast-model"),
-                            ("solver", "strong-model"), ("checker", "strong-model")):
+        router = Router(
+            config,
+            Settings(),
+            {"primary": ScriptedProvider([], kind="cloud"), "local": local},
+            hardware_class="mid",
+            cloud_on=lambda role: True,
+        )
+        for role, alias in (
+            ("coach", "fast-model"),
+            ("diagnoser", "fast-model"),
+            ("solver", "strong-model"),
+            ("checker", "strong-model"),
+        ):
             _, candidates, _ = await router.candidates(role)
             assert str(candidates[0]) == f"cloud:primary/{alias}"
         router.cloud_on = lambda role: False

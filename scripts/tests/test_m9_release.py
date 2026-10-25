@@ -13,11 +13,12 @@ from typing import Any
 
 import pytest
 from agent_core.config import Settings
+from fixture_sources import GOVERNANCE_DOCS as DOCS
 from jana_tools import REPO_ROOT
 from jana_tools.coverage import acceptance_tests
 from jana_tools.harness import report as rep
 from jana_tools.release import compliance, provenance, stage, versions
-from jana_tools.spec import DOCS, requirements
+from jana_tools.spec import requirements
 
 # --- OPS-01 ---------------------------------------------------------------------------------------------------------
 
@@ -175,19 +176,19 @@ def evl17_release_pipeline_blocks() -> None:
 
 
 def _s1_tests() -> list[str]:
-    return [t for rid, req in requirements().items() if not req.retired and req.priority == "must"
-            and req.stage == "S1" for t in acceptance_tests(rid)]  # fmt: skip
+    return [t for rid, req in requirements(DOCS).items() if not req.retired and req.priority == "must"
+            and req.stage == "S1" for t in acceptance_tests(rid, DOCS)]  # fmt: skip
 
 
 def prd11_release_gate_enforced(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
     met = [{"metric": "m", "target": "t", "measured": 1, "status": "met"}]
     every = dict.fromkeys(_s1_tests(), "pass")
-    clean = stage.release_rule_failures("S1", every, met)
+    clean = stage.release_rule_failures("S1", every, met, docs=DOCS)
     assert clean == {"requirements": [], "exit_metrics": [], "decisions": []}
     one = _s1_tests()[0]
-    broken = stage.release_rule_failures("S1", {**every, one: "fail"}, met)
+    broken = stage.release_rule_failures("S1", {**every, one: "fail"}, met, docs=DOCS)
     assert len(broken["requirements"]) == 1 and f"{one} → fail" in broken["requirements"][0]
-    unmet = stage.release_rule_failures("S1", every, [{**met[0], "status": "missing", "measured": None}])
+    unmet = stage.release_rule_failures("S1", every, [{**met[0], "status": "missing", "measured": None}], docs=DOCS)
     assert unmet["exit_metrics"] == ["m: missing (None; target t)"]
     docs = tmp_path / "docs"
     shutil.copytree(DOCS / "specification" / "registers", docs / "specification" / "registers")
@@ -200,11 +201,13 @@ def prd11_release_gate_enforced(tmp_path: Path, capsys: pytest.CaptureFixture[st
     # every decision blocking pilot_start must be decided too.
     rows = [{**met[0], "metric": "gate row", "kind": stage.RELEASE_GATE},
             {**met[0], "metric": "pilot row", "status": "missing", "measured": None, "kind": stage.PILOT}]  # fmt: skip
-    assert stage.release_rule_failures("S1", every, rows)["exit_metrics"] == ["pilot row: missing (None; target t)"]
-    assert stage.release_rule_failures("S1", every, rows, closed_pilot=True)["exit_metrics"] == []
+    assert stage.release_rule_failures("S1", every, rows, docs=DOCS)["exit_metrics"] == [
+        "pilot row: missing (None; target t)"
+    ]
+    assert stage.release_rule_failures("S1", every, rows, closed_pilot=True, docs=DOCS)["exit_metrics"] == []
     assert stage.pilot_pending(rows) == ["pilot row: missing"]
     rows[0]["status"] = "unmet"
-    assert stage.release_rule_failures("S1", every, rows, closed_pilot=True)["exit_metrics"]
+    assert stage.release_rule_failures("S1", every, rows, closed_pilot=True, docs=DOCS)["exit_metrics"]
     next(d for d in data["decisions"] if "pilot_start" in d.get("blocks", []))["status"] = "proposed"
     register.write_text(json.dumps(data))
     assert len(stage.release_rule_failures("S1", every, met, docs, closed_pilot=True)["decisions"]) == 2

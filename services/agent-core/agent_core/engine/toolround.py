@@ -39,9 +39,11 @@ def _checked_numbers(value: Any) -> list[Fraction]:
     if isinstance(value, dict):
         # Exact-number objects may also contain numerator/denominator or rendering metadata. Those are not
         # separate answers: use their complete scalar representations only.
-        parts = [value[k] for k in ("text", "decimal") if k in value] if (
-            "text" in value or "decimal" in value
-        ) else value.values()
+        parts = (
+            [value[k] for k in ("text", "decimal") if k in value]
+            if ("text" in value or "decimal" in value)
+            else value.values()
+        )
         return [number for part in parts for number in _checked_numbers(part)]
     if isinstance(value, list):
         return [number for part in value for number in _checked_numbers(part)]

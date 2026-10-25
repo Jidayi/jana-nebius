@@ -1,6 +1,6 @@
 // The component primitives (DSN-12): exactly one implementation each. Features compose these and never restyle or
 // re-implement them. Native `title=` tooltips are not used anywhere.
-import { Fragment, useEffect, useId, useRef, useState, type ButtonHTMLAttributes, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from "react";
+import { Fragment, useEffect, useId, useRef, useState, type ButtonHTMLAttributes, type KeyboardEvent as ReactKeyboardEvent, type ReactNode, type Ref } from "react";
 import { Icon, type IconName } from "../icons.js";
 
 type NativeButton = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "title" | "className">;
@@ -9,7 +9,7 @@ type NativeButton = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "title" | "cla
  * forward step, at most one per screen and never New question, Send or a confirmation; `secondary` (the default,
  * also called `quiet`) and `ghost` are neutral; `danger` is the quiet system-only remove. Hover, pressed and selected
  * use the neutral `wash`, with a bolder label when pressed or selected. */
-export type ButtonTone = "primary" | "emphasis" | "secondary" | "quiet" | "ghost" | "danger";
+export type ButtonTone = "primary" | "emphasis" | "secondary" | "quiet" | "ghost" | "danger" | "reference";
 
 const BUTTON_TONES: Record<ButtonTone, string> = {
   primary: "border-transparent bg-action text-action-ink hover:bg-action-hover",
@@ -18,13 +18,14 @@ const BUTTON_TONES: Record<ButtonTone, string> = {
   quiet: "border-line-strong bg-canvas text-ink hover:bg-wash aria-pressed:bg-wash aria-selected:bg-wash",
   ghost: "border-transparent bg-transparent text-ink hover:bg-wash aria-pressed:bg-wash aria-selected:bg-wash",
   danger: "border-transparent bg-transparent text-danger hover:bg-danger-soft",
+  reference: "border-transparent bg-panel text-muted hover:bg-wash hover:text-ink",
 };
 
-/** Height: 44 px, the target floor (DSN-17); `sm` is drawn at 36 px and its hit area still reaches 44 px. */
-export function Button({ tone = "secondary", size = "md", children, ...props }: NativeButton & { tone?: ButtonTone; size?: "md" | "sm"; children: ReactNode }) {
-  const box = size === "sm" ? "min-h-9 px-3 after:absolute after:-inset-1 after:content-['']" : "min-h-11 px-4";
+/** Height: 44 px, the target floor (DSN-17); smaller drawings keep a 44 px hit area. */
+export function Button({ tone = "secondary", size = "md", children, ...props }: NativeButton & { tone?: ButtonTone; size?: "md" | "sm" | "xs"; children: ReactNode; ref?: Ref<HTMLButtonElement> }) {
+  const box = size === "xs" ? "min-h-7 min-w-9 rounded-pill px-2 text-meta after:absolute after:-inset-x-1 after:-inset-y-2 after:content-['']" : size === "sm" ? "min-h-9 px-3 after:absolute after:-inset-1 after:content-['']" : "min-h-11 px-4";
   return (
-    <button type="button" {...props} className={`jana-press relative inline-flex items-center justify-center gap-2 rounded-control border text-ui font-medium aria-pressed:font-semibold aria-selected:font-semibold disabled:cursor-not-allowed disabled:border-transparent disabled:bg-panel disabled:text-faint ${box} ${BUTTON_TONES[tone]}`}>
+    <button type="button" {...props} className={`jana-press relative inline-flex items-center justify-center gap-2 ${size === "xs" ? "" : "rounded-control text-ui"} border font-medium aria-pressed:font-semibold aria-selected:font-semibold disabled:cursor-not-allowed disabled:border-transparent disabled:bg-panel disabled:text-faint ${box} ${BUTTON_TONES[tone]}`}>
       {children}
     </button>
   );
@@ -261,9 +262,9 @@ export function Dialog({ open, heading, closeLabel, onClose, children, wide = fa
  * separated by a rule; `header` is a quiet, non-interactive heading at the top of the list. */
 export interface MenuItem {
   id: string; label: string; checked?: boolean; disabled?: boolean; onSelect: () => void;
-  icon?: IconName; hint?: string; group?: string;
+  icon?: IconName; hint?: ReactNode; group?: string;
 }
-export function MenuButton({ trigger, label, items, align = "end", placement = "below", header, block = false, onOpen }: {
+export function MenuButton({ trigger, label, items, align = "end", placement = "below", header, block = false, descriptive = false, onOpen }: {
   trigger: (props: { "aria-haspopup": "menu"; "aria-expanded": boolean; onClick: () => void; ref: (el: HTMLButtonElement | null) => void }) => ReactNode;
   label: string;
   items: MenuItem[];
@@ -272,10 +273,13 @@ export function MenuButton({ trigger, label, items, align = "end", placement = "
   header?: ReactNode;
   /** The trigger fills its row (the sidebar's student row) instead of sitting inline. */
   block?: boolean;
+  /** Longer previews sit under their label in a bounded, scrollable menu. */
+  descriptive?: boolean;
   /** Called as the menu opens: what it shows can be read then, not before (the student menu's plan). */
   onOpen?: () => void;
 }) {
   const [open, setOpen] = useState(false);
+  const [menuSpace, setMenuSpace] = useState<{ above: boolean; height: number } | null>(null);
   const button = useRef<HTMLButtonElement | null>(null);
   const list = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -307,13 +311,26 @@ export function MenuButton({ trigger, label, items, align = "end", placement = "
       (event.key === "Home" ? choices[0] : choices[choices.length - 1])?.focus();
     }
   };
-  const place = placement === "above" ? "bottom-full mb-2" : "top-full mt-2";
+  const place = (descriptive && menuSpace ? menuSpace.above : placement === "above") ? "bottom-full mb-2" : "top-full mt-2";
+  const toggle = () => {
+    if (!open) {
+      if (descriptive && button.current) {
+        const anchor = button.current.getBoundingClientRect();
+        const aboveSpace = Math.max(0, anchor.top - 12), belowSpace = Math.max(0, window.innerHeight - anchor.bottom - 12);
+        const above = placement === "above" ? aboveSpace >= Math.min(320, belowSpace) : belowSpace < 320 && aboveSpace > belowSpace;
+        setMenuSpace({ above, height: Math.min(320, above ? aboveSpace : belowSpace) });
+      }
+      onOpen?.();
+    }
+    setOpen((v) => !v);
+  };
   return (
     <span className={block ? "relative flex w-full" : "relative inline-flex"}>
-      {trigger({ "aria-haspopup": "menu", "aria-expanded": open, onClick: () => { if (!open) onOpen?.(); setOpen((v) => !v); }, ref: (el) => { button.current = el; } })}
+      {trigger({ "aria-haspopup": "menu", "aria-expanded": open, onClick: toggle, ref: (el) => { button.current = el; } })}
       {open && (
         <div ref={list} role="menu" aria-label={label} onKeyDown={onKey}
-          className={`jana-reveal absolute z-popover flex ${block || placement === "above" ? "min-w-72" : "min-w-56"} flex-col rounded-card border border-line bg-canvas p-1 shadow-overlay-1 ${place} ${align === "end" ? "end-0" : "start-0"}`}>
+          style={descriptive && menuSpace ? { maxHeight: menuSpace.height } : undefined}
+          className={`jana-reveal absolute z-popover flex ${descriptive ? "max-h-80 w-80 max-w-[calc(100vw-3rem)] overflow-y-auto" : block || placement === "above" ? "min-w-72" : "min-w-56"} flex-col rounded-card border border-line bg-canvas p-1 shadow-overlay-1 ${place} ${align === "end" ? "end-0" : "start-0"}`}>
           {header !== undefined && <div className="flex flex-col gap-0.5 px-3 pt-2 pb-2">{header}</div>}
           {items.map((item, index) => (
             <Fragment key={item.id}>
@@ -323,11 +340,11 @@ export function MenuButton({ trigger, label, items, align = "end", placement = "
                   item.onSelect();
                   close();
                 }}
-                className="jana-press flex min-h-11 items-center gap-3 rounded-control px-3 text-start text-ui text-ink hover:bg-wash focus-visible:bg-wash aria-checked:font-semibold disabled:cursor-not-allowed disabled:text-faint">
+                className={`jana-press flex min-h-11 ${descriptive ? "shrink-0" : ""} items-center gap-3 rounded-control px-3 text-start text-ui text-ink hover:bg-wash focus-visible:bg-wash aria-checked:font-semibold disabled:cursor-not-allowed disabled:text-faint`}>
                 {item.checked !== undefined && <span aria-hidden="true" className={`inline-flex ${item.checked ? "text-ink" : "invisible"}`}><Icon name="verified" size={16} /></span>}
                 {item.icon !== undefined && <span aria-hidden="true" className="inline-flex text-muted"><Icon name={item.icon} size={16} /></span>}
-                <span className="flex-1">{item.label}</span>
-                {item.hint !== undefined && <span className="text-meta text-faint">{item.hint}</span>}
+                {descriptive ? <span className="flex min-w-0 flex-1 flex-col gap-1 py-2"><span>{item.label}</span>{item.hint !== undefined && <span className="text-meta text-muted">{item.hint}</span>}</span>
+                  : <><span className="flex-1">{item.label}</span>{item.hint !== undefined && <span className="text-meta text-faint">{item.hint}</span>}</>}
               </button>
             </Fragment>
           ))}

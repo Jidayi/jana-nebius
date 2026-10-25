@@ -2,6 +2,7 @@
 
 import copy
 import json
+import tomllib
 from pathlib import Path
 
 from agent_core.contracts import errors
@@ -17,10 +18,7 @@ def _fixture(rel: str) -> dict:
 
 
 def _arc29_rows() -> int:
-    lines = ARCHITECTURE.read_text().splitlines()
-    start = next(i for i, line in enumerate(lines) if line.startswith("TABLE ARC-29a"))
-    rows = [line for line in lines[start + 1 : start + 20] if line.startswith("| ") and not line.startswith("| ---")]
-    return len(rows) - 1  # minus the header row
+    return len(tomllib.loads((REPO / "scripts/jana_tools/codegen/versions.toml").read_text())["interfaces"])
 
 
 def arc29_contract_compatibility_matrix():

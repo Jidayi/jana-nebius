@@ -27,6 +27,24 @@ function askCore(replies: Record<string, unknown>) {
   }) as typeof fetch;
   return { core, fetch: fetcher, sent };
 }
+test("Tavily confirmation applies only to the current question and preserves the requested mode and reach", async () => {
+  const replies: Record<string, unknown> = { "/v1/ask": { route: "ask", state: "unavailable", reason: "web_permission_required", answer: null } };
+  const fake = askCore(replies), profiles = new ProfileController(fake.core.launch, new StoreHolder(), { fetch: fake.fetch });
+  await profiles.load(); await profiles.unlock(PROFILES[0]!.profile_id);
+  const ask = new AskController(profiles);
+  await ask.ask("What is the capital of France?", { mode: "explain", reach: "wider_web" });
+  expect(fake.sent).toHaveLength(1);
+  expect(fake.sent[0]!.body).toEqual({ question: "What is the capital of France?", mode: "explain", reach: "wider_web" });
+  replies["/v1/ask"] = { route: "ask", state: "answered", answer: ANSWER };
+  await ask.confirmWeb();
+  expect(fake.sent[1]!.body).toEqual({ question: "What is the capital of France?", mode: "explain", reach: "wider_web", web_confirmed: true });
+  await ask.ask("Where is the Seine?");
+  expect(fake.sent[2]!.body).toEqual({ question: "Where is the Seine?" });
+  const count = fake.sent.length;
+  await profiles.lock();
+  await ask.confirmWeb();
+  expect(fake.sent).toHaveLength(count);
+});
 
 test("a reply's citations, labels and checks are read under the client's own rules", () => {
   const claimed = { ...ANSWER, general_knowledge: false, checked: true,

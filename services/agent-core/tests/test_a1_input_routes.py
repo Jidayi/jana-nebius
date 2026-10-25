@@ -78,12 +78,16 @@ def test_screened_routes_pass_the_one_wrapper(tmp_path: Path) -> None:
     for key, rule in screening.ROUTES.items():
         if isinstance(rule, screening.Screened):
             source = inspect.getsource(routes[key].endpoint)
-            if key == "POST /v1/study/jobs":
+            if key in {"POST /v1/study/jobs", "POST /v1/study/quizzes/{quiz_id}/items/{item_id}/help"}:
                 from agent_core.api import study
 
                 assert 'command(request, "JobCreate"' in source
                 wrapper = inspect.getsource(study)
                 assert "screening.screen(core, route_key(request), request.path_params, body)" in wrapper
+            elif key == "POST /v1/study/web":
+                guard = 'screening.screen(core, "POST /v1/study/web", {}, body)'
+                assert guard in source
+                assert source.index(guard) < source.index("cloud.send(")
             else:
                 assert "mutating(request" in source, key
 
@@ -97,6 +101,10 @@ def _bodies(session: str) -> dict[str, tuple[str, dict[str, Any]]]:
     """A path and a body carrying DISTRESS for every screened route (the ids need not exist: the guard comes first)."""
     item = "itm.mth.o.linear_equations.0001"
     return {
+        "POST /v1/study/web": ("/v1/study/web", {"url": DISTRESS, "tavily_consent": True}),
+        "POST /v1/study/quizzes/{quiz_id}/items/{item_id}/help": (
+            "/v1/study/quizzes/quiz_x/items/q1/help", {"kind": "chat", "execution": "local",
+                "sources": [{"source_id": "src_" + "0" * 26, "revision": 1}], "prompt": DISTRESS}),
         "POST /v1/study/jobs": (
             "/v1/study/jobs", {"kind": "chat", "execution": "local",
                                "sources": [{"source_id": "src_" + "0" * 26, "revision": 1}], "prompt": DISTRESS}),

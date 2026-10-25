@@ -12,9 +12,8 @@ from pathlib import Path
 from typing import Any
 
 from . import REPO_ROOT
-from .spec import DOCS
 
-REGISTER = DOCS / "specification" / "registers" / "visual-catalogue.json"
+REGISTER = REPO_ROOT / "contracts/registers/visual-catalogue.json"
 RENDERERS_SRC = Path("packages") / "renderers" / "src"
 CLIENT_EVENTS = Path("packages") / "client-core" / "src" / "session.ts"
 STAGES = ("S1", "S2", "S3", "S4", "S5")
@@ -33,8 +32,10 @@ def build_stage() -> str:
     return BUILD_STAGE
 
 
-def register_kinds(path: Path = REGISTER) -> list[dict[str, Any]]:
-    kinds: list[dict[str, Any]] = json.loads(path.read_text())["kinds"]
+def register_kinds(path: Path | None = None) -> list[dict[str, Any]]:
+    from agent_core.assets.generated.visual_catalogue import VISUAL_CATALOGUE
+
+    kinds: list[dict[str, Any]] = (json.loads(path.read_text()) if path is not None else VISUAL_CATALOGUE)["kinds"]
     return kinds
 
 

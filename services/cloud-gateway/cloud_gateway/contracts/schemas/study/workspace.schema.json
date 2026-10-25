@@ -1,5 +1,5 @@
 {
- "$comment": "GENERATED from docs/specification/contracts/study/workspace.schema.json sha256 d88356c524cea55f01b236e5635b049dac1cb08d0efc38c4f4a5a5d73fef24b5; do not edit",
+ "$comment": "GENERATED from contracts/study/workspace.schema.json sha256 1fa823310db0716b683c9a7451e545e814e0244b33cdb09ab2ea7fffc2227a6f; do not edit",
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "$id": "https://jana.dev/contracts/study/workspace",
  "$defs": {
@@ -776,6 +776,12 @@
     },
     "settings": {
      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/GenerateSettings"
+    },
+    "context_aid_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidId"
+    },
+    "learning_intent": {
+     "const": "lesson"
     }
    },
    "required": [
@@ -1298,6 +1304,9 @@
     },
     "suspended": {
      "type": "boolean"
+    },
+    "review_intervals_ms": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/ReviewIntervals"
     }
    },
    "required": [
@@ -1689,6 +1698,12 @@
      },
      "minItems": 0,
      "maxItems": 40
+    },
+    "submission_kind": {
+     "enum": [
+      "check",
+      "submit"
+     ]
     }
    },
    "required": [
@@ -1895,6 +1910,16 @@
     },
     "cleanup_pending": {
      "type": "boolean"
+    },
+    "journey": {
+     "anyOf": [
+      {
+       "$ref": "https://jana.dev/contracts/study/workspace#/$defs/StudyJourney"
+      },
+      {
+       "type": "null"
+      }
+     ]
     }
    },
    "required": [
@@ -1939,6 +1964,11 @@
      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/GenerateSettings"
     },
     "syllabus_outline": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 8000
+    },
+    "previous_response": {
      "type": "string",
      "minLength": 1,
      "maxLength": 8000
@@ -2702,6 +2732,30 @@
          "type": "string",
          "pattern": "^les\\.[a-z0-9._]+$"
         }
+       },
+       "objectives": {
+        "type": "array",
+        "maxItems": 100,
+        "items": {
+         "type": "object",
+         "additionalProperties": false,
+         "required": [
+          "kc_id",
+          "statement"
+         ],
+         "properties": {
+          "kc_id": {
+           "type": "string",
+           "minLength": 1,
+           "maxLength": 200
+          },
+          "statement": {
+           "type": "string",
+           "minLength": 1,
+           "maxLength": 1000
+          }
+         }
+        }
        }
       }
      }
@@ -3021,6 +3075,241 @@
    },
    "required": [
     "items"
+   ]
+  },
+  "StudyJourney": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "root_aid_id",
+    "sources",
+    "title",
+    "lesson_aid_id",
+    "cards_aid_id",
+    "quiz_aid_id",
+    "next_aid_id",
+    "phase",
+    "cards_reviewed",
+    "cards_total",
+    "cards_due",
+    "questions_answered",
+    "questions_total",
+    "questions_correct",
+    "questions_to_review",
+    "retry_quiz",
+    "next_review_at",
+    "review_card_ids"
+   ],
+   "properties": {
+    "root_aid_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidId"
+    },
+    "sources": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/SourceSelection"
+     },
+     "minItems": 1,
+     "maxItems": 8
+    },
+    "title": {
+     "type": "string",
+     "minLength": 1,
+     "maxLength": 200
+    },
+    "lesson_aid_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidId"
+    },
+    "cards_aid_id": {
+     "anyOf": [
+      {
+       "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidId"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "quiz_aid_id": {
+     "anyOf": [
+      {
+       "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidId"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "next_aid_id": {
+     "$ref": "https://jana.dev/contracts/study/workspace#/$defs/AidId"
+    },
+    "phase": {
+     "enum": [
+      "lesson",
+      "flashcards",
+      "quiz",
+      "review",
+      "complete",
+      "unavailable",
+      "make_quiz"
+     ]
+    },
+    "cards_reviewed": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "cards_total": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "cards_due": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "questions_answered": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "questions_total": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "questions_correct": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "questions_to_review": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "retry_quiz": {
+     "type": "boolean"
+    },
+    "next_review_at": {
+     "anyOf": [
+      {
+       "type": "integer",
+       "minimum": 0
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "review_card_ids": {
+     "type": "array",
+     "items": {
+      "$ref": "https://jana.dev/contracts/study/workspace#/$defs/CardId"
+     },
+     "maxItems": 40
+    }
+   }
+  },
+  "StudyJourneyReply": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "journey"
+   ],
+   "properties": {
+    "journey": {
+     "anyOf": [
+      {
+       "$ref": "https://jana.dev/contracts/study/workspace#/$defs/StudyJourney"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   }
+  },
+  "StudyJourneyAction": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "action"
+   ],
+   "properties": {
+    "action": {
+     "enum": [
+      "start",
+      "resume",
+      "lesson_reviewed"
+     ]
+    }
+   }
+  },
+  "QuizSavedResult": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "result"
+   ],
+   "properties": {
+    "result": {
+     "anyOf": [
+      {
+       "$ref": "https://jana.dev/contracts/study/workspace#/$defs/QuizResult"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "answers": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+       "item_id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64
+       },
+       "answer": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+       }
+      },
+      "required": [
+       "item_id",
+       "answer"
+      ]
+     },
+     "minItems": 0,
+     "maxItems": 40
+    }
+   }
+  },
+  "ReviewIntervals": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "again": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "hard": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "good": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "easy": {
+     "type": "integer",
+     "minimum": 1
+    }
+   },
+   "required": [
+    "again",
+    "hard",
+    "good",
+    "easy"
    ]
   }
  }

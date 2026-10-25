@@ -93,16 +93,16 @@ class InferenceBudget:
             spent = db.execute("SELECT coalesce(sum(spent_micros),0) FROM inference_budget_days").fetchone()[0]
             today = db.execute("SELECT spent_micros FROM inference_budget_days WHERE day=?", (day,)).fetchone()
             today_spent = today[0] if today else 0
-            if ((self.total_micros is not None and spent + held + bound > self.total_micros)
-                    or (self.daily_micros is not None and today_spent + held + bound > self.daily_micros)):
+            if (self.total_micros is not None and spent + held + bound > self.total_micros) or (
+                self.daily_micros is not None and today_spent + held + bound > self.daily_micros
+            ):
                 raise UpstreamError("quota_or_billing", "deployment inference budget exhausted")
             db.execute("INSERT INTO inference_budget_pending VALUES (?,?)", (key, bound))
         return key, replace(request, body=body)
 
     def settle(self, key: str, request: ProviderRequest, usage: Usage) -> None:
         # A text request always has input tokens. Missing/invalid counters cannot establish actual spend.
-        if (usage.input_tokens <= 0 or usage.output_tokens < 0
-                or not 0 <= usage.cached_tokens <= usage.input_tokens):
+        if usage.input_tokens <= 0 or usage.output_tokens < 0 or not 0 <= usage.cached_tokens <= usage.input_tokens:
             return
         amount = micros(cost_usd(self.config.prices[request.model.id], usage))
         with self.store._tx() as db:
@@ -119,10 +119,14 @@ class InferenceBudget:
             db = self.store._db
             held = db.execute("SELECT coalesce(sum(reserved_micros),0) FROM inference_budget_pending").fetchone()[0]
             spent = db.execute("SELECT coalesce(sum(spent_micros),0) FROM inference_budget_days").fetchone()[0]
-            today = db.execute("SELECT spent_micros FROM inference_budget_days WHERE day=?",
-                               (day_of(self.clock()),)).fetchone()
-        return {"spent_usd": spent / MICROS, "today_usd": (today[0] if today else 0) / MICROS,
-                "held_usd": held / MICROS}
+            today = db.execute(
+                "SELECT spent_micros FROM inference_budget_days WHERE day=?", (day_of(self.clock()),)
+            ).fetchone()
+        return {
+            "spent_usd": spent / MICROS,
+            "today_usd": (today[0] if today else 0) / MICROS,
+            "held_usd": held / MICROS,
+        }
 
 
 class BudgetedAdapter:

@@ -3,7 +3,9 @@ packages/, services/, content/ and skills/, must be one the layout table allows.
 
 from __future__ import annotations
 
-TOP_LEVEL = frozenset({"apps", "packages", "services", "content", "skills", "evals", "docs", "scripts", "assets"})
+TOP_LEVEL = frozenset(
+    {"apps", "packages", "services", "content", "skills", "evals", "docs", "scripts", "assets", "contracts"}
+)
 # Hidden directories that are repository infrastructure rather than product code.
 HIDDEN_TOP_LEVEL = frozenset({".github"})
 

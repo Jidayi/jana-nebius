@@ -10,7 +10,7 @@ import json
 import pytest
 from agent_core.config import Settings
 from agent_core.contracts import errors
-from agent_core.engine.study import StudyDesk, StudyError, StudyQueue, digest
+from agent_core.engine.study import StudyDesk, StudyError, StudyQueue, chat_evidence, chat_source_notes, digest
 from agent_core.store.sqlite import open_database
 from agent_core.tools.study_document import DocumentError, decode, extract
 
@@ -121,6 +121,135 @@ def test_local_notes_cards_quiz_are_cited_and_do_not_mutate_mastery(tmp_path):
     assert d.conn.execute("SELECT count(*) FROM events").fetchone()[0] == 0
 
 
+@pytest.mark.parametrize(
+    "kind,answer,expected",
+    [
+        ("true_false", "true", "correct"),
+        ("true_false", "false", "incorrect"),
+        ("fill_blank", "  DNA. ", "correct"),
+        ("fill_blank", "protein", "unverifiable"),
+        ("multi_select", "b,a", "correct"),
+        ("multi_select", "a", "incorrect"),
+    ],
+)
+def test_queue_submission_preserves_key_based_verdicts(tmp_path, kind, answer, expected):
+    """The actual API queue must not replace deterministic marking with its unsupported-type fallback."""
+    d, s = seeded(tmp_path)
+    q = d.quiz(generate(d, s, "quiz")["quiz_id"])
+    item, key = q["view"]["items"][0], q["keys"][0]
+    item["type"] = kind
+    if kind == "multi_select":
+        key["answer"] = "a,b"
+    else:
+        item.pop("options")
+        key["answer"] = "true" if kind == "true_false" else "DNA"
+        item["stem"]["text"] = (
+            "DNA stores genetic information." if kind == "true_false" else "____ stores genetic information."
+        )
+    qid = q["view"]["quiz_id"]
+    d.conn.execute("UPDATE study_quizzes SET body=? WHERE quiz_id=?", (json.dumps(q), qid))
+    body = {"attempt_id": "sqa_" + "0" * 26, "quiz_revision": 1, "answers": [{"item_id": "q1", "answer": answer}]}
+    result = asyncio.run(queue_for(d).submit_quiz(qid, body))
+    assert result["results"][0]["verdict"] == expected
+    assert result["results"][0]["label"] == "Judged, not checked"
+    assert asyncio.run(queue_for(d).submit_quiz(qid, body)) == result
+    assert d.conn.execute("SELECT count(*) FROM kc_mastery").fetchone()[0] == 0
+
+
+@pytest.mark.parametrize(
+    "verdict,supported,local,expected",
+    [
+        ("correct", True, True, "correct"),
+        ("incorrect", True, True, "incorrect"),
+        ("correct", False, True, "unverifiable"),
+        ("correct", True, False, "unverifiable"),
+        ("partial", True, True, "unverifiable"),
+    ],
+)
+def test_blank_alternative_requires_verified_marking_decision(tmp_path, verdict, supported, local, expected):
+    d, s = seeded(tmp_path)
+    # An unrelated source is deliberately present; a short-answer marker gets only this question's citations.
+    d.create({"kind": "text", "title": "Unrelated", "text": "The Sun is a star."})
+    q = d.quiz(generate(d, s, "quiz")["quiz_id"])
+    item, key = q["view"]["items"][0], q["keys"][0]
+    item.update(type="fill_blank", stem={**item["stem"], "text": "____ stores genetic information."})
+    item.pop("options")
+    key["answer"] = "DNA"
+    qid = q["view"]["quiz_id"]
+    d.conn.execute("UPDATE study_quizzes SET body=? WHERE quiz_id=?", (json.dumps(q), qid))
+    calls = []
+
+    class Marker(LocalStudy):
+        async def study_grade(self, question, correct, answer, chunks):
+            calls.append(("grade", answer, chunks))
+            return {"verdict": verdict, "reason": claim(chunks[0])}, local
+
+        async def study_grade_support(self, question, correct, answer, judgement, chunks):
+            calls.append(("verify", answer, chunks))
+            assert judgement["verdict"] == verdict
+            return supported, True
+
+    queue = queue_for(d, Marker())
+    body = {
+        "attempt_id": "sqa_" + "0" * 26,
+        "quiz_revision": 1,
+        "answers": [{"item_id": "q1", "answer": "deoxyribonucleic acid"}],
+    }
+    result = asyncio.run(queue.submit_quiz(qid, body))
+    assert result["results"][0]["verdict"] == expected
+    assert result["results"][0]["label"] == "Judged, not checked"
+    assert all(len(chunks) == 1 and chunks[0]["source_id"] == s["source_id"] for _, _, chunks in calls)
+    assert [call[0] for call in calls] == (["grade", "verify"] if local else ["grade"])
+    assert asyncio.run(queue.submit_quiz(qid, body)) == result  # retry does not rerun the model
+    assert len(calls) == (2 if local else 1)
+    assert d.conn.execute("SELECT count(*) FROM kc_mastery").fetchone()[0] == 0
+
+
+@pytest.mark.parametrize("failure", ["unavailable", "invalid", "citation", "timeout"])
+def test_blank_marker_failure_keeps_other_answers_and_never_accepts(tmp_path, failure):
+    d, s = seeded(tmp_path)
+    q = d.quiz(generate(d, s, "quiz")["quiz_id"])
+    chunk = d.selected([{"source_id": s["source_id"], "revision": 1}])[0]
+    q["view"]["items"].append(
+        {
+            "item_id": "q2",
+            "type": "fill_blank",
+            "stem": claim(chunk, "____ stores genetic information."),
+        }
+    )
+    q["keys"].append({**q["keys"][0], "item_id": "q2", "answer": "DNA"})
+    qid = q["view"]["quiz_id"]
+    d.conn.execute("UPDATE study_quizzes SET body=? WHERE quiz_id=?", (json.dumps(q), qid))
+
+    class Marker(LocalStudy):
+        async def local_ready(self):
+            return failure != "unavailable"
+
+        async def study_grade(self, item, key, answer, chunks):
+            if failure == "timeout":
+                raise TimeoutError
+            if failure == "invalid":
+                return {"verdict": "correct"}, True
+            reason = claim(chunks[0])
+            reason["citations"][0]["quote"] = "invented quote"
+            return {"verdict": "correct", "reason": reason}, True
+
+        async def study_grade_support(self, *args):
+            raise AssertionError("invalid evidence must not reach verification")
+
+    result = asyncio.run(
+        queue_for(d, Marker()).submit_quiz(
+            qid,
+            {
+                "attempt_id": "sqa_" + "0" * 26,
+                "quiz_revision": 1,
+                "answers": [{"item_id": "q1", "answer": "a"}, {"item_id": "q2", "answer": "an alternative"}],
+            },
+        )
+    )
+    assert [r["verdict"] for r in result["results"]] == ["correct", "unverifiable"]
+
+
 def stu08_offline_waits_for_online(tmp_path):
     """D133: study tools are made online only, so a local request, even on a short source, waits for the internet
     and no local model is called."""
@@ -141,6 +270,94 @@ def stu08_offline_waits_for_online(tmp_path):
         asyncio.run(queue_for(d, NoModel()).run(d, job["job_id"]))
         assert d.job(job["job_id"])["state"] == "waiting_online"
     assert d.conn.execute("SELECT count(*) FROM study_aids").fetchone()[0] == 0
+
+
+@pytest.mark.parametrize("consented", [True, False])
+def test_online_only_pdf_retry_uses_cloud_and_preserves_consent(tmp_path, monkeypatch, consented):
+    """A legacy local extraction retry uses the guarded cloud client, never the 30-page local worker."""
+    from agent_core.net.study import StudyCloudError
+
+    conn, _ = open_database(tmp_path / "learner.db", "learner")
+    desk = StudyDesk(conn, lambda: 1792281600000, Settings(study_offline_enabled=False))
+    raw = b"synthetic PDF fixture"
+    source = desk.create(
+        {
+            "kind": "pdf",
+            "file_name": "notes.pdf",
+            "mime_type": "application/pdf",
+            "byte_length": len(raw),
+            "sha256": digest(raw),
+        }
+    )
+    desk.upload(
+        source["source_id"], 0, {"offset": 0, "sha256": digest(raw), "data_base64": base64.b64encode(raw).decode()}
+    )
+    job = desk.create_job(
+        {"kind": "extract", "execution": "local", "sources": [{"source_id": source["source_id"], "revision": 1}]}
+    )
+    job.update(state="failed", error="source_too_large")
+    desk.save_job(job)
+    desk.action(job["job_id"], {"action": "retry"})
+    calls = []
+
+    async def no_local(*args):
+        raise AssertionError("online-only Study must not use the local PDF worker")
+
+    class Cloud:
+        async def extract(self, connection, identity, request, selected, data):
+            calls.append(request["execution"])
+            assert connection is conn and data == raw
+            if not consented:
+                raise StudyCloudError("consent_required")
+            return [
+                {"locator": {"kind": "page", "page": n}, "text": f"Newton's second law, passage {n}."}
+                for n in range(1, 70)
+            ]
+
+        async def cleanup(self, connection):
+            pass
+
+    monkeypatch.setattr("agent_core.engine.study.extract", no_local)
+    queue = queue_for(desk)
+    queue.cloud = Cloud()
+    asyncio.run(queue.run(desk, job["job_id"]))
+    assert calls == ["prefer_cloud"]
+    request = desk.one("SELECT checkpoint FROM study_jobs WHERE job_id=?", (job["job_id"],))["request"]
+    assert request["execution"] == "prefer_cloud"
+    result = desk.job(job["job_id"])
+    assert result["state"] == ("completed" if consented else "failed")
+    assert result["error"] == (None if consented else "consent_required")
+    assert desk.source(source["source_id"])["readable_units"] == (69 if consented else 0)
+
+
+def test_verified_cards_from_reviewed_pdf_can_be_rated_without_reapproving_extraction(tmp_path):
+    desk, source = seeded(tmp_path)
+    source.update(state="partial", unreadable_units=[])
+    desk.save_source(source)
+    job = desk.create_job(
+        {
+            "kind": "flashcards",
+            "execution": "local",
+            "confirm_readable_only": True,
+            "sources": [{"source_id": source["source_id"], "revision": 1}],
+        }
+    )
+    asyncio.run(queue_for(desk).run(desk, job["job_id"]))
+    finished = desk.job(job["job_id"])
+    assert finished["state"] == "completed"
+    deck = desk.deck(desk.aid(finished["result_ids"][0])["deck_id"])
+    card = deck["cards"][0]
+    body = {
+        "client_review_id": "srv_" + "0" * 26,
+        "card_id": card["card_id"],
+        "card_revision": 1,
+        "rating": "good",
+        "revealed": True,
+    }
+    assert desk.review(deck["deck_id"], body)["reps"] == 1
+    desk.revise(source["source_id"], {"expected_revision": 1, "text": "A changed source."})
+    with pytest.raises(StudyError, match="source_stale"):
+        desk.review(deck["deck_id"], {**body, "client_review_id": "srv_" + "1" * 26})
 
 
 def test_source_revision_retains_old_citations_and_suspends_cards(tmp_path):
@@ -465,6 +682,56 @@ def test_study_uses_actual_local_router_for_generation_and_independent_support(t
     asyncio.run(scenario())
 
 
+@pytest.mark.parametrize(
+    "relation,reason_supported,expected",
+    [
+        ("entailed", True, True),
+        ("contradicted", True, False),
+        ("unknown", True, False),
+        ("entailed", False, False),
+    ],
+)
+def test_blank_grading_uses_local_router_and_verifies_the_answer_decision(
+    tmp_path, relation, reason_supported, expected
+):
+    from agent_core.engine.reflection import ReflectorModel
+    from engine_harness import close, make_engine, reply
+
+    async def scenario():
+        d, source = seeded(tmp_path)
+        chunks = d.selected([{"source_id": source["source_id"], "revision": 1}])
+        item = {"item_id": "q1", "type": "fill_blank", "stem": claim(chunks[0], "____ stores genetic information.")}
+        key = {"item_id": "q1", "answer": "DNA", "explanation": claim(chunks[0]), "marking": "judged"}
+        engine, provider = await make_engine(
+            tmp_path / "engine",
+            {
+                "reflector": [
+                    reply('{"verdict":"correct"}'),
+                    reply(json.dumps({"relation": relation, "reason_supported": reason_supported})),
+                ]
+            },
+            worker=False,
+        )
+        try:
+            deps = engine.deps
+            model = ReflectorModel(deps.router, deps.assets, deps.settings, deps.bundled_schemas, frozenset())
+            judgement, local = await model.study_grade(item, key, "deoxyribonucleic acid", chunks)
+            accepted, verified_local = await model.study_grade_support(
+                item, key, "deoxyribonucleic acid", judgement, chunks
+            )
+            assert judgement == {"verdict": "correct", "reason": key["explanation"]}
+            assert local and verified_local and accepted is expected
+            assert len(provider.requests) == 2
+            verifier = json.dumps(provider.requests[1])
+            assert "deoxyribonucleic acid" in verifier and "completed statement" in verifier
+            assert "true explanation alone" in verifier and "negation" in verifier
+            assert '"judgement"' not in verifier and '"key"' not in verifier
+        finally:
+            await close(engine)
+
+    asyncio.run(scenario())
+
+
 def test_review_and_attempt_ids_reject_changed_payload(tmp_path):
     d, s = seeded(tmp_path)
     deck = d.deck(generate(d, s, "flashcards")["deck_id"])
@@ -703,6 +970,366 @@ def test_private_historical_grants_bind_revision(tmp_path):
         queue.authorise(sid, old["open_token"], 1)
 
 
+def test_all_preview_topics_mean_whole_document_not_a_heading_restriction(tmp_path, monkeypatch):
+    desk, source = seeded(tmp_path)
+    selection = [{"source_id": source["source_id"], "revision": 1}]
+    monkeypatch.setattr(desk, "topics", lambda _: [{"title": "Cover"}, {"title": "Chapter one"}])
+    request = {"kind": "summary", "sources": selection, "settings": {"topics": ["Cover", "Chapter one"], "focus": ""}}
+    assert "topics" not in desk.brief(request).get("settings", {})
+    assert request["settings"]["topics"] == ["Cover", "Chapter one"]
+    request["settings"]["topics"] = ["Chapter one"]
+    assert desk.brief(request)["settings"]["topics"] == ["Chapter one"]
+
+
+@pytest.mark.parametrize("distribution", ["uniform", "early_heavy"])
+@pytest.mark.parametrize("interruption", ["cancelled", "retry"])
+@pytest.mark.parametrize("kind", ["summary", "notes", "audio_overview", "flashcards", "quiz"])
+def test_whole_pdf_cloud_batches_cover_every_page_and_resume(tmp_path, interruption, kind, distribution):
+    async def run():
+        desk, _ = seeded(tmp_path)
+        desk.settings = Settings(study_offline_enabled=False, study_batch_char_limit=16000)
+        source = desk.create(
+            {
+                "kind": "pdf",
+                "file_name": "notes.pdf",
+                "mime_type": "application/pdf",
+                "byte_length": 3,
+                "sha256": digest(b"pdf"),
+            }
+        )
+        desk.commit_units(
+            source,
+            [
+                {
+                    "locator": {"kind": "page", "page": page},
+                    "text": f"Page {page}: Cells store genetic information. "
+                    + "Enzymes are biological catalysts. " * 40,
+                }
+                for page in range(1, 70)
+            ],
+        )
+        selection = [{"source_id": source["source_id"], "revision": 1}]
+        job = desk.create_job(
+            {
+                "kind": kind,
+                "execution": "prefer_cloud",
+                "sources": selection,
+                "settings": {"podcast_length": "standard", "voices": 1}
+                if kind == "audio_overview"
+                else {"topics": [t["title"] for t in desk.topics(selection)]},
+            }
+        )
+        seen = []
+
+        class Cloud:
+            interrupted = False
+
+            async def process(self, connection, identity, request, chunks, attempt, batch_index):
+                assert "topics" not in request.get("settings", {})
+                assert sum(len(c["text"]) for c in chunks) <= 16000
+                if batch_index == 1 and not self.interrupted:
+                    self.interrupted = True
+                    if interruption == "cancelled":
+                        raise asyncio.CancelledError()
+                    raise StudyError("model_unavailable")
+                seen.extend(c["chunk_id"] for c in chunks)
+                output = {"request_id": identity, "kind": kind, "claims": [claim(c) for c in chunks]}
+                item_chunks = chunks
+                if distribution == "early_heavy":
+                    item_chunks = [chunks[0]] * 40 if batch_index == 0 else [chunks[-1]]
+                if kind == "flashcards":
+                    output["flashcards"] = [
+                        {"front": claim(c, f"Item {i}: what does page {c['locator']['page']} state?"), "back": claim(c)}
+                        for i, c in enumerate(item_chunks)
+                    ]
+                elif kind == "quiz":
+                    output["quiz"] = {
+                        "items": [
+                            {"item_id": f"q{i}", "type": "true_false", "stem": claim(c, f"Item {i}: {c['text']}")}
+                            for i, c in enumerate(item_chunks)
+                        ],
+                        "keys": [
+                            {"item_id": f"q{i}", "answer": "true", "explanation": claim(c), "marking": "judged"}
+                            for i, c in enumerate(item_chunks)
+                        ],
+                    }
+                return output
+
+            async def cleanup(self, connection):
+                pass
+
+        cloud = Cloud()
+        queue = queue_for(desk)
+        queue.cloud = cloud
+        if interruption == "cancelled":
+            with pytest.raises(asyncio.CancelledError):
+                await queue.run(desk, job["job_id"])
+        else:
+            await queue.run(desk, job["job_id"])
+            assert desk.job(job["job_id"])["state"] == "failed"
+            desk.action(job["job_id"], {"action": "retry"})
+        assert desk.conn.execute("SELECT count(*) FROM study_aids").fetchone()[0] == 0
+        await queue.run(desk, job["job_id"])
+        finished = desk.job(job["job_id"])
+        assert finished["state"] == "completed", finished
+        chunks = desk.selected(selection)
+        assert seen == [c["chunk_id"] for c in chunks]
+        assert len(seen) == 69
+        output = desk.aid(finished["result_ids"][0])
+        cited = {c["citations"][0]["chunk_id"] for c in output["claims"]}
+        if kind == "audio_overview":
+            assert len(output["claims"]) == 20 and cited <= set(seen)
+        else:
+            assert cited == set(seen)
+        if kind == "flashcards":
+            cards = desk.deck(output["deck_id"])["cards"]
+            assert len(cards) == 10
+            selected = [c["back"] for c in cards]
+        elif kind == "quiz":
+            quiz = desk.quiz(output["quiz_id"])["view"]
+            assert len(quiz["items"]) == 10
+            assert "keys" not in quiz
+            selected = [q["stem"] for q in quiz["items"]]
+        else:
+            selected = output["claims"]
+        pages = {c["chunk_id"]: c["locator"]["page"] for c in chunks}
+        assert min(pages[c["citations"][0]["chunk_id"]] for c in selected) == 1
+        assert max(pages[c["citations"][0]["chunk_id"]] for c in selected) >= 60
+
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize("execution", ["local", "prefer_cloud"])
+@pytest.mark.parametrize("bad_citation", [False, True])
+def test_whole_pdf_chat_synthesizes_once_and_resumes_without_losing_progress(tmp_path, execution, bad_citation):
+    desk, small = seeded(tmp_path)
+    quiz = generate(desk, small, "quiz")
+
+    async def run():
+        qid = quiz["quiz_id"]
+        desk.save_draft(qid, {"quiz_revision": 1, "answers": [{"item_id": "q1", "answer": "b"}], "position": 0})
+        preserved = desk.conn.execute("SELECT body FROM study_quizzes WHERE quiz_id=?", (qid,)).fetchone()[0]
+        desk.settings = Settings(study_offline_enabled=True, study_batch_char_limit=16000)
+        source = desk.create(
+            {
+                "kind": "pdf",
+                "file_name": "notes.pdf",
+                "mime_type": "application/pdf",
+                "byte_length": 3,
+                "sha256": digest(b"pdf"),
+            }
+        )
+        desk.commit_units(
+            source,
+            [
+                {
+                    "locator": {"kind": "page", "page": page},
+                    "text": "Section preamble. " * 12
+                    + f"Page {page}: Cells store genetic information. " * 40
+                    + "Chlorophyll is a plant pigment. "
+                    + "Enzymes are biological catalysts. " * 230,
+                }
+                for page in range(1, 6)
+            ],
+        )
+        selection = [{"source_id": source["source_id"], "revision": 1}]
+        original = desk.selected(selection)
+        prompt = "Teach me from the beginning, with an example from notes.pdf about chlorophyll."
+        job = desk.create_job({"kind": "chat", "execution": execution, "sources": selection, "prompt": prompt})
+        final_calls, final_offsets = [], []
+
+        class Lesson(LocalStudy):
+            interrupted = False
+
+            async def study_generate(self, identity, request, chunks):
+                assert request["kind"] == "chat"  # retrieval does not generate intermediate lessons
+                assert request["prompt"] == prompt
+                assert len(chunks) <= 64 and sum(len(c["text"]) for c in chunks) <= 32000
+                assert chunks[0] == original[0]  # opening context includes its original worked examples
+                offset = original[-1]["text"].index(chunks[-1]["text"])
+                assert offset > 0 and "Chlorophyll" in chunks[-1]["text"]
+                final_offsets.append(offset)
+                final_calls.append(True)
+                if not self.interrupted:
+                    self.interrupted = True
+                    raise StudyError("model_unavailable")
+                c = claim(chunks[-1], "One coherent lesson, followed by a source example.")
+                if bad_citation:
+                    c["citations"][0].update(quote="This evidence does not exist.", start=0, end=29)
+                return {"request_id": identity, "kind": "chat", "claims": [c]}, True
+
+            async def process(self, connection, identity, request, chunks, attempt, batch_index):
+                assert batch_index >= 128  # cannot replay old independent-answer receipts
+                output, _ = await self.study_generate(identity, request, chunks)
+                return output
+
+            async def cleanup(self, connection):
+                pass
+
+        model = Lesson()
+        queue = queue_for(desk, model)
+        queue.cloud = model
+        await queue.run(desk, job["job_id"])
+        assert desk.job(job["job_id"])["state"] == "failed"
+        checkpoint = desk.one("SELECT checkpoint FROM study_jobs WHERE job_id=?", (job["job_id"],))
+        assert checkpoint["completed_chunk_ids"] == [c["chunk_id"] for c in original]
+        desk.action(job["job_id"], {"action": "retry"})
+        await queue.run(desk, job["job_id"])
+        finished = desk.job(job["job_id"])
+        assert final_offsets[0] == final_offsets[1]  # deterministic evidence on retry
+        assert len(final_calls) == 2
+        assert finished["state"] == ("failed" if bad_citation else "completed"), finished
+        if not bad_citation:
+            result = desk.aid(finished["result_ids"][0])
+            assert len(result["claims"]) == 1  # map notes never appear as independent lessons
+            citation = result["claims"][0]["citations"][0]
+            assert citation["start"] == final_offsets[-1] and citation["end"] == final_offsets[-1] + 30
+            assert citation["quote"] == original[-1]["text"][citation["start"] : citation["end"]]
+        assert desk.conn.execute("SELECT body FROM study_quizzes WHERE quiz_id=?", (qid,)).fetchone()[0] == preserved
+        assert desk.conn.execute("SELECT count(*) FROM study_attempts").fetchone()[0] == 0
+        assert desk.conn.execute("SELECT count(*) FROM kc_mastery").fetchone()[0] == 0
+
+    asyncio.run(run())
+
+
+def test_opening_lesson_keeps_full_chapter_after_long_front_matter(tmp_path):
+    desk, _ = seeded(tmp_path)
+    source = desk.create(
+        {
+            "kind": "pdf",
+            "file_name": "notes.pdf",
+            "mime_type": "application/pdf",
+            "byte_length": 3,
+            "sha256": digest(b"pdf"),
+        }
+    )
+    desk.commit_units(
+        source,
+        [
+            {"locator": {"kind": "page", "page": 1}, "text": "Contents\nChapter 1 ...... 5\n" * 400},
+            {"locator": {"kind": "page", "page": 2}, "text": "Preface\n" + "About this course. " * 400},
+            {
+                "locator": {"kind": "page", "page": 5},
+                "text": "Chapter 1\nLearning from samples\n"
+                + "The definition comes first. " * 25
+                + "The worked coin example follows: count heads and samples.",
+            },
+            {"locator": {"kind": "page", "page": 6}, "text": "The example continues with its result. " * 40},
+        ],
+    )
+    chunks = desk.selected([{"source_id": source["source_id"], "revision": 1}])
+    outputs = [chat_source_notes("stj_" + "0" * 26, {"prompt": "Teach me from the beginning."}, [c]) for c in chunks]
+    excerpts, offsets = chat_evidence([[c] for c in chunks], outputs, 32000, opening_lesson=True)
+    assert [c["locator"]["page"] for c in excerpts] == [5, 6]
+    assert "The worked coin example follows" in excerpts[0]["text"]
+    assert excerpts[0]["text"] == chunks[2]["text"] and offsets[chunks[2]["chunk_id"]] == 0
+    ordinary, _ = chat_evidence([[c] for c in chunks], outputs, 32000)
+    assert ordinary[0]["locator"]["page"] == 1  # ordinary questions can still ask about front matter
+
+
+@pytest.mark.parametrize("kind", ["chat", "flashcards", "quiz"])
+def test_lesson_followups_use_parent_context_and_original_cited_chunks(tmp_path, kind):
+    desk, small = seeded(tmp_path)
+    saved_quiz = generate(desk, small, "quiz")
+    before = desk.conn.execute("SELECT * FROM study_quizzes").fetchall()
+    source = desk.create(
+        {
+            "kind": "pdf",
+            "file_name": "notes.pdf",
+            "mime_type": "application/pdf",
+            "byte_length": 3,
+            "sha256": digest(b"pdf"),
+        }
+    )
+    desk.commit_units(
+        source,
+        [
+            {"locator": {"kind": "page", "page": 1}, "text": TEXT},
+            {"locator": {"kind": "page", "page": 2}, "text": "An unrelated chapter on matrices."},
+        ],
+    )
+    parent_job = desk.create_job(
+        {
+            "kind": "chat",
+            "execution": "local",
+            "prompt": "Teach me from the beginning.",
+            "sources": [{"source_id": source["source_id"], "revision": 1}],
+        }
+    )
+    asyncio.run(queue_for(desk).run(desk, parent_job["job_id"]))
+    parent = desk.aid(desk.job(parent_job["job_id"])["result_ids"][0])
+    request = {"kind": kind, "execution": "local", "sources": parent["sources"], "context_aid_id": parent["aid_id"]}
+    if kind == "chat":
+        request["prompt"] = "Can you explain that step again, a different way?"
+    job = desk.create_job(request)
+
+    class FollowUp(LocalStudy):
+        async def study_generate(self, identity, brief, chunks):
+            assert [c["chunk_id"] for c in chunks] == [parent["claims"][0]["citations"][0]["chunk_id"]]
+            assert brief["previous_response"] == "1. " + parent["claims"][0]["text"]
+            assert "context_aid_id" not in brief
+            return await super().study_generate(identity, brief, chunks)
+
+    asyncio.run(queue_for(desk, FollowUp()).run(desk, job["job_id"]))
+    assert desk.job(job["job_id"])["state"] == "completed"
+    assert desk.conn.execute("SELECT * FROM study_quizzes ORDER BY rowid LIMIT ?", (len(before),)).fetchall() == before
+    assert desk.quiz(saved_quiz["quiz_id"])["view"]["status"] == "ready"
+    assert desk.conn.execute("SELECT count(*) FROM study_attempts").fetchone()[0] == 0
+    with pytest.raises(StudyError):
+        desk.create_job({**request, "context_aid_id": saved_quiz["aid_id"]})  # no quiz keys as lesson context
+    with pytest.raises(StudyError):
+        desk.create_job({**request, "sources": [{"source_id": small["source_id"], "revision": 1}]})
+    desk.revise(source["source_id"], {"expected_revision": 1, "text": "A revised chapter."})
+    with pytest.raises(StudyError, match="source_stale"):
+        desk.create_job(request)
+
+
+def test_quiz_after_cards_uses_front_and_back_evidence_without_changing_reviews(tmp_path):
+    desk, _ = seeded(tmp_path)
+    source = desk.create(
+        {
+            "kind": "pdf",
+            "file_name": "notes.pdf",
+            "mime_type": "application/pdf",
+            "byte_length": 3,
+            "sha256": digest(b"pdf"),
+        }
+    )
+    desk.commit_units(
+        source,
+        [
+            {"locator": {"kind": "page", "page": 1}, "text": TEXT},
+            {"locator": {"kind": "page", "page": 2}, "text": "RNA can carry genetic information."},
+        ],
+    )
+    selection = [{"source_id": source["source_id"], "revision": 1}]
+
+    class Model(LocalStudy):
+        async def study_generate(self, identity, request, chunks):
+            output, local = await super().study_generate(identity, request, chunks)
+            if request["kind"] == "flashcards":
+                output["flashcards"][0]["back"] = claim(chunks[1])
+            else:
+                assert len(chunks) == 2  # includes the card back's page, absent from the aid's main claims
+                assert "RNA" in request["previous_response"]
+                assert "What stores genetic information?" in request["previous_response"]
+            return output, local
+
+    model = Model()
+    job = desk.create_job({"kind": "flashcards", "execution": "local", "sources": selection})
+    asyncio.run(queue_for(desk, model).run(desk, job["job_id"]))
+    cards = desk.aid(desk.job(job["job_id"])["result_ids"][0])
+    before = desk.conn.execute("SELECT * FROM study_flashcards").fetchall()
+    quiz = desk.create_job(
+        {"kind": "quiz", "execution": "local", "sources": selection, "context_aid_id": cards["aid_id"]}
+    )
+    asyncio.run(queue_for(desk, model).run(desk, quiz["job_id"]))
+    assert desk.job(quiz["job_id"])["state"] == "completed"
+    assert desk.conn.execute("SELECT * FROM study_flashcards").fetchall() == before
+    assert desk.conn.execute("SELECT count(*) FROM study_reviews").fetchone()[0] == 0
+    assert desk.conn.execute("SELECT count(*) FROM kc_mastery").fetchone()[0] == 0
+
+
 def test_large_source_batches_resume_without_repeating_verified_work(tmp_path):
     async def run():
         d, _ = seeded(tmp_path)
@@ -824,3 +1451,67 @@ def test_uploaded_instruction_text_is_screened_before_immutable_citations(tmp_pa
     assert "Ignore all previous instructions" not in chunk["text"]
     assert "[instruction-like text removed]" in chunk["text"]
     assert chunk["sha256"] == digest(chunk["text"].encode())
+
+
+@pytest.mark.parametrize("state", ["new", "review", "relearning"])
+@pytest.mark.parametrize("rating", ["again", "hard", "good", "easy"])
+def test_rating_interval_previews_are_read_only_and_match_committed_reviews(tmp_path, state, rating):
+    from agent_core.engine.study import epoch
+
+    d, s = seeded(tmp_path)
+    aid = generate(d, s, "flashcards")
+    did = aid["deck_id"]
+    card = d.deck(did)["cards"][0]
+    request = {"card_id": card["card_id"], "card_revision": card["revision"], "revealed": True}
+    if state != "new":
+        d.review(
+            did,
+            {**request, "client_review_id": "srv_" + "1" * 26, "rating": "again" if state == "relearning" else "good"},
+        )
+    changes = d.conn.total_changes
+    stored = d.conn.execute("SELECT body,schedule,due_at FROM study_flashcards").fetchall()
+    deck = d.deck(did)
+    assert not errors("study/workspace#/$defs/Deck", deck)
+    intervals = deck["cards"][0]["review_intervals_ms"]
+    assert set(intervals) == {"again", "hard", "good", "easy"}
+    assert intervals["again"] == 120_000
+    assert intervals["easy"] >= intervals["good"] >= intervals["hard"]
+    assert d.conn.total_changes == changes
+    assert d.conn.execute("SELECT body,schedule,due_at FROM study_flashcards").fetchall() == stored
+    assert "review_intervals_ms" not in json.loads(stored[0][0])
+    result = d.review(did, {**request, "client_review_id": "srv_" + "2" * 26, "rating": rating})
+    assert epoch(result["due_at"]) - d.clock() == intervals[rating]
+    assert d.conn.execute("SELECT count(*) FROM kc_mastery").fetchone()[0] == 0
+    assert d.conn.execute("SELECT count(*) FROM events").fetchone()[0] == 0
+
+
+@pytest.mark.parametrize("previously_reviewed", [False, True])
+def test_due_again_cards_return_before_untouched_cards_without_rescheduling(tmp_path, previously_reviewed):
+    class TwoCards(LocalStudy):
+        async def study_generate(self, identity, request, chunks):
+            result, verified = await super().study_generate(identity, request, chunks)
+            result["flashcards"].append({"front": claim(chunks[0], "What does DNA store?"), "back": claim(chunks[0])})
+            return result, verified
+
+    d, s = seeded(tmp_path)
+    now = d.clock()
+    d.clock = lambda: now
+    job = d.create_job(
+        {"kind": "flashcards", "execution": "local", "sources": [{"source_id": s["source_id"], "revision": 1}]}
+    )
+    asyncio.run(queue_for(d, TwoCards()).run(d, job["job_id"]))
+    aid = d.aid(d.job(job["job_id"])["result_ids"][0])
+    did = aid["deck_id"]
+    returning, untouched = d.deck(did)["cards"]
+    request = {"card_id": returning["card_id"], "card_revision": returning["revision"], "revealed": True}
+    if previously_reviewed:
+        d.review(did, {**request, "client_review_id": "srv_" + "1" * 26, "rating": "good"})
+    d.review(did, {**request, "client_review_id": "srv_" + "2" * 26, "rating": "again"})
+    stored = d.conn.execute("SELECT * FROM study_flashcards ORDER BY card_id").fetchall()
+    changes = d.conn.total_changes
+    now += 119_999
+    assert d.deck(did)["cards"][0]["card_id"] == untouched["card_id"]
+    now += 1
+    assert d.deck(did)["cards"][0]["card_id"] == returning["card_id"]
+    assert d.conn.execute("SELECT * FROM study_flashcards ORDER BY card_id").fetchall() == stored
+    assert d.conn.total_changes == changes

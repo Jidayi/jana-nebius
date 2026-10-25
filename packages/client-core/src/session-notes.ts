@@ -56,11 +56,23 @@ export class SessionNotesController {
       if (generation === this.profiles.generation && revision === this.revision) this.patch({ status: error instanceof CommandError && error.code === "not_found" ? "unavailable" : "failed" });
     }
   }
-  close(): void { this.patch({ opened: null, error: false }); }
+  close(): void { this.revision++; this.patch({ opened: null, error: false }); }
   async end(sessionId: string): Promise<boolean> {
     const generation = this.profiles.generation;
     try {
       await this.profiles.commands.post(`/v1/sessions/${encodeURIComponent(sessionId)}/end`, {}, clientId());
+      if (generation !== this.profiles.generation) return false;
+      this.close();
+      const loading = this.load("");
+      const revision = this.revision;
+      await loading;
+      if (generation !== this.profiles.generation) return false;
+      // Keep private notes behind their existing confirmation. A newer search or
+      // navigation action takes precedence over this automatic selection.
+      if (revision === this.revision && this.view.status === "ready") {
+        const note = this.view.notes.find((n) => n.session_id === sessionId);
+        if (note !== undefined && !note.private) await this.act(note.note_id, "open");
+      }
       return generation === this.profiles.generation;
     } catch { return false; }
   }

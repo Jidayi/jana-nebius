@@ -3,10 +3,14 @@ import { afterEach, expect, test, vi } from "vitest";
 import { EMPTY_SAVED_QUESTIONS, type SavedQuestionsView } from "@jana/client-core";
 import { SAVED } from "../../client-core/test/savedcore.js";
 import { SavedQuestionsContent } from "../src/learn/SavedQuestions.js";
+import { LessonLinkProvider } from "../src/learn/link.js";
 
 afterEach(cleanup);
+function savedActions() {
+  return { onSelect: vi.fn(), onStatus: vi.fn(), onRemove: vi.fn(), onRetry: vi.fn(), onClose: vi.fn(), onPrint: vi.fn() };
+}
 function show(flags: Partial<SavedQuestionsView> = {}) {
-  const actions = { onSelect: vi.fn(), onStatus: vi.fn(), onRemove: vi.fn(), onRetry: vi.fn(), onClose: vi.fn(), onPrint: vi.fn() };
+  const actions = savedActions();
   render(<SavedQuestionsContent view={{ ...EMPTY_SAVED_QUESTIONS, status: "ready", questions: [SAVED], ...flags }} subject={() => "Physics"} topic={() => "Motion"} actions={actions} />);
   return actions;
 }
@@ -18,6 +22,17 @@ test("uxs42_saved_question_snapshot", () => {
   expect(screen.queryByRole("button", { name: /send|recipient|share|sync/i })).toBeNull();
   fireEvent.click(screen.getByRole("button", { name: "Mark resolved" })); expect(actions.onStatus).toHaveBeenCalledWith(SAVED.question_id, "sorted");
   fireEvent.click(screen.getByRole("button", { name: "Print question" })); expect(actions.onPrint).toHaveBeenCalledOnce();
+});
+test("a saved question opens its known topic; missing topics remain plain text", () => {
+  const actions = savedActions();
+  const openTopic = vi.fn(), view = { ...EMPTY_SAVED_QUESTIONS, status: "ready" as const, questions: [SAVED], selected: SAVED.question_id };
+  const content = (topic: (id: string) => string) => <LessonLinkProvider open={vi.fn()} openTopic={openTopic}><SavedQuestionsContent view={view} actions={actions} subject={() => "Physics"} topic={topic} /></LessonLinkProvider>;
+  const shown = render(content(() => "Motion"));
+  fireEvent.click(screen.getByRole("button", { name: "Review Motion in Learn" }));
+  expect(openTopic).toHaveBeenCalledWith(SAVED.snapshot.topic_id);
+  expect(actions.onStatus).not.toHaveBeenCalled();
+  shown.rerender(content((id) => id));
+  expect(screen.queryByRole("button", { name: /Review .* in Learn/ })).toBeNull();
 });
 test("list opens the pinned question and searches locally", () => {
   const actions = show(); fireEvent.change(screen.getByRole("searchbox"), { target: { value: "unmatched" } });

@@ -1,12 +1,11 @@
 // UIA-27: the specification's conceptual components mapped to their actual composed gallery views.
-import { readFileSync } from "node:fs";
-import path from "node:path";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { afterEach, expect, test } from "vitest";
 import { RENDERERS } from "@jana/renderers";
 import { defaultRegistry } from "@jana/ui";
 import { DECLARED, GalleryView, STATES } from "@jana/ui/gallery";
 import inventory from "../../../packages/ui/gallery/inventory.json";
+import contract from "../../../contracts/policies/ui-inventory.json";
 import { registerVisuals } from "../src/visuals.js";
 
 afterEach(cleanup);
@@ -27,10 +26,11 @@ test.each(Object.entries(inventory) as [string, Entry][])("uia27_inventory_galle
     cleanup();
 });
 
-test("the inventory is exactly the specification table and all declared states exist", () => {
-  const spec = readFileSync(path.resolve(import.meta.dirname, "../../../docs/specification/ui-architecture.md"), "utf8").split("### UIA-27")[1]!.split("Acceptance:")[0]!;
-  const names = [...spec.matchAll(/`([^`]+)`/g)].map((m) => m[1]);
-  expect(Object.keys(inventory).sort()).toEqual(names.sort());
+test("the public inventory matches its component contract and all declared states exist", () => {
+  expect(Object.keys(inventory).length).toBeGreaterThan(30);
+  const fixtures = Object.values(inventory).map((entry) => STATES.find((state) => state.id === entry.fixture));
+  expect(fixtures.every((state) => state !== undefined)).toBe(true);
+  expect(Object.keys(inventory).sort()).toEqual([...contract.components].sort());
 
   // Every declared state is data, and every shipped renderer kind has a real canonical visual.
   for (const [component, states] of Object.entries(DECLARED)) for (const state of states) expect(STATES.some((s) => s.component === component && s.state === state), `${component}/${state}`).toBe(true);

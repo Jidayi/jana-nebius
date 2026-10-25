@@ -15,11 +15,18 @@ from jana_tools import REPO_ROOT
 from jana_tools.evidence.drills import DRILLS
 from jana_tools.evidence.placeholders import placeholder_paths
 from jana_tools.evidence.records import assemble, record_errors
-from jana_tools.evidence.runner import ZERO, Interactive, Rehearsal, Scripted, check, current_spec, run
+from jana_tools.evidence.runner import ZERO, Interactive, Rehearsal, Scripted, check, run
 from jana_tools.evidence.templates import GOVERNANCE, M24_TEMPLATES, TEMPLATES, governance_template, stale_templates
 from jana_tools.release.field_evidence import SOURCES, FieldEvidence, ProbeRecord, field_errors, read_evidence
 
 CANDIDATE = "a" * 40
+
+
+def current_spec() -> str:
+    """Synthetic identity shared by the unit-test producer and verifier."""
+    return "f" * 40
+
+
 NOW = datetime.now(UTC).replace(microsecond=0)
 
 
@@ -416,7 +423,7 @@ def test_checklist_writes_exactly_what_the_gate_reads(drill_id: str, tmp_path: P
         result = run(DRILLS[drill_id], folder, Scripted(answers), candidate=CANDIDATE, spec_revision=current_spec())
     for name in DRILLS[drill_id].tests:
         assert result["verdict"][name] == [], (name, result["verdict"][name])
-        assert check(folder / "evidence.json", name) == []
+        assert check(folder / "evidence.json", name, spec_revision=current_spec()) == []
     if drill_id == "tabletop":
         governance = json.loads((folder / "tabletop-pilot_start.json").read_text())
         assert record_errors("tabletop", governance, candidate=CANDIDATE) == []

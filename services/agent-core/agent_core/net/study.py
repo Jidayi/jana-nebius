@@ -112,11 +112,56 @@ class StudyCloud:
                     "corrupt_source",
                     "unreadable_source",
                     "model_unavailable",
+                    "neural_speech_not_configured",
+                    "neural_speech_key_rejected",
+                    "neural_speech_limit",
+                    "neural_speech_already_sent",
+                    "neural_speech_unavailable",
+                    "neural_speech_invalid_audio",
                     "safety_blocked",
+                    "invalid_public_url",
+                    "web_page_unreadable",
+                    "web_permission_required",
+                    "search_not_configured",
+                    "search_prepaid_only",
+                    "search_credits_exhausted",
+                    "search_attempt_already_sent",
+                    "search_unavailable",
                 )
                 else "processing_failed"
             )
         return reply.body
+
+    async def podcast_audio(self, conn: Any, text: str, request_id: str, voice_index: int) -> bytes:
+        """The API supplies a frozen, validated Podcast passage; no raw source or browser-supplied text leaves."""
+        self.guard(conn)
+        if not 1 <= len(text) <= 600:
+            raise StudyCloudError("neural_speech_unavailable")
+        profile = conn.execute("SELECT display_name,profile_id FROM profile").fetchone()
+        if Redactor(profile or ()).blocks({"text": text}):
+            raise StudyCloudError("safety_blocked")
+        reply = await self.send(
+            conn,
+            "POST",
+            "/v1/podcast/speech",
+            {
+                "request_id": request_id,
+                "text": text,
+                "voice_index": voice_index,
+                "nvidia_consent": True,
+            },
+        )
+        if not isinstance(reply, dict) or not isinstance(reply.get("audio_base64"), str):
+            raise StudyCloudError("neural_speech_invalid_audio")
+        try:
+            if len(reply["audio_base64"]) > 8_000_000:
+                raise ValueError
+            data = base64.b64decode(reply["audio_base64"], validate=True)
+            if not 44 <= len(data) <= 6_000_000 or data[:4] != b"RIFF" or data[8:12] != b"WAVE":
+                raise ValueError
+            return data
+        except ValueError:
+            raise StudyCloudError("neural_speech_invalid_audio") from None
 
     def owe(self, conn: Any, jid: str, sources: list[dict[str, Any]]) -> None:
         # Opaque ids only. A receipt survives source erasure; it never contains source content or a credential.
@@ -160,7 +205,11 @@ class StudyCloud:
             "kind": request["kind"],
             "chunks": chunks,
             "output_locale": "en",
-            **{k: request[k] for k in ("prompt", "count", "settings", "syllabus_outline") if k in request},
+            **{
+                k: request[k]
+                for k in ("prompt", "count", "settings", "syllabus_outline", "previous_response")
+                if k in request
+            },
         }
         if Redactor(profile or ()).blocks(body):
             raise StudyCloudError("safety_blocked")

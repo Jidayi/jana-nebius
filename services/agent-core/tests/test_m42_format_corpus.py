@@ -47,6 +47,7 @@ PPT = {
         ("slides", container(ODP), "Cells use energy"),
         ("slides", container(PPT), "Speaker notes:\nDNA stores information"),
     ],
+    ids=["utf8", "docx", "odt", "odp", "pptx"],
 )
 def test_m42_formats_in_actual_sandbox(kind, data, expected):
     units = asyncio.run(extract(data, kind, "renamed title", Settings()))

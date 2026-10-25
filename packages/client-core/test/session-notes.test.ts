@@ -32,3 +32,69 @@ test("profile clearing also drops private opened text and late responses", async
   await profiles.unlock(PROFILES[1]!.profile_id); await reading;
   expect(notes.getView()).toEqual(EMPTY_SESSION_NOTES);
 });
+test("ending a session clears an old search and opens only that session's note", async () => {
+  const fake = notesCore(), profiles = new ProfileController(fake.core.launch, new StoreHolder(), { fetch: fake.fetch });
+  await profiles.load(); await profiles.unlock(PROFILES[0]!.profile_id);
+  const notes = new SessionNotesController(profiles);
+  await notes.load("unmatched");
+  expect(await notes.end(NOTE.session_id)).toBe(true);
+  expect(notes.getView()).toMatchObject({ query: "", opened: NOTE });
+  expect(fake.requests.map((r) => r.path)).toEqual([`/v1/sessions/${NOTE.session_id}/end`, `/v1/session-notes/${NOTE.note_id}/open`]);
+  expect(await notes.end(PROFILES[1]!.session_id)).toBe(true);
+  expect(notes.getView().opened).toBeNull();
+});
+test("ending a session never confirms a private note automatically", async () => {
+  const fake = notesCore(), profiles = new ProfileController(fake.core.launch, new StoreHolder(), { fetch: fake.fetch });
+  fake.rows.get(PROFILES[0]!.profile_id)![0]!.private = true;
+  await profiles.load(); await profiles.unlock(PROFILES[0]!.profile_id);
+  const notes = new SessionNotesController(profiles);
+  expect(await notes.end(NOTE.session_id)).toBe(true);
+  expect(notes.getView()).toMatchObject({ opened: null, notes: [{ title: null, kc_ids: [], statements: [] }] });
+  expect(fake.requests).toHaveLength(1);
+});
+test("switching profiles while ending a session cannot open the previous student's note", async () => {
+  const fake = notesCore();
+  let release!: () => void;
+  const pending = new Promise<void>((resolve) => { release = resolve; });
+  const fetcher: typeof fetch = async (input, init) => {
+    const response = await fake.fetch(input, init);
+    if (new URL(String(input)).pathname.endsWith("/end")) await pending;
+    return response;
+  };
+  const profiles = new ProfileController(fake.core.launch, new StoreHolder(), { fetch: fetcher });
+  await profiles.load(); await profiles.unlock(PROFILES[0]!.profile_id);
+  const notes = new SessionNotesController(profiles), ending = notes.end(NOTE.session_id);
+  await profiles.unlock(PROFILES[1]!.profile_id);
+  release();
+  expect(await ending).toBe(false);
+  expect(notes.getView()).toEqual(EMPTY_SESSION_NOTES);
+  expect(fake.requests.some((r) => r.path.endsWith("/open"))).toBe(false);
+});
+test("a notes refresh failure does not misreport a successfully ended session", async () => {
+  const fake = notesCore();
+  const fetcher: typeof fetch = (input, init) => new URL(String(input)).pathname === "/v1/session-notes"
+    ? Promise.reject(new Error("Offline")) : fake.fetch(input, init);
+  const profiles = new ProfileController(fake.core.launch, new StoreHolder(), { fetch: fetcher });
+  await profiles.load(); await profiles.unlock(PROFILES[0]!.profile_id);
+  const notes = new SessionNotesController(profiles);
+  expect(await notes.end(NOTE.session_id)).toBe(true);
+  expect(notes.getView()).toMatchObject({ status: "failed", opened: null });
+});
+test("closing notes during the end-session refresh prevents a late automatic open", async () => {
+  const fake = notesCore();
+  let release!: () => void, fetching!: () => void;
+  const pending = new Promise<void>((resolve) => { release = resolve; });
+  const started = new Promise<void>((resolve) => { fetching = resolve; });
+  const fetcher: typeof fetch = async (input, init) => {
+    const response = await fake.fetch(input, init);
+    if (new URL(String(input)).pathname === "/v1/session-notes") { fetching(); await pending; }
+    return response;
+  };
+  const profiles = new ProfileController(fake.core.launch, new StoreHolder(), { fetch: fetcher });
+  await profiles.load(); await profiles.unlock(PROFILES[0]!.profile_id);
+  const notes = new SessionNotesController(profiles), ending = notes.end(NOTE.session_id);
+  await started; notes.close(); release();
+  expect(await ending).toBe(true);
+  expect(notes.getView().opened).toBeNull();
+  expect(fake.requests.some((r) => r.path.endsWith("/open"))).toBe(false);
+});

@@ -98,7 +98,7 @@ describe("UXS-67", () => {
     const fake = routed(false);
     const nav = await home(fake);
     await type("Who wrote Things Fall Apart?");
-    await screen.findByText("General questions need the online plan. You can still ask the tutor about your subjects or study your own material.");
+    await screen.findByText("General questions and making study tools need the online plan. You can still use installed lessons, practice and your saved study tools.");
     expect(turns(fake)).toHaveLength(0);
     fireEvent.click(screen.getByRole("button", { name: "Ask the tutor" }));
     await waitFor(() => expect(turns(fake)).toHaveLength(1));

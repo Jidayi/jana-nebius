@@ -29,7 +29,6 @@ from agent_core.tools.generated.register import REGISTER
 from agent_core.tools.registry import Registry, register_entries
 from agent_core.tools.spec import SessionCtx, ToolMeta, ToolSpec
 from agent_core.tools.spill import SpillStore
-from jana_tools import REPO_ROOT
 
 STATEMENT = "A ball is thrown straight up at 14 m/s. Take g = 9.8 m/s^2. How high does it rise?"
 
@@ -143,21 +142,32 @@ def mem19_spill_reference(tmp_path: Path):
 
 # --- VSL-01, VSL-02, VSL-09 -----------------------------------------------------------------------------------------
 
-SOURCE = (REPO_ROOT / "docs" / "research" / "source-spec" / "05-app-spec-functional-and-technical.md").read_text()
-
 
 def source_examples() -> list[dict]:
-    """The two source examples, with `add` in the list form of VSL-10, the dgm. namespace and spec_version 1."""
-    blocks = re.findall(r"### Example: [^\n]+\n\n```json\n(.*?)\n```", SOURCE, re.S)
-    examples = [json.loads(b) for b in blocks[:2]]
-    for spec in examples:
-        spec["spec_version"] = 1
-        for step in spec.get("steps", []):
-            if isinstance(step.get("add"), dict):
-                step["add"] = [{"element": k, "of": v} for k, v in step["add"].items()]
-        if "ref" in spec and not spec["ref"].startswith("dgm."):
-            spec["ref"] = "dgm." + spec["ref"]
-    return examples
+    """Synthetic visual requests: a checked force diagram and an approved library diagram."""
+    return [
+        {
+            "spec_version": 1,
+            "type": "free_body",
+            "params": {
+                "object": "block",
+                "surface": {"kind": "incline", "incline_deg": 30},
+                "forces": [
+                    {"id": "W", "name": "Weight", "magnitude": "49 N", "direction_deg": 270},
+                    {"id": "R", "name": "Reaction", "magnitude": "42.4 N", "direction_deg": 60},
+                ],
+            },
+            "numbers_from": ["chk_118", "chk_119"],
+            "steps": [{"highlight": ["W"]}],
+        },
+        {
+            "spec_version": 1,
+            "type": "library_diagram",
+            "ref": "dgm.bio.heart.v1",
+            "params": {},
+            "steps": [{"highlight": ["right_atrium"]}],
+        },
+    ]
 
 
 def ctx(**kw) -> VisualContext:

@@ -136,6 +136,8 @@ Transport = Callable[[dict[str, Any]], dict[str, Any]]  # a request body -> the 
 
 def gemini_transport(model: Model, key: str, timeout_s: float) -> Transport:
     """generateContent on the provider's API; the key travels in a header only, never in a URL."""
+    if model.provider != "gemini":
+        raise ValueError("quantity proposals require a Gemini provider; the configured provider is unsupported")
     url = f"{model.base_url.rstrip('/')}/models/{model.model_id}:generateContent"
 
     def send(body: dict[str, Any]) -> dict[str, Any]:

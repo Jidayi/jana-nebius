@@ -1,0 +1,30 @@
+{
+  "format": "jana.ops.probe.1",
+  "test_name": "ops07_offline_lifecycle_script",
+  "candidate_commit": "FILL-IN: the 40-character commit id of the candidate tested",
+  "spec_revision": "FILL-IN: the specification revision in spec.lock",
+  "source": "device_lab",
+  "started_at": "FILL-IN: date-time with zone when the test or drill started",
+  "completed_at": "FILL-IN: date-time with zone when it finished",
+  "data": {
+    "os_network_blocked": "FILL-IN: true or false: Was networking disabled at the OS level for every offline run?",
+    "candidate_version": "FILL-IN: text: App version of this release candidate (X.Y.Z)",
+    "supported_apps": "FILL-IN: a list of strings: App versions still supported (comma-separated, e.g. 1.2.0,1.3.1); for the very first release, only its own version",
+    "platforms": "FILL-IN: a list of strings: Platforms in the release (comma-separated, e.g. windows,macos)",
+    "runs": [
+      {
+        "hardware": "FILL-IN: low, mid or high",
+        "platform": "FILL-IN: one platform",
+        "previous": "FILL-IN: fresh or a supported version",
+        "route": "FILL-IN: kit (fresh) or usb_update / online_update",
+        "replay_before": "FILL-IN: 64 lowercase hex: Mastery replay hash before upgrade (64 hex; fresh runs: hash after replay)",
+        "replay_after": "FILL-IN: 64 lowercase hex: Mastery replay hash after upgrade (64 hex)",
+        "zero_egress": "FILL-IN: true or false: Did the monitor record zero outbound connections?",
+        "passed": "FILL-IN: true or false: Did every step of the script pass on this run?",
+        "steps": "FILL-IN: a list of step names: Steps completed: 'all' or a comma list of all_kill_targets, failed_launch_rollback, first_run, guided, mock, pack_boundary, practice, redacted_export",
+        "evidence_id": "FILL-IN: the SHA-256 of this raw proof file, which is also listed in the index: this run's monitor log or recording"
+      }
+    ],
+    "device": "FILL-IN: Device or environment used: hardware class, model and asset label, OS version (or the staging environment name)"
+  }
+}

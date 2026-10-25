@@ -4,9 +4,9 @@ import re
 import shutil
 from pathlib import Path
 
+from fixture_sources import GOVERNANCE_DOCS as DOCS
 from jana_tools import REPO_ROOT
 from jana_tools.governance import codeowners_errors, missing_approvals, owners_for, threat_model_errors
-from jana_tools.spec import DOCS
 
 
 def _docs_copy(tmp_path: Path) -> Path:
@@ -23,7 +23,7 @@ def _docs_copy(tmp_path: Path) -> Path:
 
 
 def sec01_threat_model_complete_and_current(tmp_path: Path):
-    assert threat_model_errors() == []
+    assert threat_model_errors(docs=DOCS) == []
 
     docs = _docs_copy(tmp_path)
     model = docs / "implementation" / "threat-model.md"
@@ -56,7 +56,7 @@ def sec01_threat_model_complete_and_current(tmp_path: Path):
 
 
 def sec02_boundary_changes_need_owner_review(tmp_path: Path):
-    assert codeowners_errors() == []
+    assert codeowners_errors(docs=DOCS) == []
     codeowners = (REPO_ROOT / ".github" / "CODEOWNERS").read_text()
 
     tagged = "services/tool-worker/tool_worker/__init__.py"
@@ -71,12 +71,12 @@ def sec02_boundary_changes_need_owner_review(tmp_path: Path):
     shutil.copytree(REPO_ROOT / "scripts" / "governance", root / "scripts" / "governance")
     (root / ".github").mkdir()
     (root / ".github" / "CODEOWNERS").write_text(codeowners.replace("/services/tool-worker/ @Jidayi\n", ""))
-    assert codeowners_errors(root) == [
+    assert codeowners_errors(root, docs=DOCS) == [
         ".github/CODEOWNERS is stale; run: uv run python -m jana_tools codeowners --write"
     ]
     manifest = root / "scripts" / "governance" / "boundaries.toml"
     manifest.write_text(re.sub(r'\[\[boundary\]\]\nid = "TB6"\n[^\[]*', "", manifest.read_text()))
-    assert codeowners_errors(root) == ["boundary TB6 tags no files"]
+    assert codeowners_errors(root, docs=DOCS) == ["boundary TB6 tags no files"]
 
     workflow = (REPO_ROOT / ".github" / "workflows" / "boundary-review.yml").read_text()
     assert "jana_tools boundary-review" in workflow

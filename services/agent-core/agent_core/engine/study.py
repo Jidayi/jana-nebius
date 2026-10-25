@@ -14,6 +14,7 @@ import secrets
 import sqlite3
 import unicodedata
 from collections.abc import Callable, Iterator
+from dataclasses import replace
 from pathlib import Path
 from typing import Any
 
@@ -25,6 +26,7 @@ from agent_core.engine.study_topics import material_topics
 from agent_core.learner.fsrs import Card, scheduler_of
 from agent_core.learner.mastery import MasteryParams
 from agent_core.prompts.untrusted import screened
+from agent_core.router import RouterError
 from agent_core.store.sqlite import transaction
 from agent_core.tools.study_document import DocumentError, extract, raster
 
@@ -71,6 +73,126 @@ def chaptered(output: Any) -> None:
         output["claims"] = [
             s for c in output["chapters"] if isinstance(c, dict) for s in c.get("summary", []) if isinstance(s, dict)
         ]
+
+
+def chat_evidence(
+    batches: list[list[dict[str, Any]]], outputs: list[dict[str, Any]], limit: int, *, opening_lesson: bool = False
+) -> tuple[list[dict[str, Any]], dict[str, int]]:
+    """Bound the final answer's context with original text, never generated prose as evidence.
+
+    Keep the opening section intact for introductory explanations and worked examples, then
+    take supporting excerpts round-robin across verified sections. Offsets are rebased only
+    in this transient request; saved citations always point into the original frozen chunks.
+    """
+    ordered = [c for batch in batches for c in batch]
+    # Front matter can fill an entire batch. Keep the actual opening teaching section
+    # whole, including examples beyond its first citation-sized paragraph. A contents
+    # entry with dot leaders/page numbers is not a standalone chapter heading.
+    opening = (
+        next(
+            (
+                i
+                for i, c in enumerate(ordered)
+                if re.search(
+                    r"(?im)^\s*(?:chapter|unit|lesson)\s+(?:1|one|i)(?:\s*[:.\-\u2013\u2014]\s*[^.\n]+)?\s*$", c["text"]
+                )
+            ),
+            0,
+        )
+        if opening_lesson
+        else 0
+    )
+    originals = {c["chunk_id"]: c for c in ordered[opening:]}
+    selected: dict[str, tuple[int, int]] = {}
+    used = 0
+    for chunk in originals.values():
+        if selected and (used + len(chunk["text"]) > limit // 2 or len(selected) == 64):
+            break
+        selected[chunk["chunk_id"]] = (0, len(chunk["text"]))
+        used += len(chunk["text"])
+    remaining = limit - sum(end - start for start, end in selected.values())
+    candidates = []
+    for output in outputs:
+        ranges: dict[str, tuple[int, int]] = {}
+        for claim in output["claims"]:
+            for citation in claim["citations"]:
+                identity = citation["chunk_id"]
+                start, end = ranges.get(identity, (citation["start"], citation["end"]))
+                ranges[identity] = (min(start, citation["start"]), max(end, citation["end"]))
+        candidates.append(list(ranges.items()))
+    for row in itertools.zip_longest(*candidates):
+        for candidate in row:
+            if candidate is None:
+                continue
+            identity, (start, end) = candidate
+            if identity in originals and identity not in selected and end - start <= remaining and len(selected) < 64:
+                selected[identity] = (start, end)
+                remaining -= end - start
+    excerpts, offsets = [], {}
+    for identity, original in originals.items():
+        if identity in selected:
+            start, end = selected[identity]
+            text = original["text"][start:end]
+            excerpts.append({**original, "text": text, "sha256": digest(text.encode())})
+            offsets[identity] = start
+    return excerpts, offsets
+
+
+def chat_source_notes(identity: str, request: dict[str, Any], chunks: list[dict[str, Any]]) -> dict[str, Any]:
+    """Select literal evidence, not a model-written lesson, from every source chunk.
+
+    The final answer has its own independent support check. There is no reason to
+    generate and validate display-ready equations for intermediate retrieval notes.
+    """
+    terms = set(re.findall(r"\w{5,}", request.get("prompt", "").casefold())) - {
+        "teach",
+        "beginning",
+        "explain",
+        "first",
+        "example",
+        "material",
+        "notes",
+        "references",
+        "language",
+        "friendly",
+        "start",
+        "explanations",
+        "rather",
+        "include",
+        "source",
+        "question",
+    }
+    claims = []
+    for chunk in chunks:
+        text = chunk["text"]
+        spans = []
+        start = 0
+        while start < len(text):
+            end = min(len(text), start + 500)
+            if end < len(text):
+                boundary = text.rfind(" ", start + 250, end)
+                if boundary > start:
+                    end = boundary
+            score = len(terms.intersection(re.findall(r"\w{5,}", text[start:end].casefold())))
+            spans.append((score, start, end))
+            start = end
+        _, start, end = max(spans, key=lambda span: (span[0], -span[1]))
+        claims.append(
+            {
+                "text": "Source excerpt.",
+                "citations": [
+                    {
+                        "source_id": chunk["source_id"],
+                        "revision": chunk["revision"],
+                        "chunk_id": chunk["chunk_id"],
+                        "start": start,
+                        "end": end,
+                        "quote": text[start:end],
+                    }
+                ],
+            }
+        )
+    return {"request_id": identity, "kind": "notes", "claims": claims}
 
 
 def answer_ids(answer: str) -> list[str]:
@@ -229,6 +351,21 @@ class StudyDesk:
 
     def source(self, sid: str) -> dict[str, Any]:
         return self.one("SELECT body FROM study_sources WHERE source_id=?", (sid,))
+
+    def library(self) -> dict[str, list[str]]:
+        return {
+            "archived_source_ids": [
+                r[0] for r in self.conn.execute("SELECT source_id FROM study_library_archive ORDER BY source_id")
+            ]
+        }
+
+    def archive_source(self, sid: str, archived: bool) -> dict[str, list[str]]:
+        self.source(sid)  # Only a source belonging to this learner can be organised.
+        if archived:
+            self.conn.execute("INSERT OR IGNORE INTO study_library_archive VALUES (?)", (sid,))
+        else:
+            self.conn.execute("DELETE FROM study_library_archive WHERE source_id=?", (sid,))
+        return self.library()
 
     def public(self, source: dict[str, Any]) -> dict[str, Any]:
         return (
@@ -616,6 +753,15 @@ class StudyDesk:
         pending = self.conn.execute("SELECT 1 FROM study_cloud_cleanup WHERE source_id=?", (sid,)).fetchone()
         return {"source_id": sid, "state": "deleted", "cloud_cleanup": "pending" if pending else "not_sent"}
 
+    def curriculum_text(self, selection: dict[str, Any]) -> str:
+        """Local title suggestions may use readable text awaiting review; generation still needs confirmation."""
+        source = self.source(selection["source_id"])
+        if source["revision"] != selection["revision"]:
+            raise StudyError("source_stale", True)
+        if source["state"] not in ("ready", "partial") or not source.get("readable_units"):
+            raise StudyError("unreadable_source")
+        return "\n".join(chunk["text"] for chunk in self.selected([selection], ready=False))
+
     def selected(self, selections: list[dict[str, Any]], *, ready: bool = True) -> list[dict[str, Any]]:
         if len({s["source_id"] for s in selections}) != len(selections):
             raise StudyError("invalid_study_request")
@@ -646,6 +792,10 @@ class StudyDesk:
 
     def create_job(self, body: dict[str, Any]) -> dict[str, Any]:
         checked("JobCreate", body)
+        if body.get("learning_intent") and body["kind"] != "chat":
+            raise StudyError("invalid_study_request")
+        if body.get("context_aid_id"):
+            self.follow_up_aid(body)
         settings = body.get("settings", {})
         # Only the learner's actual request determines intent; imported homework remains source data.
         # A Generate focus or topic reaches the model like a prompt, so it takes the same screen (STU-11, STU-21).
@@ -712,6 +862,164 @@ class StudyDesk:
                 self.conn.execute("INSERT INTO study_job_sources VALUES (?,?,?)", (jid, s["source_id"], s["revision"]))
         return job
 
+    def create_quiz_help_job(self, qid: str, item_id: str, body: dict[str, Any]) -> dict[str, Any]:
+        quiz = self.quiz(qid)["view"]
+        aid = self.aid(quiz["aid_id"])
+        if quiz["status"] != "ready":
+            raise StudyError("source_stale", True)
+        if not any(item["item_id"] == item_id for item in quiz["items"]):
+            raise StudyError("not_found")
+        if body["kind"] != "chat" or body["sources"] != aid["sources"] or body.get("settings"):
+            raise StudyError("invalid_study_request")
+        job = self.create_job(body)
+        self.conn.execute("INSERT INTO study_quiz_help_jobs VALUES (?,?,?)", (job["job_id"], qid, item_id))
+        return job
+
+    def quiz_help_scope(self, jid: str, chunks: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        binding = self.conn.execute(
+            "SELECT quiz_id,item_id FROM study_quiz_help_jobs WHERE job_id=?", (jid,)
+        ).fetchone()
+        if binding is None:
+            return chunks
+        quiz = self.quiz(binding[0])
+        if quiz["view"]["status"] != "ready":
+            raise StudyError("source_stale", True)
+        item = next((i for i in quiz["view"]["items"] if i["item_id"] == binding[1]), None)
+        key = next((k for k in quiz["keys"] if k["item_id"] == binding[1]), None)
+        if item is None or key is None:
+            raise StudyError("not_found")
+        # Select frozen evidence IDs, never the answer or key text. Keep neighbouring source chunks for
+        # qualifications across page boundaries; ordinary whole-document study jobs are unaffected.
+        refs = [*item["stem"]["citations"], *key["explanation"]["citations"]]
+        cited = {(c["source_id"], c["revision"], c["chunk_id"]) for c in refs}
+        chosen = set()
+        for i, chunk in enumerate(chunks):
+            if (chunk["source_id"], chunk["revision"], chunk["chunk_id"]) in cited:
+                chosen.add(i)
+                for neighbour in (i - 1, i + 1):
+                    if 0 <= neighbour < len(chunks) and (
+                        chunks[neighbour]["source_id"],
+                        chunks[neighbour]["revision"],
+                    ) == (chunk["source_id"], chunk["revision"]):
+                        chosen.add(neighbour)
+        kept = [chunk for i, chunk in enumerate(chunks) if i in chosen]
+        # Prerequisite definitions can be at the start of the preceding page, several chunks away
+        # from the answer. Prefer complete adjacent PDF pages when they fit the same bounded context.
+        pages = {
+            (c["source_id"], c["revision"], c["locator"]["page"] + offset)
+            for c in chunks
+            if (c["source_id"], c["revision"], c["chunk_id"]) in cited and c["locator"]["kind"] == "page"
+            for offset in (-1, 0, 1)
+        }
+        expanded = [
+            c
+            for i, c in enumerate(chunks)
+            if i in chosen
+            or (c["locator"]["kind"] == "page" and (c["source_id"], c["revision"], c["locator"]["page"]) in pages)
+        ]
+        if expanded and sum(len(c["text"]) for c in expanded) <= self.settings.study_batch_char_limit:
+            kept = expanded
+        if not kept or sum(len(c["text"]) for c in kept) > self.settings.study_batch_char_limit:
+            raise StudyError("source_too_large" if kept else "insufficient_evidence")
+        return kept
+
+    def quiz_help_brief(self, jid: str, brief: dict[str, Any]) -> dict[str, Any]:
+        binding = self.conn.execute(
+            "SELECT quiz_id,item_id FROM study_quiz_help_jobs WHERE job_id=?", (jid,)
+        ).fetchone()
+        if binding is None:
+            return brief
+        quiz = self.quiz(binding[0])
+        item = next(i for i in quiz["view"]["items"] if i["item_id"] == binding[1])
+        key = next(k for k in quiz["keys"] if k["item_id"] == binding[1])
+        if item["type"] == "choice":
+            options = item["options"]
+            index = next(i for i, o in enumerate(options) if o["option_id"] == key["answer"])
+            correct = options[index]["text"]
+            # Exact option wording and its distinguishing terms are private inference constraints.
+            # Do not block words shared with the question/distractors, which can be useful prerequisites.
+            other_words = set(re.findall(r"\w+", blank_form(item["stem"]["text"])))
+            for i, option in enumerate(options):
+                if i != index:
+                    other_words.update(re.findall(r"\w+", blank_form(option["text"])))
+            distinctive = list(
+                dict.fromkeys(
+                    w for w in re.findall(r"\w+", blank_form(correct)) if len(w) >= 4 and w not in other_words
+                )
+            )
+            number = index + 1
+            words = [correct] if len(correct) <= 150 else []
+            words += [f"option {number}", f"choice {number}", f"option {chr(97 + index)}", f"choice {chr(97 + index)}"]
+            directional: list[str] = []
+            tokens = set(re.findall(r"\w+", blank_form(correct)))
+            group: tuple[str, ...]
+            for group in (
+                (
+                    "reduce",
+                    "reduces",
+                    "reduced",
+                    "reducing",
+                    "reduction",
+                    "lower",
+                    "lowers",
+                    "lowered",
+                    "lowering",
+                    "decrease",
+                    "decreases",
+                    "decreased",
+                    "decreasing",
+                    "diminish",
+                    "less",
+                    "smaller",
+                ),
+                ("increase", "increases", "increased", "increasing", "higher", "greater", "grow", "grows"),
+            ):
+                if tokens.intersection(group):
+                    directional.extend(group)
+            # A formula from the grading explanation or a long identifying phrase can give away
+            # the option even if its defining adjective has been replaced with a synonym.
+            aliases = re.findall(r"P\([^()\n]{1,100}\)", key["explanation"]["text"])
+            correct_words = re.findall(r"\w+", blank_form(correct))
+            phrases = [" ".join(correct_words[i : i + 6]) for i in range(max(0, len(correct_words) - 5))]
+            for word in [*aliases, *distinctive, *directional, *phrases]:
+                if word in words:
+                    continue
+                candidate = [*words, word]
+                if len(candidate) <= 40 and len("Coaching withheld wording: " + json.dumps(candidate)) <= 500:
+                    words = candidate
+            focus = "Coaching withheld wording: " + json.dumps(words)
+            return {**brief, "settings": {**brief.get("settings", {}), "focus": focus}}
+        if item["type"] != "fill_blank":
+            return brief
+        answer = blank_form(key["answer"])
+        if not answer or len(answer) > 150:
+            return brief
+        words = [answer]
+        # Common directional equivalents must not leak a blank's answer through an obvious synonym.
+        for group in (
+            (
+                "diminish",
+                "diminishes",
+                "diminished",
+                "decrease",
+                "decreases",
+                "decreased",
+                "reduce",
+                "reduces",
+                "reduced",
+                "shrink",
+                "shrinks",
+                "lessen",
+                "lessens",
+            ),
+            ("increase", "increases", "increased", "grow", "grows", "enlarge", "enlarges"),
+        ):
+            if answer in group:
+                words = list(group)
+        # This bounded inference-only constraint is never added to the stored learner prompt, aid or quiz view.
+        focus = "Coaching withheld wording: " + json.dumps(words)
+        return {**brief, "settings": {**brief.get("settings", {}), "focus": focus}}
+
     def check_settings(self, body: dict[str, Any]) -> None:
         """STU-21: the Generate settings fit their tool, name the material's own topics and a ready syllabus."""
         kind, settings = body["kind"], body.get("settings", {})
@@ -743,8 +1051,41 @@ class StudyDesk:
                     same["chunk_ids"] += [c for c in topic["chunk_ids"] if c not in same["chunk_ids"]]
         return items[:20]
 
+    def follow_up_aid(self, request: dict[str, Any]) -> dict[str, Any]:
+        """A follow-up cannot change profiles, source revisions, or turn a quiz key into context."""
+        if request["kind"] not in ("chat", "flashcards", "quiz"):
+            raise StudyError("invalid_study_request")
+        parent = self.aid(request["context_aid_id"])
+        if parent["kind"] != "chat" and not (parent["kind"] == "flashcards" and request["kind"] == "quiz"):
+            raise StudyError("invalid_study_request")
+        if parent["status"] != "ready":
+            raise StudyError("source_stale", True)
+
+        def selections(sources):
+            return {(s["source_id"], s["revision"]) for s in sources}
+
+        if selections(parent["sources"]) != selections(request["sources"]):
+            raise StudyError("invalid_study_request")
+        return parent
+
+    def follow_up_claims(self, parent: dict[str, Any]) -> list[dict[str, Any]]:
+        if parent["kind"] == "flashcards":
+            return [
+                claim
+                for card in self.deck(parent["deck_id"])["cards"]
+                if not card["suspended"]
+                for claim in (card["front"], card["back"])
+            ]
+        return parent["claims"]
+
     def scoped(self, request: dict[str, Any], chunks: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """Only the chunks of the topics the learner kept; all topics kept means the whole material (STU-21)."""
+        if request.get("context_aid_id"):
+            parent = self.follow_up_aid(request)
+            ids = {c["chunk_id"] for claim in self.follow_up_claims(parent) for c in claim["citations"]}
+            chunks = [c for c in chunks if c["chunk_id"] in ids]
+            if not chunks:
+                raise StudyError("insufficient_evidence")
         chosen = request.get("settings", {}).get("topics")
         if not chosen:
             return chunks
@@ -760,8 +1101,23 @@ class StudyDesk:
     def brief(self, request: dict[str, Any]) -> dict[str, Any]:
         """The generation request a model sees: the settings, with a syllabus file as bounded scope text only."""
         settings = dict(request.get("settings", {}))
+        chosen = settings.get("topics")
+        if chosen and {t["title"] for t in self.topics(request["sources"])} <= set(chosen):
+            # Keeping every detected heading means the whole document. The
+            # bounded heading preview must not become a model-side restriction
+            # that omits later chapters or asks it to summarise author metadata.
+            settings.pop("topics")
         syllabus = settings.pop("syllabus", [])
-        brief = {k: v for k, v in request.items() if k != "settings"}
+        brief = {k: v for k, v in request.items() if k not in ("settings", "context_aid_id", "learning_intent")}
+        if request.get("context_aid_id"):
+            parent = self.follow_up_aid(request)
+            lines = []
+            for i, claim in enumerate(self.follow_up_claims(parent)):
+                line = f"{i + 1}. {claim['text']}"
+                if sum(len(s) + 1 for s in lines) + len(line) > 8000:
+                    break
+                lines.append(line)
+            brief["previous_response"] = "\n".join(lines)
         if settings:
             brief["settings"] = settings
         if syllabus:
@@ -1030,6 +1386,9 @@ class StudyDesk:
                 self.conn.execute(
                     "INSERT INTO study_quizzes VALUES (?,?,?,?)", (aid["quiz_id"], aid["aid_id"], 1, json.dumps(stored))
                 )
+            from agent_core.engine.study_journey import StudyJourney
+
+            StudyJourney(self).register(aid, request)
             job.update(state="completed", result_ids=[aid["aid_id"]], completed_units=job["total_units"] or 1)
             self.save_job(job)
         return aid
@@ -1070,25 +1429,60 @@ class StudyDesk:
         ).fetchone()
         if row is None:
             raise StudyError("not_found")
+        now = self.clock()
+        cards = []
+        for body, raw_schedule in self.conn.execute(
+            """SELECT body,schedule FROM study_flashcards WHERE deck_id=?
+               ORDER BY CASE WHEN due_at<=? AND json_extract(schedule,'$.state') IN ('learning','relearning')
+                             THEN 0 ELSE 1 END, due_at,card_id""",
+            (did, now),
+        ):
+            card, schedule = json.loads(body), json.loads(raw_schedule)
+            card["review_intervals_ms"] = {
+                rating: self.scheduled_review(schedule, rating, now).due_ms - now
+                for rating in ("again", "hard", "good", "easy")
+            }
+            cards.append(card)
         return {
             "deck_id": did,
             "aid_id": row[0],
             "source_id": row[1],
             "revision": row[2],
             "scheduler": row[3],
-            "cards": [
-                json.loads(r[0])
-                for r in self.conn.execute(
-                    "SELECT body FROM study_flashcards WHERE deck_id=? ORDER BY due_at,card_id", (did,)
-                )
-            ],
+            "cards": cards,
         }
+
+    @staticmethod
+    def scheduled_review(schedule: dict[str, Any], rating: str, now: int) -> Card:
+        """Pure source-card scheduling, shared by previews and committed reviews."""
+        state = (
+            None
+            if schedule["state"] == "new"
+            else Card(
+                schedule["state"],
+                schedule["stability"],
+                schedule["difficulty"],
+                epoch(schedule["due_at"]),
+                schedule["reps"],
+                schedule["lapses"],
+                epoch(schedule["last_review_at"]) if schedule["last_review_at"] else None,
+            )
+        )
+        new = scheduler_of(MasteryParams()).review(state, rating, now)
+        # Source relearning is separate from the shared O-level scheduler. Retain FSRS memory/lapse history.
+        return (
+            replace(new, state="relearning" if state else "learning", due_ms=now + 2 * 60_000)
+            if rating == "again"
+            else new
+        )
 
     def review(self, did: str, body: dict[str, Any]) -> dict[str, Any]:
         checked("ReviewSubmit", body)
         deck = self.deck(did)
         self.identity_check("review", body["client_review_id"], body)
-        self.selected([{"source_id": deck["source_id"], "revision": deck["revision"]}])
+        # Generation already required extraction review and verified the saved cards.
+        # Reviewing them needs the same source revision, not a second extraction approval.
+        self.selected([{"source_id": deck["source_id"], "revision": deck["revision"]}], ready=False)
         row = self.conn.execute(
             "SELECT body,schedule FROM study_flashcards WHERE deck_id=? AND card_id=?", (did, body["card_id"])
         ).fetchone()
@@ -1104,20 +1498,8 @@ class StudyDesk:
             if old[0] != body["card_id"]:
                 raise StudyError("review_conflict", True)
             return dict(json.loads(old[1]))
-        state = (
-            None
-            if schedule["state"] == "new"
-            else Card(
-                schedule["state"],
-                schedule["stability"],
-                schedule["difficulty"],
-                epoch(schedule["due_at"]),
-                schedule["reps"],
-                schedule["lapses"],
-                epoch(schedule["last_review_at"]) if schedule["last_review_at"] else None,
-            )
-        )
-        new = scheduler_of(MasteryParams()).review(state, body["rating"], self.clock())
+        now = self.clock()
+        new = self.scheduled_review(schedule, body["rating"], now)
         schedule = {
             "state": new.state,
             "stability": new.stability,
@@ -1125,7 +1507,7 @@ class StudyDesk:
             "reps": new.reps,
             "lapses": new.lapses,
             "due_at": stamp(new.due_ms),
-            "last_review_at": stamp(self.clock()),
+            "last_review_at": stamp(now),
         }
         result = checked(
             "ReviewResult",
@@ -1221,8 +1603,17 @@ class StudyDesk:
                 "INSERT INTO study_attempts VALUES (?,?,?,?)",
                 (body["attempt_id"], qid, json.dumps(result), self.clock()),
             )
+            self.conn.execute(
+                "INSERT INTO study_quiz_submissions VALUES (?,?)",
+                (body["attempt_id"], body.get("submission_kind", "submit")),
+            )
             # A submission is where a draft ends: the set now shows what the learner answered (STU-21).
-            self.conn.execute("UPDATE study_quizzes SET body=json_remove(body,'$.view.draft') WHERE quiz_id=?", (qid,))
+            if body.get("submission_kind") != "check":
+                self.conn.execute(
+                    "UPDATE study_quizzes SET body=json_set(json_remove(body,'$.view.draft'),"
+                    "'$.submission',json(?)) WHERE quiz_id=?",
+                    (json.dumps({"attempt_id": body["attempt_id"], "answers": body["answers"]}), qid),
+                )
         return result
 
     def save_draft(self, qid: str, body: dict[str, Any]) -> dict[str, Any]:
@@ -1346,8 +1737,13 @@ class StudyQueue:
         desk.identity_check("attempt", body["attempt_id"], body)
         if desk.conn.execute("SELECT 1 FROM study_attempts WHERE attempt_id=?", (body["attempt_id"],)).fetchone():
             return desk.submit(qid, body)
+        if body["quiz_revision"] != stored["view"]["revision"] or stored["view"]["status"] != "ready":
+            raise StudyError("source_stale", True)
         items = {i["item_id"]: i for i in stored["view"]["items"]}
         keys = {k["item_id"]: k for k in stored["keys"]}
+        identities = [a["item_id"] for a in body["answers"]]
+        if len(set(identities)) != len(identities) or set(identities) - items.keys():
+            raise StudyError("invalid_study_request")
         graded = {}
 
         async def check(a: str, b: str) -> dict[str, Any] | None:
@@ -1358,7 +1754,11 @@ class StudyQueue:
             if identity not in items:
                 raise StudyError("invalid_study_request")
             item, key = items[identity], keys[identity]
-            if item["type"] == "choice":
+            if item["type"] in ("choice", "multi_select", "true_false") or (
+                item["type"] == "fill_blank" and blank_form(answer) == blank_form(key["answer"])
+            ):
+                # These types use the exact, validated key comparison in StudyDesk.submit.
+                # The independent-marker fallback must not override their verdicts.
                 continue
             value: dict[str, Any] = {
                 "item_id": identity,
@@ -1401,6 +1801,26 @@ class StudyQueue:
                             label="Checked",
                             check_ids=ids,
                         )
+            elif item["type"] == "fill_blank":
+                # A saved quiz has already passed extraction review. Only its cited passages are needed;
+                # sending the whole PDF into a short-answer marker wastes context and can hide the evidence.
+                aid = desk.aid(stored["view"]["aid_id"])
+                cited = {c["chunk_id"] for claim in (item["stem"], key["explanation"]) for c in claim["citations"]}
+                chunks = [c for c in desk.selected(aid["sources"], ready=False) if c["chunk_id"] in cited]
+                model = self.model()
+                if chunks and model is not None and hasattr(model, "study_grade_support"):
+                    try:
+                        if await model.local_ready():
+                            judgement, local = await model.study_grade(item, key, answer, chunks)
+                            if self.connection() is not desk.conn:
+                                raise StudyError("source_deleted")
+                            if local and not errors(PREFIX + "Grading", judgement):
+                                desk.citation(judgement["reason"], aid["sources"])
+                                supported, local = await model.study_grade_support(item, key, answer, judgement, chunks)
+                                if local and supported is True and judgement["verdict"] in ("correct", "incorrect"):
+                                    value.update(verdict=judgement["verdict"], explanation=judgement["reason"])
+                    except (ValueError, RouterError, TimeoutError):
+                        pass  # Keep a safe unverifiable result if a local marker is unavailable or invalid.
             elif item["type"] == "free_response":
                 model = self.model()
                 if model is not None and await model.local_ready() and hasattr(model, "study_grade"):
@@ -1588,6 +2008,7 @@ class StudyQueue:
         for chunk in chunks:
             if (
                 not batches
+                or len(batches[-1]) >= 64
                 or sum(len(c["text"]) for c in batches[-1]) + len(chunk["text"]) > self.settings.study_batch_char_limit
             ):
                 batches.append([])
@@ -1597,7 +2018,14 @@ class StudyQueue:
         jid = job["job_id"]
         checkpoint = desk.one("SELECT checkpoint FROM study_jobs WHERE job_id=?", (jid,))
         saved = checkpoint.get("batches", [])
-        job["total_units"] = len(chunks) + 2 * len(batches)
+        # Chat is one response to one learner question, not independent answers concatenated
+        # for every chapter. Quiz coaching already has a narrowly scoped, protected context.
+        synthesize = (
+            request["kind"] == "chat"
+            and len(batches) > 1
+            and not request.get("settings", {}).get("focus", "").startswith("Coaching withheld wording: ")
+        )
+        job["total_units"] = len(chunks) + 2 * len(batches) + (2 if synthesize else 0)
         desk.save_job(job)
         outputs = []
         model = self.model()
@@ -1609,13 +2037,23 @@ class StudyQueue:
                 output = saved[index]["output"]
             else:
                 batch_request = dict(request)
+                if synthesize:
+                    batch_request["kind"] = "notes"
                 if request["kind"] in ("flashcards", "quiz"):
                     batch_request["count"] = max(1, (request.get("count", 10) + len(batches) - 1) // len(batches))
-                if request["execution"] == "prefer_cloud":
+                if synthesize:
+                    output = chat_source_notes(jid, request, batch)
+                    support = [True] * len(output["claims"])
+                elif request["execution"] == "prefer_cloud":
                     if self.cloud is None:
                         raise StudyError("consent_required")
                     output = await self.cloud.process(
-                        desk.conn, jid, batch_request, batch, checkpoint["attempt"], batch_index=index
+                        desk.conn,
+                        jid,
+                        batch_request,
+                        batch,
+                        checkpoint["attempt"],
+                        batch_index=index,
                     )
                     chaptered(output)
                     support = [True] * (
@@ -1644,7 +2082,7 @@ class StudyQueue:
                 )
                 if (
                     output["request_id"] != jid
-                    or output["kind"] != request["kind"]
+                    or output["kind"] != batch_request["kind"]
                     or len(support) != groups
                     or not all(type(v) is bool for v in support)
                 ):
@@ -1656,7 +2094,7 @@ class StudyQueue:
                     raise StudyError("insufficient_evidence")
                 if request["kind"] != "chapters":
                     output["claims"] = [c for i, c in enumerate(output["claims"]) if support[i]][
-                        : max(1, 200 // len(batches))
+                        : 200 if synthesize else max(1, 200 // len(batches))
                     ]
                 if not output["claims"]:
                     raise StudyError("insufficient_evidence")
@@ -1685,14 +2123,76 @@ class StudyQueue:
             "kind": request["kind"],
             "claims": [c for output in outputs for c in output["claims"]],
         }
+        if synthesize:
+            prompt = request.get("prompt", "").casefold()
+            opening_lesson = bool(
+                re.search(r"\b(?:teach|learn|explain)\b", prompt) and re.search(r"\b(?:beginning|start)\b", prompt)
+            )
+            excerpts, offsets = chat_evidence(
+                batches, outputs, self.settings.study_batch_char_limit * 2, opening_lesson=opening_lesson
+            )
+            if request["execution"] == "prefer_cloud":
+                combined = await self.cloud.process(
+                    desk.conn, jid, request, excerpts, checkpoint["attempt"], batch_index=256
+                )
+                support = [True] * len(combined["claims"])
+            else:
+                if model is None or not await model.local_ready():
+                    raise StudyError("model_unavailable")
+                combined, local = await model.study_generate(jid, request, excerpts)
+                if not local:
+                    raise StudyError("consent_required")
+                located(combined, excerpts)
+                support, local = await model.study_support(request, excerpts, combined)
+                if not local:
+                    raise StudyError("consent_required")
+            if self.connection() is not desk.conn or desk.job(jid)["state"] != "running":
+                return
+            checked("ProcessingResponse", combined)
+            if (
+                combined["request_id"] != jid
+                or combined["kind"] != "chat"
+                or not combined["claims"]
+                or len(support) != len(combined["claims"])
+                or not all(v is True for v in support)
+            ):
+                raise StudyError("insufficient_evidence")
+            by_id = {c["chunk_id"]: c for c in excerpts}
+            for claim in combined["claims"]:
+                for citation in claim["citations"]:
+                    identity = citation["chunk_id"]
+                    if (
+                        identity not in by_id
+                        or not 0 <= citation["start"] < citation["end"] <= len(by_id[identity]["text"])
+                        or by_id[identity]["text"][citation["start"] : citation["end"]] != citation["quote"]
+                    ):
+                        raise StudyError("insufficient_evidence")
+                    citation["start"] += offsets[identity]
+                    citation["end"] += offsets[identity]
+                desk.citation(claim, job["sources"])
         count = request.get("count", 10)
 
-        def sample(values: list[Any]) -> list[Any]:
-            return (
-                values
-                if len(values) <= count
-                else [values[min(len(values) - 1, i * len(values) // count)] for i in range(count)]
-            )
+        def sample(groups: list[list[Any]]) -> list[Any]:
+            # Give each verified section a turn before taking a second item from any section.
+            # A verbose early section must not crowd out later chapters. Keep document order in the result.
+            nonempty = [g for g in groups if g]
+            if not nonempty:
+                return []
+            if len(nonempty) > count:
+                indices = (
+                    [len(nonempty) // 2]
+                    if count == 1
+                    else [i * (len(nonempty) - 1) // (count - 1) for i in range(count)]
+                )
+                nonempty = [nonempty[i] for i in indices]
+            chosen: list[tuple[int, int, Any]] = []
+            for offset in range(max(len(group) for group in nonempty)):
+                for index, group in enumerate(nonempty):
+                    if offset < len(group):
+                        chosen.append((index, offset, group[offset]))
+                        if len(chosen) == count:
+                            return [item for _, _, item in sorted(chosen, key=lambda x: (x[0], x[1]))]
+            return [item for _, _, item in sorted(chosen, key=lambda x: (x[0], x[1]))]
 
         if request["kind"] == "chapters":
             combined["chapters"] = [c for output in outputs for c in output["chapters"]]
@@ -1709,12 +2209,22 @@ class StudyQueue:
                 else [spoken[min(len(spoken) - 1, i * len(spoken) // limit)] for i in range(limit)]
             )
         if request["kind"] == "flashcards":
-            unique = {" ".join(c["front"]["text"].split()).casefold(): c for o in outputs for c in o["flashcards"]}
-            combined["flashcards"] = sample(list(unique.values()))
+            seen_fronts: set[str] = set()
+            card_groups = []
+            for output in outputs:
+                group = []
+                for card in output["flashcards"]:
+                    front = " ".join(card["front"]["text"].split()).casefold()
+                    if front not in seen_fronts:
+                        seen_fronts.add(front)
+                        group.append(card)
+                card_groups.append(group)
+            combined["flashcards"] = sample(card_groups)
         if request["kind"] == "quiz":
-            pairs = []
+            pair_groups = []
             seen = set()
             for output in outputs:
+                pairs = []
                 keys = {k["item_id"]: k for k in output["quiz"]["keys"]}
                 if len(keys) != len(output["quiz"]["keys"]) or len(keys) != len(output["quiz"]["items"]):
                     raise StudyError("insufficient_evidence")
@@ -1729,10 +2239,11 @@ class StudyQueue:
                     if item["item_id"] not in keys:
                         raise StudyError("insufficient_evidence")
                     pairs.append((item, keys[item["item_id"]]))
-            if not pairs:
+                pair_groups.append(pairs)
+            if not any(pair_groups):
                 raise StudyError("insufficient_evidence")
             items, final_keys = [], []
-            for index, (item, key) in enumerate(sample(pairs)):
+            for index, (item, key) in enumerate(sample(pair_groups)):
                 identity = "q" + str(index + 1)
                 items.append({**item, "item_id": identity})
                 final_keys.append({**key, "item_id": identity})
@@ -1764,6 +2275,16 @@ class StudyQueue:
                 if self.connection() is not desk.conn or desk.job(jid)["state"] != "running":
                     return
                 cloud = request["execution"] == "prefer_cloud"
+                if not cloud and not self.settings.study_offline_enabled:
+                    # Recover uploads queued by older clients using the local extractor.
+                    # StudyCloud.extract still checks this profile's consent before egress.
+                    cloud = True
+                    request = {**request, "execution": "prefer_cloud"}
+                    desk.conn.execute(
+                        "UPDATE study_jobs SET checkpoint=json_set(checkpoint,'$.request.execution','prefer_cloud') "
+                        "WHERE job_id=?",
+                        (jid,),
+                    )
                 if s["kind"] == "recording" and not cloud:
                     job.update(state="waiting_online", error=None)
                     desk.save_job(job)
@@ -1814,7 +2335,8 @@ class StudyQueue:
             chunks = desk.scoped(
                 request, desk.selected(request["sources"], ready=not request.get("confirm_readable_only", False))
             )
-            brief = desk.brief(request)
+            chunks = desk.quiz_help_scope(jid, chunks)
+            brief = desk.quiz_help_brief(jid, desk.brief(request))
             try:
                 await self.generate_batches(desk, job, brief, chunks)
             except ValueError as error:

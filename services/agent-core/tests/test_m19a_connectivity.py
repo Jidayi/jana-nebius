@@ -161,12 +161,11 @@ def arc06_policy_refuses_unlisted_egress(tmp_path: Path) -> None:
 
 def arc07_policy_matches_feature_table() -> None:
     policy = load_policy()
-    rows = _arc07_rows()
-    table = {}
-    for row in rows:
-        ids = re.findall(r"`([a-z_]+)`", row[0])
-        if ids:
-            table[ids[0]] = (row[1].split()[0], row[2])
+    inventory = json.loads((DOCS.parent / "contracts/policies/online-features.json").read_text())
+    table = {
+        name: (row["stage"], " ".join(f"payload class `{p}`" for p in row["payload_classes"]))
+        for name, row in inventory.items()
+    }
     assert set(policy.features) == set(table), "the policy's features are exactly TABLE ARC-07a's"
     for feature, (stage, leaves) in table.items():
         row = policy.features[feature]

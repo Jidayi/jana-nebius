@@ -72,10 +72,10 @@ def add_routes(app: FastAPI, core: CoreService, mutating: Mutating) -> None:
         return dict(reply)
 
     @app.get("/v1/lessons/{lesson_id}")
-    async def lesson(lesson_id: str) -> dict[str, Any]:
+    async def lesson(lesson_id: str, teaching: bool = False) -> dict[str, Any]:
         core.assessment_guard()
         with desk() as opened:
-            reply = opened.lesson(lesson_id) if opened is not None else None
+            reply = opened.lesson(lesson_id, teaching=teaching) if opened is not None else None
         if reply is None:
             raise ApiError("not_found", "no such lesson")
         return dict(reply)
