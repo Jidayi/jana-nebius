@@ -13,7 +13,7 @@ import { mkdirSync, mkdtempSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { createInterface } from "node:readline";
-import type { Plugin } from "vite";
+import type { Plugin, ViteDevServer } from "vite";
 
 export interface Launch {
   base_url: string;
@@ -70,6 +70,7 @@ export function startSidecar(devOrigin: string): Promise<{ launch: Launch; child
       }
     });
     child.on("exit", (code) => reject(new Error(`sidecar exited ${code}`)));
+    child.stdin?.on("error", () => reject(new Error("sidecar control pipe closed")));
   });
 }
 
@@ -151,32 +152,37 @@ function seedPacks(dataDir: string): void {
 export function sidecarPlugin(): Plugin {
   let ready: Promise<Launch> | null = null;
   let child: ChildProcess | null = null;
+  const configure = (server: Pick<ViteDevServer, "httpServer" | "config" | "middlewares">) => {
+    const start = () => {
+      if (ready !== null) return;
+      const address = server.httpServer?.address();
+      const port = typeof address === "object" && address !== null ? address.port : 5180;
+      ready = startSidecar(`http://localhost:${port}`).then((started) => {
+        child = started.child;
+        server.config.logger.info(`  agent core: ${started.launch.base_url}`);
+        return started.launch;
+      });
+      ready.catch((error: unknown) => server.config.logger.error(`agent core failed to start: ${String(error)}`));
+    };
+    if (server.httpServer?.listening) start();
+    else server.httpServer?.once("listening", start);
+    server.httpServer?.once("close", () => child?.stdin?.write('{"type":"control.shutdown"}\n'));
+    // The page waits here until the core is up (no polling, no error noise while it starts).
+    server.middlewares.use("/__jana_dev/launch", (_req, res) => {
+      res.setHeader("content-type", "application/json");
+      res.setHeader("cache-control", "no-store");
+      const answer = (status: number, body: unknown) => {
+        res.statusCode = status;
+        res.end(JSON.stringify(body));
+      };
+      if (ready === null) return answer(503, { error: "starting" });
+      ready.then((launch) => answer(200, launch), () => answer(500, { error: "core_failed" }));
+    });
+  };
   return {
     name: "jana-dev-sidecar",
     apply: "serve",
-    configureServer(server) {
-      server.httpServer?.once("listening", () => {
-        const address = server.httpServer?.address();
-        const port = typeof address === "object" && address !== null ? address.port : 5180;
-        ready = startSidecar(`http://localhost:${port}`).then((started) => {
-          child = started.child;
-          server.config.logger.info(`  agent core: ${started.launch.base_url}`);
-          return started.launch;
-        });
-        ready.catch((error: unknown) => server.config.logger.error(`agent core failed to start: ${String(error)}`));
-      });
-      server.httpServer?.once("close", () => child?.stdin?.write('{"type":"control.shutdown"}\n'));
-      // The page waits here until the core is up (no polling, no error noise while it starts).
-      server.middlewares.use("/__jana_dev/launch", (_req, res) => {
-        res.setHeader("content-type", "application/json");
-        res.setHeader("cache-control", "no-store");
-        const answer = (status: number, body: unknown) => {
-          res.statusCode = status;
-          res.end(JSON.stringify(body));
-        };
-        if (ready === null) return answer(503, { error: "starting" });
-        ready.then((launch) => answer(200, launch), () => answer(500, { error: "core_failed" }));
-      });
-    },
+    configureServer: configure,
+    configurePreviewServer: configure,
   };
 }
