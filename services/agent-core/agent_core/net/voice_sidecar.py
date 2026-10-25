@@ -322,7 +322,7 @@ def prompt_sentences() -> None:
     tokenize = cast(Callable[..., list[str]], module.sent_tokenize)
 
     def sent_tokenize(text: str, *args: Any, **kwargs: Any) -> list[str]:
-        sentences = tokenize(text, *args, **kwargs)
+        sentences: list[str] = tokenize(text, *args, **kwargs)
         if sentences and re.search(r"[.!?][\"')\]]?\s+$", text):
             return [*sentences, ""]
         return sentences

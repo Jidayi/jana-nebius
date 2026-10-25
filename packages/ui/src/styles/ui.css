@@ -12,6 +12,9 @@
 @import "@fontsource/noto-sans/latin-ext-400.css";
 @import "@fontsource/noto-sans/latin-ext-500.css";
 @import "@fontsource/noto-sans/latin-ext-600.css";
+@import "@fontsource/noto-sans/greek-400.css";
+@import "@fontsource/noto-sans/greek-500.css";
+@import "@fontsource/noto-sans/greek-600.css";
 @import "katex/dist/katex.min.css";
 @import "../primitives/motion.css";
 @import "../tutor/presence.css";
@@ -184,4 +187,57 @@ label:has(input[type="checkbox"], input[type="radio"]) {
 :where(td, th, tr)[data-part][tabindex] {
   min-width: var(--target-pointerMin);
   height: var(--target-pointerMin);
+}
+
+/* DSN-22: a printed report (the parent summary, UXS-33) prints alone on A4 portrait with 15 mm margins and "Page n of
+   m" at the foot, in the print theme of tokens.json whatever the screen theme: inside the report the colour roles take
+   the print colours and the type the point scale. Mastery marks keep their patterns, icons and words (DSN-23), never
+   colour alone. The footer's words are set on the document by the report as it prints (they are catalogue strings). */
+@page report {
+  size: A4 portrait;
+  margin: 15mm;
+  @bottom-center {
+    content: var(--print-page-label, "Page") " " counter(page) " " var(--print-page-of, "of") " " counter(pages);
+    color: var(--print-color-muted);
+  }
+}
+
+@media print {
+  body:has([data-print-report]) * { visibility: hidden; }
+  [data-print-report], [data-print-report] * { visibility: visible !important; }
+  [data-print-report] {
+    page: report;
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    padding: 0;
+    --text-scale: 1;
+    --color-canvas: var(--print-color-paper);
+    --color-paper: var(--print-color-paper);
+    --color-panel: var(--print-color-fill);
+    --color-wash: var(--print-color-fill);
+    --color-ink: var(--print-color-ink);
+    --color-muted: var(--print-color-muted);
+    --color-faint: var(--print-color-muted);
+    --color-line: var(--print-color-rule);
+    --color-line-strong: var(--print-color-rule);
+    --text-title: var(--print-text-title);
+    --leading-title: var(--print-leading-title);
+    --text-heading: var(--print-text-heading);
+    --leading-heading: var(--print-leading-heading);
+    --text-ui: var(--print-text-body);
+    --leading-ui: var(--print-leading-body);
+    --text-body: var(--print-text-body);
+    --leading-body: var(--print-leading-body);
+    --text-meta: var(--print-text-meta);
+    --leading-meta: var(--print-leading-meta);
+    --text-label: var(--print-text-label);
+    --leading-label: var(--print-leading-label);
+    --math-katex-inline: var(--print-text-math);
+    --math-katex-display: var(--print-text-math);
+    background: var(--print-color-paper);
+    color: var(--print-color-ink);
+  }
+  [data-print-report] [data-mastery] { print-color-adjust: exact; }
+  [data-print-report] [data-print-hide] { display: none; }
 }

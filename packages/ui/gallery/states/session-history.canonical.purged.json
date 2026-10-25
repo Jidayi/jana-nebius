@@ -1,0 +1,70 @@
+{
+  "id": "session-history.canonical.purged",
+  "title": "Session history, a purged session",
+  "component": "SessionHistory",
+  "note": "A session past the retention period opens with nothing in it; its progress stays (DAT-08).",
+  "state": "canonical",
+  "variant": "purged",
+  "payload": {
+    "view": {
+      "status": "ready",
+      "sessions": [
+        {
+          "session_id": "ses_00000000000000000000000009",
+          "mode": "guided",
+          "subject": "physics",
+          "topic_id": "cur.phy.o.motion",
+          "topic_title": "Motion",
+          "title": "Speed of a cyclist",
+          "started_at": 1792929600000,
+          "duration_ms": 1500000,
+          "transcript": "kept"
+        },
+        {
+          "session_id": "ses_00000000000000000000000004",
+          "mode": "practice",
+          "subject": "physics",
+          "topic_id": null,
+          "topic_title": null,
+          "title": "",
+          "started_at": 1784289600000,
+          "duration_ms": null,
+          "transcript": "purged"
+        }
+      ],
+      "nextBefore": null,
+      "retentionDays": 90,
+      "opened": {
+        "sessionId": "ses_00000000000000000000000004",
+        "status": "ready",
+        "session": {
+          "session": {
+            "session_id": "ses_00000000000000000000000004",
+            "mode": "practice",
+            "subject": "physics",
+            "topic_id": null,
+            "topic_title": null,
+            "title": "",
+            "started_at": 1784289600000,
+            "duration_ms": null,
+            "transcript": "purged"
+          },
+          "messages": [],
+          "parts": {},
+          "boards": []
+        }
+      },
+      "loadingMore": false
+    }
+  },
+  "payloadContract": null,
+  "context": {
+    "theme": "light"
+  },
+  "placements": [
+    "page"
+  ],
+  "expectText": [
+    "This conversation was deleted after the time conversations are kept. Your progress from it stays."
+  ]
+}

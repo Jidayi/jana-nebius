@@ -191,7 +191,7 @@ def add_routes(app: FastAPI, core: CoreService, mutating: Mutating) -> None:
         async def run(body: Any) -> tuple[int, Any]:
             asked = require("PracticeHelp", body)
             try:
-                loaded = desk(core).practice_help(identity, asked["item_id"])
+                loaded = desk(core).practice_help(identity, asked["item_id"], asked.get("reason") or "help")
                 return 200, core.create_session(
                     {
                         "client_session_id": "cli_" + identity.removeprefix("set_"),

@@ -3,12 +3,13 @@
 // notes: the knows page, forgetting and the memory-use line (LRN-36, MEM-11, MEM-14, MEM-28); the subject map and the
 // lesson player (UXS-22, UXS-23); the connectivity slice and the egress indicator state (UIA-23, UXS-06).
 export * from "./store.js";
-export { CueSync, cueReport, parseTarget, wordTime, type CaptionCue, type CaptionWord, type CueRecord, type CueTiming, type PointerTarget, type PointerView, type WritingView } from "./pointer.js";
+export { CueSync, PEN_LEAD_MS, cueReport, parseTarget, wordTime, type CaptionCue, type CaptionWord, type CueRecord, type CueTiming, type PenView, type PointerTarget, type PointerView, type WritingView } from "./pointer.js";
+export { FRAME_MS, LoudnessTrack, MOUTH_SETTINGS, MouthFollower, PLAYBACK_RATE, frameLevels, type MouthSettings, type MouthShape } from "./mouth.js";
 export { VoiceController, type VoicePlace, MICROPHONE_REASONS, PERMANENT_REASONS, microphoneReason, type VoiceAudio, type VoiceSocket, type VoiceState, type VoiceView, type TalkMode } from "./voice.js";
 export { SpeechController, listedNote, type ListedNote, type LocalSpeech, type SpeechView, type ReadSource, type StudyNote, type SpeechPreferences } from "./speech.js";
 export { answerInterview, readInterview, type InterviewAnswer, type InterviewCard, type InterviewView } from "./interview.js";
 export { StepIdleWatch, openStepOf, reportStepIdle, type IdleTimers } from "./idle.js";
-export { reduce, optimistic, markFailed, markForgotten, markSending } from "./reducer.js";
+export { reduce, optimistic, markFailed, markForgotten, markSending, removeSketch } from "./reducer.js";
 export { boundLine, moveVisual, selectBoardLine, stepBoard, type VisualMoveSource } from "./visuals.js";
 export {
   EMPTY_KNOWS, KnowsController, MEMORY_READ_TOOLS, PREFERENCE_KEYS, PREFERENCE_VALUES, forgetNote, knowsReplyProblems, knowsViewOf, memoryReadCount, readKnows,
@@ -96,6 +97,14 @@ export { waitForJob } from "./jobs.js";
 export * from "./assessments.js";
 export * from "./saved-questions.js";
 export * from "./session-notes.js";
+export {
+  ALERT_KINDS, EMPTY_PARENT_VIEW, ParentController, conversationStarter, hoursAndMinutes, readAlerts, readDigest, type AlertKind, type AlertView,
+  type DigestKc, type DigestMock, type DigestWatch, type ParentDigest, type ParentView,
+} from "./parents.js";
+export {
+  EMPTY_HISTORY, HistoryController, historyStore, readHistoryList, readHistorySession, type HistoryEntry, type HistoryList, type HistorySession,
+  type HistoryStep, type HistoryView,
+} from "./history.js";
 export * from "./ask-anything.js";
 export { StudyWorkspaceController, EMPTY_STUDY, GENERATE_TOOLS, type GenerateTool, type StudyWorkspaceView, type StudyContracts, type PodcastAudio } from "./study-workspace.js";
 export {

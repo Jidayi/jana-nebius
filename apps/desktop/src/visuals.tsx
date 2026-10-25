@@ -4,7 +4,7 @@
 // the renderer its props.
 import type { ReactElement } from "react";
 import { VisualViewer, type RenderProps, type Registry, type VisualHooks, type VisualSpec } from "@jana/ui";
-import type { ResolvedSpec, VisualRenderer } from "@jana/renderers";
+import { SketchView, type ResolvedSketch, type ResolvedSpec, type VisualRenderer } from "@jana/renderers";
 
 export function hooksOf(renderer: VisualRenderer): VisualHooks {
   const R = renderer;
@@ -34,5 +34,12 @@ export function registerVisuals(registry: Registry, renderers: readonly VisualRe
     }
     registry.register<ResolvedSpec>(`visual:${renderer.kind}`, { schema: "visuals/visual-spec#/$defs/resolved", Component: View, Fallback, renderClass: "card" });
   }
+  // The online sketch (VSL-43): drawn by its vetted renderer from the engine-resolved form only; in words otherwise.
+  registry.register<ResolvedSketch>("visual:sketch", {
+    schema: "visuals/sketch#/$defs/resolved",
+    Component: ({ data }) => <SketchView sketch={data as ResolvedSketch} />,
+    Fallback: ({ data }) => <p className="text-ui">{(data as { alt?: string } | null)?.alt ?? ""}</p>,
+    renderClass: "card",
+  });
   return registry;
 }

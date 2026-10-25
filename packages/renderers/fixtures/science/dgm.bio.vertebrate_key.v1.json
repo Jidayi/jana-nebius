@@ -1,0 +1,73 @@
+{
+  "id": "dgm.bio.vertebrate_key.v1",
+  "version": "1.0.0",
+  "subject": "bio",
+  "kind": "classification_key",
+  "kc_ids": [
+    "kc.bio.o.classification.dichotomous_keys"
+  ],
+  "title": "A key to the vertebrate classes",
+  "definition": {
+    "root": "q_feathers",
+    "nodes": [
+      {
+        "id": "q_feathers",
+        "question": "Does it have feathers?",
+        "yes": "birds",
+        "no": "q_fur"
+      },
+      {
+        "id": "q_fur",
+        "question": "Does it have fur or hair?",
+        "yes": "mammals",
+        "no": "q_fins"
+      },
+      {
+        "id": "q_fins",
+        "question": "Does it have fins and gills?",
+        "yes": "fish",
+        "no": "q_dry"
+      },
+      {
+        "id": "q_dry",
+        "question": "Is its skin dry and scaly?",
+        "yes": "reptiles",
+        "no": "amphibians"
+      }
+    ],
+    "terminals": [
+      {
+        "id": "birds",
+        "label": "Birds"
+      },
+      {
+        "id": "mammals",
+        "label": "Mammals"
+      },
+      {
+        "id": "fish",
+        "label": "Fish"
+      },
+      {
+        "id": "reptiles",
+        "label": "Reptiles"
+      },
+      {
+        "id": "amphibians",
+        "label": "Amphibians"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "title": "Jana biology authoring notes: classifying vertebrates",
+      "url": "https://jana.dev/sources/own-work",
+      "licence": "LicenseRef-Own",
+      "attribution": "Our own definition, written for Jana.",
+      "modifications": "None.",
+      "retrieved": "2026-10-23"
+    }
+  ],
+  "licence": "LicenseRef-Own",
+  "attribution": "Our own definition, written for Jana."
+}

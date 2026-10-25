@@ -1,0 +1,182 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.reaction-mechanism",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: The pi bond's electron pair attacks the partly positive hydrogen, and the H-Br bond breaks heterolytically, its pair going to bromine.",
+        "Step 2: A lone pair on the bromide ion bonds to the positive carbon of the carbocation, giving bromoethane."
+      ],
+      "summary": "The mechanism of electrophilic addition of hydrogen bromide to ethene: ethene and hydrogen bromide, then a carbocation and a bromide ion, then bromoethane, with curly arrows for each step. Electrophilic addition: step 2 of 2."
+    },
+    "computed": {
+      "entry": {
+        "alt_text": "The mechanism of electrophilic addition of hydrogen bromide to ethene: ethene and hydrogen bromide, then a carbocation and a bromide ion, then bromoethane, with curly arrows for each step.",
+        "attribution": "Our own schematic drawing, made for Jana with AI assistance (renderer test fixture).",
+        "id": "dgm.chm.mechanism_electrophilic_addition.v1",
+        "licence": "LicenseRef-Own",
+        "parts": [
+          {
+            "function": "The alkene: its pi bond is a region of high electron density that attacks an electrophile.",
+            "id": "ethene",
+            "label_anchor": [
+              40,
+              60
+            ],
+            "name": "Ethene",
+            "tab_order": 0
+          },
+          {
+            "function": "The electrophile: a polar molecule whose hydrogen end carries a partial positive charge.",
+            "id": "hydrogen_bromide",
+            "label_anchor": [
+              40,
+              215
+            ],
+            "name": "Hydrogen bromide",
+            "tab_order": 1
+          },
+          {
+            "function": "The intermediate: a carbon with only three bonds and a positive charge.",
+            "id": "carbocation",
+            "label_anchor": [
+              210,
+              60
+            ],
+            "name": "Carbocation",
+            "tab_order": 2
+          },
+          {
+            "function": "Left when the H-Br bond breaks heterolytically; it uses a lone pair to bond to the carbocation.",
+            "id": "bromide_ion",
+            "label_anchor": [
+              215,
+              215
+            ],
+            "name": "Bromide ion",
+            "tab_order": 3
+          },
+          {
+            "function": "The product of the addition.",
+            "id": "bromoethane",
+            "label_anchor": [
+              355,
+              165
+            ],
+            "name": "Bromoethane",
+            "tab_order": 4
+          }
+        ],
+        "sequences": [
+          {
+            "id": "electrophilic_addition",
+            "steps": [
+              {
+                "arrows": [
+                  "arrow_pi_to_h",
+                  "arrow_bond_to_br"
+                ],
+                "caption": "The pi bond's electron pair attacks the partly positive hydrogen, and the H-Br bond breaks heterolytically, its pair going to bromine.",
+                "highlight": [
+                  "ethene",
+                  "hydrogen_bromide"
+                ]
+              },
+              {
+                "arrows": [
+                  "arrow_br_to_c"
+                ],
+                "caption": "A lone pair on the bromide ion bonds to the positive carbon of the carbocation, giving bromoethane.",
+                "highlight": [
+                  "carbocation",
+                  "bromide_ion"
+                ]
+              }
+            ],
+            "title": "Electrophilic addition"
+          }
+        ],
+        "title": "Electrophilic addition of hydrogen bromide to ethene",
+        "version": "1.0.0"
+      },
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 240\"><title>Electrophilic addition of hydrogen bromide to ethene (test fixture)</title><defs><marker id=\"head\" viewBox=\"0 0 8 8\" refX=\"4\" refY=\"4\" markerWidth=\"8\" markerHeight=\"8\" orient=\"auto\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"var(--color-diagram-stroke)\"/></marker></defs><g data-part=\"ethene\"><text x=\"30\" y=\"90\" font-size=\"14\" fill=\"var(--color-ink)\">H2C</text><line x1=\"62\" y1=\"82\" x2=\"96\" y2=\"82\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><line x1=\"62\" y1=\"88\" x2=\"96\" y2=\"88\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"100\" y=\"90\" font-size=\"14\" fill=\"var(--color-ink)\">CH2</text><text x=\"40\" y=\"60\" font-size=\"12\" fill=\"var(--color-ink)\" data-label-for=\"ethene\">ethene</text></g><g data-part=\"hydrogen_bromide\"><text x=\"50\" y=\"170\" font-size=\"12\" fill=\"var(--color-ink)\">δ+</text><text x=\"70\" y=\"170\" font-size=\"14\" fill=\"var(--color-ink)\">H</text><line x1=\"82\" y1=\"165\" x2=\"116\" y2=\"165\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"120\" y=\"170\" font-size=\"14\" fill=\"var(--color-ink)\">Br</text><text x=\"140\" y=\"170\" font-size=\"12\" fill=\"var(--color-ink)\">δ−</text><text x=\"40\" y=\"215\" font-size=\"12\" fill=\"var(--color-ink)\" data-label-for=\"hydrogen_bromide\">hydrogen bromide</text></g><g data-part=\"carbocation\"><text x=\"205\" y=\"90\" font-size=\"14\" fill=\"var(--color-ink)\">H3C</text><line x1=\"232\" y1=\"85\" x2=\"258\" y2=\"85\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"90\" font-size=\"14\" fill=\"var(--color-ink)\">CH2</text><text x=\"290\" y=\"80\" font-size=\"12\" fill=\"var(--color-ink)\">+</text><text x=\"210\" y=\"60\" font-size=\"12\" fill=\"var(--color-ink)\" data-label-for=\"carbocation\">carbocation</text></g><g data-part=\"bromide_ion\"><circle cx=\"244\" cy=\"150\" r=\"1.5\" fill=\"var(--color-diagram-stroke)\"/><circle cx=\"251\" cy=\"150\" r=\"1.5\" fill=\"var(--color-diagram-stroke)\"/><text x=\"240\" y=\"170\" font-size=\"14\" fill=\"var(--color-ink)\">Br</text><text x=\"258\" y=\"160\" font-size=\"12\" fill=\"var(--color-ink)\">−</text><text x=\"215\" y=\"215\" font-size=\"12\" fill=\"var(--color-ink)\" data-label-for=\"bromide_ion\">bromide ion</text></g><g data-part=\"bromoethane\"><text x=\"350\" y=\"135\" font-size=\"14\" fill=\"var(--color-ink)\">CH3CH2Br</text><text x=\"355\" y=\"165\" font-size=\"12\" fill=\"var(--color-ink)\" data-label-for=\"bromoethane\">bromoethane</text></g><g aria-hidden=\"true\"><line x1=\"165\" y1=\"130\" x2=\"195\" y2=\"130\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\" marker-end=\"url(#head)\"/><line x1=\"305\" y1=\"130\" x2=\"340\" y2=\"130\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\" marker-end=\"url(#head)\"/></g><g data-arrow=\"arrow_pi_to_h\"><path d=\"M80,94 C82,120 76,135 75,152\" fill=\"none\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\" marker-end=\"url(#head)\"/></g><g data-arrow=\"arrow_bond_to_br\"><path d=\"M99,168 C102,190 122,192 127,178\" fill=\"none\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\" marker-end=\"url(#head)\"/></g><g data-arrow=\"arrow_br_to_c\"><path d=\"M247,146 C250,125 268,120 272,100\" fill=\"none\" stroke=\"var(--color-diagram-stroke)\" stroke-width=\"1.5\" marker-end=\"url(#head)\"/></g></svg>\n"
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [],
+    "params": {
+      "diagram_id": "dgm.chm.mechanism_electrophilic_addition.v1",
+      "sequence_id": "electrophilic_addition",
+      "step": 1
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ethene",
+        "name": "Ethene",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "hydrogen_bromide",
+        "name": "Hydrogen bromide",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "carbocation",
+        "name": "Carbocation",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "bromide_ion",
+        "name": "Bromide ion",
+        "quizzable": true,
+        "role": "part"
+      },
+      {
+        "focusable": true,
+        "id": "bromoethane",
+        "name": "Bromoethane",
+        "quizzable": true,
+        "role": "part"
+      }
+    ],
+    "ref": "dgm.chm.mechanism_electrophilic_addition.v1",
+    "repairs": [],
+    "resolution_hash": "sha256:56ab5b90765ab5bdd0c542ff6d35f7daa7a9094d5eaa61b35d22510a431a42ed",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "ethene",
+          "hydrogen_bromide"
+        ]
+      },
+      {
+        "highlight": [
+          "carbocation",
+          "bromide_ion"
+        ]
+      }
+    ],
+    "type": "reaction_mechanism",
+    "visual_id": "vis_PBVGPTNXG52ZDNQT799DYA1KX2"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: reaction mechanism (shown labels)",
+  "variant": "reaction-mechanism"
+}

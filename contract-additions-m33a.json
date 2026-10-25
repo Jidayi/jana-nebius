@@ -1,0 +1,885 @@
+{
+  "proposal": "Contract pieces TCH-12, TCH-14, UXS-33, UXS-46a and UXS-48 imply (D72 standing approval to add spec-implied pieces and report after), proposed by M33.a; they close G120's \"Local alerts have no route\". Each entry is a JSON Pointer into a contract under docs/specification/contracts (or an endpoint for TABLE API-27a) and the value to add there. Until the specification adopts them the core serves them as written here (agent_core/api/parents.py checks the dismiss body itself, and the core's tests check every reply against these definitions), and client-core's parent summary and history controllers check each reply against the same shapes before accepting it (src/parents.ts, src/history.ts). Once adopted, codegen picks them up and these local checks give way to the contract's.",
+  "additions": [
+    {
+      "target": "api/commands.schema.json",
+      "pointer": "/$defs/DigestKc",
+      "requirements": [
+        "TCH-12"
+      ],
+      "why": "A KC the digest names: its id, subject and the installed pack's own topic title and statement (authored content, never student text); the client words the line around them.",
+      "value": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kc_id": {
+            "type": "string",
+            "maxLength": 96
+          },
+          "subject": {
+            "enum": [
+              "mathematics",
+              "physics",
+              "chemistry",
+              "biology",
+              "accounting"
+            ]
+          },
+          "topic_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 96
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "topic_title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "statement": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "kc_id",
+          "subject",
+          "topic_id",
+          "topic_title",
+          "statement"
+        ]
+      }
+    },
+    {
+      "target": "api/commands.schema.json",
+      "pointer": "/$defs/DigestWatch",
+      "requirements": [
+        "TCH-12"
+      ],
+      "why": "A KC to watch (TCH-12): `learning` for over `parent_watch_learning_days` (proposal: 2 weeks) or `moved_on`, with which.",
+      "value": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kc_id": {
+            "type": "string",
+            "maxLength": 96
+          },
+          "subject": {
+            "enum": [
+              "mathematics",
+              "physics",
+              "chemistry",
+              "biology",
+              "accounting"
+            ]
+          },
+          "topic_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 96
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "topic_title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "statement": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "enum": [
+              "learning_long",
+              "moved_on"
+            ]
+          }
+        },
+        "required": [
+          "kc_id",
+          "subject",
+          "topic_id",
+          "topic_title",
+          "statement",
+          "reason"
+        ]
+      }
+    },
+    {
+      "target": "api/commands.schema.json",
+      "pointer": "/$defs/ParentDigest",
+      "requirements": [
+        "TCH-12",
+        "UXS-33",
+        "JRN-13",
+        "PED-19"
+      ],
+      "why": "TCH-12's one-page weekly digest, from projections only: the sections in the requirement's order as numbers, ids and pack titles, so every number equals the projection value for that week (`tch12_digest_numbers_match`) and no transcript text, note or safety-flag detail can appear (`tch12_digest_no_free_text`). Wording is the client's templates (UXS-33's opening line, topics improved, topics to watch, a conversation starter). `activity` gives UXS-33's empty week (`none`: \"No study sessions this week.\") and JRN-13 F1 (`low`: time studied only). `final` is false while the week is still running (the digest is rebuilt on each read until it ends). The steps counts are JRN-13 step 2's integrity indicators (PED-19). The Reflector's optional paragraph is not proposed: no core writes one yet.",
+      "value": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "week_start": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+            "description": "The Monday of the week (local day)."
+          },
+          "week_end": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+            "description": "The Sunday of the week."
+          },
+          "generated_at": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "ms since Unix epoch; due on Sunday at `parent_digest_hour` local (proposal: 18:00; D53: not a setting)."
+          },
+          "final": {
+            "type": "boolean"
+          },
+          "activity": {
+            "enum": [
+              "none",
+              "low",
+              "enough"
+            ]
+          },
+          "time_by_day": {
+            "type": "array",
+            "minItems": 7,
+            "maxItems": 7,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "day": {
+                  "type": "string",
+                  "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+                },
+                "minutes": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "day",
+                "minutes"
+              ]
+            }
+          },
+          "minutes_total": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "days_studied": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 7
+          },
+          "sessions": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "mastered": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/DigestKc"
+            },
+            "description": "KCs that reached `mastered` (a passed mastery check) that week."
+          },
+          "to_watch": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/DigestWatch"
+            }
+          },
+          "mocks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "exam_id": {
+                  "type": "string",
+                  "pattern": "^exm_[0-9A-HJKMNP-TV-Z]{26}$"
+                },
+                "paper_id": {
+                  "type": "string",
+                  "maxLength": 96
+                },
+                "submitted_at": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "title": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "marks_awarded": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "marks_available": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "exam_id",
+                "paper_id",
+                "submitted_at",
+                "title",
+                "marks_awarded",
+                "marks_available"
+              ]
+            },
+            "description": "Mock sittings submitted that week; marks once marked; a pack paper's title only (an imported paper's name is the student's own)."
+          },
+          "solutions_viewed": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "bottom_out_hints": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Steps that ended at the bottom-out hint (rung 5)."
+          },
+          "steps": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Closed steps that week, mock sittings aside."
+          },
+          "steps_with_hints": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "streak_days": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The streak on the week's last day that counted (LRN-33); 0 when none did."
+          },
+          "exam": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "subject": {
+                    "enum": [
+                      "mathematics",
+                      "physics",
+                      "chemistry",
+                      "biology",
+                      "accounting"
+                    ]
+                  },
+                  "days": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "subject",
+                  "days"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "week_start",
+          "week_end",
+          "generated_at",
+          "final",
+          "activity",
+          "time_by_day",
+          "minutes_total",
+          "days_studied",
+          "sessions",
+          "mastered",
+          "to_watch",
+          "mocks",
+          "solutions_viewed",
+          "bottom_out_hints",
+          "steps",
+          "steps_with_hints",
+          "streak_days",
+          "exam"
+        ],
+        "description": "GET /v1/digests/latest: the latest due week's digest of the open profile (Settings → Parent summary, UXS-33)."
+      }
+    },
+    {
+      "target": "api/commands.schema.json",
+      "pointer": "/$defs/AlertView",
+      "requirements": [
+        "TCH-14",
+        "PRV-14"
+      ],
+      "why": "One alert of TABLE TCH-14a as Settings → Alerts lists it: kind, severity and date, never message text (TABLE UXS-46a); a mastery drop names its KC. `wellbeing_message_shown` carries nothing beyond its kind (category only; never written for an abuse disclosure or a line the guard could not read, D104).",
+      "value": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "alert_id": {
+            "type": "string",
+            "pattern": "^alr_[0-9A-HJKMNP-TV-Z]{26}$"
+          },
+          "kind": {
+            "enum": [
+              "inactive",
+              "bottom_out_heavy",
+              "mastery_drop",
+              "mock_result",
+              "wellbeing_message_shown"
+            ]
+          },
+          "severity": {
+            "enum": [
+              "info",
+              "attention",
+              "urgent"
+            ]
+          },
+          "created_at": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "kc_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 96
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "alert_id",
+          "kind",
+          "severity",
+          "created_at",
+          "kc_id"
+        ]
+      }
+    },
+    {
+      "target": "api/commands.schema.json",
+      "pointer": "/$defs/AlertList",
+      "requirements": [
+        "TCH-14",
+        "UXS-46"
+      ],
+      "why": "GET /v1/alerts: the open profile's alerts not put away, newest first; generated by code from projections and events when read, never sent off the device (TCH-15 is S4).",
+      "value": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "alerts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/AlertView"
+            }
+          }
+        },
+        "required": [
+          "alerts"
+        ]
+      }
+    },
+    {
+      "target": "api/commands.schema.json",
+      "pointer": "/$defs/HistoryEntry",
+      "requirements": [
+        "UXS-48",
+        "DAT-08"
+      ],
+      "why": "A retained session in Progress → Session history: date, subject, topic and duration, and whether its conversation is still kept (TABLE DAT-08a: purged after `retention_transcript_days`, while its events and so all progress remain).",
+      "value": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "pattern": "^ses_[0-9A-HJKMNP-TV-Z]{26}$"
+          },
+          "mode": {
+            "enum": [
+              "guided",
+              "solution",
+              "check_working",
+              "learn",
+              "practice",
+              "mock",
+              "revision",
+              "diagnostic",
+              "mastery_check",
+              "review"
+            ]
+          },
+          "subject": {
+            "anyOf": [
+              {
+                "enum": [
+                  "mathematics",
+                  "physics",
+                  "chemistry",
+                  "biology",
+                  "accounting"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "topic_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 96
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "topic_title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "started_at": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "duration_ms": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "transcript": {
+            "enum": [
+              "kept",
+              "purged"
+            ]
+          }
+        },
+        "required": [
+          "session_id",
+          "mode",
+          "subject",
+          "topic_id",
+          "topic_title",
+          "title",
+          "started_at",
+          "duration_ms",
+          "transcript"
+        ]
+      }
+    },
+    {
+      "target": "api/commands.schema.json",
+      "pointer": "/$defs/HistoryList",
+      "requirements": [
+        "UXS-48"
+      ],
+      "why": "GET /v1/history[?before=&limit=]: a page of the open profile's sessions, newest first, with the fixed retention period the screen explains (no retention setting, D53).",
+      "value": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sessions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/HistoryEntry"
+            }
+          },
+          "next_before": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^ses_[0-9A-HJKMNP-TV-Z]{26}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "retention_days": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "sessions",
+          "next_before",
+          "retention_days"
+        ]
+      }
+    },
+    {
+      "target": "api/commands.schema.json",
+      "pointer": "/$defs/HistorySession",
+      "requirements": [
+        "UXS-48",
+        "DAT-08"
+      ],
+      "why": "GET /v1/history/{session_id}: the session read-only from its stored turns, parts and board steps (DAT-06): the student's words, the tutor's parts as the snapshot keeps them (a visual part with its spec) and each board's current steps. A purged session has no messages, parts or boards. History has no sharing, sending or export action: a readable archive of chosen sessions is API-30's separate confirmation.",
+      "value": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "session": {
+            "$ref": "#/$defs/HistoryEntry"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "role": {
+                      "const": "student"
+                    },
+                    "turn_id": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "role",
+                    "turn_id",
+                    "text"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "role": {
+                      "const": "tutor"
+                    },
+                    "turn_id": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "part_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "maxLength": 64
+                      }
+                    }
+                  },
+                  "required": [
+                    "role",
+                    "turn_id",
+                    "part_ids"
+                  ]
+                }
+              ]
+            }
+          },
+          "parts": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "boards": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "board_id": {
+                  "type": "string",
+                  "pattern": "^brd_[0-9A-HJKMNP-TV-Z]{26}$"
+                },
+                "part_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "steps": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "step_id": {
+                        "type": "string",
+                        "pattern": "^stp_[0-9A-HJKMNP-TV-Z]{26}$"
+                      },
+                      "index": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "latex": {
+                        "type": "string",
+                        "maxLength": 4000
+                      },
+                      "reason": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "maxLength": 300
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "owner": {
+                        "enum": [
+                          "tutor",
+                          "student"
+                        ]
+                      },
+                      "status": {
+                        "$ref": "https://jana.dev/contracts/api/events#/$defs/board_step_status"
+                      }
+                    },
+                    "required": [
+                      "step_id",
+                      "index",
+                      "latex",
+                      "reason",
+                      "owner",
+                      "status"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "board_id",
+                "part_id",
+                "steps"
+              ]
+            }
+          }
+        },
+        "required": [
+          "session",
+          "messages",
+          "parts",
+          "boards"
+        ]
+      }
+    },
+    {
+      "target": "api/endpoints (TABLE API-27a)",
+      "pointer": "GET /v1/digests/latest",
+      "requirements": [
+        "TCH-12",
+        "UXS-33"
+      ],
+      "why": "The parent summary's one read; no model, works offline (`uxs33_parent_summary_offline`). Written to `digests` (data/schema.sql) once due.",
+      "value": {
+        "method": "GET",
+        "path": "/v1/digests/latest",
+        "request": null,
+        "response": "#/$defs/ParentDigest",
+        "auth": [
+          "launch",
+          "profile"
+        ],
+        "errors": [
+          "not_found"
+        ],
+        "stage": "S3",
+        "owner": "TCH-12"
+      }
+    },
+    {
+      "target": "api/endpoints (TABLE API-27a)",
+      "pointer": "GET /v1/alerts",
+      "requirements": [
+        "TCH-14",
+        "UXS-46"
+      ],
+      "why": "Settings → Alerts (TABLE UXS-46a). G120: TCH-14's local alerts route joins the contracts in M33.",
+      "value": {
+        "method": "GET",
+        "path": "/v1/alerts",
+        "request": null,
+        "response": "#/$defs/AlertList",
+        "auth": [
+          "launch",
+          "profile"
+        ],
+        "errors": [
+          "not_found"
+        ],
+        "stage": "S3",
+        "owner": "TCH-14"
+      }
+    },
+    {
+      "target": "api/endpoints (TABLE API-27a)",
+      "pointer": "POST /v1/alerts/{alert_id}/dismiss",
+      "requirements": [
+        "TCH-14",
+        "DAT-08"
+      ],
+      "why": "Puts an alert away: TABLE DAT-08a keeps alerts until dismissed, then for `retention_alert_days`. Body `{}`; 204; ids only (screened as ids, PRV-13).",
+      "value": {
+        "method": "POST",
+        "path": "/v1/alerts/{alert_id}/dismiss",
+        "request": null,
+        "response": null,
+        "auth": [
+          "launch",
+          "profile"
+        ],
+        "errors": [
+          "not_found",
+          "validation_failed"
+        ],
+        "stage": "S3",
+        "owner": "TCH-14",
+        "idempotent": true
+      }
+    },
+    {
+      "target": "api/endpoints (TABLE API-27a)",
+      "pointer": "GET /v1/history",
+      "requirements": [
+        "UXS-48"
+      ],
+      "why": "Progress → Session history for the open owner profile only (`uxs48_history_private`); no teacher or staff route exists.",
+      "value": {
+        "method": "GET",
+        "path": "/v1/history",
+        "request": null,
+        "response": "#/$defs/HistoryList",
+        "auth": [
+          "launch",
+          "profile"
+        ],
+        "errors": [
+          "not_found"
+        ],
+        "stage": "S3",
+        "owner": "UXS-48"
+      }
+    },
+    {
+      "target": "api/endpoints (TABLE API-27a)",
+      "pointer": "GET /v1/history/{session_id}",
+      "requirements": [
+        "UXS-48",
+        "DAT-08"
+      ],
+      "why": "One session read-only; `tutor_locked` during a mock sitting, like the notes (ASM-18); purged content is unavailable while progress remains (`uxs48_history_retention`).",
+      "value": {
+        "method": "GET",
+        "path": "/v1/history/{session_id}",
+        "request": null,
+        "response": "#/$defs/HistorySession",
+        "auth": [
+          "launch",
+          "profile"
+        ],
+        "errors": [
+          "not_found",
+          "tutor_locked"
+        ],
+        "stage": "S3",
+        "owner": "UXS-48"
+      }
+    }
+  ]
+}

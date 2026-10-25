@@ -97,6 +97,19 @@ def measure(traces: Iterable[Mapping[str, Any]]) -> dict[str, RoleInputs]:
     return measured
 
 
+def measure_sketches(outcomes: Iterable[Mapping[str, Any]], online_turns: int) -> RoleInputs | None:
+    """MDL-33: the sketch calls as their own line, from the engine's `sketch.outcome` records (each call's tokens) and
+    the number of online turns they came from: the measured share of online turns with a sketch call."""
+    made = [o for o in outcomes if isinstance(o.get("tokens"), Mapping)]
+    if not made or online_turns <= 0:
+        return None
+    inputs = sum(int(o["tokens"]["input"]) for o in made)
+    cached = sum(int(o["tokens"].get("cache_read", 0)) for o in made)
+    return RoleInputs(calls_per_turn=len(made) / online_turns, input_tokens=inputs / len(made),
+                      cache_hit=cached / inputs if inputs else 0.0,
+                      output_tokens=sum(int(o["tokens"]["output"]) for o in made) / len(made))  # fmt: skip
+
+
 def c_cloud(roles: Mapping[str, RoleInputs], usage: Usage, p_in: float, p_out: float, cached_multiplier: float,
             p_img: float = 0.0) -> float:  # fmt: skip
     """Formula 1: A · T · Σ_r k_r · [(i_r·(1 - h_r) + i_r·h_r·m) · p_in + o_r · p_out] + V · p_img (USD per token)."""
@@ -126,9 +139,11 @@ def load_prices(path: Path = PRICES) -> dict[str, Any]:
 
 def workbook(traces: list[Mapping[str, Any]], *, model: str, usage: Usage, cached_multiplier: float,
              measured_release: str, prices: Mapping[str, Any] | None = None, p90_factor: float = 1.0,
-             online_tier: Tier | None = None, price_usd: float | None = None) -> dict[str, Any]:  # fmt: skip
+             online_tier: Tier | None = None, price_usd: float | None = None,
+             sketch_outcomes: list[Mapping[str, Any]] | None = None) -> dict[str, Any]:  # fmt: skip
     """The cost figures for one cloud model alias at the decided price and margin (`price_usd` and `online_tier`, by
-    default the gateway's), and the review's errors."""
+    default the gateway's), and the review's errors. Sketch calls (MDL-33), measured from the engine's
+    `sketch.outcome` records over the traced turns, are their own line, `sketch`."""
     decided = online_tier if online_tier is not None else tier()
     price = price_usd if price_usd is not None else decided_price()
     margin = decided.gross_margin
@@ -136,6 +151,9 @@ def workbook(traces: list[Mapping[str, Any]], *, model: str, usage: Usage, cache
     row = table["models"][model]
     p_in, p_out = float(row["price_in_per_mtok"]) / 1e6, float(row["price_out_per_mtok"]) / 1e6
     roles = measure(traces)
+    sketches = measure_sketches(sketch_outcomes or [], len(traces))
+    if sketches is not None:
+        roles["sketch"] = sketches
     cost = c_cloud(roles, usage, p_in, p_out, cached_multiplier)
     tokens_in = sum(r.calls_per_turn * r.input_tokens for r in roles.values())
     tokens_out = sum(r.calls_per_turn * r.output_tokens for r in roles.values())

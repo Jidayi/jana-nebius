@@ -50,6 +50,7 @@ from agent_core.contracts import errors as contract_errors
 from agent_core.contracts import validator
 from agent_core.engine import lean, lessons, live_flows, offers, prompt_inputs, signatures, team, turn_scope
 from agent_core.engine import slice as flows
+from agent_core.engine.annotations import term_moves
 from agent_core.engine.answer_policy import paced_rung, policy_template_with_skill
 from agent_core.engine.claims import claim_problems, written_surfaces
 from agent_core.engine.compaction import Compactor
@@ -69,6 +70,9 @@ from agent_core.engine.gates import surfaces as gate_surfaces
 from agent_core.engine.input import normalise_input, one_line
 from agent_core.engine.integrity import split_questions
 from agent_core.engine.knowledge_tools import KnowledgeTools
+from agent_core.engine.manipulation import KINDS as MANIPULABLE
+from agent_core.engine.manipulation import ManipulationRefused
+from agent_core.engine.manipulation import mark as mark_manipulation
 from agent_core.engine.marking import Verdict
 from agent_core.engine.memory_session import (
     MemoryAccess,
@@ -97,6 +101,7 @@ from agent_core.engine.pedagogy import (
     wants_solution,
 )
 from agent_core.engine.pointing import first_unheard, verbalise_keeping_markers
+from agent_core.engine.pointing_back import resolve_ref
 from agent_core.engine.roster import speaking
 from agent_core.engine.safety import (
     ROUTES,
@@ -109,10 +114,12 @@ from agent_core.engine.safety import (
     redact_personal,
     wellbeing_alert_category,
 )
+from agent_core.engine.sketch_flow import SketchFlow, offer_schema
 from agent_core.engine.soft_rules import RuleMatcher, tutor_context_lines
 from agent_core.engine.soft_rules import signals as rule_signals
-from agent_core.engine.state import NUMBER, Plan, PlanStep, Problem, SessionState, numbers_in
+from agent_core.engine.state import NUMBER, BoardStep, Plan, PlanStep, Problem, SessionState, numbers_in
 from agent_core.engine.tone import cap_words, fit_spoken, word_cap
+from agent_core.engine.tool_drawings import checked
 from agent_core.engine.toolround import ToolRound
 from agent_core.engine.tutor_flows import (
     GuidedFlow,
@@ -125,7 +132,7 @@ from agent_core.engine.tutor_flows import (
     mode_change_event,
     rung_source,
 )
-from agent_core.engine.ui import HandlerError, emit_part, error_of, open_board, update_board
+from agent_core.engine.ui import HandlerError, emit_part, error_of, open_board, step_event, update_board
 from agent_core.engine.unit_format import decimal_unit_comma, format_turn_units
 from agent_core.engine.verbaliser import verbalise
 from agent_core.engine.vision import PhotoReader, PhotoReading, Screen
@@ -163,6 +170,9 @@ SESSION_MODES = ("guided", "solution", "check_working")  # the modes a session r
 TURN_INTENTS = ("ask", "answer", "stuck", "side_question", "board_line", "why")  # what `turn.start` names as given
 # VSL-01, VSL-43 (D106): a drawing in a tutor turn is never allowed; the request for one only from the online tier.
 SKETCH_FIELDS = frozenset({"sketch", "sketch_wanted"})
+# The one line an online candidate's prompt gains (VSL-43, D106): a sketch is the engine's own call, never the turn's.
+SKETCH_HINT = ("Only when a drawing would help and no catalogue visual fits, set sketch_wanted to a short description "
+               "of it (what to draw, in words); the app draws it separately. Never draw in the reply.")
 KC_ID = re.compile(r"^kc\.(mth|phy|chm|bio|acc)\.(o|a)\.[a-z0-9_]+\.[a-z0-9_]+$")
 REPEATED_MARKER = "[repeated text removed]"
 AUX_STOPS = {"timeout": "timeout", "schema_invalid": "schema_invalid"}  # an auxiliary fallback's delegation stop
@@ -253,6 +263,8 @@ class _Turn:
     runtime_retried: bool = False  # MDL-19: a turn is retried from Prepare once after a runtime restart
     memory_request: RequestOutcome | None = None  # an explicit "remember that" this turn (MEM-06, MEM-11)
     save_claims: int = 0  # sentences claiming a save taken out of the reply (PRM-17)
+    # Gate entries the finalise step adds (the markup strip, the sketch selector), kept when gates are built.
+    extra_gates: list[dict[str, Any]] = field(default_factory=list)
     visual_retried: bool = False  # VSL-17: the Coach has had its one corrected attempt at a visual this turn
     input_injected: bool = False
     fork: bool = False  # a side question's forked turn (AGT-18): nothing it says joins the lesson's transcript
@@ -353,6 +365,8 @@ class Engine(Coordination, Offers):
         # (PRV-18 layers 1 and 2); either can be replaced by the app (the input-guard role's classifier, AGT-02).
         self.guard = InputGuard(deps.settings, unreadable_fails_closed=True)
         self.critic = OutputCritic()
+        self.sketches = SketchFlow(self)  # the online sketch beside an accepted turn (VSL-43, MDL-33)
+        self._call_output: Any = None
         self.auxiliary.on_outcome = self._aux_traced  # every auxiliary call is in its turn's trace (AGT-02)
         # Soft rules matched each Coach turn (PED-15), when the app binds the shipped rule book; the judge is the
         # rule matcher role, absent offline on the low class (keywords then decide).
@@ -603,9 +617,16 @@ class Engine(Coordination, Offers):
                 raise
 
     async def _why(self, turn: _Turn, step_id: str, text: str) -> TurnResult:
+        """`step_id` is a board line, or (UXS-58) a term range of one (`stp_….t2-t4`) or a visual part
+        (`<visual_id>:<part_id>`): the Coach gets the target's id and content, never coordinates."""
         steps = self.state.board.steps
-        number = next((n for n, s in enumerate(steps, 1) if s.step_id == step_id), None)
+        target = resolve_ref(self.state, step_id)
+        number = target.number if target is not None else None
         self.state.transcript.append({"role": "user", "content": text, "kind": "chat"})
+        if target is not None and (target.part_id is not None or target.terms is not None):
+            note = (f"the student pointed at {target.describe()} and asked why: explain in a few words why that "
+                    "part holds or what it shows, about exactly that target; never give a withheld value")  # fmt: skip
+            return await self._coach_turn(turn, intent_note=note)
         if number is None:
             return await self._coach_turn(turn, intent_note="the student asked why about a line that is no longer on "
                                                             "the board: ask which line they mean")  # fmt: skip
@@ -750,6 +771,7 @@ class Engine(Coordination, Offers):
         self._status("checking")
         step_index = self.state.step
         results = await flows.check_lines(self, turn, lines, self.state.plan)
+        placed: list[Any] = []
         for result in results:
             self.state.student_lines.append(result.line)
             shown = result.status == "incorrect" or result.carried_forward or result.worded
@@ -761,8 +783,12 @@ class Engine(Coordination, Offers):
             opened = open_board(self.state)  # the first board operation for a problem opens its board (API-41)
             board = update_board([op], self.state, self._context_numbers())
             self.state.board.steps[-1].status, self.state.board.steps[-1].error = result.status, error
-            events = [dict(e, status=result.status, error=error) if e["type"] == "board.step" else e
-                      for e in board.events]  # fmt: skip
+            step = self.state.board.steps[-1]
+            placed.append(step)
+            source = placed[result.before] if result.before is not None and result.before < len(placed) else None
+            moves = term_moves(source.step_id, source.latex, step.latex, result.moves) if source else []
+            events = [dict(e, status=result.status, error=error, **({"term_moves": moves} if moves else {}))
+                      if e["type"] == "board.step" else e for e in board.events]  # fmt: skip
             events = [opened, *events] if opened else events
             part = emit_part(self.events, "board", events)
             self._persist(turn, part, "board", events)
@@ -847,10 +873,29 @@ class Engine(Coordination, Offers):
                 tools=(),
                 text_only=True,
             )
+        why_right = (self.state.practice or {}).get("why_right")
+        if why_right is not None and intent != "stuck":
+            # "Why is this right?" (UXS-62): the student explains first, then the tutor confirms from the mark scheme
+            # and the checked working. Nothing is marked: the item's mark and mastery stay as they are (LRN-21).
+            assert self.state.practice is not None
+            self.state.transcript.append({"role": "user", "content": text, "kind": "chat"})
+            if why_right == "asking":
+                self.state.practice["why_right"] = "explaining"
+                note = ("the student's answer to this practice item was marked correct and they asked why it is "
+                        "right: ask them, in one short question, to say in a sentence why their answer works; do not "
+                        "explain it yet and do not restate or change the mark")  # fmt: skip
+            else:
+                note = ("the student said why their correct answer works: confirm or correct that reasoning from the "
+                        "mark scheme and the checked working, so an answer right by luck is caught; the mark stays as "
+                        "it is")  # fmt: skip
+            return await self._coach_turn(turn, intent_note=note)
         if intent != "stuck" and self.state.problem is not None and asks_why(text):
             # A spoken or typed "why" about the working is the board's "Why?" on the line in focus (UXS-15, UXS-64):
             # explained, never marked or written on the board as an attempt, and the withheld set still holds. With
             # no line yet but a drawing on screen, it is a "why" about the drawing (VSL-21).
+            # "Why is this one bigger?" with something selected is about the selection (UXS-58).
+            if self.state.selection is not None and resolve_ref(self.state, self.state.selection) is not None:
+                return await self._why(turn, self.state.selection, text)
             if self.state.board.steps:
                 return await self._why(turn, self.state.board.steps[-1].step_id, text)
             if self.state.shown_visuals:
@@ -1131,6 +1176,7 @@ class Engine(Coordination, Offers):
         over to this one."""
         self.state.solution_shown = False
         self.state.shown_visuals = []  # the last problem's visuals are off screen (VSL-45)
+        self.state.selection = None  # and nothing of it is selected any more (UXS-58)
         self.diagnosis = None
         self._attempt_since_ms = self.events.clock_ms()
         self.state.wrong_streak, self.state.offered_steps = 0, []  # the offers count per problem (LRN-20, LRN-23)
@@ -1964,6 +2010,8 @@ class Engine(Coordination, Offers):
         self._call_cloud = cloud
         if cloud:
             messages = self._cloud_system(messages)
+            if messages and self._call_output is not None and self._call_output[0] == "tutor-turn":
+                messages = [replace(messages[0], content=f"{messages[0].content}\n\n{SKETCH_HINT}"), *messages[1:]]
         tokens = sum(len(m.content) for m in messages) // 4
         if self.compactor.needed(tokens, caps.context_for_agents):
             self._status("compacting")
@@ -1981,7 +2029,33 @@ class Engine(Coordination, Offers):
             return messages
         withheld = [replace(m, content=RECALL_WITHHELD) if m.role == "tool" and m.name == "memory_recall" else m
                     for m in messages]  # fmt: skip
-        return Prepared(withheld, [t for t in self._call_tools if t.name != "memory_recall"])
+        return Prepared(withheld, [t for t in self._call_tools if t.name != "memory_recall"], self._sketch_offer())
+
+    def _sketch_offer(self) -> Any:
+        """An online candidate's tutor-turn decode schema with `sketch_wanted` (VSL-43, MDL-33); a local candidate's
+        never has it (VSL-01). None for any other call."""
+        output = self._call_output
+        if output is None or output[0] != "tutor-turn":
+            return None
+        schema = offer_schema(output[1])
+        return (output[0], schema, cast(Draft202012Validator, output[2].evolve(schema=offer_schema(output[2].schema))))
+
+    def sketch_guard(self, text: str) -> bool:
+        """A sketch's label or caption passes the output guard (PRV-18, VSL-43); a failing check refuses it."""
+        try:
+            return self.critic.check(text, self.state.hardware_class) is None
+        except Exception:
+            return False
+
+    def sketch_traced(self, value: Fraction) -> bool:
+        """A number in a sketch label is a verified value (VSL-12, VSL-43)."""
+        return any(abs(value - known) <= abs(known) * Fraction(1, 10**9) for known in self.state.provenance())
+
+    async def sketch_tool(self, name: str, args: dict[str, Any]) -> tuple[dict[str, Any] | None, str | None]:
+        """A sketch check's tool call (VSL-44), on the Checker's grant in the turn the sketch belongs to."""
+        if self._current is None:
+            return None, None
+        return await flows.run_tool(self, self._current, name, args)
 
     def _egress(self, state: str, candidate: Any) -> None:
         """A model call leaving the device is shown while it runs (ARC-10, API-15, MDL-24): the online tier, on any
@@ -2267,7 +2341,7 @@ class Engine(Coordination, Offers):
         say, stripped = strip_markup(tutor_turn["say"])
         if stripped:  # a model never draws: markup in text is removed and logged (VSL-01)
             tutor_turn = {**tutor_turn, "say": say or self.deps.templates.hints[max(self.state.rung, 1)]}
-            turn.trace.gates.append(
+            turn.extra_gates.append(
                 {"gate": "visual_markup_stripped", "fired": True, "nudges": 0, "attempt": 1, "outcome": "passed"}
             )
         self._status("streaming")
@@ -2278,8 +2352,10 @@ class Engine(Coordination, Offers):
         if tutor_turn.get("board"):
             opened = open_board(self.state)  # the first board operation for the problem opens its board (API-41)
             try:
-                events = [*([opened] if opened else []), *update_board(tutor_turn["board"], self.state,
-                                                                       self._context_numbers()).events]  # fmt: skip
+                applied = update_board(tutor_turn["board"], self.state, self._context_numbers())
+                events = [*([opened] if opened else []), *applied.events]
+                for dropped in applied.dropped:  # an annotation is never placed by position (VSL-40)
+                    self._log("info", "engine", "annotation.dropped", turn_id=turn.turn_id, **dropped)
             except HandlerError:  # the gates already rejected untraced lines; an invalid op list applies nothing
                 events = [opened] if opened else []
             if events:
@@ -2287,6 +2363,7 @@ class Engine(Coordination, Offers):
                 self._persist(turn, part, "board", events)
         for request in tutor_turn.get("visual") or []:
             self._visual(turn, request)
+        self.sketches.start(turn, tutor_turn, served_online=self._call_cloud)  # in parallel; speech never waits
         card = tutor_turn.get("card")
         body = self._card_body(card) if card else None
         if body is not None:
@@ -2368,7 +2445,7 @@ class Engine(Coordination, Offers):
             data: dict[str, Any] = result["data"]
             return data
 
-        resolve = Resolver(resolver(call, ctx.conventions))
+        resolve = Resolver(resolver(checked(call), ctx.conventions))
         for request in draft["visual"]:
             if self.deps.visual_allowed is not None and not self.deps.visual_allowed(request):
                 continue
@@ -2403,7 +2480,7 @@ class Engine(Coordination, Offers):
             self.events.end_part(part)
             self._persist(turn, part, "visual", result.resolved)
             parts = [p["id"] for p in result.resolved.get("parts", []) if p.get("focusable", True)]
-            shown = {"visual_id": result.resolved["visual_id"], "parts": parts}
+            shown = {"visual_id": result.resolved["visual_id"], "parts": parts, "kind": result.resolved["type"]}
             others = [v for v in self.state.shown_visuals if v["visual_id"] != shown["visual_id"]]
             self.state.shown_visuals = [*others, shown][-self.deps.settings.pointer_visuals_kept :]
         else:
@@ -2411,6 +2488,48 @@ class Engine(Coordination, Offers):
             self.events.text(part, TEXT_ONLY)
             self.events.end_part(part)
             self._persist(turn, part, "text", TEXT_ONLY)
+
+    # --- manipulable visuals (VSL-42) ----------------------------------------------------------------------------
+
+    def open_manipulation(self, visual_id: str, keys: dict[str, str], prompt: str, variable: str = "x") -> str:
+        """The student's turn is to set parts of a visual on screen: an awaiting board line and `visual.await`.
+        Returns the step id. The keys stay in the engine; the model never sets the student's values."""
+        shown = next((v for v in self.state.shown_visuals if v["visual_id"] == visual_id), None)
+        if shown is None:
+            raise ManipulationRefused("not_found", "the visual is not on screen")
+        if shown.get("kind") not in MANIPULABLE:
+            raise ManipulationRefused("validation_failed", f"{shown.get('kind')} is not manipulable")
+        unknown = [p for p in keys if p not in shown["parts"]]
+        if unknown or not keys or len(keys) > 8:
+            raise ManipulationRefused("validation_failed", f"{unknown[0] if unknown else 'parts'}: not adjustable")
+        opened = open_board(self.state)
+        board = self.state.board
+        step = BoardStep(new_id("stp"), len(board.steps), "", None, "student", "awaiting")
+        board.steps.append(step)
+        events = [*([opened] if opened else []), step_event(board.board_id, step),
+                  {"type": "visual.await", "board_id": board.board_id, "step_id": step.step_id,
+                   "visual_id": visual_id, "part_ids": list(keys), "prompt": prompt[:300]}]  # fmt: skip
+        emit_part(self.events, "board", events)
+        self.state.manipulation = {"visual_id": visual_id, "kind": shown["kind"], "step_id": step.step_id,
+                                   "keys": dict(keys), "variable": variable}  # fmt: skip
+        return step.step_id
+
+    async def answer_manipulation(self, visual_id: str, body: dict[str, Any], run: Any) -> dict[str, Any]:
+        """`POST /v1/visuals/{visual_id}/answer`: the values checked by the same tool as the typed line, becoming
+        the student's board line with its status (VSL-42, UXS-16)."""
+        current = self.state.manipulation
+        if current is None or current["visual_id"] != visual_id:
+            raise ManipulationRefused("not_found", "this visual is not waiting for the student")
+        if body["step_id"] != current["step_id"]:
+            raise ManipulationRefused("validation_failed", "the step is not the one waiting")
+        marked = await mark_manipulation(current, body["values"], run)
+        board = self.state.board
+        step = next(s for s in board.steps if s.step_id == current["step_id"])
+        step.latex, step.status, step.check_id = marked["latex"], marked["status"], marked["check_id"]
+        emit_part(self.events, "board", [step_event(board.board_id, step)])
+        self.state.manipulation = None
+        self.state.student_lines.append(marked["latex"])
+        return {"step_id": step.step_id, "status": marked["status"], "check_id": marked["check_id"], "error": None}
 
     def _ship_pending_or_canned(self, turn: _Turn, reason: str) -> TurnResult:
         """Every early end ships the pending answer, or the withholding-safe canned turn for the rung (AGT-08)."""
@@ -2748,6 +2867,7 @@ class Engine(Coordination, Offers):
 
     def _finish_interrupted(self, turn: _Turn) -> TurnResult:
         """Cancel: open parts end `interrupted`, accepted text stays, receipts are written (AGT-16)."""
+        self.sketches.cancel()  # a cancelled turn cancels its sketch call (MDL-33)
         self.events.end_open_parts("interrupted")
         receipts = turn.tools.receipts()
         for call_id, state in receipts.items():
@@ -2809,7 +2929,7 @@ class Engine(Coordination, Offers):
         )
         turn.trace.status = turn.status
         turn.trace.degraded, turn.trace.degraded_reason = turn.degraded, turn.degraded_reason
-        turn.trace.gates = turn.gates.as_trace()
+        turn.trace.gates = [*turn.gates.as_trace(), *turn.extra_gates][:16]
         if turn.save_claims:  # a claim of a save was taken out of the reply (PRM-17); never a save itself
             turn.trace.gates.append({"gate": "save_claim_removed", "fired": True, "nudges": 0, "attempt": 1,
                                      "outcome": "passed"})  # fmt: skip
@@ -3120,6 +3240,7 @@ class Engine(Coordination, Offers):
             }
             check_schema = cast(Draft202012Validator, check_schema.evolve(schema=schema))
         output = (schema_name.split("/")[-1], schema, check_schema)
+        self._call_output = output  # an online candidate's prepare step may offer `sketch_wanted` (VSL-43)
         if tools and not tools_off:
             result = await self._router_call(
                 role, provider_messages, tools, None, turn, cancellable, require_tool=require_tool
@@ -3161,7 +3282,12 @@ class Engine(Coordination, Offers):
             return result
         dropped = sorted(k for k in SKETCH_FIELDS & set(draft) if k == "sketch" or not self._cloud())
         if not dropped:
-            return result
+            if result.structured is not None:
+                return result
+            # An online reply asking for a sketch (VSL-43): checked against the full contract, which names the field.
+            checked = check_structured(json.dumps(draft), validator(schema_name))
+            errors = list(checked.errors)
+            return replace(result, structured=checked.value, schema_valid=not errors, errors=errors)
         kept = {k: v for k, v in draft.items() if k not in dropped}
         checked = check_structured(json.dumps(kept), validator(schema_name))
         self._log("warning", "engine", "sketch_not_allowed", fields=dropped, local=not self._cloud())

@@ -1,0 +1,209 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.punnett-square-hidden",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at parent 1, Tt and parent 2, Tt.",
+        "Step 2: look at offspring tt."
+      ],
+      "summary": "A Punnett square for the cross Tt × Tt. Parent 1 gives the gametes T and t and parent 2 gives T and t. The offspring genotypes are TT 1/4, Tt 1/2 and tt 1/4, in the ratio 1 : 2 : 1; the phenotypes are tall 3/4 and short 1/4, in the ratio 3 : 1."
+    },
+    "computed": {
+      "check_ids": [
+        "chk_build_fx_punnett_square_1",
+        "chk_build_fx_punnett_square_2",
+        "chk_build_fx_punnett_square_3",
+        "chk_build_fx_punnett_square_4",
+        "chk_build_fx_punnett_square_5"
+      ],
+      "gametes": {
+        "p1": [
+          "T",
+          "t"
+        ],
+        "p2": [
+          "T",
+          "t"
+        ]
+      },
+      "genotype_classes": [
+        {
+          "genotype": "TT",
+          "probability": "1/4",
+          "ratio": 1
+        },
+        {
+          "genotype": "Tt",
+          "probability": "1/2",
+          "ratio": 2
+        },
+        {
+          "genotype": "tt",
+          "probability": "1/4",
+          "ratio": 1
+        }
+      ],
+      "grid": [
+        [
+          "TT",
+          "Tt"
+        ],
+        [
+          "Tt",
+          "tt"
+        ]
+      ],
+      "labels": {
+        "genotype_ratio": "1 : 2 : 1",
+        "phenotype_ratio": "3 : 1"
+      },
+      "phenotype_classes": [
+        {
+          "phenotype": "tall",
+          "probability": "3/4",
+          "ratio": 3
+        },
+        {
+          "phenotype": "short",
+          "probability": "1/4",
+          "ratio": 1
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "hidden",
+    "numbers_from": [
+      "chk_build_fx_punnett_square_1",
+      "chk_build_fx_punnett_square_2",
+      "chk_build_fx_punnett_square_3",
+      "chk_build_fx_punnett_square_4",
+      "chk_build_fx_punnett_square_5"
+    ],
+    "params": {
+      "alleles": [
+        {
+          "dominance": "dominant",
+          "phenotype": "tall",
+          "symbol": "T"
+        },
+        {
+          "dominance": "recessive",
+          "phenotype": "short",
+          "symbol": "t"
+        }
+      ],
+      "cross": "monohybrid",
+      "parent1": "Tt",
+      "parent2": "Tt"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "parent1",
+        "name": "parent 1, Tt",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "parent2",
+        "name": "parent 2, Tt",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "gamete2_1",
+        "name": "gamete T of parent 2",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "gamete2_2",
+        "name": "gamete t of parent 2",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "gamete1_1",
+        "name": "gamete T of parent 1",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "cell_1_1",
+        "name": "offspring TT",
+        "quizzable": true,
+        "role": "cell"
+      },
+      {
+        "focusable": true,
+        "id": "cell_1_2",
+        "name": "offspring Tt",
+        "quizzable": true,
+        "role": "cell"
+      },
+      {
+        "focusable": true,
+        "id": "gamete1_2",
+        "name": "gamete t of parent 1",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "cell_2_1",
+        "name": "offspring Tt",
+        "quizzable": true,
+        "role": "cell"
+      },
+      {
+        "focusable": true,
+        "id": "cell_2_2",
+        "name": "offspring tt",
+        "quizzable": true,
+        "role": "cell"
+      },
+      {
+        "focusable": true,
+        "id": "genotype_ratio",
+        "name": "genotype ratio",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "phenotype_ratio",
+        "name": "phenotype ratio",
+        "role": "row"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:c89d538bc19aa1175d55c5e4d98bb5504af03a6692a7ca648548a36c5d139988",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "parent1",
+          "parent2"
+        ]
+      },
+      {
+        "highlight": [
+          "cell_2_2"
+        ]
+      }
+    ],
+    "type": "punnett_square",
+    "visual_id": "vis_8XKB1T1QXN54SBNGAGT6J7A458"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: punnett square (hidden labels)",
+  "variant": "punnett-square-hidden"
+}

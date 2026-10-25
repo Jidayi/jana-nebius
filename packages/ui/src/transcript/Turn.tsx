@@ -13,11 +13,11 @@ import { memoryReadCount, type PartRec, type TurnRec } from "@jana/client-core";
 import { TurnEgress } from "../connectivity/EgressNotice.js";
 import { useT } from "../i18n.js";
 import { MemoryChips } from "../memory/MemoryChip.js";
-import { Disclosure } from "../primitives/index.js";
+import { Button, Disclosure, chipLook } from "../primitives/index.js";
 import { Rendered, useRegistry } from "../registry/registry.js";
 import { StatusLine, TurnFooter } from "../status/StatusLine.js";
 import { useFasterTutor } from "../status/faster.js";
-import { shallowArray, useSelect, useSession } from "../store.js";
+import { shallowArray, useReadOnly, useSelect, useSession } from "../store.js";
 import { lifecycleOf } from "./parts.js";
 import { phaseOf } from "./tools.js";
 import { ReadAloud } from "../voice/SpeechTools.js";
@@ -36,9 +36,32 @@ function keysOf(part: PartRec): string[] {
   return [`part:${part.kind}`];
 }
 
-/** A visual part renders its resolved spec through `visual:<type>`, else in words (`visual:*`, VSL-16). */
+/** An online sketch (VSL-43, VSL-44): the rough drawing with "Rough sketch, not checked", or, when every checkable
+ * element passed its tool check, the check chip instead; "Remove sketch" takes it off the board and the history. */
+interface SketchData { sketch_id: string; status: "checked" | "not_checked"; checks: { result: string; check_id: string | null }[] }
+
+function SketchPart({ sketch, partId }: { sketch: SketchData; partId: string }) {
+  const t = useT();
+  const session = useSession();
+  const [busy, setBusy] = useState(false);
+  const checks = sketch.checks.filter((c) => c.result === "pass" && c.check_id !== null).map((c) => c.check_id as string);
+  return (
+    <div className="grid gap-2" data-sketch-part={sketch.sketch_id}>
+      <Rendered keys={["visual:sketch"]} data={sketch} lifecycle="complete" partId={partId} />
+      <div className="flex flex-wrap items-center gap-2">
+        {sketch.status === "not_checked" && <span data-sketch-label="" className="font-hand text-ui text-muted">{t("visual.sketch_label_unchecked")}</span>}
+        {sketch.status === "checked" && <span className={chipLook("verified", "sm")} data-check-id={checks.join(" ")}>{t("visual.sketch_checked")}</span>}
+        {session !== null && <Button size="sm" tone="ghost" disabled={busy} onClick={() => { setBusy(true); void session.removeSketch(sketch.sketch_id).catch(() => setBusy(false)); }}>{t("visual.sketch_remove")}</Button>}
+      </div>
+    </div>
+  );
+}
+
+/** A visual part renders its resolved spec through `visual:<type>`, else in words (`visual:*`, VSL-16); a sketch
+ * part draws its sketch (VSL-43). */
 function VisualPart({ part }: { part: PartRec }) {
   const visual = useSelect((s) => (part.visual_id === undefined ? undefined : s.visuals[part.visual_id]));
+  if (part.sketch !== undefined) return <SketchPart sketch={part.sketch as unknown as SketchData} partId={part.part_id} />;
   if (visual === undefined) return null;
   const type = (visual.spec as { type?: string }).type ?? "unknown";
   return <Rendered keys={[`visual:${type}`, "visual:*"]} data={visual.spec} lifecycle={lifecycleOf(part)} partId={part.part_id} />;
@@ -84,6 +107,7 @@ export const TurnView = memo(function TurnView({ turnId }: { turnId: string }) {
   const tutorName = useTutorName();
   const registry = useRegistry();
   const session = useSession();
+  const readOnly = useReadOnly();
   const faster = useFasterTutor();
   const turn = useSelect((s) => s.turns[turnId]);
   const partIds = useSelect((s) => s.turns[turnId]?.part_ids ?? EMPTY, shallowArray);
@@ -136,12 +160,12 @@ export const TurnView = memo(function TurnView({ turnId }: { turnId: string }) {
         {live ? <StatusLine turn={turn} onStop={() => void session?.cancel(turn.turn_id)} onRetry={() => void session?.retryTurn(turn.turn_id)} {...(faster !== null ? { onUseFaster: faster } : {})} /> : (
           <div data-reply-actions="" className={`-ms-2 flex flex-wrap items-center gap-0.5 ${latest ? "" : "pointer-fine:opacity-0 pointer-fine:group-hover/turn:opacity-100 pointer-fine:group-focus-within/turn:opacity-100"}`}>
             {spoken !== undefined && <ReadAloud partId={spoken} />}
-            {parts.length > 0 && <ReportProblem sessionId={turn.session_id} turnId={turnId} />}
-            {parts.length > 0 && <SaveQuestion sessionId={turn.session_id} turnId={turnId} />}
+            {parts.length > 0 && !readOnly && <ReportProblem sessionId={turn.session_id} turnId={turnId} />}
+            {parts.length > 0 && !readOnly && <SaveQuestion sessionId={turn.session_id} turnId={turnId} />}
             <TurnFooter turn={turn} inline />
           </div>
         )}
-        {!live && latest && parts.length > 0 && <ReplyFollowUps sessionId={turn.session_id} turnId={turnId} />}
+        {!live && latest && parts.length > 0 && !readOnly && <ReplyFollowUps sessionId={turn.session_id} turnId={turnId} />}
       </div>
     </section>
   );

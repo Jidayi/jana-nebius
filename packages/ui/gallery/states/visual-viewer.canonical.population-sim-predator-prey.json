@@ -1,0 +1,148 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.population-sim-predator-prey",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "A predator and prey simulation, a simplified Lotka-Volterra model and not a prediction: 40 prey and 9 predators over 30 time units, cycling around 20.0 prey and 10.0 predators."
+    },
+    "computed": {
+      "alt": {
+        "duration": "30",
+        "predator_eq": "10.0",
+        "predators": "9",
+        "prey": "40",
+        "prey_eq": "20.0"
+      },
+      "check_ids": [
+        "chk_build_fx_population_sim_predator_prey_1",
+        "chk_build_fx_population_sim_predator_prey_2",
+        "chk_build_fx_population_sim_predator_prey_3"
+      ],
+      "labels": {
+        "conserved": "-3.83",
+        "eq.predator": "10.0",
+        "eq.prey": "20.0",
+        "out.predator": "9",
+        "out.prey": "40",
+        "out.time": "0"
+      },
+      "parts": [
+        {
+          "id": "ctrl.growth_rate",
+          "label": "growth rate",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.predation_rate",
+          "label": "predation rate",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.predator_death_rate",
+          "label": "predator death rate",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.conversion_rate",
+          "label": "conversion rate",
+          "role": "control"
+        },
+        {
+          "id": "out.time",
+          "label": "time",
+          "role": "readout"
+        },
+        {
+          "id": "out.prey",
+          "label": "prey",
+          "role": "readout"
+        },
+        {
+          "id": "out.predator",
+          "label": "predator",
+          "role": "readout"
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_population_sim_predator_prey_1",
+      "chk_build_fx_population_sim_predator_prey_2",
+      "chk_build_fx_population_sim_predator_prey_3"
+    ],
+    "params": {
+      "conversion_rate": 0.075,
+      "duration": 30,
+      "growth_rate": 1,
+      "initial_predator": 9,
+      "initial_prey": 40,
+      "model": "predator_prey",
+      "predation_rate": 0.1,
+      "predator_death_rate": 1.5
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ctrl.growth_rate",
+        "name": "growth rate",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.predation_rate",
+        "name": "predation rate",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.predator_death_rate",
+        "name": "predator death rate",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.conversion_rate",
+        "name": "conversion rate",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "out.time",
+        "name": "time",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.prey",
+        "name": "prey",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.predator",
+        "name": "predator",
+        "role": "readout"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:4e35540baf6f0d39065731c579a716d4bc8034d5867571f4a4efc304c535a063",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "population_sim",
+    "visual_id": "vis_ENMBFFDS6QH5S7PMW0MN6NHM4F"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: population sim predator prey (shown labels)",
+  "variant": "population-sim-predator-prey"
+}

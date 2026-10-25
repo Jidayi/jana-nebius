@@ -32,6 +32,7 @@ from . import REPO_ROOT
 FIXTURES_DIR = Path("packages") / "renderers" / "fixtures"
 VISUALS_DIR = FIXTURES_DIR / "visuals"
 LIBRARY_DIR = FIXTURES_DIR / "library"
+SCIENCE_DIR = FIXTURES_DIR / "science"
 FIDELITY = FIXTURES_DIR / "sim_fidelity.json"
 CATALOGUE = FIXTURES_DIR / "catalogue.json"
 GALLERY_DIR = Path("packages") / "ui" / "gallery" / "states"
@@ -49,6 +50,7 @@ class Fixture:
     checks: list[tuple[str, dict[str, Any]]] = field(default_factory=list)  # earlier checks the request cites
     modes: tuple[str, ...] = ("shown", "hidden")
     stage: str = "S2"
+    level: str = "O"  # the A level kinds (VSL-07) are advertised only in A level sessions
 
 
 def req(kind: str, params: dict[str, Any], **extra: Any) -> dict[str, Any]:
@@ -561,6 +563,155 @@ FIXTURES: list[Fixture] = [
         stage="S3",
     ),
     Fixture(
+        "population-sim",
+        "biology",
+        req(
+            "population_sim",
+            {"model": "logistic", "initial_prey": 20, "growth_rate": 0.8, "carrying_capacity": 500, "duration": 8},
+        ),
+        modes=("shown",),
+        stage="S3",
+    ),
+    Fixture(
+        "population-sim-predator-prey",
+        "biology",
+        req(
+            "population_sim",
+            {
+                "model": "predator_prey",
+                "initial_prey": 40,
+                "initial_predator": 9,
+                "growth_rate": 1,
+                "predation_rate": 0.1,
+                "predator_death_rate": 1.5,
+                "conversion_rate": 0.075,
+                "duration": 30,
+            },
+        ),
+        modes=("shown",),
+        stage="S3",
+    ),
+    # The A level graphs (VSL-07, VSL-46): every figure on them is computed, so a request cites nothing but its data.
+    Fixture(
+        "exponential-curve",
+        "physics",
+        req(
+            "exponential_curve",
+            {
+                "initial": 800,
+                "constant": 0.2,
+                "mode": "decay",
+                "time_range": [0, 20],
+                "time_unit": "s",
+                "quantity_unit": "Bq",
+                "mark": "half_life",
+            },
+            steps=[{"highlight": ["curve"]}, {"highlight": ["half_life"]}],
+        ),
+        stage="S3",
+        level="A",
+    ),
+    Fixture(
+        "exponential-curve-charge",
+        "physics",
+        req(
+            "exponential_curve",
+            {
+                "initial": 6,
+                "constant": 0.5,
+                "mode": "charge",
+                "time_range": [0, 10],
+                "time_unit": "s",
+                "quantity_unit": "V",
+                "mark": "time_constant",
+            },
+        ),
+        stage="S3",
+        level="A",
+    ),
+    Fixture(
+        "distribution-curve",
+        "mathematics",
+        req(
+            "distribution_curve",
+            {"distribution": "normal", "parameters": {"mean": 50, "sd": 10}, "interval": [40, 65], "tail": "between"},
+            steps=[{"highlight": ["mean"]}, {"highlight": ["shade"]}],
+        ),
+        stage="S3",
+        level="A",
+    ),
+    Fixture(
+        "distribution-curve-binomial",
+        "mathematics",
+        req(
+            "distribution_curve",
+            {"distribution": "binomial", "parameters": {"n": 20, "p": 0.3}, "interval": [0, 4], "tail": "less_than"},
+        ),
+        stage="S3",
+        level="A",
+    ),
+    Fixture(
+        "distribution-curve-poisson",
+        "biology",
+        req(
+            "distribution_curve",
+            {"distribution": "poisson", "parameters": {"lambda": 3.5}, "interval": [6, 6], "tail": "greater_than"},
+        ),
+        stage="S3",
+        level="A",
+    ),
+    Fixture(
+        "data-plot",
+        "physics",
+        req(
+            "data_plot",
+            {
+                "points": [
+                    {"id": "p0", "x": 0, "y": 0},
+                    {"id": "p1", "x": 1, "y": 2.1},
+                    {"id": "p2", "x": 2, "y": 3.9},
+                    {"id": "p3", "x": 3, "y": 6.2},
+                    {"id": "p4", "x": 4, "y": 8.0},
+                    {"id": "p5", "x": 5, "y": 9.9},
+                ],
+                "x_label": "Load",
+                "y_label": "Extension",
+                "x_unit": "N",
+                "y_unit": "cm",
+                "fit": "linear",
+                "show_gradient": True,
+            },
+            numbers_from=[
+                "kn_d0",
+                "kn_d1",
+                "kn_d2",
+                "kn_d3",
+                "kn_d4",
+                "kn_d5",
+                "kn_e1",
+                "kn_e2",
+                "kn_e3",
+                "kn_e4",
+                "kn_e5",
+            ],
+            steps=[{"highlight": ["fit"]}, {"highlight": ["gradient"]}, {"highlight": ["intercept"]}],
+        ),
+        {
+            "kn_d0": "0",
+            "kn_d1": "1",
+            "kn_d2": "2",
+            "kn_d3": "3",
+            "kn_d4": "4",
+            "kn_d5": "5",
+            "kn_e1": "2.1",
+            "kn_e2": "3.9",
+            "kn_e3": "6.2",
+            "kn_e4": "8.0",
+            "kn_e5": "9.9",
+        },
+        stage="S3",
+    ),
+    Fixture(
         "journal-entry",
         "accounting",
         req(
@@ -771,6 +922,340 @@ FIXTURES: list[Fixture] = [
         "physics",
         req("library_diagram", {"sequence": "set_up"}, ref="dgm.phy.measuring_resistance.v1"),
     ),
+    # The organic and A level chemistry kinds (VSL-06, VSL-07, VSL-46), in A level sessions.
+    Fixture(
+        "energy-levels",
+        "chemistry",
+        req(
+            "energy_levels",
+            {
+                "levels": [
+                    {"id": "n1", "energy_ev": -13.6, "label": "n = 1"},
+                    {"id": "n2", "energy_ev": -3.4, "label": "n = 2"},
+                    {"id": "n3", "energy_ev": -1.51, "label": "n = 3"},
+                    {"id": "ninf", "energy_ev": 0, "label": "n = \u221e"},
+                ],
+                "transitions": [{"from": "n3", "to": "n2"}, {"from": "n2", "to": "n1"}, {"from": "n1", "to": "ninf"}],
+                "show_photon_energy": True,
+            },
+            numbers_from=["kn_e1", "kn_e2", "kn_e3", "kn_e4"],
+            steps=[{"highlight": ["tr_n3_n2"]}],
+        ),
+        {"kn_e1": "-13.6", "kn_e2": "-3.4", "kn_e3": "-1.51", "kn_e4": "0"},
+        stage="S3",
+        level="A",
+    ),
+    Fixture(
+        "orbital-boxes",
+        "chemistry",
+        req("orbital_boxes", {"element": "S", "charge": 0}, steps=[{"highlight": ["sub_3p"]}]),
+        stage="S3",
+        level="A",
+    ),
+    Fixture(
+        "maxwell-boltzmann",
+        "chemistry",
+        req(
+            "maxwell_boltzmann",
+            {"temperatures_k": [300, 500], "activation_energy_j_mol": 10000, "energy_max_j_mol": 20000},
+            numbers_from=["kn_t1", "kn_t2", "kn_ea"],
+        ),
+        {"kn_t1": "300", "kn_t2": "500", "kn_ea": "10000"},
+        stage="S3",
+        level="A",
+    ),
+    Fixture(
+        "born-haber-cycle",
+        "chemistry",
+        req(
+            "born_haber_cycle",
+            {
+                "compound": "NaCl",
+                "steps": [
+                    {"id": "at_na", "kind": "atomisation", "enthalpy_kj_mol": 107, "coefficient": 1, "orientation": 1},
+                    {"id": "at_cl", "kind": "atomisation", "enthalpy_kj_mol": 122, "coefficient": 1, "orientation": 1},
+                    {"id": "ie_na", "kind": "ionisation", "enthalpy_kj_mol": 496, "coefficient": 1, "orientation": 1},
+                    {
+                        "id": "ea_cl",
+                        "kind": "electron_affinity",
+                        "enthalpy_kj_mol": -349,
+                        "coefficient": 1,
+                        "orientation": 1,
+                    },
+                    {"id": "lattice", "kind": "lattice", "coefficient": 1, "orientation": 1},
+                    {
+                        "id": "formation",
+                        "kind": "formation",
+                        "enthalpy_kj_mol": -411,
+                        "coefficient": 1,
+                        "orientation": -1,
+                    },
+                ],
+                "unknown_step": "lattice",
+            },
+            numbers_from=["kn_atna", "kn_atcl", "kn_ie", "kn_ea", "kn_fm"],
+            steps=[{"highlight": ["step_lattice"]}],
+        ),
+        {"kn_atna": "107", "kn_atcl": "122", "kn_ie": "496", "kn_ea": "-349", "kn_fm": "-411"},
+        stage="S3",
+        level="A",
+    ),
+    Fixture(
+        "concentration-time",
+        "chemistry",
+        req(
+            "concentration_time",
+            {
+                "mode": "first_order",
+                "species": [{"id": "N2O5", "label": "N2O5", "initial": 0.5, "rate_constant": 0.0115}],
+                "time_unit": "s",
+                "concentration_unit": "mol/L",
+                "time_range": [0, 300],
+                "show_initial_tangent": True,
+            },
+            numbers_from=["kn_c0", "kn_kr"],
+        ),
+        {"kn_c0": "0.5", "kn_kr": "0.0115"},
+        stage="S3",
+        level="A",
+    ),
+    # The exothermic ammonia equilibrium heated at fixed volume: an illustrative response with no measured time scale.
+    Fixture(
+        "concentration-time-equilibrium",
+        "chemistry",
+        req(
+            "concentration_time",
+            {
+                "mode": "qualitative_equilibrium",
+                "species": [
+                    {"id": "N2", "label": "N2", "role": "reactant", "initial_plateau": 0.3, "final_plateau": 0.4},
+                    {"id": "H2", "label": "H2", "role": "reactant", "initial_plateau": 0.6, "final_plateau": 0.8},
+                    {"id": "NH3", "label": "NH3", "role": "product", "initial_plateau": 0.8, "final_plateau": 0.6},
+                ],
+                "time_unit": "min",
+                "concentration_unit": "relative",
+                "time_range": [0, 100],
+                "event": {
+                    "at": 40,
+                    "change": "temperature_increase",
+                    "forward_enthalpy_kj_mol": -92,
+                    "reaction": {
+                        "species": [
+                            {"id": "N2", "formula": "N2", "state": "gas", "coefficient": 1, "side": "reactant"},
+                            {"id": "H2", "formula": "H2", "state": "gas", "coefficient": 3, "side": "reactant"},
+                            {"id": "NH3", "formula": "NH3", "state": "gas", "coefficient": 2, "side": "product"},
+                        ]
+                    },
+                },
+            },
+        ),
+        stage="S3",
+        level="A",
+    ),
+    Fixture(
+        "spectrum-chart",
+        "chemistry",
+        req(
+            "spectrum_chart",
+            {"spectrum_id": "dgm.chm.spectrum_ethanol_ir.v1", "type": "infrared", "peaks": ["o_h", "c_o"]},
+        ),
+        stage="S3",
+        level="A",
+    ),
+    Fixture(
+        "reaction-mechanism",
+        "chemistry",
+        req(
+            "reaction_mechanism",
+            {
+                "diagram_id": "dgm.chm.mechanism_electrophilic_addition.v1",
+                "sequence_id": "electrophilic_addition",
+                "step": 1,
+            },
+            ref="dgm.chm.mechanism_electrophilic_addition.v1",
+        ),
+        modes=("shown", "hidden", "quiz"),
+        stage="S3",
+        level="A",
+    ),
+]
+
+# VSL-05: the Biology kinds, from the renderer package's library and science-asset fixtures (no Biology pack is
+# installed yet). Punnett probabilities come from math_evaluate; a gel's sizes and a microscope question's lengths are
+# the question's givens.
+TALL_SHORT = [
+    {"symbol": "T", "phenotype": "tall", "dominance": "dominant"},
+    {"symbol": "t", "phenotype": "short", "dominance": "recessive"},
+]
+CLOTTING = [
+    {"symbol": "H", "phenotype": "normal clotting", "dominance": "dominant"},
+    {"symbol": "h", "phenotype": "haemophilia", "dominance": "recessive"},
+]
+GEL_SIZES = {"kn_bp1000": "1000", "kn_bp750": "750", "kn_bp500": "500", "kn_bp250": "250", "kn_bp100": "100"}
+
+
+def _person(pid: str, generation: int, sex: str, phenotype: str, carrier: bool | None = None) -> dict[str, Any]:
+    return {"id": pid, "generation": generation, "sex": sex, "phenotype": phenotype, "carrier": carrier}
+
+
+FIXTURES += [
+    Fixture(
+        "punnett-square",
+        "biology",
+        req(
+            "punnett_square",
+            {"cross": "monohybrid", "parent1": "Tt", "parent2": "Tt", "alleles": TALL_SHORT},
+            steps=[{"highlight": ["parent1", "parent2"]}, {"highlight": ["cell_2_2"]}],
+        ),
+        stage="S3",
+    ),
+    Fixture(
+        "punnett-sex-linked",
+        "biology",
+        req(
+            "punnett_square",
+            {
+                "cross": "sex_linked",
+                "parent1": "XHXh",
+                "parent2": "XHY",
+                "alleles": CLOTTING,
+                "show": ["gametes", "genotype_ratio", "phenotype_ratio", "probabilities"],
+            },
+        ),
+        stage="S3",
+    ),
+    Fixture(
+        "food-web",
+        "biology",
+        req(
+            "food_web",
+            {
+                "organisms": [
+                    {"id": "grass", "label": "Grass", "trophic_level": 1},
+                    {"id": "rabbit", "label": "Rabbit", "trophic_level": 2},
+                    {"id": "grasshopper", "label": "Grasshopper", "trophic_level": 2},
+                    {"id": "mouse", "label": "Mouse", "trophic_level": 2},
+                    {"id": "frog", "label": "Frog", "trophic_level": 3},
+                    {"id": "fox", "label": "Fox", "trophic_level": 3},
+                    {"id": "hawk", "label": "Hawk", "trophic_level": 4},
+                ],
+                "links": [
+                    {"from": "grass", "to": "rabbit"},
+                    {"from": "grass", "to": "grasshopper"},
+                    {"from": "grass", "to": "mouse"},
+                    {"from": "grasshopper", "to": "frog"},
+                    {"from": "rabbit", "to": "fox"},
+                    {"from": "mouse", "to": "fox"},
+                    {"from": "frog", "to": "hawk"},
+                    {"from": "mouse", "to": "hawk"},
+                ],
+            },
+            steps=[{"highlight": ["org.grass"]}, {"highlight": ["link.grass.mouse", "link.mouse.hawk"]}],
+        ),
+        stage="S3",
+    ),
+    Fixture(
+        "cycle-diagram",
+        "biology",
+        req(
+            "cycle_diagram",
+            {"cycle_id": "dgm.bio.carbon_cycle.v1", "start_stage": "air"},
+            steps=[{"highlight": ["stage.plants", "link.air.plants"]}, {"highlight": ["stage.decomposers"]}],
+        ),
+        stage="S3",
+    ),
+    Fixture(
+        "classification-key",
+        "biology",
+        req(
+            "classification_key",
+            {"key_id": "dgm.bio.vertebrate_key.v1"},
+            steps=[{"highlight": ["node.q_feathers"]}, {"highlight": ["group.mammals"]}],
+        ),
+        stage="S3",
+    ),
+    Fixture(
+        "pedigree-chart",
+        "biology",
+        req(
+            "pedigree_chart",
+            {
+                "individuals": [
+                    _person("grandfather", 1, "male", "unaffected", True),
+                    _person("grandmother", 1, "female", "unaffected", True),
+                    _person("aunt", 2, "female", "unaffected"),
+                    _person("uncle", 2, "male", "affected"),
+                    _person("father", 2, "male", "unaffected"),
+                    _person("mother", 2, "female", "unaffected", False),
+                    _person("daughter", 3, "female", "unknown"),
+                    _person("son", 3, "male", "unaffected"),
+                ],
+                "parents": [
+                    {"child": "aunt", "parent1": "grandfather", "parent2": "grandmother"},
+                    {"child": "uncle", "parent1": "grandfather", "parent2": "grandmother"},
+                    {"child": "father", "parent1": "grandfather", "parent2": "grandmother"},
+                    {"child": "daughter", "parent1": "father", "parent2": "mother"},
+                    {"child": "son", "parent1": "father", "parent2": "mother"},
+                ],
+            },
+            steps=[{"highlight": ["ind.grandfather", "ind.grandmother"]}, {"highlight": ["ind.uncle"]}],
+        ),
+        stage="S3",
+        level="A",
+    ),
+    Fixture(
+        "gel-electrophoresis",
+        "biology",
+        req(
+            "gel_electrophoresis",
+            {
+                "ladder_bp": [1000, 750, 500, 250, 100],
+                "lanes": [
+                    {"id": "scene", "label": "Crime scene", "fragments_bp": [750, 250]},
+                    {"id": "suspect_a", "label": "Suspect A", "fragments_bp": [500, 250, 100]},
+                    {"id": "suspect_b", "label": "Suspect B", "fragments_bp": [250, 750]},
+                ],
+                "migration": "log_size",
+            },
+            numbers_from=list(GEL_SIZES),
+            steps=[{"highlight": ["lane.scene.b1", "lane.suspect_b.b1"]}],
+        ),
+        GEL_SIZES,
+        stage="S3",
+        level="A",
+    ),
+    Fixture(
+        "microscope-view",
+        "biology",
+        req(
+            "microscope_view",
+            {
+                "diagram_id": "dgm.bio.onion_cells.v1",
+                "image_length_mm": 25,
+                "actual_length_um": 250,
+                "show_scale": True,
+                "lengths_from": "kn_drawn",
+            },
+            ref="dgm.bio.onion_cells.v1",
+            numbers_from=["kn_drawn", "kn_actual"],
+            steps=[{"highlight": ["nucleus"]}, {"highlight": ["magnification"]}],
+        ),
+        {"kn_drawn": "25", "kn_actual": "250"},
+        modes=("shown", "hidden", "quiz"),
+        stage="S3",
+    ),
+    Fixture(
+        "diagram-comparison",
+        "biology",
+        req(
+            "diagram_comparison",
+            {"left_ref": "dgm.bio.plant_cell.v1", "right_ref": "dgm.bio.animal_cell.v1", "pair_id": "plant_animal"},
+            ref="dgm.bio.plant_cell.v1",
+            steps=[{"highlight": ["left.nucleus", "right.nucleus"]}],
+        ),
+        modes=("shown", "hidden", "quiz"),
+        stage="S3",
+    ),
 ]
 
 # VSL-31: the sample points each simulation's readouts must match its tool at, to 3 significant figures.
@@ -828,6 +1313,17 @@ FIDELITY_POINTS: dict[str, list[dict[str, Any]]] = {
         {"reaction": "haber", "temperature": 723, "volume": 1, "catalyst": False},
         {"reaction": "haber", "temperature": 623, "volume": 1, "catalyst": False},
         {"reaction": "haber", "temperature": 723, "volume": 0.5, "catalyst": True},
+    ],
+    # Population: logistic growth towards, and down to, its carrying capacity (the closed form at the end of a run), and
+    # Lotka-Volterra cycles (the equilibrium and the conserved quantity the model must keep).
+    "population_sim": [
+        {"model": "logistic", "prey": 20, "rate": 0.8, "capacity": 500, "time": 5},
+        {"model": "logistic", "prey": 20, "rate": 0.8, "capacity": 500, "time": 10},
+        {"model": "logistic", "prey": 900, "rate": 0.3, "capacity": 400, "time": 6},
+        {"model": "logistic", "prey": 5, "rate": 1.5, "capacity": 2000, "time": 4},
+        {"model": "predator_prey", "prey": 40, "predator": 9, "a": 1, "b": 0.1, "c": 1.5, "d": 0.075, "time": 30},
+        {"model": "predator_prey", "prey": 10, "predator": 5, "a": 0.5, "b": 0.02, "c": 0.4, "d": 0.01, "time": 60},
+        {"model": "predator_prey", "prey": 80, "predator": 3, "a": 2, "b": 0.5, "c": 0.8, "d": 0.02, "time": 20},
     ],
     "titration_sim": [
         {"acid_concentration": 0.1, "base_concentration": 0.1, "acid_volume": 25},
@@ -915,6 +1411,31 @@ def _library(root: Path) -> tuple[dict[str, dict[str, Any]], dict[str, dict[str,
     return diagrams, presets, problems
 
 
+# Each science asset kind's definition in the contract (content schema 1.6).
+ASSET_DEFINITIONS = {"cycle": "Cycle", "classification_key": "Key", "spectrum": "Spectrum", "enzyme": "Enzyme",
+                     "osmosis": "Osmosis"}  # fmt: skip
+
+
+def science_assets(root: Path) -> tuple[dict[str, dict[str, Any]], list[str]]:
+    """The renderer package's science asset fixtures (content schema 1.6 `science_assets`, VSL-46): each definition
+    checked against its kind's contract, and a full record (one carrying its sources) against the asset contract;
+    problems if one fails."""
+    from agent_core.contracts import errors as contract_errors
+
+    assets: dict[str, dict[str, Any]] = {}
+    problems: list[str] = []
+    for path in sorted((root / SCIENCE_DIR).glob("*.json")):
+        asset = json.loads(path.read_text())
+        definition = f"content/science-assets#/$defs/{ASSET_DEFINITIONS.get(asset['kind'], 'Asset')}"
+        found = [f"{asset['id']}: {e}" for e in contract_errors(definition, asset["definition"])]
+        if "sources" in asset:
+            found += [f"{asset.get('id')}: {e}" for e in contract_errors("content/science-assets#/$defs/Asset", asset)]
+        problems += found
+        if not found:
+            assets[asset["id"]] = {**asset, "pack_id": asset.get("pack_id", "pack.renderers.fixtures")}
+    return assets, problems
+
+
 def _numbers(value: Any) -> list[Fraction]:
     """Every figure in a tool result, as the validator compares claims with (VSL-12)."""
     from pack_builder.verify import Check
@@ -948,6 +1469,7 @@ def resolve_fixture(
     diagrams: dict[str, dict[str, Any]],
     presets: dict[str, dict[str, Any]],
     conventions: dict[str, list[dict[str, Any]]],
+    science: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     from agent_core.assets.resolvers import resolver
     from agent_core.assets.visuals import Resolver, VisualContext, validate
@@ -969,7 +1491,7 @@ def resolve_fixture(
         check_values[check_id] = _numbers(run_check(check_id, {"tool": tool, "args": args}).value)
     ctx = VisualContext(
         fx.subject,
-        "O",
+        fx.level,
         fx.stage,
         check_values=check_values,
         knowns={k: Fraction(v) for k, v in fx.givens.items()},
@@ -977,6 +1499,7 @@ def resolve_fixture(
         diagrams=diagrams,
         presets=presets,
         conventions={c["key"]: str(c["value"]) for c in own},
+        science_assets=dict(science or {}),
     )
     resolved, _ = validate(fx.request, ctx, Resolver(resolver(_call(slug), ctx.conventions)))
     return resolved
@@ -1216,6 +1739,29 @@ def fidelity(conventions: dict[str, list[dict[str, Any]]]) -> dict[str, Any]:
             )
         rows.append({"params": p, "tool": "math_solve", "readouts": readouts})
     out["equilibrium_sim"] = rows
+    rows = []
+    for n, p in enumerate(FIDELITY_POINTS["population_sim"], 1):
+        if p["model"] == "logistic":
+            # N(t) = K N0 / (N0 + (K - N0) e^(-rt)), the logistic equation's closed form.
+            n0, k = p["prey"], p["capacity"]
+            expressions = {"out.prey": f"{k}*{n0}/({n0}+({k}-{n0})*exp(-{p['rate']}*{p['time']}))"}
+        else:
+            # The equilibrium (c/d, a/b) and dx - c ln x + by - a ln y, constant along every trajectory.
+            x, y = p["prey"], p["predator"]
+            expressions = {
+                "eq.prey": f"{p['c']}/{p['d']}",
+                "eq.predator": f"{p['a']}/{p['b']}",
+                "conserved": f"{p['d']}*{x}-{p['c']}*ln({x})+{p['b']}*{y}-{p['a']}*ln({y})",
+            }
+        readouts = {}
+        for key, expression in expressions.items():
+            v = run_check(
+                f"chk_build_fid_population_{n}_{key.replace('.', '_')}",
+                {"tool": "math_evaluate", "args": {"expression": expression}},
+            )
+            readouts[key] = format(Decimal(dec(v.value["exact"])), "f")  # 20, not 2E+1
+        rows.append({"params": p, "tool": "math_evaluate", "readouts": readouts})
+    out["population_sim"] = rows
     return out
 
 
@@ -1294,12 +1840,14 @@ def _dump(value: Any) -> str:
 def generate(root: Path = REPO_ROOT) -> tuple[dict[Path, str], list[str]]:
     """Every generated file (path relative to the root -> text), and the problems found on the way."""
     diagrams, presets, problems = _library(root)
+    science, found = science_assets(root)
+    problems += found
     conventions = _conventions(root)
     files: dict[Path, str] = {}
     resolved: dict[str, dict[str, Any]] = {}
     for fx in FIXTURES:
         try:
-            spec = resolve_fixture(fx, diagrams, presets, conventions)
+            spec = resolve_fixture(fx, diagrams, presets, conventions, science)
         except Exception as error:
             problems.append(f"{fx.id}: {type(error).__name__}: {error}")
             continue

@@ -30,6 +30,8 @@ def load_context(state: SessionState, loaded: dict[str, Any]) -> None:
     state.plan, values = plan_from_item(item, part["id"])
     state.check_values.update(values)
     state.assessment_origin = loaded["origin"]["kind"]
+    if loaded.get("reason") == "why_right":  # "Why is this right?" (UXS-62): self-explanation first, no marking
+        state.practice["why_right"] = "asking"
     if state.assessment_origin == "exam_review":
         state.mode = "guided"
         state.mock_answer_submitted = True

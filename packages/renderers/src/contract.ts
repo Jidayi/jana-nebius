@@ -32,6 +32,8 @@ export interface VisualProps {
   step: number;
   labels: LabelMode;
   focus: string[];
+  /** The tutor's spotlight (UXS-57): every part outside `focus` is dimmed while it lasts. */
+  spotlight?: boolean;
   size: Size;
   reducedMotion: boolean;
   onPartActivate(id: string): void;

@@ -5,12 +5,15 @@ from __future__ import annotations
 from typing import Any
 
 from agent_core.engine import slice as flows
+from agent_core.engine.annotations import term_moves
 from agent_core.engine.state import BoardStep
 from agent_core.engine.ui import emit_part, error_of, open_board, step_error
 from agent_core.router import ToolCall
 
 
-def publish(engine: Any, turn: Any, steps: list[BoardStep], opened: Any = None) -> None:
+def publish(engine: Any, turn: Any, steps: list[BoardStep], opened: Any = None,
+            moves: dict[str, list[dict[str, Any]]] | None = None) -> None:  # fmt: skip
+    """The steps' `board.step` events, a checked line with the term moves from the line it follows (UXS-61)."""
     events = [
         {
             "type": "board.step",
@@ -23,6 +26,7 @@ def publish(engine: Any, turn: Any, steps: list[BoardStep], opened: Any = None) 
             "status": step.status,
             "check_id": step.check_id,
             "error": step_error(step),
+            **({"term_moves": moves[step.step_id]} if moves and moves.get(step.step_id) else {}),
         }
         for step in steps
     ]
@@ -101,12 +105,16 @@ async def apply(engine: Any, turn: Any, submitted: list[tuple[str, str]], source
     )
     if engine.cancelled.is_set():
         return engine._finish_interrupted(turn)
+    moves: dict[str, list[dict[str, Any]]] = {}
     for step, result in zip(suffix, results, strict=True):
         step.status, step.check_id = result.status, result.check_id
+        if result.before is not None:
+            moves[step.step_id] = term_moves(own[result.before].step_id, own[result.before].latex, step.latex,
+                                             result.moves)  # fmt: skip
         step.reason = flows.line_reason(result)
         # The first wrong line names its error (API-12, UXS-16); a line carrying it forward names that line instead.
         step.error = error_of(result.category) if result.status == "incorrect" and not result.carried_forward else None
-    publish(engine, turn, suffix)
+    publish(engine, turn, suffix, moves=moves)
     # Previous edits must not keep granting derived-value permission to the answer-leak gate.
     for old in old_lines:
         if old in state.student_lines:

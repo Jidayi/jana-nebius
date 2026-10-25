@@ -51,6 +51,9 @@ EXCLUDED = re.compile(r"espeak|phonemizer|mms[-_]tts|livekit|espeakng_loader", r
 # A model component (VAD, turn, speech-to-text, text-to-speech) carries weights and data, never code: Python sources or
 # native libraries belong to the signed sidecar runtime alone, so no model folder can bring code a loader would run
 # (SEC-09; the Silero VAD is TorchScript weights, loaded without torch.hub's hubconf.py).
+# VOC-48, D95: the preset speakers of Qwen3-TTS 0.6B CustomVoice (its model card); Kokoro's are its `voices/*.pt` files.
+QWEN3_SPEAKERS = frozenset({"vivian", "serena", "uncle_fu", "dylan", "eric", "ryan", "aiden", "ono_anna", "sohee"})
+TUTOR_AVATARS = ("avatar.jana", "avatar.orbit", "avatar.prism", "avatar.kite", "avatar.pebble", "avatar.ray")
 MODEL_CODE = re.compile(r"\.(?:py|pyc|pyo|pyw|pyd|so|dylib|dll|exe)$|(?:^|/)hubconf\.py$", re.I)
 # SEC-23's approved licences for shipped code (the runtime the sidecar role carries); model files keep LIST SEC-24a.
 # D95 adds two the speech runtime needs, for the owner to confirm: CNRI-Python (regex, misaki's tokenizer: one part
@@ -130,6 +133,8 @@ class SpeechProfile(_Record):
     tts_path: str
     sidecar_path: str
     speaker: str = Field(min_length=1, max_length=80, pattern=r"^[A-Za-z0-9_ -]+$")
+    # VOC-48: each tutor character's preset speaker on this class; a character not named uses `speaker`.
+    tutor_speakers: dict[str, str] = Field(default_factory=dict, max_length=6)
 
     @property
     def read_aloud_only(self) -> bool:
@@ -317,6 +322,26 @@ def check_components(manifest: SpeechManifest) -> None:
                 raise SpeechPackError("speech_pack_profile_refused")
 
 
+def _preset_speakers(files: list[SpeechFile], hardware: str, profile: SpeechProfile) -> None:
+    """VOC-48, D95: every speaker a class names, its default and each character's, is a preset speaker of that class's
+    text-to-speech model: a Kokoro voice file the pack ships for the class, or one of Qwen3-TTS CustomVoice's preset
+    speakers. Any other engine keeps its default speaker for every character. Cloning options cannot be written at
+    all: the profile record refuses every field it does not name."""
+    for avatar, speaker in profile.tutor_speakers.items():
+        if avatar not in TUTOR_AVATARS or not re.fullmatch(r"[A-Za-z0-9_ -]{1,80}", speaker):
+            raise SpeechPackError("speech_pack_speaker_refused")
+    for speaker in {profile.speaker, *profile.tutor_speakers.values()}:
+        if profile.tts == "kokoro":
+            voice = f"{profile.tts_path.rstrip('/')}/voices/{speaker}.pt"
+            offered = any(f.path == voice and f.role == "tts" and hardware in f.classes for f in files)
+        elif profile.tts == "qwen3":
+            offered = speaker.lower() in QWEN3_SPEAKERS
+        else:
+            offered = speaker == profile.speaker
+        if not offered:
+            raise SpeechPackError("speech_pack_speaker_refused")
+
+
 def check_folder(folder: Path) -> SpeechManifest:
     """A pack folder before it is signed: its manifest, the licence gate and the class profiles, and every byte against
     the manifest with nothing unlisted. For the pack build and the signing command (VOC-02, VOC-03, D88); a device
@@ -329,6 +354,8 @@ def check_folder(folder: Path) -> SpeechManifest:
     except (OSError, ValueError, TypeError, ValidationError) as error:
         raise SpeechPackError("speech_pack_manifest_refused") from error
     check_components(manifest)
+    for hardware, profile in manifest.profiles.items():
+        _preset_speakers(manifest.files, hardware, profile)  # the build and signing gate (VOC-48)
     try:
         present = _inventory(folder)
         for file in manifest.files:

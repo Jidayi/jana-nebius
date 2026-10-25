@@ -98,6 +98,8 @@ export interface PartRec {
   duration_ms?: number;
   tools?: Record<string, ToolRec>;
   visual_id?: string;
+  /** An online sketch the engine resolved for this part (VSL-43): drawn only from its kept elements. */
+  sketch?: Record<string, unknown> & { sketch_id: string; status: "checked" | "not_checked" };
   card?: { request_id: string; card: Card; state: "open" | "answering" | "answered" | "cancelled"; answer_summary?: string; answered_ts?: number };
   notice?: Record<string, unknown>;
 }
@@ -119,6 +121,35 @@ export interface StepRec {
   status: string;
   check_id: string | null;
   error: StepError | null;
+  /** The engine's split of the line into top-level terms (API-12): what annotations and selection address. */
+  terms?: { term_id: string; start: number; end: number }[];
+  /** Terms the new line carried across the equals sign or cancelled (UXS-61), from the step checker's comparison of
+   * the two checked lines; the client never infers one. */
+  term_moves?: TermMoveRec[];
+}
+
+/** One term move (UXS-61): `from` is the earlier line's term (`stp_….t2`), `to` the new line's term or null. */
+export interface TermMoveRec {
+  from: string;
+  to: string | null;
+  kind: "carry" | "cancel";
+}
+
+/** A mark's target, by ids only (VSL-40): a line or a term range of it, or a part of a visual on screen. */
+export interface MarkTargetRec {
+  step_id: string | null;
+  terms: string | null;
+  visual_id: string | null;
+  part_id: string | null;
+}
+
+/** The tutor's one annotation on the board (VSL-40): a new one replaces it and a new line clears it. */
+export interface AnnotationRec {
+  annotation_id: string;
+  mark: "circle" | "underline" | "arrow" | "strike" | "margin_note" | "look_here";
+  target: MarkTargetRec;
+  to: MarkTargetRec | null;
+  note: string | null;
 }
 
 export interface BoardRec {
@@ -131,7 +162,10 @@ export interface BoardRec {
   unknowns: unknown[];
   conventions: unknown[];
   await: { step_id: string; prompt: string; input_kind: string } | null;
-  highlight: { step_ids: string[]; ttl_ms: number | null; ts: number } | null;
+  highlight: { step_ids: string[]; ttl_ms: number | null; ts: number; spotlight?: boolean } | null;
+  annotation?: AnnotationRec | null;
+  /** A manipulable visual is the student's turn (VSL-42): the awaiting line, the visual and its adjustable parts. */
+  manipulation?: { step_id: string; visual_id: string; part_ids: string[]; prompt: string } | null;
   /** The line the board is on (the newest, or the one the student moved to): bound visuals follow it (VSL-20). */
   current: string | null;
 }
@@ -141,7 +175,7 @@ export interface VisualRec {
   part_id: string;
   spec: VisualsVisualSpecResolved;
   step: number;
-  focus: { part_ids: string[]; ttl_ms: number | null; ts: number } | null;
+  focus: { part_ids: string[]; ttl_ms: number | null; ts: number; spotlight?: boolean } | null;
 }
 
 /** A note the tutor saved because the student asked (MEM-11), announced in the conversation with an Undo until

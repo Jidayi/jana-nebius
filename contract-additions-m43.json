@@ -1,0 +1,251 @@
+{
+  "proposal": "Contract pieces three M43 requirements imply (D103; D72 standing approval to add spec-implied pieces and report after), proposed by the M43 and M44 builder. UXS-59's board note, VOC-48's character voice sample and UXS-60's hands-on first session each name an outcome the adopted contracts cannot carry: study_notes holds text only, read-aloud has no source for a fixed sample line, and neither the API nor the content pack names the tour's item or its scripted steps. Each entry is a JSON Pointer into a contract under docs/specification/contracts (or the data schema's table) and the value to add there. None is implemented yet: the three acceptance tests that need them (uxs59_board_note_replays_offline, voc48_character_voice_sample, uxs60_hands_on_tour_steps and uxs60_tour_without_model) wait for the owner's adoption or a go-ahead to build against this file.",
+  "additions": [
+    {
+      "target": "data/schema.sql",
+      "pointer": "TABLE study_notes",
+      "requirements": [
+        "UXS-59",
+        "UXS-52",
+        "DAT-08"
+      ],
+      "why": "UXS-59: 'Save to My notes' keeps a board as a note of kind board, with its steps, visuals, annotations and the tutor's spoken text, replayable offline after the conversation's retention. study_notes has only text (1 to 8000 characters) and source typed or voice.",
+      "value": "ALTER: kind TEXT NOT NULL DEFAULT 'text' CHECK (kind IN ('text','board')); board TEXT CHECK (board IS NULL OR json_valid(board)) -- the BoardReplay of the board as saved; CHECK ((kind = 'board') = (board IS NOT NULL)); source gains 'board'. text keeps the tutor's spoken text joined (searchable and exported like any note; empty boards are refused)."
+    },
+    {
+      "target": "voice/activities.schema.json",
+      "pointer": "/$defs/study_note/properties/kind",
+      "requirements": [
+        "UXS-59"
+      ],
+      "why": "The notes list, search, privacy, deletion and export treat a board note like any note (UXS-52, STU-14); the client needs its kind to offer Replay instead of Read aloud.",
+      "value": {
+        "enum": [
+          "text",
+          "board"
+        ]
+      }
+    },
+    {
+      "target": "voice/activities.schema.json",
+      "pointer": "/$defs/study_note/properties/board",
+      "requirements": [
+        "UXS-59"
+      ],
+      "why": "A saved board replays offline from the note itself, with no model and no audio (VOC-15, PRV-26).",
+      "value": {
+        "anyOf": [
+          {
+            "$ref": "https://jana.dev/contracts/api/commands#/$defs/BoardReplay"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    {
+      "target": "voice/activities.schema.json",
+      "pointer": "/$defs/read_source/oneOf/-",
+      "requirements": [
+        "VOC-48",
+        "UXS-54"
+      ],
+      "why": "VOC-48: choosing a character plays a short fixed sample line in its voice, synthesised on the device and never stored. Read-aloud reads only lesson blocks, questions, notes and session cards; a sample line is none of them. The core supplies the line (a catalogue key, never student or model text) and the speaker the pack names for that character on the device's class (tutor_speakers, else the class's speaker).",
+      "value": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "voice_sample"
+          },
+          "avatar": {
+            "enum": [
+              "avatar.jana",
+              "avatar.orbit",
+              "avatar.prism",
+              "avatar.kite",
+              "avatar.pebble",
+              "avatar.ray"
+            ]
+          }
+        },
+        "required": [
+          "kind",
+          "avatar"
+        ]
+      }
+    },
+    {
+      "target": "content/content-pack.schema.json",
+      "pointer": "/$defs/subject/properties/first_session_tour",
+      "requirements": [
+        "UXS-60"
+      ],
+      "why": "UXS-60: the tour's question is a pack item, never model-written, and without a model the tour runs from the pack's scripted version with the same steps. The pack names, per subject, the item and the scripted pieces: the tutor's first line (written on with the pen), the 'Why?' answer for it and the item's first hint rung come from the item's own worked solution and hint ladder by index, so nothing new is authored outside the item.",
+      "value": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "tutor_step_index": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 20
+          },
+          "why_step_index": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 20
+          },
+          "hint_rung": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4
+          }
+        },
+        "required": [
+          "item_id",
+          "tutor_step_index",
+          "why_step_index",
+          "hint_rung"
+        ]
+      }
+    },
+    {
+      "target": "api/endpoints (TABLE API-27a)",
+      "pointer": "POST /v1/interview/tour",
+      "requirements": [
+        "UXS-60",
+        "JRN-03"
+      ],
+      "why": "The interview's last card starts the hands-on solve: the core opens a guided session on the first subject's tour item (origin kind interview_tour), writes the tutor's line from the item's worked solution and awaits the student's next line, which is checked as an ordinary attempt. With no model loaded the 'Why?' and the hint come from the pack's scripted pieces; with one, the Coach words them as usual. Auth launch + profile; ids only (no student text). Reply: {session_id, steps: ['write_on','pen','check_chip','why','hint'] plus 'talk_key' where voice is offered}, the order the client's tour coach marks follows, each skippable with 'Skip the tour'.",
+      "value": {
+        "request": null,
+        "response": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "session_id": {
+              "type": "string",
+              "pattern": "^ses_[0-9A-HJKMNP-TV-Z]{26}$"
+            },
+            "scripted": {
+              "type": "boolean"
+            },
+            "steps": {
+              "type": "array",
+              "maxItems": 6,
+              "items": {
+                "enum": [
+                  "write_on",
+                  "pen",
+                  "check_chip",
+                  "why",
+                  "hint",
+                  "talk_key"
+                ]
+              }
+            }
+          },
+          "required": [
+            "session_id",
+            "scripted",
+            "steps"
+          ]
+        },
+        "errors": [
+          "not_found",
+          "request_conflict"
+        ]
+      }
+    },
+    {
+      "target": "api/commands.schema.json",
+      "pointer": "/$defs/SessionSnapshot (parts)/sketch",
+      "requirements": [
+        "VSL-43",
+        "UIA-02"
+      ],
+      "why": "A sketch arrives as visual.sketch in its turn's visual part, but the snapshot's part has no field for it, so a client that reloads from the snapshot loses sketches the stream showed (UIA-02 equivalence). The core keeps the resolved sketch in its projection and drops the part on 'Remove sketch'.",
+      "value": {
+        "anyOf": [
+          {
+            "$ref": "https://jana.dev/contracts/visuals/sketch#/$defs/resolved"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    {
+      "target": "trace/turn-trace.schema.json",
+      "pointer": "/properties/sketch",
+      "requirements": [
+        "MDL-33",
+        "OBS-06",
+        "EVL-28"
+      ],
+      "why": "MDL-33: the turn trace records whether the selector found a template, whether a sketch call was made, its latency from the turn's acceptance and whether the sketch was shown, added late, dropped (with reasons) or checked. Gate entries carry only gate, fired and a closed outcome, so the core records sketch_template and sketch_call there and the rest in the sketch.outcome log record until this field exists.",
+      "value": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "template": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 64
+          },
+          "called": {
+            "type": "boolean"
+          },
+          "outcome": {
+            "enum": [
+              "shown",
+              "late",
+              "dropped",
+              "failed",
+              "cancelled",
+              "discarded",
+              "superseded"
+            ]
+          },
+          "latency_ms": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "status": {
+            "enum": [
+              "checked",
+              "not_checked"
+            ]
+          },
+          "dropped": {
+            "type": "array",
+            "maxItems": 40,
+            "items": {
+              "enum": [
+                "out_of_bounds",
+                "over_cap",
+                "guard_refused",
+                "unverified_number",
+                "check_failed"
+              ]
+            }
+          }
+        },
+        "required": [
+          "template",
+          "called"
+        ]
+      }
+    }
+  ]
+}

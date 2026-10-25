@@ -1,8 +1,13 @@
 """Cooperative time slices for symbolic work (VER-04, VER-27).
 
 SymPy cannot be interrupted from outside, so a slice installs a per-thread trace function that raises
-`SliceExpired` at the next Python function call after the deadline. Checkers catch it and answer `unknown` with
+`SliceExpired` at a Python function call after the deadline. Checkers catch it and answer `unknown` with
 reason `timeout`, never a verdict they did not reach. The host's wall-clock deadline (TOL-11) remains the backstop.
+
+A slice is measured in the calling thread's CPU time, not wall time: equal arguments must give a byte-identical
+result (VER-01), and a wall-clock slice turned a verdict into `unknown`/`timeout` whenever the machine was busy
+(other processes, other threads holding the GIL), a different golden case each run. The CPU clock costs about six
+times a monotonic read, so it is read every `CHECK_EVERY` calls.
 """
 
 from __future__ import annotations
@@ -20,14 +25,21 @@ class SliceExpired(Exception):
     """The time slice ran out before the computation finished."""
 
 
+CHECK_EVERY = 32  # calls between reads of the thread's CPU clock
+
+
 @contextmanager
-def time_slice(seconds: float) -> Iterator[None]:
-    deadline = time.monotonic() + seconds
+def time_slice(seconds: float, clock: Callable[[], float] = time.thread_time) -> Iterator[None]:
+    deadline = clock() + seconds
     previous = sys.gettrace()
+    calls = 0
 
     def tracer(frame: FrameType, event: str, arg: Any) -> None:
-        if event == "call" and time.monotonic() > deadline:
-            raise SliceExpired
+        nonlocal calls
+        if event == "call":
+            calls += 1
+            if calls % CHECK_EVERY == 0 and clock() > deadline:
+                raise SliceExpired
         return None  # no line tracing: only calls are checked
 
     sys.settrace(tracer)

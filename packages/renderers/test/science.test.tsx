@@ -8,7 +8,7 @@ import { act } from "react";
 import { createRoot } from "react-dom/client";
 import { describe, expect, test } from "vitest";
 import { CLIENT_KEYS } from "../src/generated/keys.js";
-import { electrolysisModel, equilibriumModel, equilibriumTimescale, kcAt, evaluate, GAS_CONSTANT, SIM_SETUPS, functionModel, ratesModel, ratesReadings, gasModel, parseExpression as parse, sig, transformed, type ResolvedSpec, type SimEvent, type SimModel } from "../src/index.js";
+import { electrolysisModel, equilibriumModel, equilibriumTimescale, kcAt, evaluate, GAS_CONSTANT, SIM_SETUPS, functionModel, ratesModel, ratesReadings, gasModel, parseExpression as parse, POPULATION_STEPS, populationConserved, populationModel, populationTrajectory, runToEnd, sig, transformed, type ResolvedSpec, type SimEvent, type SimModel } from "../src/index.js";
 import { electrolysisPreset } from "../src/sims/electrolysis.js";
 import type { Values } from "../src/sims/models.js";
 import type { ElectrolysisConstants, EquilibriumSetup } from "../src/sims/science.js";
@@ -212,7 +212,58 @@ describe("VSL-46 S3 simulations", () => {
     }
     expect(times.with!).toBeLessThan(times.without!);
     expect(kcAt(reactions.hi!, 698)).toBeCloseTo(54, 12);
-    expect(points).toBeGreaterThanOrEqual(64);
+    // population_sim: a logistic run ends where the closed form (math_evaluate) puts it; a Lotka–Volterra run keeps its
+    // conserved quantity (math_evaluate at the start) at every fixed step and stays at its equilibrium (math_evaluate)
+    // when it starts there; no population ever reaches zero.
+    for (const row of FIDELITY.population_sim!) {
+      const p = row.params as Record<string, number | string>;
+      const lv = p.model === "predator_prey";
+      const setup = { model: lv ? "predator_prey" as const : "logistic" as const, initial_prey: Number(p.prey), initial_predator: lv ? Number(p.predator) : 0, duration: Number(p.time) };
+      const values: Values = lv ? { growth_rate: p.a!, predation_rate: p.b!, predator_death_rate: p.c!, conversion_rate: p.d!, timescale: setup.duration } : { growth_rate: p.rate!, carrying_capacity: p.capacity!, timescale: setup.duration };
+      const model = populationModel(setup, values);
+      const start = lv ? populationConserved(values, setup.initial_prey, setup.initial_predator) : 0;
+      let state = model.init(values);
+      for (let i = 0; i < 100_000 && !model.done(state, values); i += 1) {
+        state = model.next(state, values, DT);
+        expect(state.prey > 0 && (!lv || state.predator > 0), JSON.stringify(p)).toBe(true);
+        if (lv) expect(Math.abs(populationConserved(values, state.prey, state.predator) - start), `${JSON.stringify(p)} conserved`).toBeLessThan(1e-6 * Math.abs(start));
+      }
+      expect(state.step, JSON.stringify(p)).toBe(POPULATION_STEPS);
+      if (!lv) {
+        expect(sig(state.prey, SF), `logistic ${JSON.stringify(p)}`).toBe(sig(Number(row.readouts!["out.prey"]), SF));
+        points += 1;
+        continue;
+      }
+      expect(sig(start, SF), `conserved ${JSON.stringify(p)}`).toBe(sig(Number(row.readouts!.conserved), SF));
+      const at = { ...setup, initial_prey: Number(row.readouts!["eq.prey"]), initial_predator: Number(row.readouts!["eq.predator"]) };
+      const still = populationModel(at, values);
+      for (const [i, s] of populationTrajectory(at, values, POPULATION_STEPS, 250).entries()) {
+        expect(sig(s[1], SF), `equilibrium prey ${i}`).toBe(sig(at.initial_prey, SF));
+        expect(sig(s[2], SF), `equilibrium predators ${i}`).toBe(sig(at.initial_predator, SF));
+      }
+      expect(still.read(runToEnd(still, values, DT), values)["out.prey"]).toBeCloseTo(at.initial_prey, 9);
+      points += 3;
+    }
+    // Every slider at either end of its range: the run stays finite and above zero, and a logistic population moves
+    // towards its carrying capacity without passing it.
+    for (const kind of ["population-sim", "population-sim-predator-prey"]) {
+      const spec = fixtures().find((f) => f.id === kind)!.spec;
+      const { model, start } = SIM_SETUPS.population_sim!(spec);
+      const params = spec.params as { model: string; initial_prey: number };
+      for (const control of model.params) {
+        for (const end of [control.min!, control.max!]) {
+          const values = { ...start, [control.id]: end };
+          const read = model.read(runToEnd(model, values, DT), values);
+          expect(Number.isFinite(read["out.prey"]!) && read["out.prey"]! > 0, `${kind} ${control.id} ${end}`).toBe(true);
+          if (params.model === "logistic") {
+            const capacity = Number(values.carrying_capacity);
+            expect(read["out.prey"]!, `${kind} ${control.id} ${end}`).toBeLessThanOrEqual(Math.max(capacity, params.initial_prey) * (1 + 1e-12));
+            expect(read["out.prey"]!, `${kind} ${control.id} ${end}`).toBeGreaterThanOrEqual(Math.min(capacity, params.initial_prey));
+          } else expect(Number.isFinite(read["out.predator"]!) && read["out.predator"]! > 0, `${kind} ${control.id} ${end}`).toBe(true);
+        }
+      }
+    }
+    expect(points).toBeGreaterThanOrEqual(77);
   });
 });
 

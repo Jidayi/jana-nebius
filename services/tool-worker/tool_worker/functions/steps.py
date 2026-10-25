@@ -309,8 +309,96 @@ def _classify(
     return "other", None, False
 
 
+# --- term moves (UXS-61) -------------------------------------------------------------------------------------
+
+_RELATION_MARKS = ("<=", ">=", "!=", "=", "<", ">")
+MAX_MOVES = 8
+
+
+def split_terms(text: str) -> list[tuple[int, str]]:
+    """The top-level terms of a written line as (side, text): split at `+`, `-` and the relation outside any group,
+    a sign belonging to the term it starts. The board splits a line's LaTeX the same way, so term n here is term
+    tn there (VSL-19)."""
+    terms: list[tuple[int, str]] = []
+    depth, side, current, previous = 0, 0, "", ""
+    i = 0
+
+    def close() -> None:
+        if current.strip() not in ("", "+", "-"):
+            terms.append((side, current.strip()))
+
+    while i < len(text):
+        ch = text[i]
+        if ch in "([{":
+            depth += 1
+        elif ch in ")]}":
+            depth = max(0, depth - 1)
+        relation = next((r for r in _RELATION_MARKS if depth == 0 and text.startswith(r, i)), None)
+        if relation is not None:
+            close()
+            current, side, previous = "", side + 1, "="
+            i += len(relation)
+            continue
+        if depth == 0 and ch in "+-" and previous not in ("", "=", "+", "-", "^", "*", "/"):
+            close()
+            current, previous = ("-" if ch == "-" else ""), ch
+            i += 1
+            continue
+        current += ch
+        if ch != " ":
+            previous = ch
+        i += 1
+    close()
+    return terms
+
+
+def _term_values(text: str, args: dict[str, Any]) -> list[tuple[int, sp.Expr]] | None:
+    try:
+        return [(side, sp.expand(parse_arg(term, args, "term").tree)) for side, term in split_terms(text)]
+    except WorkerError:
+        return None
+
+
+def _moves(args: dict[str, Any]) -> dict[str, Any] | None:
+    """For a valid step between two equations: which terms of the previous line were carried across the equals sign
+    (to the term of the new line equal to their negative) and which cancelled (a pair on one side summing to zero, or
+    one term on both sides). Terms are 1-based positions across the whole line; terms that stay or combine into a new
+    value are not moves. None when a line is not one equation of terms the grammar reads."""
+    prev, nxt = _term_values(args["prev"], args), _term_values(args["next"], args)
+    if prev is None or nxt is None or {s for s, _ in prev} != {0, 1} or {s for s, _ in nxt} != {0, 1}:
+        return None
+    kept_prev: set[int] = set()
+    kept_next: set[int] = set()
+    for j, (side, value) in enumerate(nxt):
+        i = next((i for i, (s, v) in enumerate(prev) if i not in kept_prev and s == side and v == value), None)
+        if i is not None:
+            kept_prev.add(i)
+            kept_next.add(j)
+    moves: list[dict[str, Any]] = []
+    left = [i for i in range(len(prev)) if i not in kept_prev]
+    for i in left:
+        side, value = prev[i]
+        target = next((j for j, (s, v) in enumerate(nxt) if j not in kept_next and s != side and v == -value), None)
+        if target is not None and value != 0:
+            kept_next.add(target)
+            moves.append({"from": i + 1, "to": target + 1, "kind": "carry"})
+    used = {m["from"] - 1 for m in moves}
+    for a in left:
+        for b in left:
+            if a >= b or a in used or b in used:
+                continue
+            (side_a, va), (side_b, vb) = prev[a], prev[b]
+            if va != 0 and ((side_a == side_b and va + vb == 0) or (side_a != side_b and va == vb)):
+                used |= {a, b}
+                moves += [{"from": a + 1, "to": None, "kind": "cancel"}, {"from": b + 1, "to": None, "kind": "cancel"}]
+    if not moves or len(moves) > MAX_MOVES:
+        return None
+    return {"moves": sorted(moves, key=lambda m: m["from"]), "terms": [len(prev), len(nxt)]}
+
+
 def math_check_step(args: dict[str, Any], context: CallContext) -> tuple[Any, Extras]:
-    """Check one line of working against the previous line (VER-06)."""
+    """Check one line of working against the previous line (VER-06). With `moves`, a valid step between two
+    equations also reports its term moves (UXS-61)."""
     prev_parsed = parse_arg(args["prev"], args, "prev")
     prev, written = prev_parsed.tree, prev_parsed.as_written
     nxt_parsed = parse_arg(args["next"], args, "next")
@@ -320,6 +408,8 @@ def math_check_step(args: dict[str, Any], context: CallContext) -> tuple[Any, Ex
     try:
         with time_slice(slice_seconds(context) * 3):
             verdict, detail = _verdict(prev, nxt, context)
+            if verdict == "valid" and args.get("moves") and (found := _moves(args)) is not None:
+                detail = {**detail, **found}
             if verdict != "invalid":
                 confidence = "undecided" if verdict == "unknown" else "proved"
                 return {"verdict": verdict, **detail}, {"method": "symbolic", "confidence": confidence}

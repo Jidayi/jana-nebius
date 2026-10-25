@@ -1,0 +1,101 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.spectrum-chart",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "The infrared spectrum of ethanol with 4 peaks; labelled: 3340 cm⁻¹, O-H (alcohol), broad; 1050 cm⁻¹, C-O."
+    },
+    "computed": {
+      "labels": {
+        "peak_c_o": "1050 cm⁻¹, C-O",
+        "peak_o_h": "3340 cm⁻¹, O-H (alcohol), broad"
+      },
+      "peaks": [
+        {
+          "assignment": "C-O",
+          "id": "c_o",
+          "intensity": 15,
+          "position": 1050
+        },
+        {
+          "assignment": "C-H bend",
+          "id": "c_h_bend",
+          "intensity": 60,
+          "position": 1450
+        },
+        {
+          "assignment": "C-H stretch",
+          "id": "c_h",
+          "intensity": 35,
+          "position": 2970
+        },
+        {
+          "assignment": "O-H (alcohol), broad",
+          "id": "o_h",
+          "intensity": 20,
+          "position": 3340
+        }
+      ],
+      "spectrum": {
+        "type": "infrared",
+        "x_unit": "cm^-1",
+        "y_unit": "transmittance"
+      },
+      "title": "ethanol"
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "pack:pack.renderers.fixtures/science_assets/dgm.chm.spectrum_ethanol_ir.v1"
+    ],
+    "params": {
+      "peaks": [
+        "o_h",
+        "c_o"
+      ],
+      "spectrum_id": "dgm.chm.spectrum_ethanol_ir.v1",
+      "type": "infrared"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "trace",
+        "name": "spectrum",
+        "role": "curve"
+      },
+      {
+        "focusable": true,
+        "id": "peak_o_h",
+        "name": "peak, O-H (alcohol), broad",
+        "quizzable": true,
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "peak_c_o",
+        "name": "peak, C-O",
+        "quizzable": true,
+        "role": "point"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:bfd4127f742bc4717aaf7803e2c759c82c98f43d17380683dff83bb2690bde44",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "spectrum_chart",
+    "visual_id": "vis_ZMJZMB4HTFR327S8CRMXQR63ZR"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: spectrum chart (shown labels)",
+  "variant": "spectrum-chart"
+}

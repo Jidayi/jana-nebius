@@ -47,16 +47,18 @@ DESCRIPTIONS: dict[str, str] = {
     ),
     "math_solve": (
         "Solves equations exactly. Use when you need every solution; not for checking a student's line (use "
-        "math_check_step instead). Parameters: equations, optional unknowns, domain, interval, constants (with "
-        "their source), quantities (known numeric values with units only; never unknowns or labels), units "
-        "(unknown symbol to requested unit), positive_direction. Returns case and solutions "
-        "with exact and 6 s.f. values. Limits: 5 s. Never repeat an unchanged failing call; give an interval when "
-        "told there is no exact solution. Batch independent calls."
+        "math_check_step instead). Parameters: equations, optional unknowns, domain (complex for complex roots), "
+        "interval, constants with their source, quantities (known values with units only), units, "
+        "positive_direction, or method (newton_raphson, iteration with g, sign_change) with start and steps. Returns "
+        "case and solutions with exact and 6 s.f. values, or the iterates. Limits: 5 s. Never repeat an unchanged "
+        "failing call; give an interval when told there is no exact solution. Batch independent calls."
     ),
     "math_simplify": (
         "Rewrites an expression in a chosen form. Use when you need the simplest, expanded, factorised or single "
-        "fraction form; not for equality checks (use math_check_equivalence instead). Parameters: expression, form. "
-        "Returns status and result. Limits: 5 s. Never repeat an unchanged failing call. Batch independent calls."
+        "fraction form, partial fractions, a series (binomial or Maclaurin, with its validity), or a complex number "
+        "as a + bi or in modulus-argument form; not for equality checks (use math_check_equivalence instead). "
+        "Parameters: expression, form, order or terms, about, variable. Returns status and result with its working. "
+        "Limits: 5 s. Never repeat an unchanged failing call. Batch independent calls."
     ),
     "math_check_equivalence": (
         "Checks whether two expressions or two equations are equivalent. Use when comparing forms; not for one "
@@ -66,9 +68,9 @@ DESCRIPTIONS: dict[str, str] = {
     ),
     "math_check_step": (
         "Checks one line of working against the line before. Use when marking a student's step; not for final "
-        "answers (use math_check_equivalence instead). Parameters: prev, next, optional givens. Returns verdict "
-        "and, when invalid, the error category. Limits: 5 s; unknown when undecided. Never repeat an unchanged "
-        "failing call. Batch independent calls."
+        "answers (use math_check_equivalence instead). Parameters: prev, next, optional givens, moves. Returns "
+        "verdict, the error category when invalid, and with moves the terms carried or cancelled. Limits: 5 s; "
+        "unknown when undecided. Never repeat an unchanged failing call. Batch independent calls."
     ),
     "math_evaluate": (
         "Evaluates an expression with given values. Use when you need a number; not for solving (use math_solve "
@@ -109,16 +111,19 @@ DESCRIPTIONS: dict[str, str] = {
         "independent calls."
     ),
     "math_differentiate": (
-        "Differentiates an expression exactly. Use when you need a derivative, a gradient, tangent or normal, or "
-        "stationary points with their nature; not for areas (use math_integrate instead). Parameters: expression, "
-        "optional order, at, stationary_points, interval, student. Returns derivative and the requested extras. "
-        "Limits: 5 s; unknown when undecided. Never repeat an unchanged failing call. Batch independent calls."
+        "Differentiates exactly, explicitly, implicitly or parametrically. Use when you need a derivative, a gradient, "
+        "tangent or normal, or stationary points with their nature; not for areas (use math_integrate instead). "
+        "Parameters: expression (an equation when mode is implicit, with point), or x_expression and y_expression "
+        "(mode parametric), optional order, at, stationary_points, interval, student. Returns derivative and the "
+        "requested extras. Limits: 5 s; unknown when undecided. Never repeat an unchanged failing call. Batch "
+        "independent calls."
     ),
     "math_integrate": (
-        "Integrates an expression exactly. Use when you need an indefinite or definite integral or the area under a "
-        "curve; not for derivatives (use math_differentiate instead). Parameters: expression, optional lower, upper, "
-        "area, student. Returns antiderivative, definite value, area pieces and the student check (missing_constant "
-        "when + c is left out). Limits: 5 s. Never repeat an unchanged failing call. Batch independent calls."
+        "Integrates exactly. Use when you need an integral, an area, a volume of revolution, a trapezium estimate "
+        "with its error, or a stated substitution or parts; not for derivatives (use math_differentiate instead). "
+        "Parameters: expression, optional lower, upper, area, volume, method and strips, substitution, parts_u, "
+        "student. Returns antiderivative, definite value, area pieces, volume, estimate or the steps, and the "
+        "student check. Limits: 5 s. Never repeat an unchanged failing call. Batch independent calls."
     ),
     "math_check_answer": (
         "Marks a final answer against the key under the item's rule. Use when marking a final answer; not for one "
@@ -146,17 +151,19 @@ DESCRIPTIONS: dict[str, str] = {
         "refused. Never repeat an unchanged failing call. Batch independent calls."
     ),
     "acc_double_entry": (
-        "Checks journal entries, posts and balances the ledger, extracts the trial balance, corrects errors or "
-        "reconciles the bank. Use when checking double entry; not for statements (use acc_statements instead). "
-        "Parameters: entries or entries_text, key, chart, recorded, cash_book, bank_statement, student. Returns "
-        "balance checks, ledger, trial balance, line verdicts, corrections or the reconciliation. Limits: 40 "
-        "entries, 5 s. Never repeat an unchanged failing call; write lines like 'Dr Bank 500'. Batch independent calls."
+        "Checks journal entries, posts and balances the ledger, extracts the trial balance, corrects errors, "
+        "reconciles the bank or builds a control account. Use when checking double entry; not for statements (use "
+        "acc_statements instead). Parameters: entries or entries_text, key, chart, recorded, cash_book, "
+        "bank_statement, control_account, student. Returns balance checks, ledger, trial balance, line verdicts, "
+        "corrections, the reconciliation or the control balance. Limits: 40 entries, 5 s. Never repeat an unchanged "
+        "failing call; write lines like 'Dr Bank 500'. Batch independent calls."
     ),
     "acc_statements": (
-        "Builds a sole trader's income statement and statement of financial position from a trial balance with "
-        "adjustments. Use when you need or check statements; not for ledgers (use acc_double_entry instead). "
-        "Parameters: trial_balance (account, role, amount), adjustments, layout, terms, student. Returns traced "
-        "lines, profit, balanced and the student's first divergent line. Limits: 60 lines, 5 s. Never repeat an "
+        "Builds a sole trader's statements from a trial balance with adjustments, or with form a partnership "
+        "appropriation and current accounts, company equity, a manufacturing account or incomplete records. Use "
+        "when you need or check statements; not for ledgers (use acc_double_entry instead). Parameters: form, "
+        "trial_balance, adjustments, partnership, company, manufacturing, incomplete_records, student. Returns "
+        "traced lines, totals and the student's first divergent line. Limits: 60 lines, 5 s. Never repeat an "
         "unchanged failing call. Batch independent calls."
     ),
     "acc_depreciation": (
@@ -186,6 +193,43 @@ DESCRIPTIONS: dict[str, str] = {
         "whole-unit values and the lines. Limits: 5 s. Never repeat an unchanged failing call. Batch independent "
         "calls."
     ),
+    "stats_distribution": (
+        "Works out binomial, Poisson and normal probabilities, hypothesis tests, correlation and regression. Use when "
+        "you need a probability, an inverse normal value, a critical region or test conclusion, r or rs, or a "
+        "regression line; not for averages of a data set (use stats_compute instead). Parameters: task, its values "
+        "(n and p, lambda, mean and sd, relation and k or x, test, alternative, significance_level, data or sums), "
+        "sf, normal_values. Returns exact and rounded values with the conventions used. Limits: 5 s. Never repeat an "
+        "unchanged failing call. Batch independent calls."
+    ),
+    "math_solve_ode": (
+        "Solves a first-order separable differential equation. Use when you need the general or particular solution "
+        "of dy/dx = f(x) g(y) or to check a student's solution; not for integrals alone (use math_integrate "
+        "instead). Parameters: rhs (dy/dx in x and y), independent, dependent, condition, at, student. Returns the "
+        "implicit and explicit solutions, the constant and the value at a point; unknown if not separable. Limits: "
+        "5 s. Never repeat an unchanged failing call. Batch independent calls."
+    ),
+    "phys_mechanics": (
+        "Solves A level mechanics. Use when you need a projectile at an angle, moments, friction on a slope, "
+        "connected particles, work, energy and power, momentum and impulse, circular motion or SHM; not for "
+        "horizontal or vertical projectiles (use phys_projectile instead). Parameters: task, part, the quantities "
+        "the task names, g with its source. Returns exact values with the equations used; unknown with what it needs "
+        "if underdetermined. Limits: 5 s. Never repeat an unchanged failing call. Batch independent calls."
+    ),
+    "acc_cash_flow": (
+        "Builds a statement of cash flows by the indirect method. Use when you need or check cash flows from "
+        "operating, investing and financing activities; not for profit (use acc_statements instead). Parameters: "
+        "profit_from_operations or profit_before_tax, non_cash, working_capital, interest_paid, tax_paid or "
+        "tax_balances, disposal, non_current_asset_balances, investing, financing, opening_cash, closing_cash, "
+        "student. Returns signed lines, section totals and the derivations; unknown if it does not reconcile. "
+        "Limits: 5 s. Never repeat an unchanged failing call. Batch independent calls."
+    ),
+    "acc_appraisal": (
+        "Appraises an investment. Use when you need payback, ARR, NPV or IRR; not for break-even (use "
+        "acc_break_even instead). Parameters: initial_investment, cash_flows, residual_value, methods, "
+        "discount_rate_percent, discount_factors, irr_rates, arr_basis. Returns each method's figure with its "
+        "basis; unknown when not recovered, not bracketed or the ARR basis is missing. Limits: 50 years, 5 s. "
+        "Never repeat an unchanged failing call. Batch independent calls."
+    ),
     "chem_molar_mass": (
         "Works out the relative formula mass and molar mass of a chemical formula. Use when you need Mr or M with one "
         "line per element; not for amounts in a calculation (use chem_stoichiometry instead). Parameters: formula "
@@ -211,9 +255,9 @@ DESCRIPTIONS: dict[str, str] = {
         "Works out pH, neutralisation and titration curves for strong acids and bases. Use when you need pH or pOH, "
         "a titre or concentration, or curve points; not for mole chains (use chem_stoichiometry instead). "
         "Parameters: acid, base (formulas), their concentrations and volumes with units, basicity, ph, task, analyte, "
-        "volume_max, at_volumes, constants (Kw). Returns exact pH values and points with the equivalence point. "
-        "Limits: 400 points, 5 s; weak acids are unknown. Never repeat an unchanged failing call. Batch independent "
-        "calls."
+        "volume_max, at_volumes, constants (Kw), ka (a weak acid's pH). Returns exact pH values and points with the "
+        "equivalence point. Limits: 400 points, 5 s; weak bases and weak-acid curves are unknown. Never repeat an "
+        "unchanged failing call. Batch independent calls."
     ),
     "chem_energetics": (
         "Works out an enthalpy change from calorimetry or bond energies. Use when you need Q = mcΔT, ΔH per mole or "
@@ -221,6 +265,29 @@ DESCRIPTIONS: dict[str, str] = {
         "its source, temperature_change or initial and final temperatures, amount or fuel_mass with formula; or "
         "broken and formed bonds with energies. Returns Q, ΔH (exothermic negative) and its nature. Limits: 5 s. "
         "Never repeat an unchanged failing call. Batch independent calls."
+    ),
+    # M26.a: the S3 science checkers on the science-compute contract (VER-32, VER-35, VER-38).
+    "chem_equilibrium": (
+        "Works out an equilibrium constant, an ICE table or a cell potential. Use when you need Kc or Kp from "
+        "equilibrium values, equilibrium amounts from a constant, or E°cell; not for a strong acid's pH (use "
+        "chem_acid_base instead). Parameters: task, reaction (species with state, coefficient, side), "
+        "basis, temperature_k, values or constant and initial, volume_l, electrode_potentials. Returns the constant "
+        "with its unit convention, the ICE table and extent, or E°cell; unknown with a reason if no single answer "
+        "holds. Limits: 5 s. Never repeat an unchanged failing call. Batch independent calls."
+    ),
+    "bio_genetics": (
+        "Works out genetic crosses, chi-squared and Hardy-Weinberg frequencies. Use when you need genotype and "
+        "phenotype ratios, a chi-squared value or allele frequencies; not for biology facts (use content_search "
+        "instead). Parameters: task, parents and alleles (symbol, phenotype, dominance), observed and expected, or "
+        "recessive_frequency. Returns exact ratios with gametes, the statistic with degrees of freedom, or p, q, p², "
+        "2pq and q². Limits: 5 s. Never repeat an unchanged failing call. Batch independent calls."
+    ),
+    "bio_calc": (
+        "Works out biology calculations. Use when you need magnification, percentage change, a rate, a "
+        "mark-release-recapture estimate or Simpson's index; not for genetics (use bio_genetics instead). "
+        "Parameters: task and its values (lengths with mm or um, initial and final, change and duration with unit, "
+        "the three catch counts, or counts). Returns the value, its unit and the convention used. Limits: 5 s. Never "
+        "repeat an unchanged failing call. Batch independent calls."
     ),
     "skill": (
         "Loads a teaching method or job procedure by name, or searches for one. Use when a listed skill applies; "
@@ -482,6 +549,13 @@ SMALL_DESCRIPTIONS: dict[str, str] = {
     "acc_break_even": "Works out break-even. Use when you need break-even units; not for ratios (use acc_ratios "
     "instead). Parameters: fixed_costs, variable_cost_per_unit, selling_price. Returns units and revenue. Limits: "
     "5 s. Never repeat an unchanged failing call. Batch independent calls.",
+    "stats_distribution": "Works out a binomial, Poisson or normal probability, a test, r or a regression line. Use "
+    "when you need a probability or a test result; not for averages (use stats_compute instead). Parameters: task, "
+    "n, p, lambda, mean, sd, relation, k, x. Returns the value. Limits: 5 s. Never repeat an unchanged failing call. "
+    "Batch independent calls.",
+    "acc_appraisal": "Appraises an investment. Use when you need payback, ARR, NPV or IRR; not for break-even (use "
+    "acc_break_even instead). Parameters: initial_investment, cash_flows, methods, discount_rate_percent. Returns "
+    "each figure. Limits: 5 s. Never repeat an unchanged failing call. Batch independent calls.",
     "chem_molar_mass": "Works out a formula's molar mass. Use when you need Mr; not for mole chains (use "
     "chem_stoichiometry instead). Parameters: formula, charges after ^. Returns the mass and a line per element. "
     "Limits: 5 s. Never repeat an unchanged failing call. Batch independent calls.",
@@ -494,6 +568,12 @@ SMALL_DESCRIPTIONS: dict[str, str] = {
     "chem_energetics": "Works out ΔH from calorimetry. Use when water is heated by a reaction; not for moles (use "
     "chem_stoichiometry instead). Parameters: mass, specific_heat, temperature_change, amount. Returns Q and ΔH. "
     "Limits: 5 s. Never repeat an unchanged failing call. Batch independent calls.",
+    "bio_genetics": "Works out a genetic cross. Use when you need genotype or phenotype ratios; not for facts (use "
+    "content_search instead). Parameters: task, parents, alleles. Returns ratios. Limits: 5 s. Never repeat an "
+    "unchanged failing call. Batch independent calls.",
+    "bio_calc": "Works out a biology calculation. Use when you need magnification or a percentage change; not for "
+    "crosses (use bio_genetics instead). Parameters: task and its values. Returns the value and unit. Limits: 5 s. "
+    "Never repeat an unchanged failing call. Batch independent calls.",
     "skill": "Loads or finds a skill. Use when a listed skill applies; not for facts (use content_search instead). "
     "Parameters: skill_name or query. Returns the text or matches. Limits: 1 s. Never repeat an unchanged failing "
     "call. Batch independent calls.",
@@ -532,6 +612,7 @@ SMALL_FIELDS: dict[str, tuple[str, ...]] = {
     "chem_balance": ("equation", "coefficients"),
     "chem_acid_base": ("acid", "acid_concentration", "acid_volume", "base", "base_concentration", "base_volume"),
     "chem_energetics": ("mass", "specific_heat", "temperature_change", "amount"),
+    "bio_genetics": ("task", "parents", "alleles"),
     "content_search": ("query", "kinds"),
     "curriculum_lookup": ("query", "include"),
     "memory_recall": ("query_id", "refs"),
@@ -547,6 +628,8 @@ SMALL_FIELDS: dict[str, tuple[str, ...]] = {
         "closing_inventory",
     ),
     "acc_break_even": ("fixed_costs", "variable_cost_per_unit", "selling_price", "output_units", "target_profit"),
+    "stats_distribution": ("task", "n", "p", "lambda", "mean", "sd", "relation", "k", "k2", "x", "x2"),
+    "acc_appraisal": ("initial_investment", "cash_flows", "methods", "discount_rate_percent", "arr_basis", "irr_rates"),
 }
 
 
@@ -572,9 +655,15 @@ def _describe(name: str) -> Any:
 # A change to a tool's schema, defaults or output semantics increments its version (TOL-05).
 VERSIONS: dict[str, int] = {
     **dict.fromkeys(DESCRIPTIONS, 1),
-    "math_solve": 3,
+    "math_solve": 4,  # complex roots and numerical methods (VER-30)
     "math_evaluate": 2,
-    "math_check_step": 2,
+    "math_check_step": 3,
+    "chem_acid_base": 2,  # `ka`: a weak acid's pH (VER-32)
+    "math_differentiate": 2,  # implicit and parametric (VER-30)
+    "math_simplify": 2,  # partial fractions, series, complex forms (VER-30)
+    "math_integrate": 2,  # volumes, trapezium rule, substitution, parts (VER-30)
+    "acc_double_entry": 2,  # control accounts (VER-34)
+    "acc_statements": 2,  # the A level forms (VER-34)
     "skill": 2,
     "ask_student": 2,
     "update_board": 2,

@@ -223,3 +223,11 @@ def interrupt(state: dict[str, Any]) -> None:
         if message["role"] == "tutor" and message.get("status") == "streaming":
             message["status"] = "interrupted"
     state["active_turn"] = None
+
+
+def remove_part(state: dict[str, Any], part_id: str) -> None:
+    """A part the student removed ("Remove sketch", VSL-43): gone from the parts and from its message."""
+    state["parts"].pop(part_id, None)
+    for message in state["messages"]:
+        if part_id in message.get("part_ids", []):
+            message["part_ids"] = [p for p in message["part_ids"] if p != part_id]

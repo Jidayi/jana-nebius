@@ -70,6 +70,9 @@ import { ReportSchemaView } from "../src/settings/ReportSchema.js";
 import { useT } from "../src/i18n.js";
 import { PlanCard } from "../src/home/PlanCard.js";
 import { ProgressContent } from "../src/progress/Progress.js";
+import { SessionHistoryContent } from "../src/progress/SessionHistory.js";
+import { AlertsContent, ParentSummaryContent } from "../src/settings/ParentSummary.js";
+import type { HistoryView, ParentView } from "@jana/client-core";
 import { SearchContent } from "../src/search/Search.js";
 import { TutorLookProvider, TutorSection, tutorAvatarOf, tutorNameOf, useTutorAvatar, useTutorName } from "../src/settings/TutorSection.js";
 import { Character, TutorPresence } from "../src/tutor/Character.js";
@@ -473,6 +476,24 @@ function Component({ state }: { state: GalleryState }): ReactNode {
       return <ProgressContent state={{ status, progress: status === "ready" || status === "loading" ? payload.progress : null }}
         names={{ subject: (s) => t(`settings.profiles.subject.${s}`), kc: (kc) => payload.kcNames?.[kc] ?? null }} actions={{ onRetry: () => undefined, onKnows: () => undefined, onNotes: () => undefined, onLearn: () => undefined }} />;
     }
+    case "ParentSummary":
+    case "PrintedReport": {
+      // Settings → Parent summary (UXS-33, TCH-12) from a digest, and the same summary as it prints (DSN-22): the report
+      // header with the product's name and the date generated.
+      const payload = state.payload as { view: Pick<ParentView, "digestStatus" | "digest">; name: string };
+      return <ParentSummaryContent view={payload.view} name={payload.name} printing={state.component === "PrintedReport"} onRetry={() => undefined} onPrint={() => undefined} />;
+    }
+    case "Alerts": {
+      // Settings → Alerts (TCH-14, TABLE UXS-46a): kind and date only, newest first.
+      const payload = state.payload as { view: Pick<ParentView, "alertsStatus" | "alerts" | "dismissing" | "dismissFailed">; ideas?: Record<string, string> };
+      return <AlertsContent view={payload.view} idea={(kc) => payload.ideas?.[kc] ?? null} onDismiss={() => undefined} onRetry={() => undefined} />;
+    }
+    case "SessionHistory": {
+      // Progress → Session history (UXS-48): the list, one session read-only, a purged one and a mock's lock.
+      const noop = () => undefined;
+      return <SessionHistoryContent view={state.payload.view as unknown as HistoryView} subject={(s) => t(`settings.profiles.subject.${s}`)}
+        actions={{ onOpen: noop, onBack: noop, onClose: noop, onRetry: noop, onMore: noop }} />;
+    }
     case "WorkedSearch": {
       // Worked-solution search (UXS-51): the search screen in a state, with topic names by idea.
       const payload = state.payload as { search: SearchState; topics: Record<string, string> };
@@ -511,8 +532,8 @@ function Component({ state }: { state: GalleryState }): ReactNode {
     }
     case "TutorPresence": {
       // The presence (UXS-53): the character in a voice state's pose with the state's words beside it (VOC-17).
-      const payload = state.payload as { character: string; state: VoiceStateName };
-      return <TutorPresence id={payload.character} state={payload.state} size={72} />;
+      const payload = state.payload as { character: string; state: VoiceStateName; pointing?: boolean };
+      return <TutorPresence id={payload.character} state={payload.state} size={72} pointing={payload.pointing === true} />;
     }
     case "AskAnswer": {
       // Ask anything's answer under Home's box (STU-20): searching, answered (Teach me, or Just explain at 18 or over)

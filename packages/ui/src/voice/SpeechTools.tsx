@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useSyncExternalStore, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
-import type { CapturedQuestion, CapturePurpose, PointerView, SpeechController, SpeechView, ReadSource } from "@jana/client-core";
+import type { CapturedQuestion, CapturePurpose, PointerView, SpeechController, SpeechView, ReadSource, WritingView, PenView } from "@jana/client-core";
 import { useT } from "../i18n.js";
 import { Button, IconButton } from "../primitives/index.js";
 
@@ -27,6 +27,19 @@ export function useSpeechView(): SpeechView {
   return useSyncExternalStore(controller?.subscribe ?? none, controller?.getState ?? empty, empty);
 }
 const noPointer = (): PointerView | null => null;
+const noWriting = (): WritingView | null => null;
+const REST_PEN: PenView = { target: null, since_ms: 0 };
+const restPen = (): PenView => REST_PEN;
+/** The tutor's pen (UXS-56): where it is now, by id. */
+export function useVoicePen(): PenView {
+  const voice = useSpeechTools()?.voice ?? null;
+  return useSyncExternalStore(voice?.subscribe ?? none, voice === null ? restPen : () => voice.getState().pen ?? REST_PEN, restPen);
+}
+/** The line being written on in time with the words (UXS-55): its step id and how far the reveal has got. */
+export function useVoiceWriting(): WritingView | null {
+  const voice = useSpeechTools()?.voice ?? null;
+  return useSyncExternalStore(voice?.subscribe ?? none, voice === null ? noWriting : () => voice.getState().writing, noWriting);
+}
 /** The tutor's temporary pointer fired from heard playback (VOC-51, UXS-63), or null: ids only, for the board and the
  * visuals to draw their pointer ring on. */
 export function useVoicePointer(): PointerView | null {

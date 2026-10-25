@@ -129,11 +129,14 @@ describe("UXS-46", () => {
   });
 
   test("test_uxs46_stage_3_sections_and_a_core_without_the_route", async () => {
-    // A stage 3 core adds Parent summary, Alerts and Voice after About; a section this app has no body for says so.
+    // A stage 3 core adds Parent summary, Alerts and Voice after About; a section this app has no body for says so, and
+    // a core that does not serve the parent views yet says that in their sections.
     await unlocked((core) => { core.sectionsStage = "S3"; });
     await waitFor(() => expect(listed()).toEqual([...STAGE_2, "Parent summary", "Alerts", "Voice"]));
     expect(headings()).toEqual([...STAGE_2, "Parent summary", "Alerts", "Voice"]);
-    expect(document.querySelector("[data-settings-section='alerts']")!.textContent).toContain("isn't in this version of the app yet");
+    expect(document.querySelector("[data-settings-section='voice']")!.textContent).toContain("isn't in this version of the app yet");
+    await waitFor(() => expect(document.querySelector("[data-settings-section='alerts']")!.textContent).toContain("Alerts aren't available with this version of the app."));
+    expect(document.querySelector("[data-settings-section='parent_summary']")!.textContent).toContain("The weekly summary isn't available with this version of the app.");
     cleanup();
     // A core from before the route: the stage 2 sections, in the table's order.
     const { core } = await unlocked((c) => { c.sectionsStage = null; });

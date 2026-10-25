@@ -9,7 +9,7 @@ import { INK, LINE, MUTED, PAPER, SERIES, keyOnly } from "../kit.js";
 import { must } from "../must.js";
 import { num, type SimSetup, type Values } from "./models.js";
 import { scenarioOf } from "./predict.js";
-import { RATES_END_KT, RUN_SECONDS, rateConstant, rates, type RatesSetup, type RatesState } from "./science.js";
+import { RATES_END_KT, RUN_SECONDS, rateConstant, rates, scatter, type RatesSetup, type RatesState } from "./science.js";
 import { SimView } from "./SimView.js";
 
 const W = 480;
@@ -37,11 +37,6 @@ function bounce(u: number): number {
   return v > 1 ? 2 - v : v;
 }
 
-function seed(i: number, salt: number): number {
-  const v = Math.sin((i + 1) * 12.9898 + salt * 78.233) * 43758.5453;
-  return v - Math.floor(v);
-}
-
 function RatesSim(props: VisualProps): ReactElement {
   const { model, start, locked } = ratesSetup(props.spec);
   const t = props.t ?? keyOnly;
@@ -56,8 +51,8 @@ function RatesSim(props: VisualProps): ReactElement {
       const speed = 0.25 * Math.sqrt(num(values, "temperature") / 293);
       const box = { x: 30, y: 30, w: 300, h: 200 };
       const particles = Array.from({ length: count }, (_, i) => {
-        const x = box.x + 10 + bounce(seed(i, 1) * 2 + seconds * speed * (0.6 + seed(i, 3))) * (box.w - 20);
-        const y = box.y + 10 + bounce(seed(i, 2) * 2 + seconds * speed * (0.6 + seed(i, 4))) * (box.h - 20);
+        const x = box.x + 10 + bounce(scatter(i, 1) * 2 + seconds * speed * (0.6 + scatter(i, 3))) * (box.w - 20);
+        const y = box.y + 10 + bounce(scatter(i, 2) * 2 + seconds * speed * (0.6 + scatter(i, 4))) * (box.h - 20);
         // Particle i has turned to product once that share of the reactant has reacted (deterministic order).
         const done = (i + 0.5) / count <= reacted;
         return done

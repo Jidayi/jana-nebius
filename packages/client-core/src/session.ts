@@ -14,7 +14,7 @@ import { readEnvelope } from "./tolerant.js";
 import { forgetNote } from "./memory.js";
 import { lastWorked } from "./recent.js";
 import { subjectName, type SubjectName } from "./setup.js";
-import { markFailed, markForgotten, markSending, optimistic, reduce } from "./reducer.js";
+import { markFailed, markForgotten, markSending, optimistic, reduce, removeSketch } from "./reducer.js";
 import { connectionKey, emptyConnection, emptyStore, type ConnectionState, type Store } from "./store.js";
 import { StreamClient, type Endpoint, type StreamEnvelope, type StreamTimers } from "./stream/client.js";
 import { CommandClient, CommandError, Unreachable } from "./stream/commands.js";
@@ -126,7 +126,7 @@ export interface SessionOptions {
 
 interface PendingSend {
   key: string;
-  body: { client_message_id: string; intent: string; content: ContentBlock[]; capture_id?: string; ref?: { kind: "board_step"; id: string } };
+  body: { client_message_id: string; intent: string; content: ContentBlock[]; capture_id?: string; ref?: { kind: "board_step" | "visual_part"; id: string } };
 }
 
 export class SessionController {
@@ -250,11 +250,28 @@ export class SessionController {
     return this.send([{ type: "board_line", step_id: stepId, latex: line }], "board_line");
   }
 
-  /** "Why?" on a board line (UXS-15): the tutor says why that line holds, with the rule it uses (SKL-08). */
+  /** What the student has selected or hovers (UXS-58): `stp_….t2-t4` or `<visual_id>:<part_id>`, so "this" in a
+   * message refers to it; null clears it. Ids only, never coordinates. */
+  /** "Remove sketch" (VSL-43): the core removes it from the board, the history and replay; the store drops it too. */
+  async removeSketch(sketchId: string): Promise<void> {
+    if (this.closed) return;
+    await this.commands.delete<unknown>(`/v1/sketches/${encodeURIComponent(sketchId)}`, clientId());
+    this.holder.update((s) => removeSketch(s, sketchId));
+  }
+
+  async setSelection(ref: string | null): Promise<void> {
+    if (this.closed) return;
+    const key = clientId();
+    const body = { ref: ref === null ? null : { kind: ref.includes(":") ? "visual_part" : "board_step", id: ref } };
+    await this.commands.put<null>(`/v1/sessions/${this.sessionId}/selection`, body, key);
+  }
+
+  /** "Why?" on a board line (UXS-15): the tutor says why that line holds, with the rule it uses (SKL-08). With a term
+   * range (`stp_….t2-t4`, UXS-58) it asks about exactly those terms. */
   askWhy(stepId: string, text: string): string {
     const key = clientId();
     const content: ContentBlock[] = [{ type: "text", text }];
-    const send: PendingSend = { key, body: { client_message_id: key, intent: "why", content, ref: { kind: "board_step", id: stepId } } };
+    const send: PendingSend = { key, body: { client_message_id: key, intent: "why", content, ref: { kind: stepId.includes(":") ? "visual_part" : "board_step", id: stepId } } };
     this.holder.update((s) => optimistic(s, this.sessionId, key, content));
     void this.deliver(send);
     return key;
@@ -278,6 +295,13 @@ export class SessionController {
     if (send === undefined) return;
     this.holder.update((s) => markSending(s, clientMessageId));
     void this.deliver(send);
+  }
+
+  /** Send the values the student set on a manipulable visual (VSL-42): checked by the verification tools, the result
+   * arrives as the student's board line too. */
+  async answerManipulation(visualId: string, stepId: string, values: { part_id: string; value: string }[]): Promise<{ status: string; check_id: string | null }> {
+    const key = clientId();
+    return this.commands.post<{ status: string; check_id: string | null }>(`/v1/visuals/${visualId}/answer`, { client_answer_id: key, step_id: stepId, values }, key);
   }
 
   /** Answer an open card (API-14): the client answer id makes a repeat harmless. Confirming the card that names

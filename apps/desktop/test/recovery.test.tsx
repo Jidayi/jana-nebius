@@ -36,7 +36,7 @@ test("the empty Learn screen must retain the medium-width menu button", async ()
   await screen.findByRole("heading", { name: "Who's learning?" });
   fireEvent.click(screen.getByRole("button", { name: /^Ada/ }));
   fireEvent.click(await screen.findByRole("button", { name: "Open the menu" }));
-  fireEvent.click(screen.getByRole("button", { name: "Learn" }));
+  fireEvent.click(screen.getByRole("button", { name: "Lessons" }));
   await screen.findByText("This subject isn't on this computer yet. Add it from a USB stick, or in Settings under Content.");
   expect(screen.queryByRole("button", { name: "Open the menu" })).not.toBeNull();
 });

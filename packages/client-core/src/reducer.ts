@@ -10,7 +10,9 @@ import { moveVisual, selectBoardLine, syncNewVisual } from "./visuals.js";
 import {
   connectionKey,
   emptyConnection,
+  type AnnotationRec,
   type BoardRec,
+  type MarkTargetRec,
   type MemoryRec,
   type MessageRec,
   type PartRec,
@@ -51,6 +53,25 @@ function addBoardToSession(store: Store, sessionId: string, boardId: string): St
   const session = store.sessions[sessionId];
   if (session === undefined || session.board_ids.includes(boardId)) return store;
   return { ...store, sessions: put(store.sessions, sessionId, { ...session, board_ids: [...session.board_ids, boardId] }) };
+}
+
+/** A spotlight ends at the next utterance or student action (UXS-57): the dimming lifts, the pointer stays. */
+export function endSpotlights(store: Store): Store {
+  let boards = store.boards;
+  for (const [id, b] of Object.entries(store.boards)) {
+    if (b.highlight?.spotlight === true) {
+      const { spotlight: _lifted, ...rest } = b.highlight;
+      boards = put(boards, id, { ...b, highlight: rest });
+    }
+  }
+  let visuals = store.visuals;
+  for (const [id, v] of Object.entries(store.visuals)) {
+    if (v.focus?.spotlight === true) {
+      const { spotlight: _lifted, ...rest } = v.focus;
+      visuals = put(visuals, id, { ...v, focus: rest });
+    }
+  }
+  return boards === store.boards && visuals === store.visuals ? store : { ...store, boards, visuals };
 }
 
 /** Fold one envelope. Envelopes at or below the cursor are ignored; another epoch flags a resync instead. */
@@ -106,10 +127,12 @@ function apply(store: Store, sessionId: string, envelope: Envelope): Store {
       return { ...store, turns: put(store.turns, turn.turn_id, { ...turn, phase: phase as unknown as TurnRec["phase"] }) };
     }
     case "part.start": {
+      // The next utterance restores a spotlight (UXS-57).
+      const lit = event.kind === "text" ? endSpotlights(store) : store;
       const id = event.part_id as string;
       const part: PartRec = { part_id: id, turn_id: turnId, kind: event.kind as string, index: event.index as number, status: "started", text: "", settled_blocks: [], tail: "" };
-      let next: Store = { ...store, parts: put(store.parts, id, part) };
-      const turn = tutorTurn(store, turnId);
+      let next: Store = { ...lit, parts: put(lit.parts, id, part) };
+      const turn = tutorTurn(lit, turnId);
       if (turn !== undefined) next = { ...next, turns: put(next.turns, turn.turn_id, { ...turn, part_ids: [...turn.part_ids, id] }) };
       return next;
     }
@@ -139,7 +162,8 @@ function apply(store: Store, sessionId: string, envelope: Envelope): Store {
     }
     case "board.reset": {
       const id = event.board_id as string;
-      const fresh: BoardRec = { ...board(store, id), part_id: event.part_id as string, problem: event.problem as BoardRec["problem"],
+      const { annotation: _cleared, ...prior } = board(store, id);
+      const fresh: BoardRec = { ...prior, part_id: event.part_id as string, problem: event.problem as BoardRec["problem"],
         step_ids: [], steps: {}, knowns: [], unknowns: [], conventions: [], await: null, highlight: null, current: null };
       return addBoardToSession({ ...store, boards: put(store.boards, id, fresh) }, sessionId, id);
     }
@@ -158,16 +182,34 @@ function apply(store: Store, sessionId: string, envelope: Envelope): Store {
         return byIndex !== 0 ? byIndex : a < b ? -1 : a > b ? 1 : 0;
       });
       const awaiting = current.await !== null && current.await.step_id === event.step_id && event.status !== "awaiting" ? null : current.await;
-      const added = addBoardToSession({ ...store, boards: put(store.boards, id, { ...current, steps, step_ids: stepIds, await: awaiting }) }, sessionId, id);
+      // A new line clears the tutor's annotation (VSL-40); the key is dropped, so a replay equals a snapshot (UIA-02).
+      const isNew = current.steps[event.step_id as string] === undefined;
+      const { annotation: _old, ...kept } = current;
+      const base0 = isNew ? kept : current;
+      // The awaiting line answered (checked or not) ends the manipulation (VSL-42); the key is dropped, not nulled.
+      const { manipulation: _done, ...open } = base0;
+      const base = base0.manipulation?.step_id === event.step_id && event.status !== "awaiting" ? open : base0;
+      const added = addBoardToSession({ ...store, boards: put(store.boards, id, { ...base, steps, step_ids: stepIds, await: awaiting }) }, sessionId, id);
       // A new line at the end of the board is its current one, and visuals bound to it follow (VSL-20). Going by the
       // board's order rather than arrival keeps a coalesced batch equal to the raw one (UIA-04).
-      const isNew = current.steps[event.step_id as string] === undefined;
       return isNew && stepIds[stepIds.length - 1] === event.step_id ? selectBoardLine(added, id, event.step_id as string) : added;
     }
     case "board.highlight": {
       const id = event.board_id as string;
-      const updated = { ...board(store, id), highlight: { step_ids: event.step_ids as string[], ttl_ms: event.ttl_ms as number | null, ts } };
+      const updated = { ...board(store, id), highlight: { step_ids: event.step_ids as string[], ttl_ms: event.ttl_ms as number | null, ts, ...(event.spotlight === true ? { spotlight: true } : {}) } };
       return addBoardToSession({ ...store, boards: put(store.boards, id, updated) }, sessionId, id);
+    }
+    case "visual.await": {
+      const id = event.board_id as string;
+      const manipulation = { step_id: event.step_id as string, visual_id: event.visual_id as string, part_ids: event.part_ids as string[], prompt: event.prompt as string };
+      return addBoardToSession({ ...store, boards: put(store.boards, id, { ...board(store, id), manipulation }) }, sessionId, id);
+    }
+    case "board.annotate": {
+      // One annotation at a time: a new one replaces it (VSL-40).
+      const id = event.board_id as string;
+      const annotation: AnnotationRec = { annotation_id: event.annotation_id as string, mark: event.mark as AnnotationRec["mark"],
+        target: event.target as MarkTargetRec, to: (event.to ?? null) as MarkTargetRec | null, note: (event.note ?? null) as string | null };
+      return addBoardToSession({ ...store, boards: put(store.boards, id, { ...board(store, id), annotation }) }, sessionId, id);
     }
     case "board.await": {
       const id = event.board_id as string;
@@ -182,6 +224,12 @@ function apply(store: Store, sessionId: string, envelope: Envelope): Store {
       if (part !== undefined) next = { ...next, parts: put(next.parts, partId, { ...part, visual_id: id }) };
       return syncNewVisual(next, id);
     }
+    case "visual.sketch": {
+      // An online sketch (VSL-43): kept on its part; "Remove sketch" drops it (removeSketch).
+      const part = store.parts[event.part_id as string];
+      if (part === undefined) return store;
+      return { ...store, parts: put(store.parts, part.part_id, { ...part, sketch: event.sketch as NonNullable<PartRec["sketch"]> }) };
+    }
     case "visual.step": {
       const visual = store.visuals[event.visual_id as string];
       if (visual === undefined) return store;
@@ -190,7 +238,7 @@ function apply(store: Store, sessionId: string, envelope: Envelope): Store {
     case "visual.focus": {
       const visual = store.visuals[event.visual_id as string];
       if (visual === undefined) return store;
-      return { ...store, visuals: put(store.visuals, visual.visual_id, { ...visual, focus: { part_ids: event.part_ids as string[], ttl_ms: event.ttl_ms as number | null, ts } }) };
+      return { ...store, visuals: put(store.visuals, visual.visual_id, { ...visual, focus: { part_ids: event.part_ids as string[], ttl_ms: event.ttl_ms as number | null, ts, ...(event.spotlight === true ? { spotlight: true } : {}) } }) };
     }
     case "card.open": {
       const requestId = event.request_id as string;
@@ -300,4 +348,12 @@ export function markSending(store: Store, clientMessageId: string): Store {
   const message = store.messages[clientMessageId];
   if (message === undefined || message.state !== "failed") return store;
   return { ...store, messages: put(store.messages, clientMessageId, { ...message, state: "sending" }) };
+}
+
+/** "Remove sketch" (VSL-43): the part keeps its place but no longer draws the sketch. */
+export function removeSketch(store: Store, sketchId: string): Store {
+  const part = Object.values(store.parts).find((p) => p.sketch?.sketch_id === sketchId);
+  if (part === undefined) return store;
+  const { sketch: _gone, ...kept } = part;
+  return { ...store, parts: put(store.parts, part.part_id, kept) };
 }

@@ -1,0 +1,107 @@
+{
+  "claims": [
+    "0",
+    "0.8",
+    "20",
+    "481",
+    "500",
+    "8"
+  ],
+  "id": "population-sim",
+  "kind": "population_sim",
+  "modes": [
+    "shown"
+  ],
+  "spec": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "A logistic population simulation, a simplified model and not a prediction: 20 individuals growing at a rate of 0.8 towards a carrying capacity of 500; after 8 time units there are 481."
+    },
+    "computed": {
+      "alt": {
+        "capacity": "500",
+        "duration": "8",
+        "end": "481",
+        "prey": "20",
+        "rate": "0.8"
+      },
+      "check_ids": [
+        "chk_build_fx_population_sim_1"
+      ],
+      "labels": {
+        "end.prey": "481",
+        "out.prey": "20",
+        "out.time": "0"
+      },
+      "parts": [
+        {
+          "id": "ctrl.growth_rate",
+          "label": "growth rate",
+          "role": "control"
+        },
+        {
+          "id": "ctrl.carrying_capacity",
+          "label": "carrying capacity",
+          "role": "control"
+        },
+        {
+          "id": "out.time",
+          "label": "time",
+          "role": "readout"
+        },
+        {
+          "id": "out.prey",
+          "label": "prey",
+          "role": "readout"
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_population_sim_1"
+    ],
+    "params": {
+      "carrying_capacity": 500,
+      "duration": 8,
+      "growth_rate": 0.8,
+      "initial_prey": 20,
+      "model": "logistic"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ctrl.growth_rate",
+        "name": "growth rate",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "ctrl.carrying_capacity",
+        "name": "carrying capacity",
+        "role": "control"
+      },
+      {
+        "focusable": true,
+        "id": "out.time",
+        "name": "time",
+        "role": "readout"
+      },
+      {
+        "focusable": true,
+        "id": "out.prey",
+        "name": "prey",
+        "role": "readout"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:2bfe3fe6fec4e07c368c7484dc625b3f2d75d889a647cd7cc3a220e5ea52a2b4",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "population_sim",
+    "visual_id": "vis_BYZ6Y40WPCM4W2VZDNR967DW32"
+  },
+  "subject": "biology"
+}

@@ -36,6 +36,11 @@ remain on the device. Cloud voice is not connected by this host.
 
 Saved source learning journeys connect a lesson, its flashcards and its quiz through durable profile-local links, including existing linked sets. Home and Study show the same next step, using actual card reviews, saved quiz drafts and submitted results. Completed quiz feedback survives reopening; questions needing another look lead back to the lesson before an explicit retry. Reading or revealing content never counts as a card review or O-level mastery. Journey links survive job cleanup and follow the source’s existing private-access, archive and erasure rules.
 
+The [25 October feature import](FEATURE_IMPORT.md) adds Jana's tutor pen, annotations, diagram manipulation,
+sketches and additional science visuals. Parent summaries and alerts are in Settings; retained session history is
+under Progress. Authoring analytics are in Studio. The browser development host exposes these imported screens
+at stage S3 while retaining this fork's provider and learning-journey integration.
+
 Ask anything can retrieve public evidence with Tavily Search and Extract, then use Nemotron to draft an answer
 and check its cited support. Each question requires the existing web-search confirmation. Study can also import
 a public HTTPS page after a separate confirmation; uploaded files and private notes are never sent to Tavily.

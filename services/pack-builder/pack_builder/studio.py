@@ -547,6 +547,10 @@ class Workspace:
             from pack_builder.studio_diagrams import dispatch
 
             return dispatch(self, request)
+        if op.startswith(("analytics_", "inbox_")):
+            from pack_builder.studio_analytics import dispatch as analytics_dispatch
+
+            return analytics_dispatch(self, request)
         if op.startswith("skill_"):
             from pack_builder.studio_skills import dispatch
 

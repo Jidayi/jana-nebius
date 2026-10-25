@@ -1,0 +1,169 @@
+{
+  "claims": [
+    "0",
+    "1",
+    "1.0"
+  ],
+  "id": "classification-key",
+  "kind": "classification_key",
+  "modes": [
+    "shown",
+    "hidden"
+  ],
+  "spec": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at question: Does it have feathers?.",
+        "Step 2: look at Mammals."
+      ],
+      "summary": "A key to the vertebrate classes: a dichotomous key that sorts 5 groups (Birds, Mammals, Fish, Reptiles and Amphibians), starting with the question: Does it have feathers?"
+    },
+    "computed": {
+      "asset": {
+        "attribution": "Our own definition, written for Jana.",
+        "id": "dgm.bio.vertebrate_key.v1",
+        "licence": "LicenseRef-Own",
+        "title": "A key to the vertebrate classes",
+        "version": "1.0.0"
+      },
+      "definition": {
+        "nodes": [
+          {
+            "id": "q_feathers",
+            "no": "q_fur",
+            "question": "Does it have feathers?",
+            "yes": "birds"
+          },
+          {
+            "id": "q_fur",
+            "no": "q_fins",
+            "question": "Does it have fur or hair?",
+            "yes": "mammals"
+          },
+          {
+            "id": "q_fins",
+            "no": "q_dry",
+            "question": "Does it have fins and gills?",
+            "yes": "fish"
+          },
+          {
+            "id": "q_dry",
+            "no": "amphibians",
+            "question": "Is its skin dry and scaly?",
+            "yes": "reptiles"
+          }
+        ],
+        "root": "q_feathers",
+        "terminals": [
+          {
+            "id": "birds",
+            "label": "Birds"
+          },
+          {
+            "id": "mammals",
+            "label": "Mammals"
+          },
+          {
+            "id": "fish",
+            "label": "Fish"
+          },
+          {
+            "id": "reptiles",
+            "label": "Reptiles"
+          },
+          {
+            "id": "amphibians",
+            "label": "Amphibians"
+          }
+        ]
+      }
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [],
+    "params": {
+      "key_id": "dgm.bio.vertebrate_key.v1"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "node.q_feathers",
+        "name": "question: Does it have feathers?",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "group.birds",
+        "name": "Birds",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "node.q_fur",
+        "name": "question: Does it have fur or hair?",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "group.mammals",
+        "name": "Mammals",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "node.q_fins",
+        "name": "question: Does it have fins and gills?",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "group.fish",
+        "name": "Fish",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "node.q_dry",
+        "name": "question: Is its skin dry and scaly?",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "group.reptiles",
+        "name": "Reptiles",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "group.amphibians",
+        "name": "Amphibians",
+        "quizzable": true,
+        "role": "label"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:03a417f445c75bec5a00c1a728a811d0fa3d053ea2c9b77fcfada69263daeca8",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "node.q_feathers"
+        ]
+      },
+      {
+        "highlight": [
+          "group.mammals"
+        ]
+      }
+    ],
+    "type": "classification_key",
+    "visual_id": "vis_34QM57VCT01788HGTX5Y29QZFD"
+  },
+  "subject": "biology"
+}

@@ -12,13 +12,15 @@ from fractions import Fraction
 from typing import Any
 
 from agent_core.contracts import errors as contract_errors
+from agent_core.engine.annotations import resolve as resolve_annotation
+from agent_core.engine.annotations import split_terms
 from agent_core.engine.events import EventStream, new_id
 from agent_core.engine.gates import CHECK_STATUSES, untraced_numbers
 from agent_core.engine.state import Board, BoardStep, SessionState, numbers_in
 
 OP_CONTRACT = "agents/tutor-turn#/properties/board/items"
 ANNOTATE_ONLY: dict[str, Any] = {"mark": None, "part": None, "to": None}  # null on every op but annotate (VSL-40)
-# `annotate` (VSL-40, S3, D103) passes the contract and draws nothing until the board performance layer handles it.
+# `annotate` (VSL-40, S3, D103) marks a step, a term range of it or a visual part by id; an unresolvable one is dropped.
 OPS = ("add_step", "revise_step", "mark_step", "highlight", "set_knowns", "await_student", "annotate")
 ENGINE_STATUSES = ("correct", "incorrect", "equivalent_unsimplified", "awaiting", "checking", "unchecked")
 MAX_OPTIONS = 4
@@ -37,6 +39,7 @@ class BoardResult:
     applied: bool
     step_ids: list[str] = field(default_factory=list)
     events: list[dict[str, Any]] = field(default_factory=list)
+    dropped: list[dict[str, Any]] = field(default_factory=list)  # annotations dropped, with the reason (VSL-40)
 
 
 def validate_ops(ops: list[dict[str, Any]], state: SessionState, context_numbers: set[Fraction]) -> None:
@@ -73,6 +76,7 @@ def update_board(ops: list[dict[str, Any]], state: SessionState, context_numbers
     board = state.board
     events: list[dict[str, Any]] = []
     step_ids: list[str] = []
+    dropped: list[dict[str, Any]] = []
     for op in ops:
         kind = op["op"]
         if kind == "add_step":
@@ -120,7 +124,13 @@ def update_board(ops: list[dict[str, Any]], state: SessionState, context_numbers
                     "input_kind": "latex",
                 }
             )
-    return BoardResult(True, step_ids, events)
+        elif kind == "annotate":
+            event, reason = resolve_annotation(op, state, context_numbers)
+            if event is None:
+                dropped.append({"mark": op["mark"], "step": op.get("step"), "part": op.get("part"), "reason": reason})
+            else:
+                events.append(event)
+    return BoardResult(True, step_ids, events, dropped)
 
 
 def tutor_step_status(latex: str, check_id: str | None, state: SessionState) -> tuple[str, str | None]:
@@ -187,6 +197,10 @@ def confirm_card(prompt: str, purpose: str = "other") -> dict[str, Any]:
             "confirm_label_key": "card.confirm", "cancel_label_key": "card.cancel"}  # fmt: skip
 
 
+def step_event(board_id: str, step: BoardStep) -> dict[str, Any]:
+    return _step_event(board_id, step)
+
+
 def _step_event(board_id: str, step: BoardStep) -> dict[str, Any]:
     return {
         "type": "board.step",
@@ -199,6 +213,7 @@ def _step_event(board_id: str, step: BoardStep) -> dict[str, Any]:
         "status": step.status,
         "check_id": step.check_id,
         "error": step_error(step),
+        **({"terms": terms} if (terms := split_terms(step.latex)) else {}),
     }
 
 

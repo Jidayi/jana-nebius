@@ -44,6 +44,8 @@ class LineResult:
     carried_forward: bool = False
     first_error: int | None = None  # the 0-based position of the line whose error this one carries forward
     worded: bool = False  # a step written in words: no tool checks it (VER-27)
+    before: int | None = None  # the 0-based position of the line this one was checked against, step by step
+    moves: dict[str, Any] | None = None  # the step checker's term moves for a valid step (UXS-61)
 
 
 # A step written in words ("divide both sides by two"): two or more words of three letters or more that are not maths
@@ -224,21 +226,24 @@ async def check_lines(
     for index in range(start_index, len(lines)):
         raw = lines[index]
         line = for_tool(raw)
-        status, check_id, category = "unchecked", None, None
+        status, check_id, category, moves = "unchecked", None, None, None
         if "[?]" in raw:
             results.append(LineResult(raw, "unchecked", None, "unreadable"))
             continue
         if worded(raw):
             results.append(LineResult(raw, "unchecked", None, None, worded=True))
             continue
-        before = next((lines[i] for i in range(index - 1, -1, -1) if "[?]" not in lines[i] and not worded(lines[i])),
-                      None) if index > 0 and "[?]" not in lines[index - 1] else None  # fmt: skip
+        before_at = next((i for i in range(index - 1, -1, -1) if "[?]" not in lines[i] and not worded(lines[i])),
+                         None) if index > 0 and "[?]" not in lines[index - 1] else None  # fmt: skip
+        before = lines[before_at] if before_at is not None else None
         if before is not None:
             value, check_id = await run_tool(engine, turn, "math_check_step",
-                                             {"prev": for_tool(before), "next": line})  # fmt: skip
+                                             {"prev": for_tool(before), "next": line, "moves": True})  # fmt: skip
             verdict = (value or {}).get("verdict")
             if verdict == "valid":
                 status = "correct"
+                if (value or {}).get("moves"):
+                    moves = {"moves": value["moves"], "terms": value["terms"]}  # type: ignore[index]
             elif verdict in ("invalid", "valid_but_lost_solutions", "valid_but_extraneous"):
                 status, category = "incorrect", (value or {}).get("category", "illegal_operation")
         if status == "unchecked" and system and numbers_in(line) and "=" in line:
@@ -258,7 +263,8 @@ async def check_lines(
         if status == "unchecked" and before is not None and numbers_in(line) and "=" in line:
             status, check_id, category = await _check_substitution(engine, turn, for_tool(before), line)
         results.append(LineResult(raw, status, check_id if status != "unchecked" else None, category,
-                                  carried_forward=first_error_seen, first_error=first_error))  # fmt: skip
+                                  carried_forward=first_error_seen, first_error=first_error, before=before_at,
+                                  moves=moves if status == "correct" else None))  # fmt: skip
         if status == "incorrect" and not first_error_seen:
             first_error = index
         first_error_seen = first_error_seen or status == "incorrect"

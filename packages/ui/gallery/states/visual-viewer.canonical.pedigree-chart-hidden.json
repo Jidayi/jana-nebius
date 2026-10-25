@@ -1,0 +1,293 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.pedigree-chart-hidden",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at I-1: male, unaffected and I-2: female, unaffected.",
+        "Step 2: look at II-2: male, affected."
+      ],
+      "summary": "A pedigree chart of generations I, II and III. Affected: II-2. Known carriers: I-1 and I-2. Phenotype unknown: III-1."
+    },
+    "computed": {
+      "check_ids": [],
+      "couples": [
+        {
+          "children": [
+            "aunt",
+            "uncle",
+            "father"
+          ],
+          "parent1": "grandfather",
+          "parent2": "grandmother"
+        },
+        {
+          "children": [
+            "daughter",
+            "son"
+          ],
+          "parent1": "father",
+          "parent2": "mother"
+        }
+      ],
+      "labels": {
+        "ind.aunt": "II-1",
+        "ind.daughter": "III-1",
+        "ind.father": "II-3",
+        "ind.grandfather": "I-1",
+        "ind.grandmother": "I-2",
+        "ind.mother": "II-4",
+        "ind.son": "III-2",
+        "ind.uncle": "II-2"
+      },
+      "people": [
+        {
+          "carrier": true,
+          "id": "grandfather",
+          "phenotype": "unaffected",
+          "sex": "male"
+        },
+        {
+          "carrier": true,
+          "id": "grandmother",
+          "phenotype": "unaffected",
+          "sex": "female"
+        },
+        {
+          "carrier": null,
+          "id": "aunt",
+          "phenotype": "unaffected",
+          "sex": "female"
+        },
+        {
+          "carrier": null,
+          "id": "uncle",
+          "phenotype": "affected",
+          "sex": "male"
+        },
+        {
+          "carrier": null,
+          "id": "father",
+          "phenotype": "unaffected",
+          "sex": "male"
+        },
+        {
+          "carrier": false,
+          "id": "mother",
+          "phenotype": "unaffected",
+          "sex": "female"
+        },
+        {
+          "carrier": null,
+          "id": "daughter",
+          "phenotype": "unknown",
+          "sex": "female"
+        },
+        {
+          "carrier": null,
+          "id": "son",
+          "phenotype": "unaffected",
+          "sex": "male"
+        }
+      ],
+      "rows": [
+        {
+          "generation": 1,
+          "members": [
+            "grandfather",
+            "grandmother"
+          ],
+          "roman": "I"
+        },
+        {
+          "generation": 2,
+          "members": [
+            "aunt",
+            "uncle",
+            "father",
+            "mother"
+          ],
+          "roman": "II"
+        },
+        {
+          "generation": 3,
+          "members": [
+            "daughter",
+            "son"
+          ],
+          "roman": "III"
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "hidden",
+    "numbers_from": [],
+    "params": {
+      "individuals": [
+        {
+          "carrier": true,
+          "generation": 1,
+          "id": "grandfather",
+          "phenotype": "unaffected",
+          "sex": "male"
+        },
+        {
+          "carrier": true,
+          "generation": 1,
+          "id": "grandmother",
+          "phenotype": "unaffected",
+          "sex": "female"
+        },
+        {
+          "carrier": null,
+          "generation": 2,
+          "id": "aunt",
+          "phenotype": "unaffected",
+          "sex": "female"
+        },
+        {
+          "carrier": null,
+          "generation": 2,
+          "id": "uncle",
+          "phenotype": "affected",
+          "sex": "male"
+        },
+        {
+          "carrier": null,
+          "generation": 2,
+          "id": "father",
+          "phenotype": "unaffected",
+          "sex": "male"
+        },
+        {
+          "carrier": false,
+          "generation": 2,
+          "id": "mother",
+          "phenotype": "unaffected",
+          "sex": "female"
+        },
+        {
+          "carrier": null,
+          "generation": 3,
+          "id": "daughter",
+          "phenotype": "unknown",
+          "sex": "female"
+        },
+        {
+          "carrier": null,
+          "generation": 3,
+          "id": "son",
+          "phenotype": "unaffected",
+          "sex": "male"
+        }
+      ],
+      "parents": [
+        {
+          "child": "aunt",
+          "parent1": "grandfather",
+          "parent2": "grandmother"
+        },
+        {
+          "child": "uncle",
+          "parent1": "grandfather",
+          "parent2": "grandmother"
+        },
+        {
+          "child": "father",
+          "parent1": "grandfather",
+          "parent2": "grandmother"
+        },
+        {
+          "child": "daughter",
+          "parent1": "father",
+          "parent2": "mother"
+        },
+        {
+          "child": "son",
+          "parent1": "father",
+          "parent2": "mother"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ind.grandfather",
+        "name": "I-1: male, unaffected",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "ind.grandmother",
+        "name": "I-2: female, unaffected",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "ind.aunt",
+        "name": "II-1: female, unaffected",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "ind.uncle",
+        "name": "II-2: male, affected",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "ind.father",
+        "name": "II-3: male, unaffected",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "ind.mother",
+        "name": "II-4: female, unaffected",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "ind.daughter",
+        "name": "III-1: female, phenotype unknown",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "ind.son",
+        "name": "III-2: male, unaffected",
+        "role": "point"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:d784dd2a9fa4e3b0bf48200199d7162a497e684c634b89f7b7ad324c14aa5bc5",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "ind.grandfather",
+          "ind.grandmother"
+        ]
+      },
+      {
+        "highlight": [
+          "ind.uncle"
+        ]
+      }
+    ],
+    "type": "pedigree_chart",
+    "visual_id": "vis_Q4XAZ43GZ801SQPA9Y8C3B9QQD"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: pedigree chart (hidden labels)",
+  "variant": "pedigree-chart-hidden"
+}

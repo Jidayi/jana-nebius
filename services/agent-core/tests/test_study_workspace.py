@@ -88,6 +88,45 @@ def generate(desk, source, kind):
     return desk.aid(finished["result_ids"][0])
 
 
+@pytest.mark.parametrize("has_valid_neighbour", [True, False])
+def test_quiz_assembly_withholds_answer_leaking_blanks_without_losing_valid_neighbours(tmp_path, has_valid_neighbour):
+    class MixedQuiz(LocalStudy):
+        async def study_generate(self, identity, request, chunks):
+            output, verified = await super().study_generate(identity, request, chunks)
+            quiz = output["quiz"]
+            if not has_valid_neighbour:
+                quiz["items"], quiz["keys"] = [], []
+            quiz["items"].append(
+                {
+                    "item_id": "leak",
+                    "type": "fill_blank",
+                    "stem": claim(chunks[0], "DNA stores ____; DNA is the answer."),
+                }
+            )
+            quiz["keys"].append(
+                {"item_id": "leak", "answer": "DNA", "explanation": claim(chunks[0]), "marking": "judged"}
+            )
+            return output, verified
+
+    d, s = seeded(tmp_path)
+    job = d.create_job(
+        {"kind": "quiz", "execution": "local", "sources": [{"source_id": s["source_id"], "revision": 1}]}
+    )
+    asyncio.run(queue_for(d, MixedQuiz()).run(d, job["job_id"]))
+    finished = d.job(job["job_id"])
+    if has_valid_neighbour:
+        assert finished["state"] == "completed"
+        aid = d.aid(finished["result_ids"][0])
+        quiz = d.quiz(aid["quiz_id"])
+        assert len(quiz["view"]["items"]) == 1
+        assert quiz["view"]["items"][0]["type"] == "choice"
+        assert len(quiz["keys"]) == 1
+    else:
+        assert finished["state"] == "failed" and finished["error"] == "insufficient_evidence"
+        assert not finished["result_ids"]
+    assert d.conn.execute("SELECT count(*) FROM study_attempts").fetchone()[0] == 0
+
+
 def test_local_notes_cards_quiz_are_cited_and_do_not_mutate_mastery(tmp_path):
     d, s = seeded(tmp_path)
     notes = generate(d, s, "notes")

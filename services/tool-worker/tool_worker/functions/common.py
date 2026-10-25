@@ -11,11 +11,15 @@ from tool_worker.registry import CallContext
 ASSUMPTION_FLAGS = {"positive": "positive", "nonzero": "nonzero", "integer": "integer", "nonnegative": "nonnegative"}
 
 
-def parse_arg(text: str, args: dict[str, Any], field: str = "text") -> Parsed:
-    """Parse one argument; grammar errors become PARSE_REJECTED with the position, size breaches LIMIT_EXCEEDED."""
+def parse_arg(text: str, args: dict[str, Any], field: str = "text", *, imaginary_unit: bool = False) -> Parsed:
+    """Parse one argument; grammar errors become PARSE_REJECTED with the position, size breaches LIMIT_EXCEEDED.
+    With `imaginary_unit` the letter `i` is parsed as a non-real symbol (never simplified as a real variable), for the
+    caller to replace with the imaginary unit (VER-30)."""
     assumptions = {
         name: {ASSUMPTION_FLAGS[flag]: True for flag in flags} for name, flags in args.get("assumptions", {}).items()
     }
+    if imaginary_unit:
+        assumptions["i"] = {"real": False, "imaginary": True}
     try:
         return parse(
             text,

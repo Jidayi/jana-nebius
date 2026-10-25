@@ -6,12 +6,14 @@ import type { SessionController, Store, StoreHolder } from "@jana/client-core";
 interface Ctx {
   holder: StoreHolder;
   session: SessionController | null;
+  /** A session shown read-only (session history, UXS-48): its replies offer no action that writes or sends. */
+  readOnly: boolean;
 }
 
 const StoreContext = createContext<Ctx | null>(null);
 
-export function StoreProvider({ holder, session, children }: { holder: StoreHolder; session: SessionController | null; children: ReactNode }) {
-  return <StoreContext.Provider value={{ holder, session }}>{children}</StoreContext.Provider>;
+export function StoreProvider({ holder, session, readOnly = false, children }: { holder: StoreHolder; session: SessionController | null; readOnly?: boolean; children: ReactNode }) {
+  return <StoreContext.Provider value={{ holder, session, readOnly }}>{children}</StoreContext.Provider>;
 }
 
 function useCtx(): Ctx {
@@ -44,6 +46,10 @@ export function useStoreHolder(): StoreHolder {
 
 export function useSession(): SessionController | null {
   return useCtx().session;
+}
+
+export function useReadOnly(): boolean {
+  return useContext(StoreContext)?.readOnly ?? false;
 }
 
 export function useOptionalSession(): SessionController | null { return useContext(StoreContext)?.session ?? null; }

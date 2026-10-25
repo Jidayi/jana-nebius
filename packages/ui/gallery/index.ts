@@ -95,6 +95,13 @@ export const DECLARED: Record<string, string[]> = {
   TutorPresence: ["canonical", "reduced-motion"],
   // M45.d (D120): the help chips and the follow-up chips (ASM-28, UXS-68).
   NextStepChips: ["canonical"],
+  // M33.a: Settings → Parent summary (UXS-33, TCH-12; a full week, too little to summarise, none), the summary as it
+  // prints (DSN-22), Settings → Alerts (TCH-14) and Progress → Session history (UXS-48; the list, a session read-only,
+  // a purged one, and the lock during a mock sitting).
+  ParentSummary: ["canonical", "empty", "loading", "error-retriable"],
+  PrintedReport: ["canonical"],
+  Alerts: ["canonical", "empty", "loading", "error-retriable"],
+  SessionHistory: ["canonical", "empty", "loading", "error-retriable", "locked"],
 };
 
 export { GalleryView, type GalleryState } from "./GalleryView.js";

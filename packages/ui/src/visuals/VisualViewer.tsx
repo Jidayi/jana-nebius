@@ -32,7 +32,7 @@ export interface VisualHooks {
   labelModes: readonly LabelMode[];
   table?(spec: VisualSpec): { columns: string[]; rows: string[][] };
   View: ComponentType<{
-    spec: VisualSpec; step: number; labels: LabelMode; focus: string[]; reducedMotion: boolean; textScale: number; visible: boolean;
+    spec: VisualSpec; step: number; labels: LabelMode; focus: string[]; spotlight?: boolean; reducedMotion: boolean; textScale: number; visible: boolean;
     t: (key: string, args?: Record<string, string | number>) => string; onPartActivate(id: string): void;
     onSimEvent(event: { type: string; [k: string]: unknown }): void;
   }>;
@@ -42,6 +42,8 @@ export interface VisualHooks {
 /** Display settings for visuals: reduced motion and text size (DSN-07, DSN-09), from the app or the gallery state. */
 export interface VisualSettings {
   reducedMotion: boolean;
+  /** Low-power mode (DSN-27, UXS-56): decorative motion such as the tutor's pen is hidden. */
+  lowPower?: boolean;
   textScale: number;
   onSimEvent?(event: { type: string; [k: string]: unknown }): void;
   onAsk?(visualId: string, partId: string): void;
@@ -57,7 +59,7 @@ export function VisualSettingsProvider({ settings, children }: { settings: Visua
   return <SettingsContext.Provider value={settings}>{children}</SettingsContext.Provider>;
 }
 
-function useVisualSettings(): VisualSettings {
+export function useVisualSettings(): VisualSettings {
   return useContext(SettingsContext) ?? { reducedMotion: prefersReducedMotion(), textScale: 1 };
 }
 
@@ -146,7 +148,7 @@ export function VisualViewer({ spec, hooks }: { spec: VisualSpec; hooks: VisualH
     <section ref={box} className="my-2 rounded-card border border-line bg-canvas p-3" data-visual-viewer={spec.type}>
       {shownOnce || seen ? (
         tableData === null ? (
-          <hooks.View spec={spec} step={step} labels={labels} focus={focus} reducedMotion={settings.reducedMotion} textScale={settings.textScale}
+          <hooks.View spec={spec} step={step} labels={labels} focus={focus} spotlight={focusRec?.spotlight === true && told.length > 0} reducedMotion={settings.reducedMotion} textScale={settings.textScale}
             visible={seen} t={t} onPartActivate={(id) => setPart(id)} onSimEvent={(e) => settings.onSimEvent?.(e)} />
         ) : (
           <table className="w-full text-ui" data-visual-table="true">

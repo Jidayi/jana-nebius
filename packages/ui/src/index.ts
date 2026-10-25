@@ -73,6 +73,8 @@ export { DailyGoalChip } from "./home/DailyGoal.js";
 export { AskAnswer, type AskActions } from "./home/AskAnswer.js";
 export { PlanCard, useBlockText, type PlanActions, type PlanNames } from "./home/PlanCard.js";
 export { Progress, ProgressContent, type ProgressActions, type ProgressNames } from "./progress/Progress.js";
+export { SessionHistory, SessionHistoryContent, type HistoryActions } from "./progress/SessionHistory.js";
+export { Alerts, AlertsContent, ParentSummary, ParentSummaryContent } from "./settings/ParentSummary.js";
 export { SearchBox, SearchContent, SearchScreen, SolutionSteps, type SearchActions, type SearchNames } from "./search/Search.js";
 export { useDuePractice, useRecentSessions } from "./home/data.js";
 export { ConnectivityIndicator, ConnectivityIndicatorView } from "./connectivity/ConnectivityIndicator.js";

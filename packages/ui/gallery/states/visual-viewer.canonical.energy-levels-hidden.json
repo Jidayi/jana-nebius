@@ -1,0 +1,167 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.energy-levels-hidden",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at transition from n = 3 to n = 2."
+      ],
+      "summary": "An energy level diagram with 4 levels, from n = 1 (-13.6 eV) to n = ∞ (0 eV); transitions: emission from n = 3 to n = 2, a photon of 1.89 eV, emission from n = 2 to n = 1, a photon of 10.2 eV and absorption from n = 1 to n = ∞, a photon of 13.6 eV."
+    },
+    "computed": {
+      "check_ids": [
+        "chk_build_fx_energy_levels_1",
+        "chk_build_fx_energy_levels_2",
+        "chk_build_fx_energy_levels_3"
+      ],
+      "labels": {
+        "lvl_n1": "n = 1: -13.6 eV",
+        "lvl_n2": "n = 2: -3.4 eV",
+        "lvl_n3": "n = 3: -1.51 eV",
+        "lvl_ninf": "n = ∞: 0 eV",
+        "tr_n1_ninf": "13.6 eV",
+        "tr_n2_n1": "10.2 eV",
+        "tr_n3_n2": "1.89 eV"
+      },
+      "transitions": [
+        {
+          "direction": "emission",
+          "energy_ev": 1.89,
+          "id": "tr_n3_n2"
+        },
+        {
+          "direction": "emission",
+          "energy_ev": 10.2,
+          "id": "tr_n2_n1"
+        },
+        {
+          "direction": "absorption",
+          "energy_ev": 13.6,
+          "id": "tr_n1_ninf"
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "hidden",
+    "numbers_from": [
+      "kn_e1",
+      "kn_e2",
+      "kn_e3",
+      "kn_e4",
+      "chk_build_fx_energy_levels_1",
+      "chk_build_fx_energy_levels_2",
+      "chk_build_fx_energy_levels_3"
+    ],
+    "params": {
+      "levels": [
+        {
+          "energy_ev": -13.6,
+          "id": "n1",
+          "label": "n = 1"
+        },
+        {
+          "energy_ev": -3.4,
+          "id": "n2",
+          "label": "n = 2"
+        },
+        {
+          "energy_ev": -1.51,
+          "id": "n3",
+          "label": "n = 3"
+        },
+        {
+          "energy_ev": 0,
+          "id": "ninf",
+          "label": "n = ∞"
+        }
+      ],
+      "show_photon_energy": true,
+      "transitions": [
+        {
+          "from": "n3",
+          "to": "n2"
+        },
+        {
+          "from": "n2",
+          "to": "n1"
+        },
+        {
+          "from": "n1",
+          "to": "ninf"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "lvl_n1",
+        "name": "level n = 1",
+        "quizzable": true,
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "lvl_n2",
+        "name": "level n = 2",
+        "quizzable": true,
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "lvl_n3",
+        "name": "level n = 3",
+        "quizzable": true,
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "lvl_ninf",
+        "name": "level n = ∞",
+        "quizzable": true,
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "tr_n3_n2",
+        "name": "transition from n = 3 to n = 2",
+        "role": "arrow"
+      },
+      {
+        "focusable": true,
+        "id": "tr_n2_n1",
+        "name": "transition from n = 2 to n = 1",
+        "role": "arrow"
+      },
+      {
+        "focusable": true,
+        "id": "tr_n1_ninf",
+        "name": "transition from n = 1 to n = ∞",
+        "role": "arrow"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:38fef769c2fcd159728a83016e97a07f9bd5e7388d4c428f03eff71f3714d0e8",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "tr_n3_n2"
+        ]
+      }
+    ],
+    "type": "energy_levels",
+    "visual_id": "vis_RYQ92WHSJA31EQ0ZVN7RDC2F3F"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: energy levels (hidden labels)",
+  "variant": "energy-levels-hidden"
+}

@@ -1,0 +1,249 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.distribution-curve-hidden",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at mean.",
+        "Step 2: look at shaded probability P(40 ≤ X ≤ 65)."
+      ],
+      "summary": "A normal distribution with mean 50 and standard deviation 10, with P(40 ≤ X ≤ 65) shaded: the probability is 0.7745."
+    },
+    "computed": {
+      "check_ids": [
+        "chk_build_fx_distribution_curve_1",
+        "chk_build_fx_distribution_curve_2"
+      ],
+      "event": "P(40 ≤ X ≤ 65)",
+      "labels": {
+        "shade": "0.7745"
+      },
+      "points": [
+        [
+          10.0,
+          1.338302258e-05
+        ],
+        [
+          12.5,
+          3.525956824e-05
+        ],
+        [
+          15.0,
+          8.72682695e-05
+        ],
+        [
+          17.5,
+          0.0002029048057
+        ],
+        [
+          20.0,
+          0.0004431848412
+        ],
+        [
+          22.5,
+          0.0009093562502
+        ],
+        [
+          25.0,
+          0.001752830049
+        ],
+        [
+          27.5,
+          0.003173965184
+        ],
+        [
+          30.0,
+          0.005399096651
+        ],
+        [
+          32.5,
+          0.008627731883
+        ],
+        [
+          35.0,
+          0.01295175957
+        ],
+        [
+          37.5,
+          0.01826490854
+        ],
+        [
+          40.0,
+          0.02419707245
+        ],
+        [
+          42.5,
+          0.03011374322
+        ],
+        [
+          45.0,
+          0.03520653268
+        ],
+        [
+          46.25,
+          0.03718550939
+        ],
+        [
+          47.5,
+          0.03866681168
+        ],
+        [
+          48.75,
+          0.03958376869
+        ],
+        [
+          50.0,
+          0.03989422804
+        ],
+        [
+          51.25,
+          0.03958376869
+        ],
+        [
+          52.5,
+          0.03866681168
+        ],
+        [
+          53.75,
+          0.03718550939
+        ],
+        [
+          55.0,
+          0.03520653268
+        ],
+        [
+          57.5,
+          0.03011374322
+        ],
+        [
+          60.0,
+          0.02419707245
+        ],
+        [
+          62.5,
+          0.01826490854
+        ],
+        [
+          65.0,
+          0.01295175957
+        ],
+        [
+          67.5,
+          0.008627731883
+        ],
+        [
+          70.0,
+          0.005399096651
+        ],
+        [
+          72.5,
+          0.003173965184
+        ],
+        [
+          75.0,
+          0.001752830049
+        ],
+        [
+          77.5,
+          0.0009093562502
+        ],
+        [
+          80.0,
+          0.0004431848412
+        ],
+        [
+          82.5,
+          0.0002029048057
+        ],
+        [
+          85.0,
+          8.72682695e-05
+        ],
+        [
+          87.5,
+          3.525956824e-05
+        ],
+        [
+          90.0,
+          1.338302258e-05
+        ]
+      ],
+      "shade": [
+        40.0,
+        65.0
+      ],
+      "window": [
+        10.0,
+        90.0
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "hidden",
+    "numbers_from": [
+      "chk_build_fx_distribution_curve_1",
+      "chk_build_fx_distribution_curve_2"
+    ],
+    "params": {
+      "distribution": "normal",
+      "interval": [
+        40,
+        65
+      ],
+      "parameters": {
+        "mean": 50,
+        "sd": 10
+      },
+      "tail": "between"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "curve",
+        "name": "normal distribution",
+        "role": "curve"
+      },
+      {
+        "focusable": true,
+        "id": "shade",
+        "name": "shaded probability P(40 ≤ X ≤ 65)",
+        "quizzable": true,
+        "role": "region"
+      },
+      {
+        "focusable": true,
+        "id": "mean",
+        "name": "mean",
+        "role": "line"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:ce374296bd054b4f46b1f8483fefeda97189c1f0a41f0a2a1db688b82e8a6b91",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "mean"
+        ]
+      },
+      {
+        "highlight": [
+          "shade"
+        ]
+      }
+    ],
+    "type": "distribution_curve",
+    "visual_id": "vis_EQ2PX5BF6HR8ZFD9H91G4ZAAXP"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: distribution curve (hidden labels)",
+  "variant": "distribution-curve-hidden"
+}

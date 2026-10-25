@@ -10,7 +10,7 @@ from typing import Any, get_args
 
 from agent_core.contracts.api.commands import Settings as WireSettings
 from agent_core.engine.assessment.bands import predict_band
-from agent_core.engine.assessment.criteria import decide_method, score_criteria
+from agent_core.engine.assessment.criteria import decide_method, drop_restatements, score_criteria
 from agent_core.engine.assessment.errors import Refused
 from agent_core.engine.assessment.items import pin_item, present, public_answer, ready, validate_answer
 from agent_core.engine.marking import Verdict
@@ -31,6 +31,19 @@ def _millis(value: str) -> int:
     from agent_core.engine.assessment.service import millis
 
     return millis(value)
+
+
+def show_that_target(part: Mapping[str, Any]) -> str | None:
+    """The given result of a "show that" part (ASM-25): its expression, its value or its one solution's value (a line's
+    last side is compared with it)."""
+    answer = part.get("answer") or {}
+    if answer.get("kind") == "algebraic":
+        return str(answer["expression"])
+    if answer.get("kind") == "numeric":
+        return str(answer["value"])
+    if answer.get("kind") == "equation_solutions" and len(answer.get("values") or []) == 1:
+        return str(answer["values"][0])
+    return None
 
 
 class MockCommands:
@@ -454,6 +467,23 @@ class MockCommands:
         )
         return result, check_id
 
+    async def _same_written_form(self: Any, left: str, right: str, variables: Sequence[str]) -> bool | None:
+        """Whether two expressions are written the same, up to term order (ASM-25): the worker's as-written parse of
+        each, never their values; None when either cannot be read."""
+        if self.run_tool is None:
+            return None
+        forms: list[str] = []
+        for text in (left, right):
+            args: dict[str, Any] = {"text": text}
+            if variables:
+                args["variables"] = list(variables)
+            value, _ = await self.run_tool("math_parse", args)
+            written = (value or {}).get("as_written_latex")
+            if not written:
+                return None
+            forms.append(str(written))
+        return forms[0] == forms[1]
+
     async def _score_question(
         self: Any, question: Mapping[str, Any], item: Mapping[str, Any], answer: Any
     ) -> tuple[int, int, list[dict[str, Any]], dict[str, Any]]:
@@ -557,6 +587,15 @@ class MockCommands:
                         result: tuple[bool | None, str | None] = await self._method_equivalent(left, right, scope)
                         return result
 
+                    target = show_that_target(part) if scheme_part.get("command_word") == "show_that" else None
+                    if target is not None:
+
+                        async def same_form(left: str, right: str, scope: tuple[str, ...] = tuple(sorted(variables))
+                                            ) -> bool | None:  # fmt: skip
+                            result: bool | None = await self._same_written_form(left, right, scope)
+                            return result
+
+                        lines = await drop_restatements(lines, target, same_form)
                     judge = getattr(self, "local_method_judge", None)
                     if self.judge_method is not None:
 

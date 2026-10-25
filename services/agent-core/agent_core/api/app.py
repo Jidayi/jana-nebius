@@ -17,7 +17,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from agent_core.api import ask as ask_routes
 from agent_core.api import assessment as assessment_routes
-from agent_core.api import learning_journey as journey_routes
 from agent_core.api import captures as capture_routes
 from agent_core.api import connectivity as connectivity_routes
 from agent_core.api import drafts as draft_routes
@@ -25,9 +24,11 @@ from agent_core.api import exports as export_routes
 from agent_core.api import interview as interview_routes
 from agent_core.api import journal as journal_routes
 from agent_core.api import learn as learn_routes
+from agent_core.api import learning_journey as journey_routes
 from agent_core.api import licence as licence_routes
 from agent_core.api import operations as operations_routes
 from agent_core.api import packs as pack_routes
+from agent_core.api import parents as parent_routes
 from agent_core.api import plans as plan_routes
 from agent_core.api import profiles as profile_routes
 from agent_core.api import records as record_routes
@@ -189,6 +190,33 @@ def create_app(core: CoreService, secret: LaunchSecret, port: Callable[[], int |
 
         return await mutating(request, run)
 
+    @app.delete("/v1/sketches/{sketch_id}")
+    async def delete_sketch(sketch_id: str, request: Request) -> Response:
+        async def run(_: Any) -> tuple[int, Any]:
+            core.delete_sketch(sketch_id)  # VSL-43: gone from the board, the history and replay
+            return 204, None
+
+        return await mutating(request, run)
+
+    @app.get("/v1/boards/{board_id}/replay")
+    async def board_replay(board_id: str) -> dict[str, Any]:
+        return core.board_replay(board_id)  # UXS-59: replayed from recorded events, no model and no audio
+
+    @app.put("/v1/sessions/{session_id}/selection")
+    async def set_selection(session_id: str, request: Request) -> Response:
+        async def run(body: Any) -> tuple[int, Any]:
+            core.set_selection(session_id, body)
+            return 204, None  # "this" now refers to the selection (UXS-58)
+
+        return await mutating(request, run)
+
+    @app.post("/v1/visuals/{visual_id}/answer")
+    async def answer_manipulation(visual_id: str, request: Request) -> Response:
+        async def run(body: Any) -> tuple[int, Any]:
+            return 200, await core.answer_manipulation(visual_id, body)
+
+        return await mutating(request, run)
+
     @app.get("/v1/packs")
     async def packs() -> dict[str, Any]:
         """Installed packs, each verified when listed: a damaged one shows `signature_ok` false (API-29 subset)."""
@@ -217,6 +245,7 @@ def create_app(core: CoreService, secret: LaunchSecret, port: Callable[[], int |
     journey_routes.add_routes(app, core, mutating)
     assessment_routes.add_past_paper_routes(app, core, mutating)  # imported past papers (ASM-27)
     plan_routes.add_routes(app, core, mutating)  # plans and progress (LRN-28 to LRN-33, UXS-12, UXS-27)
+    parent_routes.add_routes(app, core, mutating)  # parent summary, alerts, session history (TCH-12, TCH-14, UXS-48)
     draft_routes.add_routes(app, core, mutating)
     journal_routes.add_routes(app, core, mutating)
     licence_routes.add_routes(app, core, mutating)  # the school licence file (PLT-19)

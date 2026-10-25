@@ -1,0 +1,220 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.punnett-sex-linked",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [],
+      "summary": "A Punnett square for the cross XHXh × XHY. Parent 1 gives the gametes XH and Xh and parent 2 gives XH and Y. The offspring genotypes are XHXH 1/4, XHXh 1/4, XHY 1/4 and XhY 1/4, in the ratio 1 : 1 : 1 : 1; the phenotypes are normal clotting (female) 1/2, normal clotting (male) 1/4 and haemophilia (male) 1/4, in the ratio 2 : 1 : 1."
+    },
+    "computed": {
+      "check_ids": [
+        "chk_build_fx_punnett_sex_linked_1",
+        "chk_build_fx_punnett_sex_linked_2",
+        "chk_build_fx_punnett_sex_linked_3",
+        "chk_build_fx_punnett_sex_linked_4",
+        "chk_build_fx_punnett_sex_linked_5",
+        "chk_build_fx_punnett_sex_linked_6",
+        "chk_build_fx_punnett_sex_linked_7"
+      ],
+      "gametes": {
+        "p1": [
+          "XH",
+          "Xh"
+        ],
+        "p2": [
+          "XH",
+          "Y"
+        ]
+      },
+      "genotype_classes": [
+        {
+          "genotype": "XHXH",
+          "probability": "1/4",
+          "ratio": 1
+        },
+        {
+          "genotype": "XHXh",
+          "probability": "1/4",
+          "ratio": 1
+        },
+        {
+          "genotype": "XHY",
+          "probability": "1/4",
+          "ratio": 1
+        },
+        {
+          "genotype": "XhY",
+          "probability": "1/4",
+          "ratio": 1
+        }
+      ],
+      "grid": [
+        [
+          "XHXH",
+          "XHY"
+        ],
+        [
+          "XHXh",
+          "XhY"
+        ]
+      ],
+      "labels": {
+        "genotype_ratio": "1 : 1 : 1 : 1",
+        "phenotype_ratio": "2 : 1 : 1"
+      },
+      "phenotype_classes": [
+        {
+          "phenotype": "normal clotting (female)",
+          "probability": "1/2",
+          "ratio": 2
+        },
+        {
+          "phenotype": "normal clotting (male)",
+          "probability": "1/4",
+          "ratio": 1
+        },
+        {
+          "phenotype": "haemophilia (male)",
+          "probability": "1/4",
+          "ratio": 1
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "chk_build_fx_punnett_sex_linked_1",
+      "chk_build_fx_punnett_sex_linked_2",
+      "chk_build_fx_punnett_sex_linked_3",
+      "chk_build_fx_punnett_sex_linked_4",
+      "chk_build_fx_punnett_sex_linked_5",
+      "chk_build_fx_punnett_sex_linked_6",
+      "chk_build_fx_punnett_sex_linked_7"
+    ],
+    "params": {
+      "alleles": [
+        {
+          "dominance": "dominant",
+          "phenotype": "normal clotting",
+          "symbol": "H"
+        },
+        {
+          "dominance": "recessive",
+          "phenotype": "haemophilia",
+          "symbol": "h"
+        }
+      ],
+      "cross": "sex_linked",
+      "parent1": "XHXh",
+      "parent2": "XHY",
+      "show": [
+        "gametes",
+        "genotype_ratio",
+        "phenotype_ratio",
+        "probabilities"
+      ]
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "parent1",
+        "name": "parent 1, XHXh",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "parent2",
+        "name": "parent 2, XHY",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "gamete2_1",
+        "name": "gamete XH of parent 2",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "gamete2_2",
+        "name": "gamete Y of parent 2",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "gamete1_1",
+        "name": "gamete XH of parent 1",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "cell_1_1",
+        "name": "offspring XHXH",
+        "quizzable": true,
+        "role": "cell"
+      },
+      {
+        "focusable": true,
+        "id": "cell_1_2",
+        "name": "offspring XHY",
+        "quizzable": true,
+        "role": "cell"
+      },
+      {
+        "focusable": true,
+        "id": "gamete1_2",
+        "name": "gamete Xh of parent 1",
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "cell_2_1",
+        "name": "offspring XHXh",
+        "quizzable": true,
+        "role": "cell"
+      },
+      {
+        "focusable": true,
+        "id": "cell_2_2",
+        "name": "offspring XhY",
+        "quizzable": true,
+        "role": "cell"
+      },
+      {
+        "focusable": true,
+        "id": "genotype_ratio",
+        "name": "genotype ratio",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "phenotype_ratio",
+        "name": "phenotype ratio",
+        "role": "row"
+      },
+      {
+        "focusable": true,
+        "id": "probabilities",
+        "name": "probabilities",
+        "role": "row"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:e7c39d1dfe4d3219e1dff94dd8ec6ca0d45cbead4ea58eba0b3b05c4fd95f160",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [],
+    "type": "punnett_square",
+    "visual_id": "vis_73XXYDJS1ZSDRCC0MWYDE5ETBV"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: punnett sex linked (shown labels)",
+  "variant": "punnett-sex-linked"
+}

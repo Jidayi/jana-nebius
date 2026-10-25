@@ -2,6 +2,35 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "method"
+        ]
+      },
+      "then": {
+        "required": [
+          "strips",
+          "lower",
+          "upper"
+        ]
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "volume"
+        ]
+      },
+      "then": {
+        "required": [
+          "lower",
+          "upper"
+        ]
+      }
+    }
+  ],
   "required": [
     "expression"
   ],
@@ -20,7 +49,7 @@
         "number",
         "string"
       ],
-      "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+      "pattern": "^([0-9+\\-*/^(). ]|pi|e|sqrt|ln|log|exp)+$",
       "maxLength": 40
     },
     "upper": {
@@ -28,7 +57,7 @@
         "number",
         "string"
       ],
-      "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+      "pattern": "^([0-9+\\-*/^(). ]|pi|e|sqrt|ln|log|exp)+$",
       "maxLength": 40
     },
     "area": {
@@ -42,6 +71,37 @@
     "constant": {
       "type": "string",
       "pattern": "^[A-Za-z]$"
+    },
+    "volume": {
+      "enum": [
+        "x_axis",
+        "y_axis"
+      ]
+    },
+    "method": {
+      "enum": [
+        "trapezium"
+      ]
+    },
+    "strips": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "sf": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "substitution": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 200
+    },
+    "parts_u": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
     },
     "variables": {
       "type": "array",

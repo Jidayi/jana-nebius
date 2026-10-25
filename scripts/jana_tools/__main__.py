@@ -234,6 +234,8 @@ def _eval(args: list[str]) -> int:
     | skills <url> <key> <model> <out dir> [--only name,name] [--jobs N]
       (SKL-21, EVL-07: the colocated skill evals on the local fast tier; writes evals/skill-evals/results.json)
     | skills-summary <out dir> <model>   (merge a partial skill-eval run into the records)
+    | skill-outcomes [--pilot DIR] [--eval-runs DIR] [--out F]
+      (SKL-28: mastery gain, hint use and answer-leak rate per skill version, and the edits that regressed them)
     | simulate <url> <key> <model> <out dir> [--sim-url U] [--sim-key K] [--sim-model M] [--jobs N] [--per-persona N]
       (EVL-04: simulated students on the pinned personas)
     | replay <trajectory.jsonl>   (OBS-10: replay with recorded model outputs; fails on any difference)"""
@@ -269,6 +271,17 @@ def _eval(args: list[str]) -> int:
         from .harness.trajectory import run_replay
 
         return _report("eval replay", run_replay(Path(args[1])))
+    if args[:1] == ["skill-outcomes"]:
+        from .skill_outcomes import report as skill_outcomes
+
+        def given(name: str) -> Path | None:
+            return Path(args[args.index(name) + 1]) if name in args else None
+
+        found = skill_outcomes(given("--pilot"), given("--eval-runs"))
+        if (out := given("--out")) is not None:
+            out.write_text(json.dumps(found, indent=1, sort_keys=True) + "\n")
+        print(json.dumps(found["regressions"], indent=1))
+        return 0
     if args[:1] == ["skills-summary"] and len(args) >= 3:
         from .skill_evals import gate_report, summarise
 

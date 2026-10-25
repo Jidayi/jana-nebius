@@ -34,7 +34,7 @@ import { objectiveForKc, objectiveForLesson, objectiveForTopic, type LearningObj
 // box searches the installed worked solutions instead (UXS-51).
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import {
-  AskController, StudyWorkspaceController, SessionNotesController, SavedQuestionsController, AssessmentController, CLIENT_KEYS, ExamDateController, KnowsController, LessonController, LOCKED_STATES, MockController, PastPaperController, PlanController, PracticeController, ProfileController, ProgressController, SUBJECT_CODES, SUBJECT_NAMES,
+  AskController, StudyWorkspaceController, SessionNotesController, SavedQuestionsController, AssessmentController, CLIENT_KEYS, ExamDateController, HistoryController, KnowsController, LessonController, LOCKED_STATES, MockController, PastPaperController, PlanController, PracticeController, ProfileController, ProgressController, SUBJECT_CODES, SUBJECT_NAMES,
   SearchController, SessionController, StoreHolder, SubjectMapController, clientId, examLock, groupSessions, installedSubjects, finishSetup, kcSubjectCode, nextBlock,
   parseAssets, parseNotices, readDegraded, readLicence, readProfile, readSetup, readSubjectMap, subjectName, tutorAnswers, tutorSetup, typedCapture, helpTurn, type HelpKind, DailyGoal, goalProgress,
   type NoteReference, type VoiceAnswer, type VoicePlace, type AssessmentStart, type ChooseInstallSource, type HealthReport, type Launch, type MapTopic, type NewSubjectStart, type PlanBlock, type SessionTarget, type SubjectMap as SubjectMapData,
@@ -42,7 +42,7 @@ import {
 import {
   AskAnswer, StudyWorkspace, SuggestionChip, FollowUpProvider, type FollowUpHandlers, DailyGoalChip, Transcript, SessionNotes, SavedQuestions, SavedQuestionsProvider, AssessmentPlace, AbandonedMockCard, AppFrame, ExamCountdownCard, Button, Composer, ComposerShell, ExamLockNotice, FasterTutorProvider, IconButton, Loader, MenuBar, MockPlace, Skeleton, StudyNotes, ErrorState, DegradedNotices, FirstRun, FirstRunInterview, FirstRunTutor, FirstRunTutorPick, Home,
   KnowsLinkProvider, KnowsPage, LaunchScreen, useLaunchSurface, LessonLinkProvider, LessonPlayer, KeyboardHelp, LocaleProvider, Notice, PlanCard, Practice, ProfilePicker, Progress, RegistryProvider, ScreenHeader, SearchBox, SearchScreen,
-  Settings, Sidebar, StoreProvider, StudioFrame, SubjectDot, SubjectMap, TabBar, TutorLookProvider, TutorScreen, ProfileRecovery, clearRenderCaches, defaultRegistry, discOf, tutorAvatarOf, tutorNameOf,
+  SessionHistory, Settings, Sidebar, StoreProvider, StudioFrame, SubjectDot, SubjectMap, TabBar, TutorLookProvider, TutorScreen, ProfileRecovery, clearRenderCaches, defaultRegistry, discOf, tutorAvatarOf, tutorNameOf,
   useAppliedPreferences, useCharacterKeys, useDuePractice, useGlobalShortcuts, useNow,
   useProfiles, useRecentSessions, useT, type AskContext, type StudyTab, type FramePlace, type LessonInProgress, type LockedPlace, type ReportNames, type SidebarContent, type SubjectChoice,
 } from "@jana/ui";
@@ -80,6 +80,8 @@ export interface AppRuntime {
   /** Home's study plan, the Progress screen and worked-solution search (UXS-12, UXS-27, UXS-51). */
   plans: PlanController;
   progress: ProgressController;
+  /** Progress → Session history, read-only (UXS-48). */
+  history: HistoryController;
   search: SearchController;
   /** The gentle daily goal (LRN-45). */
   goal: DailyGoal;
@@ -113,13 +115,13 @@ export function createRuntime(launch: Launch, fetchImpl?: typeof fetch): AppRunt
   const knows = new KnowsController(profiles);
   const runtime: AppRuntime = {
     holder, profiles, knows, map: new SubjectMapController(profiles), lessons: new LessonController(profiles), practice: new PracticeController(profiles), mocks: new MockController(profiles), pastPapers: new PastPaperController(profiles), examDates: new ExamDateController(profiles),
-    studyWorkspace: new StudyWorkspaceController(profiles, new BrowserLocalSpeech(), new BrowserPodcastAudio()), sessionNotes: new SessionNotesController(profiles), savedQuestions: new SavedQuestionsController(profiles), assessments: new AssessmentController(profiles), plans: new PlanController(profiles), progress: new ProgressController(profiles), search: new SearchController(profiles), goal: new DailyGoal(profiles), ask: new AskController(profiles), launch,
+    studyWorkspace: new StudyWorkspaceController(profiles, new BrowserLocalSpeech(), new BrowserPodcastAudio()), sessionNotes: new SessionNotesController(profiles), savedQuestions: new SavedQuestionsController(profiles), assessments: new AssessmentController(profiles), plans: new PlanController(profiles), progress: new ProgressController(profiles), history: new HistoryController(profiles), search: new SearchController(profiles), goal: new DailyGoal(profiles), ask: new AskController(profiles), launch,
   };
   return fetchImpl === undefined ? runtime : { ...runtime, fetch: fetchImpl };
 }
 
 type TutorTarget = SessionTarget;
-type Screen = S2Screen | "study" | "notes" | "history" | "knows" | "knows-from-settings";
+type Screen = S2Screen | "study" | "notes" | "history" | "session-history" | "knows" | "knows-from-settings";
 type Opened = SessionController | "failed" | null;
 /** First run: "Who's learning?", then the hand-off for the student who was added (UXS-10). */
 type FirstRunStep = { step: "who"; resume?: boolean } | { step: "restore" } | { step: "handoff"; name: string } | { step: "tutor"; next: Screen } | { step: "interview"; next: Screen } | null;
@@ -375,6 +377,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   const lockNow = useNow(lock !== null && lock.state === "in_progress");
   // The subject maps the mock report names its topics and ideas from (UXS-26).
   const [maps, setMaps] = useState<Record<string, SubjectMapData>>({});
+  const mapsAsked = useRef(new Set<string>());
   const [firstRun, setFirstRun] = useState<FirstRunStep>(null);
   const [noteReference, setNoteReference] = useState<NoteReference | null>(null);
   useActivity(profiles);
@@ -447,6 +450,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
     setChosenSession(null);
     setFromReport(false);
     setMaps({});
+    mapsAsked.current.clear();
     setMapSubject(null);
     setLessonId(null);
     setFromLesson(null);
@@ -592,20 +596,24 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
     if (session === null || session === "failed") return;
     return session.onProgress(() => setProgressVersion((v) => v + 1));
   }, [session]);
-  // Every installed subject's map, for the names of ideas and their lessons (Progress, the plan, search).
+  // Every installed subject's map, for the names of ideas and their lessons (Progress, the plan, search). Each map is
+  // asked for once per profile and its reply kept unless the profile changed: a map landing must not re-run this and
+  // drop the replies still on their way (each subject's map was read up to five times, one after another, before
+  // Home's Ask box opened).
   useEffect(() => {
     if (active === null) return;
-    let live = true;
+    const generation = profiles.generation;
     for (const s of installed) {
-      if (maps[s.subjectId] !== undefined) continue;
+      if (maps[s.subjectId] !== undefined || mapsAsked.current.has(s.subjectId)) continue;
+      mapsAsked.current.add(s.subjectId);
       profiles.commands.get<unknown>(`/v1/curriculum/${encodeURIComponent(s.subjectId)}/map`).then((raw) => {
-        if (live) setMaps((known) => (known[s.subjectId] !== undefined ? known : { ...known, [s.subjectId]: readSubjectMap(raw) }));
-      }).catch(() => undefined);
+        if (generation !== profiles.generation) return;
+        setMaps((known) => (known[s.subjectId] !== undefined ? known : { ...known, [s.subjectId]: readSubjectMap(raw) }));
+      }).catch(() => {
+        if (generation === profiles.generation) mapsAsked.current.delete(s.subjectId);
+      });
     }
-    return () => {
-      live = false;
-    };
-  }, [profiles, active, installedKey, maps]);
+  }, [profiles, active, installedKey]); // `maps` is read, not watched: see above
   const known = useMemo(() => {
     const topics = new Map<string, string>();
     const topicLinks = new Map<string, { id: string; title: string }>();
@@ -844,12 +852,10 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   };
   /** A help chip (ASM-28): the tutor opens with the item loaded and is asked for that help at once (a hint is the
    * ladder's next rung), and its header leads back to the same question (UXS-24, UXS-01). */
-  const helpMe = answers === true && protectedCheck === undefined ? (kind: HelpKind = "hint") => {
+  const openHelp = (reason: "help" | "why_right", first: { content: { type: "text"; text: string }[]; intent: "stuck" | "answer" }) => {
     const subject = runtime.practice.getView().subject;
-    void runtime.practice.help().then((sessionId) => {
+    void runtime.practice.help(reason).then((sessionId) => {
       if (sessionId === null) return;
-      const ask = helpTurn(kind);
-      const first = { content: [{ type: "text" as const, text: t(ask.textKey) }], intent: ask.intent };
       // The same question's help session may be open already: it is asked there; otherwise as soon as it opens.
       if (session !== null && session !== "failed" && session.sessionId === sessionId) session.send(first.content, first.intent);
       else pendingQuestions.current.set(sessionId, first);
@@ -861,7 +867,15 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
       setFromReport(false);
       setScreen("tutor");
     });
+  };
+  const helpMe = answers === true && protectedCheck === undefined ? (kind: HelpKind = "hint") => {
+    const ask = helpTurn(kind);
+    openHelp("help", { content: [{ type: "text" as const, text: t(ask.textKey) }], intent: ask.intent });
   } : undefined;
+  /** "Why is this right?" on a correct item (UXS-62): the tutor asks the student to explain first; the mark stays. */
+  const whyRight = answers === true && protectedCheck === undefined
+    ? () => openHelp("why_right", { content: [{ type: "text" as const, text: t("practice.why_right") }], intent: "answer" })
+    : undefined;
   /** The follow-up chips under the tutor's newest reply (UXS-68): practise the session's subject where it is installed
    * and nothing locks practice, and ask for a step again; never while a mock or check holds the tutor. */
   const followUpHandlers: FollowUpHandlers = {
@@ -942,10 +956,10 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
       return;
     }
     const lesson = kc === undefined ? undefined : known.lessons.get(kc);
-    if (block.kind === "main" && kc !== undefined) {
+    if (block.kind === "main" && block.reason_code !== "mock_follow_up" && kc !== undefined) {
       const objective = objectiveForKc(Object.values(maps), kc);
       if (objective) {
-        const action = block.reason_code !== "mock_follow_up" && (known.states.get(kc) ?? "not_started") === "not_started" && lesson !== undefined ? "review" : undefined;
+        const action = (known.states.get(kc) ?? "not_started") === "not_started" && lesson !== undefined ? "review" : undefined;
         void enterObjective(objective, action);
         return;
       }
@@ -1125,9 +1139,10 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
       return (
         <Progress controller={runtime.progress} version={progressVersion}
           names={{ subject: subjectLabel, kc: (kc) => known.statements.get(kc) ?? null }}
-          actions={{ onKnows: () => setScreen("knows-from-progress"), onNotes: () => setScreen("notes"), onLearn: () => setScreen("learn"), onDiagnostic: () => openAssessment() }} />
+          actions={{ onKnows: () => setScreen("knows-from-progress"), onNotes: () => setScreen("notes"), onHistory: () => setScreen("session-history"), onLearn: () => setScreen("learn"), onDiagnostic: () => openAssessment() }} />
       );
     }
+    if (screen === "session-history") return <SessionHistory controller={runtime.history} subject={subjectLabel} onClose={() => setScreen("progress")} />;
     if (screen === "search") {
       if (lock !== null) return locked("practice", t("search.title"));
       return (
@@ -1136,7 +1151,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
           actions={{ onBrowse: () => setScreen("learn"), onPractise: (kcIds, subject) => openPractice(subject, kcIds) }} />
       );
     }
-    if (screen === "settings") return <Settings section={settingsAt} voiceSettings={<VoiceSettings profiles={profiles} />} profiles={profiles} chooseSource={runtime.chooseSource} notices={NOTICES} assets={ASSETS} onClose={() => {
+    if (screen === "settings") return <Settings section={settingsAt} voiceSettings={<VoiceSettings profiles={profiles} />} profiles={profiles} chooseSource={runtime.chooseSource} notices={NOTICES} assets={ASSETS} ideaName={(kc) => known.topics.get(kc) ?? null} onClose={() => {
       const back = studySettingsReturn.current;
       studySettingsReturn.current = null;
       if (back && back.profile === active) {
@@ -1213,7 +1228,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
       );
     }
     if (screen === "practice") {
-      return <Practice controller={runtime.practice} subjectLabel={subjectLabel} onEnd={() => setScreen("home")} onLearn={() => setScreen("learn")} {...(helpMe !== undefined ? { onHelp: helpMe } : {})} />;
+      return <Practice controller={runtime.practice} subjectLabel={subjectLabel} onEnd={() => setScreen("home")} onLearn={() => setScreen("learn")} {...(helpMe !== undefined ? { onHelp: helpMe } : {})} {...(whyRight !== undefined ? { onWhyRight: whyRight } : {})} />;
     }
     if (screen === "lesson" && lessonId !== null) {
       return withSpeech(<LessonPlayer controller={runtime.lessons} lessonId={lessonId} teaching={journeyView.journey?.lesson_id === lessonId && journeyView.journey.lesson_opened} onClose={() => setScreen("learn")} onPractise={practiseAfterLesson} {...(askLesson !== undefined ? { onAsk: askLesson } : {})} />);
@@ -1242,7 +1257,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   const places: FramePlace[] = [
     { id: "home", icon: "home", label: t("home.title"), current: screen === "home", onSelect: () => setScreen("home") },
     ...(studyAvailable ? [{ id: "study", icon: "study-area", label: t("nav.materials"), short: t("nav.materials_short"), group: t("nav.your_learning"), current: screen === "study", onSelect: () => setScreen("study") } satisfies FramePlace] : []),
-    { id: "progress", icon: "progress", label: t("app.progress"), group: t("nav.your_learning"), current: screen === "progress" || screen === "knows-from-progress", onSelect: openProgress },
+    { id: "progress", icon: "progress", label: t("app.progress"), group: t("nav.your_learning"), current: screen === "progress" || screen === "knows-from-progress" || screen === "session-history", onSelect: openProgress },
     // Study notes and saved questions are one place with a switch (owner, 2026-10-19).
     { id: "notes", icon: "notes", label: t("nav.notes_saved"), short: t("nav.notes_short"), group: t("nav.your_learning"), current: screen === "notes" || screen === "saved-questions" || screen === "history", onSelect: () => setScreen("notes") },
     { id: "learn", icon: "learn", label: t("nav.lessons"), group: t(installed.every((s) => s.level === "O") ? "nav.o_level" : "nav.curriculum"), current: screen === "learn" || screen === "lesson" || (screen === "tutor" && !tutorOffered), onSelect: () => setScreen("learn") },
@@ -1276,9 +1291,9 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   // The screens that bring their own header (Home, the tutor) leave the drawer's menu button to it.
   const ownHeader = screen === "home" || screen === "learn" || screen === "lesson" || screen === "practice" || screen === "mock" || screen === "settings" || screen === "tutor"
     || screen === "progress" || screen === "search" || screen === "assessment" || screen === "saved-questions" || screen === "history"
-    || (lock !== null && screen === "notes");
+    || screen === "session-history" || (lock !== null && screen === "notes");
   const scrolls = screen === "learn" || screen === "lesson" || screen === "practice" || screen === "mock" || screen === "settings" || screen === "knows" || screen === "knows-from-settings"
-    || screen === "knows-from-progress" || screen === "progress" || screen === "search" || screen === "assessment" || screen === "saved-questions" || screen === "study" || screen === "notes"
+    || screen === "knows-from-progress" || screen === "progress" || screen === "session-history" || screen === "search" || screen === "assessment" || screen === "saved-questions" || screen === "study" || screen === "notes"
     || (screen === "tutor" && (!tutorOffered || lock !== null));
   const frame = (
     <StoreProvider holder={runtime.holder} session={session === "failed" ? null : session}>

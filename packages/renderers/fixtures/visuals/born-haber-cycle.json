@@ -1,0 +1,170 @@
+{
+  "claims": [
+    "-349",
+    "-349.0",
+    "-411",
+    "-787",
+    "-787.0",
+    "107",
+    "107.0",
+    "122",
+    "122.0",
+    "411.0",
+    "496",
+    "496.0"
+  ],
+  "id": "born-haber-cycle",
+  "kind": "born_haber_cycle",
+  "modes": [
+    "shown",
+    "hidden"
+  ],
+  "spec": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at lattice enthalpy."
+      ],
+      "summary": "A Born-Haber cycle for NaCl in 6 steps: enthalpy of atomisation +107 kJ/mol, enthalpy of atomisation +122 kJ/mol, ionisation energy +496 kJ/mol, electron affinity -349 kJ/mol, lattice enthalpy -787 kJ/mol and enthalpy of formation -411 kJ/mol. The cycle closes, so the lattice enthalpy is -787 kJ/mol."
+    },
+    "computed": {
+      "check_ids": [
+        "chk_build_fx_born_haber_cycle_1",
+        "chk_build_fx_born_haber_cycle_2"
+      ],
+      "contributions": {
+        "step_at_cl": 122.0,
+        "step_at_na": 107.0,
+        "step_ea_cl": -349.0,
+        "step_formation": 411.0,
+        "step_ie_na": 496.0,
+        "step_lattice": -787.0
+      },
+      "labels": {
+        "step_at_cl": "+122",
+        "step_at_na": "+107",
+        "step_ea_cl": "-349",
+        "step_formation": "-411",
+        "step_ie_na": "+496",
+        "step_lattice": "-787"
+      },
+      "unknown": "step_lattice"
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "kn_atna",
+      "kn_atcl",
+      "kn_ie",
+      "kn_ea",
+      "kn_fm",
+      "chk_build_fx_born_haber_cycle_1",
+      "chk_build_fx_born_haber_cycle_2"
+    ],
+    "params": {
+      "compound": "NaCl",
+      "steps": [
+        {
+          "coefficient": 1,
+          "enthalpy_kj_mol": 107,
+          "id": "at_na",
+          "kind": "atomisation",
+          "orientation": 1
+        },
+        {
+          "coefficient": 1,
+          "enthalpy_kj_mol": 122,
+          "id": "at_cl",
+          "kind": "atomisation",
+          "orientation": 1
+        },
+        {
+          "coefficient": 1,
+          "enthalpy_kj_mol": 496,
+          "id": "ie_na",
+          "kind": "ionisation",
+          "orientation": 1
+        },
+        {
+          "coefficient": 1,
+          "enthalpy_kj_mol": -349,
+          "id": "ea_cl",
+          "kind": "electron_affinity",
+          "orientation": 1
+        },
+        {
+          "coefficient": 1,
+          "id": "lattice",
+          "kind": "lattice",
+          "orientation": 1
+        },
+        {
+          "coefficient": 1,
+          "enthalpy_kj_mol": -411,
+          "id": "formation",
+          "kind": "formation",
+          "orientation": -1
+        }
+      ],
+      "unknown_step": "lattice"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "step_at_na",
+        "name": "enthalpy of atomisation",
+        "quizzable": true,
+        "role": "arrow"
+      },
+      {
+        "focusable": true,
+        "id": "step_at_cl",
+        "name": "enthalpy of atomisation",
+        "quizzable": true,
+        "role": "arrow"
+      },
+      {
+        "focusable": true,
+        "id": "step_ie_na",
+        "name": "ionisation energy",
+        "quizzable": true,
+        "role": "arrow"
+      },
+      {
+        "focusable": true,
+        "id": "step_ea_cl",
+        "name": "electron affinity",
+        "quizzable": true,
+        "role": "arrow"
+      },
+      {
+        "focusable": true,
+        "id": "step_lattice",
+        "name": "lattice enthalpy",
+        "quizzable": true,
+        "role": "arrow"
+      },
+      {
+        "focusable": true,
+        "id": "step_formation",
+        "name": "enthalpy of formation",
+        "quizzable": true,
+        "role": "arrow"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:325bd54c4f787d1310628fa15e36febd904c4c223ee534d1f8dff2940dddb5ff",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "step_lattice"
+        ]
+      }
+    ],
+    "type": "born_haber_cycle",
+    "visual_id": "vis_JVNCFRXKG2F1YPYXGCC2Y5MHRZ"
+  },
+  "subject": "chemistry"
+}

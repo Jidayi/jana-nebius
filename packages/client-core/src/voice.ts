@@ -1,7 +1,16 @@
 // One voice socket per open tutor session. Audio devices belong to the platform adapter; credentials and frames
 // stay in memory, and the UI connects only to the authenticated core origin (VOC-26).
 import { CLIENT_KEYS } from "./generated/keys.js";
-import { CueSync, type CaptionCue, type CaptionWord, type PointerView, type WritingView } from "./pointer.js";
+import { CueSync, type CaptionCue, type CaptionWord, type PenView, type PointerTarget, type PointerView, type WritingView } from "./pointer.js";
+import { FRAME_MS, LoudnessTrack, MouthFollower, frameLevels, type MouthShape } from "./mouth.js";
+
+/** Whether a cue's target is drawn now (VSL-45): a board line or a visual part present in the document. Without a
+ * document (tests, workers) every target counts as on screen. */
+function onScreen(target: PointerTarget): boolean {
+  if (typeof document === "undefined") return true;
+  const selector = target.kind === "step" ? `[data-step-id="${target.step_id}"]` : `[data-part="${target.part_id}"]`;
+  return document.querySelector(selector) !== null;
+}
 import type { Endpoint } from "./stream/client.js";
 
 export type TalkMode = "push_to_talk" | "hands_free";
@@ -19,7 +28,13 @@ export interface VoiceView {
   captionItem: string | null;
   /** The temporary pointer and a line being written on, fired from actual playback (VOC-51, UXS-63). */
   pointer: PointerView | null;
+  /** The tutor's pen (UXS-56): at rest or at the target it reaches before the ring appears; absent means at rest. */
+  pen?: PenView;
   writing: WritingView | null;
+  /** The presence's speaking mouth (DSN-27), from the loudness of the audio being heard; absent means closed. */
+  mouth?: MouthShape;
+  /** The microphone level while listening, 0 to 1 (the presence's ring, DSN-27); absent means 0. */
+  micLevel?: number;
 }
 export interface VoiceAudio {
   activate?(): void;
@@ -67,7 +82,7 @@ export function microphoneReason(error: unknown): string {
 
 
 const EMPTY: VoiceView = { connected: false, state: "idle", mode: "push_to_talk", reason: null,
-  student: "", tentative: "", tutor: "", words: [], playedMs: 0, captionItem: null, pointer: null, writing: null };
+  student: "", tentative: "", tutor: "", words: [], playedMs: 0, captionItem: null, pointer: null, writing: null, pen: { target: null, since_ms: 0 } };
 const hex = (bytes: Uint8Array): string => [...bytes].map((value) => value.toString(16).padStart(2, "0")).join("");
 
 /** The open chat a voice conversation lives in (VOC-53, D130): Ask anything on Home, or a study set's Chat with the
@@ -96,10 +111,15 @@ export class VoiceController {
   // The tutor response whose audio is playing (its 16-byte tag), and the cues of its accepted turn (VOC-10, VOC-51).
   private tutorTag: string | null = null;
   private ticker: ReturnType<typeof setInterval> | null = null;
+  // The speaking mouth (DSN-27): the loudness of the audio playing, read at the heard position every frame while it plays.
+  private readonly loudness = new LoudnessTrack();
+  private readonly mouthShape = new MouthFollower();
+  private loudTag: string | null = null;
+  private mouthTimer: ReturnType<typeof setInterval> | null = null;
   readonly cues = new CueSync(CLIENT_KEYS.pointer_ttl_ms, () => {
-    const { pointer, writing } = this.cues.getState();
-    if (pointer !== this.view.pointer || writing !== this.view.writing) this.update({ pointer, writing });
-  });
+    const { pointer, writing, pen } = this.cues.getState();
+    if (pointer !== this.view.pointer || writing !== this.view.writing || pen !== this.view.pen) this.update({ pointer, writing, pen });
+  }, (target) => onScreen(target));
 
   constructor(readonly sessionId: string, private readonly endpoint: () => Promise<Endpoint>,
     private readonly audio: VoiceAudio,
@@ -181,8 +201,11 @@ export class VoiceController {
             if (data instanceof ArrayBuffer && data.byteLength >= 18 && data.byteLength <= 240_016 && data.byteLength % 2 === 0) {
               const tag = hex(new Uint8Array(data, 0, 16));
               if (tag !== this.readTag) { this.tutorTag = tag; this.startTicker(); }
-              this.audio.play(tag, new Int16Array(data.slice(16)), (playedMs, ended) => {
+              const pcm = new Int16Array(data.slice(16));
+              this.follow(tag, pcm);
+              this.audio.play(tag, pcm, (playedMs, ended) => {
                 if (generation === this.generation) {
+                  if (ended && tag === this.loudTag) this.stopMouth();
                   // A chunk finished playing: actual progress even where the device offers no finer clock. An
                   // empty queue may only be a gap before more audio, so it fires nothing beyond what has played.
                   if (tag === this.tutorTag) this.cues.progress(playedMs, Date.now());
@@ -198,6 +221,7 @@ export class VoiceController {
                 const flushed = hex(new Uint8Array(digest, 0, 16));
                 if (generation === this.generation) {
                   this.audio.flush(flushed);
+                  if (flushed === this.loudTag) this.stopMouth();
                   if (flushed === this.tutorTag) this.stopCues(); // barge-in, cancel or stop: no stale pointer (UXS-63)
                 }
               }
@@ -232,7 +256,10 @@ export class VoiceController {
         if (pcm.byteLength > 4800 || pcm.byteLength % 2 !== 0 || (this.socket?.bufferedAmount ?? 0) > 48_000) {
           this.close();
           this.update({ state: "unavailable", reason: "voice.audio_backpressure" });
-        } else if (this.socket?.readyState === 1) this.socket.send(pcm);
+        } else if (this.socket?.readyState === 1) {
+          this.socket.send(pcm);
+          this.hearMicrophone(pcm);
+        }
       });
       if (generation !== this.generation || !this.capturing()) { this.audio.releaseMic(); return; }
       this.send({ type: "capture", echo_cancellation: settings.echoCancellation, headphones: settings.headphones });
@@ -276,6 +303,38 @@ export class VoiceController {
   private stopTicker(): void {
     if (this.ticker !== null) clearInterval(this.ticker);
     this.ticker = null;
+  }
+  /** Follow the loudness of a response's audio from its first frame; a new response starts a new track. */
+  private follow(tag: string, pcm: Int16Array): void {
+    if (tag !== this.loudTag) {
+      this.stopMouth();
+      this.loudTag = tag;
+    }
+    this.loudness.append(pcm);
+    if (this.mouthTimer !== null) return;
+    let last = Date.now();
+    this.mouthTimer = setInterval(() => {
+      const now = Date.now();
+      const heard = this.loudTag === null ? null : (this.audio.position?.(this.loudTag) ?? this.view.playedMs);
+      const shape = this.mouthShape.update(heard === null ? 0 : this.loudness.at(heard), now - last);
+      last = now;
+      if (shape !== (this.view.mouth ?? "closed")) this.update({ mouth: shape });
+    }, FRAME_MS);
+  }
+  /** The audio ended, was flushed or the session closed: the mouth rests. */
+  private stopMouth(): void {
+    if (this.mouthTimer !== null) clearInterval(this.mouthTimer);
+    this.mouthTimer = null;
+    this.loudTag = null;
+    this.loudness.clear();
+    this.mouthShape.reset();
+    if (this.view.mouth !== undefined && this.view.mouth !== "closed") this.update({ mouth: "closed" });
+  }
+  /** The microphone's level for the listening ring, updated only when it moves visibly. */
+  private hearMicrophone(pcm: ArrayBuffer): void {
+    const levels = frameLevels(new Int16Array(pcm), 16000);
+    const level = levels.length === 0 ? 0 : Math.max(...levels);
+    if (Math.abs(level - (this.view.micLevel ?? 0)) >= 0.05) this.update({ micLevel: Math.round(level * 100) / 100 });
   }
   /** Pending cues are dropped and the pointer clears at once (VOC-52, UXS-63). */
   private stopCues(): void {
@@ -466,6 +525,7 @@ export class VoiceController {
   close(): void {
     this.audio.flush();
     this.stopCues(); // a session change leaves no pointer behind (UXS-63)
+    this.stopMouth();
     this.send({ type: "stop" });
     ++this.generation;
     this.cancelOpen?.();

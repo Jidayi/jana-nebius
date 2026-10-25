@@ -205,6 +205,17 @@ def blank_form(text: str) -> str:
     return " ".join(unicodedata.normalize("NFKC", text).casefold().strip(" .,;:!?\"'").split())
 
 
+def valid_blank(item: dict[str, Any], key: dict[str, Any]) -> bool:
+    """A usable blank has one gap and never prints its own grading answer in the stem."""
+    answer = blank_form(key["answer"])
+    return (
+        len(BLANK.findall(item["stem"]["text"])) == 1
+        and bool(answer)
+        and len(key["answer"]) <= 120
+        and re.search(r"\b" + re.escape(answer) + r"\b", blank_form(item["stem"]["text"])) is None
+    )
+
+
 class StudyError(ValueError):
     def __init__(self, reason: str, conflict: bool = False):
         super().__init__(reason)
@@ -1360,16 +1371,8 @@ class StudyDesk:
                             raise StudyError("insufficient_evidence")
                     if item["type"] == "true_false" and keys[identity]["answer"] not in ("true", "false"):
                         raise StudyError("insufficient_evidence")
-                    if item["type"] == "fill_blank":
-                        key_form = blank_form(keys[identity]["answer"])
-                        stem = blank_form(item["stem"]["text"])
-                        if (
-                            len(BLANK.findall(item["stem"]["text"])) != 1
-                            or not key_form
-                            or len(keys[identity]["answer"]) > 120
-                            or re.search(r"\b" + re.escape(key_form) + r"\b", stem)
-                        ):
-                            raise StudyError("insufficient_evidence")
+                    if item["type"] == "fill_blank" and not valid_blank(item, keys[identity]):
+                        raise StudyError("insufficient_evidence")
                 stored = checked(
                     "QuizStored",
                     {
@@ -2238,6 +2241,8 @@ class StudyQueue:
                     seen.add(text)
                     if item["item_id"] not in keys:
                         raise StudyError("insufficient_evidence")
+                    if item["type"] == "fill_blank" and not valid_blank(item, keys[item["item_id"]]):
+                        continue
                     pairs.append((item, keys[item["item_id"]]))
                 pair_groups.append(pairs)
             if not any(pair_groups):

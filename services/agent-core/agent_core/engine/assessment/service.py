@@ -948,7 +948,9 @@ class AssessmentDesk(MockCommands, PastPaperCommands, VariantCommands, ProbeComm
                 misconception_id = event.payload.get("misconception_id")
         return attempts, outcomes, misconception_id
 
-    def practice_help(self, identity: str, item_id: str) -> dict[str, Any]:
+    def practice_help(self, identity: str, item_id: str, reason: str = "help") -> dict[str, Any]:
+        """The tutor with the item loaded (UXS-24). `why_right` (UXS-62) is offered only once the item is marked
+        correct, never during a mock sitting, and never changes the item's mark."""
         self.guard_tutor()
         state = self._get(identity, "practice")
         item = next((i for i in state["items"] if i["id"] == item_id), None)
@@ -959,6 +961,8 @@ class AssessmentDesk(MockCommands, PastPaperCommands, VariantCommands, ProbeComm
             state["helped"].append(item_id)
             self._commit(state)
         attempts, outcomes, misconception_id = self.item_verdicts(state["id"], item_id)
+        if reason == "why_right" and (not outcomes or outcomes[-1] != "correct"):
+            raise Refused("why_right_needs_a_correct_answer")
         submitted = None
         if attempts:
             latest = next(reversed(attempts.values()))
@@ -977,7 +981,11 @@ class AssessmentDesk(MockCommands, PastPaperCommands, VariantCommands, ProbeComm
             "outcomes": outcomes,
             "misconception_id": misconception_id,
             "fix": fix.get("en", "") if isinstance(fix, dict) else str(fix),
-            "origin": {"kind": "practice_item", "ref": state["id"] + ":" + item_id},
+            "origin": {
+                "kind": "practice_item",
+                "ref": state["id"] + ":" + item_id + ("#why_right" if reason == "why_right" else ""),
+            },
+            "reason": reason,
         }
 
     def tutor_context(self, origin: Mapping[str, Any]) -> dict[str, Any]:
@@ -987,9 +995,10 @@ class AssessmentDesk(MockCommands, PastPaperCommands, VariantCommands, ProbeComm
             if str(origin.get("ref") or "").startswith("probe:"):
                 return self.probe_context(str(origin["ref"])[6:])
             reference = str(origin.get("ref") or "")
+            reference, _, why = reference.partition("#")
             if ":" in reference:
                 identity, item_id = reference.split(":", 1)
-                return self.practice_help(identity, item_id)
+                return self.practice_help(identity, item_id, "why_right" if why == "why_right" else "help")
             item_id = str(origin.get("ref") or "")
             for state in self.store.all():
                 if state["kind"] == "practice" and any(i["id"] == item_id for i in state["items"]):

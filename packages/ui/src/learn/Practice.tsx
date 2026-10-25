@@ -34,6 +34,9 @@ export interface PracticeActions {
   /** The help chips (ASM-28): the tutor opens with the item loaded and is asked for that help; absent where no tutor
    * answers (PLT-29). */
   onHelp?: (kind: HelpKind) => void;
+  /** "Why is this right?" (UXS-62): offered only once the item is marked correct; the tutor asks the student to explain
+   * first and never changes the mark. Absent where no tutor answers. */
+  onWhyRight?: () => void;
   /** "Don't know": the worked answer, then the next question (ASM-28). */
   onDontKnow?: () => void;
   onRetry?: () => void;
@@ -196,6 +199,9 @@ function Question({ view, actions, subjectLabel }: { view: PracticeView; actions
           </ol>
         </div>
       )}
+      {actions.onWhyRight !== undefined && view.tries.at(-1)?.marked.verdict === "correct" && (
+        <div data-why-right=""><Button size="sm" tone="ghost" onClick={actions.onWhyRight}>{t("practice.why_right")}</Button></div>
+      )}
       {view.worked !== null && <WorkedAnswer worked={view.worked} onNext={actions.onNext} finishing={finishing} />}
     </section>
   );
@@ -280,7 +286,9 @@ export function PracticeContent({ view, actions, subjectLabel = "" }: { view: Pr
 
 /** Practice for the unlocked profile, on its controller: the set started by whoever opened it (Home's ideas, a topic
  * sheet, Ctrl+3). */
-export function Practice({ controller, subjectLabel, onEnd, onLearn, onHelp }: {
+export function Practice({ controller, subjectLabel, onEnd, onLearn, onHelp, onWhyRight }: {
+  /** "Why is this right?" on a correct item (UXS-62). */
+  onWhyRight?: () => void;
   controller: PracticeController;
   subjectLabel: (subject: string) => string;
   onEnd: () => void;
@@ -302,6 +310,7 @@ export function Practice({ controller, subjectLabel, onEnd, onLearn, onHelp }: {
     ...(subject !== null ? { onRetry: () => void controller.start(subject), onMixed: () => void controller.start(subject) } : {}),
     ...(onLearn !== undefined ? { onLearn } : {}),
     ...(onHelp !== undefined ? { onHelp } : {}),
+    ...(onWhyRight !== undefined ? { onWhyRight } : {}),
   };
   return <PracticeContent view={view} actions={actions} subjectLabel={subject === null ? "" : subjectLabel(subject)} />;
 }

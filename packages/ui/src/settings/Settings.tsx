@@ -13,8 +13,8 @@
 // search, known problems, this computer and the support contacts), "How the tutor is running" (OBS-15), the crash
 // reports waiting for a decision (OBS-17), the student's saved problem reports (UXS-44), the way to "Save a report for
 // support" and SEC-19's honest line that anyone using the computer can open every profile; About (version, licences
-// and updates, PLT-10, PLT-14); and from stage 3 Voice where the app has it. A section this app does not have yet says
-// so.
+// and updates, PLT-10, PLT-14); and from stage 3 the Parent summary and Alerts of the open student (UXS-33, TCH-12,
+// TCH-14) and Voice where the app has it. A section this app does not have yet says so.
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { SettingsSections, STAGE_2_SECTIONS, type AssetEntry, type ChooseInstallSource, type NoticeEntry, type ProfileController, type StudentPreferences } from "@jana/client-core";
 import type { Settings as SettingsRecord } from "@jana/contracts-ts";
@@ -32,6 +32,7 @@ import { DataExport } from "./DataExport.js";
 import { OnlineFeaturesSection, ProfilesSection } from "./FamilyControls.js";
 import { HealthPanel } from "./HealthPanel.js";
 import { OfflineHelpPanel, ProblemReportList } from "./Help.js";
+import { Alerts, ParentSummary } from "./ParentSummary.js";
 import { ReportSchema } from "./ReportSchema.js";
 import { AppUpdates, ContentPacks, TutorModels, useInstallations } from "./Installations.js";
 import { textScaleOf } from "./preferences.js";
@@ -50,7 +51,7 @@ export const PREFERENCE_SECTIONS: { section: "accessibility" | "study"; keys: To
 
 /** The sections this app has a body for, by the ids of TABLE UXS-46a the core lists; any other id the core names is
  * shown with its heading and a line saying this version does not have it yet. */
-export const SETTINGS_SECTIONS = [...STAGE_2_SECTIONS, "voice"] as const;
+export const SETTINGS_SECTIONS = [...STAGE_2_SECTIONS, "parent_summary", "alerts", "voice"] as const;
 type SectionId = string;
 
 /** "Board and chat text size" (DSN-07, LOC-17): the default, a larger and the largest scale the token contract allows. */
@@ -206,8 +207,10 @@ function Preferences({ profiles, settings, section, onOpenKnows, onKeys }: {
   );
 }
 
-export function Settings({ profiles, onClose, onOpenKnows, chooseSource, voiceSettings, notices, assets, section = null }: {
+export function Settings({ profiles, onClose, onOpenKnows, chooseSource, voiceSettings, notices, assets, section = null, ideaName }: {
   profiles: ProfileController; onClose?: () => void; onOpenKnows?: () => void; chooseSource?: ChooseInstallSource | undefined; voiceSettings?: ReactNode;
+  /** The name of an idea a mastery-drop alert names (its topic), where the app knows the subject maps. */
+  ideaName?: (kcId: string) => string | null;
   /** The section to open at (the student menu's Language, Get help, plan and back-up), once it is on the page; `at`
    * tells two requests for the same section apart. */
   section?: { id: string; at: number } | null;
@@ -324,6 +327,10 @@ export function Settings({ profiles, onClose, onOpenKnows, chooseSource, voiceSe
             <div className="py-4"><AppUpdates installing={installing} /></div>
           </Card>
         );
+      case "parent_summary":
+        return <Card>{view.active !== null ? <ParentSummary profiles={profiles} /> : <div className="py-3"><Skeleton lines={2} /></div>}</Card>;
+      case "alerts":
+        return <Card>{view.active !== null ? <Alerts profiles={profiles} {...(ideaName !== undefined ? { idea: ideaName } : {})} /> : <div className="py-3"><Skeleton lines={2} /></div>}</Card>;
       case "voice":
         if (voiceSettings !== undefined) return <Card><div className="py-3">{voiceSettings}</div></Card>;
         break;

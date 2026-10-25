@@ -16,19 +16,44 @@ chem_balance (VER-19); titration_curve and titration_sim -> chem_acid_base (VER-
 math_plot_points and math_evaluate (the tracked point); electrolysis_sim -> chem_balance (each half-equation) and
 math_evaluate (Q = It and the amounts, with the pack's Faraday constant and molar volume); rates_sim -> math_evaluate
 (k = A exp(-Ea/RT), a simplified first-order model); equilibrium_sim -> math_evaluate (Kc at the temperature, van't
-Hoff) and math_solve (the equilibrium extent: chem_equilibrium is A level, VER-32, and not built); journal_entry,
-t_account,
+Hoff) and math_solve (the equilibrium extent: chem_equilibrium is A level, VER-32, and not built); population_sim ->
+math_evaluate (the logistic curve's closed form at the end of the run; the Lotka-Volterra equilibrium and conserved
+quantity); exponential_curve -> math_plot_points and math_evaluate (the half-life or time constant); distribution_curve
+-> math_plot_points and math_integrate (normal) or math_evaluate and math_simplify (binomial, Poisson):
+stats_distribution is A level, VER-30, and not built; data_plot -> stats_compute (means and variances, so the
+least-squares line) and math_evaluate (the gradient, intercept and triangle); journal_entry, t_account,
 trial_balance and bank_reconciliation -> acc_double_entry, financial_statements -> acc_statements and break_even_chart
--> acc_break_even (VER-22)."""
+-> acc_break_even (VER-22); punnett_square and microscope_view -> math_evaluate (the class probabilities and the
+magnification: bio_genetics and bio_calc, VER-35, are not built in the worker yet), while food_web, pedigree_chart and
+gel_electrophoresis are checked and laid out with no tool (VSL-46: pack-supported facts and the question's givens);
+organic_structure -> chem_organic (VER-33), energy_levels and born_haber_cycle ->
+math_evaluate (the photon energies; the closing sum of the cycle, as chem_energetics has no cycle task yet),
+maxwell_boltzmann -> math_plot_points and math_integrate (the curve and its tail above Ea), concentration_time ->
+math_plot_points and math_evaluate (first-order decay, half-life and initial rate) or chem_balance (the reaction of an
+illustrative equilibrium response) (VSL-46)."""
 
 from __future__ import annotations
 
+import math
 import re
 from collections.abc import Callable, Mapping
+from decimal import Decimal
+from fractions import Fraction
+from itertools import pairwise
+from math import gcd
 from typing import Any
 
+from agent_core.assets.chemistry_kinds import expected_moves, part_id, unique_part_ids
 from agent_core.assets.generated.sim_presets import SIM_PRESETS
-from agent_core.assets.visual_kinds import surface_kind, tree_paths
+from agent_core.assets.visual_kinds import (
+    data_point_part,
+    food_web_organisms,
+    gel_bands,
+    safe_id,
+    say,
+    surface_kind,
+    tree_paths,
+)
 
 Call = Callable[[str, dict[str, Any]], dict[str, Any]]
 Computed = dict[str, Any]
@@ -36,6 +61,7 @@ PLAIN = re.compile(r"^-?[0-9]+(\.[0-9]+)?$")
 FRACTION = re.compile(r"^-?[0-9]+/[0-9]+$")
 QUANTITY = re.compile(r"^\s*(-?[0-9]+(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?)\s*(.*)$")
 OPTICS_CONVENTION = "phy.optics_sign_convention"
+TIMES = "\u00d7"  # the multiplication sign before a magnification
 
 
 class ResolutionError(Exception):
@@ -255,6 +281,227 @@ def break_even_chart(spec: dict[str, Any], s: Session) -> Computed:
             "break_even": [float(bep[0]["value"]), float(bep[1]["value"])],
         }
     )
+
+
+def _plain(value: float) -> str:
+    """A request's number as plain decimal text for a tool expression (0.0001, never 1e-04)."""
+    return format(Decimal(repr(value)) if isinstance(value, float) else Decimal(value), "f")
+
+
+def _x(expression: str, at: str) -> str:
+    """The expression with x replaced by `at` (bracketed); `exp` and `max` keep their x."""
+    return re.sub(r"(?<![a-z])x(?![a-z])", f"({at})", expression)
+
+
+# --- A level graphs (VSL-07, VSL-46) -------------------------------------------------------------------------------
+
+# exponential_curve: c0 e^(-kt) or c0 (1 - e^(-kt)), k > 0 per time unit; the half-life is ln 2 / k and the time
+# constant 1 / k, in the request's time unit.
+EXPONENTIAL_MARKS = {"half_life": "ln(2)/({k})", "time_constant": "1/({k})"}
+
+
+def exponential_curve(spec: dict[str, Any], s: Session) -> Computed:
+    """The curve from math_plot_points and the marked half-life or time constant (with the value there) from
+    math_evaluate; a mark outside the time range is refused, never drawn off the axes."""
+    params = spec["params"]
+    t0, t1 = params["time_range"]
+    if not t0 < t1:
+        raise ResolutionError("the time range runs the wrong way")
+    if not params["initial"] > 0:
+        raise ResolutionError("an initial value of zero draws no curve")
+    c0, k = _plain(params["initial"]), _plain(params["constant"])
+    expression = f"{c0}*exp(-{k}*x)" if params["mode"] == "decay" else f"{c0}*(1-exp(-{k}*x))"
+    value = s.run(
+        "math_plot_points",
+        {"curves": [{"id": "curve", "expr": expression}], "x_range": [t0, t1], "max_points": 121, "marks": []},
+    )
+    out: Computed = {"curve": [p for segment in value["curves"][0]["segments"] for p in segment]}
+    mark = params["mark"]
+    if mark in EXPONENTIAL_MARKS:
+        at = EXPONENTIAL_MARKS[mark].format(k=k)
+        time = s.run("math_evaluate", {"expression": at, "sf": 3})
+        where = float(time["exact"]["decimal"])
+        if not t0 <= where <= t1:
+            raise ResolutionError(
+                f"the {mark.replace('_', ' ')} {shown(time)} {params['time_unit']} lies outside the time range"
+            )
+        there = s.run("math_evaluate", {"expression": _x(expression, at), "sf": 3})
+        s.labels[mark] = shown(time)
+        s.labels[f"{mark}.value"] = shown(there)
+        out["mark"] = {"t": where, "value": float(there["exact"]["decimal"])}
+    return s.done(out)
+
+
+# distribution_curve: a normal curve sampled over the mean ± 4 sd (and out to the interval), its probability the
+# integral of the density; a binomial or Poisson distribution as bars over the mean ± 4 sd, each P(X = k) and the
+# probability from math_evaluate. Discrete intervals are whole outcomes, with both ends included.
+NORMAL_SPAN = 4
+NORMAL_TAIL = 40  # an open tail is integrated out to 40 sd: what lies beyond is below 1e-340, far under 4 sf
+DISCRETE_BARS = 41  # the most outcomes one chart draws
+DISCRETE_TERMS = 40  # the most terms one probability sums (within the tool's expression length and nesting limits)
+PROBABILITY_SF = 4
+
+
+def _bounds(params: dict[str, Any]) -> tuple[float | None, float | None]:
+    """The event's lower and upper bounds: between [a, b]; less_than X <= b; greater_than X >= a."""
+    a, b = params["interval"]
+    if a > b:
+        raise ResolutionError("the interval runs the wrong way")
+    tail = params["tail"]
+    return (None if tail == "less_than" else a), (None if tail == "greater_than" else b)
+
+
+def _event(lo: float | None, hi: float | None) -> str:
+    if lo is not None and hi is not None:
+        return f"P({lo:g} ≤ X ≤ {hi:g})"
+    return f"P(X ≤ {hi:g})" if hi is not None else f"P(X ≥ {lo:g})"
+
+
+def _normal(params: dict[str, Any], lo: float | None, hi: float | None, s: Session) -> Computed:
+    mean, sd = Decimal(_plain(params["parameters"]["mean"])), Decimal(_plain(params["parameters"]["sd"]))
+    pdf = f"exp(-(x-({mean}))^2/(2*({sd})^2))/(({sd})*sqrt(2*pi))"
+    ends = [Decimal(_plain(v)) for v in (lo, hi) if v is not None]
+    w0, w1 = min([mean - NORMAL_SPAN * sd, *ends]), max([mean + NORMAL_SPAN * sd, *ends])
+    plot = s.run(
+        "math_plot_points",
+        {"curves": [{"id": "pdf", "expr": pdf}], "x_range": [str(w0), str(w1)], "max_points": 161, "marks": []},
+    )
+    low = ends[0] if lo is not None else mean - NORMAL_TAIL * sd
+    high = ends[-1] if hi is not None else mean + NORMAL_TAIL * sd
+    area = s.run("math_integrate", {"expression": pdf, "variable": "x", "lower": str(low), "upper": str(high)})
+    s.labels["shade"] = shown(area["definite"], PROBABILITY_SF)
+    return {
+        "points": [p for segment in plot["curves"][0]["segments"] for p in segment],
+        "window": [float(w0), float(w1)],
+        "shade": [float(max(low, w0)), float(min(high, w1))],
+    }
+
+
+def _term(params: dict[str, Any], k: int) -> str:
+    """P(X = k) as a tool expression: nCk p^k (1 - p)^(n - k), or e^(-λ) λ^k / k!."""
+    if params["distribution"] == "binomial":
+        n, p = params["parameters"]["n"], _plain(params["parameters"]["p"])
+        choose = "*".join(f"{n - k + i}/{i}" for i in range(1, k + 1)) or "1"
+        return f"{choose}*({p})^{k}*(1-({p}))^{n - k}"
+    lam = _plain(params["parameters"]["lambda"])
+    factorial = "*".join(str(i) for i in range(1, k + 1)) or "1"
+    return f"exp(-({lam}))*({lam})^{k}/({factorial})"
+
+
+def _sum(params: dict[str, Any], first: int, last: int) -> str:
+    """P(first <= X <= last), nested so each term is the one before times its ratio: (n - k + 1) p / (k (1 - p)), or
+    λ / k."""
+    inner = "1"
+    for k in range(last, first, -1):
+        if params["distribution"] == "binomial":
+            n, p = params["parameters"]["n"], _plain(params["parameters"]["p"])
+            ratio = f"{n - k + 1}/{k}*({p})/(1-({p}))"
+        else:
+            ratio = f"({_plain(params['parameters']['lambda'])})/{k}"
+        inner = f"1+{ratio}*({inner})"
+    return f"{_term(params, first)}*({inner})"
+
+
+def _discrete(params: dict[str, Any], lo: float | None, hi: float | None, s: Session) -> Computed:
+    binomial = params["distribution"] == "binomial"
+    pars = params["parameters"]
+    if binomial and not 0 < pars["p"] < 1:
+        raise ResolutionError("a binomial distribution with p = 0 or 1 has one outcome; there is nothing to shade")
+    top = pars["n"] if binomial else None
+    for end in (lo, hi):
+        if end is None:
+            continue
+        if not float(end).is_integer():
+            raise ResolutionError(f"{end:g} is not a whole number of outcomes")
+        if end < 0 or (top is not None and end > top):
+            raise ResolutionError(f"{end:g} is not an outcome of the distribution")
+    first, last = (int(lo) if lo is not None else None), (int(hi) if hi is not None else None)
+    # The bars drawn: the mean ± 4 sd (presentation), widened to take in the interval.
+    mean = pars["n"] * pars["p"] if binomial else pars["lambda"]
+    sd = math.sqrt(pars["n"] * pars["p"] * (1 - pars["p"]) if binomial else pars["lambda"])
+    k0, k1 = max(0, math.floor(mean - NORMAL_SPAN * sd)), math.ceil(mean + NORMAL_SPAN * sd)
+    k1 = min(k1, top) if top is not None else max(k1, 1)
+    k0, k1 = (
+        min([k0, *(e for e in (first, last) if e is not None)]),
+        max([k1, *(e for e in (first, last) if e is not None)]),
+    )
+    if k1 - k0 + 1 > DISCRETE_BARS:
+        raise ResolutionError(f"the distribution has {k1 - k0 + 1} outcomes to draw, more than {DISCRETE_BARS}")
+    # The probability: the event's terms, or one minus the rest where that sums fewer.
+    lowest = first if first is not None else 0
+    options: list[tuple[int, str]] = []
+    if last is not None or top is not None:
+        highest = last if last is not None else int(top or 0)
+        options.append((highest - lowest + 1, _sum(params, lowest, highest)))
+    if first is None and last is not None and top is not None:
+        options.append((top - last, f"1-({_sum(params, last + 1, top)})" if last < top else "1"))
+    if last is None:
+        options.append((lowest, f"1-({_sum(params, 0, lowest - 1)})" if lowest > 0 else "1"))
+    count, expression = min(options, key=lambda o: o[0])
+    if count > DISCRETE_TERMS:
+        raise ResolutionError(f"the probability sums {count} outcomes, more than {DISCRETE_TERMS}")
+    s.labels["shade"] = shown(s.run("math_evaluate", {"expression": expression, "sf": PROBABILITY_SF}))
+    # Each bar's height, P(X = k), exactly as one fraction: math_simplify skips math_evaluate's search for a closed
+    # form, which takes a large share of a second for each of up to 41 bars.
+    bars = []
+    for k in range(k0, k1 + 1):
+        height = s.run("math_simplify", {"expression": _term(params, k), "form": "single_fraction"})
+        bars.append([k, float(height["result"]["decimal"])])
+    shaded = [k for k in range(k0, k1 + 1) if (first is None or k >= first) and (last is None or k <= last)]
+    return {"bars": bars, "shade": [shaded[0], shaded[-1]] if shaded else []}
+
+
+def distribution_curve(spec: dict[str, Any], s: Session) -> Computed:
+    """The shaded probability of the interval and the curve or bars it is shaded on (VSL-46: parameters of their own
+    distribution; discrete intervals whole outcomes)."""
+    params = spec["params"]
+    lo, hi = _bounds(params)
+    drawn = _normal(params, lo, hi, s) if params["distribution"] == "normal" else _discrete(params, lo, hi, s)
+    return s.done({**drawn, "event": _event(lo, hi)})
+
+
+def data_plot(spec: dict[str, Any], s: Session) -> Computed:
+    """A linear fit by least squares from stats_compute: the means and the variances of x, y and x + y, so
+    cov(x, y) = (var(x + y) - var x - var y) / 2 and the gradient cov / var x, with math_evaluate for the gradient, the
+    intercept and the triangle across the data's x range. Points are unique; a constant x refuses a fit (VSL-46)."""
+    params = spec["params"]
+    points = params["points"]
+    ids = [data_point_part(p["id"]) for p in points]
+    if len(set(ids)) != len(ids):
+        raise ResolutionError("point ids repeat")
+    if len({(p["x"], p["y"]) for p in points}) != len(points):
+        raise ResolutionError("two points are the same")
+    if params["fit"] != "linear":
+        return {}
+    xs, ys = [_plain(p["x"]) for p in points], [_plain(p["y"]) for p in points]
+    both = [str(Decimal(x) + Decimal(y)) for x, y in zip(xs, ys, strict=True)]
+    sx, sy, sxy = (s.run("stats_compute", {"data": data}) for data in (xs, ys, both))
+    if Decimal(sx["variance"]["decimal"]) == 0:
+        raise ResolutionError("every point has the same x, so no line can be fitted")
+    vx, vy, vxy = (f"({v['variance']['text']})" for v in (sx, sy, sxy))
+    gradient = s.run("math_evaluate", {"expression": f"({vxy}-{vx}-{vy})/(2*{vx})", "sf": 3})
+    m = f"({gradient['exact']['text']})"
+    intercept = s.run("math_evaluate", {"expression": f"({sy['mean']['text']})-{m}*({sx['mean']['text']})", "sf": 3})
+    c = f"({intercept['exact']['text']})"
+    x_lo, x_hi = sx["min"]["text"], sx["max"]["text"]
+    y_lo = s.run("math_evaluate", {"expression": f"{c}+{m}*({x_lo})"})
+    y_hi = s.run("math_evaluate", {"expression": f"{c}+{m}*({x_hi})"})
+    dx = s.run("math_evaluate", {"expression": f"({x_hi})-({x_lo})", "sf": 3})
+    dy = s.run("math_evaluate", {"expression": f"({y_hi['exact']['text']})-({y_lo['exact']['text']})", "sf": 3})
+    s.labels.update(
+        {
+            "fit.gradient": shown(gradient),
+            "fit.intercept": shown(intercept),
+            "gradient.dx": shown(dx),
+            "gradient.dy": shown(dy),
+        }
+    )
+    ends = [
+        [float(sx["min"]["decimal"]), float(y_lo["exact"]["decimal"])],
+        [float(sx["max"]["decimal"]), float(y_hi["exact"]["decimal"])],
+    ]
+    out = {"line": ends, "intercept": float(intercept["exact"]["decimal"])}
+    return s.done(out)
 
 
 # --- geometry ----------------------------------------------------------------------------------------------------
@@ -906,6 +1153,56 @@ def equilibrium_sim(spec: dict[str, Any], s: Session) -> Computed:
     return s.done({"extent": extent, "parts": parts, "alt": alt})
 
 
+# population_sim: the client's sliders run from a tenth of each starting rate to twice it, in tenths (VSL-30), so a
+# rate too small for the slider's steps is refused.
+POPULATION_SMALLEST_RATE = 0.0001
+POPULATION_CONTROLS = {
+    "logistic": ("growth_rate", "carrying_capacity"),
+    "predator_prey": ("growth_rate", "predation_rate", "predator_death_rate", "conversion_rate"),
+}
+
+
+def population_sim(spec: dict[str, Any], s: Session) -> Computed:
+    """Logistic growth, N' = rN(1 - N/K): the population at the end of the run from the closed form with math_evaluate.
+    Predator and prey (Lotka-Volterra: x' = ax - bxy, y' = dxy - cy, every coefficient positive): the equilibrium
+    (c/d, a/b) and the conserved quantity dx - c ln x + by - a ln y from math_evaluate. The populations start above
+    zero; no ecological prediction is claimed (VSL-46)."""
+    params = spec["params"]
+    model = params["model"]
+    for name in POPULATION_CONTROLS[model]:
+        if params[name] < POPULATION_SMALLEST_RATE:
+            raise ResolutionError(f"{name.replace('_', ' ')} {params[name]:g} is below {POPULATION_SMALLEST_RATE:g}")
+    prey, duration = _plain(params["initial_prey"]), _plain(params["duration"])
+    if not params["initial_prey"] > 0:
+        raise ResolutionError("the population starts at zero, so nothing grows")
+    readouts = {"out.time": "0", "out.prey": f"{params['initial_prey']:g}"}
+    if model == "logistic":
+        r, k = _plain(params["growth_rate"]), _plain(params["carrying_capacity"])
+        end = s.run("math_evaluate", {"expression": f"{k}*{prey}/({prey}+({k}-{prey})*exp(-{r}*{duration}))", "sf": 3})
+        s.labels["end.prey"] = shown(end)
+        alt = {"prey": f"{params['initial_prey']:g}", "rate": f"{params['growth_rate']:g}",
+               "capacity": f"{params['carrying_capacity']:g}", "duration": f"{params['duration']:g}",
+               "end": shown(end)}  # fmt: skip
+    else:
+        if not params["initial_predator"] > 0:
+            raise ResolutionError("with no predators the prey grow without limit; start with some predators")
+        a, b = _plain(params["growth_rate"]), _plain(params["predation_rate"])
+        c, d = _plain(params["predator_death_rate"]), _plain(params["conversion_rate"])
+        predators = _plain(params["initial_predator"])
+        readouts["out.predator"] = f"{params['initial_predator']:g}"
+        s.labels["eq.prey"] = shown(s.run("math_evaluate", {"expression": f"{c}/{d}", "sf": 3}))
+        s.labels["eq.predator"] = shown(s.run("math_evaluate", {"expression": f"{a}/{b}", "sf": 3}))
+        conserved = f"{d}*{prey}-{c}*ln({prey})+{b}*{predators}-{a}*ln({predators})"
+        s.labels["conserved"] = shown(s.run("math_evaluate", {"expression": conserved, "sf": 3}))
+        alt = {"prey": f"{params['initial_prey']:g}", "predators": f"{params['initial_predator']:g}",
+               "prey_eq": s.labels["eq.prey"], "predator_eq": s.labels["eq.predator"],
+               "duration": f"{params['duration']:g}"}  # fmt: skip
+    s.labels.update(readouts)
+    parts = [{"id": f"ctrl.{c}", "role": "control", "label": c.replace("_", " ")} for c in POPULATION_CONTROLS[model]]
+    parts += [{"id": k, "role": "readout", "label": k.split(".")[1]} for k in readouts]
+    return s.done({"parts": parts, "alt": alt})
+
+
 # --- chemistry -----------------------------------------------------------------------------------------------------
 
 
@@ -947,6 +1244,269 @@ def particle_diagram(spec: dict[str, Any], s: Session) -> Computed:
     for i, sp in enumerate(value["species"], 1):
         s.labels[f"sp{i}"] = f"{sp['coefficient'] if sp['coefficient'] != 1 else ''}{sp['formula']}"
     return s.done({"species": value["species"], "equation": value["equation"]})
+
+
+# --- organic and A level chemistry (VSL-06, VSL-07, VSL-46) ---------------------------------------------------------
+
+
+def _unique(ids: list[str], what: str) -> dict[str, str]:
+    try:
+        return unique_part_ids(ids, what)
+    except ValueError as error:
+        raise ResolutionError(str(error)) from None
+
+
+def organic_structure(spec: dict[str, Any], s: Session) -> Computed:
+    """Each structure from chem_organic (VER-33: canonicalised and checked by RDKit, names from the pack's curated
+    table): its formula, functional groups, atom and bond ids and its drawing, which the engine's tool call has
+    already sanitised as library SVG is (VSL-23, engine.tool_drawings); a comparison also gets the tool's
+    relationship. Groups to highlight must be ones the tool found."""
+    params = spec["params"]
+    inputs = params["inputs"]
+    value = s.run(
+        "chem_organic", {"task": params["task"], "representation": params["representation"], "inputs": inputs}
+    )
+    structures = value.get("structures") or []
+    if len(structures) != len(inputs):
+        raise ResolutionError(f"chem_organic gave {len(structures)} structures for {len(inputs)} inputs")
+    wanted = list(params.get("highlight_groups") or [])
+    found = {g.lower() for st in structures for g in st["functional_groups"]}
+    missing = [g for g in wanted if g.lower() not in found]
+    if missing:
+        raise ResolutionError(f"chem_organic found no {', '.join(missing)} group")
+    out = []
+    for n, (given, st) in enumerate(zip(inputs, structures, strict=True), 1):
+        s.labels[f"mol_{n}"] = given["value"] if given["kind"] == "name" else st["canonical_smiles"]
+        s.labels[f"mol_{n}.formula"] = st["formula"]
+        highlighted = [g for g in wanted if g.lower() in {f.lower() for f in st["functional_groups"]}]
+        out.append(
+            {
+                "canonical_smiles": st["canonical_smiles"],
+                "formula": st["formula"],
+                "functional_groups": st["functional_groups"],
+                "highlighted": highlighted,
+                "svg": st["svg"],
+                "atom_ids": st["atom_ids"],
+                "bond_ids": st["bond_ids"],
+            }
+        )
+    computed: Computed = {"structures": out}
+    if value.get("relationship"):
+        computed["relationship"] = value["relationship"]
+    return s.done(computed)
+
+
+def energy_levels(spec: dict[str, Any], s: Session) -> Computed:
+    """Each transition's photon energy from math_evaluate, |E(to) - E(from)| in eV, with its direction kept: emission
+    when the electron falls to a lower level, absorption when it rises (VSL-46)."""
+    params = spec["params"]
+    levels = {lv["id"]: lv for lv in params["levels"]}
+    _unique([lv["id"] for lv in params["levels"]], "level")
+    transitions, seen = [], set()
+    for tr in params["transitions"]:
+        if tr["from"] not in levels or tr["to"] not in levels:
+            raise ResolutionError(f"a transition names a level that is not drawn ({tr['from']} to {tr['to']})")
+        if tr["from"] == tr["to"] or (tr["from"], tr["to"]) in seen:
+            raise ResolutionError(f"the transition {tr['from']} to {tr['to']} is empty or repeated")
+        seen.add((tr["from"], tr["to"]))
+        start, end = levels[tr["from"]]["energy_ev"], levels[tr["to"]]["energy_ev"]
+        if start == end:
+            raise ResolutionError(f"{tr['from']} and {tr['to']} have the same energy; no photon is involved")
+        tid = f"tr_{part_id(tr['from'])}_{part_id(tr['to'])}"
+        entry: dict[str, Any] = {"id": tid, "direction": "emission" if end < start else "absorption"}
+        if params["show_photon_energy"]:
+            value = s.run("math_evaluate", {"expression": f"abs(({end})-({start}))", "sf": 3})
+            entry["energy_ev"] = float(value["exact"]["decimal"])
+            s.labels[tid] = f"{shown(value)} eV"
+        transitions.append(entry)
+    for lv in params["levels"]:
+        s.labels[f"lvl_{part_id(lv['id'])}"] = f"{lv['label']}: {lv['energy_ev']:g} eV"
+    return s.done({"transitions": transitions})
+
+
+# A tail beyond this many RT above the activation energy holds less than e^-80 of the molecules (presentation bound
+# of the integral, never a displayed number).
+MB_TAIL_RT = 80
+
+
+def maxwell_boltzmann(spec: dict[str, Any], s: Session) -> Computed:
+    """The energy distribution f(E) = 2 sqrt(E/pi) (RT)^(-3/2) exp(-E/RT) for each temperature, sampled by
+    math_plot_points over 0 to energy_max, and the fraction of molecules with at least Ea from math_integrate over
+    the same function, so the shaded tail and the curve are one distribution (VSL-46)."""
+    params = spec["params"]
+    temperatures = params["temperatures_k"]
+    ea, top = params["activation_energy_j_mol"], params["energy_max_j_mol"]
+    if len(set(temperatures)) != len(temperatures):
+        raise ResolutionError("a temperature repeats")
+    if not ea < top:
+        raise ResolutionError("the activation energy must lie inside the energy axis")
+    curves, fractions = {}, {}
+    for n, t in enumerate(temperatures, 1):
+        rt = f"({GAS_CONSTANT}*{t})"
+        density = f"2*sqrt(x/pi)*(1/{rt})^(3/2)*exp(-x/{rt})"
+        plotted = s.run(
+            "math_plot_points",
+            {"curves": [{"id": f"curve_{n}", "expr": density}], "x_range": [0, top], "max_points": 120},
+        )
+        curves[f"curve_{n}"] = plotted["curves"][0]["segments"]
+        upper = f"{ea + MB_TAIL_RT * float(GAS_CONSTANT) * t:.6g}"
+        tail = s.run("math_integrate", {"expression": density, "variable": "x", "lower": f"{ea:g}", "upper": upper})
+        fractions[f"tail_{n}"] = float(tail["definite"]["decimal"])
+        s.labels[f"tail_{n}"] = shown(tail["definite"])
+        s.labels[f"curve_{n}"] = f"{t:g} K"
+    s.labels["ea"] = f"Ea = {ea:g} J/mol"
+    return s.done({"curves": curves, "fractions": fractions})
+
+
+BORN_HABER_ONE = ("formation", "lattice")
+
+
+def born_haber_cycle(spec: dict[str, Any], s: Session) -> Computed:
+    """The unknown step from math_evaluate so that the cycle closes: the sum of orientation x coefficient x enthalpy
+    round the cycle is zero, checked again with the found value (VSL-46). chem_energetics has no cycle task until the
+    A level checkers (M26.a), so the closing sum goes through math_evaluate as the other A level figures do (VSL-07)."""
+    params = spec["params"]
+    steps = params["steps"]
+    ids = _unique([st["id"] for st in steps], "step")
+    unknown = params["unknown_step"]
+    if unknown not in ids:
+        raise ResolutionError(f"unknown_step {unknown} is not a step of the cycle")
+    for st in steps:
+        if (st["id"] == unknown) == ("enthalpy_kj_mol" in st):
+            raise ResolutionError(f"exactly the unknown step omits its enthalpy ({st['id']})")
+    for kind in BORN_HABER_ONE:
+        if sum(1 for st in steps if st["kind"] == kind) != 1:
+            raise ResolutionError(f"a Born-Haber cycle has exactly one {kind} step")
+
+    def term(st: dict[str, Any], enthalpy: str) -> str:
+        return f"({st['orientation']})*({st['coefficient']})*({enthalpy})"
+
+    target = next(st for st in steps if st["id"] == unknown)
+    known = " + ".join(term(st, str(st["enthalpy_kj_mol"])) for st in steps if st["id"] != unknown)
+    value = s.run("math_evaluate", {"expression": f"-({known})/(({target['orientation']})*({target['coefficient']}))"})
+    found = value["exact"]["text"]
+    closure = s.run("math_evaluate", {"expression": f"{known} + {term(target, found)}"})
+    if closure["exact"]["text"] != "0":
+        raise ResolutionError("the cycle does not close")
+    contributions = {}
+    for st in steps:
+        enthalpy = float(value["exact"]["decimal"]) if st["id"] == unknown else float(st["enthalpy_kj_mol"])
+        pid = f"step_{ids[st['id']]}"
+        contributions[pid] = st["orientation"] * st["coefficient"] * enthalpy
+        text = shown(value) if st["id"] == unknown else f"{st['enthalpy_kj_mol']:g}"
+        sign = "+" if not text.startswith("-") and float(text) != 0 else ""
+        times = f"{st['coefficient']:g} \u00d7 " if st["coefficient"] != 1 else ""
+        s.labels[pid] = f"{times}{sign}{text}"
+    # Each step's contribution round the cycle, for the drawing's levels (presentation geometry of traced values).
+    return s.done({"contributions": contributions, "unknown": f"step_{ids[unknown]}"})
+
+
+# A qualitative response settles over a fifth of the time after the event (illustrative, never a measured rate).
+SETTLE_FRACTION = 5
+
+
+def concentration_time(spec: dict[str, Any], s: Session) -> Computed:
+    """Measured data as given; a first-order decay c = c0 exp(-kt) sampled by math_plot_points with its half-life and
+    initial-rate tangent from math_evaluate; or an illustrative equilibrium response whose reaction chem_balance
+    checks, whose plateaus move the way Le Chatelier says, and whose time scale is never claimed (VSL-46: no kinetics
+    from Kc, no fitted claim from data)."""
+    params = spec["params"]
+    species = params["species"]
+    ids = _unique([sp["id"] for sp in species], "species")
+    lo, hi = params["time_range"]
+    if not lo < hi:
+        raise ResolutionError("time_range runs the wrong way")
+    mode = params["mode"]
+    if mode != "first_order" and params.get("show_initial_tangent"):
+        raise ResolutionError("an initial-rate tangent needs a declared rate law (first_order)")
+    if mode == "data":
+        curves = {}
+        for sp in species:
+            times = [pt["time"] for pt in sp["points"]]
+            if any(b <= a for a, b in pairwise(times)) or times[0] < lo or times[-1] > hi:
+                raise ResolutionError(f"{sp['id']}: the points must run forwards in time inside time_range")
+            curves[f"sp_{ids[sp['id']]}"] = [[[pt["time"], pt["concentration"]] for pt in sp["points"]]]
+        return s.done({"curves": curves})
+    if mode == "first_order":
+        return _first_order(params, ids, s)
+    return _qualitative_equilibrium(params, ids, s)
+
+
+def _first_order(params: dict[str, Any], ids: dict[str, str], s: Session) -> Computed:
+    lo, hi = params["time_range"]
+    unit, curves, tangents, halves = params["time_unit"], {}, {}, {}
+    for sp in params["species"]:
+        if sp.get("role") == "product":
+            raise ResolutionError("first_order draws the decay of a reactant, c = c0 exp(-kt)")
+        pid, c0, k = f"sp_{ids[sp['id']]}", sp["initial"], sp["rate_constant"]
+        plotted = s.run(
+            "math_plot_points",
+            {"curves": [{"id": pid, "expr": f"{c0}*exp(-{k}*x)"}], "x_range": [lo, hi], "max_points": 80},
+        )
+        curves[pid] = plotted["curves"][0]["segments"]
+        half = s.run("math_evaluate", {"expression": f"ln(2)/{k}", "sf": 3})
+        if lo <= float(half["exact"]["decimal"]) <= hi:
+            s.labels[f"{pid}.half_life"] = f"t½ = {shown(half)} {unit}"
+            halves[pid] = float(half["exact"]["decimal"])
+        if params.get("show_initial_tangent"):
+            rate = s.run("math_evaluate", {"expression": f"{k}*{c0}*exp(-{k}*{lo})", "sf": 3})
+            end = min(hi, lo + 1 / k)
+            line = s.run(
+                "math_plot_points",
+                {
+                    "curves": [{"id": f"{pid}.tangent", "expr": f"{c0}*exp(-{k}*{lo})*(1-{k}*(x-{lo}))"}],
+                    "x_range": [lo, end],
+                    "max_points": 20,
+                },
+            )
+            tangents[pid] = line["curves"][0]["segments"]
+            s.labels[f"{pid}.tangent"] = f"{shown(rate)} {params['concentration_unit']}/{unit}"
+    return s.done({"curves": curves, "half_lives": halves, "tangents": tangents})
+
+
+def _qualitative_equilibrium(params: dict[str, Any], ids: dict[str, str], s: Session) -> Computed:
+    lo, hi = params["time_range"]
+    event = params["event"]
+    at = event["at"]
+    if not lo < at < hi:
+        raise ResolutionError("the change must happen inside the time shown")
+    reaction = event["reaction"]["species"]
+    by_id = {sp["id"]: sp for sp in reaction}
+    if len(by_id) != len(reaction):
+        raise ResolutionError("the reaction repeats a species id")
+    for sp in params["species"]:
+        if sp["id"] not in by_id or by_id[sp["id"]]["side"] != sp["role"]:
+            raise ResolutionError(f"{sp['id']} is not a {sp['role']} of the reaction")
+    sides = [
+        " + ".join(
+            f"{x['coefficient'] if x['coefficient'] > 1 else ''}{x['formula']}" for x in reaction if x["side"] == side
+        )
+        for side in ("reactant", "product")
+    ]
+    balance = s.run("chem_balance", {"equation": " -> ".join(sides)})
+    if not balance.get("student", {}).get("balanced"):
+        raise ResolutionError(f"{' -> '.join(sides)} is not balanced")
+    try:
+        moves = expected_moves(params)
+    except ValueError as error:
+        raise ResolutionError(str(error)) from None
+    added = event.get("species_id") if event["change"] in ("add_species", "remove_species") else None
+    tau = (hi - at) / SETTLE_FRACTION
+    curves = {}
+    for sp in params["species"]:
+        before, after = sp["initial_plateau"], sp["final_plateau"]
+        moved = "unchanged" if after == before else ("rises" if after > before else "falls")
+        if moved != moves[sp["id"]]:
+            raise ResolutionError(f"{sp['id']} should be {moves[sp['id']]} after the change, not {moved}")
+        # The species added or removed jumps at the change and then partly recovers; the rest move smoothly.
+        start = before + 2 * (after - before) if sp["id"] == added else before
+        settle = f"({after})+(({start})-({after}))*exp(-(x-({at}))/({tau}))"
+        plotted = s.run(
+            "math_plot_points", {"curves": [{"id": "after", "expr": settle}], "x_range": [at, hi], "max_points": 60}
+        )
+        curves[f"sp_{ids[sp['id']]}"] = [[[lo, before], [at, before]], *plotted["curves"][0]["segments"]]
+    equation = " ⇌ ".join(sides)
+    return s.done({"curves": curves, "moves": moves, "equation": equation, "illustrative": True})
 
 
 # --- accounting ----------------------------------------------------------------------------------------------------
@@ -1055,11 +1615,330 @@ def bank_reconciliation(spec: dict[str, Any], s: Session) -> Computed:
     )
 
 
+# --- biology (VSL-05, VSL-46) ---------------------------------------------------------------------------------------
+
+DOMINANCE = {"recessive": 0, "codominant": 1, "dominant": 2}
+SEX_LINKED = re.compile(r"^X([A-Za-z])(?:X([A-Za-z])|(Y))$")
+BLOOD_GROUP = re.compile(r"^I([ABO])I([ABO])$")
+Gamete = tuple[str, ...]
+Y_CHROMOSOME = "/Y"  # a father's Y in a sex-linked cross; never an allele symbol, which is letters only
+
+
+class _Cross:
+    """A cross as declared: the allele legend (rank = its place in the legend), and each parent's genes. The cells,
+    classes and phenotypes follow from the declarations alone, never from how a symbol is spelt (VER-35)."""
+
+    def __init__(self, params: dict[str, Any]) -> None:
+        self.kind = str(params["cross"])
+        self.alleles: dict[str, dict[str, Any]] = {}
+        for rank, allele in enumerate(params["alleles"]):
+            if allele["symbol"] in self.alleles:
+                raise ResolutionError(f"allele {allele['symbol']} is declared twice")
+            self.alleles[allele["symbol"]] = {**allele, "rank": rank}
+        self.parents = [self.genes(str(params["parent1"])), self.genes(str(params["parent2"]))]
+        if self.kind == "sex_linked" and sorted(len(p[0]) for p in self.parents) != [1, 2]:
+            raise ResolutionError("a sex-linked cross needs a mother (XX) and a father (XY)")
+        if len(self.parents[0]) != len(self.parents[1]):
+            raise ResolutionError("the parents do not carry the same genes")
+
+    def symbol(self, token: str) -> str:
+        found = f"I{token}" if self.kind == "multiple_alleles" and f"I{token}" in self.alleles else token
+        if found not in self.alleles:
+            raise ResolutionError(f"{token} is not in the allele legend")
+        return found
+
+    def genes(self, genotype: str) -> list[list[str]]:
+        """The parent's genes, each its alleles in legend order; a sex-linked father's gene holds his one X allele."""
+        if self.kind == "sex_linked":
+            match = SEX_LINKED.match(genotype)
+            if not match:
+                raise ResolutionError(f"{genotype} is not a sex-linked genotype")
+            return [self.ordered([self.symbol(a) for a in match.groups()[:2] if a])]
+        if self.kind == "multiple_alleles":
+            match = BLOOD_GROUP.match(genotype)
+            if not match:
+                raise ResolutionError(f"{genotype} is not a multiple-allele genotype")
+            return [self.ordered([self.symbol(a) for a in match.groups()])]
+        tokens, rest = [], genotype
+        while rest:  # the longest declared symbol first
+            found = next((s for s in sorted(self.alleles, key=len, reverse=True) if rest.startswith(s)), None)
+            if found is None:
+                raise ResolutionError(f"{genotype} has an allele that is not in the legend")
+            tokens.append(found)
+            rest = rest[len(found) :]
+        count = 4 if self.kind == "dihybrid" else 2
+        if len(tokens) != count:
+            raise ResolutionError(f"{genotype} does not have {count} alleles for a {self.kind} cross")
+        genes = [self.ordered(tokens[i : i + 2]) for i in range(0, count, 2)]
+        if self.kind == "dihybrid" and any(g[0][0].lower() != g[1][0].lower() for g in genes):
+            raise ResolutionError(f"{genotype} does not pair the alleles of each gene")
+        return genes
+
+    def ordered(self, alleles: list[str]) -> list[str]:
+        return sorted(alleles, key=lambda a: self.alleles[a]["rank"])
+
+    def gametes(self, parent: list[list[str]]) -> list[Gamete]:
+        """Each different gamete once (all equally likely), in the order the parent's alleles are written."""
+        out: list[Gamete] = [()]
+        for gene in parent:
+            out = [(*g, a) for g in out for a in dict.fromkeys(gene)]
+        if self.kind == "sex_linked" and len(parent[0]) == 1:
+            out.append((Y_CHROMOSOME,))
+        return list(dict.fromkeys(out))
+
+    def offspring(self, a: Gamete, b: Gamete) -> list[list[str]]:
+        if self.kind == "sex_linked":
+            return [self.ordered([x for x in (*a, *b) if x != Y_CHROMOSOME])]
+        return [self.ordered([x, y]) for x, y in zip(a, b, strict=True)]
+
+    def allele_text(self, allele: str) -> str:
+        """An allele as written in a genotype: on its X for a sex-linked gene, on I for the blood groups."""
+        if allele == Y_CHROMOSOME:
+            return "Y"
+        if self.kind == "sex_linked":
+            return f"X{allele}"
+        return f"I{allele}" if self.kind == "multiple_alleles" and not allele.startswith("I") else allele
+
+    def written(self, genes: list[list[str]]) -> str:
+        text = "".join(self.allele_text(a) for gene in genes for a in gene)
+        return text + "Y" if self.kind == "sex_linked" and len(genes[0]) == 1 else text
+
+    def gamete_text(self, gamete: Gamete) -> str:
+        return "".join(self.allele_text(a) for a in gamete)
+
+    def phenotype(self, genes: list[list[str]]) -> str:
+        words = []
+        for gene in genes:
+            records = [self.alleles[a] for a in dict.fromkeys(gene)]
+            strongest = max(DOMINANCE[r["dominance"]] for r in records)
+            shown_by = [r for r in records if DOMINANCE[r["dominance"]] == strongest]
+            if len(shown_by) == 1 or len(gene) == 1:
+                words.append(str(shown_by[0]["phenotype"]))
+            elif all(r["dominance"] == "codominant" for r in shown_by) and len(shown_by) == 2:
+                words.append(say("part", "punnett_both", a=shown_by[0]["phenotype"], b=shown_by[1]["phenotype"]))
+            else:
+                raise ResolutionError(f"{' and '.join(r['symbol'] for r in shown_by)} are both declared dominant")
+        text = ", ".join(words)
+        if self.kind == "sex_linked":
+            sex = say("part", "sex_male" if len(genes[0]) == 1 else "sex_female")
+            return say("part", "punnett_sexed", phenotype=text, sex=sex)
+        return text
+
+
+def _ratio(fractions: list[Fraction]) -> str:
+    """Probabilities as the smallest whole-number ratio ("1 : 2 : 1")."""
+    scale = 1
+    for f in fractions:
+        scale = scale * f.denominator // gcd(scale, f.denominator)
+    whole = [int(f * scale) for f in fractions]
+    common = 0
+    for w in whole:
+        common = gcd(common, w)
+    return " : ".join(str(w // max(common, 1)) for w in whole)
+
+
+def punnett_square(spec: dict[str, Any], s: Session) -> Computed:
+    """The square from the declared alleles; each class's probability from math_evaluate (bio_genetics, VER-35, is
+    not built in the worker yet), and the ratios from those probabilities. Every cell is equally likely: each parent's
+    gametes are listed once each and are equally likely."""
+    cross = _Cross(spec["params"])
+    first, second = (cross.gametes(p) for p in cross.parents)
+    grid: list[list[str]] = []
+    genotypes: dict[str, dict[str, Any]] = {}
+    for a in first:
+        row = []
+        for b in second:
+            genes = cross.offspring(a, b)
+            text = cross.written(genes)
+            genotypes.setdefault(text, {"genes": genes, "male": Y_CHROMOSOME in a + b, "count": 0})["count"] += 1
+            row.append(text)
+        grid.append(row)
+    total = len(first) * len(second)
+
+    def rank(text: str) -> tuple[int, ...]:
+        record = genotypes[text]
+        return (int(record["male"]), *(cross.alleles[a]["rank"] for gene in record["genes"] for a in gene))
+
+    genotype_classes: list[dict[str, Any]] = []
+    phenotype_counts: dict[str, int] = {}
+    for text in sorted(genotypes, key=rank):
+        record = genotypes[text]
+        probability = shown(s.run("math_evaluate", {"expression": f"{record['count']}/{total}"}))
+        genotype_classes.append({"genotype": text, "probability": probability})
+        phenotype = cross.phenotype(record["genes"])
+        phenotype_counts[phenotype] = phenotype_counts.get(phenotype, 0) + record["count"]
+    phenotype_classes = [
+        {"phenotype": name, "probability": shown(s.run("math_evaluate", {"expression": f"{count}/{total}"}))}
+        for name, count in phenotype_counts.items()
+    ]
+    for classes, key in ((genotype_classes, "genotype_ratio"), (phenotype_classes, "phenotype_ratio")):
+        ratio = _ratio([Fraction(c["probability"]) for c in classes])
+        for c, part in zip(classes, ratio.split(" : "), strict=True):
+            c["ratio"] = int(part)
+        s.labels[key] = ratio
+    return s.done({
+        "gametes": {"p1": [cross.gamete_text(g) for g in first], "p2": [cross.gamete_text(g) for g in second]},
+        "grid": grid,
+        "genotype_classes": genotype_classes,
+        "phenotype_classes": phenotype_classes,
+    })  # fmt: skip
+
+
+def food_web(spec: dict[str, Any], s: Session) -> Computed:
+    """VSL-46: unique organisms, links that name them, every arrow from food to consumer up the trophic levels the
+    author gave, and every consumer eating something. Pack-supported facts, not numbers: no tool runs."""
+    params = spec["params"]
+    organisms = food_web_organisms(params)
+    levels = {o["id"]: int(o["trophic_level"]) for o in organisms}
+    parts = {safe_id(o["id"]) for o in organisms}
+    if len(levels) != len(organisms) or len(parts) != len(organisms):
+        raise ResolutionError("an organism id is used twice")
+    seen, eats = set(), set()
+    for link in params["links"]:
+        a, b = link["from"], link["to"]
+        if a not in levels or b not in levels:
+            raise ResolutionError(f"the link {a} -> {b} names an organism the web does not have")
+        if levels[b] <= levels[a]:
+            raise ResolutionError(f"{b} eats {a}, so it must be at a higher trophic level")
+        if (a, b) in seen:
+            raise ResolutionError(f"the link {a} -> {b} is listed twice")
+        seen.add((a, b))
+        eats.add(b)
+    hungry = [o for o in levels if levels[o] > 1 and o not in eats]
+    if hungry:
+        raise ResolutionError(f"{hungry[0]} is a consumer that eats nothing in this web")
+    return s.done({
+        "organisms": [{"id": o["id"], "part": f"org.{safe_id(o['id'])}", "label": o["label"], "level": levels[o["id"]]}
+                      for o in organisms],
+        "links": [{"from": x["from"], "to": x["to"], "part": f"link.{safe_id(x['from'])}.{safe_id(x['to'])}"}
+                  for x in params["links"]],
+        "levels": sorted(set(levels.values())),
+    })  # fmt: skip
+
+
+ROMAN = (("X", 10), ("IX", 9), ("V", 5), ("IV", 4), ("I", 1))
+
+
+def roman(n: int) -> str:
+    out = ""
+    for letters, value in ROMAN:
+        while n >= value:
+            out, n = out + letters, n - value
+    return out
+
+
+def pedigree_chart(spec: dict[str, Any], s: Session) -> Computed:
+    """VSL-46: parents exist and come from earlier generations (so no cycles), each child has one pair of parents, and
+    a carrier status the author left unknown stays unknown: nothing is inferred. Each generation is laid out with a
+    family's children together under their parents and each partner beside the person they partner."""
+    params = spec["params"]
+    people = {p["id"]: p for p in params["individuals"]}
+    if len(people) != len(params["individuals"]):
+        raise ResolutionError("an individual is listed twice")
+    families: dict[tuple[str, str], list[str]] = {}
+    has_parents: set[str] = set()
+    for link in params["parents"]:
+        child, a, b = link["child"], link["parent1"], link["parent2"]
+        for who in (child, a, b):
+            if who not in people:
+                raise ResolutionError(f"{who} is not in the pedigree")
+        if a == b:
+            raise ResolutionError(f"{child} has the same person as both parents")
+        if child in has_parents:
+            raise ResolutionError(f"{child} has two pairs of parents")
+        for parent in (a, b):
+            if people[parent]["generation"] >= people[child]["generation"]:
+                raise ResolutionError(f"{parent} is not in an earlier generation than {child}")
+        has_parents.add(child)
+        key = (b, a) if (b, a) in families else (a, b)
+        families.setdefault(key, []).append(child)
+    partners: dict[str, list[str]] = {}
+    for a, b in families:
+        partners.setdefault(a, []).append(b)
+        partners.setdefault(b, []).append(a)
+    placed: dict[str, int] = {}
+    rows: list[dict[str, Any]] = []
+    for generation in sorted({p["generation"] for p in people.values()}):
+        row: list[str] = []
+
+        def place(who: str, gen: int = generation, row: list[str] = row) -> None:
+            if who in placed or people[who]["generation"] != gen:
+                return
+            placed[who] = len(row)
+            row.append(who)
+            for partner in partners.get(who, []):
+                if partner not in has_parents:
+                    place(partner)
+
+        couples = sorted(families.items(), key=lambda f: sum(placed.get(p, 0) for p in f[0]) / 2)
+        for _, children in couples:
+            for child in children:
+                place(child)
+        for who in people:
+            place(who)
+        rows.append({"generation": generation, "roman": roman(len(rows) + 1), "members": row})
+    for r in rows:
+        for n, who in enumerate(r["members"], 1):
+            s.labels[f"ind.{who}"] = f"{r['roman']}-{n}"
+    order = [who for r in rows for who in r["members"]]
+    keep = ("id", "sex", "phenotype", "carrier")
+    return s.done({
+        "rows": rows,
+        "people": [{k: people[who][k] for k in keep} for who in order],
+        "couples": [{"parent1": a, "parent2": b, "children": c} for (a, b), c in families.items()],
+    })  # fmt: skip
+
+
+def gel_electrophoresis(spec: dict[str, Any], s: Session) -> Computed:
+    """VSL-46: sizes are whole base pairs, each band once and largest first; a band's distance from the well is its
+    place on a logarithmic schematic scale between the largest and smallest sizes shown (smaller fragments travel
+    further). No migration distance is measured and nothing about the samples is inferred."""
+    params = spec["params"]
+    ids = [lane["id"] for lane in params["lanes"]]
+    if len(set(ids)) != len(ids):
+        raise ResolutionError("a lane id is used twice")
+    ladder = gel_bands(params["ladder_bp"])
+    sizes = set(ladder) | {b for lane in params["lanes"] for b in lane["fragments_bp"]}
+    if len(sizes) < 2 or len(ladder) < 2:
+        raise ResolutionError("a gel needs at least two different ladder sizes")
+    top, bottom = math.log(max(sizes)), math.log(min(sizes))
+
+    def at(bp: int) -> float:
+        return round((top - math.log(bp)) / (top - bottom), 4)
+
+    lanes = []
+    for lane in params["lanes"]:
+        lid = f"lane.{safe_id(lane['id'])}"
+        bands = [{"bp": b, "part": f"{lid}.b{n}", "position": at(b)}
+                 for n, b in enumerate(gel_bands(lane["fragments_bp"]), 1)]  # fmt: skip
+        lanes.append({"id": lane["id"], "part": lid, "label": lane["label"], "bands": bands})
+    return s.done({
+        "ladder": [{"bp": b, "part": f"ladder.b{n}", "position": at(b)} for n, b in enumerate(ladder, 1)],
+        "lanes": lanes,
+        "migration": params["migration"],
+    })  # fmt: skip
+
+
+def microscope_view(spec: dict[str, Any], s: Session) -> Computed:
+    """Magnification = image length / actual length with both in micrometres, from math_evaluate (bio_calc, VER-35,
+    is not built in the worker yet); the scale bar comes from the library entry with the drawing (N3)."""
+    params = spec["params"]
+    value = s.run(
+        "math_evaluate", {"expression": f"({params['image_length_mm']})*1000/({params['actual_length_um']})", "sf": 3}
+    )
+    magnification = shown(value)
+    s.labels["magnification"] = f"{TIMES}{magnification}"
+    return s.done({"magnification": magnification})
+
+
 KIND_RESOLVERS: dict[str, Callable[[dict[str, Any], Session], Computed]] = {
     "function_graph": function_graph,
     "motion_graph": motion_graph,
     "titration_curve": titration_curve,
     "break_even_chart": break_even_chart,
+    "exponential_curve": exponential_curve,
+    "distribution_curve": distribution_curve,
+    "data_plot": data_plot,
     "geometry_figure": geometry_figure,
     "bearing_diagram": bearing_diagram,
     "transformation_grid": transformation_grid,
@@ -1071,6 +1950,11 @@ KIND_RESOLVERS: dict[str, Callable[[dict[str, Any], Session], Computed]] = {
     "ray_diagram": ray_diagram,
     "balanced_equation": balanced_equation,
     "particle_diagram": particle_diagram,
+    "organic_structure": organic_structure,
+    "energy_levels": energy_levels,
+    "maxwell_boltzmann": maxwell_boltzmann,
+    "born_haber_cycle": born_haber_cycle,
+    "concentration_time": concentration_time,
     "journal_entry": journal_entry,
     "t_account": t_account,
     "trial_balance": trial_balance,
@@ -1084,6 +1968,12 @@ KIND_RESOLVERS: dict[str, Callable[[dict[str, Any], Session], Computed]] = {
     "electrolysis_sim": electrolysis_sim,
     "rates_sim": rates_sim,
     "equilibrium_sim": equilibrium_sim,
+    "population_sim": population_sim,
+    "punnett_square": punnett_square,
+    "food_web": food_web,
+    "pedigree_chart": pedigree_chart,
+    "gel_electrophoresis": gel_electrophoresis,
+    "microscope_view": microscope_view,
 }
 
 

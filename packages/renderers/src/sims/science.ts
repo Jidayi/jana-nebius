@@ -16,10 +16,14 @@ export const CATALYST_FACTOR = 4;
 /** Screen seconds a full run takes at normal speed: the reaction-time scale is fitted to it from the starting values. */
 export const RUN_SECONDS = 8;
 
-// Deterministic "scatter" for schematic particles: a fixed low-discrepancy sequence, not a random source.
-function scatter(i: number, salt: number): number {
-  const v = Math.sin((i + 1) * 12.9898 + salt * 78.233) * 43758.5453;
-  return v - Math.floor(v);
+/** Deterministic "scatter" for schematic particles, in [0, 1): a fixed hash of the particle and a salt, not a random
+ * source. Integer arithmetic only, so every platform and engine draws the same particles (VSL-35 golden renders): the
+ * `sin(x) * 43758.5453` hash it replaces moved them when `Math.sin` differed in its last bit. */
+export function scatter(i: number, salt: number): number {
+  let h = Math.imul(i + 1, 0x9e3779b1) ^ Math.imul(salt + 1, 0x85ebca6b);
+  h = Math.imul(h ^ (h >>> 16), 0x7feb352d);
+  h = Math.imul(h ^ (h >>> 15), 0x846ca68b);
+  return ((h ^ (h >>> 16)) >>> 0) / 4294967296;
 }
 
 export interface Particles {

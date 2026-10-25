@@ -5,8 +5,8 @@
 // "Show as table" alternative and a one-line summary (LOC-16), the grade estimate only where the subject's pack sets
 // the exam board's own grade letters (D27: otherwise nothing, never an invented scale), and the topics with their
 // ideas as a heat map whose cells carry fill, pattern, icon and word (DSN-23). A broken streak reads as a new one,
-// never as a loss; nothing here counts down, ranks or blames (LRN-35). Links lead to "What your tutor knows" (UXS-28)
-// and the notes (UXS-52). States: loading, canonical, empty (nothing studied yet), error-retriable, not served.
+// never as a loss; nothing here counts down, ranks or blames (LRN-35). Links lead to "What your tutor knows" (UXS-28),
+// the notes (UXS-52) and the session history (UXS-48). States: loading, canonical, empty (nothing studied yet), error-retriable, not served.
 import { useEffect, useId, useState, useSyncExternalStore } from "react";
 import { gradeShown, type KcState, type ProgressController, type ProgressState, type ProgressSubject } from "@jana/client-core";
 import { ScreenHeader } from "../frame/Frame.js";
@@ -21,6 +21,8 @@ export interface ProgressActions {
   onKnows?: () => void;
   /** "My notes" (UXS-52). */
   onNotes?: () => void;
+  /** "Session history" (UXS-48): the retained sessions, read-only. */
+  onHistory?: () => void;
   /** Where to start when nothing has been studied yet. */
   onLearn?: () => void;
   onDiagnostic?: () => void;
@@ -218,6 +220,7 @@ export function ProgressContent({ state, names, actions }: { state: ProgressStat
       <ScreenHeader end={<>
         {actions.onDiagnostic !== undefined && <Button tone="ghost" onClick={actions.onDiagnostic}>{t("assessment.find_start")}</Button>}
         {actions.onNotes !== undefined && <Button tone="ghost" onClick={actions.onNotes}><Icon name="notes" size={16} />{t("notes.title")}</Button>}
+        {actions.onHistory !== undefined && <Button tone="ghost" onClick={actions.onHistory}><Icon name="timer" size={16} />{t("history.title")}</Button>}
         {actions.onKnows !== undefined && <Button tone="ghost" onClick={actions.onKnows}><Icon name="tutor" size={16} />{t("progress.knows")}</Button>}
       </>}>
         <h1 className="text-ui font-semibold text-ink">{t("app.progress")}</h1>

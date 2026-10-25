@@ -83,6 +83,10 @@ def test_study_is_online_only_and_speech_is_not_billed() -> None:
     assert settings.study_workspace_enabled
     assert not settings.study_offline_enabled and not settings.cloud_voice_enabled
     assert settings.study_batch_char_limit == 16000
+    assert settings.build_stage == "S3"
+    from agent_core.config.support import settings_sections
+
+    assert {s["id"] for s in settings_sections(settings.build_stage)} >= {"parent_summary", "alerts"}
 
 
 def test_local_model_pin_keeps_cloud_candidates() -> None:

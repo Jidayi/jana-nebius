@@ -25,7 +25,7 @@ LIBRARY_KINDS = frozenset({"library_diagram", "diagram_comparison", "microscope_
 # The simulations (VSL-08): parts and alt text come from their resolution's `parts` and `alt`.
 SIM_KINDS = frozenset({
     "projectile_sim", "circuit_sim", "titration_sim", "gas_laws_sim", "function_transform_sim", "electrolysis_sim",
-    "rates_sim", "equilibrium_sim",
+    "rates_sim", "equilibrium_sim", "population_sim",
 })  # fmt: skip
 
 
@@ -167,6 +167,10 @@ CLAIM_PATHS: dict[str, list[str]] = {
     "ray_diagram": ["focal_length", "object_distance", "object_height"],
     "t_account": ["accounts.*.opening_balance", "entries.*.amount"],
     "trial_balance": ["balances.*.amount"],
+    "data_plot": ["points.*.x", "points.*.y"],
+    # VSL-05, VSL-46: a gel's sizes and a microscope question's lengths are the question's givens (N1).
+    "gel_electrophoresis": ["ladder_bp.*", "lanes.*.fragments_bp.*"],
+    "microscope_view": ["image_length_mm", "actual_length_um"],
 }
 
 
@@ -483,6 +487,43 @@ def _break_even(v: View) -> Parts:
     return [*out, Part("break_even", v.name("break_even"), "point", quizzable=True)]
 
 
+def _exponential(v: View) -> Parts:
+    mode = say("alt", f"exponential_{v.params.get('mode')}", v.locale)
+    out = [Part("curve", v.name("exponential", label=mode), "curve")]
+    mark = v.params.get("mark")
+    if mark in ("half_life", "time_constant"):
+        out.append(Part(mark, v.name(mark), "point", quizzable=True))
+    return out
+
+
+def _distribution(v: View) -> Parts:
+    name = say("alt", f"distribution_{v.params.get('distribution')}_name", v.locale)
+    return [
+        Part("curve", v.name("distribution", label=name), "curve"),
+        Part("shade", v.name("probability", label=v.computed.get("event", "")), "region", quizzable=True),
+        Part("mean", v.name("mean"), "line"),
+    ]
+
+
+def data_point_part(point_id: str) -> str:
+    """A data point's part id: its id with each mark VSL-19 does not allow in an id (a hyphen, a dot) as `_`."""
+    return re.sub(r"[^A-Za-z0-9_]", "_", point_id)
+
+
+def _data_plot(v: View) -> Parts:
+    out = [
+        Part(data_point_part(p["id"]), v.name("point", label=p["id"]), "point")
+        for p in v.params.get("points", [])
+        if isinstance(p, dict) and "id" in p
+    ]
+    if v.params.get("fit") == "linear":
+        out.append(Part("fit", v.name("fit_line"), "line", quizzable=True))
+        if v.params.get("show_gradient"):
+            out.append(Part("gradient", v.name("gradient", label="").strip(), "region", quizzable=True))
+        out.append(Part("intercept", v.name("intercept"), "point", quizzable=True))
+    return out
+
+
 def tree_paths(
     branches: list[dict[str, Any]], prefix: tuple[str, ...] = ()
 ) -> Iterator[tuple[tuple[str, ...], dict[str, Any]]]:
@@ -636,6 +677,151 @@ def _sim(v: View) -> Parts:
     return [Part(p["id"], v.name(p["role"], label=p["label"]), p["role"]) for p in v.computed.get("parts", [])]
 
 
+# --- Biology (VSL-05, VSL-46): part ids derive from organism, individual, lane, stage and node ids, never positions ---
+
+
+def safe_id(raw: Any) -> str:
+    """A params id as one segment of a part id (VSL-19): a character a part id cannot hold becomes an underscore."""
+    return re.sub(r"[^A-Za-z0-9_]", "_", str(raw))
+
+
+def food_web_organisms(params: dict[str, Any]) -> list[dict[str, Any]]:
+    """The organisms in drawing order: by trophic level, producers first, then as the request lists them."""
+    organisms = [o for o in params.get("organisms", []) if isinstance(o, dict) and "id" in o]
+    return sorted(organisms, key=lambda o: int(o.get("trophic_level", 0)))
+
+
+def _food_web(v: View) -> Parts:
+    organisms = food_web_organisms(v.params)
+    names = {o["id"]: str(o.get("label", o["id"])) for o in organisms}
+    out = [Part(f"org.{safe_id(o['id'])}", v.name("organism", label=names[o["id"]]), "label", quizzable=True)
+           for o in organisms]  # fmt: skip
+    for link in v.params.get("links", []):
+        ends = {"from": names.get(link["from"], link["from"]), "to": names.get(link["to"], link["to"])}
+        out.append(Part(f"link.{safe_id(link['from'])}.{safe_id(link['to'])}", v.name("feeding_link", **ends), "line"))
+    return out
+
+
+PUNNETT_SHOW = ("gametes", "genotype_ratio", "phenotype_ratio")
+
+
+def punnett_rows(v: View) -> list[str]:
+    """The summary rows under the square: those the request shows, and those a step adds."""
+    show = set(v.params.get("show") or PUNNETT_SHOW)
+    show |= {str(a.get("of") or "genotype_ratio") for a in v.adds() if a.get("element") == "ratio_row"}
+    return [key for key in ("genotype_ratio", "phenotype_ratio", "probabilities") if key in show]
+
+
+def _punnett(v: View) -> Parts:
+    """In table order: the parents, the second parent's gametes across the top, then each row's gamete and its
+    offspring cells, then the ratio rows."""
+    gametes = v.computed.get("gametes") or {}
+    first, second = list(gametes.get("p1", [])), list(gametes.get("p2", []))
+    out = [Part(f"parent{n}", v.name("parent", n=n, label=v.params.get(f"parent{n}", "")), "label") for n in (1, 2)]
+    out += [Part(f"gamete2_{i}", v.name("gamete", n=2, label=g), "label") for i, g in enumerate(second, 1)]
+    for r, row in enumerate(v.computed.get("grid", []), 1):
+        out.append(Part(f"gamete1_{r}", v.name("gamete", n=1, label=first[r - 1] if r <= len(first) else ""), "label"))
+        out += [Part(f"cell_{r}_{c}", v.name("offspring", label=cell), "cell", quizzable=True)
+                for c, cell in enumerate(row, 1)]  # fmt: skip
+    return out + [Part(key, v.name(key), "row") for key in punnett_rows(v)]
+
+
+def _pedigree(v: View) -> Parts:
+    people = v.computed.get("people") or [p for p in v.params.get("individuals", []) if isinstance(p, dict)]
+    out = []
+    for p in people:
+        sex, phenotype = v.name(f"sex_{p['sex']}"), v.name(f"phenotype_{p['phenotype']}")
+        name = v.name("individual", label=v.label(f"ind.{p['id']}", p["id"]), sex=sex, phenotype=phenotype)
+        out.append(Part(f"ind.{p['id']}", name, "point"))
+    return out
+
+
+def gel_bands(sizes: list[Any]) -> list[int]:
+    """A lane's bands as drawn: each size once, largest (nearest the well) first."""
+    return sorted({int(b) for b in sizes}, reverse=True)
+
+
+def _gel(v: View) -> Parts:
+    ladder = gel_bands(v.params.get("ladder_bp", []))
+    out = [Part("ladder", v.name("ladder"), "region")]
+    out += [Part(f"ladder.b{n}", v.name("ladder_band", label=b), "point") for n, b in enumerate(ladder, 1)]
+    for lane in v.params.get("lanes", []):
+        lid = f"lane.{safe_id(lane['id'])}"
+        out.append(Part(lid, v.name("lane", label=lane.get("label", lane["id"])), "region"))
+        out += [
+            Part(f"{lid}.b{n}", v.name("band", label=b, lane=lane.get("label", lane["id"])), "point")
+            for n, b in enumerate(gel_bands(lane.get("fragments_bp", [])), 1)
+        ]
+    return out
+
+
+def cycle_stages(definition: dict[str, Any], start: str | None) -> list[dict[str, Any]]:
+    """The stages in drawing order: as the pack lists them, turned to begin at the start stage."""
+    stages = [s for s in definition.get("stages", []) if isinstance(s, dict)]
+    at = next((i for i, s in enumerate(stages) if s.get("id") == start), 0)
+    return stages[at:] + stages[:at]
+
+
+def _cycle(v: View) -> Parts:
+    definition = (v.entry or {}).get("definition") or {}
+    stages = cycle_stages(definition, v.params.get("start_stage"))
+    names = {s["id"]: s["label"] for s in stages}
+    out = [Part(f"stage.{s['id']}", v.name("stage", label=s["label"]), "label", quizzable=True) for s in stages]
+    for link in definition.get("links", []):
+        ends = {"from": names.get(link["from"], link["from"]), "to": names.get(link["to"], link["to"])}
+        out.append(Part(f"link.{link['from']}.{link['to']}", v.name("cycle_link", **ends), "line"))
+    return out
+
+
+def key_order(definition: dict[str, Any], start: str | None) -> list[tuple[str, dict[str, Any]]]:
+    """The key's nodes as drawn, depth first with the yes branch first: ("node" | "group", record)."""
+    nodes = {n["id"]: n for n in definition.get("nodes", []) if isinstance(n, dict)}
+    groups = {t["id"]: t for t in definition.get("terminals", []) if isinstance(t, dict)}
+    out: list[tuple[str, dict[str, Any]]] = []
+
+    def visit(node_id: str, depth: int) -> None:
+        if depth > len(nodes) + 1:  # a cycle; the resolution refuses it, and the parts stop here
+            return
+        if node_id in groups:
+            out.append(("group", groups[node_id]))
+        elif node_id in nodes:
+            out.append(("node", nodes[node_id]))
+            visit(nodes[node_id]["yes"], depth + 1)
+            visit(nodes[node_id]["no"], depth + 1)
+
+    visit(str(start or definition.get("root", "")), 0)
+    return out
+
+
+def _key(v: View) -> Parts:
+    definition = (v.entry or {}).get("definition") or {}
+    return [
+        Part(f"node.{r['id']}", v.name("key_question", label=r["question"]), "label")
+        if what == "node"
+        else Part(f"group.{r['id']}", v.name("key_group", label=r["label"]), "label", quizzable=True)
+        for what, r in key_order(definition, v.params.get("start_node"))
+    ]
+
+
+def _microscope(v: View) -> Parts:
+    out = _library(v)
+    if v.params.get("show_scale", True):
+        out.append(Part("scale_bar", v.name("scale_bar"), "line"))
+    return [*out, Part("magnification", v.name("magnification"), "label", quizzable=True)]
+
+
+def _comparison(v: View) -> Parts:
+    out = []
+    sides = (("left", v.entry or {}), ("right", (v.computed.get("right") or {}).get("entry") or {}))
+    for side, entry in sides:
+        title = str(entry.get("title", side))
+        parts = sorted((p for p in entry.get("parts", []) if isinstance(p, dict)),
+                       key=lambda p: (p.get("tab_order", 0), p["id"]))  # fmt: skip
+        out += [Part(f"{side}.{p['id']}", v.name("compared_part", label=p["name"], diagram=title), "part")
+                for p in parts]  # fmt: skip
+    return out
+
+
 PARTS: dict[str, Callable[[View], Parts]] = {
     "free_body": _free_body,
     "function_graph": _function_graph,
@@ -665,6 +851,9 @@ PARTS: dict[str, Callable[[View], Parts]] = {
     "t_account": _t_account,
     "trial_balance": _trial_balance,
     "titration_curve": _titration,
+    "exponential_curve": _exponential,
+    "distribution_curve": _distribution,
+    "data_plot": _data_plot,
     "library_diagram": _library,
     "projectile_sim": _sim,
     "circuit_sim": _sim,
@@ -674,6 +863,15 @@ PARTS: dict[str, Callable[[View], Parts]] = {
     "electrolysis_sim": _sim,
     "rates_sim": _sim,
     "equilibrium_sim": _sim,
+    "population_sim": _sim,
+    "food_web": _food_web,
+    "punnett_square": _punnett,
+    "pedigree_chart": _pedigree,
+    "gel_electrophoresis": _gel,
+    "cycle_diagram": _cycle,
+    "classification_key": _key,
+    "microscope_view": _microscope,
+    "diagram_comparison": _comparison,
 }
 
 
@@ -685,6 +883,79 @@ def _unique(parts: Parts) -> Parts:
             seen.add(p.id)
             out.append(p)
     return out
+
+
+def build_alt(layers: list[dict[str, Any]], parts: Parts, locale: str = "en") -> list[str]:
+    """One alt line per build step naming what it added (VSL-14, VSL-41): the layer's parts, or the layer itself."""
+    names = {p.id: p.name for p in parts}
+    lines = []
+    for n, layer in enumerate(layers[1:], 1):
+        added = [names.get(i, i) for i in layer["part_ids"]] or [say("alt", f"layer_{layer['layer']}", locale)
+                                                                  if layer["layer"] in ("axes", "grid")
+                                                                  else layer["layer"].replace("_", " ")]  # fmt: skip
+        lines.append(say("alt", "step_add", locale, n=n, parts=_join(added, locale))[:300])
+    return lines[:20]
+
+
+# --- build layers (VSL-41, D103) -------------------------------------------------------------------------------------
+
+# Kinds that always show whole: library diagrams are drawn as authored and simulations are the student's to run.
+UNLAYERED = frozenset({"library_diagram", "projectile_sim", "circuit_sim", "titration_sim", "gas_laws_sim",
+                       "function_transform_sim", "electrolysis_sim", "rates_sim", "equilibrium_sim"})  # fmt: skip
+# Graph kinds draw their axes and grid first: chrome layers that add no part.
+CHROME = {"function_graph", "motion_graph", "break_even_chart", "titration_curve", "energy_profile",
+          "statistics_chart"}  # fmt: skip
+# Every other kind builds by part role in this order: what a teacher draws first comes first.
+ROLE_ORDER = ("object", "row", "cell", "line", "ray", "curve", "region", "force", "component", "vertex", "angle",
+              "point", "label", "part", "class")  # fmt: skip
+MAX_LAYERS = 12
+
+
+def _by_roles(parts: Parts, order: tuple[str, ...]) -> list[tuple[str, list[str]]]:
+    layers = [(role, [p.id for p in parts if p.role == role]) for role in order]
+    rest = [p.id for p in parts if p.role not in order]
+    return [(name, ids) for name, ids in layers if ids] + ([("other", rest)] if rest else [])
+
+
+def layers_of(view: View, parts: Parts) -> list[dict[str, Any]]:
+    """The kind's build layers for this visual, in the order they are drawn, each with the part ids it adds; every
+    part is in exactly one layer. [] for a kind that declares none, which always shows whole (VSL-41)."""
+    if view.kind in UNLAYERED or not parts:
+        return []
+    rule = LAYERS.get(view.kind)  # a kind module's own plan (the chemistry kinds register theirs)
+    if rule is not None:
+        try:
+            return rule(view, parts)
+        except (KeyError, TypeError, ValueError, AttributeError):
+            return []
+    layers: list[tuple[str, list[str]]] = [("axes", []), ("grid", [])] if view.kind in CHROME else []
+    if view.kind == "function_graph":
+        # The axes, the grid, the points, the curve, then the labelled answer (the computed features).
+        given = [p.id for p in parts if p.role == "point" and "." not in p.id]
+        answer = [p.id for p in parts if p.role == "point" and "." in p.id]
+        curve = [p.id for p in parts if p.role in ("curve", "region")]
+        layers += [(n, ids) for n, ids in (("points", given), ("curve", curve), ("answer", answer)) if ids]
+    elif view.kind == "free_body":
+        # The body, each force, then the components and the resultant.
+        layers.append(("body", [p.id for p in parts if p.role in ("object", "line")]))
+        forces = [p for p in parts if p.role == "force" and p.id != "resultant"]
+        layers += [(f"force_{n}", [p.id]) for n, p in enumerate(forces, 1)]
+        components = [p.id for p in parts if p.role == "component"]
+        if components:
+            layers.append(("components", components))
+        if any(p.id == "resultant" for p in parts):
+            layers.append(("resultant", ["resultant"]))
+    else:
+        layers += _by_roles(parts, ROLE_ORDER)
+    if len(layers) > MAX_LAYERS:  # the last layers merge so the build stays within the contract's limit
+        head, tail = layers[: MAX_LAYERS - 1], layers[MAX_LAYERS - 1 :]
+        layers = [*head, (tail[0][0], [i for _, ids in tail for i in ids])]
+    placed = {i for _, ids in layers for i in ids}
+    missing = [p.id for p in parts if p.id not in placed]
+    if missing:  # a part no rule placed joins the last layer, so the last state equals `show`
+        name, ids = layers[-1]
+        layers[-1] = (name, [*ids, *missing])
+    return [{"layer": name, "part_ids": ids} for name, ids in layers]
 
 
 def parts_of(view: View) -> Parts:
@@ -705,12 +976,18 @@ def _join(items: list[str], locale: str) -> str:
     return ", ".join(items[:-1]) + say("alt", "and", locale) + items[-1]
 
 
+# Kinds whose alternative text is built in their own module (the organic and A level chemistry kinds).
+ALT_RULES: dict[str, Callable[[View], str]] = {}
+
+
 def _alt(v: View) -> str:
     def a(key: str, **kw: Any) -> str:
         return say("alt", key, v.locale, **kw)
 
     p, c, label = v.params, v.computed, v.label
     kind = v.kind
+    if kind in ALT_RULES:
+        return ALT_RULES[kind](v)
     if kind == "free_body":
         forces = [
             a("free_body_force", name=f.get("name", f.get("id")), magnitude=f.get("magnitude", ""))
@@ -923,12 +1200,144 @@ def _alt(v: View) -> str:
         return a(
             "titration_curve", start=label("start_ph"), volume=label("equivalence_volume"), ph=label("equivalence")
         )
+    if kind == "exponential_curve":
+        mark = p.get("mark")
+        unit, time_unit = p.get("quantity_unit", ""), p.get("time_unit", "")
+        marked = (
+            a(f"exponential_{mark}", t=label(mark), value=label(f"{mark}.value"), unit=unit, time_unit=time_unit)
+            if mark in ("half_life", "time_constant")
+            else ""
+        )
+        t0, t1 = p.get("time_range") or [0, 0]
+        return a("exponential_curve", mode=a(f"exponential_{p.get('mode')}"), unit=unit, time_unit=time_unit,
+                 t0=f"{t0:g}", t1=f"{t1:g}", initial=f"{p.get('initial', 0):g}", k=f"{p.get('constant', 0):g}",
+                 mark=marked)  # fmt: skip
+    if kind == "distribution_curve":
+        pars = {k: f"{x:g}" for k, x in (p.get("parameters") or {}).items()}
+        what = a(f"distribution_{p.get('distribution')}", **{"lam": pars.get("lambda", ""), **pars})
+        return a("distribution_curve", distribution=what, event=c.get("event", ""), p=label("shade"))
+    if kind == "data_plot":
+        fit = (
+            a(
+                "data_plot_fit",
+                gradient=label("fit.gradient"),
+                intercept=label("fit.intercept"),
+                x_unit=p["x_unit"],
+                y_unit=p["y_unit"],
+            )
+            if p.get("fit") == "linear"
+            else ""
+        )
+        return a("data_plot", count=len(p.get("points", [])), x=p.get("x_label"), y=p.get("y_label"),
+                 x_unit=p.get("x_unit"), y_unit=p.get("y_unit"), fit=fit)  # fmt: skip
     if kind == "library_diagram":
         return a("library_diagram", alt=(v.entry or {}).get("alt_text", ""))
+    if kind == "population_sim":
+        return a(f"population_sim_{p.get('model')}", **c.get("alt", {}))
+    if kind in BIOLOGY_ALT:
+        return BIOLOGY_ALT[kind](v, a)
     if kind in SIM_KINDS:
         # A predict scenario's description never gives the result away before the student predicts (VSL-47).
         return a(f"{kind}_predict" if p.get("predict") else kind, **c.get("alt", {}))
     return a("fallback", kind=kind.replace("_", " "))
+
+
+Say = Callable[..., str]
+
+
+def _punnett_alt(v: View, a: Say) -> str:
+    c, p = v.computed, v.params
+    gametes = c.get("gametes") or {}
+    genotypes = [f"{g['genotype']} {g['probability']}" for g in c.get("genotype_classes", [])]
+    phenotypes = [f"{g['phenotype']} {g['probability']}" for g in c.get("phenotype_classes", [])]
+    return a(
+        "punnett_square", p1=p.get("parent1"), p2=p.get("parent2"),
+        g1=_join(list(gametes.get("p1", [])), v.locale), g2=_join(list(gametes.get("p2", [])), v.locale),
+        genotypes=_join(genotypes, v.locale), genotype_ratio=v.label("genotype_ratio"),
+        phenotypes=_join(phenotypes, v.locale), phenotype_ratio=v.label("phenotype_ratio"),
+    )  # fmt: skip
+
+
+def _food_web_alt(v: View, a: Say) -> str:
+    organisms = food_web_organisms(v.params)
+    names = {o["id"]: str(o.get("label", o["id"])) for o in organisms}
+    links = [a("food_web_link", **{"from": names.get(x["from"], x["from"]), "to": names.get(x["to"], x["to"])})
+             for x in v.params.get("links", [])]  # fmt: skip
+    producers = [names[o["id"]] for o in organisms if int(o.get("trophic_level", 0)) == 1]
+    return a("food_web", count=len(organisms), links=_join(links, v.locale), producers=_join(producers, v.locale))
+
+
+def _pedigree_alt(v: View, a: Say) -> str:
+    people = v.computed.get("people") or []
+
+    def named(test: Callable[[dict[str, Any]], bool]) -> str:
+        found = [v.label(f"ind.{p['id']}", p["id"]) for p in people if test(p)]
+        return _join(found, v.locale) or a("none")
+
+    return a(
+        "pedigree_chart", generations=_join([str(r["roman"]) for r in v.computed.get("rows", [])], v.locale),
+        affected=named(lambda p: p["phenotype"] == "affected"), carriers=named(lambda p: p.get("carrier") is True),
+        unknown=named(lambda p: p["phenotype"] == "unknown"),
+    )  # fmt: skip
+
+
+def _gel_alt(v: View, a: Say) -> str:
+    lanes = [
+        a("gel_lane", lane=lane["label"], bands=_join([str(b["bp"]) for b in lane["bands"]], v.locale))
+        for lane in v.computed.get("lanes", [])
+    ]
+    ladder = _join([str(b["bp"]) for b in v.computed.get("ladder", [])], v.locale)
+    return a("gel_electrophoresis", ladder=ladder, lanes="; ".join(lanes))
+
+
+def _cycle_alt(v: View, a: Say) -> str:
+    entry = v.entry or {}
+    stages = [s["label"] for s in cycle_stages(entry.get("definition") or {}, v.params.get("start_stage"))]
+    return a("cycle_diagram", title=entry.get("title", ""), count=len(stages), stages=a("then").join(stages))
+
+
+def _key_alt(v: View, a: Say) -> str:
+    entry = v.entry or {}
+    order = key_order(entry.get("definition") or {}, v.params.get("start_node"))
+    groups = [r["label"] for what, r in order if what == "group"]
+    first = next((r["question"] for what, r in order if what == "node"), "")
+    return a("classification_key", title=entry.get("title", ""), count=len(groups),
+             groups=_join(groups, v.locale), question=first)  # fmt: skip
+
+
+def _microscope_alt(v: View, a: Say) -> str:
+    p = v.params
+    scale = a("microscope_scale", length=v.label("scale_bar")) if v.label("scale_bar") else ""
+    return a(
+        "microscope_view", alt=(v.entry or {}).get("alt_text", ""), magnification=v.label("magnification"),
+        image=p.get("image_length_mm"), actual=p.get("actual_length_um"), scale=scale,
+    )  # fmt: skip
+
+
+def _comparison_alt(v: View, a: Say) -> str:
+    left, right = v.entry or {}, (v.computed.get("right") or {}).get("entry") or {}
+    names = {f"left.{p['id']}": p["name"] for p in left.get("parts", []) if isinstance(p, dict)}
+    names |= {f"right.{p['id']}": p["name"] for p in right.get("parts", []) if isinstance(p, dict)}
+    differences = []
+    for d in v.computed.get("differences", []):
+        if d.get("right"):
+            differences.append(a("comparison_pair", left=names.get(d["left"], ""), right=names.get(d["right"], "")))
+        else:
+            differences.append(a("comparison_only", part=names.get(d["left"], ""), diagram=left.get("title", "")))
+    return a("diagram_comparison", left=left.get("title", ""), right=right.get("title", ""),
+             differences=_join(differences, v.locale) or a("none"))  # fmt: skip
+
+
+BIOLOGY_ALT: dict[str, Callable[[View, Say], str]] = {
+    "punnett_square": _punnett_alt,
+    "food_web": _food_web_alt,
+    "pedigree_chart": _pedigree_alt,
+    "gel_electrophoresis": _gel_alt,
+    "cycle_diagram": _cycle_alt,
+    "classification_key": _key_alt,
+    "microscope_view": _microscope_alt,
+    "diagram_comparison": _comparison_alt,
+}
 
 
 def alt_of(view: View, parts: Parts) -> dict[str, Any]:
@@ -964,11 +1373,29 @@ def alt_of(view: View, parts: Parts) -> dict[str, Any]:
 
 
 def _sequence(view: View) -> list[dict[str, Any]]:
-    if view.kind != "library_diagram" or not view.entry:
+    """The library sequence a spec plays: all of a library diagram's, or a mechanism's up to the step it asks for."""
+    if view.kind not in ("library_diagram", "reaction_mechanism") or not view.entry:
         return []
-    wanted = view.params.get("sequence")
+    mechanism = view.kind == "reaction_mechanism"
+    wanted = view.params.get("sequence_id" if mechanism else "sequence")
     for seq in view.entry.get("sequences", []):
         if seq.get("id") == wanted:
             steps: list[dict[str, Any]] = seq.get("steps", [])
-            return steps
+            return steps[: int(view.params.get("step", 0)) + 1] if mechanism else steps
     return []
+
+
+def sequence_steps(view: View) -> list[dict[str, Any]]:
+    """The steps a sequence gives a spec that states none: each sequence step's highlights (VSL-26)."""
+    return [{"highlight": list(s["highlight"])} for s in _sequence(view)][:20]
+
+
+# Kinds that declare build layers (VSL-41): the layers in drawing order, each with the parts it adds.
+LAYERS: dict[str, Callable[[View, Parts], list[dict[str, Any]]]] = {}
+
+
+PARTS["reaction_mechanism"] = _library
+
+# The organic and A level chemistry kinds (VSL-06, VSL-07, VSL-46) live in their own module, which builds on this one
+# and registers its rules here when imported.
+from agent_core.assets import chemistry_kinds  # noqa: E402, F401

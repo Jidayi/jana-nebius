@@ -1,0 +1,314 @@
+{
+  "claims": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "id": "food-web",
+  "kind": "food_web",
+  "modes": [
+    "shown",
+    "hidden"
+  ],
+  "spec": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at Grass.",
+        "Step 2: look at arrow from Grass to Mouse and arrow from Mouse to Hawk."
+      ],
+      "summary": "A food web of 7 organisms. Arrows show energy passing from food to consumer: Grass to Rabbit, Grass to Grasshopper, Grass to Mouse, Grasshopper to Frog, Rabbit to Fox, Mouse to Fox, Frog to Hawk and Mouse to Hawk. The producers are Grass."
+    },
+    "computed": {
+      "check_ids": [],
+      "levels": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "links": [
+        {
+          "from": "grass",
+          "part": "link.grass.rabbit",
+          "to": "rabbit"
+        },
+        {
+          "from": "grass",
+          "part": "link.grass.grasshopper",
+          "to": "grasshopper"
+        },
+        {
+          "from": "grass",
+          "part": "link.grass.mouse",
+          "to": "mouse"
+        },
+        {
+          "from": "grasshopper",
+          "part": "link.grasshopper.frog",
+          "to": "frog"
+        },
+        {
+          "from": "rabbit",
+          "part": "link.rabbit.fox",
+          "to": "fox"
+        },
+        {
+          "from": "mouse",
+          "part": "link.mouse.fox",
+          "to": "fox"
+        },
+        {
+          "from": "frog",
+          "part": "link.frog.hawk",
+          "to": "hawk"
+        },
+        {
+          "from": "mouse",
+          "part": "link.mouse.hawk",
+          "to": "hawk"
+        }
+      ],
+      "organisms": [
+        {
+          "id": "grass",
+          "label": "Grass",
+          "level": 1,
+          "part": "org.grass"
+        },
+        {
+          "id": "rabbit",
+          "label": "Rabbit",
+          "level": 2,
+          "part": "org.rabbit"
+        },
+        {
+          "id": "grasshopper",
+          "label": "Grasshopper",
+          "level": 2,
+          "part": "org.grasshopper"
+        },
+        {
+          "id": "mouse",
+          "label": "Mouse",
+          "level": 2,
+          "part": "org.mouse"
+        },
+        {
+          "id": "frog",
+          "label": "Frog",
+          "level": 3,
+          "part": "org.frog"
+        },
+        {
+          "id": "fox",
+          "label": "Fox",
+          "level": 3,
+          "part": "org.fox"
+        },
+        {
+          "id": "hawk",
+          "label": "Hawk",
+          "level": 4,
+          "part": "org.hawk"
+        }
+      ]
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [],
+    "params": {
+      "links": [
+        {
+          "from": "grass",
+          "to": "rabbit"
+        },
+        {
+          "from": "grass",
+          "to": "grasshopper"
+        },
+        {
+          "from": "grass",
+          "to": "mouse"
+        },
+        {
+          "from": "grasshopper",
+          "to": "frog"
+        },
+        {
+          "from": "rabbit",
+          "to": "fox"
+        },
+        {
+          "from": "mouse",
+          "to": "fox"
+        },
+        {
+          "from": "frog",
+          "to": "hawk"
+        },
+        {
+          "from": "mouse",
+          "to": "hawk"
+        }
+      ],
+      "organisms": [
+        {
+          "id": "grass",
+          "label": "Grass",
+          "trophic_level": 1
+        },
+        {
+          "id": "rabbit",
+          "label": "Rabbit",
+          "trophic_level": 2
+        },
+        {
+          "id": "grasshopper",
+          "label": "Grasshopper",
+          "trophic_level": 2
+        },
+        {
+          "id": "mouse",
+          "label": "Mouse",
+          "trophic_level": 2
+        },
+        {
+          "id": "frog",
+          "label": "Frog",
+          "trophic_level": 3
+        },
+        {
+          "id": "fox",
+          "label": "Fox",
+          "trophic_level": 3
+        },
+        {
+          "id": "hawk",
+          "label": "Hawk",
+          "trophic_level": 4
+        }
+      ]
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "org.grass",
+        "name": "Grass",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "org.rabbit",
+        "name": "Rabbit",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "org.grasshopper",
+        "name": "Grasshopper",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "org.mouse",
+        "name": "Mouse",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "org.frog",
+        "name": "Frog",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "org.fox",
+        "name": "Fox",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "org.hawk",
+        "name": "Hawk",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "link.grass.rabbit",
+        "name": "arrow from Grass to Rabbit",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "link.grass.grasshopper",
+        "name": "arrow from Grass to Grasshopper",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "link.grass.mouse",
+        "name": "arrow from Grass to Mouse",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "link.grasshopper.frog",
+        "name": "arrow from Grasshopper to Frog",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "link.rabbit.fox",
+        "name": "arrow from Rabbit to Fox",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "link.mouse.fox",
+        "name": "arrow from Mouse to Fox",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "link.frog.hawk",
+        "name": "arrow from Frog to Hawk",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "link.mouse.hawk",
+        "name": "arrow from Mouse to Hawk",
+        "role": "line"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:d28fc09afb23fac25af8900f8dfff28bffa04f1393359e29018db70b0028746d",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "org.grass"
+        ]
+      },
+      {
+        "highlight": [
+          "link.grass.mouse",
+          "link.mouse.hawk"
+        ]
+      }
+    ],
+    "type": "food_web",
+    "visual_id": "vis_JF0TV3T2TRGFDZJBZ0FKKNY91D"
+  },
+  "subject": "biology"
+}

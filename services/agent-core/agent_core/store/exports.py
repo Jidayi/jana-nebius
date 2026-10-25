@@ -280,7 +280,73 @@ def research_rows(conn: sqlite3.Connection) -> dict[str, Any]:
 
     log = EventLog(conn, "", "", None)  # type: ignore[arg-type]  # reading needs no clock
     keep = []
-    for event in (e.envelope() for e in read_log(log.merged())):
+    read = list(read_log(log.merged()))
+    for event in (e.envelope() for e in read):
         event = {k: v for k, v in event.items() if k not in ("session_id", "turn_id", "profile_id", "device_id")}
         keep.append(event)
-    return {"events": keep, "kc_mastery": _rows(conn, "SELECT * FROM kc_mastery")}
+    attempts = _rows(conn, "SELECT * FROM attempts ORDER BY occurred_at, attempt_id")
+    return {
+        "events": keep,
+        "kc_mastery": _rows(conn, "SELECT * FROM kc_mastery"),
+        "item_responses": _item_responses(read, attempts),
+        "skill_sessions": _skill_sessions(read, attempts),
+    }
+
+
+# The modes whose first attempt at a pack item is a response to that item (CUR-26, ASM-21): not guided tutoring, where
+# the tutor shapes the answer.
+RESPONSE_MODES = frozenset({"practice", "diagnostic", "mastery_check", "mock", "review", "revision"})
+GAIN_WINDOW = 5  # checked attempts on the session's KCs before and after a session (SKL-28)
+
+
+def _kcs(row: dict[str, Any]) -> list[str]:
+    """An attempts row's KC ids, in the attempt's order."""
+    return [str(k["kc_id"]) for k in json.loads(row["kc_ids"])]
+
+
+def _item_responses(read: list[Any], attempts: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Each first attempt at a pack item in an assessment mode, with its latest verdict from the attempts projection
+    (CUR-26, ASM-21): the item, the option when the attempt recorded one, and the misconception the marker matched,
+    which names the distractor of a diagnostic choice item; never the answer the student wrote (the kept answer is
+    transcript, MEM-26). The session and attempt ids stay on the device; the join happens here."""
+    asked = {e.payload.get("attempt_id"): e.payload for e in read if e.type == "attempt"}
+    rows = []
+    for row in attempts:
+        attempt = asked.get(row["attempt_id"])
+        if attempt is None or not attempt.get("item_id") or attempt.get("attempt_index") != 1:
+            continue
+        if row["mode"] not in RESPONSE_MODES or row["outcome"] not in ("correct", "incorrect", "partial"):
+            continue
+        kcs = _kcs(row)
+        rows.append({"item_id": attempt["item_id"], "outcome": row["outcome"], "time_ms": row["time_ms"],
+                     "choice_id": attempt.get("choice_id"), "misconception_id": row["misconception_id"],
+                     "kc_id": kcs[0] if kcs else None})  # fmt: skip
+    return rows
+
+
+def _skill_sessions(read: list[Any], attempts: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Per session that delivered skills, the skills' (name, version), the hints used and the mastery gain on the
+    session's KCs (SKL-28): the share correct of the student's next `GAIN_WINDOW` checked attempts on those KCs after
+    the session, less that of the last ones before it; None without both. The session itself is not exported."""
+    delivered: dict[str, set[tuple[str, str]]] = {}
+    for event in read:
+        if event.type == "skills_delivered" and event.session_id:
+            for skill in event.payload.get("skills", []):
+                delivered.setdefault(event.session_id, set()).add((str(skill["name"]), str(skill["version"])))
+    checked = [r for r in attempts if r["outcome"] in ("correct", "incorrect", "partial")]
+    rows = []
+    for session, skills in delivered.items():
+        mine = [r for r in checked if r["session_id"] == session]
+        kcs = {kc for r in mine for kc in _kcs(r)}
+        gain = None
+        if mine:
+            start, end = mine[0]["occurred_at"], mine[-1]["occurred_at"]
+            on_kcs = [r for r in checked if r["session_id"] != session and kcs & set(_kcs(r))]
+            before = [r["outcome"] == "correct" for r in on_kcs if r["occurred_at"] < start][-GAIN_WINDOW:]
+            after = [r["outcome"] == "correct" for r in on_kcs if r["occurred_at"] > end][:GAIN_WINDOW]
+            if before and after:
+                gain = sum(after) / len(after) - sum(before) / len(before)
+        rows.append({"skills": [{"name": n, "version": v} for n, v in sorted(skills)],
+                     "hints": sum(r["hints_used"] for r in attempts if r["session_id"] == session),
+                     "mastery_gain": gain})  # fmt: skip
+    return rows

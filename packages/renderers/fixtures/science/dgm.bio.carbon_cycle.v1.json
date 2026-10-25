@@ -1,0 +1,85 @@
+{
+  "id": "dgm.bio.carbon_cycle.v1",
+  "version": "1.0.0",
+  "subject": "bio",
+  "kind": "cycle",
+  "kc_ids": [
+    "kc.bio.o.ecology.carbon_cycle"
+  ],
+  "title": "The carbon cycle",
+  "definition": {
+    "stages": [
+      {
+        "id": "air",
+        "label": "Carbon dioxide in the air",
+        "description": "Carbon dioxide in the atmosphere, taken in by plants and given out by respiration."
+      },
+      {
+        "id": "plants",
+        "label": "Plants",
+        "description": "Photosynthesis turns carbon dioxide into glucose and other carbon compounds."
+      },
+      {
+        "id": "animals",
+        "label": "Animals",
+        "description": "Animals take in carbon compounds when they eat plants or other animals."
+      },
+      {
+        "id": "dead_matter",
+        "label": "Dead matter and waste",
+        "description": "Dead plants and animals and their waste still hold carbon compounds."
+      },
+      {
+        "id": "decomposers",
+        "label": "Decomposers",
+        "description": "Bacteria and fungi feed on dead matter and release carbon dioxide by respiration."
+      }
+    ],
+    "links": [
+      {
+        "from": "air",
+        "to": "plants"
+      },
+      {
+        "from": "plants",
+        "to": "animals"
+      },
+      {
+        "from": "animals",
+        "to": "dead_matter"
+      },
+      {
+        "from": "dead_matter",
+        "to": "decomposers"
+      },
+      {
+        "from": "decomposers",
+        "to": "air"
+      },
+      {
+        "from": "plants",
+        "to": "air"
+      },
+      {
+        "from": "animals",
+        "to": "air"
+      },
+      {
+        "from": "plants",
+        "to": "dead_matter"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "title": "Jana biology authoring notes: the carbon cycle",
+      "url": "https://jana.dev/sources/own-work",
+      "licence": "LicenseRef-Own",
+      "attribution": "Our own definition, written for Jana.",
+      "modifications": "None.",
+      "retrieved": "2026-10-23"
+    }
+  ],
+  "licence": "LicenseRef-Own",
+  "attribution": "Our own definition, written for Jana."
+}

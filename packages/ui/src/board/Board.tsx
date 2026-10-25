@@ -12,7 +12,7 @@
 // screen reader names each by kind. The pointer clears with its cue (interruption, flush, session change, a revised or
 // removed line); the selection clears when its line is revised or removed.
 import { memo, useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
-import { boardLineLatex, selectBoardLine, type StepRec } from "@jana/client-core";
+import { CLIENT_KEYS, boardLineLatex, selectBoardLine, type AnnotationRec, type StepRec } from "@jana/client-core";
 import { Icon } from "../icons.js";
 import { useT } from "../i18n.js";
 import { MarkdownBlock } from "../markdown/Markdown.js";
@@ -21,7 +21,12 @@ import { Button, EmptyState, IconButton, MenuButton, Spinner, chipLook, type Chi
 import { shallowArray, useSelect, useStoreHolder, useSession } from "../store.js";
 import { ReportSheet } from "../transcript/ReportProblem.js";
 import { useTutorName } from "../tutor/look.js";
-import { useVoicePointer } from "../voice/SpeechTools.js";
+import { useVisualSettings } from "../visuals/VisualViewer.js";
+import { useVoicePen, useVoicePointer, useVoiceWriting } from "../voice/SpeechTools.js";
+import { Pen } from "./Pen.js";
+import { TermCarry } from "./TermCarry.js";
+import { LineAnnotation } from "./Annotation.js";
+import { ManipulationPanel } from "./Manipulation.js";
 import { WorkingEntry, type WorkingPhoto } from "./WorkingEntry.js";
 
 /** The error categories of TABLE VER-06a, each with its "look here" words (`board.error.<category>`). */
@@ -55,8 +60,40 @@ function LineMenu({ number, sessionId, turnId }: { number: number; sessionId: st
   );
 }
 
-export const BoardStep = memo(function BoardStep({ step, number, current, highlighted = false, selected = false, onSelect, onEdit, onWhy, editing = false, sessionId, reportTurn = null }: {
+/** Reading pace of a write-on without voice (UXS-55): per character, capped per line. */
+export const WRITE_ON_MS_PER_CHAR = 40;
+export const WRITE_ON_MAX_MS = 1200;
+
+/** The write-on mask over a new tutor line (UXS-55, TABLE DSN-10a): moved by `transform` over the rendered maths, never
+ * a stroke trace; presentation only, so the line is selectable and read in full from its arrival. In voice mode the
+ * reveal follows the words that cite the line (`progress`); otherwise it runs at a reading pace. */
+function WriteOn({ latex, progress, current }: { latex: string; progress: number | null; current: boolean }) {
+  const [paced, setPaced] = useState(0);
+  useEffect(() => {
+    if (progress !== null) return undefined;
+    const frame = requestAnimationFrame(() => setPaced(1));
+    return () => cancelAnimationFrame(frame);
+  }, [progress]);
+  const shown = progress ?? paced;
+  const duration = Math.min(WRITE_ON_MAX_MS, WRITE_ON_MS_PER_CHAR * latex.length);
+  if (shown >= 1 && progress !== null) return null;
+  return (
+    <span aria-hidden="true" data-write-on={progress === null ? "paced" : "voice"} data-write-on-ms={progress === null ? duration : undefined}
+      className={`pointer-events-none absolute inset-0 origin-right ${current ? "bg-board-current" : "bg-canvas"}`}
+      style={{ transform: `scaleX(${1 - shown})`, transition: progress === null ? `transform ${duration}ms linear` : undefined }} />
+  );
+}
+
+export const BoardStep = memo(function BoardStep({ step, number, current, highlighted = false, selected = false, onSelect, onEdit, onWhy, onTermSelect, editing = false, sessionId, reportTurn = null, annotation = null, dimmed = false, writeOn = null }: {
+  /** A new tutor line written on (UXS-55): `paced` at a reading pace, a number for the voice's progress, null shown whole. */
+  writeOn?: "paced" | number | null;
+  /** A term or range selected on this line (UXS-58), or null when cleared: reported so "this" refers to it. */
+  onTermSelect?: (ref: string | null) => void;
   step: StepRec; number: number; current: boolean;
+  /** Dimmed by the tutor's spotlight on another line (UXS-57): opacity only. */
+  dimmed?: boolean;
+  /** The tutor's annotation when it targets this line (VSL-40). */
+  annotation?: AnnotationRec | null;
   /** The tutor's temporary pointer is on this line (UXS-63). */
   highlighted?: boolean;
   /** The student selected this line (UXS-63, UXS-58). */
@@ -91,6 +128,25 @@ export const BoardStep = memo(function BoardStep({ step, number, current, highli
   // `aria-current="step"` (read as "current step"), the pointer and the selection in the line's name.
   const kinds = [highlighted ? t("board.kind.showing") : null, selected ? t("board.kind.selected") : null]
     .filter((k): k is string => k !== null);
+  // Pointing back at a term (UXS-58): with the line focused, Left and Right move between its terms and Shift extends
+  // the range; the selection is named in words and "Why this?" asks about exactly that range.
+  const terms = step.terms ?? [];
+  const [range, setRange] = useState<{ anchor: number; focus: number } | null>(null);
+  const termRange = range === null ? null : `t${Math.min(range.anchor, range.focus) + 1}${range.anchor === range.focus ? "" : `-t${Math.max(range.anchor, range.focus) + 1}`}`;
+  const fromTerm = range === null ? undefined : terms[Math.min(range.anchor, range.focus)];
+  const toTerm = range === null ? undefined : terms[Math.max(range.anchor, range.focus)];
+  const termText = fromTerm === undefined || toTerm === undefined ? null : step.latex.slice(fromTerm.start, toTerm.end);
+  const moveTerm = (e: { key: string; shiftKey: boolean; preventDefault(): void }): boolean => {
+    if ((e.key !== "ArrowLeft" && e.key !== "ArrowRight") || terms.length === 0) return false;
+    e.preventDefault();
+    const delta = e.key === "ArrowRight" ? 1 : -1;
+    const next = range === null ? (delta > 0 ? 0 : terms.length - 1) : Math.max(0, Math.min(terms.length - 1, range.focus + delta));
+    const chosen = e.shiftKey && range !== null ? { anchor: range.anchor, focus: next } : { anchor: next, focus: next };
+    setRange(chosen);
+    const id = `t${Math.min(chosen.anchor, chosen.focus) + 1}${chosen.anchor === chosen.focus ? "" : `-t${Math.max(chosen.anchor, chosen.focus) + 1}`}`;
+    onTermSelect?.(`${step.step_id}.${id}`);
+    return true;
+  };
   return (
     <li
       tabIndex={-1}
@@ -101,9 +157,13 @@ export const BoardStep = memo(function BoardStep({ step, number, current, highli
       data-highlighted={highlighted ? "true" : undefined}
       data-selected={selected ? "true" : undefined}
       data-current={current ? "true" : undefined}
+      data-dimmed={dimmed ? "true" : undefined}
+      style={dimmed ? { opacity: CLIENT_KEYS.board_spotlight_dim_opacity } : undefined}
       onClick={onSelect === undefined ? undefined : () => onSelect(step.step_id)}
       onKeyDown={(e) => {
         if ((e.target as HTMLElement).closest('[role="textbox"],input,button') !== null) return;
+        if (moveTerm(e)) return;
+        if (e.key === "Escape" && range !== null) { setRange(null); onTermSelect?.(null); return; }
         if (e.key === "Enter") onSelect?.(step.step_id);
         if (e.key.toLowerCase() === "e" && student) { e.preventDefault(); onEdit?.(step.step_id); }
       }}
@@ -111,7 +171,8 @@ export const BoardStep = memo(function BoardStep({ step, number, current, highli
     >
       <span className={`h-8 text-center text-meta leading-8 font-medium tabular-nums ${numberInk}`}>{number}</span>
       <span className="grid min-w-0 gap-1">
-        <span className={`board-math block overflow-x-auto text-ink ${highlighted ? "underline decoration-highlight-line decoration-2 underline-offset-4" : ""}`}>
+        <span className={`board-math relative block overflow-x-auto text-ink ${highlighted ? "underline decoration-highlight-line decoration-2 underline-offset-4" : ""}`}>
+          {writeOn !== null && step.owner === "tutor" && <WriteOn latex={step.latex} progress={writeOn === "paced" ? null : writeOn} current={current} />}
           {student && typed === null ? (
             <span className="[&_p]:my-0"><MarkdownBlock text={step.latex} /></span>
           ) : student ? (
@@ -120,6 +181,14 @@ export const BoardStep = memo(function BoardStep({ step, number, current, highli
             <Tex tex={step.latex} display={false} />
           )}
         </span>
+        {termRange !== null && (
+          <span data-term-selection={termRange} className="flex flex-wrap items-center gap-2 text-ui">
+            <span className="rounded-control bg-highlight-soft px-1 font-mono underline" aria-hidden="true">{termText}</span>
+            {onWhy !== undefined && <Button size="sm" tone="ghost" onClick={(e) => { e.stopPropagation(); onWhy(`${step.step_id}.${termRange}`); }}>{t("board.why_this")}</Button>}
+            <span role="status" className="sr-only">{t("board.term_selected", { term: termText ?? "" })}</span>
+          </span>
+        )}
+        {annotation !== null && <LineAnnotation step={step} annotation={annotation} />}
         {reason !== null && <span className="block text-ui text-muted">{reason}</span>}
         {note !== null && <span data-look-here="" className="block font-hand text-heading text-misconception">{note}</span>}
         <span className="mt-1 flex flex-wrap items-center gap-2">
@@ -208,6 +277,34 @@ export function Board({ sessionId, onClose }: { sessionId: string; onClose?: () 
   const awaiting = useSelect((s) => (boardId === null ? null : (s.boards[boardId]?.await?.step_id ?? null)));
   // Lines the tutor or a bound visual points at (board.highlight, VSL-20), until their time to live runs out.
   const highlight = useSelect((s) => (boardId === null ? null : (s.boards[boardId]?.highlight ?? null)));
+  // A manipulable visual as the student's turn (VSL-42): its kind decides the values the panel asks for.
+  const manipulation = useSelect((s) => (boardId === null ? null : (s.boards[boardId]?.manipulation ?? null)));
+  const manipulable = useSelect((s) => {
+    const type = manipulation === null ? undefined : s.visuals[manipulation.visual_id]?.spec.type;
+    return type === "number_line" || type === "function_graph" || type === "free_body" ? type : null;
+  });
+  // A new tutor line is written on (UXS-55): in time with the words that cite it in voice mode, otherwise at a reading
+  // pace; lines already there when the board opens, reduced motion and low power show whole.
+  const seenAtOpen = useRef<Set<string> | null>(null);
+  if (seenAtOpen.current === null) seenAtOpen.current = new Set(stepIds);
+  const { reducedMotion, lowPower } = useVisualSettings();
+  const writing = useVoiceWriting();
+  const pen = useVoicePen();
+  const boardBox = useRef<HTMLElement | null>(null);
+  const writeOnOf = (step: StepRec): "paced" | number | null => {
+    if (reducedMotion || step.owner !== "tutor" || seenAtOpen.current?.has(step.step_id) === true) return null;
+    return writing !== null && writing.step_id === step.step_id ? writing.progress : "paced";
+  };
+  // Term carry (UXS-61): the newest line's verified moves, played once when it arrives; reduced motion and low power
+  // show the line at once.
+  const newest = steps[steps.length - 1];
+  const carry = newest !== undefined && (newest.term_moves?.length ?? 0) > 0 && !reducedMotion && lowPower !== true
+    && seenAtOpen.current?.has(newest.step_id) !== true ? newest : null;
+  // The tutor's one annotation, drawn on the line it targets by id (VSL-40).
+  const annotation = useSelect((s) => (boardId === null ? null : (s.boards[boardId]?.annotation ?? null)));
+  // A spotlight (UXS-57) dims the other lines until the next utterance or any student action on the board.
+  const [actedAt, setActedAt] = useState<number | null>(null);
+  const spotlight = highlight?.spotlight === true && actedAt !== highlight.ts;
   const lit = highlight !== null && (highlight.ttl_ms === null || Date.now() - highlight.ts < highlight.ttl_ms) ? highlight.step_ids : NONE;
   // The spoken cue's pointer (VOC-10, VOC-51): fired by what the student has heard, never by the caption arriving.
   const pointer = useVoicePointer();
@@ -228,7 +325,8 @@ export function Board({ sessionId, onClose }: { sessionId: string; onClose?: () 
     return opened ?? turns[turns.length - 1] ?? null;
   });
   const holder = useStoreHolder();
-  const why = useCallback((stepId: string) => { session?.askWhy(stepId, t("board.why")); }, [session, t]);
+  const why = useCallback((stepId: string) => { session?.askWhy(stepId, t(stepId.includes(".") ? "board.why_this" : "board.why")); }, [session, t]);
+  const termSelect = useCallback((ref: string | null) => { void session?.setSelection(ref).catch(() => undefined); }, [session]);
   // The lines as of now, read when a line is selected, so selecting never re-renders every row (UIA-18).
   const latest = useRef(steps);
   latest.current = steps;
@@ -249,7 +347,10 @@ export function Board({ sessionId, onClose }: { sessionId: string; onClose?: () 
     }
   };
   return (
-    <section aria-label={t("board.title")} className="relative flex min-h-0 flex-1 flex-col bg-canvas" onDragOverCapture={(event) => {
+    <section ref={boardBox} aria-label={t("board.title")} className="relative flex min-h-0 flex-1 flex-col bg-canvas"
+      onPointerDownCapture={() => { if (highlight?.spotlight === true) setActedAt(highlight.ts); }}
+      onKeyDownCapture={() => { if (highlight?.spotlight === true) setActedAt(highlight.ts); }}
+      onDragOverCapture={(event) => {
       if (session !== null && photoReady && event.dataTransfer.types.includes("Files") && !(event.target instanceof Element && event.target.closest('[role="dialog"]'))) { event.preventDefault(); setDraggingPhoto(true); }
     }} onDragLeave={(event) => { if (!(event.relatedTarget instanceof Node) || !event.currentTarget.contains(event.relatedTarget)) setDraggingPhoto(false); }} onDropCapture={(event) => {
       setDraggingPhoto(false);
@@ -269,12 +370,18 @@ export function Board({ sessionId, onClose }: { sessionId: string; onClose?: () 
           <EmptyState message={t("board.empty")} />
         ) : (
           <ol ref={list} tabIndex={0} onKeyDown={onKey} className="flex flex-col gap-1" aria-label={t("board.title")}>
-            {steps.map((step, i) => <BoardStep key={step.step_id} step={step} number={i + 1} current={step.step_id === current} highlighted={lit.includes(step.step_id) || step.step_id === pointed} selected={step.step_id === chosen} onSelect={select} sessionId={sessionId} reportTurn={reportTurn} {...(session !== null ? { onEdit: edit, onWhy: why, editing: editing === step.step_id } : {})} />)}
+            {steps.map((step, i) => <BoardStep key={step.step_id} step={step} number={i + 1} current={step.step_id === current} highlighted={lit.includes(step.step_id) || step.step_id === pointed} selected={step.step_id === chosen} annotation={annotation !== null && (annotation.target.step_id === step.step_id || annotation.to?.step_id === step.step_id) ? annotation : null} dimmed={spotlight && lit.length > 0 && !lit.includes(step.step_id)} writeOn={writeOnOf(step)} onSelect={select} sessionId={sessionId} reportTurn={reportTurn} {...(session !== null ? { onEdit: edit, onWhy: why, onTermSelect: termSelect, editing: editing === step.step_id } : {})} />)}
           </ol>
         )}
       </div>
+      <Pen pen={pen} container={boardBox} reducedMotion={reducedMotion} lowPower={lowPower === true} />
+      {carry !== null && <TermCarry key={carry.step_id} step={carry} steps={steps} container={boardBox} />}
       {/* The pointer in words for a screen reader (VOC-17, UXS-63): "Showing: step 2", once per pointer. */}
       <p className="sr-only" aria-live="polite" data-board-showing="">{pointedNumber > 0 ? t("board.showing", { index: pointedNumber }) : ""}</p>
+      {session !== null && manipulation !== null && manipulable !== null && (
+        <ManipulationPanel kind={manipulable} partIds={manipulation.part_ids} prompt={manipulation.prompt}
+          onCheck={(values) => void session.answerManipulation(manipulation.visual_id, manipulation.step_id, values)} />
+      )}
       {session !== null && <WorkingEntry sessionId={sessionId} firstLine={steps.length + 1} photoInput={photoInput?.sessionId === sessionId ? photoInput : null} onPhotoClose={() => setPhotoInput(null)} />}
     </section>
   );

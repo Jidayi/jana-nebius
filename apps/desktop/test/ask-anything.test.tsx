@@ -90,7 +90,7 @@ describe("UXS-67", () => {
     await screen.findByRole("heading", { level: 1, name: /^Ready to learn, Ada\?$/ });
     await type(PASSAGE);
     await waitFor(() => expect(fake.core.log.some((r) => r.method === "POST" && /^\/v1\/study\/(sources|retries\/)/.test(r.path))).toBe(true));
-    await waitFor(() => expect(within(nav).getByRole("button", { name: "Study" }).getAttribute("aria-current")).toBe("page"));
+    await waitFor(() => expect(within(nav).getByRole("button", { name: "My materials" }).getAttribute("aria-current")).toBe("page"));
     expect(turns(fake)).toHaveLength(1);
   });
 

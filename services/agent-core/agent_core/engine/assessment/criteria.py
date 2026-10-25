@@ -1,4 +1,5 @@
-"""Mock criterion dependencies and local method adjudication (ASM-17); no item-marker changes."""
+"""Mock criterion dependencies and local method adjudication (ASM-17), and "show that" parts (ASM-25); no item-marker
+changes."""
 
 from __future__ import annotations
 
@@ -29,6 +30,21 @@ async def decide_method(
         first, second = await judge(lines, alternatives), await judge(lines, alternatives)
         return first if first is not None and first == second else None
     return False if complete else None
+
+
+SameForm = Callable[[str, str], Awaitable[bool | None]]
+
+
+async def drop_restatements(lines: Sequence[str], target: str, same_form: SameForm) -> list[str]:
+    """ASM-25: a "show that" part gives its target, so writing the target is no step of a derivation. Every line of a
+    derivation has the target's value, so equivalence cannot tell them apart: a line whose last side has the target's
+    form as written ("dy/dx = 6x + 2" or "2 + 6x" for 6x + 2, not "3(2x) + 2") is set aside before method marks are
+    decided. Restating the target then earns no method mark, and the A mark that needs it falls with it."""
+    kept = []
+    for line in lines:
+        if await same_form(line.rsplit("=", 1)[-1].strip(), target) is not True:
+            kept.append(line)
+    return kept
 
 
 def score_criteria(criteria: Sequence[Mapping[str, Any]], decisions: Mapping[str, bool | None]) -> list[dict[str, Any]]:

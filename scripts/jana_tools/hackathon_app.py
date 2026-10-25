@@ -143,6 +143,9 @@ class SponsoredRuntime(AppRuntime):
 def settings_for_browser(settings: Settings) -> Settings:
     return settings.model_copy(
         update={
+            # Expose the imported visual tutoring, local parent views and history
+            # in the development app. This is not a release-acceptance claim.
+            "build_stage": "S3",
             "study_workspace_enabled": True,
             "study_offline_enabled": False,
             "study_neural_speech_enabled": True,

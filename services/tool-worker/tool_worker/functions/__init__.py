@@ -5,14 +5,22 @@ from __future__ import annotations
 
 from tool_worker.functions import (
     acidbase,
+    alevel,
+    alevel_calculus,
     answers,
+    appraisal,
+    biology,
     calculus,
+    cashflow,
     chemistry,
     circuits,
+    distributions,
     energetics,
+    equilibrium,
     geometry,
     ledger,
     maths,
+    mechanics,
     optics,
     plotting,
     projectile,
@@ -35,10 +43,10 @@ FUNCTIONS: dict[str, Function] = {
     f.name: f
     for f in (
         _function("math_parse", 1, maths.math_parse),
-        _function("math_solve", 3, maths.math_solve),
-        _function("math_simplify", 1, maths.math_simplify),
+        _function("math_solve", 4, maths.math_solve),  # 4: complex roots and numerical methods (VER-30)
+        _function("math_simplify", 2, maths.math_simplify),  # 2: partial fractions, series, complex (VER-30)
         _function("math_check_equivalence", 1, maths.math_check_equivalence),
-        _function("math_check_step", 2, steps.math_check_step),
+        _function("math_check_step", 3, steps.math_check_step),
         _function("math_evaluate", 2, maths.math_evaluate),
         _function("units_convert", 1, units.units_convert),
         _function("units_check_dimensions", 1, units.units_check_dimensions),
@@ -47,25 +55,38 @@ FUNCTIONS: dict[str, Function] = {
         _function("phys_circuit", 1, circuits.phys_circuit),
         _function("phys_projectile", 1, projectile.phys_projectile),
         # M12.a: mathematics checkers of stage S2 (VER-08, VER-09, VER-10, VER-13, VER-14, VER-15)
-        _function("math_differentiate", 1, calculus.math_differentiate),
-        _function("math_integrate", 1, calculus.math_integrate),
+        _function("math_differentiate", 2, calculus.math_differentiate),  # 2: implicit, parametric (VER-30)
+        _function("math_integrate", 2, calculus.math_integrate),  # 2: volumes, trapezium, substitution, parts
         _function("math_check_answer", 1, answers.math_check_answer),
         _function("stats_compute", 1, stats.stats_compute),
         _function("math_plot_points", 1, plotting.math_plot_points),
         _function("geom_figure", 1, geometry.geom_figure),
         # M12.d: accounting checkers of stage S2 (VER-22, VER-23, VER-24, VER-25)
-        _function("acc_double_entry", 1, ledger.acc_double_entry),
-        _function("acc_statements", 1, statements.acc_statements),
+        _function("acc_double_entry", 2, ledger.acc_double_entry),  # 2: control accounts (VER-34)
+        _function("acc_statements", 2, alevel.acc_statements),  # 2: the A level forms (VER-34)
         _function("acc_depreciation", 1, valuation.acc_depreciation),
         _function("acc_inventory", 1, valuation.acc_inventory),
         _function("acc_ratios", 1, ratios.acc_ratios),
         _function("acc_break_even", 1, ratios.acc_break_even),
+        # M26: accounting checkers of stage S3 (VER-34)
+        _function("acc_cash_flow", 1, cashflow.acc_cash_flow),
+        _function("acc_appraisal", 1, appraisal.acc_appraisal),
         # M12.c: chemistry checkers of stage S2 (VER-18, VER-19, VER-20, VER-21)
         _function("chem_molar_mass", 1, chemistry.chem_molar_mass),
         _function("chem_balance", 1, chemistry.chem_balance),
         _function("chem_stoichiometry", 1, stoichiometry.chem_stoichiometry),
-        _function("chem_acid_base", 1, acidbase.chem_acid_base),
+        _function("chem_acid_base", 2, acidbase.chem_acid_base),  # 2: `ka` for a weak acid (VER-32)
         _function("chem_energetics", 1, energetics.chem_energetics),
+        # M26.a: science checkers of stage S3 on the science-compute contract (VER-32, VER-35, VER-38)
+        _function("bio_genetics", 1, biology.bio_genetics),
+        _function("bio_calc", 1, biology.bio_calc),
+        _function("chem_equilibrium", 1, equilibrium.chem_equilibrium),
+        # M26.a: A level mechanics of stage S3 (VER-31)
+        _function("phys_mechanics", 1, mechanics.phys_mechanics),
+        # M26.a: A level calculus of stage S3 (VER-30)
+        _function("math_solve_ode", 1, alevel_calculus.math_solve_ode),
+        # M26.a: A level statistics of stage S3 (VER-30)
+        _function("stats_distribution", 1, distributions.stats_distribution),
     )
 }
 
@@ -105,6 +126,24 @@ def preload() -> None:
     calculus.math_differentiate({"expression": "x^3 - 3x", "stationary_points": True, "at": 1}, context)
     calculus.math_integrate({"expression": "x^2 - 4", "lower": -3, "upper": 3, "area": True, "student": "x"}, context)
     calculus.math_integrate({"expression": "sqrt(x)", "lower": 0, "upper": 4}, context)  # rational powers
+    # VER-30: implicit and parametric derivatives, volumes, the trapezium rule, substitution, parts and separable ODEs
+    calculus.math_differentiate({"mode": "implicit", "expression": "x^2 + y^2 = 25", "point": [3, 4]}, context)
+    calculus.math_differentiate({"mode": "parametric", "x_expression": "t^2", "y_expression": "sin(t)", "order": 2,
+                                 "at": "pi/2"}, context)  # fmt: skip
+    calculus.math_integrate({"expression": "e^x", "volume": "x_axis", "lower": 0, "upper": "ln(2)"}, context)
+    calculus.math_integrate({"expression": "1/(1 + x^2)", "method": "trapezium", "strips": 4, "lower": 0,
+                             "upper": 1}, context)  # fmt: skip
+    calculus.math_integrate({"expression": "x (x^2 + 1)^3", "substitution": "u = x^2 + 1", "lower": 0, "upper": 1},
+                            context)  # fmt: skip
+    calculus.math_integrate({"expression": "x e^x", "parts_u": "x"}, context)
+    alevel_calculus.math_solve_ode({"rhs": "x y", "condition": [0, 2], "at": 1}, context)
+    # VER-30: series, partial fractions, complex numbers and numerical methods
+    maths.math_simplify({"expression": "(5x+3)/((1+x)(1-2x))", "form": "series", "order": 2}, context)
+    maths.math_simplify({"expression": "1/((x-1)^2(x^2+1))", "form": "partial_fractions"}, context)
+    maths.math_simplify({"expression": "-3+4i", "form": "modulus_argument"}, context)
+    maths.math_solve({"equations": ["z^3 = 1"], "domain": "complex"}, context)
+    maths.math_solve({"equations": ["x^3 - 2x - 5 = 0"], "method": "iteration", "g": "cbrt(2x+5)", "start": 2,
+                      "steps": 3}, context)  # fmt: skip
     answers.math_check_answer({"student": "2(x+3)", "key": "2x+6", "rule": {"form": "factorised"}}, context)
     answers.math_check_answer({"student": "2 km", "key": "2000 m"}, context)
     stats.stats_compute({"data": [1, 2, 2, 5]}, context)
@@ -137,3 +176,9 @@ def preload() -> None:
                              "base_concentration": "0.1 M", "points": 5}, context)  # fmt: skip
     energetics.chem_energetics({"mass": "50 g", "specific_heat": "4.2 J/(g K)", "initial_temperature": "20 °C",
                                 "final_temperature": "26 °C", "amount": "0.025 mol"}, context)  # fmt: skip
+    # M26.a: A level statistics: erf and erfinv, and the incomplete beta function of the PMCC critical value.
+    distributions.stats_distribution({"task": "normal", "mean": 50, "sd": 4, "relation": "lt", "x": 53}, context)
+    distributions.stats_distribution({"task": "normal", "find": "value", "mean": 50, "sd": 4, "probability": "0.05",
+                                      "tail": "above"}, context)  # fmt: skip
+    distributions.stats_distribution({"task": "hypothesis_test", "test": "pmcc", "alternative": "greater",
+                                      "significance_level": "0.05", "r": "0.6", "n": 10}, context)  # fmt: skip

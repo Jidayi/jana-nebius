@@ -64,7 +64,8 @@ class ProfileScope:
             bool(
                 re.fullmatch(
                     r"/v1/(?:search/items|practice/sets/[^/]+(?:/reveal)?|lessons/[^/]+/probe|mocks|mocks/[^/]+/(?:integrity|navigate)|probes(?:/.*)?"
-                    r"|plans(?:/.*)?|progress|interview(?:/.*)?|session-notes(?:/.*)?|sessions/[^/]+/end|ask(?:/route)?|study/web)",
+                    r"|plans(?:/.*)?|progress|interview(?:/.*)?|session-notes(?:/.*)?|sessions/[^/]+/end|ask(?:/route)?|study/web"
+                    r"|digests/latest|alerts(?:/[^/]+/dismiss)?|history(?:/[^/]+)?)",
                     str(scope.get("path", "")),
                 )
             )

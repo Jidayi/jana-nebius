@@ -47,6 +47,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--local-model", type=Path)
     parser.add_argument("--port", type=int, default=5187)
+    parser.add_argument("--stable", action="store_true", help="Serve a built preview without source-triggered reloads")
     parser.add_argument("--data-dir", type=Path, default=Path(tempfile.gettempdir()) / "jana-nebius-browser")
     args = parser.parse_args()
     if not 1 <= args.port <= 65535:
@@ -122,7 +123,31 @@ def main() -> int:
                 # readiness generation; /health above only sequences startup.
                 env["JANA_DEV_RUNTIME"] = f"{endpoint} {key} {MODEL}"
                 print("Verified NVIDIA Nemotron Nano 4B loaded locally; native readiness check follows.", flush=True)
-            app = subprocess.Popen([pnpm, "--filter", "@jana/desktop", "dev"], cwd=REPO_ROOT, env=env)
+            command = [pnpm, "--filter", "@jana/desktop", "dev"]
+            if args.stable:
+                bundle = str(Path(folder) / "browser")
+                subprocess.run(
+                    [pnpm, "--filter", "@jana/desktop", "exec", "vite", "build", "--outDir", bundle],
+                    cwd=REPO_ROOT,
+                    env=env,
+                    check=True,
+                )
+                command = [
+                    pnpm,
+                    "--filter",
+                    "@jana/desktop",
+                    "exec",
+                    "vite",
+                    "preview",
+                    "--outDir",
+                    bundle,
+                    "--host",
+                    "127.0.0.1",
+                    "--port",
+                    str(args.port),
+                    "--strictPort",
+                ]
+            app = subprocess.Popen(command, cwd=REPO_ROOT, env=env)
             try:
                 return app.wait()
             finally:

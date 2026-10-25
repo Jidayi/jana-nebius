@@ -321,6 +321,30 @@ class Settings(BaseModel):
     board_pen_travel_ms: int = key(300, serves="DSN-10", layers=ENGINEERING, unit="ms", ge=0, le=2000, client=True)
     board_spotlight_dim_opacity: float = key(0.4, serves="DSN-10", layers=ENGINEERING, unit="opacity", ge=0, le=1,
                                              client=True)  # fmt: skip
+    # VSL-43, VSL-44, MDL-33 (D106, D107): online sketches. A sketch ready within the deadline joins the turn; a later
+    # one is added after it. The caps and the checks' tolerances (a share of the frame's diagonal, or degrees).
+    # EVL-28 (D106): the sketch kinds whose correctness gate the suite passed; a kind not listed keeps sketch calls off.
+    # Empty until the release's suite report turns kinds on, so sketches go live only through M44's exit.
+    sketch_live_kinds: tuple[str, ...] = key((), serves="EVL-28", layers=ENGINEERING, unit="sketch kinds")
+    sketch_deadline_ms: int = key(3000, serves="VSL-43", layers=ENGINEERING, unit="ms", ge=500, le=20000)
+    sketch_max_elements: int = key(40, serves="VSL-43", layers=ENGINEERING, unit="elements", ge=1, le=40)
+    sketch_max_labels: int = key(12, serves="VSL-43", layers=ENGINEERING, unit="labels", ge=0, le=40)
+    sketch_max_completion_tokens: int = key(600, serves="MDL-33", layers=ENGINEERING, unit="tokens", ge=100, le=2000)
+    sketch_position_share: float = key(0.02, serves="VSL-44", layers=ENGINEERING, unit="share", ge=0.001, le=0.2)
+    sketch_length_share: float = key(0.03, serves="VSL-44", layers=ENGINEERING, unit="share", ge=0.001, le=0.2)
+    sketch_angle_deg: float = key(3.0, serves="VSL-44", layers=ENGINEERING, unit="degrees", ge=0.1, le=20)
+    # DSN-27: the speaking mouth from the loudness of the audio played (level 0 at -60 dBFS to 1 at 0 dBFS per 20 ms
+    # frame): the levels where the small, medium and open shapes start, the hysteresis below each, and the smoothing.
+    presence_mouth_small_level: float = key(0.45, serves="DSN-27", layers=ENGINEERING, unit="level", ge=0, le=1,
+                                            client=True)  # fmt: skip
+    presence_mouth_medium_level: float = key(0.6, serves="DSN-27", layers=ENGINEERING, unit="level", ge=0, le=1,
+                                             client=True)  # fmt: skip
+    presence_mouth_open_level: float = key(0.75, serves="DSN-27", layers=ENGINEERING, unit="level", ge=0, le=1,
+                                           client=True)  # fmt: skip
+    presence_mouth_hysteresis: float = key(0.05, serves="DSN-27", layers=ENGINEERING, unit="level", ge=0, le=0.2,
+                                           client=True)  # fmt: skip
+    presence_mouth_attack_ms: int = key(30, serves="DSN-27", layers=ENGINEERING, unit="ms", ge=0, le=500, client=True)
+    presence_mouth_release_ms: int = key(90, serves="DSN-27", layers=ENGINEERING, unit="ms", ge=0, le=500, client=True)
 
     # --- visual catalogue, diagram library and simulations (VSL-20 to VSL-33) ---
     visual_step_sync_ms: int = key(100, serves="VSL-20", layers=ENGINEERING, unit="ms", ge=16, le=1000, client=True)
@@ -857,6 +881,19 @@ class Settings(BaseModel):
     budget_plan_ms: float = key(500.0, serves="LRN-42", layers=ENGINEERING, unit="ms", ge=1, le=10_000)
     # Engineering: the weeks of mastery history the Progress screen charts (UXS-27).
     progress_history_weeks: int = key(8, serves="UXS-27", layers=ENGINEERING, unit="weeks", ge=1, le=52)
+    # TCH-12: the weekly parent digest is due on Sunday at this local hour (proposal: 18:00; fixed, not a setting, D53);
+    # a week below the minutes reads "Not enough activity this week to summarise" (JRN-13 F1; engineering); a KC
+    # learning for over the days is one to watch (proposal: 2 weeks).
+    parent_digest_hour: int = key(18, serves="TCH-12", layers=ENGINEERING, unit="h", ge=0, le=23)
+    parent_digest_min_minutes: int = key(20, serves="TCH-12", layers=ENGINEERING, unit="min", ge=0, le=600)
+    parent_watch_learning_days: int = key(14, serves="TCH-12", layers=ENGINEERING, unit="days", ge=1, le=365)
+    # TCH-14, TABLE TCH-14a (proposal values): `inactive` after days without a session; `bottom_out_heavy` over this
+    # share of a week's steps ended at the bottom-out hint, once the week has the fewest steps (engineering); a trigger
+    # older than the look-back is not raised when the alerts are first read (engineering).
+    alert_inactive_days: int = key(7, serves="TCH-14", layers=ENGINEERING, unit="days", ge=1, le=90)
+    alert_bottom_out_share: float = key(0.4, serves="TCH-14", layers=ENGINEERING, unit="share", ge=0, le=1)
+    alert_bottom_out_min_steps: int = key(5, serves="TCH-14", layers=ENGINEERING, unit="steps", ge=1, le=1000)
+    alert_lookback_days: int = key(14, serves="TCH-14", layers=ENGINEERING, unit="days", ge=1, le=365)
     # M16.b-d policy defaults (ASM-10 to ASM-24, LOC-24).
     diagnostic_max_items: int = key(15, serves="ASM-10", layers=ENGINEERING, ge=1)
     diagnostic_max_minutes: int = key(12, serves="ASM-10", layers=ENGINEERING, ge=1)
@@ -1260,6 +1297,14 @@ class Settings(BaseModel):
     exit_s2_median_active_days: float = key(3.0, serves="PRD-17", layers=ENGINEERING, unit="days/week", ge=0, le=7)
     exit_s2_learning_gain_sd: float = key(0.2, serves="PRD-17", layers=ENGINEERING, unit="SD", ge=0, le=5)
     exit_s2_task_success: float = key(0.80, serves="PRD-17, JRN-02", layers=ENGINEERING, unit="share", ge=0, le=1)
+    # TABLE PRD-17a, S3 rows (proposals): A level answers and Biology facts on the release reports, and the voice and
+    # read-aloud latencies measured on the reference laptops (TABLE VOC-13a, VOC-18).
+    exit_s3_a_level_final_answer: float = key(0.95, serves="PRD-17", layers=ENGINEERING, unit="share", ge=0.5, le=1)
+    exit_s3_biology_unsupported_max: float = key(0.02, serves="PRD-17", layers=ENGINEERING, unit="share", ge=0, le=1)
+    exit_s3_voice_first_audio_p50_s: float = key(3.5, serves="PRD-17", layers=ENGINEERING, unit="s", ge=0.1, le=60)
+    exit_s3_voice_first_audio_p90_s: float = key(6.3, serves="PRD-17", layers=ENGINEERING, unit="s", ge=0.1, le=60)
+    exit_s3_read_aloud_p50_s: float = key(1.0, serves="PRD-17", layers=ENGINEERING, unit="s", ge=0.1, le=10)
+    exit_s3_read_aloud_p90_s: float = key(1.6, serves="PRD-17", layers=ENGINEERING, unit="s", ge=0.1, le=10)
     # UXS-14 (JRN-04 step 4): the restated question, the knowns panel and the topic's visual reach the board this soon.
     board_ready_ms: int = key(1000, serves="UXS-14", layers=ENGINEERING, unit="ms", ge=50, le=10_000)
     # EVL-21: a release report's teacher review per shipped subject is at most this old (proposal: 14 days).
@@ -1312,6 +1357,30 @@ class Settings(BaseModel):
     pilot_export_retention_months: int = key(12, serves="BIZ-16", layers=ENGINEERING, unit="months", ge=1)
     training_gap_margin_points: float = key(2.0, serves="TRN-02", layers=ENGINEERING, unit="points", ge=0)
     pilot_country_file: str = key("", serves="PRD-22", layers=ENGINEERING)
+    # M33.b: item analytics and calibration in the authoring system (CUR-26, ASM-21, AUT-37), from evaluation runs and
+    # separately consented research exports only (D51). They flag records for review and never edit one.
+    item_facility_low: float = key(0.10, serves="CUR-26, ASM-21", layers=ENGINEERING, unit="share", ge=0, le=1)
+    item_facility_high: float = key(0.95, serves="CUR-26, ASM-21", layers=ENGINEERING, unit="share", ge=0, le=1)
+    item_discrimination_min: float = key(0.1, serves="CUR-26, ASM-21", layers=ENGINEERING, unit="point-biserial",
+                                         ge=-1, le=1)  # fmt: skip
+    item_distractor_min_share: float = key(0.02, serves="CUR-26", layers=ENGINEERING, unit="share", ge=0, le=1)
+    item_analytics_min_responses: int = key(200, serves="CUR-26", layers=ENGINEERING, unit="responses", ge=1)
+    item_time_kc_multiple: float = key(3.0, serves="ASM-21", layers=ENGINEERING, unit="multiple of KC median",
+                                       ge=1, le=20)  # fmt: skip
+    calibration_min_responses: int = key(100, serves="ASM-21", layers=ENGINEERING, unit="responses", ge=1)
+    # Engineering: the spread of the 1PL fit's normal prior around the author's rating (its shrinkage).
+    calibration_prior_sd: float = key(1.0, serves="ASM-21", layers=ENGINEERING, unit="logit", ge=0.05, le=10)
+    author_analytics_min_students: int = key(10, serves="AUT-37", layers=ENGINEERING, unit="students", ge=2)
+    # LRN-12: per-student calibration on device, offline, in idle time.
+    personal_rate_min_observations: int = key(200, serves="LRN-12", layers=ENGINEERING, unit="observations", ge=1)
+    personal_fsrs_min_reviews: int = key(400, serves="LRN-12", layers=ENGINEERING, unit="reviews", ge=1)
+    personal_fit_min_gain: float = key(0.02, serves="LRN-12", layers=ENGINEERING, unit="share of log loss", ge=0,
+                                       le=1)  # fmt: skip
+    personal_fit_recent_share: float = key(0.2, serves="LRN-12", layers=ENGINEERING, unit="share of events", ge=0.05,
+                                           le=0.5)  # fmt: skip
+    # Engineering: the spread of the normal prior on log(multiplier) around 1.0 (the fit's shrinkage).
+    personal_rate_prior_sd: float = key(0.5, serves="LRN-12", layers=ENGINEERING, unit="log multiplier", ge=0.01,
+                                        le=5)  # fmt: skip
     # M24: OPS-02..38 policy defaults.
     ops_daily_check_max_count: int = key(1, serves="OPS-16", layers=ENGINEERING, unit="checks/day", ge=1, le=1)
     ops_switch_response_s: float = key(1.0, serves="OPS-12", layers=ENGINEERING, unit="s", ge=0.001)

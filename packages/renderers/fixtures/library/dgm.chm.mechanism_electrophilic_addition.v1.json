@@ -1,0 +1,100 @@
+{
+  "id": "dgm.chm.mechanism_electrophilic_addition.v1",
+  "version": "1.0.0",
+  "subject": "chm",
+  "title": "Electrophilic addition of hydrogen bromide to ethene",
+  "levels": [
+    "A"
+  ],
+  "kc_ids": [],
+  "svg_path": "diagrams/electrophilic_addition_v1.svg",
+  "parts": [
+    {
+      "id": "ethene",
+      "name": "Ethene",
+      "function": "The alkene: its pi bond is a region of high electron density that attacks an electrophile.",
+      "label_anchor": [
+        40,
+        60
+      ],
+      "tab_order": 0
+    },
+    {
+      "id": "hydrogen_bromide",
+      "name": "Hydrogen bromide",
+      "function": "The electrophile: a polar molecule whose hydrogen end carries a partial positive charge.",
+      "label_anchor": [
+        40,
+        215
+      ],
+      "tab_order": 1
+    },
+    {
+      "id": "carbocation",
+      "name": "Carbocation",
+      "function": "The intermediate: a carbon with only three bonds and a positive charge.",
+      "label_anchor": [
+        210,
+        60
+      ],
+      "tab_order": 2
+    },
+    {
+      "id": "bromide_ion",
+      "name": "Bromide ion",
+      "function": "Left when the H-Br bond breaks heterolytically; it uses a lone pair to bond to the carbocation.",
+      "label_anchor": [
+        215,
+        215
+      ],
+      "tab_order": 3
+    },
+    {
+      "id": "bromoethane",
+      "name": "Bromoethane",
+      "function": "The product of the addition.",
+      "label_anchor": [
+        355,
+        165
+      ],
+      "tab_order": 4
+    }
+  ],
+  "sequences": [
+    {
+      "id": "electrophilic_addition",
+      "title": "Electrophilic addition",
+      "steps": [
+        {
+          "highlight": [
+            "ethene",
+            "hydrogen_bromide"
+          ],
+          "caption": "The pi bond's electron pair attacks the partly positive hydrogen, and the H-Br bond breaks heterolytically, its pair going to bromine.",
+          "arrows": [
+            "arrow_pi_to_h",
+            "arrow_bond_to_br"
+          ]
+        },
+        {
+          "highlight": [
+            "carbocation",
+            "bromide_ion"
+          ],
+          "caption": "A lone pair on the bromide ion bonds to the positive carbon of the carbocation, giving bromoethane.",
+          "arrows": [
+            "arrow_br_to_c"
+          ]
+        }
+      ]
+    }
+  ],
+  "alt_text": "The mechanism of electrophilic addition of hydrogen bromide to ethene: ethene and hydrogen bromide, then a carbocation and a bromide ion, then bromoethane, with curly arrows for each step.",
+  "licence": "LicenseRef-Own",
+  "attribution": "Our own schematic drawing, made for Jana with AI assistance (renderer test fixture).",
+  "review": {
+    "status": "in_review",
+    "author_role_id": "rev_author_agent",
+    "style_version": 1
+  }
+}

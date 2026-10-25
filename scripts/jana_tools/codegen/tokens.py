@@ -3,7 +3,8 @@ custom properties for both themes, the Tailwind 4 theme maps its keys onto the r
 the values and contrast requirements the governance tests check (DSN-03). Prose (`usage`, `note`, `$comment`) stays in
 the specification.
 
-- `tokens.css`: `:root` (light), `[data-theme="dark"]`, and the reduced-motion overrides (DSN-09).
+- `tokens.css`: `:root` (light), `[data-theme="dark"]`, and the reduced-motion overrides (DSN-09); the print theme of
+  reports as `--print-*` properties (DSN-22).
 - `theme.css`: the Tailwind `@theme` block. Default palettes, radii, sizes, weights, shadows and stacking levels are
   reset, so a class outside the tokens does not exist. `z-<level>` comes from the `zIndex` group, and `text-body`
   follows the "Board and chat text size" setting (`--text-scale`, DSN-07), which the app sets on the root element.
@@ -92,6 +93,18 @@ def generate_tokens(tokens_file: Path, out: Path) -> None:
     shared += [(f"target-{k}", f"{v}px") for k, v in tokens.get("target", {}).items()]
     # DSN-18: colours that are themselves the content are one value in both themes, never interface meaning.
     shared += [(f"content-{k}", v["value"]) for k, v in tokens.get("contentColour", {}).get("swatches", {}).items()]
+    # DSN-22: the print theme of A4 reports, independent of the screen theme: its colours, its point-based type scale
+    # and the page margin. The report's print stylesheet maps the roles onto these inside the printed report only.
+    printed = tokens.get("print", {})
+    shared += [(f"print-color-{k}", v) for k, v in printed.get("color", {}).items()]
+    for name, size in printed.get("typeScalePt", {}).items():
+        shared.append((f"print-text-{name}", f"{size['size']}pt"))
+        if "lineHeight" in size:
+            shared.append((f"print-leading-{name}", f"{size['lineHeight']}pt"))
+        if "weight" in size:
+            shared.append((f"print-weight-{name}", str(WEIGHTS[size["weight"]])))
+    if "marginMm" in printed.get("page", {}):
+        shared.append(("print-page-margin", f"{printed['page']['marginMm']}mm"))
 
     keep = set(motion["reducedMotion"]["keep"])
     reduced = [(n, "0ms") for n, _ in durations if not any(k.lower() in n.replace("-", "").lower() for k in keep)]
@@ -144,7 +157,7 @@ def generate_tokens(tokens_file: Path, out: Path) -> None:
             + "}\n"
         )
 
-    data = {k: v for k, v in tokens.items() if k not in ("seeds", "print")}
+    data = {k: v for k, v in tokens.items() if k != "seeds"}
     tokens_ts = (
         _header(digest, "//")
         + "\n"

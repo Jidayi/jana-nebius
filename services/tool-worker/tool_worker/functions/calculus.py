@@ -18,6 +18,7 @@ from sympy.calculus.util import continuous_domain
 from sympy.core.relational import Relational
 
 from tool_worker.budget import SliceExpired, time_slice
+from tool_worker.functions import alevel_calculus
 from tool_worker.functions.common import parse_arg
 from tool_worker.functions.maths import _expressions as expression_equivalence
 from tool_worker.functions.maths import _sorted_values, exact, slice_seconds
@@ -65,6 +66,14 @@ def number(raw: Any, field: str) -> sp.Rational:
     except ZeroDivisionError:
         raise WorkerError(Code.DOMAIN_ERROR, f"{field}: division by zero") from None
     return sp.Rational(value.numerator, value.denominator)
+
+
+def point(raw: Any, field: str, args: dict[str, Any]) -> sp.Expr:
+    """A number kept exact, or at A level an exact constant such as pi/4 or ln(2) (VER-30)."""
+    try:
+        return number(raw, field)
+    except WorkerError:
+        return alevel_calculus.constant(raw, field, args)
 
 
 def value_at(tree: sp.Expr, var: sp.Symbol, at: sp.Expr) -> sp.Expr | None:
@@ -139,7 +148,15 @@ def _student_value(verdict: str) -> str:
 
 def math_differentiate(args: dict[str, Any], context: CallContext) -> tuple[Any, Extras]:
     """The derivative (orders 1 to 3), and on request the gradient, tangent and normal at a point, the stationary
-    points with their nature, and a check of a student's derivative (VER-08)."""
+    points with their nature, and a check of a student's derivative (VER-08); implicit and parametric
+    differentiation at A level (VER-30)."""
+    mode = args.get("mode", "explicit")
+    if mode == "implicit":
+        return alevel_calculus.implicit(args, context)
+    if mode == "parametric":
+        return alevel_calculus.parametric(args, context)
+    if "expression" not in args:
+        raise WorkerError(Code.DOMAIN_ERROR, "give expression")
     tree, var = function_of(args)
     order = int(args.get("order", 1))
     try:
@@ -148,7 +165,7 @@ def math_differentiate(args: dict[str, Any], context: CallContext) -> tuple[Any,
             derivative = sp.expand(derivative) if derivative.is_polynomial(var) else sp.simplify(derivative)
             value: dict[str, Any] = {"variable": var.name, "order": order, "derivative": exact(derivative)}
             if "at" in args:
-                value["at"] = _at_point(tree, var, number(args["at"], "at"))
+                value["at"] = _at_point(tree, var, point(args["at"], "at", args))
             if args.get("stationary_points"):
                 points = stationary_points(tree, var, interval_of(args))
                 if points is None:
@@ -185,8 +202,17 @@ def _at_point(tree: sp.Expr, var: sp.Symbol, x0: sp.Expr) -> dict[str, Any]:
 
 def math_integrate(args: dict[str, Any], context: CallContext) -> tuple[Any, Extras]:
     """The indefinite integral (plus an arbitrary constant), a definite integral, the area between the curve and the
-    x-axis split at the roots, and a check of a student's answer up to an additive constant (VER-08)."""
+    x-axis split at the roots, and a check of a student's answer up to an additive constant (VER-08); at A level
+    (VER-30) a volume of revolution, the trapezium rule with its error, and a stated substitution or parts."""
     tree, var = function_of(args)
+    if "volume" in args:
+        return alevel_calculus.volume(args, tree, var, context)
+    if args.get("method") == "trapezium":
+        return alevel_calculus.trapezium(args, tree, var, context)
+    if "substitution" in args:
+        return alevel_calculus.substitution(args, tree, var, context)
+    if "parts_u" in args:
+        return alevel_calculus.parts(args, tree, var, context)
     constant = args.get("constant", "c")
     definite = "lower" in args or "upper" in args
     if definite and not ("lower" in args and "upper" in args):
@@ -204,7 +230,7 @@ def math_integrate(args: dict[str, Any], context: CallContext) -> tuple[Any, Ext
             }
             definite_value = None
             if definite:
-                lower, upper = number(args["lower"], "lower"), number(args["upper"], "upper")
+                lower, upper = point(args["lower"], "lower", args), point(args["upper"], "upper", args)
                 found, definite_value = _definite(tree, antiderivative, var, lower, upper, bool(args.get("area")))
                 value.update(found)
     except SliceExpired:

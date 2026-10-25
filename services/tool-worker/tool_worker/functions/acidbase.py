@@ -5,8 +5,10 @@ Kw comes from the stated constants, else the chemistry default table (1.0 * 10�
 acid gives [H⁺] = c * basicity and a strong base [OH⁻] = c * the hydroxide ions per formula; pH = -log₁₀[H⁺] and
 pH + pOH = pKw, exactly (logarithms stay symbolic, so 0.1 mol dm⁻³ HCl has pH exactly 1). Along a titration the excess
 acid or base sets the pH, as at O level; at the equivalence point pH = pKw / 2. Water's own ions are neglected, which
-is reported when an excess concentration falls below 10⁻⁶ mol dm⁻³. Weak acids and bases need Ka or Kb (A level, the
-equilibrium checker) and are `unknown` here, as is an acid or base whose strength is neither known nor stated.
+is reported when an excess concentration falls below 10⁻⁶ mol dm⁻³. A weak acid's pH needs its Ka (`ka`, A level,
+VER-32): [H⁺] = √(Ka c) when that ionises under 5% of the acid, else the quadratic [H⁺]² + Ka [H⁺] - Ka c = 0, and the
+working says which and why. Weak bases, weak acids without Ka and titration curves of weak acids are `unknown`, as is
+an acid or base whose strength is neither known nor stated.
 
 Volumes are given with their units (cm³ or dm³) and reported in cm³, as in a titration; concentrations in
 mol dm⁻³. Curve points are [titrant volume in cm³, pH], rounded to 4 and 3 decimal places for drawing only: every
@@ -145,10 +147,14 @@ def chem_acid_base(args: dict[str, Any], context: CallContext) -> tuple[Any, Ext
         else:
             kw = constants.value("Kw")
             if task == "ph":
-                undecided = None if "ph" in args else (acid if acid.given else base).undecided()
-                if undecided is not None:
-                    return undecided
-                value, working = _ph(args, acid, base, kw, dp, warnings, context)
+                weak = "ph" not in args and acid.given and not base.given and acid.strength == "weak"
+                if weak and "ka" in args:
+                    value, working = _weak_ph(args, acid, kw, dp, context)
+                else:
+                    undecided = None if "ph" in args else (acid if acid.given else base).undecided()
+                    if undecided is not None:
+                        return undecided
+                    value, working = _ph(args, acid, base, kw, dp, warnings, context)
             else:
                 undecided = acid.undecided() or base.undecided()
                 if undecided is not None:
@@ -196,6 +202,39 @@ def _ph(args: dict[str, Any], acid: Side, base: Side, kw: Fraction, dp: int, war
     working = [{"label": "[H⁺]", "value": exact(h)["decimal"], "unit": CONC, "check_id": check},
                {"label": "pH", "value": value["ph"]["rounded"], "check_id": check},
                {"label": "pOH", "value": value["poh"]["rounded"], "check_id": check}]  # fmt: skip
+    return value, working
+
+
+APPROXIMATION_LIMIT = Fraction(1, 20)  # the square-root approximation holds while under 5% of the acid ionises
+
+
+def _weak_ph(args: dict[str, Any], acid: Side, kw: Fraction, dp: int,
+             context: CallContext) -> tuple[dict[str, Any], list[dict[str, Any]]]:  # fmt: skip
+    """VER-32: a weak monoprotic acid from its Ka; the approximation only while the ionised fraction is under 5%."""
+    if acid.concentration is None:
+        raise WorkerError(Code.DOMAIN_ERROR, "give the acid concentration")
+    if acid.protons != 1:
+        raise WorkerError(Code.DOMAIN_ERROR, "the Ka method here is for a monoprotic acid")
+    ka = Fraction(str(args["ka"]))
+    c = sp.Rational(acid.concentration.numerator, acid.concentration.denominator)
+    ka_exact = sp.Rational(ka.numerator, ka.denominator)
+    approximate = sp.sqrt(ka_exact * c)
+    fraction = approximate / c
+    if fraction < sp.Rational(APPROXIMATION_LIMIT.numerator, APPROXIMATION_LIMIT.denominator):
+        h = approximate
+        why = f"square-root approximation: {rounded(100 * fraction, 1)}% ionised, under 5%"
+    else:
+        h = (-ka_exact + sp.sqrt(ka_exact**2 + 4 * ka_exact * c)) / 2
+        why = f"quadratic: the approximation would ionise {rounded(100 * fraction, 1)}% of the acid, not under 5%"
+    ph = -sp.log(h, 10)
+    pkw = -log10(kw)
+    kw_exact = sp.Rational(kw.numerator, kw.denominator)
+    value = {"h": {**exact(h), "unit": CONC}, "oh": {**exact(kw_exact / h), "unit": CONC}, "ph": ph_out(ph, dp),
+             "poh": ph_out(pkw - ph, dp), "pkw": exact(pkw)}  # fmt: skip
+    check = context.check_id
+    working = [{"label": "method", "value": why, "check_id": check},
+               {"label": "[H⁺]", "value": exact(h)["decimal"], "unit": CONC, "check_id": check},
+               {"label": "pH", "value": value["ph"]["rounded"], "check_id": check}]  # fmt: skip
     return value, working
 
 

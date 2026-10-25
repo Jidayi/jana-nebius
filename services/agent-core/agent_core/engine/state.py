@@ -169,6 +169,10 @@ class SessionState:
     # The visuals shown for the current problem, as ids only ({visual_id, parts}): what a spoken cue may point at
     # (VOC-10, VSL-21, VSL-45). Cleared with a new problem.
     shown_visuals: list[dict[str, Any]] = field(default_factory=list)
+    # The manipulation the student's turn is (VSL-42): visual id, kind, awaiting step, adjustable parts' keys.
+    manipulation: dict[str, Any] | None = None
+    # What the student has selected or hovers (UXS-58): `stp_….t2-t4` or `<visual_id>:<part_id>`, so "this" means it.
+    selection: str | None = None
 
     # --- provenance (AGT-10, H1) -------------------------------------------------------------------------------
 

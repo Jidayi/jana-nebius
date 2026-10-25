@@ -27,6 +27,11 @@ export interface PointerView {
   timing: CueTiming;
 }
 export interface WritingView { step_id: string; progress: number; timing: CueTiming }
+/** The tutor's pen (UXS-56): at rest (at the end of the line being written, or nowhere) or at a cue's target, which it
+ * reaches before the ring appears. It never carries meaning by itself: the ring and "Showing: …" do. */
+export interface PenView { target: PointerTarget | null; since_ms: number }
+/** How long before a cue's word the pen sets off, so it arrives before the ring (the pen's travel time, DSN-10). */
+export const PEN_LEAD_MS = 240;
 
 /** A fired cue, for the developer latency panel and the measurement script: never text. */
 export interface CueRecord { target: string; action: "point" | "write"; word_ms: number; fired_ms: number; timing: CueTiming }
@@ -54,21 +59,27 @@ export function wordTime(text: string, words: readonly CaptionWord[], offset: nu
   return null;
 }
 
-/** The time the words up to `offset` have been spoken: the start of the first word after it, or null. */
-function wordsEndTime(text: string, words: readonly CaptionWord[], offset: number): number | null {
+/** A spoken word's length when no word follows it to say when it ended (UXS-55): about one word at a teaching pace. */
+export const LAST_WORD_MS = 300;
+
+/** The time the words up to `offset` have been spoken: the start of the first word after it; when the range ends on
+ * the caption's last word, that word's start plus one word's length (so a write-on never stalls short of its end). */
+export function wordsEndTime(text: string, words: readonly CaptionWord[], offset: number): number | null {
   const pattern = /\S+/g;
   let index = 0;
   for (let match = pattern.exec(text); match !== null; match = pattern.exec(text)) {
     if (match.index >= offset) return words[index]?.start_ms ?? null;
     index += 1;
   }
-  return null;
+  const last = words[index - 1];
+  return last === undefined || index > words.length ? null : last.start_ms + LAST_WORD_MS;
 }
 
 interface Scheduled { cue: CaptionCue; target: PointerTarget; key: string }
 
-export interface CueSyncState { turnId: string | null; pointer: PointerView | null; writing: WritingView | null }
-const IDLE: CueSyncState = { turnId: null, pointer: null, writing: null };
+export interface CueSyncState { turnId: string | null; pointer: PointerView | null; writing: WritingView | null; pen: PenView }
+const REST: PenView = { target: null, since_ms: 0 };
+const IDLE: CueSyncState = { turnId: null, pointer: null, writing: null, pen: REST };
 
 export class CueSync {
   private state: CueSyncState = IDLE;
@@ -82,9 +93,14 @@ export class CueSync {
   private writeEnd: number | null = null;
   private ended = new Set<string>();
   private latex = new Map<string, string>();
+  private headed = new Set<string>();
   readonly records: CueRecord[] = [];
+  /** Cue targets the pen could not reach because they were not on screen (UXS-56, VSL-45): ids only. */
+  readonly penMisses: string[] = [];
 
-  constructor(private readonly ttlMs: number, private readonly onChange: () => void = () => undefined) {}
+  /** `onScreen` says whether a target is drawn now; a pen never heads for one that is not (VSL-45). */
+  constructor(private readonly ttlMs: number, private readonly onChange: () => void = () => undefined,
+    private readonly onScreen: (target: PointerTarget) => boolean = () => true) {}
 
   getState = (): CueSyncState => this.state;
   private set(next: Partial<CueSyncState>): void {
@@ -98,6 +114,7 @@ export class CueSync {
     if (this.ended.has(turnId)) return;
     if (this.state.turnId !== turnId) {
       this.fired.clear();
+      this.headed.clear();
       this.writeEnd = null;
       this.set({ ...IDLE, turnId });
     }
@@ -118,7 +135,18 @@ export class CueSync {
     if (this.state.turnId === null) return;
     let pointer = this.state.pointer;
     let writing = this.state.writing;
+    let pen = this.state.pen;
     let changed = false;
+    // The pen sets off for the next cue's target a little before its word, so it is there before the ring (UXS-56).
+    for (const item of this.cues) {
+      if (this.fired.has(item.key) || this.headed.has(item.key)) continue;
+      const at = wordTime(this.text, this.words, item.cue.char_offset);
+      if (at === null || at - PEN_LEAD_MS > playedMs) continue;
+      this.headed.add(item.key);
+      if (!this.onScreen(item.target)) { this.penMisses.push(item.cue.target); continue; } // the pen stays at rest
+      pen = { target: item.target, since_ms: playedMs };
+      changed = true;
+    }
     for (const item of this.cues) {
       if (this.fired.has(item.key)) continue;
       const at = wordTime(this.text, this.words, item.cue.char_offset);
@@ -144,7 +172,15 @@ export class CueSync {
       if (progress !== writing.progress) { writing = { ...writing, progress }; changed = true; }
     }
     if (pointer !== null && now - this.firedAtWall >= this.ttlMs) { pointer = null; changed = true; }
-    if (changed) this.set({ pointer, writing });
+    // With the ring gone the pen returns to rest: the end of the line being written, or out of the way.
+    if (pointer === null && this.state.pointer !== null) {
+      pen = writing !== null ? { target: { kind: "step", step_id: writing.step_id }, since_ms: playedMs } : REST;
+      changed = true;
+    } else if (pointer === null && writing !== null && pen.target === null) {
+      pen = { target: { kind: "step", step_id: writing.step_id }, since_ms: playedMs };
+      changed = true;
+    }
+    if (changed) this.set({ pointer, writing, pen });
   }
 
   /** Cues of the current turn that have not fired yet. */
@@ -154,7 +190,7 @@ export class CueSync {
 
   /** Time passes without new audio (the pointer's time to live). */
   tick(now: number): void {
-    if (this.state.pointer !== null && now - this.firedAtWall >= this.ttlMs) this.set({ pointer: null });
+    if (this.state.pointer !== null && now - this.firedAtWall >= this.ttlMs) this.set({ pointer: null, pen: REST });
   }
 
   /** Interruption, cancellation, a flush or a session change (UXS-63): pending cues are dropped and the pointer and

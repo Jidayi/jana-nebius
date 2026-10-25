@@ -219,7 +219,12 @@ def public_answer(item: Mapping[str, Any], answer: Any) -> Any:
     return result
 
 
-_PACK_MATHS = re.compile(r"(?<![\\$])\$(?![\s\d$])((?:\\\$|[^$\n])+?)(?<![\s\\])\$(?!\d)")
+# Pack text's `$…$` maths, the same rule as the client's `PackText.tsx`: an opening `$` before a digit opens maths only
+# when the span shows it is maths, so currency ("$210 and $35") stays words and "$5 - (-4) \times 2$" is maths.
+_PACK_MATHS = re.compile(
+    r"(?<![\\$])\$(?:(?![\s\d$])|(?=\d)(?=[^$\n]*?[\\^_=<>+\-*/(){}]|[^$\n]*?\d[A-Za-z]|\d+(?:\.\d+)?\$))"
+    r"((?:\\\$|[^$\n])+?)(?<![\s\\])\$(?!\d)"
+)
 
 
 def text_latex(text: str) -> str:

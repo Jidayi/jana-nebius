@@ -176,11 +176,11 @@ describe("DSN-04, DSN-06 and DSN-09", () => {
   });
 
   test("dsn06_glyph_coverage", () => {
-    // The bundled subsets (latin and latin-ext, imported by the UI stylesheet) and the ranges their font files cover.
+    // The bundled subsets (latin, latin-ext and Greek, imported by the UI stylesheet) and the ranges their font files cover.
     const all = fs.readFileSync(path.join(ROOT, "packages/ui/node_modules/@fontsource/noto-sans/400.css"), "utf8");
     const ranges: [number, number][] = [];
     for (const block of all.split("/* ").slice(1)) {
-      if (!/^noto-sans-(latin|latin-ext)-400-normal \*\//.test(block)) continue;
+      if (!/^noto-sans-(latin|latin-ext|greek)-400-normal \*\//.test(block)) continue;
       const range = /unicode-range:\s*([^;]+);/.exec(block)?.[1] ?? "";
       for (const m of range.matchAll(/U\+([0-9A-F]+)(?:-([0-9A-F]+))?/gi)) ranges.push([parseInt(m[1]!, 16), parseInt(m[2] ?? m[1]!, 16)]);
     }

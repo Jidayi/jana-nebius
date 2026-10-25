@@ -20,7 +20,9 @@ from agent_core.config import Settings
 from agent_core.store.catalogue import STAGES
 
 from pack_builder import api, drafting, proposals
-from pack_builder.accounts import AUTHOR_ENV, OTP_ENV, Accounts, chain_errors
+from pack_builder.accounts import AUTHOR_ENV, OTP_ENV, Accounts, authorise, chain_errors
+from pack_builder.analytics import IntakeRefused
+from pack_builder.problem_inbox import ReportRefused
 from pack_builder.roles import Forbidden
 
 EXIT_OK, EXIT_FAIL, EXIT_USAGE, EXIT_ENV, EXIT_NETWORK = 0, 1, 2, 3, 4
@@ -117,11 +119,27 @@ def run(args: argparse.Namespace) -> tuple[dict[str, Any], int]:
     if command == "account":
         result = api.create_account(ctx, args.id, args.name, args.email, args.roles.split(","), args.publisher)
         return {"command": command, "result": result}, EXIT_OK
+    if command in ("analytics", "inbox"):
+        return {"command": command, "result": _intake(ctx, command, Path(args.payload))}, EXIT_OK
     if command == "audit":
         errors = chain_errors(ctx.audit.entries())
         return {"command": command, "result": {"entries": len(ctx.audit.entries()), "problems": errors}}, (
             EXIT_OK if not errors else EXIT_FAIL)  # fmt: skip
     raise ValueError(command)
+
+
+def _intake(ctx: api.Context, command: str, path: Path) -> dict[str, Any]:
+    """Take in an evaluation run or a consented research export (AUT-37), or content problem report counts (AUT-38):
+    a refused payload changes nothing and exits 1."""
+    from pack_builder.analytics import Analytics
+    from pack_builder.problem_inbox import Inbox
+
+    account = ctx.need()
+    authorise(account, "see_analytics", ctx.audit, subject=command)
+    payload = json.loads(path.read_text())
+    result = (Analytics(ctx.root) if command == "analytics" else Inbox(ctx.root)).intake(payload)
+    ctx.audit.append(account.account_id, f"{command}_intake", "ok", str(result["kind"]), json.dumps(result))
+    return result
 
 
 def _packs(args: argparse.Namespace) -> list[Path]:
@@ -198,6 +216,12 @@ def parser() -> argparse.ArgumentParser:
     s.add_argument("--roles", required=True)
     s.add_argument("--publisher", action="store_true")
     s.add_argument("--otp")
+    s = sub.add_parser("analytics", help="take in an evaluation run or consented research export (AUT-37)")
+    s.add_argument("action", choices=["intake"])
+    s.add_argument("payload")
+    s = sub.add_parser("inbox", help="take in content problem report counts or an authorized support export (AUT-38)")
+    s.add_argument("action", choices=["intake"])
+    s.add_argument("payload")
     sub.add_parser("audit")
     return p
 
@@ -220,6 +244,8 @@ def main(argv: list[str] | None = None) -> int:
         result, code = {"command": args.command, "error": "forbidden", "message": str(refusal)}, EXIT_FAIL
     except (ConnectionError, TimeoutError) as error:
         result, code = {"command": args.command, "error": "network_unavailable", "message": str(error)}, EXIT_NETWORK
+    except (IntakeRefused, ReportRefused) as error:
+        result, code = {"command": args.command, "error": "refused", "message": str(error)}, EXIT_FAIL
     except (drafting.DraftBlocked, drafting.DraftUnavailable) as error:
         result, code = {"command": args.command, "error": "blocked", "message": str(error)}, EXIT_FAIL
     except (FileNotFoundError, KeyError, ValueError) as error:

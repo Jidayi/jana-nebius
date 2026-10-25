@@ -200,6 +200,8 @@ class CoreService:
         self.recoveries: Callable[[], list[Any]] | None = None  # learner databases recovered at open (DAT-13)
         self.jobs: dict[str, dict[str, Any]] = {}  # export and import jobs (API-29 GET /v1/jobs)
         self.capture_summary: Callable[[], list[dict[str, Any]]] | None = None
+        # One checker call outside any turn, as the Checker (VSL-42 manipulations); None without a worker.
+        self.check_tool: Callable[[str, dict[str, Any]], Awaitable[tuple[Any, str | None]]] | None = None
         self.capture_trace_sink: Callable[[dict[str, Any]], None] | None = None
         self.trace_records: Callable[[], list[dict[str, Any]]] | None = None  # the local trace store's records
         self.rebuild_projections: Callable[[Any, str], None] | None = None  # rebuild a learner DB's projections
@@ -943,13 +945,29 @@ class CoreService:
         """ "Why?" names a line of the open problem's board (UXS-15): the `board_step` ref is required and must be a
         line on that board with something written on it."""
         ref = body.get("ref") or {}
-        if ref.get("kind") != "board_step":
-            raise ApiError("validation_failed", "Why? asks about a board line",
-                           details={"errors": ["$.ref: a board_step ref is required"]})  # fmt: skip
-        state = entry.engine_state
-        if state.problem is None or not any(s.step_id == ref["id"] and s.latex.strip() for s in state.board.steps):
-            raise ApiError("not_found", "that line is not on the board")
+        if ref.get("kind") not in ("board_step", "visual_part"):
+            raise ApiError("validation_failed", "Why? asks about a board line, a term of it or a part of a visual",
+                           details={"errors": ["$.ref: a board_step or visual_part ref is required"]})  # fmt: skip
+        from agent_core.engine.pointing_back import resolve_ref
+
+        if resolve_ref(entry.engine_state, str(ref["id"])) is None:
+            raise ApiError("not_found", "that is not on the board or on screen")
         return str(ref["id"])
+
+    def set_selection(self, session_id: str, body: dict[str, Any]) -> None:
+        """UXS-58: what the student has selected or hovers, so "this" in a message refers to it (ids only)."""
+        self._guard()
+        require("SelectionSet", body)
+        entry = self.entry(session_id)
+        ref = body.get("ref")
+        if ref is None:
+            entry.engine_state.selection = None
+            return
+        from agent_core.engine.pointing_back import resolve_ref
+
+        if resolve_ref(entry.engine_state, str(ref["id"])) is None:
+            raise ApiError("not_found", "that is not on the board or on screen")
+        entry.engine_state.selection = str(ref["id"])
 
     def _guarded(self, entry: SessionEntry, blocks: list[dict[str, Any]]) -> bool:
         """The input guard routes this content to a template (PRV-13): the turn then goes straight to the guard as a
@@ -1173,6 +1191,57 @@ class CoreService:
             self.start_turn(entry.session_id, {"client_message_id": body["client_answer_id"], "intent": "answer",
                                                "content": [{"type": "text", "text": text}]})  # fmt: skip
         return {"status": "accepted", "answered_ts": now}
+
+    def delete_sketch(self, sketch_id: str) -> None:
+        """VSL-43: "Remove sketch" removes it from the board, the session's history and replay: the engine's record of
+        the part and the saved session projection both lose it."""
+        self._guard()
+        for entry in self.mine():
+            part = entry.engine.sketches.remove(sketch_id) if entry.engine is not None else None
+            if part is None:
+                continue
+            projection.remove_part(entry.state, part)
+            self.persist(entry)
+            return
+        raise ApiError("not_found", "no sketch with that id")
+
+    def board_replay(self, board_id: str) -> dict[str, Any]:
+        """UXS-59: a board played again from its recorded events and the tutor's words; no model, no network, no
+        audio."""
+        from agent_core.engine.replay import board_replay
+
+        self._guard()
+        for entry in self.mine():
+            if entry.engine is None:
+                continue
+            replay = board_replay(entry.engine.persisted, board_id)
+            if replay is not None:
+                return replay
+        raise ApiError("not_found", "no recorded board with that id")
+
+    async def answer_manipulation(self, visual_id: str, body: dict[str, Any]) -> dict[str, Any]:
+        """VSL-42: the values the student set on a manipulable visual, checked by the same tool as the typed line."""
+        from agent_core.engine.manipulation import ManipulationRefused
+
+        self._guard()
+        require("ManipulationSubmit", body)
+        entry = next(
+            (e for e in self.mine() if (e.engine_state.manipulation or {}).get("visual_id") == visual_id), None
+        )
+        if entry is None:
+            raise ApiError("not_found", "this visual is not waiting for the student")
+        if entry.session_id in self.voice_engines or (entry.task is not None and not entry.task.done()):
+            raise ApiError("tutor_locked", "the tutor is still answering", details={"turn_id": entry.active_turn})
+
+        async def unavailable(name: str, args: dict[str, Any]) -> tuple[Any, str | None]:
+            return None, None  # no worker: the line is unchecked, never guessed (ASM-02)
+
+        try:
+            result = await self._engine(entry).answer_manipulation(visual_id, body, self.check_tool or unavailable)
+        except ManipulationRefused as refused:
+            raise ApiError(refused.code, refused.detail) from None
+        self.persist(entry)
+        return result
 
     def _card(self, request_id: str) -> tuple[SessionEntry, dict[str, Any] | None, dict[str, Any] | None]:
         for entry in self.mine():

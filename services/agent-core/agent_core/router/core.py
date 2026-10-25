@@ -89,6 +89,9 @@ class Prepared:
 
     messages: list[Message]
     tools: list[ToolSchema] | None = None
+    # The decode schema for this candidate when it differs from the call's (an online candidate's tutor turn may carry
+    # `sketch_wanted`, VSL-43); None keeps the call's own.
+    output: tuple[str, dict[str, Any], Draft202012Validator] | None = None
 
 
 @dataclass
@@ -413,8 +416,11 @@ class Router:
                         prepared = await prepare(candidate, await self.capabilities(candidate), list(messages))
                         if isinstance(prepared, Prepared):
                             messages, tools = prepared.messages, offered if prepared.tools is None else prepared.tools
+                            decode = prepared.output or output
                         else:
-                            messages, tools = prepared, offered
+                            messages, tools, decode = prepared, offered, output
+                    else:
+                        decode = output
                     for issue in (1, 2):
                         try:
                             return await self._on_candidate(
@@ -424,7 +430,7 @@ class Router:
                                 candidate,
                                 list(messages),
                                 list(tools),
-                                output,
+                                decode,
                                 first_token_budget_s,
                                 on_text,
                                 settings,

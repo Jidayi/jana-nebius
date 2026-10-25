@@ -245,10 +245,10 @@ export class PracticeController {
   }
 
   /** "Help me": the tutor opens with the item loaded (UXS-24); the reply is the session to open. */
-  async help(): Promise<string | null> {
+  async help(reason: "help" | "why_right" = "help"): Promise<string | null> {
     const { setId, item } = this.view;
     if (setId === null || item === null) return null;
-    const body: api_commands.PracticeHelp = { item_id: item.item_id };
+    const body: api_commands.PracticeHelp = reason === "why_right" ? { item_id: item.item_id, reason } : { item_id: item.item_id };
     try {
       const created = await this.profiles.commands.post<{ session_id: string }>(`/v1/practice/sets/${encodeURIComponent(setId)}/help`, body, clientId());
       return created.session_id;

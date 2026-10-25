@@ -16,8 +16,34 @@
         "simplest",
         "expanded",
         "factorised",
-        "single_fraction"
+        "single_fraction",
+        "partial_fractions",
+        "series",
+        "cartesian",
+        "modulus_argument"
       ]
+    },
+    "variable": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9]{0,15}(_[A-Za-z0-9]{1,8})?$"
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "terms": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8
+    },
+    "about": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+      "maxLength": 40
     },
     "variables": {
       "type": "array",

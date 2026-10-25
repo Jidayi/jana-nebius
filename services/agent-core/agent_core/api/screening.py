@@ -113,6 +113,7 @@ _SECRET = Exempt("a passphrase; it is a secret, never stored or shown, so it is 
 
 ROUTES: dict[str, Rule] = {
     "POST /v1/sessions/{session_id}/end": _IDS,
+    "POST /v1/alerts/{alert_id}/dismiss": _IDS,
     "GET /v1/session-notes": Exempt("bounded local search; query is data, never stored or sent to a model"),
     "POST /v1/session-notes/{note_id}/open": _IDS,
     "POST /v1/session-notes/{note_id}/retry": _IDS,
@@ -188,11 +189,14 @@ ROUTES: dict[str, Rule] = {
         "session_title", field_text("title"), ANSWER, session_param="session_id"
     ),
     "POST /v1/problem-reports": Screened("problem_report", field_text("note"), frozenset(), session_field="session_id"),
+    # a value set on a manipulable visual becomes the student's board line, read by the Coach later (VSL-42)
+    "POST /v1/visuals/{visual_id}/answer": Screened("manipulation_answer", field_text("values"), ANSWER),
     # the student's own words for a goal (UXS-10 interview): kept in the profile like a note (STU-11)
     "POST /v1/interview/{question_id}/answer": Screened("interview_goal", field_text("answer"), NOTE),
     # no student-written text
     "POST /v1/sessions": _IDS,
     "POST /v1/sessions/{session_id}/archive": _IDS,
+    "PUT /v1/sessions/{session_id}/selection": Exempt("a board term or visual part named by ids only (UXS-58)"),
     "POST /v1/turns/{turn_id}/cancel": _IDS,
     "POST /v1/probes/{identity}/answers": Exempt("a probe answer is one option id"),
     "POST /v1/assessments": _IDS,

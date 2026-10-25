@@ -12,6 +12,8 @@ Tasks:
 - `reconcile`: matches the cash book with the bank statement, updates the cash book for items first seen on the
   statement, and reconciles the updated balance with the statement balance through unpresented cheques and
   outstanding lodgements; a student's statement is checked line by line for its first divergent line.
+- `control`: a sales or purchases ledger control account from the period's totals, balanced and reconciled with the
+  total of the individual ledger balances (VER-34; `control.py`).
 
 Every amount is exact; the places shown come from the call, then the pack, then the configured default."""
 
@@ -23,6 +25,7 @@ from dataclasses import dataclass, field
 from fractions import Fraction
 from typing import Any
 
+from tool_worker.functions.control import control_account
 from tool_worker.functions.money import (
     AMOUNT_PATTERN,
     Extras,
@@ -549,6 +552,8 @@ def compare_in_order(expected: list[dict[str, Any]], student: list[dict[str, Any
 def _task(args: dict[str, Any]) -> str:
     if "task" in args:
         return str(args["task"])
+    if "control_account" in args:
+        return "control"
     if "cash_book" in args or "bank_statement" in args:
         return "reconcile"
     if "recorded" in args:
@@ -557,10 +562,15 @@ def _task(args: dict[str, Any]) -> str:
 
 
 def acc_double_entry(args: dict[str, Any], context: CallContext) -> tuple[Any, Extras]:
-    """Journal entries checked, posted and balanced, marked against a key, corrected, or a bank reconciliation."""
+    """Journal entries checked, posted and balanced, marked against a key, corrected, a bank reconciliation or a
+    control account."""
     dp = places(args, context)
     task = _task(args)
     chart = Chart.read(args.get("chart"))
+    if task == "control":
+        if "control_account" not in args:
+            raise WorkerError(Code.DOMAIN_ERROR, "a control account needs control_account")
+        return control_account(args["control_account"], dp), {"method": "exact", "confidence": "proved"}
     if task == "reconcile":
         if "cash_book" not in args or "bank_statement" not in args:
             raise WorkerError(Code.DOMAIN_ERROR, "a reconciliation needs cash_book and bank_statement")

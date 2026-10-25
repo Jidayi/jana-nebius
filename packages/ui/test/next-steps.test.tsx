@@ -7,7 +7,7 @@ import { chatTitle, followUps, goalProgress, mentionsAnswer, type PlanView, type
 import { FollowUpChips, FollowUpProvider, HelpChips } from "../src/chips/NextStepChips.js";
 import { DailyGoalChip } from "../src/home/DailyGoal.js";
 import { LocaleProvider } from "../src/i18n.js";
-import { PackInline, PackText } from "../src/learn/PackText.js";
+import { PackInline, PackText, packMarkdown } from "../src/learn/PackText.js";
 import { MarkdownBlock } from "../src/markdown/Markdown.js";
 import { RegistryProvider } from "../src/registry/registry.js";
 import { StoreProvider } from "../src/store.js";
@@ -91,6 +91,18 @@ test("uxs68_chips_titles_maths", () => {
   const option = en(<PackInline text={"$v = \\frac{d}{t}$"} />).container.querySelector(".katex")!.outerHTML;
   expect(card).toBe(chat);
   expect(option).toBe(chat);
+});
+
+test("test_cur13_maths_that_starts_with_a_number_renders_and_currency_stays_text", () => {
+  // A digit after the opening `$` is maths when the span shows it (a command, an operator, a coefficient, a bare
+  // number); prices around it stay words.
+  expect(packMarkdown("Work out $5 - (-4) \\times 2$.")).toBe("Work out \\(5 - (-4) \\times 2\\).");
+  expect(packMarkdown("The line $2x + 6y = 24$ is drawn.")).toBe("The line \\(2x + 6y = 24\\) is drawn.");
+  expect(packMarkdown("The point ($5$, k)")).toBe("The point (\\(5\\), k)");
+  for (const words of ["It costs $210 and $35.", "From $5-$10.", "The rate is $1 = 16.4 pesos. Change $250 into pesos."]) {
+    expect(packMarkdown(words)).toBe(words);
+  }
+  expect(en(<PackInline text={"$3x$ apples"} />).container.querySelector(".katex")).not.toBeNull();
 });
 
 test("test_uxs68_no_follow_ups_without_the_app_or_while_a_question_waits", () => {

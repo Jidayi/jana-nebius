@@ -144,7 +144,7 @@ def stuck_cap(conn: sqlite3.Connection, kc_ids: list[str], settings: Settings) -
 def bundled_schemas(root: Path = CORE / "contracts" / "schemas") -> dict[str, dict[str, Any]]:
     """Self-contained output schemas for decoding, by contract name (`agents/tutor-turn`). The tutor turn's optional
     `sketch_wanted` (VSL-43, D106) is left out of the decoding schema, so no local model's grammar or prompt carries it
-    (VSL-01); the online sketch call that would read it is not built yet (M44), so no tier is offered it."""
+    (VSL-01); an online candidate's call gets it back through the engine's prepare step (MDL-33, sketch_flow.py)."""
     schemas = {
         f"{p.parent.name}/{p.name.removesuffix('.schema.json')}": json.loads(p.read_text())
         for p in sorted(root.glob("*/*.schema.json"))

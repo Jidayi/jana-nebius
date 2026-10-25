@@ -447,7 +447,7 @@ def check(statement: Statement, student: list[dict[str, Any]], dp: int) -> dict[
             "unrecognised": unrecognised}  # fmt: skip
 
 
-def _out(statement: Statement, dp: int) -> list[dict[str, Any]]:
+def statement_out(statement: Statement, dp: int) -> list[dict[str, Any]]:
     out = []
     for line in statement.lines:
         row = {k: v for k, v in line.items() if k != "value"}
@@ -462,6 +462,8 @@ def acc_statements(args: dict[str, Any], context: CallContext) -> tuple[Any, Ext
     """The income statement and statement of financial position, and a student's statement checked (VER-23)."""
     dp = places(args, context)
     terms = {key: list(names) for key, names in args.get("terms", {}).items()}
+    if "trial_balance" not in args:
+        raise WorkerError(Code.DOMAIN_ERROR, "a sole trader's statements need trial_balance")
     books = _read_trial_balance(args["trial_balance"])
     upstream, warnings = _apply(books, args.get("adjustments", []))
     layouts = ("capital_and_liabilities", "net_assets")
@@ -475,9 +477,9 @@ def acc_statements(args: dict[str, Any], context: CallContext) -> tuple[Any, Ext
         balanced = position.values["total_assets"] == position.values["total_capital_and_liabilities"]
     value: dict[str, Any] = {
         "income_statement": {"title": terms.get("income_statement", [TITLES["income_statement"]])[0],
-                             "lines": _out(income, dp)},
+                             "lines": statement_out(income, dp)},
         "financial_position": {"title": terms.get("financial_position", [TITLES["financial_position"]])[0],
-                               "layout": {"value": layout, "source": source}, "lines": _out(position, dp)},
+                               "layout": {"value": layout, "source": source}, "lines": statement_out(position, dp)},
         "profit_for_the_year": money(profit, dp),
         "result": "profit" if profit > 0 else ("loss" if profit < 0 else "break_even"),
         "balanced": balanced,

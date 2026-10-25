@@ -297,7 +297,8 @@ describe("VSL-33", () => {
         for (const segments of curves) expect(segments.flat().length).toBeLessThanOrEqual(CLIENT_KEYS.visual_curve_max_points);
       }
     }
-  });
+    // Every fixture drawn 23 times: the whole run outgrows the default 5 s as kinds are added; each render keeps its budget.
+  }, 60_000);
 });
 
 describe("VSL-36", () => {

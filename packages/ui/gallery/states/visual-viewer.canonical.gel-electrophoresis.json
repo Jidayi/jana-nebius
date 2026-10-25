@@ -1,0 +1,270 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.gel-electrophoresis",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at band of 750 base pairs in Crime scene and band of 750 base pairs in Suspect B."
+      ],
+      "summary": "A gel with a DNA ladder of 1000, 750, 500, 250 and 100 base pairs. Crime scene has bands at 750 and 250 base pairs; Suspect A has bands at 500, 250 and 100 base pairs; Suspect B has bands at 750 and 250 base pairs. Smaller fragments travel further from the wells."
+    },
+    "computed": {
+      "check_ids": [],
+      "ladder": [
+        {
+          "bp": 1000,
+          "part": "ladder.b1",
+          "position": 0.0
+        },
+        {
+          "bp": 750,
+          "part": "ladder.b2",
+          "position": 0.1249
+        },
+        {
+          "bp": 500,
+          "part": "ladder.b3",
+          "position": 0.301
+        },
+        {
+          "bp": 250,
+          "part": "ladder.b4",
+          "position": 0.6021
+        },
+        {
+          "bp": 100,
+          "part": "ladder.b5",
+          "position": 1.0
+        }
+      ],
+      "lanes": [
+        {
+          "bands": [
+            {
+              "bp": 750,
+              "part": "lane.scene.b1",
+              "position": 0.1249
+            },
+            {
+              "bp": 250,
+              "part": "lane.scene.b2",
+              "position": 0.6021
+            }
+          ],
+          "id": "scene",
+          "label": "Crime scene",
+          "part": "lane.scene"
+        },
+        {
+          "bands": [
+            {
+              "bp": 500,
+              "part": "lane.suspect_a.b1",
+              "position": 0.301
+            },
+            {
+              "bp": 250,
+              "part": "lane.suspect_a.b2",
+              "position": 0.6021
+            },
+            {
+              "bp": 100,
+              "part": "lane.suspect_a.b3",
+              "position": 1.0
+            }
+          ],
+          "id": "suspect_a",
+          "label": "Suspect A",
+          "part": "lane.suspect_a"
+        },
+        {
+          "bands": [
+            {
+              "bp": 750,
+              "part": "lane.suspect_b.b1",
+              "position": 0.1249
+            },
+            {
+              "bp": 250,
+              "part": "lane.suspect_b.b2",
+              "position": 0.6021
+            }
+          ],
+          "id": "suspect_b",
+          "label": "Suspect B",
+          "part": "lane.suspect_b"
+        }
+      ],
+      "migration": "log_size"
+    },
+    "fallback_reason": null,
+    "labels": "shown",
+    "numbers_from": [
+      "kn_bp1000",
+      "kn_bp750",
+      "kn_bp500",
+      "kn_bp250",
+      "kn_bp100"
+    ],
+    "params": {
+      "ladder_bp": [
+        1000,
+        750,
+        500,
+        250,
+        100
+      ],
+      "lanes": [
+        {
+          "fragments_bp": [
+            750,
+            250
+          ],
+          "id": "scene",
+          "label": "Crime scene"
+        },
+        {
+          "fragments_bp": [
+            500,
+            250,
+            100
+          ],
+          "id": "suspect_a",
+          "label": "Suspect A"
+        },
+        {
+          "fragments_bp": [
+            250,
+            750
+          ],
+          "id": "suspect_b",
+          "label": "Suspect B"
+        }
+      ],
+      "migration": "log_size"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "ladder",
+        "name": "DNA ladder",
+        "role": "region"
+      },
+      {
+        "focusable": true,
+        "id": "ladder.b1",
+        "name": "ladder band of 1000 base pairs",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "ladder.b2",
+        "name": "ladder band of 750 base pairs",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "ladder.b3",
+        "name": "ladder band of 500 base pairs",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "ladder.b4",
+        "name": "ladder band of 250 base pairs",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "ladder.b5",
+        "name": "ladder band of 100 base pairs",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "lane.scene",
+        "name": "lane Crime scene",
+        "role": "region"
+      },
+      {
+        "focusable": true,
+        "id": "lane.scene.b1",
+        "name": "band of 750 base pairs in Crime scene",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "lane.scene.b2",
+        "name": "band of 250 base pairs in Crime scene",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "lane.suspect_a",
+        "name": "lane Suspect A",
+        "role": "region"
+      },
+      {
+        "focusable": true,
+        "id": "lane.suspect_a.b1",
+        "name": "band of 500 base pairs in Suspect A",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "lane.suspect_a.b2",
+        "name": "band of 250 base pairs in Suspect A",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "lane.suspect_a.b3",
+        "name": "band of 100 base pairs in Suspect A",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "lane.suspect_b",
+        "name": "lane Suspect B",
+        "role": "region"
+      },
+      {
+        "focusable": true,
+        "id": "lane.suspect_b.b1",
+        "name": "band of 750 base pairs in Suspect B",
+        "role": "point"
+      },
+      {
+        "focusable": true,
+        "id": "lane.suspect_b.b2",
+        "name": "band of 250 base pairs in Suspect B",
+        "role": "point"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:d6559dbd0fa9f3ecc1058949ff675f16f9bf131c096aebb8de3c7ae7a110069b",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "lane.scene.b1",
+          "lane.suspect_b.b1"
+        ]
+      }
+    ],
+    "type": "gel_electrophoresis",
+    "visual_id": "vis_PNXXF9KC1599Z7ZPSZKW9ABRYW"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: gel electrophoresis (shown labels)",
+  "variant": "gel-electrophoresis"
+}

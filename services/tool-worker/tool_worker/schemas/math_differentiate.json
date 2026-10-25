@@ -2,8 +2,30 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "expression"
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "mode"
+        ],
+        "properties": {
+          "mode": {
+            "const": "parametric"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "x_expression",
+          "y_expression"
+        ]
+      },
+      "else": {
+        "required": [
+          "expression"
+        ]
+      }
+    }
   ],
   "properties": {
     "expression": {
@@ -25,7 +47,7 @@
         "number",
         "string"
       ],
-      "pattern": "^[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?(/\\d+)?$",
+      "pattern": "^([0-9+\\-*/^(). ]|pi|e|sqrt|ln|log|exp)+$",
       "maxLength": 40
     },
     "stationary_points": {
@@ -48,6 +70,44 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 2000
+    },
+    "mode": {
+      "enum": [
+        "explicit",
+        "implicit",
+        "parametric"
+      ]
+    },
+    "dependent": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9]{0,15}(_[A-Za-z0-9]{1,8})?$"
+    },
+    "point": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": [
+          "number",
+          "string"
+        ],
+        "pattern": "^([0-9+\\-*/^(). ]|pi|e|sqrt|ln|log|exp)+$",
+        "maxLength": 40
+      }
+    },
+    "x_expression": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "y_expression": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "parameter": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9]{0,15}(_[A-Za-z0-9]{1,8})?$"
     },
     "variables": {
       "type": "array",

@@ -24,6 +24,7 @@ import { ConnectionBanner } from "./status/StatusLine.js";
 import { useSelect, useSession } from "./store.js";
 import { TutorAnnouncements } from "./transcript/Announcements.js";
 import { Transcript } from "./transcript/Transcript.js";
+import { VoicePresence, presencePlacement, type PresencePlacement } from "./tutor/VoicePresence.js";
 
 /** The modes the mode menu offers (UXS-18, PED-01): Guided, Solution and Check my working. */
 const MODES = ["guided", "solution", "check_working"] as const;
@@ -135,7 +136,12 @@ export function TutorScreen({ sessionId, subjectControl, back, note, helplines =
 
   const subjectName = subject === "" ? "" : t(`settings.profiles.subject.${subject === "maths" ? "mathematics" : subject}`);
   const toggleLabel = open ? t("board.hide") : changed ? t("board.show_changed") : t("board.show");
-  const board = <Board sessionId={sessionId} onClose={() => setChosen({ boardId, open: false })} />;
+  // The presence (UXS-53) follows the board: docked at its top while open, by the composer while closed, above the
+  // composer at phone width; never on the calm screen.
+  const placement = presencePlacement(layout, open);
+  const calmShown = calm !== null && !dismissed.has(calm.noticeId);
+  const presenceHere = (where: PresencePlacement) => !calmShown && placement === where ? <VoicePresence placement={where} /> : null;
+  const board = <>{presenceHere("docked")}<Board sessionId={sessionId} onClose={() => setChosen({ boardId, open: false })} /></>;
   const share = () => {
     setSharing(false);
     if (session === null) return;
@@ -220,6 +226,8 @@ export function TutorScreen({ sessionId, subjectControl, back, note, helplines =
               {board}
             </div>
           )}
+          {presenceHere("floating")}
+          {presenceHere("phone")}
           <Composer sessionId={sessionId} note={note ?? t("tutor.dock_note")} />
         </main>
       </div>

@@ -24,16 +24,28 @@ from typing import Any
 
 from jsonschema import Draft202012Validator
 
+from agent_core.assets import chemistry_kinds
 from agent_core.assets.generated.kind_schemas import KIND_SCHEMAS
 from agent_core.assets.generated.sim_scenarios import SIM_SCENARIOS
 from agent_core.assets.generated.visual_catalogue import VISUAL_CATALOGUE
-from agent_core.assets.visual_kinds import LIBRARY_KINDS, Part, View, add_elements, alt_of, claim_numbers, parts_of
+from agent_core.assets.visual_kinds import (
+    LIBRARY_KINDS,
+    Part,
+    View,
+    add_elements,
+    alt_of,
+    build_alt,
+    claim_numbers,
+    layers_of,
+    parts_of,
+    sequence_steps,
+)
 from agent_core.contracts import errors as contract_errors
 from agent_core.contracts import schema_ids
 
 ENVELOPE = "visuals/visual-spec"
 ENGINE_FIELDS = ("visual_id", "status", "computed", "parts", "alt", "repairs")
-REQUEST_FIELDS = ("spec_version", "type", "ref", "params", "numbers_from", "steps", "labels", "caption")
+REQUEST_FIELDS = ("spec_version", "type", "ref", "params", "numbers_from", "steps", "labels", "caption", "presentation")
 FREEFORM = frozenset({"svg", "path", "html", "points_raw", "canvas", "mermaid", "tikz", "image", "image_url", "d"})
 UNIT_SPELLINGS = {
     "newtons": "N",
@@ -71,9 +83,29 @@ RETRYABLE_STAGES = frozenset({1, 2, 3, 4, 5, 6, 8})
 DYNAMIC_PARTS = frozenset({
     "function_graph", "particle_diagram", "financial_statements", "bank_reconciliation", "trial_balance", "ray_diagram",
     "circuit", "balanced_equation", "t_account", "electron_shells", "projectile_sim", "circuit_sim", "titration_sim",
-    "gas_laws_sim", "function_transform_sim", "electrolysis_sim", "rates_sim", "equilibrium_sim",
-})  # fmt: skip
+    "gas_laws_sim", "function_transform_sim", "electrolysis_sim", "rates_sim", "equilibrium_sim", "population_sim",
+    "punnett_square", "diagram_comparison",
+}) | chemistry_kinds.DYNAMIC_PARTS  # fmt: skip
+# Optional S3 simulations held back until their own fidelity gate passes (M27, VSL-46): never advertised, and a request
+# for one is refused at stage 3. Each reason is the record the plan asks for when a simulation is deferred.
+UNAVAILABLE_KINDS = {
+    "enzyme_sim": (
+        "Its temperature and pH factors must come from a named, versioned, source-backed enzyme asset in an installed "
+        "pack (content schema 1.6 science_assets); no Biology pack is installed and the pack build does not yet load "
+        "science assets, so there is no preset to resolve and no fidelity set to check against."
+    ),
+    "osmosis_sim": (
+        "Its permeability, geometry and plant or animal limits must come from a source-backed osmosis asset in an "
+        "installed pack (content schema 1.6 science_assets); no Biology pack is installed and the pack build does not "
+        "yet load science assets, so there is no preset to resolve."
+    ),
+}
+# Pack-backed science definitions (VSL-46): the kind, the asset kind it names and the params field naming it.
+ASSET_KINDS = {"cycle_diagram": ("cycle", "cycle_id"), "classification_key": ("classification_key", "key_id")}
+# A library kind's params name its diagram again; it must be the request's `ref` (VSL-22).
+LIBRARY_PARAM_REFS = {"microscope_view": "diagram_id", "diagram_comparison": "left_ref"}
 SHELL_CAPACITIES = "chem.shell_capacities"
+TIMES = "\u00d7"  # the multiplication sign before a microscope scale magnification
 SUBJECT_CODES = {"mathematics": "mth", "physics": "phy", "chemistry": "chm", "biology": "bio", "accounting": "acc"}
 
 
@@ -109,6 +141,8 @@ class VisualContext:
     # ref -> a template preset (VSL-29): {kind, params, pack_id, approved, licence}
     presets: dict[str, dict[str, Any]] = field(default_factory=dict)
     conventions: dict[str, str] = field(default_factory=dict)  # pack convention key -> value (sign conventions, g)
+    # id -> a pack science asset (content schema 1.6 `science_assets`: cycles, keys, spectra), with its pack_id
+    science_assets: dict[str, dict[str, Any]] = field(default_factory=dict)
     board_steps: frozenset[str] | None = None  # the session board's step ids, when a board exists (VSL-20)
     locale: str = "en"
     default_visual: dict[str, Any] | None = None  # the topic's default visual request
@@ -138,7 +172,10 @@ def advertised_kinds(subject: str, level: str, stage: str) -> list[str]:
     return sorted(
         k["kind"]
         for k in VISUAL_CATALOGUE["kinds"]
-        if subject in k["subjects"] and level in k["levels"] and STAGES.index(k["stage"]) <= limit
+        if subject in k["subjects"]
+        and level in k["levels"]
+        and STAGES.index(k["stage"]) <= limit
+        and k["kind"] not in UNAVAILABLE_KINDS
     )
 
 
@@ -174,7 +211,7 @@ def validate(
         except Exception as error:  # a tool failed: never a crash, always a code
             raise VisualError("visual_resolution_failed", type(error).__name__) from None
     try:
-        computed = {**computed, **_local(spec, ctx, entry)}
+        computed = {**computed, **_local(spec, ctx, entry, computed)}
     except (KeyError, ValueError) as error:
         raise VisualError("visual_resolution_failed", str(error)[:80]) from None
     view = View(spec["type"], spec["params"], computed, spec.get("steps", []), entry, ctx.locale)
@@ -273,6 +310,9 @@ def _params(spec: dict[str, Any], kind: dict[str, Any], repairs: list[str], ctx:
     problems = kind_param_errors(spec["type"], params)
     if problems:
         raise VisualError("visual_param_invalid", problems[0])
+    named = LIBRARY_PARAM_REFS.get(spec["type"])
+    if named is not None and params.get(named) != ref:
+        raise VisualError("visual_param_invalid", f"params.{named} must be the visual's ref", hint=str(ref))
     allowed = add_elements(spec["type"])
     for step in spec.get("steps", []):
         for add in step.get("add", []):
@@ -339,20 +379,63 @@ def _approved(entry: dict[str, Any]) -> bool:
 
 
 def _library_entry(spec: dict[str, Any], ctx: VisualContext) -> dict[str, Any] | None:
-    """Stage 5 for library kinds: the entry the ref names, approved and licensed."""
+    """Stage 5 for library kinds: the entry the ref names, approved and licensed (both entries of a comparison, a pair
+    the library declares); for a cycle or a key, the pack's science asset its params name."""
+    if spec["type"] in ASSET_KINDS:
+        return _science_asset(spec, ctx)
+    if spec["type"] == "diagram_comparison":
+        left = _diagram(str(spec.get("ref")), ctx)
+        right = _diagram(str(spec["params"].get("right_ref")), ctx)
+        if comparison_differences(left, right) is None:
+            declared = [str(c.get("id")) for c in left.get("compare_with", [])]
+            raise VisualError("visual_param_invalid", f"{left.get('id')} is not paired with {right.get('id')}",
+                              hint=", ".join(declared))  # fmt: skip
+        return left
     if spec["type"] not in LIBRARY_KINDS:
         if spec.get("ref") is not None:
             preset = ctx.presets[spec["ref"]]
             if not _approved(preset) or not preset.get("licence", True):
                 raise VisualError("visual_ref_unapproved", spec["ref"])
         return None
-    ref = str(spec.get("ref"))
+    return _diagram(str(spec.get("ref")), ctx)
+
+
+def _diagram(ref: str, ctx: VisualContext) -> dict[str, Any]:
     diagram = ctx.diagrams.get(ref)
     if diagram is None:
         raise VisualError("visual_ref_missing", ref, hint=", ".join(sorted(ctx.diagrams)[:6]))
     if not _approved(diagram) or not diagram.get("licence"):
         raise VisualError("visual_ref_unapproved", ref)
     return diagram
+
+
+def comparison_differences(left: dict[str, Any], right: dict[str, Any]) -> list[dict[str, Any]] | None:
+    """The differences the library declares between two diagrams, as left and right part ids (either entry may
+    declare the pair); None when neither does."""
+    for this, other, here, there in ((left, right, "left", "right"), (right, left, "right", "left")):
+        for declared in this.get("compare_with", []):
+            if declared.get("id") == other.get("id"):
+                return [
+                    {
+                        here: f"{here}.{d['this_part']}",
+                        there: f"{there}.{d['other_part']}" if d.get("other_part") else None,
+                    }
+                    for d in declared.get("differences", [])
+                ]
+    return None
+
+
+def _science_asset(spec: dict[str, Any], ctx: VisualContext) -> dict[str, Any]:
+    """Stage 5 for a pack-backed cycle or key (VSL-46): the asset exists, is of the right kind and is licensed."""
+    asset_kind, field_name = ASSET_KINDS[spec["type"]]
+    ref = str(spec["params"].get(field_name))
+    asset = ctx.science_assets.get(ref)
+    if asset is None or asset.get("kind") != asset_kind:
+        ours = sorted(i for i, a in ctx.science_assets.items() if a.get("kind") == asset_kind)
+        raise VisualError("visual_ref_missing", ref, hint=", ".join(ours[:6]))
+    if not _approved(asset) or not asset.get("licence"):
+        raise VisualError("visual_ref_unapproved", ref)
+    return asset
 
 
 def _ref_and_parts(spec: dict[str, Any], ctx: VisualContext, entry: dict[str, Any] | None = None) -> list[str]:
@@ -430,16 +513,35 @@ def _final_parts(
 # --- local resolution: library entries and pack reference data (VSL-13, N3) -----------------------------------------
 
 
-def _local(spec: dict[str, Any], ctx: VisualContext, entry: dict[str, Any] | None) -> dict[str, Any]:
+LIBRARY_KEEP = ("id", "version", "title", "parts", "sequences", "regions", "alt_text", "licence", "attribution",
+                "scale")  # fmt: skip
+
+
+def _local(
+    spec: dict[str, Any], ctx: VisualContext, entry: dict[str, Any] | None, computed: dict[str, Any] | None = None
+) -> dict[str, Any]:
+    if spec["type"] in ASSET_KINDS and entry is not None:
+        return _asset_definition(spec, entry)
     if entry is not None and "svg" in entry:
-        keep = ("id", "version", "title", "parts", "sequences", "regions", "alt_text", "licence", "attribution")
-        out: dict[str, Any] = {"svg": entry["svg"], "entry": {k: entry[k] for k in keep if k in entry}}
+        out: dict[str, Any] = {"svg": entry["svg"], "entry": {k: entry[k] for k in LIBRARY_KEEP if k in entry}}
+        if spec["type"] == "reaction_mechanism":
+            chemistry_kinds.mechanism_check(spec["params"], entry)
         sequence = spec["params"].get("sequence")
         if sequence is not None and not any(s.get("id") == sequence for s in entry.get("sequences", [])):
             raise ValueError(f"{entry.get('id')} has no sequence {sequence}")
+        if spec["type"] == "diagram_comparison":
+            right = _diagram(str(spec["params"]["right_ref"]), ctx)
+            out["right"] = {"svg": right["svg"], "entry": {k: right[k] for k in LIBRARY_KEEP if k in right}}
+            out["differences"] = comparison_differences(entry, right) or []
+        if spec["type"] == "microscope_view":
+            out.update(_microscope_scale(spec, entry, computed or {}))
         return out
     if spec["type"] == "electron_shells":
         return _shells(spec["params"], ctx)
+    if spec["type"] == "orbital_boxes":
+        return chemistry_kinds.orbital_boxes(spec["params"], lambda key: _pack_value(ctx, key))
+    if spec["type"] == "spectrum_chart":
+        return chemistry_kinds.spectrum(spec["params"], ctx.science_assets)
     if spec["type"] == "periodic_table" and spec["params"].get("show_relative_mass"):
         highlight = spec["params"].get("highlight") or {}
         labels = {}
@@ -495,6 +597,86 @@ def _shells(params: dict[str, Any], ctx: VisualContext) -> dict[str, Any]:
     return out
 
 
+# --- pack-backed Biology definitions and the microscope's scale (VSL-05, VSL-46, N0 and N3) -------------------------
+
+
+def _asset_definition(spec: dict[str, Any], asset: dict[str, Any]) -> dict[str, Any]:
+    """A cycle or key from the pack, checked as the resolution draws it: its links resolve, a cycle's stages all lie on
+    the cycle from the start, and a key is a tree from its start whose every question has two different branches."""
+    definition = asset.get("definition") or {}
+    if spec["type"] == "cycle_diagram":
+        _check_cycle(definition, spec["params"].get("start_stage"))
+    else:
+        _check_key(definition, spec["params"].get("start_node"))
+    keep = ("id", "version", "title", "licence", "attribution")
+    return {"definition": definition, "asset": {k: asset[k] for k in keep if k in asset}}
+
+
+def _check_cycle(definition: dict[str, Any], start: str | None) -> None:
+    stages = [str(s["id"]) for s in definition.get("stages", [])]
+    if len(set(stages)) != len(stages):
+        raise ValueError("a cycle stage is listed twice")
+    after: dict[str, list[str]] = {s: [] for s in stages}
+    for link in definition.get("links", []):
+        if link["from"] not in after or link["to"] not in after:
+            raise ValueError(f"cycle link {link['from']} -> {link['to']} names no stage")
+        after[link["from"]].append(link["to"])
+    if start is not None and start not in after:
+        raise ValueError(f"the cycle has no stage {start}")
+    if not stages:
+        raise ValueError("the cycle has no stages")
+    first = start or stages[0]
+    reached, todo = {first}, [first]
+    while todo:
+        for nxt in after[todo.pop()]:
+            if nxt not in reached:
+                reached.add(nxt)
+                todo.append(nxt)
+    if reached != set(stages) or not any(first in after[s] for s in stages):
+        raise ValueError("the stages do not form one cycle from the start")
+
+
+def _check_key(definition: dict[str, Any], start: str | None) -> None:
+    nodes = {str(n["id"]): n for n in definition.get("nodes", [])}
+    groups = {str(t["id"]) for t in definition.get("terminals", [])}
+    if len(nodes) != len(definition.get("nodes", [])) or nodes.keys() & groups:
+        raise ValueError("a key node or group id is used twice")
+    root = str(start or definition.get("root"))
+    if root not in nodes:
+        raise ValueError(f"the key has no question {root}")
+    seen: set[str] = set()
+    todo = [root]
+    while todo:
+        node = nodes[todo.pop()]
+        if node["yes"] == node["no"]:
+            raise ValueError(f"question {node['id']} has one branch twice")
+        for branch in (node["yes"], node["no"]):
+            if branch not in nodes and branch not in groups:
+                raise ValueError(f"question {node['id']} leads to {branch}, which the key does not have")
+            if branch in seen or branch == root:
+                raise ValueError(f"{branch} is reached by two paths")
+            seen.add(branch)
+            if branch in nodes:
+                todo.append(branch)
+
+
+def _microscope_scale(spec: dict[str, Any], entry: dict[str, Any], computed: dict[str, Any]) -> dict[str, Any]:
+    """The scale bar from the library's calibrated metadata (N3): its length per 100 drawing pixels. Lengths taken from
+    the pack must give the entry's own magnification; a question's traced givens may describe another drawing."""
+    scale = entry.get("scale")
+    if not scale:
+        raise ValueError(f"{entry.get('id')} has no calibrated scale")
+    params = spec["params"]
+    stated = str(scale["magnification"]).lstrip(TIMES)
+    if str(params.get("lengths_from", "")).startswith("pack:") and computed.get("magnification") is not None:
+        if Fraction(stated) != Fraction(str(computed["magnification"])):
+            raise ValueError(f"the lengths give {computed['magnification']} times, not the entry's {stated}")
+    labels = dict(computed.get("labels") or {})
+    if params.get("show_scale", True):
+        labels["scale_bar"] = str(scale["length_per_100px"])
+    return {"scale_bar": {"length": str(scale["length_per_100px"]), "drawing_px": 100}, "labels": labels}
+
+
 # --- claim numbers (VSL-12) -----------------------------------------------------------------------------------------
 
 
@@ -525,7 +707,7 @@ def _preset_values(spec: dict[str, Any], ctx: VisualContext) -> list[Fraction]:
 def _numbers(spec: dict[str, Any], ctx: VisualContext, computed: dict[str, Any]) -> None:
     """VSL-12: every claim number equals a referenced value at its shown precision; claims bind to their check."""
     sources: list[Fraction] = _preset_values(spec, ctx)
-    for ref in spec.get("numbers_from", []):
+    for ref in [*spec.get("numbers_from", []), *_param_sources(spec)]:
         if ref.startswith("chk_"):
             sources += ctx.check_values.get(ref, [])
         elif ref.startswith("kn_") and ref in ctx.knowns:
@@ -545,6 +727,13 @@ def _numbers(spec: dict[str, Any], ctx: VisualContext, computed: dict[str, Any])
         cited = [ctx.check_claims.get(r) for r in spec.get("numbers_from", []) if r.startswith("chk_")]
         if not any(c is not None and c == claim for c in cited):
             raise VisualError("visual_untraced_number", f"caption claim {caption[:60]!r} differs from its check")
+
+
+def _param_sources(spec: dict[str, Any]) -> list[str]:
+    """A source a kind's params cite for their own numbers (a microscope question's `lengths_from`, VSL-46)."""
+    params = spec.get("params")
+    cited = params.get("lengths_from") if isinstance(params, dict) else None
+    return [cited] if isinstance(cited, str) else []
 
 
 def _shown_equal(written: str, value: Fraction, tolerance: float = 1e-9) -> bool:
@@ -578,9 +767,8 @@ def _resolve(
     digest = hashlib.sha256(canonical.encode()).hexdigest()
     visual_id = "vis_" + "".join(CROCKFORD[int(digest[i : i + 2], 16) % 32] for i in range(0, 52, 2))
     steps = spec.get("steps", [])
-    if entry is not None and spec["params"].get("sequence") and not steps:
-        sequence = next(s for s in entry.get("sequences", []) if s.get("id") == spec["params"]["sequence"])
-        steps = [{"highlight": list(s["highlight"])} for s in sequence["steps"]][:20]
+    if entry is not None and not steps:
+        steps = sequence_steps(View(spec["type"], spec.get("params", {}), computed, [], entry, ctx.locale))
     view = View(spec["type"], spec.get("params", {}), computed, steps, entry, ctx.locale)
     preset_ref = []
     if spec.get("ref") is not None and spec["type"] not in LIBRARY_KINDS:
@@ -588,6 +776,7 @@ def _resolve(
         preset_ref = [f"pack:{preset.get('pack_id', 'pack.unknown')}/visual_presets/{spec['ref']}"]
     sources = [
         *spec.get("numbers_from", []),
+        *_param_sources(spec),
         *computed.get("check_ids", []),
         *computed.get("pack_refs", []),
         *preset_ref,
@@ -609,6 +798,12 @@ def _resolve(
         "repairs": repairs[:20],
         "resolution_hash": f"sha256:{digest}",
     }
+    if spec.get("presentation") == "build":
+        # Built layer by layer in the order the kind declares (VSL-41); a kind with none shows whole.
+        resolved["presentation"] = "build"
+        resolved["layers"] = layers_of(view, parts)
+        if not steps and resolved["layers"]:  # each build step's alt line names what it added (VSL-14)
+            resolved["alt"] = {**resolved["alt"], "steps": build_alt(resolved["layers"], parts, ctx.locale)}
     if "ref" in spec:
         resolved["ref"] = spec["ref"]
     if "caption" in spec:

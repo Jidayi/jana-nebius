@@ -1,0 +1,207 @@
+{
+  "component": "VisualViewer",
+  "context": {
+    "theme": "light"
+  },
+  "id": "visual-viewer.canonical.cycle-diagram-hidden",
+  "payload": {
+    "alt": {
+      "locale": "en",
+      "steps": [
+        "Step 1: look at Plants and arrow from Carbon dioxide in the air to Plants.",
+        "Step 2: look at Decomposers."
+      ],
+      "summary": "The carbon cycle: a cycle of 5 stages, Carbon dioxide in the air, then Plants, then Animals, then Dead matter and waste, then Decomposers, and back to the start."
+    },
+    "computed": {
+      "asset": {
+        "attribution": "Our own definition, written for Jana.",
+        "id": "dgm.bio.carbon_cycle.v1",
+        "licence": "LicenseRef-Own",
+        "title": "The carbon cycle",
+        "version": "1.0.0"
+      },
+      "definition": {
+        "links": [
+          {
+            "from": "air",
+            "to": "plants"
+          },
+          {
+            "from": "plants",
+            "to": "animals"
+          },
+          {
+            "from": "animals",
+            "to": "dead_matter"
+          },
+          {
+            "from": "dead_matter",
+            "to": "decomposers"
+          },
+          {
+            "from": "decomposers",
+            "to": "air"
+          },
+          {
+            "from": "plants",
+            "to": "air"
+          },
+          {
+            "from": "animals",
+            "to": "air"
+          },
+          {
+            "from": "plants",
+            "to": "dead_matter"
+          }
+        ],
+        "stages": [
+          {
+            "description": "Carbon dioxide in the atmosphere, taken in by plants and given out by respiration.",
+            "id": "air",
+            "label": "Carbon dioxide in the air"
+          },
+          {
+            "description": "Photosynthesis turns carbon dioxide into glucose and other carbon compounds.",
+            "id": "plants",
+            "label": "Plants"
+          },
+          {
+            "description": "Animals take in carbon compounds when they eat plants or other animals.",
+            "id": "animals",
+            "label": "Animals"
+          },
+          {
+            "description": "Dead plants and animals and their waste still hold carbon compounds.",
+            "id": "dead_matter",
+            "label": "Dead matter and waste"
+          },
+          {
+            "description": "Bacteria and fungi feed on dead matter and release carbon dioxide by respiration.",
+            "id": "decomposers",
+            "label": "Decomposers"
+          }
+        ]
+      }
+    },
+    "fallback_reason": null,
+    "labels": "hidden",
+    "numbers_from": [],
+    "params": {
+      "cycle_id": "dgm.bio.carbon_cycle.v1",
+      "start_stage": "air"
+    },
+    "parts": [
+      {
+        "focusable": true,
+        "id": "stage.air",
+        "name": "Carbon dioxide in the air",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "stage.plants",
+        "name": "Plants",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "stage.animals",
+        "name": "Animals",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "stage.dead_matter",
+        "name": "Dead matter and waste",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "stage.decomposers",
+        "name": "Decomposers",
+        "quizzable": true,
+        "role": "label"
+      },
+      {
+        "focusable": true,
+        "id": "link.air.plants",
+        "name": "arrow from Carbon dioxide in the air to Plants",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "link.plants.animals",
+        "name": "arrow from Plants to Animals",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "link.animals.dead_matter",
+        "name": "arrow from Animals to Dead matter and waste",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "link.dead_matter.decomposers",
+        "name": "arrow from Dead matter and waste to Decomposers",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "link.decomposers.air",
+        "name": "arrow from Decomposers to Carbon dioxide in the air",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "link.plants.air",
+        "name": "arrow from Plants to Carbon dioxide in the air",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "link.animals.air",
+        "name": "arrow from Animals to Carbon dioxide in the air",
+        "role": "line"
+      },
+      {
+        "focusable": true,
+        "id": "link.plants.dead_matter",
+        "name": "arrow from Plants to Dead matter and waste",
+        "role": "line"
+      }
+    ],
+    "repairs": [],
+    "resolution_hash": "sha256:381a5beca6600797bb9cb15285920c8a5d948631fdf39b2a2195a50891798ab4",
+    "spec_version": 1,
+    "status": "ok",
+    "steps": [
+      {
+        "highlight": [
+          "stage.plants",
+          "link.air.plants"
+        ]
+      },
+      {
+        "highlight": [
+          "stage.decomposers"
+        ]
+      }
+    ],
+    "type": "cycle_diagram",
+    "visual_id": "vis_RTVC607QVWHJ5JCAXM6HXKVA1N"
+  },
+  "payloadContract": "https://jana.dev/contracts/visuals/visual-spec#/$defs/resolved",
+  "placements": [
+    "conversation"
+  ],
+  "state": "canonical",
+  "title": "Visual: cycle diagram (hidden labels)",
+  "variant": "cycle-diagram-hidden"
+}

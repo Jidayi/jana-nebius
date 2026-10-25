@@ -1,0 +1,397 @@
+{
+  "proposal": "Contract pieces M33.b's requirements imply (D72 standing approval to add spec-implied pieces and report after), proposed by the M33.b builder. Item analytics, calibration and outcomes by skill version read the consented research export (D51), whose body no adopted contract describes; the content problem report inbox reads the telemetry counts CUR-35 names; a per-student fit needs an event to be applied from the log. Each entry is a JSON Pointer into a contract under docs/specification/contracts and the value to add there. Until the specification adopts them: the device writes the research export body as written here (agent_core/engine/research.py, agent_core/trace/research.py) and the analytics intake checks it (pack_builder/analytics.py); the inbox checks the counts itself (pack_builder/problem_inbox.py); and LRN-12's fits are computed and reported but not recorded (agent_core/learner/personal.py), so the projection keeps the defaults. The tests validate the device's body and the inbox's counts against these values.",
+  "additions": [
+    {
+      "target": "api/commands.schema.json",
+      "pointer": "/$defs/ResearchExportBody",
+      "requirements": [
+        "EVL-22",
+        "MEM-26",
+        "AUT-37",
+        "CUR-26",
+        "ASM-21",
+        "SKL-28"
+      ],
+      "why": "AUT-37: the analytics intake rejects unconsented research, student text and school-sync payloads, so the body names its kind and consent; CUR-26 and ASM-21 need each item's responses (facility, discrimination, distractor picks, time) and SKL-28 the skill versions' sessions, joined on the device so no session, attempt or profile id leaves it.",
+      "value": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "consent",
+          "events",
+          "kc_mastery",
+          "item_responses",
+          "skill_sessions"
+        ],
+        "description": "The body of a research export once the research team opens it (EVL-22, MEM-26): what the device's allow-list keeps, and the consent it was made under. The authoring system's analytics intake refuses any other body (AUT-37).",
+        "properties": {
+          "kind": {
+            "const": "research_export"
+          },
+          "consent": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "scope",
+              "student_assent",
+              "protocol_ref"
+            ],
+            "description": "The research_use consent, the student's assent and the registered protocol; never the school (its approval reference stays in the device's audit log).",
+            "properties": {
+              "scope": {
+                "const": "research_use"
+              },
+              "student_assent": {
+                "const": true
+              },
+              "protocol_ref": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              }
+            }
+          },
+          "events": {
+            "type": "array",
+            "description": "Allow-listed learning events: type, day and numbers or enumerated values only.",
+            "items": {
+              "type": "object",
+              "required": [
+                "type",
+                "day"
+              ],
+              "properties": {
+                "type": {
+                  "enum": [
+                    "attempt",
+                    "verdict",
+                    "hint",
+                    "mastery_check",
+                    "session_ended",
+                    "diagnostic_item"
+                  ]
+                },
+                "day": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "kc_id": {
+                  "type": "string",
+                  "pattern": "^kc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[a-z0-9_]+$"
+                },
+                "item_result": {
+                  "enum": [
+                    "pass",
+                    "fail"
+                  ]
+                },
+                "check_state": {
+                  "enum": [
+                    "in_progress",
+                    "passed",
+                    "failed"
+                  ]
+                },
+                "outcome": {
+                  "enum": [
+                    "correct",
+                    "incorrect",
+                    "partial",
+                    "unverifiable"
+                  ]
+                },
+                "mode": {
+                  "enum": [
+                    "guided",
+                    "solution",
+                    "check_working",
+                    "learn",
+                    "practice",
+                    "mock",
+                    "revision",
+                    "diagnostic",
+                    "mastery_check",
+                    "review"
+                  ]
+                }
+              },
+              "additionalProperties": {
+                "type": [
+                  "number",
+                  "boolean"
+                ]
+              }
+            }
+          },
+          "kc_mastery": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "p_mastery": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "attempt_count": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "confirmed": {
+                  "type": [
+                    "boolean",
+                    "number"
+                  ]
+                }
+              }
+            }
+          },
+          "item_responses": {
+            "type": "array",
+            "description": "CUR-26, ASM-21: each first response to a pack item in an assessment mode, with its latest verdict; the option when the attempt recorded one, else the misconception the marker matched.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "item_id",
+                "outcome",
+                "time_ms"
+              ],
+              "properties": {
+                "item_id": {
+                  "type": "string",
+                  "pattern": "^itm\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[0-9]{4}$"
+                },
+                "outcome": {
+                  "enum": [
+                    "correct",
+                    "incorrect",
+                    "partial"
+                  ]
+                },
+                "time_ms": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 86400000
+                },
+                "choice_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_]{1,16}$"
+                },
+                "misconception_id": {
+                  "type": "string",
+                  "pattern": "^mc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+$"
+                },
+                "kc_id": {
+                  "type": "string",
+                  "pattern": "^kc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[a-z0-9_]+$"
+                }
+              }
+            }
+          },
+          "skill_sessions": {
+            "type": "array",
+            "description": "SKL-28: per tutoring session, the skills delivered, the hints used and the mastery gain on the session's KCs (share right after the session less share right before it; null without both).",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "skills",
+                "hints",
+                "mastery_gain"
+              ],
+              "properties": {
+                "skills": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "name",
+                      "version"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$",
+                        "maxLength": 64
+                      },
+                      "version": {
+                        "type": "string",
+                        "pattern": "^\\d{1,4}\\.\\d{1,4}(\\.\\d{1,4})?$"
+                      }
+                    }
+                  }
+                },
+                "hints": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "mastery_gain": {
+                  "type": [
+                    "number",
+                    "null"
+                  ],
+                  "minimum": -1,
+                  "maximum": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "target": "trace/telemetry.schema.json",
+      "pointer": "/properties/content_reports",
+      "requirements": [
+        "CUR-35",
+        "AUT-38",
+        "OBS-20"
+      ],
+      "why": "CUR-35: opt-in telemetry carries only category and record id; AUT-38: the studio inbox shows the reports as counts by category and record id. The adopted telemetry report has no place for them.",
+      "value": {
+        "type": "array",
+        "maxItems": 500,
+        "description": "CUR-35, AUT-38: the day's content problem reports as counts by category and content record id (a content id, never a student's); no free text, which only an authorized support export carries (OBS-18).",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "record_id",
+            "category",
+            "count"
+          ],
+          "properties": {
+            "record_id": {
+              "type": "string",
+              "pattern": "^((itm|wex|itpl)\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[0-9]{4}|(les|kc)\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+\\.[a-z0-9_]+|mc\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[a-z0-9_]+|dgm\\.(mth|phy|chm|bio|acc)\\.[a-z0-9_]+\\.v[0-9]+|mck\\.(mth|phy|chm|bio|acc)\\.(o|a)\\.[0-9]{4})$",
+              "maxLength": 96
+            },
+            "category": {
+              "enum": [
+                "wrong_answer",
+                "unclear",
+                "typo",
+                "offensive",
+                "other"
+              ]
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "target": "learning/learning-event.schema.json",
+      "pointer": "/$defs/payload_personal_calibration",
+      "requirements": [
+        "LRN-12",
+        "DAT-05",
+        "LRN-02"
+      ],
+      "why": "LRN-12: a personal fit is adopted only when it predicts the student's recent events better; the projections are a function of the log alone, so the adoption must be an event the fold reads.",
+      "value": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "subject",
+          "value",
+          "events",
+          "default_log_loss",
+          "personal_log_loss"
+        ],
+        "description": "LRN-12: a personal fit adopted on the device, offline, in idle time: the learning-rate multiplier on gamma_k for a subject, or the FSRS-6 weights (subject null). Recorded only when the fit's log loss on the student's most recent 20% of events is at least 2% lower than the defaults'; the mastery projection applies it from this event on, so a rebuild from the log gives the same tables (DAT-05).",
+        "properties": {
+          "kind": {
+            "enum": [
+              "learning_rate",
+              "fsrs"
+            ]
+          },
+          "subject": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/subject"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "value": {
+            "oneOf": [
+              {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 10
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 21,
+                "maxItems": 21
+              }
+            ]
+          },
+          "events": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "default_log_loss": {
+            "type": "number",
+            "minimum": 0
+          },
+          "personal_log_loss": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    {
+      "target": "learning/learning-event.schema.json",
+      "pointer": "/oneOf/-",
+      "requirements": [
+        "LRN-12"
+      ],
+      "why": "The event type for the payload above.",
+      "value": {
+        "title": "personal_calibration",
+        "allOf": [
+          {
+            "$ref": "#/$defs/envelope"
+          }
+        ],
+        "properties": {
+          "type": {
+            "const": "personal_calibration"
+          },
+          "payload": {
+            "$ref": "#/$defs/payload_personal_calibration"
+          }
+        },
+        "unevaluatedProperties": false
+      }
+    },
+    {
+      "target": "learning/learning-event.schema.json",
+      "pointer": "/oneOf/26/properties/type/enum/-",
+      "requirements": [
+        "LRN-12",
+        "PRV-10"
+      ],
+      "why": "The erased-event branch lists every type (index 26 before the append above).",
+      "value": "personal_calibration"
+    }
+  ]
+}

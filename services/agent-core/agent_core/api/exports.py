@@ -169,7 +169,7 @@ def add_routes(app: FastAPI, core: CoreService, mutating: Mutating) -> None:
                     if consent is None or consent[5] is not None:
                         raise ApiError("validation_failed", "a research export needs active research_use consent")
                     recipient = settings.export_research_public_key
-                    sealed = seal_to_recipient(json.dumps(export_rows(conn)).encode(), recipient)
+                    sealed = seal_to_recipient(json.dumps(export_rows(conn, approval)).encode(), recipient)
                 elif kind == "diagnostic_bundle":
                     if asked.get("include_session_ids"):
                         raise ApiError("validation_failed", "conversation export requires a separate support bundle")

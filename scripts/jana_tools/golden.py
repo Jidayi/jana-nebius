@@ -18,7 +18,17 @@ from typing import Any
 import sympy as sp
 import yaml
 
-from . import REPO_ROOT, golden_accounting, golden_chemistry, golden_maths, golden_physics
+from . import (
+    REPO_ROOT,
+    golden_accounting,
+    golden_accounting_alevel,
+    golden_alevel_calculus,
+    golden_alevel_maths,
+    golden_chemistry,
+    golden_maths,
+    golden_physics,
+    golden_statistics,
+)
 
 GOLDEN = REPO_ROOT / "services" / "tool-worker" / "tool_worker" / "golden"
 SEED = 20261009
@@ -27,7 +37,8 @@ PROVENANCE = (
     "construction, not from the checker. Not real student work."
 )
 # The tool version each set targets: a set is rebuilt and reviewed when its tool's version changes (TOL-05).
-VERSIONS = {"math_solve": 3, "math_evaluate": 2, "math_check_step": 2}
+VERSIONS = {"math_solve": 4, "math_simplify": 2, "math_evaluate": 2, "math_check_step": 3, "acc_double_entry": 2,
+            "acc_statements": 2, "math_differentiate": 2, "math_integrate": 2}  # fmt: skip
 x, y = sp.symbols("x y", real=True)
 
 
@@ -491,6 +502,17 @@ def build() -> dict[str, dict[str, Any]]:
         sets[name], stages[name] = cases, "S2"
     for name, cases in golden_chemistry.sets(random.Random(golden_chemistry.SEED)).items():  # M12.c, its own seed
         sets[name], stages[name] = cases, "S2"
+    for name, cases in golden_accounting_alevel.sets(random.Random(golden_accounting_alevel.SEED)).items():  # VER-34
+        sets[name], stages[name] = cases, "S3"
+    # M26.a: A level mechanics (VER-31), its own seed so every set above is unchanged
+    sets["phys_mechanics"] = golden_physics.mechanics_cases(random.Random(golden_physics.SEED + 31))
+    stages["phys_mechanics"] = "S3"
+    for name, cases in golden_alevel_calculus.sets(random.Random(golden_alevel_calculus.SEED)).items():  # VER-30
+        sets[name], stages[name] = cases, "S3"
+    for name, cases in golden_statistics.sets(random.Random(golden_statistics.SEED)).items():  # VER-30, own seed
+        sets[name], stages[name] = cases, "S3"
+    for name, cases in golden_alevel_maths.sets(random.Random(golden_alevel_maths.SEED)).items():  # VER-30 algebra
+        sets[name], stages[name] = cases, "S3"
     return {
         name: {
             "tool": name.split(".")[0],

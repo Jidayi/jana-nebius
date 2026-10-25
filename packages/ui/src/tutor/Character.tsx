@@ -235,10 +235,12 @@ export function Character({ id, pose = "idle", mouth = "small", level = 0, size 
 /** The presence (UXS-53): the character in the pose of the voice state, with the state's words beside it, never
  * instead of them. `label` overrides the words where VOC-04 gives the state another label (read-aloud, wake word).
  * The polite announcement of a change is the voice bar's live region; the drawing announces nothing. */
-export function TutorPresence({ id, state, label, mouth, level, size = 48, animate = true }: {
+export function TutorPresence({ id, state, label, mouth, level, size = 48, animate = true, pointing = false }: {
   id: CharacterId | string;
   state: VoiceStateName;
   label?: string;
+  /** Turned toward the step the tutor points at (UXS-53, TABLE DSN-27a), while speaking. */
+  pointing?: boolean;
   mouth?: CharacterMouth;
   level?: number;
   size?: number;
@@ -247,7 +249,7 @@ export function TutorPresence({ id, state, label, mouth, level, size = 48, anima
   const t = useT();
   return (
     <div className="flex items-center gap-3" data-presence={state}>
-      <Character id={id} pose={poseOfVoiceState(state)} size={size} animate={animate && state !== "unavailable"}
+      <Character id={id} pose={pointing ? "pointing" : poseOfVoiceState(state)} size={size} animate={animate && state !== "unavailable"}
         {...(mouth !== undefined ? { mouth } : {})} {...(level !== undefined ? { level } : {})} />
       <span className="text-ui text-ink">{label ?? t(`voice.state.${state}`)}</span>
     </div>

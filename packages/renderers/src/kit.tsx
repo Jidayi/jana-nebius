@@ -4,6 +4,7 @@
 import { must } from "./must.js";
 import type { KeyboardEvent, ReactElement, ReactNode } from "react";
 import type { LabelMode, PartInfo, ResolvedSpec, Translate, VisualProps } from "./contract.js";
+import { CLIENT_KEYS } from "./generated/keys.js";
 import { stepState, type StepState } from "./steps.js";
 
 export const INK = "var(--color-diagram-stroke)";
@@ -29,6 +30,8 @@ export interface Scene {
   step: number;
   labels: LabelMode;
   focus: Set<string>;
+  /** Parts dimmed by the tutor's spotlight (UXS-57): opacity only, the target keeps its ring. */
+  dimmed: (id: string) => boolean;
   t: Translate;
   scale: number;
   order: Map<string, number>;
@@ -46,6 +49,7 @@ export function scene(props: VisualProps): Scene {
     step: props.step,
     labels: props.labels,
     focus: new Set(props.focus),
+    dimmed: (id) => props.spotlight === true && props.focus.length > 0 && !props.focus.includes(id),
     t: props.t ?? keyOnly,
     scale: props.textScale ?? 1,
     order: new Map(parts.map((p, i) => [p.id, i + 1])),
@@ -65,7 +69,7 @@ export function isAddedStep(s: Scene, element: string, of?: string): boolean {
 }
 
 export function shown(s: Scene, id: string, initiallyHidden = false): boolean {
-  if (s.state.hidden.has(id)) return false;
+  if (s.state.hidden.has(id) || s.state.unbuilt.has(id)) return false;
   return !initiallyHidden || s.state.revealed.has(id);
 }
 
@@ -151,11 +155,13 @@ export function partNameRef(s: Scene, id: string) {
 /** A focusable part: data-part for addressing (VSL-19), tab-reachable, named, activated by click, Enter or Space. */
 export function Part({ s, id, children, focusable = true }: { s: Scene; id: string; children: ReactNode; focusable?: boolean }): ReactElement {
   const pointed = s.focus.has(id);
+  if (s.state.unbuilt.has(id)) return <g data-part={id} data-unbuilt="true" />; // a build layer still to come (VSL-41)
+  const dim = s.dimmed(id) ? { opacity: CLIENT_KEYS.board_spotlight_dim_opacity, "data-dimmed": "true" } : {};
   if (!focusable) {
-    return <g data-part={id}>{children}</g>;
+    return <g data-part={id} {...dim}>{children}</g>;
   }
   return (
-    <g ref={partNameRef(s, id)} data-part={id} tabIndex={0} role="button" aria-label={partName(s, id)} data-highlighted={highlighted(s, id) ? "true" : undefined}
+    <g ref={partNameRef(s, id)} data-part={id} {...dim} tabIndex={0} role="button" aria-label={partName(s, id)} data-highlighted={highlighted(s, id) ? "true" : undefined}
       data-pointed={pointed ? "true" : undefined} onClick={() => s.activate(id)} onKeyDown={onKey(s, id)}>
       {children}
     </g>
@@ -165,7 +171,7 @@ export function Part({ s, id, children, focusable = true }: { s: Scene; id: stri
 /** An HTML row or cell part, for the board and table kinds. */
 export function rowProps(s: Scene, id: string, role?: string): Record<string, unknown> {
   return {
-    ref: partNameRef(s, id), "data-part": id, tabIndex: 0, role, "aria-label": partName(s, id), "data-highlighted": highlighted(s, id) ? "true" : undefined,
+    ref: partNameRef(s, id), "data-part": id, tabIndex: 0, role, hidden: s.state.unbuilt.has(id) ? true : undefined, "aria-label": partName(s, id), "data-highlighted": highlighted(s, id) ? "true" : undefined,
     "data-pointed": s.focus.has(id) ? "true" : undefined, onClick: () => s.activate(id), onKeyDown: onKey(s, id),
     className: highlighted(s, id) ? "bg-highlight-soft underline" : s.focus.has(id) ? "outline-dashed outline-2 outline-highlight-line" : undefined,
   };
