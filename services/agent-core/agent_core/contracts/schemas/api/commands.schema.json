@@ -1,5 +1,5 @@
 {
- "$comment": "GENERATED from contracts/api/commands.schema.json sha256 0b5a2cafc1c3f59a8eff56c3a7663d91a7e3e333e41ee855dd4395bb9153695a; do not edit",
+ "$comment": "GENERATED from contracts/api/commands.schema.json sha256 9a55662dec578560d2bc5b2d3e658da073ab18663efe7f6e4a9c55a6f5bb0cea; do not edit",
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "$id": "https://jana.dev/contracts/api/commands",
  "title": "Command bodies",
@@ -8847,6 +8847,33 @@
     "exams",
     "countdown",
     "reminders_due"
+   ]
+  },
+  "ManipulationStart": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "part_id": {
+     "type": "string",
+     "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+     "maxLength": 64
+    }
+   },
+   "required": [
+    "part_id"
+   ]
+  },
+  "ManipulationOpened": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "step_id": {
+     "type": "string",
+     "pattern": "^stp_[0-9A-HJKMNP-TV-Z]{26}$"
+    }
+   },
+   "required": [
+    "step_id"
    ]
   }
  }

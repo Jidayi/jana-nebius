@@ -263,10 +263,24 @@ class SessionRecords:
         elif kind == "turn.end" and turn_id is not None:
             store.end_turn(turn_id, status=event["status"], usage=event["usage"], ts=ts)
 
+        if kind.startswith("board.") or kind == "visual.await":
+            board = state["boards"].get(event.get("board_id"))
+            part = state["parts"].get(board["part_id"]) if board else None
+            if part is not None and part.get("turn_id") and part["status"] not in ("started", "streaming"):
+                store.put_part(part["turn_id"], self._content(part, state), ts)
+        if kind in ("visual.step", "visual.focus"):
+            visual = state["visuals"].get(event["visual_id"])
+            part = state["parts"].get(visual["part_id"]) if visual else None
+            if part is not None and part.get("turn_id") and part["status"] not in ("started", "streaming"):
+                store.put_part(part["turn_id"], self._content(part, state), ts)
+
     @staticmethod
     def _content(part: dict[str, Any], state: dict[str, Any]) -> dict[str, Any]:
         content = dict(part)
         visual_id = part.get("visual_id")
         if visual_id is not None and visual_id in state["visuals"]:
             content["visual"] = state["visuals"][visual_id]
+        boards = [b for b in state["boards"].values() if b["part_id"] == part["part_id"]]
+        if boards:
+            content["boards"] = boards
         return content

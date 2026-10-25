@@ -53,3 +53,5 @@ code, pre { font-family: var(--font-mono); font-size: calc(12px * var(--text-sca
 
 :root[data-theme="dark"] { color-scheme: dark; }.pipeline { flex-wrap: wrap; }.comparison-overlay { position: relative; display: block; }.comparison-overlay > div:last-child { position: absolute; inset: 0; opacity: .5; pointer-events: none; }
 .studio label:has(input[type="checkbox"]), .skill-dialog label:has(input[type="checkbox"]) { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding-inline: 8px; }
+/* A lesson preview shares this column with checks and authoring tools. */
+.preview-pane > [data-lesson-status] { min-height: 0; }

@@ -71,6 +71,7 @@ export interface CorePart {
   visual_id?: string;
   card?: PartRec["card"];
   notice?: Record<string, unknown>;
+  sketch?: NonNullable<PartRec["sketch"]>;
 }
 
 export interface CoreBoard {
@@ -84,6 +85,8 @@ export interface CoreBoard {
   order: string[];
   awaiting: BoardRec["await"];
   highlight: BoardRec["highlight"];
+  annotation?: BoardRec["annotation"];
+  manipulation?: BoardRec["manipulation"];
 }
 
 export interface CoreVisual {
@@ -173,6 +176,8 @@ export function hydrate(store: Store, snapshot: CoreSnapshot): Store {
       board_id: core.board_id, part_id: core.part_id, problem: core.problem, step_ids: [...core.order], steps: core.steps,
       knowns: core.knowns, unknowns: core.unknowns, conventions: core.conventions, await: core.awaiting, highlight: core.highlight,
       current: core.order[core.order.length - 1] ?? null,
+      ...(core.annotation !== undefined ? { annotation: core.annotation } : {}),
+      ...(core.manipulation !== undefined ? { manipulation: core.manipulation } : {}),
     };
   }
   for (const core of Object.values(snapshot.visuals)) {

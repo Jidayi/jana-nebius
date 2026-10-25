@@ -210,6 +210,13 @@ def create_app(core: CoreService, secret: LaunchSecret, port: Callable[[], int |
 
         return await mutating(request, run)
 
+    @app.post("/v1/visuals/{visual_id}/practice")
+    async def start_manipulation(visual_id: str, request: Request) -> Response:
+        async def run(body: Any) -> tuple[int, Any]:
+            return 200, core.start_manipulation(visual_id, body)
+
+        return await mutating(request, run)
+
     @app.post("/v1/visuals/{visual_id}/answer")
     async def answer_manipulation(visual_id: str, request: Request) -> Response:
         async def run(body: Any) -> tuple[int, Any]:

@@ -108,3 +108,25 @@ async def mark(manipulation: dict[str, Any], values: list[dict[str, str]], run: 
         raise ManipulationRefused("validation_failed", f"set {missing[0]} before checking")
     status = "incorrect" if "incorrect" in statuses else "unchecked" if "unchecked" in statuses else "correct"
     return {"latex": "; ".join(lines)[:300], "status": status, "check_id": check_id}
+
+
+def exercise_key(spec: dict[str, Any], part_id: str) -> str:
+    """A matching exercise from an already resolved visual; never accept a key supplied by the client."""
+    if spec.get("status") != "ok" or not spec.get("numbers_from"):
+        raise ManipulationRefused("validation_failed", "this diagram has no checked values to practise")
+    params, kind = spec.get("params", {}), spec.get("type")
+    if kind == "number_line":
+        for interval in params.get("intervals", []):
+            for edge in ("from", "to"):
+                if part_id == f"{interval['id']}.{edge}" and str(interval.get(edge)) not in ("inf", "-inf", "None"):
+                    return str(interval[edge])
+    elif kind == "function_graph":
+        for curve, features in spec.get("computed", {}).get("features", {}).items():
+            for feature in features:
+                if part_id == f"{curve}.{feature['id']}":
+                    return f"({feature['x']}, {feature['y']})"
+    elif kind == "free_body":
+        for force in params.get("forces", []):
+            if part_id == force["id"]:
+                return f"{force['magnitude']} at {force['direction_deg']}"
+    raise ManipulationRefused("validation_failed", "choose a point, end point or force on this diagram")

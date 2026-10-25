@@ -537,7 +537,9 @@ class CoreService:
         for connection in list(entry.connections):
             connection.put(envelope)
         event = envelope["event"]
-        if event["type"] == "turn.end" or (event["type"] == "board.step" and event["status"] in TERMINAL_STEP):
+        if event["type"] in ("turn.end", "part.end", "board.annotate", "visual.await") or (
+            event["type"] == "board.step" and event["status"] in TERMINAL_STEP
+        ):
             self.persist(entry)  # a crash loses at most the in-flight step (API-17)
 
     def _learning(self, events: list[Any]) -> None:
@@ -1197,10 +1199,16 @@ class CoreService:
         the part and the saved session projection both lose it."""
         self._guard()
         for entry in self.mine():
-            part = entry.engine.sketches.remove(sketch_id) if entry.engine is not None else None
+            part = next((p["part_id"] for p in entry.state["parts"].values()
+                         if (p.get("sketch") or {}).get("sketch_id") == sketch_id), None)
             if part is None:
                 continue
+            if entry.engine is not None:
+                entry.engine.sketches.remove(sketch_id)
+                entry.engine.persisted.pop(part, None)
             projection.remove_part(entry.state, part)
+            if self.records is not None:
+                self.records.transcripts.remove_part(entry.session_id, part)
             self.persist(entry)
             return
         raise ApiError("not_found", "no sketch with that id")
@@ -1212,18 +1220,60 @@ class CoreService:
 
         self._guard()
         for entry in self.mine():
-            if entry.engine is None:
-                continue
-            replay = board_replay(entry.engine.persisted, board_id)
+            persisted = projection.replay_parts(entry.state)
+            replay = board_replay(persisted, board_id)
+            if replay is None and entry.engine is not None:
+                replay = board_replay(entry.engine.persisted, board_id)
             if replay is not None:
                 return replay
         raise ApiError("not_found", "no recorded board with that id")
+
+    @contextlib.contextmanager
+    def _visual_event_turn(self, entry: SessionEntry, visual_id: str) -> Any:
+        """A diagram interaction belongs to the tutor turn that displayed it, also after reopening."""
+        engine = self._engine(entry)
+        events = engine.events
+        previous = events.turn_id, events._index
+        visual = entry.state["visuals"][visual_id]
+        events.turn_id = entry.state["parts"][visual["part_id"]]["turn_id"]
+        events._index = max((p["index"] for p in entry.state["parts"].values()
+                            if p["turn_id"] == events.turn_id), default=-1) + 1
+        try:
+            yield engine
+        finally:
+            events.turn_id, events._index = previous
+
+    def start_manipulation(self, visual_id: str, body: dict[str, Any]) -> dict[str, Any]:
+        from agent_core.engine.manipulation import ManipulationRefused, exercise_key
+
+        self._guard()
+        self.assessment_guard()
+        require("ManipulationStart", body)
+        entry = next((e for e in self.mine() if visual_id in e.state["visuals"]), None)
+        if entry is None:
+            raise ApiError("not_found", "no such diagram")
+        if entry.session_id in self.voice_engines or (entry.task is not None and not entry.task.done()):
+            raise ApiError("tutor_locked", "the tutor is still answering")
+        if entry.engine_state.manipulation is not None:
+            raise ApiError("request_conflict", "finish the current diagram exercise first")
+        spec = entry.state["visuals"][visual_id]["spec"]
+        try:
+            key = exercise_key(spec, body["part_id"])
+            with self._visual_event_turn(entry, visual_id) as engine:
+                step = engine.open_manipulation(visual_id, {body["part_id"]: key},
+                                               "Match the selected part on the diagram.",
+                                               str(spec.get("params", {}).get("variable", "x")))
+        except ManipulationRefused as refused:
+            raise ApiError(refused.code, refused.detail) from None
+        self.persist(entry)
+        return {"step_id": step}
 
     async def answer_manipulation(self, visual_id: str, body: dict[str, Any]) -> dict[str, Any]:
         """VSL-42: the values the student set on a manipulable visual, checked by the same tool as the typed line."""
         from agent_core.engine.manipulation import ManipulationRefused
 
         self._guard()
+        self.assessment_guard()
         require("ManipulationSubmit", body)
         entry = next(
             (e for e in self.mine() if (e.engine_state.manipulation or {}).get("visual_id") == visual_id), None
@@ -1233,11 +1283,22 @@ class CoreService:
         if entry.session_id in self.voice_engines or (entry.task is not None and not entry.task.done()):
             raise ApiError("tutor_locked", "the tutor is still answering", details={"turn_id": entry.active_turn})
 
-        async def unavailable(name: str, args: dict[str, Any]) -> tuple[Any, str | None]:
-            return None, None  # no worker: the line is unchecked, never guessed (ASM-02)
+        async def checked(name: str, args: dict[str, Any]) -> tuple[Any, str | None]:
+            from agent_core.tools.executor import ToolCall
+
+            engine = self._engine(entry)
+            result = await engine.deps.executor.run_one(
+                ToolCall(f"call_visual{new_id('cli')[4:]}_0", name, args),
+                "checker", engine._tool_session("checker", "full"),
+            )
+            if result.get("status") != "ok":
+                return None, None
+            checks = result.get("meta", {}).get("checks") or []
+            return result.get("data", {}).get("value"), checks[0]["check_id"] if checks else None
 
         try:
-            result = await self._engine(entry).answer_manipulation(visual_id, body, self.check_tool or unavailable)
+            with self._visual_event_turn(entry, visual_id) as engine:
+                result = await engine.answer_manipulation(visual_id, body, self.check_tool or checked)
         except ManipulationRefused as refused:
             raise ApiError(refused.code, refused.detail) from None
         self.persist(entry)

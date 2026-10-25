@@ -74,6 +74,13 @@ def apply(state: dict[str, Any], envelope: dict[str, Any]) -> bool:
     event, turn_id, ts = envelope["event"], envelope["turn_id"], envelope["ts"]
     kind = event["type"]
     parts = state["parts"]
+    if kind.startswith("board.") or kind == "visual.await":
+        # Preserve the actual board event sequence for replay after a restart.
+        part = next((p for p in reversed(list(parts.values()))
+                     if p["kind"] == "board" and p["turn_id"] == turn_id
+                     and p["status"] in ("started", "streaming")), None)
+        if part is not None:
+            part.setdefault("board_events", []).append(copy.deepcopy(event))
     if kind == "turn.start":
         state["active_turn"] = {"turn_id": event["turn_id"], "status": {}}  # the latest status event, once one arrives
         state["messages"].append({
@@ -125,12 +132,18 @@ def apply(state: dict[str, Any], envelope: dict[str, Any]) -> bool:
         board = _board(state, event["board_id"])
         board.update(part_id=event["part_id"], problem=event["problem"], knowns=[], unknowns=[], conventions=[],
                      steps={}, order=[], awaiting=None, highlight=None)  # fmt: skip
+        board.pop("annotation", None)
+        board.pop("manipulation", None)
     elif kind == "board.knowns":
         board = _board(state, event["board_id"])
         board.update(knowns=event["knowns"], unknowns=event["unknowns"], conventions=event["conventions"])
     elif kind == "board.step":
         board = _board(state, event["board_id"])
         step = {k: v for k, v in event.items() if k not in ("type", "board_id")}
+        if event["step_id"] not in board["steps"]:
+            board.pop("annotation", None)
+        if (board.get("manipulation") or {}).get("step_id") == event["step_id"] and event["status"] != "awaiting":
+            board.pop("manipulation", None)
         board["steps"][event["step_id"]] = step
         board["order"] = sorted(board["steps"], key=lambda s: (board["steps"][s]["index"], s))
         if board["awaiting"] is not None and board["awaiting"]["step_id"] == event["step_id"] \
@@ -139,6 +152,16 @@ def apply(state: dict[str, Any], envelope: dict[str, Any]) -> bool:
     elif kind == "board.highlight":
         _board(state, event["board_id"])["highlight"] = {"step_ids": event["step_ids"], "ttl_ms": event["ttl_ms"],
                                                           "ts": ts}  # fmt: skip
+        if event.get("spotlight"):
+            _board(state, event["board_id"])["highlight"]["spotlight"] = True
+    elif kind == "board.annotate":
+        _board(state, event["board_id"])["annotation"] = {
+            k: copy.deepcopy(event.get(k)) for k in ("annotation_id", "mark", "target", "to", "note")
+        }
+    elif kind == "visual.await":
+        _board(state, event["board_id"])["manipulation"] = {
+            k: copy.deepcopy(event[k]) for k in ("step_id", "visual_id", "part_ids", "prompt")
+        }
     elif kind == "board.await":
         _board(state, event["board_id"])["awaiting"] = {"step_id": event["step_id"], "prompt": event["prompt"],
                                                          "input_kind": event["input_kind"]}  # fmt: skip
@@ -148,6 +171,10 @@ def apply(state: dict[str, Any], envelope: dict[str, Any]) -> bool:
         part = parts.get(event["part_id"])
         if part is not None:
             part["visual_id"] = event["visual_id"]
+    elif kind == "visual.sketch":
+        part = parts.get(event["part_id"])
+        if part is not None:
+            part["sketch"] = copy.deepcopy(event["sketch"])
     elif kind == "visual.step":
         visual = state["visuals"].get(event["visual_id"])
         if visual is not None:
@@ -231,3 +258,19 @@ def remove_part(state: dict[str, Any], part_id: str) -> None:
     for message in state["messages"]:
         if part_id in message.get("part_ids", []):
             message["part_ids"] = [p for p in message["part_ids"] if p != part_id]
+
+
+def replay_parts(state: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    """Recorded tutor parts in transcript order, including board events, without creating an engine."""
+    out = {}
+    for message in state["messages"]:
+        if message["role"] != "tutor":
+            continue
+        for part_id in message["part_ids"]:
+            part = state["parts"].get(part_id)
+            if part is None or part["status"] == "retracted":
+                continue
+            kind = part["kind"]
+            content = part.get("board_events", []) if kind == "board" else part.get("text", "")
+            out[part_id] = {"kind": kind, "content": content}
+    return out

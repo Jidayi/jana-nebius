@@ -19,18 +19,33 @@ The Nebius gateway, NVIDIA runtime, existing inference budget, consent checks an
 
 Integration fixes include exported contract paths, generated visual/worker bindings, parent-report print tokens, local Greek font coverage, and sketch-cost assertions using this fork's provider price table. Mock follow-up practice now keeps every weak idea in its set rather than opening a new journey for only the first idea.
 
+## Verification follow-up
+
+Testing the integrated app exposed connections that the isolated source-feature tests did not cover. These were fixed:
+
+- Completed visuals and sketches stay visible in the conversation instead of disappearing into the folded check summary.
+- Annotations, sketches and pending diagram exercises survive snapshot hydration and reopening. Board replay works after a core restart.
+- Supported checked diagram parts offer **Try on the diagram**. Number-line endpoints, graph coordinates and force magnitude/direction use the real maths worker and write the checked result onto the board. Failed requests retain the student's values for retry.
+- Session history displays the saved board alongside the conversation and visuals, with editing and reporting controls disabled.
+- Removing a sketch also removes its stored history part, including after a restart.
+- A Studio lesson preview no longer overflows into the analytics panel.
+- Punnett-square parts have real minimum-size click targets, including the ratio labels at enlarged text sizes.
+
 ## Validation
 
-- Renderer suite: 55 passed; client suite: 359 passed; Studio suite: 34 passed; worker suite: 102 passed.
-- UI suite: 632 passed initially; its remaining print-theme failure was fixed and all 6 parent-view tests pass, covering all 633 UI tests across those runs.
-- Focused visual/parent/history/analytics backend suite: 75 passed initially; the remaining sketch-cost test was fixed. Sketch and research retests: 15 passed.
-- Learning-journey, Study-journey, quiz-help and browser-host regressions: 37 passed.
-- Pointing-demo and personal-calibration suite: 27 passed in the outer sandbox; its remaining real-worker demo passed separately with permission to start the worker's own macOS sandbox.
-- Focused desktop regressions: 27 passed; the remaining glyph test passed after adding Greek font coverage and using `1/cm` in the infrared axis label.
-- Desktop and Studio production builds and type checks passed. Code generation consistency, source ESLint, Python Ruff and whitespace checks passed.
-- Live browser checks: Home retains its objective; Settings serves the parent summary and alerts; Progress opens session history; a science diagram advances its steps and hides its labels.
+- Backend feature and journey integration suite: **178 passed**, covering parents, history, annotations, manipulation, replay, pointing, sketches, science visuals, analytics, learning journeys, Study and tutor handoff. The new round-trip regression restarts the core with a pending exercise, uses real sandboxed maths-worker checks for all three manipulation kinds, removes a sketch from stored history and checks profile isolation.
+- Complete UI suite: **636 passed**; complete client suite: **361 passed**; renderer suite: **55 passed**; Studio suite: **34 passed**; maths/science worker suite: **102 passed**; i18n suite: **5 passed**.
+- Desktop and Studio production builds and the client, UI, desktop and Studio type checks passed. Generated-contract consistency, changed-source ESLint, Python Ruff and whitespace checks passed.
+- The complete desktop run finished with **263 of 266 tests passing initially**. Its two failing accessibility suites found only the Punnett targets described above: 4 failures among 1,484 standard-text cases and 8 among 2,968 enlarged-text cases. After the fix, all **16 affected theme/width/text-size combinations passed** with no accessibility, layout or console errors. The full click-target audit passed **5,936 cases**. The third failure was an outdated keyboard-runner assertion expecting the old direct practice endpoint; it now verifies the lesson's retained objective and the journey's targeted practice set, and **all four keyboard-only journeys pass**. The complete desktop suite was not rerun after these focused corrections.
+- Browser checks used the actual desktop client, local API and sandboxed worker with a scripted tutor and disposable synthetic profiles. Verified wrong/correct number-line feedback, graph coordinates and force vectors; pending-exercise reload; visible diagrams, science visuals and rough sketch; sketch removal surviving reload; saved read-only boards; a populated 65-minute parent summary; alert dismissal retained on a fresh open; and separation between learner profiles.
+- Studio browser checks used a separate temporary content workspace and authoring home. Verified statistics and confidence intervals over 269 synthetic evaluation students, queue resolution retained on refresh, and a content problem report opening the corresponding item draft. Normal project workspace hosting was restored afterwards.
+- Evidence and logs: `/private/tmp/jana-feature-verification-20261025`. Synthetic test data was kept separate from the app's existing learner data. The normal app was restarted on port 5187 with its original data and local NVIDIA model; Studio remains on port 5191.
 
-The broad desktop browser accessibility/input suite was not completed: the first run could not bind localhost inside the outer sandbox, and the permission-enabled rerun was stopped to keep the development app responsive. This note does not claim full browser accessibility certification or live model qualification of every visual type.
+### Limits of this verification
+
+The live NVIDIA Nemotron tutoring smoke test completed, but answered the diagram request in words. The low-hardware local decode policy deliberately omits model-generated visuals. Controlled end-to-end tests establish that the imported visual UI/API/storage paths work; they do not qualify every live model's diagram or sketch generation.
+
+The parent-summary print action entered the print presentation, but the browser-control interface could not complete the system print dialog. An exported PDF has **not** been visually verified. Native voice playback and spoken-cue pen synchronisation were covered by automated tests rather than a live microphone/speaker test. Native supported-webview and screen-reader acceptance remain separate from Chromium browser checks.
 
 ## Local checkpoints
 

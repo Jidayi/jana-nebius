@@ -133,7 +133,7 @@ export const TurnView = memo(function TurnView({ turnId }: { turnId: string }) {
   if (!live && parts.length === 0 && notices.length > 0 && notices.every((id) => offers.includes(id))) {
     return latest ? <section aria-label={tutorName} data-turn-id={turnId} data-hint-offer-turn="" className="flex flex-col gap-2">{notices.map((id) => <PartView key={id} partId={id} />)}</section> : null;
   }
-  const isEphemeral = (p: PartRec) => registry.lookup(...keysOf(p)).entry.renderClass === "ephemeral" && !failed(p) && !readsMemory(p);
+  const isEphemeral = (p: PartRec) => p.kind !== "visual" && registry.lookup(...keysOf(p)).entry.renderClass === "ephemeral" && !failed(p) && !readsMemory(p);
   const folded = live ? [] : parts.filter(isEphemeral);
   const checks = folded.reduce((n, p) => n + Math.max(1, Object.keys(p.tools ?? {}).length), 0);
   // The reply's own words are read from the action row: its last finished text part.

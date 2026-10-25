@@ -190,6 +190,7 @@ ROUTES: dict[str, Rule] = {
     ),
     "POST /v1/problem-reports": Screened("problem_report", field_text("note"), frozenset(), session_field="session_id"),
     # a value set on a manipulable visual becomes the student's board line, read by the Coach later (VSL-42)
+    "POST /v1/visuals/{visual_id}/practice": _IDS,
     "POST /v1/visuals/{visual_id}/answer": Screened("manipulation_answer", field_text("values"), ANSWER),
     # the student's own words for a goal (UXS-10 interview): kept in the profile like a note (STU-11)
     "POST /v1/interview/{question_id}/answer": Screened("interview_goal", field_text("answer"), NOTE),

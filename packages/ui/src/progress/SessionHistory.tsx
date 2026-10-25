@@ -6,6 +6,7 @@
 // error-retriable, not served; an opened session can be loading, failed or locked during a mock sitting (ASM-18).
 import { useEffect, useMemo, useSyncExternalStore } from "react";
 import { StoreHolder, historyStore, type HistoryController, type HistoryEntry, type HistoryView } from "@jana/client-core";
+import { Board } from "../board/Board.js";
 import { ScreenHeader } from "../frame/Frame.js";
 import { useT } from "../i18n.js";
 import { Button, EmptyState, ErrorState, Loader, Notice, SubjectDot } from "../primitives/index.js";
@@ -62,6 +63,7 @@ function Opened({ opened }: { opened: NonNullable<HistoryView["opened"]> }) {
     <div data-history-opened={opened.sessionId} className="flex min-h-0 flex-1 flex-col">
       <StoreProvider holder={holder} session={null} readOnly>
         <Transcript sessionId={opened.sessionId} />
+        {opened.session.boards.length > 0 && <div className="min-h-80 border-t border-line" data-history-board=""><Board sessionId={opened.sessionId} /></div>}
       </StoreProvider>
     </div>
   );

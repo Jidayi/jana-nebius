@@ -5,7 +5,7 @@
 
 import { useState, type KeyboardEvent } from "react";
 import { useT } from "../i18n.js";
-import { Button } from "../primitives/index.js";
+import { Button, ErrorState } from "../primitives/index.js";
 
 export type ManipulableKind = "number_line" | "function_graph" | "free_body";
 
@@ -34,12 +34,14 @@ function stepped(value: string, delta: number): string {
 
 export function ManipulationPanel({ kind, partIds, prompt, onCheck }: {
   kind: ManipulableKind; partIds: string[]; prompt: string;
-  onCheck: (values: { part_id: string; value: string }[]) => void;
+  onCheck: (values: { part_id: string; value: string }[]) => unknown | Promise<unknown>;
 }) {
   const t = useT();
   const fields = partIds.flatMap((id) => fieldsOf(kind, id).map((f) => ({ ...f, part: id })));
   const [values, setValues] = useState<Record<string, string>>(() => Object.fromEntries(fields.map((f) => [f.key, "0"])));
   const [announced, setAnnounced] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [failed, setFailed] = useState(false);
   const set = (field: Field & { part: string }, value: string) => {
     setValues((all) => ({ ...all, [field.key]: value }));
     setAnnounced(t("visual.manipulate.value", { part: field.part, name: field.label, value: `${value}${field.unit ?? ""}` }));
@@ -67,7 +69,14 @@ export function ManipulationPanel({ kind, partIds, prompt, onCheck }: {
         </label>
       ))}
       <span role="status" className="sr-only">{announced}</span>
-      <Button onClick={() => onCheck(partIds.map((id) => ({ part_id: id, value: submitted(kind, id, values) })))}>{t("visual.manipulate.check")}</Button>
+      {failed && <ErrorState message={t("visual.manipulate.failed")} />}
+      <Button disabled={busy} onClick={() => {
+        setBusy(true); setFailed(false);
+        try {
+          const checked = onCheck(partIds.map((id) => ({ part_id: id, value: submitted(kind, id, values) })));
+          void Promise.resolve(checked).catch(() => setFailed(true)).finally(() => setBusy(false));
+        } catch { setFailed(true); setBusy(false); }
+      }}>{t("visual.manipulate.check")}</Button>
     </section>
   );
 }

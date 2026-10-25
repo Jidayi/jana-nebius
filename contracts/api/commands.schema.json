@@ -8847,6 +8847,33 @@
     "countdown",
     "reminders_due"
    ]
+  },
+  "ManipulationStart": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "part_id": {
+     "type": "string",
+     "pattern": "^[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$",
+     "maxLength": 64
+    }
+   },
+   "required": [
+    "part_id"
+   ]
+  },
+  "ManipulationOpened": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "step_id": {
+     "type": "string",
+     "pattern": "^stp_[0-9A-HJKMNP-TV-Z]{26}$"
+    }
+   },
+   "required": [
+    "step_id"
+   ]
   }
  },
  "x-endpoints": [
@@ -11898,6 +11925,24 @@
    ],
    "stage": "S3",
    "owner": "API-44"
+  },
+  {
+   "method": "POST",
+   "path": "/v1/visuals/{visual_id}/practice",
+   "request": "#/$defs/ManipulationStart",
+   "response": "#/$defs/ManipulationOpened",
+   "auth": [
+    "launch",
+    "profile"
+   ],
+   "errors": [
+    "not_found",
+    "validation_failed",
+    "request_conflict",
+    "tutor_locked"
+   ],
+   "stage": "S3",
+   "owner": "VSL-42"
   }
  ]
 }

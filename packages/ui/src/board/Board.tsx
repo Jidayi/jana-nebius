@@ -18,7 +18,7 @@ import { useT } from "../i18n.js";
 import { MarkdownBlock } from "../markdown/Markdown.js";
 import { Tex } from "../maths/Tex.js";
 import { Button, EmptyState, IconButton, MenuButton, Spinner, chipLook, type ChipTone } from "../primitives/index.js";
-import { shallowArray, useSelect, useStoreHolder, useSession } from "../store.js";
+import { shallowArray, useSelect, useStoreHolder, useSession, useReadOnly } from "../store.js";
 import { ReportSheet } from "../transcript/ReportProblem.js";
 import { useTutorName } from "../tutor/look.js";
 import { useVisualSettings } from "../visuals/VisualViewer.js";
@@ -26,7 +26,6 @@ import { useVoicePen, useVoicePointer, useVoiceWriting } from "../voice/SpeechTo
 import { Pen } from "./Pen.js";
 import { TermCarry } from "./TermCarry.js";
 import { LineAnnotation } from "./Annotation.js";
-import { ManipulationPanel } from "./Manipulation.js";
 import { WorkingEntry, type WorkingPhoto } from "./WorkingEntry.js";
 
 /** The error categories of TABLE VER-06a, each with its "look here" words (`board.error.<category>`). */
@@ -257,6 +256,7 @@ const Knowns = memo(function Knowns({ knowns, unknowns }: { knowns: readonly Kno
 export function Board({ sessionId, onClose }: { sessionId: string; onClose?: () => void }) {
   const t = useT();
   const session = useSession();
+  const readOnly = useReadOnly();
   const [photoInput, setPhotoInput] = useState<WorkingPhoto | null>(null);
   const [draggingPhoto, setDraggingPhoto] = useState(false);
   useEffect(() => { setPhotoInput(null); setDraggingPhoto(false); }, [sessionId]);
@@ -277,12 +277,6 @@ export function Board({ sessionId, onClose }: { sessionId: string; onClose?: () 
   const awaiting = useSelect((s) => (boardId === null ? null : (s.boards[boardId]?.await?.step_id ?? null)));
   // Lines the tutor or a bound visual points at (board.highlight, VSL-20), until their time to live runs out.
   const highlight = useSelect((s) => (boardId === null ? null : (s.boards[boardId]?.highlight ?? null)));
-  // A manipulable visual as the student's turn (VSL-42): its kind decides the values the panel asks for.
-  const manipulation = useSelect((s) => (boardId === null ? null : (s.boards[boardId]?.manipulation ?? null)));
-  const manipulable = useSelect((s) => {
-    const type = manipulation === null ? undefined : s.visuals[manipulation.visual_id]?.spec.type;
-    return type === "number_line" || type === "function_graph" || type === "free_body" ? type : null;
-  });
   // A new tutor line is written on (UXS-55): in time with the words that cite it in voice mode, otherwise at a reading
   // pace; lines already there when the board opens, reduced motion and low power show whole.
   const seenAtOpen = useRef<Set<string> | null>(null);
@@ -370,7 +364,7 @@ export function Board({ sessionId, onClose }: { sessionId: string; onClose?: () 
           <EmptyState message={t("board.empty")} />
         ) : (
           <ol ref={list} tabIndex={0} onKeyDown={onKey} className="flex flex-col gap-1" aria-label={t("board.title")}>
-            {steps.map((step, i) => <BoardStep key={step.step_id} step={step} number={i + 1} current={step.step_id === current} highlighted={lit.includes(step.step_id) || step.step_id === pointed} selected={step.step_id === chosen} annotation={annotation !== null && (annotation.target.step_id === step.step_id || annotation.to?.step_id === step.step_id) ? annotation : null} dimmed={spotlight && lit.length > 0 && !lit.includes(step.step_id)} writeOn={writeOnOf(step)} onSelect={select} sessionId={sessionId} reportTurn={reportTurn} {...(session !== null ? { onEdit: edit, onWhy: why, onTermSelect: termSelect, editing: editing === step.step_id } : {})} />)}
+            {steps.map((step, i) => <BoardStep key={step.step_id} step={step} number={i + 1} current={step.step_id === current} highlighted={lit.includes(step.step_id) || step.step_id === pointed} selected={step.step_id === chosen} annotation={annotation !== null && (annotation.target.step_id === step.step_id || annotation.to?.step_id === step.step_id) ? annotation : null} dimmed={spotlight && lit.length > 0 && !lit.includes(step.step_id)} writeOn={writeOnOf(step)} onSelect={select} sessionId={sessionId} reportTurn={readOnly ? null : reportTurn} {...(session !== null ? { onEdit: edit, onWhy: why, onTermSelect: termSelect, editing: editing === step.step_id } : {})} />)}
           </ol>
         )}
       </div>
@@ -378,10 +372,6 @@ export function Board({ sessionId, onClose }: { sessionId: string; onClose?: () 
       {carry !== null && <TermCarry key={carry.step_id} step={carry} steps={steps} container={boardBox} />}
       {/* The pointer in words for a screen reader (VOC-17, UXS-63): "Showing: step 2", once per pointer. */}
       <p className="sr-only" aria-live="polite" data-board-showing="">{pointedNumber > 0 ? t("board.showing", { index: pointedNumber }) : ""}</p>
-      {session !== null && manipulation !== null && manipulable !== null && (
-        <ManipulationPanel kind={manipulable} partIds={manipulation.part_ids} prompt={manipulation.prompt}
-          onCheck={(values) => void session.answerManipulation(manipulation.visual_id, manipulation.step_id, values)} />
-      )}
       {session !== null && <WorkingEntry sessionId={sessionId} firstLine={steps.length + 1} photoInput={photoInput?.sessionId === sessionId ? photoInput : null} onPhotoClose={() => setPhotoInput(null)} />}
     </section>
   );

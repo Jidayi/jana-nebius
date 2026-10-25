@@ -95,8 +95,11 @@ try {
       await activate(button("Finish"));
       await activate(button("Practise this topic"));
       await page.getByRole("heading", { name: "Today's practice", exact: true }).waitFor();
-      const e = await evidence(); const started = e.log.findLast((r) => r.method === "POST" && r.path === "/v1/practice/sets");
-      check(JSON.stringify(started?.body.kc_ids) === JSON.stringify(e.lessonKcs), "Practice did not target the completed lesson's KCs");
+      const e = await evidence();
+      const journey = e.journeys.find((j) => j.lesson_id === e.lessonId);
+      check(journey && e.lessonKcs.includes(journey.goal.kc_id), "Practice lost the completed lesson's learning objective");
+      check(e.log.some((r) => r.method === "POST" && r.path === "/v1/learning-journey/step" && r.body.action === "practice"), "Lesson did not continue the learning journey into practice");
+      check(e.log.some((r) => r.method === "GET" && r.path === `/v1/practice/sets/${journey.practice_set_id}`), "The journey's targeted practice set was not opened");
     }
     const pointers = await page.evaluate(() => globalThis.__pointerActions);
     check(pointers === 0, "A journey used pointer input");

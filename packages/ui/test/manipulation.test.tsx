@@ -1,7 +1,7 @@
 // VSL-42 (D103): every manipulation can be made and checked by keyboard alone, with the value announced; the values
 // sent take the form the typed line takes, so the verification tools mark them as they would the typed line.
-import { cleanup, fireEvent, screen } from "@testing-library/react";
-import { afterEach, describe, expect, test } from "vitest";
+import { cleanup, fireEvent, screen, waitFor } from "@testing-library/react";
+import { afterEach, describe, expect, test, vi } from "vitest";
 import { ManipulationPanel, type ManipulableKind } from "../src/board/Manipulation.js";
 import { Fixture } from "./harness.js";
 
@@ -15,6 +15,20 @@ const CASES: [ManipulableKind, string, string[], (string | number)[], string][] 
 ];
 
 describe("VSL-42", () => {
+  test("a failed check keeps the student's values and allows retry", async () => {
+    const check = vi.fn().mockRejectedValueOnce(new Error("offline")).mockResolvedValueOnce(undefined);
+    const f = new Fixture();
+    f.render(<ManipulationPanel kind="number_line" partIds={["sol.from"]} prompt="Set the endpoint" onCheck={check} />);
+    const field = screen.getByRole("spinbutton") as HTMLInputElement;
+    fireEvent.change(field, { target: { value: "4" } });
+    fireEvent.click(screen.getByRole("button", { name: "Check" }));
+    await waitFor(() => expect(screen.getByRole("alert")).toBeTruthy());
+    expect(field.value).toBe("4");
+    fireEvent.click(screen.getByRole("button", { name: "Check" }));
+    await waitFor(() => expect(check).toHaveBeenCalledTimes(2));
+    expect(check.mock.calls[1]).toEqual([[{ part_id: "sol.from", value: "4" }]]);
+    await waitFor(() => expect(screen.queryByRole("alert")).toBeNull());
+  });
   test("vsl42_keyboard_equivalent", () => {
     for (const [kind, part, keys, typed, sent] of CASES) {
       const f = new Fixture();

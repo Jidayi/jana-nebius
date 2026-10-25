@@ -43,7 +43,7 @@ export function KeyboardFlows() {
       return core.fetch(input, init);
     };
     // Read-only evidence for the browser runner; no script can drive the app through this object.
-    return { runtime: createRuntime(core.launch, fetch), evidence: () => ({ log: core.log, helped: core.helped, reviewed: core.reviewed, lessonKcs: lesson.kc_ids }) };
+    return { runtime: createRuntime(core.launch, fetch), evidence: () => ({ log: core.log, helped: core.helped, reviewed: core.reviewed, lessonId: lesson.lesson_id, lessonKcs: lesson.kc_ids, journeys: [...core.journeys.values()] }) };
   }, []);
   Object.defineProperty(globalThis, "__jana_keyboard_evidence", { configurable: true, get: evidence });
   return <App runtime={runtime} />;

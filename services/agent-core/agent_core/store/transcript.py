@@ -95,6 +95,14 @@ class TranscriptStore:
                  _dumps(part), ts, ts),
             )  # fmt: skip
 
+    def remove_part(self, session_id: str, part_id: str) -> None:
+        """Remove only a part owned by this session, including its history copy."""
+        with transaction(self.conn):
+            self.conn.execute(
+                "DELETE FROM parts WHERE part_id = ? AND turn_id IN (SELECT turn_id FROM turns WHERE session_id = ?)",
+                (part_id, bare(session_id)),
+            )
+
     def end_session(self, session_id: str, *, reason: str, ts: int) -> None:
         with transaction(self.conn):
             self.conn.execute(

@@ -8,8 +8,9 @@ import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState
 import { CLIENT_KEYS, moveVisual, type VisualRec } from "@jana/client-core";
 import { errors } from "@jana/contracts-ts/client";
 import { useT } from "../i18n.js";
-import { Button, Disclosure, FIELD_LOOK } from "../primitives/index.js";
-import { useSelect, useStoreHolder } from "../store.js";
+import { Button, Disclosure, ErrorState, FIELD_LOOK } from "../primitives/index.js";
+import { useSelect, useStoreHolder, useOptionalSession, useReadOnly } from "../store.js";
+import { ManipulationPanel } from "../board/Manipulation.js";
 import { useVoicePointer } from "../voice/SpeechTools.js";
 
 export type LabelMode = "shown" | "hidden" | "quiz";
@@ -24,6 +25,7 @@ export interface VisualSpec {
   alt: { summary: string; steps: string[]; locale: string };
   computed?: Record<string, unknown>;
   status?: string;
+  numbers_from?: unknown;
 }
 
 /** What the viewer needs from a vetted renderer, given to it by the app (the UI never imports renderers, ARC-18). */
@@ -66,6 +68,18 @@ export function useVisualSettings(): VisualSettings {
 const NO_VISUAL = null;
 const NO_PARTS: string[] = [];
 
+/** Offer practice only for the checked numeric parts the server can turn into an exercise. */
+export function canPractise(spec: VisualSpec, part: string | null): boolean {
+  if (part === null || spec.status !== "ok" || !spec.numbers_from) return false;
+  const params = spec.params as { intervals?: { id: string; from?: unknown; to?: unknown }[]; forces?: { id: string }[] };
+  if (spec.type === "number_line") return (params.intervals ?? []).some((interval) =>
+    (["from", "to"] as const).some((edge) => part === `${interval.id}.${edge}` && interval[edge] != null && Number.isFinite(Number(interval[edge]))));
+  if (spec.type === "free_body") return (params.forces ?? []).some((force) => force.id === part);
+  if (spec.type === "function_graph") return Object.entries((spec.computed?.features ?? {}) as Record<string, { id: string }[]>).some(([curve, features]) =>
+    features.some((feature) => part === `${curve}.${feature.id}`));
+  return false;
+}
+
 /** Client re-validation (UIA-20): the resolved envelope, then the kind's params. */
 export function revalidate(spec: unknown, hooks: VisualHooks): string[] {
   const envelope = errors("visuals/visual-spec#/$defs/resolved", spec);
@@ -94,6 +108,12 @@ function useOnScreen(ref: { current: HTMLElement | null }): boolean {
 export function VisualViewer({ spec, hooks }: { spec: VisualSpec; hooks: VisualHooks }): ReactElement {
   const t = useT();
   const settings = useVisualSettings();
+  const session = useOptionalSession();
+  const readOnly = useReadOnly();
+  const [starting, setStarting] = useState(false);
+  const [practiceFailed, setPracticeFailed] = useState(false);
+  const [practiceResult, setPracticeResult] = useState<string | null>(null);
+  const manipulation = useSelect((s) => Object.values(s.boards).map((b) => b.manipulation).find((m) => m?.visual_id === spec.visual_id) ?? null);
   const holder = useStoreHolder();
   const record = useSelect((s) => s.visuals[spec.visual_id] ?? NO_VISUAL) as VisualRec | null;
   const box = useRef<HTMLDivElement>(null);
@@ -188,10 +208,20 @@ export function VisualViewer({ spec, hooks }: { spec: VisualSpec; hooks: VisualH
           {labels === "shown" && info.fn !== null && <p className="text-ui text-muted">{info.fn}</p>}
           <div className="mt-1 flex gap-2">
             {settings.onAsk !== undefined && <Button onClick={() => settings.onAsk?.(spec.visual_id, part ?? "")}>{t("visual.viewer.part_ask")}</Button>}
+            {session !== null && !readOnly && part !== null && canPractise(spec, part) && <Button disabled={starting || manipulation !== null} onClick={() => {
+              setStarting(true); setPracticeFailed(false); setPracticeResult(null);
+              void session.startManipulation(spec.visual_id, part).catch(() => setPracticeFailed(true)).finally(() => setStarting(false));
+            }}>{t("visual.manipulate.start")}</Button>}
             <Button onClick={() => setPart(null)}>{t("visual.viewer.part_close")}</Button>
           </div>
         </div>
       )}
+      {practiceResult !== null && <p role="status" className="text-ui">{t(`visual.manipulate.result.${practiceResult}`)}</p>}
+      {practiceFailed && <ErrorState message={t("visual.manipulate.start_failed")} />}
+      {session !== null && !readOnly && manipulation !== null && (spec.type === "number_line" || spec.type === "function_graph" || spec.type === "free_body") && <ManipulationPanel key={manipulation.step_id} kind={spec.type} partIds={manipulation.part_ids} prompt={manipulation.prompt} onCheck={async (values) => {
+        const result = await session.answerManipulation(spec.visual_id, manipulation.step_id, values);
+        setPracticeResult(result.status);
+      }} />}
       <div className="mt-2">
         <Disclosure summary={t("visual.viewer.describe")} open={describe} onToggle={() => setDescribe(!describe)}>
           <p className="text-ui" data-visual-alt="true">

@@ -299,6 +299,11 @@ export class SessionController {
 
   /** Send the values the student set on a manipulable visual (VSL-42): checked by the verification tools, the result
    * arrives as the student's board line too. */
+  async startManipulation(visualId: string, partId: string): Promise<{ step_id: string }> {
+    const key = clientId();
+    return this.commands.post<{ step_id: string }>(`/v1/visuals/${visualId}/practice`, { part_id: partId }, key);
+  }
+
   async answerManipulation(visualId: string, stepId: string, values: { part_id: string; value: string }[]): Promise<{ status: string; check_id: string | null }> {
     const key = clientId();
     return this.commands.post<{ status: string; check_id: string | null }>(`/v1/visuals/${visualId}/answer`, { client_answer_id: key, step_id: stepId, values }, key);

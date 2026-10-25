@@ -9,7 +9,7 @@ import { LocaleProvider } from "../src/i18n.js";
 import { RegistryProvider } from "../src/registry/registry.js";
 import { defaultRegistry } from "../src/transcript/parts.js";
 import { StoreProvider } from "../src/store.js";
-import { PartView } from "../src/transcript/Turn.js";
+import { PartView, TurnView } from "../src/transcript/Turn.js";
 import { Fixture } from "./harness.js";
 
 afterEach(() => cleanup());
@@ -72,4 +72,15 @@ describe("VSL-44", () => {
     expect(removed).toEqual([`skt_${"3".repeat(26)}`]);
     expect(document.querySelector("[data-sketch-part]")).toBeNull();
   });
+});
+
+
+test("completed sketches stay visible outside the folded check summary", () => {
+  const f = new Fixture();
+  const turn = f.startTurn();
+  sketched(f, "not_checked", "4");
+  f.end();
+  show(f, null, <TurnView turnId={turn} />);
+  expect(document.querySelector("[data-sketch-part]")).not.toBeNull();
+  expect(screen.queryByRole("button", { name: /check done/ })).toBeNull();
 });

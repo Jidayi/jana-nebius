@@ -188,6 +188,13 @@ label:has(input[type="checkbox"], input[type="radio"]) {
   min-width: var(--target-pointerMin);
   height: var(--target-pointerMin);
 }
+/* Punnett ratio parts need their own box; an inline span has only the text's hit area. */
+[data-kind="punnett_square"] span[data-part][role="button"] {
+  display: inline-flex;
+  align-items: center;
+  min-width: var(--target-pointerMin);
+  min-height: var(--target-pointerMin);
+}
 
 /* DSN-22: a printed report (the parent summary, UXS-33) prints alone on A4 portrait with 15 mm margins and "Page n of
    m" at the foot, in the print theme of tokens.json whatever the screen theme: inside the report the colour roles take

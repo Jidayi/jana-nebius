@@ -108,9 +108,11 @@ export function historyStore(opened: HistorySession): Store {
     topic_id: entry.topic_id, created_ts: entry.started_at, updated_ts: entry.started_at + (entry.duration_ms ?? 0), archived: false,
   };
   const parts: Record<string, CorePart> = {};
+  const recordedBoards: Record<string, CoreBoard> = {};
   const visuals: Record<string, CoreVisual> = {};
   for (const [partId, content] of Object.entries(opened.parts)) {
-    const { visual, ...part } = content as Record<string, unknown> & { visual?: CoreVisual };
+    const { visual, boards: storedBoards, ...part } = content as Record<string, unknown> & { visual?: CoreVisual; boards?: CoreBoard[] };
+    if (Array.isArray(storedBoards)) for (const board of storedBoards) recordedBoards[board.board_id] = board;
     parts[partId] = { ...(part as unknown as CorePart), part_id: partId, text: typeof part.text === "string" ? part.text : "" };
     if (visual !== undefined && typeof visual === "object" && visual !== null) visuals[visual.visual_id] = visual;
   }
@@ -120,6 +122,11 @@ export function historyStore(opened: HistorySession): Store {
     for (const step of board.steps) steps[step.step_id] = { ...step, check_id: null, error: null };
     const order = [...board.steps].sort((a, b) => a.index - b.index || a.step_id.localeCompare(b.step_id)).map((s) => s.step_id);
     boards[board.board_id] = { board_id: board.board_id, part_id: board.part_id, problem: null, knowns: [], unknowns: [], conventions: [], steps, order, awaiting: null, highlight: null };
+  }
+  for (const [id, board] of Object.entries(recordedBoards)) {
+    // SQL step rows carry later checked/revised lines; the part carries the board's visual metadata.
+    const stored = boards[id];
+    boards[id] = { ...board, ...(stored !== undefined ? { steps: { ...board.steps, ...stored.steps }, order: stored.order } : {}) };
   }
   // Each tutor turn answers the student's message stored just before it: that link places the message in the list.
   let asked: string | null = null;
