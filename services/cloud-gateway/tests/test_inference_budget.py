@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import base64
 from collections.abc import AsyncGenerator
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
@@ -10,7 +11,7 @@ from pathlib import Path
 
 import pytest
 from cloud_gateway.config import load_config
-from cloud_gateway.inference_budget import BudgetedAdapter, InferenceBudget
+from cloud_gateway.inference_budget import BudgetedAdapter, InferenceBudget, input_token_bound
 from cloud_gateway.providers.base import ProviderReply, ProviderRequest, StreamPart, UpstreamError, Usage
 from cloud_gateway.store import GatewayStore
 from gateway_stubs import Device, Output, gateway_config, harness
@@ -265,5 +266,59 @@ def test_unbounded_inputs_are_refused_before_sending(tmp_path: Path, body: dict)
     budget = InferenceBudget(config(), store, lambda: NOW)
     with pytest.raises(UpstreamError):
         asyncio.run(BudgetedAdapter(adapter, budget).complete(request(**body)))
+    assert adapter.sends == 0 and budget.snapshot()["held_usd"] == 0
+    store.close()
+
+
+def image_request(data: bytes = b"\xff\xd8\xffimage") -> ProviderRequest:
+    model = load_config().providers["nebius"].models["vision-model"]
+    return ProviderRequest(
+        model,
+        {
+            "messages": [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": "Transcribe the notes."},
+                        {
+                            "type": "image_url",
+                            "image_url": {"url": "data:image/jpeg;base64," + base64.b64encode(data).decode()},
+                        },
+                    ],
+                }
+            ],
+            "max_tokens": 4096,
+        },
+        "",
+    )
+
+
+def test_images_reserve_full_context_independently_of_compressed_size_and_settle_actual_usage(tmp_path):
+    small, large = image_request(), image_request(b"\xff\xd8\xff" + b"x" * 1_999_997)
+    assert input_token_bound(small) == input_token_bound(large) > 32768
+    store = GatewayStore(tmp_path)
+    budget = InferenceBudget(config(), store, lambda: NOW)
+    adapter = Adapter()
+    asyncio.run(BudgetedAdapter(adapter, budget).complete(large))
+    assert adapter.sends == 1 and budget.snapshot()["held_usd"] == 0
+    assert 0 < budget.snapshot()["spent_usd"] < 0.001
+    store.close()
+
+
+@pytest.mark.parametrize("bad", ["remote", "multiple", "oversize", "invalid"])
+def test_vision_budget_rejects_unbounded_or_external_images_before_sending(tmp_path, bad):
+    asked = image_request(b"\xff\xd8\xff" + b"x" * 2_000_000) if bad == "oversize" else image_request()
+    parts = asked.body["messages"][0]["content"]
+    if bad == "remote":
+        parts[1]["image_url"]["url"] = "https://example.org/private.jpg"
+    if bad == "multiple":
+        parts.append(parts[1].copy())
+    if bad == "invalid":
+        parts[1]["image_url"]["url"] = "data:image/jpeg;base64,!!!!"
+    store = GatewayStore(tmp_path)
+    adapter = Adapter()
+    budget = InferenceBudget(config(), store, lambda: NOW)
+    with pytest.raises(UpstreamError):
+        asyncio.run(BudgetedAdapter(adapter, budget).complete(asked))
     assert adapter.sends == 0 and budget.snapshot()["held_usd"] == 0
     store.close()

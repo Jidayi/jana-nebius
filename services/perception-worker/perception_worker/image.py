@@ -64,7 +64,39 @@ def shrink(image: np.ndarray[Any, Any], long_edge: int) -> np.ndarray[Any, Any]:
     )
 
 
-def contains_person(image: np.ndarray[Any, Any]) -> bool:
+def text_only_document(image: np.ndarray[Any, Any]) -> bool:
+    """Corroborate a body-only detector hit as text on clean paper; any unexplained ink fails closed.
+
+    This is used only for Study documents, after all face/body cascades have passed. A shirt caption or a
+    document containing a picture cannot account for almost all foreground pixels as high-confidence words.
+    """
+    sample = shrink(image, 1600)
+    gray = cv2.cvtColor(sample, cv2.COLOR_RGB2GRAY)
+    if float(np.mean(gray >= 235)) < 0.90:
+        return False
+    try:
+        items = words(gray)
+    except (OSError, AttributeError):
+        return False
+    reliable = [w for w in items or [] if w["confidence"] >= 0.70 and len(w["text"]) >= 2]
+    if len(reliable) < 8:
+        return False
+    height, width = gray.shape
+    mask = np.zeros_like(gray, dtype=np.uint8)
+    rows: list[int] = []
+    for word in reliable:
+        if word["h"] > height * 0.08:
+            return False
+        x, y, w, h = (int(word[key]) for key in ("x", "y", "w", "h"))
+        mask[max(0, y - 2) : min(height, y + h + 2), max(0, x - 2) : min(width, x + w + 2)] = 1
+        if all(abs(y - row) > max(12, h // 2) for row in rows):
+            rows.append(y)
+    ink = gray < 200
+    count = int(ink.sum())
+    return bool(len(rows) >= 3 and count >= 100 and float(mask[ink].mean()) >= 0.995)
+
+
+def contains_person(image: np.ndarray[Any, Any], *, document: bool = False) -> bool:
     if cv2.__version__ != PERSON_DATA["opencv_version"]:
         raise ImageRejected("photo_reading_unavailable")
     sample = shrink(image, 1200)
@@ -84,7 +116,7 @@ def contains_person(image: np.ndarray[Any, Any]) -> bool:
         hog.setSVMDetector(CV.HOGDescriptor_getDefaultPeopleDetector())
         boxes, _ = hog.detectMultiScale(sample, winStride=(8, 8), padding=(8, 8), scale=1.08)
         if len(boxes) > 0:
-            return True
+            return not (document and text_only_document(image))
     return False
 
 
@@ -164,7 +196,12 @@ def lines_from_words(items: list[dict[str, Any]], width: int, height: int) -> li
 
 
 def preprocess(
-    data: bytes, *, corners: list[dict[str, float]] | None = None, rotation: int = 0, preview_only: bool = False
+    data: bytes,
+    *,
+    corners: list[dict[str, float]] | None = None,
+    rotation: int = 0,
+    preview_only: bool = False,
+    document: bool = False,
 ) -> dict[str, Any]:
     image = decode(data)
     original_height, original_width = image.shape[:2]
@@ -172,7 +209,7 @@ def preprocess(
         if rotation not in (0, 90, 180, 270):
             raise ImageRejected("validation_failed")
         return {"outline": outline(np.ascontiguousarray(np.rot90(image, -rotation // 90)))}
-    if contains_person(image):
+    if contains_person(image, document=document):
         return {"refusal": "contains_person", "privacy_available": True, "checks": [], "lines": []}
     if rotation not in (0, 90, 180, 270):
         raise ImageRejected("validation_failed")
@@ -198,7 +235,7 @@ def preprocess(
     try:
         # Contrast normalization preserves the pixel grid used by region boxes. Stored colour pixels and the
         # physical blur/brightness checks keep the original intensities; only local OCR receives the stretched view.
-        items = words(cv2.normalize(gray, None, 0, 255, cv2.NORM_MINMAX))
+        items = words(cv2.normalize(gray, np.empty_like(gray), 0, 255, cv2.NORM_MINMAX))
     except (OSError, AttributeError):
         items = None
     height, width = image.shape[:2]

@@ -76,6 +76,8 @@ class NvidiaPodcastSpeech(_Strict):
 class ModelSpec(_Strict):
     id: str
     thinking: Thinking | None = None
+    # A verified vision route reserves its full input context per image, independent of compressed file size.
+    image_input_token_bound: int | None = Field(default=None, ge=1, le=1048576)
 
 
 class ProviderSpec(_Strict):
@@ -314,6 +316,7 @@ class GatewayConfig(_Strict):
     study_extract_minute_usd: float = key(0.0001, serves="STU-12", unit="USD/minute", ge=0)
     # The Study candidate is selected independently from the tutor's strong model.
     study_model: str = Field(default="primary/fast-model", pattern=r"^[a-z][a-z0-9_-]*/[a-z][a-z0-9_-]*$")
+    study_vision_model: str | None = Field(default=None, pattern=r"^[a-z][a-z0-9_-]*/[a-z][a-z0-9_-]*$")
     # Trusted deployment command, including its OS sandbox wrapper. Never supplied by a device request.
     study_worker_command: tuple[str, ...] = ()
     # Cloud voice (VOC-28, D124): our hosted Realtime endpoint. Speech to text, the Live voice and the verbatim voice

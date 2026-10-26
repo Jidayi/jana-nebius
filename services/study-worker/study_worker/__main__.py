@@ -26,6 +26,20 @@ def main() -> None:
         data = base64.b64decode(request["data"], validate=True)
         if len(data) > 104857600:
             raise DocumentError("source_too_large")
+        if request["kind"] == "vision_page":
+            from perception_worker.image import preprocess  # type: ignore[import-untyped]
+
+            kind, page = request.get("source_kind"), request.get("page")
+            if kind not in ("photo", "pdf") or type(page) is not int or not 1 <= page <= 300:
+                raise DocumentError("unsupported_format")
+            png = decode(data, "raster_" + kind, str(page))[0]["png"]
+            reading = preprocess(base64.b64decode(png), document=True)
+            if reading.get("refusal"):
+                raise DocumentError("safety_blocked")
+            # Never send the original or an image for which privacy screening was unavailable.
+            result = {"jpeg": reading["jpeg"] if reading.get("privacy_available") else None}
+            sys.stdout.write(json.dumps(result) + "\n")
+            return
         if request["kind"] in ("recording_info", "recording_segment"):
             from study_worker.media import decode as media_decode
 
@@ -49,7 +63,7 @@ def main() -> None:
                 from perception_worker.image import preprocess  # type: ignore[import-untyped]
 
                 png = decode(data, "raster_" + request["kind"], str(unit["locator"]["page"]))[0]["png"]
-                reading = preprocess(base64.b64decode(png))
+                reading = preprocess(base64.b64decode(png), document=True)
                 if reading.get("refusal"):
                     raise DocumentError("safety_blocked")
                 if reading.get("ocr_model_version") is None:

@@ -4,6 +4,7 @@
 
 environment = "production"
 study_model = "primary/strong-model" # Hackathon: Ultra generates and checks cited Study artefacts.
+study_vision_model = "primary/vision-model"
 
 # MDL-26: the device asks for "<slot>/<alias>" (for example "primary/strong-model"). Swapping providers between the
 # primary and fallback slots is a change here only. This hackathon fork uses NVIDIA Nemotron on Token Factory.
@@ -29,6 +30,12 @@ id = "nvidia/Nemotron-3-Ultra-550b-a55b"
 [providers.nebius.models.small-model]
 id = "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B"
 
+# Image transcription only; teaching and generation retain their Nemotron routes.
+# Nebius public catalogue, checked 2026-10-26: /api/public/models_info
+[providers.nebius.models.vision-model]
+id = "openbmb/MiniCPM-V-4_5"
+image_input_token_bound = 32768
+
 [prices."nvidia/nemotron-3-super-120b-a12b"]
 input = 0.30
 cached_input = 0.06
@@ -43,4 +50,9 @@ output = 3.00
 input = 0.06
 cached_input = 0.06 # No cache discount advertised; meter conservatively.
 output = 0.24
+
+[prices."openbmb/MiniCPM-V-4_5"]
+input = 0.658
+cached_input = 0.658
+output = 1.11
 

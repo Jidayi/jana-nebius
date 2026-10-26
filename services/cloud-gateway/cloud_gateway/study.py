@@ -1891,6 +1891,11 @@ class StudyService:
             # PDF/slide/photo units are pages/slides. Reflowable documents and plain text use 4,000 code points
             # per metered page; this convention is configured and recorded, never inferred from a filename.
             units = result["units"]
+            from cloud_gateway.study_vision import transcribe as transcribe_pages
+
+            vision_usage = await transcribe_pages(self, key, b, session, units)
+            vision_model = self.gw.providers.resolve(self.gw.config.study_vision_model)
+            vision_cost = cost_usd(self.gw.config.prices[vision_model[2].id], vision_usage) if vision_model else 0
             chars_per_page = self.gw.config.study_extract_chars_per_page
             pages = (
                 len(units)
@@ -1901,9 +1906,9 @@ class StudyService:
                 raise Refused("source_too_large", 413)
             b.usage = {
                 "receipt_id": key,
-                "cost_usd": pages * self.gw.config.study_extract_page_usd,
-                "input_tokens": 0,
-                "output_tokens": 0,
+                "cost_usd": pages * self.gw.config.study_extract_page_usd + vision_cost,
+                "input_tokens": vision_usage.input_tokens,
+                "output_tokens": vision_usage.output_tokens,
             }
             page = self.publish(key, b, asked, result["units"])
             self.settle(

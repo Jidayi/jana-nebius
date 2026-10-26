@@ -46,6 +46,7 @@ export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, 
   }, [view.source?.source_id, view.source?.revision]);
   useEffect(() => { if (pageImage) pageFigure.current?.scrollIntoView?.({ block: "start" }); }, [pageImage]);
   const showPage = (page: number, revision: number, sourceId: string) => { const request = ++pageRequest.current;
+    setPreviewPage(String(page));
     if (pageUrl.current) URL.revokeObjectURL(pageUrl.current);
     pageUrl.current = null; setPageImage(null);
     void controller.loadPage(page, revision, sourceId).then((blob) => {
@@ -68,7 +69,8 @@ export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, 
   const correctSourceText = () => {
     setCorrectedText(view.chunks.map((c) => c.text).join("\n\n")); setCorrecting(true);
     const source = view.source;
-    if (source && ["photo", "pdf"].includes(source.kind) && !pageImage) showPage(Number(previewPage) || 1, source.revision, source.source_id);
+    const page = Number(previewPage);
+    if (source && ["photo", "pdf"].includes(source.kind) && !pageImage) showPage(Number.isInteger(page) && page >= 1 && page <= 300 ? page : 1, source.revision, source.source_id);
   };
   const [deleting, setDeleting] = useState(false), [revealed, setRevealed] = useState(false), [answers, setAnswers] = useState<Record<string, string>>({});
   const [citation, setCitation] = useState<W.Citation | null>(null), [tool, setTool] = useState<GenerateTool | null>(null);

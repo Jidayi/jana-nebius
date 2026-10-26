@@ -54,7 +54,8 @@ The parent-summary print action entered the print presentation, but the browser-
 - Restarted the stopped budgeted gateway with its existing ledger and restored the app in stable preview mode. A failed startup now reaches recovery instead of polling forever; a host that stays unavailable has a bounded wait.
 - Checks: 132 notes/capture backend tests, 51 Study UI tests and 3 startup-recovery tests passed, along with desktop type checking and changed-source ESLint. Logs and the clearly labelled synthetic drawing are in `/private/tmp/jana-demo-verification-20261026`.
 
-Automatic handwritten-note recognition and direct pen input remain gaps for a handwriting-focused demo. Uploading an image and correcting its transcription is the verified path.
+At this initial checkpoint, automatic handwritten-note recognition remained a gap. The later automatic-extraction
+qualification below supersedes that limitation. Direct pen input remains separate from photo/scan importing.
 
 ### Photo/scan review follow-up
 
@@ -63,6 +64,16 @@ Automatic handwritten-note recognition and direct pen input remain gaps for a ha
 - Text corrections retain access to the most recent original file at or before that revision. A later file replacement cannot change an older revision's preview. Unfinished uploads and deleted sources stay inaccessible.
 - Live browser verification opened the original photo from the previously saved corrected revision, then saved an exact two-line transcription as revision 3. Study chat answered “The notes show x = 10.” with a citation to revision 3. Photo/PDF regression cases cover corrected revisions, later file replacements and deletion; 97 Study backend cases, 53 Study UI cases and 5 catalogue cases passed. Type checking, lint and the preview build passed.
 - A further scanned-PDF upload was not verified in the browser: file-chooser automation stalled and the session expired before attachment. The scan did not appear in the library. Real sandboxed PDF raster tests passed; this does not count as a completed browser upload.
+
+### Automatic handwriting extraction
+
+- Study now uses a separate MiniCPM vision reader on the existing Nebius provider when printed OCR cannot read a photo or scanned PDF page. Nemotron still teaches and generates Study aids. Only sandboxed, privacy-screened JPEG derivatives reach the reader; credentials stay in the gateway.
+- The shared deployment budget now supports one bounded image on a configured vision route, reserving its full input context. Remote image URLs, unsupported modalities, oversized images and multiple images are refused. Existing daily/total/expiry caps and the persistent ledger are unchanged. Per-page extraction receipts include actual vision usage; replays use the frozen result without another model call.
+- Fixed a HOG false positive on the synthetic biology notes with a Study-only text corroboration check. Face/cascade hits still refuse; unexplained ink, missing OCR and ordinary capture photos do not receive the exception. OpenCV's public basketball people sample remained blocked.
+- Live app API uploads automatically transcribed both the drawn maths photo and the two-page maths/biology scan, in page order. Both were saved as unreviewed extracted text, and an attempted generation without review was correctly refused. The bundled [demo PDF](evals/perception/handwriting/demo-scanned-notes.pdf) has no searchable text layer. These synthetic examples qualify the demo flow rather than all handwriting.
+- Checks: 336 affected backend/privacy/budget/Study cases, 53 Study UI cases and 5 catalogue cases passed. Python/desktop type checks, lint and the production preview build passed. Evidence is under `/private/tmp/jana-demo-verification-20261026`.
+- The real app displayed the original second scan page alongside its automatic transcript. After review, Study answered that enzymes are biological catalysts and that high heat changes the active site's shape, with a page-2 citation. This required no manually typed transcription.
+- Upload bytes, extraction and review enforcement were verified through the real app API. Browser file-chooser submission is still unqualified: Chrome's automation requires local file-URL permission, and Safari's native picker did not enable submission. A temporary Chrome permission change was requested separately; no browser permission was changed without approval.
 
 ## Local checkpoints
 
