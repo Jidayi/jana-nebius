@@ -1,4 +1,4 @@
-# Jana — Nebius × NVIDIA
+# Jana — powered by Nebius
 
 An offline-first secondary school sciences tutor for Mathematics, Physics, Chemistry, Biology and Accounting.
 This monorepo contains the local tutor, checking worker, desktop shell, curriculum tooling and S2 implementations.
