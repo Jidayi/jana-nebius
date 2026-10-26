@@ -632,8 +632,18 @@ class StudyDesk:
     async def page_raster(self, sid: str, revision: int, page: int) -> bytes:
         source = self.source(sid)
         row = self.conn.execute(
-            "SELECT blob_ref FROM study_revisions WHERE source_id=? AND revision=?", (sid, revision)
+            "SELECT blob_ref,extracted_at FROM study_revisions WHERE source_id=? AND revision=?", (sid, revision)
         ).fetchone()
+        if row is None or source["kind"] not in ("photo", "pdf"):
+            raise StudyError("not_found")
+        if row[0] is None and row[1] is not None:
+            # A text correction keeps the original image available for comparison. Bind to the most recent
+            # file at or before this revision, never a later replacement or an unfinished upload.
+            row = self.conn.execute(
+                "SELECT blob_ref FROM study_revisions WHERE source_id=? AND revision<=? "
+                "AND blob_ref IS NOT NULL ORDER BY revision DESC LIMIT 1",
+                (sid, revision),
+            ).fetchone()
         if row is None or row[0] is None:
             raise StudyError("not_found")
         data = await asyncio.to_thread((self.root / "blobs" / row[0]).read_bytes)

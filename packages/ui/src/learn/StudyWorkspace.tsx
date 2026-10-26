@@ -37,10 +37,11 @@ export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, 
   const [adding, setAdding] = useState(false), [activityOpen, setActivityOpen] = useState(false), [allSetsOpen, setAllSetsOpen] = useState(false), [activityLimit, setActivityLimit] = useState(8);
   const [title, setTitle] = useState(""), [text, setText] = useState(""), [confirm, setConfirm] = useState<string | null>(null);
   const [pageImage, setPageImage] = useState<{ url: string; page: number } | null>(null);
+  const [previewPage, setPreviewPage] = useState("1");
   const pageUrl = useRef<string | null>(null), pageRequest = useRef(0), pageFigure = useRef<HTMLElement>(null);
   useEffect(() => {
     if (pageUrl.current) URL.revokeObjectURL(pageUrl.current);
-    pageUrl.current = null; setPageImage(null);
+    pageUrl.current = null; setPageImage(null); setPreviewPage("1");
     return () => { pageRequest.current++; if (pageUrl.current) URL.revokeObjectURL(pageUrl.current); pageUrl.current = null; };
   }, [view.source?.source_id, view.source?.revision]);
   useEffect(() => { if (pageImage) pageFigure.current?.scrollIntoView?.({ block: "start" }); }, [pageImage]);
@@ -64,7 +65,11 @@ export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, 
   useEffect(() => setReadableConfirmed(reviewedRevisions.current.has(reviewKey)), [reviewKey]);
   const review = (value: boolean) => { setReadableConfirmed(value); if (value) reviewedRevisions.current.add(reviewKey); else reviewedRevisions.current.delete(reviewKey); };
   const [correcting, setCorrecting] = useState(false), [correctedText, setCorrectedText] = useState("");
-  const correctSourceText = () => { setCorrectedText(view.chunks.map((c) => c.text).join("\n\n")); setCorrecting(true); };
+  const correctSourceText = () => {
+    setCorrectedText(view.chunks.map((c) => c.text).join("\n\n")); setCorrecting(true);
+    const source = view.source;
+    if (source && ["photo", "pdf"].includes(source.kind) && !pageImage) showPage(Number(previewPage) || 1, source.revision, source.source_id);
+  };
   const [deleting, setDeleting] = useState(false), [revealed, setRevealed] = useState(false), [answers, setAnswers] = useState<Record<string, string>>({});
   const [citation, setCitation] = useState<W.Citation | null>(null), [tool, setTool] = useState<GenerateTool | null>(null);
   const [toolContext, setToolContext] = useState<string | null>(null);
@@ -303,6 +308,7 @@ export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, 
     if (previous?.label === label) previous.claims.push(c); else groups.push({ label, claims: [c] });
     return groups;
   }, []) : null;
+  const pagePreview = pageImage && <figure ref={pageFigure} className="flex min-w-0 flex-col gap-2"><img className="h-auto max-h-96 w-full object-contain" src={pageImage.url} alt={t("study.page_image", { page: pageImage.page })} /><figcaption className="text-meta text-muted">{t("study.page_image", { page: pageImage.page })}</figcaption>{citation && <span><Button size="sm" tone="ghost" onClick={() => passage.current?.querySelector("mark")?.scrollIntoView?.({ block: "center" })}>{t("study.read_extracted_passage")}</Button></span>}</figure>;
 
   // The split needs the screen's own width (a container query), not the window's: the sidebar and the board take room.
   // The settings dialog sits outside the container query: a size container would trap its fixed overlay.
@@ -318,13 +324,17 @@ export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, 
         <span className="flex-1" />
         {view.availableRevisions.length > 1 && <label className="flex items-center gap-2 text-meta text-muted">{t("study.choose_revision")}<select className={FIELD_LOOK} value={source.revision} onChange={(e) => { void controller.open(source.source_id, Number(e.target.value)); }}>{view.availableRevisions.map((rev) => <option key={rev} value={rev}>{rev}</option>)}</select></label>}
       </header>
-      <div className="flex max-h-72 flex-col gap-4 overflow-y-auto px-6 pb-6 @4xl:max-h-none @4xl:min-h-0 @4xl:flex-1">
+      <div className={`flex flex-col gap-4 overflow-y-auto px-6 pb-6 ${correcting || pageImage ? "max-h-none" : "max-h-72"} @4xl:max-h-none @4xl:min-h-0 @4xl:flex-1`}>
         {source.state !== "ready" && <Notice message={source.state === "queued" && accessBlocked ? t(view.access?.needsGuardian ? "study.saved_pending_guardian" : "study.saved_pending_access") : source.state === "partial" ? source.unreadable_units.length ? t("study.partial", { units: source.unreadable_units.join(", ") }) : t("study.review_extracted") : t(`study.source.${source.state}`)}
           {...(source.state === "queued" && accessBlocked && onReviewAccess ? { action: { label: t("study.access.review"), onClick: onReviewAccess } } : source.state === "unreadable" ? { action: { label: t("study.correct_text"), onClick: correctSourceText } } : {})} />}
         {source.kind === "recording" && <Notice message={t("study.recording_help")} />}
         {source.state === "queued" && <span><Button tone="primary" disabled={view.busy || !!accessBlocked} onClick={() => { void controller.startExtraction(preferCloud); }}>{t("study.start_extraction")}</Button></span>}
         {source.kind === "recording" && source.state === "partial" && <label className="flex min-h-11 items-center gap-2 text-ui text-ink"><input type="checkbox" checked={readableConfirmed} onChange={(e) => review(e.target.checked)} />{t("study.confirm_readable")}</label>}
         {source.state === "uploading" && <label className="flex flex-col gap-2 text-ui text-ink">{t("study.resume_upload")}<input type="file" accept={ACCEPT} disabled={view.busy} onChange={(e) => { const file = e.target.files?.[0]; e.target.value = ""; if (file) void controller.upload(file, source, preferCloud); }} /></label>}
+        {["photo", "pdf"].includes(source.kind) && source.state !== "uploading" && <div className="flex flex-wrap items-end gap-2">
+          {source.kind === "pdf" && <label className="flex flex-col gap-1 text-meta text-muted">{t("study.preview_page")}<input type="number" min={1} max={300} step={1} className={`${FIELD_LOOK} w-24`} value={previewPage} onChange={(e) => setPreviewPage(e.target.value)} /></label>}
+          <Button size="sm" disabled={view.busy || !Number.isInteger(Number(previewPage)) || Number(previewPage) < 1 || Number(previewPage) > 300} onClick={() => showPage(Number(previewPage), source.revision, source.source_id)}>{source.kind === "photo" ? t("study.view_photo") : t("study.show_page", { page: Number(previewPage) || 1 })}</Button>
+        </div>}
         <span><Button size="sm" tone="ghost" aria-expanded={managing} onClick={() => setManaging((open) => !open)}>{t("study.manage")}</Button></span>
         {managing && <div className="flex flex-col items-start gap-3 rounded-card bg-chrome p-4">
             {["pdf", "document", "slides", "photo", "recording"].includes(source.kind) && <label className="flex flex-col gap-2 text-ui text-ink">{t("study.replace_file")}<input type="file" accept={ACCEPT} disabled={view.busy} onChange={(e) => { const file = e.target.files?.[0]; e.target.value = ""; if (file) void controller.upload(file, source, preferCloud, true); }} /></label>}
@@ -335,11 +345,11 @@ export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, 
               <Button size="sm" tone="danger" disabled={view.busy} onClick={() => setDeleting(true)}>{t("study.delete")}</Button>
             </div>
         </div>}
-        {correcting && <form className="flex flex-col items-start gap-3" onSubmit={(e) => { e.preventDefault(); void controller.correctText(correctedText).then(() => { if (!controller.getView().error) setCorrecting(false); }); }}><label className="flex w-full flex-col gap-2 text-ui text-ink">{t("study.correct_help")}<textarea rows={10} required maxLength={200000} className={FIELD_LOOK} value={correctedText} onChange={(e) => setCorrectedText(e.target.value)} /></label><div className="flex gap-2"><Button type="submit" tone="primary" disabled={view.busy || !correctedText.trim()}>{t("study.save_revision")}</Button><Button tone="ghost" onClick={() => setCorrecting(false)}>{t("action.cancel")}</Button></div></form>}
+        {correcting && <div className="grid items-start gap-4 @3xl:grid-cols-2">{pagePreview}<form className="flex min-w-0 flex-col items-start gap-3" onSubmit={(e) => { e.preventDefault(); void controller.correctText(correctedText).then(() => { if (!controller.getView().error) setCorrecting(false); }); }}><label className="flex w-full flex-col gap-2 text-ui text-ink">{t("study.correct_help")}<textarea rows={10} required maxLength={200000} className={FIELD_LOOK} value={correctedText} onChange={(e) => setCorrectedText(e.target.value)} /></label><div className="flex gap-2"><Button type="submit" tone="primary" disabled={view.busy || !correctedText.trim()}>{t("study.save_revision")}</Button><Button tone="ghost" onClick={() => setCorrecting(false)}>{t("action.cancel")}</Button></div></form></div>}
         {deleting && <div className="flex flex-col items-start gap-2"><p className="text-ui">{t("study.delete_confirm")}</p><div className="flex gap-2"><Button tone="danger" disabled={view.busy} onClick={() => { void controller.remove(); }}>{t("study.delete_yes")}</Button><Button tone="ghost" onClick={() => setDeleting(false)}>{t("action.cancel")}</Button></div></div>}
         <div ref={passage} tabIndex={-1} className="mx-auto flex w-full max-w-2xl flex-col gap-4 rounded-card border border-line bg-canvas px-8 py-7 outline-none" aria-label={t("study.source_passage")}>
           {citation && <span><Button size="sm" onClick={() => { setCitation(null); returnFocus.current?.focus(); }}>{t("study.back_to_aid")}</Button></span>}
-          {pageImage && <figure ref={pageFigure} className="flex flex-col gap-2"><img className="h-auto w-full" src={pageImage.url} alt={t("study.page_image", { page: pageImage.page })} /><figcaption className="text-meta text-muted">{t("study.page_image", { page: pageImage.page })}</figcaption>{citation && <span><Button size="sm" tone="ghost" onClick={() => passage.current?.querySelector("mark")?.scrollIntoView?.({ block: "center" })}>{t("study.read_extracted_passage")}</Button></span>}</figure>}
+          {!correcting && pagePreview}
           {source.kind === "recording" && view.chunks.length > 0 && <RecordingPlayer sourceTitle={source.title} chunks={view.chunks} chapters={chapters} playhead={view.playhead} busy={view.busy}
             loadMedia={() => controller.loadMedia()} onSeek={(ms) => controller.seek(ms)} onCite={cite}
             canMakeChapters={ready} onMakeChapters={() => { void controller.generate("chapters", 10, readableConfirmed, preferCloud); }} />}

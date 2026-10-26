@@ -13,6 +13,30 @@ test("an unreadable notes photo offers text correction without finding the manag
   expect(screen.getByRole("textbox", { name: /Review the full readable text/ })).toBeTruthy();
   expect(screen.getByRole("button", { name: "Save corrected revision" }).hasAttribute("disabled")).toBe(true);
 });
+test("photo correction shows the original beside editable text and saves a reviewed revision", async () => {
+  const imageUrl = vi.spyOn(URL, "createObjectURL").mockReturnValue("blob:notes-photo");
+  const revoke = vi.spyOn(URL, "revokeObjectURL").mockImplementation(() => {});
+  try {
+    const controller = show({ source: { ...source, kind: "photo", state: "unreadable", readable_units: 0, unreadable_units: [1] } });
+    controller.loadPage.mockResolvedValue(new Blob(["synthetic image"], { type: "image/png" }));
+    fireEvent.click(screen.getByRole("button", { name: "Correct or replace source text" }));
+    expect(controller.loadPage).toHaveBeenCalledWith(1, 1, sid);
+    expect((await screen.findByRole("img", { name: "Source page 1" })).getAttribute("src")).toBe("blob:notes-photo");
+    fireEvent.change(screen.getByRole("textbox", { name: /Review the full readable text/ }), { target: { value: "x + 5 = 15. x = 10." } });
+    fireEvent.click(screen.getByRole("button", { name: "Save corrected revision" }));
+    await waitFor(() => expect(controller.correctText).toHaveBeenCalledWith("x + 5 = 15. x = 10."));
+    await waitFor(() => expect(screen.queryByRole("textbox", { name: /Review the full readable text/ })).toBeNull());
+    expect(screen.getAllByRole("img", { name: "Source page 1" })).toHaveLength(1);
+    cleanup();
+    expect(revoke).toHaveBeenCalledWith("blob:notes-photo");
+  } finally { imageUrl.mockRestore(); revoke.mockRestore(); }
+});
+test("unreadable scans allow previewing a page even when extraction produced no passages", () => {
+  const controller = show({ source: { ...source, kind: "pdf", state: "unreadable", readable_units: 0, unreadable_units: [1, 2] } });
+  fireEvent.change(screen.getByRole("spinbutton", { name: "Source page number" }), { target: { value: "2" } });
+  fireEvent.click(screen.getByRole("button", { name: "View source page 2" }));
+  expect(controller.loadPage).toHaveBeenCalledWith(2, 1, sid);
+});
 test("returning to curriculum material waits for workspace setup and retains the pinned revision", async () => {
   const loads: Array<() => void> = [];
   const controller = { subscribe: () => () => {}, getView: () => EMPTY_STUDY,
@@ -30,7 +54,7 @@ test("returning to curriculum material waits for workspace setup and retains the
 function show(extra: Partial<StudyWorkspaceView>, onReviewAccess?: () => void, onJourneyStarted?: (node: string, subject: string) => void) {
   const view = { ...EMPTY_STUDY, status: "ready", ...extra } as StudyWorkspaceView;
   const controller = { subscribe: () => () => {}, getView: () => view, load: vi.fn(async () => {}), close: vi.fn(), open: vi.fn(), refreshOpened: vi.fn(), generate: vi.fn(async () => {}), upload: vi.fn(async () => {}), addWeb: vi.fn(async () => {}), startExtraction: vi.fn(async () => {}), rate: vi.fn(), submit: vi.fn(), readCitation: vi.fn(async () => true), playOverview: vi.fn(), stopReading: vi.fn(), pauseOverview: vi.fn(), resumeOverview: vi.fn(), checkAnswer: vi.fn(async () => {}), jobAction: vi.fn(), loadTopics: vi.fn(async () => true), saveDraft: vi.fn(async () => {}), loadMaterialTopics: vi.fn(async () => {}), openSet: vi.fn(async () => {}), showAid: vi.fn(async () => {}), hideAid: vi.fn(), clearResult: vi.fn(), loadMedia: vi.fn(async () => null), seek: vi.fn(), archiveSources: vi.fn(async () => {}), requestQuizHelp: vi.fn(async () => {}) };
-  const connected = { ...controller, beginJourney: vi.fn(async () => true) };
+  const connected = { ...controller, loadPage: vi.fn(async (): Promise<Blob | null> => null), correctText: vi.fn(async (_text: string) => {}), beginJourney: vi.fn(async () => true) };
   render(<StudyWorkspace controller={connected as unknown as StudyWorkspaceController} {...(onReviewAccess ? { onReviewAccess } : {})} {...(onJourneyStarted ? { onJourneyStarted } : {})} />);
   return connected;
 }

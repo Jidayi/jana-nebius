@@ -990,6 +990,69 @@ def test_staged_file_replacement_keeps_previous_revision_until_commit(tmp_path):
     asyncio.run(run())
 
 
+@pytest.mark.parametrize("kind,extension,mime", [("photo", "png", "image/png"), ("pdf", "pdf", "application/pdf")])
+def test_corrected_notes_keep_their_original_image_without_using_later_replacements(tmp_path, kind, extension, mime):
+    from PIL import Image
+
+    async def run():
+        desk, _ = seeded(tmp_path)
+
+        def image_bytes(color):
+            stream = io.BytesIO()
+            Image.new("RGB", (600, 600), color).save(stream, format="PNG" if kind == "photo" else "PDF")
+            return stream.getvalue()
+
+        def upload(source, data):
+            desk.upload(
+                source["source_id"],
+                0,
+                {"offset": 0, "sha256": digest(data), "data_base64": base64.b64encode(data).decode()},
+            )
+            desk.commit_units(source, [{"locator": {"kind": "page", "page": 1}, "text": "x + 5 = 15", "ocr": True}])
+
+        first = image_bytes("blue")
+        source = desk.create(
+            {
+                "kind": kind,
+                "file_name": "notes." + extension,
+                "mime_type": mime,
+                "byte_length": len(first),
+                "sha256": digest(first),
+            }
+        )
+        upload(source, first)
+        sid = source["source_id"]
+        original = await desk.page_raster(sid, 1, 1)
+        desk.revise(sid, {"expected_revision": 1, "text": "x + 5 = 15. x = 10."})
+        assert await desk.page_raster(sid, 2, 1) == original
+        second = image_bytes("red")
+        pending = desk.revise(
+            sid,
+            {
+                "expected_revision": 2,
+                "file_name": "new-notes." + extension,
+                "mime_type": mime,
+                "byte_length": len(second),
+                "sha256": digest(second),
+            },
+        )
+        with pytest.raises(StudyError, match="not_found"):
+            await desk.page_raster(sid, 3, 1)
+        upload(pending, second)
+        replacement = await desk.page_raster(sid, 3, 1)
+        assert replacement != original
+        desk.revise(sid, {"expected_revision": 3, "text": "Reviewed replacement notes."})
+        assert await desk.page_raster(sid, 4, 1) == replacement
+        assert await desk.page_raster(sid, 2, 1) == original
+        with pytest.raises(StudyError, match="not_found"):
+            await desk.page_raster(sid, 99, 1)
+        desk.delete(sid)
+        with pytest.raises(StudyError, match="not_found"):
+            await desk.page_raster(sid, 4, 1)
+
+    asyncio.run(run())
+
+
 def test_private_historical_grants_bind_revision(tmp_path):
     d, source = seeded(tmp_path)
     sid = source["source_id"]

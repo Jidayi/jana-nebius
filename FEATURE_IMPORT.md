@@ -56,6 +56,14 @@ The parent-summary print action entered the print presentation, but the browser-
 
 Automatic handwritten-note recognition and direct pen input remain gaps for a handwriting-focused demo. Uploading an image and correcting its transcription is the verified path.
 
+### Photo/scan review follow-up
+
+- The requested demo input is a photo or scan of handwritten notes. The configured Nemotron inference routes are text-only; no automatic handwriting-recognition claim is made.
+- Original photos and PDF pages can now be opened even when extraction produced no passages. Opening text correction also loads the original for comparison, with an expanded layout on narrow screens.
+- Text corrections retain access to the most recent original file at or before that revision. A later file replacement cannot change an older revision's preview. Unfinished uploads and deleted sources stay inaccessible.
+- Live browser verification opened the original photo from the previously saved corrected revision, then saved an exact two-line transcription as revision 3. Study chat answered “The notes show x = 10.” with a citation to revision 3. Photo/PDF regression cases cover corrected revisions, later file replacements and deletion; 97 Study backend cases, 53 Study UI cases and 5 catalogue cases passed. Type checking, lint and the preview build passed.
+- A further scanned-PDF upload was not verified in the browser: file-chooser automation stalled and the session expired before attachment. The scan did not appear in the library. Real sandboxed PDF raster tests passed; this does not count as a completed browser upload.
+
 ## Local checkpoints
 
 The complete pre-import working tree was backed up under `/private/tmp/jana-feature-port-20261025` and checkpointed separately at `a69f50d7161a` on `codex/import-jana-features`. The feature import follows that checkpoint so its changes can be reviewed independently. No remote push is part of this operation.
