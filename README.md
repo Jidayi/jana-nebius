@@ -158,6 +158,10 @@ Start the full app's live hackathon browser host in a second Terminal:
 uv run --offline python -m jana_tools.hackathon_dev
 ```
 
+For a demo, add `--stable` to build once and serve the preview without source-file reloads. Keep the gateway
+running in the first Terminal; the browser host does not start it. Use `--data-dir /path/to/demo-data` to reuse
+the same saved profiles across sessions. These options also work with `--local-model` below.
+
 Open **http://127.0.0.1:5187/**. The separate port avoids another app already using 5173 on the development machine.
 The first launch builds and verifies all four original signed subject packs; later launches reuse the cache.
 Create a synthetic demo profile. In Settings → Online features, give the cloud tutor consent. Accept its native

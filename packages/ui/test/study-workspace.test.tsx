@@ -7,6 +7,12 @@ afterEach(cleanup);
 const sid = `src_${"0".repeat(26)}`, now = "2026-10-18T00:00:00Z";
 const source = { source_id: sid, revision: 1, kind: "text", title: "Biology", state: "ready", private: false, created_at: now, updated_at: now, readable_units: 1, unreadable_units: [], sha256: "0".repeat(64) } as const;
 const cited = (text: string) => ({ text, citations: [{ source_id: sid, revision: 1, chunk_id: `sck_${"0".repeat(26)}`, start: 0, end: 3, quote: "DNA" }] });
+test("an unreadable notes photo offers text correction without finding the manage menu", () => {
+  show({ source: { ...source, kind: "photo", state: "unreadable", readable_units: 0, unreadable_units: [1] } });
+  fireEvent.click(screen.getByRole("button", { name: "Correct or replace source text" }));
+  expect(screen.getByRole("textbox", { name: /Review the full readable text/ })).toBeTruthy();
+  expect(screen.getByRole("button", { name: "Save corrected revision" }).hasAttribute("disabled")).toBe(true);
+});
 test("returning to curriculum material waits for workspace setup and retains the pinned revision", async () => {
   const loads: Array<() => void> = [];
   const controller = { subscribe: () => () => {}, getView: () => EMPTY_STUDY,

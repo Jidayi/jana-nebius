@@ -47,6 +47,15 @@ The live NVIDIA Nemotron tutoring smoke test completed, but answered the diagram
 
 The parent-summary print action entered the print presentation, but the browser-control interface could not complete the system print dialog. An exported PDF has **not** been visually verified. Native voice playback and spoken-cue pen synchronisation were covered by automated tests rather than a live microphone/speaker test. Native supported-webview and screen-reader acceptance remain separate from Chromium browser checks.
 
+## Demo notes check — 26 October 2026
+
+- A synthetic hand-drawn maths image uploaded through Home → Upload in the real Study QA profile. Extraction returned `unreadable_source`; the local reader also reported low-confidence text for that sample. This is not a qualified handwriting recognizer, and there is no student freehand writing pad in the UI.
+- Manage material → Correct or replace source text saved a manually reviewed transcription as revision 2, ready for Study. The unreadable-material notice now offers that correction directly.
+- Restarted the stopped budgeted gateway with its existing ledger and restored the app in stable preview mode. A failed startup now reaches recovery instead of polling forever; a host that stays unavailable has a bounded wait.
+- Checks: 132 notes/capture backend tests, 51 Study UI tests and 3 startup-recovery tests passed, along with desktop type checking and changed-source ESLint. Logs and the clearly labelled synthetic drawing are in `/private/tmp/jana-demo-verification-20261026`.
+
+Automatic handwritten-note recognition and direct pen input remain gaps for a handwriting-focused demo. Uploading an image and correcting its transcription is the verified path.
+
 ## Local checkpoints
 
 The complete pre-import working tree was backed up under `/private/tmp/jana-feature-port-20261025` and checkpointed separately at `a69f50d7161a` on `codex/import-jana-features`. The feature import follows that checkpoint so its changes can be reviewed independently. No remote push is part of this operation.

@@ -64,6 +64,7 @@ export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, 
   useEffect(() => setReadableConfirmed(reviewedRevisions.current.has(reviewKey)), [reviewKey]);
   const review = (value: boolean) => { setReadableConfirmed(value); if (value) reviewedRevisions.current.add(reviewKey); else reviewedRevisions.current.delete(reviewKey); };
   const [correcting, setCorrecting] = useState(false), [correctedText, setCorrectedText] = useState("");
+  const correctSourceText = () => { setCorrectedText(view.chunks.map((c) => c.text).join("\n\n")); setCorrecting(true); };
   const [deleting, setDeleting] = useState(false), [revealed, setRevealed] = useState(false), [answers, setAnswers] = useState<Record<string, string>>({});
   const [citation, setCitation] = useState<W.Citation | null>(null), [tool, setTool] = useState<GenerateTool | null>(null);
   const [toolContext, setToolContext] = useState<string | null>(null);
@@ -319,7 +320,7 @@ export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, 
       </header>
       <div className="flex max-h-72 flex-col gap-4 overflow-y-auto px-6 pb-6 @4xl:max-h-none @4xl:min-h-0 @4xl:flex-1">
         {source.state !== "ready" && <Notice message={source.state === "queued" && accessBlocked ? t(view.access?.needsGuardian ? "study.saved_pending_guardian" : "study.saved_pending_access") : source.state === "partial" ? source.unreadable_units.length ? t("study.partial", { units: source.unreadable_units.join(", ") }) : t("study.review_extracted") : t(`study.source.${source.state}`)}
-          {...(source.state === "queued" && accessBlocked && onReviewAccess ? { action: { label: t("study.access.review"), onClick: onReviewAccess } } : {})} />}
+          {...(source.state === "queued" && accessBlocked && onReviewAccess ? { action: { label: t("study.access.review"), onClick: onReviewAccess } } : source.state === "unreadable" ? { action: { label: t("study.correct_text"), onClick: correctSourceText } } : {})} />}
         {source.kind === "recording" && <Notice message={t("study.recording_help")} />}
         {source.state === "queued" && <span><Button tone="primary" disabled={view.busy || !!accessBlocked} onClick={() => { void controller.startExtraction(preferCloud); }}>{t("study.start_extraction")}</Button></span>}
         {source.kind === "recording" && source.state === "partial" && <label className="flex min-h-11 items-center gap-2 text-ui text-ink"><input type="checkbox" checked={readableConfirmed} onChange={(e) => review(e.target.checked)} />{t("study.confirm_readable")}</label>}
@@ -328,7 +329,7 @@ export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, 
         {managing && <div className="flex flex-col items-start gap-3 rounded-card bg-chrome p-4">
             {["pdf", "document", "slides", "photo", "recording"].includes(source.kind) && <label className="flex flex-col gap-2 text-ui text-ink">{t("study.replace_file")}<input type="file" accept={ACCEPT} disabled={view.busy} onChange={(e) => { const file = e.target.files?.[0]; e.target.value = ""; if (file) void controller.upload(file, source, preferCloud, true); }} /></label>}
             <div className="flex flex-wrap gap-2">
-              <Button size="sm" disabled={view.busy} onClick={() => { setCorrectedText(view.chunks.map((c) => c.text).join("\n\n")); setCorrecting(true); }}>{t("study.correct_text")}</Button>
+              <Button size="sm" disabled={view.busy} onClick={correctSourceText}>{t("study.correct_text")}</Button>
               <Button size="sm" disabled={view.busy} onClick={() => { void controller.markPrivate(); }}>{t(source.private ? "study.make_public" : "study.make_private")}</Button>
               <Button size="sm" disabled={view.busy} onClick={() => { void controller.refreshOpened(); }}>{t("study.refresh")}</Button>
               <Button size="sm" tone="danger" disabled={view.busy} onClick={() => setDeleting(true)}>{t("study.delete")}</Button>
