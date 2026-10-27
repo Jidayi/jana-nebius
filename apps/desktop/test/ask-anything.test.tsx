@@ -116,14 +116,13 @@ test.each(["Upload", "Record"])("Home %s enters Study before any file is selecte
   fireEvent.click(within(homeActions).getByRole("button", { name: action }));
   await screen.findByRole("heading", { level: 1, name: "Study" });
   expect(upload).not.toHaveBeenCalled();
-  const input = screen.getByLabelText("Choose a file") as HTMLInputElement;
+  const input = screen.getByLabelText("Choose a file to upload") as HTMLInputElement;
   expect(input.isConnected).toBe(true);
   expect(input.classList.contains("sr-only")).toBe(false);
   expect(input.accept).toContain(action === "Record" ? "audio/*" : ".pdf");
   const file = new File(["personal handwritten notes"], action === "Record" ? "notes.m4a" : "my-notes.pdf");
+  const activity = vi.spyOn(runtime.profiles, "noteActivity");
   fireEvent.change(input, { target: { files: [file] } });
-  expect(await screen.findByText(`Selected: ${file.name} (1 KB)`)).toBeTruthy();
-  expect(upload).not.toHaveBeenCalled();
-  fireEvent.click(screen.getByRole("button", { name: "Upload selected file" }));
+  expect(activity).toHaveBeenCalled();
   await waitFor(() => expect(upload).toHaveBeenCalledExactlyOnceWith(file, undefined, true));
 });

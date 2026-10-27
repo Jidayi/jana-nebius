@@ -261,11 +261,11 @@ function useDegraded(profiles: ProfileController): Pick<HealthReport, "health" |
   return state;
 }
 
-/** Keys, pointer and wheel count as the student using the app: the profile's inactivity window starts again (SEC-19). */
+/** Keys, pointer, wheel and native form changes count as the student using the app: the profile's inactivity window starts again (SEC-19). */
 function useActivity(profiles: ProfileController): void {
   useEffect(() => {
     const seen = () => profiles.noteActivity();
-    const events = ["keydown", "pointerdown", "wheel", "touchstart"] as const;
+    const events = ["keydown", "pointerdown", "wheel", "touchstart", "change"] as const;
     for (const name of events) window.addEventListener(name, seen, { capture: true, passive: true });
     return () => {
       for (const name of events) window.removeEventListener(name, seen, { capture: true });
