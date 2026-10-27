@@ -79,3 +79,12 @@ qualification below supersedes that limitation. Direct pen input remains separat
 ## Local checkpoints
 
 The complete pre-import working tree was backed up under `/private/tmp/jana-feature-port-20261025` and checkpointed separately at `a69f50d7161a` on `codex/import-jana-features`. The feature import follows that checkpoint so its changes can be reviewed independently. No remote push is part of this operation.
+
+
+## Alex Morgan Study demo — 27 October 2026
+
+- Alex's in-app-browser upload attempts had not created any source record. The exact native picker failure is not established. File selection now survives until the asynchronous upload completes; bounded FileReader reads show a useful failure after 15 seconds, refuse short reads and prevent late reads from writing after a profile change. A source created before a chunk failure is reopened in the library for resumption.
+- Added an explicit **Use example scanned notes** action with clearly labelled synthetic maths/biology content. It loads the existing two-page image-only fixture from the app's static assets and passes it through the normal file upload, privacy, consent and automatic transcription pipeline. It does not prepopulate profiles or substitute a typed transcript. Late example loads cannot start an upload after workspace departure.
+- Live in-app-browser verification as Alex: example uploaded and both pages transcribed automatically; original page 2 matched its transcript; reviewed-source chat correctly answered the enzyme/heat question, and both citations opened page 2. All six Study tools generated and reopened: summary, three-question quiz, three flashcards, notes, podcast and lesson plan. The PDF, all six tools and review progress survived a fresh app load. The quiz saved three correct answers; rating all three cards left zero due today. Podcast narration advanced to passage 2 of 3 before being stopped; speaker output was not independently heard. The generated lesson plan is currently rendered as referenced learning statements, without a timed schedule.
+- This qualifies the explicit example-file path in the in-app browser. It does **not** requalify that browser's native picker or establish recovery of the user's missing attachment. Standard Chrome native-picker upload was qualified at the preceding checkpoint. Browser extension file-URL permission remains off.
+- Focused checks: 48 client Study tests, 62 UI Study/Home tests and 5 catalogue tests passed. Client/UI/desktop type checks, changed-source ESLint, whitespace checks and the production preview build passed.

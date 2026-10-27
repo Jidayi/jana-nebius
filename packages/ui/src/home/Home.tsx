@@ -52,10 +52,10 @@ function Row({ icon, name, meta, subject, onClick, children }: { icon: IconName;
 
 /** The four ways to add material above the box (UXS-67); each opens the study area. */
 export interface HomeMaterials {
-  onUpload: (file: File) => void;
+  onUpload: (file: File) => void | Promise<void>;
   onLink: () => void;
   onPaste: () => void;
-  onRecord: (file: File) => void;
+  onRecord: (file: File) => void | Promise<void>;
 }
 
 /** Accepted on Home's Upload: what the study area reads (STU-02). Record takes a recording the student holds. */
@@ -65,10 +65,9 @@ const RECORDING_ACCEPT = ".mp3,.m4a,.wav,.ogg,.webm,audio/*";
 function Materials({ materials }: { materials: HomeMaterials }) {
   const t = useT();
   const upload = useRef<HTMLInputElement>(null), record = useRef<HTMLInputElement>(null);
-  const picked = (pick: (file: File) => void) => (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    e.target.value = "";
-    if (file) pick(file);
+  const picked = (pick: (file: File) => void | Promise<void>) => (e: ChangeEvent<HTMLInputElement>) => {
+    const input = e.currentTarget, file = input.files?.[0];
+    if (file) void Promise.resolve(pick(file)).finally(() => { input.value = ""; });
   };
   return (
     <div role="group" aria-label={t("home.add_material")} data-home-materials="" className="flex flex-wrap gap-2">

@@ -1049,10 +1049,10 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
         session, ASK_PLACE, (answer) => runtime.ask.voiced(answer));
     const openStudy = (add: "link" | "paste" | null = null) => { runtime.ask.clear(); setStudyAdd(add); setScreen("study"); };
     const materials = studyAvailable && lock === null ? {
-      onUpload: (file: File) => { void runtime.studyWorkspace.upload(file, undefined, true); openStudy(); },
+      onUpload: (file: File) => { const pending = runtime.studyWorkspace.upload(file, undefined, true); openStudy(); return pending; },
       onLink: () => openStudy("link"),
       onPaste: () => openStudy("paste"),
-      onRecord: (file: File) => { void runtime.studyWorkspace.upload(file, undefined, true); openStudy(); },
+      onRecord: (file: File) => { const pending = runtime.studyWorkspace.upload(file, undefined, true); openStudy(); return pending; },
     } : null;
     // Ask anything's answer above the box; "Ask the tutor" sends the same question there (held until it is ready).
     const answer = lock !== null ? undefined : <AskAnswer view={askView} actions={{
@@ -1166,7 +1166,11 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
       return <KnowsPage knows={runtime.knows} onClose={() => setScreen(back)} onOpenSettings={() => setScreen("settings")} />;
     }
     if (screen === "study") {
-      const workspace = <StudyWorkspace controller={runtime.studyWorkspace} initialAdd={studyAdd} initialJourney={studyResume} onJourneyOpened={() => setStudyResume(null)} initialSource={studySource} onSourceOpened={() => setStudySource(null)} onJourneyStarted={() => {
+      const workspace = <StudyWorkspace controller={runtime.studyWorkspace} exampleMaterial={async () => {
+        const response = await fetch(`${import.meta.env.BASE_URL}samples/demo-scanned-notes.pdf`);
+        if (!response.ok) throw new Error("Example notes unavailable");
+        return new File([await response.arrayBuffer()], "demo-scanned-notes.pdf", { type: "application/pdf" });
+      }} initialAdd={studyAdd} initialJourney={studyResume} onJourneyOpened={() => setStudyResume(null)} initialSource={studySource} onSourceOpened={() => setStudySource(null)} onJourneyStarted={() => {
         void journey.load().then((next) => { if (next) void journeyStep(nextJourneyAction(next)); });
       }} onTab={setStudyTab} onPractice={(subject, kcIds) => {
         const objective = kcIds[0] ? objectiveForKc(Object.values(maps), kcIds[0]) : null;

@@ -62,6 +62,50 @@ function setup(get: (path: string) => Promise<unknown>, post = vi.fn(async () =>
   const controller = new StudyWorkspaceController(profiles as unknown as ProfileController, speech, podcastAudio);
   return { controller, profiles, clear: () => { profiles.generation++; clear(); } };
 }
+test.each(["rejected", "short"])("an unreadable picker file (%s) shows a file error before creating any source", async (failure) => {
+  const fake = setup(async () => ({}));
+  const file = new File(["synthetic PDF"], "notes.pdf", { type: "application/pdf" });
+  vi.stubGlobal("FileReader", undefined);
+  Object.defineProperty(file, "arrayBuffer", { value: failure === "rejected" ? async () => { throw new DOMException("unreadable", "NotReadableError"); } : async () => new ArrayBuffer(0) });
+  try {
+    await fake.controller.upload(file);
+    expect(fake.controller.getView()).toMatchObject({ busy: false, uploadReading: false, error: "file_read_failed", source: null });
+    expect(fake.profiles.commands.post).not.toHaveBeenCalled();
+  } finally { vi.unstubAllGlobals(); }
+});
+test("a stalled picker read times out and a later read cannot start an upload", async () => {
+  const fake = setup(async () => ({}));
+  let finish!: (bytes: ArrayBuffer) => void;
+  const file = new File(["synthetic PDF"], "notes.pdf");
+  vi.stubGlobal("FileReader", undefined);
+  Object.defineProperty(file, "arrayBuffer", { value: () => new Promise<ArrayBuffer>((resolve) => { finish = resolve; }) });
+  vi.useFakeTimers();
+  try {
+    const pending = fake.controller.upload(file);
+    expect(fake.controller.getView()).toMatchObject({ busy: true, uploadReading: true });
+    await vi.advanceTimersByTimeAsync(15_000);
+    await pending;
+    expect(fake.controller.getView()).toMatchObject({ busy: false, error: "file_read_failed", source: null });
+    finish(new ArrayBuffer(file.size));
+    await Promise.resolve();
+    expect(fake.profiles.commands.post).not.toHaveBeenCalled();
+  } finally { vi.useRealTimers(); vi.unstubAllGlobals(); }
+});
+test("a file read finishing after a profile change cannot create a source in the new profile", async () => {
+  const fake = setup(async () => ({}));
+  let finish!: (bytes: ArrayBuffer) => void;
+  const file = new File(["synthetic PDF"], "notes.pdf");
+  vi.stubGlobal("FileReader", undefined);
+  Object.defineProperty(file, "arrayBuffer", { value: () => new Promise<ArrayBuffer>((resolve) => { finish = resolve; }) });
+  try {
+    const pending = fake.controller.upload(file);
+    fake.clear();
+    finish(new ArrayBuffer(file.size));
+    await pending;
+    expect(fake.controller.getView()).toEqual(EMPTY_STUDY);
+    expect(fake.profiles.commands.post).not.toHaveBeenCalled();
+  } finally { vi.unstubAllGlobals(); }
+});
 test("workspace rejects malformed wire data and clears late profile responses", async () => {
   const invalid = setup(async () => ({ sources: { items: [{ source_id: "bad" }], next_cursor: null }, jobs: [] }));
   await invalid.controller.load(); expect(invalid.controller.getView().status).toBe("failed");
@@ -550,4 +594,38 @@ test.each([false, true])("due review restores a removed card before untouched ca
   expect(fake.profiles.commands.request.mock.calls.filter(([, path]) => path.endsWith("/reviews"))).toHaveLength(1);
   fake.clear();
   } finally { vi.useRealTimers(); }
+});
+
+test.each(["error", "timeout"])("native FileReader %s releases the upload and reports a useful error", async (failure) => {
+  const fake = setup(async () => ({}));
+  const abort = vi.fn();
+  const readers: FailedReader[] = [];
+  class FailedReader {
+    onload = null; onerror: (() => void) | null = null; onabort = null;
+    abort = abort;
+    readAsArrayBuffer() { readers.push(this); if (failure === "error") this.onerror?.(); }
+  }
+  vi.stubGlobal("FileReader", FailedReader); vi.useFakeTimers();
+  try {
+    const pending = fake.controller.upload(new File(["scan"], "scan.pdf"));
+    if (failure === "timeout") await vi.advanceTimersByTimeAsync(15_000);
+    await pending;
+    expect(fake.controller.getView()).toMatchObject({ busy: false, uploadReading: false, error: "file_read_failed" });
+    expect(fake.profiles.commands.post).not.toHaveBeenCalled();
+    expect(readers[0]).toMatchObject({ onload: null, onerror: null, onabort: null });
+    expect(abort).toHaveBeenCalledTimes(failure === "timeout" ? 1 : 0);
+  } finally { vi.useRealTimers(); vi.unstubAllGlobals(); }
+});
+
+test("a source whose chunk upload failed stays visible and can be resumed", async () => {
+  const uploading = { ...SOURCE, kind: "pdf", state: "uploading", readable_units: 0 };
+  const post = vi.fn(async (path: string) => {
+    if (path.includes("/chunks/")) throw new Error("connection lost");
+    if (path.endsWith("/open")) return { source: uploading, open_token: "t".repeat(43), expires_at: "2099-10-18T00:05:00Z" };
+    return uploading;
+  });
+  const fake = setup(async (path) => path === "/v1/study/workspace" ? { sources: { items: [uploading], next_cursor: null }, jobs: [] } : { items: [], next_cursor: null }, post as never);
+  await fake.controller.upload(new File(["synthetic PDF"], "notes.pdf"));
+  expect(fake.controller.getView()).toMatchObject({ source: uploading, sources: [uploading], error: "unreachable", busy: false });
+  expect(post).not.toHaveBeenCalledWith("/v1/study/jobs", expect.anything(), expect.anything(), expect.anything());
 });

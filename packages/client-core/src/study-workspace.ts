@@ -25,6 +25,7 @@ export interface StudyWorkspaceView {
   aid: W.Aid | null; deck: W.Deck | null; quiz: W.QuizView | null; result: W.QuizResult | null;
   resultAnswers?: Record<string, string>;
   cleanupPending: boolean; availableRevisions: number[]; busy: boolean; error: string | null; uploadBytes: number; uploadTotal: number;
+  uploadReading?: boolean;
   selections: W.SourceSelection[]; notes: { id: string; kind: "session_note" | "dictated_note" | "board_note"; title: string | null; private: boolean }[];
   reading: boolean; spokenClaim: number; canSpeak: boolean; audioPreparing?: boolean;
   audioPaused?: boolean; audioCompleted?: boolean;
@@ -60,6 +61,31 @@ function base64(data: Uint8Array): string {
   let result = "";
   for (let i = 0; i < data.length; i += 8192) result += String.fromCharCode(...data.subarray(i, i + 8192));
   return btoa(result);
+}
+/** Read a picker-owned file before resetting its input. A stalled webview read must not hold the UI forever. */
+async function readUpload(file: File): Promise<Uint8Array> {
+  return new Promise((resolve, reject) => {
+    const reader = typeof FileReader === "undefined" ? null : new FileReader();
+    const fail = () => reject(new CommandError(422, "file_read_failed", false, undefined));
+    const clean = () => {
+      clearTimeout(timer);
+      if (reader) reader.onload = reader.onerror = reader.onabort = null;
+    };
+    const timer = setTimeout(() => { clean(); reader?.abort(); fail(); }, 15_000);
+    const done = (buffer: ArrayBuffer) => {
+      clean();
+      if (buffer.byteLength !== file.size) { fail(); return; }
+      resolve(new Uint8Array(buffer));
+    };
+    const failed = () => { clean(); fail(); };
+    if (reader) {
+      reader.onload = () => reader.result instanceof ArrayBuffer ? done(reader.result) : failed();
+      reader.onerror = reader.onabort = failed;
+      try { reader.readAsArrayBuffer(file); } catch { failed(); }
+    } else {
+      void file.arrayBuffer().then(done, failed);
+    }
+  });
 }
 export class StudyWorkspaceController {
   private view = EMPTY_STUDY;
@@ -294,21 +320,25 @@ export class StudyWorkspaceController {
     if (source) { await this.load(); await this.open((source as W.Source).source_id); }
   }
   async upload(file: File, existing?: W.Source, preferCloud = false, replacement = false): Promise<void> {
+    if (this.view.busy) return;
+    const generation = this.profiles.generation, selection = this.selection;
     let source: W.Source | null = null;
     await this.action(async (current) => {
-      if (preferCloud) await this.loadAccess();
-      if (!current()) return;
       if (file.size === 0 || file.size > 100 * 1024 * 1024) throw new CommandError(422, "source_too_large", false, undefined);
       const suffix = file.name.split(".").at(-1)?.toLowerCase();
       const kind = suffix === "pdf" ? "pdf" : ["pptx", "odp"].includes(suffix ?? "") ? "slides" : ["txt", "md", "docx", "odt"].includes(suffix ?? "") ? "document" : ["jpg", "jpeg", "png", "webp"].includes(suffix ?? "") ? "photo" : ["wav", "mp3", "m4a", "mp4", "webm", "ogg", "flac", "aac", "mov", "mkv", "avi"].includes(suffix ?? "") ? "recording" : null;
       if (!kind) throw new CommandError(422, "unsupported_format", false, undefined);
-      this.patch({ uploadBytes: 0, uploadTotal: file.size });
-      const data = new Uint8Array(await file.arrayBuffer()), hash = await sha(data);
+      this.patch({ uploadBytes: 0, uploadTotal: file.size, uploadReading: true });
+      const data = await readUpload(file), hash = await sha(data);
+      if (!current()) return;
+      this.patch({ uploadReading: false });
+      if (preferCloud) await this.loadAccess();
       if (!current()) return;
       if (existing && !replacement && existing.sha256 !== hash) throw new CommandError(422, "corrupt_source", false, undefined);
       const metadata = { kind, file_name: file.name, mime_type: file.type || "application/octet-stream", byte_length: file.size, sha256: hash };
       const result = replacement && existing ? valid<W.Source>("Source", await this.mutate("POST", `/v1/study/sources/${existing.source_id}/revisions`, { expected_revision: existing.revision, file_name: file.name, mime_type: metadata.mime_type, byte_length: file.size, sha256: hash })) : existing ?? valid<W.Source>("Source", await this.mutate("POST", "/v1/study/sources", { kind, file_name: file.name, mime_type: file.type || "application/octet-stream", byte_length: file.size, sha256: hash }));
       if (!current()) return;
+      source = result;
       if (replacement && result.private) {
         const grant = valid<W.OpenedSource>("OpenedSource", await this.commands().post(`/v1/study/sources/${result.source_id}/open`, { confirm: true, revision: result.revision }, clientId()));
         if (!current()) return;
@@ -327,7 +357,16 @@ export class StudyWorkspaceController {
       const job = valid<W.Job>("Job", await this.mutate("POST", "/v1/study/jobs", { kind: "extract", execution: preferCloud ? "prefer_cloud" : "local", sources: [{ source_id: result.source_id, revision: result.revision }] }));
       if (current()) { source = result; this.patch({ jobs: [job, ...this.view.jobs] }); }
     });
-    if (source) { await this.load(); await this.open((source as W.Source).source_id); }
+    if (generation !== this.profiles.generation || selection !== this.selection) return;
+    this.patch({ uploadReading: false });
+    if (source) {
+      const error = this.view.error;
+      await this.load();
+      if (generation !== this.profiles.generation || selection !== this.selection) return;
+      const opening = this.open((source as W.Source).source_id), openedSelection = this.selection;
+      await opening;
+      if (generation === this.profiles.generation && openedSelection === this.selection && error) this.patch({ error });
+    }
   }
   /** Start a generation job; `settings` are the Generate panel's choices for that tool (STU-21). */
   async generate(kind: W.AidKind, count = 10, confirmReadableOnly = false, preferCloud = false, prompt?: string, settings?: W.GenerateSettings, contextAidId?: string, learningIntent?: "lesson"): Promise<void> {

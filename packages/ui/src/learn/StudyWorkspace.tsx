@@ -27,9 +27,22 @@ const tabOf = (kind: string): Tab => (kind === "chat" ? "chat" : "generate");
 const picked = (answer: string | undefined) => (answer ?? "").split(",").filter(Boolean);
 
 /** `onTab` hears which tab is open: the voice conversation lives in Chat (VOC-53, D130). */
-export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, initialAdd, onJourneyStarted, initialJourney, onJourneyOpened, initialSource, onSourceOpened }: { controller: StudyWorkspaceController; onPractice?: (subject: string, kcIds: string[]) => void; onTab?: (tab: Tab) => void; onReviewAccess?: () => void; initialAdd?: "link" | "paste" | null; onJourneyStarted?: (node: string, subject: string) => void; initialJourney?: "next" | "lesson" | "quiz" | null; onJourneyOpened?: () => void; initialSource?: Pick<W.Source, "source_id" | "revision"> | null; onSourceOpened?: () => void }) {
+export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, initialAdd, onJourneyStarted, initialJourney, onJourneyOpened, initialSource, onSourceOpened, exampleMaterial }: { exampleMaterial?: () => Promise<File>; controller: StudyWorkspaceController; onPractice?: (subject: string, kcIds: string[]) => void; onTab?: (tab: Tab) => void; onReviewAccess?: () => void; initialAdd?: "link" | "paste" | null; onJourneyStarted?: (node: string, subject: string) => void; initialJourney?: "next" | "lesson" | "quiz" | null; onJourneyOpened?: () => void; initialSource?: Pick<W.Source, "source_id" | "revision"> | null; onSourceOpened?: () => void }) {
   const openLesson = useOpenLesson(), openTopic = useOpenTopic();
   const view = useSyncExternalStore(controller.subscribe, controller.getView, controller.getView), t = useT();
+  const [exampleLoading, setExampleLoading] = useState(false), [exampleFailed, setExampleFailed] = useState(false);
+  const exampleRequest = useRef(0);
+  useEffect(() => () => { exampleRequest.current++; }, [controller]);
+  const useExample = async () => {
+    if (!exampleMaterial || exampleLoading || view.busy) return;
+    const request = ++exampleRequest.current;
+    setExampleLoading(true); setExampleFailed(false);
+    try {
+      const file = await exampleMaterial();
+      if (request === exampleRequest.current) await controller.upload(file, undefined, true);
+    } catch { if (request === exampleRequest.current) setExampleFailed(true); }
+    finally { if (request === exampleRequest.current) setExampleLoading(false); }
+  };
   const [journeyChoices, setJourneyChoices] = useState<Record<string, string>>({});
   const [topicsSearched, setTopicsSearched] = useState(false);
   const [teachReview, setTeachReview] = useState(false);
@@ -197,7 +210,7 @@ export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, 
       {...(onReviewAccess ? { action: { label: t("study.access.review"), onClick: onReviewAccess } } : {})} />}
     {view.error && view.error !== "consent_required" && <Notice message={view.safetyTemplate ? t(`study.safety.${view.safetyTemplate}`) : errorText(view.error)} />}
     {view.error === "graded_work" && <span><Button onClick={() => { setChatPrompt(t("study.guided_help")); setTab("chat"); ask.current?.focus(); }}>{t("study.guided_help")}</Button></span>}
-    {view.busy && <p role="status" className="text-ui text-muted">{view.uploadTotal > 0 && view.uploadBytes < view.uploadTotal ? t("study.uploading", { done: view.uploadBytes, total: view.uploadTotal }) : t("study.working")}</p>}
+    {view.busy && <p role="status" className="text-ui text-muted">{view.uploadReading ? t("study.reading_file") : view.uploadTotal > 0 && view.uploadBytes < view.uploadTotal ? t("study.uploading", { done: view.uploadBytes, total: view.uploadTotal }) : t("study.working")}</p>}
   </>;
 
   const jobs = (list: typeof view.jobs, compact = false) => list.length > 0 && <section className="flex flex-col gap-2" aria-label={t("study.jobs")}>
@@ -241,9 +254,14 @@ export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, 
         <span aria-hidden="true" className="flex size-10 items-center justify-center rounded-pill bg-panel text-muted"><Icon name="sending" /></span>
         <span className="text-ui font-medium text-ink">{t("study.add_file")}</span>
         <span className="text-meta text-muted">{t("study.drop_hint")}</span>
-        <input type="file" accept={ACCEPT} disabled={view.busy} onChange={(e) => { const file = e.target.files?.[0]; e.target.value = ""; if (file) void controller.upload(file, undefined, preferCloud); }} className="sr-only" />
+        <input type="file" accept={ACCEPT} disabled={view.busy} onChange={(e) => { const input = e.currentTarget, file = input.files?.[0]; if (file) void controller.upload(file, undefined, preferCloud).finally(() => { input.value = ""; }); }} className="sr-only" />
       </label>
       <p className="text-meta text-muted">{t("study.file_help")}</p>
+      {exampleMaterial && <div className="flex flex-col items-start gap-2">
+        <Button size="sm" disabled={view.busy || exampleLoading} onClick={() => { void useExample(); }}>{t(exampleLoading ? "study.example_loading" : "study.example_notes")}</Button>
+        <p className="text-meta text-muted">{t("study.example_hint")}</p>
+        {exampleFailed && <Notice message={t("study.example_failed")} />}
+      </div>}
       <span className="flex flex-wrap gap-2"><Button size="sm" tone="ghost" aria-expanded={pasting} onClick={() => setPasting((open) => !open)}><Icon name="notes" size={16} />{t("study.paste")}</Button><Button size="sm" tone="ghost" aria-expanded={linking} onClick={() => { setLinking((open) => !open); setWebAgreed(false); }}>{t("study.add_link")}</Button></span>
       {linking && <form className="flex flex-col items-start gap-3" onSubmit={(e) => { e.preventDefault(); if (webAgreed) void controller.addWeb(webUrl).then(() => { if (!controller.getView().error) { setWebUrl(""); setWebAgreed(false); } }); }}>
         <label className="flex w-full flex-col gap-2 text-ui text-ink">{t("study.web_url")}<input type="url" required maxLength={2048} placeholder={t("study.web_url_placeholder")} value={webUrl} disabled={view.busy} onChange={(e) => { setWebUrl(e.target.value); setWebAgreed(false); }} className={FIELD_LOOK} /></label>
@@ -332,14 +350,14 @@ export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, 
         {source.kind === "recording" && <Notice message={t("study.recording_help")} />}
         {source.state === "queued" && <span><Button tone="primary" disabled={view.busy || !!accessBlocked} onClick={() => { void controller.startExtraction(preferCloud); }}>{t("study.start_extraction")}</Button></span>}
         {source.kind === "recording" && source.state === "partial" && <label className="flex min-h-11 items-center gap-2 text-ui text-ink"><input type="checkbox" checked={readableConfirmed} onChange={(e) => review(e.target.checked)} />{t("study.confirm_readable")}</label>}
-        {source.state === "uploading" && <label className="flex flex-col gap-2 text-ui text-ink">{t("study.resume_upload")}<input type="file" accept={ACCEPT} disabled={view.busy} onChange={(e) => { const file = e.target.files?.[0]; e.target.value = ""; if (file) void controller.upload(file, source, preferCloud); }} /></label>}
+        {source.state === "uploading" && <label className="flex flex-col gap-2 text-ui text-ink">{t("study.resume_upload")}<input type="file" accept={ACCEPT} disabled={view.busy} onChange={(e) => { const input = e.currentTarget, file = input.files?.[0]; if (file) void controller.upload(file, source, preferCloud).finally(() => { input.value = ""; }); }} /></label>}
         {["photo", "pdf"].includes(source.kind) && source.state !== "uploading" && <div className="flex flex-wrap items-end gap-2">
           {source.kind === "pdf" && <label className="flex flex-col gap-1 text-meta text-muted">{t("study.preview_page")}<input type="number" min={1} max={300} step={1} className={`${FIELD_LOOK} w-24`} value={previewPage} onChange={(e) => setPreviewPage(e.target.value)} /></label>}
           <Button size="sm" disabled={view.busy || !Number.isInteger(Number(previewPage)) || Number(previewPage) < 1 || Number(previewPage) > 300} onClick={() => showPage(Number(previewPage), source.revision, source.source_id)}>{source.kind === "photo" ? t("study.view_photo") : t("study.show_page", { page: Number(previewPage) || 1 })}</Button>
         </div>}
         <span><Button size="sm" tone="ghost" aria-expanded={managing} onClick={() => setManaging((open) => !open)}>{t("study.manage")}</Button></span>
         {managing && <div className="flex flex-col items-start gap-3 rounded-card bg-chrome p-4">
-            {["pdf", "document", "slides", "photo", "recording"].includes(source.kind) && <label className="flex flex-col gap-2 text-ui text-ink">{t("study.replace_file")}<input type="file" accept={ACCEPT} disabled={view.busy} onChange={(e) => { const file = e.target.files?.[0]; e.target.value = ""; if (file) void controller.upload(file, source, preferCloud, true); }} /></label>}
+            {["pdf", "document", "slides", "photo", "recording"].includes(source.kind) && <label className="flex flex-col gap-2 text-ui text-ink">{t("study.replace_file")}<input type="file" accept={ACCEPT} disabled={view.busy} onChange={(e) => { const input = e.currentTarget, file = input.files?.[0]; if (file) void controller.upload(file, source, preferCloud, true).finally(() => { input.value = ""; }); }} /></label>}
             <div className="flex flex-wrap gap-2">
               <Button size="sm" disabled={view.busy} onClick={correctSourceText}>{t("study.correct_text")}</Button>
               <Button size="sm" disabled={view.busy} onClick={() => { void controller.markPrivate(); }}>{t(source.private ? "study.make_public" : "study.make_private")}</Button>

@@ -7,6 +7,19 @@ afterEach(cleanup);
 const sid = `src_${"0".repeat(26)}`, now = "2026-10-18T00:00:00Z";
 const source = { source_id: sid, revision: 1, kind: "text", title: "Biology", state: "ready", private: false, created_at: now, updated_at: now, readable_units: 1, unreadable_units: [], sha256: "0".repeat(64) } as const;
 const cited = (text: string) => ({ text, citations: [{ source_id: sid, revision: 1, chunk_id: `sck_${"0".repeat(26)}`, start: 0, end: 3, quote: "DNA" }] });
+test("the native picker selection is kept until the upload has finished", async () => {
+  const controller = show({});
+  let finish!: () => void;
+  controller.upload.mockImplementation(() => new Promise<void>((resolve) => { finish = resolve; }));
+  const input = document.querySelector<HTMLInputElement>('input[type="file"]')!;
+  const reset = vi.spyOn(input, "value", "set");
+  fireEvent.change(input, { target: { files: [new File(["synthetic PDF"], "notes.pdf")] } });
+  expect(controller.upload).toHaveBeenCalledTimes(1);
+  expect(reset).not.toHaveBeenCalled();
+  finish();
+  await waitFor(() => expect(reset).toHaveBeenCalledWith(""));
+  reset.mockRestore();
+});
 test("an unreadable notes photo offers text correction without finding the manage menu", () => {
   show({ source: { ...source, kind: "photo", state: "unreadable", readable_units: 0, unreadable_units: [1] } });
   fireEvent.click(screen.getByRole("button", { name: "Correct or replace source text" }));
@@ -51,11 +64,11 @@ test("returning to curriculum material waits for workspace setup and retains the
   expect(controller.open).toHaveBeenCalledWith(sid, 2);
   expect(opened).toHaveBeenCalledTimes(1);
 });
-function show(extra: Partial<StudyWorkspaceView>, onReviewAccess?: () => void, onJourneyStarted?: (node: string, subject: string) => void) {
+function show(extra: Partial<StudyWorkspaceView>, onReviewAccess?: () => void, onJourneyStarted?: (node: string, subject: string) => void, exampleMaterial?: () => Promise<File>) {
   const view = { ...EMPTY_STUDY, status: "ready", ...extra } as StudyWorkspaceView;
   const controller = { subscribe: () => () => {}, getView: () => view, load: vi.fn(async () => {}), close: vi.fn(), open: vi.fn(), refreshOpened: vi.fn(), generate: vi.fn(async () => {}), upload: vi.fn(async () => {}), addWeb: vi.fn(async () => {}), startExtraction: vi.fn(async () => {}), rate: vi.fn(), submit: vi.fn(), readCitation: vi.fn(async () => true), playOverview: vi.fn(), stopReading: vi.fn(), pauseOverview: vi.fn(), resumeOverview: vi.fn(), checkAnswer: vi.fn(async () => {}), jobAction: vi.fn(), loadTopics: vi.fn(async () => true), saveDraft: vi.fn(async () => {}), loadMaterialTopics: vi.fn(async () => {}), openSet: vi.fn(async () => {}), showAid: vi.fn(async () => {}), hideAid: vi.fn(), clearResult: vi.fn(), loadMedia: vi.fn(async () => null), seek: vi.fn(), archiveSources: vi.fn(async () => {}), requestQuizHelp: vi.fn(async () => {}) };
   const connected = { ...controller, loadPage: vi.fn(async (): Promise<Blob | null> => null), correctText: vi.fn(async (_text: string) => {}), beginJourney: vi.fn(async () => true) };
-  render(<StudyWorkspace controller={connected as unknown as StudyWorkspaceController} {...(onReviewAccess ? { onReviewAccess } : {})} {...(onJourneyStarted ? { onJourneyStarted } : {})} />);
+  render(<StudyWorkspace controller={connected as unknown as StudyWorkspaceController} {...(exampleMaterial ? { exampleMaterial } : {})} {...(onReviewAccess ? { onReviewAccess } : {})} {...(onJourneyStarted ? { onJourneyStarted } : {})} />);
   return connected;
 }
 test("a selected material objective starts its journey before handing off to curriculum learning", async () => {
@@ -578,4 +591,28 @@ test("revealed rating buttons show native interval previews without recording a 
   expect(controller.rate).not.toHaveBeenCalled();
   fireEvent.click(screen.getByRole("button", { name: "Good · 2 days" }));
   expect(controller.rate).toHaveBeenCalledWith(card, "good");
+});
+
+test("example scanned notes use the real upload path only when requested", async () => {
+  const file = new File(["synthetic scan"], "example.pdf", { type: "application/pdf" });
+  const load = vi.fn(async () => file);
+  const controller = show({}, undefined, undefined, load);
+  expect(load).not.toHaveBeenCalled();
+  fireEvent.click(screen.getByRole("button", { name: "Use example scanned notes" }));
+  await waitFor(() => expect(controller.upload).toHaveBeenCalledWith(file, undefined, true));
+});
+test("example fetch failure is visible and does not create an upload", async () => {
+  const controller = show({}, undefined, undefined, async () => { throw new Error("offline"); });
+  fireEvent.click(screen.getByRole("button", { name: "Use example scanned notes" }));
+  expect(await screen.findByText("The example notes could not be opened. Try again or choose your own file.")).toBeTruthy();
+  expect(controller.upload).not.toHaveBeenCalled();
+});
+test("leaving the workspace cancels an example that is still loading", async () => {
+  let finish!: (file: File) => void;
+  const controller = show({}, undefined, undefined, () => new Promise((resolve) => { finish = resolve; }));
+  fireEvent.click(screen.getByRole("button", { name: "Use example scanned notes" }));
+  cleanup();
+  finish(new File(["scan"], "example.pdf"));
+  await Promise.resolve();
+  expect(controller.upload).not.toHaveBeenCalled();
 });

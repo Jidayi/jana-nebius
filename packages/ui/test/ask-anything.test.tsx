@@ -108,7 +108,7 @@ describe("UXS-67", () => {
     render(
       <LocaleProvider locale="en">
         <Home name="Ada" ask={<textarea aria-label="Ask anything, or paste a question" />} answer={<p>the answer</p>}
-          materials={{ onUpload: (f) => picked.push(`upload:${f.name}`), onLink: () => picked.push("link"), onPaste: () => picked.push("paste"), onRecord: (f) => picked.push(`record:${f.name}`) }}
+          materials={{ onUpload: (f) => { picked.push(`upload:${f.name}`); }, onLink: () => picked.push("link"), onPaste: () => picked.push("paste"), onRecord: (f) => { picked.push(`record:${f.name}`); } }}
           plan={<p data-plan="">Next up</p>} subjects={[]} onSubject={() => undefined} pickup={[]} onPickup={() => undefined}
           practice={{ ideas: [], refreshes: 0, subjectLabel: (s) => s }} onPractice={() => undefined} />
       </LocaleProvider>,
