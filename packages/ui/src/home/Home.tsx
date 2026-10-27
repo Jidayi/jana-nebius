@@ -7,7 +7,7 @@
 // up where you left off" (the newest sessions, each reopening where it was left, UXS-19) and today's practice, the
 // ideas the learner model says are due, each with its mastery word (DSN-23). Where no tutor answers here, the box
 // gives way to worked-solution search (UXS-51, PLT-29). The header carries the gentle daily goal chip (LRN-45).
-import { useEffect, useRef, type ChangeEvent, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { CLIENT_KEYS, type DueIdea, type SessionGroup } from "@jana/client-core";
 import { ScreenHeader } from "../frame/Frame.js";
 import { useT } from "../i18n.js";
@@ -52,31 +52,21 @@ function Row({ icon, name, meta, subject, onClick, children }: { icon: IconName;
 
 /** The four ways to add material above the box (UXS-67); each opens the study area. */
 export interface HomeMaterials {
-  onUpload: (file: File) => void | Promise<void>;
+  onUpload: () => void;
   onLink: () => void;
   onPaste: () => void;
-  onRecord: (file: File) => void | Promise<void>;
+  onRecord: () => void;
 }
 
-/** Accepted on Home's Upload: what the study area reads (STU-02). Record takes a recording the student holds. */
-const UPLOAD_ACCEPT = ".pdf,.docx,.pptx,.txt,.md,.png,.jpg,.jpeg,.webp,application/pdf,text/plain,text/markdown,image/png,image/jpeg,image/webp";
-const RECORDING_ACCEPT = ".mp3,.m4a,.wav,.ogg,.webm,audio/*";
-
+/** Open the persistent Study workspace before choosing a file. Its native input stays mounted while reading. */
 function Materials({ materials }: { materials: HomeMaterials }) {
   const t = useT();
-  const upload = useRef<HTMLInputElement>(null), record = useRef<HTMLInputElement>(null);
-  const picked = (pick: (file: File) => void | Promise<void>) => (e: ChangeEvent<HTMLInputElement>) => {
-    const input = e.currentTarget, file = input.files?.[0];
-    if (file) void Promise.resolve(pick(file)).finally(() => { input.value = ""; });
-  };
   return (
     <div role="group" aria-label={t("home.add_material")} data-home-materials="" className="flex flex-wrap gap-2">
-      <SuggestionChip icon="study" onClick={() => upload.current?.click()}>{t("home.material.upload")}</SuggestionChip>
+      <SuggestionChip icon="study" onClick={materials.onUpload}>{t("home.material.upload")}</SuggestionChip>
       <SuggestionChip icon="share" onClick={materials.onLink}>{t("home.material.link")}</SuggestionChip>
       <SuggestionChip icon="notes" onClick={materials.onPaste}>{t("home.material.paste")}</SuggestionChip>
-      <SuggestionChip icon="voice" onClick={() => record.current?.click()}>{t("home.material.record")}</SuggestionChip>
-      <input ref={upload} type="file" tabIndex={-1} aria-hidden="true" accept={UPLOAD_ACCEPT} onChange={picked(materials.onUpload)} className="sr-only" />
-      <input ref={record} type="file" tabIndex={-1} aria-hidden="true" accept={RECORDING_ACCEPT} onChange={picked(materials.onRecord)} className="sr-only" />
+      <SuggestionChip icon="voice" onClick={materials.onRecord}>{t("home.material.record")}</SuggestionChip>
     </div>
   );
 }

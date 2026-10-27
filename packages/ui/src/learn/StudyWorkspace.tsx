@@ -27,7 +27,7 @@ const tabOf = (kind: string): Tab => (kind === "chat" ? "chat" : "generate");
 const picked = (answer: string | undefined) => (answer ?? "").split(",").filter(Boolean);
 
 /** `onTab` hears which tab is open: the voice conversation lives in Chat (VOC-53, D130). */
-export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, initialAdd, onJourneyStarted, initialJourney, onJourneyOpened, initialSource, onSourceOpened, exampleMaterial }: { exampleMaterial?: () => Promise<File>; controller: StudyWorkspaceController; onPractice?: (subject: string, kcIds: string[]) => void; onTab?: (tab: Tab) => void; onReviewAccess?: () => void; initialAdd?: "link" | "paste" | null; onJourneyStarted?: (node: string, subject: string) => void; initialJourney?: "next" | "lesson" | "quiz" | null; onJourneyOpened?: () => void; initialSource?: Pick<W.Source, "source_id" | "revision"> | null; onSourceOpened?: () => void }) {
+export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, initialAdd, onJourneyStarted, initialJourney, onJourneyOpened, initialSource, onSourceOpened, exampleMaterial }: { exampleMaterial?: () => Promise<File>; controller: StudyWorkspaceController; onPractice?: (subject: string, kcIds: string[]) => void; onTab?: (tab: Tab) => void; onReviewAccess?: () => void; initialAdd?: "file" | "recording" | "link" | "paste" | null; onJourneyStarted?: (node: string, subject: string) => void; initialJourney?: "next" | "lesson" | "quiz" | null; onJourneyOpened?: () => void; initialSource?: Pick<W.Source, "source_id" | "revision"> | null; onSourceOpened?: () => void }) {
   const openLesson = useOpenLesson(), openTopic = useOpenTopic();
   const view = useSyncExternalStore(controller.subscribe, controller.getView, controller.getView), t = useT();
   const [exampleLoading, setExampleLoading] = useState(false), [exampleFailed, setExampleFailed] = useState(false);
@@ -47,7 +47,9 @@ export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, 
   const [topicsSearched, setTopicsSearched] = useState(false);
   const [teachReview, setTeachReview] = useState(false);
   useEffect(() => setTopicsSearched(false), [view.source?.source_id, view.source?.revision]);
-  const [adding, setAdding] = useState(false), [activityOpen, setActivityOpen] = useState(false), [allSetsOpen, setAllSetsOpen] = useState(false), [activityLimit, setActivityLimit] = useState(8);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const fileInput = useRef<HTMLInputElement>(null);
+  const [adding, setAdding] = useState(initialAdd === "file" || initialAdd === "recording"), [activityOpen, setActivityOpen] = useState(false), [allSetsOpen, setAllSetsOpen] = useState(false), [activityLimit, setActivityLimit] = useState(8);
   const [title, setTitle] = useState(""), [text, setText] = useState(""), [confirm, setConfirm] = useState<string | null>(null);
   const [pageImage, setPageImage] = useState<{ url: string; page: number } | null>(null);
   const [previewPage, setPreviewPage] = useState("1");
@@ -247,15 +249,21 @@ export function StudyWorkspace({ controller, onPractice, onTab, onReviewAccess, 
     </header>
     {status}
     <div hidden={!adding && !pasting && !linking && view.sources.length > 0} className="flex flex-col gap-4 rounded-card border border-line bg-canvas p-5">
-      {/* A drop zone over the native picker, which stays in the tab order (focus rings the whole zone). */}
+      {/* A visible native input avoids a programmatic second click. Selection is confirmed before processing. */}
       <label data-study-drop={dragging ? "over" : ""} onDragOver={(e) => { if (e.dataTransfer.types.includes("Files")) { e.preventDefault(); setDragging(true); } }} onDragLeave={() => setDragging(false)}
-        onDrop={(e) => { e.preventDefault(); setDragging(false); const file = e.dataTransfer.files[0]; if (file && !view.busy) void controller.upload(file, undefined, preferCloud); }}
+        onDrop={(e) => { e.preventDefault(); setDragging(false); const file = e.dataTransfer.files[0]; if (file && !view.busy) setSelectedFile(file); }}
         className={`flex cursor-pointer flex-col items-center gap-2 rounded-card border border-dashed px-6 py-8 text-center has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-focus ${dragging ? "border-focus bg-panel" : "border-line-strong hover:bg-wash"}`}>
         <span aria-hidden="true" className="flex size-10 items-center justify-center rounded-pill bg-panel text-muted"><Icon name="sending" /></span>
         <span className="text-ui font-medium text-ink">{t("study.add_file")}</span>
         <span className="text-meta text-muted">{t("study.drop_hint")}</span>
-        <input type="file" accept={ACCEPT} disabled={view.busy} onChange={(e) => { const input = e.currentTarget, file = input.files?.[0]; if (file) void controller.upload(file, undefined, preferCloud).finally(() => { input.value = ""; }); }} className="sr-only" />
+        <input ref={fileInput} type="file" aria-label={t("study.choose_file")} accept={initialAdd === "recording" ? ".mp3,.m4a,.wav,.ogg,.webm,audio/*" : ACCEPT} disabled={view.busy} onChange={(e) => { const file = e.currentTarget.files?.[0]; if (file) setSelectedFile(file); }} className="w-full max-w-full text-meta text-ink file:me-3 file:min-h-11 file:rounded-control file:border file:border-line file:bg-panel file:px-3 file:text-ink" />
       </label>
+      {selectedFile && <p role="status" className="break-words text-ui text-ink">{t("study.selected_file", { name: selectedFile.name, size: Math.max(1, Math.ceil(selectedFile.size / 1024)) })}</p>}
+      <span><Button tone="primary" disabled={view.busy || !selectedFile} onClick={() => {
+        if (!selectedFile) return;
+        const input = fileInput.current;
+        void controller.upload(selectedFile, undefined, preferCloud).finally(() => { if (input) input.value = ""; setSelectedFile(null); });
+      }}>{t("study.upload_selected")}</Button></span>
       <p className="text-meta text-muted">{t("study.file_help")}</p>
       {exampleMaterial && <div className="flex flex-col items-start gap-2">
         <Button size="sm" disabled={view.busy || exampleLoading} onClick={() => { void useExample(); }}>{t(exampleLoading ? "study.example_loading" : "study.example_notes")}</Button>

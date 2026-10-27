@@ -14,6 +14,9 @@ test("the native picker selection is kept until the upload has finished", async 
   const input = document.querySelector<HTMLInputElement>('input[type="file"]')!;
   const reset = vi.spyOn(input, "value", "set");
   fireEvent.change(input, { target: { files: [new File(["synthetic PDF"], "notes.pdf")] } });
+  expect(controller.upload).not.toHaveBeenCalled();
+  expect(screen.getByText("Selected: notes.pdf (1 KB)")).toBeTruthy();
+  fireEvent.click(screen.getByRole("button", { name: "Upload selected file" }));
   expect(controller.upload).toHaveBeenCalledTimes(1);
   expect(reset).not.toHaveBeenCalled();
   finish();
@@ -146,12 +149,15 @@ test("a successful extraction supersedes an older failure for the same source re
   expect(screen.getByRole("status").textContent).toContain("Completed");
   expect(screen.queryByText(/exceeds the processing limit/)).toBeNull();
 });
-test("PDF picker and drop both request online extraction", () => {
+test("PDF picker and drop both request online extraction after confirmation", async () => {
   const controller = show({});
   const input = document.querySelector<HTMLInputElement>('input[type="file"]')!;
   const file = new File(["synthetic PDF"], "notes.pdf", { type: "application/pdf" });
   fireEvent.change(input, { target: { files: [file] } });
+  fireEvent.click(screen.getByRole("button", { name: "Upload selected file" }));
+  await waitFor(() => expect(screen.queryByText("Selected: notes.pdf (1 KB)")).toBeNull());
   fireEvent.drop(input.closest("label")!, { dataTransfer: { files: [file] } });
+  fireEvent.click(screen.getByRole("button", { name: "Upload selected file" }));
   expect(controller.upload.mock.calls).toEqual([[file, undefined, true], [file, undefined, true]]);
 });
 test("an already uploaded PDF is processed online", () => {
@@ -615,4 +621,14 @@ test("leaving the workspace cancels an example that is still loading", async () 
   finish(new File(["scan"], "example.pdf"));
   await Promise.resolve();
   expect(controller.upload).not.toHaveBeenCalled();
+});
+
+test("dropping notes stages the actual file and requires explicit upload", async () => {
+  const controller = show({});
+  const file = new File(["personal scan"], "my-handwriting.pdf", { type: "application/pdf" });
+  fireEvent.drop(document.querySelector("[data-study-drop]")!, { dataTransfer: { files: [file] } });
+  expect(screen.getByText("Selected: my-handwriting.pdf (1 KB)")).toBeTruthy();
+  expect(controller.upload).not.toHaveBeenCalled();
+  fireEvent.click(screen.getByRole("button", { name: "Upload selected file" }));
+  await waitFor(() => expect(controller.upload).toHaveBeenCalledWith(file, undefined, true));
 });

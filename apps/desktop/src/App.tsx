@@ -345,7 +345,7 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
   const { profiles } = runtime;
   const view = useProfiles(profiles);
   const [screen, setScreen] = useState<Screen>("home");
-  const [studyAdd, setStudyAdd] = useState<"link" | "paste" | null>(null);
+  const [studyAdd, setStudyAdd] = useState<"file" | "recording" | "link" | "paste" | null>(null);
   const [studyResume, setStudyResume] = useState<"next" | "lesson" | "quiz" | null>(null);
   const [studySource, setStudySource] = useState<{ source_id: string; revision: number } | null>(null);
   // The student menu (D115): Settings at a section, the keyboard help, and what it says about the student.
@@ -1047,12 +1047,12 @@ function Shell({ runtime }: { runtime: AppRuntime }) {
       : session === null || session === "failed" ? waiting
       : withSpeech(<Composer sessionId={session.sessionId} asking placement="inline" onSent={() => { setFromLesson(null); setFromPractice(false); setFromReport(false); setScreen("tutor"); }} route={routeHome} {...warmingProps} />,
         session, ASK_PLACE, (answer) => runtime.ask.voiced(answer));
-    const openStudy = (add: "link" | "paste" | null = null) => { runtime.ask.clear(); setStudyAdd(add); setScreen("study"); };
+    const openStudy = (add: "file" | "recording" | "link" | "paste" | null = null) => { runtime.ask.clear(); setStudyAdd(add); setScreen("study"); };
     const materials = studyAvailable && lock === null ? {
-      onUpload: (file: File) => { const pending = runtime.studyWorkspace.upload(file, undefined, true); openStudy(); return pending; },
+      onUpload: () => openStudy("file"),
       onLink: () => openStudy("link"),
       onPaste: () => openStudy("paste"),
-      onRecord: (file: File) => { const pending = runtime.studyWorkspace.upload(file, undefined, true); openStudy(); return pending; },
+      onRecord: () => openStudy("recording"),
     } : null;
     // Ask anything's answer above the box; "Ask the tutor" sends the same question there (held until it is ready).
     const answer = lock !== null ? undefined : <AskAnswer view={askView} actions={{

@@ -4,6 +4,7 @@
 import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { FakeProfileCore } from "../../../packages/client-core/test/profilecore.js";
+import { StrictMode } from "react";
 import { App, createRuntime } from "../src/App.js";
 
 beforeEach(() => vi.stubGlobal("matchMedia", (query: string) => ({
@@ -104,4 +105,25 @@ describe("UXS-67", () => {
     await waitFor(() => expect(turns(fake)).toHaveLength(1));
     await waitFor(() => expect(within(nav).getByRole("button", { name: "Home" }).getAttribute("aria-current")).toBeNull());
   });
+});
+
+test.each(["Upload", "Record"])("Home %s enters Study before any file is selected or read", async (action) => {
+  const fake = routed(true), runtime = createRuntime(fake.core.launch, fake.fetch);
+  const upload = vi.spyOn(runtime.studyWorkspace, "upload").mockResolvedValue();
+  render(<StrictMode><App runtime={runtime} /></StrictMode>);
+  fireEvent.click(await screen.findByRole("button", { name: /^Ada/ }));
+  const homeActions = await screen.findByRole("group", { name: "Add material" });
+  fireEvent.click(within(homeActions).getByRole("button", { name: action }));
+  await screen.findByRole("heading", { level: 1, name: "Study" });
+  expect(upload).not.toHaveBeenCalled();
+  const input = screen.getByLabelText("Choose a file") as HTMLInputElement;
+  expect(input.isConnected).toBe(true);
+  expect(input.classList.contains("sr-only")).toBe(false);
+  expect(input.accept).toContain(action === "Record" ? "audio/*" : ".pdf");
+  const file = new File(["personal handwritten notes"], action === "Record" ? "notes.m4a" : "my-notes.pdf");
+  fireEvent.change(input, { target: { files: [file] } });
+  expect(await screen.findByText(`Selected: ${file.name} (1 KB)`)).toBeTruthy();
+  expect(upload).not.toHaveBeenCalled();
+  fireEvent.click(screen.getByRole("button", { name: "Upload selected file" }));
+  await waitFor(() => expect(upload).toHaveBeenCalledExactlyOnceWith(file, undefined, true));
 });

@@ -108,7 +108,7 @@ describe("UXS-67", () => {
     render(
       <LocaleProvider locale="en">
         <Home name="Ada" ask={<textarea aria-label="Ask anything, or paste a question" />} answer={<p>the answer</p>}
-          materials={{ onUpload: (f) => { picked.push(`upload:${f.name}`); }, onLink: () => picked.push("link"), onPaste: () => picked.push("paste"), onRecord: (f) => { picked.push(`record:${f.name}`); } }}
+          materials={{ onUpload: () => { picked.push("upload"); }, onLink: () => picked.push("link"), onPaste: () => picked.push("paste"), onRecord: () => { picked.push("record"); } }}
           plan={<p data-plan="">Next up</p>} subjects={[]} onSubject={() => undefined} pickup={[]} onPickup={() => undefined}
           practice={{ ideas: [], refreshes: 0, subjectLabel: (s) => s }} onPractice={() => undefined} />
       </LocaleProvider>,
@@ -123,9 +123,9 @@ describe("UXS-67", () => {
     expect(screen.getByText("the answer").compareDocumentPosition(document.querySelector("[data-plan]")!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     fireEvent.click(within(group).getByRole("button", { name: "Link" }));
     fireEvent.click(within(group).getByRole("button", { name: "Paste" }));
-    const [upload, record] = [...document.querySelectorAll<HTMLInputElement>("[data-home-materials] input[type=file]")];
-    fireEvent.change(upload!, { target: { files: [new File(["x"], "notes.pdf")] } });
-    fireEvent.change(record!, { target: { files: [new File(["x"], "lecture.m4a")] } });
-    expect(picked).toEqual(["link", "paste", "upload:notes.pdf", "record:lecture.m4a"]);
+    fireEvent.click(within(group).getByRole("button", { name: "Upload" }));
+    fireEvent.click(within(group).getByRole("button", { name: "Record" }));
+    expect(document.querySelector("[data-home-materials] input[type=file]")).toBeNull();
+    expect(picked).toEqual(["link", "paste", "upload", "record"]);
   });
 });
