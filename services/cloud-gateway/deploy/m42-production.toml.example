@@ -1,36 +1,24 @@
-# Deliberately incomplete. Copy outside checkout; replace REQUIRED values using deployment facts.
-# Run M42 preflight before deploy. Never store credentials in this file.
+# Deliberately incomplete Nebius template. Copy outside checkout and replace REQUIRED values.
+# Provider routes and model prices inherit cloud_gateway/defaults.toml; requalify them before deployment.
+# Never store credential values here. No deployment or inference spending is authorized by this file.
 environment = "production"
 audience_host = "REQUIRED-production-host"
 storage_dir = "/var/lib/jana-cloud-gateway"
 secrets_dir = "/run/credentials/jana-cloud-gateway.service"
-study_model = "primary/fast-model"
+study_model = "primary/strong-model"
+study_vision_model = "primary/vision-model"
+voice_enabled = false
 open_registration = false
-# Set from measured worker costs; these zero values are not release-approved prices.
+# Replace with measured worker costs before production billing.
 study_extract_page_usd = 0.0
 study_extract_minute_usd = 0.0
+
 [entitlement_keys]
 # REQUIRED: public licence-intermediate key IDs and base64 raw public keys.
 
-# Prepared for the known production project; this does not deploy or approve learner processing.
-# Retention verification must bind this exact endpoint/project/location, not staging's records.
-[slots]
-primary = "vertex"
-[providers.vertex]
-adapter = "vertex"
-base_url = "https://aiplatform.eu.rep.googleapis.com/v1/projects/jana-prod-512005/locations/eu/publishers/google"
-secret = "unused_attached_identity"
-timeout_s = 180.0
-[providers.vertex.models.fast-model]
-id = "gemini-3.8-flash"
-thinking = { kind="level", none="low", low="low", medium="medium", high="high" }
-[tier]
-calls_per_turn = {fast-model=3.0}
 [quotas]
-# Conservative initial guard; measured costs and production spending controls still require qualification.
-study_daily_spend_usd = 2.0
-[prices."gemini-3.8-flash"]
-# Vertex EU introductory prices: requalify before 2027-01-01.
-input = 0.825
-cached_input = 0.0825
-output = 4.125
+# Fail closed until the operator supplies approved limits and an expiry.
+deployment_daily_spend_usd = 0.0
+deployment_total_spend_usd = 0.0
+study_daily_spend_usd = 0.0
+# REQUIRED: deployment_budget_expires_at = "actual-approved-UTC-expiry"

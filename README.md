@@ -1,234 +1,83 @@
 # Jana — powered by Nebius
 
-An offline-first secondary school sciences tutor for Mathematics, Physics, Chemistry, Biology and Accounting.
-This monorepo contains the local tutor, checking worker, desktop shell, curriculum tooling and S2 implementations.
-Desktop installation controls and typed input are being integrated. This fork preserves the original implementation; passing development tests does not constitute release acceptance.
+Jana connects a daily learning plan, curriculum lessons, checked practice, tutor help and Study from a learner’s own materials. Lessons, saved progress and completed Study aids remain available on the device. Online tutoring and Study processing use the budgeted Nebius gateway.
 
-## Layout
+## Learning journey
 
-| Path | Holds |
+1. Select a learner profile and start from Home’s next learning objective.
+2. Read the linked lesson, then try practice on the same objective.
+3. Ask the tutor for help and return to the exercise with its context intact.
+4. Upload notes or a scanned PDF, compare the extracted text with the original pages, and confirm the readable passages.
+5. Ask a source-based question or generate study tools. Citations open the original evidence; saved flashcards, quiz attempts and learning journeys can be resumed.
+6. Review progress and session history. Settings also includes local parent summaries and alerts; authoring analytics are available in Studio.
+
+The recording profile is **Alex Morgan**, a fictional adult learner. Use synthetic notes for the demo. The bundled [two-page scanned PDF](evals/perception/handwriting/demo-scanned-notes.pdf) contains image-only maths and biology notes. Automatic transcription, original-page previews and a page-2 cited answer were verified through the actual app upload flow. This sample does not establish accuracy for every handwriting style.
+
+## Nebius architecture
+
+| Responsibility | Route |
 | --- | --- |
-| `apps/desktop/` | Desktop app: `src-tauri/` (Rust shell) and `src/` (React entry) |
-| `apps/prototype-s0/` | The S0 prototype, frozen and excluded from releases |
-| `packages/` | `ui`, `client-core`, `renderers`, `contracts-ts` (generated), `i18n` |
-| `services/` | `agent-core`, `tool-worker`, `perception-worker`, `pack-builder` and, later, online services |
-| `content/`, `skills/` | Authored agent content, curriculum sources and skills |
-| `evals/` | Evaluation suites, fixtures and contract corpora |
-| `scripts/` | Repository tooling (`jana_tools`), git hooks and CI scripts |
-| `docs/` | Private specification; deliberately absent from this hackathon copy |
+| Coach and diagnosis | Nemotron Super on Nebius Token Factory |
+| Solving, checking and Study generation | Nemotron Ultra on Nebius Token Factory |
+| Scanned-page transcription when printed OCR is insufficient | MiniCPM vision reader on Nebius Token Factory |
+| Optional offline tutoring and local marking | Local Nemotron runtime |
+| Optional public web search/import | Tavily, with separate confirmation |
+| Optional podcast narration | NVIDIA Magpie prototype service, with its own disclosure and limits |
 
-An unknown directory fails the layout check. Every package declares its layer in its manifest
-(`jana` in `package.json`, `[tool.jana]` in `pyproject.toml`, `[package.metadata.jana]` in `Cargo.toml`).
+Concrete model IDs, prices and the provider endpoint are in [gateway defaults](services/cloud-gateway/cloud_gateway/defaults.toml). [nebius-dev.toml](services/cloud-gateway/deploy/nebius-dev.toml) controls the local demo. Credentials stay in the gateway; the browser never receives provider keys. Cloud conversational voice is disabled in this host.
 
-## Hackathon copy
+## Run the demo
 
-This is a fresh source copy of Jana for the Nebius × NVIDIA Global AI Hackathon. The original desktop app,
-shared UI, themes, navigation, feature implementations and authored curriculum are preserved. The separate
-custom browser demo from the previous attempt is not part of this checkout. No upstream Git history, remote,
-secrets, private specification or internal deployment evidence was copied.
+Save the configured keys in macOS Keychain Access, in the login keychain, using service **`jana-nebius.cloud-gateway`**:
 
-The cloud provider now routes Coach and Diagnoser to NVIDIA Nemotron Super and Solver and Checker to
-Nemotron Ultra through Nebius Token Factory. The gateway alone reads `NEBIUS_API_KEY`; the UI does not receive it.
-The browser host reuses the original app and native runtime, profile isolation, consent gates, maths checking,
-Study workspace and signed curriculum packs. It sends authenticated requests to the owner's local gateway; no
-scripted provider is installed in this mode. Study generation is **online-only**. Saved material and study aids
-remain on the device. Cloud voice is not connected by this host.
+| Account | Used for |
+| --- | --- |
+| `nebius_api_key` | Nebius Token Factory |
+| `tavily_api_key` | Optional public web search/import |
+| `nvidia_api_key` | Optional podcast narration |
 
-Saved source learning journeys connect a lesson, its flashcards and its quiz through durable profile-local links, including existing linked sets. Home and Study show the same next step, using actual card reviews, saved quiz drafts and submitted results. Completed quiz feedback survives reopening; questions needing another look lead back to the lesson before an explicit retry. Reading or revealing content never counts as a card review or O-level mastery. Journey links survive job cleanup and follow the source’s existing private-access, archive and erasure rules.
+The optional gateway environment names are listed in [.env.example](.env.example). Do not put credentials in source files, browser storage, command arguments or recordings. The gateway reads its secret source at startup.
 
-The [25 October feature import](FEATURE_IMPORT.md) adds Jana's tutor pen, annotations, diagram manipulation,
-sketches and additional science visuals. Parent summaries and alerts are in Settings; retained session history is
-under Progress. Authoring analytics are in Studio. The browser development host exposes these imported screens
-at stage S3 while retaining this fork's provider and learning-journey integration.
-
-Ask anything can retrieve public evidence with Tavily Search and Extract, then use Nemotron to draft an answer
-and check its cited support. Each question requires the existing web-search confirmation. Study can also import
-a public HTTPS page after a separate confirmation; uploaded files and private notes are never sent to Tavily.
-The gateway alone reads `TAVILY_API_KEY`. Live browser checks verified Search and Extract using existing credits,
-followed by Nemotron generation and a separate support check. Web source rows open the original public pages.
-
-File extraction also uses the online Study gateway (up to 300 PDF pages). Study checks profile access before
-processing, keeps uploads locally while approval is pending, and links to the relevant consent settings. Returning
-from those settings restores the selected source; no consent or file transmission is automatic.
-
-Study processes whole documents in automatic 16,000-character batches and combines their checked results.
-Keeping all detected topics selected includes the whole document, including chapters beyond the heading preview.
-Verified batches are checkpointed so interrupted work can resume without repeating them; an unfinished batch
-cannot publish a partial aid as complete. Search answers and their sources appear above Home's message input.
-Summary, Notes and Podcast verification checks each claim independently; flashcards and quizzes check complete cards and
-question/key pairs, keeping only supported items while requiring safety approval for the entire batch.
-Model requests preserve all source text but use short citation references instead
-of repeating quoted passages. Citation links scroll directly to the highlighted excerpt, including in long PDFs.
-
-Live Study checks extracted all 69 pages of `notes.pdf`. A fresh whole-document Nemotron Ultra run with every
-topic included and no focus restriction completed six automatic batches (81/81 processing steps), producing
-24 supported summary points with 44 exact source citations. Every citation matched the stored PDF text;
-browser checks opened highlighted passages on pages 9, 37 and 68. Interrupted runs also resumed verified batches.
-Whole-document flashcards completed the same six batches and produced 10 cards with 24 exact citations.
-Browser checks revealed card backs, opened the cited PDF passage and saved a Good review, leaving nine cards due.
-Reviewed PDF extraction does not require a second confirmation to rate its saved cards; revision checks still apply.
-Two whole-document quizzes also completed 81/81 steps. The fresh default quiz has 10 questions (six choice,
-three fill-in blanks and one true/false) with 28 exact question/explanation citations, including late chapters.
-Browser checks submitted all 10 source-worded answers successfully, and separately exercised wrong-answer
-feedback, explanation reveal, skipped answers and PDF source links. The queue preserves deterministic marking
-for choices, multiple selections, true/false and literal blanks instead of replacing it with a fallback verdict.
-Blank answers keep normalized exact matches fast. Other wording uses the local NVIDIA marker on the question's
-cited passages, then a separate source-entailment check of the completed sentence without the first verdict or
-answer key. Both passes must agree before accepting or rejecting an answer; unavailable models, ambiguity or
-disagreement leave it unverifiable. The saved explanation keeps its original verified citations. These judgments
-retain the “Judged, not checked” label and never alter syllabus mastery. Live browser checks accepted “exponentially,”
-“the input depth,” “at an exponential rate” and “the matrix V” in the whole-PDF quiz, while rejecting a changed quantity,
-reversed negation and instructions embedded in a wrong answer. No extra Nebius inference was needed.
-Generated blanks prefer words and short concepts rather than formulas; semantic grading is not a deterministic
-mathematical proof. Saved quiz keys stay out of the pre-submission public view.
-Whole-document Notes and standard Podcast also completed six batches (81/81 steps). Notes produced 46 cited
-points with 65 exact citations; Podcast produced 20 spoken passages with 51 exact citations. The browser opened
-highlighted Notes and Podcast source passages on pages 66 and 65, and Podcast playback advanced through six
-passages before Stop returned it to Play. Verified Podcast batches resumed without being regenerated.
-Podcast Play/Stop supports NVIDIA Magpie neural narration through the gateway, using its free API-catalog
-prototype endpoint. Only the verified, verbalised script is sent in bounded passages; the browser never receives
-a provider key. NVIDIA’s trial can retain inputs and audio, as disclosed beside Play, so private-marked sources
-are refused and confidential material should not be used with the trial. Audio remains in memory in Jana.
-The live browser check on October 23 read the NVIDIA key from Keychain, played successive passages of the
-whole-PDF Podcast with Magpie, and verified Stop during playback and while a cloud response was pending.
-The subsequent uninterrupted UI run completed all 20 passages: 20 new NVIDIA responses completed, with no held
-speech requests or playback error, and Play returned automatically at the end. Loading gaps between passages
-remain; this establishes automatic completion, not gapless playback. Recorded inference stayed at $2.492448.
-Study now offers quick generation with separate settings, duplicate-set reuse, summary presets with source-page
-sections, and focused quiz navigation with native single-question feedback; the all-questions view remains available.
-Old failed and paused jobs stay in collapsed history below results, while a newly failed request stays actionable.
-Podcast buffers at most one passage ahead in memory and provides Pause/Resume, Jana's existing progress bar and
-an explicit finished state. Stop/profile changes discard late audio; playback and Resume recheck native access.
-The updated UI completed all 20 Podcast passages after Pause/Resume. A whole-PDF Cheat sheet completed 81/81 steps,
-with 30 points and 56 exact source citations. Recorded inference reached $2.601053; existing unresolved holds remain.
-Existing Voice controls are now available inside Accessibility settings
-when the core does not advertise a separate Voice section; later-stage builds keep the single original section.
-A public documentation page imported through Tavily produced two cited flashcards in an earlier live check.
-Some websites refuse extraction; use a file or pasted text when that happens. These checks do not establish that
-every aid, recording or YouTube URL works.
-
-The approved budget is **$25 total for ten days**: $15 inference and $10 reserved for hosting. The gateway's
-persistent ledger at `/tmp/jana-nebius-gateway` is retained across this reset. The supplied configuration limits
-inference to $4 per UTC day and $15 total, ending November 2, 2026 at 00:46:01 UTC. The daily ceiling allows
-live qualification within that same total; subsequent days share the remaining allowance. It reserves in-flight costs
-and retains failed or unresolved reservations. Do not delete or reset that ledger. Tavily has a separate durable
-limit of 50 existing credits per UTC day and 500 total, with the same expiry. It uses basic Search/Extract only,
-checks the account's available prepaid credits and refuses requests when paid overage is enabled or usage cannot
-be verified. It never purchases credits. Conversational cloud voice remains disabled. Podcast narration uses
-NVIDIA’s free prototyping access, with a separate durable limit of 20,000 characters/100 requests per UTC day
-and 100,000 characters/500 requests total through the same expiry. Unknown sends remain counted. It never
-provisions a GPU, purchases credits or selects a paid speech endpoint.
-
-For local development, save the provider keys once in **macOS Keychain Access**, in the login keychain:
-
-| Keychain Item Name (service) | Account Name | Password |
-| --- | --- | --- |
-| `jana-nebius.cloud-gateway` | `nebius_api_key` | Your Nebius Token Factory key |
-| `jana-nebius.cloud-gateway` | `tavily_api_key` | Your Tavily key |
-| `jana-nebius.cloud-gateway` | `nvidia_api_key` | Your free NVIDIA API catalog key |
-
-Choose **File → New Password Item** for each row and enter the actual key only in its Password field.
-This dedicated service name keeps the hackathon's credentials separate from other Jana installations.
-The gateway already reads these items directly; no key file, shell export or frontend change is needed.
-macOS may ask you to approve Keychain access when the gateway starts. Only approve a lookup you initiated.
-If that lookup times out, open that specific item’s Access Control and permit `/usr/bin/security` for the item;
-do not allow all applications. Restart the gateway after changing access. No key needs to be copied to chat.
-
-Start the gateway from any Terminal:
+Start the gateway:
 
 ```bash
 uv run --offline python -m cloud_gateway --config services/cloud-gateway/deploy/nebius-dev.toml --port 8081
 ```
 
-Gateway-only environment variables remain supported as a temporary alternative. They take precedence over
-Keychain items. After saving the items, clear old exports in the gateway Terminal with
-`unset NEBIUS_API_KEY TAVILY_API_KEY NVIDIA_API_KEY` before starting it to use Keychain.
-
-For GCP deployment, use Google Secret Manager and mount the secrets into the gateway's configured
-`secrets_dir` as `nebius_api_key`, `tavily_api_key` and `nvidia_api_key`; the gateway supports this source already.
-See [Cloud Run secret configuration](https://docs.cloud.google.com/run/docs/configuring/services/secrets).
-
-Do not paste provider keys into chat, a repository file, browser storage or frontend configuration.
-Provider adapters load keys at startup, so replacing a key or changing gateway code still requires a restart;
-Keychain removes the need to re-enter keys or keep a particular Terminal session alive.
-
-Start the full app's live hackathon browser host in a second Terminal:
+In a second terminal, start the app:
 
 ```bash
-uv run --offline python -m jana_tools.hackathon_dev
+uv run --offline python -m jana_tools.hackathon_dev --stable --port 5187 --data-dir /path/to/demo-data
 ```
 
-For a demo, add `--stable` to build once and serve the preview without source-file reloads. Keep the gateway
-running in the first Terminal; the browser host does not start it. Use `--data-dir /path/to/demo-data` to reuse
-the same saved profiles across sessions. These options also work with `--local-model` below.
+Open **http://127.0.0.1:5187/**. Reuse the same data directory to retain profiles. `--stable` builds once and serves the preview. The host installs the signed subject packs and uses the real gateway. The plain desktop Vite development command uses scripted replies for UI development; use the launcher above for a live demo.
 
-Open **http://127.0.0.1:5187/**. The separate port avoids another app already using 5173 on the development machine.
-The first launch builds and verifies all four original signed subject packs; later launches reuse the cache.
-Create a synthetic demo profile. In Settings → Online features, give the cloud tutor consent. Accept its native
-first-use notice when asking a question. For online Study, an adult profile can give its own material consent in
-the same settings section. Minors retain the existing signed guardian-checkout requirement; the sponsor never
-invents that consent. A device switch alone does not grant a minor permission to transmit material.
+For the optional offline tutor, add `--local-model /path/to/model.gguf`. The launcher verifies the supported [Nemotron Nano 4B Q4_K_M](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-4B-GGUF) before loading it through llama.cpp. The expected SHA-256 is `be5d9a656a51922f24f1f09a759cebb694e1f5d9728bf0ef9f8c972c5a0b5ef2`. Model use follows the [Nemotron Open Model License](https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-nemotron-open-model-license/).
 
-The host provisions only a native device public key for the sponsored development access. Its private device key
-stays outside the app data directory, under a private file keystore; the gateway issues short-lived device tokens.
-Normal restarts reuse that credential, respect the existing device limit and never revoke other credentials.
-Ending sponsored access is sticky. This local host is development-only; public deployment still needs a reviewed
-hosting and authentication configuration. No cloud deployment or video publication has been performed.
+Online features require the selected profile’s consent and first-use confirmation. Adult profiles can review Study consent in Settings → Online features. Minors retain the signed guardian-consent requirement. Scanned notes are initially unreviewed; generation requires confirmation of the extracted passages.
 
-### NVIDIA offline tutor
+## Demo limits and deployment
 
-The optional local tutor uses NVIDIA's official [Nemotron Nano 4B Q4_K_M](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-4B-GGUF)
-with the installed llama.cpp runtime. The launcher verifies the published SHA-256 before loading, binds the runtime
-to literal loopback, creates a private per-launch key and connects it through the original native control protocol.
-Readiness requires a real tool-template generation. Local calls have no API cost. Its quality and performance still
-need broader evaluation; loading a model does not qualify a release.
+The existing approval allocates **$15 total to inference**, with **$10 reserved for hosting**. The active configuration permits at most **$6 per UTC day** within that same inference total and expires on **2 November 2026 at 00:46:01 UTC**. Hosting purchases require separate authorization. The durable ledger at `/tmp/jana-nebius-gateway` preserves actual spend and uncertain reservations across restarts; never delete or reset it to recover allowance.
 
-After downloading NVIDIA's official GGUF to a local path, use:
+Tavily uses existing prepaid credits with separate daily/total caps. Podcast narration uses the existing free prototype access with bounded characters and requests. Neither integration purchases credits or provisions a paid endpoint. Private-marked sources are excluded from the narration trial because it may retain text and audio.
 
-```bash
-uv run --offline python -m jana_tools.hackathon_dev --local-model /path/to/NVIDIA-Nemotron3-Nano-4B-Q4_K_M.gguf
-```
+This is a local development host. Public hosting, production retention evidence, authentication, native distribution and independent acceptance require their own qualification. See [gateway deployment](services/cloud-gateway/deploy/README.md). Current verification and its limits are recorded in [FEATURE_IMPORT.md](FEATURE_IMPORT.md); detailed engineering observations are retained in [DEVELOPMENT_NOTES.md](DEVELOPMENT_NOTES.md).
 
-The expected SHA-256 is `be5d9a656a51922f24f1f09a759cebb694e1f5d9728bf0ef9f8c972c5a0b5ef2`.
-Model use is governed by the [NVIDIA Nemotron Open Model License](https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-nemotron-open-model-license/).
-The launcher never downloads weights automatically and removes both provider keys from its child environments.
-Cloud routes remain available after attaching the local model, subject to the original consent and budget gates.
+## Repository
 
-Plain `pnpm --filter @jana/desktop dev` retains the original scripted UI-development mode. Use the launcher above
-for the real hackathon integration. Scripted replies must never be presented as live NVIDIA inference.
+| Path | Purpose |
+| --- | --- |
+| `apps/desktop` | React app and Tauri shell |
+| `apps/studio` | Curriculum authoring and analytics |
+| `packages` | Shared UI, client logic, renderers, contracts and translations |
+| `services` | Agent core, gateway, sandboxed workers and curriculum tooling |
+| `content`, `skills` | Curriculum and teaching content |
+| `evals` | Fixtures, evaluation suites and recorded model provenance |
+| `scripts` | Development, verification, packaging and release tooling |
 
-The [hackathon rules](https://nebiusglobalaihackathon.devpost.com/rules) allow substantially updated existing projects.
-The submission should distinguish the preserved Jana foundation from the NVIDIA, Nebius and hackathon work.
+Public wire contracts and generation inputs live in `contracts/`; UI tokens are in `packages/ui/tokens.json`. Private specifications, credentials, model weights and learner data are excluded from Git. Keep third-party licence notices with distributed components.
 
-## The specification
+## Project provenance
 
-The original private specification is excluded from this fork, together with its pin and internal run evidence.
-Never copy it into this repository. Public wire contracts and generation inputs live in `contracts/`; the unchanged
-UI token values live in `packages/ui/tokens.json`. CI regenerates the bindings and checks for drift. Governance-tool
-tests use explicitly synthetic fixtures in `scripts/tests/fixtures/governance`, while release gates refuse missing
-owner decisions and evidence. A passing test run does not grant release approval.
-The existing guard hooks can still prevent accidental inclusion:
-
-```bash
-git config core.hooksPath scripts/git-hooks
-```
-
-## Checks
-
-Run every installed toolchain without network access:
-
-```bash
-./scripts/ci/run-all-tests.sh
-uv run --frozen --offline python -m jana_tools codegen --check
-uv run --frozen --offline python -m jana_tools fixtures --check
-```
-
-Focused hackathon integration checks:
-
-```bash
-uv run pytest services/cloud-gateway/tests/test_nebius.py services/cloud-gateway/tests/test_inference_budget.py -q
-pnpm --filter @jana/desktop typecheck
-pnpm --filter @jana/desktop build
-```
-
-Acceptance tests are named after the specification's test names, for example `arc16_repository_layout_check`.
+This application builds on the Jana learning foundation. The hackathon integration adds Nebius routing, bounded cloud inference, connected learning journeys and the subsequent feature work described in [FEATURE_IMPORT.md](FEATURE_IMPORT.md). Historical provider adapters, frozen evaluation inputs and model-generation receipts retain their actual provenance; they are not instructions for the current demo or claims of new Nebius runs.

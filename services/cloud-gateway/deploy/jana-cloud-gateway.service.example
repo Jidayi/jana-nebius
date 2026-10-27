@@ -11,7 +11,7 @@ Group=jana-gateway
 WorkingDirectory=/opt/jana-gateway
 ExecStart=/opt/jana-gateway/venv/bin/python -m cloud_gateway --config /etc/jana-gateway/production.toml --host 127.0.0.1 --port 8080
 # Configure the real secret-manager source; this is a reference, never an inline credential.
-# LoadCredential=gemini_api_key:/REQUIRED/secret-manager-mounted-file
+# LoadCredential=nebius_api_key:/REQUIRED/secret-manager-mounted-file
 UMask=0077
 Restart=on-failure
 LimitCORE=0

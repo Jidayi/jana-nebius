@@ -29,8 +29,6 @@ live in the authoring home (`JANA_AUTHORING_HOME`, default `~/.jana/authoring`),
 uv run aut edit itm.phy.o.motion.0001                       # register an edit you made to the file (a published
                                                             # mock paper using the item is edited with it, ASM-15)
 uv run aut quantities --report q.json                       # item quantities for misconception signatures (CUR-18)
-uv run aut quantities --propose gemini --env-file .env      # ... first ask the gateway's fast model for mappings no
-                                                            # reading binds (cached, budget-capped; tools decide)
 uv run aut quantities --write                               # ... saved as registered edits; then promote and bank
 uv run aut draft hint_ladder itm.phy.o.motion.0001          # AI draft (local model via JANA_DRAFT_URL, else template)
 uv run aut accept itm.phy.o.motion.0001 parts               # accept a verified AI field
@@ -38,3 +36,7 @@ uv run aut promote phy/o                                    # drafted records th
 uv run aut bank phy/o                                       # verified records into the evaluation bank (CUR-22)
 uv run aut publish phy/o --channel dev                      # a request queued for the signing service
 ```
+
+The demo authoring workflow uses deterministic quantity extraction and tool-verified cached proposals.
+New online quantity proposals are not configured for the Nebius demo; the compatibility proposal transport is
+separate from the budgeted tutoring gateway. It is not a setup step for this application.
