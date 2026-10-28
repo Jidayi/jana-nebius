@@ -19,7 +19,7 @@ from agent_core.api.__main__ import main
 from agent_core.api.core import CoreService
 from agent_core.config import Settings
 from agent_core.engine.assembly import AppRuntime
-from agent_core.net.credentials import ID_REF
+from agent_core.net.credentials import ID_REF, KEY_REF
 from agent_core.net.layer import OnlineLayer
 from agent_core.router.hardware import TutorPath
 from agent_core.store import subscription as subscriptions
@@ -108,7 +108,11 @@ class SponsoredRuntime(AppRuntime):
         if self.release:
             raise ValueError("The local hackathon key store is development-only")
         if self.keys is None or isinstance(self.keys, MemoryKeyStore):
-            self.keys = FileKeyStore(self.data_root.parent / f".{self.data_root.name}-keys", self.data_root)
+            configured = os.environ.get("JANA_DEV_KEYSTORE_DIR")
+            root = Path(configured) if configured else self.data_root.parent / f".{self.data_root.name}-keys"
+            self.keys = FileKeyStore(root, self.data_root)
+        if self.keys.get(ID_REF) is not None and self.keys.get(KEY_REF) is None:
+            raise ValueError("The demo device private key is missing; restore its key store before restarting")
         return self.keys
 
     def attach_online(self) -> OnlineLayer:
@@ -196,6 +200,7 @@ async def connect(runtime: AppRuntime, core: CoreService) -> None:
     )
     if state not in {"added", "renewed"}:
         store.close()
+        log.error("hackathon_startup_device_credential_%s", state)
         raise ValueError("The local gateway credential could not be provisioned")
     online.keys.put(ID_REF, credential.encode())
     online.credential.forget_token()

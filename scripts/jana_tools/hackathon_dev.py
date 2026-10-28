@@ -26,6 +26,23 @@ MODEL_SHA256 = "be5d9a656a51922f24f1f09a759cebb694e1f5d9728bf0ef9f8c972c5a0b5ef2
 MODEL_SOURCE = "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-4B-GGUF"
 
 
+def prepare_key_store(data_dir: Path) -> Path:
+    """Keep this demo's identity outside temporary storage, migrating its existing keys once."""
+    from agent_core.store.keystore import FileKeyStore
+
+    identity = hashlib.sha256(str(data_dir.resolve()).encode()).hexdigest()[:20]
+    destination = REPO_ROOT / ".local-state" / "dev-keys" / identity
+    target = FileKeyStore(destination, data_dir)
+    legacy = data_dir.parent / f".{data_dir.name}-keys"
+    if not target.refs() and legacy.is_dir():
+        source = FileKeyStore(legacy, data_dir)
+        for ref in source.refs():
+            value = source.get(ref)
+            if value is not None:
+                target.put(ref, value)
+    return destination
+
+
 def verify_model(path: Path) -> None:
     with path.open("rb") as source:
         actual = hashlib.file_digest(source, "sha256").hexdigest()
@@ -56,6 +73,7 @@ def main() -> int:
     env.update(
         JANA_NEBIUS_GATEWAY_CONFIG="services/cloud-gateway/deploy/nebius-dev.toml",
         JANA_DEV_DATA_DIR=str(args.data_dir.resolve()),
+        JANA_DEV_KEYSTORE_DIR=str(prepare_key_store(args.data_dir.resolve())),
         JANA_DEV_HOST="127.0.0.1",
         PORT=str(args.port),
     )

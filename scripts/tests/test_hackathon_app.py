@@ -166,3 +166,48 @@ def test_sponsor_never_grants_consent_and_restart_keeps_credential(
         assert isinstance(host.SponsoredRuntime(Settings(), Path(), Path(), tmp_path / "app").key_store(), FileKeyStore)
 
     asyncio.run(run())
+
+
+def test_launcher_migrates_identity_out_of_temporary_data_without_overwriting(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from agent_core.net.credentials import ID_REF, KEY_REF
+    from jana_tools import hackathon_dev
+
+    repo = tmp_path / "repo"
+    data = tmp_path / "temporary" / "demo"
+    legacy = FileKeyStore(data.parent / ".demo-keys", data)
+    legacy.put(KEY_REF, b"k" * 32)
+    legacy.put(ID_REF, b"dcr_synthetic")
+    legacy.put("jana.device-db", b"d" * 32)
+    monkeypatch.setattr(hackathon_dev, "REPO_ROOT", repo)
+    destination = hackathon_dev.prepare_key_store(data)
+    migrated = FileKeyStore(destination, data)
+    assert destination.is_relative_to(repo / ".local-state")
+    assert not destination.is_relative_to(data)
+    assert migrated.get(KEY_REF) == legacy.get(KEY_REF)
+    assert migrated.get(ID_REF) == legacy.get(ID_REF)
+    assert migrated.get("jana.device-db") == legacy.get("jana.device-db")
+    assert destination.stat().st_mode & 0o777 == 0o700
+    assert (destination / KEY_REF).stat().st_mode & 0o777 == 0o600
+    migrated.put(ID_REF, b"dcr_renewed")
+    assert hackathon_dev.prepare_key_store(data) == destination
+    assert migrated.get(ID_REF) == b"dcr_renewed"
+    assert legacy.get(ID_REF) == b"dcr_synthetic"
+
+
+def test_missing_private_key_never_mints_a_replacement_on_restart(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from agent_core.net.credentials import ID_REF, KEY_REF
+
+    location = tmp_path / "persisted-keys"
+    keys = FileKeyStore(location)
+    keys.put(ID_REF, b"dcr_existing")
+    monkeypatch.setenv("JANA_DEV_KEYSTORE_DIR", str(location))
+    runtime = host.SponsoredRuntime(Settings(), Path(), Path(), tmp_path / "app")
+    for _ in range(2):
+        with pytest.raises(ValueError, match="private key is missing"):
+            runtime.key_store()
+        assert keys.get(KEY_REF) is None
+    assert keys.get(ID_REF) == b"dcr_existing"

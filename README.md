@@ -52,6 +52,8 @@ uv run --offline python -m jana_tools.hackathon_dev --stable --port 5187 --data-
 
 Open **http://127.0.0.1:5187/**. Reuse the same data directory to retain profiles. `--stable` builds once and serves the preview. The host installs the signed subject packs and uses the real gateway. The plain desktop Vite development command uses scripted replies for UI development; use the launcher above for a live demo.
 
+The launcher keeps each demo's device identity in the ignored, owner-only `.local-state/dev-keys/` directory, outside temporary storage. It migrates an existing sibling key store once. Preserve this directory across restarts; never commit or share its contents. A missing private key for an existing identity stops startup rather than silently registering another device.
+
 For the optional offline tutor, add `--local-model /path/to/model.gguf`. The launcher verifies the supported [Nemotron Nano 4B Q4_K_M](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-4B-GGUF) before loading it through llama.cpp. The expected SHA-256 is `be5d9a656a51922f24f1f09a759cebb694e1f5d9728bf0ef9f8c972c5a0b5ef2`. Model use follows the [Nemotron Open Model License](https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-nemotron-open-model-license/).
 
 Online features require the selected profile’s consent and first-use confirmation. Adult profiles can review Study consent in Settings → Online features. Minors retain the signed guardian-consent requirement. Scanned notes are initially unreviewed; generation requires confirmation of the extracted passages.
