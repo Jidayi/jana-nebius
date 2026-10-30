@@ -12,7 +12,7 @@ import tomllib
 from pathlib import Path
 from typing import Any, Literal
 
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field, model_validator
+from pydantic import AwareDatetime, BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from cloud_gateway.operations import OperationsPolicy
 
@@ -360,6 +360,16 @@ class GatewayConfig(_Strict):
     ask_max_tokens: int = key(4096, serves="STU-20", unit="tokens", ge=512, le=16384)
     objectives: Objectives = Field(default_factory=Objectives)
     operations: OperationsPolicy | None = None
+
+    @field_validator("storage_dir")
+    @classmethod
+    def _durable_storage(cls, value: Path) -> Path:
+        # The ledger holds actual spend and unresolved holds, and both the gateway and the demo host open it: a
+        # relative path would resolve against each process's working directory and split it in two.
+        path = value.expanduser()
+        if not path.is_absolute():
+            raise ValueError("storage_dir must be an absolute path or start with ~")
+        return path
 
     @model_validator(mode="after")
     def _consistent(self) -> GatewayConfig:

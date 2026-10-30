@@ -3,7 +3,8 @@
 # accounts nebius_api_key and tavily_api_key. Gateway-only environment keys remain supported.
 environment = "dev"
 audience_host = "localhost"
-storage_dir = "/tmp/jana-nebius-gateway"
+# The spend ledger must survive reboots: macOS clears /tmp, which erased the earlier ledger there.
+storage_dir = "~/.local/state/jana-nebius-gateway"
 keychain_service = "jana-nebius.cloud-gateway"
 voice_enabled = false
 

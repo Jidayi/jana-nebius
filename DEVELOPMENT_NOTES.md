@@ -112,7 +112,7 @@ Some websites refuse extraction; use a file or pasted text when that happens. Th
 every aid, recording or YouTube URL works.
 
 The approved budget is **$25 total for ten days**: $15 inference and $10 reserved for hosting. The gateway's
-persistent ledger at `/tmp/jana-nebius-gateway` is retained across this reset. The supplied configuration limits
+persistent ledger, now at `~/.local/state/jana-nebius-gateway` (the earlier `/tmp` location was cleared by macOS), is retained across this reset. The supplied configuration limits
 inference to $4 per UTC day and $15 total, ending November 2, 2026 at 00:46:01 UTC. The daily ceiling allows
 live qualification within that same total; subsequent days share the remaining allowance. It reserves in-flight costs
 and retains failed or unresolved reservations. Do not delete or reset that ledger. Tavily has a separate durable

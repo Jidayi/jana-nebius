@@ -12,7 +12,7 @@ uv run --offline python -m cloud_gateway --config services/cloud-gateway/deploy/
 
 The app launcher connects to this loopback gateway; it does not provision cloud infrastructure. Keychain setup, optional web/narration services, the app command and approved demo limits are in the [project README](../../../README.md).
 
-Keep `/tmp/jana-nebius-gateway` across restarts. Its ledger includes actual spend and unresolved reservations. No retry, configuration cleanup or demo reset should erase those amounts. Cloud conversational voice remains disabled.
+Keep `~/.local/state/jana-nebius-gateway` across restarts. It replaced `/tmp/jana-nebius-gateway`, which macOS cleared, losing that ledger. Its ledger includes actual spend and unresolved reservations. No retry, configuration cleanup or demo reset should erase those amounts. Cloud conversational voice remains disabled.
 
 ## Production template
 

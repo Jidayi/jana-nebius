@@ -107,7 +107,10 @@ def test_sponsor_never_grants_consent_and_restart_keeps_credential(
 ) -> None:
     config = tmp_path / "gateway.toml"
     original = (REPO_ROOT / "services/cloud-gateway/deploy/nebius-dev.toml").read_text()
-    config.write_text(original.replace('"/tmp/jana-nebius-gateway"', json.dumps(str(tmp_path / "gateway"))))
+    ledger = '"~/.local/state/jana-nebius-gateway"'
+    # Never let this test open the owner's real spend ledger.
+    assert ledger in original
+    config.write_text(original.replace(ledger, json.dumps(str(tmp_path / "gateway"))))
     monkeypatch.setenv("JANA_NEBIUS_GATEWAY_CONFIG", str(config))
 
     async def available(_port: int) -> None:

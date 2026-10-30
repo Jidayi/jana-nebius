@@ -60,7 +60,7 @@ Online features require the selected profile’s consent and first-use confirmat
 
 ## Demo limits and deployment
 
-The existing approval allocates **$15 total to inference**, with **$10 reserved for hosting**. The active configuration permits at most **$6 per UTC day** within that same inference total and expires on **2 November 2026 at 00:46:01 UTC**. Hosting purchases require separate authorization. The durable ledger at `/tmp/jana-nebius-gateway` preserves actual spend and uncertain reservations across restarts; never delete or reset it to recover allowance.
+The existing approval allocates **$15 total to inference**, with **$10 reserved for hosting**. The active configuration permits at most **$6 per UTC day** within that same inference total and expires on **2 November 2026 at 00:46:01 UTC**. Hosting purchases require separate authorization. The durable ledger at `~/.local/state/jana-nebius-gateway` preserves actual spend and uncertain reservations across restarts and reboots; never delete or reset it to recover allowance. An earlier ledger under `/tmp` was cleared by macOS; its recorded spend must be reconciled against the provider before relying on the remaining allowance.
 
 Tavily uses existing prepaid credits with separate daily/total caps. Podcast narration uses the existing free prototype access with bounded characters and requests. Neither integration purchases credits or provisions a paid endpoint. Private-marked sources are excluded from the narration trial because it may retain text and audio.
 
