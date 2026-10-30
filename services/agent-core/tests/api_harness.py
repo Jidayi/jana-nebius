@@ -67,6 +67,8 @@ class Running:
 
     async def post(self, path: str, body: Any = None, key: str | None = None) -> httpx.Response:
         headers = self.headers(True)
+        if path.startswith("/v1/profiles/") and path.endswith("/open"):
+            headers["x-profile-open-intent"] = "user"
         if key:
             headers["idempotency-key"] = key
         return await self.client.post(self.base + path, json=body if body is not None else {}, headers=headers)

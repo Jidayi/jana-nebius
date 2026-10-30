@@ -55,6 +55,23 @@ async function opened(time = manualTime()) {
 const opens = (core: FakeProfileCore) => core.log.filter((r) => r.path === `/v1/profiles/${ADA.profile_id}/open`).length;
 
 describe("SEC-19", () => {
+  test("automatic recovery does not take a profile back from another window", async () => {
+    const core = new FakeProfileCore();
+    core.singleActiveProfile = true;
+    const older = new ProfileController(core.launch, new StoreHolder(), { fetch: core.fetch });
+    const newer = new ProfileController(core.launch, new StoreHolder(), { fetch: core.fetch });
+    await older.load();
+    await newer.load();
+    expect(await older.unlock(ADA.profile_id)).toBe(true);
+    expect(await newer.unlock(PROFILES[1]!.profile_id)).toBe(true);
+    await expect(older.loadSettings()).rejects.toMatchObject({ code: "profile_token_expired" });
+    expect(older.getView().active).toBeNull();
+    expect(newer.getView().active).toBe(PROFILES[1]!.profile_id);
+    await expect(newer.loadSettings()).resolves.toBeDefined();
+    expect(opens(core)).toBe(2); // one picker action, one refused recovery; no renewal loop
+    await newer.lock();
+  });
+
   test("test_sec19_closed_profile_reopens_while_the_student_is_active", async () => {
     const { core, profiles, time } = await opened();
     const generation = profiles.generation;

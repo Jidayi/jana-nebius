@@ -205,7 +205,7 @@ export class ProfileController {
     if (current !== null && current !== profileId) await this.lock();
     const generation = this.#generation;
     try {
-      const token = await this.#opener.post<ProfileToken>(`/v1/profiles/${profileId}/open`, {}, clientId());
+      const token = await this.#opener.post<ProfileToken>(`/v1/profiles/${profileId}/open`, {}, clientId(), { "x-profile-open-intent": "user" });
       if (generation !== this.#generation) return false;
       this.#accept(token);
       this.setOpenState(profileId, { error: null, retry_at: null });

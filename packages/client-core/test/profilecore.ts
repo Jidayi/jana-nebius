@@ -148,6 +148,8 @@ export class FakeProfileCore {
   readonly log: Logged[] = [];
   readonly profiles = PROFILES.map((p) => ({ ...p }));
   readonly tokens = new Map<string, string>(); // profile token -> profile id
+  /** Match the real core's single active profile for cross-window recovery tests. */
+  singleActiveProfile = false;
   /** The sessions created so far, by session id, with the subject and topic of the newest create: `GET /v1/sessions`
    * lists them and the snapshot carries that subject (API-23). Each profile has one session in this fake. */
   readonly sessionsMade = new Map<string, { subject: string; topic_id: string | null }>();
@@ -419,10 +421,12 @@ export class FakeProfileCore {
     }
     if (method === "GET" && path === "/v1/models") return json(200, this.models);
     if (method === "POST" && (m = /^\/v1\/profiles\/([^/]+)\/open$/.exec(path))) {
+      if (this.singleActiveProfile && this.tokens.size > 0 && headers["x-profile-open-intent"] !== "user") return error(401, "profile_token_expired");
       const target = this.profiles.find((p) => p.profile_id === m![1]);
       if (target === undefined) return error(404, "not_found");
       if (this.newerApp.has(target.profile_id)) return error(426, "upgrade_required", { details: { message_key: "profile.newer_app" } });
       const token = this.mint("pt_");
+      if (this.singleActiveProfile) this.tokens.clear();
       this.tokens.set(token, target.profile_id);
       return json(200, { profile_token: token, expires_in_s: 600 });
     }

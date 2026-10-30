@@ -28,7 +28,9 @@ ASGIApp = Callable[[Scope, Receive, Send], Awaitable[None]]
 # The Tauri webview's origins: macOS and Linux use the custom scheme, Windows (WebView2) the http form.
 APP_ORIGINS = frozenset({"tauri://localhost", "http://tauri.localhost", "https://tauri.localhost"})
 LOOPBACK_HOSTS = ("127.0.0.1", "[::1]", "localhost")
-ALLOWED_HEADERS = b"authorization, content-type, idempotency-key, last-event-id, x-profile-token, x-study-open"
+ALLOWED_HEADERS = (
+    b"authorization, content-type, idempotency-key, last-event-id, x-profile-token, x-study-open, x-profile-open-intent"
+)
 
 
 def websocket_credential(scope: Scope, prefix: str) -> str | None:

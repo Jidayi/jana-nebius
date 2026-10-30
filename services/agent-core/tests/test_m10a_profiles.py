@@ -46,7 +46,7 @@ class Api:
 
     async def unlock(self, profile_id: str):
         """A tap in the picker (UXS-09): no PIN."""
-        return await self.call("POST", f"/v1/profiles/{profile_id}/open", {})
+        return await self.call("POST", f"/v1/profiles/{profile_id}/open", {}, headers={"x-profile-open-intent": "user"})
 
     async def token(self, profile_id: str) -> str:
         reply = await self.unlock(profile_id)
@@ -70,6 +70,28 @@ def with_api(tmp_path: Path, scenario):
 
 
 # --- API-04 ----------------------------------------------------------------------------------------------------------
+
+
+def test_profile_recovery_never_evicts_an_active_window(tmp_path: Path):
+    async def scenario(api: Api, r):
+        a, b = await api.add(student("Older")), await api.add(student("Newer"))
+        old = await api.token(a)
+        current = await api.token(b)
+        # Background recovery carries no picker intent and cannot replace either another profile or another
+        # window on the same profile. Neither failed attempt invalidates the current token.
+        for target in (a, b):
+            refused = await api.call("POST", f"/v1/profiles/{target}/open", {})
+            assert refused.status_code == 401
+            assert code(refused) == "profile_token_expired"
+            assert (await api.call("GET", f"/v1/profiles/{b}/settings", profile=current)).status_code == 200
+        assert (await api.call("GET", f"/v1/profiles/{a}/settings", profile=old)).status_code == 401
+        # Explicit switching still works, and recovery is available once no grant remains (idle lock/restart).
+        replacement = await api.token(a)
+        assert (await api.call("GET", f"/v1/profiles/{a}/settings", profile=replacement)).status_code == 200
+        r.runtime.directory.tokens.revoke()
+        assert (await api.call("POST", f"/v1/profiles/{a}/open", {})).status_code == 200
+
+    with_api(tmp_path, scenario)
 
 
 def api04_cross_profile_404(tmp_path: Path):
@@ -724,10 +746,12 @@ def test_profile_token_passes_the_webview_preflight(tmp_path: Path):
         try:
             reply = await r.client.request("OPTIONS", f"{r.base}/v1/connectivity", headers={
                 "origin": "tauri://localhost", "access-control-request-method": "PATCH",
-                "access-control-request-headers": "x-profile-token, idempotency-key"})  # fmt: skip
+                "access-control-request-headers": "x-profile-token, x-profile-open-intent, idempotency-key",
+            })  # fmt: skip
             return reply.headers.get("access-control-allow-headers", "")
         finally:
             await stop_core(r)
 
     allowed = run(scenario())
     assert "x-adult-token" not in allowed and "x-profile-token" in allowed
+    assert "x-profile-open-intent" in allowed

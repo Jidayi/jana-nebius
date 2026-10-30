@@ -200,6 +200,13 @@ def add_routes(app: FastAPI, core: CoreService, mutating: Mutating) -> None:
         async def run(body: Any) -> tuple[int, Any]:
             if body not in ({}, None):
                 raise ApiError("validation_failed", "opening a profile takes no credentials")
+            # Recovery after idle lock or a core restart must not evict a profile another window has opened.
+            # Only an explicit picker action may replace a currently active grant.
+            if (
+                directory().tokens.active_profile() is not None
+                and request.headers.get("x-profile-open-intent") != "user"
+            ):
+                raise ApiError("profile_token_expired", "another window is active; choose a profile to switch")
             if guarded(lambda: directory().newer_app(profile_id)):
                 # Refused before a token is issued, with nothing opened or changed (DAT-12, G51).
                 raise ApiError("upgrade_required", "this profile was saved by a newer version of the app",
