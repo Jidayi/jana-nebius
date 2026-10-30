@@ -90,7 +90,7 @@ export function OnlineFeatures({ profiles, run }: { profiles: ProfileController;
   const needed = subscription !== "loading" && subscription !== "failed" ? subscription.profiles.filter((p) => p.consent === "needed").map((p) => p.profile_id) : [];
   const names = needed.map((id) => known.find((p) => p.profile_id === id)?.display_name ?? "").filter((n) => n !== "");
   const selfConsent = adult && needed.length > 0 && needed.every((id) => id === view.active);
-  const studyNeedsCloud = adult && (!cloudConsent?.effective || cloudConsent.paused || (view.active !== null && needed.includes(view.active)));
+  const studyNeedsCloud = adult && (!state.features.cloud_tier?.enabled || !cloudConsent?.effective || cloudConsent.paused || (view.active !== null && needed.includes(view.active)));
   const set = (change: Partial<Record<OnlineFeature, boolean>>) => run(async () => setState(await family.setOnlineFeatures(change)));
   const refresh = async () => setState(await family.connectivity());
   const end = () => run(async () => {
@@ -160,7 +160,9 @@ export function OnlineFeatures({ profiles, run }: { profiles: ProfileController;
               setStudyConsent(await switchConsent(profiles.commands, view.active, feature, "on"));
               if (studyNeedsCloud) setCloudConsent(await switchConsent(profiles.commands, view.active, "cloud_tier", "on"));
             }
-            setState(await family.setOnlineFeatures({ [feature]: true }));
+            setState(await family.setOnlineFeatures({ [feature]: true,
+              ...(feature === "study_materials" && studyNeedsCloud ? { cloud_tier: true } : {}),
+            }));
           });
         }}
       />

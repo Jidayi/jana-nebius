@@ -190,6 +190,9 @@ describe("Online Study profile consent", () => {
     const applied = core.log.find((r) => r.method === "POST" && r.path === "/v1/subscription")!;
     expect(applied.body).toEqual({ entitlement: {}, consents: [{ profile_id: BEN.profile_id, notice_version: "2026-10.d1" }] });
     expect(core.subscription.profiles.find((p) => p.profile_id === ADA.profile_id)?.consent).toBe("needed");
+    await waitFor(() => expect(core.features.cloud_tier).toBe(true));
+    expect(core.features.study_materials).toBe(true);
+    expect(core.consents.get(ADA.profile_id)?.some((c) => c.scope === "cloud_tier" && c.granted)).not.toBe(true);
   });
 
   test("an adult grants consent only after the existing confirmation", async () => {
